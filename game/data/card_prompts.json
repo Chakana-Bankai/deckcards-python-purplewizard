@@ -1,482 +1,156 @@
 {
   "strike": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "corrupted void",
-    "palette": "solar gold",
-    "detail": "chakana constellation",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, corrupted void, palette solar gold, chakana constellation, combat focus"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "attack",
+    "rarity": "clear simple composition",
+    "unique_detail": "smoke serpent",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, violent burst of violet lightning tearing through ancient stone, dynamic diagonal composition, sparks and arcane particles, cracked runes glowing, clear simple composition, mystic combat focus, unique detail: smoke serpent"
   },
   "defend": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "corrupted void",
-    "palette": "emerald nature",
-    "detail": "moon altar",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, corrupted void, palette emerald nature, moon altar, guardia sigil"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "defense",
+    "rarity": "clear simple composition",
+    "unique_detail": "sun disk",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, clear simple composition, protective block sigils, unique detail: sun disk"
   },
   "violet_bolt": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "corrupted void",
-    "palette": "solar gold",
-    "detail": "astral knot",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, corrupted void, palette solar gold, astral knot, combat focus"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "arcane",
+    "rarity": "clear simple composition",
+    "unique_detail": "silver cenote",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, fractured cosmic reality splitting open, glowing sigils floating in void, surreal distortion, neon violet veins, chakana morphing into cosmic geometry, clear simple composition, mystic combat focus, unique detail: silver cenote"
   },
   "prismatic_shield": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "corrupted void",
-    "palette": "emerald nature",
-    "detail": "violet meteor",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, corrupted void, palette emerald nature, violet meteor, guardia sigil"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "arcane",
+    "rarity": "clear simple composition",
+    "unique_detail": "ember ash",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, fractured cosmic reality splitting open, glowing sigils floating in void, surreal distortion, neon violet veins, chakana morphing into cosmic geometry, clear simple composition, protective block sigils, unique detail: ember ash"
   },
   "arcane_pulse": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "corrupted void",
-    "palette": "solar gold",
-    "detail": "chakana constellation",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, corrupted void, palette solar gold, chakana constellation, deck manipulation"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "arcane",
+    "rarity": "clear simple composition",
+    "unique_detail": "echoing bells",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, fractured cosmic reality splitting open, glowing sigils floating in void, surreal distortion, neon violet veins, chakana morphing into cosmic geometry, clear simple composition, arcane card draw vortex, unique detail: echoing bells"
   },
   "lesser_seal": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "corrupted void",
-    "palette": "emerald nature",
-    "detail": "obsidian temple glyph",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, corrupted void, palette emerald nature, obsidian temple glyph, guardia sigil"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "ritual",
+    "rarity": "clear simple composition",
+    "unique_detail": "crystal halo",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ancient andean altar illuminated by violet ritual fire, hooded mage channeling sacred geometry, smoke forming symbolic patterns, gothic cathedral shadows, clear simple composition, rupture energy fractures, protective block sigils, unique detail: crystal halo"
   },
   "subtle_drain": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "corrupted void",
-    "palette": "solar gold",
-    "detail": "moon altar",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, corrupted void, palette solar gold, moon altar, combat focus"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "attack",
+    "rarity": "clear simple composition",
+    "unique_detail": "sable shrine",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, violent burst of violet lightning tearing through ancient stone, dynamic diagonal composition, sparks and arcane particles, cracked runes glowing, clear simple composition, mystic combat focus, unique detail: sable shrine"
   },
   "vision": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "corrupted void",
-    "palette": "emerald nature",
-    "detail": "condor spirit",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, corrupted void, palette emerald nature, condor spirit, deck manipulation"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "defense",
+    "rarity": "clear simple composition",
+    "unique_detail": "sunken chapel",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, clear simple composition, mystic combat focus, unique detail: sunken chapel"
   },
   "phase_shift": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "corrupted void",
-    "palette": "emerald nature",
-    "detail": "andes relic",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, corrupted void, palette emerald nature, andes relic, guardia sigil"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "defense",
+    "rarity": "clear simple composition",
+    "unique_detail": "black quartz",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, clear simple composition, protective block sigils, unique detail: black quartz"
   },
   "fragment": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "corrupted void",
-    "palette": "solar gold",
-    "detail": "violet meteor",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, corrupted void, palette solar gold, violet meteor, combat focus"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "attack",
+    "rarity": "clear simple composition",
+    "unique_detail": "ivory runestone",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, violent burst of violet lightning tearing through ancient stone, dynamic diagonal composition, sparks and arcane particles, cracked runes glowing, clear simple composition, mystic combat focus, unique detail: ivory runestone"
   },
   "exchange": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "corrupted void",
-    "palette": "crimson chaos",
-    "detail": "condor spirit",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, corrupted void, palette crimson chaos, condor spirit, guardia sigil"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "defense",
+    "rarity": "clear simple composition",
+    "unique_detail": "ritual brazier",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, clear simple composition, protective block sigils, unique detail: ritual brazier"
   },
   "cauterize_rupture": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "corrupted void",
-    "palette": "azure cosmic",
-    "detail": "andes relic",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, corrupted void, palette azure cosmic, andes relic, mana burst"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "defense",
+    "rarity": "clear simple composition",
+    "unique_detail": "temple stairs",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, clear simple composition, rupture energy fractures, energy orb resonance, unique detail: temple stairs"
   },
   "short_portal": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "ancient sacred",
-    "palette": "emerald nature",
-    "detail": "andes relic",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, ancient sacred, palette emerald nature, andes relic, combat focus"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "defense",
+    "rarity": "ornate details, layered lighting",
+    "unique_detail": "ember ash",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: ember ash"
   },
   "violet_ring": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "ancient sacred",
-    "palette": "crimson chaos",
-    "detail": "obsidian temple glyph",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, ancient sacred, palette crimson chaos, obsidian temple glyph, maldición weave"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "defense",
+    "rarity": "ornate details, layered lighting",
+    "unique_detail": "moonlit ruins",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: moonlit ruins"
   },
   "rite_transmutation": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "ancient sacred",
-    "palette": "crimson chaos",
-    "detail": "sun gate",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, ancient sacred, palette crimson chaos, sun gate, maldición weave"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "defense",
+    "rarity": "ornate details, layered lighting",
+    "unique_detail": "temporal crack",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: temporal crack"
   },
   "astral_cut": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "ancient sacred",
-    "palette": "solar gold",
-    "detail": "chakana constellation",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, ancient sacred, palette solar gold, chakana constellation, combat focus"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "attack",
+    "rarity": "ornate details, layered lighting",
+    "unique_detail": "forgotten archive",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, violent burst of violet lightning tearing through ancient stone, dynamic diagonal composition, sparks and arcane particles, cracked runes glowing, ornate details, layered lighting, mystic combat focus, unique detail: forgotten archive"
   },
   "void_limit": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "ancient sacred",
-    "palette": "crimson chaos",
-    "detail": "sun gate",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, ancient sacred, palette crimson chaos, sun gate, maldición weave"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "arcane",
+    "rarity": "ornate details, layered lighting",
+    "unique_detail": "night orchid",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, fractured cosmic reality splitting open, glowing sigils floating in void, surreal distortion, neon violet veins, chakana morphing into cosmic geometry, ornate details, layered lighting, rupture energy fractures, unique detail: night orchid"
   },
   "reflection": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "ancient sacred",
-    "palette": "crimson chaos",
-    "detail": "obsidian temple glyph",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, ancient sacred, palette crimson chaos, obsidian temple glyph, maldición weave"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "defense",
+    "rarity": "ornate details, layered lighting",
+    "unique_detail": "condor feathers",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: condor feathers"
   },
   "silence": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "ancient sacred",
-    "palette": "crimson chaos",
-    "detail": "moon altar",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, ancient sacred, palette crimson chaos, moon altar, combat focus"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "defense",
+    "rarity": "ornate details, layered lighting",
+    "unique_detail": "shadow totem",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: shadow totem"
   },
   "amethyst_crown": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "ancient sacred",
-    "palette": "crimson chaos",
-    "detail": "astral knot",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, ancient sacred, palette crimson chaos, astral knot, maldición weave"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "defense",
+    "rarity": "ornate details, layered lighting",
+    "unique_detail": "shadow totem",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: shadow totem"
   },
   "rewrite": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "ancient sacred",
-    "palette": "emerald nature",
-    "detail": "andes relic",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, ancient sacred, palette emerald nature, andes relic, combat focus"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "defense",
+    "rarity": "ornate details, layered lighting",
+    "unique_detail": "serpent knot",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: serpent knot"
   },
   "final_gate": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "ancient sacred",
-    "palette": "solar gold",
-    "detail": "sun gate",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, ancient sacred, palette solar gold, sun gate, quiebre pulse"
-  },
-  "pw_card_01": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "corrupted void",
-    "palette": "solar gold",
-    "detail": "chakana constellation",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, corrupted void, palette solar gold, chakana constellation, combat focus"
-  },
-  "pw_card_02": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "corrupted void",
-    "palette": "emerald nature",
-    "detail": "obsidian temple glyph",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, corrupted void, palette emerald nature, obsidian temple glyph, guardia sigil"
-  },
-  "pw_card_03": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "corrupted void",
-    "palette": "azure cosmic",
-    "detail": "violet meteor",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, corrupted void, palette azure cosmic, violet meteor, mana burst"
-  },
-  "pw_card_04": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "corrupted void",
-    "palette": "violet arcane",
-    "detail": "andes relic",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, corrupted void, palette violet arcane, andes relic, deck manipulation"
-  },
-  "pw_card_05": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "ritual",
-    "rarity": "corrupted void",
-    "palette": "obsidian void",
-    "detail": "condor spirit",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ritual, corrupted void, palette obsidian void, condor spirit, guardia sigil"
-  },
-  "pw_card_06": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "corrupted void",
-    "palette": "crimson chaos",
-    "detail": "astral knot",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, corrupted void, palette crimson chaos, astral knot, maldición weave"
-  },
-  "pw_card_07": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "corrupted void",
-    "palette": "solar gold",
-    "detail": "sun gate",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, corrupted void, palette solar gold, sun gate, combat focus"
-  },
-  "pw_card_08": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "corrupted void",
-    "palette": "emerald nature",
-    "detail": "violet meteor",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, corrupted void, palette emerald nature, violet meteor, guardia sigil"
-  },
-  "pw_card_09": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "corrupted void",
-    "palette": "azure cosmic",
-    "detail": "obsidian temple glyph",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, corrupted void, palette azure cosmic, obsidian temple glyph, mana burst"
-  },
-  "pw_card_10": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "corrupted void",
-    "palette": "violet arcane",
-    "detail": "andes relic",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, corrupted void, palette violet arcane, andes relic, deck manipulation"
-  },
-  "pw_card_11": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "ritual",
-    "rarity": "corrupted void",
-    "palette": "obsidian void",
-    "detail": "condor spirit",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ritual, corrupted void, palette obsidian void, condor spirit, guardia sigil"
-  },
-  "pw_card_12": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "corrupted void",
-    "palette": "crimson chaos",
-    "detail": "astral knot",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, corrupted void, palette crimson chaos, astral knot, maldición weave"
-  },
-  "pw_card_13": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "corrupted void",
-    "palette": "solar gold",
-    "detail": "sun gate",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, corrupted void, palette solar gold, sun gate, combat focus"
-  },
-  "pw_card_14": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "corrupted void",
-    "palette": "emerald nature",
-    "detail": "moon altar",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, corrupted void, palette emerald nature, moon altar, guardia sigil"
-  },
-  "pw_card_15": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "corrupted void",
-    "palette": "azure cosmic",
-    "detail": "chakana constellation",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, corrupted void, palette azure cosmic, chakana constellation, mana burst"
-  },
-  "pw_card_16": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "corrupted void",
-    "palette": "violet arcane",
-    "detail": "obsidian temple glyph",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, corrupted void, palette violet arcane, obsidian temple glyph, deck manipulation"
-  },
-  "pw_card_17": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "ritual",
-    "rarity": "corrupted void",
-    "palette": "obsidian void",
-    "detail": "violet meteor",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ritual, corrupted void, palette obsidian void, violet meteor, guardia sigil"
-  },
-  "pw_card_18": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "corrupted void",
-    "palette": "crimson chaos",
-    "detail": "sun gate",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, corrupted void, palette crimson chaos, sun gate, maldición weave"
-  },
-  "pw_card_19": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "ancient sacred",
-    "palette": "solar gold",
-    "detail": "astral knot",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, ancient sacred, palette solar gold, astral knot, combat focus"
-  },
-  "pw_card_20": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "ancient sacred",
-    "palette": "emerald nature",
-    "detail": "violet meteor",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, ancient sacred, palette emerald nature, violet meteor, guardia sigil"
-  },
-  "pw_card_21": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "ancient sacred",
-    "palette": "azure cosmic",
-    "detail": "obsidian temple glyph",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, ancient sacred, palette azure cosmic, obsidian temple glyph, mana burst"
-  },
-  "pw_card_22": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "ancient sacred",
-    "palette": "violet arcane",
-    "detail": "chakana constellation",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, ancient sacred, palette violet arcane, chakana constellation, deck manipulation"
-  },
-  "pw_card_23": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "ritual",
-    "rarity": "ancient sacred",
-    "palette": "obsidian void",
-    "detail": "moon altar",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ritual, ancient sacred, palette obsidian void, moon altar, guardia sigil"
-  },
-  "pw_card_24": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "ancient sacred",
-    "palette": "crimson chaos",
-    "detail": "sun gate",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, ancient sacred, palette crimson chaos, sun gate, maldición weave"
-  },
-  "pw_card_25": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "ancient sacred",
-    "palette": "solar gold",
-    "detail": "astral knot",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, ancient sacred, palette solar gold, astral knot, combat focus"
-  },
-  "pw_card_26": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "ancient sacred",
-    "palette": "emerald nature",
-    "detail": "condor spirit",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, ancient sacred, palette emerald nature, condor spirit, guardia sigil"
-  },
-  "pw_card_27": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "ancient sacred",
-    "palette": "azure cosmic",
-    "detail": "andes relic",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, ancient sacred, palette azure cosmic, andes relic, mana burst"
-  },
-  "pw_card_28": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "ancient sacred",
-    "palette": "violet arcane",
-    "detail": "moon altar",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, ancient sacred, palette violet arcane, moon altar, deck manipulation"
-  },
-  "pw_card_29": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "ritual",
-    "rarity": "ancient sacred",
-    "palette": "obsidian void",
-    "detail": "chakana constellation",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ritual, ancient sacred, palette obsidian void, chakana constellation, guardia sigil"
-  },
-  "pw_card_30": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "ancient sacred",
-    "palette": "crimson chaos",
-    "detail": "sun gate",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, ancient sacred, palette crimson chaos, sun gate, maldición weave"
-  },
-  "pw_card_31": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "ancient sacred",
-    "palette": "solar gold",
-    "detail": "astral knot",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, ancient sacred, palette solar gold, astral knot, combat focus"
-  },
-  "pw_card_32": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "ancient sacred",
-    "palette": "emerald nature",
-    "detail": "condor spirit",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, ancient sacred, palette emerald nature, condor spirit, guardia sigil"
-  },
-  "pw_card_33": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "ancient sacred",
-    "palette": "azure cosmic",
-    "detail": "andes relic",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, ancient sacred, palette azure cosmic, andes relic, mana burst"
-  },
-  "pw_card_34": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "arcane",
-    "rarity": "ancient sacred",
-    "palette": "violet arcane",
-    "detail": "violet meteor",
-    "prompt": "16bit pixel art mystical andean magic card, cosmic portal spell, ancient sacred, palette violet arcane, violet meteor, deck manipulation"
-  },
-  "pw_card_35": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "ritual",
-    "rarity": "ancient sacred",
-    "palette": "obsidian void",
-    "detail": "obsidian temple glyph",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ritual, ancient sacred, palette obsidian void, obsidian temple glyph, guardia sigil"
-  },
-  "pw_card_36": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "curse",
-    "rarity": "ancient sacred",
-    "palette": "crimson chaos",
-    "detail": "chakana constellation",
-    "prompt": "16bit pixel art mystical andean magic card, corrupted void sigil, ancient sacred, palette crimson chaos, chakana constellation, maldición weave"
-  },
-  "pw_card_37": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "attack",
-    "rarity": "ancient sacred",
-    "palette": "solar gold",
-    "detail": "moon altar",
-    "prompt": "16bit pixel art mystical andean magic card, solar warrior strike, ancient sacred, palette solar gold, moon altar, combat focus"
-  },
-  "pw_card_38": {
-    "base_style": "16bit pixel art mystical andean magic card",
-    "type": "defense",
-    "rarity": "ancient sacred",
-    "palette": "emerald nature",
-    "detail": "andes relic",
-    "prompt": "16bit pixel art mystical andean magic card, obsidian rune ward, ancient sacred, palette emerald nature, andes relic, guardia sigil"
+    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
+    "card_type": "attack",
+    "rarity": "ornate details, layered lighting",
+    "unique_detail": "storm lantern",
+    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, violent burst of violet lightning tearing through ancient stone, dynamic diagonal composition, sparks and arcane particles, cracked runes glowing, ornate details, layered lighting, rupture energy fractures, unique detail: storm lantern"
   }
 }

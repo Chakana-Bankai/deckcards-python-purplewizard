@@ -10,19 +10,19 @@ class PathSelectScreen:
         self.options = [
             {
                 "name": "Rayo Chakana",
-                "deck": ["strike", "strike", "violet_bolt", "astral_cut", "fragment", "defend", "defend", "vision", "short_portal", "arcane_pulse", "exchange", "final_gate"],
+                "deck": ["filo_astral","garra_espiritual","estallido_arcano","fragmento_celeste","filo_en_cadena","sello_protector","guardia_terrenal","vision_del_condor","lectura_del_destino","pulso_cosmico","mantra_del_umbral","embate_del_jaguar"],
                 "sync": "Aggro + energía + robo",
                 "diff": "Media",
             },
             {
                 "name": "Manto Obsidiana",
-                "deck": ["defend", "defend", "defend", "prismatic_shield", "phase_shift", "reflection", "cauterize_rupture", "void_limit", "strike", "exchange", "silence", "violet_ring"],
+                "deck": ["sello_protector","muralla_de_piedra","escudo_de_luz","resistencia_ancestral","campo_protector","escudo_del_chaman","piedra_ritual","firmeza_del_cuerpo","filo_astral","observacion_sagrada","silencio_interior","espiritu_guardian"],
                 "sync": "Bloque + control + ruptura",
                 "diff": "Media-Alta",
             },
             {
                 "name": "Ritual Astral",
-                "deck": ["lesser_seal", "rite_transmutation", "void_limit", "cauterize_rupture", "vision", "short_portal", "strike", "defend", "silence", "rewrite", "amethyst_crown", "final_gate"],
+                "deck": ["portal_de_la_chakana","invocacion_astral","vinculo_de_energia","fusion_espiritual","vision_del_condor","revelacion_astral","filo_astral","sello_protector","silencio_interior","eco_de_sabiduria","ritual_de_la_trama","chakana_de_luz"],
                 "sync": "Combo ritual + estados",
                 "diff": "Alta",
             },
@@ -60,7 +60,7 @@ class PathSelectScreen:
             finisher = 0
             cost = 0
             for j, cid in enumerate(opt["deck"]):
-                cd = self.app.card_defs.get(cid, self.app.card_defs.get("strike"))
+                cd = self.app.card_defs.get(cid, self.app.card_defs.get(next(iter(self.app.card_defs.keys()),"")))
                 tags = cd.get("tags", [])
                 if "attack" in tags:
                     attacks += 1

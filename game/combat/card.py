@@ -13,6 +13,7 @@ class CardDef:
     tags: list[str]
     effects: list[dict]
     family: str = "attack"
+    direction: str = "ESTE"
 
 
 @dataclass

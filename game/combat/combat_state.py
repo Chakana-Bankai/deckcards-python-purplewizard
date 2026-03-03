@@ -41,7 +41,7 @@ DEFAULT_ENEMY = {
 
 
 class CombatState:
-    def __init__(self, rng: SeededRNG, run_state: dict, enemy_ids: list[str]):
+    def __init__(self, rng: SeededRNG, run_state: dict, enemy_ids: list[str], cards_data: list[dict] | None = None, enemies_data: list[dict] | None = None):
         self.rng = rng
         self.run_state = run_state
         self.queue = ActionQueue()
@@ -52,10 +52,11 @@ class CombatState:
         self.pending_if_kill = None
         self.start_line_time = 2.0
         self.start_line = rng.choice(["lore_short_1", "lore_short_2", "lore_short_3"]) or "lore_short_1"
-        self.cards = self._load_cards()
-        self.enemies = self._spawn_enemies(enemy_ids)
-        deck_ids = run_state.get("deck", []) or ["strike"] * 5 + ["defend"] * 5
-        self.draw_pile = [CardInstance(self.cards.get(card_id, self.cards["strike"])) for card_id in deck_ids]
+        self.cards = self._load_cards(cards_data)
+        self.enemies = self._spawn_enemies(enemy_ids, enemies_data)
+        first_id = next(iter(self.cards.keys()))
+        deck_ids = run_state.get("deck", []) or [first_id] * 10
+        self.draw_pile = [CardInstance(self.cards.get(card_id, self.cards[first_id])) for card_id in deck_ids]
         self.discard_pile = []
         self.hand = []
         self.exhaust_pile = []
@@ -65,10 +66,16 @@ class CombatState:
         self.combat_events = []
         self.scry_pending = []
         self.player_damage_taken = 0
+        self.harmony_last3 = []
+        self.harmony_chaos_pending = False
+        self.harmony_focus_damage_bonus = 0
+        self.next_turn_bonus_energy = 0
+        self.last_played_card = None
+        self.baston_used = False
         self.start_player_turn()
 
-    def _load_cards(self):
-        raw = load_json(data_dir() / "cards.json", default=DEFAULT_CARDS)
+    def _load_cards(self, cards_data=None):
+        raw = cards_data if cards_data else load_json(data_dir() / "cards.json", default=DEFAULT_CARDS)
         if not isinstance(raw, list):
             raw = DEFAULT_CARDS
         by_id = {}
@@ -78,13 +85,14 @@ class CombatState:
                 by_id[card_def.id] = card_def
             except Exception as exc:
                 print(f"[combat] invalid card entry skipped: {exc}")
-        for base in DEFAULT_CARDS:
-            if base["id"] not in by_id:
-                by_id[base["id"]] = CardDef(**base)
+        if not by_id:
+            for base in DEFAULT_CARDS:
+                if base["id"] not in by_id:
+                    by_id[base["id"]] = CardDef(**base)
         return by_id
 
-    def _spawn_enemies(self, enemy_ids):
-        raw = load_json(data_dir() / "enemies.json", default=[DEFAULT_ENEMY])
+    def _spawn_enemies(self, enemy_ids, enemies_data=None):
+        raw = enemies_data if enemies_data else load_json(data_dir() / "enemies.json", default=[DEFAULT_ENEMY])
         if not isinstance(raw, list) or not raw:
             raw = [DEFAULT_ENEMY]
         db = {}
@@ -101,13 +109,16 @@ class CombatState:
             max_hp = hp_range[1] if isinstance(hp_range, list) and len(hp_range) > 1 else min_hp
             hp = self.rng.randint(min_hp, max_hp)
             pattern = item.get("pattern") or [{"intent": "attack", "value": [5, 5]}]
-            enemies.append(Enemy(item.get("id", "dummy"), item.get("name_key", "enemy_voidling_name"), hp, hp, pattern))
+            en = Enemy(item.get("id", "dummy"), item.get("name_key", "enemy_voidling_name"), hp, hp, pattern)
+            en.fable_lesson_key = item.get("fable_lesson_key", "duda")
+            enemies.append(en)
         return enemies
 
     def start_player_turn(self):
         self.turn += 1
         self.combat_events.append({"type":"turn_start"})
-        self.player["energy"] = 3 + (1 if self.player["statuses"].get("energized", 0) > 0 else 0)
+        self.player["energy"] = 3 + self.next_turn_bonus_energy + (1 if self.player["statuses"].get("energized", 0) > 0 else 0)
+        self.next_turn_bonus_energy = 0
         self.player["block"] = 0
         self.draw(5)
 
@@ -124,7 +135,11 @@ class CombatState:
         if hand_index < 0 or hand_index >= len(self.hand):
             return
         card = self.hand[hand_index]
-        if card.cost > self.player["energy"]:
+        extra_cost = 1 if self.harmony_chaos_pending else 0
+        if card.definition.tags and "attack" in card.definition.tags and self.player["statuses"].get("discount_next_attack",0)>0:
+            extra_cost = max(0, extra_cost-1)
+            self.player["statuses"]["discount_next_attack"] = max(0,self.player["statuses"].get("discount_next_attack",0)-1)
+        if card.cost + extra_cost > self.player["energy"]:
             return
         if card.definition.target == "enemy":
             if target_idx is None or target_idx >= len(self.enemies) or not self.enemies[target_idx].alive:
@@ -133,15 +148,25 @@ class CombatState:
             target = self.enemies[target_idx]
         else:
             target = self.enemies[0] if self.enemies else None
-        self.player["energy"] -= card.cost
+        self.player["energy"] -= (card.cost + extra_cost)
+        if self.harmony_chaos_pending:
+            self.harmony_chaos_pending = False
         self.hand.pop(hand_index)
+        self._track_harmony(card.definition.direction if hasattr(card.definition, "direction") else "ESTE")
         interpret_effects(self, card, target, card.definition.effects)
+        self.last_played_card = card
+        if self.player["statuses"].get("copy_next",0)>0:
+            self.player["statuses"]["copy_next"] = 0
+            interpret_effects(self, card, target, card.definition.effects)
         if card not in self.exhaust_pile:
             self.discard_pile.append(card)
 
     def end_turn(self):
-        self.discard_pile.extend(self.hand)
-        self.hand.clear()
+        kept = [c for c in self.hand if getattr(c, "retain_flag", False)]
+        for c in kept:
+            c.retain_flag = False
+        self.discard_pile.extend([c for c in self.hand if c not in kept])
+        self.hand = kept
         self.enemy_turn()
         if self.result is None:
             self.start_player_turn()
@@ -167,6 +192,12 @@ class CombatState:
             elif intent_kind in {"debuff", "buff"}:
                 target = "player" if intent_kind == "debuff" else enemy
                 self.queue.push(ApplyStatus(target, intent.get("status", "weak"), intent.get("stacks", 1)))
+            elif intent_kind == "break":
+                self.player["rupture"] += int(intent.get("stacks", 1))
+            elif intent_kind == "heal":
+                enemy.hp = min(enemy.max_hp, enemy.hp + int(intent.get("stacks", 1)))
+            elif intent_kind == "channel":
+                pass
             enemy.advance_intent()
 
     def update(self, dt):
@@ -182,7 +213,14 @@ class CombatState:
     def deal_damage(self, source, target, amount):
         if source == "player" and self.player["statuses"].get("weak", 0) > 0:
             amount = int(amount * 0.75)
+        if source == "player" and self.harmony_focus_damage_bonus > 0:
+            amount += self.harmony_focus_damage_bonus
+            self.harmony_focus_damage_bonus = 0
         if target == "player":
+            weakv = self.player["statuses"].get("enemy_damage_down",0)
+            if weakv > 0:
+                amount = max(0, amount - weakv)
+                self.player["statuses"]["enemy_damage_down"] = max(0, weakv-1)
             if self.player["statuses"].get("phase", 0) > 0:
                 amount = amount // 2
                 self.remove_status("player", "phase", 1)
@@ -194,6 +232,9 @@ class CombatState:
                 self.player_damage_taken += dealt
                 self.combat_events.append({"type":"damage","target":"player","amount":dealt})
         else:
+            if getattr(target, "statuses", {}).get("vulnerable",0) > 0:
+                amount += target.statuses.get("vulnerable",0)
+                target.statuses["vulnerable"] = max(0,target.statuses.get("vulnerable",0)-1)
             blocked = min(target.block, amount)
             target.block -= blocked
             dealt = max(0, amount - blocked)
@@ -201,13 +242,18 @@ class CombatState:
             if dealt > 0:
                 self.combat_events.append({"type":"damage","target":target.id,"amount":dealt})
             if target.hp <= 0 and self.pending_if_kill:
-                interpret_effects(self, CardInstance(self.cards["strike"]), target, self.pending_if_kill)
+                first_id = next(iter(self.cards.keys()))
+                interpret_effects(self, CardInstance(self.cards[first_id]), target, self.pending_if_kill)
                 self.pending_if_kill = None
         if amount >= 10:
             self.screen_shake = 0.25
 
     def gain_block(self, target, amount):
         if target == "player":
+            weakv = self.player["statuses"].get("enemy_damage_down",0)
+            if weakv > 0:
+                amount = max(0, amount - weakv)
+                self.player["statuses"]["enemy_damage_down"] = max(0, weakv-1)
             self.player["block"] += amount
             self.combat_events.append({"type":"block","target":"player","amount":amount})
         else:
@@ -254,6 +300,35 @@ class CombatState:
             return
         self.draw_pile = self.draw_pile[:-n] + list(ordered_cards[::-1])
         self.scry_pending = []
+
+
+    def _track_harmony(self, direction: str):
+        d = (direction or "ESTE").upper()
+        self.harmony_last3.append(d)
+        self.harmony_last3 = self.harmony_last3[-3:]
+        if len(self.harmony_last3) < 3:
+            return
+        a,b,c = self.harmony_last3
+        if len(set(self.harmony_last3)) == 3:
+            self.next_turn_bonus_energy += 1
+            self.player["block"] += 2
+            self.combat_events.append({"type":"harmony","kind":"BALANCE"})
+        elif a == b == c:
+            if a == "ESTE":
+                self.harmony_focus_damage_bonus += 3
+            elif a == "SUR":
+                self.player["block"] += 4
+            elif a == "NORTE":
+                self.draw(1)
+            elif a == "OESTE":
+                alive = next((e for e in self.enemies if e.alive), None)
+                if alive:
+                    alive.statuses["break"] = alive.statuses.get("break",0)+1
+                self.heal_player(1)
+            self.combat_events.append({"type":"harmony","kind":"FOCUS","direction":a})
+        elif a == c and a != b:
+            self.harmony_chaos_pending = True
+            self.combat_events.append({"type":"harmony","kind":"CHAOS"})
 
     def pop_events(self):
         events = self.combat_events[:]

@@ -17,6 +17,7 @@ from game.content.background_generator import BackgroundGenerator
 from game.core.bootstrap_assets import ensure_placeholder_assets, ensure_bgm_assets
 from game.core.localization import LocalizationManager
 from game.core.lore_service import LoreService
+from game.core.content_service import ContentService
 from game.core.paths import data_dir, assets_dir
 from game.core.rng import SeededRNG
 from game.core.safe_io import load_json
@@ -94,6 +95,8 @@ class App:
         self.debug_overlay = False
         self.debug = {"last_ui_event": "-", "hovered_card_id": "-", "selected_card_id": "-", "target_mode": False, "combat_end_turn_button_visible": False, "combat_status_button_visible": False, "combat_end_turn_rect": "-", "combat_status_rect": "-", "enemy_intent": "-", "art_regenerated": 0, "xp_last_gain": 0}
 
+        self.content = ContentService()
+        self.debug["content_status"] = self.content.status
         self.cards_data = self._load_cards_data()
         self.card_defs = {c["id"]: c for c in self.cards_data}
         self.enemies_data = self._load_enemies_data()
@@ -121,17 +124,44 @@ class App:
         self.music.play_for("menu")
 
     def _load_cards_data(self):
-        cards = load_json(data_dir() / "cards.json", default=[])
-        if not isinstance(cards, list):
-            cards = []
-        by_id = {c.get("id"): c for c in cards if isinstance(c, dict) and c.get("id")}
-        for base in DEFAULT_CARDS:
-            by_id.setdefault(base["id"], base)
+        cards = self.content.cards if isinstance(self.content.cards, list) and self.content.cards else load_json(data_dir() / "cards.json", default=[])
+        cooked = []
+        for c in cards if isinstance(cards, list) else []:
+            if not isinstance(c, dict) or not c.get("id"):
+                continue
+            cooked.append({
+                "id": c.get("id"),
+                "name_key": c.get("name_es", c.get("name_key", c.get("id"))),
+                "text_key": c.get("text_es", c.get("text_key", c.get("id"))),
+                "rarity": c.get("rarity", "common"),
+                "cost": int(c.get("cost", 1)),
+                "target": "enemy",
+                "tags": list(c.get("tags", [])),
+                "effects": list(c.get("effects", [])),
+                "family": (c.get("direction", "ESTE") or "ESTE").lower(),
+                "direction": c.get("direction", "ESTE"),
+            })
+        by_id = {c.get("id"): c for c in cooked if c.get("id")}
+        if not by_id:
+            for base in DEFAULT_CARDS:
+                by_id.setdefault(base["id"], base)
         return list(by_id.values())
 
     def _load_enemies_data(self):
-        enemies = load_json(data_dir() / "enemies.json", default=[DEFAULT_ENEMY])
-        valid = [e for e in enemies if isinstance(e, dict) and e.get("id")] if isinstance(enemies, list) else []
+        enemies = self.content.enemies if isinstance(self.content.enemies, list) and self.content.enemies else load_json(data_dir() / "enemies.json", default=[DEFAULT_ENEMY])
+        valid = []
+        for e in enemies if isinstance(enemies, list) else []:
+            if not isinstance(e, dict) or not e.get("id"):
+                continue
+            valid.append({
+                "id": e.get("id"),
+                "name_key": e.get("name_es", e.get("name_key", e.get("id"))),
+                "hp": e.get("hp", [20, 20]),
+                "pattern": e.get("pattern", [{"intent": "attack", "value": [5, 5]}]),
+                "guard": int(e.get("guard", 0)),
+                "fable_lesson_key": e.get("fable_lesson_key", "duda"),
+                "tier": e.get("tier", "common"),
+            })
         return valid or [DEFAULT_ENEMY]
 
     def _load_events_data(self):
@@ -345,15 +375,16 @@ class App:
         return sum(1 for n in self.node_lookup.values() if n.get("state") == "available")
 
     def _enemy_pool(self):
-        ids = [e["id"] for e in self.enemies_data if e.get("id") != "inverse_weaver"]
+        ids = [e["id"] for e in self.enemies_data if e.get("id") and e.get("tier") != "boss"]
         return ids or [DEFAULT_ENEMY["id"]]
 
     def enter_node(self, node):
         node_type = node.get("type", "combat")
         if node_type in {"combat", "challenge", "boss"}:
-            enemy_ids = ["inverse_weaver"] if node_type == "boss" else [self.rng.choice(self._enemy_pool())]
+            boss_ids = [b.get("id") for b in self.content.bosses if isinstance(b, dict) and b.get("id")]
+            enemy_ids = [self.rng.choice(boss_ids)] if node_type == "boss" and boss_ids else [self.rng.choice(self._enemy_pool())]
             self.run_state["last_node_type"] = node_type
-            self.current_combat = CombatState(self.rng, self.run_state, enemy_ids)
+            self.current_combat = CombatState(self.rng, self.run_state, enemy_ids, cards_data=self.cards_data, enemies_data=self.enemies_data)
             self.goto_combat(self.current_combat, is_boss=node_type == "boss")
         elif node_type == "shop":
             self.goto_shop()
@@ -385,6 +416,8 @@ class App:
         difficulty_bonus = {"combat": 2, "challenge": 5, "boss": 12}.get(node_type, 2)
         perfect_bonus = 5 if self.current_combat and getattr(self.current_combat, "player_damage_taken", 0) <= 0 else 0
         self.gain_xp(10 + difficulty_bonus + perfect_bonus)
+        enemy = self.current_combat.enemies[0] if self.current_combat and self.current_combat.enemies else None
+        self.debug["last_lesson_key"] = getattr(enemy, "fable_lesson_key", "duda") if enemy else "duda"
         self.goto_reward(gold=bonus_gold)
 
 
@@ -566,6 +599,7 @@ class App:
             f"hovered_card={self.debug.get('hovered_card_id','-')} target_mode={self.debug.get('target_mode','-')}",
             f"BGM {self.music.debug_state()}",
             f"LoreStatus={self.debug.get('lore_status','-')} paths={self.debug.get('lore_paths','-')}",
+            f"ContentStatus={self.debug.get('content_status','-')}",
             f"design={self.canonical_design_source}",
             f"enemy_hp={self.debug.get('enemies_hp','-')} intent={self.debug.get('enemy_intent','-')}",
             f"card_art_regenerated={self.debug.get('art_regenerated','0')}",

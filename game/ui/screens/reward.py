@@ -15,6 +15,7 @@ class RewardScreen:
         self.selected_idx = None
         self.confirm_rect = pygame.Rect(830, 900, 260, 64)
         self.skip_rect = pygame.Rect(1110, 900, 220, 64)
+        self.lessons = {"miedo":"El miedo se disuelve cuando respiras y observas.","arrogancia":"La arrogancia cae ante la escucha humilde.","apego":"Soltar también protege el corazón.","prisa":"La prisa rompe la forma de la Trama.","confusión":"La claridad nace al pausar.","soberbia":"Sin Ayni no hay victoria duradera.","desesperación":"Incluso en sombra, Pacha ofrece salida.","rigidez":"La flexibilidad sostiene la vida.","duda":"La duda se ordena con práctica."}
 
     def on_enter(self):
         self.app.run_state["gold"] += self.gold
@@ -64,6 +65,9 @@ class RewardScreen:
         s.fill(UI_THEME["bg"])
         s.blit(self.app.big_font.render(self.app.loc.t("reward_title"), True, UI_THEME["text"]), (760, 54))
         s.blit(self.app.font.render(f"+{self.gold} {self.app.loc.t('gold')}  +{self.xp_gained} XP", True, UI_THEME["gold"]), (700, 104))
+        lk = self.app.debug.get("last_lesson_key", "duda")
+        lesson = self.lessons.get(lk, self.lessons["duda"])
+        s.blit(self.app.small_font.render(f"Lección: {lesson}", True, UI_THEME["muted"]), (620, 176))
         lvl = self.app.run_state["level"]
         need = lvl * 20
         ratio = self.app.run_state["xp"] / max(1, need)

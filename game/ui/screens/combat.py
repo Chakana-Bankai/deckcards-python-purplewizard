@@ -89,6 +89,8 @@ class CombatScreen:
 
     def _intent_text(self, enemy):
         intent = enemy.current_intent()
+        if intent.get("label"):
+            return intent.get("label"), UI_THEME["text"]
         kind = intent.get("intent", "attack")
         val = intent.get("value", [intent.get("stacks", 1), intent.get("stacks", 1)])
         num = val[0] if isinstance(val, list) else val
@@ -101,10 +103,11 @@ class CombatScreen:
         return "Intención: Canaliza", UI_THEME["accent_violet"]
 
     def _dialog_pick(self, side, trigger, enemy_id):
-        arr = self.app.lore_service.dialogue(side, trigger, enemy_id)
-        if arr:
-            return self.app.rng.choice(arr)
-        return "..."
+        dc = self.app.content.dialogues_combat if hasattr(self.app, "content") else {}
+        entry = dc.get(enemy_id, dc.get("default", {})) if isinstance(dc, dict) else {}
+        trig = entry.get(trigger, {}) if isinstance(entry, dict) else {}
+        line = trig.get(side, "...") if isinstance(trig, dict) else "..."
+        return line or "..."
 
     def _trigger_dialog(self, trigger):
         if self.dialog_cd > 0:
@@ -231,6 +234,20 @@ class CombatScreen:
         pygame.draw.line(s, UI_THEME["gold"], (cx, cy - rad), (cx, cy + rad), 2)
         pygame.draw.circle(s, UI_THEME["gold"], (cx, cy), 6)
 
+
+    def _draw_harmony_widget(self, s):
+        r = pygame.Rect(self.PLAYER_HUD.x + 430, self.PLAYER_HUD.y + 146, 210, 90)
+        pygame.draw.rect(s, UI_THEME["panel_2"], r, border_radius=10)
+        s.blit(self.app.tiny_font.render("Harmony", True, UI_THEME["gold"]), (r.x + 8, r.y + 6))
+        dirs = ["ESTE","SUR","NORTE","OESTE"]
+        for i,d in enumerate(dirs):
+            col = UI_THEME["accent_violet"] if d in self.c.harmony_last3 else (90,90,110)
+            pygame.draw.circle(s, col, (r.x + 24 + i*44, r.y + 34), 8)
+        sym = {"ESTE":"E","SUR":"S","NORTE":"N","OESTE":"O"}
+        last = self.c.harmony_last3[-3:]
+        for i,d in enumerate(last):
+            s.blit(self.app.small_font.render(sym.get(d,d[:1]), True, UI_THEME["text"]), (r.x + 20 + i*36, r.y + 52))
+
     def render(self, s):
         sky, silhouettes, fog = self.app.bg_gen.get_layers(self.selected_biome, self.bg_seed)
         p = int((pygame.time.get_ticks() * 0.02) % 24)
@@ -263,6 +280,7 @@ class CombatScreen:
         for i in range(5):
             pygame.draw.circle(s, UI_THEME["energy"] if i < pstate["energy"] else (65, 68, 90), (self.PLAYER_HUD.x + 350 + i * 30, self.PLAYER_HUD.y + 90), 10)
         self._draw_player_symbol(s)
+        self._draw_harmony_widget(s)
 
         for i, e in enumerate(self.c.enemies):
             er = self._enemy_rect(i)

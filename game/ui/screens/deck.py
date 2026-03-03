@@ -62,7 +62,7 @@ class DeckScreen:
         s.blit(self.app.big_font.render(self.app.loc.t("deck_title_side"), True, UI_THEME["text"]), (500, 70))
         attacks = skills = rituals = total_cost = 0
         for i, cid in enumerate(self.app.run_state["deck"]):
-            cd = self.app.card_defs.get(cid, self.app.card_defs.get("strike"))
+            cd = self.app.card_defs.get(cid, self.app.card_defs.get(next(iter(self.app.card_defs.keys()),"")))
             total_cost += cd.get("cost", 1)
             tags = cd.get("tags", [])
             if "attack" in tags:
@@ -74,7 +74,7 @@ class DeckScreen:
             pygame.draw.rect(s, (34, 36, 56), (40, 110 + i * 26, 420, 24), border_radius=4)
             s.blit(self.app.tiny_font.render(self.app.loc.t(cd.get("name_key", cid)), True, UI_THEME["text"]), (46, 114 + i * 26))
         for i, cid in enumerate(self.app.run_state["sideboard"]):
-            cd = self.app.card_defs.get(cid, self.app.card_defs.get("strike"))
+            cd = self.app.card_defs.get(cid, self.app.card_defs.get(next(iter(self.app.card_defs.keys()),"")))
             pygame.draw.rect(s, (34, 36, 56), (500, 110 + i * 26, 420, 24), border_radius=4)
             s.blit(self.app.tiny_font.render(self.app.loc.t(cd.get("name_key", cid)), True, UI_THEME["text"]), (506, 114 + i * 26))
         n = max(1, len(self.app.run_state["deck"]))
