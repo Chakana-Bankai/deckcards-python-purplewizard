@@ -59,5 +59,6 @@
   "enemy_taunt_start": "Your thread breaks here.",
   "enemy_taunt_intent": "I know your next step.",
   "enemy_taunt_big_hit": "Is that all your power?",
-  "enemy_taunt_death": "The weave... does not end..."
+  "enemy_taunt_death": "The weave... does not end...",
+  "menu_qa": "QA Mode"
 }

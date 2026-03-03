@@ -19,6 +19,7 @@ from game.core.safe_io import load_json
 from game.core.settings_store import load_settings, save_settings
 from game.core.state_machine import StateMachine
 from game.settings import FPS, INTERNAL_HEIGHT, INTERNAL_WIDTH
+from game.qa.runner import QARunner
 from game.ui.render import AssetManager, Renderer
 from game.ui.screens.combat import CombatScreen
 from game.ui.screens.deck import DeckScreen
@@ -30,6 +31,7 @@ from game.ui.screens.path_select import PathSelectScreen
 from game.ui.screens.reward import RewardScreen
 from game.ui.screens.settings import SettingsScreen
 from game.ui.screens.shop import ShopScreen
+from game.ui.screens.qa_results import QAResultsScreen
 
 DEFAULT_CARDS = [
     {"id": "strike", "name_key": "card_strike_name", "text_key": "card_strike_desc", "rarity": "basic", "cost": 1, "target": "enemy", "tags": ["attack"], "effects": [{"type": "damage", "amount": 6}]},
@@ -102,8 +104,9 @@ class App:
             self.enemy_art_gen.ensure_art(e.get("id", "dummy"), self.autogen_art_mode)
         print("[load] card/enemy art verified")
         self.debug["art_regenerated"] = self.art_gen.generated_count + self.art_gen.replaced_count
-        export_prompts(self.cards_data)
+        export_prompts(self.cards_data, self.enemies_data)
 
+        self.validate_navigation_methods()
         pygame.display.set_caption(self.loc.t("game_title"))
         self.sm.set(MenuScreen(self))
         self.music.play_for("menu")
@@ -130,9 +133,16 @@ class App:
         relics = load_json(data_dir() / "relics.json", default=[])
         return relics if isinstance(relics, list) else []
 
+    def validate_navigation_methods(self):
+        required = ["goto_menu", "goto_map", "goto_combat", "goto_reward", "goto_shop", "goto_event", "goto_deck", "goto_settings"]
+        missing = [m for m in required if not hasattr(self, m)]
+        if missing:
+            raise RuntimeError(f"Missing navigation methods: {', '.join(missing)}")
+
     def toggle_language(self):
         self.loc.load("en" if self.loc.current_lang == "es" else "es")
         self.user_settings["language"] = self.loc.current_lang
+        self.validate_navigation_methods()
         pygame.display.set_caption(self.loc.t("game_title"))
 
     def goto_menu(self):
@@ -202,6 +212,34 @@ class App:
         self.sm.set(MapScreen(self))
         self.music.play_for("map")
 
+    def goto_combat(self, combat_state, is_boss=False):
+        self.current_combat = combat_state
+        self.sm.set(CombatScreen(self, combat_state, is_boss=is_boss))
+        self.music.play_for("boss" if is_boss else "combat")
+
+    def goto_reward(self, picks=None, gold=None):
+        if picks is None or gold is None:
+            unlock_level = self.run_state.get("level", 1) if self.run_state else 1
+            rarities = {"basic", "common"} if unlock_level < 2 else {"common", "uncommon", "rare"}
+            pool = [c for c in self.cards_data if c.get("rarity") in rarities] or self.cards_data
+            picks = [CardInstance(CardDef(**(self.rng.choice(pool) or DEFAULT_CARDS[0]))) for _ in range(3)]
+            gold = self.rng.randint(10, 25)
+        self.sm.set(RewardScreen(self, picks, gold))
+
+    def goto_shop(self):
+        pool = [c for c in self.cards_data if c.get("rarity") in {"common", "uncommon"}] or self.cards_data
+        self.sm.set(ShopScreen(self, self.rng.choice(pool) or DEFAULT_CARDS[0]))
+        self.music.play_for("event")
+
+    def goto_event(self):
+        event = self.rng.choice(self.events_data) if self.events_data else {"title_key": "map_title", "body_key": "lore_tagline", "choices": [{"text_key": "event_continue", "effects": []}]}
+        self.sm.set(EventScreen(self, event))
+        self.music.play_for("event")
+
+    def run_qa_mode(self):
+        results = QARunner(self).run_all()
+        self.sm.set(QAResultsScreen(self, results))
+
     def select_map_node(self, node):
         self.current_node_id = node["id"]
         node["state"] = "current"
@@ -228,16 +266,11 @@ class App:
         if node_type in {"combat", "boss"}:
             enemy_ids = ["inverse_weaver"] if node_type == "boss" else [self.rng.choice(self._enemy_pool())]
             self.current_combat = CombatState(self.rng, self.run_state, enemy_ids)
-            self.sm.set(CombatScreen(self, self.current_combat, is_boss=node_type == "boss"))
-            self.music.play_for("boss" if node_type == "boss" else "combat")
+            self.goto_combat(self.current_combat, is_boss=node_type == "boss")
         elif node_type == "shop":
-            pool = [c for c in self.cards_data if c.get("rarity") in {"common", "uncommon"}] or self.cards_data
-            self.sm.set(ShopScreen(self, self.rng.choice(pool) or DEFAULT_CARDS[0]))
-            self.music.play_for("event")
+            self.goto_shop()
         else:
-            event = self.rng.choice(self.events_data) if self.events_data else {"title_key": "map_title", "body_key": "lore_tagline", "choices": [{"text_key": "event_continue", "effects": []}]}
-            self.sm.set(EventScreen(self, event))
-            self.music.play_for("event")
+            self.goto_event()
 
     def gain_xp(self, amount: int):
         self.run_state["xp"] += amount
@@ -250,11 +283,7 @@ class App:
     def on_combat_victory(self):
         self._complete_current_node()
         self.gain_xp(12)
-        unlock_level = self.run_state["level"]
-        rarities = {"basic", "common"} if unlock_level < 2 else {"common", "uncommon", "rare"}
-        pool = [c for c in self.cards_data if c.get("rarity") in rarities] or self.cards_data
-        picks = [CardInstance(CardDef(**(self.rng.choice(pool) or DEFAULT_CARDS[0]))) for _ in range(3)]
-        self.sm.set(RewardScreen(self, picks, self.rng.randint(10, 25)))
+        self.goto_reward()
 
     def apply_event_effects(self, effects):
         player = self.run_state["player"]
@@ -340,6 +369,8 @@ class App:
                     self.toggle_language()
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_F2:
                     self.debug_overlay = not self.debug_overlay
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
+                    self.run_qa_mode()
                 else:
                     self.sm.handle_event(event)
             self.sm.update(dt)

@@ -157,5 +157,6 @@
   "enemy_taunt_start": "Tu hilo se rompe aquí.",
   "enemy_taunt_intent": "Conozco tu próximo paso.",
   "enemy_taunt_big_hit": "¿Eso fue todo tu poder?",
-  "enemy_taunt_death": "La trama... no termina..."
+  "enemy_taunt_death": "La trama... no termina...",
+  "menu_qa": "Modo QA"
 }

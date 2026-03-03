@@ -28,6 +28,14 @@ class PromptBuilder:
         "rare": "ornate details, layered lighting",
         "legendary": "epic cinematic lighting, highly intricate symbolic design",
     }
+    DETAILS = [
+        "condor feathers", "wolf spirit", "obsidian altar", "moonlit ruins", "comet trail", "bone talismans", "aurora veil", "temple stairs", "quinoa fields", "andes frost",
+        "sun disk", "ink raven", "storm sigil", "echoing bells", "violet dunes", "night orchid", "ritual brazier", "jade mask", "silver cenote", "black quartz",
+        "serpent knot", "lunar mirror", "ember ash", "thunder glyph", "copper idol", "mist bridge", "sacred cliff", "crystal halo", "shadow totem", "stellar gate",
+        "desert monolith", "forgotten archive", "iron feather", "ivory runestone", "violet lotus", "smoke serpent", "frozen obelisk", "sunken chapel", "gilded chains", "cinder crown",
+        "howling canyon", "meteor shard", "woven charms", "storm lantern", "enchanted spindle", "sable shrine", "hollow drum", "cobalt flame", "ashen relic", "temporal crack",
+        "obsidian wolf", "burning condor", "midnight glacier", "rain of petals", "twin moons", "veil of thorns"
+    ]
 
     def _card_type(self, card: dict) -> str:
         tags = set(card.get("tags", []))
@@ -41,11 +49,37 @@ class PromptBuilder:
             return "defense"
         return "attack"
 
+    def _mechanics(self, card: dict) -> str:
+        text = (card.get("text_key", "") + " " + card.get("id", "")).lower()
+        eff = " ".join(e.get("type", "") for e in card.get("effects", [])) if isinstance(card.get("effects"), list) else ""
+        src = f"{text} {eff}"
+        parts = []
+        if "draw" in src:
+            parts.append("arcane card draw vortex")
+        if "rupture" in src:
+            parts.append("rupture energy fractures")
+        if "debuff" in src or "weak" in src or "frail" in src:
+            parts.append("hexing debuff aura")
+        if "block" in src:
+            parts.append("protective block sigils")
+        if "energy" in src:
+            parts.append("energy orb resonance")
+        return ", ".join(parts) if parts else "mystic combat focus"
+
     def build(self, card: dict) -> str:
         card_type = self._card_type(card)
         rarity = self.RARITY.get(card.get("rarity", "common"), self.RARITY["common"])
-        detail = f"unique detail: {card.get('id','unknown').replace('_', ' ')}"
-        return f"{self.BASE}, {self.TYPE_VARIANTS[card_type]}, {rarity}, {detail}"
+        detail = self.DETAILS[abs(hash(card.get("id", "unknown"))) % len(self.DETAILS)]
+        mechanics = self._mechanics(card)
+        return f"{self.BASE}, {self.TYPE_VARIANTS[card_type]}, {rarity}, {mechanics}, unique detail: {detail}"
+
+    def build_enemy(self, enemy: dict) -> str:
+        enemy_id = enemy.get("id", "unknown")
+        detail = self.DETAILS[abs(hash(enemy_id + "enemy")) % len(self.DETAILS)]
+        return (
+            f"{self.BASE}, ominous enemy portrait, arcane hostility, readable silhouette, mystical intent iconography, "
+            f"ornate details, layered lighting, unique detail: {detail}"
+        )
 
 
 class CardArtGenerator:
@@ -75,16 +109,16 @@ class CardArtGenerator:
         return self._variance(surf) < 70.0
 
     def _palette(self, rng: random.Random, tags: set[str], rarity: str):
-        bg_dark = (16 + rng.randint(0, 18), 20 + rng.randint(0, 24), 46 + rng.randint(0, 32))
-        bg_light = (84 + rng.randint(0, 46), 52 + rng.randint(0, 40), 150 + rng.randint(0, 50))
-        accent_gold = (206 + rng.randint(0, 36), 168 + rng.randint(0, 36), 74 + rng.randint(0, 20))
-        accent_ice = (220, 228, 255)
+        bg_dark = (20 + rng.randint(0, 20), 12 + rng.randint(0, 18), 38 + rng.randint(0, 30))
+        bg_light = (88 + rng.randint(0, 40), 42 + rng.randint(0, 34), 148 + rng.randint(0, 45))
+        accent_gold = (210 + rng.randint(0, 30), 174 + rng.randint(0, 24), 78 + rng.randint(0, 18))
+        accent_ice = (225, 232, 255)
         if "arcane" in tags or "rupture" in tags:
-            bg_light = (122, 54 + rng.randint(0, 35), 196 + rng.randint(0, 40))
+            bg_light = (130, 58 + rng.randint(0, 25), 210 + rng.randint(0, 30))
         if "ritual" in tags:
-            accent_gold = (240, 186, 92)
+            accent_gold = (242, 190, 98)
         if rarity in {"rare", "legendary"}:
-            accent_gold = (240, 208, 122)
+            accent_gold = (245, 215, 130)
         return bg_dark, bg_light, accent_gold, accent_ice
 
     def _draw_chakana(self, surf: pygame.Surface, rng: random.Random):
@@ -160,8 +194,6 @@ class CardArtGenerator:
         if mode == "off":
             if path.exists():
                 print(f"Using existing art: {card_id}")
-                return
-            print(f"Using existing art: {card_id}")
             return
 
         if mode == "force_regen":
@@ -185,8 +217,34 @@ class CardArtGenerator:
         print(f"Using existing art: {card_id}")
 
 
-def export_prompts(cards: list[dict]) -> None:
+def export_prompts(cards: list[dict], enemies: list[dict] | None = None) -> None:
     pb = PromptBuilder()
-    payload = {c.get("id", "unknown"): pb.build(c) for c in cards}
+    card_payload = {c.get("id", "unknown"): pb.build(c) for c in cards}
     out = data_dir() / "card_prompts.json"
-    out.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    should_write_cards = True
+    if out.exists():
+        try:
+            existing = json.loads(out.read_text(encoding="utf-8"))
+            uniq = len(set(existing.values())) if isinstance(existing, dict) else 0
+            should_write_cards = uniq < max(3, len(card_payload) // 2) or set(existing.keys()) != set(card_payload.keys())
+        except Exception:
+            should_write_cards = True
+    if should_write_cards:
+        out.write_text(json.dumps(card_payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    if enemies is not None:
+        enemy_out = data_dir() / "enemy_prompts.json"
+        enemy_payload = {e.get("id", "unknown"): pb.build_enemy(e) for e in enemies}
+        should_write_enemy = True
+        if enemy_out.exists():
+            try:
+                ex = json.loads(enemy_out.read_text(encoding="utf-8"))
+                should_write_enemy = set(ex.keys()) != set(enemy_payload.keys()) or len(set(ex.values())) < max(2, len(enemy_payload) // 2)
+            except Exception:
+                should_write_enemy = True
+        if should_write_enemy:
+            enemy_out.write_text(json.dumps(enemy_payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    txt = "\n".join(f"{k}: {v}" for k, v in card_payload.items())
+    (data_dir() / "card_prompts.txt").write_text(txt, encoding="utf-8")

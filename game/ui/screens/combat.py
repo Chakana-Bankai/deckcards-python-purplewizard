@@ -51,6 +51,17 @@ class CombatScreen:
             y -= 18
         return pygame.Rect(x, y, card_w, card_h)
 
+    def _mystic_action(self, enemy, intent_kind):
+        names = {
+            "attack": ["Filo Astral", "Rayo Umbral", "Golpe del Cóndor"],
+            "defend": ["Manto de Piedra", "Escudo Chakana"],
+            "debuff": ["Susurro de Ruptura", "Marca de Sombra"],
+            "buff": ["Canto de Éter", "Velo de Aurora"],
+        }
+        pool = names.get(intent_kind, ["Impulso Arcano"])
+        idx = abs(hash(f"{enemy.id}:{self.c.turn}:{intent_kind}")) % len(pool)
+        return pool[idx]
+
     def _intent_text(self, enemy):
         intent = enemy.current_intent()
         kind = intent.get("intent", "attack")
@@ -61,10 +72,12 @@ class CombatScreen:
         elif kind == "defend":
             label = f"DEF {num}"
         elif kind == "debuff":
-            label = f"DEBUFF {intent.get('status', 'weak')}({intent.get('stacks', 1)})"
+            label = f"MALDICIÓN: {intent.get('status', 'Debilidad')} ({intent.get('stacks', 1)})"
         else:
-            label = f"BUFF {intent.get('status', 'fury')}({intent.get('stacks', 1)})"
-        return label, intent.get("name", label)
+            label = f"BUFF: {intent.get('status', 'Poder')} ({intent.get('stacks', 1)})"
+        action_name = self._mystic_action(enemy, kind)
+        desc = {"attack": "Inflige daño directo al jugador.", "defend": "Aumenta su barrera protectora.", "debuff": "Aplica estado negativo.", "buff": "Fortalece su esencia."}.get(kind, "Canaliza energía.")
+        return label, action_name, desc, kind
 
     def _play_card(self, idx, target_idx=0):
         if idx < 0 or idx >= len(self.c.hand):
@@ -132,12 +145,12 @@ class CombatScreen:
             if ev["type"] == "damage":
                 target = ev["target"]
                 amount = ev["amount"]
-                self.floaters.append({"target": target, "text": f"-{amount}", "color": UI_THEME["bad"], "time": 0.7})
+                self.floaters.append({"target": target, "text": f"-{amount}", "color": UI_THEME["bad"], "time": 0.9})
                 self.log_lines.insert(0, f"{target}: -{amount} HP")
             elif ev["type"] == "block":
                 target = ev["target"]
                 amount = ev["amount"]
-                self.floaters.append({"target": target, "text": f"+{amount} B", "color": UI_THEME["block"], "time": 0.7})
+                self.floaters.append({"target": target, "text": f"+{amount} B", "color": UI_THEME["block"], "time": 0.9})
                 self.log_lines.insert(0, f"{target}: +{amount} Bloque")
         self.log_lines = self.log_lines[:6]
         for f in self.floaters:
@@ -149,36 +162,53 @@ class CombatScreen:
         elif self.c.result == "defeat":
             self.app.goto_menu()
 
+    def _draw_outlined_text(self, s, font, text, color, pos, outline=(26, 16, 37)):
+        x, y = pos
+        for ox, oy in ((-2,0),(2,0),(0,-2),(0,2)):
+            s.blit(font.render(text, True, outline), (x+ox, y+oy))
+        s.blit(font.render(text, True, color), (x, y))
+
     def _draw_card(self, s, rect, card, selected=False, hovered=False):
         if hovered:
-            shadow = pygame.Surface((rect.w + 18, rect.h + 18), pygame.SRCALPHA)
-            pygame.draw.ellipse(shadow, (0, 0, 0, 80), shadow.get_rect())
-            s.blit(shadow, (rect.x - 9, rect.y + 10))
+            shadow = pygame.Surface((rect.w + 24, rect.h + 24), pygame.SRCALPHA)
+            pygame.draw.ellipse(shadow, (0, 0, 0, 95), shadow.get_rect())
+            s.blit(shadow, (rect.x - 12, rect.y + 10))
         draw_rect = rect.copy()
         if hovered:
             draw_rect.inflate_ip(10, 14)
             draw_rect.center = rect.center
         pygame.draw.rect(s, UI_THEME["card_bg"], draw_rect, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["deep_purple"], (draw_rect.x, draw_rect.y, draw_rect.w, 34), border_radius=10)
         art_h = int(draw_rect.h * 0.7)
         art = self.app.assets.sprite("cards", card.definition.id, (draw_rect.w - 16, art_h), fallback=(80, 60, 120))
-        s.blit(art, (draw_rect.x + 8, draw_rect.y + 8))
+        s.blit(art, (draw_rect.x + 8, draw_rect.y + 34))
+        desc_bg = pygame.Surface((draw_rect.w - 8, draw_rect.h - art_h - 42), pygame.SRCALPHA)
+        desc_bg.fill((31, 20, 50, 170))
+        s.blit(desc_bg, (draw_rect.x + 4, draw_rect.y + art_h + 38))
         pygame.draw.rect(s, UI_THEME["card_border"], draw_rect, 2, border_radius=10)
         if selected or hovered:
-            pygame.draw.rect(s, UI_THEME["violet"], draw_rect.inflate(8, 8), 3, border_radius=12)
-        s.blit(self.app.card_title_font.render(self.app.loc.t(card.definition.name_key), True, UI_THEME["text"]), (draw_rect.x + 10, draw_rect.y + int(draw_rect.h * 0.72)))
+            pygame.draw.rect(s, UI_THEME["accent_violet"], draw_rect.inflate(8, 8), 3, border_radius=12)
+        title = self.app.loc.t(card.definition.name_key)
+        self._draw_outlined_text(s, self.app.card_title_font, title, UI_THEME["text"], (draw_rect.x + 10, draw_rect.y + 4))
         txt = self.app.loc.t(card.definition.text_key)
-        s.blit(self.app.card_text_font.render(txt, True, UI_THEME["muted"]), (draw_rect.x + 10, draw_rect.y + int(draw_rect.h * 0.84)))
-        pygame.draw.circle(s, UI_THEME["energy"], (draw_rect.right - 18, draw_rect.y + 18), 12)
-        s.blit(self.app.card_text_font.render(str(card.cost), True, (15, 15, 22)), (draw_rect.right - 23, draw_rect.y + 9))
+        color = UI_THEME["muted"]
+        if any(k in txt.lower() for k in ["daño", "damage", "bloque", "block", "ruptura"]):
+            color = UI_THEME["gold"]
+        s.blit(self.app.card_text_font.render(txt, True, color), (draw_rect.x + 10, draw_rect.y + int(draw_rect.h * 0.86)))
+        pygame.draw.circle(s, UI_THEME["energy"], (draw_rect.right - 18, draw_rect.y + 18), 14)
+        self._draw_outlined_text(s, self.app.small_font, str(card.cost), UI_THEME["text_dark"], (draw_rect.right - 24, draw_rect.y + 4), outline=(220, 230, 255))
         return draw_rect
 
     def render(self, s):
-        s.fill((14, 16, 28))
+        bg = pygame.Surface((INTERNAL_WIDTH, INTERNAL_HEIGHT))
+        pygame.draw.rect(bg, UI_THEME["deep_purple"], (0, 0, INTERNAL_WIDTH, INTERNAL_HEIGHT))
+        pygame.draw.rect(bg, UI_THEME["bg"], (0, 0, INTERNAL_WIDTH, INTERNAL_HEIGHT), 0)
+        s.blit(bg, (0, 0))
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.tooltip = None
 
         top = pygame.Rect(0, 0, INTERNAL_WIDTH, 100)
-        pygame.draw.rect(s, (20, 24, 38), top)
+        pygame.draw.rect(s, UI_THEME["primary_purple"], top)
         combat_name = self.app.loc.t("node_boss") if self.is_boss else self.app.loc.t("node_combat")
         s.blit(self.app.font.render(combat_name, True, UI_THEME["gold"]), (24, 30))
         banner_text = self.banner.current
@@ -195,10 +225,6 @@ class CombatScreen:
         for i in range(5):
             r = 13 + int(1.5 * pygame.math.Vector2(1, 0).rotate(i * 37 + wobble * 40).x)
             pygame.draw.circle(s, UI_THEME["energy"] if i < p["energy"] else (65, 68, 90), (INTERNAL_WIDTH - 360 + i * 38, 258), max(10, r))
-        yy = 300
-        for name, stacks in p["statuses"].items():
-            s.blit(self.app.card_text_font.render(f"{name}({stacks})", True, UI_THEME["muted"]), (INTERNAL_WIDTH - 498, yy))
-            yy += 22
 
         battle_log = pygame.Rect(INTERNAL_WIDTH - 520, 410, 470, 360)
         if self.log_visible:
@@ -209,24 +235,30 @@ class CombatScreen:
 
         for i, e in enumerate(self.c.enemies):
             er = self._enemy_rect(i)
-            pygame.draw.rect(s, (55, 45, 80) if e.alive else (44, 44, 44), er, border_radius=12)
+            pygame.draw.rect(s, UI_THEME["deep_purple"], er, border_radius=12)
             sp = self.app.assets.sprite("enemies", e.id, (160, 160), fallback=(100, 60, 90))
             s.blit(sp, (er.x + 12, er.y + 12))
-            pygame.draw.rect(s, (22, 24, 36), (er.x + 180, er.y + 12, 96, 160), border_radius=8)
+            # intent card (replaces black empty square)
+            intent_card = pygame.Rect(er.x + 180, er.y + 12, 138, 160)
+            pygame.draw.rect(s, (54, 28, 86), intent_card, border_radius=10)
+            intent_txt, action_name, desc, kind = self._intent_text(e)
+            color = UI_THEME["bad"] if kind == "attack" else UI_THEME["block"] if kind == "defend" else UI_THEME["accent_violet"]
+            s.blit(self.app.small_font.render(action_name, True, UI_THEME["gold"]), (intent_card.x + 8, intent_card.y + 10))
+            self._draw_outlined_text(s, self.app.font, intent_txt, color, (intent_card.x + 8, intent_card.y + 54))
+            s.blit(self.app.tiny_font.render(desc, True, UI_THEME["muted"]), (intent_card.x + 8, intent_card.y + 118))
+
             s.blit(self.app.font.render(self.app.loc.t(e.name_key), True, UI_THEME["text"]), (er.x + 12, er.y + 178))
             ratio = max(0, e.hp) / max(1, e.max_hp)
-            pygame.draw.rect(s, (45, 45, 45), (er.x + 12, er.y + 214, 260, 16), border_radius=7)
-            pygame.draw.rect(s, UI_THEME["hp"], (er.x + 12, er.y + 214, int(260 * ratio), 16), border_radius=7)
+            pygame.draw.rect(s, (35, 24, 50), (er.x + 12, er.y + 214, 300, 16), border_radius=7)
+            pygame.draw.rect(s, UI_THEME["hp"], (er.x + 12, er.y + 214, int(300 * ratio), 16), border_radius=7)
             s.blit(self.app.small_font.render(f"HP {e.hp}/{e.max_hp}", True, UI_THEME["text"]), (er.x + 14, er.y + 236))
-            s.blit(self.app.small_font.render(f"Bloque {e.block}", True, UI_THEME["block"]), (er.x + 128, er.y + 236))
-            s.blit(self.app.small_font.render(f"Ruptura {e.statuses.get('rupture', 0)}", True, UI_THEME["rupture"]), (er.x + 14, er.y + 260))
-            intent_txt, action_name = self._intent_text(e)
-            s.blit(self.app.small_font.render(f"Intent: {intent_txt}", True, UI_THEME["gold"]), (er.x + 14, er.y + 286))
-            s.blit(self.app.card_text_font.render(f"Acción: {action_name}", True, UI_THEME["muted"]), (er.x + 14, er.y + 306))
-            if er.collidepoint(mouse):
-                self.tooltip = f"{self.app.loc.t(e.name_key)} | {intent_txt}"
+            s.blit(self.app.small_font.render(f"Bloque {e.block}", True, UI_THEME["block"]), (er.x + 160, er.y + 236))
+            s.blit(self.app.small_font.render(f"Ruptura {e.statuses.get('rupture', 0)}", True, UI_THEME["rupture"]), (er.x + 14, er.y + 262))
+            s.blit(self.app.small_font.render(intent_txt, True, color), (er.x + 14, er.y + 290))
+            if intent_card.collidepoint(mouse) or er.collidepoint(mouse):
+                self.tooltip = f"{action_name}: {intent_txt} | {desc}"
 
-        pygame.draw.rect(s, (16, 18, 32), (0, int(INTERNAL_HEIGHT*0.62), INTERNAL_WIDTH, INTERNAL_HEIGHT-int(INTERNAL_HEIGHT*0.62)))
+        pygame.draw.rect(s, (16, 18, 32), (0, int(INTERNAL_HEIGHT * 0.62), INTERNAL_WIDTH, INTERNAL_HEIGHT - int(INTERNAL_HEIGHT * 0.62)))
         start, visible = self._visible_hand()
         hover_idx = None
         for i, _ in enumerate(visible):
@@ -247,18 +279,27 @@ class CombatScreen:
                 idx = next((i for i, e in enumerate(self.c.enemies) if e.id == f["target"]), 0)
                 er = self._enemy_rect(idx)
                 x, y = er.centerx, er.y + 4
-            y -= int((0.7 - f["time"]) * 34)
-            s.blit(self.app.small_font.render(f["text"], True, f["color"]), (x, y))
+            y -= int((0.9 - f["time"]) * 46)
+            self._draw_outlined_text(s, self.app.big_font, f["text"], f["color"], (x, y))
 
-        pygame.draw.rect(s, UI_THEME["panel"], self.status_rect, border_radius=10)
-        s.blit(self.app.small_font.render("Estados/Registro", True, UI_THEME["text"]), (INTERNAL_WIDTH - 245, INTERNAL_HEIGHT - 356))
-        pygame.draw.rect(s, UI_THEME["violet"], self.end_turn_rect, border_radius=12)
-        s.blit(self.app.font.render(self.app.loc.t("button_end_turn"), True, UI_THEME["text"]), (INTERNAL_WIDTH - 208, INTERNAL_HEIGHT - 97))
+        status_col = UI_THEME["panel_2"]
+        if self.status_rect.collidepoint(mouse):
+            status_col = tuple(min(255, c + 20) for c in status_col)
+        pygame.draw.rect(s, status_col, self.status_rect, border_radius=10)
+        label = self.app.small_font.render("Registro", True, UI_THEME["text"])
+        s.blit(label, label.get_rect(center=self.status_rect.center))
+
+        end_col = UI_THEME["violet"]
+        if p["energy"] > 0:
+            pygame.draw.rect(s, (182, 120, 255), self.end_turn_rect.inflate(8, 8), border_radius=14, width=2)
+        pygame.draw.rect(s, end_col, self.end_turn_rect, border_radius=12)
+        end_label = self.app.font.render(self.app.loc.t("button_end_turn"), True, UI_THEME["text"])
+        s.blit(end_label, end_label.get_rect(center=self.end_turn_rect.center))
 
         if self.tooltip:
-            tr = pygame.Rect(min(mouse[0] + 16, INTERNAL_WIDTH - 390), min(mouse[1] + 14, INTERNAL_HEIGHT - 76), 360, 58)
+            tr = pygame.Rect(min(mouse[0] + 16, INTERNAL_WIDTH - 500), min(mouse[1] + 14, INTERNAL_HEIGHT - 86), 470, 68)
             pygame.draw.rect(s, (18, 18, 26), tr, border_radius=8)
-            s.blit(self.app.card_text_font.render(self.tooltip, True, UI_THEME["text"]), (tr.x + 8, tr.y + 18))
+            s.blit(self.app.card_text_font.render(self.tooltip, True, UI_THEME["text"]), (tr.x + 8, tr.y + 22))
 
         self.app.set_debug(
             hovered_card_id=self.tooltip or "-",

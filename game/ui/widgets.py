@@ -8,7 +8,11 @@ class Button:
         self.callback = callback
 
     def draw(self, surf, font, loc, colors, hovered=False):
-        pygame.draw.rect(surf, colors["violet"] if hovered else colors["panel"], self.rect, border_radius=8)
+        color = colors["violet"] if hovered else colors["panel"]
+        if hovered:
+            color = tuple(min(255, c + 18) for c in color)
+        pygame.draw.rect(surf, color, self.rect, border_radius=10)
+        pygame.draw.rect(surf, colors["deep_purple"], self.rect, 2, border_radius=10)
         label = font.render(loc.t(self.text_key), True, colors["text"])
         surf.blit(label, label.get_rect(center=self.rect.center))
 

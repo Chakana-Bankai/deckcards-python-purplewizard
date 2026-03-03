@@ -8,12 +8,13 @@ from game.ui.widgets import Button
 class MenuScreen:
     def __init__(self, app):
         self.app = app
-        rects = centered_column(4, width=360, height=62, gap=18, y_start=220)
+        rects = centered_column(5, width=420, height=70, gap=18, y_start=230)
         self.buttons = [
             Button(rects[0], "menu_play", self.start_run),
             Button(rects[1], "menu_continue", self.continue_run),
-            Button(rects[2], "menu_settings", self.open_settings),
-            Button(rects[3], "menu_exit", self.exit_game),
+            Button(rects[2], "menu_qa", self.open_qa),
+            Button(rects[3], "menu_settings", self.open_settings),
+            Button(rects[4], "menu_exit", self.exit_game),
         ]
 
     def on_enter(self):
@@ -28,6 +29,9 @@ class MenuScreen:
             self.app.goto_map()
         else:
             self.app.new_run()
+
+    def open_qa(self):
+        self.app.run_qa_mode()
 
     def open_settings(self):
         self.app.set_debug(last_ui_event="menu:settings")
@@ -51,9 +55,9 @@ class MenuScreen:
     def render(self, surface):
         surface.fill(UI_THEME["bg"])
         title = self.app.big_font.render(self.app.loc.t("game_title"), True, UI_THEME["text"])
-        surface.blit(title, title.get_rect(center=(640, 110)))
+        surface.blit(title, title.get_rect(center=(960, 110)))
         hint = self.app.font.render(self.app.loc.t("menu_language_hint"), True, UI_THEME["muted"])
-        surface.blit(hint, hint.get_rect(center=(640, 160)))
+        surface.blit(hint, hint.get_rect(center=(960, 170)))
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         for b in self.buttons:
             b.draw(surface, self.app.font, self.app.loc, UI_THEME, b.rect.collidepoint(mouse))

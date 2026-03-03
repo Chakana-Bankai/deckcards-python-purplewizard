@@ -14,6 +14,11 @@ class RewardScreen:
         self.app.run_state["gold"] += self.gold
         self.app.gain_xp(8)
 
+    def take(self, idx):
+        if idx is not None and 0 <= idx < len(self.reward_cards):
+            self.app.run_state["sideboard"].append(self.reward_cards[idx].definition.id)
+        self.app.goto_map()
+
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
             self.app.toggle_language()
@@ -23,11 +28,10 @@ class RewardScreen:
             for i, card in enumerate(self.reward_cards):
                 r = pygame.Rect(180 + i * 300, 220, 260, 320)
                 if r.collidepoint(pos):
-                    self.app.run_state["sideboard"].append(card.definition.id)
-                    self.app.goto_map()
+                    self.take(i)
                     return
             if pygame.Rect(560, 580, 180, 56).collidepoint(pos):
-                self.app.goto_map()
+                self.take(None)
 
     def update(self, dt):
         for c in self.confetti:
