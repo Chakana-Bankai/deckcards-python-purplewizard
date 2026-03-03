@@ -1,65 +1,74 @@
 {
   "voidling": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "enemy_type": "hostile mystic",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "aurora veil",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ominous enemy portrait, arcane hostility, readable silhouette, mystical intent iconography, ornate details, layered lighting, unique detail: aurora veil"
+    "base_style": "16bit pixel art mystical andean magic card",
+    "type": "enemy",
+    "rarity": "ancient sacred",
+    "palette": "obsidian void",
+    "detail": "astral knot",
+    "prompt": "16bit pixel art mystical andean magic card, hostile mystic enemy portrait, astral knot, intent readability"
   },
   "ink_mite": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "enemy_type": "hostile mystic",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "midnight glacier",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ominous enemy portrait, arcane hostility, readable silhouette, mystical intent iconography, ornate details, layered lighting, unique detail: midnight glacier"
+    "base_style": "16bit pixel art mystical andean magic card",
+    "type": "enemy",
+    "rarity": "ancient sacred",
+    "palette": "obsidian void",
+    "detail": "sun gate",
+    "prompt": "16bit pixel art mystical andean magic card, hostile mystic enemy portrait, sun gate, intent readability"
   },
   "whisper_mask": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "enemy_type": "hostile mystic",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "aurora veil",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ominous enemy portrait, arcane hostility, readable silhouette, mystical intent iconography, ornate details, layered lighting, unique detail: aurora veil"
+    "base_style": "16bit pixel art mystical andean magic card",
+    "type": "enemy",
+    "rarity": "ancient sacred",
+    "palette": "obsidian void",
+    "detail": "condor spirit",
+    "prompt": "16bit pixel art mystical andean magic card, hostile mystic enemy portrait, condor spirit, intent readability"
   },
   "rift_hound": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "enemy_type": "hostile mystic",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "comet trail",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ominous enemy portrait, arcane hostility, readable silhouette, mystical intent iconography, ornate details, layered lighting, unique detail: comet trail"
+    "base_style": "16bit pixel art mystical andean magic card",
+    "type": "enemy",
+    "rarity": "ancient sacred",
+    "palette": "obsidian void",
+    "detail": "violet meteor",
+    "prompt": "16bit pixel art mystical andean magic card, hostile mystic enemy portrait, violet meteor, intent readability"
   },
   "mirror_scribe": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "enemy_type": "hostile mystic",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "echoing bells",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ominous enemy portrait, arcane hostility, readable silhouette, mystical intent iconography, ornate details, layered lighting, unique detail: echoing bells"
+    "base_style": "16bit pixel art mystical andean magic card",
+    "type": "enemy",
+    "rarity": "ancient sacred",
+    "palette": "obsidian void",
+    "detail": "violet meteor",
+    "prompt": "16bit pixel art mystical andean magic card, hostile mystic enemy portrait, violet meteor, intent readability"
   },
   "grief_larva": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "enemy_type": "hostile mystic",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "hollow drum",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ominous enemy portrait, arcane hostility, readable silhouette, mystical intent iconography, ornate details, layered lighting, unique detail: hollow drum"
+    "base_style": "16bit pixel art mystical andean magic card",
+    "type": "enemy",
+    "rarity": "ancient sacred",
+    "palette": "obsidian void",
+    "detail": "obsidian temple glyph",
+    "prompt": "16bit pixel art mystical andean magic card, hostile mystic enemy portrait, obsidian temple glyph, intent readability"
   },
   "violet_thief": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "enemy_type": "hostile mystic",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "desert monolith",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ominous enemy portrait, arcane hostility, readable silhouette, mystical intent iconography, ornate details, layered lighting, unique detail: desert monolith"
+    "base_style": "16bit pixel art mystical andean magic card",
+    "type": "enemy",
+    "rarity": "ancient sacred",
+    "palette": "obsidian void",
+    "detail": "moon altar",
+    "prompt": "16bit pixel art mystical andean magic card, hostile mystic enemy portrait, moon altar, intent readability"
   },
   "stone_sentinel": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "enemy_type": "hostile mystic",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "crystal halo",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ominous enemy portrait, arcane hostility, readable silhouette, mystical intent iconography, ornate details, layered lighting, unique detail: crystal halo"
+    "base_style": "16bit pixel art mystical andean magic card",
+    "type": "enemy",
+    "rarity": "ancient sacred",
+    "palette": "obsidian void",
+    "detail": "sun gate",
+    "prompt": "16bit pixel art mystical andean magic card, hostile mystic enemy portrait, sun gate, intent readability"
   },
   "inverse_weaver": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "enemy_type": "hostile mystic",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "desert monolith",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ominous enemy portrait, arcane hostility, readable silhouette, mystical intent iconography, ornate details, layered lighting, unique detail: desert monolith"
+    "base_style": "16bit pixel art mystical andean magic card",
+    "type": "enemy",
+    "rarity": "ancient sacred",
+    "palette": "obsidian void",
+    "detail": "moon altar",
+    "prompt": "16bit pixel art mystical andean magic card, hostile mystic enemy portrait, moon altar, intent readability"
   }
 }
