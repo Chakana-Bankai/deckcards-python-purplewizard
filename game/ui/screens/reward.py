@@ -40,12 +40,12 @@ class RewardScreen:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
             self.app.sfx.play("ui_click")
-            for i, card in enumerate(self.reward_cards):
-                r = pygame.Rect(180 + i * 300, 220, 260, 320)
-                if r.collidepoint(pos):
+            cols = [pygame.Rect(170 + i * 520, 220, 420, 360) for i in range(3)]
+            for i, r in enumerate(cols):
+                if i < len(self.reward_cards) and r.collidepoint(pos):
                     self.take(i)
                     return
-            if pygame.Rect(560, 580, 180, 56).collidepoint(pos):
+            if pygame.Rect(860, 630, 220, 64).collidepoint(pos):
                 self.take(None)
 
     def update(self, dt):
@@ -67,15 +67,20 @@ class RewardScreen:
         pygame.draw.rect(s, UI_THEME["good"], (450, 154, int(360 * ratio), 16), border_radius=8)
         for c in self.confetti:
             pygame.draw.rect(s, UI_THEME["card_selected"], (c["x"], int(c["y"]), 4, 4))
-        for i, card in enumerate(self.reward_cards):
-            r = pygame.Rect(180 + i * 300, 220, 260, 320)
-            pygame.draw.rect(s, UI_THEME["panel"], r, border_radius=10)
-            art = self.app.assets.sprite("cards", card.definition.id, (240, 170), fallback=(84, 66, 122))
-            s.blit(art, (r.x + 10, r.y + 10))
-            s.blit(self.app.font.render(self.app.loc.t(card.definition.name_key), True, UI_THEME["text"]), (r.x + 10, r.y + 190))
-            s.blit(self.app.small_font.render(self.app.loc.t(card.definition.text_key), True, UI_THEME["muted"]), (r.x + 10, r.y + 230))
-        pygame.draw.rect(s, UI_THEME["violet"], (560, 580, 180, 56), border_radius=8)
-        s.blit(self.app.font.render(self.app.loc.t("reward_skip"), True, UI_THEME["text"]), (608, 595))
+        cols = [pygame.Rect(170 + i * 520, 220, 420, 360) for i in range(3)]
+        for i, r in enumerate(cols):
+            pygame.draw.rect(s, UI_THEME["panel"], r, border_radius=12)
+            pygame.draw.rect(s, UI_THEME["accent_violet"], r, 2, border_radius=12)
+            s.blit(self.app.small_font.render(f"Pack {i+1}", True, UI_THEME["gold"]), (r.x + 14, r.y + 12))
+            if i < len(self.reward_cards):
+                card = self.reward_cards[i]
+                art = self.app.assets.sprite("cards", card.definition.id, (390, 210), fallback=(84, 66, 122))
+                s.blit(art, (r.x + 15, r.y + 44))
+                s.blit(self.app.font.render(self.app.loc.t(card.definition.name_key), True, UI_THEME["text"]), (r.x + 16, r.y + 264))
+                lines = self.app.loc.t(card.definition.text_key)
+                s.blit(self.app.small_font.render(lines, True, UI_THEME["muted"]), (r.x + 16, r.y + 306))
+        pygame.draw.rect(s, UI_THEME["violet"], (860, 630, 220, 64), border_radius=10)
+        s.blit(self.app.font.render(self.app.loc.t("reward_skip"), True, UI_THEME["text"]), (928, 650))
         if self.toast_t > 0:
             pygame.draw.rect(s, UI_THEME["panel_2"], (740, 660, 440, 52), border_radius=10)
             s.blit(self.app.small_font.render(self.toast, True, UI_THEME["gold"]), (772, 675))

@@ -325,6 +325,6 @@ class CombatScreen:
             s.blit(self.app.font.render("Confirmar", True, UI_THEME["text"]), (905, 692))
 
         if self.tooltip and not self.c.scry_pending:
-            tr = pygame.Rect(min(mouse[0] + 16, INTERNAL_WIDTH - 460), min(mouse[1] + 14, INTERNAL_HEIGHT - 90), 440, 70)
+            tr = pygame.Rect(20, self.zone_buttons_y + 14, 620, 70)
             pygame.draw.rect(s, (18, 18, 26), tr, border_radius=8)
             s.blit(self.app.card_text_font.render(self.tooltip, True, UI_THEME["text"]), (tr.x + 10, tr.y + 24))

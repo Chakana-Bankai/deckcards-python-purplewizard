@@ -30,6 +30,16 @@ class PromptBuilder:
         }
         pool = self.design.get("PROMPT_UNIQUE_POOL", "")
         self.details = [x.strip() for x in pool.split("|") if x.strip()] or ["chakana constellation", "condor spirit", "obsidian temple glyph"]
+        self.palette_groups = {
+            "attack": "solar gold",
+            "defense": "emerald nature",
+            "energy": "azure cosmic",
+            "control": "violet arcane",
+            "ritual": "obsidian void",
+            "chaos": "crimson chaos",
+            "arcane": "azure cosmic",
+            "curse": "crimson chaos",
+        }
         self.external_prompts = {}
         try:
             data = json.loads((data_dir() / "card_prompts.json").read_text(encoding="utf-8"))
@@ -52,6 +62,9 @@ class PromptBuilder:
         return vals
 
     def _card_type(self, card: dict) -> str:
+        fam = card.get("family")
+        if fam in {"attack","defense","energy","control","ritual","chaos"}:
+            return {"energy":"arcane","control":"arcane","chaos":"curse"}.get(fam, fam)
         tags = set(card.get("tags", []))
         if "curse" in tags:
             return "curse"
@@ -82,6 +95,7 @@ class PromptBuilder:
         cid = card.get("id", "unknown")
         card_type = self._card_type(card)
         rarity = self.rarity_map.get(card.get("rarity", "common"), self.rarity_map["common"])
+        palette = self.palette_groups.get(card.get("family", card_type), self.palette_groups.get(card_type, "violet arcane"))
         detail = self.details[zlib.crc32(cid.encode("utf-8")) % len(self.details)]
         existing = self.external_prompts.get(cid)
         if isinstance(existing, str) and existing.strip():
@@ -89,11 +103,12 @@ class PromptBuilder:
         elif isinstance(existing, dict) and existing.get("prompt"):
             prompt = str(existing.get("prompt"))
         else:
-            prompt = f"{self.base_style}, {self.type_map[card_type]}, {rarity}, {detail}, {self._mechanics_keyword(card)}"
+            prompt = f"{self.base_style}, {self.type_map[card_type]}, {rarity}, palette {palette}, {detail}, {self._mechanics_keyword(card)}"
         return {
             "base_style": self.base_style,
             "type": card_type,
             "rarity": rarity,
+            "palette": palette,
             "detail": detail,
             "prompt": prompt,
         }
@@ -101,11 +116,13 @@ class PromptBuilder:
     def build_enemy_entry(self, enemy: dict) -> dict:
         eid = enemy.get("id", "unknown")
         detail = self.details[zlib.crc32((eid + "enemy").encode("utf-8")) % len(self.details)]
+        palette = "obsidian void"
         prompt = f"{self.base_style}, hostile mystic enemy portrait, {detail}, intent readability"
         return {
             "base_style": self.base_style,
             "type": "enemy",
             "rarity": "ancient sacred",
+            "palette": palette,
             "detail": detail,
             "prompt": prompt,
         }
@@ -151,7 +168,7 @@ class CardArtGenerator:
     def _generate_surface(self, card_id: str, tags: list[str], rarity: str) -> pygame.Surface:
         w, h = 360, 500
         surf = pygame.Surface((w, h), pygame.SRCALPHA)
-        rng = random.Random(abs(hash(card_id)) & 0xFFFFFFFF)
+        rng = random.Random(zlib.crc32(card_id.encode("utf-8")) & 0xFFFFFFFF)
         tags_set = set(tags)
         bg_dark, bg_light, accent_gold, accent_ice = self._palette(rng, tags_set, rarity)
 
@@ -221,7 +238,7 @@ class CardArtGenerator:
 def export_prompts(cards: list[dict], enemies: list[dict] | None = None):
     pb = PromptBuilder()
     card_payload = {c.get("id", "unknown"): pb.build_entry(c) for c in cards}
-    _write_if_changed(data_dir() / "card_prompts.json", json.dumps({k: v["prompt"] for k, v in card_payload.items()}, ensure_ascii=False, indent=2))
+    _write_if_changed(data_dir() / "card_prompts.json", json.dumps(card_payload, ensure_ascii=False, indent=2))
 
     if enemies is not None:
         enemy_payload = {e.get("id", "unknown"): pb.build_enemy_entry(e) for e in enemies}
