@@ -1,8 +1,9 @@
 {
   "language": "es",
-  "music_volume": 0.5,
-  "sfx_volume": 0.7,
-  "fullscreen": false,
-  "turn_timer_enabled": false,
-  "turn_timer_seconds": 30
+  "music_volume": 0.8673076923076923,
+  "sfx_volume": 0.8730769230769231,
+  "fullscreen": true,
+  "turn_timer_enabled": true,
+  "turn_timer_seconds": 30,
+  "music_muted": false
 }
