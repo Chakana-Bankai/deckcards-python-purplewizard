@@ -1,0 +1,11 @@
+UI BIBLE
+- Fixed 1920x1080 layout zones.
+- CARD_AREA on left, PLAYER_HUD on right.
+- No overlap between zones.
+- Every zone must have border + separator.
+- Enemy panel must show: portrait, name, life bar, intention.
+- Dialogue stack: enemy line on top, Chakana response below.
+- Event screen vertical flow: guide image, text, option buttons.
+- Action button labels:
+  - if player played a card this turn: "Ejecutar"
+  - otherwise: "Fin Turno"

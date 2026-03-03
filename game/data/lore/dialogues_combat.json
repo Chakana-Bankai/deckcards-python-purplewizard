@@ -1,0 +1,38 @@
+{
+  "acaro_de_tinta": {
+    "start": {
+      "enemy": "Te arrastras en mi tinta. ¿Eso llamas voluntad?",
+      "chakana": "La Trama me observa. Yo camino igual."
+    },
+    "player_low_hp": {
+      "enemy": "Te quiebras. Tu Chakana se apaga.",
+      "chakana": "Ayni: recibo el golpe y devuelvo claridad."
+    }
+  },
+  "default": {
+    "start": {
+      "enemy": "Tu Pacha interior se fractura aquí.",
+      "chakana": "Sumaq trazo: cada corte ordena la Trama."
+    },
+    "enemy_attack_big": {
+      "enemy": "Voy a partir tu centro.",
+      "chakana": "Respiro, observo, respondo."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... aún no.",
+      "chakana": "La forma cede, la verdad queda."
+    },
+    "player_low_hp": {
+      "enemy": "Te hundes en tu duda.",
+      "chakana": "Ayni. Aprendo y avanzo."
+    },
+    "boss_phase": {
+      "enemy": "Ahora verás el borde del Umbral.",
+      "chakana": "Pacha gira. Mi pulso no."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "Sumaq cierre."
+    }
+  }
+}
