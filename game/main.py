@@ -47,13 +47,16 @@ class App:
         self.clock = pygame.time.Clock()
         self.running = True
         self.rng = SeededRNG(1337)
-        self.loc = LocalizationManager("es")
+        self.user_settings = load_settings()
+        self.loc = LocalizationManager(self.user_settings.get("language", "es"))
         self.renderer = Renderer()
+        if self.user_settings.get("fullscreen", False):
+            self.renderer.toggle_fullscreen()
         self.assets = AssetManager()
         self.sfx = SFXManager()
         self.music = MusicManager()
         self.sfx.set_volume(self.user_settings.get("sfx_volume", 0.7))
-        self.music.set_volume(self.user_settings.get("music_volume", 0.55))
+        self.music.set_volume(self.user_settings.get("music_volume", 0.5))
         self.music.set_muted(self.user_settings.get("music_muted", False))
         self.font = pygame.font.SysFont("arial", 24)
         self.small_font = pygame.font.SysFont("arial", 18)
@@ -63,9 +66,8 @@ class App:
         self.run_state = None
         self.node_lookup = {}
         self.current_node_id = None
-        self.user_settings = load_settings()
         self.debug_overlay = False
-        self.debug = {"last_ui_event": "-", "hovered_card_id": "-", "selected_card_id": "-", "target_mode": False}
+        self.debug = {"last_ui_event": "-", "hovered_card_id": "-", "selected_card_id": "-", "target_mode": False, "combat_end_turn_button_visible": False, "combat_status_button_visible": False, "combat_end_turn_rect": "-", "combat_status_rect": "-"}
 
         self.cards_data = self._load_cards_data()
         self.card_defs = {c["id"]: c for c in self.cards_data}
@@ -108,6 +110,7 @@ class App:
 
     def toggle_language(self):
         self.loc.load("en" if self.loc.current_lang == "es" else "es")
+        self.user_settings["language"] = self.loc.current_lang
         pygame.display.set_caption(self.loc.t("game_title"))
 
     def goto_menu(self):
@@ -136,7 +139,11 @@ class App:
             "map": self.generate_map(),
             "xp": 0,
             "level": 1,
-            "settings": self.user_settings.copy(),
+            "settings": {
+                "turn_timer_enabled": bool(self.user_settings.get("turn_timer_enabled", False)),
+                "turn_timer_seconds": int(self.user_settings.get("turn_timer_seconds", 30)),
+                "music_muted": bool(self.user_settings.get("music_muted", False)),
+            },
         }
         self.goto_map()
 
@@ -267,6 +274,10 @@ class App:
         self.debug.update(kwargs)
 
     def save_user_settings(self):
+        self.user_settings["sfx_volume"] = self.sfx.master_volume
+        self.user_settings["music_volume"] = self.music.volume
+        self.user_settings["music_muted"] = self.music.muted
+        self.user_settings["fullscreen"] = self.renderer.fullscreen
         save_settings(self.user_settings)
 
     def draw_debug_overlay(self):
@@ -280,8 +291,10 @@ class App:
             f"hand={self.debug.get('hand_count','-')} hover={self.debug.get('hovered_card_id','-')} sel={self.debug.get('selected_card_id','-')} target={self.debug.get('target_mode','-')}",
             f"scale={scale:.3f} letterbox=({x},{y})",
             f"last_ui={self.debug.get('last_ui_event','-')}",
+            f"end_btn={self.debug.get('combat_end_turn_button_visible')} {self.debug.get('combat_end_turn_rect')}",
+            f"status_btn={self.debug.get('combat_status_button_visible')} {self.debug.get('combat_status_rect')}",
         ]
-        panel = pygame.Surface((620, 138), pygame.SRCALPHA)
+        panel = pygame.Surface((780, 178), pygame.SRCALPHA)
         panel.fill((0,0,0,170))
         self.renderer.internal.blit(panel, (8,8))
         for i,line in enumerate(lines):

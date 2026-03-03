@@ -1,9 +1,7 @@
 import pygame
 
-from game.combat.intents import INTENT_KEYS
 from game.ui.anim import TypewriterBanner
 from game.ui.theme import UI_THEME
-
 
 KEYWORDS = {
     "Bloque": "Reduce daño entrante en este turno.",
@@ -40,10 +38,13 @@ class CombatScreen:
         self.floaters = []
         self.tooltip = None
         self.glossary = False
+        self.log_visible = True
         self.log_lines = []
         self.banner = TypewriterBanner()
         self._taunt("enemy_taunt_start")
-        self.turn_timer = self.app.run_state.get("settings", {}).get("turn_time", 30)
+        self.turn_timer = self.app.run_state.get("settings", {}).get("turn_timer_seconds", 30)
+        self.end_turn_rect = pygame.Rect(1080, 618, 190, 78)
+        self.status_rect = pygame.Rect(1080, 530, 190, 72)
 
     def _enemy_rect(self, idx):
         return pygame.Rect(60 + idx * 280, 110, 220, 220)
@@ -77,7 +78,7 @@ class CombatScreen:
         card = self.c.hand[idx]
         if card.cost > self.c.player["energy"]:
             return
-        if card.definition.target == "enemy" and (target_idx is None):
+        if card.definition.target == "enemy" and target_idx is None:
             self.c.needs_target = idx
             self.selected_card_index = idx
             return
@@ -90,11 +91,12 @@ class CombatScreen:
         if event.type == pygame.MOUSEWHEEL:
             self.hand_scroll -= event.y
             self.app.set_debug(last_ui_event=f"wheel:{event.y}")
+
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_e:
                 self.app.set_debug(last_ui_event="key:E_end_turn")
                 self.c.end_turn()
-                self.turn_timer = self.app.run_state.get("settings", {}).get("turn_time", 30)
+                self.turn_timer = self.app.run_state.get("settings", {}).get("turn_timer_seconds", 30)
             elif event.key == pygame.K_h:
                 self.glossary = not self.glossary
                 self.app.set_debug(last_ui_event="key:H_glossary")
@@ -114,9 +116,14 @@ class CombatScreen:
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
-            if pygame.Rect(1090, 618, 170, 78).collidepoint(pos):
+            if self.end_turn_rect.collidepoint(pos):
+                self.app.set_debug(last_ui_event="click:end_turn")
                 self.c.end_turn()
-                self.turn_timer = self.app.run_state.get("settings", {}).get("turn_time", 30)
+                self.turn_timer = self.app.run_state.get("settings", {}).get("turn_timer_seconds", 30)
+                return
+            if self.status_rect.collidepoint(pos):
+                self.app.set_debug(last_ui_event="click:status_log")
+                self.log_visible = not self.log_visible
                 return
             for i, e in enumerate(self.c.enemies):
                 er = self._enemy_rect(i)
@@ -129,8 +136,8 @@ class CombatScreen:
                     return
             start, visible = self._visible_hand()
             for i, _card in enumerate(visible):
-                r = self._card_rect(i, len(visible))
-                if r.collidepoint(pos):
+                rr = self._card_rect(i, len(visible))
+                if rr.collidepoint(pos):
                     self.selected_card_index = start + i
                     self.app.set_debug(last_ui_event=f"card_click:{start+i}")
                     self.app.sfx.play("card_pick")
@@ -140,11 +147,11 @@ class CombatScreen:
     def update(self, dt):
         self.c.update(dt)
         self.banner.update(dt)
-        if self.app.run_state.get("settings", {}).get("timer_on", False):
+        if self.app.run_state.get("settings", {}).get("turn_timer_enabled", False):
             self.turn_timer = max(0, self.turn_timer - dt)
             if self.turn_timer <= 0:
                 self.c.end_turn()
-                self.turn_timer = self.app.run_state.get("settings", {}).get("turn_time", 30)
+                self.turn_timer = self.app.run_state.get("settings", {}).get("turn_timer_seconds", 30)
                 self.app.sfx.play("ui_click")
 
         for ev in self.c.pop_events():
@@ -189,8 +196,7 @@ class CombatScreen:
         name = self.app.loc.t(card.definition.name_key)
         s.blit(self.app.tiny_font.render(name, True, UI_THEME["card_text"]), (txt.x + 4, txt.y + 2))
         desc = self.app.loc.t(card.definition.text_key)
-        lines = wrap_text(self.app.tiny_font, desc, txt.w - 8)[:3]
-        for i, line in enumerate(lines):
+        for i, line in enumerate(wrap_text(self.app.tiny_font, desc, txt.w - 8)[:3]):
             s.blit(self.app.tiny_font.render(line, True, UI_THEME["card_text"]), (txt.x + 4, txt.y + 18 + i * 14))
         tags = "/".join(card.definition.tags[:2])
         s.blit(self.app.tiny_font.render(tags, True, (80, 78, 95)), (txt.x + 4, txt.bottom - 14))
@@ -204,14 +210,9 @@ class CombatScreen:
 
     def render(self, s):
         s.fill((12, 16, 35))
-        if self.is_boss:
-            vign = pygame.Surface((1280, 720), pygame.SRCALPHA)
-            vign.fill((30, 5, 20, 35))
-            s.blit(vign, (0, 0))
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.tooltip = None
 
-        # dialogue banner
         bt = self.banner.visible_text()
         if bt:
             rect = pygame.Rect(290, 18, 700, 44)
@@ -220,7 +221,6 @@ class CombatScreen:
             s.blit(panel, rect.topleft)
             s.blit(self.app.small_font.render(bt, True, UI_THEME["text"]), (rect.x + 12, rect.y + 12))
 
-        # enemies
         for i, e in enumerate(self.c.enemies):
             er = self._enemy_rect(i)
             pygame.draw.rect(s, (58, 45, 80) if e.alive else (42, 42, 42), er, border_radius=12)
@@ -230,20 +230,7 @@ class CombatScreen:
             ratio = max(0, e.hp) / max(1, e.max_hp)
             pygame.draw.rect(s, (45, 45, 45), (er.x + 10, er.y + 154, 200, 14), border_radius=6)
             pygame.draw.rect(s, UI_THEME["hp"], (er.x + 10, er.y + 154, int(200 * ratio), 14), border_radius=6)
-            intent = e.current_intent()
-            val = intent.get("value", [intent.get("stacks", 1), intent.get("stacks", 1)])
-            num = val[0] if isinstance(val, list) else val
-            ik = intent.get("intent","attack")
-            prefix = {"attack":"ATK", "defend":"DEF", "debuff":"DEBUFF", "buff":"BUFF"}.get(ik, "ATK")
-            status_txt = f" {intent.get('status','')}({intent.get('stacks',1)})" if ik in {"debuff","buff"} else ""
-            txt = f"{prefix} {num}{status_txt}"
-            ir = pygame.Rect(er.x + 10, er.y + 175, 200, 24)
-            pygame.draw.rect(s, (28, 30, 48), ir, border_radius=8)
-            s.blit(self.app.tiny_font.render(txt, True, UI_THEME["muted"]), (ir.x + 5, ir.y + 5))
-            if ir.collidepoint(mouse):
-                self.tooltip = txt
 
-        # hud top-right safe from hand
         hud = pygame.Rect(930, 120, 330, 220)
         pygame.draw.rect(s, UI_THEME["panel"], hud, border_radius=12)
         p = self.c.player
@@ -253,20 +240,15 @@ class CombatScreen:
         s.blit(self.app.font.render(self.app.loc.t("hud_energy"), True, UI_THEME["text"]), (946, 224))
         for i in range(3):
             pygame.draw.circle(s, UI_THEME["energy"] if i < p["energy"] else (65, 68, 90), (1080 + i * 32, 236), 12)
-        if self.app.run_state.get("settings", {}).get("timer_on", False):
+        if self.app.run_state.get("settings", {}).get("turn_timer_enabled", False):
             s.blit(self.app.small_font.render(f"{self.turn_timer:04.1f}s", True, UI_THEME["gold"]), (1130, 222))
 
-        # log panel
-        pygame.draw.rect(s, UI_THEME["panel"], (930, 350, 330, 170), border_radius=12)
-        s.blit(self.app.small_font.render(self.app.loc.t("combat_log"), True, UI_THEME["text"]), (946, 360))
-        for i, line in enumerate(self.log_lines[:5]):
-            s.blit(self.app.tiny_font.render(line, True, UI_THEME["muted"]), (946, 385 + i * 24))
+        if self.log_visible:
+            pygame.draw.rect(s, UI_THEME["panel"], (930, 350, 330, 170), border_radius=12)
+            s.blit(self.app.small_font.render(self.app.loc.t("combat_log"), True, UI_THEME["text"]), (946, 360))
+            for i, line in enumerate(self.log_lines[:5]):
+                s.blit(self.app.tiny_font.render(line, True, UI_THEME["muted"]), (946, 385 + i * 24))
 
-        # end button
-        pygame.draw.rect(s, UI_THEME["violet"], (1090, 618, 170, 78), border_radius=12)
-        s.blit(self.app.font.render(self.app.loc.t("button_end_turn"), True, UI_THEME["text"]), (1104, 647))
-
-        # hand band reserved bottom
         pygame.draw.rect(s, (15, 18, 30), (0, 500, 1280, 220))
         start, visible = self._visible_hand()
         for i, c in enumerate(visible):
@@ -274,9 +256,6 @@ class CombatScreen:
             if rr.collidepoint(mouse):
                 self.tooltip = self.app.loc.t(c.definition.text_key)
 
-        self.app.set_debug(hand_count=len(self.c.hand), hovered_card_id=self.tooltip or "-", selected_card_id=(self.c.hand[self.selected_card_index].definition.id if self.selected_card_index is not None and self.selected_card_index < len(self.c.hand) else "-"), target_mode=self.c.needs_target is not None)
-
-        # floaters
         for f in self.floaters:
             if f["target"] == "player":
                 x, y = 1030, 118
@@ -306,3 +285,20 @@ class CombatScreen:
             pygame.draw.rect(s, (18, 18, 26), tr, border_radius=8)
             for li, line in enumerate(wrap_text(self.app.tiny_font, self.tooltip, tr.w - 10)[:3]):
                 s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (tr.x + 6, tr.y + 6 + li * 17))
+
+        # Always visible critical combat buttons (draw last)
+        pygame.draw.rect(s, UI_THEME["panel"], self.status_rect, border_radius=10)
+        s.blit(self.app.small_font.render(self.app.loc.t("combat_log"), True, UI_THEME["text"]), (1132, 557))
+        pygame.draw.rect(s, UI_THEME["violet"], self.end_turn_rect, border_radius=12)
+        s.blit(self.app.font.render(self.app.loc.t("button_end_turn"), True, UI_THEME["text"]), (1102, 646))
+
+        self.app.set_debug(
+            hand_count=len(self.c.hand),
+            hovered_card_id=self.tooltip or "-",
+            selected_card_id=(self.c.hand[self.selected_card_index].definition.id if self.selected_card_index is not None and self.selected_card_index < len(self.c.hand) else "-"),
+            target_mode=self.c.needs_target is not None,
+            combat_end_turn_button_visible=True,
+            combat_status_button_visible=True,
+            combat_end_turn_rect=str(self.end_turn_rect),
+            combat_status_rect=str(self.status_rect),
+        )
