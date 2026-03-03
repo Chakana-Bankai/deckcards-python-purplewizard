@@ -42,7 +42,7 @@ def _write_wav(path: Path, hz: int = 440, ms: int = 120, volume: float = 0.15) -
         wav.setframerate(rate)
         buf = bytearray()
         for i in range(frames):
-            v = int(32767 * volume * math.sin((2 * math.pi * hz * i) / rate))
+            v = int(32767 * volume * math.sin((2 * math.pi * hz * i) / rate)) if volume > 0 else 0
             buf.extend(struct.pack("<h", v))
         wav.writeframes(bytes(buf))
 
@@ -50,12 +50,8 @@ def _write_wav(path: Path, hz: int = 440, ms: int = 120, volume: float = 0.15) -
 def ensure_placeholder_assets(card_ids: list[str], enemy_ids: list[str]) -> None:
     a_dir = assets_dir()
     _write_png(a_dir / "sprites/player/player.png", 96, 96, (88, 70, 140))
-    _write_png(a_dir / "sprites/cards/_placeholder.png", 160, 220, (64, 48, 110))
-    _write_png(a_dir / "sprites/enemies/_placeholder.png", 120, 120, (95, 55, 95))
-    for cid in card_ids:
-        _write_png(a_dir / f"sprites/cards/{cid}.png", 160, 220, (78, 52, 132))
-    for eid in enemy_ids:
-        _write_png(a_dir / f"sprites/enemies/{eid}.png", 120, 120, (102, 64, 84))
+    _write_png(a_dir / "sprites/cards/_placeholder.png", 320, 220, (64, 48, 110))
+    _write_png(a_dir / "sprites/enemies/_placeholder.png", 160, 160, (95, 55, 95))
 
     sfx = {
         "ui_click": 880,
@@ -68,6 +64,6 @@ def ensure_placeholder_assets(card_ids: list[str], enemy_ids: list[str]) -> None
     for name, hz in sfx.items():
         _write_wav(a_dir / f"sfx/{name}.wav", hz=hz)
 
-    music = {"menu": 0, "map": 0, "combat": 0, "event": 0, "boss": 0}
-    for name in music:
-        _write_wav(a_dir / f"music/{name}.wav", hz=220, volume=0.0, ms=1000)
+    # versioned silent placeholders for BGM
+    for name in ["menu", "map", "combat", "event", "boss"]:
+        _write_wav(a_dir / f"music/{name}.wav", hz=220, volume=0.0, ms=1500)

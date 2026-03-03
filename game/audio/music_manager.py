@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+
 import pygame
 
 from game.core.paths import assets_dir
@@ -24,11 +25,17 @@ class MusicManager:
 
     def set_volume(self, value: float):
         self.volume = max(0.0, min(1.0, value))
-        pygame.mixer.music.set_volume(0.0 if self.muted else self.volume)
+        try:
+            pygame.mixer.music.set_volume(0.0 if self.muted else self.volume)
+        except Exception:
+            pass
 
     def set_muted(self, muted: bool):
         self.muted = muted
-        pygame.mixer.music.set_volume(0.0 if self.muted else self.volume)
+        try:
+            pygame.mixer.music.set_volume(0.0 if self.muted else self.volume)
+        except Exception:
+            pass
 
     def _find_track(self, key: str) -> Path | None:
         for candidate in self.tracks.get(key, []):
@@ -40,12 +47,10 @@ class MusicManager:
         if key == self.current_key:
             return
         self.current_key = key
-        path = self._find_track(key)
+        path = self._find_track(key) or self._find_track("menu")
         if not path:
             self.current_path = None
             self.status = "missing"
-            print(f"[audio] BGM missing for {key}")
-            pygame.mixer.music.fadeout(250)
             return
         self.current_path = path.name
         try:

@@ -11,6 +11,7 @@ class Enemy:
     statuses: dict[str, int] = field(default_factory=dict)
     block: int = 0
     intent_index: int = 0
+    last_action_name: str = "-"
 
     @property
     def alive(self) -> bool:

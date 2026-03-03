@@ -18,7 +18,7 @@ from game.core.rng import SeededRNG
 from game.core.safe_io import load_json
 from game.core.settings_store import load_settings, save_settings
 from game.core.state_machine import StateMachine
-from game.settings import FPS
+from game.settings import FPS, INTERNAL_HEIGHT, INTERNAL_WIDTH
 from game.ui.render import AssetManager, Renderer
 from game.ui.screens.combat import CombatScreen
 from game.ui.screens.deck import DeckScreen
@@ -72,16 +72,19 @@ class App:
                 except Exception:
                     pass
         font_path = str(font_target) if font_target.exists() else None
-        self.font = pygame.font.Font(font_path, 20) if font_path else pygame.font.SysFont("arial", 20)
-        self.small_font = pygame.font.Font(font_path, 18) if font_path else pygame.font.SysFont("arial", 18)
-        self.tiny_font = pygame.font.Font(font_path, 16) if font_path else pygame.font.SysFont("arial", 16)
-        self.big_font = pygame.font.Font(font_path, 24) if font_path else pygame.font.SysFont("arial", 24, bold=True)
+        self.font = pygame.font.Font(font_path, 24) if font_path else pygame.font.SysFont("arial", 24)
+        self.small_font = pygame.font.Font(font_path, 22) if font_path else pygame.font.SysFont("arial", 22)
+        self.tiny_font = pygame.font.Font(font_path, 18) if font_path else pygame.font.SysFont("arial", 18)
+        self.big_font = pygame.font.Font(font_path, 34) if font_path else pygame.font.SysFont("arial", 34, bold=True)
+        self.card_text_font = pygame.font.Font(font_path, 20) if font_path else pygame.font.SysFont("arial", 20)
+        self.card_title_font = pygame.font.Font(font_path, 26) if font_path else pygame.font.SysFont("arial", 26, bold=True)
+        self.map_font = pygame.font.Font(font_path, 24) if font_path else pygame.font.SysFont("arial", 24)
         self.sm = StateMachine()
         self.run_state = None
         self.node_lookup = {}
         self.current_node_id = None
         self.debug_overlay = False
-        self.debug = {"last_ui_event": "-", "hovered_card_id": "-", "selected_card_id": "-", "target_mode": False, "combat_end_turn_button_visible": False, "combat_status_button_visible": False, "combat_end_turn_rect": "-", "combat_status_rect": "-"}
+        self.debug = {"last_ui_event": "-", "hovered_card_id": "-", "selected_card_id": "-", "target_mode": False, "combat_end_turn_button_visible": False, "combat_status_button_visible": False, "combat_end_turn_rect": "-", "combat_status_rect": "-", "enemy_intent": "-", "art_regenerated": 0}
 
         self.cards_data = self._load_cards_data()
         self.card_defs = {c["id"]: c for c in self.cards_data}
@@ -92,11 +95,13 @@ class App:
         ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
         self.art_gen = CardArtGenerator()
         self.enemy_art_gen = EnemyArtGenerator()
+        self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
         for c in self.cards_data:
-            self.art_gen.ensure_art(c.get("id", "strike"), c.get("tags", []))
+            self.art_gen.ensure_art(c.get("id", "strike"), c.get("tags", []), c.get("rarity", "common"), self.autogen_art_mode)
         for e in self.enemies_data:
-            self.enemy_art_gen.ensure_art(e.get("id", "dummy"))
+            self.enemy_art_gen.ensure_art(e.get("id", "dummy"), self.autogen_art_mode)
         print("[load] card/enemy art verified")
+        self.debug["art_regenerated"] = self.art_gen.generated_count + self.art_gen.replaced_count
         export_prompts(self.cards_data)
 
         pygame.display.set_caption(self.loc.t("game_title"))
@@ -169,13 +174,18 @@ class App:
         by_col = []
         self.node_lookup = {}
         type_cycle = ["combat", "event", "combat", "shop", "event", "boss"]
+        x_margin = 140
+        x_step = (INTERNAL_WIDTH - x_margin * 2) // (columns - 1)
         for col in range(columns):
             count = 1 if col in (0, columns - 1) else 3
             col_nodes = []
             for row in range(count):
                 node_id = f"{col}_{row}"
-                y = 160 + row * 160 if count > 1 else 320
-                node = {"id": node_id, "col": col, "x": 120 + col * 205, "y": y, "type": type_cycle[col], "next": [], "state": "available" if col == 0 else "locked"}
+                if count == 1:
+                    y = INTERNAL_HEIGHT // 2
+                else:
+                    y = 240 + row * 190
+                node = {"id": node_id, "col": col, "x": x_margin + col * x_step, "y": y, "type": type_cycle[col], "next": [], "state": "available" if col == 0 else "locked"}
                 col_nodes.append(node)
                 self.node_lookup[node_id] = node
             by_col.append(col_nodes)
@@ -295,6 +305,7 @@ class App:
         self.user_settings["music_volume"] = self.music.volume
         self.user_settings["music_muted"] = self.music.muted
         self.user_settings["fullscreen"] = self.renderer.fullscreen
+        self.user_settings["autogen_art_mode"] = self.user_settings.get("autogen_art_mode", "missing_only")
         save_settings(self.user_settings)
 
     def draw_debug_overlay(self):
@@ -303,16 +314,14 @@ class App:
         x,y,nw,nh,scale = self.renderer._viewport()
         lines = [
             f"screen={self.sm.current.__class__.__name__ if self.sm.current else '-'}",
-            f"music={self.music.debug_state()}",
-            f"sfx_vol={self.sfx.master_volume:.2f}",
-            f"hand={self.debug.get('hand_count','-')} hover={self.debug.get('hovered_card_id','-')} sel={self.debug.get('selected_card_id','-')} target={self.debug.get('target_mode','-')}",
+            f"internal_res={INTERNAL_WIDTH}x{INTERNAL_HEIGHT}",
             f"scale={scale:.3f} letterbox=({x},{y})",
-            f"last_ui={self.debug.get('last_ui_event','-')}",
-            f"end_btn={self.debug.get('combat_end_turn_button_visible')} {self.debug.get('combat_end_turn_rect')}",
-            f"status_btn={self.debug.get('combat_status_button_visible')} {self.debug.get('combat_status_rect')}",
-            f"enemies={self.debug.get('enemies_count','-')} hp={self.debug.get('enemies_hp','-')}",
+            f"hovered_card={self.debug.get('hovered_card_id','-')} target_mode={self.debug.get('target_mode','-')}",
+            f"BGM track={self.music.debug_state()}",
+            f"enemy_hp={self.debug.get('enemies_hp','-')} intent={self.debug.get('enemy_intent','-')}",
+            f"card_art_regenerated={self.debug.get('art_regenerated','0')}",
         ]
-        panel = pygame.Surface((780, 178), pygame.SRCALPHA)
+        panel = pygame.Surface((980, 170), pygame.SRCALPHA)
         panel.fill((0,0,0,170))
         self.renderer.internal.blit(panel, (8,8))
         for i,line in enumerate(lines):

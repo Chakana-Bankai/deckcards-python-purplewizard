@@ -150,6 +150,7 @@ class CombatState:
             if not enemy.alive:
                 continue
             intent = enemy.current_intent()
+            enemy.last_action_name = intent.get("name", intent.get("intent", "action"))
             intent_kind = intent.get("intent", "attack")
             if intent_kind == "attack":
                 value = intent.get("value", [5, 5])

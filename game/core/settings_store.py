@@ -15,6 +15,7 @@ DEFAULT_SETTINGS = {
     "turn_timer_enabled": False,
     "turn_timer_seconds": 30,
     "music_muted": False,
+    "autogen_art_mode": "missing_only",
 }
 
 
