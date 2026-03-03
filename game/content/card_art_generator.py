@@ -39,6 +39,10 @@ class PromptBuilder:
             "chaos": "crimson chaos",
             "arcane": "azure cosmic",
             "curse": "crimson chaos",
+            "oracle": "moon opal",
+            "storm": "storm cyan",
+            "earth": "andes umber",
+            "blood": "ruby dusk",
         }
         self.external_prompts = {}
         try:

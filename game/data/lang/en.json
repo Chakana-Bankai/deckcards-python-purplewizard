@@ -136,5 +136,9 @@
   "card_pw_37_name": "Arcana 37",
   "card_pw_37_desc": "Deal 7 damage.",
   "card_pw_38_name": "Arcana 38",
-  "card_pw_38_desc": "Gain 9 Guard."
+  "card_pw_38_desc": "Gain 9 Guard.",
+  "card_strike_name": "Condor Seal",
+  "card_defend_name": "Obsidian Mantle",
+  "card_strike_desc": "Invoke an andean seal and deal 6 damage.",
+  "card_defend_desc": "Wrap yourself in ritual obsidian and gain 5 Block."
 }
