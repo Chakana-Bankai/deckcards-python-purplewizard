@@ -1,0 +1,302 @@
+{
+  "strike": {
+    "prompt_hash": "5813290443840658833",
+    "generated_at": 1772579133,
+    "seed": "658833"
+  },
+  "defend": {
+    "prompt_hash": "8938186443904280595",
+    "generated_at": 1772579133,
+    "seed": "280595"
+  },
+  "violet_bolt": {
+    "prompt_hash": "1523708388293004332",
+    "generated_at": 1772579133,
+    "seed": "4332"
+  },
+  "prismatic_shield": {
+    "prompt_hash": "6525074081530381604",
+    "generated_at": 1772579133,
+    "seed": "381604"
+  },
+  "arcane_pulse": {
+    "prompt_hash": "5606843260452610953",
+    "generated_at": 1772579133,
+    "seed": "610953"
+  },
+  "lesser_seal": {
+    "prompt_hash": "4504638124222251606",
+    "generated_at": 1772579133,
+    "seed": "251606"
+  },
+  "subtle_drain": {
+    "prompt_hash": "839694691085172134",
+    "generated_at": 1772579133,
+    "seed": "172134"
+  },
+  "vision": {
+    "prompt_hash": "5238396145703299487",
+    "generated_at": 1772579133,
+    "seed": "299487"
+  },
+  "phase_shift": {
+    "prompt_hash": "6793104032503592609",
+    "generated_at": 1772579133,
+    "seed": "592609"
+  },
+  "fragment": {
+    "prompt_hash": "4501181145048921970",
+    "generated_at": 1772579133,
+    "seed": "921970"
+  },
+  "exchange": {
+    "prompt_hash": "752529876172564613",
+    "generated_at": 1772579133,
+    "seed": "564613"
+  },
+  "cauterize_rupture": {
+    "prompt_hash": "3158259359643488342",
+    "generated_at": 1772579133,
+    "seed": "488342"
+  },
+  "short_portal": {
+    "prompt_hash": "6010934855168913723",
+    "generated_at": 1772579133,
+    "seed": "913723"
+  },
+  "violet_ring": {
+    "prompt_hash": "8579484964900858904",
+    "generated_at": 1772579133,
+    "seed": "858904"
+  },
+  "rite_transmutation": {
+    "prompt_hash": "6138229251621913437",
+    "generated_at": 1772579133,
+    "seed": "913437"
+  },
+  "astral_cut": {
+    "prompt_hash": "388334851931762233",
+    "generated_at": 1772579133,
+    "seed": "762233"
+  },
+  "void_limit": {
+    "prompt_hash": "5497407095316499409",
+    "generated_at": 1772579133,
+    "seed": "499409"
+  },
+  "reflection": {
+    "prompt_hash": "4641458528239780083",
+    "generated_at": 1772579133,
+    "seed": "780083"
+  },
+  "silence": {
+    "prompt_hash": "8083411144426737751",
+    "generated_at": 1772579133,
+    "seed": "737751"
+  },
+  "amethyst_crown": {
+    "prompt_hash": "3863679664356515099",
+    "generated_at": 1772579133,
+    "seed": "515099"
+  },
+  "rewrite": {
+    "prompt_hash": "6759301055214746575",
+    "generated_at": 1772579133,
+    "seed": "746575"
+  },
+  "final_gate": {
+    "prompt_hash": "2111915687663707502",
+    "generated_at": 1772579133,
+    "seed": "707502"
+  },
+  "pw_card_01": {
+    "prompt_hash": "8565201172496954197",
+    "generated_at": 1772579133,
+    "seed": "954197"
+  },
+  "pw_card_02": {
+    "prompt_hash": "3596232164638923741",
+    "generated_at": 1772579133,
+    "seed": "923741"
+  },
+  "pw_card_03": {
+    "prompt_hash": "7329692495204673053",
+    "generated_at": 1772579133,
+    "seed": "673053"
+  },
+  "pw_card_04": {
+    "prompt_hash": "962584513236708100",
+    "generated_at": 1772579133,
+    "seed": "708100"
+  },
+  "pw_card_05": {
+    "prompt_hash": "5123544531014251513",
+    "generated_at": 1772579133,
+    "seed": "251513"
+  },
+  "pw_card_06": {
+    "prompt_hash": "6397456126166494212",
+    "generated_at": 1772579133,
+    "seed": "494212"
+  },
+  "pw_card_07": {
+    "prompt_hash": "49440613012215545",
+    "generated_at": 1772579133,
+    "seed": "215545"
+  },
+  "pw_card_08": {
+    "prompt_hash": "337341393085980658",
+    "generated_at": 1772579133,
+    "seed": "980658"
+  },
+  "pw_card_09": {
+    "prompt_hash": "5141570176308785894",
+    "generated_at": 1772579133,
+    "seed": "785894"
+  },
+  "pw_card_10": {
+    "prompt_hash": "5741271252445100825",
+    "generated_at": 1772579133,
+    "seed": "100825"
+  },
+  "pw_card_11": {
+    "prompt_hash": "2290067152829108027",
+    "generated_at": 1772579133,
+    "seed": "108027"
+  },
+  "pw_card_12": {
+    "prompt_hash": "703972825148501448",
+    "generated_at": 1772579133,
+    "seed": "501448"
+  },
+  "pw_card_13": {
+    "prompt_hash": "3598608455626036358",
+    "generated_at": 1772579133,
+    "seed": "36358"
+  },
+  "pw_card_14": {
+    "prompt_hash": "2985615593020671971",
+    "generated_at": 1772579133,
+    "seed": "671971"
+  },
+  "pw_card_15": {
+    "prompt_hash": "921404474016756186",
+    "generated_at": 1772579133,
+    "seed": "756186"
+  },
+  "pw_card_16": {
+    "prompt_hash": "6431577099087150966",
+    "generated_at": 1772579133,
+    "seed": "150966"
+  },
+  "pw_card_17": {
+    "prompt_hash": "6903996778536186489",
+    "generated_at": 1772579133,
+    "seed": "186489"
+  },
+  "pw_card_18": {
+    "prompt_hash": "6563801093818719546",
+    "generated_at": 1772579133,
+    "seed": "719546"
+  },
+  "pw_card_19": {
+    "prompt_hash": "3919607993389089426",
+    "generated_at": 1772579133,
+    "seed": "89426"
+  },
+  "pw_card_20": {
+    "prompt_hash": "8459157573745965746",
+    "generated_at": 1772579133,
+    "seed": "965746"
+  },
+  "pw_card_21": {
+    "prompt_hash": "494955400967161873",
+    "generated_at": 1772579133,
+    "seed": "161873"
+  },
+  "pw_card_22": {
+    "prompt_hash": "4890622017379440267",
+    "generated_at": 1772579133,
+    "seed": "440267"
+  },
+  "pw_card_23": {
+    "prompt_hash": "7088697328965074866",
+    "generated_at": 1772579133,
+    "seed": "74866"
+  },
+  "pw_card_24": {
+    "prompt_hash": "43063852313859754",
+    "generated_at": 1772579133,
+    "seed": "859754"
+  },
+  "pw_card_25": {
+    "prompt_hash": "1071907598289536029",
+    "generated_at": 1772579133,
+    "seed": "536029"
+  },
+  "pw_card_26": {
+    "prompt_hash": "8899046139442169702",
+    "generated_at": 1772579133,
+    "seed": "169702"
+  },
+  "pw_card_27": {
+    "prompt_hash": "8922887641614739653",
+    "generated_at": 1772579133,
+    "seed": "739653"
+  },
+  "pw_card_28": {
+    "prompt_hash": "743487116604114308",
+    "generated_at": 1772579133,
+    "seed": "114308"
+  },
+  "pw_card_29": {
+    "prompt_hash": "5840589384092463085",
+    "generated_at": 1772579133,
+    "seed": "463085"
+  },
+  "pw_card_30": {
+    "prompt_hash": "4403040296047332888",
+    "generated_at": 1772579133,
+    "seed": "332888"
+  },
+  "pw_card_31": {
+    "prompt_hash": "4064119822284953660",
+    "generated_at": 1772579133,
+    "seed": "953660"
+  },
+  "pw_card_32": {
+    "prompt_hash": "8106262279708380403",
+    "generated_at": 1772579134,
+    "seed": "380403"
+  },
+  "pw_card_33": {
+    "prompt_hash": "2018964800908735542",
+    "generated_at": 1772579134,
+    "seed": "735542"
+  },
+  "pw_card_34": {
+    "prompt_hash": "6395239297793508398",
+    "generated_at": 1772579134,
+    "seed": "508398"
+  },
+  "pw_card_35": {
+    "prompt_hash": "7054906753421347013",
+    "generated_at": 1772579134,
+    "seed": "347013"
+  },
+  "pw_card_36": {
+    "prompt_hash": "3964545937605530550",
+    "generated_at": 1772579134,
+    "seed": "530550"
+  },
+  "pw_card_37": {
+    "prompt_hash": "8231031068890756274",
+    "generated_at": 1772579134,
+    "seed": "756274"
+  },
+  "pw_card_38": {
+    "prompt_hash": "4361208156352555892",
+    "generated_at": 1772579134,
+    "seed": "555892"
+  }
+}
