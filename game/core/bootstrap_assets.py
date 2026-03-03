@@ -53,45 +53,49 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> None
     if path.exists() and not force:
         return
 
-    configs = {
-        "menu": (25.0, (130.81, 196.00, 261.63)),
-        "map": (28.0, (98.00, 146.83, 220.00)),
-        "combat": (26.0, (110.00, 164.81, 246.94)),
-        "event": (30.0, (123.47, 174.61, 233.08)),
-        "boss": (32.0, (87.31, 130.81, 196.00)),
+    scales = {
+        "menu": [0, 2, 4, 7, 9],
+        "map": [0, 2, 3, 5, 7, 9, 10],
+        "combat": [0, 2, 3, 5, 7, 9, 10],
+        "event": [0, 2, 4, 5, 7, 9, 11],
+        "boss": [0, 1, 3, 5, 7, 8, 10],
+        "ending": [0, 2, 4, 7, 9],
     }
-    duration, freqs = configs.get(track_key, (25.0, (130.81, 196.00, 261.63)))
+    root_hz = {"menu": 130.81, "map": 98.0, "combat": 110.0, "event": 123.47, "boss": 87.31, "ending": 130.81}
+    duration = 52.0
     rate = 44100
     frames = int(rate * duration)
     rng = random.Random(track_key)
+
+    def hz_from_degree(root, degree):
+        return root * (2 ** (degree / 12.0))
+
+    degs = scales.get(track_key, scales["menu"])
+    root = root_hz.get(track_key, 130.81)
 
     with wave.open(str(path), "wb") as wav:
         wav.setnchannels(2)
         wav.setsampwidth(2)
         wav.setframerate(rate)
-
         buf = bytearray()
         two_pi = 2.0 * math.pi
+        step_len = int(rate * 0.5)
+
         for i in range(frames):
             t = i / rate
-            env = 0.65 + 0.35 * math.sin(two_pi * 0.03 * t)
-            pad = 0.0
-            for idx, f in enumerate(freqs):
-                pad += (0.14 - idx * 0.02) * math.sin(two_pi * f * t + idx * 0.7)
-
-            bell = 0.0
-            if i % (rate * 2) == 0:
-                pass
-            bell += 0.06 * math.sin(two_pi * (freqs[2] * 2.0) * t) * (0.5 + 0.5 * math.sin(two_pi * 0.21 * t))
-
-            noise = (rng.random() * 2.0 - 1.0) * 0.012
-            left = (pad * env + bell + noise) * 0.85
-            right = (pad * env + bell - noise) * 0.85
-
-            lv = max(-1.0, min(1.0, left))
-            rv = max(-1.0, min(1.0, right))
+            step = (i // step_len) % len(degs)
+            next_step = (step + 2) % len(degs)
+            f1 = hz_from_degree(root, degs[step])
+            f2 = hz_from_degree(root, degs[next_step])
+            sine = 0.18 * math.sin(two_pi * f1 * t)
+            square = 0.08 * (1.0 if math.sin(two_pi * f2 * t) >= 0 else -1.0)
+            percussion_gate = 1.0 if (i % int(rate * 0.5)) < int(rate * 0.03) else 0.0
+            percussion = (rng.random() * 2.0 - 1.0) * 0.18 * percussion_gate
+            ambience = 0.03 * math.sin(two_pi * (root * 0.5) * t)
+            v = (sine + square + percussion + ambience) * 0.8
+            lv = max(-1.0, min(1.0, v + 0.01 * math.sin(two_pi * 0.13 * t)))
+            rv = max(-1.0, min(1.0, v - 0.01 * math.sin(two_pi * 0.13 * t)))
             buf.extend(struct.pack("<hh", int(lv * 32767), int(rv * 32767)))
-
         wav.writeframes(buf)
 
 
@@ -101,14 +105,7 @@ def ensure_placeholder_assets(card_ids: list[str], enemy_ids: list[str]) -> None
     _write_png(a_dir / "sprites/cards/_placeholder.png", 320, 220, (64, 48, 110))
     _write_png(a_dir / "sprites/enemies/_placeholder.png", 160, 160, (95, 55, 95))
 
-    sfx = {
-        "ui_click": 880,
-        "card_pick": 720,
-        "card_play": 620,
-        "hit": 200,
-        "shield": 520,
-        "exhaust": 310,
-    }
+    sfx = {"ui_click": 880, "card_pick": 720, "card_play": 620, "hit": 200, "shield": 520, "exhaust": 310}
     for name, hz in sfx.items():
         _write_wav(a_dir / f"sfx/{name}.wav", hz=hz)
 
@@ -118,4 +115,4 @@ def ensure_placeholder_assets(card_ids: list[str], enemy_ids: list[str]) -> None
 def ensure_bgm_assets(force_regen: bool = False) -> None:
     a_dir = assets_dir()
     for name in ["menu", "map", "combat", "event", "boss", "ending"]:
-        synth_ambient_music(a_dir / f"music/{name}.wav", name if name != "ending" else "event", force=force_regen)
+        synth_ambient_music(a_dir / f"music/{name}.wav", name, force=force_regen)

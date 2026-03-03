@@ -9,8 +9,9 @@ class EventScreen:
         self.app = app
         self.event = event
         self.writer = TypewriterBanner()
-        lore_hint = (self.app.lore_data.get("lore_text", "")[:180] + "...") if self.app.lore_data.get("lore_text") else self.app.loc.t("lore_tagline")
-        self.lines = [self.app.loc.t(event.get("body_key", "lore_tagline")), lore_hint, "El guía espera tu elección."]
+        lore_hint = (self.app.lore_data.get("world_text", "")[:180] + "...") if self.app.lore_data.get("world_text") else self.app.loc.t("lore_tagline")
+        fragments = self.app.lore_data.get("event_fragments", []) or ["El guía espera tu elección."]
+        self.lines = [self.app.loc.t(event.get("body_key", "lore_tagline")), lore_hint, self.app.rng.choice(fragments)]
         self.idx = 0
         self.timer = 0
         self.msg = ""

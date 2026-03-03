@@ -6,8 +6,16 @@
     "rarity": "basic",
     "cost": 1,
     "target": "enemy",
-    "tags": ["attack"],
-    "effects": [{"type": "damage", "amount": 6}]
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 6
+      }
+    ],
+    "family": "attack"
   },
   {
     "id": "defend",
@@ -16,8 +24,16 @@
     "rarity": "basic",
     "cost": 1,
     "target": "self",
-    "tags": ["skill"],
-    "effects": [{"type": "block", "amount": 5}]
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 5
+      }
+    ],
+    "family": "defense"
   },
   {
     "id": "violet_bolt",
@@ -26,15 +42,33 @@
     "rarity": "common",
     "cost": 1,
     "target": "enemy",
-    "tags": ["attack", "arcane"],
+    "tags": [
+      "attack",
+      "arcane"
+    ],
     "effects": [
-      {"type": "damage", "amount": 7},
+      {
+        "type": "damage",
+        "amount": 7
+      },
       {
         "type": "if",
-        "cond": {"stat_gte": ["rupture", 3]},
-        "then": [{"type": "status", "name": "weak", "stacks": 1}]
+        "cond": {
+          "stat_gte": [
+            "rupture",
+            3
+          ]
+        },
+        "then": [
+          {
+            "type": "status",
+            "name": "weak",
+            "stacks": 1
+          }
+        ]
       }
-    ]
+    ],
+    "family": "attack"
   },
   {
     "id": "prismatic_shield",
@@ -43,15 +77,32 @@
     "rarity": "common",
     "cost": 1,
     "target": "self",
-    "tags": ["skill", "arcane"],
+    "tags": [
+      "skill",
+      "arcane"
+    ],
     "effects": [
-      {"type": "block", "amount": 8},
+      {
+        "type": "block",
+        "amount": 8
+      },
       {
         "type": "if",
-        "cond": {"stat_gte": ["rupture", 5]},
-        "then": [{"type": "block", "amount": 2}]
+        "cond": {
+          "stat_gte": [
+            "rupture",
+            5
+          ]
+        },
+        "then": [
+          {
+            "type": "block",
+            "amount": 2
+          }
+        ]
       }
-    ]
+    ],
+    "family": "defense"
   },
   {
     "id": "arcane_pulse",
@@ -60,8 +111,21 @@
     "rarity": "common",
     "cost": 1,
     "target": "enemy",
-    "tags": ["attack", "arcane"],
-    "effects": [{"type": "damage", "amount": 5}, {"type": "draw", "amount": 1}]
+    "tags": [
+      "attack",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 5
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "attack"
   },
   {
     "id": "lesser_seal",
@@ -70,8 +134,21 @@
     "rarity": "common",
     "cost": 1,
     "target": "self",
-    "tags": ["skill", "ritual"],
-    "effects": [{"type": "block", "amount": 5}, {"type": "rupture", "amount": 1}]
+    "tags": [
+      "skill",
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 5
+      },
+      {
+        "type": "rupture",
+        "amount": 1
+      }
+    ],
+    "family": "defense"
   },
   {
     "id": "subtle_drain",
@@ -80,15 +157,28 @@
     "rarity": "common",
     "cost": 1,
     "target": "enemy",
-    "tags": ["attack"],
+    "tags": [
+      "attack"
+    ],
     "effects": [
-      {"type": "damage", "amount": 6},
+      {
+        "type": "damage",
+        "amount": 6
+      },
       {
         "type": "if",
-        "cond": {"target_has_debuff": true},
-        "then": [{"type": "heal", "amount": 2}]
+        "cond": {
+          "target_has_debuff": true
+        },
+        "then": [
+          {
+            "type": "heal",
+            "amount": 2
+          }
+        ]
       }
-    ]
+    ],
+    "family": "attack"
   },
   {
     "id": "vision",
@@ -97,8 +187,17 @@
     "rarity": "common",
     "cost": 1,
     "target": "none",
-    "tags": ["skill", "utility"],
-    "effects": [{"type": "scry", "amount": 3}]
+    "tags": [
+      "skill",
+      "utility"
+    ],
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 3
+      }
+    ],
+    "family": "manipulation"
   },
   {
     "id": "phase_shift",
@@ -107,8 +206,21 @@
     "rarity": "common",
     "cost": 1,
     "target": "self",
-    "tags": ["skill"],
-    "effects": [{"type": "block", "amount": 6}, {"type": "status", "name": "phase", "stacks": 1}]
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 6
+      },
+      {
+        "type": "status",
+        "name": "phase",
+        "stacks": 1
+      }
+    ],
+    "family": "defense"
   },
   {
     "id": "fragment",
@@ -117,8 +229,20 @@
     "rarity": "common",
     "cost": 0,
     "target": "enemy",
-    "tags": ["attack", "exhaust"],
-    "effects": [{"type": "damage", "amount": 3}, {"type": "exhaust_self"}]
+    "tags": [
+      "attack",
+      "exhaust"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 3
+      },
+      {
+        "type": "exhaust_self"
+      }
+    ],
+    "family": "attack"
   },
   {
     "id": "exchange",
@@ -127,8 +251,16 @@
     "rarity": "common",
     "cost": 1,
     "target": "enemy",
-    "tags": ["skill"],
-    "effects": [{"type": "convert_block_to_damage", "amount": 6}]
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "convert_block_to_damage",
+        "amount": 6
+      }
+    ],
+    "family": "chaos"
   },
   {
     "id": "cauterize_rupture",
@@ -137,8 +269,20 @@
     "rarity": "common",
     "cost": 1,
     "target": "self",
-    "tags": ["skill"],
-    "effects": [{"type": "rupture", "amount": -2}, {"type": "energy", "amount": 1}]
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "rupture",
+        "amount": -2
+      },
+      {
+        "type": "energy",
+        "amount": 1
+      }
+    ],
+    "family": "energy"
   },
   {
     "id": "short_portal",
@@ -147,16 +291,30 @@
     "rarity": "uncommon",
     "cost": 1,
     "target": "none",
-    "tags": ["skill", "choice"],
+    "tags": [
+      "skill",
+      "choice"
+    ],
     "effects": [
       {
         "type": "choose",
         "options": [
-          [{"type": "draw", "amount": 2}],
-          [{"type": "energy", "amount": 1}]
+          [
+            {
+              "type": "draw",
+              "amount": 2
+            }
+          ],
+          [
+            {
+              "type": "energy",
+              "amount": 1
+            }
+          ]
         ]
       }
-    ]
+    ],
+    "family": "manipulation"
   },
   {
     "id": "violet_ring",
@@ -165,8 +323,18 @@
     "rarity": "uncommon",
     "cost": 1,
     "target": "enemy",
-    "tags": ["skill", "debuff"],
-    "effects": [{"type": "status", "name": "weak", "stacks": 2}]
+    "tags": [
+      "skill",
+      "debuff"
+    ],
+    "effects": [
+      {
+        "type": "status",
+        "name": "weak",
+        "stacks": 2
+      }
+    ],
+    "family": "chaos"
   },
   {
     "id": "rite_transmutation",
@@ -175,8 +343,22 @@
     "rarity": "uncommon",
     "cost": 1,
     "target": "none",
-    "tags": ["skill", "exhaust"],
-    "effects": [{"type": "exhaust_from_hand", "amount": 1}, {"type": "status", "name": "focus", "stacks": 1}]
+    "tags": [
+      "skill",
+      "exhaust"
+    ],
+    "effects": [
+      {
+        "type": "exhaust_from_hand",
+        "amount": 1
+      },
+      {
+        "type": "status",
+        "name": "focus",
+        "stacks": 1
+      }
+    ],
+    "family": "chaos"
   },
   {
     "id": "astral_cut",
@@ -185,8 +367,25 @@
     "rarity": "uncommon",
     "cost": 2,
     "target": "enemy",
-    "tags": ["attack"],
-    "effects": [{"type": "damage", "amount": 8}, {"type": "if_kill", "then": [{"type": "draw", "amount": 1}]}]
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 8
+      },
+      {
+        "type": "if_kill",
+        "then": [
+          {
+            "type": "draw",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "family": "attack"
   },
   {
     "id": "void_limit",
@@ -195,8 +394,22 @@
     "rarity": "uncommon",
     "cost": 0,
     "target": "self",
-    "tags": ["skill", "rupture"],
-    "effects": [{"type": "rupture", "amount": 2}, {"type": "status", "name": "rupture_burn", "stacks": 1}]
+    "tags": [
+      "skill",
+      "rupture"
+    ],
+    "effects": [
+      {
+        "type": "rupture",
+        "amount": 2
+      },
+      {
+        "type": "status",
+        "name": "rupture_burn",
+        "stacks": 1
+      }
+    ],
+    "family": "chaos"
   },
   {
     "id": "reflection",
@@ -205,8 +418,18 @@
     "rarity": "uncommon",
     "cost": 1,
     "target": "self",
-    "tags": ["skill", "buff"],
-    "effects": [{"type": "status", "name": "reflect", "stacks": 1}]
+    "tags": [
+      "skill",
+      "buff"
+    ],
+    "effects": [
+      {
+        "type": "status",
+        "name": "reflect",
+        "stacks": 1
+      }
+    ],
+    "family": "chaos"
   },
   {
     "id": "silence",
@@ -215,8 +438,17 @@
     "rarity": "uncommon",
     "cost": 1,
     "target": "choice",
-    "tags": ["skill", "utility"],
-    "effects": [{"type": "cleanse_or_dispel", "amount": 1}]
+    "tags": [
+      "skill",
+      "utility"
+    ],
+    "effects": [
+      {
+        "type": "cleanse_or_dispel",
+        "amount": 1
+      }
+    ],
+    "family": "chaos"
   },
   {
     "id": "amethyst_crown",
@@ -225,8 +457,21 @@
     "rarity": "rare",
     "cost": 2,
     "target": "self",
-    "tags": ["skill", "exhaust"],
-    "effects": [{"type": "status", "name": "energized", "stacks": 2}, {"type": "exhaust_self"}]
+    "tags": [
+      "skill",
+      "exhaust"
+    ],
+    "effects": [
+      {
+        "type": "status",
+        "name": "energized",
+        "stacks": 2
+      },
+      {
+        "type": "exhaust_self"
+      }
+    ],
+    "family": "chaos"
   },
   {
     "id": "rewrite",
@@ -235,8 +480,17 @@
     "rarity": "rare",
     "cost": 1,
     "target": "hand",
-    "tags": ["skill", "choice"],
-    "effects": [{"type": "zero_and_double_play", "amount": 1}]
+    "tags": [
+      "skill",
+      "choice"
+    ],
+    "effects": [
+      {
+        "type": "zero_and_double_play",
+        "amount": 1
+      }
+    ],
+    "family": "manipulation"
   },
   {
     "id": "final_gate",
@@ -245,7 +499,21 @@
     "rarity": "rare",
     "cost": 2,
     "target": "enemy",
-    "tags": ["attack", "finisher"],
-    "effects": [{"type": "damage_plus_rupture", "base": 10, "per_rupture": 2}, {"type": "set_rupture", "amount": 0}]
+    "tags": [
+      "attack",
+      "finisher"
+    ],
+    "effects": [
+      {
+        "type": "damage_plus_rupture",
+        "base": 10,
+        "per_rupture": 2
+      },
+      {
+        "type": "set_rupture",
+        "amount": 0
+      }
+    ],
+    "family": "attack"
   }
 ]

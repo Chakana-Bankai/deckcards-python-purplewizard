@@ -12,6 +12,7 @@ class CardDef:
     target: str
     tags: list[str]
     effects: list[dict]
+    family: str = "attack"
 
 
 @dataclass

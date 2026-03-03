@@ -145,13 +145,23 @@ class App:
         lore_dir = data_dir() / "lore"
         dialogues = load_json(lore_dir / "dialogues.json", default={})
         lore_txt = ""
+        world_txt = ""
+        lore_events = load_json(lore_dir / "events.json", default={})
+        lore_enemies = load_json(lore_dir / "enemies.json", default={})
         try:
             lore_txt = (lore_dir / "chakana_lore.txt").read_text(encoding="utf-8")
         except Exception:
             lore_txt = ""
+        try:
+            world_txt = (lore_dir / "world.txt").read_text(encoding="utf-8")
+        except Exception:
+            world_txt = ""
         if not isinstance(dialogues, dict):
             dialogues = {}
         dialogues["lore_text"] = lore_txt
+        dialogues["world_text"] = world_txt
+        dialogues["event_fragments"] = lore_events.get("fragments", []) if isinstance(lore_events, dict) else []
+        dialogues["enemy_lore"] = lore_enemies if isinstance(lore_enemies, dict) else {}
         return dialogues
 
     def validate_navigation_methods(self):

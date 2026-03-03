@@ -11,7 +11,7 @@ from game.core.paths import assets_dir, data_dir
 
 class PromptBuilder:
     BASE = (
-        "pixel art 16bit high detail fantasy card illustration, andean mysticism fused with gothic medieval magic, "
+        "16bit pixel art mystical andean magic card, "
         "chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition"
     )
     TYPE_VARIANTS = {
@@ -217,34 +217,37 @@ class CardArtGenerator:
         print(f"Using existing art: {card_id}")
 
 
-def export_prompts(cards: list[dict], enemies: list[dict] | None = None) -> None:
+def export_prompts(cards: list[dict], enemies: list[dict] | None = None):
     pb = PromptBuilder()
-    card_payload = {c.get("id", "unknown"): pb.build(c) for c in cards}
-    out = data_dir() / "card_prompts.json"
-
-    should_write_cards = True
-    if out.exists():
-        try:
-            existing = json.loads(out.read_text(encoding="utf-8"))
-            uniq = len(set(existing.values())) if isinstance(existing, dict) else 0
-            should_write_cards = uniq < max(3, len(card_payload) // 2) or set(existing.keys()) != set(card_payload.keys())
-        except Exception:
-            should_write_cards = True
-    if should_write_cards:
-        out.write_text(json.dumps(card_payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    card_payload = {}
+    for c in cards:
+        card_id = c.get("id", "unknown")
+        card_type = pb._card_type(c)
+        rarity = pb.RARITY.get(c.get("rarity", "common"), pb.RARITY["common"])
+        detail = pb.DETAILS[abs(hash(card_id)) % len(pb.DETAILS)]
+        prompt = pb.build(c)
+        card_payload[card_id] = {
+            "base_style": pb.BASE,
+            "card_type": card_type,
+            "rarity": rarity,
+            "unique_detail": detail,
+            "prompt": prompt,
+        }
+    (data_dir() / "card_prompts.json").write_text(json.dumps(card_payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
     if enemies is not None:
-        enemy_out = data_dir() / "enemy_prompts.json"
-        enemy_payload = {e.get("id", "unknown"): pb.build_enemy(e) for e in enemies}
-        should_write_enemy = True
-        if enemy_out.exists():
-            try:
-                ex = json.loads(enemy_out.read_text(encoding="utf-8"))
-                should_write_enemy = set(ex.keys()) != set(enemy_payload.keys()) or len(set(ex.values())) < max(2, len(enemy_payload) // 2)
-            except Exception:
-                should_write_enemy = True
-        if should_write_enemy:
-            enemy_out.write_text(json.dumps(enemy_payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        enemy_payload = {}
+        for e in enemies:
+            eid = e.get("id", "unknown")
+            detail = pb.DETAILS[abs(hash(eid + "enemy")) % len(pb.DETAILS)]
+            enemy_payload[eid] = {
+                "base_style": pb.BASE,
+                "enemy_type": "hostile mystic",
+                "rarity": "ornate details, layered lighting",
+                "unique_detail": detail,
+                "prompt": pb.build_enemy(e),
+            }
+        (data_dir() / "enemy_prompts.json").write_text(json.dumps(enemy_payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    txt = "\n".join(f"{k}: {v}" for k, v in card_payload.items())
+    txt = "\n".join(f"{k}: {v['prompt']}" for k, v in card_payload.items())
     (data_dir() / "card_prompts.txt").write_text(txt, encoding="utf-8")
