@@ -34,6 +34,7 @@ class CombatScreen:
         self.tooltip = None
         self.log_visible = True
         self.log_lines = []
+        self.help_visible = False
         self.banner = TypewriterBanner()
         self.turn_timer = self.app.run_state.get("settings", {}).get("turn_timer_seconds", 30)
         self.end_turn_rect = pygame.Rect(INTERNAL_WIDTH - 260, INTERNAL_HEIGHT - 128, 210, 84)
@@ -118,9 +119,12 @@ class CombatScreen:
             if event.key == pygame.K_e:
                 self.c.end_turn()
                 self.turn_timer = self.app.run_state.get("settings", {}).get("turn_timer_seconds", 30)
+            elif event.key == pygame.K_h:
+                self.help_visible = not self.help_visible
             elif event.key == pygame.K_ESCAPE:
                 self.c.needs_target = None
                 self.selected_card_index = None
+                self.help_visible = False
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
             if self.end_turn_rect.collidepoint(pos):
@@ -182,7 +186,7 @@ class CombatScreen:
         self.floaters = [f for f in self.floaters if f["time"] > 0]
 
         if self.c.result == "victory":
-            self.app.goto_reward()
+            self.app.on_combat_victory()
         elif self.c.result == "defeat":
             self.app.goto_menu()
 
@@ -266,12 +270,30 @@ class CombatScreen:
             r = 13 + int(1.5 * pygame.math.Vector2(1, 0).rotate(i * 37 + wobble * 40).x)
             pygame.draw.circle(s, UI_THEME["energy"] if i < p["energy"] else (65, 68, 90), (INTERNAL_WIDTH - 360 + i * 38, 258), max(10, r))
 
+        hp_rect = pygame.Rect(INTERNAL_WIDTH - 510, 132, 220, 28)
+        block_rect = pygame.Rect(INTERNAL_WIDTH - 510, 168, 220, 28)
+        rup_rect = pygame.Rect(INTERNAL_WIDTH - 510, 204, 260, 28)
+        eng_rect = pygame.Rect(INTERNAL_WIDTH - 510, 240, 220, 34)
+        if hp_rect.collidepoint(mouse):
+            self.tooltip = "HP: vida actual, si llega a 0 pierdes."
+        elif block_rect.collidepoint(mouse):
+            self.tooltip = "Bloque: reduce daño entrante en este turno."
+        elif rup_rect.collidepoint(mouse):
+            self.tooltip = "Ruptura: potencia efectos arcanos."
+        elif eng_rect.collidepoint(mouse):
+            self.tooltip = "Energía: recurso para jugar cartas este turno."
+
         battle_log = pygame.Rect(INTERNAL_WIDTH - 520, 410, 470, 360)
         if self.log_visible:
             pygame.draw.rect(s, UI_THEME["panel"], battle_log, border_radius=12)
             s.blit(self.app.font.render(self.app.loc.t("combat_log"), True, UI_THEME["text"]), (INTERNAL_WIDTH - 498, 430))
-            for i, line in enumerate(self.log_lines[:6]):
-                s.blit(self.app.small_font.render(line, True, UI_THEME["muted"]), (INTERNAL_WIDTH - 498, 472 + i * 44))
+            for i, line in enumerate(self.log_lines[:10]):
+                line_color = UI_THEME["muted"]
+                if "-" in line and "HP" in line:
+                    line_color = UI_THEME["bad"]
+                elif "+" in line and "Bloque" in line:
+                    line_color = UI_THEME["block"]
+                s.blit(self.app.small_font.render(line, True, line_color), (INTERNAL_WIDTH - 498, 472 + i * 34))
 
         for i, e in enumerate(self.c.enemies):
             er = self._enemy_rect(i)
@@ -343,7 +365,17 @@ class CombatScreen:
         end_label = self.app.font.render(self.app.loc.t("button_end_turn"), True, UI_THEME["text"])
         s.blit(end_label, end_label.get_rect(center=end_rect.center))
 
-        if self.tooltip:
+        if self.help_visible:
+            panel = pygame.Rect(180, 170, 820, 520)
+            pygame.draw.rect(s, UI_THEME["deep_purple"], panel, border_radius=12)
+            s.blit(self.app.big_font.render("Ayuda / Controles", True, UI_THEME["text"]), (panel.x + 24, panel.y + 24))
+            lines = [
+                "Click carta: seleccionar y jugar", "ESC: cancelar selección", "Click enemigo: confirmar objetivo", "1..9: jugar carta rápida", "E o Fin Turno: terminar turno", "Energía: orbes para jugar cartas", "Bloque: reduce daño recibido", "Ruptura: habilita efectos místicos", "H: abrir/cerrar esta ayuda", "Registro: historial de acciones"
+            ]
+            for i, line in enumerate(lines):
+                s.blit(self.app.small_font.render(line, True, UI_THEME["muted"]), (panel.x + 24, panel.y + 88 + i * 40))
+
+        if self.tooltip and not self.help_visible:
             tr = pygame.Rect(min(mouse[0] + 16, INTERNAL_WIDTH - 500), min(mouse[1] + 14, INTERNAL_HEIGHT - 86), 470, 68)
             pygame.draw.rect(s, (18, 18, 26), tr, border_radius=8)
             s.blit(self.app.card_text_font.render(self.tooltip, True, UI_THEME["text"]), (tr.x + 8, tr.y + 22))

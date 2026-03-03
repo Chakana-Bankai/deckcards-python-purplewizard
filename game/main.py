@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import traceback
 import shutil
+import json
+import time
 
 import pygame
 
@@ -209,6 +211,8 @@ class App:
         return by_col
 
     def goto_map(self):
+        self.debug["map_available_count"] = self.available_nodes_count() if self.node_lookup else 0
+        self.debug["current_node_id"] = self.current_node_id or "-"
         self.sm.set(MapScreen(self))
         self.music.play_for("map")
 
@@ -243,19 +247,39 @@ class App:
     def select_map_node(self, node):
         self.current_node_id = node["id"]
         node["state"] = "current"
+        self.debug["current_node_id"] = self.current_node_id
+        self.debug["next_nodes_ids"] = ",".join(node.get("next", [])) if node.get("next") else "-"
         self.enter_node(node)
 
     def _complete_current_node(self):
         if not self.current_node_id:
-            return
+            return []
         node = self.node_lookup.get(self.current_node_id)
         if not node:
-            return
+            return []
         node["state"] = "completed"
+        unlocked = []
         for next_id in node.get("next", []):
             nxt = self.node_lookup.get(next_id)
             if nxt and nxt["state"] == "locked":
                 nxt["state"] = "available"
+                unlocked.append(nxt["id"])
+        if self.available_nodes_count() <= 0:
+            unlocked.extend(self._fallback_unlock_next_column(node))
+        self.debug["next_nodes_ids"] = ",".join(unlocked) if unlocked else "-"
+        self.debug["map_available_count"] = self.available_nodes_count()
+        return unlocked
+
+    def _fallback_unlock_next_column(self, node):
+        target_col = node.get("col", 0) + 1
+        candidates = [n for n in self.node_lookup.values() if n.get("col") == target_col and n.get("state") == "locked"]
+        if not candidates:
+            return []
+        candidates[0]["state"] = "available"
+        return [candidates[0]["id"]]
+
+    def available_nodes_count(self):
+        return sum(1 for n in self.node_lookup.values() if n.get("state") == "available")
 
     def _enemy_pool(self):
         ids = [e["id"] for e in self.enemies_data if e.get("id") != "inverse_weaver"]
@@ -329,6 +353,21 @@ class App:
     def set_debug(self, **kwargs):
         self.debug.update(kwargs)
 
+    def regenerate_card_art(self):
+        total = len(self.cards_data)
+        manifest = {}
+        for i, c in enumerate(self.cards_data, start=1):
+            cid = c.get("id", "strike")
+            self.art_gen.ensure_art(cid, c.get("tags", []), c.get("rarity", "common"), "force_regen")
+            manifest[cid] = {
+                "prompt_hash": str(abs(hash(cid))),
+                "generated_at": int(time.time()),
+                "seed": str(abs(hash(cid)) % 1000000),
+            }
+            self.set_debug(last_ui_event=f"regen_art:{i}/{total}")
+        (data_dir() / "art_manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        self.assets._cache.clear()
+
     def save_user_settings(self):
         self.user_settings["sfx_volume"] = self.sfx.master_volume
         self.user_settings["music_volume"] = self.music.volume
@@ -350,6 +389,8 @@ class App:
             f"BGM track={self.music.debug_state()}",
             f"enemy_hp={self.debug.get('enemies_hp','-')} intent={self.debug.get('enemy_intent','-')}",
             f"card_art_regenerated={self.debug.get('art_regenerated','0')}",
+            f"map.available_count={self.debug.get('map_available_count','-')} current_node_id={self.debug.get('current_node_id','-')}",
+            f"next_nodes={self.debug.get('next_nodes_ids','-')}",
         ]
         panel = pygame.Surface((980, 170), pygame.SRCALPHA)
         panel.fill((0,0,0,170))

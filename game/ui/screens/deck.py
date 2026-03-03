@@ -7,6 +7,9 @@ class DeckScreen:
     def __init__(self, app):
         self.app = app
         self.back = pygame.Rect(20, 20, 160, 46)
+        self.regen_btn = pygame.Rect(1020, 20, 360, 56)
+        self.regen_confirm = False
+        self.regen_progress = ""
 
     def on_enter(self):
         pass
@@ -20,7 +23,16 @@ class DeckScreen:
             if self.back.collidepoint(pos):
                 self.app.goto_map()
                 return
-            # active list click remove to side (if >10)
+            if self.regen_btn.collidepoint(pos):
+                if not self.regen_confirm:
+                    self.regen_confirm = True
+                    self.regen_progress = "Confirmar: click otra vez"
+                else:
+                    self.regen_progress = "Generando..."
+                    self.app.regenerate_card_art()
+                    self.regen_progress = "Arte regenerado"
+                    self.regen_confirm = False
+                return
             for i, cid in enumerate(self.app.run_state["deck"]):
                 r = pygame.Rect(40, 110 + i * 26, 420, 24)
                 if r.collidepoint(pos) and len(self.app.run_state["deck"]) > 10:
@@ -39,6 +51,11 @@ class DeckScreen:
 
     def render(self, s):
         s.fill(UI_THEME["bg"])
+        pygame.draw.rect(s, UI_THEME["panel"], self.regen_btn, border_radius=8)
+        s.blit(self.app.font.render("Regenerar arte de cartas", True, UI_THEME["text"]), (1042, 35))
+        if self.regen_progress:
+            s.blit(self.app.tiny_font.render(self.regen_progress, True, UI_THEME["gold"]), (1024, 82))
+
         pygame.draw.rect(s, UI_THEME["panel"], self.back, border_radius=8)
         s.blit(self.app.font.render(self.app.loc.t("menu_back"), True, UI_THEME["text"]), (60, 30))
         s.blit(self.app.big_font.render(self.app.loc.t("deck_title_active"), True, UI_THEME["text"]), (40, 70))

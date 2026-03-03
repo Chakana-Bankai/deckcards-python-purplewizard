@@ -75,9 +75,11 @@ class MapScreen:
                 if node["type"] == "boss":
                     color = UI_THEME["bad"] if state != "locked" else (90, 40, 40)
                 radius = 30 if node["type"] != "boss" else 36
+                pulse = 1.0 + 0.08 * (1 + pygame.math.Vector2(1,0).rotate(pygame.time.get_ticks()*0.12).x) if state == "available" else 1.0
+                pr = int(radius * pulse)
                 if pygame.Rect(node["x"] - 40, node["y"] - 40, 80, 80).collidepoint(mouse) and state == "available":
-                    pygame.draw.circle(s, (220, 194, 255), (node["x"], node["y"]), radius + 8)
-                pygame.draw.circle(s, color, (node["x"], node["y"]), radius)
+                    pygame.draw.circle(s, (220, 194, 255), (node["x"], node["y"]), pr + 8)
+                pygame.draw.circle(s, color, (node["x"], node["y"]), pr)
                 pygame.draw.line(s, (190, 150, 240), (node["x"] - 12, node["y"]), (node["x"] + 12, node["y"]), 3)
                 pygame.draw.line(s, (190, 150, 240), (node["x"], node["y"] - 12), (node["x"], node["y"] + 12), 3)
                 lbl = self.app.small_font.render(self.app.loc.t(f"node_{node['type']}"), True, UI_THEME["text"])
@@ -91,3 +93,5 @@ class MapScreen:
         pygame.draw.rect(s, UI_THEME["good"], (bar.x, bar.y, int(bar.w * ratio), bar.h), border_radius=12)
         tx = self.app.map_font.render(f"XP {run['xp']}/{need}   LV {lvl}", True, UI_THEME["text"])
         s.blit(tx, (INTERNAL_WIDTH // 2 - tx.get_width() // 2, INTERNAL_HEIGHT - 78))
+
+        self.app.set_debug(map_available_count=sum(1 for col in run["map"] for n in col if n.get("state")=="available"), current_node_id=self.app.current_node_id or "-")

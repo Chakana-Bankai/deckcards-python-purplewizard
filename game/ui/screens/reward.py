@@ -17,7 +17,13 @@ class RewardScreen:
     def take(self, idx):
         if idx is not None and 0 <= idx < len(self.reward_cards):
             self.app.run_state["sideboard"].append(self.reward_cards[idx].definition.id)
+        if self.app.available_nodes_count() <= 0 and self.app.current_node_id:
+            node = self.app.node_lookup.get(self.app.current_node_id)
+            if node:
+                self.app._fallback_unlock_next_column(node)
         self.app.goto_map()
+        if self.app.available_nodes_count() <= 0:
+            raise RuntimeError("map progression broken: available_count == 0 after reward")
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
