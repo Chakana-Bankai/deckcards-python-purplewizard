@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.pyo
+*.log
+logs/
+.venv/
+game/.venv/
+game\.venv/
