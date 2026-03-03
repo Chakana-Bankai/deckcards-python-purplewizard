@@ -13,6 +13,7 @@ from game.combat.card import CardDef, CardInstance
 from game.combat.combat_state import CombatState
 from game.content.card_art_generator import CardArtGenerator, export_prompts
 from game.content.enemy_art_generator import EnemyArtGenerator
+from game.content.background_generator import BackgroundGenerator
 from game.core.bootstrap_assets import ensure_placeholder_assets
 from game.core.localization import LocalizationManager
 from game.core.paths import data_dir
@@ -34,6 +35,7 @@ from game.ui.screens.reward import RewardScreen
 from game.ui.screens.settings import SettingsScreen
 from game.ui.screens.shop import ShopScreen
 from game.ui.screens.qa_results import QAResultsScreen
+from game.ui.screens.pack_opening import PackOpeningScreen
 
 DEFAULT_CARDS = [
     {"id": "strike", "name_key": "card_strike_name", "text_key": "card_strike_desc", "rarity": "basic", "cost": 1, "target": "enemy", "tags": ["attack"], "effects": [{"type": "damage", "amount": 6}]},
@@ -99,6 +101,7 @@ class App:
         ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
         self.art_gen = CardArtGenerator()
         self.enemy_art_gen = EnemyArtGenerator()
+        self.bg_gen = BackgroundGenerator()
         self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
         for c in self.cards_data:
             self.art_gen.ensure_art(c.get("id", "strike"), c.get("tags", []), c.get("rarity", "common"), self.autogen_art_mode)
@@ -174,8 +177,8 @@ class App:
             "xp": 0,
             "level": 1,
             "settings": {
-                "turn_timer_enabled": bool(self.user_settings.get("turn_timer_enabled", False)),
-                "turn_timer_seconds": int(self.user_settings.get("turn_timer_seconds", 30)),
+                "turn_timer_enabled": bool(self.user_settings.get("turn_timer_enabled", True)),
+                "turn_timer_seconds": int(self.user_settings.get("turn_timer_seconds", 20)),
                 "music_muted": bool(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False))),
             },
         }
@@ -185,7 +188,7 @@ class App:
         columns = 6
         by_col = []
         self.node_lookup = {}
-        type_cycle = ["combat", "event", "combat", "shop", "event", "boss"]
+        type_cycle = ["combat", "event", "challenge", "shop", "event", "boss"]
         x_margin = 140
         x_step = (INTERNAL_WIDTH - x_margin * 2) // (columns - 1)
         for col in range(columns):
@@ -197,7 +200,10 @@ class App:
                     y = INTERNAL_HEIGHT // 2
                 else:
                     y = 240 + row * 190
-                node = {"id": node_id, "col": col, "x": x_margin + col * x_step, "y": y, "type": type_cycle[col], "next": [], "state": "available" if col == 0 else "locked"}
+                node_type = type_cycle[col]
+                if node_type == "challenge" and self.rng.randint(0, 100) < 45:
+                    node_type = "combat"
+                node = {"id": node_id, "col": col, "x": x_margin + col * x_step, "y": y, "type": node_type, "next": [], "state": "available" if col == 0 else "locked"}
                 col_nodes.append(node)
                 self.node_lookup[node_id] = node
             by_col.append(col_nodes)
@@ -211,6 +217,10 @@ class App:
         return by_col
 
     def goto_map(self):
+        if self.run_state and self.run_state.get("levelup_pending", 0) > 0:
+            self.sm.set(PackOpeningScreen(self))
+            self.music.play_for("event")
+            return
         self.debug["map_available_count"] = self.available_nodes_count() if self.node_lookup else 0
         self.debug["current_node_id"] = self.current_node_id or "-"
         self.sm.set(MapScreen(self))
@@ -264,11 +274,26 @@ class App:
             if nxt and nxt["state"] == "locked":
                 nxt["state"] = "available"
                 unlocked.append(nxt["id"])
+        if node.get("type") in {"combat", "challenge"}:
+            extra = self._unlock_optional_challenge(node)
+            if extra:
+                unlocked.append(extra)
         if self.available_nodes_count() <= 0:
             unlocked.extend(self._fallback_unlock_next_column(node))
         self.debug["next_nodes_ids"] = ",".join(unlocked) if unlocked else "-"
         self.debug["map_available_count"] = self.available_nodes_count()
         return unlocked
+
+    def _unlock_optional_challenge(self, node):
+        target_col = min(node.get("col", 0) + 1, max(n.get("col", 0) for n in self.node_lookup.values()))
+        candidates = [n for n in self.node_lookup.values() if n.get("col") == target_col and n.get("state") == "locked"]
+        if not candidates:
+            return None
+        chosen = self.rng.choice(candidates)
+        chosen["state"] = "available"
+        if chosen.get("type") == "combat":
+            chosen["type"] = "challenge"
+        return chosen["id"]
 
     def _fallback_unlock_next_column(self, node):
         target_col = node.get("col", 0) + 1
@@ -287,8 +312,9 @@ class App:
 
     def enter_node(self, node):
         node_type = node.get("type", "combat")
-        if node_type in {"combat", "boss"}:
+        if node_type in {"combat", "challenge", "boss"}:
             enemy_ids = ["inverse_weaver"] if node_type == "boss" else [self.rng.choice(self._enemy_pool())]
+            self.run_state["last_node_type"] = node_type
             self.current_combat = CombatState(self.rng, self.run_state, enemy_ids)
             self.goto_combat(self.current_combat, is_boss=node_type == "boss")
         elif node_type == "shop":
@@ -297,17 +323,34 @@ class App:
             self.goto_event()
 
     def gain_xp(self, amount: int):
+        levels = 0
         self.run_state["xp"] += amount
         needed = self.run_state["level"] * 20
         while self.run_state["xp"] >= needed:
             self.run_state["xp"] -= needed
             self.run_state["level"] += 1
+            levels += 1
             needed = self.run_state["level"] * 20
+        if levels:
+            self.run_state["levelup_pending"] = self.run_state.get("levelup_pending", 0) + levels
+        return levels
 
     def on_combat_victory(self):
         self._complete_current_node()
+        node_type = self.run_state.get("last_node_type", "combat")
+        bonus_gold = self.rng.randint(16, 30) if node_type == "challenge" else self.rng.randint(10, 25)
         self.gain_xp(12)
-        self.goto_reward()
+        self.goto_reward(gold=bonus_gold)
+
+
+    def consume_levelup_pending(self):
+        pending = self.run_state.get("levelup_pending", 0)
+        if pending > 0:
+            self.run_state["levelup_pending"] = pending - 1
+        if self.run_state.get("levelup_pending", 0) > 0:
+            self.sm.set(PackOpeningScreen(self))
+        else:
+            self.goto_map()
 
     def apply_event_effects(self, effects):
         player = self.run_state["player"]
@@ -375,6 +418,8 @@ class App:
         self.user_settings["music_mute"] = self.music.muted
         self.user_settings["fullscreen"] = self.renderer.fullscreen
         self.user_settings["autogen_art_mode"] = self.user_settings.get("autogen_art_mode", "missing_only")
+        self.user_settings["turn_timer_enabled"] = self.user_settings.get("turn_timer_enabled", True)
+        self.user_settings["turn_timer_seconds"] = int(self.user_settings.get("turn_timer_seconds", 20))
         save_settings(self.user_settings)
 
     def draw_debug_overlay(self):
