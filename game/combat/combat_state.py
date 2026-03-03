@@ -64,6 +64,7 @@ class CombatState:
         self.screen_shake = 0.0
         self.combat_events = []
         self.scry_pending = []
+        self.player_damage_taken = 0
         self.start_player_turn()
 
     def _load_cards(self):
@@ -190,6 +191,7 @@ class CombatState:
             dealt = max(0, amount - blocked)
             self.player["hp"] -= dealt
             if dealt > 0:
+                self.player_damage_taken += dealt
                 self.combat_events.append({"type":"damage","target":"player","amount":dealt})
         else:
             blocked = min(target.block, amount)

@@ -16,6 +16,7 @@ class SettingsScreen:
         self.art_regen_rect = pygame.Rect(1020, 220, 540, 64)
         self.art_wipe_regen_rect = pygame.Rect(1020, 300, 540, 64)
         self.music_regen_rect = pygame.Rect(1020, 380, 540, 64)
+        self.dev_reset_rect = pygame.Rect(1020, 460, 540, 64)
         self.modal = None
         self.progress = ""
 
@@ -87,6 +88,10 @@ class SettingsScreen:
                 self.modal = "art_wipe"
             elif self.music_regen_rect.collidepoint(pos):
                 self.modal = "music"
+            elif self.dev_reset_rect.collidepoint(pos):
+                v = not self.app.user_settings.get("dev_reset_autogen_on_boot", False)
+                self.app.user_settings["dev_reset_autogen_on_boot"] = v
+                self.progress = "Dev reset ON para próximo arranque" if v else "Dev reset OFF"
 
     def update(self, dt):
         pass
@@ -122,6 +127,8 @@ class SettingsScreen:
         self._draw_btn(surface, self.art_regen_rect, "Regenerar Arte de Cartas (prompts nuevos)")
         self._draw_btn(surface, self.art_wipe_regen_rect, "Borrar arte actual de cartas y regenerar")
         self._draw_btn(surface, self.music_regen_rect, "Regenerar Banda Sonora")
+        st = "ON" if self.app.user_settings.get("dev_reset_autogen_on_boot", False) else "OFF"
+        self._draw_btn(surface, self.dev_reset_rect, f"Dev reset auto-assets al boot: {st}")
         if self.progress:
             surface.blit(self.app.small_font.render(self.progress, True, UI_THEME["gold"]), (1040, 470))
         pygame.draw.rect(surface, UI_THEME["panel"], self.back_rect, border_radius=10)

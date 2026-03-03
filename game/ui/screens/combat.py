@@ -22,11 +22,19 @@ def wrap_text(font, text, width):
 
 
 class CombatScreen:
+    TOPBAR = pygame.Rect(0, 0, INTERNAL_WIDTH, 110)
+    ENEMY_PANEL = pygame.Rect(40, 120, INTERNAL_WIDTH - 80, 360)
+    DIALOGUE_PANEL = pygame.Rect(260, 490, INTERNAL_WIDTH - 520, 130)
+    PLAYER_HUD = pygame.Rect(40, 630, INTERNAL_WIDTH - 80, 120)
+    CARD_AREA = pygame.Rect(40, 760, INTERNAL_WIDTH - 80, 220)
+    ACTION_BAR = pygame.Rect(40, 990, INTERNAL_WIDTH - 80, 80)
+
     def __init__(self, app, combat_state, is_boss=False):
         self.app = app
         self.c = combat_state
         self.is_boss = is_boss
         self.selected_card_index = None
+        self.scry_selected = None
         self.tooltip = None
         self.log_lines = []
         self.log_visible = True
@@ -34,22 +42,12 @@ class CombatScreen:
         self.dialog_enemy = TypewriterBanner()
         self.dialog_hero = TypewriterBanner()
         self.dialog_cd = 0
+        self.dialog_jitter = 0.0
         self.turn_timer = self.app.run_state.get("settings", {}).get("turn_timer_seconds", 20)
-        self.scry_drag_idx = None
 
-        # 1920x1080 grid zones
-        self.top_bar_h = 120
-        self.battle_h = 520
-        self.player_hud_h = 120
-        self.cards_h = 180
-        self.buttons_h = 140
-        self.zone_battle_y = self.top_bar_h
-        self.zone_hud_y = self.zone_battle_y + self.battle_h
-        self.zone_cards_y = self.zone_hud_y + self.player_hud_h
-        self.zone_buttons_y = self.zone_cards_y + self.cards_h
-
-        self.end_turn_rect = pygame.Rect(INTERNAL_WIDTH - 360, self.zone_buttons_y + 28, 300, 84)
-        self.status_rect = pygame.Rect(INTERNAL_WIDTH - 680, self.zone_buttons_y + 28, 280, 84)
+        self.end_turn_rect = pygame.Rect(self.ACTION_BAR.right - 320, self.ACTION_BAR.y + 8, 300, 64)
+        self.status_rect = pygame.Rect(self.ACTION_BAR.right - 640, self.ACTION_BAR.y + 8, 280, 64)
+        self.scry_confirm_rect = pygame.Rect(INTERNAL_WIDTH // 2 - 140, 680, 280, 66)
 
         self.selected_biome = self.app.rng.choice(self.app.bg_gen.BIOMES)
         self.bg_seed = abs(hash(f"{self.selected_biome}:{self.c.turn}:{self.c.enemies[0].id if self.c.enemies else 'none'}")) % 100000
@@ -57,21 +55,34 @@ class CombatScreen:
 
     def _set_intro(self):
         self.banner.set(self.app.loc.t("lore_short_1"), 2.5)
-        self._trigger_dialog("intro")
+        self._trigger_dialog("start")
+
+    def draw_panel(self, surface, rect, title=None):
+        pygame.draw.rect(surface, UI_THEME["panel"], rect, border_radius=12)
+        pygame.draw.rect(surface, UI_THEME["accent_violet"], rect, 2, border_radius=12)
+        self.apply_inset_shadow(surface, rect)
+        if title:
+            surface.blit(self.app.small_font.render(title, True, UI_THEME["gold"]), (rect.x + 12, rect.y + 8))
+
+    def draw_separator(self, surface, y):
+        pygame.draw.line(surface, (80, 66, 110), (20, y), (INTERNAL_WIDTH - 20, y), 2)
+
+    def apply_inset_shadow(self, surface, panel):
+        sh = pygame.Surface((panel.w, panel.h), pygame.SRCALPHA)
+        pygame.draw.rect(sh, (0, 0, 0, 28), sh.get_rect(), width=6, border_radius=12)
+        surface.blit(sh, panel.topleft)
 
     def _enemy_rect(self, idx):
-        return pygame.Rect(90 + idx * 430, self.zone_battle_y + 64, 390, 330)
+        return pygame.Rect(self.ENEMY_PANEL.x + 24 + idx * 520, self.ENEMY_PANEL.y + 48, 500, 286)
 
     def _card_rect(self, vis_idx, total, hovered=False):
         card_w, card_h = 220, 320
         gap = 18
         total_w = total * card_w + max(0, total - 1) * gap
-        start_x = (INTERNAL_WIDTH - total_w) // 2
-        y = self.zone_cards_y - 130
+        start_x = self.CARD_AREA.centerx - total_w // 2
+        y = self.CARD_AREA.y - 90
         r = pygame.Rect(start_x + vis_idx * (card_w + gap), y, card_w, card_h)
-        if hovered:
-            r = pygame.Rect(r.x - 20, r.y - 20, 260, 360)
-        return r
+        return r.inflate(40, 40) if hovered else r
 
     def _intent_text(self, enemy):
         intent = enemy.current_intent()
@@ -79,84 +90,61 @@ class CombatScreen:
         val = intent.get("value", [intent.get("stacks", 1), intent.get("stacks", 1)])
         num = val[0] if isinstance(val, list) else val
         if kind == "attack":
-            label = self.app.design_value("CANON_INTENT_ATTACK", "Preparando golpe: {value}").format(value=f"{self.app.design_value('CANON_LABEL_DANO', 'Daño')} {num}")
-            return label, UI_THEME["bad"]
+            return f"Daño {num}", UI_THEME["bad"]
         if kind == "defend":
-            label = self.app.design_value("CANON_INTENT_DEFEND", "Se protege: {value}").format(value=f"{self.app.design_value('CANON_LABEL_GUARDIA', 'Guardia')} {num}")
-            return label, UI_THEME["block"]
+            return f"Guardia {num}", UI_THEME["block"]
         if kind == "debuff":
-            return self.app.design_value("CANON_INTENT_DEBUFF", "Lanza Maldición"), UI_THEME["gold"]
-        return self.app.design_value("CANON_INTENT_BUFF", "Canaliza poder"), UI_THEME["accent_violet"]
-
-    def _selected_card(self):
-        if self.selected_card_index is None or self.selected_card_index >= len(self.c.hand):
-            return None
-        return self.c.hand[self.selected_card_index]
+            return "Maldición", UI_THEME["gold"]
+        return "Canaliza", UI_THEME["accent_violet"]
 
     def _dialog_pick(self, side, trigger, enemy_id):
-        data = self.app.lore_data
-        if side == "enemy":
-            arr = data.get("enemy", {}).get(enemy_id, {}).get(trigger, [])
-            fallback = self.app.design_value("DIALOGUE_FALLBACK_ENEMY", "")
-        else:
-            arr = data.get("chakana", {}).get(trigger, [])
-            fallback = self.app.design_value("DIALOGUE_FALLBACK_CHAKANA", "")
-        if not arr and fallback:
-            pairs = [p for p in fallback.split("|") if ":" in p]
-            table = {k.strip(): v.strip() for k, v in (x.split(":", 1) for x in pairs)}
-            txt = table.get(trigger)
-            if txt:
-                arr = [txt]
-        return self.app.rng.choice(arr) if arr else "..."
+        arr = self.app.lore_service.dialogue(side, trigger, enemy_id)
+        if arr:
+            return self.app.rng.choice(arr)
+        fallback = self.app.design_value("DIALOGUE_FALLBACK_ENEMY" if side == "enemy" else "DIALOGUE_FALLBACK_CHAKANA", "")
+        return fallback.split("|")[0].split(":")[-1].strip() if fallback else "..."
 
     def _trigger_dialog(self, trigger):
         if self.dialog_cd > 0:
             return
         enemy_id = self.c.enemies[0].id if self.c.enemies else "voidling"
-        self.dialog_enemy.set(self._dialog_pick("enemy", trigger, enemy_id), 2.4)
-        self.dialog_hero.set(self._dialog_pick("chakana", trigger, enemy_id), 2.4)
-        self.dialog_cd = 4.0
+        self.dialog_enemy.set(self._dialog_pick("enemy", trigger, enemy_id), 2.2)
+        self.dialog_hero.set(self._dialog_pick("chakana", trigger, enemy_id), 2.2)
+        self.dialog_cd = 3.8
+        self.dialog_jitter = 0.28
+        self.app.sfx.play("whisper")
 
     def _execute_selected(self):
-        card = self._selected_card()
+        card = self.c.hand[self.selected_card_index] if self.selected_card_index is not None and self.selected_card_index < len(self.c.hand) else None
         if not card:
             self.c.end_turn()
             self.turn_timer = self.app.run_state.get("settings", {}).get("turn_timer_seconds", 20)
             return
         if card.cost > self.c.player["energy"]:
             return
-        if card.definition.target == "enemy":
-            target_idx = next((i for i, e in enumerate(self.c.enemies) if e.alive), None)
-            if target_idx is None:
-                return
-            self.c.play_card(self.selected_card_index, target_idx)
-        else:
-            self.c.play_card(self.selected_card_index, None)
+        target_idx = next((i for i, e in enumerate(self.c.enemies) if e.alive), None) if card.definition.target == "enemy" else None
+        if card.definition.target == "enemy" and target_idx is None:
+            return
+        self.c.play_card(self.selected_card_index, target_idx)
         self.selected_card_index = None
 
     def _handle_scry_event(self, event):
         cards = self.c.scry_pending
         if not cards:
             return False
-        rects = [pygame.Rect(420 + i * 250, 320, 220, 320) for i in range(len(cards))]
+        rects = [pygame.Rect(360 + i * 250, 320, 220, 320) for i in range(len(cards))]
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
             for i, r in enumerate(rects):
                 if r.collidepoint(pos):
-                    self.scry_drag_idx = i
+                    self.scry_selected = i
                     return True
-            if pygame.Rect(800, 670, 320, 70).collidepoint(pos):
+            if self.scry_confirm_rect.collidepoint(pos) and self.scry_selected is not None:
                 self.c.apply_scry_order(cards)
-                self.scry_drag_idx = None
+                self.log_lines.insert(0, f"Elegiste {cards[self.scry_selected].definition.id}")
+                self.app.sfx.play("ui_click")
+                self.scry_selected = None
                 return True
-        if event.type == pygame.MOUSEBUTTONUP and event.button == 1 and self.scry_drag_idx is not None:
-            pos = self.app.renderer.map_mouse(event.pos)
-            for i, r in enumerate(rects):
-                if r.collidepoint(pos) and i != self.scry_drag_idx:
-                    cards[self.scry_drag_idx], cards[i] = cards[i], cards[self.scry_drag_idx]
-                    break
-            self.scry_drag_idx = None
-            return True
         return True
 
     def handle_event(self, event):
@@ -172,11 +160,6 @@ class CombatScreen:
                 self._execute_selected(); return
             if self.status_rect.collidepoint(pos):
                 self.log_visible = not self.log_visible; return
-            for i, e in enumerate(self.c.enemies):
-                if self._enemy_rect(i).collidepoint(pos) and e.alive and self.selected_card_index is not None:
-                    self.c.play_card(self.selected_card_index, i)
-                    self.selected_card_index = None
-                    return
             for i, _ in enumerate(self.c.hand[:6]):
                 if self._card_rect(i, min(6, len(self.c.hand))).collidepoint(pos):
                     self.selected_card_index = i
@@ -186,6 +169,7 @@ class CombatScreen:
     def update(self, dt):
         self.c.update(dt)
         self.dialog_cd = max(0, self.dialog_cd - dt)
+        self.dialog_jitter = max(0, self.dialog_jitter - dt)
         if self.app.run_state.get("settings", {}).get("turn_timer_enabled", False):
             self.turn_timer -= dt
             if self.turn_timer <= 0:
@@ -195,12 +179,18 @@ class CombatScreen:
             if ev["type"] == "damage":
                 self.log_lines.insert(0, f"{ev['target']}: -{ev['amount']} Vida")
                 if ev["target"] == "player" and ev["amount"] >= 9:
-                    self._trigger_dialog("big_hit")
+                    self._trigger_dialog("player_low_hp")
             elif ev["type"] == "block":
                 self.log_lines.insert(0, f"{ev['target']}: +{ev['amount']} Guardia")
-        self.log_lines = self.log_lines[:8]
+                if ev["target"] != "player":
+                    self._trigger_dialog("enemy_intent_reveal")
+        if self.c.player["hp"] <= max(10, self.c.player["max_hp"] * 0.3):
+            self._trigger_dialog("player_low_hp")
         if any(e.alive and e.hp <= e.max_hp * 0.25 for e in self.c.enemies):
-            self._trigger_dialog("low_hp")
+            self._trigger_dialog("enemy_low_hp")
+        if self.is_boss and self.c.turn % 4 == 0:
+            self._trigger_dialog("boss_phase")
+        self.log_lines = self.log_lines[:8]
         if self.c.result == "victory":
             self.app.on_combat_victory()
         elif self.c.result == "defeat":
@@ -211,8 +201,7 @@ class CombatScreen:
         pygame.draw.rect(s, UI_THEME["card_border"], rect, 2, border_radius=12)
         art = self.app.assets.sprite("cards", card.definition.id, (rect.w - 16, int(rect.h * 0.62)), fallback=(70, 44, 105))
         s.blit(art, (rect.x + 8, rect.y + 36))
-        title = self.app.loc.t(card.definition.name_key)
-        s.blit(self.app.card_title_font.render(title, True, UI_THEME["text"]), (rect.x + 10, rect.y + 6))
+        s.blit(self.app.card_title_font.render(self.app.loc.t(card.definition.name_key), True, UI_THEME["text"]), (rect.x + 10, rect.y + 6))
         lines = wrap_text(self.app.card_text_font, self.app.loc.t(card.definition.text_key), rect.w - 18)[:3]
         for i, line in enumerate(lines):
             s.blit(self.app.card_text_font.render(line, True, UI_THEME["muted"]), (rect.x + 10, rect.y + int(rect.h * 0.7) + i * 24))
@@ -228,55 +217,46 @@ class CombatScreen:
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.tooltip = None
 
-        # zones
-        pygame.draw.rect(s, UI_THEME["primary_purple"], (0, 0, INTERNAL_WIDTH, self.top_bar_h))
-        pygame.draw.rect(s, (16, 14, 28), (0, self.zone_battle_y, INTERNAL_WIDTH, self.battle_h))
-        pygame.draw.rect(s, UI_THEME["panel"], (0, self.zone_hud_y, INTERNAL_WIDTH, self.player_hud_h))
-        pygame.draw.rect(s, (12, 14, 28), (0, self.zone_cards_y, INTERNAL_WIDTH, self.cards_h))
-        pygame.draw.rect(s, UI_THEME["panel_2"], (0, self.zone_buttons_y, INTERNAL_WIDTH, self.buttons_h))
+        self.draw_panel(s, self.TOPBAR, "TOPBAR")
+        self.draw_panel(s, self.ENEMY_PANEL, "ENEMY_PANEL")
+        self.draw_panel(s, self.DIALOGUE_PANEL, "DIALOGUE_PANEL")
+        self.draw_panel(s, self.PLAYER_HUD, "PLAYER_HUD")
+        self.draw_panel(s, self.CARD_AREA, "CARD_AREA")
+        self.draw_panel(s, self.ACTION_BAR, "ACTION_BAR")
+        for y in [self.ENEMY_PANEL.bottom + 4, self.DIALOGUE_PANEL.bottom + 4, self.PLAYER_HUD.bottom + 4]:
+            self.draw_separator(s, y)
 
-        s.blit(self.app.big_font.render(self.app.design_value("CANON_MENU_TITLE", "Chakana Purple Wizard"), True, UI_THEME["gold"]), (24, 26))
+        s.blit(self.app.big_font.render(self.app.design_value("CANON_MENU_TITLE", "Chakana Purple Wizard"), True, UI_THEME["gold"]), (54, 28))
         lore = self.banner.current
-        lore_w = self.app.font.size(lore)[0]
-        s.blit(self.app.font.render(lore, True, UI_THEME["text"]), (INTERNAL_WIDTH // 2 - lore_w // 2, 44))
-        if self.app.run_state.get("settings", {}).get("turn_timer_enabled", False):
-            s.blit(self.app.font.render(f"⏱ {int(self.turn_timer)}s", True, UI_THEME["text"]), (INTERNAL_WIDTH - 160, 44))
+        s.blit(self.app.small_font.render(lore, True, UI_THEME["text"]), (self.TOPBAR.right - self.app.small_font.size(lore)[0] - 40, 42))
 
-        # centered stacked dialogue
-        dialog_panel = pygame.Rect(INTERNAL_WIDTH // 2 - 420, self.zone_battle_y + 10, 840, 86)
-        pygame.draw.rect(s, UI_THEME["panel"], dialog_panel, border_radius=10)
-        enemy_line = f"Enemigo: {self.dialog_enemy.current}"
-        hero_line = f"Chakana: {self.dialog_hero.current}"
-        s.blit(self.app.small_font.render(enemy_line, True, UI_THEME["bad"]), (dialog_panel.x + 20, dialog_panel.y + 14))
-        s.blit(self.app.small_font.render(hero_line, True, UI_THEME["good"]), (dialog_panel.x + 20, dialog_panel.y + 48))
+        jit = int(2 * pygame.math.Vector2(1, 0).rotate(pygame.time.get_ticks() * 0.5).x) if self.dialog_jitter > 0 else 0
+        enemy_line = self.dialog_enemy.current
+        hero_line = self.dialog_hero.current
+        s.blit(self.app.font.render(enemy_line, True, UI_THEME["bad"]), (self.DIALOGUE_PANEL.centerx - self.app.font.size(enemy_line)[0] // 2 + jit, self.DIALOGUE_PANEL.y + 30))
+        s.blit(self.app.font.render(hero_line, True, UI_THEME["good"]), (self.DIALOGUE_PANEL.centerx - self.app.font.size(hero_line)[0] // 2 - jit, self.DIALOGUE_PANEL.y + 72))
 
         pstate = self.c.player
-        hud = pygame.Rect(INTERNAL_WIDTH - 560, self.zone_hud_y + 8, 540, self.player_hud_h - 16)
-        pygame.draw.rect(s, UI_THEME["panel_2"], hud, border_radius=10)
-        s.blit(self.app.font.render(f"Vida {pstate['hp']}/{pstate['max_hp']}", True, UI_THEME["text"]), (hud.x + 20, hud.y + 16))
-        s.blit(self.app.font.render(f"{self.app.design_value('CANON_LABEL_GUARDIA','Guardia')} {pstate['block']}", True, UI_THEME["block"]), (hud.x + 200, hud.y + 16))
-        s.blit(self.app.font.render(f"{self.app.design_value('CANON_LABEL_QUIEBRE','Quiebre')} {pstate['rupture']}", True, UI_THEME["rupture"]), (hud.x + 20, hud.y + 54))
-        s.blit(self.app.font.render(f"{self.app.design_value('CANON_LABEL_MANA','Maná')}", True, UI_THEME["text"]), (hud.x + 270, hud.y + 54))
+        s.blit(self.app.font.render(f"Vida {pstate['hp']}/{pstate['max_hp']}", True, UI_THEME["text"]), (self.PLAYER_HUD.x + 20, self.PLAYER_HUD.y + 44))
+        s.blit(self.app.font.render(f"Guardia {pstate['block']}", True, UI_THEME["block"]), (self.PLAYER_HUD.x + 330, self.PLAYER_HUD.y + 44))
+        s.blit(self.app.font.render(f"Quiebre {pstate['rupture']}", True, UI_THEME["rupture"]), (self.PLAYER_HUD.x + 560, self.PLAYER_HUD.y + 44))
+        s.blit(self.app.font.render("Maná", True, UI_THEME["text"]), (self.PLAYER_HUD.x + 780, self.PLAYER_HUD.y + 44))
         for i in range(5):
-            pygame.draw.circle(s, UI_THEME["energy"] if i < pstate["energy"] else (65, 68, 90), (hud.x + 350 + i * 32, hud.y + 62), 11)
+            pygame.draw.circle(s, UI_THEME["energy"] if i < pstate["energy"] else (65, 68, 90), (self.PLAYER_HUD.x + 860 + i * 32, self.PLAYER_HUD.y + 56), 11)
 
         for i, e in enumerate(self.c.enemies):
             er = self._enemy_rect(i)
             pygame.draw.rect(s, UI_THEME["deep_purple"], er, border_radius=12)
-            # enemy portrait
-            s.blit(self.app.assets.sprite("enemies", e.id, (140, 140), fallback=(100, 60, 90)), (er.x + 12, er.y + 14))
-            # intent card
-            intent_card = pygame.Rect(er.x + 164, er.y + 12, 214, 120)
+            s.blit(self.app.assets.sprite("enemies", e.id, (150, 150), fallback=(100, 60, 90)), (er.x + 14, er.y + 18))
+            intent_card = pygame.Rect(er.x + 178, er.y + 16, 302, 108)
             pygame.draw.rect(s, UI_THEME["panel_2"], intent_card, border_radius=10)
             intent, icolor = self._intent_text(e)
-            for li, line in enumerate(wrap_text(self.app.small_font, intent, intent_card.w - 12)[:3]):
-                s.blit(self.app.small_font.render(line, True, icolor), (intent_card.x + 8, intent_card.y + 8 + li * 30))
-            # hp bar
+            s.blit(self.app.font.render(intent, True, icolor), (intent_card.x + 14, intent_card.y + 40))
             ratio = max(0, e.hp) / max(1, e.max_hp)
-            s.blit(self.app.small_font.render(self.app.loc.t(e.name_key), True, UI_THEME["text"]), (er.x + 12, er.y + 166))
-            pygame.draw.rect(s, (35, 24, 50), (er.x + 12, er.y + 198, 360, 18), border_radius=7)
-            pygame.draw.rect(s, UI_THEME["hp"], (er.x + 12, er.y + 198, int(360 * ratio), 18), border_radius=7)
-            s.blit(self.app.small_font.render(f"Vida {e.hp}/{e.max_hp}", True, UI_THEME["text"]), (er.x + 12, er.y + 224))
+            s.blit(self.app.small_font.render(self.app.loc.t(e.name_key), True, UI_THEME["text"]), (er.x + 16, er.y + 184))
+            pygame.draw.rect(s, (35, 24, 50), (er.x + 16, er.y + 220, 468, 18), border_radius=7)
+            pygame.draw.rect(s, UI_THEME["hp"], (er.x + 16, er.y + 220, int(468 * ratio), 18), border_radius=7)
+            s.blit(self.app.small_font.render(f"HP {e.hp}/{e.max_hp} Guardia {e.block}", True, UI_THEME["text"]), (er.x + 16, er.y + 246))
 
         hand = self.c.hand[:6]
         hover_idx = None
@@ -290,41 +270,40 @@ class CombatScreen:
                 self.tooltip = self.app.loc.t(card.definition.text_key)
 
         pygame.draw.rect(s, UI_THEME["panel"], self.status_rect, border_radius=10)
-        s.blit(self.app.small_font.render("Registro", True, UI_THEME["text"]), (self.status_rect.x + 90, self.status_rect.y + 30))
+        s.blit(self.app.small_font.render("Registro", True, UI_THEME["text"]), (self.status_rect.x + 90, self.status_rect.y + 22))
 
-        selected = self._selected_card()
-        label = "EJECUTAR" if selected and selected.definition.target != "enemy" else "ATACAR" if selected else self.app.loc.t("button_end_turn")
-        bcol = UI_THEME["violet"]
-        info = "Sin carta"
-        if selected:
-            info = f"Seleccionada: {self.app.loc.t(selected.definition.name_key)} (Costo {selected.cost})"
-            if selected.cost > pstate["energy"]:
-                bcol = (90, 78, 110)
-                self.tooltip = "Energía insuficiente"
+        selected = self.c.hand[self.selected_card_index] if self.selected_card_index is not None and self.selected_card_index < len(self.c.hand) else None
+        label = "ATACAR" if selected else self.app.loc.t("button_end_turn")
+        bcol = UI_THEME["violet"] if not selected or selected.cost <= pstate["energy"] else (90, 78, 110)
         pygame.draw.rect(s, bcol, self.end_turn_rect, border_radius=12)
-        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.end_turn_rect.x + 88, self.end_turn_rect.y + 24))
-        s.blit(self.app.small_font.render(info, True, UI_THEME["muted"]), (self.end_turn_rect.x - 520, self.end_turn_rect.y + 32))
+        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.end_turn_rect.x + 88, self.end_turn_rect.y + 18))
 
         if self.log_visible:
-            log_rect = pygame.Rect(20, self.zone_buttons_y + 14, 760, 112)
+            log_rect = pygame.Rect(self.ACTION_BAR.x + 10, self.ACTION_BAR.y + 6, 760, 68)
             pygame.draw.rect(s, UI_THEME["panel"], log_rect, border_radius=10)
-            s.blit(self.app.small_font.render(self.app.loc.t("combat_log"), True, UI_THEME["text"]), (log_rect.x + 14, log_rect.y + 10))
-            for i, line in enumerate(self.log_lines[:3]):
+            for i, line in enumerate(self.log_lines[:2]):
                 col = UI_THEME["bad"] if "-" in line else UI_THEME["block"] if "+" in line else UI_THEME["muted"]
-                s.blit(self.app.small_font.render(line, True, col), (log_rect.x + 14, log_rect.y + 40 + i * 24))
+                s.blit(self.app.small_font.render(line, True, col), (log_rect.x + 14, log_rect.y + 12 + i * 26))
 
         if self.c.scry_pending:
             ov = pygame.Surface((INTERNAL_WIDTH, INTERNAL_HEIGHT), pygame.SRCALPHA)
-            ov.fill((0, 0, 0, 160)); s.blit(ov, (0, 0))
-            pygame.draw.rect(s, UI_THEME["deep_purple"], (340, 240, 1240, 560), border_radius=16)
-            s.blit(self.app.big_font.render("Visión: mira y reordena", True, UI_THEME["gold"]), (700, 270))
+            ov.fill((0, 0, 0, 170)); s.blit(ov, (0, 0))
+            modal = pygame.Rect(300, 240, 1320, 560)
+            self.draw_panel(s, modal, "SELECCIONA 1")
             for i, card in enumerate(self.c.scry_pending):
-                r = pygame.Rect(420 + i * 250, 320, 220, 320)
-                self._draw_card(s, r, card, selected=(i == self.scry_drag_idx))
-            pygame.draw.rect(s, UI_THEME["violet"], (800, 670, 320, 70), border_radius=10)
-            s.blit(self.app.font.render("Confirmar", True, UI_THEME["text"]), (905, 692))
+                r = pygame.Rect(360 + i * 250, 320, 220, 320)
+                hov = r.collidepoint(mouse)
+                if hov:
+                    pygame.draw.rect(s, (200, 170, 255), r.inflate(12, 12), 2, border_radius=14)
+                self._draw_card(s, r, card, selected=(i == self.scry_selected))
+                if i == self.scry_selected:
+                    pygame.draw.rect(s, UI_THEME["gold"], r.inflate(16, 16), 4, border_radius=16)
+                    s.blit(self.app.small_font.render("SELECCIONADA", True, UI_THEME["gold"]), (r.x + 24, r.y - 28))
+            enabled = self.scry_selected is not None
+            pygame.draw.rect(s, UI_THEME["violet"] if enabled else (76, 72, 94), self.scry_confirm_rect, border_radius=10)
+            s.blit(self.app.font.render("Confirmar", True, UI_THEME["text"]), (self.scry_confirm_rect.x + 86, self.scry_confirm_rect.y + 18))
 
         if self.tooltip and not self.c.scry_pending:
-            tr = pygame.Rect(20, self.zone_buttons_y + 14, 620, 70)
+            tr = pygame.Rect(self.ACTION_BAR.x + 10, self.ACTION_BAR.y - 62, 620, 54)
             pygame.draw.rect(s, (18, 18, 26), tr, border_radius=8)
-            s.blit(self.app.card_text_font.render(self.tooltip, True, UI_THEME["text"]), (tr.x + 10, tr.y + 24))
+            s.blit(self.app.card_text_font.render(self.tooltip, True, UI_THEME["text"]), (tr.x + 10, tr.y + 16))

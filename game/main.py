@@ -16,6 +16,7 @@ from game.content.enemy_art_generator import EnemyArtGenerator
 from game.content.background_generator import BackgroundGenerator
 from game.core.bootstrap_assets import ensure_placeholder_assets, ensure_bgm_assets
 from game.core.localization import LocalizationManager
+from game.core.lore_service import LoreService
 from game.core.paths import data_dir, assets_dir
 from game.core.rng import SeededRNG
 from game.core.safe_io import load_json
@@ -91,14 +92,17 @@ class App:
         self.node_lookup = {}
         self.current_node_id = None
         self.debug_overlay = False
-        self.debug = {"last_ui_event": "-", "hovered_card_id": "-", "selected_card_id": "-", "target_mode": False, "combat_end_turn_button_visible": False, "combat_status_button_visible": False, "combat_end_turn_rect": "-", "combat_status_rect": "-", "enemy_intent": "-", "art_regenerated": 0}
+        self.debug = {"last_ui_event": "-", "hovered_card_id": "-", "selected_card_id": "-", "target_mode": False, "combat_end_turn_button_visible": False, "combat_status_button_visible": False, "combat_end_turn_rect": "-", "combat_status_rect": "-", "enemy_intent": "-", "art_regenerated": 0, "xp_last_gain": 0}
 
         self.cards_data = self._load_cards_data()
         self.card_defs = {c["id"]: c for c in self.cards_data}
         self.enemies_data = self._load_enemies_data()
         self.events_data = self._load_events_data()
         self.relics_data = self._load_relics_data()
-        self.lore_data = self._load_lore_data()
+        self.lore_service = LoreService()
+        self.lore_data = self.lore_service.data
+        self.debug["lore_status"] = self.lore_service.status
+        self.debug["lore_paths"] = ",".join(str(v) for v in self.lore_service.paths.values())
         self.design_doc = self._load_design_doc()
         self.canonical_design_source = str(data_dir() / "design" / "gdd_chakana_purple_wizard.txt")
         print(f"[load] cards={len(self.cards_data)} enemies={len(self.enemies_data)} events={len(self.events_data)} relics={len(self.relics_data)}")
@@ -106,6 +110,7 @@ class App:
         self.enemy_art_gen = EnemyArtGenerator()
         self.bg_gen = BackgroundGenerator()
         self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
+        self._apply_dev_reset_if_enabled()
         self.ensure_assets()
         print("[load] card/enemy art verified")
         self.debug["art_regenerated"] = self.art_gen.generated_count + self.art_gen.replaced_count
@@ -136,29 +141,6 @@ class App:
     def _load_relics_data(self):
         relics = load_json(data_dir() / "relics.json", default=[])
         return relics if isinstance(relics, list) else []
-
-    def _load_lore_data(self):
-        lore_dir = data_dir() / "lore"
-        dialogues = load_json(lore_dir / "dialogues.json", default={})
-        lore_txt = ""
-        world_txt = ""
-        lore_events = load_json(lore_dir / "events.json", default={})
-        lore_enemies = load_json(lore_dir / "enemies.json", default={})
-        try:
-            lore_txt = (lore_dir / "chakana_lore.txt").read_text(encoding="utf-8")
-        except Exception:
-            lore_txt = ""
-        try:
-            world_txt = (lore_dir / "world.txt").read_text(encoding="utf-8")
-        except Exception:
-            world_txt = ""
-        if not isinstance(dialogues, dict):
-            dialogues = {}
-        dialogues["lore_text"] = lore_txt
-        dialogues["world_text"] = world_txt
-        dialogues["event_fragments"] = lore_events.get("fragments", []) if isinstance(lore_events, dict) else []
-        dialogues["enemy_lore"] = lore_enemies if isinstance(lore_enemies, dict) else {}
-        return dialogues
 
     def _load_design_doc(self):
         design_path = data_dir() / "design" / "gdd_chakana_purple_wizard.txt"
@@ -274,7 +256,7 @@ class App:
     def goto_map(self):
         if self.run_state and self.run_state.get("levelup_pending", 0) > 0:
             self.sm.set(PackOpeningScreen(self))
-            self.music.play_for("event")
+            self.music.play_for("reward")
             return
         self.debug["map_available_count"] = self.available_nodes_count() if self.node_lookup else 0
         self.debug["current_node_id"] = self.current_node_id or "-"
@@ -293,7 +275,8 @@ class App:
             pool = [c for c in self.cards_data if c.get("rarity") in rarities] or self.cards_data
             picks = [CardInstance(CardDef(**(self.rng.choice(pool) or DEFAULT_CARDS[0]))) for _ in range(3)]
             gold = self.rng.randint(10, 25)
-        self.sm.set(RewardScreen(self, picks, gold))
+        self.sm.set(RewardScreen(self, picks, gold, xp_gained=self.debug.get("xp_last_gain", 0)))
+        self.music.play_for("reward")
 
     def goto_shop(self):
         pool = [c for c in self.cards_data if c.get("rarity") in {"common", "uncommon"}] or self.cards_data
@@ -379,6 +362,7 @@ class App:
 
     def gain_xp(self, amount: int):
         levels = 0
+        self.debug["xp_last_gain"] = max(0, int(amount))
         self.run_state["xp"] += amount
         needed = self.run_state["level"] * 20
         while self.run_state["xp"] >= needed:
@@ -398,7 +382,9 @@ class App:
             self.sm.set(EndScreen(self))
             return
         bonus_gold = self.rng.randint(16, 30) if node_type == "challenge" else self.rng.randint(10, 25)
-        self.gain_xp(12)
+        difficulty_bonus = {"combat": 2, "challenge": 5, "boss": 12}.get(node_type, 2)
+        perfect_bonus = 5 if self.current_combat and getattr(self.current_combat, "player_damage_taken", 0) <= 0 else 0
+        self.gain_xp(10 + difficulty_bonus + perfect_bonus)
         self.goto_reward(gold=bonus_gold)
 
 
@@ -413,7 +399,8 @@ class App:
 
     def apply_event_effects(self, effects):
         player = self.run_state["player"]
-        self.gain_xp(6)
+        rare = any(e.get("type") == "gain_relic" for e in effects)
+        self.gain_xp(self.rng.randint(7, 8) if rare else self.rng.randint(4, 6))
         for effect in effects:
             effect_type = effect.get("type")
             if effect_type == "lose_gold":
@@ -474,6 +461,38 @@ class App:
         self.run_state["map"].append([new_node])
         print("[map] recovery created Camino Abierto")
 
+    def _draw_progress_splash(self, title: str, detail: str):
+        self.renderer.internal.fill((10, 8, 22))
+        self.renderer.internal.blit(self.big_font.render(title, True, (234, 210, 126)), (640, 460))
+        self.renderer.internal.blit(self.font.render(detail, True, (230, 230, 236)), (640, 520))
+        self.renderer.present()
+
+    def _apply_dev_reset_if_enabled(self):
+        if not self.user_settings.get("dev_reset_autogen_on_boot", False):
+            return
+        self._draw_progress_splash("Regenerando Trama…", "Limpiando arte/música autogenerada")
+        art_manifest = load_json(data_dir() / "art_manifest.json", default={})
+        if isinstance(art_manifest, dict):
+            for cid in art_manifest.keys():
+                p = assets_dir() / "sprites" / "cards" / f"{cid}.png"
+                if p.exists():
+                    p.unlink()
+        bgm_manifest = load_json(data_dir() / "bgm_manifest.json", default={})
+        if isinstance(bgm_manifest, dict):
+            for track in bgm_manifest.keys():
+                p = assets_dir() / "music" / f"{track}.wav"
+                if p.exists():
+                    p.unlink()
+        for p in [data_dir() / "card_prompts.json", data_dir() / "art_manifest.json", data_dir() / "bgm_manifest.json"]:
+            if p.exists():
+                p.unlink()
+        self._draw_progress_splash("Regenerando Trama…", "Reconstruyendo prompts/arte/banda sonora")
+        export_prompts(self.cards_data, self.enemies_data)
+        ensure_bgm_assets(force_regen=True)
+        self.music._manifest = self.music._load_manifest()
+        self.user_settings["dev_reset_autogen_on_boot"] = False
+        save_settings(self.user_settings)
+
     def regenerate_music(self):
         try:
             pygame.mixer.music.stop()
@@ -484,6 +503,7 @@ class App:
         except Exception:
             pass
         ensure_bgm_assets(force_regen=True)
+        self.music._manifest = self.music._load_manifest()
         try:
             pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
         except Exception:
@@ -532,6 +552,7 @@ class App:
         self.user_settings["autogen_art_mode"] = self.user_settings.get("autogen_art_mode", "missing_only")
         self.user_settings["turn_timer_enabled"] = self.user_settings.get("turn_timer_enabled", True)
         self.user_settings["turn_timer_seconds"] = int(self.user_settings.get("turn_timer_seconds", 20))
+        self.user_settings["dev_reset_autogen_on_boot"] = bool(self.user_settings.get("dev_reset_autogen_on_boot", False))
         save_settings(self.user_settings)
 
     def draw_debug_overlay(self):
@@ -543,7 +564,8 @@ class App:
             f"internal_res={INTERNAL_WIDTH}x{INTERNAL_HEIGHT}",
             f"scale={scale:.3f} letterbox=({x},{y})",
             f"hovered_card={self.debug.get('hovered_card_id','-')} target_mode={self.debug.get('target_mode','-')}",
-            f"BGM track={self.music.debug_state()}",
+            f"BGM {self.music.debug_state()}",
+            f"LoreStatus={self.debug.get('lore_status','-')} paths={self.debug.get('lore_paths','-')}",
             f"design={self.canonical_design_source}",
             f"enemy_hp={self.debug.get('enemies_hp','-')} intent={self.debug.get('enemy_intent','-')}",
             f"card_art_regenerated={self.debug.get('art_regenerated','0')}",
@@ -572,6 +594,7 @@ class App:
                     self.run_qa_mode()
                 else:
                     self.sm.handle_event(event)
+            self.music.tick()
             self.sm.update(dt)
             self.sm.render(self.renderer.internal)
             self.draw_debug_overlay()

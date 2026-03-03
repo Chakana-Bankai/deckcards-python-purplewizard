@@ -17,6 +17,7 @@ DEFAULT_SETTINGS = {
     "music_muted": False,
     "music_mute": False,
     "autogen_art_mode": "missing_only",
+    "dev_reset_autogen_on_boot": False,
 }
 
 
