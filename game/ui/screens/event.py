@@ -16,9 +16,11 @@ class EventScreen:
             self.app.toggle_language()
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
+            self.app.sfx.play("ui_click")
             for i, ch in enumerate(self.event["choices"]):
                 if pygame.Rect(180, 360 + i * 86, 920, 64).collidepoint(pos):
                     self.app.apply_event_effects(ch["effects"])
+                    self.app._complete_current_node()
                     self.app.goto_map()
 
     def update(self, dt):

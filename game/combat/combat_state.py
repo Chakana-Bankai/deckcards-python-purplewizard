@@ -62,6 +62,7 @@ class CombatState:
         self.needs_target = None
         self.result = None
         self.screen_shake = 0.0
+        self.combat_events = []
         self.start_player_turn()
 
     def _load_cards(self):
@@ -103,6 +104,7 @@ class CombatState:
 
     def start_player_turn(self):
         self.turn += 1
+        self.combat_events.append({"type":"turn_start"})
         self.player["energy"] = 3 + (1 if self.player["statuses"].get("energized", 0) > 0 else 0)
         self.player["block"] = 0
         self.draw(5)
@@ -183,11 +185,17 @@ class CombatState:
                 self.remove_status("player", "phase", 1)
             blocked = min(self.player["block"], amount)
             self.player["block"] -= blocked
-            self.player["hp"] -= max(0, amount - blocked)
+            dealt = max(0, amount - blocked)
+            self.player["hp"] -= dealt
+            if dealt > 0:
+                self.combat_events.append({"type":"damage","target":"player","amount":dealt})
         else:
             blocked = min(target.block, amount)
             target.block -= blocked
-            target.hp -= max(0, amount - blocked)
+            dealt = max(0, amount - blocked)
+            target.hp -= dealt
+            if dealt > 0:
+                self.combat_events.append({"type":"damage","target":target.id,"amount":dealt})
             if target.hp <= 0 and self.pending_if_kill:
                 interpret_effects(self, CardInstance(self.cards["strike"]), target, self.pending_if_kill)
                 self.pending_if_kill = None
@@ -197,8 +205,10 @@ class CombatState:
     def gain_block(self, target, amount):
         if target == "player":
             self.player["block"] += amount
+            self.combat_events.append({"type":"block","target":"player","amount":amount})
         else:
             target.block += amount
+            self.combat_events.append({"type":"block","target":target.id,"amount":amount})
 
     def apply_status(self, target, name, stacks):
         status_pool = self.player["statuses"] if target == "player" else target.statuses
@@ -222,6 +232,12 @@ class CombatState:
         if card in self.discard_pile:
             self.discard_pile.remove(card)
         self.exhaust_pile.append(card)
+        self.combat_events.append({"type":"exhaust"})
 
     def discard_card(self, card):
         self.discard_pile.append(card)
+
+    def pop_events(self):
+        events = self.combat_events[:]
+        self.combat_events.clear()
+        return events

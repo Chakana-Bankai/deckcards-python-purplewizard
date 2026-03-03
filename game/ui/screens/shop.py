@@ -16,9 +16,11 @@ class ShopScreen:
             if event.key == pygame.K_F1:
                 self.app.toggle_language()
             if event.key == pygame.K_ESCAPE:
+                self.app._complete_current_node()
                 self.app.goto_map()
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
+            self.app.sfx.play("ui_click")
             if pygame.Rect(160, 220, 330, 240).collidepoint(pos) and self.app.run_state["gold"] >= 40:
                 self.app.run_state["gold"] -= 40
                 self.app.run_state["deck"].append(self.offer_card["id"])
@@ -26,6 +28,7 @@ class ShopScreen:
                 self.app.run_state["gold"] -= 30
                 self.app.run_state["deck"].pop(0)
             if pygame.Rect(980, 220, 220, 70).collidepoint(pos):
+                self.app._complete_current_node()
                 self.app.goto_map()
 
     def update(self, dt):

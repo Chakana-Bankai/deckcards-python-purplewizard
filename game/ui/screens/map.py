@@ -1,6 +1,6 @@
 import pygame
 
-from game.settings import COLORS
+from game.ui.theme import UI_THEME
 
 
 class MapScreen:
@@ -19,22 +19,15 @@ class MapScreen:
             if event.key == pygame.K_ESCAPE:
                 self.app.goto_menu()
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            pos = self.app.renderer.map_mouse(event.pos)
-            self.click_node(pos)
+            self.click_node(self.app.renderer.map_mouse(event.pos))
 
     def click_node(self, pos):
-        run = self.app.run_state
-        if run["map_index"] >= len(run["map"]):
-            self.app.goto_menu()
-            return
-        col = run["map"][run["map_index"]]
-        for node in col:
-            if pygame.Rect(node["x"] - 22, node["y"] - 22, 44, 44).collidepoint(pos) and node["available"]:
-                node["available"] = False
-                run["map_index"] += 1
-                self.app.enter_node(node)
-                self.app.sfx.play("ui_click")
-                return
+        for col in self.app.run_state.get("map", []):
+            for node in col:
+                if pygame.Rect(node["x"] - 24, node["y"] - 24, 48, 48).collidepoint(pos) and node.get("state") == "available":
+                    self.app.sfx.play("ui_click")
+                    self.app.select_map_node(node)
+                    return
 
     def update(self, dt):
         self.lore_timer += dt
@@ -43,25 +36,35 @@ class MapScreen:
             self.lore_idx = (self.lore_idx + 1) % 3
 
     def render(self, s):
-        s.fill(COLORS["bg"])
+        s.fill(UI_THEME["bg"])
         run = self.app.run_state
-        title = self.app.big_font.render(self.app.loc.t("map_title"), True, COLORS["text"])
-        s.blit(title, (40, 28))
-        lore = self.app.loc.t("lore_tagline")
-        lore2 = self.app.loc.t(f"lore_short_{self.lore_idx + 1}")
-        s.blit(self.app.font.render(lore, True, COLORS["muted"]), (40, 74))
-        s.blit(self.app.font.render(lore2, True, COLORS["violet"]), (40, 102))
-        s.blit(self.app.font.render(f"{self.app.loc.t('gold')}: {run['gold']}", True, COLORS["gold"]), (1080, 28))
+        s.blit(self.app.big_font.render(self.app.loc.t("map_title"), True, UI_THEME["text"]), (40, 28))
+        s.blit(self.app.font.render(self.app.loc.t("lore_tagline"), True, UI_THEME["muted"]), (40, 76))
+        s.blit(self.app.font.render(self.app.loc.t(f"lore_short_{self.lore_idx+1}"), True, UI_THEME["violet"]), (40, 104))
+        s.blit(self.app.font.render(f"{self.app.loc.t('gold')}: {run['gold']}", True, UI_THEME["gold"]), (1080, 28))
+
         for ci, col in enumerate(run["map"]):
-            for n in col:
-                color = COLORS["violet"] if n["available"] else COLORS["violet_dark"]
-                if n["type"] == "boss":
-                    color = COLORS["bad"]
-                pygame.draw.circle(s, color, (n["x"], n["y"]), 18)
-                key = f"node_{n['type']}"
-                lbl = self.app.small_font.render(self.app.loc.t(key), True, COLORS["text"])
-                s.blit(lbl, (n["x"] - 35, n["y"] + 26))
-                if ci < len(run["map"]) - 1:
-                    for nx in run["map"][ci + 1]:
-                        if nx["id"] in n["next"]:
-                            pygame.draw.line(s, (60, 66, 90), (n["x"], n["y"]), (nx["x"], nx["y"]), 2)
+            if ci < len(run["map"]) - 1:
+                for node in col:
+                    for next_id in node.get("next", []):
+                        nxt = self.app.node_lookup.get(next_id)
+                        if nxt:
+                            pygame.draw.line(s, (75, 80, 120), (node["x"], node["y"]), (nxt["x"], nxt["y"]), 2)
+
+        mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
+        for col in run["map"]:
+            for node in col:
+                state = node.get("state", "locked")
+                color = (90, 90, 95)
+                if state == "available":
+                    color = UI_THEME["violet"]
+                elif state == "completed":
+                    color = UI_THEME["good"]
+                if node["type"] == "boss":
+                    color = UI_THEME["bad"] if state != "locked" else (80, 40, 45)
+                r = pygame.Rect(node["x"] - 18, node["y"] - 18, 36, 36)
+                if r.collidepoint(mouse) and state == "available":
+                    pygame.draw.circle(s, (220, 195, 255), (node["x"], node["y"]), 22)
+                pygame.draw.circle(s, color, (node["x"], node["y"]), 18)
+                lbl = self.app.small_font.render(self.app.loc.t(f"node_{node['type']}"), True, UI_THEME["text"])
+                s.blit(lbl, (node["x"] - lbl.get_width() // 2, node["y"] + 24))

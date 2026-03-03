@@ -40,5 +40,8 @@
   "gold": "Gold",
   "menu_back": "Back",
   "menu_language_hint": "F1: Toggle language",
-  "event_continue": "Continue"
+  "event_continue": "Continue",
+  "settings_sfx": "SFX Volume",
+  "settings_fullscreen": "Fullscreen",
+  "combat_turn_banner": "YOUR TURN"
 }

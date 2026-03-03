@@ -41,3 +41,8 @@ También puedes usar:
 - Carga JSON segura con fallback (`safe_io.load_json`).
 - Defaults mínimos si faltan data files (cartas base, enemigo dummy, eventos vacíos).
 - Manejo de excepciones con traceback completo.
+
+
+## Assets
+
+Los placeholders de sprites y SFX se generan automáticamente al iniciar el juego (no se versionan binarios).

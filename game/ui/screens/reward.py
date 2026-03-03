@@ -18,6 +18,7 @@ class RewardScreen:
             self.app.toggle_language()
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
+            self.app.sfx.play("ui_click")
             for i, card in enumerate(self.reward_cards):
                 r = pygame.Rect(220 + i * 290, 240, 240, 300)
                 if r.collidepoint(pos):

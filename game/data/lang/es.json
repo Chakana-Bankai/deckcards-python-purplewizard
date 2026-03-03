@@ -41,17 +41,14 @@
   "menu_back": "Volver",
   "menu_language_hint": "F1: Cambiar idioma",
   "event_continue": "Continuar",
-
   "lore_tagline": "Tres mundos, una sola Trama. La Chakana guía el paso.",
   "lore_short_1": "Hanan Pacha, Kay Pacha, Ukhu Pacha. Camina sin mentirte.",
   "lore_short_2": "La Violeta transmuta: no destruye, convierte.",
   "lore_short_3": "Toda potencia exige pago. La Ruptura recuerda.",
-
   "status_weak": "Debilidad",
   "status_frail": "Fragilidad",
   "status_focus": "Foco",
   "status_rupture_burn": "Quemadura de Ruptura",
-
   "relic_violet_seal_name": "Sello Violeta",
   "relic_violet_seal_desc": "+1 Energía en el turno 1 de cada combate.",
   "relic_chakana_thread_name": "Hilo de Chakana",
@@ -64,7 +61,6 @@
   "relic_serpent_scale_desc": "Cuando exilias una carta, gana 1 Bloque.",
   "relic_andean_knot_name": "Nudo Andino",
   "relic_andean_knot_desc": "Al final del combate, si Ruptura >= 7, reduce Ruptura en 2.",
-
   "enemy_voidling_name": "Vástago del Vacío",
   "enemy_ink_mite_name": "Ácaro de Tinta",
   "enemy_whisper_mask_name": "Máscara Susurrante",
@@ -74,12 +70,10 @@
   "enemy_violet_thief_name": "Ladrón Violeta",
   "enemy_stone_sentinel_name": "Centinela de Piedra",
   "enemy_inverse_weaver_name": "Tejedor Inverso",
-
   "card_strike_name": "Golpe",
   "card_strike_desc": "Inflige 6 de daño.",
   "card_defend_name": "Defensa",
   "card_defend_desc": "Gana 5 de Bloque.",
-
   "card_violet_bolt_name": "Rayo Violeta",
   "card_violet_bolt_desc": "Inflige 7 de daño. Si Ruptura >= 3, aplica Debilidad 1.",
   "card_prismatic_shield_name": "Escudo Prismático",
@@ -100,7 +94,6 @@
   "card_exchange_desc": "Convierte hasta 6 de tu Bloque en daño al enemigo (1:1).",
   "card_cauterize_rupture_name": "Cauterizar Ruptura",
   "card_cauterize_rupture_desc": "Reduce Ruptura en 2. Gana 1 Energía.",
-
   "card_short_portal_name": "Portal Breve",
   "card_short_portal_desc": "Elige: Roba 2 cartas O gana 1 Energía.",
   "card_violet_ring_name": "Anillo Violeta",
@@ -115,14 +108,12 @@
   "card_reflection_desc": "Duplica el próximo daño o Bloque que generes este turno.",
   "card_silence_name": "Silencio",
   "card_silence_desc": "Remueve 1 debuff tuyo O remueve 1 buff del enemigo.",
-
   "card_amethyst_crown_name": "Corona Amatista",
   "card_amethyst_crown_desc": "Gana +1 Energía por 2 turnos. Exilia esta carta.",
   "card_rewrite_name": "Reescritura",
   "card_rewrite_desc": "Elige 1 carta en tu mano: su costo es 0 y se juega dos veces este turno.",
   "card_final_gate_name": "Puerta Final",
   "card_final_gate_desc": "Inflige 10 de daño + 2 por cada Ruptura. Luego Ruptura = 0.",
-
   "event_apacheta_title": "Apacheta",
   "event_apacheta_body": "Piedras apiladas. Un paso por cada promesa. La Trama te escucha si pagas con intención.",
   "event_apacheta_choice_offer": "Dejar ofrenda (20 oro) → recibir señal",
@@ -147,5 +138,8 @@
   "event_chakana_body": "Tres mundos, un centro. Elige tu eje: equilibrio, poder o silencio.",
   "event_chakana_choice_balance": "Equilibrio → −3 Ruptura y curas 6",
   "event_chakana_choice_power": "Poder (pago real) → +3 Ruptura, reliquia Hilo de Chakana, −7 Vida",
-  "event_chakana_choice_silence": "Silencio → remover 1 carta y +2 Vida Máx"
+  "event_chakana_choice_silence": "Silencio → remover 1 carta y +2 Vida Máx",
+  "settings_sfx": "Volumen SFX",
+  "settings_fullscreen": "Pantalla completa",
+  "combat_turn_banner": "TU TURNO"
 }
