@@ -23,10 +23,12 @@ class SettingsScreen:
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            self.app.set_debug(last_ui_event="settings:back")
             self.app.goto_menu()
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
             if self.back_rect.collidepoint(pos):
+                self.app.save_user_settings()
                 self.app.goto_menu()
             elif self.lang_rect.collidepoint(pos):
                 self.app.toggle_language()
@@ -34,16 +36,20 @@ class SettingsScreen:
                 self.app.renderer.toggle_fullscreen()
             elif self.sfx_slider.inflate(0, 16).collidepoint(pos):
                 self._set_slider(pos[0], self.sfx_slider, self.app.sfx.set_volume)
+                self.app.user_settings["sfx_volume"] = self.app.sfx.master_volume
             elif self.music_slider.inflate(0, 16).collidepoint(pos):
                 self._set_slider(pos[0], self.music_slider, self.app.music.set_volume)
+                self.app.user_settings["music_volume"] = self.app.music.volume
             elif self.mute_rect.collidepoint(pos):
                 v = not self.app.run_state.get("settings", {}).get("music_muted", False) if self.app.run_state else not self.app.music.muted
                 self.app.music.set_muted(v)
+                self.app.user_settings["music_muted"] = v
                 if self.app.run_state:
                     self.app.run_state["settings"]["music_muted"] = v
             elif self.timer_rect.collidepoint(pos) and self.app.run_state:
                 cur = self.app.run_state["settings"].get("timer_on", False)
                 self.app.run_state["settings"]["timer_on"] = not cur
+                self.app.user_settings["timer_on"] = not cur
 
     def update(self, dt):
         pass

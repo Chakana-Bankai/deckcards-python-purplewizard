@@ -35,6 +35,7 @@ class CardArtGenerator:
             pygame.draw.line(surf, (205, 175, 255), (28, 80), (228, 80), 2)
         pygame.draw.rect(surf, (225, 200, 245), surf.get_rect(), 2)
         pygame.image.save(surf, str(path))
+        print(f"[art] Generated art for {card_id} -> {path}")
 
 
 def export_prompts(cards: list[dict]):
@@ -44,3 +45,4 @@ def export_prompts(cards: list[dict]):
         cid = c.get("id", "unknown")
         lines.append(f"{cid}: pixel art mystical andean gothic purple mage sigils, dramatic light, chakana symbol")
     out.write_text("\n".join(lines), encoding="utf-8")
+    print(f"[art] prompts exported -> {out}")

@@ -67,3 +67,7 @@ def ensure_placeholder_assets(card_ids: list[str], enemy_ids: list[str]) -> None
     }
     for name, hz in sfx.items():
         _write_wav(a_dir / f"sfx/{name}.wav", hz=hz)
+
+    music = {"menu": 0, "map": 0, "combat": 0, "event": 0, "boss": 0}
+    for name in music:
+        _write_wav(a_dir / f"music/{name}.wav", hz=220, volume=0.0, ms=1000)

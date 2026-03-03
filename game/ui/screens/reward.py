@@ -39,6 +39,7 @@ class RewardScreen:
         s.fill(UI_THEME["bg"])
         s.blit(self.app.big_font.render(self.app.loc.t("reward_title"), True, UI_THEME["text"]), (500, 74))
         s.blit(self.app.font.render(f"+{self.gold} {self.app.loc.t('gold')}", True, UI_THEME["gold"]), (580, 120))
+        s.blit(self.app.small_font.render("Elige cartas que combinen con tu Sendero", True, UI_THEME["muted"]), (420, 180))
         lvl = self.app.run_state["level"]
         need = lvl * 20
         ratio = self.app.run_state["xp"] / max(1, need)

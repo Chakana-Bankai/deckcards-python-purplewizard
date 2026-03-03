@@ -20,6 +20,7 @@ class MapScreen:
             if event.key == pygame.K_ESCAPE:
                 self.app.goto_menu()
             if event.key == pygame.K_TAB:
+                self.app.set_debug(last_ui_event="map:deck_open")
                 self.app.goto_deck()
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
@@ -33,6 +34,7 @@ class MapScreen:
             for node in col:
                 if pygame.Rect(node["x"] - 24, node["y"] - 24, 48, 48).collidepoint(pos) and node.get("state") == "available":
                     self.app.sfx.play("ui_click")
+                    self.app.set_debug(last_ui_event=f"map:select_{node['id']}")
                     self.app.select_map_node(node)
                     return
 
@@ -48,6 +50,7 @@ class MapScreen:
         s.blit(self.app.big_font.render(self.app.loc.t("map_title"), True, UI_THEME["text"]), (40, 24))
         s.blit(self.app.font.render(self.app.loc.t("lore_tagline"), True, UI_THEME["muted"]), (40, 74))
         s.blit(self.app.font.render(self.app.loc.t(f"lore_short_{self.lore_idx + 1}"), True, UI_THEME["violet"]), (40, 102))
+        s.blit(self.app.tiny_font.render("Tip: mejora tu mazo en tienda y busca sinergias para el boss", True, UI_THEME["muted"]), (40, 158))
         s.blit(self.app.font.render(f"{self.app.loc.t('gold')}: {run['gold']}", True, UI_THEME["gold"]), (940, 30))
 
         # xp bar

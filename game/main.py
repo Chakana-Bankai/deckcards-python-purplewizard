@@ -14,6 +14,7 @@ from game.core.localization import LocalizationManager
 from game.core.paths import data_dir
 from game.core.rng import SeededRNG
 from game.core.safe_io import load_json
+from game.core.settings_store import load_settings, save_settings
 from game.core.state_machine import StateMachine
 from game.settings import FPS
 from game.ui.render import AssetManager, Renderer
@@ -23,6 +24,7 @@ from game.ui.screens.error import ErrorScreen
 from game.ui.screens.event import EventScreen
 from game.ui.screens.map import MapScreen
 from game.ui.screens.menu import MenuScreen
+from game.ui.screens.path_select import PathSelectScreen
 from game.ui.screens.reward import RewardScreen
 from game.ui.screens.settings import SettingsScreen
 from game.ui.screens.shop import ShopScreen
@@ -50,6 +52,9 @@ class App:
         self.assets = AssetManager()
         self.sfx = SFXManager()
         self.music = MusicManager()
+        self.sfx.set_volume(self.user_settings.get("sfx_volume", 0.7))
+        self.music.set_volume(self.user_settings.get("music_volume", 0.55))
+        self.music.set_muted(self.user_settings.get("music_muted", False))
         self.font = pygame.font.SysFont("arial", 24)
         self.small_font = pygame.font.SysFont("arial", 18)
         self.tiny_font = pygame.font.SysFont("arial", 15)
@@ -58,16 +63,21 @@ class App:
         self.run_state = None
         self.node_lookup = {}
         self.current_node_id = None
+        self.user_settings = load_settings()
+        self.debug_overlay = False
+        self.debug = {"last_ui_event": "-", "hovered_card_id": "-", "selected_card_id": "-", "target_mode": False}
 
         self.cards_data = self._load_cards_data()
         self.card_defs = {c["id"]: c for c in self.cards_data}
         self.enemies_data = self._load_enemies_data()
         self.events_data = self._load_events_data()
         self.relics_data = self._load_relics_data()
+        print(f"[load] cards={len(self.cards_data)} enemies={len(self.enemies_data)} events={len(self.events_data)} relics={len(self.relics_data)}")
         ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
         self.art_gen = CardArtGenerator()
         for c in self.cards_data:
             self.art_gen.ensure_art(c.get("id", "strike"), c.get("tags", []))
+        print("[load] card art verified")
         export_prompts(self.cards_data)
 
         pygame.display.set_caption(self.loc.t("game_title"))
@@ -107,20 +117,26 @@ class App:
     def goto_settings(self):
         self.sm.set(SettingsScreen(self))
 
+    def goto_path_select(self):
+        self.sm.set(PathSelectScreen(self))
+
     def goto_deck(self):
         self.sm.set(DeckScreen(self))
 
     def new_run(self):
+        self.goto_path_select()
+
+    def start_run_with_deck(self, starter_deck):
         self.run_state = {
             "gold": 80,
             "relics": ["violet_seal"],
             "player": {"hp": 70, "max_hp": 70, "block": 0, "energy": 3, "rupture": 0, "statuses": {}},
-            "deck": ["strike"] * 5 + ["defend"] * 5,
+            "deck": list(starter_deck),
             "sideboard": [],
             "map": self.generate_map(),
             "xp": 0,
             "level": 1,
-            "settings": {"timer_on": False, "turn_time": 30, "music_muted": False},
+            "settings": self.user_settings.copy(),
         }
         self.goto_map()
 
@@ -246,6 +262,31 @@ class App:
             else:
                 print(f"[events] warning: unsupported effect type '{effect_type}'")
 
+
+    def set_debug(self, **kwargs):
+        self.debug.update(kwargs)
+
+    def save_user_settings(self):
+        save_settings(self.user_settings)
+
+    def draw_debug_overlay(self):
+        if not self.debug_overlay:
+            return
+        x,y,nw,nh,scale = self.renderer._viewport()
+        lines = [
+            f"screen={self.sm.current.__class__.__name__ if self.sm.current else '-'}",
+            f"music={self.music.debug_state()}",
+            f"sfx_vol={self.sfx.master_volume:.2f}",
+            f"hand={self.debug.get('hand_count','-')} hover={self.debug.get('hovered_card_id','-')} sel={self.debug.get('selected_card_id','-')} target={self.debug.get('target_mode','-')}",
+            f"scale={scale:.3f} letterbox=({x},{y})",
+            f"last_ui={self.debug.get('last_ui_event','-')}",
+        ]
+        panel = pygame.Surface((620, 138), pygame.SRCALPHA)
+        panel.fill((0,0,0,170))
+        self.renderer.internal.blit(panel, (8,8))
+        for i,line in enumerate(lines):
+            self.renderer.internal.blit(self.tiny_font.render(line, True, (240,240,240)), (16, 16+i*20))
+
     def run(self):
         while self.running:
             dt = self.clock.tick(FPS) / 1000.0
@@ -256,10 +297,13 @@ class App:
                     self.renderer.toggle_fullscreen()
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
                     self.toggle_language()
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_F2:
+                    self.debug_overlay = not self.debug_overlay
                 else:
                     self.sm.handle_event(event)
             self.sm.update(dt)
             self.sm.render(self.renderer.internal)
+            self.draw_debug_overlay()
             self.renderer.present()
         pygame.quit()
 

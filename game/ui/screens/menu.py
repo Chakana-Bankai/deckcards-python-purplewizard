@@ -20,6 +20,7 @@ class MenuScreen:
         pass
 
     def start_run(self):
+        self.app.set_debug(last_ui_event="menu:start")
         self.app.new_run()
 
     def continue_run(self):
@@ -29,6 +30,7 @@ class MenuScreen:
             self.app.new_run()
 
     def open_settings(self):
+        self.app.set_debug(last_ui_event="menu:settings")
         self.app.goto_settings()
 
     def exit_game(self):

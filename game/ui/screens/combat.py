@@ -89,12 +89,15 @@ class CombatScreen:
     def handle_event(self, event):
         if event.type == pygame.MOUSEWHEEL:
             self.hand_scroll -= event.y
+            self.app.set_debug(last_ui_event=f"wheel:{event.y}")
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_e:
+                self.app.set_debug(last_ui_event="key:E_end_turn")
                 self.c.end_turn()
                 self.turn_timer = self.app.run_state.get("settings", {}).get("turn_time", 30)
             elif event.key == pygame.K_h:
                 self.glossary = not self.glossary
+                self.app.set_debug(last_ui_event="key:H_glossary")
             elif event.key == pygame.K_ESCAPE:
                 self.c.needs_target = None
                 self.selected_card_index = None
@@ -119,6 +122,7 @@ class CombatScreen:
                 er = self._enemy_rect(i)
                 if er.collidepoint(pos) and e.alive:
                     if self.c.needs_target is not None:
+                        self.app.set_debug(last_ui_event=f"target_enemy:{i}")
                         self._play_card(self.c.needs_target, i)
                         self.c.needs_target = None
                         self.selected_card_index = None
@@ -128,6 +132,7 @@ class CombatScreen:
                 r = self._card_rect(i, len(visible))
                 if r.collidepoint(pos):
                     self.selected_card_index = start + i
+                    self.app.set_debug(last_ui_event=f"card_click:{start+i}")
                     self.app.sfx.play("card_pick")
                     self._play_card(start + i, None)
                     return
@@ -228,7 +233,10 @@ class CombatScreen:
             intent = e.current_intent()
             val = intent.get("value", [intent.get("stacks", 1), intent.get("stacks", 1)])
             num = val[0] if isinstance(val, list) else val
-            txt = f"{self.app.loc.t(INTENT_KEYS.get(intent.get('intent', 'attack'),'intent_attack'))} {num}"
+            ik = intent.get("intent","attack")
+            prefix = {"attack":"ATK", "defend":"DEF", "debuff":"DEBUFF", "buff":"BUFF"}.get(ik, "ATK")
+            status_txt = f" {intent.get('status','')}({intent.get('stacks',1)})" if ik in {"debuff","buff"} else ""
+            txt = f"{prefix} {num}{status_txt}"
             ir = pygame.Rect(er.x + 10, er.y + 175, 200, 24)
             pygame.draw.rect(s, (28, 30, 48), ir, border_radius=8)
             s.blit(self.app.tiny_font.render(txt, True, UI_THEME["muted"]), (ir.x + 5, ir.y + 5))
@@ -265,6 +273,8 @@ class CombatScreen:
             rr = self._draw_card(s, self._card_rect(i, len(visible)), c, selected=(start + i == self.selected_card_index))
             if rr.collidepoint(mouse):
                 self.tooltip = self.app.loc.t(c.definition.text_key)
+
+        self.app.set_debug(hand_count=len(self.c.hand), hovered_card_id=self.tooltip or "-", selected_card_id=(self.c.hand[self.selected_card_index].definition.id if self.selected_card_index is not None and self.selected_card_index < len(self.c.hand) else "-"), target_mode=self.c.needs_target is not None)
 
         # floaters
         for f in self.floaters:
