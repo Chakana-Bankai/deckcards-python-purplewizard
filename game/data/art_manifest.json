@@ -1,302 +1,302 @@
 {
-  "strike": {
-    "prompt_hash": "5813290443840658833",
-    "generated_at": 1772579133,
-    "seed": "658833"
+  "filo_astral": {
+    "prompt_hash": "1993222966774562503",
+    "generated_at": 1772580070,
+    "seed": "562503"
   },
-  "defend": {
-    "prompt_hash": "8938186443904280595",
-    "generated_at": 1772579133,
-    "seed": "280595"
+  "lanza_del_amanecer": {
+    "prompt_hash": "5398820052639492230",
+    "generated_at": 1772580070,
+    "seed": "492230"
   },
-  "violet_bolt": {
-    "prompt_hash": "1523708388293004332",
-    "generated_at": 1772579133,
-    "seed": "4332"
+  "corte_del_puma": {
+    "prompt_hash": "6852043497409537751",
+    "generated_at": 1772580070,
+    "seed": "537751"
   },
-  "prismatic_shield": {
-    "prompt_hash": "6525074081530381604",
-    "generated_at": 1772579133,
-    "seed": "381604"
+  "golpe_del_trueno": {
+    "prompt_hash": "4259468076887849074",
+    "generated_at": 1772580070,
+    "seed": "849074"
   },
-  "arcane_pulse": {
-    "prompt_hash": "5606843260452610953",
-    "generated_at": 1772579133,
-    "seed": "610953"
+  "estallido_arcano": {
+    "prompt_hash": "3410138571786596349",
+    "generated_at": 1772580070,
+    "seed": "596349"
   },
-  "lesser_seal": {
-    "prompt_hash": "4504638124222251606",
-    "generated_at": 1772579133,
-    "seed": "251606"
+  "ruptura_del_umbral": {
+    "prompt_hash": "6617497851885518632",
+    "generated_at": 1772580070,
+    "seed": "518632"
   },
-  "subtle_drain": {
-    "prompt_hash": "839694691085172134",
-    "generated_at": 1772579133,
-    "seed": "172134"
+  "garra_espiritual": {
+    "prompt_hash": "1745452412550855364",
+    "generated_at": 1772580070,
+    "seed": "855364"
   },
-  "vision": {
-    "prompt_hash": "5238396145703299487",
-    "generated_at": 1772579133,
-    "seed": "299487"
+  "tormenta_de_lanzas": {
+    "prompt_hash": "3641606817613547202",
+    "generated_at": 1772580070,
+    "seed": "547202"
   },
-  "phase_shift": {
-    "prompt_hash": "6793104032503592609",
-    "generated_at": 1772579133,
-    "seed": "592609"
+  "fragmento_celeste": {
+    "prompt_hash": "1512504012313960677",
+    "generated_at": 1772580070,
+    "seed": "960677"
   },
-  "fragment": {
-    "prompt_hash": "4501181145048921970",
-    "generated_at": 1772579133,
-    "seed": "921970"
+  "embate_del_jaguar": {
+    "prompt_hash": "439336887420004619",
+    "generated_at": 1772580070,
+    "seed": "4619"
   },
-  "exchange": {
-    "prompt_hash": "752529876172564613",
-    "generated_at": 1772579133,
-    "seed": "564613"
+  "punal_de_luz": {
+    "prompt_hash": "786106157724700104",
+    "generated_at": 1772580070,
+    "seed": "700104"
   },
-  "cauterize_rupture": {
-    "prompt_hash": "3158259359643488342",
-    "generated_at": 1772579133,
-    "seed": "488342"
+  "desgarro_del_vacio": {
+    "prompt_hash": "2655863159539995890",
+    "generated_at": 1772580070,
+    "seed": "995890"
   },
-  "short_portal": {
-    "prompt_hash": "6010934855168913723",
-    "generated_at": 1772579133,
-    "seed": "913723"
+  "impacto_solar": {
+    "prompt_hash": "7541784396969788506",
+    "generated_at": 1772580070,
+    "seed": "788506"
   },
-  "violet_ring": {
-    "prompt_hash": "8579484964900858904",
-    "generated_at": 1772579133,
-    "seed": "858904"
+  "corte_dimensional": {
+    "prompt_hash": "2309039687987716320",
+    "generated_at": 1772580070,
+    "seed": "716320"
   },
-  "rite_transmutation": {
-    "prompt_hash": "6138229251621913437",
-    "generated_at": 1772579133,
-    "seed": "913437"
+  "filo_en_cadena": {
+    "prompt_hash": "1040724919790803875",
+    "generated_at": 1772580070,
+    "seed": "803875"
   },
-  "astral_cut": {
-    "prompt_hash": "388334851931762233",
-    "generated_at": 1772579133,
-    "seed": "762233"
+  "sello_protector": {
+    "prompt_hash": "5286565249400181225",
+    "generated_at": 1772580070,
+    "seed": "181225"
   },
-  "void_limit": {
-    "prompt_hash": "5497407095316499409",
-    "generated_at": 1772579133,
-    "seed": "499409"
+  "muralla_de_piedra": {
+    "prompt_hash": "630269422410161762",
+    "generated_at": 1772580070,
+    "seed": "161762"
   },
-  "reflection": {
-    "prompt_hash": "4641458528239780083",
-    "generated_at": 1772579133,
-    "seed": "780083"
+  "escudo_de_luz": {
+    "prompt_hash": "5572501132200108305",
+    "generated_at": 1772580070,
+    "seed": "108305"
   },
-  "silence": {
-    "prompt_hash": "8083411144426737751",
-    "generated_at": 1772579133,
-    "seed": "737751"
+  "guardia_terrenal": {
+    "prompt_hash": "4304253981618192195",
+    "generated_at": 1772580070,
+    "seed": "192195"
   },
-  "amethyst_crown": {
-    "prompt_hash": "3863679664356515099",
-    "generated_at": 1772579133,
-    "seed": "515099"
+  "resistencia_ancestral": {
+    "prompt_hash": "8706521801800816019",
+    "generated_at": 1772580070,
+    "seed": "816019"
   },
-  "rewrite": {
-    "prompt_hash": "6759301055214746575",
-    "generated_at": 1772579133,
-    "seed": "746575"
+  "caparazon_kaypacha": {
+    "prompt_hash": "6826508045793825595",
+    "generated_at": 1772580070,
+    "seed": "825595"
   },
-  "final_gate": {
-    "prompt_hash": "2111915687663707502",
-    "generated_at": 1772579133,
-    "seed": "707502"
+  "fortaleza_chakana": {
+    "prompt_hash": "185767571781182771",
+    "generated_at": 1772580070,
+    "seed": "182771"
   },
-  "pw_card_01": {
-    "prompt_hash": "8565201172496954197",
-    "generated_at": 1772579133,
-    "seed": "954197"
+  "refugio_espiritual": {
+    "prompt_hash": "4453534749758936454",
+    "generated_at": 1772580070,
+    "seed": "936454"
   },
-  "pw_card_02": {
-    "prompt_hash": "3596232164638923741",
-    "generated_at": 1772579133,
-    "seed": "923741"
+  "anillo_de_proteccion": {
+    "prompt_hash": "641540315323146074",
+    "generated_at": 1772580070,
+    "seed": "146074"
   },
-  "pw_card_03": {
-    "prompt_hash": "7329692495204673053",
-    "generated_at": 1772579133,
-    "seed": "673053"
+  "campo_protector": {
+    "prompt_hash": "1940796810600213860",
+    "generated_at": 1772580070,
+    "seed": "213860"
   },
-  "pw_card_04": {
-    "prompt_hash": "962584513236708100",
-    "generated_at": 1772579133,
-    "seed": "708100"
+  "guardia_solar": {
+    "prompt_hash": "2214958247760397280",
+    "generated_at": 1772580070,
+    "seed": "397280"
   },
-  "pw_card_05": {
-    "prompt_hash": "5123544531014251513",
-    "generated_at": 1772579133,
-    "seed": "251513"
+  "escudo_del_chaman": {
+    "prompt_hash": "906396670875581525",
+    "generated_at": 1772580070,
+    "seed": "581525"
   },
-  "pw_card_06": {
-    "prompt_hash": "6397456126166494212",
-    "generated_at": 1772579133,
-    "seed": "494212"
+  "barrera_sagrada": {
+    "prompt_hash": "5219387588851806253",
+    "generated_at": 1772580070,
+    "seed": "806253"
   },
-  "pw_card_07": {
-    "prompt_hash": "49440613012215545",
-    "generated_at": 1772579133,
-    "seed": "215545"
+  "firmeza_del_cuerpo": {
+    "prompt_hash": "3614145629684380245",
+    "generated_at": 1772580070,
+    "seed": "380245"
   },
-  "pw_card_08": {
-    "prompt_hash": "337341393085980658",
-    "generated_at": 1772579133,
-    "seed": "980658"
+  "piedra_ritual": {
+    "prompt_hash": "6400674921153349379",
+    "generated_at": 1772580070,
+    "seed": "349379"
   },
-  "pw_card_09": {
-    "prompt_hash": "5141570176308785894",
-    "generated_at": 1772579133,
-    "seed": "785894"
+  "vision_del_condor": {
+    "prompt_hash": "4212825467483196751",
+    "generated_at": 1772580070,
+    "seed": "196751"
   },
-  "pw_card_10": {
-    "prompt_hash": "5741271252445100825",
-    "generated_at": 1772579133,
-    "seed": "100825"
+  "meditacion_profunda": {
+    "prompt_hash": "4202563613378747150",
+    "generated_at": 1772580070,
+    "seed": "747150"
   },
-  "pw_card_11": {
-    "prompt_hash": "2290067152829108027",
-    "generated_at": 1772579133,
-    "seed": "108027"
+  "claridad_del_hanan": {
+    "prompt_hash": "3358077884819374764",
+    "generated_at": 1772580070,
+    "seed": "374764"
   },
-  "pw_card_12": {
-    "prompt_hash": "703972825148501448",
-    "generated_at": 1772579133,
-    "seed": "501448"
+  "lectura_del_destino": {
+    "prompt_hash": "2494359174527467517",
+    "generated_at": 1772580070,
+    "seed": "467517"
   },
-  "pw_card_13": {
-    "prompt_hash": "3598608455626036358",
-    "generated_at": 1772579133,
-    "seed": "36358"
+  "revelacion_astral": {
+    "prompt_hash": "957239845887794120",
+    "generated_at": 1772580070,
+    "seed": "794120"
   },
-  "pw_card_14": {
-    "prompt_hash": "2985615593020671971",
-    "generated_at": 1772579133,
-    "seed": "671971"
+  "eco_de_sabiduria": {
+    "prompt_hash": "8870256403619281052",
+    "generated_at": 1772580070,
+    "seed": "281052"
   },
-  "pw_card_15": {
-    "prompt_hash": "921404474016756186",
-    "generated_at": 1772579133,
-    "seed": "756186"
+  "observacion_sagrada": {
+    "prompt_hash": "1807126095017530933",
+    "generated_at": 1772580070,
+    "seed": "530933"
   },
-  "pw_card_16": {
-    "prompt_hash": "6431577099087150966",
-    "generated_at": 1772579133,
-    "seed": "150966"
+  "calculo_del_cosmos": {
+    "prompt_hash": "535225228694511732",
+    "generated_at": 1772580070,
+    "seed": "511732"
   },
-  "pw_card_17": {
-    "prompt_hash": "6903996778536186489",
-    "generated_at": 1772579133,
-    "seed": "186489"
+  "mapa_del_destino": {
+    "prompt_hash": "5544976610370692929",
+    "generated_at": 1772580070,
+    "seed": "692929"
   },
-  "pw_card_18": {
-    "prompt_hash": "6563801093818719546",
-    "generated_at": 1772579133,
-    "seed": "719546"
+  "profecia_del_umbral": {
+    "prompt_hash": "7017642772326270975",
+    "generated_at": 1772580070,
+    "seed": "270975"
   },
-  "pw_card_19": {
-    "prompt_hash": "3919607993389089426",
-    "generated_at": 1772579133,
-    "seed": "89426"
+  "equilibrio_mental": {
+    "prompt_hash": "2610967818047593848",
+    "generated_at": 1772580070,
+    "seed": "593848"
   },
-  "pw_card_20": {
-    "prompt_hash": "8459157573745965746",
-    "generated_at": 1772579133,
-    "seed": "965746"
+  "mente_serena": {
+    "prompt_hash": "8151021599658745046",
+    "generated_at": 1772580070,
+    "seed": "745046"
   },
-  "pw_card_21": {
-    "prompt_hash": "494955400967161873",
-    "generated_at": 1772579133,
-    "seed": "161873"
+  "silencio_interior": {
+    "prompt_hash": "338457623070148987",
+    "generated_at": 1772580070,
+    "seed": "148987"
   },
-  "pw_card_22": {
-    "prompt_hash": "4890622017379440267",
-    "generated_at": 1772579133,
-    "seed": "440267"
+  "ojo_interior": {
+    "prompt_hash": "7234648826751238912",
+    "generated_at": 1772580070,
+    "seed": "238912"
   },
-  "pw_card_23": {
-    "prompt_hash": "7088697328965074866",
-    "generated_at": 1772579133,
-    "seed": "74866"
+  "ojo_del_condor": {
+    "prompt_hash": "6115962654196415222",
+    "generated_at": 1772580070,
+    "seed": "415222"
   },
-  "pw_card_24": {
-    "prompt_hash": "43063852313859754",
-    "generated_at": 1772579133,
-    "seed": "859754"
+  "portal_de_la_chakana": {
+    "prompt_hash": "9009854078094821714",
+    "generated_at": 1772580070,
+    "seed": "821714"
   },
-  "pw_card_25": {
-    "prompt_hash": "1071907598289536029",
-    "generated_at": 1772579133,
-    "seed": "536029"
+  "invocacion_astral": {
+    "prompt_hash": "7105612072389702359",
+    "generated_at": 1772580070,
+    "seed": "702359"
   },
-  "pw_card_26": {
-    "prompt_hash": "8899046139442169702",
-    "generated_at": 1772579133,
-    "seed": "169702"
+  "pulso_cosmico": {
+    "prompt_hash": "702307262074198250",
+    "generated_at": 1772580070,
+    "seed": "198250"
   },
-  "pw_card_27": {
-    "prompt_hash": "8922887641614739653",
-    "generated_at": 1772579133,
-    "seed": "739653"
+  "mantra_del_umbral": {
+    "prompt_hash": "7954847633820411752",
+    "generated_at": 1772580070,
+    "seed": "411752"
   },
-  "pw_card_28": {
-    "prompt_hash": "743487116604114308",
-    "generated_at": 1772579133,
-    "seed": "114308"
+  "vinculo_de_energia": {
+    "prompt_hash": "1161425068805942823",
+    "generated_at": 1772580070,
+    "seed": "942823"
   },
-  "pw_card_29": {
-    "prompt_hash": "5840589384092463085",
-    "generated_at": 1772579133,
-    "seed": "463085"
+  "circulo_de_invocacion": {
+    "prompt_hash": "4263894274129523294",
+    "generated_at": 1772580070,
+    "seed": "523294"
   },
-  "pw_card_30": {
-    "prompt_hash": "4403040296047332888",
-    "generated_at": 1772579133,
-    "seed": "332888"
+  "fusion_espiritual": {
+    "prompt_hash": "7196541342308400181",
+    "generated_at": 1772580070,
+    "seed": "400181"
   },
-  "pw_card_31": {
-    "prompt_hash": "4064119822284953660",
-    "generated_at": 1772579133,
-    "seed": "953660"
+  "luz_del_hanan": {
+    "prompt_hash": "2612197120850256196",
+    "generated_at": 1772580070,
+    "seed": "256196"
   },
-  "pw_card_32": {
-    "prompt_hash": "8106262279708380403",
-    "generated_at": 1772579134,
-    "seed": "380403"
+  "tormenta_mistica": {
+    "prompt_hash": "2809074564724671349",
+    "generated_at": 1772580070,
+    "seed": "671349"
   },
-  "pw_card_33": {
-    "prompt_hash": "2018964800908735542",
-    "generated_at": 1772579134,
-    "seed": "735542"
+  "espiritu_guardian": {
+    "prompt_hash": "5256742953048667222",
+    "generated_at": 1772580070,
+    "seed": "667222"
   },
-  "pw_card_34": {
-    "prompt_hash": "6395239297793508398",
-    "generated_at": 1772579134,
-    "seed": "508398"
+  "sello_de_los_tres_pachas": {
+    "prompt_hash": "2707408581293628868",
+    "generated_at": 1772580070,
+    "seed": "628868"
   },
-  "pw_card_35": {
-    "prompt_hash": "7054906753421347013",
-    "generated_at": 1772579134,
-    "seed": "347013"
+  "espejo_astral": {
+    "prompt_hash": "478863292107949762",
+    "generated_at": 1772580070,
+    "seed": "949762"
   },
-  "pw_card_36": {
-    "prompt_hash": "3964545937605530550",
-    "generated_at": 1772579134,
-    "seed": "530550"
+  "ritual_de_la_trama": {
+    "prompt_hash": "3685406627083510854",
+    "generated_at": 1772580070,
+    "seed": "510854"
   },
-  "pw_card_37": {
-    "prompt_hash": "8231031068890756274",
-    "generated_at": 1772579134,
-    "seed": "756274"
+  "baston_del_umbral": {
+    "prompt_hash": "286911751287353162",
+    "generated_at": 1772580070,
+    "seed": "353162"
   },
-  "pw_card_38": {
-    "prompt_hash": "4361208156352555892",
-    "generated_at": 1772579134,
-    "seed": "555892"
+  "chakana_de_luz": {
+    "prompt_hash": "6910108720911661863",
+    "generated_at": 1772580070,
+    "seed": "661863"
   }
 }
