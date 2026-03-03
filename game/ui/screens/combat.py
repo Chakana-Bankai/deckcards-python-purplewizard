@@ -230,6 +230,16 @@ class CombatScreen:
             ratio = max(0, e.hp) / max(1, e.max_hp)
             pygame.draw.rect(s, (45, 45, 45), (er.x + 10, er.y + 154, 200, 14), border_radius=6)
             pygame.draw.rect(s, UI_THEME["hp"], (er.x + 10, er.y + 154, int(200 * ratio), 14), border_radius=6)
+            intent = e.current_intent()
+            iv = intent.get("value", [intent.get("stacks", 1), intent.get("stacks", 1)])
+            num = iv[0] if isinstance(iv, list) else iv
+            ik = intent.get("intent", "attack")
+            intent_txt = {"attack": f"ATK {num}", "defend": f"DEF {num}", "debuff": f"DEBUFF {intent.get('status','')}({intent.get('stacks',1)})", "buff": f"BUFF {intent.get('status','')}({intent.get('stacks',1)})"}.get(ik, f"ATK {num}")
+            ir = pygame.Rect(er.x + 10, er.y + 174, 200, 24)
+            pygame.draw.rect(s, (26, 28, 42), ir, border_radius=8)
+            s.blit(self.app.tiny_font.render(intent_txt, True, UI_THEME["muted"]), (ir.x + 6, ir.y + 5))
+            if ir.collidepoint(mouse):
+                self.tooltip = intent_txt
 
         hud = pygame.Rect(930, 120, 330, 220)
         pygame.draw.rect(s, UI_THEME["panel"], hud, border_radius=12)
@@ -301,4 +311,6 @@ class CombatScreen:
             combat_status_button_visible=True,
             combat_end_turn_rect=str(self.end_turn_rect),
             combat_status_rect=str(self.status_rect),
+            enemies_count=len(self.c.enemies),
+            enemies_hp=",".join(str(max(0,e.hp)) for e in self.c.enemies),
         )

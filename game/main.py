@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import traceback
+import shutil
 
 import pygame
 
@@ -9,6 +10,7 @@ from game.audio.sfx_manager import SFXManager
 from game.combat.card import CardDef, CardInstance
 from game.combat.combat_state import CombatState
 from game.content.card_art_generator import CardArtGenerator, export_prompts
+from game.content.enemy_art_generator import EnemyArtGenerator
 from game.core.bootstrap_assets import ensure_placeholder_assets
 from game.core.localization import LocalizationManager
 from game.core.paths import data_dir
@@ -40,7 +42,7 @@ class App:
     def __init__(self):
         pygame.init()
         try:
-            pygame.mixer.init()
+            pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
         except Exception:
             print("[audio] mixer disabled")
 
@@ -58,10 +60,22 @@ class App:
         self.sfx.set_volume(self.user_settings.get("sfx_volume", 0.7))
         self.music.set_volume(self.user_settings.get("music_volume", 0.5))
         self.music.set_muted(self.user_settings.get("music_muted", False))
-        self.font = pygame.font.SysFont("arial", 24)
-        self.small_font = pygame.font.SysFont("arial", 18)
-        self.tiny_font = pygame.font.SysFont("arial", 15)
-        self.big_font = pygame.font.SysFont("arial", 42, bold=True)
+        # font pipeline
+        fonts_dir = data_dir().parent / "assets" / "fonts"
+        fonts_dir.mkdir(parents=True, exist_ok=True)
+        font_target = fonts_dir / "DejaVuSans.ttf"
+        if not font_target.exists():
+            src = pygame.font.match_font("dejavusans") or pygame.font.match_font("arial")
+            if src:
+                try:
+                    shutil.copy(src, font_target)
+                except Exception:
+                    pass
+        font_path = str(font_target) if font_target.exists() else None
+        self.font = pygame.font.Font(font_path, 20) if font_path else pygame.font.SysFont("arial", 20)
+        self.small_font = pygame.font.Font(font_path, 18) if font_path else pygame.font.SysFont("arial", 18)
+        self.tiny_font = pygame.font.Font(font_path, 16) if font_path else pygame.font.SysFont("arial", 16)
+        self.big_font = pygame.font.Font(font_path, 24) if font_path else pygame.font.SysFont("arial", 24, bold=True)
         self.sm = StateMachine()
         self.run_state = None
         self.node_lookup = {}
@@ -77,9 +91,12 @@ class App:
         print(f"[load] cards={len(self.cards_data)} enemies={len(self.enemies_data)} events={len(self.events_data)} relics={len(self.relics_data)}")
         ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
         self.art_gen = CardArtGenerator()
+        self.enemy_art_gen = EnemyArtGenerator()
         for c in self.cards_data:
             self.art_gen.ensure_art(c.get("id", "strike"), c.get("tags", []))
-        print("[load] card art verified")
+        for e in self.enemies_data:
+            self.enemy_art_gen.ensure_art(e.get("id", "dummy"))
+        print("[load] card/enemy art verified")
         export_prompts(self.cards_data)
 
         pygame.display.set_caption(self.loc.t("game_title"))
@@ -293,6 +310,7 @@ class App:
             f"last_ui={self.debug.get('last_ui_event','-')}",
             f"end_btn={self.debug.get('combat_end_turn_button_visible')} {self.debug.get('combat_end_turn_rect')}",
             f"status_btn={self.debug.get('combat_status_button_visible')} {self.debug.get('combat_status_rect')}",
+            f"enemies={self.debug.get('enemies_count','-')} hp={self.debug.get('enemies_hp','-')}",
         ]
         panel = pygame.Surface((780, 178), pygame.SRCALPHA)
         panel.fill((0,0,0,170))
