@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.log
+logs/
+.venv/
+game/.venv/
+game\\.venv/
+
+# Runtime-generated placeholder assets
+game/assets/**/*.png
+game/assets/**/*.wav
+!game/assets/**/.gitkeep
