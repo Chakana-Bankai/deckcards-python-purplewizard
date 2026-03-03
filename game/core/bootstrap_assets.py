@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+import random
 import struct
 import wave
 import zlib
@@ -47,6 +48,53 @@ def _write_wav(path: Path, hz: int = 440, ms: int = 120, volume: float = 0.15) -
         wav.writeframes(bytes(buf))
 
 
+def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists() and not force:
+        return
+
+    configs = {
+        "menu": (25.0, (130.81, 196.00, 261.63)),
+        "map": (28.0, (98.00, 146.83, 220.00)),
+        "combat": (26.0, (110.00, 164.81, 246.94)),
+        "event": (30.0, (123.47, 174.61, 233.08)),
+        "boss": (32.0, (87.31, 130.81, 196.00)),
+    }
+    duration, freqs = configs.get(track_key, (25.0, (130.81, 196.00, 261.63)))
+    rate = 44100
+    frames = int(rate * duration)
+    rng = random.Random(track_key)
+
+    with wave.open(str(path), "wb") as wav:
+        wav.setnchannels(2)
+        wav.setsampwidth(2)
+        wav.setframerate(rate)
+
+        buf = bytearray()
+        two_pi = 2.0 * math.pi
+        for i in range(frames):
+            t = i / rate
+            env = 0.65 + 0.35 * math.sin(two_pi * 0.03 * t)
+            pad = 0.0
+            for idx, f in enumerate(freqs):
+                pad += (0.14 - idx * 0.02) * math.sin(two_pi * f * t + idx * 0.7)
+
+            bell = 0.0
+            if i % (rate * 2) == 0:
+                pass
+            bell += 0.06 * math.sin(two_pi * (freqs[2] * 2.0) * t) * (0.5 + 0.5 * math.sin(two_pi * 0.21 * t))
+
+            noise = (rng.random() * 2.0 - 1.0) * 0.012
+            left = (pad * env + bell + noise) * 0.85
+            right = (pad * env + bell - noise) * 0.85
+
+            lv = max(-1.0, min(1.0, left))
+            rv = max(-1.0, min(1.0, right))
+            buf.extend(struct.pack("<hh", int(lv * 32767), int(rv * 32767)))
+
+        wav.writeframes(buf)
+
+
 def ensure_placeholder_assets(card_ids: list[str], enemy_ids: list[str]) -> None:
     a_dir = assets_dir()
     _write_png(a_dir / "sprites/player/player.png", 96, 96, (88, 70, 140))
@@ -64,6 +112,5 @@ def ensure_placeholder_assets(card_ids: list[str], enemy_ids: list[str]) -> None
     for name, hz in sfx.items():
         _write_wav(a_dir / f"sfx/{name}.wav", hz=hz)
 
-    # versioned silent placeholders for BGM
     for name in ["menu", "map", "combat", "event", "boss"]:
-        _write_wav(a_dir / f"music/{name}.wav", hz=220, volume=0.0, ms=1500)
+        synth_ambient_music(a_dir / f"music/{name}.wav", name)

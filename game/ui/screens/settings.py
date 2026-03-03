@@ -47,6 +47,7 @@ class SettingsScreen:
                 v = not self.app.user_settings.get("music_muted", False)
                 self.app.music.set_muted(v)
                 self.app.user_settings["music_muted"] = v
+                self.app.user_settings["music_mute"] = v
                 if self.app.run_state:
                     self.app.run_state["settings"]["music_muted"] = v
             elif self.timer_rect.collidepoint(pos):

@@ -15,6 +15,7 @@ DEFAULT_SETTINGS = {
     "turn_timer_enabled": False,
     "turn_timer_seconds": 30,
     "music_muted": False,
+    "music_mute": False,
     "autogen_art_mode": "missing_only",
 }
 
@@ -27,6 +28,9 @@ def _normalize(raw: dict) -> dict:
         data["turn_timer_enabled"] = bool(raw.get("timer_on"))
     if "turn_time" in raw:
         data["turn_timer_seconds"] = int(raw.get("turn_time") or 30)
+    if "music_mute" in raw and "music_muted" not in raw:
+        data["music_muted"] = bool(raw.get("music_mute"))
+    data["music_mute"] = bool(data.get("music_muted", False))
     return data
 
 

@@ -59,7 +59,7 @@ class App:
         self.music = MusicManager()
         self.sfx.set_volume(self.user_settings.get("sfx_volume", 0.7))
         self.music.set_volume(self.user_settings.get("music_volume", 0.5))
-        self.music.set_muted(self.user_settings.get("music_muted", False))
+        self.music.set_muted(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False)))
         # font pipeline
         fonts_dir = data_dir().parent / "assets" / "fonts"
         fonts_dir.mkdir(parents=True, exist_ok=True)
@@ -164,7 +164,7 @@ class App:
             "settings": {
                 "turn_timer_enabled": bool(self.user_settings.get("turn_timer_enabled", False)),
                 "turn_timer_seconds": int(self.user_settings.get("turn_timer_seconds", 30)),
-                "music_muted": bool(self.user_settings.get("music_muted", False)),
+                "music_muted": bool(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False))),
             },
         }
         self.goto_map()
@@ -304,6 +304,7 @@ class App:
         self.user_settings["sfx_volume"] = self.sfx.master_volume
         self.user_settings["music_volume"] = self.music.volume
         self.user_settings["music_muted"] = self.music.muted
+        self.user_settings["music_mute"] = self.music.muted
         self.user_settings["fullscreen"] = self.renderer.fullscreen
         self.user_settings["autogen_art_mode"] = self.user_settings.get("autogen_art_mode", "missing_only")
         save_settings(self.user_settings)

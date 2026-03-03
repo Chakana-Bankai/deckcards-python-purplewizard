@@ -6,5 +6,6 @@
   "turn_timer_enabled": false,
   "turn_timer_seconds": 30,
   "music_muted": false,
+  "music_mute": false,
   "autogen_art_mode": "missing_only"
 }
