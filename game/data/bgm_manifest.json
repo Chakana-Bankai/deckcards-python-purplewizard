@@ -1,0 +1,58 @@
+{
+  "menu": {
+    "track": "menu",
+    "bpm": 92,
+    "bars_a": 12,
+    "bars_b": 10,
+    "total_bars": 22,
+    "duration": 57.39
+  },
+  "map": {
+    "track": "map",
+    "bpm": 96,
+    "bars_a": 10,
+    "bars_b": 10,
+    "total_bars": 20,
+    "duration": 50.0
+  },
+  "combat": {
+    "track": "combat",
+    "bpm": 108,
+    "bars_a": 12,
+    "bars_b": 10,
+    "total_bars": 22,
+    "duration": 48.89
+  },
+  "event": {
+    "track": "event",
+    "bpm": 112,
+    "bars_a": 12,
+    "bars_b": 12,
+    "total_bars": 24,
+    "duration": 51.43
+  },
+  "reward": {
+    "track": "reward",
+    "bpm": 110,
+    "bars_a": 12,
+    "bars_b": 10,
+    "total_bars": 22,
+    "duration": 48.0
+  },
+  "boss": {
+    "track": "boss",
+    "bpm": 132,
+    "bars_a": 14,
+    "bars_b": 12,
+    "total_bars": 26,
+    "duration": 47.27
+  },
+  "ending": {
+    "track": "ending",
+    "bpm": 88,
+    "bars_a": 10,
+    "bars_b": 10,
+    "total_bars": 20,
+    "duration": 54.55
+  }
+}

@@ -1,0 +1,1323 @@
+[
+  {
+    "id": "strike",
+    "name_key": "card_strike_name",
+    "text_key": "card_strike_desc",
+    "rarity": "basic",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 6
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "defend",
+    "name_key": "card_defend_name",
+    "text_key": "card_defend_desc",
+    "rarity": "basic",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 5
+      }
+    ],
+    "family": "defense"
+  },
+  {
+    "id": "violet_bolt",
+    "name_key": "card_violet_bolt_name",
+    "text_key": "card_violet_bolt_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 7
+      },
+      {
+        "type": "if",
+        "cond": {
+          "stat_gte": [
+            "rupture",
+            3
+          ]
+        },
+        "then": [
+          {
+            "type": "status",
+            "name": "weak",
+            "stacks": 1
+          }
+        ]
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "prismatic_shield",
+    "name_key": "card_prismatic_shield_name",
+    "text_key": "card_prismatic_shield_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 8
+      },
+      {
+        "type": "if",
+        "cond": {
+          "stat_gte": [
+            "rupture",
+            5
+          ]
+        },
+        "then": [
+          {
+            "type": "block",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "family": "defense"
+  },
+  {
+    "id": "arcane_pulse",
+    "name_key": "card_arcane_pulse_name",
+    "text_key": "card_arcane_pulse_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 5
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "lesser_seal",
+    "name_key": "card_lesser_seal_name",
+    "text_key": "card_lesser_seal_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill",
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 5
+      },
+      {
+        "type": "rupture",
+        "amount": 1
+      }
+    ],
+    "family": "defense"
+  },
+  {
+    "id": "subtle_drain",
+    "name_key": "card_subtle_drain_name",
+    "text_key": "card_subtle_drain_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 6
+      },
+      {
+        "type": "if",
+        "cond": {
+          "target_has_debuff": true
+        },
+        "then": [
+          {
+            "type": "heal",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "vision",
+    "name_key": "card_vision_name",
+    "text_key": "card_vision_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "none",
+    "tags": [
+      "skill",
+      "utility"
+    ],
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 3
+      }
+    ],
+    "family": "manipulation"
+  },
+  {
+    "id": "phase_shift",
+    "name_key": "card_phase_shift_name",
+    "text_key": "card_phase_shift_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 6
+      },
+      {
+        "type": "status",
+        "name": "phase",
+        "stacks": 1
+      }
+    ],
+    "family": "defense"
+  },
+  {
+    "id": "fragment",
+    "name_key": "card_fragment_name",
+    "text_key": "card_fragment_desc",
+    "rarity": "common",
+    "cost": 0,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "exhaust"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 3
+      },
+      {
+        "type": "exhaust_self"
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "exchange",
+    "name_key": "card_exchange_name",
+    "text_key": "card_exchange_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "convert_block_to_damage",
+        "amount": 6
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "cauterize_rupture",
+    "name_key": "card_cauterize_rupture_name",
+    "text_key": "card_cauterize_rupture_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "rupture",
+        "amount": -2
+      },
+      {
+        "type": "energy",
+        "amount": 1
+      }
+    ],
+    "family": "energy"
+  },
+  {
+    "id": "short_portal",
+    "name_key": "card_short_portal_name",
+    "text_key": "card_short_portal_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "none",
+    "tags": [
+      "skill",
+      "choice"
+    ],
+    "effects": [
+      {
+        "type": "choose",
+        "options": [
+          [
+            {
+              "type": "draw",
+              "amount": 2
+            }
+          ],
+          [
+            {
+              "type": "energy",
+              "amount": 1
+            }
+          ]
+        ]
+      }
+    ],
+    "family": "manipulation"
+  },
+  {
+    "id": "violet_ring",
+    "name_key": "card_violet_ring_name",
+    "text_key": "card_violet_ring_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "skill",
+      "debuff"
+    ],
+    "effects": [
+      {
+        "type": "status",
+        "name": "weak",
+        "stacks": 2
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "rite_transmutation",
+    "name_key": "card_rite_transmutation_name",
+    "text_key": "card_rite_transmutation_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "none",
+    "tags": [
+      "skill",
+      "exhaust"
+    ],
+    "effects": [
+      {
+        "type": "exhaust_from_hand",
+        "amount": 1
+      },
+      {
+        "type": "status",
+        "name": "focus",
+        "stacks": 1
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "astral_cut",
+    "name_key": "card_astral_cut_name",
+    "text_key": "card_astral_cut_desc",
+    "rarity": "uncommon",
+    "cost": 2,
+    "target": "enemy",
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 8
+      },
+      {
+        "type": "if_kill",
+        "then": [
+          {
+            "type": "draw",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "void_limit",
+    "name_key": "card_void_limit_name",
+    "text_key": "card_void_limit_desc",
+    "rarity": "uncommon",
+    "cost": 0,
+    "target": "self",
+    "tags": [
+      "skill",
+      "rupture"
+    ],
+    "effects": [
+      {
+        "type": "rupture",
+        "amount": 2
+      },
+      {
+        "type": "status",
+        "name": "rupture_burn",
+        "stacks": 1
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "reflection",
+    "name_key": "card_reflection_name",
+    "text_key": "card_reflection_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill",
+      "buff"
+    ],
+    "effects": [
+      {
+        "type": "status",
+        "name": "reflect",
+        "stacks": 1
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "silence",
+    "name_key": "card_silence_name",
+    "text_key": "card_silence_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "choice",
+    "tags": [
+      "skill",
+      "utility"
+    ],
+    "effects": [
+      {
+        "type": "cleanse_or_dispel",
+        "amount": 1
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "amethyst_crown",
+    "name_key": "card_amethyst_crown_name",
+    "text_key": "card_amethyst_crown_desc",
+    "rarity": "rare",
+    "cost": 2,
+    "target": "self",
+    "tags": [
+      "skill",
+      "exhaust"
+    ],
+    "effects": [
+      {
+        "type": "status",
+        "name": "energized",
+        "stacks": 2
+      },
+      {
+        "type": "exhaust_self"
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "rewrite",
+    "name_key": "card_rewrite_name",
+    "text_key": "card_rewrite_desc",
+    "rarity": "rare",
+    "cost": 1,
+    "target": "hand",
+    "tags": [
+      "skill",
+      "choice"
+    ],
+    "effects": [
+      {
+        "type": "zero_and_double_play",
+        "amount": 1
+      }
+    ],
+    "family": "manipulation"
+  },
+  {
+    "id": "final_gate",
+    "name_key": "card_final_gate_name",
+    "text_key": "card_final_gate_desc",
+    "rarity": "rare",
+    "cost": 2,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "finisher"
+    ],
+    "effects": [
+      {
+        "type": "damage_plus_rupture",
+        "base": 10,
+        "per_rupture": 2
+      },
+      {
+        "type": "set_rupture",
+        "amount": 0
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "pw_card_01",
+    "name_key": "card_pw_01_name",
+    "text_key": "card_pw_01_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 7
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "pw_card_02",
+    "name_key": "card_pw_02_name",
+    "text_key": "card_pw_02_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 8
+      }
+    ],
+    "family": "defense"
+  },
+  {
+    "id": "pw_card_03",
+    "name_key": "card_pw_03_name",
+    "text_key": "card_pw_03_desc",
+    "rarity": "common",
+    "cost": 0,
+    "target": "self",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "energy",
+        "amount": 1
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "energy"
+  },
+  {
+    "id": "pw_card_04",
+    "name_key": "card_pw_04_name",
+    "text_key": "card_pw_04_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 3
+      },
+      {
+        "type": "damage",
+        "amount": 5
+      }
+    ],
+    "family": "control"
+  },
+  {
+    "id": "pw_card_05",
+    "name_key": "card_pw_05_name",
+    "text_key": "card_pw_05_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "rupture",
+        "amount": 1
+      },
+      {
+        "type": "block",
+        "amount": 6
+      }
+    ],
+    "family": "ritual"
+  },
+  {
+    "id": "pw_card_06",
+    "name_key": "card_pw_06_name",
+    "text_key": "card_pw_06_desc",
+    "rarity": "common",
+    "cost": 2,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "curse"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 6
+      },
+      {
+        "type": "status",
+        "name": "weak",
+        "stacks": 1
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "pw_card_07",
+    "name_key": "card_pw_07_name",
+    "text_key": "card_pw_07_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 9
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "pw_card_08",
+    "name_key": "card_pw_08_name",
+    "text_key": "card_pw_08_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 9
+      }
+    ],
+    "family": "defense"
+  },
+  {
+    "id": "pw_card_09",
+    "name_key": "card_pw_09_name",
+    "text_key": "card_pw_09_desc",
+    "rarity": "common",
+    "cost": 0,
+    "target": "self",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "energy",
+        "amount": 1
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "energy"
+  },
+  {
+    "id": "pw_card_10",
+    "name_key": "card_pw_10_name",
+    "text_key": "card_pw_10_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 3
+      },
+      {
+        "type": "damage",
+        "amount": 5
+      }
+    ],
+    "family": "control"
+  },
+  {
+    "id": "pw_card_11",
+    "name_key": "card_pw_11_name",
+    "text_key": "card_pw_11_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "rupture",
+        "amount": 1
+      },
+      {
+        "type": "block",
+        "amount": 8
+      }
+    ],
+    "family": "ritual"
+  },
+  {
+    "id": "pw_card_12",
+    "name_key": "card_pw_12_name",
+    "text_key": "card_pw_12_desc",
+    "rarity": "common",
+    "cost": 2,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "curse"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 7
+      },
+      {
+        "type": "status",
+        "name": "weak",
+        "stacks": 1
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "pw_card_13",
+    "name_key": "card_pw_13_name",
+    "text_key": "card_pw_13_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 7
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "pw_card_14",
+    "name_key": "card_pw_14_name",
+    "text_key": "card_pw_14_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 10
+      }
+    ],
+    "family": "defense"
+  },
+  {
+    "id": "pw_card_15",
+    "name_key": "card_pw_15_name",
+    "text_key": "card_pw_15_desc",
+    "rarity": "common",
+    "cost": 0,
+    "target": "self",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "energy",
+        "amount": 1
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "energy"
+  },
+  {
+    "id": "pw_card_16",
+    "name_key": "card_pw_16_name",
+    "text_key": "card_pw_16_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 3
+      },
+      {
+        "type": "damage",
+        "amount": 5
+      }
+    ],
+    "family": "control"
+  },
+  {
+    "id": "pw_card_17",
+    "name_key": "card_pw_17_name",
+    "text_key": "card_pw_17_desc",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "rupture",
+        "amount": 1
+      },
+      {
+        "type": "block",
+        "amount": 6
+      }
+    ],
+    "family": "ritual"
+  },
+  {
+    "id": "pw_card_18",
+    "name_key": "card_pw_18_name",
+    "text_key": "card_pw_18_desc",
+    "rarity": "common",
+    "cost": 2,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "curse"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 8
+      },
+      {
+        "type": "status",
+        "name": "weak",
+        "stacks": 1
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "pw_card_19",
+    "name_key": "card_pw_19_name",
+    "text_key": "card_pw_19_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 9
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "pw_card_20",
+    "name_key": "card_pw_20_name",
+    "text_key": "card_pw_20_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 6
+      }
+    ],
+    "family": "defense"
+  },
+  {
+    "id": "pw_card_21",
+    "name_key": "card_pw_21_name",
+    "text_key": "card_pw_21_desc",
+    "rarity": "uncommon",
+    "cost": 0,
+    "target": "self",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "energy",
+        "amount": 1
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "energy"
+  },
+  {
+    "id": "pw_card_22",
+    "name_key": "card_pw_22_name",
+    "text_key": "card_pw_22_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 3
+      },
+      {
+        "type": "damage",
+        "amount": 5
+      }
+    ],
+    "family": "control"
+  },
+  {
+    "id": "pw_card_23",
+    "name_key": "card_pw_23_name",
+    "text_key": "card_pw_23_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "rupture",
+        "amount": 1
+      },
+      {
+        "type": "block",
+        "amount": 8
+      }
+    ],
+    "family": "ritual"
+  },
+  {
+    "id": "pw_card_24",
+    "name_key": "card_pw_24_name",
+    "text_key": "card_pw_24_desc",
+    "rarity": "uncommon",
+    "cost": 2,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "curse"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 9
+      },
+      {
+        "type": "status",
+        "name": "weak",
+        "stacks": 1
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "pw_card_25",
+    "name_key": "card_pw_25_name",
+    "text_key": "card_pw_25_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 7
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "pw_card_26",
+    "name_key": "card_pw_26_name",
+    "text_key": "card_pw_26_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 7
+      }
+    ],
+    "family": "defense"
+  },
+  {
+    "id": "pw_card_27",
+    "name_key": "card_pw_27_name",
+    "text_key": "card_pw_27_desc",
+    "rarity": "uncommon",
+    "cost": 0,
+    "target": "self",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "energy",
+        "amount": 1
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "energy"
+  },
+  {
+    "id": "pw_card_28",
+    "name_key": "card_pw_28_name",
+    "text_key": "card_pw_28_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 3
+      },
+      {
+        "type": "damage",
+        "amount": 5
+      }
+    ],
+    "family": "control"
+  },
+  {
+    "id": "pw_card_29",
+    "name_key": "card_pw_29_name",
+    "text_key": "card_pw_29_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "rupture",
+        "amount": 1
+      },
+      {
+        "type": "block",
+        "amount": 6
+      }
+    ],
+    "family": "ritual"
+  },
+  {
+    "id": "pw_card_30",
+    "name_key": "card_pw_30_name",
+    "text_key": "card_pw_30_desc",
+    "rarity": "uncommon",
+    "cost": 2,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "curse"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 5
+      },
+      {
+        "type": "status",
+        "name": "weak",
+        "stacks": 1
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "pw_card_31",
+    "name_key": "card_pw_31_name",
+    "text_key": "card_pw_31_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 9
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "pw_card_32",
+    "name_key": "card_pw_32_name",
+    "text_key": "card_pw_32_desc",
+    "rarity": "uncommon",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 8
+      }
+    ],
+    "family": "defense"
+  },
+  {
+    "id": "pw_card_33",
+    "name_key": "card_pw_33_name",
+    "text_key": "card_pw_33_desc",
+    "rarity": "rare",
+    "cost": 0,
+    "target": "self",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "energy",
+        "amount": 1
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "energy"
+  },
+  {
+    "id": "pw_card_34",
+    "name_key": "card_pw_34_name",
+    "text_key": "card_pw_34_desc",
+    "rarity": "rare",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "skill",
+      "arcane"
+    ],
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 3
+      },
+      {
+        "type": "damage",
+        "amount": 5
+      }
+    ],
+    "family": "control"
+  },
+  {
+    "id": "pw_card_35",
+    "name_key": "card_pw_35_name",
+    "text_key": "card_pw_35_desc",
+    "rarity": "rare",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "rupture",
+        "amount": 1
+      },
+      {
+        "type": "block",
+        "amount": 8
+      }
+    ],
+    "family": "ritual"
+  },
+  {
+    "id": "pw_card_36",
+    "name_key": "card_pw_36_name",
+    "text_key": "card_pw_36_desc",
+    "rarity": "rare",
+    "cost": 2,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "curse"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 6
+      },
+      {
+        "type": "status",
+        "name": "weak",
+        "stacks": 1
+      }
+    ],
+    "family": "chaos"
+  },
+  {
+    "id": "pw_card_37",
+    "name_key": "card_pw_37_name",
+    "text_key": "card_pw_37_desc",
+    "rarity": "rare",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 7
+      }
+    ],
+    "family": "attack"
+  },
+  {
+    "id": "pw_card_38",
+    "name_key": "card_pw_38_name",
+    "text_key": "card_pw_38_desc",
+    "rarity": "rare",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "skill"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 9
+      }
+    ],
+    "family": "defense"
+  }
+]
