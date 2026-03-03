@@ -26,6 +26,7 @@ class MusicManager:
             "combat": [music_dir / "combat.ogg", music_dir / "combat.wav"],
             "event": [music_dir / "event.ogg", music_dir / "event.wav"],
             "boss": [music_dir / "boss.ogg", music_dir / "boss.wav"],
+            "ending": [music_dir / "ending.ogg", music_dir / "ending.wav"],
         }
 
     def set_volume(self, value: float):

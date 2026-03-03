@@ -112,5 +112,10 @@ def ensure_placeholder_assets(card_ids: list[str], enemy_ids: list[str]) -> None
     for name, hz in sfx.items():
         _write_wav(a_dir / f"sfx/{name}.wav", hz=hz)
 
-    for name in ["menu", "map", "combat", "event", "boss"]:
-        synth_ambient_music(a_dir / f"music/{name}.wav", name)
+    ensure_bgm_assets(force_regen=False)
+
+
+def ensure_bgm_assets(force_regen: bool = False) -> None:
+    a_dir = assets_dir()
+    for name in ["menu", "map", "combat", "event", "boss", "ending"]:
+        synth_ambient_music(a_dir / f"music/{name}.wav", name if name != "ending" else "event", force=force_regen)

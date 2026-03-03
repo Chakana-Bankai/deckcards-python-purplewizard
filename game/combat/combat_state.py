@@ -63,6 +63,7 @@ class CombatState:
         self.result = None
         self.screen_shake = 0.0
         self.combat_events = []
+        self.scry_pending = []
         self.start_player_turn()
 
     def _load_cards(self):
@@ -237,6 +238,20 @@ class CombatState:
 
     def discard_card(self, card):
         self.discard_pile.append(card)
+
+
+    def begin_scry(self, amount: int):
+        n = max(0, min(amount, len(self.draw_pile)))
+        self.scry_pending = list(self.draw_pile[-n:])[::-1]
+        self.combat_events.append({"type": "scry", "amount": n})
+
+    def apply_scry_order(self, ordered_cards):
+        n = len(ordered_cards)
+        if n <= 0:
+            self.scry_pending = []
+            return
+        self.draw_pile = self.draw_pile[:-n] + list(ordered_cards[::-1])
+        self.scry_pending = []
 
     def pop_events(self):
         events = self.combat_events[:]

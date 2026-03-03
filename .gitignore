@@ -13,3 +13,4 @@ game/assets/**/*.png
 game/assets/**/*.wav
 game/assets/**/*.ttf
 !game/assets/**/.gitkeep
+

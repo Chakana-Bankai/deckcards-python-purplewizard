@@ -9,10 +9,20 @@ class RewardScreen:
         self.reward_cards = reward_cards
         self.gold = gold
         self.confetti = [{"x": 220 + i * 30, "y": 0, "v": 40 + i * 4} for i in range(30)]
+        self.toast = ""
+        self.toast_t = 0
 
     def on_enter(self):
         self.app.run_state["gold"] += self.gold
         self.app.gain_xp(8)
+
+    def _recover_if_needed(self):
+        if self.app.available_nodes_count() <= 0:
+            self.app.recover_map_progression()
+            self.toast = "La Trama se reordena..."
+            self.toast_t = 2.5
+            if self.app.available_nodes_count() <= 0 and self.app.debug_overlay:
+                raise RuntimeError("map progression broken even after recovery")
 
     def take(self, idx):
         if idx is not None and 0 <= idx < len(self.reward_cards):
@@ -21,9 +31,8 @@ class RewardScreen:
             node = self.app.node_lookup.get(self.app.current_node_id)
             if node:
                 self.app._fallback_unlock_next_column(node)
+        self._recover_if_needed()
         self.app.goto_map()
-        if self.app.available_nodes_count() <= 0:
-            raise RuntimeError("map progression broken: available_count == 0 after reward")
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
@@ -44,6 +53,7 @@ class RewardScreen:
             c["y"] += c["v"] * dt
             if c["y"] > 720:
                 c["y"] = 0
+        self.toast_t = max(0, self.toast_t - dt)
 
     def render(self, s):
         s.fill(UI_THEME["bg"])
@@ -66,3 +76,6 @@ class RewardScreen:
             s.blit(self.app.small_font.render(self.app.loc.t(card.definition.text_key), True, UI_THEME["muted"]), (r.x + 10, r.y + 230))
         pygame.draw.rect(s, UI_THEME["violet"], (560, 580, 180, 56), border_radius=8)
         s.blit(self.app.font.render(self.app.loc.t("reward_skip"), True, UI_THEME["text"]), (608, 595))
+        if self.toast_t > 0:
+            pygame.draw.rect(s, UI_THEME["panel_2"], (740, 660, 440, 52), border_radius=10)
+            s.blit(self.app.small_font.render(self.toast, True, UI_THEME["gold"]), (772, 675))

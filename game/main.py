@@ -14,9 +14,9 @@ from game.combat.combat_state import CombatState
 from game.content.card_art_generator import CardArtGenerator, export_prompts
 from game.content.enemy_art_generator import EnemyArtGenerator
 from game.content.background_generator import BackgroundGenerator
-from game.core.bootstrap_assets import ensure_placeholder_assets
+from game.core.bootstrap_assets import ensure_placeholder_assets, ensure_bgm_assets
 from game.core.localization import LocalizationManager
-from game.core.paths import data_dir
+from game.core.paths import data_dir, assets_dir
 from game.core.rng import SeededRNG
 from game.core.safe_io import load_json
 from game.core.settings_store import load_settings, save_settings
@@ -36,6 +36,7 @@ from game.ui.screens.settings import SettingsScreen
 from game.ui.screens.shop import ShopScreen
 from game.ui.screens.qa_results import QAResultsScreen
 from game.ui.screens.pack_opening import PackOpeningScreen
+from game.ui.screens.end import EndScreen
 
 DEFAULT_CARDS = [
     {"id": "strike", "name_key": "card_strike_name", "text_key": "card_strike_desc", "rarity": "basic", "cost": 1, "target": "enemy", "tags": ["attack"], "effects": [{"type": "damage", "amount": 6}]},
@@ -97,8 +98,10 @@ class App:
         self.enemies_data = self._load_enemies_data()
         self.events_data = self._load_events_data()
         self.relics_data = self._load_relics_data()
+        self.lore_data = self._load_lore_data()
         print(f"[load] cards={len(self.cards_data)} enemies={len(self.enemies_data)} events={len(self.events_data)} relics={len(self.relics_data)}")
         ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
+        ensure_bgm_assets(force_regen=False)
         self.art_gen = CardArtGenerator()
         self.enemy_art_gen = EnemyArtGenerator()
         self.bg_gen = BackgroundGenerator()
@@ -137,6 +140,19 @@ class App:
     def _load_relics_data(self):
         relics = load_json(data_dir() / "relics.json", default=[])
         return relics if isinstance(relics, list) else []
+
+    def _load_lore_data(self):
+        lore_dir = data_dir() / "lore"
+        dialogues = load_json(lore_dir / "dialogues.json", default={})
+        lore_txt = ""
+        try:
+            lore_txt = (lore_dir / "chakana_lore.txt").read_text(encoding="utf-8")
+        except Exception:
+            lore_txt = ""
+        if not isinstance(dialogues, dict):
+            dialogues = {}
+        dialogues["lore_text"] = lore_txt
+        return dialogues
 
     def validate_navigation_methods(self):
         required = ["goto_menu", "goto_map", "goto_combat", "goto_reward", "goto_shop", "goto_event", "goto_deck", "goto_settings"]
@@ -338,6 +354,10 @@ class App:
     def on_combat_victory(self):
         self._complete_current_node()
         node_type = self.run_state.get("last_node_type", "combat")
+        if node_type == "boss":
+            self.music.play_for("ending")
+            self.sm.set(EndScreen(self))
+            return
         bonus_gold = self.rng.randint(16, 30) if node_type == "challenge" else self.rng.randint(10, 25)
         self.gain_xp(12)
         self.goto_reward(gold=bonus_gold)
@@ -392,6 +412,44 @@ class App:
             else:
                 print(f"[events] warning: unsupported effect type '{effect_type}'")
 
+
+    def recover_map_progression(self):
+        if not self.run_state:
+            return
+        if self.available_nodes_count() > 0:
+            return
+        node = self.node_lookup.get(self.current_node_id) if self.current_node_id else None
+        if node:
+            unlocked = self._fallback_unlock_next_column(node)
+            if unlocked:
+                print("[map] recovery unlocked next column node", unlocked)
+                return
+        for n in self.node_lookup.values():
+            if n.get("state") != "completed":
+                n["state"] = "available"
+                print("[map] recovery unlocked unfinished node", n.get("id"))
+                return
+        node_id = f"recovery_{len(self.node_lookup)}"
+        new_node = {"id": node_id, "col": 0, "x": INTERNAL_WIDTH // 2, "y": INTERNAL_HEIGHT // 2, "type": "event", "next": [], "state": "available"}
+        self.node_lookup[node_id] = new_node
+        self.run_state["map"].append([new_node])
+        print("[map] recovery created Camino Abierto")
+
+    def regenerate_music(self):
+        ensure_bgm_assets(force_regen=True)
+        self.music._checked_silence.clear()
+        self.music.play_for("menu")
+
+    def regenerate_card_art_with_cleanup(self):
+        manifest_path = data_dir() / "art_manifest.json"
+        manifest = load_json(manifest_path, default={})
+        cards_dir = assets_dir() / "sprites" / "cards"
+        if isinstance(manifest, dict):
+            for cid in manifest.keys():
+                p = cards_dir / f"{cid}.png"
+                if p.exists():
+                    p.unlink()
+        self.regenerate_card_art()
 
     def set_debug(self, **kwargs):
         self.debug.update(kwargs)

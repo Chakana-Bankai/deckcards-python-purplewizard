@@ -32,5 +32,6 @@ Tracks esperados (WAV/OGG):
 - `game/assets/music/combat.*`
 - `game/assets/music/event.*`
 - `game/assets/music/boss.*`
+- `game/assets/music/ending.*`
 
 Si faltan, se crean placeholders WAV locales para que no crashee.

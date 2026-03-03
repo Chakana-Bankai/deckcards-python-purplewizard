@@ -49,7 +49,7 @@ def interpret_effects(state, card_instance, target, effects: list[dict]):
         elif t == "heal":
             state.heal_player(effect["amount"])
         elif t == "scry":
-            pass
+            state.begin_scry(effect.get("amount", 3))
         elif t == "convert_block_to_damage":
             amount = min(state.player["block"], effect["amount"])
             state.player["block"] -= amount
