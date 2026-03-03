@@ -1,0 +1,93 @@
+[
+  {
+    "id": "voidling",
+    "name_key": "enemy_voidling_name",
+    "hp": [22, 26],
+    "pattern": [
+      {"intent": "attack", "value": [5, 7]},
+      {"intent": "debuff", "status": "frail", "stacks": 1},
+      {"intent": "attack", "value": [6, 8]}
+    ]
+  },
+  {
+    "id": "ink_mite",
+    "name_key": "enemy_ink_mite_name",
+    "hp": [18, 22],
+    "pattern": [
+      {"intent": "attack", "value": [4, 6]},
+      {"intent": "attack", "value": [4, 6]},
+      {"intent": "buff", "status": "focus", "stacks": 1}
+    ]
+  },
+  {
+    "id": "whisper_mask",
+    "name_key": "enemy_whisper_mask_name",
+    "hp": [24, 28],
+    "pattern": [
+      {"intent": "debuff", "status": "weak", "stacks": 1},
+      {"intent": "attack", "value": [6, 8]},
+      {"intent": "defend", "value": [5, 7]}
+    ]
+  },
+  {
+    "id": "rift_hound",
+    "name_key": "enemy_rift_hound_name",
+    "hp": [26, 32],
+    "pattern": [
+      {"intent": "attack", "value": [7, 9]},
+      {"intent": "attack", "value": [7, 9]},
+      {"intent": "debuff", "status": "frail", "stacks": 1}
+    ]
+  },
+  {
+    "id": "mirror_scribe",
+    "name_key": "enemy_mirror_scribe_name",
+    "hp": [28, 34],
+    "pattern": [
+      {"intent": "buff", "status": "reflect", "stacks": 1},
+      {"intent": "attack", "value": [6, 8]},
+      {"intent": "debuff", "status": "weak", "stacks": 1}
+    ]
+  },
+  {
+    "id": "grief_larva",
+    "name_key": "enemy_grief_larva_name",
+    "hp": [20, 26],
+    "pattern": [
+      {"intent": "attack", "value": [5, 7]},
+      {"intent": "defend", "value": [6, 8]},
+      {"intent": "attack", "value": [6, 8]}
+    ]
+  },
+  {
+    "id": "violet_thief",
+    "name_key": "enemy_violet_thief_name",
+    "hp": [24, 30],
+    "pattern": [
+      {"intent": "debuff", "status": "weak", "stacks": 1},
+      {"intent": "attack", "value": [6, 8]},
+      {"intent": "attack", "value": [6, 8]}
+    ]
+  },
+  {
+    "id": "stone_sentinel",
+    "name_key": "enemy_stone_sentinel_name",
+    "hp": [34, 40],
+    "pattern": [
+      {"intent": "defend", "value": [8, 10]},
+      {"intent": "attack", "value": [8, 10]},
+      {"intent": "attack", "value": [8, 10]}
+    ]
+  },
+  {
+    "id": "inverse_weaver",
+    "name_key": "enemy_inverse_weaver_name",
+    "hp": [85, 95],
+    "pattern": [
+      {"intent": "buff", "status": "reflect", "stacks": 1},
+      {"intent": "attack", "value": [10, 12]},
+      {"intent": "debuff", "status": "weak", "stacks": 2},
+      {"intent": "attack", "value": [12, 14]}
+    ]
+  }
+]
