@@ -43,5 +43,21 @@
   "event_continue": "Continue",
   "settings_sfx": "SFX Volume",
   "settings_fullscreen": "Fullscreen",
-  "combat_turn_banner": "YOUR TURN"
+  "combat_turn_banner": "YOUR TURN",
+  "deck_title_active": "Active Deck",
+  "deck_title_side": "Sideboard",
+  "deck_button": "Deck [TAB]",
+  "deck_stats": "Cards: {count} Avg Cost: {avg}",
+  "deck_stats_tags": "ATK {atk} SKILL {skill} RITUAL {ritual}",
+  "settings_music": "Music",
+  "settings_music_mute": "Mute music",
+  "settings_timer": "Turn timer",
+  "settings_on": "ON",
+  "settings_off": "OFF",
+  "combat_log": "Log",
+  "glossary_title": "Glossary [H]",
+  "enemy_taunt_start": "Your thread breaks here.",
+  "enemy_taunt_intent": "I know your next step.",
+  "enemy_taunt_big_hit": "Is that all your power?",
+  "enemy_taunt_death": "The weave... does not end..."
 }

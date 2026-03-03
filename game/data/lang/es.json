@@ -141,5 +141,21 @@
   "event_chakana_choice_silence": "Silencio → remover 1 carta y +2 Vida Máx",
   "settings_sfx": "Volumen SFX",
   "settings_fullscreen": "Pantalla completa",
-  "combat_turn_banner": "TU TURNO"
+  "combat_turn_banner": "TU TURNO",
+  "deck_title_active": "Mazo Activo",
+  "deck_title_side": "Reserva",
+  "deck_button": "Mazo [TAB]",
+  "deck_stats": "Cartas: {count} Avg Cost: {avg}",
+  "deck_stats_tags": "ATK {atk} SKILL {skill} RITUAL {ritual}",
+  "settings_music": "Música",
+  "settings_music_mute": "Silenciar música",
+  "settings_timer": "Timer de turno",
+  "settings_on": "ON",
+  "settings_off": "OFF",
+  "combat_log": "Registro",
+  "glossary_title": "Glosario [H]",
+  "enemy_taunt_start": "Tu hilo se rompe aquí.",
+  "enemy_taunt_intent": "Conozco tu próximo paso.",
+  "enemy_taunt_big_hit": "¿Eso fue todo tu poder?",
+  "enemy_taunt_death": "La trama... no termina..."
 }

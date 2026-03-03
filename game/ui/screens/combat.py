@@ -1,16 +1,26 @@
 import pygame
 
 from game.combat.intents import INTENT_KEYS
-from game.ui.theme import SPACING, UI_THEME
+from game.ui.anim import TypewriterBanner
+from game.ui.theme import UI_THEME
+
+
+KEYWORDS = {
+    "Bloque": "Reduce daño entrante en este turno.",
+    "Energía": "Recurso para jugar cartas cada turno.",
+    "Ruptura": "Potencia mística que habilita efectos.",
+    "Debilidad": "Reduce daño de ataque.",
+    "Fragilidad": "Reduce Bloque ganado.",
+}
 
 
 def wrap_text(font, text, width):
     words = (text or "").split()
     lines, cur = [], ""
     for w in words:
-        test = (cur + " " + w).strip()
-        if font.size(test)[0] <= width:
-            cur = test
+        t = (cur + " " + w).strip()
+        if font.size(t)[0] <= width:
+            cur = t
         else:
             lines.append(cur)
             cur = w
@@ -20,246 +30,269 @@ def wrap_text(font, text, width):
 
 
 class CombatScreen:
-    def __init__(self, app, combat_state):
+    def __init__(self, app, combat_state, is_boss=False):
         self.app = app
         self.c = combat_state
-        self.overlay = None
-        self.rupture_pulse = 0.0
-        self.last_rupture = self.c.player["rupture"]
+        self.is_boss = is_boss
+        self.hand_scroll = 0
         self.selected_card_index = None
         self.turn_banner_time = 1.0
         self.floaters = []
         self.tooltip = None
-
-    def on_enter(self):
-        pass
-
-    def _card_rect(self, idx, hovering=False):
-        card_w, card_h = 158, 220
-        gap = 16
-        total_w = len(self.c.hand) * card_w + max(0, len(self.c.hand) - 1) * gap
-        start_x = (1280 - total_w) // 2
-        y = 470 - (20 if hovering else 0)
-        return pygame.Rect(start_x + idx * (card_w + gap), y, card_w, card_h)
+        self.glossary = False
+        self.log_lines = []
+        self.banner = TypewriterBanner()
+        self._taunt("enemy_taunt_start")
+        self.turn_timer = self.app.run_state.get("settings", {}).get("turn_time", 30)
 
     def _enemy_rect(self, idx):
-        base_x = 180 + idx * 300
-        return pygame.Rect(base_x, 130, 190, 220)
+        return pygame.Rect(60 + idx * 280, 110, 220, 220)
 
-    def _play_from_index(self, idx, target_idx=0):
+    def _visible_hand(self):
+        hand = self.c.hand
+        max_cards = 6
+        start = max(0, min(self.hand_scroll, max(0, len(hand) - max_cards)))
+        return start, hand[start : start + max_cards]
+
+    def _card_rect(self, vis_idx, total):
+        card_w, card_h = 132, 188
+        gap = 18
+        total_w = total * card_w + max(0, total - 1) * gap
+        start_x = (1280 - total_w) // 2
+        base_y = 528
+        x = start_x + vis_idx * (card_w + gap)
+        arc = abs((vis_idx - (total - 1) / 2.0))
+        y = base_y + int(arc * 5)
+        return pygame.Rect(x, y, card_w, card_h)
+
+    def _taunt(self, key):
+        text = self.app.loc.t(key)
+        if text == key:
+            text = self.app.loc.t("lore_short_2")
+        self.banner.set(text, 2.3)
+
+    def _play_card(self, idx, target_idx=0):
         if idx < 0 or idx >= len(self.c.hand):
             return
         card = self.c.hand[idx]
         if card.cost > self.c.player["energy"]:
             return
-        if card.definition.target == "enemy":
-            self.selected_card_index = idx
+        if card.definition.target == "enemy" and (target_idx is None):
             self.c.needs_target = idx
-        else:
-            self.c.play_card(idx, target_idx)
-            self.app.sfx.play("card_play")
+            self.selected_card_index = idx
+            return
+        if card.definition.rarity == "rare":
+            self._taunt("enemy_taunt_big_hit")
+        self.c.play_card(idx, target_idx)
+        self.app.sfx.play("card_play")
 
     def handle_event(self, event):
+        if event.type == pygame.MOUSEWHEEL:
+            self.hand_scroll -= event.y
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_e:
                 self.c.end_turn()
-            elif event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9, pygame.K_0]:
-                idx = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9, pygame.K_0].index(event.key)
-                self._play_from_index(idx)
-            elif event.key == pygame.K_d:
-                self.overlay = "deck"
-            elif event.key == pygame.K_r:
-                self.overlay = "discard"
+                self.turn_timer = self.app.run_state.get("settings", {}).get("turn_time", 30)
+            elif event.key == pygame.K_h:
+                self.glossary = not self.glossary
             elif event.key == pygame.K_ESCAPE:
-                self.overlay = None
-                self.selected_card_index = None
                 self.c.needs_target = None
+                self.selected_card_index = None
+                self.glossary = False
+            elif event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9, pygame.K_0]:
+                keymap = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9, pygame.K_0]
+                rel = keymap.index(event.key)
+                start, _ = self._visible_hand()
+                self._play_card(start + rel, None)
             elif event.key == pygame.K_SPACE and self.c.needs_target is not None:
-                self.c.play_card(self.c.needs_target, 0)
-                self.app.sfx.play("card_play")
+                self._play_card(self.c.needs_target, 0)
                 self.c.needs_target = None
                 self.selected_card_index = None
-            elif event.key == pygame.K_F1:
-                self.app.toggle_language()
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
-            if pygame.Rect(1080, 600, 180, 90).collidepoint(pos):
+            if pygame.Rect(1090, 618, 170, 78).collidepoint(pos):
                 self.c.end_turn()
-                self.app.sfx.play("ui_click")
+                self.turn_timer = self.app.run_state.get("settings", {}).get("turn_time", 30)
                 return
-            for i, enemy in enumerate(self.c.enemies):
+            for i, e in enumerate(self.c.enemies):
                 er = self._enemy_rect(i)
-                if er.collidepoint(pos) and enemy.alive:
+                if er.collidepoint(pos) and e.alive:
                     if self.c.needs_target is not None:
-                        self.c.play_card(self.c.needs_target, i)
-                        self.app.sfx.play("card_play")
+                        self._play_card(self.c.needs_target, i)
                         self.c.needs_target = None
                         self.selected_card_index = None
                     return
-            for i, _card in enumerate(self.c.hand):
-                r = self._card_rect(i)
+            start, visible = self._visible_hand()
+            for i, _card in enumerate(visible):
+                r = self._card_rect(i, len(visible))
                 if r.collidepoint(pos):
-                    self.selected_card_index = i
+                    self.selected_card_index = start + i
                     self.app.sfx.play("card_pick")
-                    self._play_from_index(i)
+                    self._play_card(start + i, None)
                     return
-            self.selected_card_index = None
-            self.c.needs_target = None
 
     def update(self, dt):
         self.c.update(dt)
-        self.turn_banner_time = max(0.0, self.turn_banner_time - dt)
-        if self.c.player["rupture"] != self.last_rupture:
-            self.rupture_pulse = 0.25
-            self.last_rupture = self.c.player["rupture"]
-        self.rupture_pulse = max(0, self.rupture_pulse - dt)
+        self.banner.update(dt)
+        if self.app.run_state.get("settings", {}).get("timer_on", False):
+            self.turn_timer = max(0, self.turn_timer - dt)
+            if self.turn_timer <= 0:
+                self.c.end_turn()
+                self.turn_timer = self.app.run_state.get("settings", {}).get("turn_time", 30)
+                self.app.sfx.play("ui_click")
 
         for ev in self.c.pop_events():
             if ev["type"] == "turn_start":
-                self.turn_banner_time = 1.0
+                self.turn_banner_time = 0.9
+                self._taunt("enemy_taunt_intent")
             elif ev["type"] == "damage":
                 self.app.sfx.play("hit")
+                self.log_lines = [f"DMG {ev['amount']} -> {ev['target']}"] + self.log_lines[:4]
                 self.floaters.append({"text": f"-{ev['amount']}", "target": ev["target"], "time": 0.7, "color": UI_THEME["bad"]})
+                if ev["amount"] >= 10:
+                    self._taunt("enemy_taunt_big_hit")
             elif ev["type"] == "block":
                 self.app.sfx.play("shield")
+                self.log_lines = [f"BLK +{ev['amount']} -> {ev['target']}"] + self.log_lines[:4]
                 self.floaters.append({"text": f"+{ev['amount']}", "target": ev["target"], "time": 0.7, "color": UI_THEME["block"]})
             elif ev["type"] == "exhaust":
                 self.app.sfx.play("exhaust")
-
+        self.turn_banner_time = max(0.0, self.turn_banner_time - dt)
         for f in self.floaters:
             f["time"] -= dt
         self.floaters = [f for f in self.floaters if f["time"] > 0]
 
         if self.c.result == "victory":
+            self._taunt("enemy_taunt_death")
             self.app.on_combat_victory()
         elif self.c.result == "defeat":
             self.app.goto_menu()
 
-    def _draw_card(self, s, idx, card, hovered):
-        rect = self._card_rect(idx, hovering=hovered or self.selected_card_index == idx)
-        cost_ok = card.cost <= self.c.player["energy"]
-        pygame.draw.rect(s, (0, 0, 0), rect.move(4, 6), border_radius=12)
-        pygame.draw.rect(s, UI_THEME["card_bg"], rect, border_radius=12)
-        border = UI_THEME["card_selected"] if self.selected_card_index == idx else UI_THEME["card_border"]
-        pygame.draw.rect(s, border, rect, width=3, border_radius=12)
-
-        art_rect = pygame.Rect(rect.x + 8, rect.y + 8, rect.w - 16, int(rect.h * 0.68))
-        sprite = self.app.assets.sprite("cards", card.definition.id, art_rect.size, fallback=(84, 66, 122))
-        s.blit(sprite, art_rect)
-
-        txt_rect = pygame.Rect(rect.x + 8, art_rect.bottom + 6, rect.w - 16, rect.bottom - art_rect.bottom - 14)
-        pygame.draw.rect(s, (245, 245, 250), txt_rect, border_radius=8)
+    def _draw_card(self, s, rect, card, selected):
+        can_play = card.cost <= self.c.player["energy"]
+        grow = 8 if selected else 0
+        r = rect.inflate(grow, grow)
+        pygame.draw.rect(s, (0, 0, 0), r.move(3, 4), border_radius=10)
+        pygame.draw.rect(s, UI_THEME["card_bg"], r, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["card_selected"] if selected else UI_THEME["card_border"], r, width=3, border_radius=10)
+        art = pygame.Rect(r.x + 6, r.y + 6, r.w - 12, int(r.h * 0.64))
+        sprite = self.app.assets.sprite("cards", card.definition.id, art.size, fallback=(84, 66, 122))
+        s.blit(sprite, art)
+        txt = pygame.Rect(r.x + 6, art.bottom + 4, r.w - 12, r.bottom - art.bottom - 10)
+        pygame.draw.rect(s, (245, 245, 250), txt, border_radius=6)
         name = self.app.loc.t(card.definition.name_key)
-        if name == card.definition.name_key:
-            name = card.definition.id
-        s.blit(self.app.small_font.render(name, True, UI_THEME["card_text"]), (txt_rect.x + 4, txt_rect.y + 2))
+        s.blit(self.app.tiny_font.render(name, True, UI_THEME["card_text"]), (txt.x + 4, txt.y + 2))
         desc = self.app.loc.t(card.definition.text_key)
-        for li, line in enumerate(wrap_text(self.app.tiny_font, desc, txt_rect.w - 8)[:3]):
-            s.blit(self.app.tiny_font.render(line, True, UI_THEME["card_text"]), (txt_rect.x + 4, txt_rect.y + 22 + li * 15))
-        tags = ", ".join(card.definition.tags[:2])
-        s.blit(self.app.tiny_font.render(tags, True, (80, 78, 95)), (txt_rect.x + 4, txt_rect.bottom - 16))
-
-        cost_color = UI_THEME["energy"] if cost_ok else (110, 110, 110)
-        pygame.draw.circle(s, cost_color, (rect.x + rect.w - 16, rect.y + 16), 13)
-        s.blit(self.app.small_font.render(str(card.cost), True, UI_THEME["text"]), (rect.x + rect.w - 22, rect.y + 8))
-        if not cost_ok:
-            gray = pygame.Surface(rect.size, pygame.SRCALPHA)
-            gray.fill((60, 60, 60, 120))
-            s.blit(gray, rect.topleft)
-        return rect
+        lines = wrap_text(self.app.tiny_font, desc, txt.w - 8)[:3]
+        for i, line in enumerate(lines):
+            s.blit(self.app.tiny_font.render(line, True, UI_THEME["card_text"]), (txt.x + 4, txt.y + 18 + i * 14))
+        tags = "/".join(card.definition.tags[:2])
+        s.blit(self.app.tiny_font.render(tags, True, (80, 78, 95)), (txt.x + 4, txt.bottom - 14))
+        pygame.draw.circle(s, UI_THEME["energy"] if can_play else (90, 90, 90), (r.x + 14, r.y + 14), 11)
+        s.blit(self.app.tiny_font.render(str(card.cost), True, UI_THEME["text"]), (r.x + 11, r.y + 8))
+        if not can_play:
+            ov = pygame.Surface(r.size, pygame.SRCALPHA)
+            ov.fill((40, 40, 40, 110))
+            s.blit(ov, r.topleft)
+        return r
 
     def render(self, s):
-        shake_x = int(self.app.rng.randint(-4, 4) if self.c.screen_shake > 0 else 0)
         s.fill((12, 16, 35))
+        if self.is_boss:
+            vign = pygame.Surface((1280, 720), pygame.SRCALPHA)
+            vign.fill((30, 5, 20, 35))
+            s.blit(vign, (0, 0))
+        mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.tooltip = None
 
-        # enemies and intents
-        mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
-        for i, enemy in enumerate(self.c.enemies):
-            er = self._enemy_rect(i).move(shake_x, 0)
-            panel_color = (58, 45, 80) if enemy.alive else (45, 45, 45)
-            pygame.draw.rect(s, panel_color, er, border_radius=12)
-            sprite = self.app.assets.sprite("enemies", enemy.id, (110, 110), fallback=(95, 58, 85))
-            s.blit(sprite, (er.x + 40, er.y + 24))
-            name = self.app.loc.t(enemy.name_key)
-            s.blit(self.app.small_font.render(name, True, UI_THEME["text"]), (er.x + 10, er.y + 6))
-            hp_ratio = max(0, enemy.hp) / max(1, enemy.max_hp)
-            pygame.draw.rect(s, (45, 45, 45), (er.x + 12, er.y + 150, 166, 14), border_radius=6)
-            pygame.draw.rect(s, UI_THEME["hp"], (er.x + 12, er.y + 150, int(166 * hp_ratio), 14), border_radius=6)
-            s.blit(self.app.tiny_font.render(f"{max(0, enemy.hp)}/{enemy.max_hp}", True, UI_THEME["text"]), (er.x + 66, er.y + 148))
-            intent = enemy.current_intent()
+        # dialogue banner
+        bt = self.banner.visible_text()
+        if bt:
+            rect = pygame.Rect(290, 18, 700, 44)
+            panel = pygame.Surface(rect.size, pygame.SRCALPHA)
+            panel.fill((15, 14, 28, min(210, self.banner.alpha())))
+            s.blit(panel, rect.topleft)
+            s.blit(self.app.small_font.render(bt, True, UI_THEME["text"]), (rect.x + 12, rect.y + 12))
+
+        # enemies
+        for i, e in enumerate(self.c.enemies):
+            er = self._enemy_rect(i)
+            pygame.draw.rect(s, (58, 45, 80) if e.alive else (42, 42, 42), er, border_radius=12)
+            sp = self.app.assets.sprite("enemies", e.id, (114, 114), fallback=(100, 60, 90))
+            s.blit(sp, (er.x + 53, er.y + 26))
+            s.blit(self.app.small_font.render(self.app.loc.t(e.name_key), True, UI_THEME["text"]), (er.x + 8, er.y + 8))
+            ratio = max(0, e.hp) / max(1, e.max_hp)
+            pygame.draw.rect(s, (45, 45, 45), (er.x + 10, er.y + 154, 200, 14), border_radius=6)
+            pygame.draw.rect(s, UI_THEME["hp"], (er.x + 10, er.y + 154, int(200 * ratio), 14), border_radius=6)
+            intent = e.current_intent()
             val = intent.get("value", [intent.get("stacks", 1), intent.get("stacks", 1)])
             num = val[0] if isinstance(val, list) else val
-            ik = self.app.loc.t(INTENT_KEYS.get(intent.get("intent", "attack"), "intent_attack"))
-            intent_rect = pygame.Rect(er.x + 12, er.y + 170, 166, 24)
-            pygame.draw.rect(s, (28, 30, 48), intent_rect, border_radius=8)
-            intent_text = f"{ik} {num}"
-            s.blit(self.app.tiny_font.render(intent_text, True, UI_THEME["muted"]), (intent_rect.x + 6, intent_rect.y + 5))
-            if intent_rect.collidepoint(mouse):
-                self.tooltip = intent_text
-            if er.collidepoint(mouse):
-                self.tooltip = f"{name} | {intent_text}"
+            txt = f"{self.app.loc.t(INTENT_KEYS.get(intent.get('intent', 'attack'),'intent_attack'))} {num}"
+            ir = pygame.Rect(er.x + 10, er.y + 175, 200, 24)
+            pygame.draw.rect(s, (28, 30, 48), ir, border_radius=8)
+            s.blit(self.app.tiny_font.render(txt, True, UI_THEME["muted"]), (ir.x + 5, ir.y + 5))
+            if ir.collidepoint(mouse):
+                self.tooltip = txt
 
-        # player HUD
-        p = self.c.player
-        hud = pygame.Rect(20 + shake_x, 500, 350, 200)
+        # hud top-right safe from hand
+        hud = pygame.Rect(930, 120, 330, 220)
         pygame.draw.rect(s, UI_THEME["panel"], hud, border_radius=12)
-        player_sprite = self.app.assets.sprite("player", "player", (88, 88), fallback=(77, 86, 133))
-        s.blit(player_sprite, (hud.x + 10, hud.y + 10))
-        s.blit(self.app.font.render(f"{self.app.loc.t('hud_hp')}: {p['hp']}/{p['max_hp']}", True, UI_THEME["text"]), (hud.x + 110, hud.y + 18))
-        s.blit(self.app.font.render(f"{self.app.loc.t('hud_block')}: {p['block']}", True, UI_THEME["block"]), (hud.x + 110, hud.y + 46))
-        rup_color = UI_THEME["rupture"] if self.rupture_pulse > 0 else UI_THEME["text"]
-        s.blit(self.app.font.render(f"{self.app.loc.t('hud_rupture')}: {p['rupture']}", True, rup_color), (hud.x + 110, hud.y + 74))
-        s.blit(self.app.font.render(self.app.loc.t("hud_energy"), True, UI_THEME["text"]), (hud.x + 12, hud.y + 110))
+        p = self.c.player
+        s.blit(self.app.font.render(f"{self.app.loc.t('hud_hp')}: {p['hp']}/{p['max_hp']}", True, UI_THEME["text"]), (946, 138))
+        s.blit(self.app.font.render(f"{self.app.loc.t('hud_block')}: {p['block']}", True, UI_THEME["block"]), (946, 166))
+        s.blit(self.app.font.render(f"{self.app.loc.t('hud_rupture')}: {p['rupture']}", True, UI_THEME["rupture"]), (946, 194))
+        s.blit(self.app.font.render(self.app.loc.t("hud_energy"), True, UI_THEME["text"]), (946, 224))
         for i in range(3):
-            filled = i < p["energy"]
-            pygame.draw.circle(s, UI_THEME["energy"] if filled else (60, 65, 80), (hud.x + 105 + i * 34, hud.y + 122), 12)
+            pygame.draw.circle(s, UI_THEME["energy"] if i < p["energy"] else (65, 68, 90), (1080 + i * 32, 236), 12)
+        if self.app.run_state.get("settings", {}).get("timer_on", False):
+            s.blit(self.app.small_font.render(f"{self.turn_timer:04.1f}s", True, UI_THEME["gold"]), (1130, 222))
 
-        # end turn button
-        end_rect = pygame.Rect(1080, 600, 180, 90)
-        pygame.draw.rect(s, UI_THEME["violet"], end_rect, border_radius=12)
-        s.blit(self.app.font.render(self.app.loc.t("button_end_turn"), True, UI_THEME["text"]), (1100, 632))
+        # log panel
+        pygame.draw.rect(s, UI_THEME["panel"], (930, 350, 330, 170), border_radius=12)
+        s.blit(self.app.small_font.render(self.app.loc.t("combat_log"), True, UI_THEME["text"]), (946, 360))
+        for i, line in enumerate(self.log_lines[:5]):
+            s.blit(self.app.tiny_font.render(line, True, UI_THEME["muted"]), (946, 385 + i * 24))
 
-        # cards
-        hovered_idx = None
-        for i, _ in enumerate(self.c.hand):
-            if self._card_rect(i).collidepoint(mouse):
-                hovered_idx = i
-        for i, card in enumerate(self.c.hand):
-            r = self._draw_card(s, i, card, hovered=(hovered_idx == i))
-            if r.collidepoint(mouse):
-                full = self.app.loc.t(card.definition.text_key)
-                self.tooltip = full if full != card.definition.text_key else card.definition.id
+        # end button
+        pygame.draw.rect(s, UI_THEME["violet"], (1090, 618, 170, 78), border_radius=12)
+        s.blit(self.app.font.render(self.app.loc.t("button_end_turn"), True, UI_THEME["text"]), (1104, 647))
 
-        # targeting mode overlay
-        if self.c.needs_target is not None:
-            overlay = pygame.Surface((1280, 720), pygame.SRCALPHA)
-            overlay.fill((30, 10, 35, 55))
-            s.blit(overlay, (0, 0))
-            for i, enemy in enumerate(self.c.enemies):
-                er = self._enemy_rect(i)
-                if enemy.alive:
-                    pygame.draw.rect(s, UI_THEME["card_selected"], er, width=3, border_radius=12)
-            s.blit(self.app.font.render(self.app.loc.t("button_confirm"), True, UI_THEME["text"]), (590, 20))
+        # hand band reserved bottom
+        pygame.draw.rect(s, (15, 18, 30), (0, 500, 1280, 220))
+        start, visible = self._visible_hand()
+        for i, c in enumerate(visible):
+            rr = self._draw_card(s, self._card_rect(i, len(visible)), c, selected=(start + i == self.selected_card_index))
+            if rr.collidepoint(mouse):
+                self.tooltip = self.app.loc.t(c.definition.text_key)
 
         # floaters
         for f in self.floaters:
             if f["target"] == "player":
-                x, y = 120, 470
+                x, y = 1030, 118
             else:
                 idx = next((i for i, e in enumerate(self.c.enemies) if e.id == f["target"]), 0)
                 er = self._enemy_rect(idx)
-                x, y = er.centerx, er.y + 10
-            y -= int((0.7 - f["time"]) * 36)
+                x, y = er.centerx, er.y + 5
+            y -= int((0.7 - f["time"]) * 34)
             s.blit(self.app.small_font.render(f["text"], True, f["color"]), (x, y))
 
         if self.turn_banner_time > 0:
-            txt = self.app.big_font.render(self.app.loc.t("combat_turn_banner"), True, UI_THEME["good"])
-            s.blit(txt, txt.get_rect(center=(640, 360)))
+            t = self.app.big_font.render(self.app.loc.t("combat_turn_banner"), True, UI_THEME["good"])
+            s.blit(t, t.get_rect(center=(640, 410)))
 
-        if self.tooltip:
-            tr = pygame.Rect(mouse[0] + 16, mouse[1] + 16, 350, 62)
+        if self.glossary:
+            g = pygame.Rect(170, 120, 940, 420)
+            pygame.draw.rect(s, (10, 10, 20), g, border_radius=12)
+            s.blit(self.app.font.render(self.app.loc.t("glossary_title"), True, UI_THEME["text"]), (200, 145))
+            yy = 185
+            for k, v in KEYWORDS.items():
+                s.blit(self.app.small_font.render(k, True, UI_THEME["gold"]), (220, yy))
+                s.blit(self.app.small_font.render(v, True, UI_THEME["text"]), (420, yy))
+                yy += 40
+
+        if self.tooltip and not self.glossary:
+            tr = pygame.Rect(mouse[0] + 16, mouse[1] + 16, 360, 70)
             pygame.draw.rect(s, (18, 18, 26), tr, border_radius=8)
             for li, line in enumerate(wrap_text(self.app.tiny_font, self.tooltip, tr.w - 10)[:3]):
                 s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (tr.x + 6, tr.y + 6 + li * 17))

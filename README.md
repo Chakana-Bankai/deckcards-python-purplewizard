@@ -1,13 +1,6 @@
 # CHAKANA: Mago Morado (MVP)
 
-Deckbuilder por turnos en Python + Pygame con arquitectura separada (motor/UI), contenido data-driven y localización desde día 1.
-
-## Requisitos
-
-- Python 3.12
-- Windows PowerShell (recomendado)
-
-## Ejecutar (Windows, comando oficial)
+## Ejecutar (Windows)
 
 ```powershell
 py -3.12 -m venv game\.venv
@@ -16,33 +9,23 @@ game\.venv\Scripts\python.exe -m pip install -r requirements.txt
 game\.venv\Scripts\python.exe -m game.main
 ```
 
-También puedes usar:
+## Arte de cartas
 
-```powershell
-.\run.ps1
-```
+El juego autogenera arte procedural si falta un PNG de carta en:
 
-## Controles
+- `assets/sprites/cards/{card_id}.png`
 
-- Mouse: click carta, enemigo y botones.
-- Teclado:
-  - `1..0` jugar carta
-  - `E` fin turno
-  - `D` ver mazo
-  - `R` ver descarte
-  - `ESC` cancelar/volver
-  - `SPACE` confirmar target por defecto
-  - `F1` alternar ES/EN
-  - `F11` fullscreen
+Para reemplazar arte, coloca PNG de **256x160** con el mismo `card_id`.
 
-## Robustez implementada
+Además se exportan prompts opcionales a:
 
-- Paths absolutos con `pathlib` (independiente del cwd).
-- Carga JSON segura con fallback (`safe_io.load_json`).
-- Defaults mínimos si faltan data files (cartas base, enemigo dummy, eventos vacíos).
-- Manejo de excepciones con traceback completo.
+- `assets/sprites/cards/prompts_cards.txt`
 
+## Música esperada (opcional)
 
-## Assets
+- `assets/music/map.ogg`
+- `assets/music/combat.ogg`
+- `assets/music/event.ogg`
+- `assets/music/boss.ogg`
 
-Los placeholders de sprites y SFX se generan automáticamente al iniciar el juego (no se versionan binarios).
+Si faltan, el juego continúa sin crashear.
