@@ -5,6 +5,23 @@ from game.ui.theme import UI_THEME
 from game.settings import INTERNAL_HEIGHT, INTERNAL_WIDTH
 
 
+def wrap_text(font, text, width):
+    words = (text or "").split()
+    lines = []
+    cur = ""
+    for w in words:
+        nxt = (cur + " " + w).strip()
+        if font.size(nxt)[0] <= width:
+            cur = nxt
+        else:
+            if cur:
+                lines.append(cur)
+            cur = w
+    if cur:
+        lines.append(cur)
+    return lines
+
+
 class CombatScreen:
     def __init__(self, app, combat_state, is_boss=False):
         self.app = app
@@ -21,6 +38,8 @@ class CombatScreen:
         self.turn_timer = self.app.run_state.get("settings", {}).get("turn_timer_seconds", 30)
         self.end_turn_rect = pygame.Rect(INTERNAL_WIDTH - 260, INTERNAL_HEIGHT - 128, 210, 84)
         self.status_rect = pygame.Rect(INTERNAL_WIDTH - 260, INTERNAL_HEIGHT - 226, 210, 78)
+        self.end_turn_pressed = False
+        self.status_pressed = False
         self._taunt("enemy_taunt_start")
 
     def _taunt(self, key):
@@ -105,10 +124,12 @@ class CombatScreen:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
             if self.end_turn_rect.collidepoint(pos):
+                self.end_turn_pressed = True
                 self.c.end_turn()
                 self.turn_timer = self.app.run_state.get("settings", {}).get("turn_timer_seconds", 30)
                 return
             if self.status_rect.collidepoint(pos):
+                self.status_pressed = True
                 self.log_visible = not self.log_visible
                 return
             for i, e in enumerate(self.c.enemies):
@@ -131,6 +152,9 @@ class CombatScreen:
                     self.app.sfx.play("card_pick")
                     self._play_card(start + i, None)
                     return
+        if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+            self.end_turn_pressed = False
+            self.status_pressed = False
 
     def update(self, dt):
         self.c.update(dt)
@@ -164,9 +188,18 @@ class CombatScreen:
 
     def _draw_outlined_text(self, s, font, text, color, pos, outline=(26, 16, 37)):
         x, y = pos
-        for ox, oy in ((-2,0),(2,0),(0,-2),(0,2)):
-            s.blit(font.render(text, True, outline), (x+ox, y+oy))
+        for ox, oy in ((-2, 0), (2, 0), (0, -2), (0, 2)):
+            s.blit(font.render(text, True, outline), (x + ox, y + oy))
         s.blit(font.render(text, True, color), (x, y))
+
+    def _intent_icon(self, s, kind, pos):
+        x, y = pos
+        if kind == "attack":
+            pygame.draw.polygon(s, UI_THEME["bad"], [(x, y + 16), (x + 14, y), (x + 28, y + 16)], 2)
+        elif kind == "defend":
+            pygame.draw.rect(s, UI_THEME["block"], (x + 4, y + 2, 20, 18), 2, border_radius=4)
+        else:
+            pygame.draw.circle(s, UI_THEME["accent_violet"], (x + 14, y + 10), 8, 2)
 
     def _draw_card(self, s, rect, card, selected=False, hovered=False):
         if hovered:
@@ -191,19 +224,26 @@ class CombatScreen:
         title = self.app.loc.t(card.definition.name_key)
         self._draw_outlined_text(s, self.app.card_title_font, title, UI_THEME["text"], (draw_rect.x + 10, draw_rect.y + 4))
         txt = self.app.loc.t(card.definition.text_key)
-        color = UI_THEME["muted"]
-        if any(k in txt.lower() for k in ["daño", "damage", "bloque", "block", "ruptura"]):
-            color = UI_THEME["gold"]
-        s.blit(self.app.card_text_font.render(txt, True, color), (draw_rect.x + 10, draw_rect.y + int(draw_rect.h * 0.86)))
+        lines = wrap_text(self.app.card_text_font, txt, draw_rect.w - 18)[:2]
+        for i, line in enumerate(lines):
+            color = UI_THEME["muted"]
+            if any(k in line.lower() for k in ["daño", "damage", "bloque", "block", "ruptura"]):
+                color = UI_THEME["gold"]
+            s.blit(self.app.card_text_font.render(line, True, color), (draw_rect.x + 10, draw_rect.y + int(draw_rect.h * 0.84) + i * 20))
+        pygame.draw.circle(s, (185, 215, 255), (draw_rect.right - 18, draw_rect.y + 18), 17)
         pygame.draw.circle(s, UI_THEME["energy"], (draw_rect.right - 18, draw_rect.y + 18), 14)
         self._draw_outlined_text(s, self.app.small_font, str(card.cost), UI_THEME["text_dark"], (draw_rect.right - 24, draw_rect.y + 4), outline=(220, 230, 255))
         return draw_rect
 
     def render(self, s):
-        bg = pygame.Surface((INTERNAL_WIDTH, INTERNAL_HEIGHT))
-        pygame.draw.rect(bg, UI_THEME["deep_purple"], (0, 0, INTERNAL_WIDTH, INTERNAL_HEIGHT))
-        pygame.draw.rect(bg, UI_THEME["bg"], (0, 0, INTERNAL_WIDTH, INTERNAL_HEIGHT), 0)
-        s.blit(bg, (0, 0))
+        grad = pygame.Surface((INTERNAL_WIDTH, INTERNAL_HEIGHT))
+        for y in range(INTERNAL_HEIGHT):
+            t = y / max(1, INTERNAL_HEIGHT - 1)
+            r = int(UI_THEME["deep_purple"][0] * (1 - t) + UI_THEME["bg"][0] * t)
+            g = int(UI_THEME["deep_purple"][1] * (1 - t) + UI_THEME["bg"][1] * t)
+            b = int(UI_THEME["deep_purple"][2] * (1 - t) + UI_THEME["bg"][2] * t)
+            pygame.draw.line(grad, (r, g, b), (0, y), (INTERNAL_WIDTH, y))
+        s.blit(grad, (0, 0))
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.tooltip = None
 
@@ -238,12 +278,12 @@ class CombatScreen:
             pygame.draw.rect(s, UI_THEME["deep_purple"], er, border_radius=12)
             sp = self.app.assets.sprite("enemies", e.id, (160, 160), fallback=(100, 60, 90))
             s.blit(sp, (er.x + 12, er.y + 12))
-            # intent card (replaces black empty square)
             intent_card = pygame.Rect(er.x + 180, er.y + 12, 138, 160)
             pygame.draw.rect(s, (54, 28, 86), intent_card, border_radius=10)
             intent_txt, action_name, desc, kind = self._intent_text(e)
             color = UI_THEME["bad"] if kind == "attack" else UI_THEME["block"] if kind == "defend" else UI_THEME["accent_violet"]
-            s.blit(self.app.small_font.render(action_name, True, UI_THEME["gold"]), (intent_card.x + 8, intent_card.y + 10))
+            self._intent_icon(s, kind, (intent_card.x + 6, intent_card.y + 12))
+            s.blit(self.app.small_font.render(action_name, True, UI_THEME["gold"]), (intent_card.x + 36, intent_card.y + 10))
             self._draw_outlined_text(s, self.app.font, intent_txt, color, (intent_card.x + 8, intent_card.y + 54))
             s.blit(self.app.tiny_font.render(desc, True, UI_THEME["muted"]), (intent_card.x + 8, intent_card.y + 118))
 
@@ -284,17 +324,24 @@ class CombatScreen:
 
         status_col = UI_THEME["panel_2"]
         if self.status_rect.collidepoint(mouse):
-            status_col = tuple(min(255, c + 20) for c in status_col)
-        pygame.draw.rect(s, status_col, self.status_rect, border_radius=10)
+            status_col = tuple(min(255, int(c * 1.08)) for c in status_col)
+        status_rect = self.status_rect.inflate(-10, -4) if self.status_pressed else self.status_rect
+        pygame.draw.rect(s, status_col, status_rect, border_radius=10)
+        icon_x = status_rect.centerx - 44
+        icon_y = status_rect.centery - 8
+        pygame.draw.rect(s, UI_THEME["muted"], (icon_x, icon_y, 16, 14), 2, border_radius=3)
+        pygame.draw.line(s, UI_THEME["muted"], (icon_x + 3, icon_y + 5), (icon_x + 13, icon_y + 5), 1)
+        pygame.draw.line(s, UI_THEME["muted"], (icon_x + 3, icon_y + 9), (icon_x + 11, icon_y + 9), 1)
         label = self.app.small_font.render("Registro", True, UI_THEME["text"])
-        s.blit(label, label.get_rect(center=self.status_rect.center))
+        s.blit(label, label.get_rect(center=(status_rect.centerx + 18, status_rect.centery)))
 
+        end_rect = self.end_turn_rect.inflate(-10, -4) if self.end_turn_pressed else self.end_turn_rect
         end_col = UI_THEME["violet"]
         if p["energy"] > 0:
-            pygame.draw.rect(s, (182, 120, 255), self.end_turn_rect.inflate(8, 8), border_radius=14, width=2)
-        pygame.draw.rect(s, end_col, self.end_turn_rect, border_radius=12)
+            pygame.draw.rect(s, (182, 120, 255), end_rect.inflate(8, 8), border_radius=14, width=2)
+        pygame.draw.rect(s, end_col, end_rect, border_radius=12)
         end_label = self.app.font.render(self.app.loc.t("button_end_turn"), True, UI_THEME["text"])
-        s.blit(end_label, end_label.get_rect(center=self.end_turn_rect.center))
+        s.blit(end_label, end_label.get_rect(center=end_rect.center))
 
         if self.tooltip:
             tr = pygame.Rect(min(mouse[0] + 16, INTERNAL_WIDTH - 500), min(mouse[1] + 14, INTERNAL_HEIGHT - 86), 470, 68)
