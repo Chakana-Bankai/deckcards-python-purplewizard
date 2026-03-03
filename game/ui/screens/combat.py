@@ -181,7 +181,7 @@ class CombatScreen:
         pygame.draw.rect(s, (20, 24, 38), top)
         combat_name = self.app.loc.t("node_boss") if self.is_boss else self.app.loc.t("node_combat")
         s.blit(self.app.font.render(combat_name, True, UI_THEME["gold"]), (24, 30))
-        banner_text = self.banner.current()
+        banner_text = self.banner.current
         s.blit(self.app.big_font.render(banner_text, True, UI_THEME["text"]), (INTERNAL_WIDTH // 2 - self.app.big_font.size(banner_text)[0] // 2, 32))
 
         p = self.c.player
