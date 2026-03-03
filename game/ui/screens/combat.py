@@ -66,12 +66,14 @@ class CombatScreen:
         val = intent.get("value", [intent.get("stacks", 1), intent.get("stacks", 1)])
         num = val[0] if isinstance(val, list) else val
         if kind == "attack":
-            return f"Se prepara para: Daño {num}", UI_THEME["bad"]
+            label = self.app.design_value("CANON_INTENT_ATTACK", "Preparando golpe: {value}").format(value=f"{self.app.design_value('CANON_LABEL_DANO', 'Daño')} {num}")
+            return label, UI_THEME["bad"]
         if kind == "defend":
-            return f"Levanta Guardia {num}", UI_THEME["block"]
+            label = self.app.design_value("CANON_INTENT_DEFEND", "Se protege: {value}").format(value=f"{self.app.design_value('CANON_LABEL_GUARDIA', 'Guardia')} {num}")
+            return label, UI_THEME["block"]
         if kind == "debuff":
-            return f"Te marca con Debilidad ({intent.get('stacks', 1)})", UI_THEME["gold"]
-        return f"Canaliza poder ({intent.get('stacks', 1)})", UI_THEME["accent_violet"]
+            return self.app.design_value("CANON_INTENT_DEBUFF", "Lanza Maldición"), UI_THEME["gold"]
+        return self.app.design_value("CANON_INTENT_BUFF", "Canaliza poder"), UI_THEME["accent_violet"]
 
     def _selected_card(self):
         if self.selected_card_index is None or self.selected_card_index >= len(self.c.hand):
@@ -82,8 +84,16 @@ class CombatScreen:
         data = self.app.lore_data
         if side == "enemy":
             arr = data.get("enemy", {}).get(enemy_id, {}).get(trigger, [])
+            fallback = self.app.design_value("DIALOGUE_FALLBACK_ENEMY", "")
         else:
             arr = data.get("chakana", {}).get(trigger, [])
+            fallback = self.app.design_value("DIALOGUE_FALLBACK_CHAKANA", "")
+        if not arr and fallback:
+            pairs = [p for p in fallback.split("|") if ":" in p]
+            table = {k.strip(): v.strip() for k, v in (x.split(":", 1) for x in pairs)}
+            txt = table.get(trigger)
+            if txt:
+                arr = [txt]
         if not arr:
             return "..."
         return self.app.rng.choice(arr)
@@ -227,9 +237,9 @@ class CombatScreen:
         pstate = self.c.player
         pygame.draw.rect(s, UI_THEME["panel"], hud, border_radius=12)
         s.blit(self.app.font.render(f"Vida {pstate['hp']}/{pstate['max_hp']}", True, UI_THEME["text"]), (hud.x + 20, hud.y + 20))
-        s.blit(self.app.font.render(f"Guardia {pstate['block']}", True, UI_THEME["block"]), (hud.x + 20, hud.y + 62))
-        s.blit(self.app.font.render(f"Quiebre {pstate['rupture']}", True, UI_THEME["rupture"]), (hud.x + 20, hud.y + 104))
-        s.blit(self.app.font.render("Maná", True, UI_THEME["text"]), (hud.x + 20, hud.y + 148))
+        s.blit(self.app.font.render(f"{self.app.design_value('CANON_LABEL_GUARDIA', 'Guardia')} {pstate['block']}", True, UI_THEME["block"]), (hud.x + 20, hud.y + 62))
+        s.blit(self.app.font.render(f"{self.app.design_value('CANON_LABEL_QUIEBRE', 'Quiebre')} {pstate['rupture']}", True, UI_THEME["rupture"]), (hud.x + 20, hud.y + 104))
+        s.blit(self.app.font.render(self.app.design_value("CANON_LABEL_MANA", "Maná"), True, UI_THEME["text"]), (hud.x + 20, hud.y + 148))
         for i in range(5):
             pygame.draw.circle(s, UI_THEME["energy"] if i < pstate["energy"] else (65, 68, 90), (hud.x + 120 + i * 42, hud.y + 164), 13)
 
@@ -243,7 +253,7 @@ class CombatScreen:
             ratio = max(0, e.hp) / max(1, e.max_hp)
             pygame.draw.rect(s, (35, 24, 50), (er.x + 12, er.y + 252, 340, 18), border_radius=7)
             pygame.draw.rect(s, UI_THEME["hp"], (er.x + 12, er.y + 252, int(340 * ratio), 18), border_radius=7)
-            s.blit(self.app.small_font.render(f"Vida {e.hp}/{e.max_hp}  Guardia {e.block}  Quiebre {e.statuses.get('rupture',0)}", True, UI_THEME["text"]), (er.x + 12, er.y + 278))
+            s.blit(self.app.small_font.render(f"Vida {e.hp}/{e.max_hp}  {self.app.design_value('CANON_LABEL_GUARDIA', 'Guardia')} {e.block}  {self.app.design_value('CANON_LABEL_QUIEBRE', 'Quiebre')} {e.statuses.get('rupture',0)}", True, UI_THEME["text"]), (er.x + 12, er.y + 278))
 
         pygame.draw.rect(s, (12, 14, 28), (0, int(INTERNAL_HEIGHT * 0.61), INTERNAL_WIDTH, INTERNAL_HEIGHT - int(INTERNAL_HEIGHT * 0.61)))
         hand = self.c.hand[:6]

@@ -99,6 +99,8 @@ class App:
         self.events_data = self._load_events_data()
         self.relics_data = self._load_relics_data()
         self.lore_data = self._load_lore_data()
+        self.design_doc = self._load_design_doc()
+        self.canonical_design_source = str(data_dir() / "design" / "gdd_chakana_purple_wizard.txt")
         print(f"[load] cards={len(self.cards_data)} enemies={len(self.enemies_data)} events={len(self.events_data)} relics={len(self.relics_data)}")
         ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
         ensure_bgm_assets(force_regen=False)
@@ -163,6 +165,25 @@ class App:
         dialogues["event_fragments"] = lore_events.get("fragments", []) if isinstance(lore_events, dict) else []
         dialogues["enemy_lore"] = lore_enemies if isinstance(lore_enemies, dict) else {}
         return dialogues
+
+    def _load_design_doc(self):
+        design_path = data_dir() / "design" / "gdd_chakana_purple_wizard.txt"
+        data = {}
+        raw = ""
+        try:
+            raw = design_path.read_text(encoding="utf-8")
+        except Exception:
+            return {"raw": "", "path": str(design_path)}
+        for line in raw.splitlines():
+            if "=" in line and line.strip() and not line.strip().startswith("#"):
+                k, v = line.split("=", 1)
+                data[k.strip()] = v.strip()
+        data["raw"] = raw
+        data["path"] = str(design_path)
+        return data
+
+    def design_value(self, key: str, default: str = "") -> str:
+        return self.design_doc.get(key, default)
 
     def validate_navigation_methods(self):
         required = ["goto_menu", "goto_map", "goto_combat", "goto_reward", "goto_shop", "goto_event", "goto_deck", "goto_settings"]
@@ -500,6 +521,7 @@ class App:
             f"scale={scale:.3f} letterbox=({x},{y})",
             f"hovered_card={self.debug.get('hovered_card_id','-')} target_mode={self.debug.get('target_mode','-')}",
             f"BGM track={self.music.debug_state()}",
+            f"design={self.canonical_design_source}",
             f"enemy_hp={self.debug.get('enemies_hp','-')} intent={self.debug.get('enemy_intent','-')}",
             f"card_art_regenerated={self.debug.get('art_regenerated','0')}",
             f"map.available_count={self.debug.get('map_available_count','-')} current_node_id={self.debug.get('current_node_id','-')}",

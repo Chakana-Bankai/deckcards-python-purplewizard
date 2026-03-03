@@ -11,7 +11,7 @@ class EventScreen:
         self.writer = TypewriterBanner()
         lore_hint = (self.app.lore_data.get("world_text", "")[:180] + "...") if self.app.lore_data.get("world_text") else self.app.loc.t("lore_tagline")
         fragments = self.app.lore_data.get("event_fragments", []) or ["El guía espera tu elección."]
-        self.lines = [self.app.loc.t(event.get("body_key", "lore_tagline")), lore_hint, self.app.rng.choice(fragments)]
+        self.lines = [self.app.loc.t(event.get("body_key", "lore_tagline")), lore_hint, f"{self.app.design_value('CANON_EVENT_CAPTION', 'La Trama dicta la elección')}: {self.app.rng.choice(fragments)}"]
         self.idx = 0
         self.timer = 0
         self.msg = ""
@@ -64,7 +64,7 @@ class EventScreen:
 
         dialogue_box = pygame.Rect(500, 220, 1200, 170)
         pygame.draw.rect(s, (30, 18, 44), dialogue_box, border_radius=12)
-        s.blit(self.app.small_font.render("Guía espiritual", True, UI_THEME["muted"]), (530, 246))
+        s.blit(self.app.small_font.render(self.app.design_value("CANON_GUIDE_NAME", "Guía espiritual"), True, UI_THEME["muted"]), (530, 246))
         s.blit(self.app.font.render(self.writer.current, True, UI_THEME["text"]), (530, 290))
 
         for i, ch in enumerate(self.event["choices"][:3]):

@@ -9,6 +9,20 @@ import pygame
 from game.core.paths import assets_dir, data_dir
 
 
+def _load_design_values() -> dict[str, str]:
+    path = data_dir() / "design" / "gdd_chakana_purple_wizard.txt"
+    vals = {}
+    try:
+        raw = path.read_text(encoding="utf-8")
+    except Exception:
+        return vals
+    for line in raw.splitlines():
+        if "=" in line and not line.strip().startswith("#"):
+            k, v = line.split("=", 1)
+            vals[k.strip()] = v.strip()
+    return vals
+
+
 class PromptBuilder:
     BASE = (
         "16bit pixel art mystical andean magic card, "

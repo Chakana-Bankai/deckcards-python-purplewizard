@@ -51,7 +51,7 @@ class MenuScreen:
         t = int((pygame.time.get_ticks() * 0.02) % 40)
         surface.blit(sky, (0, 0)); surface.blit(silhouettes, (-t, 0)); surface.blit(fog, (t // 2, 0))
 
-        title = self.app.big_font.render("CHAKANA: Purple Wizard", True, UI_THEME["gold"])
+        title = self.app.big_font.render(self.app.design_value("CANON_MENU_TITLE", "CHAKANA: Purple Wizard"), True, UI_THEME["gold"])
         surface.blit(title, title.get_rect(center=(960, 112)))
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
