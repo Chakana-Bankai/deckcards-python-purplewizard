@@ -63,3 +63,5 @@ def interpret_effects(state, card_instance, target, effects: list[dict]):
             state.player["rupture"] = effect["amount"]
         elif t in {"exhaust_from_hand", "cleanse_or_dispel", "zero_and_double_play"}:
             pass
+        else:
+            print(f"[effects] warning: unsupported effect type '{t}'")

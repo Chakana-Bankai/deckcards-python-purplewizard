@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from uuid import uuid4
 
 
 @dataclass
@@ -18,7 +19,7 @@ class CardInstance:
     definition: CardDef
     temp_cost: int | None = None
     upgraded: bool = False
-    uuid: int = field(default_factory=id)
+    instance_id: str = field(default_factory=lambda: uuid4().hex)
 
     @property
     def cost(self) -> int:

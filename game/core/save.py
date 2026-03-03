@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 
-SAVE_PATH = Path("savegame.json")
+from game.core.paths import project_root
+
+SAVE_PATH = project_root() / "savegame.json"
 
 
 def save_run(data: dict) -> None:

@@ -1,14 +1,43 @@
 from __future__ import annotations
 
-import json
-from pathlib import Path
-
-from game.combat.actions import ActionQueue, DealDamage, GainBlock, ApplyStatus
+from game.combat.actions import ActionQueue, ApplyStatus, DealDamage, GainBlock
 from game.combat.card import CardDef, CardInstance
 from game.combat.effects import interpret_effects
 from game.combat.enemy import Enemy
+from game.core.paths import data_dir
 from game.core.rng import SeededRNG
-from game.settings import DATA_DIR
+from game.core.safe_io import load_json
+
+
+DEFAULT_CARDS = [
+    {
+        "id": "strike",
+        "name_key": "card_strike_name",
+        "text_key": "card_strike_desc",
+        "rarity": "basic",
+        "cost": 1,
+        "target": "enemy",
+        "tags": ["attack"],
+        "effects": [{"type": "damage", "amount": 6}],
+    },
+    {
+        "id": "defend",
+        "name_key": "card_defend_name",
+        "text_key": "card_defend_desc",
+        "rarity": "basic",
+        "cost": 1,
+        "target": "self",
+        "tags": ["skill"],
+        "effects": [{"type": "block", "amount": 5}],
+    },
+]
+
+DEFAULT_ENEMY = {
+    "id": "dummy",
+    "name_key": "enemy_voidling_name",
+    "hp": [20, 20],
+    "pattern": [{"intent": "attack", "value": [5, 5]}],
+}
 
 
 class CombatState:
@@ -22,10 +51,11 @@ class CombatState:
         self.turn = 0
         self.pending_if_kill = None
         self.start_line_time = 2.0
-        self.start_line = rng.choice(["lore_short_1", "lore_short_2", "lore_short_3"])
+        self.start_line = rng.choice(["lore_short_1", "lore_short_2", "lore_short_3"]) or "lore_short_1"
         self.cards = self._load_cards()
         self.enemies = self._spawn_enemies(enemy_ids)
-        self.draw_pile = [CardInstance(self.cards[cid]) for cid in run_state["deck"]]
+        deck_ids = run_state.get("deck", []) or ["strike"] * 5 + ["defend"] * 5
+        self.draw_pile = [CardInstance(self.cards.get(card_id, self.cards["strike"])) for card_id in deck_ids]
         self.discard_pile = []
         self.hand = []
         self.exhaust_pile = []
@@ -35,16 +65,40 @@ class CombatState:
         self.start_player_turn()
 
     def _load_cards(self):
-        raw = json.loads((Path(DATA_DIR) / "cards.json").read_text(encoding="utf-8"))
-        return {c["id"]: CardDef(**c) for c in raw}
+        raw = load_json(data_dir() / "cards.json", default=DEFAULT_CARDS)
+        if not isinstance(raw, list):
+            raw = DEFAULT_CARDS
+        by_id = {}
+        for entry in raw:
+            try:
+                card_def = CardDef(**entry)
+                by_id[card_def.id] = card_def
+            except Exception as exc:
+                print(f"[combat] invalid card entry skipped: {exc}")
+        for base in DEFAULT_CARDS:
+            if base["id"] not in by_id:
+                by_id[base["id"]] = CardDef(**base)
+        return by_id
 
-    def _spawn_enemies(self, ids):
-        db = {e["id"]: e for e in json.loads((Path(DATA_DIR) / "enemies.json").read_text(encoding="utf-8"))}
+    def _spawn_enemies(self, enemy_ids):
+        raw = load_json(data_dir() / "enemies.json", default=[DEFAULT_ENEMY])
+        if not isinstance(raw, list) or not raw:
+            raw = [DEFAULT_ENEMY]
+        db = {}
+        for entry in raw:
+            if isinstance(entry, dict) and "id" in entry:
+                db[entry["id"]] = entry
+        if not db:
+            db = {DEFAULT_ENEMY["id"]: DEFAULT_ENEMY}
         enemies = []
-        for eid in ids:
-            item = db[eid]
-            hp = self.rng.randint(item["hp"][0], item["hp"][1])
-            enemies.append(Enemy(eid, item["name_key"], hp, hp, item["pattern"]))
+        for enemy_id in enemy_ids or [DEFAULT_ENEMY["id"]]:
+            item = db.get(enemy_id, DEFAULT_ENEMY)
+            hp_range = item.get("hp", [20, 20])
+            min_hp = hp_range[0] if isinstance(hp_range, list) and hp_range else 20
+            max_hp = hp_range[1] if isinstance(hp_range, list) and len(hp_range) > 1 else min_hp
+            hp = self.rng.randint(min_hp, max_hp)
+            pattern = item.get("pattern") or [{"intent": "attack", "value": [5, 5]}]
+            enemies.append(Enemy(item.get("id", "dummy"), item.get("name_key", "enemy_voidling_name"), hp, hp, pattern))
         return enemies
 
     def start_player_turn(self):
@@ -94,14 +148,20 @@ class CombatState:
             if not enemy.alive:
                 continue
             intent = enemy.current_intent()
-            if intent["intent"] == "attack":
-                val = self.rng.randint(intent["value"][0], intent["value"][1])
-                self.queue.push(DealDamage(enemy, "player", val))
-            elif intent["intent"] == "defend":
-                val = self.rng.randint(intent["value"][0], intent["value"][1])
-                self.queue.push(GainBlock(enemy, val))
-            elif intent["intent"] in {"debuff", "buff"}:
-                self.queue.push(ApplyStatus("player" if intent["intent"] == "debuff" else enemy, intent["status"], intent["stacks"]))
+            intent_kind = intent.get("intent", "attack")
+            if intent_kind == "attack":
+                value = intent.get("value", [5, 5])
+                low = value[0] if isinstance(value, list) else int(value)
+                high = value[1] if isinstance(value, list) and len(value) > 1 else low
+                self.queue.push(DealDamage(enemy, "player", self.rng.randint(low, high)))
+            elif intent_kind == "defend":
+                value = intent.get("value", [5, 5])
+                low = value[0] if isinstance(value, list) else int(value)
+                high = value[1] if isinstance(value, list) and len(value) > 1 else low
+                self.queue.push(GainBlock(enemy, self.rng.randint(low, high)))
+            elif intent_kind in {"debuff", "buff"}:
+                target = "player" if intent_kind == "debuff" else enemy
+                self.queue.push(ApplyStatus(target, intent.get("status", "weak"), intent.get("stacks", 1)))
             enemy.advance_intent()
 
     def update(self, dt):
@@ -129,7 +189,6 @@ class CombatState:
             target.block -= blocked
             target.hp -= max(0, amount - blocked)
             if target.hp <= 0 and self.pending_if_kill:
-                from game.combat.effects import interpret_effects
                 interpret_effects(self, CardInstance(self.cards["strike"]), target, self.pending_if_kill)
                 self.pending_if_kill = None
         if amount >= 10:

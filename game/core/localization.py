@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
-
-from game.settings import DATA_DIR, DEFAULT_LANG
+from game.core.paths import lang_dir
+from game.core.safe_io import load_json
+from game.settings import DEFAULT_LANG
 
 
 class LocalizationManager:
@@ -15,16 +14,18 @@ class LocalizationManager:
         self.load(lang)
 
     def load(self, lang_code: str) -> None:
-        path = Path(DATA_DIR) / "lang" / f"{lang_code}.json"
-        if path.exists():
-            self.translations = json.loads(path.read_text(encoding="utf-8"))
-            self.current_lang = lang_code
-        else:
-            print(f"[loc] missing lang file: {path}")
+        path = lang_dir() / f"{lang_code}.json"
+        loaded = load_json(path, default={})
+        if not loaded and lang_code != DEFAULT_LANG:
+            fallback_path = lang_dir() / f"{DEFAULT_LANG}.json"
+            loaded = load_json(fallback_path, default={})
+            lang_code = DEFAULT_LANG
+        self.translations = loaded if isinstance(loaded, dict) else {}
+        self.current_lang = lang_code
 
     def t(self, key: str, **kwargs) -> str:
         raw = self.translations.get(key, key)
         try:
-            return raw.format(**kwargs)
+            return str(raw).format(**kwargs)
         except Exception:
-            return raw
+            return str(raw)

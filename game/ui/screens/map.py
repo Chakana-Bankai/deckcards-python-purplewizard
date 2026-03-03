@@ -24,6 +24,9 @@ class MapScreen:
 
     def click_node(self, pos):
         run = self.app.run_state
+        if run["map_index"] >= len(run["map"]):
+            self.app.goto_menu()
+            return
         col = run["map"][run["map_index"]]
         for node in col:
             if pygame.Rect(node["x"] - 22, node["y"] - 22, 44, 44).collidepoint(pos) and node["available"]:

@@ -4,16 +4,22 @@ Deckbuilder por turnos en Python + Pygame con arquitectura separada (motor/UI), 
 
 ## Requisitos
 
-- Python 3.10+
-- pygame
+- Python 3.12
+- Windows PowerShell (recomendado)
 
-## Ejecutar
+## Ejecutar (Windows, comando oficial)
 
-```bash
-python -m venv .venv
-source .venv/bin/activate  # en Windows: .venv\Scripts\activate
-pip install pygame
-python game/main.py
+```powershell
+py -3.12 -m venv game\.venv
+game\.venv\Scripts\python.exe -m pip install -U pip
+game\.venv\Scripts\python.exe -m pip install -r requirements.txt
+game\.venv\Scripts\python.exe -m game.main
+```
+
+También puedes usar:
+
+```powershell
+.\run.ps1
 ```
 
 ## Controles
@@ -29,9 +35,9 @@ python game/main.py
   - `F1` alternar ES/EN
   - `F11` fullscreen
 
-## Estructura
+## Robustez implementada
 
-- `game/core`: estado global, RNG, localización
-- `game/combat`: motor de combate determinista + ActionQueue
-- `game/ui`: render/input/pantallas
-- `game/data`: cartas, enemigos, reliquias, eventos e idiomas JSON
+- Paths absolutos con `pathlib` (independiente del cwd).
+- Carga JSON segura con fallback (`safe_io.load_json`).
+- Defaults mínimos si faltan data files (cartas base, enemigo dummy, eventos vacíos).
+- Manejo de excepciones con traceback completo.

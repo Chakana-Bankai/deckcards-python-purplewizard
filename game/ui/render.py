@@ -54,6 +54,8 @@ class Renderer:
         x, y = (ww - nw) // 2, (wh - nh) // 2
         px = int((pos[0] - x) / scale)
         py = int((pos[1] - y) / scale)
+        px = max(0, min(INTERNAL_WIDTH - 1, px))
+        py = max(0, min(INTERNAL_HEIGHT - 1, py))
         return px, py
 
 

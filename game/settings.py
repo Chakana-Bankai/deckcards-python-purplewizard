@@ -1,10 +1,10 @@
 """Global settings for CHAKANA MVP."""
 
-from pathlib import Path
+from game.core.paths import assets_dir, data_dir, game_dir
 
-BASE_DIR = Path(__file__).resolve().parent
-DATA_DIR = BASE_DIR / "data"
-ASSETS_DIR = BASE_DIR / "assets"
+BASE_DIR = game_dir()
+DATA_DIR = data_dir()
+ASSETS_DIR = assets_dir()
 
 INTERNAL_WIDTH = 1280
 INTERNAL_HEIGHT = 720
