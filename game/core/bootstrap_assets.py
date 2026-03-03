@@ -37,7 +37,7 @@ def _write_wav(path: Path, hz: int = 440, ms: int = 120, volume: float = 0.15) -
         return
     rate = 22050
     frames = int(rate * (ms / 1000.0))
-    with wave.open(str(path), "w") as wav:
+    with wave.open(str(path), "wb") as wav:
         wav.setnchannels(1)
         wav.setsampwidth(2)
         wav.setframerate(rate)

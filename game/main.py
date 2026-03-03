@@ -102,19 +102,13 @@ class App:
         self.design_doc = self._load_design_doc()
         self.canonical_design_source = str(data_dir() / "design" / "gdd_chakana_purple_wizard.txt")
         print(f"[load] cards={len(self.cards_data)} enemies={len(self.enemies_data)} events={len(self.events_data)} relics={len(self.relics_data)}")
-        ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
-        ensure_bgm_assets(force_regen=False)
         self.art_gen = CardArtGenerator()
         self.enemy_art_gen = EnemyArtGenerator()
         self.bg_gen = BackgroundGenerator()
         self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
-        for c in self.cards_data:
-            self.art_gen.ensure_art(c.get("id", "strike"), c.get("tags", []), c.get("rarity", "common"), self.autogen_art_mode)
-        for e in self.enemies_data:
-            self.enemy_art_gen.ensure_art(e.get("id", "dummy"), self.autogen_art_mode)
+        self.ensure_assets()
         print("[load] card/enemy art verified")
         self.debug["art_regenerated"] = self.art_gen.generated_count + self.art_gen.replaced_count
-        export_prompts(self.cards_data, self.enemies_data)
 
         self.validate_navigation_methods()
         pygame.display.set_caption(self.loc.t("game_title"))
@@ -184,6 +178,20 @@ class App:
 
     def design_value(self, key: str, default: str = "") -> str:
         return self.design_doc.get(key, default)
+
+    def ensure_assets(self):
+        a = assets_dir()
+        (a / "music").mkdir(parents=True, exist_ok=True)
+        (a / "sprites" / "cards").mkdir(parents=True, exist_ok=True)
+        (a / "backgrounds").mkdir(parents=True, exist_ok=True)
+        ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
+        ensure_bgm_assets(force_regen=False)
+        for c in self.cards_data:
+            self.art_gen.ensure_art(c.get("id", "strike"), c.get("tags", []), c.get("rarity", "common"), self.autogen_art_mode)
+        for e in self.enemies_data:
+            self.enemy_art_gen.ensure_art(e.get("id", "dummy"), self.autogen_art_mode)
+        for biome in self.bg_gen.BIOMES:
+            self.bg_gen.get_layers(biome, 2026)
 
     def validate_navigation_methods(self):
         required = ["goto_menu", "goto_map", "goto_combat", "goto_reward", "goto_shop", "goto_event", "goto_deck", "goto_settings"]
@@ -467,7 +475,22 @@ class App:
         print("[map] recovery created Camino Abierto")
 
     def regenerate_music(self):
+        try:
+            pygame.mixer.music.stop()
+        except Exception:
+            pass
+        try:
+            pygame.mixer.quit()
+        except Exception:
+            pass
         ensure_bgm_assets(force_regen=True)
+        try:
+            pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
+        except Exception:
+            pass
+        self.music = MusicManager()
+        self.music.set_volume(self.user_settings.get("music_volume", 0.5))
+        self.music.set_muted(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False)))
         self.music._checked_silence.clear()
         self.music.play_for("menu")
 
