@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import traceback
 
 
@@ -69,3 +70,21 @@ class QARunner:
         except Exception as exc:
             results.append(self._fail("enter_boss", exc))
         return results
+
+
+def run_smoke_tests() -> int:
+    os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
+    os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
+
+    from game.main import App
+
+    app = App()
+    results = QARunner(app).run_all()
+    for result in results:
+        detail = f" - {result['detail']}" if result.get("detail") else ""
+        print(f"[{result['status']}] {result['name']}{detail}")
+    return 0 if all(r["status"] == "PASS" for r in results) else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(run_smoke_tests())
