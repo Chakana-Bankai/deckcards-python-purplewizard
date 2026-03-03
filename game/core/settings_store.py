@@ -18,6 +18,10 @@ DEFAULT_SETTINGS = {
     "music_mute": False,
     "autogen_art_mode": "missing_only",
     "dev_reset_autogen_on_boot": False,
+    "fx_vignette": True,
+    "fx_scanlines": False,
+    "fx_glow": True,
+    "fx_particles": True,
 }
 
 

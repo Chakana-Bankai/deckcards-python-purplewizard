@@ -7,6 +7,776 @@
     "player_low_hp": {
       "enemy": "Te quiebras. Tu Chakana se apaga.",
       "chakana": "Ayni: recibo el golpe y devuelvo claridad."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "larva_del_vacio": {
+    "start": {
+      "enemy": "Larva del Vacío: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "sabueso_sombrio": {
+    "start": {
+      "enemy": "Sabueso Sombrío: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "rata_obsidiana": {
+    "start": {
+      "enemy": "Rata Obsidiana: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "eco_perdido": {
+    "start": {
+      "enemy": "Eco Perdido: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "espiritu_de_humo": {
+    "start": {
+      "enemy": "Espíritu de Humo: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "monolito_fracturado": {
+    "start": {
+      "enemy": "Monolito Fracturado: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "ave_de_ceniza": {
+    "start": {
+      "enemy": "Ave de Ceniza: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "vigia_del_kaypacha": {
+    "start": {
+      "enemy": "Vigía del Kaypacha: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "mascara_risuena": {
+    "start": {
+      "enemy": "Máscara Risueña: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "portador_de_polvo": {
+    "start": {
+      "enemy": "Portador de Polvo: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "sombra_de_piedra": {
+    "start": {
+      "enemy": "Sombra de Piedra: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "insecto_de_tela": {
+    "start": {
+      "enemy": "Insecto de Tela: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "neblina_consciente": {
+    "start": {
+      "enemy": "Neblina Consciente: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "guardia_de_raiz": {
+    "start": {
+      "enemy": "Guardia de Raíz: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "runa_errante": {
+    "start": {
+      "enemy": "Runa Errante: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "espiritu_puma_menor": {
+    "start": {
+      "enemy": "Espíritu Puma Menor: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "espiritu_condor_menor": {
+    "start": {
+      "enemy": "Espíritu Cóndor Menor: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "chaman_corrupto": {
+    "start": {
+      "enemy": "Chamán Corrupto: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "vidente_caido": {
+    "start": {
+      "enemy": "Vidente Caído: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "devorador_de_ecos": {
+    "start": {
+      "enemy": "Devorador de Ecos: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "demonio_obsidiana": {
+    "start": {
+      "enemy": "Demonio Obsidiana: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "custodio_astral": {
+    "start": {
+      "enemy": "Custodio Astral: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "heraldo_del_umbral": {
+    "start": {
+      "enemy": "Heraldo del Umbral: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "portador_de_silencio": {
+    "start": {
+      "enemy": "Portador de Silencio: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "oraculo_menor": {
+    "start": {
+      "enemy": "Oráculo Menor: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "jaguar_sombrio": {
+    "start": {
+      "enemy": "Jaguar Sombrío: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "guardian_de_la_grieta": {
+    "start": {
+      "enemy": "Guardián de la Grieta: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "oraculo_del_vacio": {
+    "start": {
+      "enemy": "Oráculo del Vacío: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
+    }
+  },
+  "senor_de_la_chakana_rota": {
+    "start": {
+      "enemy": "Señor de la Chakana Rota: tu voluntad titubea en este Pacha.",
+      "chakana": "Ayni en calma. Sostengo el trazo."
+    },
+    "enemy_big_attack": {
+      "enemy": "Voy a quebrar tu centro.",
+      "chakana": "Respirar, mirar, ejecutar."
+    },
+    "player_low_hp": {
+      "enemy": "Tu pulso se hunde.",
+      "chakana": "Sumaq foco. Aún camino."
+    },
+    "enemy_low_hp": {
+      "enemy": "No... la Trama no.",
+      "chakana": "Toda forma retorna a equilibrio."
+    },
+    "boss_phase": {
+      "enemy": "Cae al Umbral.",
+      "chakana": "Pacha gira; yo permanezco."
+    },
+    "victory": {
+      "enemy": "...",
+      "chakana": "La lección queda."
     }
   },
   "default": {

@@ -39,6 +39,7 @@ from game.ui.screens.shop import ShopScreen
 from game.ui.screens.qa_results import QAResultsScreen
 from game.ui.screens.pack_opening import PackOpeningScreen
 from game.ui.screens.end import EndScreen
+from game.version import VERSION
 
 DEFAULT_CARDS = [
     {"id": "strike", "name_key": "card_strike_name", "text_key": "card_strike_desc", "rarity": "basic", "cost": 1, "target": "enemy", "tags": ["attack"], "effects": [{"type": "damage", "amount": 6}]},
@@ -586,27 +587,37 @@ class App:
         self.user_settings["turn_timer_enabled"] = self.user_settings.get("turn_timer_enabled", True)
         self.user_settings["turn_timer_seconds"] = int(self.user_settings.get("turn_timer_seconds", 20))
         self.user_settings["dev_reset_autogen_on_boot"] = bool(self.user_settings.get("dev_reset_autogen_on_boot", False))
+        self.user_settings["fx_vignette"] = bool(self.user_settings.get("fx_vignette", True))
+        self.user_settings["fx_scanlines"] = bool(self.user_settings.get("fx_scanlines", False))
+        self.user_settings["fx_glow"] = bool(self.user_settings.get("fx_glow", True))
+        self.user_settings["fx_particles"] = bool(self.user_settings.get("fx_particles", True))
         save_settings(self.user_settings)
 
     def draw_debug_overlay(self):
         if not self.debug_overlay:
             return
         x,y,nw,nh,scale = self.renderer._viewport()
+        counts = self.content.debug_counts() if hasattr(self, "content") else {}
+        ok_cards = f"OK({counts.get('cards',0)})" if counts.get('cards',0)==60 else f"FALLBACK({counts.get('cards',0)})"
+        ok_enemies = f"OK({counts.get('enemies',0)})" if counts.get('enemies',0)==30 else f"FALLBACK({counts.get('enemies',0)})"
+        ok_boss = f"OK({counts.get('bosses',0)})" if counts.get('bosses',0)==3 else f"FALLBACK({counts.get('bosses',0)})"
+        dlgc = "OK" if counts.get('dialogues_combat') else "MISSING"
+        dlge = "OK" if counts.get('dialogues_events') else "MISSING"
+        biome_on = "ON" if self.user_settings.get("fx_particles", True) else "OFF"
+        current_biome = getattr(self.sm.current, "selected_biome", "-") if self.sm.current else "-"
         lines = [
             f"screen={self.sm.current.__class__.__name__ if self.sm.current else '-'}",
-            f"internal_res={INTERNAL_WIDTH}x{INTERNAL_HEIGHT}",
-            f"scale={scale:.3f} letterbox=({x},{y})",
-            f"hovered_card={self.debug.get('hovered_card_id','-')} target_mode={self.debug.get('target_mode','-')}",
+            f"Cards: {ok_cards}  Enemies: {ok_enemies}  Bosses: {ok_boss}",
+            f"DialoguesCombat: {dlgc}  DialoguesEvents: {dlge}",
+            f"ContentStatus={self.debug.get('content_status','-')}",
+            f"BiomeLayers: {biome_on}  CurrentBiome: {current_biome}",
+            f"Version: v{VERSION}",
             f"BGM {self.music.debug_state()}",
             f"LoreStatus={self.debug.get('lore_status','-')} paths={self.debug.get('lore_paths','-')}",
-            f"ContentStatus={self.debug.get('content_status','-')}",
-            f"design={self.canonical_design_source}",
-            f"enemy_hp={self.debug.get('enemies_hp','-')} intent={self.debug.get('enemy_intent','-')}",
-            f"card_art_regenerated={self.debug.get('art_regenerated','0')}",
             f"map.available_count={self.debug.get('map_available_count','-')} current_node_id={self.debug.get('current_node_id','-')}",
             f"next_nodes={self.debug.get('next_nodes_ids','-')}",
         ]
-        panel = pygame.Surface((980, 170), pygame.SRCALPHA)
+        panel = pygame.Surface((1200, 230), pygame.SRCALPHA)
         panel.fill((0,0,0,170))
         self.renderer.internal.blit(panel, (8,8))
         for i,line in enumerate(lines):

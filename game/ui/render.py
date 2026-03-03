@@ -20,6 +20,7 @@ class SoundManager:
             "shield": (0.4, 90),
             "exhaust": (0.45, 100),
             "whisper": (0.24, 90),
+            "chime": (0.22, 90),
         }
         for name in self.sound_cfg:
             path = Path(ASSETS_DIR) / "sfx" / f"{name}.wav"

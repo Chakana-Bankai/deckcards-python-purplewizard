@@ -13,6 +13,10 @@ class SettingsScreen:
         self.music_slider = pygame.Rect(360, 400, 600, 14)
         self.mute_rect = pygame.Rect(360, 450, 600, 50)
         self.timer_rect = pygame.Rect(360, 510, 600, 50)
+        self.fx_vig_rect = pygame.Rect(360, 570, 600, 44)
+        self.fx_scan_rect = pygame.Rect(360, 620, 600, 44)
+        self.fx_glow_rect = pygame.Rect(360, 670, 600, 44)
+        self.fx_part_rect = pygame.Rect(360, 720, 600, 44)
         self.art_regen_rect = pygame.Rect(1020, 220, 540, 64)
         self.art_wipe_regen_rect = pygame.Rect(1020, 300, 540, 64)
         self.music_regen_rect = pygame.Rect(1020, 380, 540, 64)
@@ -82,6 +86,14 @@ class SettingsScreen:
                 self.app.user_settings["turn_timer_enabled"] = not cur
                 if self.app.run_state:
                     self.app.run_state["settings"]["turn_timer_enabled"] = not cur
+            elif self.fx_vig_rect.collidepoint(pos):
+                self.app.user_settings["fx_vignette"] = not self.app.user_settings.get("fx_vignette", True)
+            elif self.fx_scan_rect.collidepoint(pos):
+                self.app.user_settings["fx_scanlines"] = not self.app.user_settings.get("fx_scanlines", False)
+            elif self.fx_glow_rect.collidepoint(pos):
+                self.app.user_settings["fx_glow"] = not self.app.user_settings.get("fx_glow", True)
+            elif self.fx_part_rect.collidepoint(pos):
+                self.app.user_settings["fx_particles"] = not self.app.user_settings.get("fx_particles", True)
             elif self.art_regen_rect.collidepoint(pos):
                 self.modal = "art"
             elif self.art_wipe_regen_rect.collidepoint(pos):
@@ -124,6 +136,10 @@ class SettingsScreen:
         pygame.draw.rect(surface, UI_THEME["panel"], self.timer_rect, border_radius=10)
         timer_on = self.app.user_settings.get("turn_timer_enabled", False)
         surface.blit(self.app.font.render(f"{self.app.loc.t('settings_timer')}: {self.app.loc.t('settings_on') if timer_on else self.app.loc.t('settings_off')}", True, UI_THEME["text"]), (380, 524))
+        for rect,key,label in [(self.fx_vig_rect,"fx_vignette","Vignette"),(self.fx_scan_rect,"fx_scanlines","Scanlines"),(self.fx_glow_rect,"fx_glow","Glow"),(self.fx_part_rect,"fx_particles","Particles")]:
+            pygame.draw.rect(surface, UI_THEME["panel"], rect, border_radius=10)
+            state = "ON" if self.app.user_settings.get(key, True) else "OFF"
+            surface.blit(self.app.small_font.render(f"FX {label}: {state}", True, UI_THEME["text"]), (rect.x + 20, rect.y + 12))
         self._draw_btn(surface, self.art_regen_rect, "Regenerar Arte de Cartas (prompts nuevos)")
         self._draw_btn(surface, self.art_wipe_regen_rect, "Borrar arte actual de cartas y regenerar")
         self._draw_btn(surface, self.music_regen_rect, "Regenerar Banda Sonora")

@@ -8,5 +8,9 @@
   "music_muted": false,
   "music_mute": false,
   "autogen_art_mode": "missing_only",
-  "dev_reset_autogen_on_boot": false
+  "dev_reset_autogen_on_boot": false,
+  "fx_vignette": true,
+  "fx_scanlines": false,
+  "fx_glow": true,
+  "fx_particles": true
 }

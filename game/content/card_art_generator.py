@@ -159,15 +159,24 @@ class CardArtGenerator:
         return self._variance(surf) < 70.0
 
     def _palette(self, rng: random.Random, tags: set[str], rarity: str):
-        bg_dark = (20 + rng.randint(0, 20), 12 + rng.randint(0, 18), 38 + rng.randint(0, 30))
-        bg_light = (88 + rng.randint(0, 40), 42 + rng.randint(0, 34), 148 + rng.randint(0, 45))
-        accent_gold = (210 + rng.randint(0, 30), 174 + rng.randint(0, 24), 78 + rng.randint(0, 18))
-        accent_ice = (225, 232, 255)
-        if "arcane" in tags or "rupture" in tags:
-            bg_light = (102 + rng.randint(0, 36), 56 + rng.randint(0, 28), 176 + rng.randint(0, 40))
+        palettes = {
+            "violet_arcane": ((26, 18, 52), (110, 78, 180), (238, 214, 160)),
+            "solar_gold": ((40, 24, 18), (172, 118, 36), (246, 224, 152)),
+            "emerald_spirit": ((14, 30, 24), (54, 140, 110), (206, 240, 210)),
+            "crimson_chaos": ((38, 10, 18), (152, 42, 60), (252, 188, 168)),
+            "azure_cosmic": ((14, 24, 48), (62, 122, 186), (192, 224, 255)),
+            "obsidian_void": ((12, 12, 16), (62, 62, 86), (210, 210, 230)),
+        }
+        key = "violet_arcane"
+        if "attack" in tags: key = "solar_gold"
+        elif "skill" in tags or "block" in tags: key = "emerald_spirit"
+        elif "ritual" in tags: key = "obsidian_void"
+        elif "curse" in tags: key = "crimson_chaos"
+        elif "draw" in tags or "scry" in tags: key = "azure_cosmic"
+        dark, light, accent = palettes[key]
         if rarity in {"rare", "legendary"}:
-            accent_gold = (232, 198, 98)
-        return bg_dark, bg_light, accent_gold, accent_ice
+            accent = tuple(min(255, c + 16) for c in accent)
+        return dark, light, accent, (230, 236, 255)
 
     def _generate_surface(self, card_id: str, tags: list[str], rarity: str) -> pygame.Surface:
         w, h = 360, 500
@@ -176,6 +185,7 @@ class CardArtGenerator:
         tags_set = set(tags)
         bg_dark, bg_light, accent_gold, accent_ice = self._palette(rng, tags_set, rarity)
 
+        # 32-bit style gradient + dithering
         for y in range(h):
             t = y / max(1, h - 1)
             col = (
@@ -185,36 +195,53 @@ class CardArtGenerator:
                 255,
             )
             pygame.draw.line(surf, col, (0, y), (w, y))
+        for y in range(0, h, 2):
+            for x in range((y // 2) % 2, w, 2):
+                c = surf.get_at((x, y)); surf.set_at((x, y), (max(0, c.r - 7), max(0, c.g - 7), max(0, c.b - 7), 255))
 
-        for i in range(26):
-            x = rng.randint(10, w - 10)
-            y = rng.randint(10, h - 10)
-            r = rng.randint(6, 58)
-            color = (accent_gold[0], accent_gold[1], accent_gold[2], rng.randint(20, 68))
-            pygame.draw.circle(surf, color, (x, y), r, width=1)
-
-        points = []
+        # sacred geometry rosette
         cx, cy = w // 2, h // 2
-        for i in range(8):
-            ang = (i / 8.0) * 6.28318
-            rr = 90 + (18 if i % 2 == 0 else -8)
-            points.append((int(cx + rr * pygame.math.Vector2(1, 0).rotate_rad(ang).x), int(cy + rr * pygame.math.Vector2(1, 0).rotate_rad(ang).y)))
-        pygame.draw.polygon(surf, (*accent_ice, 45), points, width=2)
+        for i in range(10):
+            rr = 30 + i * 10
+            pygame.draw.circle(surf, (*accent_ice, 18 + i * 2), (cx, cy), rr, width=1)
 
-        for i in range(48):
-            x = rng.randint(0, w - 1)
-            y = rng.randint(0, h - 1)
-            a = rng.randint(10, 35)
-            surf.set_at((x, y), (accent_ice[0], accent_ice[1], accent_ice[2], a))
+        # procedural symbols
+        sym = ["sword", "staff", "cup", "axe", "tree", "orb", "mask", "condor", "puma", "portal", "rune"]
+        if "attack" in tags_set: choice = "sword"
+        elif "ritual" in tags_set: choice = "portal"
+        elif "draw" in tags_set or "scry" in tags_set: choice = "orb"
+        elif "block" in tags_set or "skill" in tags_set: choice = "tree"
+        elif "curse" in tags_set: choice = "mask"
+        else: choice = sym[zlib.crc32((card_id+"sym").encode("utf-8")) % len(sym)]
 
-        if "attack" in tags_set:
-            pygame.draw.line(surf, (*accent_gold, 150), (40, h - 100), (w - 40, 80), 4)
-        if "skill" in tags_set:
-            pygame.draw.circle(surf, (*accent_ice, 120), (cx, cy), 64, width=3)
-        if "ritual" in tags_set:
-            pygame.draw.rect(surf, (*accent_gold, 100), pygame.Rect(cx - 70, cy - 35, 140, 70), width=2)
-        if "curse" in tags_set:
-            pygame.draw.line(surf, (220, 70, 110, 170), (60, 60), (w - 60, h - 60), 3)
+        col = (*accent_gold, 220)
+        if choice == "sword":
+            pygame.draw.line(surf, col, (cx - 70, cy + 90), (cx + 70, cy - 80), 8)
+        elif choice == "staff":
+            pygame.draw.line(surf, col, (cx, cy - 100), (cx, cy + 100), 10); pygame.draw.circle(surf, col, (cx, cy - 115), 18)
+        elif choice == "cup":
+            pygame.draw.rect(surf, col, pygame.Rect(cx - 46, cy - 20, 92, 48), border_radius=10, width=6)
+        elif choice == "axe":
+            pygame.draw.line(surf, col, (cx - 10, cy - 100), (cx + 20, cy + 110), 8); pygame.draw.polygon(surf, col, [(cx-50,cy-40),(cx+30,cy-80),(cx+10,cy+10)])
+        elif choice == "tree":
+            pygame.draw.line(surf, col, (cx, cy + 90), (cx, cy - 20), 8); pygame.draw.circle(surf, col, (cx, cy - 55), 46, width=6)
+        elif choice == "orb":
+            pygame.draw.circle(surf, col, (cx, cy), 60, width=7)
+        elif choice == "mask":
+            pygame.draw.ellipse(surf, col, pygame.Rect(cx - 60, cy - 80, 120, 160), width=7)
+        elif choice == "condor":
+            pygame.draw.polygon(surf, col, [(cx-100,cy),(cx,cy-50),(cx+100,cy),(cx,cy+10)], width=6)
+        elif choice == "puma":
+            pygame.draw.lines(surf, col, False, [(cx-90,cy+40),(cx-40,cy-20),(cx+20,cy-10),(cx+80,cy+30)], 7)
+        elif choice == "portal":
+            pygame.draw.rect(surf, col, pygame.Rect(cx - 70, cy - 90, 140, 180), width=6)
+        elif choice == "rune":
+            pygame.draw.line(surf, col, (cx-60,cy-60), (cx+60,cy+60), 7); pygame.draw.line(surf, col, (cx+60,cy-60), (cx-60,cy+60), 7)
+
+        # runes overlay
+        for _ in range(16):
+            x = rng.randint(24, w - 24); y = rng.randint(24, h - 24)
+            pygame.draw.rect(surf, (*accent_ice, 100), pygame.Rect(x, y, 6, 12), width=1)
 
         border_color = accent_gold if rarity in {"rare", "legendary"} else (170, 130, 220)
         pygame.draw.rect(surf, border_color, surf.get_rect().inflate(-4, -4), width=3, border_radius=18)

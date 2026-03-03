@@ -185,7 +185,7 @@ def ensure_placeholder_assets(card_ids: list[str], enemy_ids: list[str]) -> None
     _write_png(a_dir / "sprites/cards/_placeholder.png", 320, 220, (64, 48, 110))
     _write_png(a_dir / "sprites/enemies/_placeholder.png", 160, 160, (95, 55, 95))
 
-    sfx = {"ui_click": 880, "card_pick": 720, "card_play": 620, "hit": 200, "shield": 520, "exhaust": 310, "whisper": 430}
+    sfx = {"ui_click": 880, "card_pick": 720, "card_play": 620, "hit": 200, "shield": 520, "exhaust": 310, "whisper": 430, "chime": 980}
     for name, hz in sfx.items():
         _write_wav(a_dir / f"sfx/{name}.wav", hz=hz)
 

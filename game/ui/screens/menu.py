@@ -1,3 +1,4 @@
+from game.version import VERSION
 import pygame
 
 from game.ui.theme import UI_THEME
@@ -47,9 +48,7 @@ class MenuScreen:
         pass
 
     def render(self, surface):
-        sky, silhouettes, fog = self.app.bg_gen.get_layers("Ruinas Chakana", 2026)
-        t = int((pygame.time.get_ticks() * 0.02) % 40)
-        surface.blit(sky, (0, 0)); surface.blit(silhouettes, (-t, 0)); surface.blit(fog, (t // 2, 0))
+        self.app.bg_gen.render_parallax(surface, "Ruinas Chakana", 2026, pygame.time.get_ticks()*0.02, particles_on=self.app.user_settings.get("fx_particles", True))
 
         title = self.app.big_font.render(self.app.design_value("CANON_MENU_TITLE", "CHAKANA: Purple Wizard"), True, UI_THEME["gold"])
         surface.blit(title, title.get_rect(center=(960, 112)))
@@ -59,4 +58,5 @@ class MenuScreen:
             b.draw(surface, self.app.font, self.app.loc, UI_THEME, b.rect.collidepoint(mouse))
 
         surface.blit(self.app.small_font.render("Chakana Gaming", True, UI_THEME["text"]), (846, 965))
-        surface.blit(self.app.small_font.render("v0.4 • 2026", True, UI_THEME["muted"]), (896, 996))
+        surface.blit(self.app.small_font.render(f"v{VERSION} • Chakana Purple Wizard", True, UI_THEME["muted"]), (760, 996))
+        surface.blit(self.app.tiny_font.render(f"ContentStatus: {self.app.debug.get('content_status','-')}", True, UI_THEME["gold"]), (20, 1048))
