@@ -504,7 +504,7 @@ class App:
         node = self.node_lookup.get(self.current_node_id)
         if not node:
             return []
-        node["state"] = "completed"
+        node["state"] = "cleared"
         unlocked = []
         for next_id in node.get("next", []):
             nxt = self.node_lookup.get(next_id)
@@ -678,7 +678,7 @@ class App:
                 print("[map] recovery unlocked next column node", unlocked)
                 return
         for n in self.node_lookup.values():
-            if n.get("state") != "completed":
+            if n.get("state") != "cleared":
                 n["state"] = "available"
                 print("[map] recovery unlocked unfinished node", n.get("id"))
                 return

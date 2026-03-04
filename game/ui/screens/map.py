@@ -1,6 +1,7 @@
 import pygame
 
 from game.ui.theme import UI_THEME
+from game.ui.components.topbar import MapTopBar
 from game.settings import INTERNAL_HEIGHT, INTERNAL_WIDTH
 
 
@@ -10,6 +11,7 @@ class MapScreen:
         self.lore_timer = 0
         self.lore_idx = 0
         self.deck_btn = pygame.Rect(INTERNAL_WIDTH - 260, 76, 220, 56)
+        self.topbar = MapTopBar()
 
     def on_enter(self):
         self.lore_timer = 0
@@ -30,7 +32,7 @@ class MapScreen:
     def click_node(self, pos):
         for col in self.app.run_state.get("map", []):
             for node in col:
-                if pygame.Rect(node["x"] - 34, node["y"] - 34, 68, 68).collidepoint(pos) and node.get("state") == "available":
+                if pygame.Rect(node["x"] - 34, node["y"] - 34, 68, 68).collidepoint(pos) and node.get("state") in {"available", "incomplete", "current"}:
                     self.app.sfx.play("ui_click")
                     self.app.select_map_node(node)
                     return
@@ -91,19 +93,8 @@ class MapScreen:
         left_rect = pygame.Rect(topbar.x + 10, topbar.y + 4, int(topbar.w * 0.33), topbar.h - 8)
         center_rect = pygame.Rect(left_rect.right, topbar.y + 4, int(topbar.w * 0.34), topbar.h - 8)
         right_rect = pygame.Rect(center_rect.right, topbar.y + 4, topbar.right - center_rect.right - 10, topbar.h - 8)
-        pygame.draw.rect(s, UI_THEME["panel"], topbar, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], topbar, 2, border_radius=12)
-
         left, center, subtitle, timer_text, turn_text = self._topbar_narrative()
-        s.blit(self.app.small_font.render(left, True, UI_THEME["gold"]), (left_rect.x + 6, left_rect.y + 14))
-        center_main = self.app.small_font.render(center, True, UI_THEME["text"])
-        s.blit(center_main, center_main.get_rect(center=(center_rect.centerx, center_rect.y + 22)))
-        center_sub = self.app.tiny_font.render(subtitle[:86] if subtitle else "Sin narración disponible.", True, UI_THEME["muted"])
-        s.blit(center_sub, center_sub.get_rect(center=(center_rect.centerx, center_rect.y + 48)))
-        timer_main = self.app.font.render(timer_text, True, UI_THEME["text"])
-        turn_sub = self.app.tiny_font.render(turn_text, True, UI_THEME["gold"])
-        s.blit(timer_main, (right_rect.right - timer_main.get_width() - 8, right_rect.y + 8))
-        s.blit(turn_sub, (right_rect.right - turn_sub.get_width() - 8, right_rect.y + 42))
+        self.topbar.render(s, self.app, left_rect, center_rect, right_rect, left, center, subtitle, timer_text, turn_text)
 
         gold = self.app.map_font.render(f"{self.app.loc.t('gold')}: {run.get('gold', 0)}", True, UI_THEME["gold"])
         s.blit(gold, (INTERNAL_WIDTH - gold.get_width() - 30, 118))
@@ -126,8 +117,10 @@ class MapScreen:
                 color = (92, 92, 98)
                 if state == "available":
                     color = UI_THEME["violet"]
-                elif state == "completed":
+                elif state in {"completed", "cleared"}:
                     color = UI_THEME["good"]
+                elif state == "incomplete":
+                    color = (210, 128, 86)
                 elif state == "current":
                     color = UI_THEME["card_selected"]
                 if node["type"] == "boss":
@@ -135,7 +128,7 @@ class MapScreen:
                 if node["type"] == "challenge" and state != "locked":
                     color = (246, 168, 74)
                 radius = 30 if node["type"] != "boss" else 36
-                if pygame.Rect(node["x"] - 40, node["y"] - 40, 80, 80).collidepoint(mouse) and state == "available":
+                if pygame.Rect(node["x"] - 40, node["y"] - 40, 80, 80).collidepoint(mouse) and state in {"available", "incomplete", "current"}:
                     pygame.draw.circle(s, (220, 194, 255), (node["x"], node["y"]), radius + 8)
                 pygame.draw.circle(s, color, (node["x"], node["y"]), radius)
                 self._draw_icon(s, node["type"], node["x"], node["y"])

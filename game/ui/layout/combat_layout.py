@@ -45,8 +45,8 @@ class CombatLayout:
 def build_combat_layout(w: int, h: int) -> CombatLayout:
     pad = max(12, int(min(w, h) * 0.02))
     top_h = max(74, int(h * 0.09))
-    enemy_h = max(240, int(h * 0.30))
-    voices_h = max(100, int(h * 0.13))
+    enemy_h = max(230, int(h * 0.28))
+    center_h = max(118, int(h * 0.14))
     lower_h = max(220, int(h * 0.24))
     actions_h = max(110, int(h * 0.14))
 
@@ -59,20 +59,18 @@ def build_combat_layout(w: int, h: int) -> CombatLayout:
     topbar_right = pygame.Rect(topbar_center.right, topbar_full.y, right_w, topbar_full.h)
 
     enemy_strip = pygame.Rect(pad, topbar_full.bottom + pad, w - 2 * pad, enemy_h)
-    voices_panel = pygame.Rect(pad, enemy_strip.bottom + pad, w - 2 * pad, voices_h)
 
-    bottom_y = h - pad - actions_h
+    center_y = enemy_strip.bottom + pad
+    voices_w = int((w - 3 * pad) * 0.60)
+    voices_panel = pygame.Rect(pad, center_y, voices_w, center_h)
+    card_detail = pygame.Rect(voices_panel.right + pad, center_y, w - (voices_panel.right + pad) - pad, center_h)
+
+    actions_y = h - pad - actions_h
+    hand_y = actions_y - pad - lower_h
     hand_w = int((w - 3 * pad) * 0.66)
-    hand_area = pygame.Rect(pad, bottom_y - pad - lower_h, hand_w, lower_h)
+    hand_area = pygame.Rect(pad, hand_y, hand_w, lower_h)
     player_hud = pygame.Rect(hand_area.right + pad, hand_area.y, w - (hand_area.right + pad) - pad, lower_h)
-    actions_panel = pygame.Rect(pad, bottom_y, w - 2 * pad, actions_h)
-
-    card_detail = pygame.Rect(
-        player_hud.x,
-        player_hud.bottom + 10,
-        player_hud.w,
-        max(110, actions_panel.y - player_hud.bottom - 16),
-    )
+    actions_panel = pygame.Rect(pad, actions_y, w - 2 * pad, actions_h)
 
     return CombatLayout(
         topbar_left=topbar_left,

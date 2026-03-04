@@ -64,36 +64,20 @@ class CardDetailPanel:
                 surface.blit(self.app.tiny_font.render(f"Última jugada: {last_played}", True, UI_THEME["text"]), (rect.x + 16, rect.y + 76))
             return
 
-        art_w = max(120, int(rect.w * 0.42))
-        art_h = max(96, int(rect.h * 0.40))
-        art = self.app.assets.sprite("cards", payload["id"], (art_w, art_h), fallback=(70, 44, 105))
-        surface.blit(art, (rect.x + 14, rect.y + 42))
+        tx = rect.x + 16
+        y = rect.y + 42
+        surface.blit(self.app.small_font.render(self.app.loc.t(payload["name_key"]), True, UI_THEME["text"]), (tx, y)); y += 26
+        surface.blit(self.app.tiny_font.render(f"Tipo: {payload.get('family','-')}", True, UI_THEME["muted"]), (tx, y)); y += 20
+        surface.blit(self.app.tiny_font.render(f"Coste: {payload.get('cost',0)}", True, UI_THEME["energy"]), (tx, y)); y += 20
 
-        tx = rect.x + art_w + 28
-        surface.blit(self.app.small_font.render(self.app.loc.t(payload["name_key"]), True, UI_THEME["text"]), (tx, rect.y + 42))
-        surface.blit(self.app.tiny_font.render(f"Tipo: {payload.get('family','-')}", True, UI_THEME["muted"]), (tx, rect.y + 72))
-        surface.blit(self.app.tiny_font.render(f"Coste: {payload.get('cost',0)}", True, UI_THEME["energy"]), (tx, rect.y + 94))
-
-        dmg, blk, rup, en = self._kpis(payload)
-        kpi = f"Daño {dmg}  Guardia {blk}  Ruptura {rup}  Energía {en}"
-        surface.blit(self.app.tiny_font.render(kpi, True, UI_THEME["gold"]), (rect.x + 16, rect.y + art_h + 54))
-
-        desc = self.app.loc.t(payload.get("text_key", "-"))
-        y = rect.y + art_h + 82
-        words = str(desc).split()
-        cur = ""
-        for w in words:
-            nxt = (cur + " " + w).strip()
-            if self.app.tiny_font.size(nxt)[0] <= rect.w - 30:
-                cur = nxt
-            else:
-                surface.blit(self.app.tiny_font.render(cur, True, UI_THEME["text"]), (rect.x + 16, y))
-                y += 18
-                cur = w
-            if y > rect.bottom - 52:
-                break
-        if cur and y <= rect.bottom - 52:
-            surface.blit(self.app.tiny_font.render(cur, True, UI_THEME["text"]), (rect.x + 16, y))
+        dmg, blk, rup, _en = self._kpis(payload)
+        surface.blit(self.app.tiny_font.render(f"Daño: {dmg}", True, UI_THEME["text"]), (tx, y)); y += 18
+        surface.blit(self.app.tiny_font.render(f"Bloqueo: {blk}", True, UI_THEME["text"]), (tx, y)); y += 18
+        surface.blit(self.app.tiny_font.render(f"Ruptura: {rup}", True, UI_THEME["text"]), (tx, y)); y += 18
 
         tags = ", ".join(payload.get("tags", [])) or "-"
-        surface.blit(self.app.tiny_font.render(f"Tags: {tags}", True, UI_THEME["muted"]), (rect.x + 16, rect.bottom - 24))
+        tag_line = f"Tags: {tags}"
+        while self.app.tiny_font.size(tag_line)[0] > rect.w - 30 and len(tag_line) > 6:
+            tag_line = tag_line[:-4] + "..."
+        if y <= rect.bottom - 24:
+            surface.blit(self.app.tiny_font.render(tag_line, True, UI_THEME["muted"]), (tx, min(y + 6, rect.bottom - 24)))
