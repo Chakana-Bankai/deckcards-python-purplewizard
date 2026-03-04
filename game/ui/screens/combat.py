@@ -1,9 +1,8 @@
-import math
 from pathlib import Path
 
 import pygame
 
-from game.art.gen_art32 import chakana_points
+from game.art.gen_avatar_chakana import render_avatar
 from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
 from game.core.paths import data_dir
 from game.core.safe_io import load_json
@@ -394,8 +393,9 @@ class CombatScreen:
         s.blit(self.app.mono_font.render(f"Ruptura {p['rupture']}", True, UI_THEME["rupture"]), (self.PLAYER_HUD.x + 260, self.PLAYER_HUD.y + 38))
         self.mana_orbs.update(int(p.get("energy", 0)))
         self.mana_orbs.draw(s, self.PLAYER_HUD.x + 352, self.PLAYER_HUD.y + 90, int(p.get("energy", 0)), 6)
-        pts = chakana_points((self.PLAYER_HUD.x + 545, self.PLAYER_HUD.y + 88), int(42 * (1.0 + 0.05 * math.sin(pygame.time.get_ticks() / 240.0))), 0.35)
-        pygame.draw.polygon(s, (182, 154, 240), pts, 2)
+        avatar_t = pygame.time.get_ticks() / 1000.0
+        avatar = render_avatar(avatar_t, 96)
+        s.blit(avatar, (self.PLAYER_HUD.x + 498, self.PLAYER_HUD.y + 40))
 
         # Layer 7 action area + button
         pygame.draw.rect(s, UI_THEME["panel"], self.ACTION_BAR, border_radius=12)

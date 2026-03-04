@@ -130,15 +130,19 @@ class AssetPipeline:
 
 
     def ensure_avatar(self):
-        p = assets_dir() / "sprites" / "player" / "chakana_avatar.png"
-        p.parent.mkdir(parents=True, exist_ok=True)
+        p_preview = assets_dir() / "sprites" / "avatar" / "chakana.png"
+        p_player = assets_dir() / "sprites" / "player" / "chakana_avatar.png"
+        p_preview.parent.mkdir(parents=True, exist_ok=True)
+        p_player.parent.mkdir(parents=True, exist_ok=True)
         try:
-            surf = render_avatar(256)
-            pygame.image.save(surf.convert_alpha(), p)
-            (data_dir() / "art_manifest_avatar.json").write_text(json.dumps({"generator_version": GEN_AVATAR_VERSION, "path": str(p)}, ensure_ascii=False, indent=2), encoding="utf-8")
+            surf = render_avatar(0.0, 256)
+            pygame.image.save(surf.convert_alpha(), p_preview)
+            pygame.image.save(surf.convert_alpha(), p_player)
+            (data_dir() / "art_manifest_avatar.json").write_text(json.dumps({"generator_version": GEN_AVATAR_VERSION, "path": str(p_preview), "player_path": str(p_player)}, ensure_ascii=False, indent=2), encoding="utf-8")
         except Exception as exc:
             print(f"[safe_gen] using placeholder for avatar:chakana due to {exc}")
-            self._placeholder_png(p, size=(256, 256), label="chakana")
+            self._placeholder_png(p_preview, size=(256, 256), label="chakana")
+            self._placeholder_png(p_player, size=(256, 256), label="chakana")
 
     def _default_prompt_payload(self, cards: list[dict]) -> dict:
         payload = {}
