@@ -54,3 +54,6 @@ class CombatEngine:
 
     def apply_scry_keep(self, keep_card):
         return self.state.apply_scry_keep(keep_card)
+
+    def activate_harmony_seal(self):
+        return self.state.activate_harmony_seal()

@@ -9,6 +9,7 @@ from game.art.gen_avatar_chakana import render_avatar
 from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
 from game.core.paths import data_dir
 from game.core.safe_io import load_json
+from game.combat.play_validation import can_play_card
 from game.ui.anim import TypewriterBanner
 from game.ui.components.card_detail_panel import CardDetailPanel
 from game.ui.components.card_effect_summary import summarize_card_effect
@@ -79,12 +80,18 @@ class CombatScreen:
         self._action_state = "END_TURN"
         self._action_state_reason = "default"
         self.dialogue_ctrl = CombatDialogueController(self.app.lore_engine, self._set_dialogue_lines)
+        self.last_enemy_line = ""
+        self.last_player_line = ""
+        self.dialogue_cooldown_ms = 800
+        self.dialogue_last_ms = 0
+        self.dialogue_fallback_idx = {}
         self.topbar = CombatTopBar()
         self.scry_picker = ModalCardPicker()
         self.layout = build_combat_layout(1920, 1080)
         self.end_turn_rect = pygame.Rect(0, 0, 1, 1)
+        self.harmony_seal_rect = pygame.Rect(0, 0, 1, 1)
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-        self.dialogue_ctrl.on_combat_start(enemy_id)
+        self.set_dialogue("combat_start", enemy_id, {})
 
     def on_leave(self):
         self.ctrl.clear_selection("screen_change")
@@ -94,18 +101,62 @@ class CombatScreen:
         btn_w = max(220, int(self.layout.actions_rect.w * 0.18))
         btn_h = max(52, int(self.layout.actions_rect.h * 0.48))
         self.end_turn_rect = pygame.Rect(self.layout.actions_rect.right - btn_w - 24, self.layout.actions_rect.y + (self.layout.actions_rect.h - btn_h) // 2, btn_w, btn_h)
+        self.harmony_seal_rect = pygame.Rect(self.layout.playerhud_rect.x + 220, self.layout.playerhud_rect.y + 152, 96, 28)
+
+    def _dialogue_lookup(self, enemy_id: str, trigger: str):
+        e, c = self.app.lore_engine.get_combat_lines(enemy_id, trigger)
+        if str(e or "").strip() and str(c or "").strip():
+            return str(e), str(c), "lore"
+        item = self.app.lore_engine.combat_dialogues.get(enemy_id, self.app.lore_engine.combat_dialogues.get("default", {}))
+        tr = item.get(trigger, {}) if isinstance(item, dict) else {}
+        if isinstance(tr, dict):
+            ee, cc = str(tr.get("enemy", "")).strip(), str(tr.get("chakana", "")).strip()
+            if ee or cc:
+                return ee or "", cc or "", "pair"
+        return "", "", "missing"
+
+    def set_dialogue(self, trigger: str, enemy_id: str, ctx: dict | None = None):
+        now = pygame.time.get_ticks()
+        forced = trigger in {"combat_start", "victory", "defeat"}
+        if not forced and now - self.dialogue_last_ms < self.dialogue_cooldown_ms:
+            return
+        enemy_line, hero_line, src = self._dialogue_lookup(enemy_id, trigger)
+        fallbacks = {
+            "combat_start": ("La Trama se abre ante ti.", "Escucho el pulso de la Chakana."),
+            "turn_start": ("El aire cambia antes del golpe.", "Leeré tu intención antes de actuar."),
+            "card_played_attack": ("Una chispa no basta para vencer.", "Cada corte abre un destino."),
+            "card_played_defense": ("Tu muro tiembla igual.", "Bloqueo ahora, contraataco después."),
+            "card_played_utility": ("Manipulas el hilo, no su final.", "Ordeno la Trama a mi favor."),
+            "enemy_attack": ("Siente el peso de mi embate.", "Tu fuerza no quebrará mi centro."),
+            "enemy_defend": ("Me cubro hasta encontrar tu error.", "Entonces abriré tu guardia."),
+            "harmony_ready": ("Tu pulso cambia...", "Armonía lista: la Chakana responde."),
+            "low_hp_player": ("Te apagas.", "Sigo de pie. Aún no termina."),
+            "victory": ("No era tu final...", "La Trama se inclina a mi paso."),
+            "defeat": ("Tu hilo se corta aquí.", "Aprenderé de esta caída."),
+        }
+        if not enemy_line.strip() or not hero_line.strip():
+            arr = [fallbacks.get(trigger, ("(el enemigo contiene la respiración...)", "(Chakana escucha la Trama...)")),
+                   ("(el enemigo contiene la respiración...)", "(Chakana escucha la Trama...)")]
+            idx = self.dialogue_fallback_idx.get(trigger, 0) % len(arr)
+            enemy_line, hero_line = arr[idx]
+            self.dialogue_fallback_idx[trigger] = idx + 1
+        if enemy_line == self.last_enemy_line and hero_line == self.last_player_line:
+            enemy_line = "(el enemigo contiene la respiración...)"
+            hero_line = "(Chakana escucha la Trama...)"
+        self._set_dialogue_lines(enemy_line, hero_line, trigger)
+        self.last_enemy_line, self.last_player_line = enemy_line, hero_line
+        self.dialogue_last_ms = now
+        print(f"[dlg] trigger={trigger} enemy={enemy_id} line_id={src}")
 
     def _card_playable(self, card) -> bool:
-        mana = int(self.c.player.get("energy", 0))
-        if card is None or card.cost > mana:
-            return False
-        pred = getattr(card, "is_playable", None)
-        if callable(pred):
-            try:
-                return bool(pred(self.c))
-            except Exception:
-                return card.cost <= mana
-        return True
+        ok, _reason = can_play_card(card, self.c.player, self.c)
+        return bool(ok)
+
+    def _selected_card_play_state(self):
+        idx = self.ctrl.selected_index
+        if idx is None or idx >= len(self.c.hand):
+            return False, "Sin selección"
+        return can_play_card(self.c.hand[idx], self.c.player, self.c)
 
     def _playable_cards(self):
         return [c for c in self.c.hand if self._card_playable(c)]
@@ -117,10 +168,11 @@ class CombatScreen:
             idx = self.ctrl.selected_index
             if idx is not None and idx < len(self.c.hand):
                 card = self.c.hand[idx]
-                if self._card_playable(card):
+                ok, reason = can_play_card(card, self.c.player, self.c)
+                if ok:
                     state, reason, label, disabled = "PLAY_CARD", "selected_playable", "Ejecutar", False
                 else:
-                    state, reason, label, disabled = "END_TURN", "selected_not_playable", "Sin Maná", True
+                    state, reason, label, disabled = "END_TURN", reason or "selected_not_playable", "Fin de Turno", False
             else:
                 state, reason, label, disabled = "END_TURN", "default", "Fin de Turno", False
         if DEBUG_UI and (state != self._action_state or reason != self._action_state_reason):
@@ -206,18 +258,28 @@ class CombatScreen:
         if self.dialog_cd > 0:
             return
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-        self.dialogue_ctrl.fire(enemy_id, trigger)
+        self.set_dialogue(trigger, enemy_id, {})
 
     def _execute_selected(self):
         idx = self.ctrl.selected_index
         if idx is None or idx >= len(self.c.hand):
             return
         card = self.c.hand[idx]
-        if not self._card_playable(card):
+        ok, reason = can_play_card(card, self.c.player, self.c)
+        if not ok:
+            self._push_log(f"No se puede jugar: {reason}")
+            try:
+                self.app.sfx.play("deny")
+            except Exception:
+                pass
             return
         self.resolving_t = 0.15
         target_idx = next((i for i, e in enumerate(self.c.enemies) if e.alive), None)
         self.c.play_card(idx, target_idx)
+        tags = set(getattr(card.definition, "tags", []) or [])
+        trig = "card_played_attack" if "attack" in tags else "card_played_defense" if ("skill" in tags or "defense" in tags) else "card_played_utility"
+        enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
+        self.set_dialogue(trig, enemy_id, {"card_id": card.definition.id})
         self._push_log(f"Jugada: {getattr(card.definition, 'name_key', 'Carta')}")
         self.ctrl.clear_selection("card_played")
 
@@ -378,6 +440,17 @@ class CombatScreen:
 
         if event.type == pygame.KEYDOWN and event.key == pygame.K_e:
             self._execute_selected()
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_h:
+            self._push_log("Armonía: se carga con rituales. Cuando está LISTA, potencia defensas o activa SELLO.")
+
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            pos = self.app.renderer.map_mouse(event.pos)
+            if self.harmony_seal_rect.collidepoint(pos):
+                ok, msg = self.c.activate_harmony_seal()
+                self._push_log(msg)
+                if ok:
+                    enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
+                    self.set_dialogue("harmony_ready", enemy_id, {})
 
     def _draw_card(self, s, rect, card, selected=False, family="violet_arcane"):
         accent = {"crimson_chaos": (220, 108, 84), "emerald_spirit": (88, 198, 154), "azure_cosmic": (112, 152, 228), "violet_arcane": (176, 126, 240), "solar_gold": (226, 190, 112)}.get(family, (176, 126, 240))
@@ -416,7 +489,7 @@ class CombatScreen:
             self._trigger_dialog("player_turn_start")
             enemy = self.c.enemies[0] if self.c.enemies else None
             if enemy is not None:
-                self.dialogue_ctrl.on_intent(enemy.id, enemy.current_intent().get("label", ""))
+                self.set_dialogue("turn_start", enemy.id, {"intent": enemy.current_intent().get("label", "")})
 
         for ev in self.c.pop_events():
             if ev.get("type") == "damage" and ev.get("target") == "player" and ev.get("amount", 0) >= 8:
@@ -427,6 +500,12 @@ class CombatScreen:
                 self.dialogue_ctrl.on_card_played(enemy_id)
             if ev.get("type") == "harmony_ready":
                 self._push_log(str(ev.get("message") or "Armonía lista: desata tu sello."))
+                enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
+                self.set_dialogue("harmony_ready", enemy_id, {})
+            if ev.get("type") == "enemy_action":
+                self.set_dialogue(str(ev.get("intent") or "turn_start"), str(ev.get("enemy") or "default"), {})
+            if ev.get("type") == "harmony_seal":
+                self._push_log(str(ev.get("message") or "SELLO activado"))
 
         if self.c.scry_pending and not self.scry_picker.open:
             self.scry_picker.show(
@@ -437,7 +516,7 @@ class CombatScreen:
 
         if self.c.player["hp"] <= max(10, self.c.player["max_hp"] * 0.3):
             enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-            self.dialogue_ctrl.on_player_low(enemy_id)
+            self.set_dialogue("low_hp_player", enemy_id, {})
 
         if any(e.alive and e.hp <= e.max_hp * 0.25 for e in self.c.enemies):
             self._trigger_dialog("enemy_low_hp")
@@ -445,14 +524,14 @@ class CombatScreen:
         self.ctrl.validate_selection(len(self.c.hand))
         if self.c.result == "victory":
             enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-            self.dialogue_ctrl.on_victory(enemy_id)
+            self.set_dialogue("victory", enemy_id, {})
             self.ctrl.clear_selection("victory")
             self._push_log("Combate ganado")
             self.app.on_combat_victory()
         elif self.c.result == "defeat":
             self.ctrl.clear_selection("defeat")
             enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-            self.dialogue_ctrl.on_defeat(enemy_id)
+            self.set_dialogue("defeat", enemy_id, {})
             self._push_log("Combate perdido")
             self.app.goto_end(victory=False)
 
@@ -629,6 +708,12 @@ class CombatScreen:
             glow.fill((160, 245, 180, pulse))
             s.blit(glow, (self.layout.playerhud_rect.x + 156, hy - 2))
             s.blit(self.app.tiny_font.render("LISTA", True, UI_THEME["good"]), (self.layout.playerhud_rect.x + 164, hy))
+            pygame.draw.rect(s, UI_THEME["violet"], self.harmony_seal_rect, border_radius=8)
+            pygame.draw.rect(s, UI_THEME["gold"], self.harmony_seal_rect, 1, border_radius=8)
+            s.blit(self.app.tiny_font.render("SELLO", True, UI_THEME["text"]), (self.harmony_seal_rect.x + 22, self.harmony_seal_rect.y + 6))
+        else:
+            pygame.draw.rect(s, UI_THEME["panel_2"], self.harmony_seal_rect, border_radius=8)
+            s.blit(self.app.tiny_font.render("SELLO", True, UI_THEME["muted"]), (self.harmony_seal_rect.x + 22, self.harmony_seal_rect.y + 6))
         self.mana_orbs.update(int(p.get("energy", 0)))
         self.mana_orbs.draw(s, self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + self.layout.playerhud_rect.h - 52, int(p.get("energy", 0)), 6)
         avatar = render_avatar(pygame.time.get_ticks() / 1000.0, min(96, self.layout.playerhud_rect.h - 40))
@@ -708,6 +793,11 @@ class CombatScreen:
                 f"harmony: {p.get('harmony_current',0)}/{p.get('harmony_max',10)} thr={p.get('harmony_ready_threshold',6)}",
                 f"last_trigger: {self.last_trigger}",
             ]
+            ok, reason = self._selected_card_play_state()
+            info_lines.append(f"can_play={ok} reason={reason}")
+            if self.ctrl.selected_index is not None and self.ctrl.selected_index < len(hand):
+                sc = hand[self.ctrl.selected_index]
+                info_lines.append(f"energy={p.get('energy',0)} cost={sc.cost} target_ok={any(e.alive for e in self.c.enemies)}")
             yy = d.y + 12
             for line in info_lines:
                 s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (d.x + 12, yy))

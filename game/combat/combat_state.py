@@ -51,6 +51,7 @@ class CombatState:
         self.player.setdefault("harmony_max", 10)
         self.player.setdefault("harmony_ready_threshold", 6)
         self.player.setdefault("harmony_ready", False)
+        self.player.setdefault("harmony_seal_used", False)
         self.player["block"] = 0
         self.turn = 0
         self.pending_if_kill = None
@@ -169,7 +170,8 @@ class CombatState:
 
     def _apply_harmony_resource(self, card):
         effects = list(getattr(getattr(card, "definition", None), "effects", []) or [])
-        delta = 1
+        tags = set(getattr(getattr(card, "definition", None), "tags", []) or [])
+        delta = 1 if ("ritual" in tags or "armonia" in tags or "harmony" in tags) else 0
         consume = 0
         for ef in effects:
             if not isinstance(ef, dict):
@@ -191,6 +193,20 @@ class CombatState:
         self.player["harmony_ready"] = now_ready
         if now_ready and not was_ready:
             self.combat_events.append({"type": "harmony_ready", "message": "Armonía lista: desata tu sello."})
+
+    def activate_harmony_seal(self):
+        cur = int(self.player.get("harmony_current", 0) or 0)
+        thr = max(1, int(self.player.get("harmony_ready_threshold", 6) or 6))
+        if cur < thr:
+            return False, "Armonía no está LISTA"
+        if bool(self.player.get("harmony_seal_used", False)):
+            return False, "SELLO ya usado en este combate"
+        self.player["harmony_seal_used"] = True
+        self.player["harmony_current"] = 0
+        self.player["harmony_ready"] = False
+        self.player["energy"] = int(self.player.get("energy", 0) or 0) + 2
+        self.combat_events.append({"type": "harmony_seal", "message": "SELLO activado: +2 Energía este turno."})
+        return True, "SELLO activado"
 
     def end_turn(self):
         kept = [c for c in self.hand if getattr(c, "retain_flag", False)]
@@ -215,11 +231,13 @@ class CombatState:
                 low = value[0] if isinstance(value, list) else int(value)
                 high = value[1] if isinstance(value, list) and len(value) > 1 else low
                 self.queue.push(DealDamage(enemy, "player", self.rng.randint(low, high)))
+                self.combat_events.append({"type": "enemy_action", "intent": "enemy_attack", "enemy": enemy.id})
             elif intent_kind == "defend":
                 value = intent.get("value", [5, 5])
                 low = value[0] if isinstance(value, list) else int(value)
                 high = value[1] if isinstance(value, list) and len(value) > 1 else low
                 self.queue.push(GainBlock(enemy, self.rng.randint(low, high)))
+                self.combat_events.append({"type": "enemy_action", "intent": "enemy_defend", "enemy": enemy.id})
             elif intent_kind in {"debuff", "buff"}:
                 target = "player" if intent_kind == "debuff" else enemy
                 self.queue.push(ApplyStatus(target, intent.get("status", "weak"), intent.get("stacks", 1)))
@@ -281,6 +299,8 @@ class CombatState:
 
     def gain_block(self, target, amount):
         if target == "player":
+            if bool(self.player.get("harmony_ready", False)):
+                amount += 1
             weakv = self.player["statuses"].get("enemy_damage_down",0)
             if weakv > 0:
                 amount = max(0, amount - weakv)
