@@ -9,23 +9,23 @@
   "lanza_del_amanecer": {
     "id": "lanza_del_amanecer",
     "family": "solar_gold",
-    "symbol": "sword",
+    "symbol": "axe",
     "notes_es": "lanza_del_amanecer vibra en solar_gold",
-    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol sword, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol axe, sacred geometry, runes, detailed light"
   },
   "corte_del_puma": {
     "id": "corte_del_puma",
     "family": "solar_gold",
-    "symbol": "axe",
+    "symbol": "puma",
     "notes_es": "corte_del_puma vibra en solar_gold",
-    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol axe, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol puma, sacred geometry, runes, detailed light"
   },
   "golpe_del_trueno": {
     "id": "golpe_del_trueno",
     "family": "solar_gold",
-    "symbol": "axe",
+    "symbol": "puma",
     "notes_es": "golpe_del_trueno vibra en solar_gold",
-    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol axe, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol puma, sacred geometry, runes, detailed light"
   },
   "estallido_arcano": {
     "id": "estallido_arcano",
@@ -37,9 +37,9 @@
   "ruptura_del_umbral": {
     "id": "ruptura_del_umbral",
     "family": "solar_gold",
-    "symbol": "sword",
+    "symbol": "puma",
     "notes_es": "ruptura_del_umbral vibra en solar_gold",
-    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol sword, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol puma, sacred geometry, runes, detailed light"
   },
   "garra_espiritual": {
     "id": "garra_espiritual",
@@ -93,23 +93,23 @@
   "corte_dimensional": {
     "id": "corte_dimensional",
     "family": "solar_gold",
-    "symbol": "puma",
+    "symbol": "sword",
     "notes_es": "corte_dimensional vibra en solar_gold",
-    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol puma, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol sword, sacred geometry, runes, detailed light"
   },
   "filo_en_cadena": {
     "id": "filo_en_cadena",
     "family": "solar_gold",
-    "symbol": "axe",
+    "symbol": "sword",
     "notes_es": "filo_en_cadena vibra en solar_gold",
-    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol axe, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol sword, sacred geometry, runes, detailed light"
   },
   "sello_protector": {
     "id": "sello_protector",
     "family": "emerald_spirit",
-    "symbol": "rune_stone",
+    "symbol": "mask",
     "notes_es": "sello_protector vibra en emerald_spirit",
-    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol rune_stone, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol mask, sacred geometry, runes, detailed light"
   },
   "muralla_de_piedra": {
     "id": "muralla_de_piedra",
@@ -121,9 +121,9 @@
   "escudo_de_luz": {
     "id": "escudo_de_luz",
     "family": "emerald_spirit",
-    "symbol": "rune_stone",
+    "symbol": "mask",
     "notes_es": "escudo_de_luz vibra en emerald_spirit",
-    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol rune_stone, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol mask, sacred geometry, runes, detailed light"
   },
   "guardia_terrenal": {
     "id": "guardia_terrenal",
@@ -149,16 +149,16 @@
   "fortaleza_chakana": {
     "id": "fortaleza_chakana",
     "family": "emerald_spirit",
-    "symbol": "mask",
+    "symbol": "tree",
     "notes_es": "fortaleza_chakana vibra en emerald_spirit",
-    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol mask, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
   },
   "refugio_espiritual": {
     "id": "refugio_espiritual",
     "family": "emerald_spirit",
-    "symbol": "orb",
+    "symbol": "staff",
     "notes_es": "refugio_espiritual vibra en emerald_spirit",
-    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol orb, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol staff, sacred geometry, runes, detailed light"
   },
   "anillo_de_proteccion": {
     "id": "anillo_de_proteccion",
@@ -170,30 +170,30 @@
   "campo_protector": {
     "id": "campo_protector",
     "family": "emerald_spirit",
-    "symbol": "tree",
+    "symbol": "mask",
     "notes_es": "campo_protector vibra en emerald_spirit",
-    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol mask, sacred geometry, runes, detailed light"
   },
   "guardia_solar": {
     "id": "guardia_solar",
     "family": "emerald_spirit",
-    "symbol": "tree",
+    "symbol": "rune_stone",
     "notes_es": "guardia_solar vibra en emerald_spirit",
-    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol rune_stone, sacred geometry, runes, detailed light"
   },
   "escudo_del_chaman": {
     "id": "escudo_del_chaman",
     "family": "emerald_spirit",
-    "symbol": "rune_stone",
+    "symbol": "tree",
     "notes_es": "escudo_del_chaman vibra en emerald_spirit",
-    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol rune_stone, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
   },
   "barrera_sagrada": {
     "id": "barrera_sagrada",
     "family": "emerald_spirit",
-    "symbol": "tree",
+    "symbol": "rune_stone",
     "notes_es": "barrera_sagrada vibra en emerald_spirit",
-    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol rune_stone, sacred geometry, runes, detailed light"
   },
   "firmeza_del_cuerpo": {
     "id": "firmeza_del_cuerpo",
@@ -205,44 +205,44 @@
   "piedra_ritual": {
     "id": "piedra_ritual",
     "family": "emerald_spirit",
-    "symbol": "tree",
+    "symbol": "mask",
     "notes_es": "piedra_ritual vibra en emerald_spirit",
-    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol mask, sacred geometry, runes, detailed light"
   },
   "vision_del_condor": {
     "id": "vision_del_condor",
     "family": "azure_cosmic",
-    "symbol": "rune_stone",
+    "symbol": "orb",
     "notes_es": "vision_del_condor vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol orb, sacred geometry, runes, detailed light"
   },
   "meditacion_profunda": {
     "id": "meditacion_profunda",
     "family": "azure_cosmic",
-    "symbol": "rune_stone",
+    "symbol": "condor",
     "notes_es": "meditacion_profunda vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol condor, sacred geometry, runes, detailed light"
   },
   "claridad_del_hanan": {
     "id": "claridad_del_hanan",
     "family": "azure_cosmic",
-    "symbol": "rune_stone",
+    "symbol": "orb",
     "notes_es": "claridad_del_hanan vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol orb, sacred geometry, runes, detailed light"
   },
   "lectura_del_destino": {
     "id": "lectura_del_destino",
     "family": "azure_cosmic",
-    "symbol": "rune_stone",
+    "symbol": "condor",
     "notes_es": "lectura_del_destino vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol condor, sacred geometry, runes, detailed light"
   },
   "revelacion_astral": {
     "id": "revelacion_astral",
     "family": "azure_cosmic",
-    "symbol": "condor",
+    "symbol": "orb",
     "notes_es": "revelacion_astral vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol condor, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol orb, sacred geometry, runes, detailed light"
   },
   "eco_de_sabiduria": {
     "id": "eco_de_sabiduria",
@@ -254,58 +254,58 @@
   "observacion_sagrada": {
     "id": "observacion_sagrada",
     "family": "azure_cosmic",
-    "symbol": "rune_stone",
+    "symbol": "condor",
     "notes_es": "observacion_sagrada vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol condor, sacred geometry, runes, detailed light"
   },
   "calculo_del_cosmos": {
     "id": "calculo_del_cosmos",
     "family": "azure_cosmic",
-    "symbol": "condor",
+    "symbol": "rune_stone",
     "notes_es": "calculo_del_cosmos vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol condor, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
   },
   "mapa_del_destino": {
     "id": "mapa_del_destino",
     "family": "azure_cosmic",
-    "symbol": "orb",
+    "symbol": "condor",
     "notes_es": "mapa_del_destino vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol orb, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol condor, sacred geometry, runes, detailed light"
   },
   "profecia_del_umbral": {
     "id": "profecia_del_umbral",
     "family": "azure_cosmic",
-    "symbol": "portal",
+    "symbol": "orb",
     "notes_es": "profecia_del_umbral vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol portal, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol orb, sacred geometry, runes, detailed light"
   },
   "equilibrio_mental": {
     "id": "equilibrio_mental",
     "family": "azure_cosmic",
-    "symbol": "portal",
+    "symbol": "orb",
     "notes_es": "equilibrio_mental vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol portal, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol orb, sacred geometry, runes, detailed light"
   },
   "mente_serena": {
     "id": "mente_serena",
     "family": "azure_cosmic",
-    "symbol": "tree",
+    "symbol": "rune_stone",
     "notes_es": "mente_serena vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol tree, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
   },
   "silencio_interior": {
     "id": "silencio_interior",
     "family": "azure_cosmic",
-    "symbol": "rune_stone",
+    "symbol": "orb",
     "notes_es": "silencio_interior vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol orb, sacred geometry, runes, detailed light"
   },
   "ojo_interior": {
     "id": "ojo_interior",
     "family": "azure_cosmic",
-    "symbol": "portal",
+    "symbol": "staff",
     "notes_es": "ojo_interior vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol portal, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol staff, sacred geometry, runes, detailed light"
   },
   "ojo_del_condor": {
     "id": "ojo_del_condor",
@@ -317,9 +317,9 @@
   "portal_de_la_chakana": {
     "id": "portal_de_la_chakana",
     "family": "violet_arcane",
-    "symbol": "rune_stone",
+    "symbol": "condor",
     "notes_es": "portal_de_la_chakana vibra en violet_arcane",
-    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol rune_stone, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol condor, sacred geometry, runes, detailed light"
   },
   "invocacion_astral": {
     "id": "invocacion_astral",
@@ -352,51 +352,51 @@
   "circulo_de_invocacion": {
     "id": "circulo_de_invocacion",
     "family": "violet_arcane",
-    "symbol": "mask",
+    "symbol": "tree",
     "notes_es": "circulo_de_invocacion vibra en violet_arcane",
-    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol mask, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol tree, sacred geometry, runes, detailed light"
   },
   "fusion_espiritual": {
     "id": "fusion_espiritual",
     "family": "violet_arcane",
-    "symbol": "rune_stone",
+    "symbol": "mask",
     "notes_es": "fusion_espiritual vibra en violet_arcane",
-    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol rune_stone, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol mask, sacred geometry, runes, detailed light"
   },
   "luz_del_hanan": {
     "id": "luz_del_hanan",
     "family": "violet_arcane",
-    "symbol": "orb",
+    "symbol": "staff",
     "notes_es": "luz_del_hanan vibra en violet_arcane",
-    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol orb, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol staff, sacred geometry, runes, detailed light"
   },
   "tormenta_mistica": {
     "id": "tormenta_mistica",
     "family": "violet_arcane",
-    "symbol": "puma",
+    "symbol": "axe",
     "notes_es": "tormenta_mistica vibra en violet_arcane",
-    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol puma, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol axe, sacred geometry, runes, detailed light"
   },
   "espiritu_guardian": {
     "id": "espiritu_guardian",
     "family": "violet_arcane",
-    "symbol": "tree",
+    "symbol": "mask",
     "notes_es": "espiritu_guardian vibra en violet_arcane",
-    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol tree, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol mask, sacred geometry, runes, detailed light"
   },
   "sello_de_los_tres_pachas": {
     "id": "sello_de_los_tres_pachas",
     "family": "azure_cosmic",
-    "symbol": "mask",
+    "symbol": "rune_stone",
     "notes_es": "sello_de_los_tres_pachas vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol mask, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
   },
   "espejo_astral": {
     "id": "espejo_astral",
     "family": "azure_cosmic",
-    "symbol": "staff",
+    "symbol": "orb",
     "notes_es": "espejo_astral vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol staff, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol orb, sacred geometry, runes, detailed light"
   },
   "ritual_de_la_trama": {
     "id": "ritual_de_la_trama",
@@ -408,9 +408,9 @@
   "baston_del_umbral": {
     "id": "baston_del_umbral",
     "family": "azure_cosmic",
-    "symbol": "orb",
+    "symbol": "staff",
     "notes_es": "baston_del_umbral vibra en azure_cosmic",
-    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol orb, sacred geometry, runes, detailed light"
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol staff, sacred geometry, runes, detailed light"
   },
   "chakana_de_luz": {
     "id": "chakana_de_luz",
