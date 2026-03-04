@@ -71,6 +71,8 @@ class CombatScreen:
         self.turn_timer_limit = float(max(3, int(self.app.user_settings.get("turn_timer_seconds", 20))))
         self.turn_timer_left = self.turn_timer_limit
         self.actions_log = getattr(self.app, "combat_actions_log", [])
+        self._action_state = "END_TURN"
+        self._action_state_reason = "default"
         self.dialogue_ctrl = CombatDialogueController(self.app.lore_engine, self._set_dialogue_lines)
         self.layout = build_combat_layout(1920, 1080)
         self.end_turn_rect = pygame.Rect(0, 0, 1, 1)
@@ -101,16 +103,24 @@ class CombatScreen:
     def _playable_cards(self):
         return [c for c in self.c.hand if self._card_playable(c)]
 
-    def _compute_action_button(self):
+    def _resolve_action_state(self):
         if self.resolving_t > 0:
-            return "...", True
-        idx = self.ctrl.selected_index
-        if idx is not None and idx < len(self.c.hand):
-            card = self.c.hand[idx]
-            if card in self._playable_cards():
-                return "Ejecutar", False
-            return "Sin Maná", True
-        return "Fin de Turno", False
+            state, reason, label, disabled = "PLAY_CARD", "resolving", "...", True
+        else:
+            idx = self.ctrl.selected_index
+            if idx is not None and idx < len(self.c.hand):
+                card = self.c.hand[idx]
+                if self._card_playable(card):
+                    state, reason, label, disabled = "PLAY_CARD", "selected_playable", "Ejecutar", False
+                else:
+                    state, reason, label, disabled = "END_TURN", "selected_not_playable", "Sin Maná", True
+            else:
+                state, reason, label, disabled = "END_TURN", "default", "Fin de Turno", False
+        if DEBUG_UI and (state != self._action_state or reason != self._action_state_reason):
+            print(f"[ui] action_state={state} reason={reason}")
+        self._action_state = state
+        self._action_state_reason = reason
+        return state, label, disabled, reason
 
     def _set_dialogue_lines(self, enemy_line: str, hero_line: str, trigger: str):
         self.dialog_enemy.set(enemy_line or "...", 1.0)
@@ -142,19 +152,18 @@ class CombatScreen:
             return
         self.resolving_t = 0.15
         target_idx = next((i for i, e in enumerate(self.c.enemies) if e.alive), None)
-        before = len(self.c.hand)
         self.c.play_card(idx, target_idx)
         self._push_log(f"Jugada: {getattr(card.definition, 'name_key', 'Carta')}")
-        if len(self.c.hand) < before:
-            self.ctrl.clear_selection("card_played")
+        self.ctrl.clear_selection("card_played")
 
     def _activate_action_button(self):
-        label, disabled = self._compute_action_button()
+        state, _label, disabled, _reason = self._resolve_action_state()
         if disabled:
             return
-        if label == "Ejecutar":
+        if state == "PLAY_CARD":
             self._execute_selected()
-        else:
+            return
+        if state == "END_TURN":
             self._trigger_dialog("enemy_turn_start")
             self.c.end_turn()
             self._push_log("Jugada: Fin de turno")
@@ -463,7 +472,7 @@ class CombatScreen:
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.actions_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.actions_rect, 2, border_radius=12)
         s.blit(self.app.small_font.render("Acciones", True, UI_THEME["gold"]), (self.layout.actions_rect.x + 12, self.layout.actions_rect.y + 8))
-        label, disabled = self._compute_action_button()
+        _state, label, disabled, _reason = self._resolve_action_state()
         bcol = (88, 84, 102) if disabled else (116, 86, 184) if self.ctrl.pressed_on_button_id == "action" else UI_THEME["violet"]
         pygame.draw.rect(s, bcol, self.end_turn_rect, border_radius=12)
         txt = self.app.font.render(label, True, UI_THEME["text"])
