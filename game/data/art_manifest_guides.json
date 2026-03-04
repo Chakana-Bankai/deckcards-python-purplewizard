@@ -2,36 +2,36 @@
   "generator_version": "art32_v1",
   "items": {
     "guide:angel": {
+      "created_at": 1772650123,
+      "generator_version": "art32_v1",
       "id": "guide:angel",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png",
-      "generator_version": "art32_v1",
-      "seed": 3032159045,
-      "created_at": 1772634920,
-      "placeholder": false
-    },
-    "guide:shaman": {
-      "id": "guide:shaman",
-      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\shaman.png",
-      "generator_version": "art32_v1",
-      "seed": 562203591,
-      "created_at": 1772634920,
-      "placeholder": false
-    },
-    "guide:demon": {
-      "id": "guide:demon",
-      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\demon.png",
-      "generator_version": "art32_v1",
-      "seed": 2989233988,
-      "created_at": 1772634920,
-      "placeholder": false
+      "placeholder": false,
+      "seed": 3032159045
     },
     "guide:arcane_hacker": {
+      "created_at": 1772650123,
+      "generator_version": "art32_v1",
       "id": "guide:arcane_hacker",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\arcane_hacker.png",
+      "placeholder": false,
+      "seed": 2668008519
+    },
+    "guide:demon": {
+      "created_at": 1772650123,
       "generator_version": "art32_v1",
-      "seed": 2668008519,
-      "created_at": 1772634920,
-      "placeholder": false
+      "id": "guide:demon",
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\demon.png",
+      "placeholder": false,
+      "seed": 2989233988
+    },
+    "guide:shaman": {
+      "created_at": 1772650123,
+      "generator_version": "art32_v1",
+      "id": "guide:shaman",
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\shaman.png",
+      "placeholder": false,
+      "seed": 562203591
     }
   }
 }
