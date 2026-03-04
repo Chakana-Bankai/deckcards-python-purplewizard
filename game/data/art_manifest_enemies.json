@@ -6,7 +6,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\acaro_de_tinta.png",
       "generator_version": "art32_v1",
       "seed": 201608191,
-      "created_at": 1772629544,
+      "created_at": 1772631888,
       "placeholder": false
     },
     "enemy:larva_del_vacio": {
@@ -14,7 +14,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\larva_del_vacio.png",
       "generator_version": "art32_v1",
       "seed": 4167004556,
-      "created_at": 1772629544,
+      "created_at": 1772631888,
       "placeholder": false
     },
     "enemy:sabueso_sombrio": {
@@ -22,7 +22,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\sabueso_sombrio.png",
       "generator_version": "art32_v1",
       "seed": 3577820016,
-      "created_at": 1772629545,
+      "created_at": 1772631888,
       "placeholder": false
     },
     "enemy:rata_obsidiana": {
@@ -30,7 +30,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\rata_obsidiana.png",
       "generator_version": "art32_v1",
       "seed": 1479930728,
-      "created_at": 1772629545,
+      "created_at": 1772631888,
       "placeholder": false
     },
     "enemy:eco_perdido": {
@@ -38,7 +38,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\eco_perdido.png",
       "generator_version": "art32_v1",
       "seed": 3532916970,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:espiritu_de_humo": {
@@ -46,7 +46,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\espiritu_de_humo.png",
       "generator_version": "art32_v1",
       "seed": 1379304901,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:monolito_fracturado": {
@@ -54,7 +54,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\monolito_fracturado.png",
       "generator_version": "art32_v1",
       "seed": 1651040170,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:ave_de_ceniza": {
@@ -62,7 +62,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\ave_de_ceniza.png",
       "generator_version": "art32_v1",
       "seed": 1591226685,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:vigia_del_kaypacha": {
@@ -70,7 +70,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\vigia_del_kaypacha.png",
       "generator_version": "art32_v1",
       "seed": 2581599312,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:mascara_risuena": {
@@ -78,7 +78,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\mascara_risuena.png",
       "generator_version": "art32_v1",
       "seed": 2996691070,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:portador_de_polvo": {
@@ -86,7 +86,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\portador_de_polvo.png",
       "generator_version": "art32_v1",
       "seed": 855166308,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:sombra_de_piedra": {
@@ -94,7 +94,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\sombra_de_piedra.png",
       "generator_version": "art32_v1",
       "seed": 1613499072,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:insecto_de_tela": {
@@ -102,7 +102,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\insecto_de_tela.png",
       "generator_version": "art32_v1",
       "seed": 3784255602,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:neblina_consciente": {
@@ -110,7 +110,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\neblina_consciente.png",
       "generator_version": "art32_v1",
       "seed": 159576590,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:guardia_de_raiz": {
@@ -118,7 +118,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\guardia_de_raiz.png",
       "generator_version": "art32_v1",
       "seed": 1869885060,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:runa_errante": {
@@ -126,7 +126,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\runa_errante.png",
       "generator_version": "art32_v1",
       "seed": 919006154,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:espiritu_puma_menor": {
@@ -134,7 +134,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\espiritu_puma_menor.png",
       "generator_version": "art32_v1",
       "seed": 3862118698,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:espiritu_condor_menor": {
@@ -142,7 +142,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\espiritu_condor_menor.png",
       "generator_version": "art32_v1",
       "seed": 1776494756,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:chaman_corrupto": {
@@ -150,7 +150,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\chaman_corrupto.png",
       "generator_version": "art32_v1",
       "seed": 3671157617,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:vidente_caido": {
@@ -158,7 +158,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\vidente_caido.png",
       "generator_version": "art32_v1",
       "seed": 3912327116,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:devorador_de_ecos": {
@@ -166,7 +166,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\devorador_de_ecos.png",
       "generator_version": "art32_v1",
       "seed": 1627747451,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:demonio_obsidiana": {
@@ -174,7 +174,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\demonio_obsidiana.png",
       "generator_version": "art32_v1",
       "seed": 2064450192,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:custodio_astral": {
@@ -182,7 +182,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\custodio_astral.png",
       "generator_version": "art32_v1",
       "seed": 73796624,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:heraldo_del_umbral": {
@@ -190,7 +190,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\heraldo_del_umbral.png",
       "generator_version": "art32_v1",
       "seed": 2438817637,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:portador_de_silencio": {
@@ -198,7 +198,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\portador_de_silencio.png",
       "generator_version": "art32_v1",
       "seed": 749537345,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:oraculo_menor": {
@@ -206,7 +206,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\oraculo_menor.png",
       "generator_version": "art32_v1",
       "seed": 1261716948,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:jaguar_sombrio": {
@@ -214,7 +214,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\jaguar_sombrio.png",
       "generator_version": "art32_v1",
       "seed": 3889932530,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:guardian_de_la_grieta": {
@@ -222,7 +222,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\guardian_de_la_grieta.png",
       "generator_version": "art32_v1",
       "seed": 2155268077,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:oraculo_del_vacio": {
@@ -230,7 +230,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\oraculo_del_vacio.png",
       "generator_version": "art32_v1",
       "seed": 3472398897,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     },
     "enemy:senor_de_la_chakana_rota": {
@@ -238,7 +238,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\senor_de_la_chakana_rota.png",
       "generator_version": "art32_v1",
       "seed": 4089022418,
-      "created_at": 1772629545,
+      "created_at": 1772631889,
       "placeholder": false
     }
   }
