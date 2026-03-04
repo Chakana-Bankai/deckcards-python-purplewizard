@@ -7,6 +7,7 @@ from pathlib import Path
 import pygame
 
 from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION, chakana_points
+from game.art.gen_avatar_chakana import GEN_AVATAR_VERSION, render_avatar
 from game.content.card_art_generator import export_prompts
 from game.core.paths import assets_dir, data_dir
 from game.core.safe_io import load_json
@@ -121,7 +122,20 @@ class AssetPipeline:
                 progress_cb(f"Generando biomas ({biome})", 0.80 + 0.10 * (i / total))
         (data_dir() / "biome_manifest.json").write_text(json.dumps(biome_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
+
+    def ensure_avatar(self):
+        p = assets_dir() / "sprites" / "player" / "chakana_avatar.png"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            surf = render_avatar(256)
+            pygame.image.save(surf.convert_alpha(), p)
+            (data_dir() / "art_manifest_avatar.json").write_text(json.dumps({"generator_version": GEN_AVATAR_VERSION, "path": str(p)}, ensure_ascii=False, indent=2), encoding="utf-8")
+        except Exception as exc:
+            print(f"[safe_gen] using placeholder for avatar:chakana due to {exc}")
+            self._placeholder_png(p, size=(256, 256), label="chakana")
+
     def ensure_all_assets(self, settings: dict, content: dict, progress_cb=None):
+        self.ensure_avatar()
         a = assets_dir()
         (a / "music").mkdir(parents=True, exist_ok=True)
         (a / "sprites" / "cards").mkdir(parents=True, exist_ok=True)
@@ -151,4 +165,5 @@ class AssetPipeline:
         manifest_path.write_text(json.dumps(art_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
         (data_dir() / "prompt_manifest.json").write_text(json.dumps({"count": len(cards), "generator_version": GEN_ART_VERSION}, ensure_ascii=False, indent=2), encoding="utf-8")
         settings["force_regen_art"] = False
-        return art_manifest
+        placeholders = sum(1 for v in items.values() if isinstance(v, dict) and v.get("placeholder"))
+        return {"manifest": art_manifest, "placeholders": placeholders}

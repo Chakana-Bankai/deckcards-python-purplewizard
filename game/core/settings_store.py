@@ -23,6 +23,7 @@ DEFAULT_SETTINGS = {
     "fx_glow": True,
     "fx_particles": True,
     "force_regen_art": False,
+    "detail_panel": False,
 }
 
 

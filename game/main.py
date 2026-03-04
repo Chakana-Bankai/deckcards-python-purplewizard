@@ -155,12 +155,15 @@ class App:
         self.asset_pipeline = AssetPipeline(self.art_gen, self.enemy_art_gen, self.guide_gen, self.bg_gen)
         self.audio_pipeline = AudioPipeline()
         self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
-        self.user_settings.setdefault("detail_panel", True)
+        self.user_settings.setdefault("detail_panel", False)
         self._apply_dev_reset_if_enabled()
         self.ensure_assets(progress_cb=self._loading_step)
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
         self._loading_step("Completado", 1.0)
-        print(f"[boot] dialogues OK keys={len(self.content.dialogues_combat) if isinstance(self.content.dialogues_combat, dict) else 0}")
+        dk = len(self.content.dialogues_combat) if isinstance(self.content.dialogues_combat, dict) else 0
+        covered = len([e for e in self.enemies_data if isinstance(self.content.dialogues_combat.get(e.get("id"), {}), dict)]) if isinstance(self.content.dialogues_combat, dict) else 0
+        print(f"[load] dialogues_combat keys={dk} enemies_covered={covered}/{len(self.enemies_data)}")
+        print(f"[boot] dialogues OK keys={dk}")
         print("[boot] assets OK")
         print(f"[boot] placeholders used: {self.debug.get('placeholders_used',0)}")
         self.debug["art_regenerated"] = self.art_gen.generated_count + self.art_gen.replaced_count
@@ -268,7 +271,9 @@ class App:
             "guide_types": GUIDE_TYPES,
         }
         try:
-            self.asset_pipeline.ensure_all_assets(self.user_settings, content_payload, progress_cb=progress_cb)
+            ap = self.asset_pipeline.ensure_all_assets(self.user_settings, content_payload, progress_cb=progress_cb)
+            if isinstance(ap, dict):
+                self.debug["placeholders_used"] = int(ap.get("placeholders", 0))
         except Exception as exc:
             print(f"[safe_gen] using placeholder for pipeline due to {exc}")
             (assets_dir() / "sprites" / "cards" / "_placeholder.png").parent.mkdir(parents=True, exist_ok=True)
@@ -699,7 +704,7 @@ class App:
         self.user_settings["fx_glow"] = bool(self.user_settings.get("fx_glow", True))
         self.user_settings["fx_particles"] = bool(self.user_settings.get("fx_particles", True))
         self.user_settings["force_regen_art"] = bool(self.user_settings.get("force_regen_art", False))
-        self.user_settings["detail_panel"] = bool(self.user_settings.get("detail_panel", True))
+        self.user_settings["detail_panel"] = bool(self.user_settings.get("detail_panel", False))
         save_settings(self.user_settings)
 
     def draw_debug_overlay(self):
@@ -774,7 +779,7 @@ class App:
                     self.renderer.toggle_fullscreen()
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
                     self.toggle_language()
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_F2:
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_F9:
                     self.debug_overlay = not self.debug_overlay
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_F10:
                     self.run_qa_mode()
