@@ -76,25 +76,29 @@ class App:
         self.sfx.set_volume(self.user_settings.get("sfx_volume", 0.7))
         self.music.set_volume(self.user_settings.get("music_volume", 0.5))
         self.music.set_muted(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False)))
-        # font pipeline
+        # font pipeline (local pack + safe fallback)
         fonts_dir = data_dir().parent / "assets" / "fonts"
         fonts_dir.mkdir(parents=True, exist_ok=True)
-        font_target = fonts_dir / "DejaVuSans.ttf"
-        if not font_target.exists():
-            src = pygame.font.match_font("dejavusans") or pygame.font.match_font("arial")
-            if src:
-                try:
-                    shutil.copy(src, font_target)
-                except Exception:
-                    pass
-        font_path = str(font_target) if font_target.exists() else None
-        self.font = pygame.font.Font(font_path, 24) if font_path else pygame.font.SysFont("arial", 24)
-        self.small_font = pygame.font.Font(font_path, 22) if font_path else pygame.font.SysFont("arial", 22)
-        self.tiny_font = pygame.font.Font(font_path, 18) if font_path else pygame.font.SysFont("arial", 18)
-        self.big_font = pygame.font.Font(font_path, 34) if font_path else pygame.font.SysFont("arial", 34, bold=True)
-        self.card_text_font = pygame.font.Font(font_path, 20) if font_path else pygame.font.SysFont("arial", 20)
-        self.card_title_font = pygame.font.Font(font_path, 26) if font_path else pygame.font.SysFont("arial", 26, bold=True)
-        self.map_font = pygame.font.Font(font_path, 24) if font_path else pygame.font.SysFont("arial", 24)
+        title_path = fonts_dir / "title.ttf"
+        ui_path = fonts_dir / "ui.ttf"
+        mono_path = fonts_dir / "mono.ttf"
+
+        def _safe_font(path, size, fallback_name="arial", bold=False):
+            try:
+                if path.exists():
+                    return pygame.font.Font(str(path), size)
+            except Exception:
+                pass
+            return pygame.font.SysFont(fallback_name, size, bold=bold)
+
+        self.font = _safe_font(ui_path, 24)
+        self.small_font = _safe_font(ui_path, 22)
+        self.tiny_font = _safe_font(ui_path, 18)
+        self.big_font = _safe_font(title_path, 34, bold=True)
+        self.card_text_font = _safe_font(ui_path, 20)
+        self.card_title_font = _safe_font(title_path, 26, bold=True)
+        self.map_font = _safe_font(ui_path, 24)
+        self.mono_font = _safe_font(mono_path, 22)
         self.sm = StateMachine()
         self.run_state = None
         self.node_lookup = {}
@@ -104,6 +108,8 @@ class App:
         self.asset_generation_active = False
         self.asset_generation_progress = 1.0
         self.asset_generation_label = ""
+        self._restart_requested = False
+        self._restart_reason = ""
 
         self.loading_screen = LoadingScreen(self.big_font, self.font)
         self._loading_step("Inicializando", 0.01)
@@ -141,7 +147,7 @@ class App:
         self.debug["lore_paths"] = ",".join(str(v) for v in self.lore_service.paths.values())
         self.design_doc = self._load_design_doc()
         self.canonical_design_source = str(data_dir() / "design" / "gdd_chakana_purple_wizard.txt")
-        print(f"[load] cards={len(self.cards_data)} enemies={len(self.enemies_data)} events={len(self.events_data)} relics={len(self.relics_data)}")
+        print(f"[boot] content OK cards={len(self.cards_data)} enemies={len(self.enemies_data)} events={len(self.events_data)} relics={len(self.relics_data)}")
         self.art_gen = CardArtGenerator()
         self.enemy_art_gen = EnemyArtGenerator()
         self.bg_gen = BackgroundGenerator()
@@ -149,11 +155,14 @@ class App:
         self.asset_pipeline = AssetPipeline(self.art_gen, self.enemy_art_gen, self.guide_gen, self.bg_gen)
         self.audio_pipeline = AudioPipeline()
         self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
+        self.user_settings.setdefault("detail_panel", True)
         self._apply_dev_reset_if_enabled()
         self.ensure_assets(progress_cb=self._loading_step)
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
         self._loading_step("Completado", 1.0)
-        print("[load] card/enemy art verified")
+        print(f"[boot] dialogues OK keys={len(self.content.dialogues_combat) if isinstance(self.content.dialogues_combat, dict) else 0}")
+        print("[boot] assets OK")
+        print(f"[boot] placeholders used: {self.debug.get('placeholders_used',0)}")
         self.debug["art_regenerated"] = self.art_gen.generated_count + self.art_gen.replaced_count
 
         self.validate_navigation_methods()
@@ -168,6 +177,15 @@ class App:
         self.asset_generation_progress = max(0.0, min(1.0, float(pct)))
         self.asset_generation_active = self.asset_generation_progress < 0.999
         self.loading_screen.set_step(label, pct)
+        now = pygame.time.get_ticks()
+        if not hasattr(self, "_loading_watch_ts"):
+            self._loading_watch_ts = now
+            self._loading_watch_label = label
+        if label != getattr(self, "_loading_watch_label", ""):
+            self._loading_watch_label = label
+            self._loading_watch_ts = now
+        elif now - getattr(self, "_loading_watch_ts", now) > 12000 and pct < 0.98:
+            self.loading_screen.set_step("Continuando con placeholders…", pct)
         self.loading_screen.draw(self.renderer.internal, 1.0 / max(1, FPS))
         self.renderer.present()
         for ev in pygame.event.get():
@@ -681,6 +699,7 @@ class App:
         self.user_settings["fx_glow"] = bool(self.user_settings.get("fx_glow", True))
         self.user_settings["fx_particles"] = bool(self.user_settings.get("fx_particles", True))
         self.user_settings["force_regen_art"] = bool(self.user_settings.get("force_regen_art", False))
+        self.user_settings["detail_panel"] = bool(self.user_settings.get("detail_panel", True))
         save_settings(self.user_settings)
 
     def draw_debug_overlay(self):
@@ -713,6 +732,38 @@ class App:
         for i,line in enumerate(lines):
             self.renderer.internal.blit(self.tiny_font.render(line, True, (240,240,240)), (16, 16+i*20))
 
+
+    def request_restart(self, reason="regen"):
+        self._restart_requested = True
+        self._restart_reason = reason
+
+    def _soft_restart(self):
+        self._loading_step("Reset aplicado. Regenerando Trama…", 0.02)
+        try:
+            pygame.mixer.music.stop()
+        except Exception:
+            pass
+        pygame.event.clear()
+        self.assets._cache.clear()
+        self.sfx = SFXManager()
+        self.music = MusicManager()
+        self.music.set_volume(self.user_settings.get("music_volume", 0.5))
+        self.music.set_muted(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False)))
+        content_payload = ContentService().load_all(progress_cb=self._loading_step)
+        self.content.cards = content_payload.get("cards", [])
+        self.content.enemies = content_payload.get("enemies", [])
+        self.content.bosses = content_payload.get("bosses", [])
+        self.content.dialogues_combat = content_payload.get("dialogues_combat", {})
+        self.content.dialogues_events = content_payload.get("dialogues_events", {})
+        self.cards_data = self._load_cards_data()
+        self.card_defs = {c["id"]: c for c in self.cards_data}
+        self.enemies_data = self._load_enemies_data()
+        self.ensure_assets(progress_cb=self._loading_step)
+        self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
+        self.sm.set(MenuScreen(self))
+        self.music.play_for("menu")
+        self.asset_generation_active = False
+
     def run(self):
         while self.running:
             dt = self.clock.tick(FPS) / 1000.0
@@ -725,10 +776,14 @@ class App:
                     self.toggle_language()
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_F2:
                     self.debug_overlay = not self.debug_overlay
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_F10:
                     self.run_qa_mode()
                 else:
                     self.sm.handle_event(event)
+            if self._restart_requested:
+                self._restart_requested = False
+                self._soft_restart()
+                continue
             self.music.tick()
             self.sm.update(dt)
             self.sm.render(self.renderer.internal)

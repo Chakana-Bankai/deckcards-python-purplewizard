@@ -15,7 +15,9 @@ class ContentStatus:
 
 class ContentService:
     def __init__(self, base: Path | None = None):
-        self.base = base or data_dir()
+        project_root = Path(__file__).resolve().parents[2]
+        fallback = project_root / "game" / "data"
+        self.base = base or (fallback if fallback.exists() else data_dir())
 
     def _step(self, progress_cb, label, pct):
         if progress_cb:
@@ -55,14 +57,20 @@ class ContentService:
         dcombat, devents = self.load_dialogues(st)
 
         if len(cards) != 60:
-            st.status = "FALLBACK"
-            st.errors.append(f"cards_count:{len(cards)} expected 60")
+            st.status = "FALLBACK"; st.errors.append(f"cards_count:{len(cards)} expected 60")
         if len(enemies) != 30:
-            st.status = "FALLBACK"
-            st.errors.append(f"enemies_count:{len(enemies)} expected 30")
+            st.status = "FALLBACK"; st.errors.append(f"enemies_count:{len(enemies)} expected 30")
         if len(bosses) != 3:
-            st.status = "FALLBACK"
-            st.errors.append(f"bosses_count:{len(bosses)} expected 3")
+            st.status = "FALLBACK"; st.errors.append(f"bosses_count:{len(bosses)} expected 3")
+
+        enemy_ids = [e.get("id") for e in enemies if isinstance(e, dict) and e.get("id")]
+        for eid in enemy_ids:
+            row = dcombat.get(eid) if isinstance(dcombat, dict) else None
+            if not isinstance(row, dict) or "start" not in row:
+                dcombat[eid] = {
+                    "start": {"enemy": "La Trama te prueba.", "chakana": "Respiro. Calculo. Ejecuto."},
+                    "victory": {"enemy": "Aún no termina.", "chakana": "Sigo en pie."},
+                }
 
         return {
             "cards": cards if isinstance(cards, list) else [],
