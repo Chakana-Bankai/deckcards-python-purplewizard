@@ -493,6 +493,11 @@ class App:
 
     def goto_combat(self, combat_state, is_boss=False):
         self.current_combat = combat_state
+        try:
+            pc = combat_state.pile_counts() if hasattr(combat_state, "pile_counts") else {"draw": 0, "hand": len(getattr(combat_state, "hand", []) or []), "discard": 0}
+            print(f"[boot] combat_engine piles: draw={pc.get('draw',0)} hand={pc.get('hand',0)} discard={pc.get('discard',0)}")
+        except Exception:
+            pass
         self.sm.set(CombatScreen(self, combat_state, is_boss=is_boss))
         if is_boss:
             self.music.play_for(self.get_bgm_track("boss"))

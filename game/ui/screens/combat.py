@@ -316,7 +316,8 @@ class CombatScreen:
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
         self.set_dialogue(trig, enemy_id, {"card_id": card.definition.id})
         self._push_log(f"Jugada: {getattr(card.definition, 'name_key', 'Carta')}")
-        self.telemetry.info("card_played", card_id=getattr(card.definition, "id", "-"), energy=self.c.player.get("energy", 0), hand=len(self.c.hand), draw=len(self.c.draw_pile), discard=len(self.c.discard_pile))
+        pc = self._pile_counts()
+        self.telemetry.info("card_played", card_id=getattr(card.definition, "id", "-"), energy=self.c.player.get("energy", 0), hand=pc["hand"], draw=pc["draw"], discard=pc["discard"])
         self.ctrl.clear_selection("card_played")
 
     def _activate_action_button(self):
@@ -335,6 +336,20 @@ class CombatScreen:
             self._push_log("Jugada: Fin del ritual")
             self.ctrl.clear_selection("end_turn")
             self.ctrl.clear_hover()
+
+
+    def _pile_counts(self):
+        if hasattr(self.c, "pile_counts"):
+            try:
+                pc = self.c.pile_counts()
+                return {"draw": int(pc.get("draw", 0)), "hand": int(pc.get("hand", len(getattr(self.c, "hand", []) or []))), "discard": int(pc.get("discard", 0))}
+            except Exception:
+                pass
+        return {
+            "draw": len(getattr(self.c, "draw_pile", []) or []),
+            "hand": len(getattr(self.c, "hand", []) or []),
+            "discard": len(getattr(self.c, "discard_pile", []) or []),
+        }
 
     def _card_rect(self, i, total):
         inner = self.layout.hand_rect.inflate(-18, -36)
@@ -775,9 +790,10 @@ class CombatScreen:
         s.blit(self.app.tiny_font.render(f"Bloqueo {p['block']}", True, UI_THEME["block"]), (left_x, top_y + 28))
         s.blit(self.app.tiny_font.render(f"Ruptura {p['rupture']}", True, UI_THEME["rupture"]), (left_x, top_y + 48))
 
-        draw_n = len(getattr(self.c, "draw_pile", []))
-        hand_n = len(getattr(self.c, "hand", []))
-        disc_n = len(getattr(self.c, "discard_pile", []))
+        pc = self._pile_counts()
+        draw_n = pc["draw"]
+        hand_n = pc["hand"]
+        disc_n = pc["discard"]
         ex_n = len(getattr(self.c, "exhaust_pile", []))
         s.blit(self.app.tiny_font.render(f"Draw {draw_n} • Mano {hand_n} • Discarte {disc_n} • Exhaust {ex_n}", True, UI_THEME["muted"]), (left_x, top_y + 70))
 
@@ -881,7 +897,7 @@ class CombatScreen:
             sel = sel or "-"
             info_lines = [
                 f"selected_card: {sel}",
-                f"draw/hand/discard: {len(self.c.draw_pile)}/{len(self.c.hand)}/{len(self.c.discard_pile)}",
+                f"draw/hand/discard: {self._pile_counts()['draw']}/{self._pile_counts()['hand']}/{self._pile_counts()['discard']}",
                 f"fsm={self._action_button_fsm} reason={self._last_reason_code}",
                 f"harmony: {p.get('harmony_current',0)}/{p.get('harmony_max',10)} thr={p.get('harmony_ready_threshold',6)}",
                 f"last_trigger: {self.last_trigger}",

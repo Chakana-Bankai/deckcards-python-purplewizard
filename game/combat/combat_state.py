@@ -462,6 +462,23 @@ class CombatState:
             self.harmony_chaos_pending = True
             self.combat_events.append({"type":"harmony","kind":"CHAOS"})
 
+
+    def pile_counts(self) -> dict:
+        draw = getattr(self, "draw_pile", None)
+        hand = getattr(self, "hand", None)
+        discard = getattr(self, "discard_pile", None)
+        return {
+            "draw": len(draw) if isinstance(draw, (list, tuple)) else 0,
+            "hand": len(hand) if isinstance(hand, (list, tuple)) else 0,
+            "discard": len(discard) if isinstance(discard, (list, tuple)) else 0,
+        }
+
+    def get_draw_pile(self):
+        return list(getattr(self, "draw_pile", []) or [])
+
+    def get_discard_pile(self):
+        return list(getattr(self, "discard_pile", []) or [])
+
     def pop_events(self):
         events = self.combat_events[:]
         self.combat_events.clear()
