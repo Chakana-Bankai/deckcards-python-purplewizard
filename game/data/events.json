@@ -1,0 +1,132 @@
+[
+  {
+    "id": "apacheta_offer",
+    "title_key": "event_apacheta_title",
+    "body_key": "event_apacheta_body",
+    "choices": [
+      {
+        "text_key": "event_apacheta_choice_offer",
+        "effects": [
+          {"type": "lose_gold", "amount": 20},
+          {"type": "gain_relic_random", "rarity": "common"}
+        ]
+      },
+      {
+        "text_key": "event_apacheta_choice_leave",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "ayni_pact",
+    "title_key": "event_ayni_title",
+    "body_key": "event_ayni_body",
+    "choices": [
+      {
+        "text_key": "event_ayni_choice_trade",
+        "effects": [
+          {"type": "lose_hp", "amount": 6},
+          {"type": "upgrade_random_card", "amount": 1}
+        ]
+      },
+      {
+        "text_key": "event_ayni_choice_refuse",
+        "effects": [
+          {"type": "gain_gold", "amount": 15}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "condor_vision",
+    "title_key": "event_condor_title",
+    "body_key": "event_condor_body",
+    "choices": [
+      {
+        "text_key": "event_condor_choice_vision",
+        "effects": [
+          {"type": "gain_card", "card_id": "vision"},
+          {"type": "heal", "amount": 3}
+        ]
+      },
+      {
+        "text_key": "event_condor_choice_sky",
+        "effects": [
+          {"type": "gain_max_hp", "amount": 3},
+          {"type": "gain_rupture", "amount": 1}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "puma_trial",
+    "title_key": "event_puma_title",
+    "body_key": "event_puma_body",
+    "choices": [
+      {
+        "text_key": "event_puma_choice_fight",
+        "effects": [
+          {"type": "gain_card_random", "rarity": "uncommon"},
+          {"type": "gain_status_player", "status": "focus", "stacks": 1},
+          {"type": "lose_hp", "amount": 5}
+        ]
+      },
+      {
+        "text_key": "event_puma_choice_breathe",
+        "effects": [
+          {"type": "reduce_rupture", "amount": 2},
+          {"type": "heal", "amount": 4}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "serpent_shed",
+    "title_key": "event_serpent_title",
+    "body_key": "event_serpent_body",
+    "choices": [
+      {
+        "text_key": "event_serpent_choice_shed",
+        "effects": [
+          {"type": "remove_card_from_deck", "amount": 1},
+          {"type": "gain_gold", "amount": 25}
+        ]
+      },
+      {
+        "text_key": "event_serpent_choice_keep",
+        "effects": [
+          {"type": "gain_rupture", "amount": 1}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chakana_crossroads",
+    "title_key": "event_chakana_title",
+    "body_key": "event_chakana_body",
+    "choices": [
+      {
+        "text_key": "event_chakana_choice_balance",
+        "effects": [
+          {"type": "reduce_rupture", "amount": 3},
+          {"type": "heal", "amount": 6}
+        ]
+      },
+      {
+        "text_key": "event_chakana_choice_power",
+        "effects": [
+          {"type": "gain_rupture", "amount": 3},
+          {"type": "gain_relic", "relic_id": "chakana_thread"},
+          {"type": "lose_hp", "amount": 7}
+        ]
+      },
+      {
+        "text_key": "event_chakana_choice_silence",
+        "effects": [
+          {"type": "remove_card_from_deck", "amount": 1},
+          {"type": "gain_max_hp", "amount": 2}
+        ]
+      }
+    ]
+  }
+]
