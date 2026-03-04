@@ -1,0 +1,262 @@
+[
+  {
+    "id": "guardian_de_la_grieta",
+    "name_es": "Guardián de la Grieta",
+    "hp": 190,
+    "phases": [
+      0.7,
+      0.35
+    ],
+    "patterns_by_phase": {
+      "phase1": [
+        {
+          "intent": "attack",
+          "value": [
+            8,
+            8
+          ],
+          "label": "Preparando: Ataque 8"
+        },
+        {
+          "intent": "break",
+          "stacks": 4,
+          "label": "Canaliza: Quiebre 4"
+        },
+        {
+          "intent": "attack",
+          "value": [
+            10,
+            10
+          ],
+          "label": "Preparando: Ataque 10"
+        }
+      ],
+      "phase2": [
+        {
+          "intent": "channel",
+          "label": "Canaliza: Grieta",
+          "effect": {}
+        },
+        {
+          "intent": "attack",
+          "value": [
+            12,
+            12
+          ],
+          "label": "Preparando: Ataque 12"
+        },
+        {
+          "intent": "debuff",
+          "status": "vulnerable",
+          "stacks": 2,
+          "label": "Canaliza: vulnerable 2"
+        }
+      ],
+      "phase3": [
+        {
+          "intent": "attack",
+          "value": [
+            14,
+            14
+          ],
+          "label": "Preparando: Ataque 14"
+        },
+        {
+          "intent": "break",
+          "stacks": 6,
+          "label": "Canaliza: Quiebre 6"
+        },
+        {
+          "intent": "attack",
+          "value": [
+            16,
+            16
+          ],
+          "label": "Preparando: Ataque 16"
+        }
+      ]
+    },
+    "special_rules": {
+      "plus_damage_if_player_no_block": 2
+    }
+  },
+  {
+    "id": "oraculo_del_vacio",
+    "name_es": "Oráculo del Vacío",
+    "hp": 210,
+    "phases": [
+      0.7,
+      0.35
+    ],
+    "patterns_by_phase": {
+      "phase1": [
+        {
+          "intent": "debuff",
+          "status": "cost_plus",
+          "stacks": 1,
+          "label": "Canaliza: cost_plus 1"
+        },
+        {
+          "intent": "attack",
+          "value": [
+            8,
+            8
+          ],
+          "label": "Preparando: Ataque 8"
+        },
+        {
+          "intent": "defend",
+          "value": [
+            8,
+            8
+          ],
+          "label": "Preparando: Guardia 8"
+        }
+      ],
+      "phase2": [
+        {
+          "intent": "channel",
+          "label": "Canaliza: Vacío",
+          "effect": {}
+        },
+        {
+          "intent": "debuff",
+          "status": "shuffle_bottom",
+          "stacks": 1,
+          "label": "Canaliza: shuffle_bottom 1"
+        },
+        {
+          "intent": "attack",
+          "value": [
+            12,
+            12
+          ],
+          "label": "Preparando: Ataque 12"
+        }
+      ],
+      "phase3": [
+        {
+          "intent": "debuff",
+          "status": "weaken",
+          "stacks": 4,
+          "label": "Canaliza: weaken 4"
+        },
+        {
+          "intent": "attack",
+          "value": [
+            14,
+            14
+          ],
+          "label": "Preparando: Ataque 14"
+        },
+        {
+          "intent": "attack",
+          "value": [
+            14,
+            14
+          ],
+          "label": "Preparando: Ataque 14"
+        }
+      ]
+    },
+    "special_rules": {
+      "balance_response": "weaken1"
+    }
+  },
+  {
+    "id": "senor_de_la_chakana_rota",
+    "name_es": "Señor de la Chakana Rota",
+    "hp": 260,
+    "phases": [
+      0.75,
+      0.5,
+      0.25
+    ],
+    "patterns_by_phase": {
+      "phase1": [
+        {
+          "intent": "attack",
+          "value": [
+            10,
+            10
+          ],
+          "label": "Preparando: Ataque 10"
+        },
+        {
+          "intent": "defend",
+          "value": [
+            10,
+            10
+          ],
+          "label": "Preparando: Guardia 10"
+        },
+        {
+          "intent": "channel",
+          "label": "Canaliza: Imitación",
+          "effect": {}
+        }
+      ],
+      "phase2": [
+        {
+          "intent": "attack",
+          "value": [
+            12,
+            12
+          ],
+          "label": "Preparando: Ataque 12"
+        },
+        {
+          "intent": "break",
+          "stacks": 4,
+          "label": "Canaliza: Quiebre 4"
+        },
+        {
+          "intent": "debuff",
+          "status": "vulnerable",
+          "stacks": 2,
+          "label": "Canaliza: vulnerable 2"
+        }
+      ],
+      "phase3": [
+        {
+          "intent": "attack",
+          "value": [
+            16,
+            16
+          ],
+          "label": "Preparando: Ataque 16"
+        },
+        {
+          "intent": "attack",
+          "value": [
+            16,
+            16
+          ],
+          "label": "Preparando: Ataque 16"
+        },
+        {
+          "intent": "channel",
+          "label": "Canaliza: Rota",
+          "effect": {}
+        },
+        {
+          "intent": "attack",
+          "value": [
+            20,
+            20
+          ],
+          "label": "Preparando: Ataque 20"
+        }
+      ]
+    },
+    "special_rules": {
+      "copy_direction_bonus": {
+        "ESTE": "atk+3",
+        "SUR": "guard+6",
+        "NORTE": "intent_upgrade",
+        "OESTE": "break+2"
+      },
+      "juicio_del_umbral": true
+    }
+  }
+]
