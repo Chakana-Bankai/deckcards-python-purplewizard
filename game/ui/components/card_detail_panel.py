@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import pygame
 
+from game.ui.components.card_effect_summary import summarize_card_effect
 from game.ui.theme import UI_THEME
 
 
@@ -21,7 +22,7 @@ class CardDetailPanel:
                 "cost": getattr(card, "cost", getattr(d, "cost", 0)),
                 "tags": list(getattr(d, "tags", []) or []),
                 "effects": list(getattr(d, "effects", []) or []),
-                "family": getattr(d, "family", "-")
+                "family": getattr(d, "family", "-"),
             }
         if isinstance(card, dict):
             return {
@@ -31,26 +32,37 @@ class CardDetailPanel:
                 "cost": card.get("cost", 0),
                 "tags": list(card.get("tags", []) or []),
                 "effects": list(card.get("effects", []) or []),
-                "family": card.get("family", "-")
+                "family": card.get("family", "-"),
             }
         return None
 
-    def _kpis(self, payload):
-        dmg = blk = rup = en = 0
-        for ef in payload.get("effects", []):
-            if not isinstance(ef, dict):
-                continue
-            typ = ef.get("type", "")
-            amt = int(ef.get("amount", 0))
-            if typ == "damage":
-                dmg += amt
-            elif typ == "block":
-                blk += amt
-            elif typ == "rupture":
-                rup += amt
-            elif typ == "energy":
-                en += amt
-        return dmg, blk, rup, en
+    def _wrap_clamp(self, font, text: str, width: int, max_lines: int):
+        words = str(text or "").split()
+        if not words:
+            return [""]
+        lines = []
+        cur = ""
+        for w in words:
+            test = (cur + " " + w).strip()
+            if font.size(test)[0] <= width:
+                cur = test
+            else:
+                if cur:
+                    lines.append(cur)
+                cur = w
+                if len(lines) >= max_lines:
+                    break
+        if cur and len(lines) < max_lines:
+            lines.append(cur)
+
+        total_words = len(words)
+        used_words = len(" ".join(lines).split())
+        if used_words < total_words and lines:
+            ell = "..."
+            while font.size((lines[-1] + ell).strip())[0] > width and len(lines[-1]) > 1:
+                lines[-1] = lines[-1][:-1]
+            lines[-1] = lines[-1].rstrip(".") + ell
+        return lines[:max_lines]
 
     def render(self, surface: pygame.Surface, rect: pygame.Rect, card=None, placeholder_text: str | None = None, last_played: str | None = None):
         pygame.draw.rect(surface, UI_THEME["panel"], rect, border_radius=12)
@@ -59,25 +71,39 @@ class CardDetailPanel:
         payload = self._get_payload(card)
         if not payload:
             msg = placeholder_text or "Selecciona una carta para ver sus detalles."
-            surface.blit(self.app.font.render(msg, True, UI_THEME["muted"]), (rect.x + 16, rect.y + 44))
+            for i, line in enumerate(self._wrap_clamp(self.app.font, msg, rect.w - 32, 2)):
+                surface.blit(self.app.font.render(line, True, UI_THEME["muted"]), (rect.x + 16, rect.y + 44 + i * 24))
             if last_played:
-                surface.blit(self.app.tiny_font.render(f"Última jugada: {last_played}", True, UI_THEME["text"]), (rect.x + 16, rect.y + 76))
+                surface.blit(self.app.tiny_font.render(f"Última jugada: {last_played}", True, UI_THEME["text"]), (rect.x + 16, rect.y + 96))
             return
 
         tx = rect.x + 16
         y = rect.y + 42
-        surface.blit(self.app.small_font.render(self.app.loc.t(payload["name_key"]), True, UI_THEME["text"]), (tx, y)); y += 26
-        surface.blit(self.app.tiny_font.render(f"Tipo: {payload.get('family','-')}", True, UI_THEME["muted"]), (tx, y)); y += 20
-        surface.blit(self.app.tiny_font.render(f"Coste: {payload.get('cost',0)}", True, UI_THEME["energy"]), (tx, y)); y += 20
+        max_w = rect.w - 30
 
-        dmg, blk, rup, _en = self._kpis(payload)
-        surface.blit(self.app.tiny_font.render(f"Daño: {dmg}", True, UI_THEME["text"]), (tx, y)); y += 18
-        surface.blit(self.app.tiny_font.render(f"Bloqueo: {blk}", True, UI_THEME["text"]), (tx, y)); y += 18
-        surface.blit(self.app.tiny_font.render(f"Ruptura: {rup}", True, UI_THEME["text"]), (tx, y)); y += 18
+        card_name = self.app.loc.t(payload["name_key"])
+        for ln in self._wrap_clamp(self.app.small_font, card_name, max_w, 1):
+            surface.blit(self.app.small_font.render(ln, True, UI_THEME["text"]), (tx, y))
+            y += 24
 
-        tags = ", ".join(payload.get("tags", [])) or "-"
+        meta = f"Tipo: {payload.get('family','-')}  |  Coste: {payload.get('cost',0)}"
+        for ln in self._wrap_clamp(self.app.tiny_font, meta, max_w, 1):
+            surface.blit(self.app.tiny_font.render(ln, True, UI_THEME["muted"]), (tx, y))
+            y += 20
+
+        summary = summarize_card_effect(payload, card_instance=card, ctx=None)
+        header = str(summary.get("header") or "Efecto: Ritual")
+        for ln in self._wrap_clamp(self.app.tiny_font, header, max_w, 2):
+            surface.blit(self.app.tiny_font.render(ln, True, UI_THEME["text"]), (tx, y))
+            y += 18
+
+        desc = self.app.loc.t(payload.get("text_key", ""))
+        for ln in self._wrap_clamp(self.app.tiny_font, desc, max_w, 3):
+            surface.blit(self.app.tiny_font.render(ln, True, UI_THEME["muted"]), (tx, y))
+            y += 18
+
+        tags = ", ".join(summary.get("tags", payload.get("tags", []))) or "-"
         tag_line = f"Tags: {tags}"
-        while self.app.tiny_font.size(tag_line)[0] > rect.w - 30 and len(tag_line) > 6:
-            tag_line = tag_line[:-4] + "..."
-        if y <= rect.bottom - 24:
-            surface.blit(self.app.tiny_font.render(tag_line, True, UI_THEME["muted"]), (tx, min(y + 6, rect.bottom - 24)))
+        for ln in self._wrap_clamp(self.app.tiny_font, tag_line, max_w, 1):
+            if y <= rect.bottom - 24:
+                surface.blit(self.app.tiny_font.render(ln, True, UI_THEME["muted"]), (tx, y))

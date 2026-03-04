@@ -47,6 +47,10 @@ class CombatState:
         self.queue = ActionQueue()
         self.player = run_state["player"]
         self.player.setdefault("statuses", {})
+        self.player.setdefault("harmony_current", 0)
+        self.player.setdefault("harmony_max", 10)
+        self.player.setdefault("harmony_ready_threshold", 6)
+        self.player.setdefault("harmony_ready", False)
         self.player["block"] = 0
         self.turn = 0
         self.pending_if_kill = None
@@ -153,13 +157,40 @@ class CombatState:
             self.harmony_chaos_pending = False
         self.hand.pop(hand_index)
         self._track_harmony(card.definition.direction if hasattr(card.definition, "direction") else "ESTE")
+        self._apply_harmony_resource(card)
         interpret_effects(self, card, target, card.definition.effects)
+        self.combat_events.append({"type": "card_played", "card_id": getattr(card.definition, "id", "-")})
         self.last_played_card = card
         if self.player["statuses"].get("copy_next",0)>0:
             self.player["statuses"]["copy_next"] = 0
             interpret_effects(self, card, target, card.definition.effects)
         if card not in self.exhaust_pile:
             self.discard_pile.append(card)
+
+    def _apply_harmony_resource(self, card):
+        effects = list(getattr(getattr(card, "definition", None), "effects", []) or [])
+        delta = 1
+        consume = 0
+        for ef in effects:
+            if not isinstance(ef, dict):
+                continue
+            t = str(ef.get("type", "")).lower()
+            if t == "harmony_delta":
+                delta += int(ef.get("amount", 0) or 0)
+            elif t == "consume_harmony":
+                consume += max(1, int(ef.get("amount", 1) or 1))
+
+        cur = int(self.player.get("harmony_current", 0) or 0)
+        mx = max(1, int(self.player.get("harmony_max", 10) or 10))
+        cur = max(0, min(mx, cur + delta - consume))
+        self.player["harmony_current"] = cur
+
+        thr = max(1, int(self.player.get("harmony_ready_threshold", 6) or 6))
+        was_ready = bool(self.player.get("harmony_ready", False))
+        now_ready = cur >= thr
+        self.player["harmony_ready"] = now_ready
+        if now_ready and not was_ready:
+            self.combat_events.append({"type": "harmony_ready", "message": "Armonía lista: desata tu sello."})
 
     def end_turn(self):
         kept = [c for c in self.hand if getattr(c, "retain_flag", False)]

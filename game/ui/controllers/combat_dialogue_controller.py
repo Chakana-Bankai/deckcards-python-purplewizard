@@ -9,6 +9,10 @@ class CombatDialogueController:
 
     def fire(self, enemy_id: str, trigger: str):
         e, c = self.lore_engine.get_combat_lines(enemy_id, trigger)
+        if not str(e or "").strip():
+            e = "(el enemigo contiene la respiración...)"
+        if not str(c or "").strip():
+            c = "(Chakana escucha la Trama...)"
         self.set_lines_fn(e, c, trigger)
 
     def on_combat_start(self, enemy_id: str):
@@ -28,6 +32,9 @@ class CombatDialogueController:
 
     def on_player_low(self, enemy_id: str):
         self.fire(enemy_id, "player_low")
+
+    def on_card_played(self, enemy_id: str):
+        self.fire(enemy_id, "card_played")
 
     def on_victory(self, enemy_id: str):
         self.fire(enemy_id, "victory")

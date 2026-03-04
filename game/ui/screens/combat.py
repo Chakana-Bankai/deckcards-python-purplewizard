@@ -11,6 +11,7 @@ from game.core.paths import data_dir
 from game.core.safe_io import load_json
 from game.ui.anim import TypewriterBanner
 from game.ui.components.card_detail_panel import CardDetailPanel
+from game.ui.components.card_effect_summary import summarize_card_effect
 from game.ui.components.mana_orbs import ManaOrbsWidget
 from game.ui.components.modal_card_picker import ModalCardPicker
 from game.ui.controllers.card_interaction import CardInteractionController
@@ -64,6 +65,7 @@ class CombatScreen:
         self.pause_confirm_target = None
         self.hover_card_index = None
         self.dialog_debug_overlay = False
+        self.qa_debug_overlay = False
         self.art_debug_overlay = False
         self.last_trigger = "combat_start"
         self.hover_anim = {}
@@ -310,6 +312,9 @@ class CombatScreen:
             self.dialog_debug_overlay = not self.dialog_debug_overlay
             return
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
+            self.qa_debug_overlay = not self.qa_debug_overlay
+            return
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_F4:
             idx = (self._combat_triggers.index(self.last_trigger) + 1) % len(self._combat_triggers) if self.last_trigger in self._combat_triggers else 0
             self._trigger_dialog(self._combat_triggers[idx])
             return
@@ -417,6 +422,11 @@ class CombatScreen:
             if ev.get("type") == "damage" and ev.get("target") == "player" and ev.get("amount", 0) >= 8:
                 self._trigger_dialog("enemy_big_attack")
                 self._push_log(f"Daño recibido: {ev.get('amount',0)}")
+            if ev.get("type") == "card_played":
+                enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
+                self.dialogue_ctrl.on_card_played(enemy_id)
+            if ev.get("type") == "harmony_ready":
+                self._push_log(str(ev.get("message") or "Armonía lista: desata tu sello."))
 
         if self.c.scry_pending and not self.scry_picker.open:
             self.scry_picker.show(
@@ -526,8 +536,8 @@ class CombatScreen:
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.voices_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.voices_rect, 2, border_radius=12)
         s.blit(self.app.small_font.render("Voces", True, UI_THEME["gold"]), (self.layout.voices_rect.x + 12, self.layout.voices_rect.y + 8))
-        e_line = self.dialog_enemy.current or "(enemigo en silencio)"
-        h_line = self.dialog_hero.current or "(chakana en silencio)"
+        e_line = self.dialog_enemy.current or "(el enemigo contiene la respiración...)"
+        h_line = self.dialog_hero.current or "(Chakana escucha la Trama...)"
         enemy_lines = wrap_text(self.app.font, e_line, self.layout.voices_rect.w - 32, max_lines=2)
         hero_lines = wrap_text(self.app.font, h_line, self.layout.voices_rect.w - 32, max_lines=2)
         y = self.layout.voices_rect.y + 34
@@ -585,6 +595,15 @@ class CombatScreen:
             fam = getattr(card.definition, "family", "violet_arcane")
             self._draw_card(s, rr, card, selected=(i == self.ctrl.selected_index), family=fam)
             pygame.draw.rect(s, (220, 198, 255), rr.inflate(8, 8), 2, border_radius=14)
+            summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
+            tip = str(summary.get("header") or "Efecto: Ritual")
+            tip_rect = pygame.Rect(rr.x, max(120, rr.y - 36), min(360, self.layout.hand_rect.w - 20), 28)
+            pygame.draw.rect(s, UI_THEME["deep_purple"], tip_rect, border_radius=8)
+            pygame.draw.rect(s, UI_THEME["accent_violet"], tip_rect, 1, border_radius=8)
+            line = tip
+            while self.app.tiny_font.size(line)[0] > tip_rect.w - 12 and len(line) > 4:
+                line = line[:-4] + "..."
+            s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (tip_rect.x + 6, tip_rect.y + 6))
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.playerhud_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.playerhud_rect, 2, border_radius=12)
@@ -593,6 +612,23 @@ class CombatScreen:
         s.blit(self.app.font.render(f"Vida {p['hp']}/{p['max_hp']}", True, UI_THEME["text"]), (self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + 38))
         s.blit(self.app.mono_font.render(f"Bloqueo {p['block']}", True, UI_THEME["block"]), (self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + 72))
         s.blit(self.app.mono_font.render(f"Ruptura {p['rupture']}", True, UI_THEME["rupture"]), (self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + 104))
+        draw_n = len(getattr(self.c, "draw_pile", []))
+        hand_n = len(getattr(self.c, "hand", []))
+        disc_n = len(getattr(self.c, "discard_pile", []))
+        s.blit(self.app.tiny_font.render(f"Mazo: {draw_n}  Mano: {hand_n}  Descarte: {disc_n}", True, UI_THEME["muted"]), (self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + 132))
+
+        h_cur = int(p.get("harmony_current", 0) or 0)
+        h_max = max(1, int(p.get("harmony_max", 10) or 10))
+        h_thr = max(1, int(p.get("harmony_ready_threshold", 6) or 6))
+        ready = h_cur >= h_thr
+        hy = self.layout.playerhud_rect.y + 156
+        s.blit(self.app.tiny_font.render(f"Armonía {h_cur}/{h_max}", True, UI_THEME["good"] if ready else UI_THEME["text"]), (self.layout.playerhud_rect.x + 18, hy))
+        if ready:
+            pulse = 120 + int(80 * (0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 180.0)))
+            glow = pygame.Surface((120, 22), pygame.SRCALPHA)
+            glow.fill((160, 245, 180, pulse))
+            s.blit(glow, (self.layout.playerhud_rect.x + 156, hy - 2))
+            s.blit(self.app.tiny_font.render("LISTA", True, UI_THEME["good"]), (self.layout.playerhud_rect.x + 164, hy))
         self.mana_orbs.update(int(p.get("energy", 0)))
         self.mana_orbs.draw(s, self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + self.layout.playerhud_rect.h - 52, int(p.get("energy", 0)), 6)
         avatar = render_avatar(pygame.time.get_ticks() / 1000.0, min(96, self.layout.playerhud_rect.h - 40))
@@ -657,6 +693,25 @@ class CombatScreen:
             s.blit(self.app.tiny_font.render(f"MapLore: {map_ok}  CombatLore: {combat_ok}", True, UI_THEME["text"]), (d.x + 12, d.y + 14))
             s.blit(self.app.tiny_font.render(f"enemy_id: {enemy_id}  trigger: {self.last_trigger}", True, UI_THEME["text"]), (d.x + 12, d.y + 40))
             s.blit(self.app.tiny_font.render(f"enemy_len={len(self.dialog_enemy.current)} chakana_len={len(self.dialog_hero.current)}", True, UI_THEME["text"]), (d.x + 12, d.y + 66))
+
+        if self.qa_debug_overlay:
+            d = pygame.Rect(self.layout.topbar_rect.x + 10, self.layout.topbar_rect.bottom + 10, 680, 170)
+            pygame.draw.rect(s, (8, 8, 12), d, border_radius=8)
+            pygame.draw.rect(s, UI_THEME["accent_violet"], d, 2, border_radius=8)
+            sel = None
+            if self.ctrl.selected_index is not None and self.ctrl.selected_index < len(hand):
+                sel = getattr(hand[self.ctrl.selected_index].definition, "id", "-")
+            sel = sel or "-"
+            info_lines = [
+                f"selected_card: {sel}",
+                f"draw/hand/discard: {len(self.c.draw_pile)}/{len(self.c.hand)}/{len(self.c.discard_pile)}",
+                f"harmony: {p.get('harmony_current',0)}/{p.get('harmony_max',10)} thr={p.get('harmony_ready_threshold',6)}",
+                f"last_trigger: {self.last_trigger}",
+            ]
+            yy = d.y + 12
+            for line in info_lines:
+                s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (d.x + 12, yy))
+                yy += 28
 
         if self.art_debug_overlay:
             idx = self.hover_card_index if self.hover_card_index is not None else self.ctrl.selected_index
