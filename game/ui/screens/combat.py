@@ -459,11 +459,6 @@ class CombatScreen:
         detail_rect = self.layout.card_detail
         current_idx = self.hover_card_index if self.hover_card_index is not None else self.ctrl.selected_index
         current_card = hand[current_idx] if current_idx is not None and current_idx < len(hand) else None
-        self.detail_panel.render(s, detail_rect, current_card)
-
-        if DEBUG_UI:
-            pygame.draw.rect(s, UI_THEME["gold"], self.layout.voices_panel, 2)
-            pygame.draw.rect(s, UI_THEME["gold"], self.layout.card_detail, 2)
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.actions_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.actions_rect, 2, border_radius=12)
@@ -482,6 +477,19 @@ class CombatScreen:
         s.blit(self.app.tiny_font.render(f"Turno actual: {self.c.turn}  Intención enemiga: {enemy_int}", True, UI_THEME["text"]), (log_x, log_y + 18))
         for i, line in enumerate(reversed(tail)):
             s.blit(self.app.tiny_font.render(f"• {line}", True, UI_THEME["text"]), (log_x, log_y + 40 + i * 16))
+
+        last_played = tail[-1] if tail else None
+        self.detail_panel.render(
+            s,
+            detail_rect,
+            current_card,
+            placeholder_text="Selecciona una carta para ver sus detalles.",
+            last_played=last_played,
+        )
+
+        if DEBUG_UI:
+            pygame.draw.rect(s, UI_THEME["gold"], self.layout.voices_panel, 2)
+            pygame.draw.rect(s, UI_THEME["gold"], self.layout.card_detail, 2)
 
         if self.dialog_debug_overlay:
             d = pygame.Rect(self.layout.topbar_rect.x + 10, self.layout.topbar_rect.bottom + 10, 620, 150)
