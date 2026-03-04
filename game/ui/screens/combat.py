@@ -95,7 +95,7 @@ class CombatScreen:
         if self.dialog_cd > 0:
             return
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-        enemy_line, hero_line = self.app.lore_service.emit(trigger, enemy_id, {"turn": self.c.turn})
+        enemy_line, hero_line = self.app.lore_engine.get_lines(enemy_id, trigger)
         self.dialog_enemy.set(enemy_line, 2.1)
         self.dialog_hero.set(hero_line, 2.1)
         self.enemy_line_fx = 0.24
@@ -274,7 +274,15 @@ class CombatScreen:
             pygame.draw.rect(s, UI_THEME["deep_purple"], er, border_radius=12)
             s.blit(self.app.assets.sprite("enemies", e.id, (180, 180), fallback=(100, 60, 90)), (er.x + 18, er.y + 28))
             s.blit(self.app.small_font.render(str(e.name_key), True, UI_THEME["text"]), (er.x + 260, er.y + 46))
-            s.blit(self.app.small_font.render(e.current_intent().get("label", "Preparando"), True, UI_THEME["gold"]), (er.x + 260, er.y + 86))
+            intent_txt = e.current_intent().get("label", "Preparando")
+            s.blit(self.app.small_font.render(f"Preparando: {intent_txt}", True, UI_THEME["gold"]), (er.x + 260, er.y + 86))
+            ratio = max(0, e.hp) / max(1, e.max_hp)
+            pygame.draw.rect(s, (35, 24, 50), (er.x + 260, er.y + 156, 280, 16), border_radius=6)
+            pygame.draw.rect(s, UI_THEME["hp"], (er.x + 260, er.y + 156, int(280 * ratio), 16), border_radius=6)
+            s.blit(self.app.tiny_font.render(f"HP {e.hp}/{e.max_hp}", True, UI_THEME["text"]), (er.x + 260, er.y + 178))
+            guard = getattr(e, "block", 0)
+            rupt = getattr(e, "statuses", {}).get("rupture", 0)
+            s.blit(self.app.tiny_font.render(f"Guardia {guard}  Ruptura {rupt}", True, UI_THEME["muted"]), (er.x + 260, er.y + 200))
 
         # Layer 2 dialogues
         pygame.draw.rect(s, UI_THEME["panel"], self.DIALOGUE_PANEL, border_radius=12)
@@ -367,8 +375,9 @@ class CombatScreen:
             pygame.draw.rect(s, (0, 0, 0), d, border_radius=8)
             pygame.draw.rect(s, UI_THEME["gold"], d, 2, border_radius=8)
             enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-            ok = "OK" if isinstance(getattr(self.app.content, "dialogues_combat", {}), dict) and len(getattr(self.app.content, "dialogues_combat", {})) > 0 else "MISSING"
-            s.blit(self.app.tiny_font.render(f"Dialogues: {ok}", True, UI_THEME["text"]), (56, 58))
+            ok = "OK" if getattr(self.app.lore_engine, "loaded", False) else "MISSING"
+            keys = int(getattr(self.app.lore_engine, "keys_count", 0))
+            s.blit(self.app.tiny_font.render(f"Dialogues: {ok} keys={keys}", True, UI_THEME["text"]), (56, 58))
             s.blit(self.app.tiny_font.render(f"enemy_id: {enemy_id}", True, UI_THEME["text"]), (56, 84))
             s.blit(self.app.tiny_font.render(f"last_trigger: {self.last_trigger}", True, UI_THEME["text"]), (56, 110))
 

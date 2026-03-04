@@ -12,6 +12,7 @@ from game.audio.music_manager import MusicManager
 from game.audio.sfx_manager import SFXManager
 from game.combat.card import CardDef, CardInstance
 from game.combat.combat_state import CombatState
+from game.combat.combat_engine import CombatEngine
 from game.content.card_art_generator import CardArtGenerator, export_prompts
 from game.content.enemy_art_generator import EnemyArtGenerator
 from game.content.background_generator import BackgroundGenerator
@@ -19,6 +20,7 @@ from game.content.guide_avatar_generator import GuideAvatarGenerator, GUIDE_TYPE
 from game.core.bootstrap_assets import ensure_placeholder_assets
 from game.core.localization import LocalizationManager
 from game.core.lore_service import LoreService
+from game.lore.lore_engine import LoreEngine
 from game.core.paths import data_dir, assets_dir
 from game.core.rng import SeededRNG
 from game.core.safe_io import load_json
@@ -142,6 +144,7 @@ class App:
         self.events_data = self._load_events_data()
         self.relics_data = self._load_relics_data()
         self.lore_service = LoreService()
+        self.lore_engine = LoreEngine((data_dir().parent).parent)
         self.lore_data = self.lore_service.data
         self.debug["lore_status"] = self.lore_service.status
         self.debug["lore_paths"] = ",".join(str(v) for v in self.lore_service.paths.values())
@@ -161,8 +164,8 @@ class App:
         self._log_card_art_status()
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
         self._loading_step("Completado", 1.0)
-        dk = len(self.content.dialogues_combat) if isinstance(self.content.dialogues_combat, dict) else 0
-        covered = len([e for e in self.enemies_data if isinstance(self.content.dialogues_combat.get(e.get("id"), {}), dict)]) if isinstance(self.content.dialogues_combat, dict) else 0
+        dk = int(getattr(self.lore_engine, "keys_count", 0))
+        covered = len([e for e in self.enemies_data if isinstance(self.lore_engine.dialogues_combat.get(e.get("id"), {}), dict)]) if isinstance(self.lore_engine.dialogues_combat, dict) else 0
         print(f"[load] dialogues_combat keys={dk} enemies_covered={covered}/{len(self.enemies_data)}")
         print(f"[boot] dialogues OK keys={dk}")
         print("[boot] assets OK")
@@ -284,6 +287,8 @@ class App:
             "enemies": self.enemies_data,
             "guide_types": GUIDE_TYPES,
         }
+        if (data_dir() / "regen_on_boot.flag").exists():
+            self.user_settings["force_regen_art"] = True
         try:
             ap = self.asset_pipeline.ensure_all_assets(self.user_settings, content_payload, progress_cb=progress_cb)
             if isinstance(ap, dict):
@@ -491,7 +496,8 @@ class App:
             boss_ids = [b.get("id") for b in self.content.bosses if isinstance(b, dict) and b.get("id")]
             enemy_ids = [self.rng.choice(boss_ids)] if node_type == "boss" and boss_ids else [self.rng.choice(self._enemy_pool(node))]
             self.run_state["last_node_type"] = node_type
-            self.current_combat = CombatState(self.rng, self.run_state, enemy_ids, cards_data=self.cards_data, enemies_data=self.enemies_data)
+            base_state = CombatState(self.rng, self.run_state, enemy_ids, cards_data=self.cards_data, enemies_data=self.enemies_data)
+            self.current_combat = CombatEngine(base_state)
             self.goto_combat(self.current_combat, is_boss=node_type == "boss")
         elif node_type == "shop":
             self.goto_shop()
@@ -611,38 +617,67 @@ class App:
         self.renderer.present()
 
     def _apply_dev_reset_if_enabled(self):
-        regen_flag = data_dir() / "flags" / "regen_on_boot.flag"
+        regen_flag = data_dir() / "regen_on_boot.flag"
         if self.user_settings.get("dev_reset_autogen_on_boot", False) or regen_flag.exists():
-            self.reset_autogen_total(mark_only=False)
+            self.user_settings["force_regen_art"] = True
             if regen_flag.exists():
-                regen_flag.unlink()
+                try:
+                    regen_flag.unlink()
+                except Exception:
+                    pass
             self.user_settings["dev_reset_autogen_on_boot"] = False
             self.user_settings["force_regen_art"] = True
             save_settings(self.user_settings)
 
-    def reset_autogen_total(self, mark_only: bool = True):
-        flags_dir = data_dir() / "flags"
-        flags_dir.mkdir(parents=True, exist_ok=True)
-        if mark_only:
-            (flags_dir / "regen_on_boot.flag").write_text("1", encoding="utf-8")
+    def reset_autogen_total(self, mark_only: bool = True, delete_now: bool = False):
+        regen_flag = data_dir() / "regen_on_boot.flag"
+        if mark_only or not delete_now:
+            regen_flag.write_text(str(int(time.time())), encoding="utf-8")
+            for p in [data_dir() / "art_manifest.json", data_dir() / "art_manifest_cards.json", data_dir() / "art_manifest_enemies.json", data_dir() / "art_manifest_guides.json", data_dir() / "art_manifest_avatar.json", data_dir() / "audio_manifest.json", data_dir() / "biome_manifest.json", data_dir() / "bgm_manifest.json", data_dir() / "prompt_manifest.json", data_dir() / "card_prompts.json"]:
+                try:
+                    if p.exists(): p.unlink()
+                except Exception:
+                    pass
+            self._loading_step("Reset aplicado. Reiniciando…", 0.15)
+            self.request_restart("regen")
             return
+
         self._draw_progress_splash("Regenerando Trama…", "Reset Autogen Total")
-        targets = [
-            assets_dir() / "sprites" / "cards",
-            assets_dir() / "sprites" / "enemies",
-            assets_dir() / "sprites" / "biomes",
-            assets_dir() / "sprites" / "guides",
-            assets_dir() / "music",
-            assets_dir() / "sfx" / "generated",
-        ]
+        try:
+            pygame.mixer.music.stop(); pygame.mixer.stop()
+            if hasattr(pygame.mixer.music, "unload"):
+                try: pygame.mixer.music.unload()
+                except Exception: pass
+            pygame.mixer.quit()
+        except Exception:
+            pass
+        targets = [assets_dir() / "sprites" / "cards", assets_dir() / "sprites" / "enemies", assets_dir() / "sprites" / "biomes", assets_dir() / "sprites" / "guides", assets_dir() / "music", assets_dir() / "sfx" / "generated"]
         for td in targets:
             if td.exists():
                 for f in td.rglob("*"):
-                    if f.is_file():
+                    if not f.is_file():
+                        continue
+                    try:
                         f.unlink()
-        for p in [data_dir() / "art_manifest.json", data_dir() / "biome_manifest.json", data_dir() / "bgm_manifest.json", data_dir() / "prompt_manifest.json", data_dir() / "card_prompts.json"]:
-            if p.exists():
-                p.unlink()
+                    except PermissionError:
+                        pend = f.with_suffix(f.suffix + ".delete_pending")
+                        try:
+                            f.rename(pend)
+                            print(f"[reset] locked file -> renamed pending: {f}")
+                        except Exception:
+                            pass
+                    except Exception:
+                        pass
+        try:
+            pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
+        except Exception:
+            pass
+
+    def regenerate_art_missing(self):
+        self.user_settings["force_regen_art"] = False
+        self.ensure_assets(progress_cb=self._loading_step)
+        self.asset_generation_active = False
+        self.assets._cache.clear()
 
     def regenerate_art_all(self):
         self.user_settings["force_regen_art"] = True
@@ -774,6 +809,7 @@ class App:
         self.content.bosses = content_payload.get("bosses", [])
         self.content.dialogues_combat = content_payload.get("dialogues_combat", {})
         self.content.dialogues_events = content_payload.get("dialogues_events", {})
+        self.lore_engine.load_all()
         self.cards_data = self._load_cards_data()
         self.card_defs = {c["id"]: c for c in self.cards_data}
         self.enemies_data = self._load_enemies_data()

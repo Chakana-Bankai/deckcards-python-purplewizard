@@ -66,8 +66,10 @@ class CardArtGenerator:
     def _placeholder(self, card_id: str) -> pygame.Surface:
         out = pygame.Surface((320, 220), flags=pygame.SRCALPHA, depth=32)
         out.fill((30, 22, 46, 255))
-        pts = chakana_points((160, 110), 46, 0.35)
-        pygame.draw.polygon(out, (196, 158, 246), pts, 4)
+        pygame.draw.circle(out, (170, 140, 220), (160, 110), 42, 3)
+        pygame.draw.line(out, (170, 140, 220), (130, 88), (190, 132), 3)
+        pygame.draw.line(out, (170, 140, 220), (190, 88), (130, 132), 3)
+        pygame.draw.rect(out, (90, 70, 130), out.get_rect(), 3)
         return out
 
     def ensure_art(self, card_id: str, tags: list[str], rarity: str, mode: str = "missing_only", family: str | None = None, symbol: str | None = None):

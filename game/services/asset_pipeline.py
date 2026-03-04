@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import time
+import zlib
 from pathlib import Path
 
 import pygame
@@ -50,15 +51,15 @@ class AssetPipeline:
         pygame.draw.circle(surf, (96, 76, 136), (size[0] // 2, size[1] // 2), min(size) // 3, 1)
         pygame.image.save(surf, path)
 
-    def _safe_gen(self, asset_id: str, out_path: Path, fn, manifest_items: dict, placeholder_size=(256, 256)):
+    def _safe_gen(self, asset_id: str, out_path: Path, fn, manifest_items: dict, placeholder_size=(256, 256), version=GEN_ART_VERSION):
         try:
             fn()
-            manifest_items[asset_id] = {"path": str(out_path), "generator_version": GEN_ART_VERSION, "placeholder": False}
+            manifest_items[asset_id] = {"id": asset_id, "path": str(out_path), "generator_version": version, "seed": zlib.crc32(asset_id.encode("utf-8")) & 0xFFFFFFFF, "created_at": int(time.time()), "placeholder": False}
         except Exception as exc:
             print(f"[safe_gen] using placeholder for {asset_id} due to {exc}")
             out_path.parent.mkdir(parents=True, exist_ok=True)
             self._placeholder_png(out_path, size=placeholder_size, label=asset_id)
-            manifest_items[asset_id] = {"path": str(out_path), "generator_version": GEN_ART_VERSION, "placeholder": True, "error": str(exc)}
+            manifest_items[asset_id] = {"id": asset_id, "path": str(out_path), "generator_version": version, "seed": zlib.crc32(asset_id.encode("utf-8")) & 0xFFFFFFFF, "created_at": int(time.time()), "placeholder": True, "error": str(exc)}
 
     def ensure_card_art(self, settings: dict, cards: list[dict], prompt_data: dict, manifest_items: dict, progress_cb=None):
         mode = "force_regen" if settings.get("force_regen_art", False) else "missing_only"
@@ -74,6 +75,7 @@ class AssetPipeline:
                 lambda cid=cid, c=c, mode=mode, pentry=pentry: self.card_gen.ensure_art(cid, c.get("tags", []), c.get("rarity", "common"), mode, family=pentry.get("family"), symbol=pentry.get("symbol")),
                 manifest_items,
                 placeholder_size=(256, 384),
+                version=GEN_ART_VERSION,
             )
             if progress_cb:
                 progress_cb(f"Generando arte de cartas ({i}/{total})", 0.24 + 0.36 * (i / total))
@@ -90,6 +92,7 @@ class AssetPipeline:
                 path,
                 lambda eid=eid, e=e, mode=mode: self.enemy_gen.ensure_art(eid, mode, tier=e.get("tier", "common"), biome=e.get("biome", "ukhu")),
                 manifest_items,
+                version=GEN_ART_VERSION,
             )
             if progress_cb:
                 progress_cb(f"Generando retratos de enemigos ({i}/{total})", 0.60 + 0.14 * (i / total))
@@ -99,7 +102,7 @@ class AssetPipeline:
         total = max(1, len(guide_types))
         for i, gt in enumerate(guide_types, 1):
             path = assets_dir() / "sprites" / "guides" / f"{gt}.png"
-            self._safe_gen(f"guide:{gt}", path, lambda gt=gt, mode=mode: self.guide_gen.generate(gt, mode=mode), manifest_items)
+            self._safe_gen(f"guide:{gt}", path, lambda gt=gt, mode=mode: self.guide_gen.generate(gt, mode=mode), manifest_items, version=GEN_ART_VERSION)
             if progress_cb:
                 progress_cb(f"Generando guías ({i}/{total})", 0.74 + 0.06 * (i / total))
 
@@ -163,6 +166,13 @@ class AssetPipeline:
         self.ensure_biomes(art_manifest, progress_cb)
 
         manifest_path.write_text(json.dumps(art_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+
+        cards_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if not str(k).startswith("enemy:") and not str(k).startswith("guide:")}}
+        enemies_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if str(k).startswith("enemy:")}}
+        guides_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if str(k).startswith("guide:")}}
+        (data_dir() / "art_manifest_cards.json").write_text(json.dumps(cards_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        (data_dir() / "art_manifest_enemies.json").write_text(json.dumps(enemies_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        (data_dir() / "art_manifest_guides.json").write_text(json.dumps(guides_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
         (data_dir() / "prompt_manifest.json").write_text(json.dumps({"count": len(cards), "generator_version": GEN_ART_VERSION}, ensure_ascii=False, indent=2), encoding="utf-8")
         settings["force_regen_art"] = False
         placeholders = sum(1 for v in items.values() if isinstance(v, dict) and v.get("placeholder"))

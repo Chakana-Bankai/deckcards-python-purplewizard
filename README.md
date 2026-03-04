@@ -35,3 +35,9 @@ Tracks esperados (WAV/OGG):
 - `game/assets/music/ending.*`
 
 Si faltan, se crean placeholders WAV locales para que no crashee.
+
+## Regeneración de datos y reinicio seguro
+
+- La opción de **Reset Run Data** marca una regeneración diferida para el próximo arranque mediante `game/data/regen_on_boot.flag`.
+- Este flujo evita fallos por bloqueos de archivos en Windows cuando el juego aún tiene recursos cargados.
+- Si querés forzar regeneración de assets, podés usar `autogen_art_mode = "force"` en `game/data/settings.json`.

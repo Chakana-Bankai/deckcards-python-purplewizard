@@ -18,9 +18,10 @@ class SettingsScreen:
         self.fx_glow_rect = pygame.Rect(360, 670, 600, 44)
         self.fx_part_rect = pygame.Rect(360, 720, 600, 44)
         self.detail_panel_rect = pygame.Rect(360, 770, 600, 44)
-        self.art_regen_rect = pygame.Rect(1020, 220, 540, 64)
-        self.music_regen_rect = pygame.Rect(1020, 300, 540, 64)
-        self.reset_autogen_rect = pygame.Rect(1020, 380, 540, 64)
+        self.art_missing_rect = pygame.Rect(1020, 220, 540, 64)
+        self.art_regen_rect = pygame.Rect(1020, 300, 540, 64)
+        self.music_regen_rect = pygame.Rect(1020, 380, 540, 64)
+        self.reset_autogen_rect = pygame.Rect(1020, 460, 540, 64)
         self.modal = None
         self.progress = ""
 
@@ -30,15 +31,16 @@ class SettingsScreen:
 
     def _run_action(self, action):
         self.progress = "Procesando..."
-        if action == "art":
+        if action == "art_missing":
+            self.app.regenerate_art_missing()
+        elif action == "art":
             self.app.regenerate_art_all()
         elif action == "music":
             self.app.regenerate_music()
         elif action == "reset":
-            self.app.reset_autogen_total(mark_only=False)
+            self.app.reset_autogen_total(mark_only=True, delete_now=False)
             self.progress = "Reset aplicado. Reiniciando…"
             self.modal = None
-            self.app.request_restart("regen")
             return
         self.app.debug["last_regen_ts"] = pygame.time.get_ticks() // 1000
         self.progress = "Listo"
@@ -76,7 +78,8 @@ class SettingsScreen:
             elif self.fx_scan_rect.collidepoint(pos): self.app.user_settings["fx_scanlines"] = not self.app.user_settings.get("fx_scanlines", False)
             elif self.fx_glow_rect.collidepoint(pos): self.app.user_settings["fx_glow"] = not self.app.user_settings.get("fx_glow", True)
             elif self.fx_part_rect.collidepoint(pos): self.app.user_settings["fx_particles"] = not self.app.user_settings.get("fx_particles", True)
-            elif self.detail_panel_rect.collidepoint(pos): self.app.user_settings["detail_panel"] = not self.app.user_settings.get("detail_panel", True)
+            elif self.detail_panel_rect.collidepoint(pos): self.app.user_settings["detail_panel"] = not self.app.user_settings.get("detail_panel", False)
+            elif self.art_missing_rect.collidepoint(pos): self.modal = "art_missing"
             elif self.art_regen_rect.collidepoint(pos): self.modal = "art"
             elif self.music_regen_rect.collidepoint(pos): self.modal = "music"
             elif self.reset_autogen_rect.collidepoint(pos): self.modal = "reset"
@@ -119,9 +122,10 @@ class SettingsScreen:
         detail_on = self.app.user_settings.get("detail_panel", False)
         surface.blit(self.app.small_font.render(f"Panel de detalle: {'ON' if detail_on else 'OFF'}", True, UI_THEME["text"]), (self.detail_panel_rect.x + 20, self.detail_panel_rect.y + 12))
 
-        self._draw_btn(surface, self.art_regen_rect, "Regenerar Arte (Cartas + Enemigos + Biomas)")
+        self._draw_btn(surface, self.art_missing_rect, "Regenerar arte (solo faltantes)")
+        self._draw_btn(surface, self.art_regen_rect, "Regenerar arte (forzar)")
         self._draw_btn(surface, self.music_regen_rect, "Regenerar Música")
-        self._draw_btn(surface, self.reset_autogen_rect, "Reset Autogen Total")
+        self._draw_btn(surface, self.reset_autogen_rect, "Reset total (marcar y reiniciar)")
 
         if self.progress:
             surface.blit(self.app.small_font.render(self.progress, True, UI_THEME["gold"]), (1040, 660))
