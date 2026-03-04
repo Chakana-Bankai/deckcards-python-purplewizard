@@ -431,34 +431,54 @@ class CombatScreen:
 
         for i, e in enumerate(self.c.enemies):
             er = pygame.Rect(inner_strip.x + i * (card_w + 16), inner_strip.y, card_w, inner_strip.h)
-            pygame.draw.rect(s, UI_THEME["deep_purple"], er, border_radius=10)
             intent_col = self._intent_led_color(e)
-            led_w = max(18, er.w // 16)
-            for side_x in (er.x + 8, er.right - led_w - 8):
-                led = pygame.Rect(side_x, er.y + 10, led_w, er.h - 20)
-                pygame.draw.rect(s, (20, 20, 24), led, border_radius=6)
-                alpha = 45 + int(35 * (0.5 + 0.5 * math.sin(t * 2.4 + i)))
+            slot_pad = 8
+            led_w = max(16, er.w // 18)
+            left_led = pygame.Rect(er.x + slot_pad, er.y + slot_pad, led_w, er.h - slot_pad * 2)
+            right_led = pygame.Rect(er.right - slot_pad - led_w, er.y + slot_pad, led_w, er.h - slot_pad * 2)
+
+            # z0: LED background layers
+            for led in (left_led, right_led):
+                pygame.draw.rect(s, (18, 18, 22), led, border_radius=6)
+                alpha = 42 + int(34 * (0.5 + 0.5 * math.sin(t * 2.4 + i)))
                 glow = pygame.Surface((led.w, led.h), pygame.SRCALPHA)
                 glow.fill((*biome_col, alpha))
                 s.blit(glow, led.topleft)
                 for sy in range(led.y + 2, led.bottom, 6):
                     pygame.draw.line(s, (*intent_col, 90), (led.x + 2, sy), (led.right - 2, sy), 1)
 
-            portrait_w = min(180, er.w // 3)
-            portrait_h = min(180, er.h - 58)
-            s.blit(self.app.assets.sprite("enemies", e.id, (portrait_w, portrait_h), fallback=(100, 60, 90)), (er.x + led_w + 18, er.y + 24))
-            tx = er.x + led_w + 28 + portrait_w
-            s.blit(self.app.small_font.render(str(e.name_key), True, UI_THEME["text"]), (tx, er.y + 24))
-            intent_txt = e.current_intent().get("label", "Preparando")
-            s.blit(self.app.small_font.render(f"Intento: {intent_txt}", True, UI_THEME["gold"]), (tx, er.y + 56))
+            # z1: panel frame over led bg
+            pygame.draw.rect(s, UI_THEME["deep_purple"], er, border_radius=10)
+            pygame.draw.rect(s, UI_THEME["accent_violet"], er, 2, border_radius=10)
+
+            content = er.inflate(-slot_pad * 2, -slot_pad * 2)
+            content.left = left_led.right + 10
+            content.width = max(100, right_led.left - 10 - content.left)
+
+            portrait_w = min(120, int(content.w * 0.44))
+            portrait_h = min(146, int(content.h * 0.82))
+            portrait_rect = pygame.Rect(0, 0, portrait_w, portrait_h)
+            portrait_rect.midleft = (content.x + 2, content.y + content.h // 2)
+
+            text_x = portrait_rect.right + 10
+            text_w = max(70, content.right - text_x)
+            intent_txt = str(e.current_intent().get("label", "Preparando"))
             ratio = max(0, e.hp) / max(1, e.max_hp)
-            hp_bar = pygame.Rect(tx, er.y + 96, max(90, er.right - tx - 16), 16)
+            hp_bar = pygame.Rect(text_x, er.y + 96, text_w, 14)
+
+            # z2: metrics and bars (below sprite)
+            s.blit(self.app.small_font.render(str(e.name_key), True, UI_THEME["text"]), (text_x, er.y + 24))
+            s.blit(self.app.small_font.render(f"Intención: {intent_txt}", True, UI_THEME["gold"]), (text_x, er.y + 54))
             pygame.draw.rect(s, (35, 24, 50), hp_bar, border_radius=6)
             pygame.draw.rect(s, UI_THEME["hp"], pygame.Rect(hp_bar.x, hp_bar.y, int(hp_bar.w * ratio), hp_bar.h), border_radius=6)
-            s.blit(self.app.tiny_font.render(f"HP {e.hp}/{e.max_hp}", True, UI_THEME["text"]), (tx, er.y + 120))
-            guard = getattr(e, "block", 0)
-            rupt = getattr(e, "statuses", {}).get("rupture", 0)
-            s.blit(self.app.tiny_font.render(f"Bloqueo {guard}  Ruptura {rupt}", True, UI_THEME["muted"]), (tx, er.y + 144))
+            guard = int(getattr(e, "block", 0))
+            rupt = int(getattr(e, "statuses", {}).get("rupture", 0))
+            s.blit(self.app.tiny_font.render(f"HP {e.hp}/{e.max_hp}", True, UI_THEME["text"]), (text_x, hp_bar.bottom + 6))
+            s.blit(self.app.tiny_font.render(f"Guardia {guard}  Ruptura {rupt}", True, UI_THEME["muted"]), (text_x, hp_bar.bottom + 24))
+
+            # z3: enemy sprite on top
+            sprite = self.app.assets.sprite("enemies", e.id, (portrait_rect.w, portrait_rect.h), fallback=(100, 60, 90))
+            s.blit(sprite, portrait_rect.topleft)
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.voices_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.voices_rect, 2, border_radius=12)
