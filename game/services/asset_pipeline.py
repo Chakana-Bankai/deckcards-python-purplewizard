@@ -60,16 +60,26 @@ class AssetPipeline:
             self._placeholder_png(out_path, size=placeholder_size, label=asset_id)
             manifest_items[asset_id] = {"id": asset_id, "path": str(out_path), "generator_version": version, "seed": zlib.crc32(asset_id.encode("utf-8")) & 0xFFFFFFFF, "created_at": int(time.time()), "placeholder": True, "error": str(exc)}
 
+
+    def _prompt_lookup(self, prompt_data: dict) -> dict:
+        if not isinstance(prompt_data, dict):
+            return {}
+        cards = prompt_data.get("cards", {}) if isinstance(prompt_data.get("cards", {}), dict) else None
+        if isinstance(cards, dict):
+            return cards
+        return prompt_data
+
     def ensure_card_art(self, settings: dict, cards: list[dict], prompt_data: dict, manifest_items: dict, progress_cb=None):
         mode = "force_regen" if settings.get("force_regen_art", False) else "missing_only"
         a = assets_dir() / "sprites" / "cards"
         total = max(1, len(cards))
+        prompt_lookup = self._prompt_lookup(prompt_data)
         for i, c in enumerate(cards, 1):
             cid = c.get("id", "unknown")
             path = a / f"{cid}.png"
-            pentry = prompt_data.get(cid, {}) if isinstance(prompt_data, dict) else {}
-            prompt_text = pentry if isinstance(pentry, str) else pentry.get("prompt_text", "")
-            family = None if isinstance(pentry, str) else (pentry.get("card_type") or pentry.get("family"))
+            pentry = prompt_lookup.get(cid, {}) if isinstance(prompt_lookup, dict) else {}
+            prompt_text = pentry if isinstance(pentry, str) else (pentry.get("prompt") or pentry.get("prompt_text", ""))
+            family = None if isinstance(pentry, str) else (pentry.get("style") or pentry.get("card_type") or pentry.get("family"))
             self._safe_gen(
                 cid,
                 path,

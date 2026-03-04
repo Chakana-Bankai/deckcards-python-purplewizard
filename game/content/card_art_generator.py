@@ -10,6 +10,7 @@ import pygame
 from game.art.gen_art32 import seed_from_id
 from game.art.gen_card_art32 import GEN_CARD_ART_VERSION, generate
 from game.core.paths import assets_dir, data_dir
+from game.core.safe_io import atomic_write_json_if_changed, load_json
 
 
 class PromptBuilder:
@@ -75,15 +76,68 @@ class CardArtGenerator:
         return result
 
 
-def export_prompts(cards: list[dict], enemies: list[dict] | None = None):
+def _legacy_txt_to_cards(txt_path: Path) -> dict:
+    cards = {}
+    if not txt_path.exists():
+        return cards
+    try:
+        for raw in txt_path.read_text(encoding="utf-8", errors="replace").splitlines():
+            if not raw.strip() or ":" not in raw:
+                continue
+            cid, prompt = raw.split(":", 1)
+            cid = cid.strip()
+            prompt = prompt.strip()
+            if not cid:
+                continue
+            cards[cid] = {"prompt": prompt, "style": "legacy", "updated_at": "1970-01-01T00:00:00Z"}
+    except Exception:
+        return {}
+    return cards
+
+
+def _prompt_payload(cards: list[dict], seed: int = 12345) -> dict:
     pb = PromptBuilder()
-    payload = {}
-    for i, c in enumerate(cards):
-        cid = c.get("id", "unknown")
+    out = {"version": 1, "seed": int(seed), "cards": {}}
+    seen = set()
+    for c in cards:
+        cid = str(c.get("id", "")).strip()
+        if not cid:
+            continue
+        if cid in seen:
+            print(f"[prompts] warning duplicate write attempt for card_id={cid}")
+            continue
+        seen.add(cid)
         entry = pb.build_entry(c)
-        seed = seed_from_id(cid, GEN_CARD_ART_VERSION)
-        payload[cid] = f"{entry.get('id', cid)} | type={entry.get('card_type', 'spirit')} | seed={seed} | sacred geometry"
-    (data_dir() / "card_prompts.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    (data_dir() / "card_prompts.txt").write_text("\n".join(f"{k}: {v}" for k, v in payload.items()), encoding="utf-8")
-    (data_dir() / "prompt_manifest.json").write_text(json.dumps({"generator_version": GEN_CARD_ART_VERSION, "count": len(payload)}, ensure_ascii=False, indent=2), encoding="utf-8")
-    (data_dir() / "art_manifest_cards.json").write_text(json.dumps({"generator_version": GEN_CARD_ART_VERSION, "count": len(payload)}, ensure_ascii=False, indent=2), encoding="utf-8")
+        out["cards"][cid] = {
+            "prompt": entry.get("prompt_text", ""),
+            "style": entry.get("card_type", "spirit"),
+            "updated_at": "1970-01-01T00:00:00Z",
+        }
+    return out
+
+
+def export_prompts(cards: list[dict], enemies: list[dict] | None = None):
+    prompts_path = data_dir() / "card_prompts.json"
+    legacy_txt_path = data_dir() / "card_prompts.txt"
+    payload = _prompt_payload(cards, seed=12345)
+
+    existing = load_json(prompts_path, default={}, optional=True)
+    if not isinstance(existing, dict):
+        existing = {}
+    existing_cards = existing.get("cards", {}) if isinstance(existing.get("cards", {}), dict) else {}
+    if not existing_cards and legacy_txt_path.exists():
+        legacy_cards = _legacy_txt_to_cards(legacy_txt_path)
+        if legacy_cards:
+            for cid, data in legacy_cards.items():
+                payload["cards"].setdefault(cid, data)
+
+    # keep stable updated_at for unchanged card prompts
+    for cid, pdata in payload["cards"].items():
+        old = existing_cards.get(cid, {}) if isinstance(existing_cards, dict) else {}
+        if isinstance(old, dict) and old.get("prompt") == pdata.get("prompt") and old.get("style") == pdata.get("style"):
+            pdata["updated_at"] = str(old.get("updated_at", pdata.get("updated_at")))
+
+    atomic_write_json_if_changed(prompts_path, payload, sort_keys=True)
+    atomic_write_json_if_changed(data_dir() / "prompt_manifest.json", {"generator_version": GEN_CARD_ART_VERSION, "count": len(payload.get("cards", {}))}, sort_keys=True)
+    atomic_write_json_if_changed(data_dir() / "art_manifest_cards.json", {"generator_version": GEN_CARD_ART_VERSION, "count": len(payload.get("cards", {}))}, sort_keys=True)
+

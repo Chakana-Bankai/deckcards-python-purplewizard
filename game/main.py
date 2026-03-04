@@ -25,7 +25,7 @@ from game.core.lore_service import LoreService
 from game.lore.lore_engine import LoreEngine
 from game.core.paths import data_dir, assets_dir
 from game.core.rng import SeededRNG
-from game.core.safe_io import atomic_write_json, load_json
+from game.core.safe_io import atomic_write_json, atomic_write_json_if_changed, load_json
 from game.core.settings_store import load_settings, save_settings
 from game.core.state_machine import StateMachine
 from game.settings import FPS, INTERNAL_HEIGHT, INTERNAL_WIDTH
@@ -304,14 +304,23 @@ class App:
         return self.design_doc.get(key, default)
 
     def _build_card_prompts_payload(self):
-        payload = {}
+        payload = {"version": 1, "seed": 12345, "cards": {}}
+        seen = set()
         for i, card in enumerate(self.cards_data):
-            cid = card.get("id", f"card_{i}")
-            name = card.get("name_key", cid)
+            cid = str(card.get("id", f"card_{i}")).strip()
+            if not cid:
+                continue
+            if cid in seen:
+                print(f"[prompts] warning duplicate write attempt for card_id={cid}")
+                continue
+            seen.add(cid)
             tags = card.get("tags", []) or []
             ctype = "attack" if "attack" in tags else "defense" if ("block" in tags or "defense" in tags) else "control" if ("draw" in tags or "scry" in tags or "control" in tags) else "spirit"
-            seed = abs(hash(f"{cid}:{i}")) % 1000000
-            payload[cid] = f"{name} | type={ctype} | seed={seed} | sacred geometry"
+            payload["cards"][cid] = {
+                "prompt": f"chakana card::{cid}::{ctype} layered sacred geometry with glyph focus",
+                "style": ctype,
+                "updated_at": "1970-01-01T00:00:00Z",
+            }
         return payload
 
     def _ensure_card_prompts_file(self, force: bool = False):
@@ -319,7 +328,7 @@ class App:
         if prompts_path.exists() and not force:
             return
         payload = self._build_card_prompts_payload()
-        atomic_write_json(prompts_path, payload)
+        atomic_write_json_if_changed(prompts_path, payload, sort_keys=True)
 
     def ensure_assets(self, progress_cb=None):
         force_regen = bool(self.user_settings.get("force_regen_art", False) or self.user_settings.get("update_manifests", False))

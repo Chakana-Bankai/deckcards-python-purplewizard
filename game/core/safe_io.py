@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
-from typing import Callable, Any
+from typing import Any, Callable
 
 
 def load_json(path: Path, default, optional: bool = False, auto_create: Callable[[], Any] | None = None):
@@ -35,9 +35,32 @@ def load_json(path: Path, default, optional: bool = False, auto_create: Callable
         return default
 
 
+def _json_bytes(payload: Any, *, sort_keys: bool = True) -> bytes:
+    text = json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=sort_keys)
+    if not text.endswith("\n"):
+        text += "\n"
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
+    return text.encode("utf-8")
+
+
 def atomic_write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp_path = path.with_name(f".{path.name}.tmp-{os.getpid()}")
-    with tmp_path.open("w", encoding="utf-8") as fh:
-        json.dump(payload, fh, ensure_ascii=False, indent=2)
+    with tmp_path.open("wb") as fh:
+        fh.write(_json_bytes(payload, sort_keys=True))
     tmp_path.replace(path)
+
+
+def atomic_write_json_if_changed(path: Path, payload: Any, *, sort_keys: bool = True) -> bool:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    new_bytes = _json_bytes(payload, sort_keys=sort_keys)
+    if path.exists():
+        try:
+            if path.read_bytes() == new_bytes:
+                return False
+        except Exception:
+            pass
+    tmp_path = path.with_name(f".{path.name}.tmp-{os.getpid()}")
+    tmp_path.write_bytes(new_bytes)
+    tmp_path.replace(path)
+    return True

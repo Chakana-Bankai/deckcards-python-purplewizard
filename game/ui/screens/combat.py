@@ -251,8 +251,9 @@ class CombatScreen:
             if entry:
                 mstatus = "present" if entry.get("generator_version") == GEN_CARD_ART_VERSION else "version mismatch"
             generator_used = entry.get("generator_version", "placeholder" if not exists else "unknown")
-            prompts = self._card_prompts.get(cid, "") if isinstance(self._card_prompts, dict) else ""
-            prompt = str(prompts.get("prompt_text", "") if isinstance(prompts, dict) else prompts)[:80]
+            cards_prompts = self._card_prompts.get("cards", {}) if isinstance(self._card_prompts, dict) and isinstance(self._card_prompts.get("cards", {}), dict) else self._card_prompts
+            prompts = cards_prompts.get(cid, "") if isinstance(cards_prompts, dict) else ""
+            prompt = str((prompts.get("prompt") or prompts.get("prompt_text", "")) if isinstance(prompts, dict) else prompts)[:80]
             return {"card_id": cid, "card_type": card_family, "art_path": str(apath), "file_exists": exists, "manifest_status": mstatus, "generator_used": generator_used, "prompt_used": prompt}
         except Exception as exc:
             return {"card_id": "-", "card_type": "-", "art_path": "-", "file_exists": False, "manifest_status": "missing", "generator_used": f"error:{exc}", "prompt_used": ""}
