@@ -30,6 +30,7 @@ from game.core.settings_store import load_settings, save_settings
 from game.core.state_machine import StateMachine
 from game.settings import FPS, INTERNAL_HEIGHT, INTERNAL_WIDTH
 from game.qa.runner import QARunner
+from game.qa.content_validator import validate_content
 from game.ui.render import AssetManager, Renderer
 from game.ui.screens.combat import CombatScreen
 from game.ui.screens.deck import DeckScreen
@@ -174,6 +175,9 @@ class App:
         self._apply_dev_reset_if_enabled()
         self.ensure_assets(progress_cb=self._loading_step)
         self._log_card_art_status()
+        content_report = validate_content(self.cards_data, assets_dir())
+        self.debug["content_validation"] = content_report
+        print(f"[boot] validate_content status={content_report.get('status')} cards={content_report.get('cards')} summary_ok={content_report.get('summary_ok')} can_play_ok={content_report.get('can_play_ok')} placeholders={content_report.get('placeholders')} issues={len(content_report.get('issues', []))}")
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
         self._loading_step("Completado", 1.0)
         dk = int(getattr(self.lore_engine, "keys_count", 0))
@@ -933,6 +937,9 @@ class App:
         self.enemies_data = self._load_enemies_data()
         self.ensure_assets(progress_cb=self._loading_step)
         self._log_card_art_status()
+        content_report = validate_content(self.cards_data, assets_dir())
+        self.debug["content_validation"] = content_report
+        print(f"[boot] validate_content status={content_report.get('status')} cards={content_report.get('cards')} summary_ok={content_report.get('summary_ok')} can_play_ok={content_report.get('can_play_ok')} placeholders={content_report.get('placeholders')} issues={len(content_report.get('issues', []))}")
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
         self.sm.set(IntroScreen(self))
         self.music.play_for(self.get_bgm_track("menu"))

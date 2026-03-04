@@ -45,6 +45,11 @@ def summarize_card_effect(card_def, card_instance=None, ctx=None) -> dict:
             stats["harmony_delta"] += amount
         elif typ == "consume_harmony":
             stats["consume_harmony"] += max(1, amount)
+        elif typ == "ritual_trama":
+            stats["damage"] += max(8, amount)
+            stats["harmony_delta"] += 1
+        elif typ == "double_block_cap":
+            stats["block"] += max(4, amount // 2)
 
     lines = []
     if stats["damage"] > 0:

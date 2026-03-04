@@ -55,6 +55,14 @@ class PathSelectScreen:
     def update(self, dt):
         pass
 
+    def _clamp_text(self, text: str, max_px: int) -> str:
+        out = str(text or "")
+        while self.app.tiny_font.size(out)[0] > max_px and len(out) > 3:
+            out = out[:-2]
+        if out != text:
+            out = out.rstrip() + "…"
+        return out
+
     def render(self, s):
         s.fill(UI_THEME["bg"])
         s.blit(self.app.big_font.render("Elige tu Trama Inicial", True, UI_THEME["text"]), (INTERNAL_WIDTH // 2 - 220, 64))
@@ -98,7 +106,8 @@ class PathSelectScreen:
                 if "finisher" in tags:
                     finisher += 1
                 cost += int(cd.get("cost", 1))
-                s.blit(self.app.tiny_font.render(self.app.loc.t(cd.get("name_key", cid)), True, UI_THEME["text"]), (rr.x + 24, rr.y + 136 + j * 24))
+                cname = self._clamp_text(self.app.loc.t(cd.get("name_key", cid)), rr.w - 48)
+                s.blit(self.app.tiny_font.render(cname, True, UI_THEME["text"]), (rr.x + 24, rr.y + 136 + j * 24))
             avg = cost / max(1, len(opt["deck"]))
             s.blit(self.app.small_font.render(f"Daño {attacks}  Bloqueo/Habilidad {blocks}  Utilidad {util}  Remate {finisher}", True, UI_THEME["muted"]), (rr.x + 24, rr.y + 662))
             s.blit(self.app.small_font.render(f"Costo promedio: {avg:.1f}", True, UI_THEME["text"]), (rr.x + 24, rr.y + 696))

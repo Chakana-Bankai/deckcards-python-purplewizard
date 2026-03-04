@@ -7,6 +7,7 @@ from game.combat.enemy import Enemy
 from game.core.paths import data_dir
 from game.core.rng import SeededRNG
 from game.core.safe_io import load_json
+from game.telemetry.logger import TelemetryLogger
 
 
 DEFAULT_CARDS = [
@@ -77,6 +78,16 @@ class CombatState:
         self.next_turn_bonus_energy = 0
         self.last_played_card = None
         self.baston_used = False
+        self.balance = self._load_balance_config()
+        self.energy_per_turn = int(self.balance.get("energy_per_turn", 3) or 3)
+        self.draw_per_turn = int(self.balance.get("draw_per_turn", 3) or 3)
+        self.hand_max = int(self.balance.get("hand_max", 6) or 6)
+        self.ui_cooldown_ms = int(self.balance.get("ui_cooldown_ms", 200) or 200)
+        self.fatigue_enabled = bool(self.balance.get("fatigue_enabled", True))
+        self.fatigue_start = int(self.balance.get("fatigue_start", 1) or 1)
+        self.fatigue_growth = int(self.balance.get("fatigue_growth", 1) or 1)
+        self.fatigue_counter = 0
+        self.telemetry = TelemetryLogger("INFO")
         self.start_player_turn()
 
     def _load_cards(self, cards_data=None):
@@ -119,26 +130,53 @@ class CombatState:
             enemies.append(en)
         return enemies
 
+    def _load_balance_config(self):
+        raw = load_json(data_dir() / "balance" / "combat.json", default={})
+        if not isinstance(raw, dict):
+            raw = {}
+        return {
+            "energy_per_turn": int(raw.get("energy_per_turn", 3) or 3),
+            "draw_per_turn": int(raw.get("draw_per_turn", 3) or 3),
+            "hand_max": int(raw.get("hand_max", 6) or 6),
+            "ui_cooldown_ms": int(raw.get("ui_cooldown_ms", 200) or 200),
+            "fatigue_enabled": bool(raw.get("fatigue_enabled", True)),
+            "fatigue_start": int(raw.get("fatigue_start", 1) or 1),
+            "fatigue_growth": int(raw.get("fatigue_growth", 1) or 1),
+        }
+
     def start_player_turn(self):
         self.turn += 1
         self.combat_events.append({"type":"turn_start"})
-        self.player["energy"] = 3 + self.next_turn_bonus_energy + (1 if self.player["statuses"].get("energized", 0) > 0 else 0)
+        self.player["energy"] = self.energy_per_turn + self.next_turn_bonus_energy + (1 if self.player["statuses"].get("energized", 0) > 0 else 0)
         self.next_turn_bonus_energy = 0
         self.player["block"] = 0
-        self.draw(5)
+        if self.fatigue_enabled and self.fatigue_counter > 0:
+            fatigue_dmg = self.fatigue_start + max(0, self.fatigue_counter - 1) * self.fatigue_growth
+            self.player["hp"] = max(0, int(self.player.get("hp", 0)) - fatigue_dmg)
+            self.combat_events.append({"type": "fatigue", "amount": fatigue_dmg, "counter": self.fatigue_counter})
+            self.telemetry.info("fatigue_tick", amount=fatigue_dmg, counter=self.fatigue_counter, hp=self.player.get("hp", 0))
+        self.draw(self.draw_per_turn)
 
     def draw(self, n):
-        for _ in range(n):
-            if not self.draw_pile:
-                self.draw_pile = self.discard_pile
-                self.discard_pile = []
-                self.rng.shuffle(self.draw_pile)
-            if self.draw_pile:
-                self.hand.append(self.draw_pile.pop())
-            else:
-                self.result = "defeat"
-                self.combat_events.append({"type": "deck_empty", "message": "Derrota: tu mazo se ha vaciado."})
+        for _ in range(max(0, int(n or 0))):
+            if len(self.hand) >= self.hand_max:
+                self.combat_events.append({"type": "draw_skipped", "reason": "hand_full", "hand": len(self.hand)})
                 break
+            if not self.draw_pile:
+                if self.discard_pile:
+                    self.draw_pile = self.discard_pile
+                    self.discard_pile = []
+                    self.rng.shuffle(self.draw_pile)
+                    if self.fatigue_enabled:
+                        self.fatigue_counter += 1
+                        self.telemetry.info("fatigue_reshuffle", fatigue_counter=self.fatigue_counter)
+                else:
+                    self.result = "defeat"
+                    self.combat_events.append({"type": "deck_empty", "message": "Derrota: tu mazo se ha vaciado."})
+                    self.telemetry.info("deck_empty_defeat", draw=0, discard=0)
+                    break
+            if self.draw_pile and len(self.hand) < self.hand_max:
+                self.hand.append(self.draw_pile.pop())
 
     def play_card(self, hand_index: int, target_idx: int | None = None):
         if hand_index < 0 or hand_index >= len(self.hand):
@@ -161,9 +199,10 @@ class CombatState:
         if self.harmony_chaos_pending:
             self.harmony_chaos_pending = False
         self.hand.pop(hand_index)
+        harmony_packet = self.resolve_harmony_packet(card)
         self._track_harmony(card.definition.direction if hasattr(card.definition, "direction") else "ESTE")
-        self._resolve_harmony_from_card(card)
         interpret_effects(self, card, target, card.definition.effects)
+        self.apply_harmony_packet(harmony_packet, source=getattr(card.definition, "id", "card"))
         self.combat_events.append({"type": "card_played", "card_id": getattr(card.definition, "id", "-")})
         self.last_played_card = card
         if self.player["statuses"].get("copy_next",0)>0:
@@ -184,6 +223,7 @@ class CombatState:
         self.player["harmony_ready"] = now_ready
         if now_ready and not was_ready:
             self.combat_events.append({"type": "harmony_ready", "message": "Armonía lista: desata tu sello."})
+            self.telemetry.info("harmony_ready_cross", current=cur, threshold=thr)
 
     def consume_harmony(self, amount: int) -> bool:
         need = max(0, int(amount or 0))
@@ -195,7 +235,7 @@ class CombatState:
         self.player["harmony_ready"] = int(self.player.get("harmony_current", 0)) >= thr
         return True
 
-    def _resolve_harmony_from_card(self, card):
+    def resolve_harmony_packet(self, card):
         effects = list(getattr(getattr(card, "definition", None), "effects", []) or [])
         tags = set(getattr(getattr(card, "definition", None), "tags", []) or [])
         delta = 1 if ("ritual" in tags or "armonia" in tags or "harmony" in tags) else 0
@@ -209,10 +249,19 @@ class CombatState:
             elif t == "consume_harmony":
                 consume += max(1, int(ef.get("amount", 1) or 1))
 
+        return {"delta": delta, "consume": consume}
+
+    def apply_harmony_packet(self, packet: dict | None, source: str = "card"):
+        packet = packet or {}
+        delta = int(packet.get("delta", 0) or 0)
+        consume = int(packet.get("consume", 0) or 0)
+        before = int(self.player.get("harmony_current", 0) or 0)
         if delta > 0:
             self.gain_harmony(delta)
         if consume > 0:
             self.consume_harmony(consume)
+        after = int(self.player.get("harmony_current", 0) or 0)
+        self.telemetry.info("harmony_change", source=source, before=before, delta=delta, consume=consume, after=after)
 
     def activate_harmony_seal(self):
         cur = int(self.player.get("harmony_current", 0) or 0)
@@ -274,6 +323,7 @@ class CombatState:
             self.screen_shake = max(0, self.screen_shake - dt)
         if all(not e.alive for e in self.enemies):
             self.result = "victory"
+        self.player["block"] = max(0, int(self.player.get("block", 0) or 0))
         if self.player["hp"] <= 0:
             self.result = "defeat"
 

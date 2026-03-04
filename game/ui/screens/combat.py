@@ -9,7 +9,7 @@ from game.art.gen_avatar_chakana import render_avatar
 from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
 from game.core.paths import data_dir
 from game.core.safe_io import load_json
-from game.combat.play_validation import can_play_card
+from game.combat.play_validation import can_play_card, can_play, reason_to_es, REASON_OK
 from game.ui.anim import TypewriterBanner
 from game.ui.components.card_detail_panel import CardDetailPanel
 from game.ui.components.card_effect_summary import summarize_card_effect
@@ -20,6 +20,7 @@ from game.ui.controllers.combat_dialogue_controller import CombatDialogueControl
 from game.ui.layout.combat_layout import build_combat_layout
 from game.ui.theme import UI_THEME
 from game.ui.components.topbar import CombatTopBar
+from game.telemetry.logger import TelemetryLogger
 
 
 DEBUG_UI = True
@@ -79,6 +80,11 @@ class CombatScreen:
         self.actions_log = getattr(self.app, "combat_actions_log", [])
         self._action_state = "END_TURN"
         self._action_state_reason = "default"
+        self._action_button_fsm = "IDLE"
+        self._ui_lock_until_ms = 0
+        self._last_reason_code = REASON_OK
+        self._status_line = ""
+        self.telemetry = TelemetryLogger("INFO")
         self.dialogue_ctrl = CombatDialogueController(self.app.lore_engine, self._set_dialogue_lines)
         self.last_enemy_line = ""
         self.last_player_line = ""
@@ -169,24 +175,40 @@ class CombatScreen:
     def _playable_cards(self):
         return [c for c in self.c.hand if self._card_playable(c)]
 
+
+    def _ui_locked(self) -> bool:
+        return pygame.time.get_ticks() < self._ui_lock_until_ms
+
+    def _lock_ui(self):
+        cd = int(getattr(self.c, "ui_cooldown_ms", 200) or 200)
+        self._ui_lock_until_ms = pygame.time.get_ticks() + max(150, min(250, cd))
+
     def _resolve_action_state(self):
-        if self.resolving_t > 0:
-            state, reason, label, disabled = "PLAY_CARD", "resolving", "...", True
+        if self._ui_locked() or self.resolving_t > 0:
+            fsm, reason, label, disabled = "LOCKED_COOLDOWN", "STATE_LOCK", "FIN DEL RITUAL", True
         else:
             idx = self.ctrl.selected_index
-            if idx is not None and idx < len(self.c.hand):
-                card = self.c.hand[idx]
-                ok, reason = can_play_card(card, self.c.player, self.c)
-                if ok:
-                    state, reason, label, disabled = "PLAY_CARD", "selected_playable", "Ejecutar", False
-                else:
-                    state, reason, label, disabled = "END_TURN", reason or "selected_not_playable", "Fin de Turno", False
+            if idx is None or idx >= len(self.c.hand):
+                fsm, reason, label, disabled = "IDLE", REASON_OK, "FIN DEL RITUAL", False
             else:
-                state, reason, label, disabled = "END_TURN", "default", "Fin de Turno", False
-        if DEBUG_UI and (state != self._action_state or reason != self._action_state_reason):
-            print(f"[ui] action_state={state} reason={reason}")
+                card = self.c.hand[idx]
+                ok, reason = can_play(card, self.c)
+                self._last_reason_code = reason
+                if ok:
+                    fsm, reason, label, disabled = "READY_TO_EXECUTE", reason, "EJECUTAR", False
+                else:
+                    fsm, reason, label, disabled = "CARD_SELECTED", reason, "FIN DEL RITUAL", False
+
+        state = "PLAY_CARD" if fsm == "READY_TO_EXECUTE" else "END_TURN"
+        if DEBUG_UI and (fsm != self._action_button_fsm or reason != self._action_state_reason):
+            print(f"[ui] action_fsm={fsm} reason_code={reason}")
+        self._action_button_fsm = fsm
         self._action_state = state
         self._action_state_reason = reason
+        if reason != REASON_OK:
+            self._status_line = reason_to_es(reason)
+        else:
+            self._status_line = ""
         return state, label, disabled, reason
 
     def _set_dialogue_lines(self, enemy_line: str, hero_line: str, trigger: str):
@@ -273,9 +295,13 @@ class CombatScreen:
         if idx is None or idx >= len(self.c.hand):
             return
         card = self.c.hand[idx]
-        ok, reason = can_play_card(card, self.c.player, self.c)
-        if not ok:
-            self._push_log(f"No se puede jugar: {reason}")
+        ok_code, reason_code = can_play(card, self.c)
+        self.telemetry.info("card_click", card_id=getattr(card.definition, "id", "-"), ok=ok_code, reason_code=reason_code)
+        if not ok_code:
+            msg = reason_to_es(reason_code)
+            self._push_log(f"No se puede jugar: {msg}")
+            self._status_line = msg
+            self._last_reason_code = reason_code
             try:
                 self.app.sfx.play("deny")
             except Exception:
@@ -284,15 +310,18 @@ class CombatScreen:
         self.resolving_t = 0.15
         target_idx = next((i for i, e in enumerate(self.c.enemies) if e.alive), None)
         self.c.play_card(idx, target_idx)
+        self._lock_ui()
         tags = set(getattr(card.definition, "tags", []) or [])
         trig = "card_played_attack" if "attack" in tags else "card_played_defense" if ("skill" in tags or "defense" in tags) else "card_played_utility"
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
         self.set_dialogue(trig, enemy_id, {"card_id": card.definition.id})
         self._push_log(f"Jugada: {getattr(card.definition, 'name_key', 'Carta')}")
+        self.telemetry.info("card_played", card_id=getattr(card.definition, "id", "-"), energy=self.c.player.get("energy", 0), hand=len(self.c.hand), draw=len(self.c.draw_pile), discard=len(self.c.discard_pile))
         self.ctrl.clear_selection("card_played")
 
     def _activate_action_button(self):
-        state, _label, disabled, _reason = self._resolve_action_state()
+        state, _label, disabled, reason = self._resolve_action_state()
+        self.telemetry.info("action_button_press", fsm=self._action_button_fsm, state=state, reason_code=reason)
         if disabled:
             return
         if state == "PLAY_CARD":
@@ -301,7 +330,9 @@ class CombatScreen:
         if state == "END_TURN":
             self._trigger_dialog("enemy_turn_start")
             self.c.end_turn()
-            self._push_log("Jugada: Fin de turno")
+            self._lock_ui()
+            self.telemetry.info("end_turn_pressed", turn=self.c.turn, energy=self.c.player.get("energy", 0), hand=len(self.c.hand))
+            self._push_log("Jugada: Fin del ritual")
             self.ctrl.clear_selection("end_turn")
             self.ctrl.clear_hover()
 
@@ -384,6 +415,7 @@ class CombatScreen:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
             self.qa_debug_overlay = not self.qa_debug_overlay
             return
+            return
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F4:
             idx = (self._combat_triggers.index(self.last_trigger) + 1) % len(self._combat_triggers) if self.last_trigger in self._combat_triggers else 0
             self._trigger_dialog(self._combat_triggers[idx])
@@ -436,6 +468,12 @@ class CombatScreen:
                 if self._card_rect(i, min(6, len(self.c.hand))).collidepoint(pos):
                     self.ctrl.on_card_click(i)
                     in_card = True
+                    sel = self.c.hand[i] if i < len(self.c.hand) else None
+                    ok_code, reason_code = can_play(sel, self.c) if sel else (False, "OTHER")
+                    self._last_reason_code = reason_code
+                    self.telemetry.info("card_click", card_id=getattr(getattr(sel, "definition", None), "id", "-"), ok=ok_code, reason_code=reason_code)
+                    if not ok_code:
+                        self._status_line = reason_to_es(reason_code)
                     break
             if not in_card:
                 self.ctrl.clear_selection("click_outside")
@@ -778,6 +816,9 @@ class CombatScreen:
         pygame.draw.rect(s, bcol, self.end_turn_rect, border_radius=12)
         txt = self.app.font.render(label, True, UI_THEME["text"])
         s.blit(txt, (self.end_turn_rect.centerx - txt.get_width() // 2, self.end_turn_rect.centery - txt.get_height() // 2))
+        if self._status_line:
+            status_txt = self.app.tiny_font.render(self._status_line, True, UI_THEME["muted"])
+            s.blit(status_txt, (self.layout.actions_rect.x + 18, self.layout.actions_rect.y + 12))
         content_rect = self.layout.actions_rect.inflate(-16, -10)
         clip_prev = s.get_clip()
         s.set_clip(content_rect)
@@ -841,6 +882,7 @@ class CombatScreen:
             info_lines = [
                 f"selected_card: {sel}",
                 f"draw/hand/discard: {len(self.c.draw_pile)}/{len(self.c.hand)}/{len(self.c.discard_pile)}",
+                f"fsm={self._action_button_fsm} reason={self._last_reason_code}",
                 f"harmony: {p.get('harmony_current',0)}/{p.get('harmony_max',10)} thr={p.get('harmony_ready_threshold',6)}",
                 f"last_trigger: {self.last_trigger}",
             ]

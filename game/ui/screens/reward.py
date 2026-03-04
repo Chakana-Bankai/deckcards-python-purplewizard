@@ -32,6 +32,14 @@ class RewardScreen:
     def on_enter(self):
         pass
 
+    def _clamp_text(self, font, text: str, max_px: int) -> str:
+        out = str(text or "")
+        while font.size(out)[0] > max_px and len(out) > 3:
+            out = out[:-2]
+        if out != text:
+            out = out.rstrip() + "…"
+        return out
+
     def _metaforma(self, s, rect):
         pygame.draw.rect(s, (66, 48, 88), rect, border_radius=18)
         pygame.draw.rect(s, UI_THEME["gold"], rect, 2, border_radius=18)
@@ -76,18 +84,22 @@ class RewardScreen:
             art = self.app.assets.sprite("cards", card.definition.id, (rr.w - 24, 262), fallback=(82, 52, 112))
             s.blit(art, (rr.x + 12, rr.y + 52))
 
-            s.blit(self.app.small_font.render(name, True, UI_THEME["text"]), (rr.x + 14, rr.y + 14))
+            name_line = self._clamp_text(self.app.small_font, name, rr.w - 64)
+            s.blit(self.app.small_font.render(name_line, True, UI_THEME["text"]), (rr.x + 14, rr.y + 14))
             pygame.draw.circle(s, UI_THEME["energy"], (rr.right - 22, rr.y + 24), 13)
             s.blit(self.app.tiny_font.render(str(card.cost), True, UI_THEME["text_dark"]), (rr.right - 26, rr.y + 17))
-            s.blit(self.app.tiny_font.render(desc[:80], True, UI_THEME["muted"]), (rr.x + 14, rr.y + 328))
+            desc_line = self._clamp_text(self.app.tiny_font, desc, rr.w - 28)
+            s.blit(self.app.tiny_font.render(desc_line, True, UI_THEME["muted"]), (rr.x + 14, rr.y + 328))
             s.blit(self.app.tiny_font.render("Click para reclamar", True, UI_THEME["good"] if hover else UI_THEME["muted"]), (rr.x + 14, rr.bottom - 26))
 
         teach = pygame.Rect(110, 804, 1700, 152)
         pygame.draw.rect(s, UI_THEME["panel"], teach, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], teach, 2, border_radius=12)
-        s.blit(self.app.small_font.render("Enseñanza de la Trama", True, UI_THEME["gold"]), (130, 822))
-        hint = str((self.hint or {}).get("text", "Escucha la Trama."))
-        s.blit(self.app.small_font.render(hint[:150], True, UI_THEME["text"]), (130, 862))
+        hint = str((self.hint or {}).get("text", "")).strip()
+        if hint:
+            s.blit(self.app.small_font.render("Enseñanza de la Trama", True, UI_THEME["gold"]), (130, 822))
+            hline = self._clamp_text(self.app.small_font, hint, teach.w - 40)
+            s.blit(self.app.small_font.render(hline, True, UI_THEME["text"]), (130, 862))
         print(f"[ui] reward_hint={hint}")
 
         if self.msg:
