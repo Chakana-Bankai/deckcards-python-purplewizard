@@ -1,11 +1,29 @@
 import pygame
 
-from game.ui.theme import UI_THEME
-from game.ui.components.topbar import MapTopBar
 from game.settings import INTERNAL_HEIGHT, INTERNAL_WIDTH
+from game.ui.components.topbar import MapTopBar
+from game.ui.theme import UI_THEME
 
 
 class MapScreen:
+    NODE_NAMES = {
+        "event": "Ritual",
+        "combat": "Sombra",
+        "challenge": "Guía",
+        "treasure": "Reliquia",
+        "shop": "Tienda",
+        "boss": "Boss",
+    }
+
+    NODE_LORE = {
+        "event": "Los ecos del templo piden una decisión del espíritu.",
+        "combat": "Sombras antiguas custodian este sendero.",
+        "challenge": "Una guía pone a prueba tu equilibrio.",
+        "treasure": "Una reliquia olvidada late bajo la piedra.",
+        "shop": "Mercaderes errantes ofrecen poder por oro.",
+        "boss": "El umbral final aguarda a quien no retrocede.",
+    }
+
     def __init__(self, app):
         self.app = app
         self.lore_timer = 0
@@ -65,39 +83,31 @@ class MapScreen:
             pygame.draw.line(s, col, (x - 10, y), (x + 10, y), 3)
             pygame.draw.line(s, col, (x, y - 10), (x, y + 10), 3)
 
-
     def _friendly_node_name(self):
         node = self.app.node_lookup.get(self.app.current_node_id) if getattr(self.app, "current_node_id", None) else None
         if isinstance(node, dict):
-            if node.get("type") == "challenge":
-                return "Élite"
-            return self.app.loc.t(f"node_{node.get('type', 'combat')}")
-        return "Nodo inicial"
+            return self.NODE_NAMES.get(node.get("type"), "Ruta")
+        return "Ruta"
 
     def _topbar_narrative(self):
         run = self.app.run_state or {}
-        deck_name = str(run.get("deck_name") or run.get("starter_name") or "Inicial")
-        left = f"Chakana • Mazo: {deck_name}"
+        left = "Travesía de Chakana"
         pacha = str(run.get("biome") or "Pacha").title()
         center = f"{pacha} — {self._friendly_node_name()}"
-        subtitle = str(self.app.lore_engine.get_map_narration(f"lore_short_{self.lore_idx + 1}") if hasattr(self.app, "lore_engine") else "")
-        timer_text = "--"
-        turn_text = f"Turno {int((run.get('combats_won', 0) or 0) + 1)}"
-        return left, center, subtitle, timer_text, turn_text
+        subtitle = str(self.app.lore_engine.get_map_narration("default") if hasattr(self.app, "lore_engine") else "")
+        lvl = int(run.get("level", 1) or 1)
+        xp = int(run.get("xp", 0) or 0)
+        need = max(1, lvl * 20)
+        right = f"Oro: {int(run.get('gold', 0) or 0)}   Nivel: {lvl}   XP: {xp}/{need}"
+        return left, center, subtitle, right
 
     def render(self, s):
         s.fill(UI_THEME["bg"])
         run = self.app.run_state or {"gold": 0, "map": []}
 
         topbar = pygame.Rect(18, 16, INTERNAL_WIDTH - 36, 92)
-        left_rect = pygame.Rect(topbar.x + 10, topbar.y + 4, int(topbar.w * 0.33), topbar.h - 8)
-        center_rect = pygame.Rect(left_rect.right, topbar.y + 4, int(topbar.w * 0.34), topbar.h - 8)
-        right_rect = pygame.Rect(center_rect.right, topbar.y + 4, topbar.right - center_rect.right - 10, topbar.h - 8)
-        left, center, subtitle, timer_text, turn_text = self._topbar_narrative()
-        self.topbar.render(s, self.app, left_rect, center_rect, right_rect, left, center, subtitle, timer_text, turn_text)
-
-        gold = self.app.map_font.render(f"{self.app.loc.t('gold')}: {run.get('gold', 0)}", True, UI_THEME["gold"])
-        s.blit(gold, (INTERNAL_WIDTH - gold.get_width() - 30, 118))
+        left, center, subtitle, right = self._topbar_narrative()
+        self.topbar.render(s, self.app, topbar, left, center, subtitle, right)
 
         pygame.draw.rect(s, UI_THEME["panel"], self.deck_btn, border_radius=10)
         s.blit(self.app.map_font.render(self.app.loc.t("deck_button"), True, UI_THEME["text"]), (INTERNAL_WIDTH - 230, 94))
@@ -111,6 +121,7 @@ class MapScreen:
                             pygame.draw.line(s, (85, 92, 136), (node["x"], node["y"]), (nxt["x"], nxt["y"]), 5)
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
+        hovered_node = None
         for col in run["map"]:
             for node in col:
                 state = node.get("state", "locked")
@@ -128,19 +139,21 @@ class MapScreen:
                 if node["type"] == "challenge" and state != "locked":
                     color = (246, 168, 74)
                 radius = 30 if node["type"] != "boss" else 36
-                if pygame.Rect(node["x"] - 40, node["y"] - 40, 80, 80).collidepoint(mouse) and state in {"available", "incomplete", "current"}:
+                node_hover = pygame.Rect(node["x"] - 40, node["y"] - 40, 80, 80).collidepoint(mouse)
+                if node_hover and state in {"available", "incomplete", "current"}:
                     pygame.draw.circle(s, (220, 194, 255), (node["x"], node["y"]), radius + 8)
+                if node_hover:
+                    hovered_node = node
                 pygame.draw.circle(s, color, (node["x"], node["y"]), radius)
                 self._draw_icon(s, node["type"], node["x"], node["y"])
-                label = "Élite" if node["type"] == "challenge" else self.app.loc.t(f"node_{node['type']}")
+                label = self.NODE_NAMES.get(node["type"], "Ruta")
                 lbl = self.app.small_font.render(label, True, UI_THEME["text"])
                 s.blit(lbl, (node["x"] - lbl.get_width() // 2, node["y"] + radius + 8))
 
-        lvl = run["level"]
-        need = lvl * 20
-        ratio = run["xp"] / max(1, need)
-        bar = pygame.Rect(INTERNAL_WIDTH // 2 - 520, INTERNAL_HEIGHT - 84, 1040, 40)
-        pygame.draw.rect(s, UI_THEME["panel"], bar, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["good"], (bar.x, bar.y, int(bar.w * ratio), bar.h), border_radius=12)
-        tx = self.app.map_font.render(f"XP {run['xp']}/{need}   LV {lvl}", True, UI_THEME["text"])
-        s.blit(tx, (INTERNAL_WIDTH // 2 - tx.get_width() // 2, INTERNAL_HEIGHT - 78))
+        if hovered_node:
+            lore_text = self.NODE_LORE.get(hovered_node.get("type"), "La ruta susurra un destino incierto.")
+            lore_rect = pygame.Rect(INTERNAL_WIDTH // 2 - 520, INTERNAL_HEIGHT - 84, 1040, 44)
+            pygame.draw.rect(s, UI_THEME["panel"], lore_rect, border_radius=12)
+            pygame.draw.rect(s, UI_THEME["accent_violet"], lore_rect, 2, border_radius=12)
+            lore = self.app.small_font.render(lore_text, True, UI_THEME["muted"])
+            s.blit(lore, lore.get_rect(center=lore_rect.center))
