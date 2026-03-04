@@ -6,7 +6,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png",
       "generator_version": "art32_v1",
       "seed": 3032159045,
-      "created_at": 1772632776,
+      "created_at": 1772634387,
       "placeholder": false
     },
     "guide:shaman": {
@@ -14,7 +14,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\shaman.png",
       "generator_version": "art32_v1",
       "seed": 562203591,
-      "created_at": 1772632776,
+      "created_at": 1772634387,
       "placeholder": false
     },
     "guide:demon": {
@@ -22,7 +22,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\demon.png",
       "generator_version": "art32_v1",
       "seed": 2989233988,
-      "created_at": 1772632776,
+      "created_at": 1772634387,
       "placeholder": false
     },
     "guide:arcane_hacker": {
@@ -30,7 +30,7 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\arcane_hacker.png",
       "generator_version": "art32_v1",
       "seed": 2668008519,
-      "created_at": 1772632776,
+      "created_at": 1772634387,
       "placeholder": false
     }
   }
