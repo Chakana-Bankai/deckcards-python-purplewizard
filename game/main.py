@@ -280,7 +280,7 @@ class App:
                 "text_key": c.get("text_es", c.get("text_key", c.get("id"))),
                 "rarity": c.get("rarity", "common"),
                 "cost": int(c.get("cost", 1)),
-                "target": "enemy",
+                "target": c.get("target", "enemy"),
                 "tags": list(c.get("tags", [])),
                 "effects": list(c.get("effects", [])),
                 "family": (c.get("direction", "ESTE") or "ESTE").lower(),

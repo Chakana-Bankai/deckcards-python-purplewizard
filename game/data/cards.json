@@ -1,371 +1,217 @@
 [
   {
-    "id": "strike",
-    "name_key": "card_strike_name",
-    "text_key": "card_strike_desc",
-    "rarity": "basic",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "attack"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 6
-      }
-    ],
-    "family": "attack"
-  },
-  {
-    "id": "defend",
-    "name_key": "card_defend_name",
-    "text_key": "card_defend_desc",
-    "rarity": "basic",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "skill"
-    ],
-    "effects": [
-      {
-        "type": "block",
-        "amount": 5
-      }
-    ],
-    "family": "defense"
-  },
-  {
-    "id": "violet_bolt",
-    "name_key": "card_violet_bolt_name",
-    "text_key": "card_violet_bolt_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "attack",
-      "arcane"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 7
-      },
-      {
-        "type": "if",
-        "cond": {
-          "stat_gte": [
-            "rupture",
-            3
-          ]
-        },
-        "then": [
-          {
-            "type": "status",
-            "name": "weak",
-            "stacks": 1
-          }
-        ]
-      }
-    ],
-    "family": "attack"
-  },
-  {
-    "id": "prismatic_shield",
-    "name_key": "card_prismatic_shield_name",
-    "text_key": "card_prismatic_shield_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "skill",
-      "arcane"
-    ],
-    "effects": [
-      {
-        "type": "block",
-        "amount": 8
-      },
-      {
-        "type": "if",
-        "cond": {
-          "stat_gte": [
-            "rupture",
-            5
-          ]
-        },
-        "then": [
-          {
-            "type": "block",
-            "amount": 2
-          }
-        ]
-      }
-    ],
-    "family": "defense"
-  },
-  {
-    "id": "arcane_pulse",
-    "name_key": "card_arcane_pulse_name",
-    "text_key": "card_arcane_pulse_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "attack",
-      "arcane"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 5
-      },
-      {
-        "type": "draw",
-        "amount": 1
-      }
-    ],
-    "family": "attack"
-  },
-  {
-    "id": "lesser_seal",
-    "name_key": "card_lesser_seal_name",
-    "text_key": "card_lesser_seal_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "skill",
-      "ritual"
-    ],
-    "effects": [
-      {
-        "type": "block",
-        "amount": 5
-      },
-      {
-        "type": "rupture",
-        "amount": 1
-      }
-    ],
-    "family": "defense"
-  },
-  {
-    "id": "subtle_drain",
-    "name_key": "card_subtle_drain_name",
-    "text_key": "card_subtle_drain_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "attack"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 6
-      },
-      {
-        "type": "if",
-        "cond": {
-          "target_has_debuff": true
-        },
-        "then": [
-          {
-            "type": "heal",
-            "amount": 2
-          }
-        ]
-      }
-    ],
-    "family": "attack"
-  },
-  {
-    "id": "vision",
-    "name_key": "card_vision_name",
-    "text_key": "card_vision_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "none",
-    "tags": [
-      "skill",
-      "utility"
-    ],
-    "effects": [
-      {
-        "type": "scry",
-        "amount": 3
-      }
-    ],
-    "family": "manipulation"
-  },
-  {
-    "id": "phase_shift",
-    "name_key": "card_phase_shift_name",
-    "text_key": "card_phase_shift_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "skill"
-    ],
-    "effects": [
-      {
-        "type": "block",
-        "amount": 6
-      },
-      {
-        "type": "status",
-        "name": "phase",
-        "stacks": 1
-      }
-    ],
-    "family": "defense"
-  },
-  {
-    "id": "fragment",
-    "name_key": "card_fragment_name",
-    "text_key": "card_fragment_desc",
-    "rarity": "common",
-    "cost": 0,
-    "target": "enemy",
-    "tags": [
-      "attack",
-      "exhaust"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 3
-      },
-      {
-        "type": "exhaust_self"
-      }
-    ],
-    "family": "attack"
-  },
-  {
-    "id": "exchange",
-    "name_key": "card_exchange_name",
-    "text_key": "card_exchange_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "skill"
-    ],
-    "effects": [
-      {
-        "type": "convert_block_to_damage",
-        "amount": 6
-      }
-    ],
-    "family": "chaos"
-  },
-  {
-    "id": "cauterize_rupture",
-    "name_key": "card_cauterize_rupture_name",
-    "text_key": "card_cauterize_rupture_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "skill"
-    ],
-    "effects": [
-      {
-        "type": "rupture",
-        "amount": -2
-      },
-      {
-        "type": "energy",
-        "amount": 1
-      }
-    ],
-    "family": "energy"
-  },
-  {
-    "id": "short_portal",
-    "name_key": "card_short_portal_name",
-    "text_key": "card_short_portal_desc",
+    "id": "campo_protector",
+    "name_key": "Campo Protector",
+    "text_key": "Guardia 7, debilita enemigo 2",
     "rarity": "uncommon",
-    "cost": 1,
-    "target": "none",
-    "tags": [
-      "skill",
-      "choice"
-    ],
-    "effects": [
-      {
-        "type": "choose",
-        "options": [
-          [
-            {
-              "type": "draw",
-              "amount": 2
-            }
-          ],
-          [
-            {
-              "type": "energy",
-              "amount": 1
-            }
-          ]
-        ]
-      }
-    ],
-    "family": "manipulation"
-  },
-  {
-    "id": "violet_ring",
-    "name_key": "card_violet_ring_name",
-    "text_key": "card_violet_ring_desc",
-    "rarity": "uncommon",
-    "cost": 1,
+    "cost": 2,
     "target": "enemy",
     "tags": [
-      "skill",
+      "block",
       "debuff"
     ],
     "effects": [
       {
-        "type": "status",
-        "name": "weak",
-        "stacks": 2
+        "type": "gain_block",
+        "amount": 7
+      },
+      {
+        "type": "weaken_enemy",
+        "amount": 2
       }
     ],
-    "family": "chaos"
+    "family": "sur",
+    "direction": "SUR"
   },
   {
-    "id": "rite_transmutation",
-    "name_key": "card_rite_transmutation_name",
-    "text_key": "card_rite_transmutation_desc",
-    "rarity": "uncommon",
-    "cost": 1,
-    "target": "none",
+    "id": "chakana_de_luz",
+    "name_key": "Chakana de Luz",
+    "text_key": "Daño 10 + Guardia 5 + Mana 1 próximo turno, exhaust",
+    "rarity": "legendary",
+    "cost": 3,
+    "target": "enemy",
     "tags": [
-      "skill",
+      "attack",
+      "block",
+      "energy",
+      "exhaust",
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      },
+      {
+        "type": "damage",
+        "amount": 10
+      },
+      {
+        "type": "gain_block",
+        "amount": 5
+      },
+      {
+        "type": "gain_mana_next_turn",
+        "amount": 1
+      },
+      {
+        "type": "exhaust_self",
+        "amount": 1
+      }
+    ],
+    "family": "oeste",
+    "direction": "OESTE"
+  },
+  {
+    "id": "eco_de_sabiduria",
+    "name_key": "Eco de Sabiduría",
+    "text_key": "Copia última carta, exhaust",
+    "rarity": "rare",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "copy",
       "exhaust"
     ],
     "effects": [
       {
-        "type": "exhaust_from_hand",
+        "type": "copy_last_played",
         "amount": 1
       },
       {
-        "type": "status",
-        "name": "focus",
-        "stacks": 1
+        "type": "exhaust_self",
+        "amount": 1
       }
     ],
-    "family": "chaos"
+    "family": "norte",
+    "direction": "NORTE"
   },
   {
-    "id": "astral_cut",
-    "name_key": "card_astral_cut_name",
-    "text_key": "card_astral_cut_desc",
+    "id": "embate_del_jaguar",
+    "name_key": "Embate del Jaguar",
+    "text_key": "Daño 6, Guardia 3",
     "rarity": "uncommon",
     "cost": 2,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "block"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 6
+      },
+      {
+        "type": "gain_block",
+        "amount": 3
+      }
+    ],
+    "family": "este",
+    "direction": "ESTE"
+  },
+  {
+    "id": "escudo_de_luz",
+    "name_key": "Escudo de Luz",
+    "text_key": "Guardia 5, cura 1",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "block",
+      "heal"
+    ],
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 5
+      },
+      {
+        "type": "heal",
+        "amount": 1
+      }
+    ],
+    "family": "sur",
+    "direction": "SUR"
+  },
+  {
+    "id": "escudo_del_chaman",
+    "name_key": "Escudo del Chamán",
+    "text_key": "Guardia 5, scry 1",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "block",
+      "scry"
+    ],
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 5
+      },
+      {
+        "type": "scry",
+        "amount": 1
+      }
+    ],
+    "family": "sur",
+    "direction": "SUR"
+  },
+  {
+    "id": "espiritu_guardian",
+    "name_key": "Espíritu Guardián",
+    "text_key": "Guardia 4, Quiebre 1",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "block",
+      "break"
+    ],
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 4
+      },
+      {
+        "type": "apply_break",
+        "amount": 1
+      }
+    ],
+    "family": "oeste",
+    "direction": "OESTE"
+  },
+  {
+    "id": "estallido_arcano",
+    "name_key": "Estallido Arcano",
+    "text_key": "Daño 4, roba 1",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "draw"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 4
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "este",
+    "direction": "ESTE"
+  },
+  {
+    "id": "filo_astral",
+    "name_key": "Filo Astral",
+    "text_key": "Daño 6",
+    "rarity": "common",
+    "cost": 1,
     "target": "enemy",
     "tags": [
       "attack"
@@ -373,155 +219,109 @@
     "effects": [
       {
         "type": "damage",
-        "amount": 8
-      },
-      {
-        "type": "if_kill",
-        "then": [
-          {
-            "type": "draw",
-            "amount": 1
-          }
-        ]
+        "amount": 6
       }
     ],
-    "family": "attack"
+    "family": "este",
+    "direction": "ESTE"
   },
   {
-    "id": "void_limit",
-    "name_key": "card_void_limit_name",
-    "text_key": "card_void_limit_desc",
+    "id": "filo_en_cadena",
+    "name_key": "Filo en Cadena",
+    "text_key": "Daño 4, si jugaste ESTE roba 1",
     "rarity": "uncommon",
-    "cost": 0,
-    "target": "self",
+    "cost": 1,
+    "target": "enemy",
     "tags": [
-      "skill",
-      "rupture"
+      "attack"
     ],
     "effects": [
       {
-        "type": "rupture",
+        "type": "damage",
+        "amount": 4
+      },
+      {
+        "type": "draw_if_direction_played",
+        "direction": "ESTE",
+        "amount": 1
+      }
+    ],
+    "family": "este",
+    "direction": "ESTE"
+  },
+  {
+    "id": "firmeza_del_cuerpo",
+    "name_key": "Firmeza del Cuerpo",
+    "text_key": "Cura 2, Guardia 2",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "heal",
+      "block"
+    ],
+    "effects": [
+      {
+        "type": "heal",
         "amount": 2
       },
       {
-        "type": "status",
-        "name": "rupture_burn",
-        "stacks": 1
+        "type": "gain_block",
+        "amount": 2
       }
     ],
-    "family": "chaos"
+    "family": "sur",
+    "direction": "SUR"
   },
   {
-    "id": "reflection",
-    "name_key": "card_reflection_name",
-    "text_key": "card_reflection_desc",
-    "rarity": "uncommon",
+    "id": "fragmento_celeste",
+    "name_key": "Fragmento Celeste",
+    "text_key": "Daño 5, scry 2",
+    "rarity": "common",
     "cost": 1,
-    "target": "self",
-    "tags": [
-      "skill",
-      "buff"
-    ],
-    "effects": [
-      {
-        "type": "status",
-        "name": "reflect",
-        "stacks": 1
-      }
-    ],
-    "family": "chaos"
-  },
-  {
-    "id": "silence",
-    "name_key": "card_silence_name",
-    "text_key": "card_silence_desc",
-    "rarity": "uncommon",
-    "cost": 1,
-    "target": "choice",
-    "tags": [
-      "skill",
-      "utility"
-    ],
-    "effects": [
-      {
-        "type": "cleanse_or_dispel",
-        "amount": 1
-      }
-    ],
-    "family": "chaos"
-  },
-  {
-    "id": "amethyst_crown",
-    "name_key": "card_amethyst_crown_name",
-    "text_key": "card_amethyst_crown_desc",
-    "rarity": "rare",
-    "cost": 2,
-    "target": "self",
-    "tags": [
-      "skill",
-      "exhaust"
-    ],
-    "effects": [
-      {
-        "type": "status",
-        "name": "energized",
-        "stacks": 2
-      },
-      {
-        "type": "exhaust_self"
-      }
-    ],
-    "family": "chaos"
-  },
-  {
-    "id": "rewrite",
-    "name_key": "card_rewrite_name",
-    "text_key": "card_rewrite_desc",
-    "rarity": "rare",
-    "cost": 1,
-    "target": "hand",
-    "tags": [
-      "skill",
-      "choice"
-    ],
-    "effects": [
-      {
-        "type": "zero_and_double_play",
-        "amount": 1
-      }
-    ],
-    "family": "manipulation"
-  },
-  {
-    "id": "final_gate",
-    "name_key": "card_final_gate_name",
-    "text_key": "card_final_gate_desc",
-    "rarity": "rare",
-    "cost": 2,
     "target": "enemy",
     "tags": [
       "attack",
-      "finisher"
+      "scry"
     ],
     "effects": [
       {
-        "type": "damage_plus_rupture",
-        "base": 10,
-        "per_rupture": 2
+        "type": "damage",
+        "amount": 5
       },
       {
-        "type": "set_rupture",
-        "amount": 0
+        "type": "scry",
+        "amount": 2
       }
     ],
-    "family": "attack"
+    "family": "este",
+    "direction": "ESTE"
   },
   {
-    "id": "pw_card_01",
-    "name_key": "card_pw_01_name",
-    "text_key": "card_pw_01_desc",
+    "id": "fusion_espiritual",
+    "name_key": "Fusión Espiritual",
+    "text_key": "Duplica Guardia (máx +12)",
+    "rarity": "rare",
+    "cost": 2,
+    "target": "self",
+    "tags": [
+      "block"
+    ],
+    "effects": [
+      {
+        "type": "double_block_cap",
+        "amount": 12
+      }
+    ],
+    "family": "oeste",
+    "direction": "OESTE"
+  },
+  {
+    "id": "garra_espiritual",
+    "name_key": "Garra Espiritual",
+    "text_key": "Daño 3",
     "rarity": "common",
-    "cost": 1,
+    "cost": 0,
     "target": "enemy",
     "tags": [
       "attack"
@@ -529,795 +329,404 @@
     "effects": [
       {
         "type": "damage",
-        "amount": 7
+        "amount": 3
       }
     ],
-    "family": "attack"
+    "family": "este",
+    "direction": "ESTE"
   },
   {
-    "id": "pw_card_02",
-    "name_key": "card_pw_02_name",
-    "text_key": "card_pw_02_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "skill"
-    ],
-    "effects": [
-      {
-        "type": "block",
-        "amount": 8
-      }
-    ],
-    "family": "defense"
-  },
-  {
-    "id": "pw_card_03",
-    "name_key": "card_pw_03_name",
-    "text_key": "card_pw_03_desc",
+    "id": "guardia_terrenal",
+    "name_key": "Guardia Terrenal",
+    "text_key": "Guardia 3",
     "rarity": "common",
     "cost": 0,
     "target": "self",
     "tags": [
-      "skill",
-      "arcane"
+      "block"
     ],
     "effects": [
       {
-        "type": "energy",
-        "amount": 1
-      },
-      {
-        "type": "draw",
-        "amount": 1
-      }
-    ],
-    "family": "energy"
-  },
-  {
-    "id": "pw_card_04",
-    "name_key": "card_pw_04_name",
-    "text_key": "card_pw_04_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "skill",
-      "arcane"
-    ],
-    "effects": [
-      {
-        "type": "scry",
+        "type": "gain_block",
         "amount": 3
-      },
-      {
-        "type": "damage",
-        "amount": 5
       }
     ],
-    "family": "control"
+    "family": "sur",
+    "direction": "SUR"
   },
   {
-    "id": "pw_card_05",
-    "name_key": "card_pw_05_name",
-    "text_key": "card_pw_05_desc",
+    "id": "invocacion_astral",
+    "name_key": "Invocación Astral",
+    "text_key": "Cura 3, Guardia 3",
     "rarity": "common",
-    "cost": 1,
+    "cost": 2,
     "target": "self",
     "tags": [
+      "heal",
+      "block",
       "ritual"
     ],
     "effects": [
       {
-        "type": "rupture",
+        "type": "harmony_delta",
         "amount": 1
       },
       {
-        "type": "block",
-        "amount": 6
-      }
-    ],
-    "family": "ritual"
-  },
-  {
-    "id": "pw_card_06",
-    "name_key": "card_pw_06_name",
-    "text_key": "card_pw_06_desc",
-    "rarity": "common",
-    "cost": 2,
-    "target": "enemy",
-    "tags": [
-      "attack",
-      "curse"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 6
+        "type": "heal",
+        "amount": 3
       },
       {
-        "type": "status",
-        "name": "weak",
-        "stacks": 1
+        "type": "gain_block",
+        "amount": 3
       }
     ],
-    "family": "chaos"
+    "family": "oeste",
+    "direction": "OESTE"
   },
   {
-    "id": "pw_card_07",
-    "name_key": "card_pw_07_name",
-    "text_key": "card_pw_07_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "attack"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 9
-      }
-    ],
-    "family": "attack"
-  },
-  {
-    "id": "pw_card_08",
-    "name_key": "card_pw_08_name",
-    "text_key": "card_pw_08_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "skill"
-    ],
-    "effects": [
-      {
-        "type": "block",
-        "amount": 9
-      }
-    ],
-    "family": "defense"
-  },
-  {
-    "id": "pw_card_09",
-    "name_key": "card_pw_09_name",
-    "text_key": "card_pw_09_desc",
+    "id": "lectura_del_destino",
+    "name_key": "Lectura del Destino",
+    "text_key": "Scry 2",
     "rarity": "common",
     "cost": 0,
     "target": "self",
     "tags": [
-      "skill",
-      "arcane"
-    ],
-    "effects": [
-      {
-        "type": "energy",
-        "amount": 1
-      },
-      {
-        "type": "draw",
-        "amount": 1
-      }
-    ],
-    "family": "energy"
-  },
-  {
-    "id": "pw_card_10",
-    "name_key": "card_pw_10_name",
-    "text_key": "card_pw_10_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "skill",
-      "arcane"
+      "scry"
     ],
     "effects": [
       {
         "type": "scry",
-        "amount": 3
-      },
-      {
-        "type": "damage",
-        "amount": 5
+        "amount": 2
       }
     ],
-    "family": "control"
+    "family": "norte",
+    "direction": "NORTE"
   },
   {
-    "id": "pw_card_11",
-    "name_key": "card_pw_11_name",
-    "text_key": "card_pw_11_desc",
+    "id": "mantra_del_umbral",
+    "name_key": "Mantra del Umbral",
+    "text_key": "Mana 1, cura 1",
     "rarity": "common",
     "cost": 1,
     "target": "self",
     "tags": [
+      "energy",
+      "heal",
       "ritual"
     ],
     "effects": [
       {
-        "type": "rupture",
+        "type": "harmony_delta",
         "amount": 1
       },
       {
-        "type": "block",
-        "amount": 8
-      }
-    ],
-    "family": "ritual"
-  },
-  {
-    "id": "pw_card_12",
-    "name_key": "card_pw_12_name",
-    "text_key": "card_pw_12_desc",
-    "rarity": "common",
-    "cost": 2,
-    "target": "enemy",
-    "tags": [
-      "attack",
-      "curse"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 7
+        "type": "gain_mana",
+        "amount": 1
       },
       {
-        "type": "status",
-        "name": "weak",
-        "stacks": 1
+        "type": "heal",
+        "amount": 1
       }
     ],
-    "family": "chaos"
+    "family": "oeste",
+    "direction": "OESTE"
   },
   {
-    "id": "pw_card_13",
-    "name_key": "card_pw_13_name",
-    "text_key": "card_pw_13_desc",
+    "id": "muralla_de_piedra",
+    "name_key": "Muralla de Piedra",
+    "text_key": "Guardia 10",
     "rarity": "common",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "attack"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 7
-      }
-    ],
-    "family": "attack"
-  },
-  {
-    "id": "pw_card_14",
-    "name_key": "card_pw_14_name",
-    "text_key": "card_pw_14_desc",
-    "rarity": "common",
-    "cost": 1,
+    "cost": 2,
     "target": "self",
     "tags": [
-      "skill"
+      "block"
     ],
     "effects": [
       {
-        "type": "block",
+        "type": "gain_block",
         "amount": 10
       }
     ],
-    "family": "defense"
+    "family": "sur",
+    "direction": "SUR"
   },
   {
-    "id": "pw_card_15",
-    "name_key": "card_pw_15_name",
-    "text_key": "card_pw_15_desc",
+    "id": "observacion_sagrada",
+    "name_key": "Observación Sagrada",
+    "text_key": "Scry 3",
     "rarity": "common",
-    "cost": 0,
+    "cost": 1,
     "target": "self",
     "tags": [
-      "skill",
-      "arcane"
+      "scry"
     ],
     "effects": [
       {
-        "type": "energy",
+        "type": "scry",
+        "amount": 3
+      }
+    ],
+    "family": "norte",
+    "direction": "NORTE"
+  },
+  {
+    "id": "piedra_ritual",
+    "name_key": "Piedra Ritual",
+    "text_key": "Guardia 6, Quiebre 3",
+    "rarity": "rare",
+    "cost": 2,
+    "target": "enemy",
+    "tags": [
+      "block",
+      "break",
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "harmony_delta",
         "amount": 1
+      },
+      {
+        "type": "gain_block",
+        "amount": 6
+      },
+      {
+        "type": "apply_break",
+        "amount": 3
+      }
+    ],
+    "family": "sur",
+    "direction": "SUR"
+  },
+  {
+    "id": "portal_de_la_chakana",
+    "name_key": "Portal de la Chakana",
+    "text_key": "Quiebre 3, roba 1",
+    "rarity": "uncommon",
+    "cost": 2,
+    "target": "enemy",
+    "tags": [
+      "break",
+      "draw",
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      },
+      {
+        "type": "apply_break",
+        "amount": 3
       },
       {
         "type": "draw",
         "amount": 1
       }
     ],
-    "family": "energy"
+    "family": "oeste",
+    "direction": "OESTE"
   },
   {
-    "id": "pw_card_16",
-    "name_key": "card_pw_16_name",
-    "text_key": "card_pw_16_desc",
+    "id": "pulso_cosmico",
+    "name_key": "Pulso Cósmico",
+    "text_key": "Quiebre 2 y daño 2",
     "rarity": "common",
     "cost": 1,
     "target": "enemy",
     "tags": [
-      "skill",
-      "arcane"
-    ],
-    "effects": [
-      {
-        "type": "scry",
-        "amount": 3
-      },
-      {
-        "type": "damage",
-        "amount": 5
-      }
-    ],
-    "family": "control"
-  },
-  {
-    "id": "pw_card_17",
-    "name_key": "card_pw_17_name",
-    "text_key": "card_pw_17_desc",
-    "rarity": "common",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "ritual"
-    ],
-    "effects": [
-      {
-        "type": "rupture",
-        "amount": 1
-      },
-      {
-        "type": "block",
-        "amount": 6
-      }
-    ],
-    "family": "ritual"
-  },
-  {
-    "id": "pw_card_18",
-    "name_key": "card_pw_18_name",
-    "text_key": "card_pw_18_desc",
-    "rarity": "common",
-    "cost": 2,
-    "target": "enemy",
-    "tags": [
-      "attack",
-      "curse"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 8
-      },
-      {
-        "type": "status",
-        "name": "weak",
-        "stacks": 1
-      }
-    ],
-    "family": "chaos"
-  },
-  {
-    "id": "pw_card_19",
-    "name_key": "card_pw_19_name",
-    "text_key": "card_pw_19_desc",
-    "rarity": "uncommon",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
+      "break",
       "attack"
     ],
     "effects": [
       {
+        "type": "apply_break",
+        "amount": 2
+      },
+      {
         "type": "damage",
-        "amount": 9
+        "amount": 2
       }
     ],
-    "family": "attack"
+    "family": "oeste",
+    "direction": "OESTE"
   },
   {
-    "id": "pw_card_20",
-    "name_key": "card_pw_20_name",
-    "text_key": "card_pw_20_desc",
+    "id": "resistencia_ancestral",
+    "name_key": "Resistencia Ancestral",
+    "text_key": "Guardia 8, retain",
     "rarity": "uncommon",
-    "cost": 1,
+    "cost": 2,
     "target": "self",
     "tags": [
-      "skill"
+      "block",
+      "retain"
     ],
     "effects": [
       {
-        "type": "block",
-        "amount": 6
-      }
-    ],
-    "family": "defense"
-  },
-  {
-    "id": "pw_card_21",
-    "name_key": "card_pw_21_name",
-    "text_key": "card_pw_21_desc",
-    "rarity": "uncommon",
-    "cost": 0,
-    "target": "self",
-    "tags": [
-      "skill",
-      "arcane"
-    ],
-    "effects": [
+        "type": "gain_block",
+        "amount": 8
+      },
       {
-        "type": "energy",
+        "type": "retain",
         "amount": 1
+      }
+    ],
+    "family": "sur",
+    "direction": "SUR"
+  },
+  {
+    "id": "revelacion_astral",
+    "name_key": "Revelación Astral",
+    "text_key": "Scry 4, roba 1",
+    "rarity": "uncommon",
+    "cost": 2,
+    "target": "self",
+    "tags": [
+      "scry",
+      "draw",
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      },
+      {
+        "type": "scry",
+        "amount": 4
       },
       {
         "type": "draw",
         "amount": 1
       }
     ],
-    "family": "energy"
+    "family": "norte",
+    "direction": "NORTE"
   },
   {
-    "id": "pw_card_22",
-    "name_key": "card_pw_22_name",
-    "text_key": "card_pw_22_desc",
-    "rarity": "uncommon",
-    "cost": 1,
+    "id": "ritual_de_la_trama",
+    "name_key": "Ritual de la Trama",
+    "text_key": "Si BALANCE: daño 12 y cura 4; si no daño 8, exhaust",
+    "rarity": "legendary",
+    "cost": 4,
     "target": "enemy",
     "tags": [
-      "skill",
-      "arcane"
-    ],
-    "effects": [
-      {
-        "type": "scry",
-        "amount": 3
-      },
-      {
-        "type": "damage",
-        "amount": 5
-      }
-    ],
-    "family": "control"
-  },
-  {
-    "id": "pw_card_23",
-    "name_key": "card_pw_23_name",
-    "text_key": "card_pw_23_desc",
-    "rarity": "uncommon",
-    "cost": 1,
-    "target": "self",
-    "tags": [
+      "attack",
+      "heal",
+      "exhaust",
       "ritual"
     ],
     "effects": [
       {
-        "type": "rupture",
+        "type": "harmony_delta",
         "amount": 1
       },
       {
-        "type": "block",
-        "amount": 8
+        "type": "consume_harmony",
+        "amount": 3
+      },
+      {
+        "type": "ritual_trama",
+        "amount": 1
+      },
+      {
+        "type": "exhaust_self",
+        "amount": 1
       }
     ],
-    "family": "ritual"
+    "family": "oeste",
+    "direction": "OESTE"
   },
   {
-    "id": "pw_card_24",
-    "name_key": "card_pw_24_name",
-    "text_key": "card_pw_24_desc",
+    "id": "sello_protector",
+    "name_key": "Sello Protector",
+    "text_key": "Guardia 6",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "block"
+    ],
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 6
+      }
+    ],
+    "family": "sur",
+    "direction": "SUR"
+  },
+  {
+    "id": "silencio_interior",
+    "name_key": "Silencio Interior",
+    "text_key": "Debilita 3, scry 1",
     "rarity": "uncommon",
     "cost": 2,
     "target": "enemy",
     "tags": [
-      "attack",
-      "curse"
+      "debuff",
+      "scry"
     ],
     "effects": [
       {
-        "type": "damage",
-        "amount": 9
+        "type": "weaken_enemy",
+        "amount": 3
       },
       {
-        "type": "status",
-        "name": "weak",
-        "stacks": 1
-      }
-    ],
-    "family": "chaos"
-  },
-  {
-    "id": "pw_card_25",
-    "name_key": "card_pw_25_name",
-    "text_key": "card_pw_25_desc",
-    "rarity": "uncommon",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "attack"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 7
-      }
-    ],
-    "family": "attack"
-  },
-  {
-    "id": "pw_card_26",
-    "name_key": "card_pw_26_name",
-    "text_key": "card_pw_26_desc",
-    "rarity": "uncommon",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "skill"
-    ],
-    "effects": [
-      {
-        "type": "block",
-        "amount": 7
-      }
-    ],
-    "family": "defense"
-  },
-  {
-    "id": "pw_card_27",
-    "name_key": "card_pw_27_name",
-    "text_key": "card_pw_27_desc",
-    "rarity": "uncommon",
-    "cost": 0,
-    "target": "self",
-    "tags": [
-      "skill",
-      "arcane"
-    ],
-    "effects": [
-      {
-        "type": "energy",
+        "type": "scry",
         "amount": 1
+      }
+    ],
+    "family": "norte",
+    "direction": "NORTE"
+  },
+  {
+    "id": "vinculo_de_energia",
+    "name_key": "Vínculo de Energía",
+    "text_key": "Mana 2 este turno",
+    "rarity": "uncommon",
+    "cost": 2,
+    "target": "self",
+    "tags": [
+      "energy"
+    ],
+    "effects": [
+      {
+        "type": "gain_mana",
+        "amount": 2
+      }
+    ],
+    "family": "oeste",
+    "direction": "OESTE"
+  },
+  {
+    "id": "vision_del_condor",
+    "name_key": "Visión del Cóndor",
+    "text_key": "Scry 3, roba 1",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "scry",
+      "draw",
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      },
+      {
+        "type": "scry",
+        "amount": 3
       },
       {
         "type": "draw",
         "amount": 1
       }
     ],
-    "family": "energy"
-  },
-  {
-    "id": "pw_card_28",
-    "name_key": "card_pw_28_name",
-    "text_key": "card_pw_28_desc",
-    "rarity": "uncommon",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "skill",
-      "arcane"
-    ],
-    "effects": [
-      {
-        "type": "scry",
-        "amount": 3
-      },
-      {
-        "type": "damage",
-        "amount": 5
-      }
-    ],
-    "family": "control"
-  },
-  {
-    "id": "pw_card_29",
-    "name_key": "card_pw_29_name",
-    "text_key": "card_pw_29_desc",
-    "rarity": "uncommon",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "ritual"
-    ],
-    "effects": [
-      {
-        "type": "rupture",
-        "amount": 1
-      },
-      {
-        "type": "block",
-        "amount": 6
-      }
-    ],
-    "family": "ritual"
-  },
-  {
-    "id": "pw_card_30",
-    "name_key": "card_pw_30_name",
-    "text_key": "card_pw_30_desc",
-    "rarity": "uncommon",
-    "cost": 2,
-    "target": "enemy",
-    "tags": [
-      "attack",
-      "curse"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 5
-      },
-      {
-        "type": "status",
-        "name": "weak",
-        "stacks": 1
-      }
-    ],
-    "family": "chaos"
-  },
-  {
-    "id": "pw_card_31",
-    "name_key": "card_pw_31_name",
-    "text_key": "card_pw_31_desc",
-    "rarity": "uncommon",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "attack"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 9
-      }
-    ],
-    "family": "attack"
-  },
-  {
-    "id": "pw_card_32",
-    "name_key": "card_pw_32_name",
-    "text_key": "card_pw_32_desc",
-    "rarity": "uncommon",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "skill"
-    ],
-    "effects": [
-      {
-        "type": "block",
-        "amount": 8
-      }
-    ],
-    "family": "defense"
-  },
-  {
-    "id": "pw_card_33",
-    "name_key": "card_pw_33_name",
-    "text_key": "card_pw_33_desc",
-    "rarity": "rare",
-    "cost": 0,
-    "target": "self",
-    "tags": [
-      "skill",
-      "arcane"
-    ],
-    "effects": [
-      {
-        "type": "energy",
-        "amount": 1
-      },
-      {
-        "type": "draw",
-        "amount": 1
-      }
-    ],
-    "family": "energy"
-  },
-  {
-    "id": "pw_card_34",
-    "name_key": "card_pw_34_name",
-    "text_key": "card_pw_34_desc",
-    "rarity": "rare",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "skill",
-      "arcane"
-    ],
-    "effects": [
-      {
-        "type": "scry",
-        "amount": 3
-      },
-      {
-        "type": "damage",
-        "amount": 5
-      }
-    ],
-    "family": "control"
-  },
-  {
-    "id": "pw_card_35",
-    "name_key": "card_pw_35_name",
-    "text_key": "card_pw_35_desc",
-    "rarity": "rare",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "ritual"
-    ],
-    "effects": [
-      {
-        "type": "rupture",
-        "amount": 1
-      },
-      {
-        "type": "block",
-        "amount": 8
-      }
-    ],
-    "family": "ritual"
-  },
-  {
-    "id": "pw_card_36",
-    "name_key": "card_pw_36_name",
-    "text_key": "card_pw_36_desc",
-    "rarity": "rare",
-    "cost": 2,
-    "target": "enemy",
-    "tags": [
-      "attack",
-      "curse"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 6
-      },
-      {
-        "type": "status",
-        "name": "weak",
-        "stacks": 1
-      }
-    ],
-    "family": "chaos"
-  },
-  {
-    "id": "pw_card_37",
-    "name_key": "card_pw_37_name",
-    "text_key": "card_pw_37_desc",
-    "rarity": "rare",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "attack"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 7
-      }
-    ],
-    "family": "attack"
-  },
-  {
-    "id": "pw_card_38",
-    "name_key": "card_pw_38_name",
-    "text_key": "card_pw_38_desc",
-    "rarity": "rare",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "skill"
-    ],
-    "effects": [
-      {
-        "type": "block",
-        "amount": 9
-      }
-    ],
-    "family": "defense"
+    "family": "norte",
+    "direction": "NORTE"
   }
 ]

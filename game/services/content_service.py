@@ -32,7 +32,7 @@ class ContentService:
         return data
 
     def load_cards(self, status: ContentStatus):
-        return self._read_json(self.base / "cards" / "cards_60.json", [], status)
+        return self._read_json(self.base / "cards.json", [], status)
 
     def load_enemies(self, status: ContentStatus):
         return self._read_json(self.base / "enemies" / "enemies_30.json", [], status)
@@ -56,8 +56,8 @@ class ContentService:
         self._step(progress_cb, "Cargando diálogos", 0.24)
         dcombat, devents = self.load_dialogues(st)
 
-        if len(cards) != 60:
-            st.status = "FALLBACK"; st.errors.append(f"cards_count:{len(cards)} expected 60")
+        if len(cards) != 30:
+            st.status = "FALLBACK"; st.errors.append(f"cards_count:{len(cards)} expected 30")
         if len(enemies) != 30:
             st.status = "FALLBACK"; st.errors.append(f"enemies_count:{len(enemies)} expected 30")
         if len(bosses) != 3:

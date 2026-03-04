@@ -31,7 +31,7 @@ class ContentService:
         return data
 
     def _load_all(self):
-        p_cards = self.base / "cards" / "cards_60.json"
+        p_cards = self.base / "cards.json"
         p_enemies = self.base / "enemies" / "enemies_30.json"
         p_bosses = self.base / "enemies" / "bosses_3.json"
         p_dcombat = self.base / "lore" / "dialogues_combat.json"
@@ -54,8 +54,8 @@ class ContentService:
         self.dialogues_combat = dcombat if isinstance(dcombat, dict) else {}
         self.dialogues_events = devents if isinstance(devents, dict) else {}
 
-        if len(self.cards) != 60:
-            self._fail(f"cards_count:{len(self.cards)} expected 60 @ {p_cards}")
+        if len(self.cards) != 30:
+            self._fail(f"cards_count:{len(self.cards)} expected 30 @ {p_cards}")
         if len(self.enemies) != 30:
             self._fail(f"enemies_count:{len(self.enemies)} expected 30 @ {p_enemies}")
         if len(self.bosses) != 3:
