@@ -156,6 +156,7 @@ class App:
         self.relics_data = self._load_relics_data()
         self.lore_service = LoreService()
         self.lore_engine = LoreEngine((data_dir().parent).parent)
+        self.biomes_lore = self._load_biomes_lore_data()
         self.lore_data = self.lore_service.data
         self.debug["lore_status"] = self.lore_service.status
         self.debug["lore_paths"] = ",".join(str(v) for v in self.lore_service.paths.values())
@@ -186,7 +187,7 @@ class App:
         self.validate_navigation_methods()
         pygame.display.set_caption(self.loc.t("game_title"))
         self.sm.set(IntroScreen(self))
-        self.music.play_for("menu")
+        self.music.play_for(self.get_bgm_track("menu"))
 
 
     def _log_card_art_status(self):
@@ -212,6 +213,38 @@ class App:
         print(f"[art] cards total={total} art_exists={exists} missing={missing} fallback_used={fallback}")
         if total > 0 and fallback == total:
             print("[art] WARNING fallback_used == total; pipeline broken")
+
+    def _load_biomes_lore_data(self) -> dict:
+        path = data_dir() / "lore" / "biomes_lore.json"
+        payload = load_json(path, default={})
+        return payload if isinstance(payload, dict) else {}
+
+    def get_biome_lore(self, biome_id: str | None = None) -> dict:
+        biome_key = str(biome_id or (self.run_state or {}).get("biome") or "kaypacha").lower()
+        data = self.biomes_lore.get(biome_key, {}) if isinstance(self.biomes_lore, dict) else {}
+        return data if isinstance(data, dict) else {}
+
+    def get_biome_display_name(self, biome_id: str | None = None) -> str:
+        biome_key = str(biome_id or (self.run_state or {}).get("biome") or "kaypacha").lower()
+        lore = self.get_biome_lore(biome_key)
+        return str(lore.get("display_name_es") or biome_key.title())
+
+    def get_bgm_track(self, context: str, biome_id: str | None = None) -> str:
+        ctx = str(context or "menu").lower()
+        lore = self.get_biome_lore(biome_id)
+        tracks = lore.get("bgm_tracks", {}) if isinstance(lore, dict) else {}
+        if isinstance(tracks, dict):
+            track = tracks.get(ctx)
+            if isinstance(track, str) and track:
+                return track
+        fallback = {
+            "menu": "menu",
+            "map": f"map_{str(biome_id or (self.run_state or {}).get('biome') or 'kaypacha').lower()}",
+            "combat": f"combat_{str(biome_id or (self.run_state or {}).get('biome') or 'kaypacha').lower()}",
+            "boss": "boss",
+            "events": "event",
+        }
+        return fallback.get(ctx, "menu")
 
     def _loading_step(self, label: str, pct: float):
         if not hasattr(self, "loading_screen"):
@@ -368,7 +401,7 @@ class App:
         if self.sm.current and not isinstance(self.sm.current, MenuScreen):
             self.menu_return_screen = self.sm.current
         self.sm.set(MenuScreen(self))
-        self.music.play_for("menu")
+        self.music.play_for(self.get_bgm_track("menu"))
 
     def goto_settings(self):
         self.sm.set(SettingsScreen(self))
@@ -452,16 +485,16 @@ class App:
             self.sm.set(PachaTransitionScreen(self, str(biome_track).title(), lambda: self.sm.set(MapScreen(self))))
         else:
             self.sm.set(MapScreen(self))
-        self.music.play_for(f"map_{biome_track}")
+        self.music.play_for(self.get_bgm_track("map", biome_track))
 
     def goto_combat(self, combat_state, is_boss=False):
         self.current_combat = combat_state
         self.sm.set(CombatScreen(self, combat_state, is_boss=is_boss))
         if is_boss:
-            self.music.play_for("boss")
+            self.music.play_for(self.get_bgm_track("boss"))
         else:
             biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
-            self.music.play_for(f"combat_{biome_track}")
+            self.music.play_for(self.get_bgm_track("combat", biome_track))
 
     def goto_reward(self, picks=None, gold=None):
         if picks is None or gold is None:
@@ -476,12 +509,12 @@ class App:
     def goto_shop(self):
         pool = [c for c in self.cards_data if c.get("rarity") in {"common", "uncommon"}] or self.cards_data
         self.sm.set(ShopScreen(self, self.rng.choice(pool) or DEFAULT_CARDS[0]))
-        self.music.play_for("event")
+        self.music.play_for(self.get_bgm_track("events"))
 
     def goto_event(self):
         event = self.rng.choice(self.events_data) if self.events_data else {"title_key": "map_title", "body_key": "lore_tagline", "choices": [{"text_key": "event_continue", "effects": []}]}
         self.sm.set(EventScreen(self, event))
-        self.music.play_for("event")
+        self.music.play_for(self.get_bgm_track("events"))
 
     def run_qa_mode(self):
         results = QARunner(self).run_all()
@@ -790,7 +823,7 @@ class App:
         self.music.set_volume(self.user_settings.get("music_volume", 0.5))
         self.music.set_muted(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False)))
         self.music._checked_silence.clear()
-        self.music.play_for("menu")
+        self.music.play_for(self.get_bgm_track("menu"))
 
     def regenerate_card_art_with_cleanup(self):
         manifest_path = data_dir() / "art_manifest.json"
@@ -894,6 +927,7 @@ class App:
         self.content.dialogues_combat = content_payload.get("dialogues_combat", {})
         self.content.dialogues_events = content_payload.get("dialogues_events", {})
         self.lore_engine.load_all()
+        self.biomes_lore = self._load_biomes_lore_data()
         self.cards_data = self._load_cards_data()
         self.card_defs = {c["id"]: c for c in self.cards_data}
         self.enemies_data = self._load_enemies_data()
@@ -901,7 +935,7 @@ class App:
         self._log_card_art_status()
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
         self.sm.set(IntroScreen(self))
-        self.music.play_for("menu")
+        self.music.play_for(self.get_bgm_track("menu"))
         self.asset_generation_active = False
 
     def run(self):

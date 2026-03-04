@@ -57,7 +57,8 @@ class CombatScreen:
         self.hero_line_fx = 0.0
         self.resolving_t = 0.0
         self.last_turn = self.c.turn
-        self.selected_biome = self.app.rng.choice(self.app.bg_gen.BIOMES)
+        run_biome = self.app.run_state.get("biome") if isinstance(self.app.run_state, dict) else None
+        self.selected_biome = str(run_biome or self.app.rng.choice(self.app.bg_gen.BIOMES))
         self.bg_seed = abs(hash(f"{self.selected_biome}:{self.c.turn}:{self.c.enemies[0].id if self.c.enemies else 'none'}")) % 100000
         self.pause_open = False
         self.pause_confirm_target = None
@@ -276,7 +277,7 @@ class CombatScreen:
         left = f"Chakana • Mazo: {deck_name}"
 
         node = self.app.node_lookup.get(self.app.current_node_id) if getattr(self.app, "current_node_id", None) else None
-        pacha = str(self.selected_biome or run.get("biome") or "Pacha").title()
+        pacha = self.app.get_biome_display_name(self.selected_biome or run.get("biome"))
         if isinstance(node, dict):
             node_name = "Élite" if node.get("type") == "challenge" else self.app.loc.t(f"node_{node.get('type', 'combat')}")
         else:

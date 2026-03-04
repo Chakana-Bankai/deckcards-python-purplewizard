@@ -92,7 +92,7 @@ class MapScreen:
     def _topbar_narrative(self):
         run = self.app.run_state or {}
         left = "Travesía de Chakana"
-        pacha = str(run.get("biome") or "Pacha").title()
+        pacha = self.app.get_biome_display_name(run.get("biome") if isinstance(run, dict) else None)
         center = f"{pacha} — {self._friendly_node_name()}"
         subtitle = str(self.app.lore_engine.get_map_narration("default") if hasattr(self.app, "lore_engine") else "")
         lvl = int(run.get("level", 1) or 1)
