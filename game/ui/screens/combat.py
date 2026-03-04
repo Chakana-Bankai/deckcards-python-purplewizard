@@ -4,6 +4,7 @@ import pygame
 from game.settings import INTERNAL_WIDTH
 from game.ui.anim import TypewriterBanner
 from game.ui.theme import UI_THEME
+from game.art.gen_art32 import chakana_points
 
 
 def wrap_text(font, text, width):
@@ -21,18 +22,6 @@ def wrap_text(font, text, width):
         lines.append(cur)
     return lines
 
-
-def generate_chakana_polygon(center, size, step=0.35):
-    cx, cy = center
-    s = size
-    k = int(s * step)
-    pts = [
-        (cx-k, cy-s),(cx+k, cy-s),(cx+k, cy-k),(cx+s, cy-k),(cx+s, cy+k),
-        (cx+k, cy+k),(cx+k, cy+s),(cx-k, cy+s),(cx-k, cy+k),(cx-s, cy+k),
-        (cx-s, cy-k),(cx-k, cy-k),(cx-k, cy-s),(cx, cy-s),(cx, cy-k),
-        (cx+s, cy),(cx, cy+k),(cx, cy+s),(cx-k, cy),(cx-s, cy)
-    ]
-    return pts
 
 
 class CombatScreen:
@@ -189,7 +178,7 @@ class CombatScreen:
         t=pygame.time.get_ticks()/1000.0
         sc=1.0+0.06*(0.5+0.5*math.sin(t*2*math.pi/1.6))
         center=(self.PLAYER_HUD.x+545,self.PLAYER_HUD.y+88)
-        pts=generate_chakana_polygon(center,int(42*sc),step=0.35)
+        pts=chakana_points(center,int(42*sc),step=0.35)
         pygame.draw.polygon(s,(182,154,240),pts,2)
         pygame.draw.circle(s,(180,120,240,80),center,int(58*sc),1)
         stars=[(center[0]+32,center[1]-40),(center[0]+50,center[1]-54),(center[0]+66,center[1]-42),(center[0]+56,center[1]-28)]

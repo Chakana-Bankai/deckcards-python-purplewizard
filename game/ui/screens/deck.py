@@ -81,3 +81,14 @@ class DeckScreen:
         avg = total_cost / n
         s.blit(self.app.font.render(self.app.loc.t("deck_stats", count=n, avg=f"{avg:.1f}"), True, UI_THEME["gold"]), (40, 640))
         s.blit(self.app.font.render(self.app.loc.t("deck_stats_tags", atk=attacks, skill=skills, ritual=rituals), True, UI_THEME["muted"]), (40, 670))
+
+        if getattr(self.app, "asset_generation_active", False):
+            ov = pygame.Surface((1920, 1080), pygame.SRCALPHA)
+            ov.fill((0, 0, 0, 140))
+            s.blit(ov, (0, 0))
+            panel = pygame.Rect(620, 430, 680, 180)
+            pygame.draw.rect(s, UI_THEME["panel"], panel, border_radius=14)
+            pygame.draw.rect(s, UI_THEME["accent_violet"], panel, 2, border_radius=14)
+            label = f"Preparando arte… ({int(self.app.asset_generation_progress * 100)}%)"
+            s.blit(self.app.font.render(label, True, UI_THEME["text"]), (panel.x + 40, panel.y + 54))
+            s.blit(self.app.tiny_font.render(str(getattr(self.app, "asset_generation_label", "Generando")), True, UI_THEME["gold"]), (panel.x + 40, panel.y + 96))

@@ -6,6 +6,7 @@ import pygame
 
 GEN_ART_VERSION = "art32_v1"
 GEN_BIOME_VERSION = "biome_layer_v1"
+DEFAULT_PALETTE = [(26, 18, 52), (74, 52, 120), (154, 112, 212), (240, 220, 170)]
 
 
 def seed_from_id(id: str, version: str = GEN_ART_VERSION) -> int:
@@ -24,7 +25,21 @@ def palette_for_family(family: str) -> list[tuple[int, int, int]]:
     return p.get(family, p["violet_arcane"])
 
 
+def chakana_points(center: tuple[int, int], size: int, step: float = 0.35) -> list[tuple[int, int]]:
+    cx, cy = center
+    s = max(4, int(size))
+    k = max(2, int(s * step))
+    return [
+        (cx - k, cy - s), (cx + k, cy - s), (cx + k, cy - k), (cx + s, cy - k), (cx + s, cy + k),
+        (cx + k, cy + k), (cx + k, cy + s), (cx - k, cy + s), (cx - k, cy + k), (cx - s, cy + k),
+        (cx - s, cy - k), (cx - k, cy - k), (cx - k, cy - s), (cx, cy - s), (cx, cy - k),
+        (cx + s, cy), (cx, cy + k), (cx, cy + s), (cx - k, cy), (cx - s, cy),
+    ]
+
+
 def dither(surface: pygame.Surface, strength=0.12):
+    if isinstance(strength, random.Random):
+        strength = 0.12
     w, h = surface.get_size()
     for y in range(0, h, 2):
         for x in range((y // 2) % 2, w, 2):
@@ -32,20 +47,39 @@ def dither(surface: pygame.Surface, strength=0.12):
             surface.set_at((x, y), (max(0, int(c.r * (1 - strength))), max(0, int(c.g * (1 - strength))), max(0, int(c.b * (1 - strength))), c.a))
 
 
-def add_rune_strokes(surface: pygame.Surface, rng: random.Random):
+def add_rune_strokes(surface: pygame.Surface, rng: random.Random, n: int = 16):
     w, h = surface.get_size()
-    for _ in range(16):
+    for _ in range(max(1, int(n))):
         x, y = rng.randint(8, w - 8), rng.randint(8, h - 8)
         pygame.draw.line(surface, (230, 230, 255, 110), (x, y), (x, y + rng.randint(4, 8)), 1)
 
 
-def draw_sacred_geometry_bg(surface: pygame.Surface, rng: random.Random):
+def draw_sacred_geometry_bg(surface: pygame.Surface, *args):
+    if len(args) == 1:
+        rng = args[0]
+        palette = DEFAULT_PALETTE
+    elif len(args) == 2:
+        palette, rng = args
+    else:
+        raise TypeError("draw_sacred_geometry_bg(surface, rng) or draw_sacred_geometry_bg(surface, palette, rng)")
+    if not isinstance(palette, (list, tuple)) or len(palette) < 3:
+        palette = DEFAULT_PALETTE
     w, h = surface.get_size()
+    top, mid, hi = palette[0], palette[1], palette[2]
+    for y in range(h):
+        t = y / max(1, h - 1)
+        r = int(top[0] * (1 - t) + mid[0] * t)
+        g = int(top[1] * (1 - t) + mid[1] * t)
+        b = int(top[2] * (1 - t) + mid[2] * t)
+        pygame.draw.line(surface, (r, g, b), (0, y), (w, y))
     cx, cy = w // 2, h // 2
     for i in range(1, 8):
-        pygame.draw.circle(surface, (220, 220, 255, 22 + i * 6), (cx, cy), i * 10, 1)
+        pygame.draw.circle(surface, (*hi, 22 + i * 6), (cx, cy), i * 10, 1)
     for i in range(0, w, 12):
         pygame.draw.line(surface, (180, 180, 220, 14), (i, 0), (i, h), 1)
+    jitter = rng.randint(0, 1) if isinstance(rng, random.Random) else 0
+    if jitter:
+        pygame.draw.circle(surface, (hi[0], hi[1], hi[2], 35), (cx, cy), min(w, h) // 3, 1)
 
 
 def draw_symbol(surface: pygame.Surface, symbol_type: str, rng: random.Random):

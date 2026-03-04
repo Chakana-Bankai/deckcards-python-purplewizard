@@ -4,6 +4,7 @@ import traceback
 import shutil
 import json
 import time
+from types import SimpleNamespace
 
 import pygame
 
@@ -15,10 +16,9 @@ from game.content.card_art_generator import CardArtGenerator, export_prompts
 from game.content.enemy_art_generator import EnemyArtGenerator
 from game.content.background_generator import BackgroundGenerator
 from game.content.guide_avatar_generator import GuideAvatarGenerator, GUIDE_TYPES
-from game.core.bootstrap_assets import ensure_placeholder_assets, ensure_bgm_assets
+from game.core.bootstrap_assets import ensure_placeholder_assets
 from game.core.localization import LocalizationManager
 from game.core.lore_service import LoreService
-from game.core.content_service import ContentService
 from game.core.paths import data_dir, assets_dir
 from game.core.rng import SeededRNG
 from game.core.safe_io import load_json
@@ -42,6 +42,10 @@ from game.ui.screens.pack_opening import PackOpeningScreen
 from game.ui.screens.end import EndScreen
 from game.version import VERSION
 from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION
+from game.services.content_service import ContentService
+from game.services.asset_pipeline import AssetPipeline
+from game.services.audio_pipeline import AudioPipeline
+from game.ui.screens.loading import LoadingScreen
 
 DEFAULT_CARDS = [
     {"id": "strike", "name_key": "card_strike_name", "text_key": "card_strike_desc", "rarity": "basic", "cost": 1, "target": "enemy", "tags": ["attack"], "effects": [{"type": "damage", "amount": 6}]},
@@ -97,8 +101,30 @@ class App:
         self.current_node_id = None
         self.debug_overlay = False
         self.debug = {"last_ui_event": "-", "hovered_card_id": "-", "selected_card_id": "-", "target_mode": False, "combat_end_turn_button_visible": False, "combat_status_button_visible": False, "combat_end_turn_rect": "-", "combat_status_rect": "-", "enemy_intent": "-", "art_regenerated": 0, "xp_last_gain": 0}
+        self.asset_generation_active = False
+        self.asset_generation_progress = 1.0
+        self.asset_generation_label = ""
 
-        self.content = ContentService()
+        self.loading_screen = LoadingScreen(self.big_font, self.font)
+        self._loading_step("Inicializando", 0.01)
+
+        content_payload = ContentService().load_all(progress_cb=self._loading_step)
+        self.content = SimpleNamespace(
+            cards=content_payload.get("cards", []),
+            enemies=content_payload.get("enemies", []),
+            bosses=content_payload.get("bosses", []),
+            dialogues_combat=content_payload.get("dialogues_combat", {}),
+            dialogues_events=content_payload.get("dialogues_events", {}),
+            status=content_payload.get("status", "OK"),
+            errors=content_payload.get("errors", []),
+        )
+        self.content.debug_counts = lambda: {
+            "cards": len(self.content.cards),
+            "enemies": len(self.content.enemies),
+            "bosses": len(self.content.bosses),
+            "dialogues_combat": bool(self.content.dialogues_combat),
+            "dialogues_events": bool(self.content.dialogues_events),
+        }
         self.debug["content_status"] = self.content.status
         self.debug["art_status"] = "OK"
         self.debug["music_status"] = "OK"
@@ -120,9 +146,13 @@ class App:
         self.enemy_art_gen = EnemyArtGenerator()
         self.bg_gen = BackgroundGenerator()
         self.guide_gen = GuideAvatarGenerator()
+        self.asset_pipeline = AssetPipeline(self.art_gen, self.enemy_art_gen, self.guide_gen, self.bg_gen)
+        self.audio_pipeline = AudioPipeline()
         self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
         self._apply_dev_reset_if_enabled()
-        self.ensure_assets()
+        self.ensure_assets(progress_cb=self._loading_step)
+        self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
+        self._loading_step("Completado", 1.0)
         print("[load] card/enemy art verified")
         self.debug["art_regenerated"] = self.art_gen.generated_count + self.art_gen.replaced_count
 
@@ -130,6 +160,19 @@ class App:
         pygame.display.set_caption(self.loc.t("game_title"))
         self.sm.set(MenuScreen(self))
         self.music.play_for("menu")
+
+    def _loading_step(self, label: str, pct: float):
+        if not hasattr(self, "loading_screen"):
+            return
+        self.asset_generation_label = label
+        self.asset_generation_progress = max(0.0, min(1.0, float(pct)))
+        self.asset_generation_active = self.asset_generation_progress < 0.999
+        self.loading_screen.set_step(label, pct)
+        self.loading_screen.draw(self.renderer.internal, 1.0 / max(1, FPS))
+        self.renderer.present()
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                self.running = False
 
     def _load_cards_data(self):
         cards = self.content.cards if isinstance(self.content.cards, list) and self.content.cards else load_json(data_dir() / "cards.json", default=[])
@@ -199,61 +242,20 @@ class App:
     def design_value(self, key: str, default: str = "") -> str:
         return self.design_doc.get(key, default)
 
-    def ensure_assets(self):
-        a = assets_dir()
-        (a / "music").mkdir(parents=True, exist_ok=True)
-        (a / "sprites" / "cards").mkdir(parents=True, exist_ok=True)
-        (a / "sprites" / "enemies").mkdir(parents=True, exist_ok=True)
-        (a / "sprites" / "biomes").mkdir(parents=True, exist_ok=True)
-        (a / "sprites" / "guides").mkdir(parents=True, exist_ok=True)
-        (a / "sfx" / "generated").mkdir(parents=True, exist_ok=True)
+    def ensure_assets(self, progress_cb=None):
         ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
-        ensure_bgm_assets(force_regen=False)
+        content_payload = {
+            "cards": self.cards_data,
+            "enemies": self.enemies_data,
+            "guide_types": GUIDE_TYPES,
+        }
+        try:
+            self.asset_pipeline.ensure_all_assets(self.user_settings, content_payload, progress_cb=progress_cb)
+        except Exception as exc:
+            print(f"[safe_gen] using placeholder for pipeline due to {exc}")
+            (assets_dir() / "sprites" / "cards" / "_placeholder.png").parent.mkdir(parents=True, exist_ok=True)
+            surf = pygame.Surface((256, 384)); surf.fill((52, 36, 74)); pygame.image.save(surf, assets_dir() / "sprites" / "cards" / "_placeholder.png")
 
-        prompt_data = load_json(data_dir() / "card_prompts.json", default={})
-        if not isinstance(prompt_data, dict) or len(prompt_data) != len(self.cards_data):
-            export_prompts(self.cards_data, self.enemies_data)
-            prompt_data = load_json(data_dir() / "card_prompts.json", default={}) if isinstance(load_json(data_dir() / "card_prompts.json", default={}), dict) else {}
-
-        art_manifest = load_json(data_dir() / "art_manifest.json", default={})
-        if not isinstance(art_manifest, dict):
-            art_manifest = {}
-        for c in self.cards_data:
-            cid = c.get("id", "unknown")
-            path = a / "sprites" / "cards" / f"{cid}.png"
-            mode = "missing_only"
-            if self.user_settings.get("force_regen_art", False):
-                mode = "force_regen"
-            if not path.exists() or cid not in art_manifest:
-                pentry = prompt_data.get(cid, {}) if isinstance(prompt_data, dict) else {}
-                self.art_gen.ensure_art(cid, c.get("tags", []), c.get("rarity", "common"), mode, family=pentry.get("family"), symbol=pentry.get("symbol"))
-            art_manifest[cid] = {"path": str(path), "hash": str(abs(hash(cid))), "generator_version": GEN_ART_VERSION}
-
-        for e in self.enemies_data:
-            eid = e.get("id", "dummy")
-            ep = a / "sprites" / "enemies" / f"{eid}.png"
-            emode = "force_regen" if self.user_settings.get("force_regen_art", False) else "missing_only"
-            if not ep.exists() or self.user_settings.get("force_regen_art", False):
-                self.enemy_art_gen.ensure_art(eid, emode, tier=e.get("tier", "common"), biome=e.get("biome", "ukhu"))
-            art_manifest[f"enemy:{eid}"] = {"path": str(ep), "hash": str(abs(hash(eid))), "generator_version": GEN_ART_VERSION}
-
-        biome_manifest = {}
-        for biome in self.bg_gen.BIOMES:
-            self.bg_gen.get_layers(biome, 2026)
-            bdir = a / "sprites" / "biomes" / biome.lower().replace(" ", "_")
-            biome_manifest[biome] = {
-                "bg": str(bdir / "bg.png"), "mg": str(bdir / "mg.png"), "fg": str(bdir / "fg.png"),
-                "generator_version": GEN_BIOME_VERSION,
-            }
-
-        for guide_type in GUIDE_TYPES:
-            gp = self.guide_gen.generate(guide_type, mode="force_regen" if self.user_settings.get("force_regen_art", False) else "missing_only")
-            art_manifest[f"guide:{guide_type}"] = {"path": str(gp), "generator_version": GEN_ART_VERSION}
-
-        (data_dir() / "art_manifest.json").write_text(json.dumps(art_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-        (data_dir() / "biome_manifest.json").write_text(json.dumps(biome_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-        (data_dir() / "prompt_manifest.json").write_text(json.dumps({"count": len(self.cards_data), "generator_version": GEN_ART_VERSION}, ensure_ascii=False, indent=2), encoding="utf-8")
-        self.user_settings["force_regen_art"] = False
 
     def validate_navigation_methods(self):
         required = ["goto_menu", "goto_map", "goto_combat", "goto_reward", "goto_shop", "goto_event", "goto_deck", "goto_settings"]
@@ -607,7 +609,8 @@ class App:
 
     def regenerate_art_all(self):
         self.user_settings["force_regen_art"] = True
-        self.ensure_assets()
+        self.ensure_assets(progress_cb=self._loading_step)
+        self.asset_generation_active = False
         self.assets._cache.clear()
 
     def regenerate_music(self):
@@ -619,7 +622,9 @@ class App:
             pygame.mixer.quit()
         except Exception:
             pass
-        ensure_bgm_assets(force_regen=True)
+        self.user_settings["force_regen_music"] = True
+        self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
+        self.user_settings["force_regen_music"] = False
         self.music._manifest = self.music._load_manifest()
         try:
             pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
@@ -636,7 +641,8 @@ class App:
         manifest = load_json(manifest_path, default={})
         cards_dir = assets_dir() / "sprites" / "cards"
         if isinstance(manifest, dict):
-            for cid in manifest.keys():
+            items = manifest.get("items", manifest) if isinstance(manifest.get("items", {}), dict) else manifest
+            for cid in items.keys():
                 p = cards_dir / f"{cid}.png"
                 if p.exists():
                     p.unlink()
@@ -647,11 +653,11 @@ class App:
 
     def regenerate_card_art(self):
         total = len(self.cards_data)
-        manifest = {}
+        manifest = {"generator_version": GEN_ART_VERSION, "created_at": time.strftime("%Y-%m-%d %H:%M:%S"), "items": {}}
         for i, c in enumerate(self.cards_data, start=1):
             cid = c.get("id", "strike")
             self.art_gen.ensure_art(cid, c.get("tags", []), c.get("rarity", "common"), "force_regen")
-            manifest[cid] = {
+            manifest["items"][cid] = {
                 "prompt_hash": str(abs(hash(cid))),
                 "generated_at": int(time.time()),
                 "seed": str(abs(hash(cid)) % 1000000),
