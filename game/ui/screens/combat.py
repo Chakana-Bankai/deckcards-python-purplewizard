@@ -133,9 +133,67 @@ class CombatScreen:
     def _push_log(self, text: str):
         if not text:
             return
-        self.actions_log.append(str(text))
-        if len(self.actions_log) > 40:
-            del self.actions_log[:-40]
+        entry = str(text).strip()
+        if not entry:
+            return
+
+        if self.actions_log:
+            prev = str(self.actions_log[-1])
+            if " x" in prev and prev.rsplit(" x", 1)[-1].isdigit():
+                base, n = prev.rsplit(" x", 1)
+                if base == entry:
+                    self.actions_log[-1] = f"{base} x{int(n) + 1}"
+                else:
+                    self.actions_log.append(entry)
+            elif prev == entry:
+                self.actions_log[-1] = f"{entry} x2"
+            else:
+                self.actions_log.append(entry)
+        else:
+            self.actions_log.append(entry)
+
+        if len(self.actions_log) > 6:
+            del self.actions_log[:-6]
+
+    def _wrap_panel_text(self, text: str, max_width: int, max_lines: int = 2):
+        words = str(text or "").split()
+        if not words:
+            return [""]
+        lines = []
+        cur = ""
+        for w in words:
+            test = (cur + " " + w).strip()
+            if self.app.tiny_font.size(test)[0] <= max_width:
+                cur = test
+                continue
+            if cur:
+                lines.append(cur)
+                if len(lines) >= max_lines:
+                    break
+                cur = w
+            else:
+                part = w
+                while self.app.tiny_font.size(part)[0] > max_width and len(part) > 1:
+                    part = part[:-1]
+                lines.append(part)
+                if len(lines) >= max_lines:
+                    cur = ""
+                    break
+                cur = w[len(part):].strip()
+        if cur and len(lines) < max_lines:
+            lines.append(cur)
+
+        if len(lines) > max_lines:
+            lines = lines[:max_lines]
+        if lines:
+            while self.app.tiny_font.size(lines[-1])[0] > max_width and len(lines[-1]) > 1:
+                lines[-1] = lines[-1][:-1]
+            if len(words) > len(" ".join(lines).split()):
+                ell = "..."
+                while self.app.tiny_font.size(lines[-1] + ell)[0] > max_width and len(lines[-1]) > 1:
+                    lines[-1] = lines[-1][:-1]
+                lines[-1] = (lines[-1].rstrip(".") + ell) if not lines[-1].endswith("...") else lines[-1]
+        return lines
 
     def _trigger_dialog(self, trigger):
         if self.dialog_cd > 0:
@@ -477,15 +535,42 @@ class CombatScreen:
         pygame.draw.rect(s, bcol, self.end_turn_rect, border_radius=12)
         txt = self.app.font.render(label, True, UI_THEME["text"])
         s.blit(txt, (self.end_turn_rect.centerx - txt.get_width() // 2, self.end_turn_rect.centery - txt.get_height() // 2))
-        log_x = self.layout.actions_rect.x + 16
+        content_rect = self.layout.actions_rect.inflate(-16, -10)
+        clip_prev = s.get_clip()
+        s.set_clip(content_rect)
+        log_x = content_rect.x
         log_y = self.layout.actions_rect.y + 34
+        max_w = max(40, content_rect.w - 6)
+        max_bottom = content_rect.bottom
+
         tail = self.actions_log[-6:]
         last = tail[-1] if tail else "-"
-        s.blit(self.app.tiny_font.render(f"Última jugada: {last}", True, UI_THEME["muted"]), (log_x, log_y))
+        y = log_y
+        for line in self._wrap_panel_text(f"Última jugada: {last}", max_w, max_lines=1):
+            if y + 16 > max_bottom:
+                break
+            s.blit(self.app.tiny_font.render(line, True, UI_THEME["muted"]), (log_x, y))
+            y += 16
+
         enemy_int = self.c.enemies[0].current_intent().get("label", "-") if self.c.enemies else "-"
-        s.blit(self.app.tiny_font.render(f"Turno actual: {self.c.turn}  Intención enemiga: {enemy_int}", True, UI_THEME["text"]), (log_x, log_y + 18))
-        for i, line in enumerate(reversed(tail)):
-            s.blit(self.app.tiny_font.render(f"• {line}", True, UI_THEME["text"]), (log_x, log_y + 40 + i * 16))
+        for line in self._wrap_panel_text(f"Turno actual: {self.c.turn}  Intención enemiga: {enemy_int}", max_w, max_lines=2):
+            if y + 16 > max_bottom:
+                break
+            s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (log_x, y))
+            y += 16
+
+        y += 4
+        for line in reversed(tail):
+            wrapped = self._wrap_panel_text(f"• {line}", max_w, max_lines=2)
+            for wline in wrapped:
+                if y + 16 > max_bottom:
+                    break
+                s.blit(self.app.tiny_font.render(wline, True, UI_THEME["text"]), (log_x, y))
+                y += 16
+            if y + 16 > max_bottom:
+                break
+
+        s.set_clip(clip_prev)
 
         last_played = tail[-1] if tail else None
         self.detail_panel.render(
