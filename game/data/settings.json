@@ -1,8 +1,8 @@
 {
   "language": "es",
-  "music_volume": 0.5,
-  "sfx_volume": 0.7,
-  "fullscreen": false,
+  "music_volume": 0.785,
+  "sfx_volume": 0.8166666666666667,
+  "fullscreen": true,
   "turn_timer_enabled": true,
   "turn_timer_seconds": 20,
   "music_muted": false,
@@ -10,7 +10,7 @@
   "autogen_art_mode": "missing_only",
   "dev_reset_autogen_on_boot": false,
   "fx_vignette": true,
-  "fx_scanlines": false,
+  "fx_scanlines": true,
   "fx_glow": true,
   "fx_particles": true
 }
