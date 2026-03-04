@@ -17,6 +17,7 @@ class SettingsScreen:
         self.fx_scan_rect = pygame.Rect(360, 620, 600, 44)
         self.fx_glow_rect = pygame.Rect(360, 670, 600, 44)
         self.fx_part_rect = pygame.Rect(360, 720, 600, 44)
+        self.detail_panel_rect = pygame.Rect(360, 770, 600, 44)
         self.art_regen_rect = pygame.Rect(1020, 220, 540, 64)
         self.music_regen_rect = pygame.Rect(1020, 300, 540, 64)
         self.reset_autogen_rect = pygame.Rect(1020, 380, 540, 64)
@@ -34,9 +35,10 @@ class SettingsScreen:
         elif action == "music":
             self.app.regenerate_music()
         elif action == "reset":
-            self.app.reset_autogen_total(mark_only=True)
-            self.progress = "Reset programado para próximo arranque"
+            self.app.reset_autogen_total(mark_only=False)
+            self.progress = "Reset aplicado. Reiniciando…"
             self.modal = None
+            self.app.request_restart("regen")
             return
         self.app.debug["last_regen_ts"] = pygame.time.get_ticks() // 1000
         self.progress = "Listo"
@@ -74,6 +76,7 @@ class SettingsScreen:
             elif self.fx_scan_rect.collidepoint(pos): self.app.user_settings["fx_scanlines"] = not self.app.user_settings.get("fx_scanlines", False)
             elif self.fx_glow_rect.collidepoint(pos): self.app.user_settings["fx_glow"] = not self.app.user_settings.get("fx_glow", True)
             elif self.fx_part_rect.collidepoint(pos): self.app.user_settings["fx_particles"] = not self.app.user_settings.get("fx_particles", True)
+            elif self.detail_panel_rect.collidepoint(pos): self.app.user_settings["detail_panel"] = not self.app.user_settings.get("detail_panel", True)
             elif self.art_regen_rect.collidepoint(pos): self.modal = "art"
             elif self.music_regen_rect.collidepoint(pos): self.modal = "music"
             elif self.reset_autogen_rect.collidepoint(pos): self.modal = "reset"
@@ -112,19 +115,13 @@ class SettingsScreen:
             pygame.draw.rect(surface, UI_THEME["panel"], rect, border_radius=10)
             state = "ON" if self.app.user_settings.get(key, True) else "OFF"
             surface.blit(self.app.small_font.render(f"FX {label}: {state}", True, UI_THEME["text"]), (rect.x + 20, rect.y + 12))
+        pygame.draw.rect(surface, UI_THEME["panel"], self.detail_panel_rect, border_radius=10)
+        detail_on = self.app.user_settings.get("detail_panel", True)
+        surface.blit(self.app.small_font.render(f"Panel de detalle: {'ON' if detail_on else 'OFF'}", True, UI_THEME["text"]), (self.detail_panel_rect.x + 20, self.detail_panel_rect.y + 12))
 
         self._draw_btn(surface, self.art_regen_rect, "Regenerar Arte (Cartas + Enemigos + Biomas)")
         self._draw_btn(surface, self.music_regen_rect, "Regenerar Música")
         self._draw_btn(surface, self.reset_autogen_rect, "Reset Autogen Total")
-
-        status = pygame.Rect(1020, 470, 540, 170)
-        pygame.draw.rect(surface, UI_THEME["panel"], status, border_radius=10)
-        pygame.draw.rect(surface, UI_THEME["accent_violet"], status, 2, border_radius=10)
-        surface.blit(self.app.small_font.render(f"Estado de Contenido", True, UI_THEME["gold"]), (1040, 486))
-        surface.blit(self.app.tiny_font.render(f"Art: {self.app.debug.get('art_status','OK')}", True, UI_THEME["text"]), (1040, 520))
-        surface.blit(self.app.tiny_font.render(f"Music: {self.app.debug.get('music_status','OK')}", True, UI_THEME["text"]), (1040, 546))
-        surface.blit(self.app.tiny_font.render(f"Biome: {self.app.debug.get('biome_status','OK')}", True, UI_THEME["text"]), (1040, 572))
-        surface.blit(self.app.tiny_font.render(f"Last regen: {self.app.debug.get('last_regen_ts','-')}", True, UI_THEME["muted"]), (1040, 598))
 
         if self.progress:
             surface.blit(self.app.small_font.render(self.progress, True, UI_THEME["gold"]), (1040, 660))
