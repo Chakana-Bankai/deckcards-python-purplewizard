@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-import json
 import time
 
 from game.core.bootstrap_assets import ensure_bgm_assets
 from game.core.paths import data_dir
+from game.core.safe_io import atomic_write_json
 
 
 class AudioPipeline:
@@ -17,5 +17,6 @@ class AudioPipeline:
             print(f"[audio_safe] fallback music generation failed: {exc}")
             manifest = {}
         payload = {"generator_version": "bgm_v2", "created_at": int(time.time()), "items": manifest if isinstance(manifest, dict) else {}}
-        (data_dir() / "audio_manifest.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        if bool(settings.get("force_regen_music", False) or settings.get("update_manifests", False)):
+            atomic_write_json(data_dir() / "audio_manifest.json", payload)
         return manifest

@@ -12,7 +12,7 @@ from game.art.gen_avatar_chakana import GEN_AVATAR_VERSION, render_avatar
 from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
 from game.content.card_art_generator import export_prompts
 from game.core.paths import assets_dir, data_dir
-from game.core.safe_io import load_json
+from game.core.safe_io import atomic_write_json, load_json
 
 
 class AssetPipeline:
@@ -25,7 +25,6 @@ class AssetPipeline:
     def _safe_manifest(self, path: Path) -> dict:
         payload = {"generator_version": GEN_ART_VERSION, "created_at": time.strftime("%Y-%m-%d %H:%M:%S"), "items": {}}
         if not path.exists():
-            path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
             return payload
         try:
             raw = json.loads(path.read_text(encoding="utf-8"))
@@ -41,7 +40,6 @@ class AssetPipeline:
             path.replace(bak)
         except Exception:
             pass
-        path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
         return payload
 
     def _placeholder_png(self, path: Path, size=(256, 256), label: str = "?"):
@@ -109,7 +107,7 @@ class AssetPipeline:
             if progress_cb:
                 progress_cb(f"Generando guías ({i}/{total})", 0.74 + 0.06 * (i / total))
 
-    def ensure_biomes(self, manifest: dict, progress_cb=None):
+    def ensure_biomes(self, manifest: dict, progress_cb=None, write_manifest: bool = False):
         a = assets_dir()
         biome_manifest = {}
         total = max(1, len(self.bg_gen.BIOMES))
@@ -126,10 +124,11 @@ class AssetPipeline:
             biome_manifest[biome] = {"bg": str(bdir / "bg.png"), "mg": str(bdir / "mg.png"), "fg": str(bdir / "fg.png"), "generator_version": GEN_BIOME_VERSION}
             if progress_cb:
                 progress_cb(f"Generando biomas ({biome})", 0.80 + 0.10 * (i / total))
-        (data_dir() / "biome_manifest.json").write_text(json.dumps(biome_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        if write_manifest:
+            atomic_write_json(data_dir() / "biome_manifest.json", biome_manifest)
 
 
-    def ensure_avatar(self):
+    def ensure_avatar(self, write_manifest: bool = False):
         p_preview = assets_dir() / "sprites" / "avatar" / "chakana.png"
         p_player = assets_dir() / "sprites" / "player" / "chakana_avatar.png"
         p_preview.parent.mkdir(parents=True, exist_ok=True)
@@ -138,7 +137,8 @@ class AssetPipeline:
             surf = render_avatar(0.0, 256)
             pygame.image.save(surf.convert_alpha(), p_preview)
             pygame.image.save(surf.convert_alpha(), p_player)
-            (data_dir() / "art_manifest_avatar.json").write_text(json.dumps({"generator_version": GEN_AVATAR_VERSION, "path": str(p_preview), "player_path": str(p_player)}, ensure_ascii=False, indent=2), encoding="utf-8")
+            if write_manifest:
+                atomic_write_json(data_dir() / "art_manifest_avatar.json", {"generator_version": GEN_AVATAR_VERSION, "path": str(p_preview), "player_path": str(p_player)})
         except Exception as exc:
             print(f"[safe_gen] using placeholder for avatar:chakana due to {exc}")
             self._placeholder_png(p_preview, size=(256, 256), label="chakana")
@@ -155,7 +155,8 @@ class AssetPipeline:
         return payload
 
     def ensure_all_assets(self, settings: dict, content: dict, progress_cb=None):
-        self.ensure_avatar()
+        write_manifests = bool(settings.get("force_regen_art", False) or settings.get("update_manifests", False))
+        self.ensure_avatar(write_manifest=write_manifests)
         a = assets_dir()
         (a / "music").mkdir(parents=True, exist_ok=True)
         (a / "sprites" / "cards").mkdir(parents=True, exist_ok=True)
@@ -166,7 +167,7 @@ class AssetPipeline:
 
         cards = content.get("cards", [])
         enemies = content.get("enemies", [])
-        prompt_data = load_json(data_dir() / "card_prompts.json", default={}, optional=True, auto_create=lambda: self._default_prompt_payload(cards))
+        prompt_data = load_json(data_dir() / "card_prompts.json", default={}, optional=True)
         if bool(settings.get("force_regen_art", False)):
             export_prompts(cards, enemies)
             prompt_data = load_json(data_dir() / "card_prompts.json", default={}, optional=True)
@@ -180,17 +181,17 @@ class AssetPipeline:
         self.ensure_card_art(settings, cards, prompt_data, items, progress_cb)
         self.ensure_enemy_portraits(settings, enemies, items, progress_cb)
         self.ensure_guides(settings, content.get("guide_types", []), items, progress_cb)
-        self.ensure_biomes(art_manifest, progress_cb)
+        self.ensure_biomes(art_manifest, progress_cb, write_manifest=write_manifests)
 
-        manifest_path.write_text(json.dumps(art_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-
-        cards_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if not str(k).startswith("enemy:") and not str(k).startswith("guide:")}}
-        enemies_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if str(k).startswith("enemy:")}}
-        guides_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if str(k).startswith("guide:")}}
-        (data_dir() / "art_manifest_cards.json").write_text(json.dumps(cards_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-        (data_dir() / "art_manifest_enemies.json").write_text(json.dumps(enemies_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-        (data_dir() / "art_manifest_guides.json").write_text(json.dumps(guides_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-        (data_dir() / "prompt_manifest.json").write_text(json.dumps({"count": len(cards), "generator_version": GEN_ART_VERSION}, ensure_ascii=False, indent=2), encoding="utf-8")
+        if write_manifests:
+            atomic_write_json(manifest_path, art_manifest)
+            cards_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if not str(k).startswith("enemy:") and not str(k).startswith("guide:")}}
+            enemies_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if str(k).startswith("enemy:")}}
+            guides_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if str(k).startswith("guide:")}}
+            atomic_write_json(data_dir() / "art_manifest_cards.json", cards_manifest)
+            atomic_write_json(data_dir() / "art_manifest_enemies.json", enemies_manifest)
+            atomic_write_json(data_dir() / "art_manifest_guides.json", guides_manifest)
+            atomic_write_json(data_dir() / "prompt_manifest.json", {"count": len(cards), "generator_version": GEN_ART_VERSION})
         settings["force_regen_art"] = False
         placeholders = sum(1 for v in items.values() if isinstance(v, dict) and v.get("placeholder"))
         return {"manifest": art_manifest, "placeholders": placeholders}

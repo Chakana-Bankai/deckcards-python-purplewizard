@@ -11,6 +11,7 @@ import zlib
 from pathlib import Path
 
 from game.core.paths import assets_dir, data_dir
+from game.core.safe_io import atomic_write_json
 
 
 PNG_HEADER = b"\x89PNG\r\n\x1a\n"
@@ -229,5 +230,6 @@ def ensure_bgm_assets(force_regen: bool = False) -> dict:
         except Exception:
             existing = {}
         existing.update(manifest)
-        manifest_path.write_text(json.dumps(existing, ensure_ascii=False, indent=2), encoding="utf-8")
+        if force_regen:
+            atomic_write_json(manifest_path, existing)
     return manifest

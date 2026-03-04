@@ -7,10 +7,15 @@ logs/
 game/.venv/
 game\\.venv/
 
-# Binary assets are generated/copied locally at runtime for compatibility
-# with environments that reject binary files in patches.
-game/assets/**/*.png
-game/assets/**/*.wav
-game/assets/**/*.ttf
-!game/assets/**/.gitkeep
+# Auto-generated runtime binaries (keep data/docs JSON source files versioned)
+game/assets/music/*.wav
+game/assets/music/*.ogg
+game/assets/sprites/cards/*.png
+game/assets/sprites/enemies/*.png
+game/assets/**/generated_*
 
+# Runtime fonts and cache-like binaries
+game/assets/**/*.ttf
+
+# Keep placeholder keepfiles
+!game/assets/**/.gitkeep

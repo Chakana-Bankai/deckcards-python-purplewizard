@@ -4,6 +4,7 @@ import traceback
 import shutil
 import json
 import time
+import sys
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -24,7 +25,7 @@ from game.core.lore_service import LoreService
 from game.lore.lore_engine import LoreEngine
 from game.core.paths import data_dir, assets_dir
 from game.core.rng import SeededRNG
-from game.core.safe_io import load_json
+from game.core.safe_io import atomic_write_json, load_json
 from game.core.settings_store import load_settings, save_settings
 from game.core.state_machine import StateMachine
 from game.settings import FPS, INTERNAL_HEIGHT, INTERNAL_WIDTH
@@ -318,11 +319,12 @@ class App:
         if prompts_path.exists() and not force:
             return
         payload = self._build_card_prompts_payload()
-        prompts_path.parent.mkdir(parents=True, exist_ok=True)
-        prompts_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        atomic_write_json(prompts_path, payload)
 
     def ensure_assets(self, progress_cb=None):
-        self._ensure_card_prompts_file(force=bool(self.user_settings.get("force_regen_art", False)))
+        force_regen = bool(self.user_settings.get("force_regen_art", False) or self.user_settings.get("update_manifests", False))
+        if force_regen:
+            self._ensure_card_prompts_file(force=True)
         ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
         content_payload = {
             "cards": self.cards_data,
@@ -742,13 +744,17 @@ class App:
 
     def regenerate_art_missing(self):
         self.user_settings["force_regen_art"] = False
+        self.user_settings["update_manifests"] = True
         self.ensure_assets(progress_cb=self._loading_step)
+        self.user_settings["update_manifests"] = False
         self.asset_generation_active = False
         self.assets._cache.clear()
 
     def regenerate_art_all(self):
         self.user_settings["force_regen_art"] = True
+        self.user_settings["update_manifests"] = True
         self.ensure_assets(progress_cb=self._loading_step)
+        self.user_settings["update_manifests"] = False
         self.asset_generation_active = False
         self.assets._cache.clear()
 
@@ -762,8 +768,10 @@ class App:
         except Exception:
             pass
         self.user_settings["force_regen_music"] = True
+        self.user_settings["update_manifests"] = True
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
         self.user_settings["force_regen_music"] = False
+        self.user_settings["update_manifests"] = False
         self.music._manifest = self.music._load_manifest()
         try:
             pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
@@ -802,7 +810,7 @@ class App:
                 "seed": str(abs(hash(cid)) % 1000000),
             }
             self.set_debug(last_ui_event=f"regen_art:{i}/{total}")
-        (data_dir() / "art_manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        atomic_write_json(data_dir() / "art_manifest.json", manifest)
         self.assets._cache.clear()
 
     def save_user_settings(self):
@@ -921,7 +929,16 @@ class App:
 if __name__ == "__main__":
     app = None
     try:
+        cli_force_manifests = "--regen-manifests" in set(sys.argv[1:])
         app = App()
+        if cli_force_manifests:
+            app.user_settings["force_regen_art"] = True
+            app.user_settings["force_regen_music"] = True
+            app.user_settings["update_manifests"] = True
+            app.ensure_assets(progress_cb=app._loading_step)
+            app.audio_pipeline.ensure_music_assets(app.user_settings, progress_cb=app._loading_step)
+            app.user_settings["update_manifests"] = False
+            app.user_settings["force_regen_music"] = False
         app.run()
     except Exception:
         trace = traceback.format_exc()
