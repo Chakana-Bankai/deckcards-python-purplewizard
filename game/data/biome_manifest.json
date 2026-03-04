@@ -1,0 +1,26 @@
+{
+  "Templo Obsidiana": {
+    "bg": "/workspace/deckcards-python-purplewizard/game/assets/sprites/biomes/templo_obsidiana/bg.png",
+    "mg": "/workspace/deckcards-python-purplewizard/game/assets/sprites/biomes/templo_obsidiana/mg.png",
+    "fg": "/workspace/deckcards-python-purplewizard/game/assets/sprites/biomes/templo_obsidiana/fg.png",
+    "generator_version": "biome_layer_v1"
+  },
+  "Pampa Astral": {
+    "bg": "/workspace/deckcards-python-purplewizard/game/assets/sprites/biomes/pampa_astral/bg.png",
+    "mg": "/workspace/deckcards-python-purplewizard/game/assets/sprites/biomes/pampa_astral/mg.png",
+    "fg": "/workspace/deckcards-python-purplewizard/game/assets/sprites/biomes/pampa_astral/fg.png",
+    "generator_version": "biome_layer_v1"
+  },
+  "Ruinas Chakana": {
+    "bg": "/workspace/deckcards-python-purplewizard/game/assets/sprites/biomes/ruinas_chakana/bg.png",
+    "mg": "/workspace/deckcards-python-purplewizard/game/assets/sprites/biomes/ruinas_chakana/mg.png",
+    "fg": "/workspace/deckcards-python-purplewizard/game/assets/sprites/biomes/ruinas_chakana/fg.png",
+    "generator_version": "biome_layer_v1"
+  },
+  "Caverna Umbral": {
+    "bg": "/workspace/deckcards-python-purplewizard/game/assets/sprites/biomes/caverna_umbral/bg.png",
+    "mg": "/workspace/deckcards-python-purplewizard/game/assets/sprites/biomes/caverna_umbral/mg.png",
+    "fg": "/workspace/deckcards-python-purplewizard/game/assets/sprites/biomes/caverna_umbral/fg.png",
+    "generator_version": "biome_layer_v1"
+  }
+}
