@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.log
+logs/
+.venv/
+game/.venv/
+game\\.venv/
+
+# Binary assets are generated/copied locally at runtime for compatibility
+# with environments that reject binary files in patches.
+game/assets/**/*.png
+game/assets/**/*.wav
+game/assets/**/*.ttf
+!game/assets/**/.gitkeep
+
