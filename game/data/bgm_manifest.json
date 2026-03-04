@@ -1,0 +1,13 @@
+{
+  "ending": {
+    "track": "ending",
+    "bpm": 88,
+    "bars_a": 8,
+    "bars_b": 8,
+    "intro_bars": 8,
+    "loop_bars": 8,
+    "total_bars": 16,
+    "duration": 43.64,
+    "generator_version": "bgm_v2"
+  }
+}

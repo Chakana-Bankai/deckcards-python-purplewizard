@@ -1,0 +1,1682 @@
+{
+  "filo_astral": {
+    "id": "filo_astral",
+    "family": "crimson_chaos",
+    "symbol": "puma",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos puma"
+  },
+  "lanza_del_amanecer": {
+    "id": "lanza_del_amanecer",
+    "family": "crimson_chaos",
+    "symbol": "puma",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos puma"
+  },
+  "corte_del_puma": {
+    "id": "corte_del_puma",
+    "family": "crimson_chaos",
+    "symbol": "axe",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos axe"
+  },
+  "golpe_del_trueno": {
+    "id": "golpe_del_trueno",
+    "family": "crimson_chaos",
+    "symbol": "puma",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos puma"
+  },
+  "estallido_arcano": {
+    "id": "estallido_arcano",
+    "family": "crimson_chaos",
+    "symbol": "sword",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos sword"
+  },
+  "ruptura_del_umbral": {
+    "id": "ruptura_del_umbral",
+    "family": "crimson_chaos",
+    "symbol": "puma",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos puma"
+  },
+  "garra_espiritual": {
+    "id": "garra_espiritual",
+    "family": "crimson_chaos",
+    "symbol": "sword",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos sword"
+  },
+  "tormenta_de_lanzas": {
+    "id": "tormenta_de_lanzas",
+    "family": "crimson_chaos",
+    "symbol": "puma",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos puma"
+  },
+  "fragmento_celeste": {
+    "id": "fragmento_celeste",
+    "family": "crimson_chaos",
+    "symbol": "sword",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos sword"
+  },
+  "embate_del_jaguar": {
+    "id": "embate_del_jaguar",
+    "family": "crimson_chaos",
+    "symbol": "sword",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos sword"
+  },
+  "punal_de_luz": {
+    "id": "punal_de_luz",
+    "family": "crimson_chaos",
+    "symbol": "puma",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos puma"
+  },
+  "desgarro_del_vacio": {
+    "id": "desgarro_del_vacio",
+    "family": "crimson_chaos",
+    "symbol": "puma",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos puma"
+  },
+  "impacto_solar": {
+    "id": "impacto_solar",
+    "family": "crimson_chaos",
+    "symbol": "axe",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos axe"
+  },
+  "corte_dimensional": {
+    "id": "corte_dimensional",
+    "family": "crimson_chaos",
+    "symbol": "axe",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos axe"
+  },
+  "filo_en_cadena": {
+    "id": "filo_en_cadena",
+    "family": "crimson_chaos",
+    "symbol": "puma",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos puma"
+  },
+  "sello_protector": {
+    "id": "sello_protector",
+    "family": "emerald_spirit",
+    "symbol": "rune_stone",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit rune_stone"
+  },
+  "muralla_de_piedra": {
+    "id": "muralla_de_piedra",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit tree"
+  },
+  "escudo_de_luz": {
+    "id": "escudo_de_luz",
+    "family": "emerald_spirit",
+    "symbol": "rune_stone",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit rune_stone"
+  },
+  "guardia_terrenal": {
+    "id": "guardia_terrenal",
+    "family": "emerald_spirit",
+    "symbol": "mask",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit mask"
+  },
+  "resistencia_ancestral": {
+    "id": "resistencia_ancestral",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit tree"
+  },
+  "caparazon_kaypacha": {
+    "id": "caparazon_kaypacha",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit tree"
+  },
+  "fortaleza_chakana": {
+    "id": "fortaleza_chakana",
+    "family": "emerald_spirit",
+    "symbol": "rune_stone",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit rune_stone"
+  },
+  "refugio_espiritual": {
+    "id": "refugio_espiritual",
+    "family": "violet_arcane",
+    "symbol": "portal",
+    "palette": [
+      [
+        26,
+        18,
+        52
+      ],
+      [
+        74,
+        52,
+        120
+      ],
+      [
+        154,
+        112,
+        212
+      ],
+      [
+        240,
+        220,
+        170
+      ]
+    ],
+    "prompt_text": "pixel card violet_arcane portal"
+  },
+  "anillo_de_proteccion": {
+    "id": "anillo_de_proteccion",
+    "family": "emerald_spirit",
+    "symbol": "mask",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit mask"
+  },
+  "campo_protector": {
+    "id": "campo_protector",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit tree"
+  },
+  "guardia_solar": {
+    "id": "guardia_solar",
+    "family": "emerald_spirit",
+    "symbol": "mask",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit mask"
+  },
+  "escudo_del_chaman": {
+    "id": "escudo_del_chaman",
+    "family": "emerald_spirit",
+    "symbol": "mask",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit mask"
+  },
+  "barrera_sagrada": {
+    "id": "barrera_sagrada",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit tree"
+  },
+  "firmeza_del_cuerpo": {
+    "id": "firmeza_del_cuerpo",
+    "family": "emerald_spirit",
+    "symbol": "rune_stone",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit rune_stone"
+  },
+  "piedra_ritual": {
+    "id": "piedra_ritual",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit tree"
+  },
+  "vision_del_condor": {
+    "id": "vision_del_condor",
+    "family": "azure_cosmic",
+    "symbol": "portal",
+    "palette": [
+      [
+        12,
+        24,
+        52
+      ],
+      [
+        40,
+        82,
+        132
+      ],
+      [
+        80,
+        148,
+        210
+      ],
+      [
+        206,
+        238,
+        255
+      ]
+    ],
+    "prompt_text": "pixel card azure_cosmic portal"
+  },
+  "meditacion_profunda": {
+    "id": "meditacion_profunda",
+    "family": "azure_cosmic",
+    "symbol": "condor",
+    "palette": [
+      [
+        12,
+        24,
+        52
+      ],
+      [
+        40,
+        82,
+        132
+      ],
+      [
+        80,
+        148,
+        210
+      ],
+      [
+        206,
+        238,
+        255
+      ]
+    ],
+    "prompt_text": "pixel card azure_cosmic condor"
+  },
+  "claridad_del_hanan": {
+    "id": "claridad_del_hanan",
+    "family": "azure_cosmic",
+    "symbol": "portal",
+    "palette": [
+      [
+        12,
+        24,
+        52
+      ],
+      [
+        40,
+        82,
+        132
+      ],
+      [
+        80,
+        148,
+        210
+      ],
+      [
+        206,
+        238,
+        255
+      ]
+    ],
+    "prompt_text": "pixel card azure_cosmic portal"
+  },
+  "lectura_del_destino": {
+    "id": "lectura_del_destino",
+    "family": "azure_cosmic",
+    "symbol": "portal",
+    "palette": [
+      [
+        12,
+        24,
+        52
+      ],
+      [
+        40,
+        82,
+        132
+      ],
+      [
+        80,
+        148,
+        210
+      ],
+      [
+        206,
+        238,
+        255
+      ]
+    ],
+    "prompt_text": "pixel card azure_cosmic portal"
+  },
+  "revelacion_astral": {
+    "id": "revelacion_astral",
+    "family": "azure_cosmic",
+    "symbol": "portal",
+    "palette": [
+      [
+        12,
+        24,
+        52
+      ],
+      [
+        40,
+        82,
+        132
+      ],
+      [
+        80,
+        148,
+        210
+      ],
+      [
+        206,
+        238,
+        255
+      ]
+    ],
+    "prompt_text": "pixel card azure_cosmic portal"
+  },
+  "eco_de_sabiduria": {
+    "id": "eco_de_sabiduria",
+    "family": "violet_arcane",
+    "symbol": "portal",
+    "palette": [
+      [
+        26,
+        18,
+        52
+      ],
+      [
+        74,
+        52,
+        120
+      ],
+      [
+        154,
+        112,
+        212
+      ],
+      [
+        240,
+        220,
+        170
+      ]
+    ],
+    "prompt_text": "pixel card violet_arcane portal"
+  },
+  "observacion_sagrada": {
+    "id": "observacion_sagrada",
+    "family": "azure_cosmic",
+    "symbol": "orb",
+    "palette": [
+      [
+        12,
+        24,
+        52
+      ],
+      [
+        40,
+        82,
+        132
+      ],
+      [
+        80,
+        148,
+        210
+      ],
+      [
+        206,
+        238,
+        255
+      ]
+    ],
+    "prompt_text": "pixel card azure_cosmic orb"
+  },
+  "calculo_del_cosmos": {
+    "id": "calculo_del_cosmos",
+    "family": "azure_cosmic",
+    "symbol": "portal",
+    "palette": [
+      [
+        12,
+        24,
+        52
+      ],
+      [
+        40,
+        82,
+        132
+      ],
+      [
+        80,
+        148,
+        210
+      ],
+      [
+        206,
+        238,
+        255
+      ]
+    ],
+    "prompt_text": "pixel card azure_cosmic portal"
+  },
+  "mapa_del_destino": {
+    "id": "mapa_del_destino",
+    "family": "azure_cosmic",
+    "symbol": "condor",
+    "palette": [
+      [
+        12,
+        24,
+        52
+      ],
+      [
+        40,
+        82,
+        132
+      ],
+      [
+        80,
+        148,
+        210
+      ],
+      [
+        206,
+        238,
+        255
+      ]
+    ],
+    "prompt_text": "pixel card azure_cosmic condor"
+  },
+  "profecia_del_umbral": {
+    "id": "profecia_del_umbral",
+    "family": "violet_arcane",
+    "symbol": "staff",
+    "palette": [
+      [
+        26,
+        18,
+        52
+      ],
+      [
+        74,
+        52,
+        120
+      ],
+      [
+        154,
+        112,
+        212
+      ],
+      [
+        240,
+        220,
+        170
+      ]
+    ],
+    "prompt_text": "pixel card violet_arcane staff"
+  },
+  "equilibrio_mental": {
+    "id": "equilibrio_mental",
+    "family": "violet_arcane",
+    "symbol": "portal",
+    "palette": [
+      [
+        26,
+        18,
+        52
+      ],
+      [
+        74,
+        52,
+        120
+      ],
+      [
+        154,
+        112,
+        212
+      ],
+      [
+        240,
+        220,
+        170
+      ]
+    ],
+    "prompt_text": "pixel card violet_arcane portal"
+  },
+  "mente_serena": {
+    "id": "mente_serena",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit tree"
+  },
+  "silencio_interior": {
+    "id": "silencio_interior",
+    "family": "azure_cosmic",
+    "symbol": "portal",
+    "palette": [
+      [
+        12,
+        24,
+        52
+      ],
+      [
+        40,
+        82,
+        132
+      ],
+      [
+        80,
+        148,
+        210
+      ],
+      [
+        206,
+        238,
+        255
+      ]
+    ],
+    "prompt_text": "pixel card azure_cosmic portal"
+  },
+  "ojo_interior": {
+    "id": "ojo_interior",
+    "family": "violet_arcane",
+    "symbol": "portal",
+    "palette": [
+      [
+        26,
+        18,
+        52
+      ],
+      [
+        74,
+        52,
+        120
+      ],
+      [
+        154,
+        112,
+        212
+      ],
+      [
+        240,
+        220,
+        170
+      ]
+    ],
+    "prompt_text": "pixel card violet_arcane portal"
+  },
+  "ojo_del_condor": {
+    "id": "ojo_del_condor",
+    "family": "azure_cosmic",
+    "symbol": "portal",
+    "palette": [
+      [
+        12,
+        24,
+        52
+      ],
+      [
+        40,
+        82,
+        132
+      ],
+      [
+        80,
+        148,
+        210
+      ],
+      [
+        206,
+        238,
+        255
+      ]
+    ],
+    "prompt_text": "pixel card azure_cosmic portal"
+  },
+  "portal_de_la_chakana": {
+    "id": "portal_de_la_chakana",
+    "family": "azure_cosmic",
+    "symbol": "portal",
+    "palette": [
+      [
+        12,
+        24,
+        52
+      ],
+      [
+        40,
+        82,
+        132
+      ],
+      [
+        80,
+        148,
+        210
+      ],
+      [
+        206,
+        238,
+        255
+      ]
+    ],
+    "prompt_text": "pixel card azure_cosmic portal"
+  },
+  "invocacion_astral": {
+    "id": "invocacion_astral",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit tree"
+  },
+  "pulso_cosmico": {
+    "id": "pulso_cosmico",
+    "family": "crimson_chaos",
+    "symbol": "puma",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos puma"
+  },
+  "mantra_del_umbral": {
+    "id": "mantra_del_umbral",
+    "family": "violet_arcane",
+    "symbol": "portal",
+    "palette": [
+      [
+        26,
+        18,
+        52
+      ],
+      [
+        74,
+        52,
+        120
+      ],
+      [
+        154,
+        112,
+        212
+      ],
+      [
+        240,
+        220,
+        170
+      ]
+    ],
+    "prompt_text": "pixel card violet_arcane portal"
+  },
+  "vinculo_de_energia": {
+    "id": "vinculo_de_energia",
+    "family": "violet_arcane",
+    "symbol": "portal",
+    "palette": [
+      [
+        26,
+        18,
+        52
+      ],
+      [
+        74,
+        52,
+        120
+      ],
+      [
+        154,
+        112,
+        212
+      ],
+      [
+        240,
+        220,
+        170
+      ]
+    ],
+    "prompt_text": "pixel card violet_arcane portal"
+  },
+  "circulo_de_invocacion": {
+    "id": "circulo_de_invocacion",
+    "family": "emerald_spirit",
+    "symbol": "rune_stone",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit rune_stone"
+  },
+  "fusion_espiritual": {
+    "id": "fusion_espiritual",
+    "family": "emerald_spirit",
+    "symbol": "rune_stone",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit rune_stone"
+  },
+  "luz_del_hanan": {
+    "id": "luz_del_hanan",
+    "family": "violet_arcane",
+    "symbol": "portal",
+    "palette": [
+      [
+        26,
+        18,
+        52
+      ],
+      [
+        74,
+        52,
+        120
+      ],
+      [
+        154,
+        112,
+        212
+      ],
+      [
+        240,
+        220,
+        170
+      ]
+    ],
+    "prompt_text": "pixel card violet_arcane portal"
+  },
+  "tormenta_mistica": {
+    "id": "tormenta_mistica",
+    "family": "crimson_chaos",
+    "symbol": "sword",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos sword"
+  },
+  "espiritu_guardian": {
+    "id": "espiritu_guardian",
+    "family": "emerald_spirit",
+    "symbol": "mask",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit mask"
+  },
+  "sello_de_los_tres_pachas": {
+    "id": "sello_de_los_tres_pachas",
+    "family": "emerald_spirit",
+    "symbol": "rune_stone",
+    "palette": [
+      [
+        12,
+        34,
+        26
+      ],
+      [
+        38,
+        92,
+        68
+      ],
+      [
+        76,
+        156,
+        122
+      ],
+      [
+        215,
+        246,
+        216
+      ]
+    ],
+    "prompt_text": "pixel card emerald_spirit rune_stone"
+  },
+  "espejo_astral": {
+    "id": "espejo_astral",
+    "family": "violet_arcane",
+    "symbol": "portal",
+    "palette": [
+      [
+        26,
+        18,
+        52
+      ],
+      [
+        74,
+        52,
+        120
+      ],
+      [
+        154,
+        112,
+        212
+      ],
+      [
+        240,
+        220,
+        170
+      ]
+    ],
+    "prompt_text": "pixel card violet_arcane portal"
+  },
+  "ritual_de_la_trama": {
+    "id": "ritual_de_la_trama",
+    "family": "crimson_chaos",
+    "symbol": "sword",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos sword"
+  },
+  "baston_del_umbral": {
+    "id": "baston_del_umbral",
+    "family": "violet_arcane",
+    "symbol": "portal",
+    "palette": [
+      [
+        26,
+        18,
+        52
+      ],
+      [
+        74,
+        52,
+        120
+      ],
+      [
+        154,
+        112,
+        212
+      ],
+      [
+        240,
+        220,
+        170
+      ]
+    ],
+    "prompt_text": "pixel card violet_arcane portal"
+  },
+  "chakana_de_luz": {
+    "id": "chakana_de_luz",
+    "family": "crimson_chaos",
+    "symbol": "axe",
+    "palette": [
+      [
+        38,
+        10,
+        18
+      ],
+      [
+        98,
+        28,
+        44
+      ],
+      [
+        170,
+        52,
+        76
+      ],
+      [
+        252,
+        198,
+        176
+      ]
+    ],
+    "prompt_text": "pixel card crimson_chaos axe"
+  }
+}
