@@ -1,0 +1,4 @@
+ENEMY BIBLE
+- Enemy portrait dominant in panel.
+- Boss receives extra scale and aura.
+- Always display enemy name, HP bar and intention text.
