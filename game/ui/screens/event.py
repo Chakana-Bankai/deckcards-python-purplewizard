@@ -15,9 +15,22 @@ class EventScreen:
         self.idx = 0
         self.timer = 0
         self.msg = ""
+        self.guide_type = self._pick_guide_type(event.get("id", "default"))
 
     def on_enter(self):
         self.writer.set(self.lines[0], 3.0)
+
+    def _pick_guide_type(self, event_id: str) -> str:
+        eid = (event_id or "").lower()
+        if any(k in eid for k in ["oracle", "angel", "luz"]):
+            return "angel"
+        if any(k in eid for k in ["tribu", "apacheta", "ritual", "shaman"]):
+            return "shaman"
+        if any(k in eid for k in ["demon", "sangre", "abyss", "void"]):
+            return "demon"
+        if any(k in eid for k in ["hack", "data", "runa", "circuit"]):
+            return "arcane_hacker"
+        return ["angel", "shaman", "demon", "arcane_hacker"][abs(hash(eid)) % 4]
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -49,9 +62,7 @@ class EventScreen:
         avatar_frame = pygame.Rect(170, 220, 300, 300)
         pygame.draw.rect(s, (58, 40, 82), avatar_frame, border_radius=14)
         pygame.draw.rect(s, UI_THEME["gold"], avatar_frame, 2, border_radius=14)
-        av = pygame.Surface((260, 260)); av.fill((34, 24, 52))
-        pygame.draw.circle(av, (188, 150, 230), (130, 80), 56)
-        pygame.draw.rect(av, (110, 80, 160), (84, 140, 92, 102), border_radius=18)
+        av = self.app.assets.sprite("guides", self.guide_type, (260, 260), fallback=(34, 24, 52))
         s.blit(av, (190, 240))
 
         # text right of image

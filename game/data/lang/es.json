@@ -234,5 +234,6 @@
   "card_pw_37_name": "Arcano 37",
   "card_pw_37_desc": "Inflige 7 de daño.",
   "card_pw_38_name": "Arcano 38",
-  "card_pw_38_desc": "Gana 9 de Guardia."
+  "card_pw_38_desc": "Gana 9 de Guardia.",
+  "node_treasure": "Tesoro"
 }

@@ -67,7 +67,7 @@ class CombatScreen:
         self.end_turn_rect = pygame.Rect(self.ACTION_BAR.right - 330, self.ACTION_BAR.y + 52, 300, 78)
         self.status_rect = pygame.Rect(self.ACTION_BAR.right - 670, self.ACTION_BAR.y + 52, 300, 78)
         self.scry_confirm_rect = pygame.Rect(1920 // 2 - 140, 680, 280, 66)
-        self._trigger_dialog("start")
+        self._trigger_dialog("combat_start")
 
     def draw_panel(self, s, rect, title):
         pygame.draw.rect(s, UI_THEME["panel"], rect, border_radius=12)
@@ -90,18 +90,29 @@ class CombatScreen:
         r=pygame.Rect(x,self.CARD_AREA.y+8,w,h)
         return r.inflate(20,10) if hovered else r
 
+    def _playable_cards(self):
+        mana = self.c.player["energy"]
+        return [c for c in self.c.hand if c.cost <= mana]
+
     def _update_ui_state(self):
         if self.resolving_t > 0:
-            self.ui_state = "RESOLVING"; return
-        if self.selected_card_index is None or self.selected_card_index >= len(self.c.hand):
-            self.ui_state = "IDLE"; return
-        card=self.c.hand[self.selected_card_index]
-        self.ui_state = "SELECTED_PLAYABLE" if card.cost <= self.c.player["energy"] else "SELECTED_NOT_PLAYABLE"
+            self.ui_state = "RESOLVING"
+            return
+        mana = self.c.player["energy"]
+        playable_cards = self._playable_cards()
+        if self.selected_card_index is not None and self.selected_card_index < len(self.c.hand):
+            card = self.c.hand[self.selected_card_index]
+            self.ui_state = "SELECTED_PLAYABLE" if card.cost <= mana else "IDLE"
+            return
+        self.ui_state = "IDLE_NO_PLAY" if len(playable_cards) == 0 else "IDLE"
 
     def _dialog_pick(self, side, trigger, enemy_id):
         dc = self.app.content.dialogues_combat if hasattr(self.app, "content") else {}
         item = dc.get(enemy_id, dc.get("default", {})) if isinstance(dc, dict) else {}
-        trig = item.get(trigger, {}) if isinstance(item, dict) else {}
+        aliases = {"combat_start": "start", "enemy_big_attack": "enemy_attack_big"}
+        trig = item.get(trigger, item.get(aliases.get(trigger, ""), {})) if isinstance(item, dict) else {}
+        if not isinstance(trig, dict):
+            trig = item.get("start", {}) if isinstance(item, dict) else {}
         return trig.get(side, "...") if isinstance(trig, dict) else "..."
 
     def _trigger_dialog(self, trigger):
@@ -164,7 +175,7 @@ class CombatScreen:
         for ev in self.c.pop_events():
             if ev.get("type") == "damage":
                 self.log_lines.insert(0,f"{ev['target']}: -{ev['amount']} Vida")
-                if ev.get("target")!="player" and ev.get("amount",0)>=10: self._trigger_dialog("enemy_big_attack")
+                if ev.get("target")=="player" and ev.get("amount",0)>=8: self._trigger_dialog("enemy_big_attack")
             if ev.get("type") == "block": self.log_lines.insert(0,f"{ev['target']}: +{ev['amount']} Guardia")
         if self.c.player["hp"] <= max(10, self.c.player["max_hp"]*0.3): self._trigger_dialog("player_low_hp")
         if any(e.alive and e.hp <= e.max_hp*0.25 for e in self.c.enemies): self._trigger_dialog("enemy_low_hp")
@@ -256,10 +267,18 @@ class CombatScreen:
         pygame.draw.rect(s,UI_THEME["panel"],self.status_rect,border_radius=10)
         s.blit(self.app.small_font.render("Registro",True,UI_THEME["text"]),(self.status_rect.x+105,self.status_rect.y+24))
 
-        label,disabled="Fin de Turno",False
-        if self.ui_state=="SELECTED_PLAYABLE": label="Ejecutar"
-        elif self.ui_state=="SELECTED_NOT_PLAYABLE": label="Sin Maná"; disabled=True
-        elif self.ui_state=="RESOLVING": label="..."; disabled=True
+        mana = self.c.player["energy"]
+        playable_cards = [c for c in self.c.hand if c.cost <= mana]
+        disabled = False
+        if self.resolving_t > 0:
+            label = "..."
+            disabled = True
+        elif self.selected_card_index is not None and self.selected_card_index < len(self.c.hand) and self.c.hand[self.selected_card_index].cost <= mana:
+            label = "Ejecutar"
+        elif len(playable_cards) == 0:
+            label = "Fin de Turno"
+        else:
+            label = "Fin de Turno"
         pygame.draw.rect(s, UI_THEME["violet"] if not disabled else (88,84,102), self.end_turn_rect, border_radius=12)
         s.blit(self.app.font.render(label,True,UI_THEME["text"]),(self.end_turn_rect.x+82,self.end_turn_rect.y+24))
 

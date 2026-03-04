@@ -52,13 +52,20 @@ def _write_wav(path: Path, hz: int = 440, ms: int = 120, volume: float = 0.15) -
 
 def _profile(track_key: str):
     profiles = {
-        "menu": {"scale": [0, 2, 4, 7, 9], "root": 130.81, "bpm": 92, "a": 12, "b": 10, "character": "ambient"},
-        "map": {"scale": [0, 2, 3, 5, 7, 9, 10], "root": 98.0, "bpm": 96, "a": 10, "b": 10, "character": "journey"},
-        "combat": {"scale": [0, 2, 3, 5, 7, 8, 10], "root": 110.0, "bpm": 108, "a": 12, "b": 10, "character": "driving"},
-        "event": {"scale": [0, 1, 4, 5, 7, 8, 11], "root": 123.47, "bpm": 112, "a": 12, "b": 12, "character": "techno_ritual"},
-        "reward": {"scale": [0, 2, 4, 7, 9], "root": 146.83, "bpm": 110, "a": 12, "b": 10, "character": "bright"},
-        "boss": {"scale": [0, 1, 3, 5, 7, 8, 10], "root": 87.31, "bpm": 132, "a": 14, "b": 12, "character": "aggressive"},
-        "ending": {"scale": [0, 2, 4, 7, 9], "root": 130.81, "bpm": 88, "a": 10, "b": 10, "character": "closure"},
+        "menu": {"scale": [0, 2, 3, 7, 9], "root": 174.61, "bpm": 96, "intro": 6, "loop": 12, "character": "ritual"},
+        "map_kaypacha": {"scale": [0, 2, 3, 5, 7], "root": 138.59, "bpm": 124, "intro": 4, "loop": 12, "character": "dark_techno"},
+        "combat_kaypacha": {"scale": [0, 1, 3, 5, 7], "root": 146.83, "bpm": 128, "intro": 4, "loop": 12, "character": "dark_techno"},
+        "map_forest": {"scale": [0, 3, 5, 7, 10], "root": 155.56, "bpm": 88, "intro": 8, "loop": 10, "character": "ambient_ritual"},
+        "combat_forest": {"scale": [0, 2, 5, 7, 9], "root": 164.81, "bpm": 108, "intro": 4, "loop": 12, "character": "ambient_ritual"},
+        "map_umbral": {"scale": [0, 1, 4, 7, 8], "root": 110.0, "bpm": 118, "intro": 4, "loop": 12, "character": "industrial"},
+        "combat_umbral": {"scale": [0, 1, 3, 6, 8], "root": 123.47, "bpm": 132, "intro": 4, "loop": 12, "character": "industrial"},
+        "map_hanan": {"scale": [0, 2, 4, 7, 9], "root": 196.0, "bpm": 82, "intro": 8, "loop": 10, "character": "cosmic_choir"},
+        "combat_hanan": {"scale": [0, 2, 4, 7, 11], "root": 207.65, "bpm": 104, "intro": 4, "loop": 12, "character": "cosmic_choir"},
+        "event": {"scale": [0, 2, 5, 7, 9], "root": 164.81, "bpm": 92, "intro": 6, "loop": 10, "character": "ritual"},
+        "victory": {"scale": [0, 4, 7, 9, 12], "root": 261.63, "bpm": 132, "intro": 2, "loop": 6, "character": "zelda_victory"},
+        "chest": {"scale": [0, 4, 7, 12], "root": 329.63, "bpm": 136, "intro": 1, "loop": 4, "character": "zelda_chest"},
+        "boss": {"scale": [0, 1, 4, 6, 8], "root": 87.31, "bpm": 136, "intro": 4, "loop": 12, "character": "metroid"},
+        "ending": {"scale": [0, 2, 4, 7, 9], "root": 130.81, "bpm": 88, "intro": 8, "loop": 8, "character": "closure"},
     }
     return profiles.get(track_key, profiles["menu"])
 
@@ -72,9 +79,11 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
     scale = profile["scale"]
     root = profile["root"]
     bpm = profile["bpm"]
-    bars_a = profile["a"]
-    bars_b = profile["b"]
-    total_bars = max(16, min(32, bars_a + bars_b))
+    intro_bars = profile["intro"]
+    loop_bars = profile["loop"]
+    bars_a = intro_bars
+    bars_b = loop_bars
+    total_bars = max(8, min(32, intro_bars + loop_bars))
     bar_beats = 4
     sec_per_beat = 60.0 / bpm
     beats_per_bar = bar_beats
@@ -109,13 +118,17 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
     hat_amp = 0.06
     bell_amp = 0.0
     stab_amp = 0.0
-    if character == "techno_ritual":
-        kick_amp, snare_amp, hat_amp = 0.28, 0.17, 0.1
-    elif character == "bright":
-        bell_amp = 0.14
-        kick_amp, snare_amp = 0.18, 0.1
-    elif character == "aggressive":
-        kick_amp, snare_amp, hat_amp, stab_amp = 0.32, 0.2, 0.11, 0.16
+    if character in {"dark_techno", "industrial", "metroid"}:
+        kick_amp, snare_amp, hat_amp = 0.30, 0.20, 0.12
+        stab_amp = 0.12 if character == "metroid" else 0.08
+    elif character in {"ambient_ritual", "ritual"}:
+        kick_amp, snare_amp, hat_amp = 0.16, 0.08, 0.05
+        bell_amp = 0.08
+    elif character == "cosmic_choir":
+        kick_amp, snare_amp, hat_amp, bell_amp = 0.12, 0.07, 0.03, 0.18
+    elif character in {"zelda_victory", "zelda_chest"}:
+        bell_amp = 0.22
+        kick_amp, snare_amp, hat_amp = 0.08, 0.05, 0.02
 
     two_pi = 2.0 * math.pi
     bar_len = int(rate * beats_per_bar * sec_per_beat)
@@ -159,7 +172,10 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
             hat = hat_amp * hat_hit * noise * 0.45
             fill = 0.08 * fill_hit * noise
 
-            bell = bell_amp * (1.0 if step8 in {0, 4} else 0.0) * math.sin(two_pi * freq(scale[(step8 + 2) % len(scale)], 1) * t)
+            bell_gate = 1.0 if step8 in {0, 4} else 0.0
+            if character in {"zelda_victory", "zelda_chest"}:
+                bell_gate = 1.0 if step8 in {0, 2, 4, 6} else 0.0
+            bell = bell_amp * bell_gate * math.sin(two_pi * freq(scale[(step8 + 2) % len(scale)], 1) * t)
             stab = stab_amp * (1.0 if beat in {0, 2} and section == "B" else 0.0) * math.sin(two_pi * freq(scale[(bar + beat) % len(scale)], 0) * t)
 
             mix = (bass + arp + pad + kick + snare + hat + fill + bell + stab) * 0.84
@@ -175,6 +191,8 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
         "bpm": bpm,
         "bars_a": bars_a,
         "bars_b": bars_b,
+        "intro_bars": intro_bars,
+        "loop_bars": loop_bars,
         "total_bars": total_bars,
         "duration": round(duration, 2),
         "generator_version": GEN_BGM_VERSION,
@@ -197,7 +215,7 @@ def ensure_placeholder_assets(card_ids: list[str], enemy_ids: list[str]) -> None
 def ensure_bgm_assets(force_regen: bool = False) -> dict:
     a_dir = assets_dir()
     manifest = {}
-    for name in ["menu", "map", "combat", "event", "reward", "boss", "ending"]:
+    for name in ["menu", "map_kaypacha", "map_forest", "map_umbral", "map_hanan", "combat_kaypacha", "combat_forest", "combat_umbral", "combat_hanan", "event", "victory", "chest", "boss", "ending"]:
         meta = synth_ambient_music(a_dir / f"music/{name}.wav", name, force=force_regen)
         if meta:
             manifest[name] = meta

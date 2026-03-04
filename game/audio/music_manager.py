@@ -27,10 +27,17 @@ class MusicManager:
         music_dir = assets_dir() / "music"
         self.tracks = {
             "menu": [music_dir / "menu.ogg", music_dir / "menu.wav"],
-            "map": [music_dir / "map.ogg", music_dir / "map.wav"],
-            "combat": [music_dir / "combat.ogg", music_dir / "combat.wav"],
+            "map_kaypacha": [music_dir / "map_kaypacha.ogg", music_dir / "map_kaypacha.wav"],
+            "map_forest": [music_dir / "map_forest.ogg", music_dir / "map_forest.wav"],
+            "map_umbral": [music_dir / "map_umbral.ogg", music_dir / "map_umbral.wav"],
+            "map_hanan": [music_dir / "map_hanan.ogg", music_dir / "map_hanan.wav"],
+            "combat_kaypacha": [music_dir / "combat_kaypacha.ogg", music_dir / "combat_kaypacha.wav"],
+            "combat_forest": [music_dir / "combat_forest.ogg", music_dir / "combat_forest.wav"],
+            "combat_umbral": [music_dir / "combat_umbral.ogg", music_dir / "combat_umbral.wav"],
+            "combat_hanan": [music_dir / "combat_hanan.ogg", music_dir / "combat_hanan.wav"],
             "event": [music_dir / "event.ogg", music_dir / "event.wav"],
-            "reward": [music_dir / "reward.ogg", music_dir / "reward.wav"],
+            "victory": [music_dir / "victory.ogg", music_dir / "victory.wav"],
+            "chest": [music_dir / "chest.ogg", music_dir / "chest.wav"],
             "boss": [music_dir / "boss.ogg", music_dir / "boss.wav"],
             "ending": [music_dir / "ending.ogg", music_dir / "ending.wav"],
         }
@@ -132,13 +139,13 @@ class MusicManager:
         pos_ms = pygame.mixer.music.get_pos() if pygame.mixer.get_init() else -1
         self.current_seconds = max(0.0, pos_ms / 1000.0) if pos_ms >= 0 else 0.0
         meta = self._manifest.get(self.current_key or "", {})
-        bars_a = int(meta.get("bars_a", 8) or 8)
+        intro_bars = int(meta.get("intro_bars", meta.get("bars_a", 8)) or 8)
         bpm = float(meta.get("bpm", self.current_bpm or 100) or 100)
         if bpm <= 0:
             self.current_section = "-"
             return
         bar_sec = 4 * (60.0 / bpm)
-        self.current_section = "A" if self.current_seconds < bars_a * bar_sec else "B"
+        self.current_section = "intro" if self.current_seconds < intro_bars * bar_sec else "loop"
 
     def debug_state(self) -> str:
         self.tick()

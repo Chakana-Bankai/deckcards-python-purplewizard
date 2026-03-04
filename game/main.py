@@ -14,6 +14,7 @@ from game.combat.combat_state import CombatState
 from game.content.card_art_generator import CardArtGenerator, export_prompts
 from game.content.enemy_art_generator import EnemyArtGenerator
 from game.content.background_generator import BackgroundGenerator
+from game.content.guide_avatar_generator import GuideAvatarGenerator, GUIDE_TYPES
 from game.core.bootstrap_assets import ensure_placeholder_assets, ensure_bgm_assets
 from game.core.localization import LocalizationManager
 from game.core.lore_service import LoreService
@@ -118,6 +119,7 @@ class App:
         self.art_gen = CardArtGenerator()
         self.enemy_art_gen = EnemyArtGenerator()
         self.bg_gen = BackgroundGenerator()
+        self.guide_gen = GuideAvatarGenerator()
         self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
         self._apply_dev_reset_if_enabled()
         self.ensure_assets()
@@ -203,6 +205,7 @@ class App:
         (a / "sprites" / "cards").mkdir(parents=True, exist_ok=True)
         (a / "sprites" / "enemies").mkdir(parents=True, exist_ok=True)
         (a / "sprites" / "biomes").mkdir(parents=True, exist_ok=True)
+        (a / "sprites" / "guides").mkdir(parents=True, exist_ok=True)
         (a / "sfx" / "generated").mkdir(parents=True, exist_ok=True)
         ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
         ensure_bgm_assets(force_regen=False)
@@ -242,6 +245,10 @@ class App:
                 "bg": str(bdir / "bg.png"), "mg": str(bdir / "mg.png"), "fg": str(bdir / "fg.png"),
                 "generator_version": GEN_BIOME_VERSION,
             }
+
+        for guide_type in GUIDE_TYPES:
+            gp = self.guide_gen.generate(guide_type, mode="force_regen" if self.user_settings.get("force_regen_art", False) else "missing_only")
+            art_manifest[f"guide:{guide_type}"] = {"path": str(gp), "generator_version": GEN_ART_VERSION}
 
         (data_dir() / "art_manifest.json").write_text(json.dumps(art_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
         (data_dir() / "biome_manifest.json").write_text(json.dumps(biome_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -284,6 +291,7 @@ class App:
             "deck": list(starter_deck),
             "sideboard": [],
             "map": self.generate_map(),
+            "biome": self.rng.choice(["kaypacha", "forest", "umbral", "hanan"]),
             "xp": 0,
             "level": 1,
             "settings": {
@@ -298,7 +306,7 @@ class App:
         columns = 6
         by_col = []
         self.node_lookup = {}
-        type_cycle = ["combat", "event", "challenge", "shop", "event", "boss"]
+        type_cycle = ["combat", "event", "challenge", "shop", "treasure", "boss"]
         x_margin = 140
         x_step = (INTERNAL_WIDTH - x_margin * 2) // (columns - 1)
         for col in range(columns):
@@ -329,17 +337,22 @@ class App:
     def goto_map(self):
         if self.run_state and self.run_state.get("levelup_pending", 0) > 0:
             self.sm.set(PackOpeningScreen(self))
-            self.music.play_for("reward")
+            self.music.play_for("chest")
             return
         self.debug["map_available_count"] = self.available_nodes_count() if self.node_lookup else 0
         self.debug["current_node_id"] = self.current_node_id or "-"
         self.sm.set(MapScreen(self))
-        self.music.play_for("map")
+        biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
+        self.music.play_for(f"map_{biome_track}")
 
     def goto_combat(self, combat_state, is_boss=False):
         self.current_combat = combat_state
         self.sm.set(CombatScreen(self, combat_state, is_boss=is_boss))
-        self.music.play_for("boss" if is_boss else "combat")
+        if is_boss:
+            self.music.play_for("boss")
+        else:
+            biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
+            self.music.play_for(f"combat_{biome_track}")
 
     def goto_reward(self, picks=None, gold=None):
         if picks is None or gold is None:
@@ -349,7 +362,7 @@ class App:
             picks = [CardInstance(CardDef(**(self.rng.choice(pool) or DEFAULT_CARDS[0]))) for _ in range(3)]
             gold = self.rng.randint(10, 25)
         self.sm.set(RewardScreen(self, picks, gold, xp_gained=self.debug.get("xp_last_gain", 0)))
-        self.music.play_for("reward")
+        self.music.play_for("victory")
 
     def goto_shop(self):
         pool = [c for c in self.cards_data if c.get("rarity") in {"common", "uncommon"}] or self.cards_data
@@ -417,20 +430,35 @@ class App:
     def available_nodes_count(self):
         return sum(1 for n in self.node_lookup.values() if n.get("state") == "available")
 
-    def _enemy_pool(self):
-        ids = [e["id"] for e in self.enemies_data if e.get("id") and e.get("tier") != "boss"]
-        return ids or [DEFAULT_ENEMY["id"]]
+    def _enemy_pool(self, node=None):
+        commons = [e["id"] for e in self.enemies_data if e.get("id") and e.get("tier", "common") == "common"]
+        elites = [e["id"] for e in self.enemies_data if e.get("id") and e.get("tier") == "elite"]
+        commons = commons or [DEFAULT_ENEMY["id"]]
+        pivot = max(1, len(commons) // 2)
+        tier1 = commons[:pivot]
+        tier2 = commons[pivot:] or commons
+        col = int((node or {}).get("col", 0))
+        if col <= 1:
+            pool = tier1
+        elif col <= 3:
+            pool = tier1 + tier2
+        else:
+            pool = tier2 + elites
+        return pool or commons
 
     def enter_node(self, node):
         node_type = node.get("type", "combat")
         if node_type in {"combat", "challenge", "boss"}:
             boss_ids = [b.get("id") for b in self.content.bosses if isinstance(b, dict) and b.get("id")]
-            enemy_ids = [self.rng.choice(boss_ids)] if node_type == "boss" and boss_ids else [self.rng.choice(self._enemy_pool())]
+            enemy_ids = [self.rng.choice(boss_ids)] if node_type == "boss" and boss_ids else [self.rng.choice(self._enemy_pool(node))]
             self.run_state["last_node_type"] = node_type
             self.current_combat = CombatState(self.rng, self.run_state, enemy_ids, cards_data=self.cards_data, enemies_data=self.enemies_data)
             self.goto_combat(self.current_combat, is_boss=node_type == "boss")
         elif node_type == "shop":
             self.goto_shop()
+        elif node_type == "treasure":
+            self._complete_current_node()
+            self.goto_reward(gold=self.rng.randint(22, 40))
         else:
             self.goto_event()
 
@@ -564,6 +592,7 @@ class App:
             assets_dir() / "sprites" / "cards",
             assets_dir() / "sprites" / "enemies",
             assets_dir() / "sprites" / "biomes",
+            assets_dir() / "sprites" / "guides",
             assets_dir() / "music",
             assets_dir() / "sfx" / "generated",
         ]

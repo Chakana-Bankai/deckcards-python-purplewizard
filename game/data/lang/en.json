@@ -140,5 +140,6 @@
   "card_strike_name": "Condor Seal",
   "card_defend_name": "Obsidian Mantle",
   "card_strike_desc": "Invoke an andean seal and deal 6 damage.",
-  "card_defend_desc": "Wrap yourself in ritual obsidian and gain 5 Block."
+  "card_defend_desc": "Wrap yourself in ritual obsidian and gain 5 Block.",
+  "node_treasure": "Treasure"
 }

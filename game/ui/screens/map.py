@@ -41,6 +41,28 @@ class MapScreen:
             self.lore_timer = 0
             self.lore_idx = (self.lore_idx + 1) % 3
 
+    def _draw_icon(self, s, node_type, x, y):
+        col = (24, 20, 34)
+        if node_type == "combat":
+            pygame.draw.line(s, col, (x - 10, y + 10), (x + 8, y - 8), 3)
+            pygame.draw.polygon(s, col, [(x + 8, y - 8), (x + 14, y - 2), (x + 2, y + 4)])
+        elif node_type == "challenge":
+            pts = [(x, y - 12), (x + 8, y - 5), (x + 10, y + 6), (x, y + 12), (x - 10, y + 6), (x - 8, y - 5)]
+            pygame.draw.polygon(s, col, pts, 2)
+            pygame.draw.circle(s, col, (x - 4, y - 1), 2)
+            pygame.draw.circle(s, col, (x + 4, y - 1), 2)
+        elif node_type == "event":
+            pygame.draw.polygon(s, col, [(x, y - 12), (x + 4, y - 3), (x + 12, y - 2), (x + 6, y + 4), (x + 8, y + 12), (x, y + 7), (x - 8, y + 12), (x - 6, y + 4), (x - 12, y - 2), (x - 4, y - 3)])
+        elif node_type == "treasure":
+            pygame.draw.rect(s, col, (x - 10, y - 4, 20, 12), 2, border_radius=3)
+            pygame.draw.line(s, col, (x - 10, y + 1), (x + 10, y + 1), 2)
+        elif node_type == "shop":
+            pygame.draw.rect(s, col, (x - 9, y - 2, 18, 12), 2, border_radius=3)
+            pygame.draw.arc(s, col, (x - 8, y - 10, 16, 14), 3.14, 6.28, 2)
+        else:
+            pygame.draw.line(s, col, (x - 10, y), (x + 10, y), 3)
+            pygame.draw.line(s, col, (x, y - 10), (x, y + 10), 3)
+
     def render(self, s):
         s.fill(UI_THEME["bg"])
         run = self.app.run_state
@@ -80,12 +102,9 @@ class MapScreen:
                 if pygame.Rect(node["x"] - 40, node["y"] - 40, 80, 80).collidepoint(mouse) and state == "available":
                     pygame.draw.circle(s, (220, 194, 255), (node["x"], node["y"]), radius + 8)
                 pygame.draw.circle(s, color, (node["x"], node["y"]), radius)
-                if node["type"] == "challenge":
-                    pygame.draw.polygon(s, (50, 20, 15), [(node["x"], node["y"] - 12), (node["x"] + 12, node["y"]), (node["x"], node["y"] + 12), (node["x"] - 12, node["y"])])
-                else:
-                    pygame.draw.line(s, (190, 150, 240), (node["x"] - 12, node["y"]), (node["x"] + 12, node["y"]), 3)
-                    pygame.draw.line(s, (190, 150, 240), (node["x"], node["y"] - 12), (node["x"], node["y"] + 12), 3)
-                lbl = self.app.small_font.render(self.app.loc.t(f"node_{node['type']}") if node['type'] != 'challenge' else 'Desafío', True, UI_THEME["text"])
+                self._draw_icon(s, node["type"], node["x"], node["y"])
+                label = "Élite" if node["type"] == "challenge" else self.app.loc.t(f"node_{node['type']}")
+                lbl = self.app.small_font.render(label, True, UI_THEME["text"])
                 s.blit(lbl, (node["x"] - lbl.get_width() // 2, node["y"] + radius + 8))
 
         lvl = run["level"]
