@@ -116,11 +116,19 @@ class CombatScreen:
         return "", "", "missing"
 
     def set_dialogue(self, trigger: str, enemy_id: str, ctx: dict | None = None):
+        ctx = ctx or {}
         now = pygame.time.get_ticks()
         forced = trigger in {"combat_start", "victory", "defeat"}
         if not forced and now - self.dialogue_last_ms < self.dialogue_cooldown_ms:
             return
-        enemy_line, hero_line, src = self._dialogue_lookup(enemy_id, trigger)
+        intent_hint = str(ctx.get("intent", "")).lower()
+        mapped_trigger = trigger
+        if trigger == "turn_start" and intent_hint:
+            if "ata" in intent_hint:
+                mapped_trigger = "enemy_attack"
+            elif "def" in intent_hint or "blo" in intent_hint:
+                mapped_trigger = "enemy_defend"
+        enemy_line, hero_line, src = self._dialogue_lookup(enemy_id, mapped_trigger)
         fallbacks = {
             "combat_start": ("La Trama se abre ante ti.", "Escucho el pulso de la Chakana."),
             "turn_start": ("El aire cambia antes del golpe.", "Leeré tu intención antes de actuar."),
@@ -135,18 +143,18 @@ class CombatScreen:
             "defeat": ("Tu hilo se corta aquí.", "Aprenderé de esta caída."),
         }
         if not enemy_line.strip() or not hero_line.strip():
-            arr = [fallbacks.get(trigger, ("(el enemigo contiene la respiración...)", "(Chakana escucha la Trama...)")),
+            arr = [fallbacks.get(mapped_trigger, ("(el enemigo contiene la respiración...)", "(Chakana escucha la Trama...)")),
                    ("(el enemigo contiene la respiración...)", "(Chakana escucha la Trama...)")]
-            idx = self.dialogue_fallback_idx.get(trigger, 0) % len(arr)
+            idx = self.dialogue_fallback_idx.get(mapped_trigger, 0) % len(arr)
             enemy_line, hero_line = arr[idx]
-            self.dialogue_fallback_idx[trigger] = idx + 1
+            self.dialogue_fallback_idx[mapped_trigger] = idx + 1
         if enemy_line == self.last_enemy_line and hero_line == self.last_player_line:
             enemy_line = "(el enemigo contiene la respiración...)"
             hero_line = "(Chakana escucha la Trama...)"
-        self._set_dialogue_lines(enemy_line, hero_line, trigger)
+        self._set_dialogue_lines(enemy_line, hero_line, mapped_trigger)
         self.last_enemy_line, self.last_player_line = enemy_line, hero_line
         self.dialogue_last_ms = now
-        print(f"[dlg] trigger={trigger} enemy={enemy_id} line_id={src}")
+        print(f"[dlg] trigger={mapped_trigger} enemy={enemy_id} line_id={src} ctx={ctx}")
 
     def _card_playable(self, card) -> bool:
         ok, _reason = can_play_card(card, self.c.player, self.c)
@@ -461,6 +469,26 @@ class CombatScreen:
         s.blit(self.app.tiny_font.render(str(card.definition.name_key), True, UI_THEME["text"]), (rect.x + 8, rect.y + 6))
         pygame.draw.circle(s, UI_THEME["energy"], (rect.right - 16, rect.y + 16), 12)
         s.blit(self.app.tiny_font.render(str(card.cost), True, UI_THEME["text_dark"]), (rect.right - 20, rect.y + 9))
+        tags = set(getattr(card.definition, "tags", []) or [])
+        effects = list(getattr(card.definition, "effects", []) or [])
+        icons = []
+        if "attack" in tags:
+            icons.append("⚔")
+        if "skill" in tags or any(str(e.get("type", "")) in {"block", "gain_block"} for e in effects if isinstance(e, dict)):
+            icons.append("🛡")
+        if "ritual" in tags:
+            icons.append("✦")
+        if any(str(e.get("type", "")) == "scry" for e in effects if isinstance(e, dict)):
+            icons.append("👁")
+        if any(str(e.get("type", "")) == "draw" for e in effects if isinstance(e, dict)):
+            icons.append("⟳")
+        if any(str(e.get("type", "")) in {"rupture", "apply_break"} for e in effects if isinstance(e, dict)):
+            icons.append("☠")
+        if any(str(e.get("type", "")) in {"energy", "gain_mana"} for e in effects if isinstance(e, dict)):
+            icons.append("⚡")
+        icon_row = " ".join(icons[:4])
+        if icon_row:
+            s.blit(self.app.tiny_font.render(icon_row, True, UI_THEME["gold"]), (rect.x + 8, rect.bottom - 24))
         if selected:
             pygame.draw.rect(s, UI_THEME["gold"], rect.inflate(8, 8), 3, border_radius=14)
 
@@ -497,7 +525,11 @@ class CombatScreen:
                 self._push_log(f"Daño recibido: {ev.get('amount',0)}")
             if ev.get("type") == "card_played":
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-                self.dialogue_ctrl.on_card_played(enemy_id)
+                card_id = str(ev.get("card_id", ""))
+                card_def = next((c for c in self.app.cards_data if c.get("id") == card_id), {}) if card_id else {}
+                tags = set(card_def.get("tags", []) if isinstance(card_def, dict) else [])
+                trig = "card_played_attack" if "attack" in tags else "card_played_defense" if ("skill" in tags or "defense" in tags) else "card_played_utility"
+                self.set_dialogue(trig, enemy_id, {"card_id": card_id})
             if ev.get("type") == "harmony_ready":
                 self._push_log(str(ev.get("message") or "Armonía lista: desata tu sello."))
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
@@ -694,7 +726,8 @@ class CombatScreen:
         draw_n = len(getattr(self.c, "draw_pile", []))
         hand_n = len(getattr(self.c, "hand", []))
         disc_n = len(getattr(self.c, "discard_pile", []))
-        s.blit(self.app.tiny_font.render(f"Mazo: {draw_n}  Mano: {hand_n}  Descarte: {disc_n}", True, UI_THEME["muted"]), (self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + 132))
+        ex_n = len(getattr(self.c, "exhaust_pile", []))
+        s.blit(self.app.tiny_font.render(f"Mazo: {draw_n}  Mano: {hand_n}  Descarte: {disc_n}  Agotado: {ex_n}", True, UI_THEME["muted"]), (self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + 132))
 
         h_cur = int(p.get("harmony_current", 0) or 0)
         h_max = max(1, int(p.get("harmony_max", 10) or 10))

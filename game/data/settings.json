@@ -14,6 +14,5 @@
   "fx_glow": true,
   "fx_particles": true,
   "force_regen_art": false,
-  "detail_panel": true,
-  "update_manifests": false
+  "detail_panel": false
 }

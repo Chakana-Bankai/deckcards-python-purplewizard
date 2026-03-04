@@ -135,6 +135,10 @@ class CombatState:
                 self.rng.shuffle(self.draw_pile)
             if self.draw_pile:
                 self.hand.append(self.draw_pile.pop())
+            else:
+                self.result = "defeat"
+                self.combat_events.append({"type": "deck_empty", "message": "Derrota: tu mazo se ha vaciado."})
+                break
 
     def play_card(self, hand_index: int, target_idx: int | None = None):
         if hand_index < 0 or hand_index >= len(self.hand):
@@ -158,7 +162,7 @@ class CombatState:
             self.harmony_chaos_pending = False
         self.hand.pop(hand_index)
         self._track_harmony(card.definition.direction if hasattr(card.definition, "direction") else "ESTE")
-        self._apply_harmony_resource(card)
+        self._resolve_harmony_from_card(card)
         interpret_effects(self, card, target, card.definition.effects)
         self.combat_events.append({"type": "card_played", "card_id": getattr(card.definition, "id", "-")})
         self.last_played_card = card
@@ -168,7 +172,30 @@ class CombatState:
         if card not in self.exhaust_pile:
             self.discard_pile.append(card)
 
-    def _apply_harmony_resource(self, card):
+    def gain_harmony(self, amount: int):
+        add = max(0, int(amount or 0))
+        cur = int(self.player.get("harmony_current", 0) or 0)
+        mx = max(1, int(self.player.get("harmony_max", 10) or 10))
+        cur = max(0, min(mx, cur + add))
+        self.player["harmony_current"] = cur
+        thr = max(1, int(self.player.get("harmony_ready_threshold", 6) or 6))
+        was_ready = bool(self.player.get("harmony_ready", False))
+        now_ready = cur >= thr
+        self.player["harmony_ready"] = now_ready
+        if now_ready and not was_ready:
+            self.combat_events.append({"type": "harmony_ready", "message": "Armonía lista: desata tu sello."})
+
+    def consume_harmony(self, amount: int) -> bool:
+        need = max(0, int(amount or 0))
+        cur = int(self.player.get("harmony_current", 0) or 0)
+        if cur < need:
+            return False
+        self.player["harmony_current"] = max(0, cur - need)
+        thr = max(1, int(self.player.get("harmony_ready_threshold", 6) or 6))
+        self.player["harmony_ready"] = int(self.player.get("harmony_current", 0)) >= thr
+        return True
+
+    def _resolve_harmony_from_card(self, card):
         effects = list(getattr(getattr(card, "definition", None), "effects", []) or [])
         tags = set(getattr(getattr(card, "definition", None), "tags", []) or [])
         delta = 1 if ("ritual" in tags or "armonia" in tags or "harmony" in tags) else 0
@@ -182,17 +209,10 @@ class CombatState:
             elif t == "consume_harmony":
                 consume += max(1, int(ef.get("amount", 1) or 1))
 
-        cur = int(self.player.get("harmony_current", 0) or 0)
-        mx = max(1, int(self.player.get("harmony_max", 10) or 10))
-        cur = max(0, min(mx, cur + delta - consume))
-        self.player["harmony_current"] = cur
-
-        thr = max(1, int(self.player.get("harmony_ready_threshold", 6) or 6))
-        was_ready = bool(self.player.get("harmony_ready", False))
-        now_ready = cur >= thr
-        self.player["harmony_ready"] = now_ready
-        if now_ready and not was_ready:
-            self.combat_events.append({"type": "harmony_ready", "message": "Armonía lista: desata tu sello."})
+        if delta > 0:
+            self.gain_harmony(delta)
+        if consume > 0:
+            self.consume_harmony(consume)
 
     def activate_harmony_seal(self):
         cur = int(self.player.get("harmony_current", 0) or 0)
@@ -209,11 +229,9 @@ class CombatState:
         return True, "SELLO activado"
 
     def end_turn(self):
-        kept = [c for c in self.hand if getattr(c, "retain_flag", False)]
-        for c in kept:
-            c.retain_flag = False
-        self.discard_pile.extend([c for c in self.hand if c not in kept])
-        self.hand = kept
+        for c in self.hand:
+            if getattr(c, "retain_flag", False):
+                c.retain_flag = False
         self.enemy_turn()
         if self.result is None:
             self.start_player_turn()
