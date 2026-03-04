@@ -43,6 +43,8 @@ from game.ui.screens.shop import ShopScreen
 from game.ui.screens.qa_results import QAResultsScreen
 from game.ui.screens.pack_opening import PackOpeningScreen
 from game.ui.screens.end import EndScreen
+from game.ui.screens.intro import IntroScreen
+from game.ui.screens.pacha_transition import PachaTransitionScreen
 from game.version import VERSION
 from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION
 from game.services.content_service import ContentService
@@ -108,6 +110,9 @@ class App:
         self.mono_font = _safe_font(mono_path, 22)
         self.sm = StateMachine()
         self.run_state = None
+        self.menu_return_screen = None
+        self.combat_actions_log = []
+        self.last_biome_seen = None
         self.node_lookup = {}
         self.current_node_id = None
         self.debug_overlay = False
@@ -179,7 +184,7 @@ class App:
 
         self.validate_navigation_methods()
         pygame.display.set_caption(self.loc.t("game_title"))
-        self.sm.set(MenuScreen(self))
+        self.sm.set(IntroScreen(self))
         self.music.play_for("menu")
 
 
@@ -337,7 +342,7 @@ class App:
 
 
     def validate_navigation_methods(self):
-        required = ["goto_menu", "goto_map", "goto_combat", "goto_reward", "goto_shop", "goto_event", "goto_deck", "goto_settings"]
+        required = ["goto_menu", "goto_map", "goto_combat", "goto_reward", "goto_shop", "goto_event", "goto_deck", "goto_settings", "goto_end"]
         missing = [m for m in required if not hasattr(self, m)]
         if missing:
             raise RuntimeError(f"Missing navigation methods: {', '.join(missing)}")
@@ -349,11 +354,16 @@ class App:
         pygame.display.set_caption(self.loc.t("game_title"))
 
     def goto_menu(self):
+        if self.sm.current and not isinstance(self.sm.current, MenuScreen):
+            self.menu_return_screen = self.sm.current
         self.sm.set(MenuScreen(self))
         self.music.play_for("menu")
 
     def goto_settings(self):
         self.sm.set(SettingsScreen(self))
+
+    def goto_end(self, victory=True):
+        self.sm.set(EndScreen(self, victory=victory))
 
     def goto_path_select(self):
         self.sm.set(PathSelectScreen(self))
@@ -375,6 +385,7 @@ class App:
             "biome": self.rng.choice(["kaypacha", "forest", "umbral", "hanan"]),
             "xp": 0,
             "level": 1,
+            "combats_won": 0,
             "settings": {
                 "turn_timer_enabled": bool(self.user_settings.get("turn_timer_enabled", True)),
                 "turn_timer_seconds": int(self.user_settings.get("turn_timer_seconds", 20)),
@@ -422,8 +433,14 @@ class App:
             return
         self.debug["map_available_count"] = self.available_nodes_count() if self.node_lookup else 0
         self.debug["current_node_id"] = self.current_node_id or "-"
-        self.sm.set(MapScreen(self))
         biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
+        if self.last_biome_seen is None:
+            self.last_biome_seen = biome_track
+        if self.last_biome_seen != biome_track:
+            self.last_biome_seen = biome_track
+            self.sm.set(PachaTransitionScreen(self, str(biome_track).title(), lambda: self.sm.set(MapScreen(self))))
+        else:
+            self.sm.set(MapScreen(self))
         self.music.play_for(f"map_{biome_track}")
 
     def goto_combat(self, combat_state, is_boss=False):
@@ -457,6 +474,10 @@ class App:
 
     def run_qa_mode(self):
         results = QARunner(self).run_all()
+        self.sm.set(QAResultsScreen(self, results))
+
+    def run_qa_scripted_mode(self):
+        results = QARunner(self).run_combat_scripted_smoke()
         self.sm.set(QAResultsScreen(self, results))
 
     def select_map_node(self, node):
@@ -534,6 +555,14 @@ class App:
             enemy_ids = [self.rng.choice(boss_ids)] if node_type == "boss" and boss_ids else [self.rng.choice(self._enemy_pool(node))]
             self.run_state["last_node_type"] = node_type
             base_state = CombatState(self.rng, self.run_state, enemy_ids, cards_data=self.cards_data, enemies_data=self.enemies_data)
+            early = int(self.run_state.get("combats_won", 0)) < 2 and node_type != "boss"
+            if early:
+                for e in base_state.enemies:
+                    e.max_hp = int(max(10, e.max_hp * 0.82)); e.hp = min(e.hp, e.max_hp)
+                    for pat in getattr(e, "pattern", []) or []:
+                        val = pat.get("value")
+                        if isinstance(val, list) and val:
+                            pat["value"] = [max(1, int(v) - 1) for v in val]
             self.current_combat = CombatEngine(base_state)
             self.goto_combat(self.current_combat, is_boss=node_type == "boss")
         elif node_type == "shop":
@@ -563,8 +592,9 @@ class App:
         node_type = self.run_state.get("last_node_type", "combat")
         if node_type == "boss":
             self.music.play_for("ending")
-            self.sm.set(EndScreen(self))
+            self.goto_end(victory=True)
             return
+        self.run_state["combats_won"] = int(self.run_state.get("combats_won", 0)) + 1
         bonus_gold = self.rng.randint(16, 30) if node_type == "challenge" else self.rng.randint(10, 25)
         difficulty_bonus = {"combat": 2, "challenge": 5, "boss": 12}.get(node_type, 2)
         perfect_bonus = 5 if self.current_combat and getattr(self.current_combat, "player_damage_taken", 0) <= 0 else 0
@@ -853,7 +883,7 @@ class App:
         self.ensure_assets(progress_cb=self._loading_step)
         self._log_card_art_status()
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
-        self.sm.set(MenuScreen(self))
+        self.sm.set(IntroScreen(self))
         self.music.play_for("menu")
         self.asset_generation_active = False
 
@@ -871,6 +901,8 @@ class App:
                     self.debug_overlay = not self.debug_overlay
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_F10:
                     self.run_qa_mode()
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_F8:
+                    self.run_qa_scripted_mode()
                 else:
                     self.sm.handle_event(event)
             if self._restart_requested:

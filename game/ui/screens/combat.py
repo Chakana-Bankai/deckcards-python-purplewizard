@@ -10,8 +10,10 @@ from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
 from game.core.paths import data_dir
 from game.core.safe_io import load_json
 from game.ui.anim import TypewriterBanner
+from game.ui.components.card_detail_panel import CardDetailPanel
 from game.ui.components.mana_orbs import ManaOrbsWidget
 from game.ui.controllers.card_interaction import CardInteractionController
+from game.ui.controllers.combat_dialogue_controller import CombatDialogueController
 from game.ui.layouts.combat_layout import CombatLayout
 from game.ui.theme import UI_THEME
 
@@ -42,6 +44,7 @@ class CombatScreen:
         self.is_boss = is_boss
         self.ctrl = CardInteractionController()
         self.mana_orbs = ManaOrbsWidget()
+        self.detail_panel = CardDetailPanel(app)
         self.dialog_enemy = TypewriterBanner()
         self.dialog_hero = TypewriterBanner()
         self.dialog_cd = 0.0
@@ -64,9 +67,12 @@ class CombatScreen:
         self.turn_timer_enabled = bool(self.app.user_settings.get("turn_timer_enabled", False))
         self.turn_timer_limit = float(max(3, int(self.app.user_settings.get("turn_timer_seconds", 20))))
         self.turn_timer_left = self.turn_timer_limit
+        self.actions_log = getattr(self.app, "combat_actions_log", [])
+        self.dialogue_ctrl = CombatDialogueController(self.app.lore_engine, self._set_dialogue_lines)
         self.layout = CombatLayout.from_size(1920, 1080)
         self.end_turn_rect = pygame.Rect(0, 0, 1, 1)
-        self._trigger_dialog("combat_start")
+        enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
+        self.dialogue_ctrl.on_combat_start(enemy_id)
 
     def on_leave(self):
         self.ctrl.clear_selection("screen_change")
@@ -103,17 +109,26 @@ class CombatScreen:
             return "Sin Maná", True
         return "Fin de Turno", False
 
+    def _set_dialogue_lines(self, enemy_line: str, hero_line: str, trigger: str):
+        self.dialog_enemy.set(enemy_line or "...", 1.0)
+        self.dialog_hero.set(hero_line or "...", 1.0)
+        self.enemy_line_fx = 0.24
+        self.hero_line_fx = 0.22
+        self.dialog_cd = 0.8
+        self.last_trigger = trigger
+
+    def _push_log(self, text: str):
+        if not text:
+            return
+        self.actions_log.append(str(text))
+        if len(self.actions_log) > 40:
+            del self.actions_log[:-40]
+
     def _trigger_dialog(self, trigger):
         if self.dialog_cd > 0:
             return
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-        enemy_line, hero_line = self.app.lore_engine.get_combat_lines(enemy_id, trigger)
-        self.dialog_enemy.set(enemy_line or "...", 1.2)
-        self.dialog_hero.set(hero_line or "...", 1.2)
-        self.enemy_line_fx = 0.24
-        self.hero_line_fx = 0.22
-        self.dialog_cd = 1.4
-        self.last_trigger = trigger
+        self.dialogue_ctrl.fire(enemy_id, trigger)
 
     def _execute_selected(self):
         idx = self.ctrl.selected_index
@@ -126,6 +141,7 @@ class CombatScreen:
         target_idx = next((i for i, e in enumerate(self.c.enemies) if e.alive), None)
         before = len(self.c.hand)
         self.c.play_card(idx, target_idx)
+        self._push_log(f"Jugada: {getattr(card.definition, 'name_key', 'Carta')}")
         if len(self.c.hand) < before:
             self.ctrl.clear_selection("card_played")
 
@@ -138,6 +154,7 @@ class CombatScreen:
         else:
             self._trigger_dialog("enemy_turn_start")
             self.c.end_turn()
+            self._push_log("Jugada: Fin de turno")
             self.ctrl.clear_selection("end_turn")
             self.ctrl.clear_hover()
 
@@ -265,6 +282,7 @@ class CombatScreen:
             if self.turn_timer_left <= 0:
                 self._trigger_dialog("enemy_turn_start")
                 self.c.end_turn()
+                self._push_log("Jugada: Fin de turno (timer)")
                 self.ctrl.clear_selection("timer_end_turn")
                 self.ctrl.clear_hover()
                 self.turn_timer_left = self.turn_timer_limit
@@ -274,24 +292,35 @@ class CombatScreen:
             self.turn_timer_left = self.turn_timer_limit
             self.ctrl.clear_selection("turn_changed")
             self._trigger_dialog("player_turn_start")
+            enemy = self.c.enemies[0] if self.c.enemies else None
+            if enemy is not None:
+                self.dialogue_ctrl.on_intent(enemy.id, enemy.current_intent().get("label", ""))
 
         for ev in self.c.pop_events():
             if ev.get("type") == "damage" and ev.get("target") == "player" and ev.get("amount", 0) >= 8:
                 self._trigger_dialog("enemy_big_attack")
+                self._push_log(f"Daño recibido: {ev.get('amount',0)}")
 
         if self.c.player["hp"] <= max(10, self.c.player["max_hp"] * 0.3):
-            self._trigger_dialog("player_low_hp")
+            enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
+            self.dialogue_ctrl.on_player_low(enemy_id)
+
         if any(e.alive and e.hp <= e.max_hp * 0.25 for e in self.c.enemies):
             self._trigger_dialog("enemy_low_hp")
 
         self.ctrl.validate_selection(len(self.c.hand))
         if self.c.result == "victory":
-            self._trigger_dialog("victory")
+            enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
+            self.dialogue_ctrl.on_victory(enemy_id)
             self.ctrl.clear_selection("victory")
+            self._push_log("Combate ganado")
             self.app.on_combat_victory()
         elif self.c.result == "defeat":
             self.ctrl.clear_selection("defeat")
-            self.app.goto_menu()
+            enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
+            self.dialogue_ctrl.on_defeat(enemy_id)
+            self._push_log("Combate perdido")
+            self.app.goto_end(victory=False)
 
     def render(self, s):
         self._refresh_layout(s)
@@ -300,6 +329,13 @@ class CombatScreen:
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.topbar_rect)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.topbar_rect, 2)
         s.blit(self.app.small_font.render(f"Turno {self.c.turn}", True, UI_THEME["gold"]), (self.layout.topbar_rect.x + 16, self.layout.topbar_rect.y + 16))
+        node = self.app.current_node_id or "-"
+        total_nodes = sum(len(col) for col in (self.app.run_state or {}).get("map", [])) if self.app.run_state else 0
+        trama = f"TRAMA: {str(self.selected_biome).title()} — Nodo {node}/{total_nodes}"
+        t_render = self.app.small_font.render(trama, True, UI_THEME["text"])
+        s.blit(t_render, (self.layout.topbar_rect.centerx - t_render.get_width() // 2, self.layout.topbar_rect.y + 10))
+        subtitle = self.app.lore_engine.get_map_narration("default") if hasattr(self.app, "lore_engine") else ""
+        s.blit(self.app.tiny_font.render(str(subtitle)[:86], True, UI_THEME["muted"]), (self.layout.topbar_rect.centerx - 240, self.layout.topbar_rect.y + 40))
         if self.turn_timer_enabled:
             timer_label = f"Tiempo {self.turn_timer_left:04.1f}s"
             tw = self.app.small_font.size(timer_label)[0]
@@ -314,6 +350,14 @@ class CombatScreen:
         card_w = (inner_strip.w - (enemy_count - 1) * 16) // enemy_count
         t = pygame.time.get_ticks() / 1000.0
         biome_col = {"kaypacha": (68, 150, 118), "hanan": (106, 126, 238), "ukhu": (126, 82, 150)}.get(self.selected_biome.lower(), (108, 86, 182))
+
+        if self.is_boss and self.c.enemies:
+            boss = self.c.enemies[0]
+            br = pygame.Rect(inner_strip.x + 10, inner_strip.y + 4, inner_strip.w - 20, 14)
+            ratio_b = max(0, boss.hp) / max(1, boss.max_hp)
+            pygame.draw.rect(s, (32, 20, 24), br, border_radius=6)
+            pygame.draw.rect(s, (220, 88, 110), pygame.Rect(br.x, br.y, int(br.w * ratio_b), br.h), border_radius=6)
+            s.blit(self.app.tiny_font.render(f"JEFE {boss.name_key} {boss.hp}/{boss.max_hp}", True, UI_THEME["text"]), (br.x + 8, br.y - 16))
 
         for i, e in enumerate(self.c.enemies):
             er = pygame.Rect(inner_strip.x + i * (card_w + 16), inner_strip.y, card_w, inner_strip.h)
@@ -354,8 +398,10 @@ class CombatScreen:
         enemy_lines = wrap_text(self.app.font, e_line, self.layout.voices_rect.w - 32, max_lines=2)
         hero_lines = wrap_text(self.app.font, h_line, self.layout.voices_rect.w - 32, max_lines=2)
         y = self.layout.voices_rect.y + 34
+        threat = 3 if any(k in str(self.last_trigger) for k in ["attack", "defeat", "low"]) else 0
+        offx = threat if (pygame.time.get_ticks() // 40) % 2 == 0 else -threat
         for ln in enemy_lines:
-            s.blit(self.app.font.render(ln, True, (245, 132, 142)), (self.layout.voices_rect.x + 16, y))
+            s.blit(self.app.font.render(ln, True, (245, 132, 142)), (self.layout.voices_rect.x + 16 + offx, y))
             y += 24
         y += 4
         for ln in hero_lines:
@@ -407,6 +453,11 @@ class CombatScreen:
         avatar = render_avatar(pygame.time.get_ticks() / 1000.0, min(96, self.layout.playerhud_rect.h - 40))
         s.blit(avatar, (self.layout.playerhud_rect.right - avatar.get_width() - 16, self.layout.playerhud_rect.y + 20))
 
+        detail_rect = pygame.Rect(self.layout.playerhud_rect.x, self.layout.playerhud_rect.bottom + 10, self.layout.playerhud_rect.w, max(110, self.layout.actions_rect.y - self.layout.playerhud_rect.bottom - 16))
+        current_idx = self.hover_card_index if self.hover_card_index is not None else self.ctrl.selected_index
+        current_card = hand[current_idx] if current_idx is not None and current_idx < len(hand) else None
+        self.detail_panel.render(s, detail_rect, current_card)
+
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.actions_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.actions_rect, 2, border_radius=12)
         s.blit(self.app.small_font.render("Acciones", True, UI_THEME["gold"]), (self.layout.actions_rect.x + 12, self.layout.actions_rect.y + 8))
@@ -415,6 +466,15 @@ class CombatScreen:
         pygame.draw.rect(s, bcol, self.end_turn_rect, border_radius=12)
         txt = self.app.font.render(label, True, UI_THEME["text"])
         s.blit(txt, (self.end_turn_rect.centerx - txt.get_width() // 2, self.end_turn_rect.centery - txt.get_height() // 2))
+        log_x = self.layout.actions_rect.x + 16
+        log_y = self.layout.actions_rect.y + 34
+        tail = self.actions_log[-6:]
+        last = tail[-1] if tail else "-"
+        s.blit(self.app.tiny_font.render(f"Última jugada: {last}", True, UI_THEME["muted"]), (log_x, log_y))
+        enemy_int = self.c.enemies[0].current_intent().get("label", "-") if self.c.enemies else "-"
+        s.blit(self.app.tiny_font.render(f"Turno actual: {self.c.turn}  Intención enemiga: {enemy_int}", True, UI_THEME["text"]), (log_x, log_y + 18))
+        for i, line in enumerate(reversed(tail)):
+            s.blit(self.app.tiny_font.render(f"• {line}", True, UI_THEME["text"]), (log_x, log_y + 40 + i * 16))
 
         if self.dialog_debug_overlay:
             d = pygame.Rect(self.layout.topbar_rect.x + 10, self.layout.topbar_rect.bottom + 10, 620, 150)

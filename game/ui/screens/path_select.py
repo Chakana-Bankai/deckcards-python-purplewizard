@@ -17,13 +17,13 @@ class PathSelectScreen:
             {
                 "name": "Manto Obsidiana",
                 "deck": ["sello_protector","muralla_de_piedra","escudo_de_luz","resistencia_ancestral","campo_protector","escudo_del_chaman","piedra_ritual","firmeza_del_cuerpo","filo_astral","observacion_sagrada","silencio_interior","espiritu_guardian"],
-                "sync": "Bloque + control + ruptura",
+                "sync": "Premium inicial: bloqueo y control",
                 "diff": "Media-Alta",
             },
             {
-                "name": "Ritual Astral",
+                "name": "Magia",
                 "deck": ["portal_de_la_chakana","invocacion_astral","vinculo_de_energia","fusion_espiritual","vision_del_condor","revelacion_astral","filo_astral","sello_protector","silencio_interior","eco_de_sabiduria","ritual_de_la_trama","chakana_de_luz"],
-                "sync": "Combo ritual + estados",
+                "sync": "Premium inicial: magia y combos fáciles",
                 "diff": "Alta",
             },
         ]

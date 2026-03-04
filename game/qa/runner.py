@@ -14,6 +14,45 @@ class QARunner:
     def _fail(self, name: str, exc: Exception):
         return {"name": name, "status": "FAIL", "detail": f"{exc.__class__.__name__}: {exc}", "trace": traceback.format_exc()}
 
+    def run_combat_scripted_smoke(self):
+        results = []
+        try:
+            if not self.app.run_state:
+                self.app.start_run_with_deck(["strike", "defend"] * 5)
+            n = self.app.run_state["map"][0][0]
+            self.app.select_map_node(n)
+            results.append(self._ok("qa_f8_enter_combat"))
+            played = 0
+            for _ in range(10):
+                cs = self.app.current_combat
+                if not cs or cs.result is not None:
+                    break
+                if cs.hand:
+                    idx = 0
+                    try:
+                        cs.play_card(idx, 0)
+                        played += 1
+                    except Exception:
+                        cs.end_turn()
+                else:
+                    cs.end_turn()
+                cs.update(0.016)
+            results.append(self._ok("qa_f8_play_cards", f"played={played}"))
+            if self.app.current_combat and self.app.current_combat.result is None:
+                self.app.current_combat.result = "victory"
+                self.app.on_combat_victory()
+            if self.app.sm.current.__class__.__name__ == "RewardScreen":
+                if getattr(self.app.sm.current, "picks", None):
+                    self.app.sm.current.picks and self.app.sm.current.picks[0:1]
+                    if hasattr(self.app.sm.current, "picks") and self.app.sm.current.picks:
+                        self.app.run_state["sideboard"].append(self.app.sm.current.picks[0].definition.id)
+                        self.app.goto_map()
+            self.app.goto_map()
+            results.append(self._ok("qa_f8_return_map"))
+        except Exception as exc:
+            results.append(self._fail("qa_f8_smoke", exc))
+        return results
+
     def run_all(self):
         results = []
         try:

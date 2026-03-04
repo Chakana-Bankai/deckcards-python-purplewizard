@@ -9,79 +9,84 @@ class EventScreen:
         self.app = app
         self.event = event
         self.writer = TypewriterBanner()
-        lore_hint = (self.app.lore_data.get("world_text", "")[:220] + "...") if self.app.lore_data.get("world_text") else self.app.loc.t("lore_tagline")
-        fr = self.app.content.dialogues_events.get("default", ["La Trama te observa."]) if hasattr(self.app, "content") else ["La Trama te observa."]
-        self.lines = [self.app.loc.t(event.get("body_key", "lore_tagline")), lore_hint, fr[0]]
-        self.idx = 0
-        self.timer = 0
-        self.msg = ""
+        self.t = 0.0
+        self.alpha = 0.0
         self.guide_type = self._pick_guide_type(event.get("id", "default"))
+        lore = getattr(self.app, "lore_data", {}) or {}
+        defaults = lore.get("event_fragments", ["Toda ruta trae aprendizaje.", "Escucha al guía."])
+        self.parabola = defaults[:3] if defaults else ["La Trama te observa."]
+        self.moraleja = defaults[0] if defaults else "Moraleja: cada decisión pesa."
+        self.msg = ""
 
     def on_enter(self):
-        self.writer.set(self.lines[0], 3.0)
+        self.writer.set("\n".join(self.parabola[:3]), 1.8)
 
     def _pick_guide_type(self, event_id: str) -> str:
         eid = (event_id or "").lower()
-        if any(k in eid for k in ["oracle", "angel", "luz"]): return "angel"
-        if any(k in eid for k in ["tribu", "apacheta", "ritual", "shaman"]): return "shaman"
-        if any(k in eid for k in ["demon", "sangre", "abyss", "void"]): return "demon"
-        if any(k in eid for k in ["hack", "data", "runa", "circuit"]): return "arcane_hacker"
-        return ["angel", "shaman", "demon", "arcane_hacker"][abs(hash(eid)) % 4]
+        if any(k in eid for k in ["oracle", "angel", "luz"]):
+            return "angel"
+        if any(k in eid for k in ["tribu", "apacheta", "ritual", "shaman"]):
+            return "shaman"
+        if any(k in eid for k in ["demon", "sangre", "abyss", "void"]):
+            return "demon"
+        return "arcane_hacker"
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
             self.app.sfx.play("ui_click")
-            for i, ch in enumerate(self.event["choices"][:3]):
-                if pygame.Rect(500, 700 + i * 90, 1340, 70).collidepoint(pos):
-                    self.app.apply_event_effects(ch["effects"])
-                    self.msg = f"{self.app.loc.t(ch['text_key'])}"
-                    self.app._complete_current_node(); self.app.goto_map()
+            for i, ch in enumerate(self.event.get("choices", [])[:3]):
+                if pygame.Rect(530, 720 + i * 92, 1260, 74).collidepoint(pos):
+                    self.app.apply_event_effects(ch.get("effects", []))
+                    self.msg = self.app.loc.t(ch.get("text_key", "event_continue"))
+                    self.app._complete_current_node()
+                    self.app.goto_map()
 
     def update(self, dt):
-        self.timer += dt
-        if self.timer > 2.6:
-            self.timer = 0
-            self.idx = (self.idx + 1) % len(self.lines)
-            self.writer.set(self.lines[self.idx], 2.4)
-
-    def _metaforma(self, s, rect):
-        pygame.draw.rect(s, (66, 48, 88), rect, border_radius=18)
-        pygame.draw.rect(s, UI_THEME["gold"], rect, 2, border_radius=18)
-        inner = rect.inflate(-20, -20)
-        pygame.draw.rect(s, (24, 18, 36), inner, border_radius=14)
-        for i in range(6):
-            pygame.draw.rect(s, (120, 100, 170), (inner.x + 16 + i * 70, inner.y + 12, 38, 6), border_radius=3)
+        self.t += dt
+        self.alpha = min(1.0, self.alpha + dt * 1.5)
 
     def render(self, s):
         self.app.bg_gen.render_parallax(s, "Pampa Astral", 2048, pygame.time.get_ticks() * 0.02, particles_on=self.app.user_settings.get("fx_particles", True))
-        title = self.app.loc.t(self.event["title_key"])
-        s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (100, 56))
+        panel = pygame.Rect(80, 120, 1760, 850)
+        pygame.draw.rect(s, (34, 24, 52), panel, border_radius=16)
+        pygame.draw.rect(s, UI_THEME["gold"], panel, 2, border_radius=16)
 
-        panel = pygame.Rect(80, 130, 1760, 840)
-        self._metaforma(s, panel)
+        title = self.app.loc.t(self.event.get("title_key", "event_title"))
+        s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (120, 148))
 
-        avatar_frame = pygame.Rect(130, 210, 300, 300)
+        avatar_frame = pygame.Rect(120, 230, 360, 420)
         pygame.draw.rect(s, (58, 40, 82), avatar_frame, border_radius=14)
         pygame.draw.rect(s, UI_THEME["gold"], avatar_frame, 2, border_radius=14)
-        av = self.app.assets.sprite("guides", self.guide_type, (256, 256), fallback=(34, 24, 52))
-        s.blit(av, (152, 232))
+        av = self.app.assets.sprite("guides", self.guide_type, (320, 320), fallback=(34, 24, 52))
+        s.blit(av, (140, 250))
 
-        text_box = pygame.Rect(470, 210, 1320, 420)
+        text_box = pygame.Rect(520, 230, 1280, 420)
         pygame.draw.rect(s, UI_THEME["panel_2"], text_box, border_radius=12)
-        s.blit(self.app.small_font.render(self.app.design_value("CANON_GUIDE_NAME", "Guía espiritual"), True, UI_THEME["muted"]), (500, 240))
+        pygame.draw.rect(s, UI_THEME["accent_violet"], text_box, 2, border_radius=12)
+        s.blit(self.app.small_font.render("Parábola", True, UI_THEME["gold"]), (548, 250))
+
         lines = self.writer.current.split("\n")
-        y = 286
-        for ln in lines[:8]:
-            s.blit(self.app.font.render(ln, True, UI_THEME["text"]), (500, y)); y += 36
+        y = 292
+        for ln in lines[:6]:
+            s.blit(self.app.font.render(ln, True, UI_THEME["text"]), (548, y))
+            y += 38
+
+        s.blit(self.app.small_font.render("Moraleja:", True, UI_THEME["gold"]), (548, 510))
+        s.blit(self.app.font.render(self.moraleja, True, UI_THEME["muted"]), (690, 512))
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
-        for i, ch in enumerate(self.event["choices"][:3]):
-            r = pygame.Rect(500, 700 + i * 90, 1340, 70)
+        for i, ch in enumerate(self.event.get("choices", [])[:3]):
+            r = pygame.Rect(530, 720 + i * 92, 1260, 74)
             col = UI_THEME["panel_2"] if r.collidepoint(mouse) else UI_THEME["panel"]
             pygame.draw.rect(s, col, r, border_radius=12)
             pygame.draw.rect(s, UI_THEME["accent_violet"], r, 2, border_radius=12)
-            s.blit(self.app.font.render(self.app.loc.t(ch["text_key"]), True, UI_THEME["text"]), (530, r.y + 20))
+            s.blit(self.app.font.render(self.app.loc.t(ch.get("text_key", "event_continue")), True, UI_THEME["text"]), (560, r.y + 22))
 
         if self.msg:
-            s.blit(self.app.small_font.render(self.msg, True, UI_THEME["good"]), (520, 660))
+            s.blit(self.app.small_font.render(self.msg, True, UI_THEME["good"]), (540, 688))
+
+        if self.alpha < 1.0:
+            ov = pygame.Surface((1920, 1080), pygame.SRCALPHA)
+            ov.fill((0, 0, 0, int(180 * (1.0 - self.alpha))))
+            s.blit(ov, (0, 0))
