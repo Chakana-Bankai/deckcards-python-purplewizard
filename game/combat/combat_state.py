@@ -301,6 +301,19 @@ class CombatState:
         self.draw_pile = self.draw_pile[:-n] + list(ordered_cards[::-1])
         self.scry_pending = []
 
+    def apply_scry_keep(self, keep_card):
+        pending = list(self.scry_pending or [])
+        if not pending:
+            self.scry_pending = []
+            return
+        keep = keep_card if keep_card in pending else pending[0]
+        rest = [c for c in pending if c is not keep]
+        n = len(pending)
+        self.draw_pile = self.draw_pile[:-n]
+        for c in rest:
+            self.discard_pile.append(c)
+        self.draw_pile.append(keep)
+        self.scry_pending = []
 
     def _track_harmony(self, direction: str):
         d = (direction or "ESTE").upper()

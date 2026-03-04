@@ -12,6 +12,7 @@ from game.core.safe_io import load_json
 from game.ui.anim import TypewriterBanner
 from game.ui.components.card_detail_panel import CardDetailPanel
 from game.ui.components.mana_orbs import ManaOrbsWidget
+from game.ui.components.modal_card_picker import ModalCardPicker
 from game.ui.controllers.card_interaction import CardInteractionController
 from game.ui.controllers.combat_dialogue_controller import CombatDialogueController
 from game.ui.layout.combat_layout import build_combat_layout
@@ -76,6 +77,7 @@ class CombatScreen:
         self._action_state_reason = "default"
         self.dialogue_ctrl = CombatDialogueController(self.app.lore_engine, self._set_dialogue_lines)
         self.topbar = CombatTopBar()
+        self.scry_picker = ModalCardPicker()
         self.layout = build_combat_layout(1920, 1080)
         self.end_turn_rect = pygame.Rect(0, 0, 1, 1)
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
@@ -292,6 +294,11 @@ class CombatScreen:
             node["state"] = "incomplete"
 
     def handle_event(self, event):
+        if self.scry_picker.open:
+            mapped_pos = self.app.renderer.map_mouse(event.pos) if hasattr(event, "pos") else None
+            if self.scry_picker.handle_event(event, mapped_pos):
+                return
+
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             self.pause_open = not self.pause_open
             if self.pause_open:
@@ -409,6 +416,13 @@ class CombatScreen:
             if ev.get("type") == "damage" and ev.get("target") == "player" and ev.get("amount", 0) >= 8:
                 self._trigger_dialog("enemy_big_attack")
                 self._push_log(f"Daño recibido: {ev.get('amount',0)}")
+
+        if self.c.scry_pending and not self.scry_picker.open:
+            self.scry_picker.show(
+                self.c.scry_pending,
+                on_confirm=lambda card: self.c.apply_scry_keep(card),
+                on_cancel=lambda: self.c.apply_scry_keep(None),
+            )
 
         if self.c.player["hp"] <= max(10, self.c.player["max_hp"] * 0.3):
             enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
@@ -687,3 +701,5 @@ class CombatScreen:
                 msg = "Pulsa de nuevo para confirmar salida."
                 hint = self.app.small_font.render(msg, True, UI_THEME["muted"])
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
+
+        self.scry_picker.render(s, self.app)

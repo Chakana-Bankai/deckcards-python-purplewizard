@@ -51,3 +51,6 @@ class CombatEngine:
 
     def apply_scry_order(self, cards):
         return self.state.apply_scry_order(cards)
+
+    def apply_scry_keep(self, keep_card):
+        return self.state.apply_scry_keep(keep_card)
