@@ -101,7 +101,7 @@ class CombatScreen:
         btn_w = max(220, int(self.layout.actions_rect.w * 0.18))
         btn_h = max(52, int(self.layout.actions_rect.h * 0.48))
         self.end_turn_rect = pygame.Rect(self.layout.actions_rect.right - btn_w - 24, self.layout.actions_rect.y + (self.layout.actions_rect.h - btn_h) // 2, btn_w, btn_h)
-        self.harmony_seal_rect = pygame.Rect(self.layout.playerhud_rect.x + 220, self.layout.playerhud_rect.y + 152, 96, 28)
+        self.harmony_seal_rect = pygame.Rect(self.layout.playerhud_rect.right - 112, self.layout.playerhud_rect.y + 170, 96, 28)
 
     def _dialogue_lookup(self, enemy_id: str, trigger: str):
         e, c = self.app.lore_engine.get_combat_lines(enemy_id, trigger)
@@ -460,15 +460,7 @@ class CombatScreen:
                     enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
                     self.set_dialogue("harmony_ready", enemy_id, {})
 
-    def _draw_card(self, s, rect, card, selected=False, family="violet_arcane"):
-        accent = {"crimson_chaos": (220, 108, 84), "emerald_spirit": (88, 198, 154), "azure_cosmic": (112, 152, 228), "violet_arcane": (176, 126, 240), "solar_gold": (226, 190, 112)}.get(family, (176, 126, 240))
-        pygame.draw.rect(s, UI_THEME["card_bg"], rect, border_radius=12)
-        pygame.draw.rect(s, accent, rect, 3, border_radius=12)
-        art = self.app.assets.sprite("cards", card.definition.id, (rect.w - 14, int(rect.h * 0.56)), fallback=(70, 44, 105))
-        s.blit(art, (rect.x + 7, rect.y + 30))
-        s.blit(self.app.tiny_font.render(str(card.definition.name_key), True, UI_THEME["text"]), (rect.x + 8, rect.y + 6))
-        pygame.draw.circle(s, UI_THEME["energy"], (rect.right - 16, rect.y + 16), 12)
-        s.blit(self.app.tiny_font.render(str(card.cost), True, UI_THEME["text_dark"]), (rect.right - 20, rect.y + 9))
+    def _card_icons(self, card):
         tags = set(getattr(card.definition, "tags", []) or [])
         effects = list(getattr(card.definition, "effects", []) or [])
         icons = []
@@ -486,7 +478,18 @@ class CombatScreen:
             icons.append("☠")
         if any(str(e.get("type", "")) in {"energy", "gain_mana"} for e in effects if isinstance(e, dict)):
             icons.append("⚡")
-        icon_row = " ".join(icons[:4])
+        return icons
+
+    def _draw_card(self, s, rect, card, selected=False, family="violet_arcane"):
+        accent = {"crimson_chaos": (220, 108, 84), "emerald_spirit": (88, 198, 154), "azure_cosmic": (112, 152, 228), "violet_arcane": (176, 126, 240), "solar_gold": (226, 190, 112)}.get(family, (176, 126, 240))
+        pygame.draw.rect(s, UI_THEME["card_bg"], rect, border_radius=12)
+        pygame.draw.rect(s, accent, rect, 3, border_radius=12)
+        art = self.app.assets.sprite("cards", card.definition.id, (rect.w - 14, int(rect.h * 0.56)), fallback=(70, 44, 105))
+        s.blit(art, (rect.x + 7, rect.y + 30))
+        s.blit(self.app.tiny_font.render(str(card.definition.name_key), True, UI_THEME["text"]), (rect.x + 8, rect.y + 6))
+        pygame.draw.circle(s, UI_THEME["energy"], (rect.right - 16, rect.y + 16), 12)
+        s.blit(self.app.tiny_font.render(str(card.cost), True, UI_THEME["text_dark"]), (rect.right - 20, rect.y + 9))
+        icon_row = " ".join(self._card_icons(card)[:4])
         if icon_row:
             s.blit(self.app.tiny_font.render(icon_row, True, UI_THEME["gold"]), (rect.x + 8, rect.bottom - 24))
         if selected:
@@ -646,21 +649,28 @@ class CombatScreen:
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.voices_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.voices_rect, 2, border_radius=12)
-        s.blit(self.app.small_font.render("Voces", True, UI_THEME["gold"]), (self.layout.voices_rect.x + 12, self.layout.voices_rect.y + 8))
+        s.blit(self.app.small_font.render("Voces del combate", True, UI_THEME["gold"]), (self.layout.voices_rect.x + 12, self.layout.voices_rect.y + 8))
         e_line = self.dialog_enemy.current or "(el enemigo contiene la respiración...)"
         h_line = self.dialog_hero.current or "(Chakana escucha la Trama...)"
-        enemy_lines = wrap_text(self.app.font, e_line, self.layout.voices_rect.w - 32, max_lines=2)
-        hero_lines = wrap_text(self.app.font, h_line, self.layout.voices_rect.w - 32, max_lines=2)
-        y = self.layout.voices_rect.y + 34
+        line_w = self.layout.voices_rect.w - 44
+        enemy_lines = wrap_text(self.app.font, e_line, line_w, max_lines=2)
+        hero_lines = wrap_text(self.app.font, h_line, line_w, max_lines=2)
+        enemy_box = pygame.Rect(self.layout.voices_rect.x + 12, self.layout.voices_rect.y + 34, self.layout.voices_rect.w - 24, 40)
+        hero_box = pygame.Rect(self.layout.voices_rect.x + 12, self.layout.voices_rect.y + 78, self.layout.voices_rect.w - 24, 40)
+        pygame.draw.rect(s, (58, 34, 52), enemy_box, border_radius=8)
+        pygame.draw.rect(s, (36, 52, 46), hero_box, border_radius=8)
+        s.blit(self.app.tiny_font.render("ENEMIGO", True, (245, 132, 142)), (enemy_box.x + 8, enemy_box.y + 4))
+        s.blit(self.app.tiny_font.render("CHAKANA", True, (166, 240, 190)), (hero_box.x + 8, hero_box.y + 4))
         threat = 3 if any(k in str(self.last_trigger) for k in ["attack", "defeat", "low"]) else 0
         offx = threat if (pygame.time.get_ticks() // 40) % 2 == 0 else -threat
+        y = enemy_box.y + 18
         for ln in enemy_lines:
-            s.blit(self.app.font.render(ln, True, (245, 132, 142)), (self.layout.voices_rect.x + 16 + offx, y))
-            y += 24
-        y += 4
+            s.blit(self.app.tiny_font.render(ln, True, UI_THEME["text"]), (enemy_box.x + 10 + offx, y))
+            y += 16
+        y = hero_box.y + 18
         for ln in hero_lines:
-            s.blit(self.app.font.render(ln, True, (166, 240, 190)), (self.layout.voices_rect.x + 16, y))
-            y += 24
+            s.blit(self.app.tiny_font.render(ln, True, UI_THEME["text"]), (hero_box.x + 10, y))
+            y += 16
 
         hand = self.c.hand[:6]
         detail_rect = self.layout.card_detail
@@ -718,39 +728,47 @@ class CombatScreen:
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.playerhud_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.playerhud_rect, 2, border_radius=12)
-        s.blit(self.app.small_font.render("Chakana", True, UI_THEME["gold"]), (self.layout.playerhud_rect.x + 12, self.layout.playerhud_rect.y + 8))
+        s.blit(self.app.small_font.render("Chakana • Estado", True, UI_THEME["gold"]), (self.layout.playerhud_rect.x + 12, self.layout.playerhud_rect.y + 8))
         p = self.c.player
-        s.blit(self.app.font.render(f"Vida {p['hp']}/{p['max_hp']}", True, UI_THEME["text"]), (self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + 38))
-        s.blit(self.app.mono_font.render(f"Bloqueo {p['block']}", True, UI_THEME["block"]), (self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + 72))
-        s.blit(self.app.mono_font.render(f"Ruptura {p['rupture']}", True, UI_THEME["rupture"]), (self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + 104))
+        left_x = self.layout.playerhud_rect.x + 16
+        top_y = self.layout.playerhud_rect.y + 38
+        s.blit(self.app.tiny_font.render(f"HP", True, UI_THEME["muted"]), (left_x, top_y))
+        s.blit(self.app.font.render(f"{p['hp']}/{p['max_hp']}", True, UI_THEME["text"]), (left_x + 34, top_y - 6))
+        s.blit(self.app.tiny_font.render(f"Bloqueo {p['block']}", True, UI_THEME["block"]), (left_x, top_y + 28))
+        s.blit(self.app.tiny_font.render(f"Ruptura {p['rupture']}", True, UI_THEME["rupture"]), (left_x, top_y + 48))
+
         draw_n = len(getattr(self.c, "draw_pile", []))
         hand_n = len(getattr(self.c, "hand", []))
         disc_n = len(getattr(self.c, "discard_pile", []))
         ex_n = len(getattr(self.c, "exhaust_pile", []))
-        s.blit(self.app.tiny_font.render(f"Mazo: {draw_n}  Mano: {hand_n}  Descarte: {disc_n}  Agotado: {ex_n}", True, UI_THEME["muted"]), (self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + 132))
+        s.blit(self.app.tiny_font.render(f"Draw {draw_n} • Mano {hand_n} • Discarte {disc_n} • Exhaust {ex_n}", True, UI_THEME["muted"]), (left_x, top_y + 70))
 
         h_cur = int(p.get("harmony_current", 0) or 0)
         h_max = max(1, int(p.get("harmony_max", 10) or 10))
         h_thr = max(1, int(p.get("harmony_ready_threshold", 6) or 6))
         ready = h_cur >= h_thr
-        hy = self.layout.playerhud_rect.y + 156
-        s.blit(self.app.tiny_font.render(f"Armonía {h_cur}/{h_max}", True, UI_THEME["good"] if ready else UI_THEME["text"]), (self.layout.playerhud_rect.x + 18, hy))
+        hy = top_y + 96
+        bar = pygame.Rect(left_x, hy + 18, self.layout.playerhud_rect.w - 156, 14)
+        pygame.draw.rect(s, (28, 26, 40), bar, border_radius=6)
+        pygame.draw.rect(s, UI_THEME["good"], pygame.Rect(bar.x, bar.y, int(bar.w * (h_cur / max(1, h_max))), bar.h), border_radius=6)
+        s.blit(self.app.tiny_font.render(f"Armonía {h_cur}/{h_max}  umbral {h_thr}", True, UI_THEME["good"] if ready else UI_THEME["text"]), (left_x, hy))
         if ready:
             pulse = 120 + int(80 * (0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 180.0)))
-            glow = pygame.Surface((120, 22), pygame.SRCALPHA)
+            glow = pygame.Surface((92, 20), pygame.SRCALPHA)
             glow.fill((160, 245, 180, pulse))
-            s.blit(glow, (self.layout.playerhud_rect.x + 156, hy - 2))
-            s.blit(self.app.tiny_font.render("LISTA", True, UI_THEME["good"]), (self.layout.playerhud_rect.x + 164, hy))
+            s.blit(glow, (bar.right + 6, hy + 14))
+            s.blit(self.app.tiny_font.render("LISTA", True, UI_THEME["good"]), (bar.right + 14, hy + 16))
             pygame.draw.rect(s, UI_THEME["violet"], self.harmony_seal_rect, border_radius=8)
             pygame.draw.rect(s, UI_THEME["gold"], self.harmony_seal_rect, 1, border_radius=8)
             s.blit(self.app.tiny_font.render("SELLO", True, UI_THEME["text"]), (self.harmony_seal_rect.x + 22, self.harmony_seal_rect.y + 6))
         else:
             pygame.draw.rect(s, UI_THEME["panel_2"], self.harmony_seal_rect, border_radius=8)
             s.blit(self.app.tiny_font.render("SELLO", True, UI_THEME["muted"]), (self.harmony_seal_rect.x + 22, self.harmony_seal_rect.y + 6))
+
         self.mana_orbs.update(int(p.get("energy", 0)))
-        self.mana_orbs.draw(s, self.layout.playerhud_rect.x + 18, self.layout.playerhud_rect.y + self.layout.playerhud_rect.h - 52, int(p.get("energy", 0)), 6)
-        avatar = render_avatar(pygame.time.get_ticks() / 1000.0, min(96, self.layout.playerhud_rect.h - 40))
-        s.blit(avatar, (self.layout.playerhud_rect.right - avatar.get_width() - 16, self.layout.playerhud_rect.y + 20))
+        self.mana_orbs.draw(s, left_x, self.layout.playerhud_rect.y + self.layout.playerhud_rect.h - 52, int(p.get("energy", 0)), 6)
+        avatar = render_avatar(pygame.time.get_ticks() / 1000.0, min(84, self.layout.playerhud_rect.h - 40))
+        s.blit(avatar, (self.layout.playerhud_rect.right - avatar.get_width() - 14, self.layout.playerhud_rect.y + 16))
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.actions_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.actions_rect, 2, border_radius=12)

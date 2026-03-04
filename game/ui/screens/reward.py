@@ -42,7 +42,7 @@ class RewardScreen:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
             for i, card in enumerate(self.picks):
-                r = pygame.Rect(430 + i * 350, 370, 300, 420)
+                r = pygame.Rect(300 + i * 440, 314, 400, 448)
                 if r.collidepoint(pos):
                     self.app.run_state["sideboard"].append(card.definition.id)
                     self.app.run_state["gold"] += self.gold
@@ -55,33 +55,40 @@ class RewardScreen:
 
     def render(self, s):
         self.app.bg_gen.render_parallax(s, "Pampa Astral", 1111, pygame.time.get_ticks() * 0.02, particles_on=self.app.user_settings.get("fx_particles", True))
-        panel = pygame.Rect(120, 120, 1680, 840)
+        panel = pygame.Rect(84, 84, 1752, 912)
         self._metaforma(s, panel)
-        header = pygame.Rect(140, 140, 1640, 120)
+        header = pygame.Rect(110, 110, 1700, 118)
         pygame.draw.rect(s, UI_THEME["deep_purple"], header, border_radius=12)
         pygame.draw.rect(s, UI_THEME["gold"], header, 2, border_radius=12)
-        s.blit(self.app.big_font.render("Recompensa", True, UI_THEME["gold"]), (160, 164))
-        s.blit(self.app.small_font.render(f"Oro +{self.gold}   XP +{self.xp_gained}", True, UI_THEME["good"]), (162, 206))
-
-        teach = pygame.Rect(140, 804, 1640, 126)
-        pygame.draw.rect(s, UI_THEME["panel"], teach, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], teach, 2, border_radius=12)
-        s.blit(self.app.small_font.render("Enseñanza", True, UI_THEME["gold"]), (160, 820))
-        hint = str((self.hint or {}).get("text", "Escucha la Trama."))
-        s.blit(self.app.small_font.render(hint[:128], True, UI_THEME["text"]), (160, 856))
-        print(f"[ui] reward_hint={hint}")
+        s.blit(self.app.big_font.render("Elige tu Recompensa", True, UI_THEME["gold"]), (132, 136))
+        s.blit(self.app.small_font.render(f"+{self.gold} oro  •  +{self.xp_gained} XP", True, UI_THEME["good"]), (134, 180))
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         for i, card in enumerate(self.picks):
-            r = pygame.Rect(430 + i * 350, 370, 300, 420)
+            r = pygame.Rect(300 + i * 440, 314, 400, 448)
             hover = r.collidepoint(mouse)
-            rr = r.inflate(12, 12) if hover else r
+            rr = r.inflate(14, 14) if hover else r
             pygame.draw.rect(s, UI_THEME["card_bg"], rr, border_radius=14)
-            pygame.draw.rect(s, UI_THEME["gold"], rr, 2, border_radius=14)
-            art = self.app.assets.sprite("cards", card.definition.id, (rr.w - 20, 220), fallback=(82, 52, 112))
-            s.blit(art, (rr.x + 10, rr.y + 50))
-            s.blit(self.app.small_font.render(self.app.loc.t(str(card.definition.name_key)), True, UI_THEME["text"]), (rr.x + 14, rr.y + 16))
-            s.blit(self.app.tiny_font.render(self.app.loc.t(str(card.definition.text_key))[:44], True, UI_THEME["muted"]), (rr.x + 14, rr.y + 292))
+            pygame.draw.rect(s, UI_THEME["gold" if hover else "accent_violet"], rr, 3 if hover else 2, border_radius=14)
+
+            name = self.app.loc.t(str(card.definition.name_key))
+            desc = self.app.loc.t(str(card.definition.text_key))
+            art = self.app.assets.sprite("cards", card.definition.id, (rr.w - 24, 262), fallback=(82, 52, 112))
+            s.blit(art, (rr.x + 12, rr.y + 52))
+
+            s.blit(self.app.small_font.render(name, True, UI_THEME["text"]), (rr.x + 14, rr.y + 14))
+            pygame.draw.circle(s, UI_THEME["energy"], (rr.right - 22, rr.y + 24), 13)
+            s.blit(self.app.tiny_font.render(str(card.cost), True, UI_THEME["text_dark"]), (rr.right - 26, rr.y + 17))
+            s.blit(self.app.tiny_font.render(desc[:80], True, UI_THEME["muted"]), (rr.x + 14, rr.y + 328))
+            s.blit(self.app.tiny_font.render("Click para reclamar", True, UI_THEME["good"] if hover else UI_THEME["muted"]), (rr.x + 14, rr.bottom - 26))
+
+        teach = pygame.Rect(110, 804, 1700, 152)
+        pygame.draw.rect(s, UI_THEME["panel"], teach, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], teach, 2, border_radius=12)
+        s.blit(self.app.small_font.render("Enseñanza de la Trama", True, UI_THEME["gold"]), (130, 822))
+        hint = str((self.hint or {}).get("text", "Escucha la Trama."))
+        s.blit(self.app.small_font.render(hint[:150], True, UI_THEME["text"]), (130, 862))
+        print(f"[ui] reward_hint={hint}")
 
         if self.msg:
-            s.blit(self.app.small_font.render(self.msg, True, UI_THEME["good"]), (140, 920))
+            s.blit(self.app.small_font.render(self.msg, True, UI_THEME["good"]), (124, 964))

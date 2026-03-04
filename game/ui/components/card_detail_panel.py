@@ -67,7 +67,7 @@ class CardDetailPanel:
     def render(self, surface: pygame.Surface, rect: pygame.Rect, card=None, placeholder_text: str | None = None, last_played: str | None = None):
         pygame.draw.rect(surface, UI_THEME["panel"], rect, border_radius=12)
         pygame.draw.rect(surface, UI_THEME["accent_violet"], rect, 2, border_radius=12)
-        surface.blit(self.app.small_font.render("Detalle", True, UI_THEME["gold"]), (rect.x + 12, rect.y + 8))
+        surface.blit(self.app.small_font.render("Detalle táctico", True, UI_THEME["gold"]), (rect.x + 12, rect.y + 8))
         payload = self._get_payload(card)
         if not payload:
             msg = placeholder_text or "Selecciona una carta para ver sus detalles."
@@ -80,11 +80,33 @@ class CardDetailPanel:
         tx = rect.x + 16
         y = rect.y + 42
         max_w = rect.w - 30
+        tags = set(payload.get("tags", []))
+        effects = [e for e in payload.get("effects", []) if isinstance(e, dict)]
+        icons = []
+        if "attack" in tags:
+            icons.append("⚔")
+        if "skill" in tags or any(str(e.get("type", "")) in {"block", "gain_block"} for e in effects):
+            icons.append("🛡")
+        if "ritual" in tags:
+            icons.append("✦")
+        if any(str(e.get("type", "")) == "scry" for e in effects):
+            icons.append("👁")
+        if any(str(e.get("type", "")) == "draw" for e in effects):
+            icons.append("⟳")
+        if any(str(e.get("type", "")) in {"rupture", "apply_break"} for e in effects):
+            icons.append("☠")
+        if any(str(e.get("type", "")) in {"energy", "gain_mana"} for e in effects):
+            icons.append("⚡")
 
         card_name = self.app.loc.t(payload["name_key"])
         for ln in self._wrap_clamp(self.app.small_font, card_name, max_w, 1):
             surface.blit(self.app.small_font.render(ln, True, UI_THEME["text"]), (tx, y))
             y += 24
+
+        if icons:
+            icon_line = " ".join(icons[:5])
+            surface.blit(self.app.tiny_font.render(icon_line, True, UI_THEME["gold"]), (tx, y))
+            y += 20
 
         meta = f"Tipo: {payload.get('family','-')}  |  Coste: {payload.get('cost',0)}"
         for ln in self._wrap_clamp(self.app.tiny_font, meta, max_w, 1):
@@ -102,8 +124,12 @@ class CardDetailPanel:
             surface.blit(self.app.tiny_font.render(ln, True, UI_THEME["muted"]), (tx, y))
             y += 18
 
-        tags = ", ".join(summary.get("tags", payload.get("tags", []))) or "-"
-        tag_line = f"Tags: {tags}"
+        tags_txt = ", ".join(summary.get("tags", payload.get("tags", []))) or "-"
+        tag_line = f"Etiquetas: {tags_txt}"
         for ln in self._wrap_clamp(self.app.tiny_font, tag_line, max_w, 1):
             if y <= rect.bottom - 24:
                 surface.blit(self.app.tiny_font.render(ln, True, UI_THEME["muted"]), (tx, y))
+
+        if last_played:
+            foot = self._wrap_clamp(self.app.tiny_font, f"Última jugada: {last_played}", max_w, 1)[0]
+            surface.blit(self.app.tiny_font.render(foot, True, UI_THEME["good"]), (tx, rect.bottom - 22))

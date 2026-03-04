@@ -77,13 +77,13 @@ class DeckScreen:
                 self.app.goto_map()
                 return
             for i, cid in enumerate(self.app.run_state["deck"]):
-                r = pygame.Rect(40, 110 + i * 26, 560, 24)
+                r = pygame.Rect(48, 152 + i * 26, 620, 24)
                 if r.collidepoint(pos):
                     self._select("main", i, cid)
                     self._swap_main_to_sideboard(i)
                     return
             for i, cid in enumerate(self.app.run_state["sideboard"]):
-                r = pygame.Rect(40, 540 + i * 24, 560, 22)
+                r = pygame.Rect(48, 566 + i * 24, 620, 22)
                 if r.collidepoint(pos):
                     self._select("sideboard", i, cid)
                     self._swap_sideboard_to_main(i)
@@ -97,8 +97,21 @@ class DeckScreen:
 
         pygame.draw.rect(s, UI_THEME["panel"], self.back, border_radius=8)
         s.blit(self.app.font.render(self.app.loc.t("menu_back"), True, UI_THEME["text"]), (60, 30))
-        s.blit(self.app.big_font.render("Mazo Activo", True, UI_THEME["text"]), (40, 70))
-        s.blit(self.app.big_font.render("Sideboard", True, UI_THEME["text"]), (40, 500))
+
+        main_rect = pygame.Rect(36, 98, 644, 384)
+        side_rect = pygame.Rect(36, 510, 644, 404)
+        preview_rect = pygame.Rect(700, 98, 1184, 816)
+
+        pygame.draw.rect(s, UI_THEME["panel"], main_rect, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], main_rect, 2, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["panel"], side_rect, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], side_rect, 2, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["panel"], preview_rect, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], preview_rect, 2, border_radius=12)
+
+        s.blit(self.app.small_font.render("Mazo Activo (click para enviar a sideboard)", True, UI_THEME["gold"]), (48, 112))
+        s.blit(self.app.small_font.render("Sideboard (click para regresar al mazo)", True, UI_THEME["gold"]), (48, 524))
+        s.blit(self.app.small_font.render("Selector de mazo", True, UI_THEME["gold"]), (714, 112))
 
         attacks = skills = rituals = total_cost = 0
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
@@ -112,55 +125,52 @@ class DeckScreen:
                 skills += 1
             if "ritual" in tags:
                 rituals += 1
-            r = pygame.Rect(40, 110 + i * 26, 560, 24)
+            r = pygame.Rect(48, 152 + i * 26, 620, 24)
             is_selected = self.selected_zone == "main" and self.selected_index == i
             col = (56, 66, 108) if r.collidepoint(mouse) else (34, 36, 56)
             pygame.draw.rect(s, col, r, border_radius=4)
             if is_selected:
                 pygame.draw.rect(s, UI_THEME["gold"], r, 2, border_radius=4)
-            s.blit(self.app.tiny_font.render(self.app.loc.t(cd.get("name_key", cid)), True, UI_THEME["text"]), (46, 114 + i * 26))
+            s.blit(self.app.tiny_font.render(f"{i+1:02d}. {self.app.loc.t(cd.get('name_key', cid))}", True, UI_THEME["text"]), (54, 156 + i * 26))
 
         for i, cid in enumerate(self.app.run_state["sideboard"]):
             cd = self.app.card_defs.get(cid, self.app.card_defs.get(next(iter(self.app.card_defs.keys()), "")))
-            r = pygame.Rect(40, 540 + i * 24, 560, 22)
+            r = pygame.Rect(48, 566 + i * 24, 620, 22)
             is_selected = self.selected_zone == "sideboard" and self.selected_index == i
             col = (56, 66, 108) if r.collidepoint(mouse) else (34, 36, 56)
             pygame.draw.rect(s, col, r, border_radius=4)
             if is_selected:
                 pygame.draw.rect(s, UI_THEME["gold"], r, 2, border_radius=4)
-            s.blit(self.app.tiny_font.render(self.app.loc.t(cd.get("name_key", cid)), True, UI_THEME["text"]), (46, 543 + i * 24))
+            s.blit(self.app.tiny_font.render(f"{i+1:02d}. {self.app.loc.t(cd.get('name_key', cid))}", True, UI_THEME["text"]), (54, 569 + i * 24))
 
         n = max(1, len(self.app.run_state["deck"]))
         avg = total_cost / n
-        s.blit(self.app.font.render(self.app.loc.t("deck_stats", count=n, avg=f"{avg:.1f}"), True, UI_THEME["gold"]), (40, 946))
-        s.blit(self.app.font.render(self.app.loc.t("deck_stats_tags", atk=attacks, skill=skills, ritual=rituals), True, UI_THEME["muted"]), (40, 976))
-
-        preview_rect = pygame.Rect(680, 130, 460, 520)
-        pygame.draw.rect(s, UI_THEME["panel"], preview_rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], preview_rect, 2, border_radius=12)
-        s.blit(self.app.small_font.render("Vista previa", True, UI_THEME["gold"]), (preview_rect.x + 12, preview_rect.y + 10))
+        s.blit(self.app.font.render(self.app.loc.t("deck_stats", count=n, avg=f"{avg:.1f}"), True, UI_THEME["gold"]), (48, 940))
+        s.blit(self.app.font.render(self.app.loc.t("deck_stats_tags", atk=attacks, skill=skills, ritual=rituals), True, UI_THEME["muted"]), (48, 972))
 
         selected = self.app.card_defs.get(self.selected_card_id) if self.selected_card_id else None
         if selected:
-            art_rect = pygame.Rect(preview_rect.x + 18, preview_rect.y + 48, 210, 300)
+            art_rect = pygame.Rect(preview_rect.x + 22, preview_rect.y + 58, 320, 460)
             art = self.app.assets.sprite("cards", selected.get("id", ""), (art_rect.w, art_rect.h), fallback=(70, 44, 105))
             s.blit(art, art_rect.topleft)
             pygame.draw.rect(s, UI_THEME["accent_violet"], art_rect, 2, border_radius=8)
 
             name = self.app.loc.t(selected.get("name_key", selected.get("id", "Carta")))
-            s.blit(self.app.small_font.render(name, True, UI_THEME["text"]), (preview_rect.x + 242, preview_rect.y + 60))
-            s.blit(self.app.small_font.render(f"Coste: {selected.get('cost', 0)}", True, UI_THEME["energy"]), (preview_rect.x + 242, preview_rect.y + 98))
+            s.blit(self.app.big_font.render(name[:36], True, UI_THEME["text"]), (preview_rect.x + 370, preview_rect.y + 66))
+            s.blit(self.app.small_font.render(f"Coste: {selected.get('cost', 0)}", True, UI_THEME["energy"]), (preview_rect.x + 370, preview_rect.y + 118))
+            tag_txt = ", ".join(selected.get("tags", [])) or "-"
+            s.blit(self.app.small_font.render(f"Tags: {tag_txt}", True, UI_THEME["muted"]), (preview_rect.x + 370, preview_rect.y + 152))
 
             desc = self.app.loc.t(selected.get("text_key", ""))
-            y = preview_rect.y + 146
-            for line in self._wrap_text(desc, preview_rect.w - 262, max_lines=9):
-                s.blit(self.app.tiny_font.render(line, True, UI_THEME["muted"]), (preview_rect.x + 242, y))
-                y += 20
+            y = preview_rect.y + 206
+            for line in self._wrap_text(desc, 770, max_lines=12):
+                s.blit(self.app.small_font.render(line, True, UI_THEME["text"]), (preview_rect.x + 370, y))
+                y += 26
         else:
             s.blit(self.app.font.render("Selecciona una carta para previsualizar", True, UI_THEME["muted"]), (preview_rect.x + 18, preview_rect.y + 58))
 
         if self.toast_t > 0 and self.toast_text:
-            toast_rect = pygame.Rect(620, 680, 560, 52)
+            toast_rect = pygame.Rect(860, 930, 860, 52)
             pygame.draw.rect(s, UI_THEME["deep_purple"], toast_rect, border_radius=10)
             pygame.draw.rect(s, UI_THEME["gold"], toast_rect, 2, border_radius=10)
-            s.blit(self.app.small_font.render(self.toast_text[:70], True, UI_THEME["text"]), (toast_rect.x + 16, toast_rect.y + 14))
+            s.blit(self.app.small_font.render(self.toast_text[:100], True, UI_THEME["text"]), (toast_rect.x + 16, toast_rect.y + 14))

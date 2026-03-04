@@ -91,7 +91,7 @@ class MapScreen:
 
     def _topbar_narrative(self):
         run = self.app.run_state or {}
-        left = "Travesía de Chakana"
+        left = "Mapa 2.0 • Travesía de Chakana"
         pacha = self.app.get_biome_display_name(run.get("biome") if isinstance(run, dict) else None)
         center = f"{pacha} — {self._friendly_node_name()}"
         subtitle = str(self.app.lore_engine.get_map_narration("default") if hasattr(self.app, "lore_engine") else "")
@@ -110,7 +110,12 @@ class MapScreen:
         self.topbar.render(s, self.app, topbar, left, center, subtitle, right)
 
         pygame.draw.rect(s, UI_THEME["panel"], self.deck_btn, border_radius=10)
-        s.blit(self.app.map_font.render(self.app.loc.t("deck_button"), True, UI_THEME["text"]), (INTERNAL_WIDTH - 230, 94))
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.deck_btn, 2, border_radius=10)
+        s.blit(self.app.map_font.render("Mazo", True, UI_THEME["text"]), (INTERNAL_WIDTH - 194, 94))
+
+        map_rect = pygame.Rect(60, 130, INTERNAL_WIDTH - 120, INTERNAL_HEIGHT - 280)
+        pygame.draw.rect(s, UI_THEME["panel"], map_rect, border_radius=16)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], map_rect, 2, border_radius=16)
 
         for ci, col in enumerate(run["map"]):
             if ci < len(run["map"]) - 1:
@@ -149,6 +154,12 @@ class MapScreen:
                 label = self.NODE_NAMES.get(node["type"], "Ruta")
                 lbl = self.app.small_font.render(label, True, UI_THEME["text"])
                 s.blit(lbl, (node["x"] - lbl.get_width() // 2, node["y"] + radius + 8))
+
+        legend = pygame.Rect(80, INTERNAL_HEIGHT - 134, 760, 88)
+        pygame.draw.rect(s, UI_THEME["panel_2"], legend, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], legend, 1, border_radius=12)
+        s.blit(self.app.small_font.render("Leyenda", True, UI_THEME["gold"]), (legend.x + 14, legend.y + 8))
+        s.blit(self.app.tiny_font.render("Morado=Disponible • Verde=Completado • Naranja=Incompleto • Rojo=Boss", True, UI_THEME["muted"]), (legend.x + 14, legend.y + 40))
 
         if hovered_node:
             lore_text = self.NODE_LORE.get(hovered_node.get("type"), "La ruta susurra un destino incierto.")
