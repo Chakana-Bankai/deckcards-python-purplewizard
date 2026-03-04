@@ -1,0 +1,1136 @@
+[
+  {
+    "id": "acaro_de_tinta",
+    "name_es": "Ácaro de Tinta",
+    "biome": "ukhu",
+    "hp": [
+      44,
+      52
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      },
+      {
+        "intent": "channel",
+        "label": "Canaliza: Canaliza tinta",
+        "effect": {}
+      },
+      {
+        "intent": "attack",
+        "value": [
+          9,
+          9
+        ],
+        "label": "Preparando: Ataque 9"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "miedo",
+    "tier": "common"
+  },
+  {
+    "id": "larva_del_vacio",
+    "name_es": "Larva del Vacío",
+    "biome": "ukhu",
+    "hp": [
+      47,
+      56
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          5,
+          5
+        ],
+        "label": "Preparando: Ataque 5"
+      },
+      {
+        "intent": "defend",
+        "value": [
+          4,
+          4
+        ],
+        "label": "Preparando: Guardia 4"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          7,
+          7
+        ],
+        "label": "Preparando: Ataque 7"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "apego",
+    "tier": "common"
+  },
+  {
+    "id": "sabueso_sombrio",
+    "name_es": "Sabueso Sombrío",
+    "biome": "ukhu",
+    "hp": [
+      50,
+      60
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          4,
+          4
+        ],
+        "label": "Preparando: Ataque 4"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          4,
+          4
+        ],
+        "label": "Preparando: Ataque 4"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "prisa",
+    "tier": "common"
+  },
+  {
+    "id": "rata_obsidiana",
+    "name_es": "Rata Obsidiana",
+    "biome": "kay",
+    "hp": [
+      53,
+      64
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          5,
+          5
+        ],
+        "label": "Preparando: Ataque 5"
+      },
+      {
+        "intent": "debuff",
+        "status": "weaken",
+        "stacks": 2,
+        "label": "Canaliza: weaken 2"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          5,
+          5
+        ],
+        "label": "Preparando: Ataque 5"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "confusión",
+    "tier": "common"
+  },
+  {
+    "id": "eco_perdido",
+    "name_es": "Eco Perdido",
+    "biome": "hanan",
+    "hp": [
+      56,
+      68
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "channel",
+        "label": "Canaliza: Susurros",
+        "effect": {}
+      },
+      {
+        "intent": "break",
+        "stacks": 2,
+        "label": "Canaliza: Quiebre 2"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "duda",
+    "tier": "common"
+  },
+  {
+    "id": "espiritu_de_humo",
+    "name_es": "Espíritu de Humo",
+    "biome": "ukhu",
+    "hp": [
+      59,
+      72
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "defend",
+        "value": [
+          5,
+          5
+        ],
+        "label": "Preparando: Guardia 5"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "miedo",
+    "tier": "common"
+  },
+  {
+    "id": "monolito_fracturado",
+    "name_es": "Monolito Fracturado",
+    "biome": "kay",
+    "hp": [
+      62,
+      76
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "defend",
+        "value": [
+          7,
+          7
+        ],
+        "label": "Preparando: Guardia 7"
+      },
+      {
+        "intent": "break",
+        "stacks": 2,
+        "label": "Canaliza: Quiebre 2"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          5,
+          5
+        ],
+        "label": "Preparando: Ataque 5"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "rigidez",
+    "tier": "common"
+  },
+  {
+    "id": "ave_de_ceniza",
+    "name_es": "Ave de Ceniza",
+    "biome": "hanan",
+    "hp": [
+      44,
+      52
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      },
+      {
+        "intent": "heal",
+        "stacks": 2,
+        "label": "Canaliza: Cura 2"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "desesperación",
+    "tier": "common"
+  },
+  {
+    "id": "vigia_del_kaypacha",
+    "name_es": "Vigía del Kaypacha",
+    "biome": "kay",
+    "hp": [
+      47,
+      56
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "defend",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Guardia 6"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          8,
+          8
+        ],
+        "label": "Preparando: Ataque 8"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "arrogancia",
+    "tier": "common"
+  },
+  {
+    "id": "mascara_risuena",
+    "name_es": "Máscara Risueña",
+    "biome": "hanan",
+    "hp": [
+      50,
+      60
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "debuff",
+        "status": "vulnerable",
+        "stacks": 2,
+        "label": "Canaliza: vulnerable 2"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          7,
+          7
+        ],
+        "label": "Preparando: Ataque 7"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          7,
+          7
+        ],
+        "label": "Preparando: Ataque 7"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "soberbia",
+    "tier": "common"
+  },
+  {
+    "id": "portador_de_polvo",
+    "name_es": "Portador de Polvo",
+    "biome": "kay",
+    "hp": [
+      53,
+      64
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          5,
+          5
+        ],
+        "label": "Preparando: Ataque 5"
+      },
+      {
+        "intent": "channel",
+        "label": "Canaliza: Arena",
+        "effect": {}
+      },
+      {
+        "intent": "attack",
+        "value": [
+          8,
+          8
+        ],
+        "label": "Preparando: Ataque 8"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "prisa",
+    "tier": "common"
+  },
+  {
+    "id": "sombra_de_piedra",
+    "name_es": "Sombra de Piedra",
+    "biome": "ukhu",
+    "hp": [
+      56,
+      68
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "defend",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Guardia 6"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      },
+      {
+        "intent": "defend",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Guardia 6"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "rigidez",
+    "tier": "common"
+  },
+  {
+    "id": "insecto_de_tela",
+    "name_es": "Insecto de Tela",
+    "biome": "ukhu",
+    "hp": [
+      59,
+      72
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          4,
+          4
+        ],
+        "label": "Preparando: Ataque 4"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          4,
+          4
+        ],
+        "label": "Preparando: Ataque 4"
+      },
+      {
+        "intent": "break",
+        "stacks": 3,
+        "label": "Canaliza: Quiebre 3"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "apego",
+    "tier": "common"
+  },
+  {
+    "id": "neblina_consciente",
+    "name_es": "Neblina Consciente",
+    "biome": "hanan",
+    "hp": [
+      62,
+      76
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "debuff",
+        "status": "weaken",
+        "stacks": 3,
+        "label": "Canaliza: weaken 3"
+      },
+      {
+        "intent": "defend",
+        "value": [
+          4,
+          4
+        ],
+        "label": "Preparando: Guardia 4"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "confusión",
+    "tier": "common"
+  },
+  {
+    "id": "guardia_de_raiz",
+    "name_es": "Guardia de Raíz",
+    "biome": "kay",
+    "hp": [
+      44,
+      52
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "defend",
+        "value": [
+          7,
+          7
+        ],
+        "label": "Preparando: Guardia 7"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      },
+      {
+        "intent": "break",
+        "stacks": 2,
+        "label": "Canaliza: Quiebre 2"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "rigidez",
+    "tier": "common"
+  },
+  {
+    "id": "runa_errante",
+    "name_es": "Runa Errante",
+    "biome": "hanan",
+    "hp": [
+      47,
+      56
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "channel",
+        "label": "Canaliza: Runa",
+        "effect": {}
+      },
+      {
+        "intent": "attack",
+        "value": [
+          7,
+          7
+        ],
+        "label": "Preparando: Ataque 7"
+      },
+      {
+        "intent": "debuff",
+        "status": "vulnerable",
+        "stacks": 1,
+        "label": "Canaliza: vulnerable 1"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "duda",
+    "tier": "common"
+  },
+  {
+    "id": "espiritu_puma_menor",
+    "name_es": "Espíritu Puma Menor",
+    "biome": "kay",
+    "hp": [
+      50,
+      60
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Ataque 6"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          8,
+          8
+        ],
+        "label": "Preparando: Ataque 8"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "arrogancia",
+    "tier": "common"
+  },
+  {
+    "id": "espiritu_condor_menor",
+    "name_es": "Espíritu Cóndor Menor",
+    "biome": "hanan",
+    "hp": [
+      53,
+      64
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "channel",
+        "label": "Canaliza: Altura",
+        "effect": {}
+      },
+      {
+        "intent": "attack",
+        "value": [
+          5,
+          5
+        ],
+        "label": "Preparando: Ataque 5"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          7,
+          7
+        ],
+        "label": "Preparando: Ataque 7"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "soberbia",
+    "tier": "common"
+  },
+  {
+    "id": "chaman_corrupto",
+    "name_es": "Chamán Corrupto",
+    "biome": "ukhu",
+    "hp": [
+      106,
+      125
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "defend",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Guardia 6"
+      },
+      {
+        "intent": "channel",
+        "label": "Canaliza: Ritual",
+        "effect": {}
+      },
+      {
+        "intent": "debuff",
+        "status": "weaken",
+        "stacks": 3,
+        "label": "Canaliza: weaken 3"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          10,
+          10
+        ],
+        "label": "Preparando: Ataque 10"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "soberbia",
+    "tier": "elite"
+  },
+  {
+    "id": "vidente_caido",
+    "name_es": "Vidente Caído",
+    "biome": "hanan",
+    "hp": [
+      112,
+      132
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "channel",
+        "label": "Canaliza: Profecía",
+        "effect": {}
+      },
+      {
+        "intent": "debuff",
+        "status": "vulnerable",
+        "stacks": 3,
+        "label": "Canaliza: vulnerable 3"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          9,
+          9
+        ],
+        "label": "Preparando: Ataque 9"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "duda",
+    "tier": "elite"
+  },
+  {
+    "id": "devorador_de_ecos",
+    "name_es": "Devorador de Ecos",
+    "biome": "ukhu",
+    "hp": [
+      88,
+      104
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          7,
+          7
+        ],
+        "label": "Preparando: Ataque 7"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          7,
+          7
+        ],
+        "label": "Preparando: Ataque 7"
+      },
+      {
+        "intent": "heal",
+        "stacks": 3,
+        "label": "Canaliza: Cura 3"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          10,
+          10
+        ],
+        "label": "Preparando: Ataque 10"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "apego",
+    "tier": "elite"
+  },
+  {
+    "id": "demonio_obsidiana",
+    "name_es": "Demonio Obsidiana",
+    "biome": "ukhu",
+    "hp": [
+      94,
+      111
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "break",
+        "stacks": 4,
+        "label": "Canaliza: Quiebre 4"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          9,
+          9
+        ],
+        "label": "Preparando: Ataque 9"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          9,
+          9
+        ],
+        "label": "Preparando: Ataque 9"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "miedo",
+    "tier": "elite"
+  },
+  {
+    "id": "custodio_astral",
+    "name_es": "Custodio Astral",
+    "biome": "hanan",
+    "hp": [
+      100,
+      118
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "defend",
+        "value": [
+          10,
+          10
+        ],
+        "label": "Preparando: Guardia 10"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          8,
+          8
+        ],
+        "label": "Preparando: Ataque 8"
+      },
+      {
+        "intent": "channel",
+        "label": "Canaliza: Luz",
+        "effect": {}
+      },
+      {
+        "intent": "attack",
+        "value": [
+          12,
+          12
+        ],
+        "label": "Preparando: Ataque 12"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "arrogancia",
+    "tier": "elite"
+  },
+  {
+    "id": "heraldo_del_umbral",
+    "name_es": "Heraldo del Umbral",
+    "biome": "kay",
+    "hp": [
+      106,
+      125
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "debuff",
+        "status": "break",
+        "stacks": 3,
+        "label": "Canaliza: break 3"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          8,
+          8
+        ],
+        "label": "Preparando: Ataque 8"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          8,
+          8
+        ],
+        "label": "Preparando: Ataque 8"
+      },
+      {
+        "intent": "debuff",
+        "status": "weaken",
+        "stacks": 2,
+        "label": "Canaliza: weaken 2"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "prisa",
+    "tier": "elite"
+  },
+  {
+    "id": "portador_de_silencio",
+    "name_es": "Portador de Silencio",
+    "biome": "hanan",
+    "hp": [
+      112,
+      132
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "channel",
+        "label": "Canaliza: Silencio",
+        "effect": {}
+      },
+      {
+        "intent": "debuff",
+        "status": "weaken",
+        "stacks": 4,
+        "label": "Canaliza: weaken 4"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          9,
+          9
+        ],
+        "label": "Preparando: Ataque 9"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "desesperación",
+    "tier": "elite"
+  },
+  {
+    "id": "oraculo_menor",
+    "name_es": "Oráculo Menor",
+    "biome": "hanan",
+    "hp": [
+      88,
+      104
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "debuff",
+        "status": "cost_plus",
+        "stacks": 1,
+        "label": "Canaliza: cost_plus 1"
+      },
+      {
+        "intent": "defend",
+        "value": [
+          6,
+          6
+        ],
+        "label": "Preparando: Guardia 6"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          10,
+          10
+        ],
+        "label": "Preparando: Ataque 10"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "confusión",
+    "tier": "elite"
+  },
+  {
+    "id": "jaguar_sombrio",
+    "name_es": "Jaguar Sombrío",
+    "biome": "kay",
+    "hp": [
+      94,
+      111
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          8,
+          8
+        ],
+        "label": "Preparando: Ataque 8"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          8,
+          8
+        ],
+        "label": "Preparando: Ataque 8"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          12,
+          12
+        ],
+        "label": "Preparando: Ataque 12"
+      }
+    ],
+    "ai_notes": "ciclo determinista",
+    "fable_lesson_key": "soberbia",
+    "tier": "elite"
+  },
+  {
+    "id": "guardian_de_la_grieta",
+    "name_es": "Guardián de la Grieta",
+    "biome": "boss",
+    "hp": [
+      190,
+      190
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          8,
+          8
+        ],
+        "label": "Preparando: Ataque 8"
+      },
+      {
+        "intent": "break",
+        "stacks": 4,
+        "label": "Canaliza: Quiebre 4"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          10,
+          10
+        ],
+        "label": "Preparando: Ataque 10"
+      }
+    ],
+    "ai_notes": "jefe",
+    "fable_lesson_key": "rigidez",
+    "tier": "boss"
+  },
+  {
+    "id": "oraculo_del_vacio",
+    "name_es": "Oráculo del Vacío",
+    "biome": "boss",
+    "hp": [
+      210,
+      210
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "debuff",
+        "status": "cost_plus",
+        "stacks": 1,
+        "label": "Canaliza: cost_plus 1"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          8,
+          8
+        ],
+        "label": "Preparando: Ataque 8"
+      },
+      {
+        "intent": "defend",
+        "value": [
+          8,
+          8
+        ],
+        "label": "Preparando: Guardia 8"
+      }
+    ],
+    "ai_notes": "jefe",
+    "fable_lesson_key": "duda",
+    "tier": "boss"
+  },
+  {
+    "id": "senor_de_la_chakana_rota",
+    "name_es": "Señor de la Chakana Rota",
+    "biome": "boss",
+    "hp": [
+      260,
+      260
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          10,
+          10
+        ],
+        "label": "Preparando: Ataque 10"
+      },
+      {
+        "intent": "defend",
+        "value": [
+          10,
+          10
+        ],
+        "label": "Preparando: Guardia 10"
+      },
+      {
+        "intent": "channel",
+        "label": "Canaliza: Imitación",
+        "effect": {}
+      }
+    ],
+    "ai_notes": "jefe",
+    "fable_lesson_key": "soberbia",
+    "tier": "boss"
+  }
+]
