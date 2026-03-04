@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+*.pyo
+*.log
+logs/
+.venv/
+game/.venv/
+game\\.venv/
+
+# Auto-generated runtime binaries (keep data/docs JSON source files versioned)
+game/assets/music/*.wav
+game/assets/music/*.ogg
+game/assets/sprites/cards/*.png
+game/assets/sprites/enemies/*.png
+game/assets/**/generated_*
+
+# Runtime fonts and cache-like binaries
+game/assets/**/*.ttf
+
+# Keep placeholder keepfiles
+!game/assets/**/.gitkeep
