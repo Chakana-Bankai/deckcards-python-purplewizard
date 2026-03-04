@@ -58,7 +58,7 @@ class CombatScreen:
         self.selected_biome = self.app.rng.choice(self.app.bg_gen.BIOMES)
         self.bg_seed = abs(hash(f"{self.selected_biome}:{self.c.turn}:{self.c.enemies[0].id if self.c.enemies else 'none'}")) % 100000
         self.pause_open = False
-        self.exit_confirm = False
+        self.pause_confirm_target = None
         self.hover_card_index = None
         self.dialog_debug_overlay = False
         self.art_debug_overlay = False
@@ -288,7 +288,7 @@ class CombatScreen:
             self.pause_open = not self.pause_open
             if self.pause_open:
                 self.ctrl.clear_selection("pause_open")
-            self.exit_confirm = False
+            self.pause_confirm_target = None
             return
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F2:
             self.dialog_debug_overlay = not self.dialog_debug_overlay
@@ -304,22 +304,33 @@ class CombatScreen:
         if self.pause_open:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = self.app.renderer.map_mouse(event.pos)
-                options = {"continue": pygame.Rect(760, 410, 400, 64), "options": pygame.Rect(760, 492, 400, 64), "menu": pygame.Rect(760, 574, 400, 64), "quit": pygame.Rect(760, 656, 400, 64)}
+                panel = pygame.Rect(680, 330, 560, 420)
+                options = {
+                    "continue": pygame.Rect(panel.x + 80, panel.y + 84, 400, 64),
+                    "map": pygame.Rect(panel.x + 80, panel.y + 170, 400, 64),
+                    "menu": pygame.Rect(panel.x + 80, panel.y + 256, 400, 64),
+                }
                 for k, r in options.items():
-                    if r.collidepoint(pos):
-                        if k == "continue":
+                    if not r.collidepoint(pos):
+                        continue
+                    if k == "continue":
+                        self.pause_open = False
+                        self.pause_confirm_target = None
+                    elif k == "map":
+                        if self.pause_confirm_target == "map":
                             self.pause_open = False
-                        elif k == "options":
+                            self.pause_confirm_target = None
+                            self.app.goto_map()
+                        else:
+                            self.pause_confirm_target = "map"
+                    elif k == "menu":
+                        if self.pause_confirm_target == "menu":
                             self.pause_open = False
-                            self.app.goto_settings()
-                        elif k == "menu":
-                            if self.exit_confirm:
-                                self.pause_open = False
-                                self.app.goto_menu()
-                            else:
-                                self.exit_confirm = True
-                        elif k == "quit":
-                            self.app.running = False
+                            self.pause_confirm_target = None
+                            self.app.menu_return_screen = None
+                            self.app.goto_menu()
+                        else:
+                            self.pause_confirm_target = "menu"
             return
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -664,7 +675,19 @@ class CombatScreen:
             pygame.draw.rect(s, UI_THEME["deep_purple"], panel, border_radius=16)
             pygame.draw.rect(s, UI_THEME["gold"], panel, 2, border_radius=16)
             s.blit(self.app.big_font.render("PAUSA", True, UI_THEME["gold"]), (panel.centerx - 90, panel.y + 20))
-            for lbl, y in [("Continuar", panel.y + 70), ("Opciones", panel.y + 152), ("Salir al Menú", panel.y + 234), ("Salir del Juego", panel.y + 316)]:
+
+            options = [("continue", "Continuar", panel.y + 84), ("map", "Salir al mapa", panel.y + 170), ("menu", "Salir al menú principal", panel.y + 256)]
+            for key, lbl, y in options:
                 r = pygame.Rect(panel.x + 80, y, 400, 64)
-                pygame.draw.rect(s, UI_THEME["panel"], r, border_radius=10)
-                s.blit(self.app.font.render(lbl, True, UI_THEME["text"]), (r.x + 110, r.y + 18))
+                active_confirm = self.pause_confirm_target == key and key in {"map", "menu"}
+                btn_col = (132, 86, 94) if active_confirm else UI_THEME["panel"]
+                pygame.draw.rect(s, btn_col, r, border_radius=10)
+                pygame.draw.rect(s, UI_THEME["accent_violet"], r, 2, border_radius=10)
+                title = f"{lbl} (confirmar)" if active_confirm else lbl
+                tw = self.app.font.render(title, True, UI_THEME["text"])
+                s.blit(tw, (r.centerx - tw.get_width() // 2, r.y + 18))
+
+            if self.pause_confirm_target in {"map", "menu"}:
+                msg = "Pulsa de nuevo para confirmar salida."
+                hint = self.app.small_font.render(msg, True, UI_THEME["muted"])
+                s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
