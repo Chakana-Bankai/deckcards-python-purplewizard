@@ -68,7 +68,9 @@ class MapScreen:
         run = self.app.run_state
 
         s.blit(self.app.map_font.render(self.app.loc.t("map_title"), True, UI_THEME["text"]), (34, 24))
-        s.blit(self.app.small_font.render(self.app.loc.t(f"lore_short_{self.lore_idx + 1}"), True, UI_THEME["violet"]), (36, 62))
+        mk = f"lore_short_{self.lore_idx + 1}"
+        map_line = self.app.lore_engine.get_map_narration(mk)
+        s.blit(self.app.small_font.render(map_line, True, UI_THEME["violet"]), (36, 62))
         gold = self.app.map_font.render(f"{self.app.loc.t('gold')}: {run['gold']}", True, UI_THEME["gold"])
         s.blit(gold, (INTERNAL_WIDTH - gold.get_width() - 30, 28))
 

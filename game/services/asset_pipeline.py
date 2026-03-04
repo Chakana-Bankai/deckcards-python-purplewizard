@@ -9,6 +9,7 @@ import pygame
 
 from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION, chakana_points
 from game.art.gen_avatar_chakana import GEN_AVATAR_VERSION, render_avatar
+from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
 from game.content.card_art_generator import export_prompts
 from game.core.paths import assets_dir, data_dir
 from game.core.safe_io import load_json
@@ -72,10 +73,10 @@ class AssetPipeline:
             self._safe_gen(
                 cid,
                 path,
-                lambda cid=cid, c=c, mode=mode, pentry=pentry: self.card_gen.ensure_art(cid, c.get("tags", []), c.get("rarity", "common"), mode, family=pentry.get("family"), symbol=pentry.get("symbol")),
+                lambda cid=cid, c=c, mode=mode, pentry=pentry: self.card_gen.ensure_art(cid, c.get("tags", []), c.get("rarity", "common"), mode, family=pentry.get("card_type") or pentry.get("family"), symbol=pentry.get("symbol"), prompt=pentry.get("prompt_text", "")),
                 manifest_items,
                 placeholder_size=(256, 384),
-                version=GEN_ART_VERSION,
+                version=GEN_CARD_ART_VERSION,
             )
             if progress_cb:
                 progress_cb(f"Generando arte de cartas ({i}/{total})", 0.24 + 0.36 * (i / total))

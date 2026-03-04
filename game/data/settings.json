@@ -13,6 +13,6 @@
   "fx_scanlines": false,
   "fx_glow": true,
   "fx_particles": true,
-  "force_regen_art": true,
-  "detail_panel": true
+  "force_regen_art": false,
+  "detail_panel": false
 }

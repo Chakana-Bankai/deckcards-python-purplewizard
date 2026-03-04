@@ -122,8 +122,8 @@ class SettingsScreen:
         detail_on = self.app.user_settings.get("detail_panel", False)
         surface.blit(self.app.small_font.render(f"Panel de detalle: {'ON' if detail_on else 'OFF'}", True, UI_THEME["text"]), (self.detail_panel_rect.x + 20, self.detail_panel_rect.y + 12))
 
-        self._draw_btn(surface, self.art_missing_rect, "Regenerar arte (solo faltantes)")
-        self._draw_btn(surface, self.art_regen_rect, "Regenerar arte (forzar)")
+        self._draw_btn(surface, self.art_missing_rect, "Generar arte faltante")
+        self._draw_btn(surface, self.art_regen_rect, "Forzar regeneración total")
         self._draw_btn(surface, self.music_regen_rect, "Regenerar Música")
         self._draw_btn(surface, self.reset_autogen_rect, "Reset total (marcar y reiniciar)")
 

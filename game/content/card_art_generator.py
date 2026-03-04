@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import json
-import random
+import zlib
+from collections import deque
+from pathlib import Path
 
 import pygame
 
-from game.art.gen_art32 import chakana_points, palette_for_family, seed_from_id
-from game.art.gen_card_art32 import GEN_CARD_ART_VERSION, render_card
+from game.art.gen_art32 import seed_from_id
+from game.art.gen_card_art32 import GEN_CARD_ART_VERSION, generate
 from game.core.paths import assets_dir, data_dir
 
 
@@ -14,34 +16,22 @@ class PromptBuilder:
     def family_for(self, card: dict) -> str:
         tags = set(card.get("tags", []))
         if "attack" in tags:
-            return "crimson_chaos"
+            return "attack"
         if "block" in tags or "defense" in tags:
-            return "emerald_spirit"
+            return "defense"
         if "draw" in tags or "scry" in tags or "control" in tags:
-            return "azure_cosmic"
-        return "violet_arcane"
-
-    def symbol_for(self, card: dict) -> str:
-        rng = random.Random(seed_from_id(card.get("id", "unknown"), GEN_CARD_ART_VERSION))
-        tags = set(card.get("tags", []))
-        if "attack" in tags:
-            return rng.choice(["sword", "axe", "puma"])
-        if "block" in tags or "defense" in tags:
-            return rng.choice(["mask", "tree", "rune_stone"])
-        if "draw" in tags or "scry" in tags or "control" in tags:
-            return rng.choice(["orb", "portal", "condor"])
-        return rng.choice(["staff", "orb", "portal"])
+            return "control"
+        return "spirit"
 
     def build_entry(self, card: dict) -> dict:
         cid = card.get("id", "unknown")
-        fam = self.family_for(card)
-        sym = self.symbol_for(card)
+        ctype = self.family_for(card)
+        prompt = f"chakana card::{cid}::{ctype} layered sacred geometry with glyph focus"
         return {
             "id": cid,
-            "family": fam,
-            "symbol": sym,
-            "palette": palette_for_family(fam),
-            "prompt_text": f"pixel card {fam} {sym}",
+            "card_type": ctype,
+            "family": ctype,
+            "prompt_text": prompt,
         }
 
 
@@ -52,44 +42,48 @@ class CardArtGenerator:
         self.generated_count = 0
         self.replaced_count = 0
         self.version_seed = GEN_CARD_ART_VERSION
-
-    def _is_suspicious_white(self, surf: pygame.Surface) -> bool:
-        w, h = surf.get_size()
-        pts = [(w // 4, h // 4), (w // 2, h // 2), (3 * w // 4, 3 * h // 4), (w // 3, 2 * h // 3), (2 * w // 3, h // 3)]
-        white = 0
-        for x, y in pts:
-            c = surf.get_at((int(x), int(y)))
-            if c.r > 240 and c.g > 240 and c.b > 240:
-                white += 1
-        return white / max(1, len(pts)) >= 0.8
+        self._recent_hashes: deque[int] = deque(maxlen=5)
 
     def _placeholder(self, card_id: str) -> pygame.Surface:
         out = pygame.Surface((320, 220), flags=pygame.SRCALPHA, depth=32)
-        out.fill((30, 22, 46, 255))
-        pygame.draw.circle(out, (170, 140, 220), (160, 110), 42, 3)
-        pygame.draw.line(out, (170, 140, 220), (130, 88), (190, 132), 3)
-        pygame.draw.line(out, (170, 140, 220), (190, 88), (130, 132), 3)
-        pygame.draw.rect(out, (90, 70, 130), out.get_rect(), 3)
+        out.fill((18, 14, 28, 255))
+        pygame.draw.circle(out, (180, 150, 220), (160, 110), 42, 2)
+        pygame.draw.line(out, (180, 150, 220), (132, 88), (188, 132), 2)
+        pygame.draw.line(out, (180, 150, 220), (188, 88), (132, 132), 2)
+        pygame.draw.rect(out, (92, 78, 130), out.get_rect(), 2)
+        f = pygame.font.SysFont("consolas", 16)
+        out.blit(f.render(card_id[:24], True, (220, 215, 236)), (10, 194))
         return out
 
-    def ensure_art(self, card_id: str, tags: list[str], rarity: str, mode: str = "missing_only", family: str | None = None, symbol: str | None = None):
+    def ensure_art(self, card_id: str, tags: list[str], rarity: str, mode: str = "missing_only", family: str | None = None, symbol: str | None = None, prompt: str = ""):
         path = self.out_dir / f"{card_id}.png"
         if path.exists() and mode not in {"force_regen"}:
-            return
-        fam = family or ("crimson_chaos" if "attack" in tags else "emerald_spirit" if "block" in tags else "azure_cosmic" if "draw" in tags or "scry" in tags else "violet_arcane")
-        sym = symbol or ("sword" if "attack" in tags else "tree" if "block" in tags else "orb")
-        surf = render_card(card_id, fam, sym)
-        if self._is_suspicious_white(surf):
-            surf = self._placeholder(card_id)
-        pygame.image.save(surf.convert_alpha(), str(path))
+            return {"card_id": card_id, "path": str(path), "generator_used": "existing", "hash16": None, "prompt": prompt}
+
+        card_type = family or ("attack" if "attack" in tags else "defense" if ("block" in tags or "defense" in tags) else "control" if ("draw" in tags or "scry" in tags or "control" in tags) else "spirit")
+        seed = seed_from_id(card_id, GEN_CARD_ART_VERSION)
+        result = generate(card_id, card_type, prompt, seed, path)
+        h = int(result.get("hash16", 0))
+        if any(abs(h - prev) < 220 for prev in self._recent_hashes):
+            result = generate(card_id, card_type, prompt, seed + 991, path)
+            h = int(result.get("hash16", 0))
+        self._recent_hashes.append(h)
+        if not path.exists():
+            pygame.image.save(self._placeholder(card_id), str(path))
+            result = {"card_id": card_id, "path": str(path), "generator_used": "placeholder", "hash16": 0, "prompt": prompt}
         self.generated_count += 1
+        return result
 
 
 def export_prompts(cards: list[dict], enemies: list[dict] | None = None):
     pb = PromptBuilder()
     payload = {}
     for c in cards:
-        payload[c.get("id", "unknown")] = pb.build_entry(c)
+        cid = c.get("id", "unknown")
+        entry = pb.build_entry(c)
+        entry["seed"] = seed_from_id(cid, GEN_CARD_ART_VERSION)
+        entry["prompt_hash"] = zlib.crc32(entry["prompt_text"].encode("utf-8")) & 0xFFFFFFFF
+        payload[cid] = entry
     (data_dir() / "card_prompts.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     (data_dir() / "card_prompts.txt").write_text("\n".join(f"{k}: {v['prompt_text']}" for k, v in payload.items()), encoding="utf-8")
     (data_dir() / "prompt_manifest.json").write_text(json.dumps({"generator_version": GEN_CARD_ART_VERSION, "count": len(payload)}, ensure_ascii=False, indent=2), encoding="utf-8")

@@ -47,15 +47,19 @@ class AssetManager:
     def __init__(self):
         self._cache = {}
 
-    def _load_image(self, path: Path, fallback_size: tuple[int, int], fill=(60, 55, 90)):
+    def _load_image(self, path: Path, fallback_size: tuple[int, int], fill=(60, 55, 90), fallback_label: str = ""):
         if path.exists():
             try:
                 return pygame.image.load(str(path)).convert_alpha()
             except Exception:
                 pass
-        surf = pygame.Surface(fallback_size)
+        surf = pygame.Surface(fallback_size, pygame.SRCALPHA)
         surf.fill(fill)
         pygame.draw.rect(surf, (120, 110, 170), surf.get_rect(), 3)
+        if fallback_label:
+            f = pygame.font.SysFont("consolas", max(12, fallback_size[1] // 11))
+            txt = f.render(fallback_label[:20], True, (230, 226, 246))
+            surf.blit(txt, (6, max(4, fallback_size[1] - txt.get_height() - 4)))
         return surf
 
     def sprite(self, category: str, name: str, size: tuple[int, int], fallback=(60, 55, 90)):
@@ -63,7 +67,8 @@ class AssetManager:
         if key in self._cache:
             return self._cache[key]
         path = Path(ASSETS_DIR) / "sprites" / category / f"{name}.png"
-        img = self._load_image(path, size, fallback)
+        lbl = name if category == "cards" else ""
+        img = self._load_image(path, size, fallback, fallback_label=lbl)
         if img.get_size() != size:
             img = pygame.transform.scale(img, size)
         self._cache[key] = img

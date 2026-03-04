@@ -1,7 +1,12 @@
 import math
+from pathlib import Path
+
 import pygame
 
 from game.art.gen_art32 import chakana_points
+from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
+from game.core.paths import data_dir
+from game.core.safe_io import load_json
 from game.ui.anim import TypewriterBanner
 from game.ui.components.mana_orbs import ManaOrbsWidget
 from game.ui.controllers.card_interaction import CardInteractionController
@@ -58,8 +63,12 @@ class CombatScreen:
         self.hover_card_index = None
         self.detail_panel_on = self.app.user_settings.get("detail_panel", False)
         self.dialog_debug_overlay = False
+        self.art_debug_overlay = False
         self.last_trigger = "combat_start"
         self.hover_anim = {}
+        self._combat_triggers = ["combat_start", "player_turn_start", "enemy_turn_start", "enemy_big_attack", "player_low_hp", "enemy_low_hp", "victory"]
+        self._art_manifest = load_json(data_dir() / "art_manifest.json", default={})
+        self._card_prompts = load_json(data_dir() / "card_prompts.json", default={})
         self._trigger_dialog("combat_start")
 
     def on_leave(self):
@@ -95,7 +104,7 @@ class CombatScreen:
         if self.dialog_cd > 0:
             return
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-        enemy_line, hero_line = self.app.lore_engine.get_lines(enemy_id, trigger)
+        enemy_line, hero_line = self.app.lore_engine.get_combat_lines(enemy_id, trigger)
         self.dialog_enemy.set(enemy_line, 2.1)
         self.dialog_hero.set(hero_line, 2.1)
         self.enemy_line_fx = 0.24
@@ -156,9 +165,11 @@ class CombatScreen:
             self.dialog_debug_overlay = not self.dialog_debug_overlay
             return
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
-            seq = ["combat_start", "player_turn_start", "enemy_turn_start", "enemy_big_attack", "player_low_hp", "enemy_low_hp", "victory"]
-            idx = (seq.index(self.last_trigger) + 1) % len(seq) if self.last_trigger in seq else 0
-            self._trigger_dialog(seq[idx])
+            idx = (self._combat_triggers.index(self.last_trigger) + 1) % len(self._combat_triggers) if self.last_trigger in self._combat_triggers else 0
+            self._trigger_dialog(self._combat_triggers[idx])
+            return
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_F6:
+            self.art_debug_overlay = not self.art_debug_overlay
             return
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F4:
             self._selftest()
@@ -259,6 +270,30 @@ class CombatScreen:
         elif self.c.result == "defeat":
             self.ctrl.clear_selection("defeat")
             self.app.goto_menu()
+
+    def _art_debug_info(self, card):
+        cid = card.definition.id if card else "-"
+        card_family = getattr(card.definition, "family", "spirit") if card else "-"
+        path = Path("game") / "assets" / "sprites" / "cards" / f"{cid}.png"
+        apath = self.app.asset_root / "sprites" / "cards" / f"{cid}.png" if card else Path("-")
+        exists = apath.exists() if card else False
+        items = self._art_manifest.get("items", {}) if isinstance(self._art_manifest, dict) else {}
+        entry = items.get(cid, {}) if isinstance(items, dict) else {}
+        mstatus = "missing"
+        if entry:
+            mstatus = "present" if entry.get("generator_version") == GEN_CARD_ART_VERSION else "version mismatch"
+        generator_used = entry.get("generator_version", "placeholder" if not exists else "unknown")
+        prompts = self._card_prompts.get(cid, {}) if isinstance(self._card_prompts, dict) else {}
+        prompt = str(prompts.get("prompt_text", ""))[:80]
+        return {
+            "card_id": cid,
+            "card_type": card_family,
+            "art_path": str(path),
+            "file_exists": exists,
+            "manifest_status": mstatus,
+            "generator_used": generator_used,
+            "prompt_used": prompt,
+        }
 
     def render(self, s):
         # Layer 0
@@ -371,15 +406,37 @@ class CombatScreen:
                     s.blit(self.app.tiny_font.render(ln, True, UI_THEME["muted"]), (panel.x + 166, panel.y + 104 + j * 20))
 
         if self.dialog_debug_overlay:
-            d = pygame.Rect(40, 40, 520, 130)
+            d = pygame.Rect(40, 40, 620, 170)
             pygame.draw.rect(s, (0, 0, 0), d, border_radius=8)
             pygame.draw.rect(s, UI_THEME["gold"], d, 2, border_radius=8)
             enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-            ok = "OK" if getattr(self.app.lore_engine, "loaded", False) else "MISSING"
-            keys = int(getattr(self.app.lore_engine, "keys_count", 0))
-            s.blit(self.app.tiny_font.render(f"Dialogues: {ok} keys={keys}", True, UI_THEME["text"]), (56, 58))
-            s.blit(self.app.tiny_font.render(f"enemy_id: {enemy_id}", True, UI_THEME["text"]), (56, 84))
-            s.blit(self.app.tiny_font.render(f"last_trigger: {self.last_trigger}", True, UI_THEME["text"]), (56, 110))
+            map_ok = "OK" if getattr(self.app.lore_engine, "loaded_map", False) else "MISSING"
+            combat_ok = "OK" if getattr(self.app.lore_engine, "loaded_combat", False) else "MISSING"
+            s.blit(self.app.tiny_font.render(f"MapLore: {map_ok}  CombatLore: {combat_ok}", True, UI_THEME["text"]), (56, 58))
+            s.blit(self.app.tiny_font.render(f"enemy_id: {enemy_id}  trigger: {self.last_trigger}", True, UI_THEME["text"]), (56, 84))
+            s.blit(self.app.tiny_font.render(f"enemy_len={len(self.dialog_enemy.current)} chakana_len={len(self.dialog_hero.current)}", True, UI_THEME["text"]), (56, 110))
+            s.blit(self.app.tiny_font.render("F3: cycle trigger  F6: art debug", True, UI_THEME["muted"]), (56, 136))
+
+        if self.art_debug_overlay:
+            idx = self.hover_card_index if self.hover_card_index is not None else self.ctrl.selected_index
+            card = hand[idx] if idx is not None and idx < len(hand) else None
+            info = self._art_debug_info(card)
+            d = pygame.Rect(40, 220, 760, 188)
+            pygame.draw.rect(s, (0, 0, 0), d, border_radius=8)
+            pygame.draw.rect(s, UI_THEME["accent_violet"], d, 2, border_radius=8)
+            y = d.y + 12
+            lines = [
+                f"card_id: {info['card_id']}",
+                f"card_type/family: {info['card_type']}",
+                f"expected art_path: {info['art_path']}",
+                f"file_exists: {info['file_exists']}",
+                f"manifest_status: {info['manifest_status']}",
+                f"generator_used: {info['generator_used']}",
+                f"prompt_used: {info['prompt_used']}",
+            ]
+            for line in lines:
+                s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (d.x + 12, y))
+                y += 24
 
         if self.pause_open:
             ov = pygame.Surface((1920, 1080), pygame.SRCALPHA)

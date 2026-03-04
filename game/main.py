@@ -165,7 +165,7 @@ class App:
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
         self._loading_step("Completado", 1.0)
         dk = int(getattr(self.lore_engine, "keys_count", 0))
-        covered = len([e for e in self.enemies_data if isinstance(self.lore_engine.dialogues_combat.get(e.get("id"), {}), dict)]) if isinstance(self.lore_engine.dialogues_combat, dict) else 0
+        covered = len([e for e in self.enemies_data if isinstance(self.lore_engine.combat_dialogues.get(e.get("id"), {}), dict)]) if isinstance(self.lore_engine.combat_dialogues, dict) else 0
         print(f"[load] dialogues_combat keys={dk} enemies_covered={covered}/{len(self.enemies_data)}")
         print(f"[boot] dialogues OK keys={dk}")
         print("[boot] assets OK")
@@ -180,15 +180,27 @@ class App:
 
     def _log_card_art_status(self):
         cards_dir = assets_dir() / "sprites" / "cards"
-        ok = 0
-        miss = 0
+        total = len(self.cards_data)
+        exists = 0
+        missing = 0
+        fallback = 0
+        manifest = load_json(data_dir() / "art_manifest.json", default={})
+        items = manifest.get("items", {}) if isinstance(manifest, dict) else {}
         for c in self.cards_data:
             cid = c.get("id")
-            if cid and (cards_dir / f"{cid}.png").exists():
-                ok += 1
+            if not cid:
+                continue
+            p = cards_dir / f"{cid}.png"
+            if p.exists():
+                exists += 1
             else:
-                miss += 1
-        print(f"[art] loaded card art: ok={ok} missing={miss}")
+                missing += 1
+            entry = items.get(cid, {}) if isinstance(items, dict) else {}
+            if not p.exists() or bool(entry.get("placeholder", False)):
+                fallback += 1
+        print(f"[art] cards total={total} art_exists={exists} missing={missing} fallback_used={fallback}")
+        if total > 0 and fallback == total:
+            print("[art] WARNING fallback_used == total; pipeline broken")
 
     def _loading_step(self, label: str, pct: float):
         if not hasattr(self, "loading_screen"):
@@ -842,6 +854,7 @@ class App:
                 continue
             self.music.tick()
             self.sm.update(dt)
+            self.renderer.internal.fill((8, 8, 14))
             self.sm.render(self.renderer.internal)
             self.draw_debug_overlay()
             self.renderer.present()

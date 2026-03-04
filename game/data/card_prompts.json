@@ -1,1682 +1,482 @@
 {
-  "filo_astral": {
-    "id": "filo_astral",
-    "family": "crimson_chaos",
-    "symbol": "puma",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos puma"
+  "strike": {
+    "id": "strike",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::strike::attack layered sacred geometry with glyph focus",
+    "seed": 3459234552,
+    "prompt_hash": 1112273944
   },
-  "lanza_del_amanecer": {
-    "id": "lanza_del_amanecer",
-    "family": "crimson_chaos",
-    "symbol": "puma",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos puma"
+  "defend": {
+    "id": "defend",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::defend::spirit layered sacred geometry with glyph focus",
+    "seed": 1366150038,
+    "prompt_hash": 499970530
   },
-  "corte_del_puma": {
-    "id": "corte_del_puma",
-    "family": "crimson_chaos",
-    "symbol": "axe",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos axe"
+  "violet_bolt": {
+    "id": "violet_bolt",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::violet_bolt::attack layered sacred geometry with glyph focus",
+    "seed": 1926980696,
+    "prompt_hash": 988047214
   },
-  "golpe_del_trueno": {
-    "id": "golpe_del_trueno",
-    "family": "crimson_chaos",
-    "symbol": "puma",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos puma"
+  "prismatic_shield": {
+    "id": "prismatic_shield",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::prismatic_shield::spirit layered sacred geometry with glyph focus",
+    "seed": 1507939451,
+    "prompt_hash": 724575832
   },
-  "estallido_arcano": {
-    "id": "estallido_arcano",
-    "family": "crimson_chaos",
-    "symbol": "sword",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos sword"
+  "arcane_pulse": {
+    "id": "arcane_pulse",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::arcane_pulse::attack layered sacred geometry with glyph focus",
+    "seed": 1647990319,
+    "prompt_hash": 2860833239
   },
-  "ruptura_del_umbral": {
-    "id": "ruptura_del_umbral",
-    "family": "crimson_chaos",
-    "symbol": "puma",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos puma"
+  "lesser_seal": {
+    "id": "lesser_seal",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::lesser_seal::spirit layered sacred geometry with glyph focus",
+    "seed": 1584937553,
+    "prompt_hash": 59240366
   },
-  "garra_espiritual": {
-    "id": "garra_espiritual",
-    "family": "crimson_chaos",
-    "symbol": "sword",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos sword"
+  "subtle_drain": {
+    "id": "subtle_drain",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::subtle_drain::attack layered sacred geometry with glyph focus",
+    "seed": 3338854985,
+    "prompt_hash": 784927123
   },
-  "tormenta_de_lanzas": {
-    "id": "tormenta_de_lanzas",
-    "family": "crimson_chaos",
-    "symbol": "puma",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos puma"
+  "vision": {
+    "id": "vision",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::vision::spirit layered sacred geometry with glyph focus",
+    "seed": 1301283729,
+    "prompt_hash": 2786601944
   },
-  "fragmento_celeste": {
-    "id": "fragmento_celeste",
-    "family": "crimson_chaos",
-    "symbol": "sword",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos sword"
+  "phase_shift": {
+    "id": "phase_shift",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::phase_shift::spirit layered sacred geometry with glyph focus",
+    "seed": 3765468828,
+    "prompt_hash": 2703625452
   },
-  "embate_del_jaguar": {
-    "id": "embate_del_jaguar",
-    "family": "crimson_chaos",
-    "symbol": "sword",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos sword"
+  "fragment": {
+    "id": "fragment",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::fragment::attack layered sacred geometry with glyph focus",
+    "seed": 1384940806,
+    "prompt_hash": 1927200159
   },
-  "punal_de_luz": {
-    "id": "punal_de_luz",
-    "family": "crimson_chaos",
-    "symbol": "puma",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos puma"
+  "exchange": {
+    "id": "exchange",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::exchange::spirit layered sacred geometry with glyph focus",
+    "seed": 1243226259,
+    "prompt_hash": 1998815898
   },
-  "desgarro_del_vacio": {
-    "id": "desgarro_del_vacio",
-    "family": "crimson_chaos",
-    "symbol": "puma",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos puma"
+  "cauterize_rupture": {
+    "id": "cauterize_rupture",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::cauterize_rupture::spirit layered sacred geometry with glyph focus",
+    "seed": 2940941144,
+    "prompt_hash": 3438975908
   },
-  "impacto_solar": {
-    "id": "impacto_solar",
-    "family": "crimson_chaos",
-    "symbol": "axe",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos axe"
+  "short_portal": {
+    "id": "short_portal",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::short_portal::spirit layered sacred geometry with glyph focus",
+    "seed": 987317616,
+    "prompt_hash": 3770647718
   },
-  "corte_dimensional": {
-    "id": "corte_dimensional",
-    "family": "crimson_chaos",
-    "symbol": "axe",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos axe"
+  "violet_ring": {
+    "id": "violet_ring",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::violet_ring::spirit layered sacred geometry with glyph focus",
+    "seed": 2428988457,
+    "prompt_hash": 807794304
   },
-  "filo_en_cadena": {
-    "id": "filo_en_cadena",
-    "family": "crimson_chaos",
-    "symbol": "puma",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos puma"
+  "rite_transmutation": {
+    "id": "rite_transmutation",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::rite_transmutation::spirit layered sacred geometry with glyph focus",
+    "seed": 407976612,
+    "prompt_hash": 1345639590
   },
-  "sello_protector": {
-    "id": "sello_protector",
-    "family": "emerald_spirit",
-    "symbol": "rune_stone",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit rune_stone"
+  "astral_cut": {
+    "id": "astral_cut",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::astral_cut::attack layered sacred geometry with glyph focus",
+    "seed": 1346872299,
+    "prompt_hash": 2907967057
   },
-  "muralla_de_piedra": {
-    "id": "muralla_de_piedra",
-    "family": "emerald_spirit",
-    "symbol": "tree",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit tree"
+  "void_limit": {
+    "id": "void_limit",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::void_limit::spirit layered sacred geometry with glyph focus",
+    "seed": 1000912102,
+    "prompt_hash": 684206506
   },
-  "escudo_de_luz": {
-    "id": "escudo_de_luz",
-    "family": "emerald_spirit",
-    "symbol": "rune_stone",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit rune_stone"
+  "reflection": {
+    "id": "reflection",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::reflection::spirit layered sacred geometry with glyph focus",
+    "seed": 1683032241,
+    "prompt_hash": 4272269910
   },
-  "guardia_terrenal": {
-    "id": "guardia_terrenal",
-    "family": "emerald_spirit",
-    "symbol": "mask",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit mask"
+  "silence": {
+    "id": "silence",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::silence::spirit layered sacred geometry with glyph focus",
+    "seed": 648924605,
+    "prompt_hash": 825266764
   },
-  "resistencia_ancestral": {
-    "id": "resistencia_ancestral",
-    "family": "emerald_spirit",
-    "symbol": "tree",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit tree"
+  "amethyst_crown": {
+    "id": "amethyst_crown",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::amethyst_crown::spirit layered sacred geometry with glyph focus",
+    "seed": 878862491,
+    "prompt_hash": 3225959861
   },
-  "caparazon_kaypacha": {
-    "id": "caparazon_kaypacha",
-    "family": "emerald_spirit",
-    "symbol": "tree",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit tree"
+  "rewrite": {
+    "id": "rewrite",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::rewrite::spirit layered sacred geometry with glyph focus",
+    "seed": 757751252,
+    "prompt_hash": 2443433505
   },
-  "fortaleza_chakana": {
-    "id": "fortaleza_chakana",
-    "family": "emerald_spirit",
-    "symbol": "rune_stone",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit rune_stone"
+  "final_gate": {
+    "id": "final_gate",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::final_gate::attack layered sacred geometry with glyph focus",
+    "seed": 798433238,
+    "prompt_hash": 3585029524
   },
-  "refugio_espiritual": {
-    "id": "refugio_espiritual",
-    "family": "violet_arcane",
-    "symbol": "portal",
-    "palette": [
-      [
-        26,
-        18,
-        52
-      ],
-      [
-        74,
-        52,
-        120
-      ],
-      [
-        154,
-        112,
-        212
-      ],
-      [
-        240,
-        220,
-        170
-      ]
-    ],
-    "prompt_text": "pixel card violet_arcane portal"
+  "pw_card_01": {
+    "id": "pw_card_01",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_01::attack layered sacred geometry with glyph focus",
+    "seed": 4265719203,
+    "prompt_hash": 1955288019
   },
-  "anillo_de_proteccion": {
-    "id": "anillo_de_proteccion",
-    "family": "emerald_spirit",
-    "symbol": "mask",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit mask"
+  "pw_card_02": {
+    "id": "pw_card_02",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_02::spirit layered sacred geometry with glyph focus",
+    "seed": 1732830233,
+    "prompt_hash": 821985916
   },
-  "campo_protector": {
-    "id": "campo_protector",
-    "family": "emerald_spirit",
-    "symbol": "tree",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit tree"
+  "pw_card_03": {
+    "id": "pw_card_03",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_03::spirit layered sacred geometry with glyph focus",
+    "seed": 273667215,
+    "prompt_hash": 3033504653
   },
-  "guardia_solar": {
-    "id": "guardia_solar",
-    "family": "emerald_spirit",
-    "symbol": "mask",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit mask"
+  "pw_card_04": {
+    "id": "pw_card_04",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_04::spirit layered sacred geometry with glyph focus",
+    "seed": 2385199404,
+    "prompt_hash": 2663045848
   },
-  "escudo_del_chaman": {
-    "id": "escudo_del_chaman",
-    "family": "emerald_spirit",
-    "symbol": "mask",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit mask"
+  "pw_card_05": {
+    "id": "pw_card_05",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_05::spirit layered sacred geometry with glyph focus",
+    "seed": 4180439482,
+    "prompt_hash": 445367081
   },
-  "barrera_sagrada": {
-    "id": "barrera_sagrada",
-    "family": "emerald_spirit",
-    "symbol": "tree",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit tree"
+  "pw_card_06": {
+    "id": "pw_card_06",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_06::attack layered sacred geometry with glyph focus",
+    "seed": 1613045760,
+    "prompt_hash": 1593709190
   },
-  "firmeza_del_cuerpo": {
-    "id": "firmeza_del_cuerpo",
-    "family": "emerald_spirit",
-    "symbol": "rune_stone",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit rune_stone"
+  "pw_card_07": {
+    "id": "pw_card_07",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_07::attack layered sacred geometry with glyph focus",
+    "seed": 388108438,
+    "prompt_hash": 3671001975
   },
-  "piedra_ritual": {
-    "id": "piedra_ritual",
-    "family": "emerald_spirit",
-    "symbol": "tree",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit tree"
+  "pw_card_08": {
+    "id": "pw_card_08",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_08::spirit layered sacred geometry with glyph focus",
+    "seed": 2275216647,
+    "prompt_hash": 423849425
   },
-  "vision_del_condor": {
-    "id": "vision_del_condor",
-    "family": "azure_cosmic",
-    "symbol": "portal",
-    "palette": [
-      [
-        12,
-        24,
-        52
-      ],
-      [
-        40,
-        82,
-        132
-      ],
-      [
-        80,
-        148,
-        210
-      ],
-      [
-        206,
-        238,
-        255
-      ]
-    ],
-    "prompt_text": "pixel card azure_cosmic portal"
+  "pw_card_09": {
+    "id": "pw_card_09",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_09::spirit layered sacred geometry with glyph focus",
+    "seed": 4036640145,
+    "prompt_hash": 2641523744
   },
-  "meditacion_profunda": {
-    "id": "meditacion_profunda",
-    "family": "azure_cosmic",
-    "symbol": "condor",
-    "palette": [
-      [
-        12,
-        24,
-        52
-      ],
-      [
-        40,
-        82,
-        132
-      ],
-      [
-        80,
-        148,
-        210
-      ],
-      [
-        206,
-        238,
-        255
-      ]
-    ],
-    "prompt_text": "pixel card azure_cosmic condor"
+  "pw_card_10": {
+    "id": "pw_card_10",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_10::spirit layered sacred geometry with glyph focus",
+    "seed": 2422060148,
+    "prompt_hash": 701711436
   },
-  "claridad_del_hanan": {
-    "id": "claridad_del_hanan",
-    "family": "azure_cosmic",
-    "symbol": "portal",
-    "palette": [
-      [
-        12,
-        24,
-        52
-      ],
-      [
-        40,
-        82,
-        132
-      ],
-      [
-        80,
-        148,
-        210
-      ],
-      [
-        206,
-        238,
-        255
-      ]
-    ],
-    "prompt_text": "pixel card azure_cosmic portal"
+  "pw_card_11": {
+    "id": "pw_card_11",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_11::spirit layered sacred geometry with glyph focus",
+    "seed": 3881469154,
+    "prompt_hash": 2917293501
   },
-  "lectura_del_destino": {
-    "id": "lectura_del_destino",
-    "family": "azure_cosmic",
-    "symbol": "portal",
-    "palette": [
-      [
-        12,
-        24,
-        52
-      ],
-      [
-        40,
-        82,
-        132
-      ],
-      [
-        80,
-        148,
-        210
-      ],
-      [
-        206,
-        238,
-        255
-      ]
-    ],
-    "prompt_text": "pixel card azure_cosmic portal"
+  "pw_card_12": {
+    "id": "pw_card_12",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_12::attack layered sacred geometry with glyph focus",
+    "seed": 2119423320,
+    "prompt_hash": 3919023122
   },
-  "revelacion_astral": {
-    "id": "revelacion_astral",
-    "family": "azure_cosmic",
-    "symbol": "portal",
-    "palette": [
-      [
-        12,
-        24,
-        52
-      ],
-      [
-        40,
-        82,
-        132
-      ],
-      [
-        80,
-        148,
-        210
-      ],
-      [
-        206,
-        238,
-        255
-      ]
-    ],
-    "prompt_text": "pixel card azure_cosmic portal"
+  "pw_card_13": {
+    "id": "pw_card_13",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_13::attack layered sacred geometry with glyph focus",
+    "seed": 156558798,
+    "prompt_hash": 1839633891
   },
-  "eco_de_sabiduria": {
-    "id": "eco_de_sabiduria",
-    "family": "violet_arcane",
-    "symbol": "portal",
-    "palette": [
-      [
-        26,
-        18,
-        52
-      ],
-      [
-        74,
-        52,
-        120
-      ],
-      [
-        154,
-        112,
-        212
-      ],
-      [
-        240,
-        220,
-        170
-      ]
-    ],
-    "prompt_text": "pixel card violet_arcane portal"
+  "pw_card_14": {
+    "id": "pw_card_14",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_14::spirit layered sacred geometry with glyph focus",
+    "seed": 2536534125,
+    "prompt_hash": 1417947467
   },
-  "observacion_sagrada": {
-    "id": "observacion_sagrada",
-    "family": "azure_cosmic",
-    "symbol": "orb",
-    "palette": [
-      [
-        12,
-        24,
-        52
-      ],
-      [
-        40,
-        82,
-        132
-      ],
-      [
-        80,
-        148,
-        210
-      ],
-      [
-        206,
-        238,
-        255
-      ]
-    ],
-    "prompt_text": "pixel card azure_cosmic orb"
+  "pw_card_15": {
+    "id": "pw_card_15",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_15::spirit layered sacred geometry with glyph focus",
+    "seed": 3761717499,
+    "prompt_hash": 3501535418
   },
-  "calculo_del_cosmos": {
-    "id": "calculo_del_cosmos",
-    "family": "azure_cosmic",
-    "symbol": "portal",
-    "palette": [
-      [
-        12,
-        24,
-        52
-      ],
-      [
-        40,
-        82,
-        132
-      ],
-      [
-        80,
-        148,
-        210
-      ],
-      [
-        206,
-        238,
-        255
-      ]
-    ],
-    "prompt_text": "pixel card azure_cosmic portal"
+  "pw_card_16": {
+    "id": "pw_card_16",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_16::spirit layered sacred geometry with glyph focus",
+    "seed": 2034110785,
+    "prompt_hash": 2274827496
   },
-  "mapa_del_destino": {
-    "id": "mapa_del_destino",
-    "family": "azure_cosmic",
-    "symbol": "condor",
-    "palette": [
-      [
-        12,
-        24,
-        52
-      ],
-      [
-        40,
-        82,
-        132
-      ],
-      [
-        80,
-        148,
-        210
-      ],
-      [
-        206,
-        238,
-        255
-      ]
-    ],
-    "prompt_text": "pixel card azure_cosmic condor"
+  "pw_card_17": {
+    "id": "pw_card_17",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_17::spirit layered sacred geometry with glyph focus",
+    "seed": 238625239,
+    "prompt_hash": 61211929
   },
-  "profecia_del_umbral": {
-    "id": "profecia_del_umbral",
-    "family": "violet_arcane",
-    "symbol": "staff",
-    "palette": [
-      [
-        26,
-        18,
-        52
-      ],
-      [
-        74,
-        52,
-        120
-      ],
-      [
-        154,
-        112,
-        212
-      ],
-      [
-        240,
-        220,
-        170
-      ]
-    ],
-    "prompt_text": "pixel card violet_arcane staff"
+  "pw_card_18": {
+    "id": "pw_card_18",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_18::attack layered sacred geometry with glyph focus",
+    "seed": 2659597382,
+    "prompt_hash": 3224003519
   },
-  "equilibrio_mental": {
-    "id": "equilibrio_mental",
-    "family": "violet_arcane",
-    "symbol": "portal",
-    "palette": [
-      [
-        26,
-        18,
-        52
-      ],
-      [
-        74,
-        52,
-        120
-      ],
-      [
-        154,
-        112,
-        212
-      ],
-      [
-        240,
-        220,
-        170
-      ]
-    ],
-    "prompt_text": "pixel card violet_arcane portal"
+  "pw_card_19": {
+    "id": "pw_card_19",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_19::attack layered sacred geometry with glyph focus",
+    "seed": 3917548752,
+    "prompt_hash": 1142651470
   },
-  "mente_serena": {
-    "id": "mente_serena",
-    "family": "emerald_spirit",
-    "symbol": "tree",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit tree"
+  "pw_card_20": {
+    "id": "pw_card_20",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_20::spirit layered sacred geometry with glyph focus",
+    "seed": 3144738743,
+    "prompt_hash": 2900448952
   },
-  "silencio_interior": {
-    "id": "silencio_interior",
-    "family": "azure_cosmic",
-    "symbol": "portal",
-    "palette": [
-      [
-        12,
-        24,
-        52
-      ],
-      [
-        40,
-        82,
-        132
-      ],
-      [
-        80,
-        148,
-        210
-      ],
-      [
-        206,
-        238,
-        255
-      ]
-    ],
-    "prompt_text": "pixel card azure_cosmic portal"
+  "pw_card_21": {
+    "id": "pw_card_21",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_21::spirit layered sacred geometry with glyph focus",
+    "seed": 3430405921,
+    "prompt_hash": 684740425
   },
-  "ojo_interior": {
-    "id": "ojo_interior",
-    "family": "violet_arcane",
-    "symbol": "portal",
-    "palette": [
-      [
-        26,
-        18,
-        52
-      ],
-      [
-        74,
-        52,
-        120
-      ],
-      [
-        154,
-        112,
-        212
-      ],
-      [
-        240,
-        220,
-        170
-      ]
-    ],
-    "prompt_text": "pixel card violet_arcane portal"
+  "pw_card_22": {
+    "id": "pw_card_22",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_22::spirit layered sacred geometry with glyph focus",
+    "seed": 1434355355,
+    "prompt_hash": 2146591515
   },
-  "ojo_del_condor": {
-    "id": "ojo_del_condor",
-    "family": "azure_cosmic",
-    "symbol": "portal",
-    "palette": [
-      [
-        12,
-        24,
-        52
-      ],
-      [
-        40,
-        82,
-        132
-      ],
-      [
-        80,
-        148,
-        210
-      ],
-      [
-        206,
-        238,
-        255
-      ]
-    ],
-    "prompt_text": "pixel card azure_cosmic portal"
+  "pw_card_23": {
+    "id": "pw_card_23",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_23::spirit layered sacred geometry with glyph focus",
+    "seed": 578401805,
+    "prompt_hash": 4223892202
   },
-  "portal_de_la_chakana": {
-    "id": "portal_de_la_chakana",
-    "family": "azure_cosmic",
-    "symbol": "portal",
-    "palette": [
-      [
-        12,
-        24,
-        52
-      ],
-      [
-        40,
-        82,
-        132
-      ],
-      [
-        80,
-        148,
-        210
-      ],
-      [
-        206,
-        238,
-        255
-      ]
-    ],
-    "prompt_text": "pixel card azure_cosmic portal"
+  "pw_card_24": {
+    "id": "pw_card_24",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_24::attack layered sacred geometry with glyph focus",
+    "seed": 3156026286,
+    "prompt_hash": 3269576258
   },
-  "invocacion_astral": {
-    "id": "invocacion_astral",
-    "family": "emerald_spirit",
-    "symbol": "tree",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit tree"
+  "pw_card_25": {
+    "id": "pw_card_25",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_25::attack layered sacred geometry with glyph focus",
+    "seed": 3407483704,
+    "prompt_hash": 1188093875
   },
-  "pulso_cosmico": {
-    "id": "pulso_cosmico",
-    "family": "crimson_chaos",
-    "symbol": "puma",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos puma"
+  "pw_card_26": {
+    "id": "pw_card_26",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_26::spirit layered sacred geometry with glyph focus",
+    "seed": 1376993922,
+    "prompt_hash": 44371484
   },
-  "mantra_del_umbral": {
-    "id": "mantra_del_umbral",
-    "family": "violet_arcane",
-    "symbol": "portal",
-    "palette": [
-      [
-        26,
-        18,
-        52
-      ],
-      [
-        74,
-        52,
-        120
-      ],
-      [
-        154,
-        112,
-        212
-      ],
-      [
-        240,
-        220,
-        170
-      ]
-    ],
-    "prompt_text": "pixel card violet_arcane portal"
+  "pw_card_27": {
+    "id": "pw_card_27",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_27::spirit layered sacred geometry with glyph focus",
+    "seed": 622096916,
+    "prompt_hash": 2257852397
   },
-  "vinculo_de_energia": {
-    "id": "vinculo_de_energia",
-    "family": "violet_arcane",
-    "symbol": "portal",
-    "palette": [
-      [
-        26,
-        18,
-        52
-      ],
-      [
-        74,
-        52,
-        120
-      ],
-      [
-        154,
-        112,
-        212
-      ],
-      [
-        240,
-        220,
-        170
-      ]
-    ],
-    "prompt_text": "pixel card violet_arcane portal"
+  "pw_card_28": {
+    "id": "pw_card_28",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_28::spirit layered sacred geometry with glyph focus",
+    "seed": 3047911301,
+    "prompt_hash": 1448053942
   },
-  "circulo_de_invocacion": {
-    "id": "circulo_de_invocacion",
-    "family": "emerald_spirit",
-    "symbol": "rune_stone",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit rune_stone"
+  "pw_card_29": {
+    "id": "pw_card_29",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_29::spirit layered sacred geometry with glyph focus",
+    "seed": 3266076435,
+    "prompt_hash": 3531511111
   },
-  "fusion_espiritual": {
-    "id": "fusion_espiritual",
-    "family": "emerald_spirit",
-    "symbol": "rune_stone",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit rune_stone"
+  "pw_card_30": {
+    "id": "pw_card_30",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_30::attack layered sacred geometry with glyph focus",
+    "seed": 2724976374,
+    "prompt_hash": 1971869910
   },
-  "luz_del_hanan": {
-    "id": "luz_del_hanan",
-    "family": "violet_arcane",
-    "symbol": "portal",
-    "palette": [
-      [
-        26,
-        18,
-        52
-      ],
-      [
-        74,
-        52,
-        120
-      ],
-      [
-        154,
-        112,
-        212
-      ],
-      [
-        240,
-        220,
-        170
-      ]
-    ],
-    "prompt_text": "pixel card violet_arcane portal"
+  "pw_card_31": {
+    "id": "pw_card_31",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_31::attack layered sacred geometry with glyph focus",
+    "seed": 3580683872,
+    "prompt_hash": 4055449895
   },
-  "tormenta_mistica": {
-    "id": "tormenta_mistica",
-    "family": "crimson_chaos",
-    "symbol": "sword",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos sword"
+  "pw_card_32": {
+    "id": "pw_card_32",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_32::spirit layered sacred geometry with glyph focus",
+    "seed": 1281734618,
+    "prompt_hash": 3050082440
   },
-  "espiritu_guardian": {
-    "id": "espiritu_guardian",
-    "family": "emerald_spirit",
-    "symbol": "mask",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit mask"
+  "pw_card_33": {
+    "id": "pw_card_33",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_33::spirit layered sacred geometry with glyph focus",
+    "seed": 996312908,
+    "prompt_hash": 838699385
   },
-  "sello_de_los_tres_pachas": {
-    "id": "sello_de_los_tres_pachas",
-    "family": "emerald_spirit",
-    "symbol": "rune_stone",
-    "palette": [
-      [
-        12,
-        34,
-        26
-      ],
-      [
-        38,
-        92,
-        68
-      ],
-      [
-        76,
-        156,
-        122
-      ],
-      [
-        215,
-        246,
-        216
-      ]
-    ],
-    "prompt_text": "pixel card emerald_spirit rune_stone"
+  "pw_card_34": {
+    "id": "pw_card_34",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_34::spirit layered sacred geometry with glyph focus",
+    "seed": 2768638703,
+    "prompt_hash": 461948972
   },
-  "espejo_astral": {
-    "id": "espejo_astral",
-    "family": "violet_arcane",
-    "symbol": "portal",
-    "palette": [
-      [
-        26,
-        18,
-        52
-      ],
-      [
-        74,
-        52,
-        120
-      ],
-      [
-        154,
-        112,
-        212
-      ],
-      [
-        240,
-        220,
-        170
-      ]
-    ],
-    "prompt_text": "pixel card violet_arcane portal"
+  "pw_card_35": {
+    "id": "pw_card_35",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_35::spirit layered sacred geometry with glyph focus",
+    "seed": 3523289721,
+    "prompt_hash": 2679755229
   },
-  "ritual_de_la_trama": {
-    "id": "ritual_de_la_trama",
-    "family": "crimson_chaos",
-    "symbol": "sword",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos sword"
+  "pw_card_36": {
+    "id": "pw_card_36",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_36::attack layered sacred geometry with glyph focus",
+    "seed": 1258845123,
+    "prompt_hash": 3687579762
   },
-  "baston_del_umbral": {
-    "id": "baston_del_umbral",
-    "family": "violet_arcane",
-    "symbol": "portal",
-    "palette": [
-      [
-        26,
-        18,
-        52
-      ],
-      [
-        74,
-        52,
-        120
-      ],
-      [
-        154,
-        112,
-        212
-      ],
-      [
-        240,
-        220,
-        170
-      ]
-    ],
-    "prompt_text": "pixel card violet_arcane portal"
+  "pw_card_37": {
+    "id": "pw_card_37",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_37::attack layered sacred geometry with glyph focus",
+    "seed": 1007633237,
+    "prompt_hash": 1610422659
   },
-  "chakana_de_luz": {
-    "id": "chakana_de_luz",
-    "family": "crimson_chaos",
-    "symbol": "axe",
-    "palette": [
-      [
-        38,
-        10,
-        18
-      ],
-      [
-        98,
-        28,
-        44
-      ],
-      [
-        170,
-        52,
-        76
-      ],
-      [
-        252,
-        198,
-        176
-      ]
-    ],
-    "prompt_text": "pixel card crimson_chaos axe"
+  "pw_card_38": {
+    "id": "pw_card_38",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_38::spirit layered sacred geometry with glyph focus",
+    "seed": 2897239748,
+    "prompt_hash": 2624683813
   }
 }
