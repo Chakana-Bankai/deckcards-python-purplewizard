@@ -272,28 +272,45 @@ class CombatScreen:
             self.app.goto_menu()
 
     def _art_debug_info(self, card):
-        cid = card.definition.id if card else "-"
-        card_family = getattr(card.definition, "family", "spirit") if card else "-"
-        path = Path("game") / "assets" / "sprites" / "cards" / f"{cid}.png"
-        apath = self.app.asset_root / "sprites" / "cards" / f"{cid}.png" if card else Path("-")
-        exists = apath.exists() if card else False
-        items = self._art_manifest.get("items", {}) if isinstance(self._art_manifest, dict) else {}
-        entry = items.get(cid, {}) if isinstance(items, dict) else {}
-        mstatus = "missing"
-        if entry:
-            mstatus = "present" if entry.get("generator_version") == GEN_CARD_ART_VERSION else "version mismatch"
-        generator_used = entry.get("generator_version", "placeholder" if not exists else "unknown")
-        prompts = self._card_prompts.get(cid, {}) if isinstance(self._card_prompts, dict) else {}
-        prompt = str(prompts.get("prompt_text", ""))[:80]
-        return {
-            "card_id": cid,
-            "card_type": card_family,
-            "art_path": str(path),
-            "file_exists": exists,
-            "manifest_status": mstatus,
-            "generator_used": generator_used,
-            "prompt_used": prompt,
-        }
+        try:
+            cid = card.definition.id if card else "-"
+            card_family = getattr(card.definition, "family", "spirit") if card else "-"
+            path = Path("game") / "assets" / "sprites" / "cards" / f"{cid}.png"
+            base_assets = getattr(self.app, "asset_root", None)
+            if not isinstance(base_assets, Path):
+                base_assets = Path(__file__).resolve().parents[2] / "assets"
+            apath = base_assets / "sprites" / "cards" / f"{cid}.png" if card else Path("-")
+            exists = apath.exists() if card else False
+            items = self._art_manifest.get("items", {}) if isinstance(self._art_manifest, dict) else {}
+            entry = items.get(cid, {}) if isinstance(items, dict) else {}
+            mstatus = "missing"
+            if entry:
+                mstatus = "present" if entry.get("generator_version") == GEN_CARD_ART_VERSION else "version mismatch"
+            generator_used = entry.get("generator_version", "placeholder" if not exists else "unknown")
+            prompts = self._card_prompts.get(cid, "") if isinstance(self._card_prompts, dict) else ""
+            if isinstance(prompts, dict):
+                prompt = str(prompts.get("prompt_text", ""))[:80]
+            else:
+                prompt = str(prompts)[:80]
+            return {
+                "card_id": cid,
+                "card_type": card_family,
+                "art_path": str(path),
+                "file_exists": exists,
+                "manifest_status": mstatus,
+                "generator_used": generator_used,
+                "prompt_used": prompt,
+            }
+        except Exception as exc:
+            return {
+                "card_id": "-",
+                "card_type": "-",
+                "art_path": "game/assets/sprites/cards/-.png",
+                "file_exists": False,
+                "manifest_status": "missing",
+                "generator_used": f"error:{exc}",
+                "prompt_used": "",
+            }
 
     def render(self, s):
         # Layer 0

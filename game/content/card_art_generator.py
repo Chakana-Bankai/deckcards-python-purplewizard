@@ -78,13 +78,12 @@ class CardArtGenerator:
 def export_prompts(cards: list[dict], enemies: list[dict] | None = None):
     pb = PromptBuilder()
     payload = {}
-    for c in cards:
+    for i, c in enumerate(cards):
         cid = c.get("id", "unknown")
         entry = pb.build_entry(c)
-        entry["seed"] = seed_from_id(cid, GEN_CARD_ART_VERSION)
-        entry["prompt_hash"] = zlib.crc32(entry["prompt_text"].encode("utf-8")) & 0xFFFFFFFF
-        payload[cid] = entry
+        seed = seed_from_id(cid, GEN_CARD_ART_VERSION)
+        payload[cid] = f"{entry.get('id', cid)} | type={entry.get('card_type', 'spirit')} | seed={seed} | sacred geometry"
     (data_dir() / "card_prompts.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    (data_dir() / "card_prompts.txt").write_text("\n".join(f"{k}: {v['prompt_text']}" for k, v in payload.items()), encoding="utf-8")
+    (data_dir() / "card_prompts.txt").write_text("\n".join(f"{k}: {v}" for k, v in payload.items()), encoding="utf-8")
     (data_dir() / "prompt_manifest.json").write_text(json.dumps({"generator_version": GEN_CARD_ART_VERSION, "count": len(payload)}, ensure_ascii=False, indent=2), encoding="utf-8")
     (data_dir() / "art_manifest_cards.json").write_text(json.dumps({"generator_version": GEN_CARD_ART_VERSION, "count": len(payload)}, ensure_ascii=False, indent=2), encoding="utf-8")

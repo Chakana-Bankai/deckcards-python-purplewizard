@@ -70,10 +70,12 @@ class AssetPipeline:
             cid = c.get("id", "unknown")
             path = a / f"{cid}.png"
             pentry = prompt_data.get(cid, {}) if isinstance(prompt_data, dict) else {}
+            prompt_text = pentry if isinstance(pentry, str) else pentry.get("prompt_text", "")
+            family = None if isinstance(pentry, str) else (pentry.get("card_type") or pentry.get("family"))
             self._safe_gen(
                 cid,
                 path,
-                lambda cid=cid, c=c, mode=mode, pentry=pentry: self.card_gen.ensure_art(cid, c.get("tags", []), c.get("rarity", "common"), mode, family=pentry.get("card_type") or pentry.get("family"), symbol=pentry.get("symbol"), prompt=pentry.get("prompt_text", "")),
+                lambda cid=cid, c=c, mode=mode, family=family, prompt_text=prompt_text: self.card_gen.ensure_art(cid, c.get("tags", []), c.get("rarity", "common"), mode, family=family, symbol=None, prompt=prompt_text),
                 manifest_items,
                 placeholder_size=(256, 384),
                 version=GEN_CARD_ART_VERSION,
@@ -138,6 +140,16 @@ class AssetPipeline:
             print(f"[safe_gen] using placeholder for avatar:chakana due to {exc}")
             self._placeholder_png(p, size=(256, 256), label="chakana")
 
+    def _default_prompt_payload(self, cards: list[dict]) -> dict:
+        payload = {}
+        for i, c in enumerate(cards):
+            cid = c.get("id", f"card_{i}")
+            tags = c.get("tags", []) or []
+            ctype = "attack" if "attack" in tags else "defense" if ("block" in tags or "defense" in tags) else "control" if ("draw" in tags or "scry" in tags or "control" in tags) else "spirit"
+            name = c.get("name_key", cid)
+            payload[cid] = f"{name} | type={ctype} | seed={abs(hash(cid)) % 1000000}"
+        return payload
+
     def ensure_all_assets(self, settings: dict, content: dict, progress_cb=None):
         self.ensure_avatar()
         a = assets_dir()
@@ -148,14 +160,14 @@ class AssetPipeline:
         (a / "sprites" / "guides").mkdir(parents=True, exist_ok=True)
         (a / "sfx" / "generated").mkdir(parents=True, exist_ok=True)
 
-        prompt_data = load_json(data_dir() / "card_prompts.json", default={})
         cards = content.get("cards", [])
         enemies = content.get("enemies", [])
-        if not isinstance(prompt_data, dict) or len(prompt_data) != len(cards):
+        prompt_data = load_json(data_dir() / "card_prompts.json", default={}, optional=True, auto_create=lambda: self._default_prompt_payload(cards))
+        if bool(settings.get("force_regen_art", False)):
             export_prompts(cards, enemies)
-            prompt_data = load_json(data_dir() / "card_prompts.json", default={})
-            if not isinstance(prompt_data, dict):
-                prompt_data = {}
+            prompt_data = load_json(data_dir() / "card_prompts.json", default={}, optional=True)
+        if not isinstance(prompt_data, dict):
+            prompt_data = {}
 
         manifest_path = data_dir() / "art_manifest.json"
         art_manifest = self._safe_manifest(manifest_path)

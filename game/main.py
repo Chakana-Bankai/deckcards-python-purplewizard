@@ -4,6 +4,7 @@ import traceback
 import shutil
 import json
 import time
+from pathlib import Path
 from types import SimpleNamespace
 
 import pygame
@@ -63,6 +64,10 @@ class App:
             pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
         except Exception:
             print("[audio] mixer disabled")
+
+        self.project_root = Path(__file__).resolve().parent
+        self.asset_root = assets_dir() if callable(assets_dir) else (self.project_root / "assets")
+        self.data_root = data_dir() if callable(data_dir) else (self.project_root / "data")
 
         self.clock = pygame.time.Clock()
         self.running = True
@@ -292,7 +297,27 @@ class App:
     def design_value(self, key: str, default: str = "") -> str:
         return self.design_doc.get(key, default)
 
+    def _build_card_prompts_payload(self):
+        payload = {}
+        for i, card in enumerate(self.cards_data):
+            cid = card.get("id", f"card_{i}")
+            name = card.get("name_key", cid)
+            tags = card.get("tags", []) or []
+            ctype = "attack" if "attack" in tags else "defense" if ("block" in tags or "defense" in tags) else "control" if ("draw" in tags or "scry" in tags or "control" in tags) else "spirit"
+            seed = abs(hash(f"{cid}:{i}")) % 1000000
+            payload[cid] = f"{name} | type={ctype} | seed={seed} | sacred geometry"
+        return payload
+
+    def _ensure_card_prompts_file(self, force: bool = False):
+        prompts_path = self.data_root / "card_prompts.json"
+        if prompts_path.exists() and not force:
+            return
+        payload = self._build_card_prompts_payload()
+        prompts_path.parent.mkdir(parents=True, exist_ok=True)
+        prompts_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
     def ensure_assets(self, progress_cb=None):
+        self._ensure_card_prompts_file(force=bool(self.user_settings.get("force_regen_art", False)))
         ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
         content_payload = {
             "cards": self.cards_data,

@@ -1,482 +1,482 @@
 {
-  "filo_astral": {
-    "id": "filo_astral",
+  "strike": {
+    "id": "strike",
     "card_type": "attack",
     "family": "attack",
-    "prompt_text": "chakana card::filo_astral::attack layered sacred geometry with glyph focus",
-    "seed": 4149800703,
-    "prompt_hash": 591652149
+    "prompt_text": "chakana card::strike::attack layered sacred geometry with glyph focus",
+    "seed": 3459234552,
+    "prompt_hash": 1112273944
   },
-  "lanza_del_amanecer": {
-    "id": "lanza_del_amanecer",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::lanza_del_amanecer::attack layered sacred geometry with glyph focus",
-    "seed": 361651787,
-    "prompt_hash": 503547165
-  },
-  "corte_del_puma": {
-    "id": "corte_del_puma",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::corte_del_puma::attack layered sacred geometry with glyph focus",
-    "seed": 50848572,
-    "prompt_hash": 3219033851
-  },
-  "golpe_del_trueno": {
-    "id": "golpe_del_trueno",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::golpe_del_trueno::attack layered sacred geometry with glyph focus",
-    "seed": 804185970,
-    "prompt_hash": 2626272109
-  },
-  "estallido_arcano": {
-    "id": "estallido_arcano",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::estallido_arcano::attack layered sacred geometry with glyph focus",
-    "seed": 4108850580,
-    "prompt_hash": 100763251
-  },
-  "ruptura_del_umbral": {
-    "id": "ruptura_del_umbral",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::ruptura_del_umbral::attack layered sacred geometry with glyph focus",
-    "seed": 2032343690,
-    "prompt_hash": 3719137434
-  },
-  "garra_espiritual": {
-    "id": "garra_espiritual",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::garra_espiritual::attack layered sacred geometry with glyph focus",
-    "seed": 2805149944,
-    "prompt_hash": 173329017
-  },
-  "tormenta_de_lanzas": {
-    "id": "tormenta_de_lanzas",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::tormenta_de_lanzas::attack layered sacred geometry with glyph focus",
-    "seed": 4059676627,
-    "prompt_hash": 3961024659
-  },
-  "fragmento_celeste": {
-    "id": "fragmento_celeste",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::fragmento_celeste::attack layered sacred geometry with glyph focus",
-    "seed": 495307327,
-    "prompt_hash": 3911314779
-  },
-  "embate_del_jaguar": {
-    "id": "embate_del_jaguar",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::embate_del_jaguar::attack layered sacred geometry with glyph focus",
-    "seed": 3493781630,
-    "prompt_hash": 1660731520
-  },
-  "punal_de_luz": {
-    "id": "punal_de_luz",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::punal_de_luz::attack layered sacred geometry with glyph focus",
-    "seed": 3038027355,
-    "prompt_hash": 1537921525
-  },
-  "desgarro_del_vacio": {
-    "id": "desgarro_del_vacio",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::desgarro_del_vacio::attack layered sacred geometry with glyph focus",
-    "seed": 4037153145,
-    "prompt_hash": 1502896023
-  },
-  "impacto_solar": {
-    "id": "impacto_solar",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::impacto_solar::attack layered sacred geometry with glyph focus",
-    "seed": 621102316,
-    "prompt_hash": 2810192419
-  },
-  "corte_dimensional": {
-    "id": "corte_dimensional",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::corte_dimensional::attack layered sacred geometry with glyph focus",
-    "seed": 2919305171,
-    "prompt_hash": 2293261549
-  },
-  "filo_en_cadena": {
-    "id": "filo_en_cadena",
-    "card_type": "attack",
-    "family": "attack",
-    "prompt_text": "chakana card::filo_en_cadena::attack layered sacred geometry with glyph focus",
-    "seed": 294983105,
-    "prompt_hash": 1677057815
-  },
-  "sello_protector": {
-    "id": "sello_protector",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::sello_protector::defense layered sacred geometry with glyph focus",
-    "seed": 4173187366,
-    "prompt_hash": 2494118460
-  },
-  "muralla_de_piedra": {
-    "id": "muralla_de_piedra",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::muralla_de_piedra::defense layered sacred geometry with glyph focus",
-    "seed": 3060769625,
-    "prompt_hash": 3666787596
-  },
-  "escudo_de_luz": {
-    "id": "escudo_de_luz",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::escudo_de_luz::defense layered sacred geometry with glyph focus",
-    "seed": 4283930561,
-    "prompt_hash": 1309739727
-  },
-  "guardia_terrenal": {
-    "id": "guardia_terrenal",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::guardia_terrenal::defense layered sacred geometry with glyph focus",
-    "seed": 3936373399,
-    "prompt_hash": 3399133251
-  },
-  "resistencia_ancestral": {
-    "id": "resistencia_ancestral",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::resistencia_ancestral::defense layered sacred geometry with glyph focus",
-    "seed": 1136736072,
-    "prompt_hash": 3658239387
-  },
-  "caparazon_kaypacha": {
-    "id": "caparazon_kaypacha",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::caparazon_kaypacha::defense layered sacred geometry with glyph focus",
-    "seed": 2210017977,
-    "prompt_hash": 2307582843
-  },
-  "fortaleza_chakana": {
-    "id": "fortaleza_chakana",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::fortaleza_chakana::defense layered sacred geometry with glyph focus",
-    "seed": 1127111926,
-    "prompt_hash": 1475038105
-  },
-  "refugio_espiritual": {
-    "id": "refugio_espiritual",
+  "defend": {
+    "id": "defend",
     "card_type": "spirit",
     "family": "spirit",
-    "prompt_text": "chakana card::refugio_espiritual::spirit layered sacred geometry with glyph focus",
-    "seed": 387666356,
-    "prompt_hash": 1211182405
+    "prompt_text": "chakana card::defend::spirit layered sacred geometry with glyph focus",
+    "seed": 1366150038,
+    "prompt_hash": 499970530
   },
-  "anillo_de_proteccion": {
-    "id": "anillo_de_proteccion",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::anillo_de_proteccion::defense layered sacred geometry with glyph focus",
-    "seed": 192460869,
-    "prompt_hash": 1290682204
-  },
-  "campo_protector": {
-    "id": "campo_protector",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::campo_protector::defense layered sacred geometry with glyph focus",
-    "seed": 1912053898,
-    "prompt_hash": 1238389457
-  },
-  "guardia_solar": {
-    "id": "guardia_solar",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::guardia_solar::defense layered sacred geometry with glyph focus",
-    "seed": 2784411856,
-    "prompt_hash": 3700613945
-  },
-  "escudo_del_chaman": {
-    "id": "escudo_del_chaman",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::escudo_del_chaman::defense layered sacred geometry with glyph focus",
-    "seed": 2265894029,
-    "prompt_hash": 1164037033
-  },
-  "barrera_sagrada": {
-    "id": "barrera_sagrada",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::barrera_sagrada::defense layered sacred geometry with glyph focus",
-    "seed": 706975941,
-    "prompt_hash": 1061175179
-  },
-  "firmeza_del_cuerpo": {
-    "id": "firmeza_del_cuerpo",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::firmeza_del_cuerpo::defense layered sacred geometry with glyph focus",
-    "seed": 2239255852,
-    "prompt_hash": 1767791730
-  },
-  "piedra_ritual": {
-    "id": "piedra_ritual",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::piedra_ritual::defense layered sacred geometry with glyph focus",
-    "seed": 4095234186,
-    "prompt_hash": 4231648956
-  },
-  "vision_del_condor": {
-    "id": "vision_del_condor",
-    "card_type": "control",
-    "family": "control",
-    "prompt_text": "chakana card::vision_del_condor::control layered sacred geometry with glyph focus",
-    "seed": 3389574412,
-    "prompt_hash": 936922859
-  },
-  "meditacion_profunda": {
-    "id": "meditacion_profunda",
-    "card_type": "control",
-    "family": "control",
-    "prompt_text": "chakana card::meditacion_profunda::control layered sacred geometry with glyph focus",
-    "seed": 3877575849,
-    "prompt_hash": 251591721
-  },
-  "claridad_del_hanan": {
-    "id": "claridad_del_hanan",
-    "card_type": "control",
-    "family": "control",
-    "prompt_text": "chakana card::claridad_del_hanan::control layered sacred geometry with glyph focus",
-    "seed": 1905425070,
-    "prompt_hash": 423196088
-  },
-  "lectura_del_destino": {
-    "id": "lectura_del_destino",
-    "card_type": "control",
-    "family": "control",
-    "prompt_text": "chakana card::lectura_del_destino::control layered sacred geometry with glyph focus",
-    "seed": 2256056030,
-    "prompt_hash": 4012807394
-  },
-  "revelacion_astral": {
-    "id": "revelacion_astral",
-    "card_type": "control",
-    "family": "control",
-    "prompt_text": "chakana card::revelacion_astral::control layered sacred geometry with glyph focus",
-    "seed": 1674615238,
-    "prompt_hash": 555944298
-  },
-  "eco_de_sabiduria": {
-    "id": "eco_de_sabiduria",
-    "card_type": "spirit",
-    "family": "spirit",
-    "prompt_text": "chakana card::eco_de_sabiduria::spirit layered sacred geometry with glyph focus",
-    "seed": 2830393660,
-    "prompt_hash": 2674544308
-  },
-  "observacion_sagrada": {
-    "id": "observacion_sagrada",
-    "card_type": "control",
-    "family": "control",
-    "prompt_text": "chakana card::observacion_sagrada::control layered sacred geometry with glyph focus",
-    "seed": 1618411600,
-    "prompt_hash": 4024314623
-  },
-  "calculo_del_cosmos": {
-    "id": "calculo_del_cosmos",
-    "card_type": "control",
-    "family": "control",
-    "prompt_text": "chakana card::calculo_del_cosmos::control layered sacred geometry with glyph focus",
-    "seed": 2787511452,
-    "prompt_hash": 2072502803
-  },
-  "mapa_del_destino": {
-    "id": "mapa_del_destino",
-    "card_type": "control",
-    "family": "control",
-    "prompt_text": "chakana card::mapa_del_destino::control layered sacred geometry with glyph focus",
-    "seed": 1084660692,
-    "prompt_hash": 553818806
-  },
-  "profecia_del_umbral": {
-    "id": "profecia_del_umbral",
-    "card_type": "spirit",
-    "family": "spirit",
-    "prompt_text": "chakana card::profecia_del_umbral::spirit layered sacred geometry with glyph focus",
-    "seed": 415187605,
-    "prompt_hash": 1998733781
-  },
-  "equilibrio_mental": {
-    "id": "equilibrio_mental",
-    "card_type": "spirit",
-    "family": "spirit",
-    "prompt_text": "chakana card::equilibrio_mental::spirit layered sacred geometry with glyph focus",
-    "seed": 1505375896,
-    "prompt_hash": 2157474997
-  },
-  "mente_serena": {
-    "id": "mente_serena",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::mente_serena::defense layered sacred geometry with glyph focus",
-    "seed": 272946862,
-    "prompt_hash": 785364265
-  },
-  "silencio_interior": {
-    "id": "silencio_interior",
-    "card_type": "control",
-    "family": "control",
-    "prompt_text": "chakana card::silencio_interior::control layered sacred geometry with glyph focus",
-    "seed": 3290494340,
-    "prompt_hash": 142509828
-  },
-  "ojo_interior": {
-    "id": "ojo_interior",
-    "card_type": "spirit",
-    "family": "spirit",
-    "prompt_text": "chakana card::ojo_interior::spirit layered sacred geometry with glyph focus",
-    "seed": 1356908893,
-    "prompt_hash": 4243560234
-  },
-  "ojo_del_condor": {
-    "id": "ojo_del_condor",
-    "card_type": "control",
-    "family": "control",
-    "prompt_text": "chakana card::ojo_del_condor::control layered sacred geometry with glyph focus",
-    "seed": 3273729468,
-    "prompt_hash": 1713213578
-  },
-  "portal_de_la_chakana": {
-    "id": "portal_de_la_chakana",
-    "card_type": "control",
-    "family": "control",
-    "prompt_text": "chakana card::portal_de_la_chakana::control layered sacred geometry with glyph focus",
-    "seed": 1745846813,
-    "prompt_hash": 297630209
-  },
-  "invocacion_astral": {
-    "id": "invocacion_astral",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::invocacion_astral::defense layered sacred geometry with glyph focus",
-    "seed": 1855402162,
-    "prompt_hash": 1253776878
-  },
-  "pulso_cosmico": {
-    "id": "pulso_cosmico",
+  "violet_bolt": {
+    "id": "violet_bolt",
     "card_type": "attack",
     "family": "attack",
-    "prompt_text": "chakana card::pulso_cosmico::attack layered sacred geometry with glyph focus",
-    "seed": 3878981875,
-    "prompt_hash": 648379419
+    "prompt_text": "chakana card::violet_bolt::attack layered sacred geometry with glyph focus",
+    "seed": 1926980696,
+    "prompt_hash": 988047214
   },
-  "mantra_del_umbral": {
-    "id": "mantra_del_umbral",
+  "prismatic_shield": {
+    "id": "prismatic_shield",
     "card_type": "spirit",
     "family": "spirit",
-    "prompt_text": "chakana card::mantra_del_umbral::spirit layered sacred geometry with glyph focus",
-    "seed": 1793451508,
-    "prompt_hash": 2131541356
+    "prompt_text": "chakana card::prismatic_shield::spirit layered sacred geometry with glyph focus",
+    "seed": 1507939451,
+    "prompt_hash": 724575832
   },
-  "vinculo_de_energia": {
-    "id": "vinculo_de_energia",
-    "card_type": "spirit",
-    "family": "spirit",
-    "prompt_text": "chakana card::vinculo_de_energia::spirit layered sacred geometry with glyph focus",
-    "seed": 3967339038,
-    "prompt_hash": 3087936938
-  },
-  "circulo_de_invocacion": {
-    "id": "circulo_de_invocacion",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::circulo_de_invocacion::defense layered sacred geometry with glyph focus",
-    "seed": 1409158758,
-    "prompt_hash": 2675607334
-  },
-  "fusion_espiritual": {
-    "id": "fusion_espiritual",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::fusion_espiritual::defense layered sacred geometry with glyph focus",
-    "seed": 1306859297,
-    "prompt_hash": 836878010
-  },
-  "luz_del_hanan": {
-    "id": "luz_del_hanan",
-    "card_type": "spirit",
-    "family": "spirit",
-    "prompt_text": "chakana card::luz_del_hanan::spirit layered sacred geometry with glyph focus",
-    "seed": 2740558226,
-    "prompt_hash": 1949205630
-  },
-  "tormenta_mistica": {
-    "id": "tormenta_mistica",
+  "arcane_pulse": {
+    "id": "arcane_pulse",
     "card_type": "attack",
     "family": "attack",
-    "prompt_text": "chakana card::tormenta_mistica::attack layered sacred geometry with glyph focus",
-    "seed": 2021888821,
-    "prompt_hash": 2489425317
+    "prompt_text": "chakana card::arcane_pulse::attack layered sacred geometry with glyph focus",
+    "seed": 1647990319,
+    "prompt_hash": 2860833239
   },
-  "espiritu_guardian": {
-    "id": "espiritu_guardian",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::espiritu_guardian::defense layered sacred geometry with glyph focus",
-    "seed": 3534744662,
-    "prompt_hash": 3011127797
-  },
-  "sello_de_los_tres_pachas": {
-    "id": "sello_de_los_tres_pachas",
-    "card_type": "defense",
-    "family": "defense",
-    "prompt_text": "chakana card::sello_de_los_tres_pachas::defense layered sacred geometry with glyph focus",
-    "seed": 3026984539,
-    "prompt_hash": 2701496236
-  },
-  "espejo_astral": {
-    "id": "espejo_astral",
+  "lesser_seal": {
+    "id": "lesser_seal",
     "card_type": "spirit",
     "family": "spirit",
-    "prompt_text": "chakana card::espejo_astral::spirit layered sacred geometry with glyph focus",
-    "seed": 598956193,
-    "prompt_hash": 2929956122
+    "prompt_text": "chakana card::lesser_seal::spirit layered sacred geometry with glyph focus",
+    "seed": 1584937553,
+    "prompt_hash": 59240366
   },
-  "ritual_de_la_trama": {
-    "id": "ritual_de_la_trama",
+  "subtle_drain": {
+    "id": "subtle_drain",
     "card_type": "attack",
     "family": "attack",
-    "prompt_text": "chakana card::ritual_de_la_trama::attack layered sacred geometry with glyph focus",
-    "seed": 2855737679,
-    "prompt_hash": 1660533071
+    "prompt_text": "chakana card::subtle_drain::attack layered sacred geometry with glyph focus",
+    "seed": 3338854985,
+    "prompt_hash": 784927123
   },
-  "baston_del_umbral": {
-    "id": "baston_del_umbral",
+  "vision": {
+    "id": "vision",
     "card_type": "spirit",
     "family": "spirit",
-    "prompt_text": "chakana card::baston_del_umbral::spirit layered sacred geometry with glyph focus",
-    "seed": 2511626935,
-    "prompt_hash": 1647860487
+    "prompt_text": "chakana card::vision::spirit layered sacred geometry with glyph focus",
+    "seed": 1301283729,
+    "prompt_hash": 2786601944
   },
-  "chakana_de_luz": {
-    "id": "chakana_de_luz",
+  "phase_shift": {
+    "id": "phase_shift",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::phase_shift::spirit layered sacred geometry with glyph focus",
+    "seed": 3765468828,
+    "prompt_hash": 2703625452
+  },
+  "fragment": {
+    "id": "fragment",
     "card_type": "attack",
     "family": "attack",
-    "prompt_text": "chakana card::chakana_de_luz::attack layered sacred geometry with glyph focus",
-    "seed": 2830384798,
-    "prompt_hash": 3245859588
+    "prompt_text": "chakana card::fragment::attack layered sacred geometry with glyph focus",
+    "seed": 1384940806,
+    "prompt_hash": 1927200159
+  },
+  "exchange": {
+    "id": "exchange",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::exchange::spirit layered sacred geometry with glyph focus",
+    "seed": 1243226259,
+    "prompt_hash": 1998815898
+  },
+  "cauterize_rupture": {
+    "id": "cauterize_rupture",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::cauterize_rupture::spirit layered sacred geometry with glyph focus",
+    "seed": 2940941144,
+    "prompt_hash": 3438975908
+  },
+  "short_portal": {
+    "id": "short_portal",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::short_portal::spirit layered sacred geometry with glyph focus",
+    "seed": 987317616,
+    "prompt_hash": 3770647718
+  },
+  "violet_ring": {
+    "id": "violet_ring",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::violet_ring::spirit layered sacred geometry with glyph focus",
+    "seed": 2428988457,
+    "prompt_hash": 807794304
+  },
+  "rite_transmutation": {
+    "id": "rite_transmutation",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::rite_transmutation::spirit layered sacred geometry with glyph focus",
+    "seed": 407976612,
+    "prompt_hash": 1345639590
+  },
+  "astral_cut": {
+    "id": "astral_cut",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::astral_cut::attack layered sacred geometry with glyph focus",
+    "seed": 1346872299,
+    "prompt_hash": 2907967057
+  },
+  "void_limit": {
+    "id": "void_limit",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::void_limit::spirit layered sacred geometry with glyph focus",
+    "seed": 1000912102,
+    "prompt_hash": 684206506
+  },
+  "reflection": {
+    "id": "reflection",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::reflection::spirit layered sacred geometry with glyph focus",
+    "seed": 1683032241,
+    "prompt_hash": 4272269910
+  },
+  "silence": {
+    "id": "silence",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::silence::spirit layered sacred geometry with glyph focus",
+    "seed": 648924605,
+    "prompt_hash": 825266764
+  },
+  "amethyst_crown": {
+    "id": "amethyst_crown",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::amethyst_crown::spirit layered sacred geometry with glyph focus",
+    "seed": 878862491,
+    "prompt_hash": 3225959861
+  },
+  "rewrite": {
+    "id": "rewrite",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::rewrite::spirit layered sacred geometry with glyph focus",
+    "seed": 757751252,
+    "prompt_hash": 2443433505
+  },
+  "final_gate": {
+    "id": "final_gate",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::final_gate::attack layered sacred geometry with glyph focus",
+    "seed": 798433238,
+    "prompt_hash": 3585029524
+  },
+  "pw_card_01": {
+    "id": "pw_card_01",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_01::attack layered sacred geometry with glyph focus",
+    "seed": 4265719203,
+    "prompt_hash": 1955288019
+  },
+  "pw_card_02": {
+    "id": "pw_card_02",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_02::spirit layered sacred geometry with glyph focus",
+    "seed": 1732830233,
+    "prompt_hash": 821985916
+  },
+  "pw_card_03": {
+    "id": "pw_card_03",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_03::spirit layered sacred geometry with glyph focus",
+    "seed": 273667215,
+    "prompt_hash": 3033504653
+  },
+  "pw_card_04": {
+    "id": "pw_card_04",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_04::spirit layered sacred geometry with glyph focus",
+    "seed": 2385199404,
+    "prompt_hash": 2663045848
+  },
+  "pw_card_05": {
+    "id": "pw_card_05",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_05::spirit layered sacred geometry with glyph focus",
+    "seed": 4180439482,
+    "prompt_hash": 445367081
+  },
+  "pw_card_06": {
+    "id": "pw_card_06",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_06::attack layered sacred geometry with glyph focus",
+    "seed": 1613045760,
+    "prompt_hash": 1593709190
+  },
+  "pw_card_07": {
+    "id": "pw_card_07",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_07::attack layered sacred geometry with glyph focus",
+    "seed": 388108438,
+    "prompt_hash": 3671001975
+  },
+  "pw_card_08": {
+    "id": "pw_card_08",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_08::spirit layered sacred geometry with glyph focus",
+    "seed": 2275216647,
+    "prompt_hash": 423849425
+  },
+  "pw_card_09": {
+    "id": "pw_card_09",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_09::spirit layered sacred geometry with glyph focus",
+    "seed": 4036640145,
+    "prompt_hash": 2641523744
+  },
+  "pw_card_10": {
+    "id": "pw_card_10",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_10::spirit layered sacred geometry with glyph focus",
+    "seed": 2422060148,
+    "prompt_hash": 701711436
+  },
+  "pw_card_11": {
+    "id": "pw_card_11",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_11::spirit layered sacred geometry with glyph focus",
+    "seed": 3881469154,
+    "prompt_hash": 2917293501
+  },
+  "pw_card_12": {
+    "id": "pw_card_12",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_12::attack layered sacred geometry with glyph focus",
+    "seed": 2119423320,
+    "prompt_hash": 3919023122
+  },
+  "pw_card_13": {
+    "id": "pw_card_13",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_13::attack layered sacred geometry with glyph focus",
+    "seed": 156558798,
+    "prompt_hash": 1839633891
+  },
+  "pw_card_14": {
+    "id": "pw_card_14",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_14::spirit layered sacred geometry with glyph focus",
+    "seed": 2536534125,
+    "prompt_hash": 1417947467
+  },
+  "pw_card_15": {
+    "id": "pw_card_15",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_15::spirit layered sacred geometry with glyph focus",
+    "seed": 3761717499,
+    "prompt_hash": 3501535418
+  },
+  "pw_card_16": {
+    "id": "pw_card_16",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_16::spirit layered sacred geometry with glyph focus",
+    "seed": 2034110785,
+    "prompt_hash": 2274827496
+  },
+  "pw_card_17": {
+    "id": "pw_card_17",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_17::spirit layered sacred geometry with glyph focus",
+    "seed": 238625239,
+    "prompt_hash": 61211929
+  },
+  "pw_card_18": {
+    "id": "pw_card_18",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_18::attack layered sacred geometry with glyph focus",
+    "seed": 2659597382,
+    "prompt_hash": 3224003519
+  },
+  "pw_card_19": {
+    "id": "pw_card_19",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_19::attack layered sacred geometry with glyph focus",
+    "seed": 3917548752,
+    "prompt_hash": 1142651470
+  },
+  "pw_card_20": {
+    "id": "pw_card_20",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_20::spirit layered sacred geometry with glyph focus",
+    "seed": 3144738743,
+    "prompt_hash": 2900448952
+  },
+  "pw_card_21": {
+    "id": "pw_card_21",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_21::spirit layered sacred geometry with glyph focus",
+    "seed": 3430405921,
+    "prompt_hash": 684740425
+  },
+  "pw_card_22": {
+    "id": "pw_card_22",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_22::spirit layered sacred geometry with glyph focus",
+    "seed": 1434355355,
+    "prompt_hash": 2146591515
+  },
+  "pw_card_23": {
+    "id": "pw_card_23",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_23::spirit layered sacred geometry with glyph focus",
+    "seed": 578401805,
+    "prompt_hash": 4223892202
+  },
+  "pw_card_24": {
+    "id": "pw_card_24",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_24::attack layered sacred geometry with glyph focus",
+    "seed": 3156026286,
+    "prompt_hash": 3269576258
+  },
+  "pw_card_25": {
+    "id": "pw_card_25",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_25::attack layered sacred geometry with glyph focus",
+    "seed": 3407483704,
+    "prompt_hash": 1188093875
+  },
+  "pw_card_26": {
+    "id": "pw_card_26",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_26::spirit layered sacred geometry with glyph focus",
+    "seed": 1376993922,
+    "prompt_hash": 44371484
+  },
+  "pw_card_27": {
+    "id": "pw_card_27",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_27::spirit layered sacred geometry with glyph focus",
+    "seed": 622096916,
+    "prompt_hash": 2257852397
+  },
+  "pw_card_28": {
+    "id": "pw_card_28",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_28::spirit layered sacred geometry with glyph focus",
+    "seed": 3047911301,
+    "prompt_hash": 1448053942
+  },
+  "pw_card_29": {
+    "id": "pw_card_29",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_29::spirit layered sacred geometry with glyph focus",
+    "seed": 3266076435,
+    "prompt_hash": 3531511111
+  },
+  "pw_card_30": {
+    "id": "pw_card_30",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_30::attack layered sacred geometry with glyph focus",
+    "seed": 2724976374,
+    "prompt_hash": 1971869910
+  },
+  "pw_card_31": {
+    "id": "pw_card_31",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_31::attack layered sacred geometry with glyph focus",
+    "seed": 3580683872,
+    "prompt_hash": 4055449895
+  },
+  "pw_card_32": {
+    "id": "pw_card_32",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_32::spirit layered sacred geometry with glyph focus",
+    "seed": 1281734618,
+    "prompt_hash": 3050082440
+  },
+  "pw_card_33": {
+    "id": "pw_card_33",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_33::spirit layered sacred geometry with glyph focus",
+    "seed": 996312908,
+    "prompt_hash": 838699385
+  },
+  "pw_card_34": {
+    "id": "pw_card_34",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_34::spirit layered sacred geometry with glyph focus",
+    "seed": 2768638703,
+    "prompt_hash": 461948972
+  },
+  "pw_card_35": {
+    "id": "pw_card_35",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_35::spirit layered sacred geometry with glyph focus",
+    "seed": 3523289721,
+    "prompt_hash": 2679755229
+  },
+  "pw_card_36": {
+    "id": "pw_card_36",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_36::attack layered sacred geometry with glyph focus",
+    "seed": 1258845123,
+    "prompt_hash": 3687579762
+  },
+  "pw_card_37": {
+    "id": "pw_card_37",
+    "card_type": "attack",
+    "family": "attack",
+    "prompt_text": "chakana card::pw_card_37::attack layered sacred geometry with glyph focus",
+    "seed": 1007633237,
+    "prompt_hash": 1610422659
+  },
+  "pw_card_38": {
+    "id": "pw_card_38",
+    "card_type": "spirit",
+    "family": "spirit",
+    "prompt_text": "chakana card::pw_card_38::spirit layered sacred geometry with glyph focus",
+    "seed": 2897239748,
+    "prompt_hash": 2624683813
   }
 }
