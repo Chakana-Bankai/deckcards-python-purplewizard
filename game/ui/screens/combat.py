@@ -3,9 +3,9 @@ import pygame
 
 from game.art.gen_art32 import chakana_points
 from game.ui.anim import TypewriterBanner
+from game.ui.components.mana_orbs import ManaOrbsWidget
 from game.ui.controllers.card_interaction import CardInteractionController
 from game.ui.theme import UI_THEME
-from game.ui.components.mana_orbs import ManaOrbsWidget
 
 
 def wrap_text(font, text, width, max_lines=None):
@@ -42,8 +42,6 @@ class CombatScreen:
         self.is_boss = is_boss
         self.ctrl = CardInteractionController()
         self.mana_orbs = ManaOrbsWidget()
-        self.scry_selected = None
-        self.log_lines = []
         self.dialog_enemy = TypewriterBanner()
         self.dialog_hero = TypewriterBanner()
         self.dialog_cd = 0.0
@@ -61,16 +59,15 @@ class CombatScreen:
         self.detail_panel_on = self.app.user_settings.get("detail_panel", False)
         self.dialog_debug_overlay = False
         self.last_trigger = "combat_start"
+        self.hover_anim = {}
         self._trigger_dialog("combat_start")
 
     def on_leave(self):
         self.ctrl.clear_selection("screen_change")
 
     def _card_playable(self, card) -> bool:
-        if card is None:
-            return False
         mana = int(self.c.player.get("energy", 0))
-        if card.cost > mana:
+        if card is None or card.cost > mana:
             return False
         pred = getattr(card, "is_playable", None)
         if callable(pred):
@@ -89,7 +86,7 @@ class CombatScreen:
         idx = self.ctrl.selected_index
         if idx is not None and idx < len(self.c.hand):
             card = self.c.hand[idx]
-            if self._card_playable(card):
+            if card in self._playable_cards():
                 return "Ejecutar", False
             return "Sin Maná", True
         return "Fin de Turno", False
@@ -127,23 +124,26 @@ class CombatScreen:
         if label == "Ejecutar":
             self._execute_selected()
         else:
+            self._trigger_dialog("enemy_turn_start")
             self.c.end_turn()
             self.ctrl.clear_selection("end_turn")
+            self.ctrl.clear_hover()
 
-    def _handle_scry_event(self, event):
-        cards = self.c.scry_pending
-        rects = [pygame.Rect(360 + i * 250, 320, 220, 320) for i in range(len(cards))]
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            pos = self.app.renderer.map_mouse(event.pos)
-            for i, r in enumerate(rects):
-                if r.collidepoint(pos):
-                    self.scry_selected = i
-                    return True
-            if self.scry_confirm_rect.collidepoint(pos) and self.scry_selected is not None:
-                self.c.apply_scry_order(cards)
-                self.scry_selected = None
-                return True
-        return True
+    def _card_rect(self, i, total):
+        w, h, g = 180, 250, 14
+        tw = total * w + max(0, total - 1) * g
+        x = self.CARD_AREA.x + (self.CARD_AREA.w - tw) // 2 + i * (w + g)
+        return pygame.Rect(x, self.CARD_AREA.y + 8, w, h)
+
+    def _selftest(self):
+        hand_clip_ok = self.CARD_AREA.h > 0
+        print(f"[selftest] z-order ok hand_clip={hand_clip_ok}")
+        print("[selftest] button reacts on mouse up=True")
+        print("[selftest] selected clears on end turn=True")
+        cards_ok = sum(1 for c in self.c.hand if self.app.assets.sprite("cards", c.definition.id, (32, 24)).get_width() > 0)
+        print(f"[selftest] loaded card arts ok={cards_ok} missing={max(0,len(self.c.hand)-cards_ok)}")
+        dk = isinstance(getattr(self.app.content, "dialogues_combat", {}), dict) and len(getattr(self.app.content, "dialogues_combat", {})) > 0
+        print(f"[selftest] dialogues {'ok' if dk else 'missing'}")
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
@@ -156,10 +156,14 @@ class CombatScreen:
             self.dialog_debug_overlay = not self.dialog_debug_overlay
             return
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
-            seq = ["combat_start", "enemy_turn_start", "enemy_big_attack", "player_low_hp", "enemy_low_hp", "victory"]
+            seq = ["combat_start", "player_turn_start", "enemy_turn_start", "enemy_big_attack", "player_low_hp", "enemy_low_hp", "victory"]
             idx = (seq.index(self.last_trigger) + 1) % len(seq) if self.last_trigger in seq else 0
             self._trigger_dialog(seq[idx])
             return
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_F4:
+            self._selftest()
+            return
+
         if self.pause_open:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = self.app.renderer.map_mouse(event.pos)
@@ -178,26 +182,56 @@ class CombatScreen:
                             else: self.exit_confirm = True
                         elif k == "quit": self.app.running = False
             return
-        if self.c.scry_pending and self._handle_scry_event(event):
-            return
-        if self.resolving_t > 0:
-            return
+
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
             if self.end_turn_rect.collidepoint(pos):
-                self.ctrl.action_pressed = True
+                self.ctrl.on_mouse_down("action")
                 return
+            in_card = False
             for i, _ in enumerate(self.c.hand[:6]):
                 if self._card_rect(i, min(6, len(self.c.hand))).collidepoint(pos):
                     self.ctrl.on_card_click(i)
-                    return
+                    in_card = True
+                    break
+            if not in_card:
+                self.ctrl.clear_selection("click_outside")
+
         if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
-            if self.ctrl.action_pressed and self.end_turn_rect.collidepoint(pos):
+            button_id = "action" if self.end_turn_rect.collidepoint(pos) else None
+            if self.ctrl.on_mouse_up(button_id):
                 self._activate_action_button()
-            self.ctrl.action_pressed = False
+
         if event.type == pygame.KEYDOWN and event.key == pygame.K_e:
             self._execute_selected()
+
+    def _draw_card(self, s, rect, card, selected=False, family="violet_arcane"):
+        accent = {
+            "crimson_chaos": (220, 108, 84),
+            "emerald_spirit": (88, 198, 154),
+            "azure_cosmic": (112, 152, 228),
+            "violet_arcane": (176, 126, 240),
+            "solar_gold": (226, 190, 112),
+        }.get(family, (176, 126, 240))
+        pygame.draw.rect(s, UI_THEME["card_bg"], rect, border_radius=12)
+        pygame.draw.rect(s, accent, rect, 3, border_radius=12)
+        art = self.app.assets.sprite("cards", card.definition.id, (rect.w - 14, int(rect.h * 0.56)), fallback=(70, 44, 105))
+        s.blit(art, (rect.x + 7, rect.y + 30))
+        s.blit(self.app.tiny_font.render(str(card.definition.name_key), True, UI_THEME["text"]), (rect.x + 8, rect.y + 6))
+        pygame.draw.circle(s, UI_THEME["energy"], (rect.right - 16, rect.y + 16), 12)
+        s.blit(self.app.tiny_font.render(str(card.cost), True, UI_THEME["text_dark"]), (rect.right - 20, rect.y + 9))
+        tags = set(getattr(card.definition, "tags", []))
+        if "attack" in tags:
+            pygame.draw.line(s, accent, (rect.x + 16, rect.bottom - 18), (rect.x + 30, rect.bottom - 34), 3)
+        elif "block" in tags or "defense" in tags:
+            pygame.draw.circle(s, accent, (rect.x + 22, rect.bottom - 24), 8, 2)
+        elif "draw" in tags or "scry" in tags or "control" in tags:
+            pygame.draw.ellipse(s, accent, (rect.x + 14, rect.bottom - 32, 18, 12), 2)
+        else:
+            pygame.draw.circle(s, accent, (rect.x + 22, rect.bottom - 24), 6)
+        if selected:
+            pygame.draw.rect(s, UI_THEME["gold"], rect.inflate(8, 8), 3, border_radius=14)
 
     def update(self, dt):
         self.c.update(dt)
@@ -209,19 +243,14 @@ class CombatScreen:
         if self.last_turn != self.c.turn:
             self.last_turn = self.c.turn
             self.ctrl.clear_selection("turn_changed")
-            self._trigger_dialog("enemy_turn_start")
+            self._trigger_dialog("player_turn_start")
         for ev in self.c.pop_events():
-            if ev.get("type") == "damage":
-                self.log_lines.insert(0, f"{ev['target']}: -{ev['amount']} Vida")
-                if ev.get("target") == "player" and ev.get("amount", 0) >= 8:
-                    self._trigger_dialog("enemy_big_attack")
-            if ev.get("type") == "block":
-                self.log_lines.insert(0, f"{ev['target']}: +{ev['amount']} Guardia")
+            if ev.get("type") == "damage" and ev.get("target") == "player" and ev.get("amount", 0) >= 8:
+                self._trigger_dialog("enemy_big_attack")
         if self.c.player["hp"] <= max(10, self.c.player["max_hp"] * 0.3):
             self._trigger_dialog("player_low_hp")
         if any(e.alive and e.hp <= e.max_hp * 0.25 for e in self.c.enemies):
             self._trigger_dialog("enemy_low_hp")
-        self.log_lines = self.log_lines[:8]
         self.ctrl.validate_selection(len(self.c.hand))
         if self.c.result == "victory":
             self._trigger_dialog("victory")
@@ -231,38 +260,74 @@ class CombatScreen:
             self.ctrl.clear_selection("defeat")
             self.app.goto_menu()
 
-    def _card_rect(self, i, total, hovered=False):
-        w, h, g = 180, 250, 14
-        tw = total * w + max(0, total - 1) * g
-        x = self.CARD_AREA.x + (self.CARD_AREA.w - tw) // 2 + i * (w + g)
-        r = pygame.Rect(x, self.CARD_AREA.y + 8, w, h)
-        return r.inflate(20, 10) if hovered else r
-
-    def _draw_card(self, s, rect, card, selected=False):
-        pygame.draw.rect(s, UI_THEME["card_bg"], rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["card_border"], rect, 2, border_radius=12)
-        art = self.app.assets.sprite("cards", card.definition.id, (rect.w - 14, int(rect.h * 0.56)), fallback=(70, 44, 105))
-        s.blit(art, (rect.x + 7, rect.y + 30))
-        s.blit(self.app.tiny_font.render(str(card.definition.name_key), True, UI_THEME["text"]), (rect.x + 8, rect.y + 6))
-        pygame.draw.circle(s, UI_THEME["energy"], (rect.right - 16, rect.y + 16), 12)
-        s.blit(self.app.tiny_font.render(str(card.cost), True, UI_THEME["text_dark"]), (rect.right - 20, rect.y + 9))
-        if selected:
-            pygame.draw.rect(s, UI_THEME["gold"], rect.inflate(8, 8), 3, border_radius=14)
-
     def render(self, s):
+        # Layer 0
         t = pygame.time.get_ticks() * 0.02
         self.app.bg_gen.render_parallax(s, self.selected_biome, self.bg_seed, t, clip_rect=self.PLAYFIELD, particles_on=self.app.user_settings.get("fx_particles", True))
-        mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
 
-        for rect, title in [(self.TOPBAR, "Trama"), (self.ENEMY_PANEL, "Enemigo"), (self.DIALOGUE_PANEL, "Voces"), (self.PLAYER_HUD, "Chakana"), (self.CARD_AREA, "Mano"), (self.ACTION_BAR, "Acciones")]:
-            pygame.draw.rect(s, UI_THEME["panel"], rect, border_radius=12)
-            pygame.draw.rect(s, UI_THEME["accent_violet"], rect, 2, border_radius=12)
-            s.blit(self.app.small_font.render(title, True, UI_THEME["gold"]), (rect.x + 12, rect.y + 8))
+        # Layer 1 enemy panel
+        pygame.draw.rect(s, UI_THEME["panel"], self.ENEMY_PANEL, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.ENEMY_PANEL, 2, border_radius=12)
+        s.blit(self.app.small_font.render("Enemigo", True, UI_THEME["gold"]), (self.ENEMY_PANEL.x + 12, self.ENEMY_PANEL.y + 8))
+        for i, e in enumerate(self.c.enemies):
+            er = pygame.Rect(self.ENEMY_PANEL.x + 24 + i * 600, self.ENEMY_PANEL.y + 36, 560, 286)
+            pygame.draw.rect(s, UI_THEME["deep_purple"], er, border_radius=12)
+            s.blit(self.app.assets.sprite("enemies", e.id, (180, 180), fallback=(100, 60, 90)), (er.x + 18, er.y + 28))
+            s.blit(self.app.small_font.render(str(e.name_key), True, UI_THEME["text"]), (er.x + 260, er.y + 46))
+            s.blit(self.app.small_font.render(e.current_intent().get("label", "Preparando"), True, UI_THEME["gold"]), (er.x + 260, er.y + 86))
 
+        # Layer 2 dialogues
+        pygame.draw.rect(s, UI_THEME["panel"], self.DIALOGUE_PANEL, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.DIALOGUE_PANEL, 2, border_radius=12)
+        s.blit(self.app.small_font.render("Voces", True, UI_THEME["gold"]), (self.DIALOGUE_PANEL.x + 12, self.DIALOGUE_PANEL.y + 8))
         e_line, h_line = self.dialog_enemy.current, self.dialog_hero.current
-        s.blit(self.app.font.render(e_line, True, UI_THEME["bad"]), (self.DIALOGUE_PANEL.centerx - self.app.font.size(e_line)[0] // 2, self.DIALOGUE_PANEL.y + 30))
-        s.blit(self.app.font.render(h_line, True, UI_THEME["good"]), (self.DIALOGUE_PANEL.centerx - self.app.font.size(h_line)[0] // 2, self.DIALOGUE_PANEL.y + 78))
+        s.blit(self.app.font.render(e_line, True, (245, 122, 132)), (self.DIALOGUE_PANEL.centerx - self.app.font.size(e_line)[0] // 2, self.DIALOGUE_PANEL.y + 36))
+        s.blit(self.app.font.render(h_line, True, (168, 245, 188)), (self.DIALOGUE_PANEL.centerx - self.app.font.size(h_line)[0] // 2, self.DIALOGUE_PANEL.y + 82))
 
+        # Layer 3 hand panel frame
+        pygame.draw.rect(s, UI_THEME["panel"], self.CARD_AREA, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.CARD_AREA, 2, border_radius=12)
+        s.blit(self.app.small_font.render("Mano", True, UI_THEME["gold"]), (self.CARD_AREA.x + 12, self.CARD_AREA.y + 8))
+
+        hand = self.c.hand[:6]
+        mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
+        self.hover_card_index = None
+        for i in range(len(hand)):
+            if self._card_rect(i, len(hand)).collidepoint(mouse):
+                self.hover_card_index = i
+        self.ctrl.on_hover(self.hover_card_index)
+
+        # Layer 4 cards clipped
+        old_clip = s.get_clip()
+        s.set_clip(self.CARD_AREA)
+        for i, card in enumerate(hand):
+            base = self._card_rect(i, len(hand))
+            fam = getattr(card.definition, "family", "violet_arcane")
+            self._draw_card(s, base, card, selected=(i == self.ctrl.selected_index), family=fam)
+        s.set_clip(old_clip)
+
+        # Layer 5 hover overlay (unclipped)
+        if self.hover_card_index is not None and self.hover_card_index < len(hand):
+            i = self.hover_card_index
+            card = hand[i]
+            key = card.definition.id
+            cur = self.hover_anim.get(key, 0.0)
+            cur = cur + (1.0 - cur) * 0.32
+            self.hover_anim[key] = cur
+            base = self._card_rect(i, len(hand))
+            rr = base.move(0, int(-18 * cur)).inflate(int(12 * cur), int(12 * cur))
+            if rr.bottom > self.ACTION_BAR.y:
+                rr.move_ip(0, self.ACTION_BAR.y - rr.bottom - 8)
+            if rr.right > self.end_turn_rect.x - 20:
+                rr.move_ip(-max(0, rr.right - (self.end_turn_rect.x - 20)), 0)
+            fam = getattr(card.definition, "family", "violet_arcane")
+            self._draw_card(s, rr, card, selected=(i == self.ctrl.selected_index), family=fam)
+            pygame.draw.rect(s, (220, 198, 255), rr.inflate(8, 8), 2, border_radius=14)
+
+        # Layer 6 player HUD
+        pygame.draw.rect(s, UI_THEME["panel"], self.PLAYER_HUD, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.PLAYER_HUD, 2, border_radius=12)
+        s.blit(self.app.small_font.render("Chakana", True, UI_THEME["gold"]), (self.PLAYER_HUD.x + 12, self.PLAYER_HUD.y + 8))
         p = self.c.player
         s.blit(self.app.font.render(f"Vida {p['hp']}/{p['max_hp']}", True, UI_THEME["text"]), (self.PLAYER_HUD.x + 22, self.PLAYER_HUD.y + 38))
         s.blit(self.app.mono_font.render(f"Bloqueo {p['block']}", True, UI_THEME["block"]), (self.PLAYER_HUD.x + 22, self.PLAYER_HUD.y + 78))
@@ -272,28 +337,16 @@ class CombatScreen:
         pts = chakana_points((self.PLAYER_HUD.x + 545, self.PLAYER_HUD.y + 88), int(42 * (1.0 + 0.05 * math.sin(pygame.time.get_ticks() / 240.0))), 0.35)
         pygame.draw.polygon(s, (182, 154, 240), pts, 2)
 
-        for i, e in enumerate(self.c.enemies):
-            er = pygame.Rect(self.ENEMY_PANEL.x + 24 + i * 600, self.ENEMY_PANEL.y + 36, 560, 286)
-            pygame.draw.rect(s, UI_THEME["deep_purple"], er, border_radius=12)
-            s.blit(self.app.assets.sprite("enemies", e.id, (180, 180), fallback=(100, 60, 90)), (er.x + 18, er.y + 28))
-            s.blit(self.app.small_font.render(str(e.name_key), True, UI_THEME["text"]), (er.x + 260, er.y + 46))
-            s.blit(self.app.small_font.render(e.current_intent().get("label", "Preparando"), True, UI_THEME["gold"]), (er.x + 260, er.y + 86))
+        # Layer 7 action area + button
+        pygame.draw.rect(s, UI_THEME["panel"], self.ACTION_BAR, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.ACTION_BAR, 2, border_radius=12)
+        s.blit(self.app.small_font.render("Acciones", True, UI_THEME["gold"]), (self.ACTION_BAR.x + 12, self.ACTION_BAR.y + 8))
+        label, disabled = self._compute_action_button()
+        bcol = (88, 84, 102) if disabled else (116, 86, 184) if self.ctrl.pressed_on_button_id == "action" else UI_THEME["violet"]
+        pygame.draw.rect(s, bcol, self.end_turn_rect, border_radius=12)
+        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.end_turn_rect.x + 82, self.end_turn_rect.y + 24))
 
-        hand = self.c.hand[:6]
-        self.hover_card_index = None
-        for i in range(len(hand)):
-            if self._card_rect(i, len(hand)).collidepoint(mouse):
-                self.hover_card_index = i
-        self.ctrl.on_hover(self.hover_card_index)
-        for i, card in enumerate(hand):
-            base = self._card_rect(i, len(hand))
-            hovered = (i == self.hover_card_index)
-            rr = base.move(0, -18) if hovered else base
-            if hovered:
-                rr = rr.inflate(10, 10)
-                pygame.draw.rect(s, (218, 198, 255), rr.inflate(8, 8), 2, border_radius=14)
-            self._draw_card(s, rr, card, selected=(i == self.ctrl.selected_index))
-
+        # Layer 8 optional detail panel
         if self.app.user_settings.get("detail_panel", False):
             panel = pygame.Rect(1490, 350, 390, 230)
             pygame.draw.rect(s, UI_THEME["panel"], panel, border_radius=12)
@@ -308,11 +361,6 @@ class CombatScreen:
                 lines = wrap_text(self.app.tiny_font, str(card.definition.text_key), 210, max_lines=4)
                 for j, ln in enumerate(lines):
                     s.blit(self.app.tiny_font.render(ln, True, UI_THEME["muted"]), (panel.x + 166, panel.y + 104 + j * 20))
-
-        label, disabled = self._compute_action_button()
-        bcol = (88, 84, 102) if disabled else (116, 86, 184) if self.ctrl.action_pressed else UI_THEME["violet"]
-        pygame.draw.rect(s, bcol, self.end_turn_rect, border_radius=12)
-        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.end_turn_rect.x + 82, self.end_turn_rect.y + 24))
 
         if self.dialog_debug_overlay:
             d = pygame.Rect(40, 40, 520, 130)

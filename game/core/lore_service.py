@@ -62,6 +62,15 @@ class LoreService:
         payload["dialogues_combat"] = dcombat if isinstance(dcombat, dict) else {}
         payload["dialogues_events"] = devents if isinstance(devents, dict) else {}
 
+        triggers = set()
+        enemies = 0
+        if isinstance(payload["dialogues_combat"], dict):
+            for k, v in payload["dialogues_combat"].items():
+                if isinstance(v, dict):
+                    enemies += 1
+                    triggers.update(v.keys())
+        print(f"[load] dialogues_combat OK triggers={len(triggers)} enemies={enemies}")
+
         if self.missing:
             self.status = "MISSING"
         return payload

@@ -158,6 +158,7 @@ class App:
         self.user_settings.setdefault("detail_panel", False)
         self._apply_dev_reset_if_enabled()
         self.ensure_assets(progress_cb=self._loading_step)
+        self._log_card_art_status()
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
         self._loading_step("Completado", 1.0)
         dk = len(self.content.dialogues_combat) if isinstance(self.content.dialogues_combat, dict) else 0
@@ -172,6 +173,19 @@ class App:
         pygame.display.set_caption(self.loc.t("game_title"))
         self.sm.set(MenuScreen(self))
         self.music.play_for("menu")
+
+
+    def _log_card_art_status(self):
+        cards_dir = assets_dir() / "sprites" / "cards"
+        ok = 0
+        miss = 0
+        for c in self.cards_data:
+            cid = c.get("id")
+            if cid and (cards_dir / f"{cid}.png").exists():
+                ok += 1
+            else:
+                miss += 1
+        print(f"[art] loaded card art: ok={ok} missing={miss}")
 
     def _loading_step(self, label: str, pct: float):
         if not hasattr(self, "loading_screen"):
@@ -764,6 +778,7 @@ class App:
         self.card_defs = {c["id"]: c for c in self.cards_data}
         self.enemies_data = self._load_enemies_data()
         self.ensure_assets(progress_cb=self._loading_step)
+        self._log_card_art_status()
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
         self.sm.set(MenuScreen(self))
         self.music.play_for("menu")

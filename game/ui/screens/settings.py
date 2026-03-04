@@ -116,7 +116,7 @@ class SettingsScreen:
             state = "ON" if self.app.user_settings.get(key, True) else "OFF"
             surface.blit(self.app.small_font.render(f"FX {label}: {state}", True, UI_THEME["text"]), (rect.x + 20, rect.y + 12))
         pygame.draw.rect(surface, UI_THEME["panel"], self.detail_panel_rect, border_radius=10)
-        detail_on = self.app.user_settings.get("detail_panel", True)
+        detail_on = self.app.user_settings.get("detail_panel", False)
         surface.blit(self.app.small_font.render(f"Panel de detalle: {'ON' if detail_on else 'OFF'}", True, UI_THEME["text"]), (self.detail_panel_rect.x + 20, self.detail_panel_rect.y + 12))
 
         self._draw_btn(surface, self.art_regen_rect, "Regenerar Arte (Cartas + Enemigos + Biomas)")
