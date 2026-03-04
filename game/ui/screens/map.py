@@ -63,16 +63,50 @@ class MapScreen:
             pygame.draw.line(s, col, (x - 10, y), (x + 10, y), 3)
             pygame.draw.line(s, col, (x, y - 10), (x, y + 10), 3)
 
+
+    def _friendly_node_name(self):
+        node = self.app.node_lookup.get(self.app.current_node_id) if getattr(self.app, "current_node_id", None) else None
+        if isinstance(node, dict):
+            if node.get("type") == "challenge":
+                return "Élite"
+            return self.app.loc.t(f"node_{node.get('type', 'combat')}")
+        return "Nodo inicial"
+
+    def _topbar_narrative(self):
+        run = self.app.run_state or {}
+        deck_name = str(run.get("deck_name") or run.get("starter_name") or "Inicial")
+        left = f"Chakana • Mazo: {deck_name}"
+        pacha = str(run.get("biome") or "Pacha").title()
+        center = f"{pacha} — {self._friendly_node_name()}"
+        subtitle = str(self.app.lore_engine.get_map_narration(f"lore_short_{self.lore_idx + 1}") if hasattr(self.app, "lore_engine") else "")
+        timer_text = "--"
+        turn_text = f"Turno {int((run.get('combats_won', 0) or 0) + 1)}"
+        return left, center, subtitle, timer_text, turn_text
+
     def render(self, s):
         s.fill(UI_THEME["bg"])
-        run = self.app.run_state
+        run = self.app.run_state or {"gold": 0, "map": []}
 
-        s.blit(self.app.map_font.render(self.app.loc.t("map_title"), True, UI_THEME["text"]), (34, 24))
-        mk = f"lore_short_{self.lore_idx + 1}"
-        map_line = self.app.lore_engine.get_map_narration(mk)
-        s.blit(self.app.small_font.render(map_line, True, UI_THEME["violet"]), (36, 62))
-        gold = self.app.map_font.render(f"{self.app.loc.t('gold')}: {run['gold']}", True, UI_THEME["gold"])
-        s.blit(gold, (INTERNAL_WIDTH - gold.get_width() - 30, 28))
+        topbar = pygame.Rect(18, 16, INTERNAL_WIDTH - 36, 92)
+        left_rect = pygame.Rect(topbar.x + 10, topbar.y + 4, int(topbar.w * 0.33), topbar.h - 8)
+        center_rect = pygame.Rect(left_rect.right, topbar.y + 4, int(topbar.w * 0.34), topbar.h - 8)
+        right_rect = pygame.Rect(center_rect.right, topbar.y + 4, topbar.right - center_rect.right - 10, topbar.h - 8)
+        pygame.draw.rect(s, UI_THEME["panel"], topbar, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], topbar, 2, border_radius=12)
+
+        left, center, subtitle, timer_text, turn_text = self._topbar_narrative()
+        s.blit(self.app.small_font.render(left, True, UI_THEME["gold"]), (left_rect.x + 6, left_rect.y + 14))
+        center_main = self.app.small_font.render(center, True, UI_THEME["text"])
+        s.blit(center_main, center_main.get_rect(center=(center_rect.centerx, center_rect.y + 22)))
+        center_sub = self.app.tiny_font.render(subtitle[:86] if subtitle else "Sin narración disponible.", True, UI_THEME["muted"])
+        s.blit(center_sub, center_sub.get_rect(center=(center_rect.centerx, center_rect.y + 48)))
+        timer_main = self.app.font.render(timer_text, True, UI_THEME["text"])
+        turn_sub = self.app.tiny_font.render(turn_text, True, UI_THEME["gold"])
+        s.blit(timer_main, (right_rect.right - timer_main.get_width() - 8, right_rect.y + 8))
+        s.blit(turn_sub, (right_rect.right - turn_sub.get_width() - 8, right_rect.y + 42))
+
+        gold = self.app.map_font.render(f"{self.app.loc.t('gold')}: {run.get('gold', 0)}", True, UI_THEME["gold"])
+        s.blit(gold, (INTERNAL_WIDTH - gold.get_width() - 30, 118))
 
         pygame.draw.rect(s, UI_THEME["panel"], self.deck_btn, border_radius=10)
         s.blit(self.app.map_font.render(self.app.loc.t("deck_button"), True, UI_THEME["text"]), (INTERNAL_WIDTH - 230, 94))

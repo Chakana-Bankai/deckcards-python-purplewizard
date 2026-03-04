@@ -265,6 +265,24 @@ class CombatScreen:
             return (72, 188, 240)
         return (174, 116, 255)
 
+    def _topbar_narrative(self):
+        run = self.app.run_state or {}
+        deck_name = str(run.get("deck_name") or run.get("starter_name") or "Inicial")
+        left = f"Chakana • Mazo: {deck_name}"
+
+        node = self.app.node_lookup.get(self.app.current_node_id) if getattr(self.app, "current_node_id", None) else None
+        pacha = str(self.selected_biome or run.get("biome") or "Pacha").title()
+        if isinstance(node, dict):
+            node_name = "Élite" if node.get("type") == "challenge" else self.app.loc.t(f"node_{node.get('type', 'combat')}")
+        else:
+            node_name = "Nodo desconocido"
+        center = f"{pacha} — {node_name}"
+        subtitle = str(self.app.lore_engine.get_map_narration("default") if hasattr(self.app, "lore_engine") else "")
+
+        timer_text = f"{self.turn_timer_left:04.1f}s" if self.turn_timer_enabled else "--"
+        turn_text = f"Turno {int(self.c.turn) if hasattr(self.c, 'turn') else '-'}"
+        return left, center, subtitle, timer_text, turn_text
+
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             self.pause_open = not self.pause_open
@@ -398,18 +416,20 @@ class CombatScreen:
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.topbar_rect)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.topbar_rect, 2)
-        s.blit(self.app.small_font.render(f"Turno {self.c.turn}", True, UI_THEME["gold"]), (self.layout.topbar_rect.x + 16, self.layout.topbar_rect.y + 16))
-        node = self.app.current_node_id or "-"
-        total_nodes = sum(len(col) for col in (self.app.run_state or {}).get("map", [])) if self.app.run_state else 0
-        trama = f"TRAMA: {str(self.selected_biome).title()} — Nodo {node}/{total_nodes}"
-        t_render = self.app.small_font.render(trama, True, UI_THEME["text"])
-        s.blit(t_render, (self.layout.topbar_rect.centerx - t_render.get_width() // 2, self.layout.topbar_rect.y + 10))
-        subtitle = self.app.lore_engine.get_map_narration("default") if hasattr(self.app, "lore_engine") else ""
-        s.blit(self.app.tiny_font.render(str(subtitle)[:86], True, UI_THEME["muted"]), (self.layout.topbar_rect.centerx - 240, self.layout.topbar_rect.y + 40))
-        if self.turn_timer_enabled:
-            timer_label = f"Tiempo {self.turn_timer_left:04.1f}s"
-            tw = self.app.small_font.size(timer_label)[0]
-            s.blit(self.app.small_font.render(timer_label, True, UI_THEME["text"]), (self.layout.topbar_rect.right - tw - 20, self.layout.topbar_rect.y + 16))
+        left, center, subtitle, timer_text, turn_text = self._topbar_narrative()
+
+        s.blit(self.app.small_font.render(left, True, UI_THEME["gold"]), (self.layout.topbar_left.x + 16, self.layout.topbar_left.y + 16))
+
+        center_main = self.app.small_font.render(center, True, UI_THEME["text"])
+        s.blit(center_main, center_main.get_rect(center=(self.layout.topbar_center.centerx, self.layout.topbar_center.y + 22)))
+        center_sub = self.app.tiny_font.render(subtitle[:86] if subtitle else "Sin narración disponible.", True, UI_THEME["muted"])
+        s.blit(center_sub, center_sub.get_rect(center=(self.layout.topbar_center.centerx, self.layout.topbar_center.y + 48)))
+
+        timer_main = self.app.font.render(timer_text, True, UI_THEME["text"])
+        turn_sub = self.app.tiny_font.render(turn_text, True, UI_THEME["gold"])
+        timer_x = self.layout.topbar_right.right - timer_main.get_width() - 16
+        s.blit(timer_main, (timer_x, self.layout.topbar_right.y + 10))
+        s.blit(turn_sub, (self.layout.topbar_right.right - turn_sub.get_width() - 16, self.layout.topbar_right.y + 44))
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.enemy_strip_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.enemy_strip_rect, 2, border_radius=12)
