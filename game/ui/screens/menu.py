@@ -20,6 +20,14 @@ class MenuScreen:
         ]
         self.modal = ModalConfirm()
 
+    def _is_button_visible(self, button, index):
+        bkey = getattr(button, "key", None)
+        if (bkey == "menu_continue" or (bkey is None and index == 1)) and not self.app.run_state:
+            return False
+        if (bkey == "menu_back" or (bkey is None and index == 2)) and self.app.menu_return_screen is None:
+            return False
+        return True
+
     def start_run(self):
         self.modal.show("Se iniciará un nuevo viaje.", on_yes=self.app.new_run)
 
@@ -46,7 +54,9 @@ class MenuScreen:
             if self.modal.open:
                 self.modal.handle_event(pos)
                 return
-            for b in self.buttons:
+            for i, b in enumerate(self.buttons):
+                if not self._is_button_visible(b, i):
+                    continue
                 if b.handle_click(pos):
                     self.app.sfx.play("ui_click")
 
@@ -61,10 +71,7 @@ class MenuScreen:
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         for i, b in enumerate(self.buttons):
-            bkey = getattr(b, "key", None)
-            if (bkey == "menu_continue" or (bkey is None and i == 1)) and not self.app.run_state:
-                continue
-            if (bkey == "menu_back" or (bkey is None and i == 2)) and self.app.menu_return_screen is None:
+            if not self._is_button_visible(b, i):
                 continue
             b.draw(surface, self.app.font, self.app.loc, UI_THEME, b.rect.collidepoint(mouse))
 
