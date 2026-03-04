@@ -1,0 +1,112 @@
+{
+  "map_kaypacha": {
+    "track": "map_kaypacha",
+    "bpm": 124,
+    "bars_a": 4,
+    "bars_b": 12,
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "total_bars": 16,
+    "duration": 30.97,
+    "generator_version": "bgm_v2"
+  },
+  "map_forest": {
+    "track": "map_forest",
+    "bpm": 88,
+    "bars_a": 8,
+    "bars_b": 10,
+    "intro_bars": 8,
+    "loop_bars": 10,
+    "total_bars": 18,
+    "duration": 49.09,
+    "generator_version": "bgm_v2"
+  },
+  "map_umbral": {
+    "track": "map_umbral",
+    "bpm": 118,
+    "bars_a": 4,
+    "bars_b": 12,
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "total_bars": 16,
+    "duration": 32.54,
+    "generator_version": "bgm_v2"
+  },
+  "map_hanan": {
+    "track": "map_hanan",
+    "bpm": 82,
+    "bars_a": 8,
+    "bars_b": 10,
+    "intro_bars": 8,
+    "loop_bars": 10,
+    "total_bars": 18,
+    "duration": 52.68,
+    "generator_version": "bgm_v2"
+  },
+  "combat_kaypacha": {
+    "track": "combat_kaypacha",
+    "bpm": 128,
+    "bars_a": 4,
+    "bars_b": 12,
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "total_bars": 16,
+    "duration": 30.0,
+    "generator_version": "bgm_v2"
+  },
+  "combat_forest": {
+    "track": "combat_forest",
+    "bpm": 108,
+    "bars_a": 4,
+    "bars_b": 12,
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "total_bars": 16,
+    "duration": 35.56,
+    "generator_version": "bgm_v2"
+  },
+  "combat_umbral": {
+    "track": "combat_umbral",
+    "bpm": 132,
+    "bars_a": 4,
+    "bars_b": 12,
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "total_bars": 16,
+    "duration": 29.09,
+    "generator_version": "bgm_v2"
+  },
+  "combat_hanan": {
+    "track": "combat_hanan",
+    "bpm": 104,
+    "bars_a": 4,
+    "bars_b": 12,
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "total_bars": 16,
+    "duration": 36.92,
+    "generator_version": "bgm_v2"
+  },
+  "victory": {
+    "track": "victory",
+    "bpm": 132,
+    "bars_a": 2,
+    "bars_b": 6,
+    "intro_bars": 2,
+    "loop_bars": 6,
+    "total_bars": 8,
+    "duration": 14.55,
+    "generator_version": "bgm_v2"
+  },
+  "chest": {
+    "track": "chest",
+    "bpm": 136,
+    "bars_a": 1,
+    "bars_b": 4,
+    "intro_bars": 1,
+    "loop_bars": 4,
+    "total_bars": 8,
+    "duration": 14.12,
+    "generator_version": "bgm_v2"
+  }
+}
