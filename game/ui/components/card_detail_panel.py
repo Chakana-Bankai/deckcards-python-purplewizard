@@ -52,13 +52,16 @@ class CardDetailPanel:
                 en += amt
         return dmg, blk, rup, en
 
-    def render(self, surface: pygame.Surface, rect: pygame.Rect, card=None):
+    def render(self, surface: pygame.Surface, rect: pygame.Rect, card=None, placeholder_text: str | None = None, last_played: str | None = None):
         pygame.draw.rect(surface, UI_THEME["panel"], rect, border_radius=12)
         pygame.draw.rect(surface, UI_THEME["accent_violet"], rect, 2, border_radius=12)
         surface.blit(self.app.small_font.render("Detalle", True, UI_THEME["gold"]), (rect.x + 12, rect.y + 8))
         payload = self._get_payload(card)
         if not payload:
-            surface.blit(self.app.font.render("Selecciona una carta", True, UI_THEME["muted"]), (rect.x + 16, rect.y + 44))
+            msg = placeholder_text or "Selecciona una carta para ver sus detalles."
+            surface.blit(self.app.font.render(msg, True, UI_THEME["muted"]), (rect.x + 16, rect.y + 44))
+            if last_played:
+                surface.blit(self.app.tiny_font.render(f"Última jugada: {last_played}", True, UI_THEME["text"]), (rect.x + 16, rect.y + 76))
             return
 
         art_w = max(120, int(rect.w * 0.42))
