@@ -448,5 +448,479 @@
     "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/senor_de_la_chakana_rota.png",
     "hash": "6475682703638067791",
     "generator_version": "art32_v1"
+  },
+  "generator_version": "art32_v1",
+  "created_at": "2026-03-03 23:53:40",
+  "items": {
+    "filo_astral": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\filo_astral.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "lanza_del_amanecer": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\lanza_del_amanecer.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "corte_del_puma": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\corte_del_puma.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "golpe_del_trueno": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\golpe_del_trueno.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "estallido_arcano": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\estallido_arcano.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "ruptura_del_umbral": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\ruptura_del_umbral.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "garra_espiritual": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\garra_espiritual.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "tormenta_de_lanzas": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\tormenta_de_lanzas.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "fragmento_celeste": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\fragmento_celeste.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "embate_del_jaguar": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\embate_del_jaguar.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "punal_de_luz": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\punal_de_luz.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "desgarro_del_vacio": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\desgarro_del_vacio.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "impacto_solar": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\impacto_solar.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "corte_dimensional": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\corte_dimensional.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "filo_en_cadena": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\filo_en_cadena.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "sello_protector": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\sello_protector.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "muralla_de_piedra": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\muralla_de_piedra.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "escudo_de_luz": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\escudo_de_luz.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "guardia_terrenal": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\guardia_terrenal.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "resistencia_ancestral": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\resistencia_ancestral.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "caparazon_kaypacha": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\caparazon_kaypacha.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "fortaleza_chakana": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\fortaleza_chakana.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "refugio_espiritual": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\refugio_espiritual.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "anillo_de_proteccion": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\anillo_de_proteccion.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "campo_protector": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\campo_protector.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "guardia_solar": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\guardia_solar.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "escudo_del_chaman": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\escudo_del_chaman.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "barrera_sagrada": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\barrera_sagrada.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "firmeza_del_cuerpo": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\firmeza_del_cuerpo.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "piedra_ritual": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\piedra_ritual.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "vision_del_condor": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\vision_del_condor.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "meditacion_profunda": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\meditacion_profunda.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "claridad_del_hanan": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\claridad_del_hanan.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "lectura_del_destino": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\lectura_del_destino.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "revelacion_astral": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\revelacion_astral.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "eco_de_sabiduria": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\eco_de_sabiduria.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "observacion_sagrada": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\observacion_sagrada.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "calculo_del_cosmos": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\calculo_del_cosmos.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "mapa_del_destino": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\mapa_del_destino.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "profecia_del_umbral": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\profecia_del_umbral.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "equilibrio_mental": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\equilibrio_mental.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "mente_serena": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\mente_serena.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "silencio_interior": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\silencio_interior.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "ojo_interior": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\ojo_interior.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "ojo_del_condor": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\ojo_del_condor.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "portal_de_la_chakana": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\portal_de_la_chakana.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "invocacion_astral": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\invocacion_astral.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "pulso_cosmico": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\pulso_cosmico.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "mantra_del_umbral": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\mantra_del_umbral.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "vinculo_de_energia": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\vinculo_de_energia.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "circulo_de_invocacion": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\circulo_de_invocacion.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "fusion_espiritual": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\fusion_espiritual.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "luz_del_hanan": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\luz_del_hanan.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "tormenta_mistica": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\tormenta_mistica.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "espiritu_guardian": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\espiritu_guardian.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "sello_de_los_tres_pachas": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\sello_de_los_tres_pachas.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "espejo_astral": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\espejo_astral.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "ritual_de_la_trama": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\ritual_de_la_trama.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "baston_del_umbral": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\baston_del_umbral.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "chakana_de_luz": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\chakana_de_luz.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:acaro_de_tinta": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\acaro_de_tinta.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:larva_del_vacio": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\larva_del_vacio.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:sabueso_sombrio": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\sabueso_sombrio.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:rata_obsidiana": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\rata_obsidiana.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:eco_perdido": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\eco_perdido.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:espiritu_de_humo": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\espiritu_de_humo.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:monolito_fracturado": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\monolito_fracturado.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:ave_de_ceniza": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\ave_de_ceniza.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:vigia_del_kaypacha": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\vigia_del_kaypacha.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:mascara_risuena": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\mascara_risuena.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:portador_de_polvo": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\portador_de_polvo.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:sombra_de_piedra": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\sombra_de_piedra.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:insecto_de_tela": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\insecto_de_tela.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:neblina_consciente": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\neblina_consciente.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:guardia_de_raiz": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\guardia_de_raiz.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:runa_errante": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\runa_errante.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:espiritu_puma_menor": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\espiritu_puma_menor.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:espiritu_condor_menor": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\espiritu_condor_menor.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:chaman_corrupto": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\chaman_corrupto.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:vidente_caido": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\vidente_caido.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:devorador_de_ecos": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\devorador_de_ecos.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:demonio_obsidiana": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\demonio_obsidiana.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:custodio_astral": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\custodio_astral.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:heraldo_del_umbral": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\heraldo_del_umbral.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:portador_de_silencio": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\portador_de_silencio.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:oraculo_menor": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\oraculo_menor.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:jaguar_sombrio": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\jaguar_sombrio.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:guardian_de_la_grieta": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\guardian_de_la_grieta.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:oraculo_del_vacio": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\oraculo_del_vacio.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "enemy:senor_de_la_chakana_rota": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\senor_de_la_chakana_rota.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "guide:angel": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "guide:shaman": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\shaman.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "guide:demon": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\demon.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    },
+    "guide:arcane_hacker": {
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\arcane_hacker.png",
+      "generator_version": "art32_v1",
+      "placeholder": false
+    }
   }
 }
