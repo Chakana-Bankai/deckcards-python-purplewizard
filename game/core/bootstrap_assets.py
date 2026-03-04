@@ -14,6 +14,7 @@ from game.core.paths import assets_dir, data_dir
 
 
 PNG_HEADER = b"\x89PNG\r\n\x1a\n"
+GEN_BGM_VERSION = "bgm_v2"
 
 
 def _png_chunk(tag: bytes, data: bytes) -> bytes:
@@ -176,6 +177,7 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
         "bars_b": bars_b,
         "total_bars": total_bars,
         "duration": round(duration, 2),
+        "generator_version": GEN_BGM_VERSION,
     }
 
 

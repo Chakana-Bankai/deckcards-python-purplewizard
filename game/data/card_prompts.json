@@ -1,156 +1,422 @@
 {
-  "strike": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "attack",
-    "rarity": "clear simple composition",
-    "unique_detail": "smoke serpent",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, violent burst of violet lightning tearing through ancient stone, dynamic diagonal composition, sparks and arcane particles, cracked runes glowing, clear simple composition, mystic combat focus, unique detail: smoke serpent"
+  "filo_astral": {
+    "id": "filo_astral",
+    "family": "solar_gold",
+    "symbol": "puma",
+    "notes_es": "filo_astral vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol puma, sacred geometry, runes, detailed light"
   },
-  "defend": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "defense",
-    "rarity": "clear simple composition",
-    "unique_detail": "sun disk",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, clear simple composition, protective block sigils, unique detail: sun disk"
+  "lanza_del_amanecer": {
+    "id": "lanza_del_amanecer",
+    "family": "solar_gold",
+    "symbol": "sword",
+    "notes_es": "lanza_del_amanecer vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol sword, sacred geometry, runes, detailed light"
   },
-  "violet_bolt": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "arcane",
-    "rarity": "clear simple composition",
-    "unique_detail": "silver cenote",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, fractured cosmic reality splitting open, glowing sigils floating in void, surreal distortion, neon violet veins, chakana morphing into cosmic geometry, clear simple composition, mystic combat focus, unique detail: silver cenote"
+  "corte_del_puma": {
+    "id": "corte_del_puma",
+    "family": "solar_gold",
+    "symbol": "axe",
+    "notes_es": "corte_del_puma vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol axe, sacred geometry, runes, detailed light"
   },
-  "prismatic_shield": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "arcane",
-    "rarity": "clear simple composition",
-    "unique_detail": "ember ash",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, fractured cosmic reality splitting open, glowing sigils floating in void, surreal distortion, neon violet veins, chakana morphing into cosmic geometry, clear simple composition, protective block sigils, unique detail: ember ash"
+  "golpe_del_trueno": {
+    "id": "golpe_del_trueno",
+    "family": "solar_gold",
+    "symbol": "axe",
+    "notes_es": "golpe_del_trueno vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol axe, sacred geometry, runes, detailed light"
   },
-  "arcane_pulse": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "arcane",
-    "rarity": "clear simple composition",
-    "unique_detail": "echoing bells",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, fractured cosmic reality splitting open, glowing sigils floating in void, surreal distortion, neon violet veins, chakana morphing into cosmic geometry, clear simple composition, arcane card draw vortex, unique detail: echoing bells"
+  "estallido_arcano": {
+    "id": "estallido_arcano",
+    "family": "solar_gold",
+    "symbol": "axe",
+    "notes_es": "estallido_arcano vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol axe, sacred geometry, runes, detailed light"
   },
-  "lesser_seal": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "ritual",
-    "rarity": "clear simple composition",
-    "unique_detail": "crystal halo",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ancient andean altar illuminated by violet ritual fire, hooded mage channeling sacred geometry, smoke forming symbolic patterns, gothic cathedral shadows, clear simple composition, rupture energy fractures, protective block sigils, unique detail: crystal halo"
+  "ruptura_del_umbral": {
+    "id": "ruptura_del_umbral",
+    "family": "solar_gold",
+    "symbol": "sword",
+    "notes_es": "ruptura_del_umbral vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol sword, sacred geometry, runes, detailed light"
   },
-  "subtle_drain": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "attack",
-    "rarity": "clear simple composition",
-    "unique_detail": "sable shrine",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, violent burst of violet lightning tearing through ancient stone, dynamic diagonal composition, sparks and arcane particles, cracked runes glowing, clear simple composition, mystic combat focus, unique detail: sable shrine"
+  "garra_espiritual": {
+    "id": "garra_espiritual",
+    "family": "solar_gold",
+    "symbol": "sword",
+    "notes_es": "garra_espiritual vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol sword, sacred geometry, runes, detailed light"
   },
-  "vision": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "defense",
-    "rarity": "clear simple composition",
-    "unique_detail": "sunken chapel",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, clear simple composition, mystic combat focus, unique detail: sunken chapel"
+  "tormenta_de_lanzas": {
+    "id": "tormenta_de_lanzas",
+    "family": "solar_gold",
+    "symbol": "puma",
+    "notes_es": "tormenta_de_lanzas vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol puma, sacred geometry, runes, detailed light"
   },
-  "phase_shift": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "defense",
-    "rarity": "clear simple composition",
-    "unique_detail": "black quartz",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, clear simple composition, protective block sigils, unique detail: black quartz"
+  "fragmento_celeste": {
+    "id": "fragmento_celeste",
+    "family": "solar_gold",
+    "symbol": "sword",
+    "notes_es": "fragmento_celeste vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol sword, sacred geometry, runes, detailed light"
   },
-  "fragment": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "attack",
-    "rarity": "clear simple composition",
-    "unique_detail": "ivory runestone",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, violent burst of violet lightning tearing through ancient stone, dynamic diagonal composition, sparks and arcane particles, cracked runes glowing, clear simple composition, mystic combat focus, unique detail: ivory runestone"
+  "embate_del_jaguar": {
+    "id": "embate_del_jaguar",
+    "family": "solar_gold",
+    "symbol": "puma",
+    "notes_es": "embate_del_jaguar vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol puma, sacred geometry, runes, detailed light"
   },
-  "exchange": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "defense",
-    "rarity": "clear simple composition",
-    "unique_detail": "ritual brazier",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, clear simple composition, protective block sigils, unique detail: ritual brazier"
+  "punal_de_luz": {
+    "id": "punal_de_luz",
+    "family": "solar_gold",
+    "symbol": "axe",
+    "notes_es": "punal_de_luz vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol axe, sacred geometry, runes, detailed light"
   },
-  "cauterize_rupture": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "defense",
-    "rarity": "clear simple composition",
-    "unique_detail": "temple stairs",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, clear simple composition, rupture energy fractures, energy orb resonance, unique detail: temple stairs"
+  "desgarro_del_vacio": {
+    "id": "desgarro_del_vacio",
+    "family": "solar_gold",
+    "symbol": "axe",
+    "notes_es": "desgarro_del_vacio vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol axe, sacred geometry, runes, detailed light"
   },
-  "short_portal": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "defense",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "ember ash",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: ember ash"
+  "impacto_solar": {
+    "id": "impacto_solar",
+    "family": "solar_gold",
+    "symbol": "puma",
+    "notes_es": "impacto_solar vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol puma, sacred geometry, runes, detailed light"
   },
-  "violet_ring": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "defense",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "moonlit ruins",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: moonlit ruins"
+  "corte_dimensional": {
+    "id": "corte_dimensional",
+    "family": "solar_gold",
+    "symbol": "puma",
+    "notes_es": "corte_dimensional vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol puma, sacred geometry, runes, detailed light"
   },
-  "rite_transmutation": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "defense",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "temporal crack",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: temporal crack"
+  "filo_en_cadena": {
+    "id": "filo_en_cadena",
+    "family": "solar_gold",
+    "symbol": "axe",
+    "notes_es": "filo_en_cadena vibra en solar_gold",
+    "prompt_text": "32-bit pixel mystical card, family solar_gold, symbol axe, sacred geometry, runes, detailed light"
   },
-  "astral_cut": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "attack",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "forgotten archive",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, violent burst of violet lightning tearing through ancient stone, dynamic diagonal composition, sparks and arcane particles, cracked runes glowing, ornate details, layered lighting, mystic combat focus, unique detail: forgotten archive"
+  "sello_protector": {
+    "id": "sello_protector",
+    "family": "emerald_spirit",
+    "symbol": "rune_stone",
+    "notes_es": "sello_protector vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol rune_stone, sacred geometry, runes, detailed light"
   },
-  "void_limit": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "arcane",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "night orchid",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, fractured cosmic reality splitting open, glowing sigils floating in void, surreal distortion, neon violet veins, chakana morphing into cosmic geometry, ornate details, layered lighting, rupture energy fractures, unique detail: night orchid"
+  "muralla_de_piedra": {
+    "id": "muralla_de_piedra",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "notes_es": "muralla_de_piedra vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
   },
-  "reflection": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "defense",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "condor feathers",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: condor feathers"
+  "escudo_de_luz": {
+    "id": "escudo_de_luz",
+    "family": "emerald_spirit",
+    "symbol": "rune_stone",
+    "notes_es": "escudo_de_luz vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol rune_stone, sacred geometry, runes, detailed light"
   },
-  "silence": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "defense",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "shadow totem",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: shadow totem"
+  "guardia_terrenal": {
+    "id": "guardia_terrenal",
+    "family": "emerald_spirit",
+    "symbol": "rune_stone",
+    "notes_es": "guardia_terrenal vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol rune_stone, sacred geometry, runes, detailed light"
   },
-  "amethyst_crown": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "defense",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "shadow totem",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: shadow totem"
+  "resistencia_ancestral": {
+    "id": "resistencia_ancestral",
+    "family": "emerald_spirit",
+    "symbol": "rune_stone",
+    "notes_es": "resistencia_ancestral vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol rune_stone, sacred geometry, runes, detailed light"
   },
-  "rewrite": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "defense",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "serpent knot",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, ethereal violet shield forming from sacred geometric light, calm radiant aura, balanced composition, andean temple background, ornate details, layered lighting, mystic combat focus, unique detail: serpent knot"
+  "caparazon_kaypacha": {
+    "id": "caparazon_kaypacha",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "notes_es": "caparazon_kaypacha vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
   },
-  "final_gate": {
-    "base_style": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition",
-    "card_type": "attack",
-    "rarity": "ornate details, layered lighting",
-    "unique_detail": "storm lantern",
-    "prompt": "16bit pixel art mystical andean magic card, chakana geometry integrated subtly, dramatic volumetric lighting, rich colors, deep shadows, trading card art composition, violent burst of violet lightning tearing through ancient stone, dynamic diagonal composition, sparks and arcane particles, cracked runes glowing, ornate details, layered lighting, rupture energy fractures, unique detail: storm lantern"
+  "fortaleza_chakana": {
+    "id": "fortaleza_chakana",
+    "family": "emerald_spirit",
+    "symbol": "mask",
+    "notes_es": "fortaleza_chakana vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol mask, sacred geometry, runes, detailed light"
+  },
+  "refugio_espiritual": {
+    "id": "refugio_espiritual",
+    "family": "emerald_spirit",
+    "symbol": "orb",
+    "notes_es": "refugio_espiritual vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol orb, sacred geometry, runes, detailed light"
+  },
+  "anillo_de_proteccion": {
+    "id": "anillo_de_proteccion",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "notes_es": "anillo_de_proteccion vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
+  },
+  "campo_protector": {
+    "id": "campo_protector",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "notes_es": "campo_protector vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
+  },
+  "guardia_solar": {
+    "id": "guardia_solar",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "notes_es": "guardia_solar vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
+  },
+  "escudo_del_chaman": {
+    "id": "escudo_del_chaman",
+    "family": "emerald_spirit",
+    "symbol": "rune_stone",
+    "notes_es": "escudo_del_chaman vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol rune_stone, sacred geometry, runes, detailed light"
+  },
+  "barrera_sagrada": {
+    "id": "barrera_sagrada",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "notes_es": "barrera_sagrada vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
+  },
+  "firmeza_del_cuerpo": {
+    "id": "firmeza_del_cuerpo",
+    "family": "emerald_spirit",
+    "symbol": "mask",
+    "notes_es": "firmeza_del_cuerpo vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol mask, sacred geometry, runes, detailed light"
+  },
+  "piedra_ritual": {
+    "id": "piedra_ritual",
+    "family": "emerald_spirit",
+    "symbol": "tree",
+    "notes_es": "piedra_ritual vibra en emerald_spirit",
+    "prompt_text": "32-bit pixel mystical card, family emerald_spirit, symbol tree, sacred geometry, runes, detailed light"
+  },
+  "vision_del_condor": {
+    "id": "vision_del_condor",
+    "family": "azure_cosmic",
+    "symbol": "rune_stone",
+    "notes_es": "vision_del_condor vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
+  },
+  "meditacion_profunda": {
+    "id": "meditacion_profunda",
+    "family": "azure_cosmic",
+    "symbol": "rune_stone",
+    "notes_es": "meditacion_profunda vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
+  },
+  "claridad_del_hanan": {
+    "id": "claridad_del_hanan",
+    "family": "azure_cosmic",
+    "symbol": "rune_stone",
+    "notes_es": "claridad_del_hanan vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
+  },
+  "lectura_del_destino": {
+    "id": "lectura_del_destino",
+    "family": "azure_cosmic",
+    "symbol": "rune_stone",
+    "notes_es": "lectura_del_destino vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
+  },
+  "revelacion_astral": {
+    "id": "revelacion_astral",
+    "family": "azure_cosmic",
+    "symbol": "condor",
+    "notes_es": "revelacion_astral vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol condor, sacred geometry, runes, detailed light"
+  },
+  "eco_de_sabiduria": {
+    "id": "eco_de_sabiduria",
+    "family": "azure_cosmic",
+    "symbol": "portal",
+    "notes_es": "eco_de_sabiduria vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol portal, sacred geometry, runes, detailed light"
+  },
+  "observacion_sagrada": {
+    "id": "observacion_sagrada",
+    "family": "azure_cosmic",
+    "symbol": "rune_stone",
+    "notes_es": "observacion_sagrada vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
+  },
+  "calculo_del_cosmos": {
+    "id": "calculo_del_cosmos",
+    "family": "azure_cosmic",
+    "symbol": "condor",
+    "notes_es": "calculo_del_cosmos vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol condor, sacred geometry, runes, detailed light"
+  },
+  "mapa_del_destino": {
+    "id": "mapa_del_destino",
+    "family": "azure_cosmic",
+    "symbol": "orb",
+    "notes_es": "mapa_del_destino vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol orb, sacred geometry, runes, detailed light"
+  },
+  "profecia_del_umbral": {
+    "id": "profecia_del_umbral",
+    "family": "azure_cosmic",
+    "symbol": "portal",
+    "notes_es": "profecia_del_umbral vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol portal, sacred geometry, runes, detailed light"
+  },
+  "equilibrio_mental": {
+    "id": "equilibrio_mental",
+    "family": "azure_cosmic",
+    "symbol": "portal",
+    "notes_es": "equilibrio_mental vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol portal, sacred geometry, runes, detailed light"
+  },
+  "mente_serena": {
+    "id": "mente_serena",
+    "family": "azure_cosmic",
+    "symbol": "tree",
+    "notes_es": "mente_serena vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol tree, sacred geometry, runes, detailed light"
+  },
+  "silencio_interior": {
+    "id": "silencio_interior",
+    "family": "azure_cosmic",
+    "symbol": "rune_stone",
+    "notes_es": "silencio_interior vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol rune_stone, sacred geometry, runes, detailed light"
+  },
+  "ojo_interior": {
+    "id": "ojo_interior",
+    "family": "azure_cosmic",
+    "symbol": "portal",
+    "notes_es": "ojo_interior vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol portal, sacred geometry, runes, detailed light"
+  },
+  "ojo_del_condor": {
+    "id": "ojo_del_condor",
+    "family": "violet_arcane",
+    "symbol": "condor",
+    "notes_es": "ojo_del_condor vibra en violet_arcane",
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol condor, sacred geometry, runes, detailed light"
+  },
+  "portal_de_la_chakana": {
+    "id": "portal_de_la_chakana",
+    "family": "violet_arcane",
+    "symbol": "rune_stone",
+    "notes_es": "portal_de_la_chakana vibra en violet_arcane",
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol rune_stone, sacred geometry, runes, detailed light"
+  },
+  "invocacion_astral": {
+    "id": "invocacion_astral",
+    "family": "violet_arcane",
+    "symbol": "rune_stone",
+    "notes_es": "invocacion_astral vibra en violet_arcane",
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol rune_stone, sacred geometry, runes, detailed light"
+  },
+  "pulso_cosmico": {
+    "id": "pulso_cosmico",
+    "family": "violet_arcane",
+    "symbol": "puma",
+    "notes_es": "pulso_cosmico vibra en violet_arcane",
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol puma, sacred geometry, runes, detailed light"
+  },
+  "mantra_del_umbral": {
+    "id": "mantra_del_umbral",
+    "family": "violet_arcane",
+    "symbol": "orb",
+    "notes_es": "mantra_del_umbral vibra en violet_arcane",
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol orb, sacred geometry, runes, detailed light"
+  },
+  "vinculo_de_energia": {
+    "id": "vinculo_de_energia",
+    "family": "violet_arcane",
+    "symbol": "staff",
+    "notes_es": "vinculo_de_energia vibra en violet_arcane",
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol staff, sacred geometry, runes, detailed light"
+  },
+  "circulo_de_invocacion": {
+    "id": "circulo_de_invocacion",
+    "family": "violet_arcane",
+    "symbol": "mask",
+    "notes_es": "circulo_de_invocacion vibra en violet_arcane",
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol mask, sacred geometry, runes, detailed light"
+  },
+  "fusion_espiritual": {
+    "id": "fusion_espiritual",
+    "family": "violet_arcane",
+    "symbol": "rune_stone",
+    "notes_es": "fusion_espiritual vibra en violet_arcane",
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol rune_stone, sacred geometry, runes, detailed light"
+  },
+  "luz_del_hanan": {
+    "id": "luz_del_hanan",
+    "family": "violet_arcane",
+    "symbol": "orb",
+    "notes_es": "luz_del_hanan vibra en violet_arcane",
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol orb, sacred geometry, runes, detailed light"
+  },
+  "tormenta_mistica": {
+    "id": "tormenta_mistica",
+    "family": "violet_arcane",
+    "symbol": "puma",
+    "notes_es": "tormenta_mistica vibra en violet_arcane",
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol puma, sacred geometry, runes, detailed light"
+  },
+  "espiritu_guardian": {
+    "id": "espiritu_guardian",
+    "family": "violet_arcane",
+    "symbol": "tree",
+    "notes_es": "espiritu_guardian vibra en violet_arcane",
+    "prompt_text": "32-bit pixel mystical card, family violet_arcane, symbol tree, sacred geometry, runes, detailed light"
+  },
+  "sello_de_los_tres_pachas": {
+    "id": "sello_de_los_tres_pachas",
+    "family": "azure_cosmic",
+    "symbol": "mask",
+    "notes_es": "sello_de_los_tres_pachas vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol mask, sacred geometry, runes, detailed light"
+  },
+  "espejo_astral": {
+    "id": "espejo_astral",
+    "family": "azure_cosmic",
+    "symbol": "staff",
+    "notes_es": "espejo_astral vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol staff, sacred geometry, runes, detailed light"
+  },
+  "ritual_de_la_trama": {
+    "id": "ritual_de_la_trama",
+    "family": "azure_cosmic",
+    "symbol": "sword",
+    "notes_es": "ritual_de_la_trama vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol sword, sacred geometry, runes, detailed light"
+  },
+  "baston_del_umbral": {
+    "id": "baston_del_umbral",
+    "family": "azure_cosmic",
+    "symbol": "orb",
+    "notes_es": "baston_del_umbral vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol orb, sacred geometry, runes, detailed light"
+  },
+  "chakana_de_luz": {
+    "id": "chakana_de_luz",
+    "family": "azure_cosmic",
+    "symbol": "sword",
+    "notes_es": "chakana_de_luz vibra en azure_cosmic",
+    "prompt_text": "32-bit pixel mystical card, family azure_cosmic, symbol sword, sacred geometry, runes, detailed light"
   }
 }

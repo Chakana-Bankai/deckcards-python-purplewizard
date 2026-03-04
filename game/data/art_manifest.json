@@ -1,302 +1,452 @@
 {
   "filo_astral": {
-    "prompt_hash": "3498722036990523968",
-    "generated_at": 1772582611,
-    "seed": "523968"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/filo_astral.png",
+    "hash": "7927402111334723800",
+    "generator_version": "art32_v1"
   },
   "lanza_del_amanecer": {
-    "prompt_hash": "3447562458664605038",
-    "generated_at": 1772582611,
-    "seed": "605038"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/lanza_del_amanecer.png",
+    "hash": "7682450256590848254",
+    "generator_version": "art32_v1"
   },
   "corte_del_puma": {
-    "prompt_hash": "9068153806709679944",
-    "generated_at": 1772582611,
-    "seed": "679944"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/corte_del_puma.png",
+    "hash": "6997881365309272987",
+    "generator_version": "art32_v1"
   },
   "golpe_del_trueno": {
-    "prompt_hash": "6333295313505125485",
-    "generated_at": 1772582612,
-    "seed": "125485"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/golpe_del_trueno.png",
+    "hash": "8620585601972514864",
+    "generator_version": "art32_v1"
   },
   "estallido_arcano": {
-    "prompt_hash": "149851082230342286",
-    "generated_at": 1772582612,
-    "seed": "342286"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/estallido_arcano.png",
+    "hash": "1404885105612454126",
+    "generator_version": "art32_v1"
   },
   "ruptura_del_umbral": {
-    "prompt_hash": "4446100801882334955",
-    "generated_at": 1772582612,
-    "seed": "334955"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/ruptura_del_umbral.png",
+    "hash": "8660812602187737035",
+    "generator_version": "art32_v1"
   },
   "garra_espiritual": {
-    "prompt_hash": "2143369675018401318",
-    "generated_at": 1772582612,
-    "seed": "401318"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/garra_espiritual.png",
+    "hash": "7037972949166207551",
+    "generator_version": "art32_v1"
   },
   "tormenta_de_lanzas": {
-    "prompt_hash": "4356934368328828993",
-    "generated_at": 1772582612,
-    "seed": "828993"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/tormenta_de_lanzas.png",
+    "hash": "2730789491575214167",
+    "generator_version": "art32_v1"
   },
   "fragmento_celeste": {
-    "prompt_hash": "6419394902528945893",
-    "generated_at": 1772582612,
-    "seed": "945893"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/fragmento_celeste.png",
+    "hash": "6267719297933405414",
+    "generator_version": "art32_v1"
   },
   "embate_del_jaguar": {
-    "prompt_hash": "3516477499033201216",
-    "generated_at": 1772582612,
-    "seed": "201216"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/embate_del_jaguar.png",
+    "hash": "6315148570923434550",
+    "generator_version": "art32_v1"
   },
   "punal_de_luz": {
-    "prompt_hash": "6992850629524089815",
-    "generated_at": 1772582612,
-    "seed": "89815"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/punal_de_luz.png",
+    "hash": "1849963669956668203",
+    "generator_version": "art32_v1"
   },
   "desgarro_del_vacio": {
-    "prompt_hash": "6130408223454036070",
-    "generated_at": 1772582612,
-    "seed": "36070"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/desgarro_del_vacio.png",
+    "hash": "1861021589883822771",
+    "generator_version": "art32_v1"
   },
   "impacto_solar": {
-    "prompt_hash": "2656030998343834038",
-    "generated_at": 1772582612,
-    "seed": "834038"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/impacto_solar.png",
+    "hash": "204997104867723908",
+    "generator_version": "art32_v1"
   },
   "corte_dimensional": {
-    "prompt_hash": "3894683872922079519",
-    "generated_at": 1772582612,
-    "seed": "79519"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/corte_dimensional.png",
+    "hash": "3065578500146416492",
+    "generator_version": "art32_v1"
   },
   "filo_en_cadena": {
-    "prompt_hash": "3814223073943781274",
-    "generated_at": 1772582612,
-    "seed": "781274"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/filo_en_cadena.png",
+    "hash": "3420796095774982609",
+    "generator_version": "art32_v1"
   },
   "sello_protector": {
-    "prompt_hash": "8564786193070800779",
-    "generated_at": 1772582612,
-    "seed": "800779"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/sello_protector.png",
+    "hash": "8522040363115080551",
+    "generator_version": "art32_v1"
   },
   "muralla_de_piedra": {
-    "prompt_hash": "1421765531253753212",
-    "generated_at": 1772582612,
-    "seed": "753212"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/muralla_de_piedra.png",
+    "hash": "3298254283543018848",
+    "generator_version": "art32_v1"
   },
   "escudo_de_luz": {
-    "prompt_hash": "7539315235961890196",
-    "generated_at": 1772582612,
-    "seed": "890196"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/escudo_de_luz.png",
+    "hash": "3219590281608309170",
+    "generator_version": "art32_v1"
   },
   "guardia_terrenal": {
-    "prompt_hash": "6023457607116036758",
-    "generated_at": 1772582612,
-    "seed": "36758"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/guardia_terrenal.png",
+    "hash": "7709823644950420932",
+    "generator_version": "art32_v1"
   },
   "resistencia_ancestral": {
-    "prompt_hash": "5144450629156393996",
-    "generated_at": 1772582612,
-    "seed": "393996"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/resistencia_ancestral.png",
+    "hash": "7045168336949343932",
+    "generator_version": "art32_v1"
   },
   "caparazon_kaypacha": {
-    "prompt_hash": "2888709130563089003",
-    "generated_at": 1772582612,
-    "seed": "89003"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/caparazon_kaypacha.png",
+    "hash": "1803909624683953240",
+    "generator_version": "art32_v1"
   },
   "fortaleza_chakana": {
-    "prompt_hash": "894967340994678065",
-    "generated_at": 1772582613,
-    "seed": "678065"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/fortaleza_chakana.png",
+    "hash": "9191191673470234234",
+    "generator_version": "art32_v1"
   },
   "refugio_espiritual": {
-    "prompt_hash": "3041309151522650818",
-    "generated_at": 1772582613,
-    "seed": "650818"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/refugio_espiritual.png",
+    "hash": "5843509390844390905",
+    "generator_version": "art32_v1"
   },
   "anillo_de_proteccion": {
-    "prompt_hash": "8273628030547905798",
-    "generated_at": 1772582613,
-    "seed": "905798"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/anillo_de_proteccion.png",
+    "hash": "2995786366112717606",
+    "generator_version": "art32_v1"
   },
   "campo_protector": {
-    "prompt_hash": "4119167009175585343",
-    "generated_at": 1772582613,
-    "seed": "585343"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/campo_protector.png",
+    "hash": "4083133844621880630",
+    "generator_version": "art32_v1"
   },
   "guardia_solar": {
-    "prompt_hash": "2130763610859149413",
-    "generated_at": 1772582613,
-    "seed": "149413"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/guardia_solar.png",
+    "hash": "3197058604489630519",
+    "generator_version": "art32_v1"
   },
   "escudo_del_chaman": {
-    "prompt_hash": "1667570764095347223",
-    "generated_at": 1772582613,
-    "seed": "347223"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/escudo_del_chaman.png",
+    "hash": "7449087594157090069",
+    "generator_version": "art32_v1"
   },
   "barrera_sagrada": {
-    "prompt_hash": "5521575528796903779",
-    "generated_at": 1772582613,
-    "seed": "903779"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/barrera_sagrada.png",
+    "hash": "4078255592660662447",
+    "generator_version": "art32_v1"
   },
   "firmeza_del_cuerpo": {
-    "prompt_hash": "6509316239545113979",
-    "generated_at": 1772582613,
-    "seed": "113979"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/firmeza_del_cuerpo.png",
+    "hash": "1514127552020288265",
+    "generator_version": "art32_v1"
   },
   "piedra_ritual": {
-    "prompt_hash": "3539879248009736131",
-    "generated_at": 1772582613,
-    "seed": "736131"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/piedra_ritual.png",
+    "hash": "4161060910833842628",
+    "generator_version": "art32_v1"
   },
   "vision_del_condor": {
-    "prompt_hash": "8262619418061860329",
-    "generated_at": 1772582613,
-    "seed": "860329"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/vision_del_condor.png",
+    "hash": "7100233343385157368",
+    "generator_version": "art32_v1"
   },
   "meditacion_profunda": {
-    "prompt_hash": "3601230459705407852",
-    "generated_at": 1772582613,
-    "seed": "407852"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/meditacion_profunda.png",
+    "hash": "2049332347508037491",
+    "generator_version": "art32_v1"
   },
   "claridad_del_hanan": {
-    "prompt_hash": "7806444977728460070",
-    "generated_at": 1772582613,
-    "seed": "460070"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/claridad_del_hanan.png",
+    "hash": "2689164024014303691",
+    "generator_version": "art32_v1"
   },
   "lectura_del_destino": {
-    "prompt_hash": "7404953556094341738",
-    "generated_at": 1772582613,
-    "seed": "341738"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/lectura_del_destino.png",
+    "hash": "986987830930878725",
+    "generator_version": "art32_v1"
   },
   "revelacion_astral": {
-    "prompt_hash": "40643641487419764",
-    "generated_at": 1772582613,
-    "seed": "419764"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/revelacion_astral.png",
+    "hash": "3435458012361091357",
+    "generator_version": "art32_v1"
   },
   "eco_de_sabiduria": {
-    "prompt_hash": "2429084193449422395",
-    "generated_at": 1772582613,
-    "seed": "422395"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/eco_de_sabiduria.png",
+    "hash": "484763966319449553",
+    "generator_version": "art32_v1"
   },
   "observacion_sagrada": {
-    "prompt_hash": "831980054229876862",
-    "generated_at": 1772582613,
-    "seed": "876862"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/observacion_sagrada.png",
+    "hash": "2493030400141143447",
+    "generator_version": "art32_v1"
   },
   "calculo_del_cosmos": {
-    "prompt_hash": "8779361393500017893",
-    "generated_at": 1772582613,
-    "seed": "17893"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/calculo_del_cosmos.png",
+    "hash": "9130868718576996932",
+    "generator_version": "art32_v1"
   },
   "mapa_del_destino": {
-    "prompt_hash": "2101561001009204117",
-    "generated_at": 1772582613,
-    "seed": "204117"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/mapa_del_destino.png",
+    "hash": "2386458171016436010",
+    "generator_version": "art32_v1"
   },
   "profecia_del_umbral": {
-    "prompt_hash": "7460001417971992165",
-    "generated_at": 1772582614,
-    "seed": "992165"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/profecia_del_umbral.png",
+    "hash": "2404479011527694380",
+    "generator_version": "art32_v1"
   },
   "equilibrio_mental": {
-    "prompt_hash": "1829257959706138894",
-    "generated_at": 1772582614,
-    "seed": "138894"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/equilibrio_mental.png",
+    "hash": "5766035845549963906",
+    "generator_version": "art32_v1"
   },
   "mente_serena": {
-    "prompt_hash": "5798180293130493837",
-    "generated_at": 1772582614,
-    "seed": "493837"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/mente_serena.png",
+    "hash": "4581917436342000683",
+    "generator_version": "art32_v1"
   },
   "silencio_interior": {
-    "prompt_hash": "5791589472891745001",
-    "generated_at": 1772582614,
-    "seed": "745001"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/silencio_interior.png",
+    "hash": "7784438179552354714",
+    "generator_version": "art32_v1"
   },
   "ojo_interior": {
-    "prompt_hash": "7900857652073436762",
-    "generated_at": 1772582614,
-    "seed": "436762"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/ojo_interior.png",
+    "hash": "7584687997381245869",
+    "generator_version": "art32_v1"
   },
   "ojo_del_condor": {
-    "prompt_hash": "5669890823344449733",
-    "generated_at": 1772582614,
-    "seed": "449733"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/ojo_del_condor.png",
+    "hash": "6310898504024651506",
+    "generator_version": "art32_v1"
   },
   "portal_de_la_chakana": {
-    "prompt_hash": "5379542543745416200",
-    "generated_at": 1772582614,
-    "seed": "416200"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/portal_de_la_chakana.png",
+    "hash": "3928461594892984237",
+    "generator_version": "art32_v1"
   },
   "invocacion_astral": {
-    "prompt_hash": "3572500427799494100",
-    "generated_at": 1772582614,
-    "seed": "494100"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/invocacion_astral.png",
+    "hash": "8361095865422253472",
+    "generator_version": "art32_v1"
   },
   "pulso_cosmico": {
-    "prompt_hash": "2335562069839427035",
-    "generated_at": 1772582614,
-    "seed": "427035"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/pulso_cosmico.png",
+    "hash": "7871927825416104342",
+    "generator_version": "art32_v1"
   },
   "mantra_del_umbral": {
-    "prompt_hash": "5781644993543684094",
-    "generated_at": 1772582614,
-    "seed": "684094"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/mantra_del_umbral.png",
+    "hash": "8312548320554332262",
+    "generator_version": "art32_v1"
   },
   "vinculo_de_energia": {
-    "prompt_hash": "7511822055118562419",
-    "generated_at": 1772582614,
-    "seed": "562419"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/vinculo_de_energia.png",
+    "hash": "1280083699643678320",
+    "generator_version": "art32_v1"
   },
   "circulo_de_invocacion": {
-    "prompt_hash": "2524218152558839483",
-    "generated_at": 1772582614,
-    "seed": "839483"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/circulo_de_invocacion.png",
+    "hash": "7209211481538826397",
+    "generator_version": "art32_v1"
   },
   "fusion_espiritual": {
-    "prompt_hash": "1646541127914072806",
-    "generated_at": 1772582614,
-    "seed": "72806"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/fusion_espiritual.png",
+    "hash": "7631678870682757753",
+    "generator_version": "art32_v1"
   },
   "luz_del_hanan": {
-    "prompt_hash": "7115104907966255496",
-    "generated_at": 1772582614,
-    "seed": "255496"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/luz_del_hanan.png",
+    "hash": "4834456759064624555",
+    "generator_version": "art32_v1"
   },
   "tormenta_mistica": {
-    "prompt_hash": "8007447337239503715",
-    "generated_at": 1772582614,
-    "seed": "503715"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/tormenta_mistica.png",
+    "hash": "8204969157065769997",
+    "generator_version": "art32_v1"
   },
   "espiritu_guardian": {
-    "prompt_hash": "7549163693320035001",
-    "generated_at": 1772582614,
-    "seed": "35001"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/espiritu_guardian.png",
+    "hash": "7528184684057933630",
+    "generator_version": "art32_v1"
   },
   "sello_de_los_tres_pachas": {
-    "prompt_hash": "6358667386693588450",
-    "generated_at": 1772582614,
-    "seed": "588450"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/sello_de_los_tres_pachas.png",
+    "hash": "5472282862859658721",
+    "generator_version": "art32_v1"
   },
   "espejo_astral": {
-    "prompt_hash": "2670247345407758468",
-    "generated_at": 1772582614,
-    "seed": "758468"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/espejo_astral.png",
+    "hash": "6655670160903855299",
+    "generator_version": "art32_v1"
   },
   "ritual_de_la_trama": {
-    "prompt_hash": "8891520635968548618",
-    "generated_at": 1772582615,
-    "seed": "548618"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/ritual_de_la_trama.png",
+    "hash": "1928273023213230264",
+    "generator_version": "art32_v1"
   },
   "baston_del_umbral": {
-    "prompt_hash": "4224384675250184290",
-    "generated_at": 1772582615,
-    "seed": "184290"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/baston_del_umbral.png",
+    "hash": "6651959455617412452",
+    "generator_version": "art32_v1"
   },
   "chakana_de_luz": {
-    "prompt_hash": "6020368485616126843",
-    "generated_at": 1772582615,
-    "seed": "126843"
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/cards/chakana_de_luz.png",
+    "hash": "2693025852089143081",
+    "generator_version": "art32_v1"
+  },
+  "enemy:acaro_de_tinta": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/acaro_de_tinta.png",
+    "hash": "8295476309783708455",
+    "generator_version": "art32_v1"
+  },
+  "enemy:larva_del_vacio": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/larva_del_vacio.png",
+    "hash": "7226278567087347551",
+    "generator_version": "art32_v1"
+  },
+  "enemy:sabueso_sombrio": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/sabueso_sombrio.png",
+    "hash": "1643951719705929335",
+    "generator_version": "art32_v1"
+  },
+  "enemy:rata_obsidiana": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/rata_obsidiana.png",
+    "hash": "7132033029839031863",
+    "generator_version": "art32_v1"
+  },
+  "enemy:eco_perdido": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/eco_perdido.png",
+    "hash": "5067444601947139247",
+    "generator_version": "art32_v1"
+  },
+  "enemy:espiritu_de_humo": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/espiritu_de_humo.png",
+    "hash": "4030670807154999078",
+    "generator_version": "art32_v1"
+  },
+  "enemy:monolito_fracturado": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/monolito_fracturado.png",
+    "hash": "4148964548252492650",
+    "generator_version": "art32_v1"
+  },
+  "enemy:ave_de_ceniza": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/ave_de_ceniza.png",
+    "hash": "2264309151748067832",
+    "generator_version": "art32_v1"
+  },
+  "enemy:vigia_del_kaypacha": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/vigia_del_kaypacha.png",
+    "hash": "7755669360757656788",
+    "generator_version": "art32_v1"
+  },
+  "enemy:mascara_risuena": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/mascara_risuena.png",
+    "hash": "7143937858929717744",
+    "generator_version": "art32_v1"
+  },
+  "enemy:portador_de_polvo": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/portador_de_polvo.png",
+    "hash": "6473239904109269310",
+    "generator_version": "art32_v1"
+  },
+  "enemy:sombra_de_piedra": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/sombra_de_piedra.png",
+    "hash": "639252831624076913",
+    "generator_version": "art32_v1"
+  },
+  "enemy:insecto_de_tela": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/insecto_de_tela.png",
+    "hash": "6559716909528359200",
+    "generator_version": "art32_v1"
+  },
+  "enemy:neblina_consciente": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/neblina_consciente.png",
+    "hash": "6168023933527545360",
+    "generator_version": "art32_v1"
+  },
+  "enemy:guardia_de_raiz": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/guardia_de_raiz.png",
+    "hash": "736814626195198940",
+    "generator_version": "art32_v1"
+  },
+  "enemy:runa_errante": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/runa_errante.png",
+    "hash": "4038120842572695917",
+    "generator_version": "art32_v1"
+  },
+  "enemy:espiritu_puma_menor": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/espiritu_puma_menor.png",
+    "hash": "8501979018377353786",
+    "generator_version": "art32_v1"
+  },
+  "enemy:espiritu_condor_menor": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/espiritu_condor_menor.png",
+    "hash": "8995107793937870415",
+    "generator_version": "art32_v1"
+  },
+  "enemy:chaman_corrupto": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/chaman_corrupto.png",
+    "hash": "5134119909103187861",
+    "generator_version": "art32_v1"
+  },
+  "enemy:vidente_caido": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/vidente_caido.png",
+    "hash": "3805081110958407072",
+    "generator_version": "art32_v1"
+  },
+  "enemy:devorador_de_ecos": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/devorador_de_ecos.png",
+    "hash": "56646782114934696",
+    "generator_version": "art32_v1"
+  },
+  "enemy:demonio_obsidiana": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/demonio_obsidiana.png",
+    "hash": "4451723435434140939",
+    "generator_version": "art32_v1"
+  },
+  "enemy:custodio_astral": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/custodio_astral.png",
+    "hash": "1122881702123562473",
+    "generator_version": "art32_v1"
+  },
+  "enemy:heraldo_del_umbral": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/heraldo_del_umbral.png",
+    "hash": "5661770493470504261",
+    "generator_version": "art32_v1"
+  },
+  "enemy:portador_de_silencio": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/portador_de_silencio.png",
+    "hash": "9199736685221571932",
+    "generator_version": "art32_v1"
+  },
+  "enemy:oraculo_menor": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/oraculo_menor.png",
+    "hash": "7864102492032689219",
+    "generator_version": "art32_v1"
+  },
+  "enemy:jaguar_sombrio": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/jaguar_sombrio.png",
+    "hash": "9089554368656957105",
+    "generator_version": "art32_v1"
+  },
+  "enemy:guardian_de_la_grieta": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/guardian_de_la_grieta.png",
+    "hash": "7989604899590589235",
+    "generator_version": "art32_v1"
+  },
+  "enemy:oraculo_del_vacio": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/oraculo_del_vacio.png",
+    "hash": "7763238375854293516",
+    "generator_version": "art32_v1"
+  },
+  "enemy:senor_de_la_chakana_rota": {
+    "path": "/workspace/deckcards-python-purplewizard/game/assets/sprites/enemies/senor_de_la_chakana_rota.png",
+    "hash": "6475682703638067791",
+    "generator_version": "art32_v1"
   }
 }

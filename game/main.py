@@ -40,6 +40,7 @@ from game.ui.screens.qa_results import QAResultsScreen
 from game.ui.screens.pack_opening import PackOpeningScreen
 from game.ui.screens.end import EndScreen
 from game.version import VERSION
+from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION
 
 DEFAULT_CARDS = [
     {"id": "strike", "name_key": "card_strike_name", "text_key": "card_strike_desc", "rarity": "basic", "cost": 1, "target": "enemy", "tags": ["attack"], "effects": [{"type": "damage", "amount": 6}]},
@@ -98,6 +99,10 @@ class App:
 
         self.content = ContentService()
         self.debug["content_status"] = self.content.status
+        self.debug["art_status"] = "OK"
+        self.debug["music_status"] = "OK"
+        self.debug["biome_status"] = "OK"
+        self.debug["last_regen_ts"] = int(time.time())
         self.cards_data = self._load_cards_data()
         self.card_defs = {c["id"]: c for c in self.cards_data}
         self.enemies_data = self._load_enemies_data()
@@ -196,15 +201,52 @@ class App:
         a = assets_dir()
         (a / "music").mkdir(parents=True, exist_ok=True)
         (a / "sprites" / "cards").mkdir(parents=True, exist_ok=True)
-        (a / "backgrounds").mkdir(parents=True, exist_ok=True)
+        (a / "sprites" / "enemies").mkdir(parents=True, exist_ok=True)
+        (a / "sprites" / "biomes").mkdir(parents=True, exist_ok=True)
+        (a / "sfx" / "generated").mkdir(parents=True, exist_ok=True)
         ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
         ensure_bgm_assets(force_regen=False)
+
+        prompt_data = load_json(data_dir() / "card_prompts.json", default={})
+        if not isinstance(prompt_data, dict) or len(prompt_data) != len(self.cards_data):
+            export_prompts(self.cards_data, self.enemies_data)
+            prompt_data = load_json(data_dir() / "card_prompts.json", default={}) if isinstance(load_json(data_dir() / "card_prompts.json", default={}), dict) else {}
+
+        art_manifest = load_json(data_dir() / "art_manifest.json", default={})
+        if not isinstance(art_manifest, dict):
+            art_manifest = {}
         for c in self.cards_data:
-            self.art_gen.ensure_art(c.get("id", "strike"), c.get("tags", []), c.get("rarity", "common"), self.autogen_art_mode)
+            cid = c.get("id", "unknown")
+            path = a / "sprites" / "cards" / f"{cid}.png"
+            mode = "missing_only"
+            if self.user_settings.get("force_regen_art", False):
+                mode = "force_regen"
+            if not path.exists() or cid not in art_manifest:
+                pentry = prompt_data.get(cid, {}) if isinstance(prompt_data, dict) else {}
+                self.art_gen.ensure_art(cid, c.get("tags", []), c.get("rarity", "common"), mode, family=pentry.get("family"), symbol=pentry.get("symbol"))
+            art_manifest[cid] = {"path": str(path), "hash": str(abs(hash(cid))), "generator_version": GEN_ART_VERSION}
+
         for e in self.enemies_data:
-            self.enemy_art_gen.ensure_art(e.get("id", "dummy"), self.autogen_art_mode)
+            eid = e.get("id", "dummy")
+            ep = a / "sprites" / "enemies" / f"{eid}.png"
+            emode = "force_regen" if self.user_settings.get("force_regen_art", False) else "missing_only"
+            if not ep.exists() or self.user_settings.get("force_regen_art", False):
+                self.enemy_art_gen.ensure_art(eid, emode, tier=e.get("tier", "common"), biome=e.get("biome", "ukhu"))
+            art_manifest[f"enemy:{eid}"] = {"path": str(ep), "hash": str(abs(hash(eid))), "generator_version": GEN_ART_VERSION}
+
+        biome_manifest = {}
         for biome in self.bg_gen.BIOMES:
             self.bg_gen.get_layers(biome, 2026)
+            bdir = a / "sprites" / "biomes" / biome.lower().replace(" ", "_")
+            biome_manifest[biome] = {
+                "bg": str(bdir / "bg.png"), "mg": str(bdir / "mg.png"), "fg": str(bdir / "fg.png"),
+                "generator_version": GEN_BIOME_VERSION,
+            }
+
+        (data_dir() / "art_manifest.json").write_text(json.dumps(art_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        (data_dir() / "biome_manifest.json").write_text(json.dumps(biome_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        (data_dir() / "prompt_manifest.json").write_text(json.dumps({"count": len(self.cards_data), "generator_version": GEN_ART_VERSION}, ensure_ascii=False, indent=2), encoding="utf-8")
+        self.user_settings["force_regen_art"] = False
 
     def validate_navigation_methods(self):
         required = ["goto_menu", "goto_map", "goto_combat", "goto_reward", "goto_shop", "goto_event", "goto_deck", "goto_settings"]
@@ -502,30 +544,42 @@ class App:
         self.renderer.present()
 
     def _apply_dev_reset_if_enabled(self):
-        if not self.user_settings.get("dev_reset_autogen_on_boot", False):
+        regen_flag = data_dir() / "flags" / "regen_on_boot.flag"
+        if self.user_settings.get("dev_reset_autogen_on_boot", False) or regen_flag.exists():
+            self.reset_autogen_total(mark_only=False)
+            if regen_flag.exists():
+                regen_flag.unlink()
+            self.user_settings["dev_reset_autogen_on_boot"] = False
+            self.user_settings["force_regen_art"] = True
+            save_settings(self.user_settings)
+
+    def reset_autogen_total(self, mark_only: bool = True):
+        flags_dir = data_dir() / "flags"
+        flags_dir.mkdir(parents=True, exist_ok=True)
+        if mark_only:
+            (flags_dir / "regen_on_boot.flag").write_text("1", encoding="utf-8")
             return
-        self._draw_progress_splash("Regenerando Trama…", "Limpiando arte/música autogenerada")
-        art_manifest = load_json(data_dir() / "art_manifest.json", default={})
-        if isinstance(art_manifest, dict):
-            for cid in art_manifest.keys():
-                p = assets_dir() / "sprites" / "cards" / f"{cid}.png"
-                if p.exists():
-                    p.unlink()
-        bgm_manifest = load_json(data_dir() / "bgm_manifest.json", default={})
-        if isinstance(bgm_manifest, dict):
-            for track in bgm_manifest.keys():
-                p = assets_dir() / "music" / f"{track}.wav"
-                if p.exists():
-                    p.unlink()
-        for p in [data_dir() / "card_prompts.json", data_dir() / "art_manifest.json", data_dir() / "bgm_manifest.json"]:
+        self._draw_progress_splash("Regenerando Trama…", "Reset Autogen Total")
+        targets = [
+            assets_dir() / "sprites" / "cards",
+            assets_dir() / "sprites" / "enemies",
+            assets_dir() / "sprites" / "biomes",
+            assets_dir() / "music",
+            assets_dir() / "sfx" / "generated",
+        ]
+        for td in targets:
+            if td.exists():
+                for f in td.rglob("*"):
+                    if f.is_file():
+                        f.unlink()
+        for p in [data_dir() / "art_manifest.json", data_dir() / "biome_manifest.json", data_dir() / "bgm_manifest.json", data_dir() / "prompt_manifest.json", data_dir() / "card_prompts.json"]:
             if p.exists():
                 p.unlink()
-        self._draw_progress_splash("Regenerando Trama…", "Reconstruyendo prompts/arte/banda sonora")
-        export_prompts(self.cards_data, self.enemies_data)
-        ensure_bgm_assets(force_regen=True)
-        self.music._manifest = self.music._load_manifest()
-        self.user_settings["dev_reset_autogen_on_boot"] = False
-        save_settings(self.user_settings)
+
+    def regenerate_art_all(self):
+        self.user_settings["force_regen_art"] = True
+        self.ensure_assets()
+        self.assets._cache.clear()
 
     def regenerate_music(self):
         try:
@@ -591,6 +645,7 @@ class App:
         self.user_settings["fx_scanlines"] = bool(self.user_settings.get("fx_scanlines", False))
         self.user_settings["fx_glow"] = bool(self.user_settings.get("fx_glow", True))
         self.user_settings["fx_particles"] = bool(self.user_settings.get("fx_particles", True))
+        self.user_settings["force_regen_art"] = bool(self.user_settings.get("force_regen_art", False))
         save_settings(self.user_settings)
 
     def draw_debug_overlay(self):

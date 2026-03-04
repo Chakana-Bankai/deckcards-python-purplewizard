@@ -22,6 +22,7 @@ DEFAULT_SETTINGS = {
     "fx_scanlines": False,
     "fx_glow": True,
     "fx_particles": True,
+    "force_regen_art": False,
 }
 
 

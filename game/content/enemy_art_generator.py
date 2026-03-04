@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pygame
 
+from game.art.gen_art32 import GEN_ART_VERSION, add_rune_strokes, apply_fake_glow, dither, final_grade, palette_for_family, seed_from_id
 from game.core.paths import assets_dir
 
 
@@ -12,66 +13,32 @@ class EnemyArtGenerator:
     def __init__(self):
         self.out_dir = assets_dir() / "sprites" / "enemies"
         self.out_dir.mkdir(parents=True, exist_ok=True)
+        self.version_seed = GEN_ART_VERSION
 
-    def _variance(self, surf: pygame.Surface) -> float:
-        sample = []
-        w, h = surf.get_size()
-        for y in range(0, h, max(1, h // 16)):
-            for x in range(0, w, max(1, w // 16)):
-                sample.append(surf.get_at((x, y))[:3])
-        rs = [p[0] for p in sample]
-        gs = [p[1] for p in sample]
-        bs = [p[2] for p in sample]
-        return float((max(rs) - min(rs)) + (max(gs) - min(gs)) + (max(bs) - min(bs)))
+    def _render(self, enemy_id: str, tier: str = "common", biome: str = "ukhu"):
+        rng = random.Random(seed_from_id(enemy_id, self.version_seed))
+        low = pygame.Surface((96, 96), pygame.SRCALPHA)
+        fam = "obsidian_void" if tier == "common" else "crimson_chaos" if tier == "elite" else "violet_arcane"
+        pal = palette_for_family(fam)
+        low.fill((*pal[0], 255))
+        # silhouette
+        pts = [(rng.randint(12, 30), 82), (rng.randint(18, 36), rng.randint(24, 40)), (48, rng.randint(8, 20)), (rng.randint(60, 78), rng.randint(24, 40)), (rng.randint(66, 84), 82)]
+        pygame.draw.polygon(low, (*pal[2], 230), pts)
+        # mask + eyes
+        pygame.draw.ellipse(low, (*pal[3], 220), pygame.Rect(30, 26, 36, 28), 2)
+        for ex in [40, 56]:
+            pygame.draw.circle(low, (255, 80, 120, 245) if tier != "common" else (220, 220, 255, 220), (ex, 40), 3)
+        # aura
+        pygame.draw.circle(low, (*pal[1], 120), (48, 44), 34, 2)
+        add_rune_strokes(low, rng)
+        dither(low, 0.1)
+        apply_fake_glow(low, pal[2], 2)
+        final_grade(low)
+        return pygame.transform.scale(low, (196, 196))
 
-    def _is_uniform(self, path: Path) -> bool:
-        try:
-            surf = pygame.image.load(str(path)).convert_alpha()
-        except Exception:
-            return True
-        return self._variance(surf) < 60.0
-
-    def _render(self, enemy_id: str, salt: int = 0):
-        rng = random.Random(f"{enemy_id}:{salt}")
-        surf = pygame.Surface((196, 196))
-        base = (48 + rng.randint(0, 50), 30 + rng.randint(0, 42), 66 + rng.randint(0, 56))
-        surf.fill(base)
-        for y in range(0, 196, 2):
-            for x in range((y // 2) % 2, 196, 2):
-                surf.set_at((x, y), (base[0] + 14, base[1] + 10, base[2] + 18))
-        pygame.draw.circle(surf, (228, 216, 255), (62, 78), 14)
-        pygame.draw.circle(surf, (228, 216, 255), (132, 78), 14)
-        pygame.draw.circle(surf, (22, 16, 34), (62, 78), 6)
-        pygame.draw.circle(surf, (22, 16, 34), (132, 78), 6)
-        for _ in range(24):
-            x = rng.randint(10, 186)
-            y = rng.randint(104, 188)
-            pygame.draw.line(surf, (172, 124, 222), (98, 122), (x, y), 1)
-        pygame.draw.rect(surf, (226, 192, 246), surf.get_rect(), 4)
-        return surf
-
-    def _generate_and_save(self, enemy_id: str, path: Path):
-        surf = self._render(enemy_id, 0)
-        if self._variance(surf) < 65:
-            surf = self._render(enemy_id, 1)
-        pygame.image.save(surf, str(path))
-
-    def ensure_art(self, enemy_id: str, mode: str = "missing_only"):
+    def ensure_art(self, enemy_id: str, mode: str = "missing_only", tier: str = "common", biome: str = "ukhu"):
         path = self.out_dir / f"{enemy_id}.png"
-        if mode == "off":
-            if path.exists():
-                print(f"Using existing art: {enemy_id}")
+        if path.exists() and mode not in {"force_regen"}:
             return
-        if mode == "force_regen":
-            self._generate_and_save(enemy_id, path)
-            print(f"Generated art: {enemy_id} -> {path}")
-            return
-        if not path.exists():
-            self._generate_and_save(enemy_id, path)
-            print(f"Generated art: {enemy_id} -> {path}")
-            return
-        if self._is_uniform(path):
-            self._generate_and_save(enemy_id, path)
-            print(f"Replaced uniform placeholder: {enemy_id} -> {path}")
-            return
-        print(f"Using existing art: {enemy_id}")
+        surf = self._render(enemy_id, tier, biome)
+        pygame.image.save(surf, str(path))
