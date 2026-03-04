@@ -14,8 +14,11 @@ from game.ui.components.card_detail_panel import CardDetailPanel
 from game.ui.components.mana_orbs import ManaOrbsWidget
 from game.ui.controllers.card_interaction import CardInteractionController
 from game.ui.controllers.combat_dialogue_controller import CombatDialogueController
-from game.ui.layouts.combat_layout import CombatLayout
+from game.ui.layout.combat_layout import build_combat_layout
 from game.ui.theme import UI_THEME
+
+
+DEBUG_UI = True
 
 
 def wrap_text(font, text, width, max_lines=None):
@@ -69,7 +72,7 @@ class CombatScreen:
         self.turn_timer_left = self.turn_timer_limit
         self.actions_log = getattr(self.app, "combat_actions_log", [])
         self.dialogue_ctrl = CombatDialogueController(self.app.lore_engine, self._set_dialogue_lines)
-        self.layout = CombatLayout.from_size(1920, 1080)
+        self.layout = build_combat_layout(1920, 1080)
         self.end_turn_rect = pygame.Rect(0, 0, 1, 1)
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
         self.dialogue_ctrl.on_combat_start(enemy_id)
@@ -78,7 +81,7 @@ class CombatScreen:
         self.ctrl.clear_selection("screen_change")
 
     def _refresh_layout(self, surface: pygame.Surface):
-        self.layout = CombatLayout.from_size(surface.get_width(), surface.get_height())
+        self.layout = build_combat_layout(surface.get_width(), surface.get_height())
         btn_w = max(220, int(self.layout.actions_rect.w * 0.18))
         btn_h = max(52, int(self.layout.actions_rect.h * 0.48))
         self.end_turn_rect = pygame.Rect(self.layout.actions_rect.right - btn_w - 24, self.layout.actions_rect.y + (self.layout.actions_rect.h - btn_h) // 2, btn_w, btn_h)
@@ -453,10 +456,14 @@ class CombatScreen:
         avatar = render_avatar(pygame.time.get_ticks() / 1000.0, min(96, self.layout.playerhud_rect.h - 40))
         s.blit(avatar, (self.layout.playerhud_rect.right - avatar.get_width() - 16, self.layout.playerhud_rect.y + 20))
 
-        detail_rect = pygame.Rect(self.layout.playerhud_rect.x, self.layout.playerhud_rect.bottom + 10, self.layout.playerhud_rect.w, max(110, self.layout.actions_rect.y - self.layout.playerhud_rect.bottom - 16))
+        detail_rect = self.layout.card_detail
         current_idx = self.hover_card_index if self.hover_card_index is not None else self.ctrl.selected_index
         current_card = hand[current_idx] if current_idx is not None and current_idx < len(hand) else None
         self.detail_panel.render(s, detail_rect, current_card)
+
+        if DEBUG_UI:
+            pygame.draw.rect(s, UI_THEME["gold"], self.layout.voices_panel, 2)
+            pygame.draw.rect(s, UI_THEME["gold"], self.layout.card_detail, 2)
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.actions_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.actions_rect, 2, border_radius=12)
