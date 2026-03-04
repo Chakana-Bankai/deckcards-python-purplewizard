@@ -12,11 +12,11 @@ class MenuScreen:
         self.app = app
         rects = centered_column(5, width=440, height=66, gap=14, y_start=280)
         self.buttons = [
-            Button(rects[0], "menu_play", self.start_run),
-            Button(rects[1], "menu_continue", self.continue_run),
-            Button(rects[2], "menu_back", self.go_back),
-            Button(rects[3], "menu_settings", self.open_settings),
-            Button(rects[4], "menu_exit", self.exit_game),
+            Button(rects[0], "menu_play", self.start_run, key="menu_new"),
+            Button(rects[1], "menu_continue", self.continue_run, key="menu_continue"),
+            Button(rects[2], "menu_back", self.go_back, key="menu_back"),
+            Button(rects[3], "menu_settings", self.open_settings, key="menu_settings"),
+            Button(rects[4], "menu_exit", self.exit_game, key="menu_quit"),
         ]
         self.modal = ModalConfirm()
 
@@ -60,10 +60,11 @@ class MenuScreen:
         surface.blit(title, title.get_rect(center=(960, 112)))
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
-        for b in self.buttons:
-            if b.key == "menu_continue" and not self.app.run_state:
+        for i, b in enumerate(self.buttons):
+            bkey = getattr(b, "key", None)
+            if (bkey == "menu_continue" or (bkey is None and i == 1)) and not self.app.run_state:
                 continue
-            if b.key == "menu_back" and self.app.menu_return_screen is None:
+            if (bkey == "menu_back" or (bkey is None and i == 2)) and self.app.menu_return_screen is None:
                 continue
             b.draw(surface, self.app.font, self.app.loc, UI_THEME, b.rect.collidepoint(mouse))
 
