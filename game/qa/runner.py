@@ -43,6 +43,39 @@ class QARunner:
         self.app.on_combat_victory()
         return True
 
+
+    def _qa_pack_flow(self):
+        from game.ui.screens.pack_opening import PackOpeningScreen
+
+        screen = PackOpeningScreen(self.app)
+        before = len(self.app.run_state.get("sideboard", []))
+        screen._open_pack(0)
+        if screen.legendary_pick_mode:
+            screen.selected_card = screen.cards[0] if screen.cards else None
+        screen._confirm()
+        after = len(self.app.run_state.get("sideboard", []))
+        gained = max(0, after - before)
+        expected = 1 if screen.legendary_pick_mode else 5
+        if gained < expected:
+            raise RuntimeError(f"pack_flow expected>={expected} gained={gained}")
+        return {"legendary_mode": screen.legendary_pick_mode, "gained": gained}
+
+    def _qa_scry_modal_flow(self):
+        from game.combat.card import CardDef, CardInstance
+        from game.ui.components.modal_card_picker import ModalCardPicker
+
+        sample_defs = [c for c in self.app.cards_data[:3] if isinstance(c, dict)]
+        cards = [CardInstance(CardDef(**c)) for c in sample_defs] if sample_defs else []
+        chosen = {"card": None}
+        picker = ModalCardPicker()
+        picker.show(cards, on_confirm=lambda c: chosen.__setitem__("card", c), required_selections=1)
+        if cards:
+            picker.selected_index = 0
+            picker._confirm()
+        else:
+            picker._cancel()
+        return chosen["card"] is not None or not cards
+
     def run_combat_scripted_smoke(self):
         results = []
         try:
@@ -71,6 +104,21 @@ class QARunner:
             self._claim_first_reward_if_present()
             self.app.goto_map()
             results.append(self._ok("qa_f8_return_map"))
+
+            pack_info = self._qa_pack_flow()
+            results.append(self._ok("qa_f8_pack_open", f"gained={pack_info['gained']} legendary={pack_info['legendary_mode']}"))
+
+            self.app.goto_deck()
+            ds = self.app.sm.current
+            if hasattr(ds, "main_scroll"):
+                ds.main_scroll = max(0, len(self.app.run_state.get("deck", [])) - 5)
+            results.append(self._ok("qa_f8_deck_scroll"))
+            self.app.goto_map()
+
+            if self._qa_scry_modal_flow():
+                results.append(self._ok("qa_f8_scry_modal"))
+            else:
+                results.append(self._fail("qa_f8_scry_modal", RuntimeError("scry modal failed")))
         except Exception as exc:
             results.append(self._fail("qa_f8_smoke", exc))
         return results
