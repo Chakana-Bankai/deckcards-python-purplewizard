@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 from game.version import VERSION
 import pygame
 
@@ -5,6 +8,9 @@ from game.ui.components.modal_confirm import ModalConfirm
 from game.ui.theme import UI_THEME
 from game.ui.ui_layout import centered_column
 from game.ui.widgets import Button
+
+
+DEFAULT_VERSION_LINE = "v0.0.0-dev"
 
 
 class MenuScreen:
@@ -19,6 +25,27 @@ class MenuScreen:
             Button(rects[4], "menu_exit", self.exit_game, key="menu_quit"),
         ]
         self.modal = ModalConfirm()
+        self.version_line = self._load_version_line()
+
+    def _load_version_line(self):
+        path = Path(__file__).resolve().parents[2] / "data" / "version.json"
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            if not isinstance(payload, dict):
+                return DEFAULT_VERSION_LINE
+            version = str(payload.get("version") or "").strip()
+            build = str(payload.get("build") or "").strip()
+            date = str(payload.get("date") or "").strip()
+            if not version:
+                return DEFAULT_VERSION_LINE
+            line = f"v{version}"
+            if build:
+                line += f" • {build}"
+            if date:
+                line += f" • {date}"
+            return line
+        except Exception:
+            return DEFAULT_VERSION_LINE
 
     def _is_button_visible(self, button, index):
         bkey = getattr(button, "key", None)
@@ -77,4 +104,5 @@ class MenuScreen:
 
         surface.blit(self.app.small_font.render("Chakana Gaming", True, UI_THEME["text"]), (846, 965))
         surface.blit(self.app.small_font.render(f"v{VERSION} • Chakana Purple Wizard", True, UI_THEME["muted"]), (760, 996))
+        surface.blit(self.app.tiny_font.render(self.version_line, True, UI_THEME["muted"]), (24, 1048))
         self.modal.render(surface, self.app.font, self.app.small_font)
