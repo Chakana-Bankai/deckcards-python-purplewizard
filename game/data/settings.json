@@ -15,4 +15,5 @@
   "fx_particles": true,
   "force_regen_art": false,
   "detail_panel": false
+  "detail_panel": true
 }
