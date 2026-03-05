@@ -1,5 +1,6 @@
 import pygame
 
+from game.ui.components.card_preview_panel import CardPreviewPanel
 from game.ui.theme import UI_THEME
 
 
@@ -15,6 +16,14 @@ class DeckScreen:
         self.selected_index = None
         self.toast_text = ""
         self.toast_t = 0.0
+        self.main_scroll = 0
+        self.side_scroll = 0
+        self.row_h_main = 30
+        self.row_h_side = 28
+        self.main_view_rows = 11
+        self.side_view_rows = 11
+        self.move_to_side_btn = pygame.Rect(720, 930, 260, 48)
+        self.move_to_main_btn = pygame.Rect(990, 930, 260, 48)
 
     def _toast(self, text: str):
         self.toast_text = str(text)
@@ -25,9 +34,17 @@ class DeckScreen:
         self.selected_index = index
         self.selected_card_id = cid
 
+    def _move_selected(self):
+        if self.selected_zone == "main" and self.selected_index is not None:
+            self._swap_main_to_sideboard(self.selected_index)
+        elif self.selected_zone == "sideboard" and self.selected_index is not None:
+            self._swap_sideboard_to_main(self.selected_index)
+
     def _swap_main_to_sideboard(self, index: int):
         deck = self.app.run_state["deck"]
         sideboard = self.app.run_state["sideboard"]
+        if not (0 <= index < len(deck)):
+            return
         cid = deck[index]
         if len(deck) <= self.MIN_MAIN_DECK:
             self._toast(f"No puedes bajar de {self.MIN_MAIN_DECK} cartas en el mazo principal")
@@ -35,11 +52,13 @@ class DeckScreen:
         deck.pop(index)
         sideboard.append(cid)
         self._select("sideboard", len(sideboard) - 1, cid)
-        self._toast(f"{self.app.loc.t(self.app.card_defs.get(cid, {}).get('name_key', cid))} movida a sideboard")
+        self._toast(f"{self.app.loc.t(self.app.card_defs.get(cid, {}).get('name_key', cid))} movida a reserva")
 
     def _swap_sideboard_to_main(self, index: int):
         deck = self.app.run_state["deck"]
         sideboard = self.app.run_state["sideboard"]
+        if not (0 <= index < len(sideboard)):
+            return
         cid = sideboard[index]
         if len(deck) >= self.MAX_MAIN_DECK:
             self._toast(f"El mazo principal no puede superar {self.MAX_MAIN_DECK} cartas")
@@ -49,52 +68,82 @@ class DeckScreen:
         self._select("main", len(deck) - 1, cid)
         self._toast(f"{self.app.loc.t(self.app.card_defs.get(cid, {}).get('name_key', cid))} movida al mazo principal")
 
-    def _wrap_text(self, text: str, width: int, max_lines: int = 5):
-        words = str(text or "").split()
-        lines = []
-        cur = ""
-        for word in words:
-            candidate = (cur + " " + word).strip()
-            if self.app.tiny_font.size(candidate)[0] <= width:
-                cur = candidate
-            else:
-                if cur:
-                    lines.append(cur)
-                cur = word
-                if len(lines) >= max_lines:
-                    break
-        if cur and len(lines) < max_lines:
-            lines.append(cur)
-        return lines
+    def _list_rects(self):
+        main_rect = pygame.Rect(36, 98, 644, 384)
+        side_rect = pygame.Rect(36, 510, 644, 404)
+        return main_rect, side_rect
+
+    def _visible_main_range(self):
+        deck = self.app.run_state["deck"]
+        start = max(0, min(self.main_scroll, max(0, len(deck) - self.main_view_rows)))
+        end = min(len(deck), start + self.main_view_rows)
+        return start, end
+
+    def _visible_side_range(self):
+        sb = self.app.run_state["sideboard"]
+        start = max(0, min(self.side_scroll, max(0, len(sb) - self.side_view_rows)))
+        end = min(len(sb), start + self.side_view_rows)
+        return start, end
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE or event.key == pygame.K_TAB:
+            if event.key in (pygame.K_ESCAPE, pygame.K_TAB):
                 self.app.goto_map()
+            elif event.key == pygame.K_RETURN:
+                self._move_selected()
+
+        if event.type == pygame.MOUSEWHEEL:
+            pos = self.app.renderer.map_mouse(pygame.mouse.get_pos())
+            main_rect, side_rect = self._list_rects()
+            if main_rect.collidepoint(pos):
+                self.main_scroll = max(0, self.main_scroll - event.y)
+            elif side_rect.collidepoint(pos):
+                self.side_scroll = max(0, self.side_scroll - event.y)
+
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
             if self.back.collidepoint(pos):
                 self.app.goto_map()
                 return
-            for i, cid in enumerate(self.app.run_state["deck"]):
-                r = pygame.Rect(48, 152 + i * 26, 620, 24)
+            if self.move_to_side_btn.collidepoint(pos) and self.selected_zone == "main":
+                self._move_selected(); return
+            if self.move_to_main_btn.collidepoint(pos) and self.selected_zone == "sideboard":
+                self._move_selected(); return
+
+            main_rect, side_rect = self._list_rects()
+            m_start, m_end = self._visible_main_range()
+            for vi, i in enumerate(range(m_start, m_end)):
+                cid = self.app.run_state["deck"][i]
+                r = pygame.Rect(48, 150 + vi * self.row_h_main, 620, 26)
                 if r.collidepoint(pos):
                     self._select("main", i, cid)
-                    self._swap_main_to_sideboard(i)
                     return
-            for i, cid in enumerate(self.app.run_state["sideboard"]):
-                r = pygame.Rect(48, 566 + i * 24, 620, 22)
+
+            s_start, s_end = self._visible_side_range()
+            for vi, i in enumerate(range(s_start, s_end)):
+                cid = self.app.run_state["sideboard"][i]
+                r = pygame.Rect(48, 562 + vi * self.row_h_side, 620, 24)
                 if r.collidepoint(pos):
                     self._select("sideboard", i, cid)
-                    self._swap_sideboard_to_main(i)
                     return
 
     def update(self, dt):
         self.toast_t = max(0.0, self.toast_t - dt)
 
+    def _draw_scrollbar(self, s, rect, total, visible, start):
+        if total <= visible:
+            return
+        bar = pygame.Rect(rect.right - 10, rect.y + 40, 6, rect.h - 52)
+        pygame.draw.rect(s, (56, 52, 72), bar, border_radius=4)
+        ratio = visible / float(total)
+        knob_h = max(24, int(bar.h * ratio))
+        max_start = max(1, total - visible)
+        offset = int((bar.h - knob_h) * (start / max_start))
+        knob = pygame.Rect(bar.x, bar.y + offset, bar.w, knob_h)
+        pygame.draw.rect(s, UI_THEME["gold"], knob, border_radius=4)
+
     def render(self, s):
         s.fill(UI_THEME["bg"])
-
         pygame.draw.rect(s, UI_THEME["panel"], self.back, border_radius=8)
         s.blit(self.app.font.render(self.app.loc.t("menu_back"), True, UI_THEME["text"]), (60, 30))
 
@@ -102,75 +151,70 @@ class DeckScreen:
         side_rect = pygame.Rect(36, 510, 644, 404)
         preview_rect = pygame.Rect(700, 98, 1184, 816)
 
-        pygame.draw.rect(s, UI_THEME["panel"], main_rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], main_rect, 2, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["panel"], side_rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], side_rect, 2, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["panel"], preview_rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], preview_rect, 2, border_radius=12)
+        for rect in (main_rect, side_rect, preview_rect):
+            pygame.draw.rect(s, UI_THEME["panel"], rect, border_radius=12)
+            pygame.draw.rect(s, UI_THEME["accent_violet"], rect, 2, border_radius=12)
 
-        s.blit(self.app.small_font.render("Mazo Activo (click para enviar a sideboard)", True, UI_THEME["gold"]), (48, 112))
-        s.blit(self.app.small_font.render("Sideboard (click para regresar al mazo)", True, UI_THEME["gold"]), (48, 524))
-        s.blit(self.app.small_font.render("Selector de mazo", True, UI_THEME["gold"]), (714, 112))
+        s.blit(self.app.small_font.render("Mazo Activo (click para previsualizar)", True, UI_THEME["gold"]), (48, 112))
+        s.blit(self.app.small_font.render("Reserva / Sideboard", True, UI_THEME["gold"]), (48, 524))
+        s.blit(self.app.small_font.render("Previsualización", True, UI_THEME["gold"]), (714, 112))
 
         attacks = skills = rituals = total_cost = 0
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
-        for i, cid in enumerate(self.app.run_state["deck"]):
-            cd = self.app.card_defs.get(cid, self.app.card_defs.get(next(iter(self.app.card_defs.keys()), "")))
+        deck = self.app.run_state["deck"]
+        sideboard = self.app.run_state["sideboard"]
+        for cid in deck:
+            cd = self.app.card_defs.get(cid, {})
             total_cost += cd.get("cost", 1)
             tags = cd.get("tags", [])
-            if "attack" in tags:
-                attacks += 1
-            if "skill" in tags:
-                skills += 1
-            if "ritual" in tags:
-                rituals += 1
-            r = pygame.Rect(48, 152 + i * 26, 620, 24)
+            attacks += int("attack" in tags)
+            skills += int("skill" in tags)
+            rituals += int("ritual" in tags)
+
+        m_start, m_end = self._visible_main_range()
+        for vi, i in enumerate(range(m_start, m_end)):
+            cid = deck[i]
+            cd = self.app.card_defs.get(cid, self.app.card_defs.get(next(iter(self.app.card_defs.keys()), "")))
+            r = pygame.Rect(48, 150 + vi * self.row_h_main, 620, 26)
             is_selected = self.selected_zone == "main" and self.selected_index == i
             col = (56, 66, 108) if r.collidepoint(mouse) else (34, 36, 56)
             pygame.draw.rect(s, col, r, border_radius=4)
             if is_selected:
                 pygame.draw.rect(s, UI_THEME["gold"], r, 2, border_radius=4)
-            s.blit(self.app.tiny_font.render(f"{i+1:02d}. {self.app.loc.t(cd.get('name_key', cid))}", True, UI_THEME["text"]), (54, 156 + i * 26))
+            s.blit(self.app.tiny_font.render(f"{i+1:02d}. {self.app.loc.t(cd.get('name_key', cid))}", True, UI_THEME["text"]), (54, 156 + vi * self.row_h_main))
 
-        for i, cid in enumerate(self.app.run_state["sideboard"]):
+        s_start, s_end = self._visible_side_range()
+        for vi, i in enumerate(range(s_start, s_end)):
+            cid = sideboard[i]
             cd = self.app.card_defs.get(cid, self.app.card_defs.get(next(iter(self.app.card_defs.keys()), "")))
-            r = pygame.Rect(48, 566 + i * 24, 620, 22)
+            r = pygame.Rect(48, 562 + vi * self.row_h_side, 620, 24)
             is_selected = self.selected_zone == "sideboard" and self.selected_index == i
             col = (56, 66, 108) if r.collidepoint(mouse) else (34, 36, 56)
             pygame.draw.rect(s, col, r, border_radius=4)
             if is_selected:
                 pygame.draw.rect(s, UI_THEME["gold"], r, 2, border_radius=4)
-            s.blit(self.app.tiny_font.render(f"{i+1:02d}. {self.app.loc.t(cd.get('name_key', cid))}", True, UI_THEME["text"]), (54, 569 + i * 24))
+            s.blit(self.app.tiny_font.render(f"{i+1:02d}. {self.app.loc.t(cd.get('name_key', cid))}", True, UI_THEME["text"]), (54, 568 + vi * self.row_h_side))
 
-        n = max(1, len(self.app.run_state["deck"]))
+        self._draw_scrollbar(s, main_rect, len(deck), self.main_view_rows, m_start)
+        self._draw_scrollbar(s, side_rect, len(sideboard), self.side_view_rows, s_start)
+
+        n = max(1, len(deck))
         avg = total_cost / n
         s.blit(self.app.font.render(self.app.loc.t("deck_stats", count=n, avg=f"{avg:.1f}"), True, UI_THEME["gold"]), (48, 940))
         s.blit(self.app.font.render(self.app.loc.t("deck_stats_tags", atk=attacks, skill=skills, ritual=rituals), True, UI_THEME["muted"]), (48, 972))
 
         selected = self.app.card_defs.get(self.selected_card_id) if self.selected_card_id else None
-        if selected:
-            art_rect = pygame.Rect(preview_rect.x + 22, preview_rect.y + 58, 320, 460)
-            art = self.app.assets.sprite("cards", selected.get("id", ""), (art_rect.w, art_rect.h), fallback=(70, 44, 105))
-            s.blit(art, art_rect.topleft)
-            pygame.draw.rect(s, UI_THEME["accent_violet"], art_rect, 2, border_radius=8)
+        CardPreviewPanel(self.app).render(s, preview_rect.inflate(-16, -18), selected)
 
-            name = self.app.loc.t(selected.get("name_key", selected.get("id", "Carta")))
-            s.blit(self.app.big_font.render(name[:36], True, UI_THEME["text"]), (preview_rect.x + 370, preview_rect.y + 66))
-            s.blit(self.app.small_font.render(f"Coste: {selected.get('cost', 0)}", True, UI_THEME["energy"]), (preview_rect.x + 370, preview_rect.y + 118))
-            tag_txt = ", ".join(selected.get("tags", [])) or "-"
-            s.blit(self.app.small_font.render(f"Tags: {tag_txt}", True, UI_THEME["muted"]), (preview_rect.x + 370, preview_rect.y + 152))
-
-            desc = self.app.loc.t(selected.get("text_key", ""))
-            y = preview_rect.y + 206
-            for line in self._wrap_text(desc, 770, max_lines=12):
-                s.blit(self.app.small_font.render(line, True, UI_THEME["text"]), (preview_rect.x + 370, y))
-                y += 26
-        else:
-            s.blit(self.app.font.render("Selecciona una carta para previsualizar", True, UI_THEME["muted"]), (preview_rect.x + 18, preview_rect.y + 58))
+        side_enabled = self.selected_zone == "main"
+        main_enabled = self.selected_zone == "sideboard"
+        pygame.draw.rect(s, UI_THEME["violet"] if side_enabled else (84, 76, 106), self.move_to_side_btn, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["violet"] if main_enabled else (84, 76, 106), self.move_to_main_btn, border_radius=10)
+        s.blit(self.app.small_font.render("Mover a reserva", True, UI_THEME["text"]), (self.move_to_side_btn.x + 32, self.move_to_side_btn.y + 12))
+        s.blit(self.app.small_font.render("Mover al mazo", True, UI_THEME["text"]), (self.move_to_main_btn.x + 36, self.move_to_main_btn.y + 12))
 
         if self.toast_t > 0 and self.toast_text:
-            toast_rect = pygame.Rect(860, 930, 860, 52)
+            toast_rect = pygame.Rect(1280, 930, 560, 52)
             pygame.draw.rect(s, UI_THEME["deep_purple"], toast_rect, border_radius=10)
             pygame.draw.rect(s, UI_THEME["gold"], toast_rect, 2, border_radius=10)
-            s.blit(self.app.small_font.render(self.toast_text[:100], True, UI_THEME["text"]), (toast_rect.x + 16, toast_rect.y + 14))
+            s.blit(self.app.small_font.render(self.toast_text[:80], True, UI_THEME["text"]), (toast_rect.x + 14, toast_rect.y + 14))
