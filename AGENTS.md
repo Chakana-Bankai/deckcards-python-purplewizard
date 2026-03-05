@@ -6,6 +6,7 @@
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
 ## [1] Propósito y tono
 - **Proyecto:** Chakana Purple Wizard.
 - **Identidad:** mago morado Chakana (usuario), cosmovisión andina, iniciación y moralejas tácticas.
@@ -107,6 +108,8 @@
 >>>>>>> theirs
 =======
 >>>>>>> theirs
+=======
+>>>>>>> theirs
 ## 1) Roles y responsabilidades
 - **ChatGPT:** diseño funcional, definición de tickets, criterios de aceptación y validación conceptual.
 - **Codex:** implementación técnica acotada al ticket, validaciones locales y preparación del commit.
@@ -159,6 +162,9 @@ Prioridad de conflicto:
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 =======
 >>>>>>> theirs

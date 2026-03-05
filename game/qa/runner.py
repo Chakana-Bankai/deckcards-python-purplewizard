@@ -1,5 +1,10 @@
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+=======
+"""QA smoke runner used by F8/F10 debug shortcuts."""
+
+>>>>>>> theirs
 =======
 """QA smoke runner used by F8/F10 debug shortcuts."""
 
@@ -27,9 +32,14 @@ class QARunner:
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
 =======
 
     def _claim_first_reward_if_present(self):
+=======
+
+    def _claim_first_reward_if_present(self) -> bool:
+>>>>>>> theirs
 =======
 
     def _claim_first_reward_if_present(self) -> bool:
@@ -53,8 +63,11 @@ class QARunner:
 
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
 >>>>>>> theirs
 =======
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
 
@@ -70,6 +83,9 @@ class QARunner:
         return True
 
 <<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 =======
 >>>>>>> theirs
@@ -99,6 +115,7 @@ class QARunner:
             results.append(self._ok("qa_f8_play_cards", f"played={played}"))
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
             if self.app.current_combat and self.app.current_combat.result is None:
                 self.app.current_combat.result = "victory"
                 self.app.on_combat_victory()
@@ -125,6 +142,10 @@ class QARunner:
 >>>>>>> theirs
                         self.app.goto_map()
 =======
+            self._claim_first_reward_if_present()
+>>>>>>> theirs
+=======
+            self._force_combat_victory()
             self._claim_first_reward_if_present()
 >>>>>>> theirs
 =======
@@ -166,7 +187,11 @@ class QARunner:
         try:
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
             self.app.current_combat.result = "victory"
+=======
+            self._force_combat_victory()
+>>>>>>> theirs
 =======
             self._force_combat_victory()
 >>>>>>> theirs
@@ -184,6 +209,7 @@ class QARunner:
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
             if hasattr(self.app.sm.current, "take") and getattr(self.app.sm.current, "reward_cards", []):
                 self.app.sm.current.take(0)
 =======
@@ -193,6 +219,9 @@ class QARunner:
 =======
             if hasattr(self.app.sm.current, "claim") and getattr(self.app.sm.current, "picks", []):
                 self.app.sm.current.claim(0)
+>>>>>>> theirs
+=======
+            self._claim_first_reward_if_present()
 >>>>>>> theirs
 =======
             self._claim_first_reward_if_present()

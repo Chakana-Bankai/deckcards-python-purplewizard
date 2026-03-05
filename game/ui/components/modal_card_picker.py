@@ -60,8 +60,11 @@ class ModalCardPicker:
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
             panel, cards_area, confirm, cancel = self._layout(event.surface if hasattr(event, "surface") else pygame.display.get_surface())
 =======
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
 =======
@@ -78,6 +81,9 @@ class ModalCardPicker:
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 =======
 >>>>>>> theirs

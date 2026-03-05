@@ -7,7 +7,11 @@
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
   "fullscreen": true,
+=======
+  "fullscreen": false,
+>>>>>>> theirs
 =======
   "fullscreen": false,
 >>>>>>> theirs
@@ -39,7 +43,11 @@
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
   "detail_panel": true
+=======
+  "detail_panel": false
+>>>>>>> theirs
 =======
   "detail_panel": false
 >>>>>>> theirs
