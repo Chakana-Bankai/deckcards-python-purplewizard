@@ -72,6 +72,12 @@ class App:
         self.project_root = Path(__file__).resolve().parent
         self.asset_root = assets_dir() if callable(assets_dir) else (self.project_root / "assets")
         self.data_root = data_dir() if callable(data_dir) else (self.project_root / "data")
+<<<<<<< ours
+=======
+        (self.asset_root / ".cache").mkdir(parents=True, exist_ok=True)
+        (self.asset_root / "tmp").mkdir(parents=True, exist_ok=True)
+        (self.data_root / ".cache").mkdir(parents=True, exist_ok=True)
+>>>>>>> theirs
 
         self.clock = pygame.time.Clock()
         self.running = True
@@ -368,17 +374,31 @@ class App:
         atomic_write_json_if_changed(prompts_path, payload, sort_keys=True)
 
     def ensure_assets(self, progress_cb=None):
+<<<<<<< ours
         force_regen = bool(self.user_settings.get("force_regen_art", False) or self.user_settings.get("update_manifests", False))
         if force_regen:
             self._ensure_card_prompts_file(force=True)
+=======
+        regen_flag = (data_dir() / "regen_on_boot.flag").exists()
+        force_regen = bool(self.user_settings.get("force_regen_art", False) or self.user_settings.get("update_manifests", False) or regen_flag)
+        if not force_regen:
+            print("[assets] normal boot: skipping autogen regeneration")
+            return
+        if regen_flag:
+            self.user_settings["force_regen_art"] = True
+        self._ensure_card_prompts_file(force=True)
+>>>>>>> theirs
         ensure_placeholder_assets([c.get("id", "strike") for c in self.cards_data], [e.get("id", "dummy") for e in self.enemies_data])
         content_payload = {
             "cards": self.cards_data,
             "enemies": self.enemies_data,
             "guide_types": GUIDE_TYPES,
         }
+<<<<<<< ours
         if (data_dir() / "regen_on_boot.flag").exists():
             self.user_settings["force_regen_art"] = True
+=======
+>>>>>>> theirs
         try:
             ap = self.asset_pipeline.ensure_all_assets(self.user_settings, content_payload, progress_cb=progress_cb)
             if isinstance(ap, dict):

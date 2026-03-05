@@ -1,12 +1,25 @@
+<<<<<<< ours
 __pycache__/
 *.pyc
 *.pyo
 *.log
 logs/
+=======
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Test/cache
+.pytest_cache/
+
+# Virtual envs
+>>>>>>> theirs
 .venv/
 game/.venv/
 game\\.venv/
 
+<<<<<<< ours
 # Auto-generated runtime binaries (keep data/docs JSON source files versioned)
 game/assets/music/*.wav
 game/assets/music/*.ogg
@@ -30,3 +43,26 @@ game/data/card_prompts.txt
 # Dev workflow flags/caches
 .regen_flag
 tools/__pycache__/
+=======
+# Logs
+*.log
+logs/
+
+# Runtime caches/temp
+game/assets/.cache/
+game/data/.cache/
+game/assets/tmp/
+*_autogen_tmp*
+
+# Local runtime settings (use settings.default.json as tracked base)
+game/data/settings.json
+
+# Optional dev flags
+.regen_flag
+
+# Keep final shipped assets versioned (do NOT ignore)
+!game/assets/sprites/cards/*.png
+!game/assets/sprites/enemies/*.png
+!game/assets/music/*.wav
+!game/assets/**/.gitkeep
+>>>>>>> theirs

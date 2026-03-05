@@ -1,5 +1,8 @@
 # AGENTS.md — Chakana Purple Wizard
 
+<<<<<<< ours
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
 ## 1) Roles y responsabilidades
