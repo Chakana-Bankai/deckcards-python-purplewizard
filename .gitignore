@@ -24,7 +24,7 @@ game/assets/**/*.ttf
 game/data/card_prompt.txt
 game/data/card_prompts.txt
 
+
 # Dev workflow flags/caches
 .regen_flag
 tools/__pycache__/
-
