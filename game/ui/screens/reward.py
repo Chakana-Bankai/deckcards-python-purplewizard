@@ -35,7 +35,13 @@ class RewardScreen:
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
 =======
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
 =======
@@ -52,6 +58,12 @@ class RewardScreen:
 
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 =======
 >>>>>>> theirs
@@ -77,6 +89,8 @@ class RewardScreen:
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
             for i, card in enumerate(self.picks):
                 r = pygame.Rect(300 + i * 440, 314, 400, 448)
                 if r.collidepoint(pos):
@@ -89,12 +103,22 @@ class RewardScreen:
 >>>>>>> theirs
 =======
 >>>>>>> theirs
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
             for i, _card in enumerate(self.picks):
                 r = pygame.Rect(300 + i * 440, 314, 400, 448)
                 if r.collidepoint(pos):
                     self.claim(i)
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 =======
 >>>>>>> theirs
@@ -147,7 +171,13 @@ class RewardScreen:
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
         print(f"[ui] reward_hint={hint}")
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
 =======
