@@ -1,0 +1,74 @@
+CHAKANA PURPLE WIZARD — CANONICAL GAME DESIGN DOCUMENT
+VERSION: 1.0
+STATUS: CANONICAL_SOURCE
+
+PROJECT RESTRUCTURE PASS — CHAKANA PURPLE WIZARD
+NO EXPLANATIONS.
+IMPLEMENT CLEANLY.
+
+GOALS
+stabilize architecture
+fix UI/UX hierarchy
+implement real card diversity
+load lore from data files
+generate differentiated card art
+integrate working BGM system
+fix gameplay clarity
+polish labels and text
+ensure 1920x1080 clean layout
+
+UI_SYSTEM
+TOP_BAR: title_left | lore_center | turn_timer_right
+BATTLEFIELD: enemy_portrait | enemy_intent_card
+CENTER_DIALOGUE: enemy_line | chakana_response
+PLAYER_HUD: hp | guardia | quiebre | mana
+CARD_AREA: centered_fan_layout
+ACTION_BUTTONS: registro | ejecutar_turno
+
+CARD_FAMILIES
+attack
+defense
+energy
+manipulation
+ritual
+chaos
+
+CANON_LABEL_DANO=Daño
+CANON_LABEL_GUARDIA=Guardia
+CANON_LABEL_MANA=Maná
+CANON_LABEL_QUIEBRE=Quiebre
+CANON_INTENT_ATTACK=Preparando golpe: {value}
+CANON_INTENT_DEFEND=Se protege: {value}
+CANON_INTENT_DEBUFF=Lanza Maldición
+CANON_INTENT_BUFF=Canaliza poder
+CANON_EVENT_CAPTION=La Trama dicta la elección
+CANON_GUIDE_NAME=Guía de la Chakana
+CANON_SOURCE_TAG=Design Canon GDD
+CANON_MENU_TITLE=Chakana Purple Wizard
+
+PROMPT_BASE_STYLE=16bit pixel art mystical andean magic card
+PROMPT_TYPE_ATTACK=solar warrior strike
+PROMPT_TYPE_DEFENSE=obsidian rune ward
+PROMPT_TYPE_ARCANE=cosmic portal spell
+PROMPT_TYPE_RITUAL=obsidian rune ritual
+PROMPT_TYPE_CURSE=corrupted void sigil
+PROMPT_RARITY_LEGENDARY=legendary glowing
+PROMPT_RARITY_RARE=ancient sacred
+PROMPT_RARITY_COMMON=corrupted void
+PROMPT_UNIQUE_POOL=chakana constellation|condor spirit|obsidian temple glyph|astral knot|violet meteor|sun gate|moon altar|andes relic
+
+DIALOGUE_FALLBACK_ENEMY=intro:Tu hilo se quiebra aquí.|big_hit:Ya sientes el peso.|block_break:Tu guardia cae.|rare:Esa magia no bastará.|low_hp:No... aún no.
+DIALOGUE_FALLBACK_CHAKANA=intro:La Trama me guía.|big_hit:Sigo en pie.|block_break:Tu defensa cedió.|rare:La llama violeta responde.|low_hp:Este ciclo termina ahora.
+
+MAP_RULE=If available_count==0 then auto_unlock_next_node
+ENDING_RULE=Show lore_message + stats + actions(new_run/menu/credits)
+STYLE_RULE=dark_purple_base + gold_accents + lavender_text + spacing_6px_grid
+
+LORE_SYSTEM_FILES
+- game/data/lore/world.txt
+- game/data/lore/dialogues.json
+- game/data/lore/events.json
+- game/data/lore/enemies.json
+
+CANONICAL_REFERENCE
+This document is the canonical design source used by runtime systems for labels, prompt styles and fallback narrative behavior.
