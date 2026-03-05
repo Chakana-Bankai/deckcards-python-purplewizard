@@ -14,6 +14,24 @@ class QARunner:
     def _fail(self, name: str, exc: Exception):
         return {"name": name, "status": "FAIL", "detail": f"{exc.__class__.__name__}: {exc}", "trace": traceback.format_exc()}
 
+<<<<<<< ours
+=======
+
+    def _claim_first_reward_if_present(self):
+        screen = getattr(self.app.sm, "current", None)
+        if screen is None or screen.__class__.__name__ != "RewardScreen":
+            return False
+        picks = getattr(screen, "picks", [])
+        if not picks:
+            return False
+        if hasattr(screen, "claim"):
+            screen.claim(0)
+            return True
+        self.app.run_state["sideboard"].append(picks[0].definition.id)
+        self.app.goto_map()
+        return True
+
+>>>>>>> theirs
     def run_combat_scripted_smoke(self):
         results = []
         try:
@@ -41,6 +59,7 @@ class QARunner:
             if self.app.current_combat and self.app.current_combat.result is None:
                 self.app.current_combat.result = "victory"
                 self.app.on_combat_victory()
+<<<<<<< ours
             if self.app.sm.current.__class__.__name__ == "RewardScreen":
 <<<<<<< ours
 <<<<<<< ours
@@ -62,6 +81,9 @@ class QARunner:
 =======
 >>>>>>> theirs
                         self.app.goto_map()
+=======
+            self._claim_first_reward_if_present()
+>>>>>>> theirs
             self.app.goto_map()
             results.append(self._ok("qa_f8_return_map"))
         except Exception as exc:
@@ -100,6 +122,7 @@ class QARunner:
         try:
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
             if hasattr(self.app.sm.current, "take") and getattr(self.app.sm.current, "reward_cards", []):
                 self.app.sm.current.take(0)
 =======
@@ -109,6 +132,9 @@ class QARunner:
 =======
             if hasattr(self.app.sm.current, "claim") and getattr(self.app.sm.current, "picks", []):
                 self.app.sm.current.claim(0)
+>>>>>>> theirs
+=======
+            self._claim_first_reward_if_present()
 >>>>>>> theirs
             results.append(self._ok("reward_to_map"))
         except Exception as exc:

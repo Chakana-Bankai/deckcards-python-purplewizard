@@ -57,8 +57,11 @@ class ModalCardPicker:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
             panel, cards_area, confirm, cancel = self._layout(event.surface if hasattr(event, "surface") else pygame.display.get_surface())
 =======
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
             surface = pygame.display.get_surface()
@@ -66,6 +69,9 @@ class ModalCardPicker:
                 return True
             panel, cards_area, confirm, cancel = self._layout(surface)
 <<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 =======
 >>>>>>> theirs

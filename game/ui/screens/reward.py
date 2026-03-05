@@ -34,7 +34,10 @@ class RewardScreen:
 
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
 =======
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
     def claim(self, index: int) -> bool:
@@ -48,6 +51,9 @@ class RewardScreen:
         return True
 
 <<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 =======
 >>>>>>> theirs
@@ -70,6 +76,7 @@ class RewardScreen:
             pos = self.app.renderer.map_mouse(event.pos)
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
             for i, card in enumerate(self.picks):
                 r = pygame.Rect(300 + i * 440, 314, 400, 448)
                 if r.collidepoint(pos):
@@ -80,11 +87,16 @@ class RewardScreen:
 =======
 =======
 >>>>>>> theirs
+=======
+>>>>>>> theirs
             for i, _card in enumerate(self.picks):
                 r = pygame.Rect(300 + i * 440, 314, 400, 448)
                 if r.collidepoint(pos):
                     self.claim(i)
 <<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 =======
 >>>>>>> theirs
@@ -134,7 +146,10 @@ class RewardScreen:
             s.blit(self.app.small_font.render(hline, True, UI_THEME["text"]), (130, 862))
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
         print(f"[ui] reward_hint={hint}")
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
 =======

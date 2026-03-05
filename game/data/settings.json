@@ -4,7 +4,11 @@
   "sfx_volume": 0.7,
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
   "fullscreen": true,
+=======
+  "fullscreen": false,
+>>>>>>> theirs
 =======
   "fullscreen": false,
 >>>>>>> theirs
@@ -24,7 +28,11 @@
   "force_regen_art": false,
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
   "detail_panel": true
+=======
+  "detail_panel": false
+>>>>>>> theirs
 =======
   "detail_panel": false
 >>>>>>> theirs
