@@ -2,6 +2,8 @@ import pygame
 
 from game.combat.card import CardDef, CardInstance
 from game.ui.components.card_preview_panel import CardPreviewPanel
+from game.ui.components.card_effect_summary import summarize_card_effect
+from game.ui.components.pixel_icons import draw_icon_with_value
 from game.ui.theme import UI_THEME
 
 RARITY_ES = {"common": "Común", "uncommon": "Rara", "rare": "Épica", "legendary": "Legendaria", "basic": "Común"}
@@ -11,13 +13,14 @@ class PackOpeningScreen:
     def __init__(self, app):
         self.app = app
         self.msg = "Elige un sobre premium"
-        self.packs = [pygame.Rect(90 + i * 600, 150, 560, 300) for i in range(3)]
+        self.packs = [pygame.Rect(80 + i * 390, 160, 360, 280) for i in range(3)]
         self.selected_pack = None
         self.cards = []
         self.selected_card = None
         self.hover_card = None
-        self.confirm_rect = pygame.Rect(740, 954, 420, 60)
-        self.detail_panel = CardPreviewPanel(app)
+        self.confirm_rect = pygame.Rect(760, 980, 320, 56)
+        self.back_rect = pygame.Rect(420, 980, 280, 56)
+        self.preview = CardPreviewPanel(app=app)
         self.legendary_pick_mode = False
         pool = [c for c in self.app.cards_data if c.get("rarity") in {"rare", "legendary", "uncommon", "common", "basic"}] or self.app.cards_data
         self.pool = pool
@@ -49,7 +52,7 @@ class PackOpeningScreen:
         self.cards = [CardInstance(CardDef(**c)) for c in picked if c]
 
     def _grid_rect(self, i):
-        return pygame.Rect(96 + i * 236, 520, 220, 300)
+        return pygame.Rect(78 + i * 236, 520, 220, 300)
 
     def _confirm_enabled(self):
         if not self.cards:
@@ -68,8 +71,23 @@ class PackOpeningScreen:
         self.app.consume_levelup_pending()
 
     def handle_event(self, event):
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            if self.cards:
+                self.cards = []
+                self.msg = "Elige un sobre premium"
+            else:
+                self.app.goto_map()
+            return
+
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
+            if self.back_rect.collidepoint(pos):
+                if self.cards:
+                    self.cards = []
+                    self.msg = "Elige un sobre premium"
+                else:
+                    self.app.goto_map()
+                return
             if not self.cards:
                 for i, r in enumerate(self.packs):
                     if r.collidepoint(pos):
@@ -91,7 +109,7 @@ class PackOpeningScreen:
     def render(self, s):
         s.fill(UI_THEME["bg"])
         s.blit(self.app.big_font.render("Botín / Sobres", True, UI_THEME["gold"]), (760, 42))
-        s.blit(self.app.font.render(self.msg, True, UI_THEME["text"]), (560, 102))
+        s.blit(self.app.font.render(self.msg, True, UI_THEME["text"]), (520, 102))
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.hover_card = None
 
@@ -99,8 +117,8 @@ class PackOpeningScreen:
             col = UI_THEME["panel_2"] if r.collidepoint(mouse) else UI_THEME["panel"]
             pygame.draw.rect(s, col, r, border_radius=16)
             pygame.draw.rect(s, UI_THEME["gold"], r, 2, border_radius=16)
-            s.blit(self.app.big_font.render(f"SOBRE {i+1}", True, UI_THEME["text"]), (r.x + 170, r.y + 54))
-            s.blit(self.app.small_font.render("5 cartas chakánicas", True, UI_THEME["muted"]), (r.x + 165, r.y + 128))
+            s.blit(self.app.big_font.render(f"SOBRE {i+1}", True, UI_THEME["text"]), (r.x + 72, r.y + 54))
+            s.blit(self.app.small_font.render("5 cartas chakánicas", True, UI_THEME["muted"]), (r.x + 64, r.y + 128))
 
         if self.cards:
             for i, card in enumerate(self.cards):
@@ -117,13 +135,21 @@ class PackOpeningScreen:
                 s.blit(self.app.tiny_font.render(self.app.loc.t(card.definition.name_key)[:20], True, UI_THEME["text"]), (r.x + 8, r.y + 190))
                 rarity_es = RARITY_ES.get(card.definition.rarity, card.definition.rarity.title())
                 s.blit(self.app.tiny_font.render(rarity_es, True, UI_THEME["gold"]), (r.x + 8, r.y + 214))
+                summary = summarize_card_effect(card.definition, card_instance=card, ctx=None)
+                icon_data = self.preview._icon_row(summary)
+                x_icon = r.x + 8
+                for icon_name, val in icon_data[:2]:
+                    x_icon = draw_icon_with_value(s, icon_name, val, UI_THEME["muted"], self.app.tiny_font, x_icon, r.y + 236, size=1)
 
-        detail_rect = pygame.Rect(1288, 164, 580, 760)
-        preview_card = self.selected_card or self.hover_card
-        self.detail_panel.render(s, detail_rect, preview_card)
+        self.preview.render(s, pygame.Rect(1288, 160, 580, 780), self.selected_card or self.hover_card, app=self.app)
 
         enabled = self._confirm_enabled()
         pygame.draw.rect(s, UI_THEME["violet"] if enabled else (82, 78, 104), self.confirm_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.confirm_rect, 2, border_radius=10)
-        label = "Confirmar legendaria" if self.legendary_pick_mode else "Confirmar: añadir 5 cartas"
-        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.confirm_rect.x + 48, self.confirm_rect.y + 18))
+        label = "Confirmar legendaria" if self.legendary_pick_mode else "Tomar pack"
+        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.confirm_rect.x + 78, self.confirm_rect.y + 16))
+
+        pygame.draw.rect(s, UI_THEME["panel_2"], self.back_rect, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.back_rect, 2, border_radius=10)
+        back_lbl = "Cancelar" if self.cards else "Volver"
+        s.blit(self.app.font.render(back_lbl, True, UI_THEME["text"]), (self.back_rect.x + 88, self.back_rect.y + 16))

@@ -203,7 +203,21 @@ class DeckScreen:
         s.blit(self.app.font.render(self.app.loc.t("deck_stats", count=n, avg=f"{avg:.1f}"), True, UI_THEME["gold"]), (48, 940))
         s.blit(self.app.font.render(self.app.loc.t("deck_stats_tags", atk=attacks, skill=skills, ritual=rituals), True, UI_THEME["muted"]), (48, 972))
 
-        selected = self.app.card_defs.get(self.selected_card_id) if self.selected_card_id else None
+        hover_card_id = None
+        for vi, i in enumerate(range(m_start, m_end)):
+            r = pygame.Rect(48, 150 + vi * self.row_h_main, 620, 26)
+            if r.collidepoint(mouse):
+                hover_card_id = deck[i]
+                break
+        if hover_card_id is None:
+            for vi, i in enumerate(range(s_start, s_end)):
+                r = pygame.Rect(48, 562 + vi * self.row_h_side, 620, 24)
+                if r.collidepoint(mouse):
+                    hover_card_id = sideboard[i]
+                    break
+
+        preview_id = hover_card_id or self.selected_card_id
+        selected = self.app.card_defs.get(preview_id) if preview_id else None
         CardPreviewPanel(self.app).render(s, preview_rect.inflate(-16, -18), selected)
 
         side_enabled = self.selected_zone == "main"

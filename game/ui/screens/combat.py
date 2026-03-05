@@ -17,9 +17,11 @@ from game.ui.components.mana_orbs import ManaOrbsWidget
 from game.ui.components.modal_card_picker import ModalCardPicker
 from game.ui.controllers.card_interaction import CardInteractionController
 from game.ui.controllers.combat_dialogue_controller import CombatDialogueController
+from game.ui.controllers.dialogue_router import DialogueRouter
 from game.ui.layout.combat_layout import build_combat_layout
 from game.ui.theme import UI_THEME
 from game.ui.components.topbar import CombatTopBar
+from game.ui.components.pixel_icons import draw_icon_with_value
 from game.telemetry.logger import TelemetryLogger
 
 
@@ -86,11 +88,9 @@ class CombatScreen:
         self._status_line = ""
         self.telemetry = TelemetryLogger("INFO")
         self.dialogue_ctrl = CombatDialogueController(self.app.lore_engine, self._set_dialogue_lines)
+        self.dialog_router = DialogueRouter(self.app.lore_engine, cooldown_ms=850)
         self.last_enemy_line = ""
         self.last_player_line = ""
-        self.dialogue_cooldown_ms = 800
-        self.dialogue_last_ms = 0
-        self.dialogue_fallback_idx = {}
         self.topbar = CombatTopBar()
         self.scry_picker = ModalCardPicker()
         self.layout = build_combat_layout(1920, 1080)
@@ -122,45 +122,15 @@ class CombatScreen:
         return "", "", "missing"
 
     def set_dialogue(self, trigger: str, enemy_id: str, ctx: dict | None = None):
-        ctx = ctx or {}
-        now = pygame.time.get_ticks()
-        forced = trigger in {"combat_start", "victory", "defeat"}
-        if not forced and now - self.dialogue_last_ms < self.dialogue_cooldown_ms:
+        picked = self.dialog_router.pick(enemy_id, trigger, ctx or {})
+        if picked is None:
             return
-        intent_hint = str(ctx.get("intent", "")).lower()
-        mapped_trigger = trigger
-        if trigger == "turn_start" and intent_hint:
-            if "ata" in intent_hint:
-                mapped_trigger = "enemy_attack"
-            elif "def" in intent_hint or "blo" in intent_hint:
-                mapped_trigger = "enemy_defend"
-        enemy_line, hero_line, src = self._dialogue_lookup(enemy_id, mapped_trigger)
-        fallbacks = {
-            "combat_start": ("La Trama se abre ante ti.", "Escucho el pulso de la Chakana."),
-            "turn_start": ("El aire cambia antes del golpe.", "Leeré tu intención antes de actuar."),
-            "card_played_attack": ("Una chispa no basta para vencer.", "Cada corte abre un destino."),
-            "card_played_defense": ("Tu muro tiembla igual.", "Bloqueo ahora, contraataco después."),
-            "card_played_utility": ("Manipulas el hilo, no su final.", "Ordeno la Trama a mi favor."),
-            "enemy_attack": ("Siente el peso de mi embate.", "Tu fuerza no quebrará mi centro."),
-            "enemy_defend": ("Me cubro hasta encontrar tu error.", "Entonces abriré tu guardia."),
-            "harmony_ready": ("Tu pulso cambia...", "Armonía lista: la Chakana responde."),
-            "low_hp_player": ("Te apagas.", "Sigo de pie. Aún no termina."),
-            "victory": ("No era tu final...", "La Trama se inclina a mi paso."),
-            "defeat": ("Tu hilo se corta aquí.", "Aprenderé de esta caída."),
-        }
-        if not enemy_line.strip() or not hero_line.strip():
-            arr = [fallbacks.get(mapped_trigger, ("(el enemigo contiene la respiración...)", "(Chakana escucha la Trama...)")),
-                   ("(el enemigo contiene la respiración...)", "(Chakana escucha la Trama...)")]
-            idx = self.dialogue_fallback_idx.get(mapped_trigger, 0) % len(arr)
-            enemy_line, hero_line = arr[idx]
-            self.dialogue_fallback_idx[mapped_trigger] = idx + 1
+        enemy_line, hero_line, mapped_trigger = picked
         if enemy_line == self.last_enemy_line and hero_line == self.last_player_line:
-            enemy_line = "(el enemigo contiene la respiración...)"
-            hero_line = "(Chakana escucha la Trama...)"
+            enemy_line, hero_line = "La Trama cambia de tono.", "Escucho y respondo."
         self._set_dialogue_lines(enemy_line, hero_line, mapped_trigger)
         self.last_enemy_line, self.last_player_line = enemy_line, hero_line
-        self.dialogue_last_ms = now
-        print(f"[dlg] trigger={mapped_trigger} enemy={enemy_id} line_id={src} ctx={ctx}")
+        print(f"[dlg] trigger={mapped_trigger} enemy={enemy_id} ctx={ctx or {}}")
 
     def _card_playable(self, card) -> bool:
         ok, _reason = can_play_card(card, self.c.player, self.c)
@@ -312,7 +282,7 @@ class CombatScreen:
         self.c.play_card(idx, target_idx)
         self._lock_ui()
         tags = set(getattr(card.definition, "tags", []) or [])
-        trig = "card_played_attack" if "attack" in tags else "card_played_defense" if ("skill" in tags or "defense" in tags) else "card_played_utility"
+        trig = "card_played_attack" if "attack" in tags else "card_played_block" if ("skill" in tags or "defense" in tags or "block" in tags) else "card_played_ritual"
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
         self.set_dialogue(trig, enemy_id, {"card_id": card.definition.id})
         self._push_log(f"Jugada: {getattr(card.definition, 'name_key', 'Carta')}")
@@ -518,19 +488,19 @@ class CombatScreen:
         effects = list(getattr(card.definition, "effects", []) or [])
         icons = []
         if "attack" in tags:
-            icons.append("⚔")
+            icons.append("sword")
         if "skill" in tags or any(str(e.get("type", "")) in {"block", "gain_block"} for e in effects if isinstance(e, dict)):
-            icons.append("🛡")
+            icons.append("shield")
         if "ritual" in tags:
-            icons.append("✦")
+            icons.append("star")
         if any(str(e.get("type", "")) == "scry" for e in effects if isinstance(e, dict)):
-            icons.append("👁")
+            icons.append("eye")
         if any(str(e.get("type", "")) == "draw" for e in effects if isinstance(e, dict)):
-            icons.append("⟳")
+            icons.append("scroll")
         if any(str(e.get("type", "")) in {"rupture", "apply_break"} for e in effects if isinstance(e, dict)):
-            icons.append("☠")
+            icons.append("crack")
         if any(str(e.get("type", "")) in {"energy", "gain_mana"} for e in effects if isinstance(e, dict)):
-            icons.append("⚡")
+            icons.append("bolt")
         return icons
 
     def _draw_card(self, s, rect, card, selected=False, family="violet_arcane"):
@@ -542,9 +512,11 @@ class CombatScreen:
         s.blit(self.app.tiny_font.render(str(card.definition.name_key), True, UI_THEME["text"]), (rect.x + 8, rect.y + 6))
         pygame.draw.circle(s, UI_THEME["energy"], (rect.right - 16, rect.y + 16), 12)
         s.blit(self.app.tiny_font.render(str(card.cost), True, UI_THEME["text_dark"]), (rect.right - 20, rect.y + 9))
-        icon_row = " ".join(self._card_icons(card)[:4])
+        icon_row = self._card_icons(card)[:4]
         if icon_row:
-            s.blit(self.app.tiny_font.render(icon_row, True, UI_THEME["gold"]), (rect.x + 8, rect.bottom - 24))
+            x = rect.x + 8
+            for icon_name in icon_row:
+                x = draw_icon_with_value(s, icon_name, 1, UI_THEME["gold"], self.app.tiny_font, x, rect.bottom - 26, size=1)
         if selected:
             pygame.draw.rect(s, UI_THEME["gold"], rect.inflate(8, 8), 3, border_radius=14)
 
@@ -573,7 +545,7 @@ class CombatScreen:
             self._trigger_dialog("player_turn_start")
             enemy = self.c.enemies[0] if self.c.enemies else None
             if enemy is not None:
-                self.set_dialogue("turn_start", enemy.id, {"intent": enemy.current_intent().get("label", "")})
+                self.set_dialogue("enemy_intent_set", enemy.id, {"intent": enemy.current_intent().get("label", "")})
 
         for ev in self.c.pop_events():
             if ev.get("type") == "damage" and ev.get("target") == "player" and ev.get("amount", 0) >= 8:
@@ -584,7 +556,7 @@ class CombatScreen:
                 card_id = str(ev.get("card_id", ""))
                 card_def = next((c for c in self.app.cards_data if c.get("id") == card_id), {}) if card_id else {}
                 tags = set(card_def.get("tags", []) if isinstance(card_def, dict) else [])
-                trig = "card_played_attack" if "attack" in tags else "card_played_defense" if ("skill" in tags or "defense" in tags) else "card_played_utility"
+                trig = "card_played_attack" if "attack" in tags else "card_played_block" if ("skill" in tags or "defense" in tags or "block" in tags) else "card_played_ritual"
                 self.set_dialogue(trig, enemy_id, {"card_id": card_id})
             if ev.get("type") == "harmony_ready":
                 self._push_log(str(ev.get("message") or "Armonía lista: desata tu sello."))
@@ -607,7 +579,8 @@ class CombatScreen:
             self.set_dialogue("low_hp_player", enemy_id, {})
 
         if any(e.alive and e.hp <= e.max_hp * 0.25 for e in self.c.enemies):
-            self._trigger_dialog("enemy_low_hp")
+            enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
+            self.set_dialogue("low_hp_enemy", enemy_id, {})
 
         self.ctrl.validate_selection(len(self.c.hand))
         if self.c.result == "victory":

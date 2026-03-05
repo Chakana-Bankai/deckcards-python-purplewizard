@@ -52,6 +52,7 @@ from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION
 from game.services.content_service import ContentService
 from game.services.asset_pipeline import AssetPipeline
 from game.services.audio_pipeline import AudioPipeline
+from game.systems.reward_system import build_reward_boss, build_reward_guide, build_reward_normal
 from game.ui.screens.loading import LoadingScreen
 
 DEFAULT_CARDS = [
@@ -417,7 +418,9 @@ class App:
         self.sm.set(SettingsScreen(self))
 
     def goto_end(self, victory=True):
-        self.sm.set(EndScreen(self, victory=victory))
+        title = "Victoria" if victory else "Derrota"
+        lore = "el eco celebró tu equilibrio." if victory else "la Trama pidió un nuevo intento."
+        self.sm.set(PachaTransitionScreen(self, title, lambda: self.sm.set(EndScreen(self, victory=victory)), lore_line=lore, hint="Cierre del capítulo"))
 
     def goto_path_select(self):
         self.sm.set(PathSelectScreen(self))
@@ -490,9 +493,10 @@ class App:
         biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
         if self.last_biome_seen is None:
             self.last_biome_seen = biome_track
-        if self.last_biome_seen != biome_track:
+            self.sm.set(PachaTransitionScreen(self, "Comienza la Trama", lambda: self.sm.set(MapScreen(self)), lore_line="Chakana abrió su primer sendero.", hint="Pulsa cualquier tecla para caminar"))
+        elif self.last_biome_seen != biome_track:
             self.last_biome_seen = biome_track
-            self.sm.set(PachaTransitionScreen(self, str(biome_track).title(), lambda: self.sm.set(MapScreen(self))))
+            self.sm.set(PachaTransitionScreen(self, f"Mapa: {str(biome_track).title()}", lambda: self.sm.set(MapScreen(self)), lore_line="un nuevo territorio abrió su geometría.", hint="Pulsa cualquier tecla para continuar"))
         else:
             self.sm.set(MapScreen(self))
         self.music.play_for(self.get_bgm_track("map", biome_track))
@@ -504,21 +508,48 @@ class App:
             print(f"[boot] combat_engine piles: draw={pc.get('draw',0)} hand={pc.get('hand',0)} discard={pc.get('discard',0)}")
         except Exception:
             pass
-        self.sm.set(CombatScreen(self, combat_state, is_boss=is_boss))
-        if is_boss:
-            self.music.play_for(self.get_bgm_track("boss"))
-        else:
-            biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
-            self.music.play_for(self.get_bgm_track("combat", biome_track))
 
-    def goto_reward(self, picks=None, gold=None):
-        if picks is None or gold is None:
+        def _enter_combat():
+            self.sm.set(CombatScreen(self, combat_state, is_boss=is_boss))
+            if is_boss:
+                self.music.play_for(self.get_bgm_track("boss"))
+            else:
+                biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
+                self.music.play_for(self.get_bgm_track("combat", biome_track))
+
+        title = "Umbral del Jefe" if is_boss else "Entrando en Combate"
+        lore = "la sombra mayor despertó." if is_boss else "el pulso enemigo se hizo audible."
+        self.sm.set(PachaTransitionScreen(self, title, _enter_combat, lore_line=lore, hint="Pulsa cualquier tecla para preparar tu mano"))
+
+    def goto_reward(self, picks=None, gold=None, mode=None, relic=None, guide_reward=None):
+        reward_mode = mode or "choose1of3"
+        if reward_mode == "guide_choice":
+            reward_data = guide_reward or build_reward_guide("guide", self.rng, self.cards_data, self.run_state or {})
+            reward_data["type"] = "guide_choice"
+            self.sm.set(RewardScreen(self, reward_data, gold=0, xp_gained=self.debug.get("xp_last_gain", 0)))
+            self.music.play_for(self.get_bgm_track("events"))
+            return
+
+        if reward_mode == "boss_pack":
+            reward_data = build_reward_boss(self.rng, self.cards_data, self.relics_data, self.run_state or {})
+            if relic is not None:
+                reward_data["relic"] = relic
+            reward_data["type"] = "boss_pack"
+            self.sm.set(RewardScreen(self, reward_data, gold=gold or 0, xp_gained=self.debug.get("xp_last_gain", 0)))
+            self.music.play_for("victory")
+            return
+
+        if picks is None:
             unlock_level = self.run_state.get("level", 1) if self.run_state else 1
             rarities = {"basic", "common"} if unlock_level < 2 else {"common", "uncommon", "rare"}
             pool = [c for c in self.cards_data if c.get("rarity") in rarities] or self.cards_data
-            picks = [CardInstance(CardDef(**(self.rng.choice(pool) or DEFAULT_CARDS[0]))) for _ in range(3)]
+            reward_data = build_reward_normal(self.rng, pool, self.run_state or {})
+        else:
+            reward_data = {"type": "choose1of3", "cards": list(picks)}
+        if gold is None:
             gold = self.rng.randint(10, 25)
-        self.sm.set(RewardScreen(self, picks, gold, xp_gained=self.debug.get("xp_last_gain", 0)))
+
+        self.sm.set(RewardScreen(self, reward_data, gold, xp_gained=self.debug.get("xp_last_gain", 0)))
         self.music.play_for("victory")
 
     def goto_shop(self):
@@ -530,6 +561,10 @@ class App:
         event = self.rng.choice(self.events_data) if self.events_data else {"title_key": "map_title", "body_key": "lore_tagline", "choices": [{"text_key": "event_continue", "effects": []}]}
         self.sm.set(EventScreen(self, event))
         self.music.play_for(self.get_bgm_track("events"))
+
+    def goto_guide_reward(self, event_id: str = "guide"):
+        reward_data = build_reward_guide(event_id, self.rng, self.cards_data, self.run_state or {})
+        self.goto_reward(mode="guide_choice", guide_reward=reward_data)
 
     def run_qa_mode(self):
         results = QARunner(self).run_all()
@@ -650,8 +685,7 @@ class App:
         self._complete_current_node()
         node_type = self.run_state.get("last_node_type", "combat")
         if node_type == "boss":
-            self.music.play_for("ending")
-            self.goto_end(victory=True)
+            self.goto_reward(mode="boss_pack", gold=self.rng.randint(40, 70))
             return
         self.run_state["combats_won"] = int(self.run_state.get("combats_won", 0)) + 1
         bonus_gold = self.rng.randint(16, 30) if node_type == "challenge" else self.rng.randint(10, 25)
@@ -818,9 +852,12 @@ class App:
     def regenerate_music(self):
         try:
             pygame.mixer.music.stop()
+            if hasattr(pygame.mixer.music, "unload"):
+                pygame.mixer.music.unload()
         except Exception:
             pass
         try:
+            pygame.mixer.stop()
             pygame.mixer.quit()
         except Exception:
             pass

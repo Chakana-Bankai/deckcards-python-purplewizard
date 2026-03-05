@@ -15,7 +15,7 @@ from game.core.safe_io import atomic_write_json
 
 
 PNG_HEADER = b"\x89PNG\r\n\x1a\n"
-GEN_BGM_VERSION = "bgm_v2"
+GEN_BGM_VERSION = "bgm_v3"
 
 
 def _png_chunk(tag: bytes, data: bytes) -> bytes:
@@ -62,10 +62,10 @@ def _profile(track_key: str):
         "combat_umbral": {"scale": [0, 1, 3, 6, 8], "root": 123.47, "bpm": 132, "intro": 4, "loop": 12, "character": "industrial"},
         "map_hanan": {"scale": [0, 2, 4, 7, 9], "root": 196.0, "bpm": 82, "intro": 8, "loop": 10, "character": "cosmic_choir"},
         "combat_hanan": {"scale": [0, 2, 4, 7, 11], "root": 207.65, "bpm": 104, "intro": 4, "loop": 12, "character": "cosmic_choir"},
-        "event": {"scale": [0, 2, 5, 7, 9], "root": 164.81, "bpm": 92, "intro": 6, "loop": 10, "character": "ritual"},
+        "event": {"scale": [0, 2, 5, 7, 9], "root": 164.81, "bpm": 118, "intro": 6, "loop": 12, "character": "dark_techno"},
         "victory": {"scale": [0, 4, 7, 9, 12], "root": 261.63, "bpm": 132, "intro": 2, "loop": 6, "character": "zelda_victory"},
-        "chest": {"scale": [0, 4, 7, 12], "root": 329.63, "bpm": 136, "intro": 1, "loop": 4, "character": "zelda_chest"},
-        "boss": {"scale": [0, 1, 4, 6, 8], "root": 87.31, "bpm": 136, "intro": 4, "loop": 12, "character": "metroid"},
+        "chest": {"scale": [0, 4, 7, 12], "root": 349.23, "bpm": 142, "intro": 2, "loop": 6, "character": "zelda_chest"},
+        "boss": {"scale": [0, 1, 4, 6, 8], "root": 82.41, "bpm": 142, "intro": 4, "loop": 12, "character": "metroid"},
         "ending": {"scale": [0, 2, 4, 7, 9], "root": 130.81, "bpm": 88, "intro": 8, "loop": 8, "character": "closure"},
     }
     return profiles.get(track_key, profiles["menu"])
@@ -77,6 +77,12 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
         return {}
 
     profile = _profile(track_key)
+    styles = {
+        "event": {"step": 24, "fill_chance": 0.22, "arp_boost": 1.18, "perc": 1.18},
+        "chest": {"step": 16, "fill_chance": 0.12, "arp_boost": 1.30, "perc": 0.85},
+        "boss": {"step": 32, "fill_chance": 0.28, "arp_boost": 0.95, "perc": 1.34},
+    }
+    style = styles.get(track_key, {"step": 16, "fill_chance": 0.16, "arp_boost": 1.0, "perc": 1.0})
     scale = profile["scale"]
     root = profile["root"]
     bpm = profile["bpm"]
@@ -134,7 +140,7 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
     two_pi = 2.0 * math.pi
     bar_len = int(rate * beats_per_bar * sec_per_beat)
     beat_len = int(rate * sec_per_beat)
-    step8_len = max(1, beat_len // 2)
+    step_len = max(1, int((beat_len * 4) / max(8, int(style["step"]))))
 
     with wave.open(str(path), "wb") as wav:
         wav.setnchannels(2)
@@ -146,37 +152,37 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
             t = i / rate
             bar = i // bar_len
             beat = (i // beat_len) % beats_per_bar
-            step8 = (i // step8_len) % 8
+            steps_per_bar = max(8, int(style["step"]))
+            step = (i // step_len) % steps_per_bar
             section = "A" if bar < bars_a else "B"
-            variant = (bar // 4) % 4
+            variant = (bar // 2) % 4
 
             bass_seq = bass_patterns[(variant + (0 if section == "A" else 1)) % len(bass_patterns)]
             arp_seq = arp_patterns[(variant + (1 if section == "B" else 0)) % len(arp_patterns)]
             fill_seq = fill_patterns[variant % len(fill_patterns)]
 
             bass_deg = scale[bass_seq[beat] % len(scale)]
-            arp_deg = scale[arp_seq[step8] % len(scale)]
-            bass = 0.12 * math.sin(two_pi * freq(bass_deg, -1) * t)
-            arp = 0.07 * math.sin(two_pi * freq(arp_deg, 0 if section == "A" else 1) * t)
+            arp_deg = scale[arp_seq[step % len(arp_seq)] % len(scale)]
+            bass = 0.12 * math.sin(two_pi * freq(bass_deg, -1 if track_key != "boss" else -2) * t)
+            arp = 0.07 * style["arp_boost"] * math.sin(two_pi * freq(arp_deg, 0 if section == "A" else 1) * t)
             pad = 0.06 * math.sin(two_pi * freq(scale[(bar + 2) % len(scale)], -1) * t)
 
             kick_gate = 1.0 if (i % beat_len) < int(beat_len * 0.16) else 0.0
             snare_hit = 1.0 if beat in {1, 3} and (i % beat_len) < int(beat_len * 0.09) else 0.0
-            if character == "techno_ritual" and beat == 2 and (i % beat_len) < int(beat_len * 0.06):
-                snare_hit = 1.0
-            hat_hit = 1.0 if step8 in {1, 3, 5, 7} else 0.0
-            fill_hit = 1.0 if fill_seq[step8] and (bar % 4 == 3) else 0.0
+            hat_hit = 1.0 if step % 2 == 1 else 0.0
+            fill_window = (bar % 4 == 3) and ((step / max(1, steps_per_bar - 1)) > (1.0 - style["fill_chance"]))
+            fill_hit = 1.0 if fill_seq[step % len(fill_seq)] and fill_window else 0.0
 
             noise = rng.uniform(-1.0, 1.0)
-            kick = kick_amp * kick_gate * math.sin(two_pi * 60 * t)
-            snare = snare_amp * snare_hit * noise
-            hat = hat_amp * hat_hit * noise * 0.45
+            kick = (kick_amp * style["perc"]) * kick_gate * math.sin(two_pi * 60 * t)
+            snare = (snare_amp * style["perc"]) * snare_hit * noise
+            hat = (hat_amp * style["perc"]) * hat_hit * noise * 0.45
             fill = 0.08 * fill_hit * noise
 
-            bell_gate = 1.0 if step8 in {0, 4} else 0.0
+            bell_gate = 1.0 if step % max(4, steps_per_bar // 4) == 0 else 0.0
             if character in {"zelda_victory", "zelda_chest"}:
-                bell_gate = 1.0 if step8 in {0, 2, 4, 6} else 0.0
-            bell = bell_amp * bell_gate * math.sin(two_pi * freq(scale[(step8 + 2) % len(scale)], 1) * t)
+                bell_gate = 1.0 if step % max(2, steps_per_bar // 8) == 0 else 0.0
+            bell = bell_amp * bell_gate * math.sin(two_pi * freq(scale[(step + 2) % len(scale)], 1) * t)
             stab = stab_amp * (1.0 if beat in {0, 2} and section == "B" else 0.0) * math.sin(two_pi * freq(scale[(bar + beat) % len(scale)], 0) * t)
 
             mix = (bass + arp + pad + kick + snare + hat + fill + bell + stab) * 0.84

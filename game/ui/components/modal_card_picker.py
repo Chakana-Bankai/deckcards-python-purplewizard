@@ -3,6 +3,8 @@ from __future__ import annotations
 import pygame
 
 from game.ui.components.card_preview_panel import CardPreviewPanel
+from game.ui.components.card_effect_summary import summarize_card_effect
+from game.ui.components.pixel_icons import draw_icon_with_value
 from game.ui.theme import UI_THEME
 
 
@@ -168,6 +170,11 @@ class ModalCardPicker:
             surface.blit(app.tiny_font.render(name[:20], True, UI_THEME["text"]), (r.x + 6, r.y + 182))
             cost = getattr(c, "cost", getattr(getattr(c, "definition", None), "cost", 0))
             surface.blit(app.tiny_font.render(f"Coste {cost}", True, UI_THEME["energy"]), (r.x + 6, r.y + 204))
+            summary = summarize_card_effect(getattr(c, "definition", {}), card_instance=c, ctx=None)
+            icon_data = CardPreviewPanel(app)._icon_row(summary)
+            x_icon = r.x + 64
+            for icon_name, val in icon_data[:2]:
+                x_icon = draw_icon_with_value(surface, icon_name, val, UI_THEME["gold"], app.tiny_font, x_icon, r.y + 202, size=1)
             if sel:
                 surface.blit(app.tiny_font.render("SE QUEDA ARRIBA", True, UI_THEME["good"]), (r.x + 6, r.bottom - 20))
 

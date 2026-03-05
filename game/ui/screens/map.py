@@ -14,6 +14,7 @@ class MapScreen:
         "shop": "Tienda",
         "boss": "Boss",
     }
+    NODE_DIFF = {"event": "Eco", "combat": "Peligro II", "challenge": "Prueba", "treasure": "Botín", "shop": "Calma", "boss": "Peligro V"}
 
     NODE_LORE = {
         "event": "Los ecos del templo piden una decisión del espíritu.",
@@ -69,8 +70,6 @@ class MapScreen:
         elif node_type == "challenge":
             pts = [(x, y - 12), (x + 8, y - 5), (x + 10, y + 6), (x, y + 12), (x - 10, y + 6), (x - 8, y - 5)]
             pygame.draw.polygon(s, col, pts, 2)
-            pygame.draw.circle(s, col, (x - 4, y - 1), 2)
-            pygame.draw.circle(s, col, (x + 4, y - 1), 2)
         elif node_type == "event":
             pygame.draw.polygon(s, col, [(x, y - 12), (x + 4, y - 3), (x + 12, y - 2), (x + 6, y + 4), (x + 8, y + 12), (x, y + 7), (x - 8, y + 12), (x - 6, y + 4), (x - 12, y - 2), (x - 4, y - 3)])
         elif node_type == "treasure":
@@ -83,51 +82,48 @@ class MapScreen:
             pygame.draw.line(s, col, (x - 10, y), (x + 10, y), 3)
             pygame.draw.line(s, col, (x, y - 10), (x, y + 10), 3)
 
-    def _friendly_node_name(self):
-        node = self.app.node_lookup.get(self.app.current_node_id) if getattr(self.app, "current_node_id", None) else None
-        if isinstance(node, dict):
-            return self.NODE_NAMES.get(node.get("type"), "Ruta")
-        return "Ruta"
-
-    def _topbar_narrative(self):
-        run = self.app.run_state or {}
-        left = "Mapa 2.0 • Travesía de Chakana"
-        pacha = self.app.get_biome_display_name(run.get("biome") if isinstance(run, dict) else None)
-        center = f"{pacha} — {self._friendly_node_name()}"
-        subtitle = str(self.app.lore_engine.get_map_narration("default") if hasattr(self.app, "lore_engine") else "")
-        lvl = int(run.get("level", 1) or 1)
-        xp = int(run.get("xp", 0) or 0)
-        need = max(1, lvl * 20)
-        right = f"Oro: {int(run.get('gold', 0) or 0)}   Nivel: {lvl}   XP: {xp}/{need}"
-        return left, center, subtitle, right
+    def _draw_chakana(self, s, cx, cy, r=42):
+        pygame.draw.circle(s, UI_THEME["gold"], (cx, cy), r, 2)
+        for dx, dy in [(-r, 0), (r, 0), (0, -r), (0, r)]:
+            pygame.draw.line(s, UI_THEME["gold"], (cx, cy), (cx + dx, cy + dy), 2)
+        pygame.draw.rect(s, UI_THEME["gold"], pygame.Rect(cx - 10, cy - 10, 20, 20), 2)
 
     def render(self, s):
         s.fill(UI_THEME["bg"])
         run = self.app.run_state or {"gold": 0, "map": []}
 
         topbar = pygame.Rect(18, 16, INTERNAL_WIDTH - 36, 92)
-        left, center, subtitle, right = self._topbar_narrative()
-        self.topbar.render(s, self.app, topbar, left, center, subtitle, right)
+        self.topbar.render(s, self.app, topbar, "Trama", "Sendero de Chakana", "Lee la geometría del destino.", "Pulsa TAB para Mazo")
 
-        pygame.draw.rect(s, UI_THEME["panel"], self.deck_btn, border_radius=10)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], self.deck_btn, 2, border_radius=10)
+        left_rect = pygame.Rect(40, 130, 320, INTERNAL_HEIGHT - 240)
+        center_rect = pygame.Rect(370, 130, 1160, INTERNAL_HEIGHT - 240)
+        right_rect = pygame.Rect(1540, 130, 340, INTERNAL_HEIGHT - 240)
+        for r in (left_rect, center_rect, right_rect):
+            pygame.draw.rect(s, UI_THEME["panel"], r, border_radius=16)
+            pygame.draw.rect(s, UI_THEME["accent_violet"], r, 2, border_radius=16)
+
+        pygame.draw.rect(s, UI_THEME["panel_2"], self.deck_btn, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["gold"], self.deck_btn, 2, border_radius=10)
         s.blit(self.app.map_font.render("Mazo", True, UI_THEME["text"]), (INTERNAL_WIDTH - 194, 94))
 
-        map_rect = pygame.Rect(60, 130, INTERNAL_WIDTH - 120, INTERNAL_HEIGHT - 280)
-        pygame.draw.rect(s, UI_THEME["panel"], map_rect, border_radius=16)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], map_rect, 2, border_radius=16)
+        s.blit(self.app.small_font.render("Trama", True, UI_THEME["gold"]), (left_rect.x + 16, left_rect.y + 12))
+        lore = self.NODE_LORE.get("event", "")
+        s.blit(self.app.tiny_font.render(lore[:46], True, UI_THEME["muted"]), (left_rect.x + 16, left_rect.y + 48))
+        self._draw_chakana(s, left_rect.centerx, left_rect.y + 170)
+        s.blit(self.app.tiny_font.render("Protagonista: Chakana", True, UI_THEME["text"]), (left_rect.x + 62, left_rect.y + 240))
 
-        for ci, col in enumerate(run["map"]):
+        for ci, col in enumerate(run.get("map", [])):
             if ci < len(run["map"]) - 1:
                 for node in col:
                     for next_id in node.get("next", []):
                         nxt = self.app.node_lookup.get(next_id)
                         if nxt:
-                            pygame.draw.line(s, (85, 92, 136), (node["x"], node["y"]), (nxt["x"], nxt["y"]), 5)
+                            clr = (120, 128, 170) if node.get("state") in {"available", "current", "incomplete"} else (70, 70, 86)
+                            pygame.draw.line(s, clr, (node["x"], node["y"]), (nxt["x"], nxt["y"]), 5)
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         hovered_node = None
-        for col in run["map"]:
+        for col in run.get("map", []):
             for node in col:
                 state = node.get("state", "locked")
                 color = (92, 92, 98)
@@ -141,29 +137,41 @@ class MapScreen:
                     color = UI_THEME["card_selected"]
                 if node["type"] == "boss":
                     color = UI_THEME["bad"] if state != "locked" else (90, 40, 40)
-                if node["type"] == "challenge" and state != "locked":
-                    color = (246, 168, 74)
                 radius = 30 if node["type"] != "boss" else 36
                 node_hover = pygame.Rect(node["x"] - 40, node["y"] - 40, 80, 80).collidepoint(mouse)
-                if node_hover and state in {"available", "incomplete", "current"}:
-                    pygame.draw.circle(s, (220, 194, 255), (node["x"], node["y"]), radius + 8)
                 if node_hover:
                     hovered_node = node
-                pygame.draw.circle(s, color, (node["x"], node["y"]), radius)
-                self._draw_icon(s, node["type"], node["x"], node["y"])
+                if state == "locked":
+                    pygame.draw.circle(s, (40, 40, 56), (node["x"], node["y"]), radius + 4)
+                    pygame.draw.circle(s, color, (node["x"], node["y"]), radius)
+                    pygame.draw.line(s, UI_THEME["muted"], (node["x"] - 7, node["y"]), (node["x"] + 7, node["y"]), 2)
+                else:
+                    if node_hover:
+                        pygame.draw.circle(s, (220, 194, 255), (node["x"], node["y"]), radius + 8)
+                    pygame.draw.circle(s, color, (node["x"], node["y"]), radius)
+                    self._draw_icon(s, node["type"], node["x"], node["y"])
                 label = self.NODE_NAMES.get(node["type"], "Ruta")
-                lbl = self.app.small_font.render(label, True, UI_THEME["text"])
-                s.blit(lbl, (node["x"] - lbl.get_width() // 2, node["y"] + radius + 8))
+                s.blit(self.app.tiny_font.render(label, True, UI_THEME["text"]), (node["x"] - 34, node["y"] + radius + 4))
+                s.blit(self.app.tiny_font.render(self.NODE_DIFF.get(node["type"], "?"), True, UI_THEME["muted"]), (node["x"] - 34, node["y"] + radius + 20))
 
-        legend = pygame.Rect(80, INTERNAL_HEIGHT - 134, 760, 88)
-        pygame.draw.rect(s, UI_THEME["panel_2"], legend, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], legend, 1, border_radius=12)
-        s.blit(self.app.small_font.render("Leyenda", True, UI_THEME["gold"]), (legend.x + 14, legend.y + 8))
-        s.blit(self.app.tiny_font.render("Morado=Disponible • Verde=Completado • Naranja=Incompleto • Rojo=Boss", True, UI_THEME["muted"]), (legend.x + 14, legend.y + 40))
+        lvl = int(run.get("level", 1) or 1)
+        xp = int(run.get("xp", 0) or 0)
+        xp_need = max(1, lvl * 20)
+        harmony = run.get("player", {}).get("harmony_current", 0) if isinstance(run.get("player", {}), dict) else 0
+        harmony_goal = run.get("player", {}).get("harmony_ready_threshold", 6) if isinstance(run.get("player", {}), dict) else 6
+        stats = [
+            f"Oro: {int(run.get('gold', 0) or 0)}",
+            f"XP: {xp}/{xp_need}",
+            f"Armonía meta: {harmony}/{harmony_goal}",
+            f"Mazo: {len(run.get('deck', []) or [])}",
+        ]
+        s.blit(self.app.small_font.render("Estado de Chakana", True, UI_THEME["gold"]), (right_rect.x + 14, right_rect.y + 12))
+        for i, line in enumerate(stats):
+            s.blit(self.app.small_font.render(line, True, UI_THEME["text"]), (right_rect.x + 18, right_rect.y + 56 + i * 34))
 
         if hovered_node:
             lore_text = self.NODE_LORE.get(hovered_node.get("type"), "La ruta susurra un destino incierto.")
-            lore_rect = pygame.Rect(INTERNAL_WIDTH // 2 - 520, INTERNAL_HEIGHT - 84, 1040, 44)
+            lore_rect = pygame.Rect(INTERNAL_WIDTH // 2 - 520, INTERNAL_HEIGHT - 96, 1040, 56)
             pygame.draw.rect(s, UI_THEME["panel"], lore_rect, border_radius=12)
             pygame.draw.rect(s, UI_THEME["accent_violet"], lore_rect, 2, border_radius=12)
             lore = self.app.small_font.render(lore_text, True, UI_THEME["muted"])

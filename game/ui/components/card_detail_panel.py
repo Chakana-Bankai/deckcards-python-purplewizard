@@ -4,6 +4,7 @@ import pygame
 
 from game.ui.components.card_effect_summary import summarize_card_effect
 from game.ui.theme import UI_THEME
+from game.ui.components.pixel_icons import draw_icon_with_value
 
 
 class CardDetailPanel:
@@ -84,19 +85,19 @@ class CardDetailPanel:
         effects = [e for e in payload.get("effects", []) if isinstance(e, dict)]
         icons = []
         if "attack" in tags:
-            icons.append("⚔")
+            icons.append("sword")
         if "skill" in tags or any(str(e.get("type", "")) in {"block", "gain_block"} for e in effects):
-            icons.append("🛡")
+            icons.append("shield")
         if "ritual" in tags:
-            icons.append("✦")
+            icons.append("star")
         if any(str(e.get("type", "")) == "scry" for e in effects):
-            icons.append("👁")
+            icons.append("eye")
         if any(str(e.get("type", "")) == "draw" for e in effects):
-            icons.append("⟳")
+            icons.append("scroll")
         if any(str(e.get("type", "")) in {"rupture", "apply_break"} for e in effects):
-            icons.append("☠")
+            icons.append("crack")
         if any(str(e.get("type", "")) in {"energy", "gain_mana"} for e in effects):
-            icons.append("⚡")
+            icons.append("bolt")
 
         card_name = self.app.loc.t(payload["name_key"])
         for ln in self._wrap_clamp(self.app.small_font, card_name, max_w, 1):
@@ -104,8 +105,9 @@ class CardDetailPanel:
             y += 24
 
         if icons:
-            icon_line = " ".join(icons[:5])
-            surface.blit(self.app.tiny_font.render(icon_line, True, UI_THEME["gold"]), (tx, y))
+            x = tx
+            for icon_name in icons[:5]:
+                x = draw_icon_with_value(surface, icon_name, 1, UI_THEME["gold"], self.app.tiny_font, x, y - 2, size=1)
             y += 20
 
         meta = f"Tipo: {payload.get('family','-')}  |  Coste: {payload.get('cost',0)}"
