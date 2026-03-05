@@ -32,6 +32,19 @@ class RewardScreen:
     def on_enter(self):
         pass
 
+<<<<<<< ours
+=======
+    def claim(self, index: int) -> bool:
+        if not (0 <= index < len(self.picks)):
+            return False
+        card = self.picks[index]
+        self.app.run_state["sideboard"].append(card.definition.id)
+        self.app.run_state["gold"] += self.gold
+        self.msg = self.app.loc.t("reward_claimed", gold=self.gold)
+        self.app.goto_map()
+        return True
+
+>>>>>>> theirs
     def _clamp_text(self, font, text: str, max_px: int) -> str:
         out = str(text or "")
         while font.size(out)[0] > max_px and len(out) > 3:
@@ -49,6 +62,7 @@ class RewardScreen:
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
+<<<<<<< ours
             for i, card in enumerate(self.picks):
                 r = pygame.Rect(300 + i * 440, 314, 400, 448)
                 if r.collidepoint(pos):
@@ -56,6 +70,12 @@ class RewardScreen:
                     self.app.run_state["gold"] += self.gold
                     self.msg = self.app.loc.t("reward_claimed", gold=self.gold)
                     self.app.goto_map()
+=======
+            for i, _card in enumerate(self.picks):
+                r = pygame.Rect(300 + i * 440, 314, 400, 448)
+                if r.collidepoint(pos):
+                    self.claim(i)
+>>>>>>> theirs
                     return
 
     def update(self, dt):
@@ -100,7 +120,10 @@ class RewardScreen:
             s.blit(self.app.small_font.render("Enseñanza de la Trama", True, UI_THEME["gold"]), (130, 822))
             hline = self._clamp_text(self.app.small_font, hint, teach.w - 40)
             s.blit(self.app.small_font.render(hline, True, UI_THEME["text"]), (130, 862))
+<<<<<<< ours
         print(f"[ui] reward_hint={hint}")
+=======
+>>>>>>> theirs
 
         if self.msg:
             s.blit(self.app.small_font.render(self.msg, True, UI_THEME["good"]), (124, 964))

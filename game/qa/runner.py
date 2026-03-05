@@ -42,10 +42,19 @@ class QARunner:
                 self.app.current_combat.result = "victory"
                 self.app.on_combat_victory()
             if self.app.sm.current.__class__.__name__ == "RewardScreen":
+<<<<<<< ours
                 if getattr(self.app.sm.current, "picks", None):
                     self.app.sm.current.picks and self.app.sm.current.picks[0:1]
                     if hasattr(self.app.sm.current, "picks") and self.app.sm.current.picks:
                         self.app.run_state["sideboard"].append(self.app.sm.current.picks[0].definition.id)
+=======
+                picks = getattr(self.app.sm.current, "picks", [])
+                if picks:
+                    if hasattr(self.app.sm.current, "claim"):
+                        self.app.sm.current.claim(0)
+                    else:
+                        self.app.run_state["sideboard"].append(picks[0].definition.id)
+>>>>>>> theirs
                         self.app.goto_map()
             self.app.goto_map()
             results.append(self._ok("qa_f8_return_map"))
@@ -83,8 +92,13 @@ class QARunner:
             results.append(self._fail("combat_to_reward", exc))
 
         try:
+<<<<<<< ours
             if hasattr(self.app.sm.current, "take") and getattr(self.app.sm.current, "reward_cards", []):
                 self.app.sm.current.take(0)
+=======
+            if hasattr(self.app.sm.current, "claim") and getattr(self.app.sm.current, "picks", []):
+                self.app.sm.current.claim(0)
+>>>>>>> theirs
             results.append(self._ok("reward_to_map"))
         except Exception as exc:
             results.append(self._fail("reward_to_map", exc))
