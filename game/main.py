@@ -75,7 +75,6 @@ class App:
         (self.asset_root / ".cache").mkdir(parents=True, exist_ok=True)
         (self.asset_root / "tmp").mkdir(parents=True, exist_ok=True)
         (self.data_root / ".cache").mkdir(parents=True, exist_ok=True)
-
         self.clock = pygame.time.Clock()
         self.running = True
         self.rng = SeededRNG(1337)
@@ -371,6 +370,9 @@ class App:
         atomic_write_json_if_changed(prompts_path, payload, sort_keys=True)
 
     def ensure_assets(self, progress_cb=None):
+        force_regen = bool(self.user_settings.get("force_regen_art", False) or self.user_settings.get("update_manifests", False))
+        if force_regen:
+            self._ensure_card_prompts_file(force=True)
         regen_flag = (data_dir() / "regen_on_boot.flag").exists()
         force_regen = bool(self.user_settings.get("force_regen_art", False) or self.user_settings.get("update_manifests", False) or regen_flag)
         if not force_regen:
@@ -385,6 +387,8 @@ class App:
             "enemies": self.enemies_data,
             "guide_types": GUIDE_TYPES,
         }
+        if (data_dir() / "regen_on_boot.flag").exists():
+            self.user_settings["force_regen_art"] = True
         try:
             ap = self.asset_pipeline.ensure_all_assets(self.user_settings, content_payload, progress_cb=progress_cb)
             if isinstance(ap, dict):
