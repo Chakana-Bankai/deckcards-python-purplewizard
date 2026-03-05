@@ -26,3 +26,5 @@ UI_THEME = {
 }
 
 SPACING = {"pad": 12, "radius": 12}
+UI_SAFE_BOTTOM = 56
+UI_SAFE_SIDE = 24

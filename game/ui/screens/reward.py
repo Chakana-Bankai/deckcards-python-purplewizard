@@ -2,7 +2,7 @@ import pygame
 
 from game.ui.components.card_preview_panel import CardPreviewPanel
 from game.ui.components.card_effect_summary import summarize_card_effect
-from game.ui.theme import UI_THEME
+from game.ui.theme import UI_THEME, UI_SAFE_BOTTOM, UI_SAFE_SIDE
 from game.ui.components.pixel_icons import draw_icon_with_value
 
 
@@ -23,9 +23,33 @@ class RewardScreen:
         self.preview = CardPreviewPanel(app=app)
         self.left_rect = pygame.Rect(52, 70, 1220, 920)
         self.right_rect = pygame.Rect(1290, 70, 578, 920)
-        self.confirm_rect = pygame.Rect(780, 1004, 360, 56)
-        self.back_rect = pygame.Rect(400, 1004, 320, 56)
+        self.confirm_rect = pygame.Rect(0, 0, 360, 56)
+        self.back_rect = pygame.Rect(0, 0, 320, 56)
+        self.content_rect = pygame.Rect(52, 170, 1220, 770)
         self.pulse = 0.0
+
+    def _layout(self, surface: pygame.Surface):
+        w, h = surface.get_size()
+        frame = pygame.Rect(UI_SAFE_SIDE, UI_SAFE_SIDE, w - UI_SAFE_SIDE * 2, h - UI_SAFE_SIDE * 2)
+        buttons_y = h - UI_SAFE_BOTTOM
+        self.back_rect.size = (320, 56)
+        self.confirm_rect.size = (360, 56)
+        self.back_rect.center = (w // 2 - 160, buttons_y)
+        self.confirm_rect.center = (w // 2 + 160, buttons_y)
+
+        header_h = 132
+        content_top = frame.y + header_h
+        content_bottom = buttons_y - 18
+        content_h = max(240, content_bottom - content_top)
+
+        if self.mode == "guide_choice":
+            self.left_rect = pygame.Rect(frame.x + 28, content_top, int(frame.w * 0.68), content_h)
+            self.right_rect = pygame.Rect(self.left_rect.right + 16, content_top, frame.right - self.left_rect.right - 44, content_h)
+        else:
+            self.left_rect = pygame.Rect(frame.x + 28, content_top, int(frame.w * 0.66), content_h)
+            self.right_rect = pygame.Rect(self.left_rect.right + 16, content_top, frame.right - self.left_rect.right - 44, content_h)
+        self.content_rect = self.left_rect.copy()
+        return frame
 
     def on_enter(self):
         pass
@@ -40,12 +64,26 @@ class RewardScreen:
         return True
 
     def _card_rects(self):
+        top = self.content_rect.y + 14
         if self.mode == "boss_pack":
-            return [pygame.Rect(78 + i * 232, 240, 216, 330) for i in range(min(5, len(self.cards)))]
-        return [pygame.Rect(78 + i * 380, 240, 350, 520) for i in range(min(3, len(self.cards)))]
+            count = min(5, len(self.cards))
+            gap = 14
+            card_w = max(180, min(220, (self.content_rect.w - 12 - (count - 1) * gap) // max(1, count)))
+            h = min(330, self.content_rect.h - 190)
+            return [pygame.Rect(self.content_rect.x + 6 + i * (card_w + gap), top, card_w, h) for i in range(count)]
+        count = min(3, len(self.cards))
+        gap = 18
+        card_w = max(280, min(350, (self.content_rect.w - 12 - (count - 1) * gap) // max(1, count)))
+        h = min(520, self.content_rect.h - 20)
+        return [pygame.Rect(self.content_rect.x + 6 + i * (card_w + gap), top, card_w, h) for i in range(count)]
 
     def _choice_rects(self):
-        return [pygame.Rect(86, 300 + i * 188, 1160, 164) for i in range(min(3, len(self.options)))]
+        count = min(3, len(self.options))
+        gap = 14
+        usable_h = self.content_rect.h - 190
+        row_h = max(122, min(164, (usable_h - (count - 1) * gap) // max(1, count)))
+        top = self.content_rect.y + 176
+        return [pygame.Rect(self.content_rect.x + self.content_rect.w // 2, top + i * (row_h + gap), self.content_rect.w // 2 - 10, row_h) for i in range(count)]
 
     def _wrap(self, font, text: str, width: int, max_lines: int = 3):
         words = str(text or "").split()
@@ -140,23 +178,23 @@ class RewardScreen:
     def update(self, dt):
         self.pulse += dt * 5.0
 
-    def _draw_header(self, s):
-        pygame.draw.rect(s, (24, 18, 36), pygame.Rect(24, 24, 1872, 1032), border_radius=16)
-        pygame.draw.rect(s, UI_THEME["gold"], pygame.Rect(24, 24, 1872, 1032), 2, border_radius=16)
+    def _draw_header(self, s, frame):
+        pygame.draw.rect(s, (24, 18, 36), frame, border_radius=16)
+        pygame.draw.rect(s, UI_THEME["gold"], frame, 2, border_radius=16)
         title = {
-            "choose1of3": "Elige 1 de 3 cartas",
-            "boss_pack": "Victoria de Jefe: Botín Mayor",
+            "choose1of3": "Recompensa",
+            "boss_pack": "Botín del Jefe",
             "guide_choice": "Elección del Guía",
         }.get(self.mode, "Recompensa")
         subtitle = {
-            "choose1of3": "La Trama ofrece tres senderos.",
-            "boss_pack": "Toma el pack completo y un relicario.",
+            "choose1of3": "Selecciona 1 carta para añadirla a tu sideboard.",
+            "boss_pack": "Has vencido al jefe. Recibirás todo el lote.",
             "guide_choice": "Sabiduría, Poder o Sacrificio: elige tu destino.",
         }.get(self.mode, "")
-        s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (58, 42))
-        s.blit(self.app.small_font.render(subtitle, True, UI_THEME["text"]), (60, 92))
+        s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (frame.x + 34, frame.y + 18))
+        s.blit(self.app.small_font.render(subtitle, True, UI_THEME["text"]), (frame.x + 36, frame.y + 68))
         if self.mode != "guide_choice":
-            s.blit(self.app.small_font.render(f"+{self.gold} oro • +{self.xp_gained} XP", True, UI_THEME["good"]), (60, 126))
+            s.blit(self.app.small_font.render(f"+{self.gold} oro • +{self.xp_gained} XP", True, UI_THEME["good"]), (frame.x + 36, frame.y + 102))
 
     def _draw_cards_mode(self, s):
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
@@ -169,7 +207,7 @@ class RewardScreen:
             pulse_add = int(2 * (1 + pygame.math.Vector2(1, 0).rotate(self.pulse * 60).x)) if sel else 0
             pygame.draw.rect(s, UI_THEME["panel_2"] if hover else UI_THEME["panel"], r, border_radius=12)
             pygame.draw.rect(s, UI_THEME["gold"] if (hover or sel) else UI_THEME["accent_violet"], r, 2 + pulse_add, border_radius=12)
-            art_h = 220 if self.mode == "boss_pack" else 300
+            art_h = min(300 if self.mode != "boss_pack" else 220, r.h - 88)
             art = self.app.assets.sprite("cards", card.definition.id, (r.w - 20, art_h), fallback=(82, 52, 112))
             s.blit(art, (r.x + 10, r.y + 8))
             summary = summarize_card_effect(card.definition, card_instance=card, ctx=None)
@@ -181,42 +219,49 @@ class RewardScreen:
                 x_icon = draw_icon_with_value(s, icon_name, val, UI_THEME["gold"], self.app.tiny_font, x_icon, r.y + art_h + 42, size=1)
 
         if self.mode == "boss_pack":
-            relic_rect = pygame.Rect(86, 612, 1160, 130)
+            relic_top = min(self.content_rect.bottom - 136, max((rr.bottom for rr in self._card_rects()), default=self.content_rect.y) + 14)
+            relic_rect = pygame.Rect(self.content_rect.x + 10, relic_top, self.content_rect.w - 20, 126)
             pygame.draw.rect(s, UI_THEME["panel"], relic_rect, border_radius=12)
             pygame.draw.rect(s, UI_THEME["gold"], relic_rect, 2, border_radius=12)
             rid = self.relic.get("id", "relic") if isinstance(self.relic, dict) else "relic"
             rname = self.app.loc.t(self.relic.get("name_key", rid)) if isinstance(self.relic, dict) else "Reliquia"
             rdesc = self.app.loc.t(self.relic.get("text_key", "")) if isinstance(self.relic, dict) else ""
-            s.blit(self.app.small_font.render(f"Reliquia: {rname}", True, UI_THEME["gold"]), (relic_rect.x + 18, relic_rect.y + 18))
+            s.blit(self.app.small_font.render(f"Reliquia: {rname}", True, UI_THEME["gold"]), (relic_rect.x + 18, relic_rect.y + 16))
             for i, ln in enumerate(self._wrap(self.app.tiny_font, rdesc, relic_rect.w - 30, 2)):
-                s.blit(self.app.tiny_font.render(ln, True, UI_THEME["text"]), (relic_rect.x + 18, relic_rect.y + 56 + i * 18))
+                s.blit(self.app.tiny_font.render(ln, True, UI_THEME["text"]), (relic_rect.x + 18, relic_rect.y + 52 + i * 18))
 
     def _draw_guide_mode(self, s):
-        avatar_rect = pygame.Rect(80, 250, 360, 360)
+        left_col = pygame.Rect(self.content_rect.x + 8, self.content_rect.y + 12, self.content_rect.w // 2 - 16, self.content_rect.h - 24)
+        right_col = pygame.Rect(self.content_rect.x + self.content_rect.w // 2 + 8, self.content_rect.y + 12, self.content_rect.w // 2 - 16, self.content_rect.h - 24)
+
+        avatar_rect = pygame.Rect(left_col.x + 10, left_col.y + 18, left_col.w - 20, min(320, left_col.h - 180))
         pygame.draw.rect(s, UI_THEME["panel"], avatar_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["gold"], avatar_rect, 2, border_radius=12)
-        av = self.app.assets.sprite("guides", "angel", (320, 320), fallback=(40, 28, 62))
-        s.blit(av, (avatar_rect.x + 20, avatar_rect.y + 20))
+        av = self.app.assets.sprite("guides", "angel", (avatar_rect.w - 32, avatar_rect.h - 32), fallback=(40, 28, 62))
+        s.blit(av, (avatar_rect.x + 16, avatar_rect.y + 16))
 
-        lore_rect = pygame.Rect(456, 250, 790, 140)
+        lore_rect = pygame.Rect(left_col.x + 10, avatar_rect.bottom + 12, left_col.w - 20, max(120, left_col.bottom - avatar_rect.bottom - 24))
         pygame.draw.rect(s, UI_THEME["panel_2"], lore_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["accent_violet"], lore_rect, 2, border_radius=10)
         lore = "El guía susurra: cada senda moldea tu armonía y tu precio."
-        for i, ln in enumerate(self._wrap(self.app.small_font, lore, lore_rect.w - 24, 3)):
+        for i, ln in enumerate(self._wrap(self.app.small_font, lore, lore_rect.w - 24, 4)):
             s.blit(self.app.small_font.render(ln, True, UI_THEME["text"]), (lore_rect.x + 12, lore_rect.y + 14 + i * 28))
 
+        pygame.draw.rect(s, UI_THEME["panel_2"], right_col, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], right_col, 2, border_radius=10)
         for i, opt in enumerate(self.options[:3]):
             r = self._choice_rects()[i]
             sel = self.selected_idx == i
             pygame.draw.rect(s, UI_THEME["panel"], r, border_radius=12)
             pygame.draw.rect(s, UI_THEME["gold"] if sel else UI_THEME["accent_violet"], r, 3 if sel else 2, border_radius=12)
-            s.blit(self.app.small_font.render(opt.get("title", f"Opción {i+1}"), True, UI_THEME["gold"]), (r.x + 14, r.y + 14))
-            s.blit(self.app.tiny_font.render(opt.get("effect_label", ""), True, UI_THEME["good"]), (r.x + 16, r.y + 48))
+            s.blit(self.app.small_font.render(opt.get("title", f"Opción {i+1}"), True, UI_THEME["gold"]), (r.x + 14, r.y + 12))
+            s.blit(self.app.tiny_font.render(opt.get("effect_label", ""), True, UI_THEME["good"]), (r.x + 16, r.y + 44))
             for j, ln in enumerate(self._wrap(self.app.tiny_font, opt.get("lore", ""), r.w - 28, 2)):
-                s.blit(self.app.tiny_font.render(ln, True, UI_THEME["muted"]), (r.x + 16, r.y + 76 + j * 18))
+                s.blit(self.app.tiny_font.render(ln, True, UI_THEME["muted"]), (r.x + 16, r.y + 72 + j * 18))
 
     def render(self, s):
-        self._draw_header(s)
+        frame = self._layout(s)
+        self._draw_header(s, frame)
         if self.mode in {"choose1of3", "boss_pack"}:
             self._draw_cards_mode(s)
         elif self.mode == "guide_choice":
@@ -231,11 +276,11 @@ class RewardScreen:
         pygame.draw.rect(s, UI_THEME["violet"] if confirm_enabled else (84, 76, 106), self.confirm_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.confirm_rect, 2, border_radius=10)
         label = "Confirmar" if self.mode != "boss_pack" else "Tomar recompensas"
-        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.confirm_rect.x + 108, self.confirm_rect.y + 16))
+        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.confirm_rect.x + 38, self.confirm_rect.y + 16))
 
         pygame.draw.rect(s, UI_THEME["panel_2"], self.back_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.back_rect, 2, border_radius=10)
-        s.blit(self.app.font.render("Volver", True, UI_THEME["text"]), (self.back_rect.x + 126, self.back_rect.y + 16))
+        s.blit(self.app.font.render("Volver", True, UI_THEME["text"]), (self.back_rect.x + 106, self.back_rect.y + 16))
 
         if self.msg:
-            s.blit(self.app.small_font.render(self.msg, True, UI_THEME["good"]), (70, 1002))
+            s.blit(self.app.small_font.render(self.msg, True, UI_THEME["good"]), (self.left_rect.x, self.confirm_rect.y - 30))
