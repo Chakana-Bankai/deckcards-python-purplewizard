@@ -99,27 +99,22 @@ class MusicManager:
             return path
         rms, peak = self._wav_levels(path)
         if rms < 0.002 or peak < 0.01:
-<<<<<<< ours
+            print(f"[audio] BGM silent: {key} (using existing file)")
             print(f"[audio] BGM silent: {key} (regenerated)")
             synth_ambient_music(path, key, force=True)
-=======
-            print(f"[audio] BGM silent: {key} (using existing file)")
->>>>>>> theirs
+
         return path
 
     def _ensure_track(self, key: str) -> Path:
         path = self._find_track(key)
         if path is None:
-<<<<<<< ours
             generated = assets_dir() / "music" / f"{key}.wav"
             synth_ambient_music(generated, key, force=True)
             print(f"[audio] BGM missing: {key} (generated placeholder)")
-=======
             generated = assets_dir() / ".cache" / "music" / f"{key}.wav"
             generated.parent.mkdir(parents=True, exist_ok=True)
             synth_ambient_music(generated, key, force=True)
             print(f"[audio] BGM missing: {key} (generated cache placeholder)")
->>>>>>> theirs
             self._manifest = self._load_manifest()
             return generated
         return self._ensure_audible_wav(key, path)

@@ -15,11 +15,8 @@ class BackgroundGenerator:
 
     def __init__(self):
         self.cache: dict[tuple[str, int], tuple[pygame.Surface, pygame.Surface, pygame.Surface]] = {}
-<<<<<<< ours
-        self.out_dir = assets_dir() / "sprites" / "biomes"
-=======
         self.out_dir = assets_dir() / ".cache" / "biomes"
->>>>>>> theirs
+        self.out_dir = assets_dir() / "sprites" / "biomes"
         self.out_dir.mkdir(parents=True, exist_ok=True)
         self.version_seed = GEN_BIOME_VERSION
 

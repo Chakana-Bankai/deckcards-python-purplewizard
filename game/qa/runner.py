@@ -69,11 +69,6 @@ class QARunner:
             results.append(self._ok("qa_f8_play_cards", f"played={played}"))
             self._force_combat_victory()
             self._claim_first_reward_if_present()
-<<<<<<< ours
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
             self.app.goto_map()
             results.append(self._ok("qa_f8_return_map"))
         except Exception as exc:
@@ -104,11 +99,6 @@ class QARunner:
 
         try:
             self._force_combat_victory()
-<<<<<<< ours
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
             self.app.sm.current.update(0.016)
             results.append(self._ok("combat_to_reward"))
         except Exception as exc:

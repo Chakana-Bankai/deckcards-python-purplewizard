@@ -1,10 +1,5 @@
 # AGENTS.md — Chakana Purple Wizard
 
-<<<<<<< ours
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
 ## 1) Roles y responsabilidades
 - **ChatGPT:** diseño funcional, definición de tickets, criterios de aceptación y validación conceptual.
 - **Codex:** implementación técnica acotada al ticket, validaciones locales y preparación del commit.
