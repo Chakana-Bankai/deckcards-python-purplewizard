@@ -33,7 +33,10 @@ class RewardScreen:
         pass
 
 <<<<<<< ours
+<<<<<<< ours
 =======
+=======
+>>>>>>> theirs
     def claim(self, index: int) -> bool:
         if not (0 <= index < len(self.picks)):
             return False
@@ -44,6 +47,9 @@ class RewardScreen:
         self.app.goto_map()
         return True
 
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs
     def _clamp_text(self, font, text: str, max_px: int) -> str:
         out = str(text or "")
@@ -63,6 +69,7 @@ class RewardScreen:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
 <<<<<<< ours
+<<<<<<< ours
             for i, card in enumerate(self.picks):
                 r = pygame.Rect(300 + i * 440, 314, 400, 448)
                 if r.collidepoint(pos):
@@ -71,10 +78,15 @@ class RewardScreen:
                     self.msg = self.app.loc.t("reward_claimed", gold=self.gold)
                     self.app.goto_map()
 =======
+=======
+>>>>>>> theirs
             for i, _card in enumerate(self.picks):
                 r = pygame.Rect(300 + i * 440, 314, 400, 448)
                 if r.collidepoint(pos):
                     self.claim(i)
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs
                     return
 
@@ -121,7 +133,10 @@ class RewardScreen:
             hline = self._clamp_text(self.app.small_font, hint, teach.w - 40)
             s.blit(self.app.small_font.render(hline, True, UI_THEME["text"]), (130, 862))
 <<<<<<< ours
+<<<<<<< ours
         print(f"[ui] reward_hint={hint}")
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
 

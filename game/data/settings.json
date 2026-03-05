@@ -3,7 +3,11 @@
   "music_volume": 0.5,
   "sfx_volume": 0.7,
 <<<<<<< ours
+<<<<<<< ours
   "fullscreen": true,
+=======
+  "fullscreen": false,
+>>>>>>> theirs
 =======
   "fullscreen": false,
 >>>>>>> theirs
@@ -19,7 +23,11 @@
   "fx_particles": true,
   "force_regen_art": false,
 <<<<<<< ours
+<<<<<<< ours
   "detail_panel": true
+=======
+  "detail_panel": false
+>>>>>>> theirs
 =======
   "detail_panel": false
 >>>>>>> theirs

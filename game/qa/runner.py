@@ -43,17 +43,23 @@ class QARunner:
                 self.app.on_combat_victory()
             if self.app.sm.current.__class__.__name__ == "RewardScreen":
 <<<<<<< ours
+<<<<<<< ours
                 if getattr(self.app.sm.current, "picks", None):
                     self.app.sm.current.picks and self.app.sm.current.picks[0:1]
                     if hasattr(self.app.sm.current, "picks") and self.app.sm.current.picks:
                         self.app.run_state["sideboard"].append(self.app.sm.current.picks[0].definition.id)
 =======
+=======
+>>>>>>> theirs
                 picks = getattr(self.app.sm.current, "picks", [])
                 if picks:
                     if hasattr(self.app.sm.current, "claim"):
                         self.app.sm.current.claim(0)
                     else:
                         self.app.run_state["sideboard"].append(picks[0].definition.id)
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs
                         self.app.goto_map()
             self.app.goto_map()
@@ -93,8 +99,13 @@ class QARunner:
 
         try:
 <<<<<<< ours
+<<<<<<< ours
             if hasattr(self.app.sm.current, "take") and getattr(self.app.sm.current, "reward_cards", []):
                 self.app.sm.current.take(0)
+=======
+            if hasattr(self.app.sm.current, "claim") and getattr(self.app.sm.current, "picks", []):
+                self.app.sm.current.claim(0)
+>>>>>>> theirs
 =======
             if hasattr(self.app.sm.current, "claim") and getattr(self.app.sm.current, "picks", []):
                 self.app.sm.current.claim(0)

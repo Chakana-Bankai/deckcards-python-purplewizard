@@ -25,7 +25,10 @@ game/data/card_prompt.txt
 game/data/card_prompts.txt
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
 =======
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
 
@@ -34,6 +37,9 @@ game/data/card_prompts.txt
 .regen_flag
 tools/__pycache__/
 <<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 =======
 >>>>>>> theirs
