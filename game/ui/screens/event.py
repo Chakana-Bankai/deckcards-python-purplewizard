@@ -37,11 +37,7 @@ class EventScreen:
             self.app.sfx.play("ui_click")
             for i, ch in enumerate(self.event.get("choices", [])[:3]):
                 if pygame.Rect(530, 720 + i * 92, 1260, 74).collidepoint(pos):
-                    effects = ch.get("effects", [])
-                    if str(self.event.get("id", "")) in {"chakana_crossroads", "condor_vision"}:
-                        self.app.goto_guide_reward(str(self.event.get("id", "guide")))
-                        return
-                    self.app.apply_event_effects(effects)
+                    self.app.apply_event_effects(ch.get("effects", []))
                     self.msg = self.app.loc.t(ch.get("text_key", "event_continue"))
                     self.app._complete_current_node()
                     self.app.goto_map()
