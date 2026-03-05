@@ -23,3 +23,11 @@ game/assets/**/*.ttf
 # Legacy prompt text artifacts
 game/data/card_prompt.txt
 game/data/card_prompts.txt
+<<<<<<< ours
+=======
+
+
+# Dev workflow flags/caches
+.regen_flag
+tools/__pycache__/
+>>>>>>> theirs
