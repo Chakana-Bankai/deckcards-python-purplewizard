@@ -1,5 +1,6 @@
 # AGENTS.md — Chakana Purple Wizard
 
+<<<<<<< ours
 ## [1] Propósito y tono
 - **Proyecto:** Chakana Purple Wizard.
 - **Identidad:** mago morado Chakana (usuario), cosmovisión andina, iniciación y moralejas tácticas.
@@ -91,6 +92,8 @@
 - Regeneración debe ser estable: misma entrada → misma salida.
 - **Mensaje de commit para este ticket:** `chore: add/update AGENTS guidance`.
 
+=======
+>>>>>>> theirs
 ## 1) Roles y responsabilidades
 - **ChatGPT:** diseño funcional, definición de tickets, criterios de aceptación y validación conceptual.
 - **Codex:** implementación técnica acotada al ticket, validaciones locales y preparación del commit.

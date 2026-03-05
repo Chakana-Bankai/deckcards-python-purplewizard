@@ -1,4 +1,7 @@
+<<<<<<< ours
 
+=======
+>>>>>>> theirs
 """QA smoke runner used by F8/F10 debug shortcuts."""
 
 from __future__ import annotations
@@ -17,8 +20,13 @@ class QARunner:
     def _fail(self, name: str, exc: Exception):
         return {"name": name, "status": "FAIL", "detail": f"{exc.__class__.__name__}: {exc}", "trace": traceback.format_exc()}
 
+<<<<<<< ours
     def _claim_first_reward_if_present(self) -> bool:
 
+=======
+
+    def _claim_first_reward_if_present(self) -> bool:
+>>>>>>> theirs
         screen = getattr(self.app.sm, "current", None)
         if screen is None or screen.__class__.__name__ != "RewardScreen":
             return False
@@ -32,6 +40,10 @@ class QARunner:
         self.app.goto_map()
         return True
 
+<<<<<<< ours
+=======
+
+>>>>>>> theirs
     def _force_combat_victory(self) -> bool:
         combat = getattr(self.app, "current_combat", None)
         if combat is None or getattr(combat, "result", None) is not None:
@@ -69,6 +81,7 @@ class QARunner:
             results.append(self._ok("qa_f8_play_cards", f"played={played}"))
             self._force_combat_victory()
             self._claim_first_reward_if_present()
+<<<<<<< ours
             if self.app.current_combat and self.app.current_combat.result is None:
                 self.app.current_combat.result = "victory"
                 self.app.on_combat_victory()
@@ -88,6 +101,8 @@ class QARunner:
 
             self._force_combat_victory()
             self._claim_first_reward_if_present()
+=======
+>>>>>>> theirs
             self.app.goto_map()
             results.append(self._ok("qa_f8_return_map"))
         except Exception as exc:
@@ -118,9 +133,12 @@ class QARunner:
 
         try:
             self._force_combat_victory()
+<<<<<<< ours
             self.app.current_combat.result = "victory"
             self._force_combat_victory()
             self._force_combat_victory()
+=======
+>>>>>>> theirs
             self.app.sm.current.update(0.016)
             results.append(self._ok("combat_to_reward"))
         except Exception as exc:
@@ -128,6 +146,7 @@ class QARunner:
 
         try:
             self._claim_first_reward_if_present()
+<<<<<<< ours
             if hasattr(self.app.sm.current, "take") and getattr(self.app.sm.current, "reward_cards", []):
                 self.app.sm.current.take(0)
 
@@ -137,6 +156,8 @@ class QARunner:
 
             self._claim_first_reward_if_present()
 
+=======
+>>>>>>> theirs
             results.append(self._ok("reward_to_map"))
         except Exception as exc:
             results.append(self._fail("reward_to_map", exc))
