@@ -18,6 +18,7 @@ class EventScreen:
         self.parabola = defaults[:3] if defaults else ["La Trama te observa."]
         self.moraleja = defaults[0] if defaults else "Moraleja: cada decisión pesa."
         self.msg = ""
+        self.guide_names = {"angel": "Oraculo Solar", "shaman": "Amauta de Ceniza", "demon": "Custodio del Vacio", "arcane_hacker": "Arquitecto del Umbral"}
         self._resolved_guide_reward = None
 
     def on_enter(self):
@@ -72,7 +73,9 @@ class EventScreen:
         text_box = pygame.Rect(520, 230, 1280, 420)
         pygame.draw.rect(s, UI_THEME["panel_2"], text_box, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], text_box, 2, border_radius=12)
-        s.blit(self.app.small_font.render("Parábola", True, UI_THEME["gold"]), (548, 250))
+        guide_name = self.guide_names.get(self.guide_type, "Guia")
+        s.blit(self.app.small_font.render(guide_name, True, UI_THEME["gold"]), (548, 246))
+        s.blit(self.app.tiny_font.render("Lore breve", True, UI_THEME["muted"]), (548, 274))
 
         lines = self.writer.current.split("\n")
         y = 292
@@ -80,7 +83,7 @@ class EventScreen:
             s.blit(self.app.font.render(ln, True, UI_THEME["text"]), (548, y))
             y += 38
 
-        s.blit(self.app.small_font.render("Moraleja:", True, UI_THEME["gold"]), (548, 510))
+        s.blit(self.app.small_font.render("Tres caminos", True, UI_THEME["gold"]), (548, 510))
         s.blit(self.app.font.render(self.moraleja, True, UI_THEME["muted"]), (690, 512))
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())

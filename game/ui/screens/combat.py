@@ -169,7 +169,7 @@ class CombatScreen:
     def _selected_card_play_state(self):
         idx = self.ctrl.selected_index
         if idx is None or idx >= len(self.c.hand):
-            return False, "OTHER", "Sin selecciÃ³n"
+            return False, "OTHER", "Sin seleccion"
         return can_play_card(self.c.hand[idx], self.c.player, self.c)
 
     def _playable_cards(self):
@@ -217,7 +217,7 @@ class CombatScreen:
                 if ok:
                     fsm, state, reason, label, disabled = "READY_TO_EXECUTE", "EXECUTE", reason_code, "EJECUTAR", False
                 else:
-                    fsm, state, reason, label, disabled = "CARD_INVALID", "INVALID", reason_code, "ACCIÃ“N INVÃLIDA", False
+                    fsm, state, reason, label, disabled = "CARD_INVALID", "INVALID", reason_code, "ACCION INVALIDA", False
                     self._status_line = reason_text
 
         if DEBUG_UI and (fsm != self._action_button_fsm or reason != self._action_state_reason):
@@ -505,12 +505,12 @@ class CombatScreen:
     def _topbar_narrative(self):
         run = self.app.run_state or {}
         deck_name = str(run.get("deck_name") or run.get("starter_name") or "Inicial")
-        left = f"Chakana â€¢ Mazo: {deck_name}"
+        left = f"Chakana | Mazo: {deck_name}"
 
         node = self.app.node_lookup.get(self.app.current_node_id) if getattr(self.app, "current_node_id", None) else None
         pacha = self.app.get_biome_display_name(self.selected_biome or run.get("biome"))
         if isinstance(node, dict):
-            node_name = "Ã‰lite" if node.get("type") == "challenge" else self.app.loc.t(f"node_{node.get('type', 'combat')}")
+            node_name = "Elite" if node.get("type") == "challenge" else self.app.loc.t(f"node_{node.get('type', 'combat')}")
         else:
             node_name = "Nodo desconocido"
         center = f"{pacha} â€” {node_name}"
@@ -616,7 +616,7 @@ class CombatScreen:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_e:
             self._execute_selected()
         if event.type == pygame.KEYDOWN and event.key == pygame.K_h:
-            self._push_log("ArmonÃ­a: se carga con rituales. Cuando estÃ¡ LISTA, potencia defensas o activa SELLO.")
+            self._push_log("Armonia: se carga con rituales. Cuando esta LISTA, potencia defensas o activa SELLO.")
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
@@ -881,7 +881,7 @@ class CombatScreen:
         for ev in self.c.pop_events():
             if ev.get("type") == "damage" and ev.get("target") == "player" and ev.get("amount", 0) >= 8:
                 self._trigger_dialog("enemy_big_attack")
-                self._push_log(f"DaÃ±o recibido: {ev.get('amount',0)}")
+                self._push_log(f"Dano recibido: {ev.get('amount',0)}")
             if ev.get("type") == "card_played":
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
                 card_id = str(ev.get("card_id", ""))
@@ -897,7 +897,7 @@ class CombatScreen:
                     if iid and new_c < old_c:
                         self._cost_pulse_until[iid] = pygame.time.get_ticks() + 950
             if ev.get("type") == "harmony_ready":
-                self._push_log(str(ev.get("message") or "ArmonÃ­a lista: desata tu sello."))
+                self._push_log(str(ev.get("message") or "Armonia lista: desata tu sello."))
                 try:
                     self.app.sfx.play("stinger_seal_ready")
                 except Exception:
@@ -996,7 +996,7 @@ class CombatScreen:
             pattern_len = max(1, len(getattr(e, "pattern", []) or []))
             deck_est = max(0, pattern_len - ((getattr(e, "intent_index", 0) + 1) % pattern_len))
             discard_est = min(pattern_len, getattr(e, "intent_index", 0))
-            counter_txt = f"Deck {deck_est}  Hand 1  Discard {discard_est}"
+            counter_txt = f"Mazo {deck_est}  Mano 1  Ecos {discard_est}"
             s.blit(self.app.tiny_font.render(counter_txt, True, UI_THEME["muted"]), (counters.x, counters.y))
 
             variant = self._enemy_presence_variant(e)
@@ -1033,19 +1033,16 @@ class CombatScreen:
         pygame.draw.rect(s, UI_THEME["accent_violet"], narrative_rect, 2, border_radius=12)
         e_line = self.dialog_enemy.current or "(el enemigo contiene la respiracion...)"
         h_line = self.dialog_hero.current or "(Chakana escucha la Trama...)"
-        event_hint = str(self.last_trigger or "eco")
         line_w = narrative_rect.w - 34
         enemy_lines = wrap_text(self.app.small_font, e_line, line_w, max_lines=1)
         hero_lines = wrap_text(self.app.small_font, h_line, line_w, max_lines=1)
-        action_lines = wrap_text(self.app.small_font, f"Evento narrativo: {event_hint}", line_w, max_lines=1)
-        row_h = (narrative_rect.h - 20) // 3
+        row_h = (narrative_rect.h - 20) // 2
         line_rows = [
             pygame.Rect(narrative_rect.x + 10, narrative_rect.y + 8, narrative_rect.w - 20, row_h),
-            pygame.Rect(narrative_rect.x + 10, narrative_rect.y + 8 + row_h, narrative_rect.w - 20, row_h),
-            pygame.Rect(narrative_rect.x + 10, narrative_rect.y + 8 + row_h * 2, narrative_rect.w - 20, row_h - 2),
+            pygame.Rect(narrative_rect.x + 10, narrative_rect.y + 8 + row_h, narrative_rect.w - 20, row_h - 2),
         ]
-        row_cols = [(58, 34, 52), (36, 52, 46), (36, 36, 50)]
-        row_lines = [enemy_lines, hero_lines, action_lines]
+        row_cols = [(58, 34, 52), (36, 52, 46)]
+        row_lines = [enemy_lines, hero_lines]
         threat = 3 if any(k in str(self.last_trigger) for k in ["attack", "defeat", "low"]) else 0
         offx = threat if (pygame.time.get_ticks() // 40) % 2 == 0 else -threat
         for ridx, row in enumerate(line_rows):
@@ -1178,23 +1175,23 @@ class CombatScreen:
         row3_y = row2_y + 42 + row_gap
 
         row1 = [
-            ("HP", f"{p['hp']}/{p['max_hp']}", UI_THEME["hp"]),
-            ("ENERGY", f"{energy_now}", UI_THEME["energy"]),
-            ("TURN", f"{self.c.turn}", UI_THEME["gold"]),
+            ("Vitalidad", f"{p['hp']}/{p['max_hp']}", UI_THEME["hp"]),
+            ("Energia", f"{energy_now}", UI_THEME["energy"]),
+            ("Turno", f"{self.c.turn}", UI_THEME["gold"]),
         ]
         for idx, (title, val, col) in enumerate(row1):
             chip = pygame.Rect(left_x + idx * (chip_w + 8), row1_y, chip_w, 48)
             _chip(chip, title, val, col)
-            if title == "ENERGY":
+            if title == "Energia":
                 orb_cap = max(3, min(8, energy_cap))
                 start_x = chip.centerx - ((orb_cap - 1) * 18) // 2
                 orb_y = chip.bottom - 9
                 self.mana_orbs.draw(s, start_x, orb_y, energy_now, max_mana=orb_cap, buffed=energy_buffed)
 
         row2 = [
-            ("DECK", f"{draw_n}", UI_THEME["muted"]),
-            ("HAND", f"{hand_n}", UI_THEME["muted"]),
-            ("DISCARD", f"{disc_n}", UI_THEME["muted"]),
+            ("Mazo", f"{draw_n}", UI_THEME["muted"]),
+            ("Mano", f"{hand_n}", UI_THEME["muted"]),
+            ("Ecos", f"{disc_n}", UI_THEME["muted"]),
         ]
         for idx, (title, val, col) in enumerate(row2):
             _chip(pygame.Rect(left_x + idx * (chip_w + 8), row2_y, chip_w, 42), title, val, col)
@@ -1206,13 +1203,13 @@ class CombatScreen:
 
         harmony_rect = pygame.Rect(left_x, row3_y, int(stat_w * 0.64), 44)
         thr_rect = pygame.Rect(harmony_rect.right + 8, row3_y, stat_w - harmony_rect.w - 8, 44)
-        _chip(harmony_rect, "HARMONY", f"{h_cur}/{h_max}", UI_THEME["good"] if ready else UI_THEME["text"])
-        _chip(thr_rect, "THRESH", f"{h_thr}", UI_THEME["violet"] if ready else UI_THEME["muted"])
+        _chip(harmony_rect, "Armonia", f"{h_cur}/{h_max}", UI_THEME["good"] if ready else UI_THEME["text"])
+        _chip(thr_rect, "Umbral", f"{h_thr}", UI_THEME["violet"] if ready else UI_THEME["muted"])
 
         bar = pygame.Rect(harmony_rect.x + 8, harmony_rect.bottom - 11, harmony_rect.w - 16, 8)
         pygame.draw.rect(s, (28, 26, 40), bar, border_radius=5)
         pygame.draw.rect(s, UI_THEME["good"], pygame.Rect(bar.x, bar.y, int(bar.w * (h_cur / max(1, h_max))), bar.h), border_radius=5)
-        s.blit(self.app.tiny_font.render(f"Fatigue {fatigue_n}", True, UI_THEME["muted"]), (thr_rect.x + 8, thr_rect.bottom - 15))
+        s.blit(self.app.tiny_font.render(f"Desgaste {fatigue_n}", True, UI_THEME["muted"]), (thr_rect.x + 8, thr_rect.bottom - 15))
 
         pygame.draw.rect(s, (16, 14, 22), portrait_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], portrait_rect, 2, border_radius=10)
@@ -1245,27 +1242,6 @@ class CombatScreen:
 
         if self.ctrl.pressed_on_button_id == "action" and not disabled:
             base_col = tuple(max(0, min(255, int(ch * 0.88))) for ch in base_col)
-
-        enemy_rupt = self._enemy_rupture_total()
-        info_items = [
-            (f"E {energy_now}", UI_THEME["energy"]),
-            (f"H {h_cur}/{h_thr}", UI_THEME["violet"] if ready else UI_THEME["muted"]),
-        ]
-        if enemy_rupt > 0:
-            info_items.append((f"R {enemy_rupt}", UI_THEME["bad"]))
-
-        chip_y = self.layout.actions_rect.y + 8
-        gap = 8
-        chip_h = 18
-        chip_ws = [max(66, self.app.tiny_font.size(txt)[0] + 14) for txt, _ in info_items]
-        total_w = sum(chip_ws) + gap * max(0, len(chip_ws) - 1)
-        chip_x = self.layout.actions_rect.centerx - total_w // 2
-        for (txtv, colv), cw in zip(info_items, chip_ws):
-            chip = pygame.Rect(chip_x, chip_y, cw, chip_h)
-            pygame.draw.rect(s, UI_THEME["panel_2"], chip, border_radius=7)
-            pygame.draw.rect(s, colv, chip, 1, border_radius=7)
-            s.blit(self.app.tiny_font.render(txtv, True, colv), (chip.x + 7, chip.y + 3))
-            chip_x += cw + gap
 
         pulse = 0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 180.0)
         glow_pad = 22
@@ -1367,7 +1343,7 @@ class CombatScreen:
             pygame.draw.rect(s, UI_THEME["gold"], panel, 2, border_radius=16)
             s.blit(self.app.big_font.render("PAUSA", True, UI_THEME["gold"]), (panel.centerx - 90, panel.y + 20))
 
-            options = [("continue", "Continuar", panel.y + 84), ("map", "Salir al mapa", panel.y + 170), ("menu", "Salir al menÃº principal", panel.y + 256)]
+            options = [("continue", "Continuar", panel.y + 84), ("map", "Salir al mapa", panel.y + 170), ("menu", "Salir al menu principal", panel.y + 256)]
             for key, lbl, y in options:
                 r = pygame.Rect(panel.x + 80, y, 400, 64)
                 active_confirm = self.pause_confirm_target == key and key in {"map", "menu"}

@@ -27,6 +27,7 @@ class RewardScreen:
         self.back_rect = pygame.Rect(0, 0, 320, 56)
         self.content_rect = pygame.Rect(52, 170, 1220, 770)
         self.pulse = 0.0
+        self.reveal_t = 0.0
 
     def _layout(self, surface: pygame.Surface):
         w, h = surface.get_size()
@@ -55,7 +56,7 @@ class RewardScreen:
         return frame
 
     def on_enter(self):
-        pass
+        self.reveal_t = 0.0
 
     def claim(self, index: int) -> bool:
         if self.mode != "choose1of3":
@@ -180,6 +181,7 @@ class RewardScreen:
 
     def update(self, dt):
         self.pulse += dt * 5.0
+        self.reveal_t = min(1.0, self.reveal_t + dt * 2.2)
 
     def _draw_header(self, s, frame):
         pygame.draw.rect(s, (24, 18, 36), frame, border_radius=16)
@@ -294,3 +296,8 @@ class RewardScreen:
 
         if self.msg:
             s.blit(self.app.small_font.render(self.msg, True, UI_THEME["good"]), (self.left_rect.x, self.confirm_rect.y - 30))
+
+        if self.reveal_t < 1.0:
+            ov = pygame.Surface(s.get_size(), pygame.SRCALPHA)
+            ov.fill((0, 0, 0, int(180 * (1.0 - self.reveal_t))))
+            s.blit(ov, (0, 0))

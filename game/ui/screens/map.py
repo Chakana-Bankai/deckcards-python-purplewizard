@@ -11,7 +11,7 @@ class MapScreen:
         "combat": "Sombra",
         "challenge": "Guía",
         "treasure": "Reliquia",
-        "shop": "Tienda",
+        "shop": "Umbral",
         "boss": "El Monolito Fracturado",
     }
     NODE_DIFF = {"event": "Eco", "combat": "Peligro II", "challenge": "Prueba", "treasure": "Botín", "shop": "Calma", "boss": "Peligro V"}
@@ -21,7 +21,7 @@ class MapScreen:
         "combat": "Sombras antiguas custodian este sendero.",
         "challenge": "Una guía pone a prueba tu equilibrio.",
         "treasure": "Una reliquia olvidada late bajo la piedra.",
-        "shop": "Mercaderes errantes ofrecen poder por oro.",
+        "shop": "El Comerciante del Umbral ofrece poder por oro.",
         "boss": "El Monolito Fracturado aguarda tras los sellos.",
     }
 
@@ -196,7 +196,7 @@ class MapScreen:
         hint_box = pygame.Rect(left_rect.x + 14, left_rect.bottom - 86, left_rect.w - 28, 70)
         pygame.draw.rect(s, UI_THEME["panel_2"], hint_box, border_radius=10)
         pygame.draw.rect(s, UI_THEME["accent_violet"], hint_box, 1, border_radius=10)
-        hint_title = self.app.tiny_font.render("Hint de Trama", True, UI_THEME["gold"])
+        hint_title = self.app.tiny_font.render("Senal de Trama", True, UI_THEME["gold"])
         hint_text = self._fit_text(self.app.tiny_font, self.MAP_HINTS[self.lore_idx % max(1, len(self.MAP_HINTS))], hint_box.w - 16)
         s.blit(hint_title, (hint_box.x + 8, hint_box.y + 8))
         s.blit(self.app.tiny_font.render(hint_text, True, UI_THEME["muted"]), (hint_box.x + 8, hint_box.y + 32))
@@ -204,7 +204,7 @@ class MapScreen:
         center_badge = pygame.Rect(center_rect.x + 14, center_rect.y + 12, 164, 24)
         pygame.draw.rect(s, UI_THEME["panel_2"], center_badge, border_radius=7)
         pygame.draw.rect(s, UI_THEME["gold"], center_badge, 1, border_radius=7)
-        s.blit(self.app.tiny_font.render(f"Capitulo {stage_idx + 1}", True, UI_THEME["gold"]), (center_badge.x + 8, center_badge.y + 5))
+        s.blit(self.app.tiny_font.render(f"Etapa {stage_idx + 1}", True, UI_THEME["gold"]), (center_badge.x + 8, center_badge.y + 5))
 
         # Stage progression rail for fast readability of current route.
         rail = pygame.Rect(center_badge.right + 18, center_badge.y + 2, center_rect.w - (center_badge.right - center_rect.x) - 34, 18)
@@ -305,13 +305,11 @@ class MapScreen:
         stats = [
             ("Oro", f"{gold}", UI_THEME["gold"]),
             ("XP", f"{xp}/{xp_need}", UI_THEME["text"]),
-            ("Armonia meta", f"{harmony}/{harmony_goal}", UI_THEME["violet"]),
+            ("Armonia", f"{harmony}/{harmony_goal}", UI_THEME["violet"]),
             ("Mazo", f"{deck_size}", UI_THEME["text"]),
-            ("Ruta activa", f"{available_nodes}", UI_THEME["good"]),
-            ("Nodos superados", f"{completed_nodes}", UI_THEME["good"]),
         ]
 
-        s.blit(self.app.small_font.render("Estado Chakana", True, UI_THEME["gold"]), (right_rect.x + 14, right_rect.y + 14))
+        s.blit(self.app.small_font.render("Estado de Chakana", True, UI_THEME["gold"]), (right_rect.x + 14, right_rect.y + 14))
         y = right_rect.y + 52
         for label, val, col in stats:
             row = pygame.Rect(right_rect.x + 12, y, right_rect.w - 24, 34)

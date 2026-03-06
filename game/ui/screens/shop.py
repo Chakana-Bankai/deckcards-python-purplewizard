@@ -49,7 +49,7 @@ class ShopScreen:
 
     def _buy_card(self, card, price, tag):
         if self.app.run_state["gold"] < price:
-            self.msg = "No alcanza oro"
+            self.msg = "No tienes oro suficiente"
             return
         self.app.run_state["gold"] -= price
         self.app.run_state["sideboard"].append(card["id"])
@@ -57,7 +57,7 @@ class ShopScreen:
 
     def _buy_artifact(self):
         if self.app.run_state["gold"] < self.artifact_price:
-            self.msg = "No alcanza oro"
+            self.msg = "No tienes oro suficiente"
             return
         rid = self.artifact.get("id")
         if rid in self.app.run_state.get("relics", []):
@@ -122,7 +122,7 @@ class ShopScreen:
 
         pygame.draw.rect(s, UI_THEME["panel"], self.merchant_rect, border_radius=14)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.merchant_rect, 2, border_radius=14)
-        s.blit(self.app.big_font.render(self.app.loc.t("shop_title"), True, UI_THEME["text"]), (self.merchant_rect.x + 18, self.merchant_rect.y + 14))
+        s.blit(self.app.big_font.render("Comerciante del Umbral", True, UI_THEME["text"]), (self.merchant_rect.x + 18, self.merchant_rect.y + 14))
         s.blit(self.app.font.render(f"{self.app.loc.t('gold')}: {self.app.run_state['gold']}", True, UI_THEME["gold"]), (self.merchant_rect.right - 260, self.merchant_rect.y + 26))
 
         face_box = pygame.Rect(self.merchant_rect.x + 18, self.merchant_rect.y + 56, 140, 110)
@@ -130,15 +130,15 @@ class ShopScreen:
         pygame.draw.rect(s, UI_THEME["gold"], face_box, 1, border_radius=10)
         face = self.app.assets.sprite("guides", "arcane_hacker", (100, 100), fallback=(70, 52, 102))
         s.blit(face, face.get_rect(center=face_box.center).topleft)
-        s.blit(self.app.tiny_font.render("Mercader", True, UI_THEME["muted"]), (face_box.right + 16, face_box.y + 12))
-        s.blit(self.app.tiny_font.render("Tienda en calma meditativa", True, UI_THEME["muted"]), (face_box.right + 16, face_box.y + 38))
+        s.blit(self.app.tiny_font.render("Comerciante del Umbral", True, UI_THEME["muted"]), (face_box.right + 16, face_box.y + 12))
+        s.blit(self.app.tiny_font.render("Intercambio ritual en calma", True, UI_THEME["muted"]), (face_box.right + 16, face_box.y + 38))
 
-        self._draw_offer_card(s, self.cheap_rect, self.offer_card, "Tier: cheap", self.cheap_price, (126, 176, 136))
-        self._draw_offer_card(s, self.rare_rect, self.rare_card, "Tier: rare", self.rare_price, (166, 136, 216))
+        self._draw_offer_card(s, self.cheap_rect, self.offer_card, "Rito menor", self.cheap_price, (126, 176, 136))
+        self._draw_offer_card(s, self.rare_rect, self.rare_card, "Rito elevado", self.rare_price, (166, 136, 216))
 
         pygame.draw.rect(s, UI_THEME["panel"], self.artifact_rect, border_radius=14)
         pygame.draw.rect(s, (220, 178, 92), self.artifact_rect, 2, border_radius=14)
-        s.blit(self.app.small_font.render("Tier: artifact", True, UI_THEME["gold"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 12))
+        s.blit(self.app.small_font.render("Reliquia del Umbral", True, UI_THEME["gold"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 12))
         s.blit(self.app.small_font.render(f"{self.artifact_price} oro", True, UI_THEME["text"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 44))
         rid = self.artifact.get("id", "artifact")
         s.blit(self.app.tiny_font.render(self.app.loc.t(self.artifact.get("name_key", rid)), True, UI_THEME["muted"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 70))
