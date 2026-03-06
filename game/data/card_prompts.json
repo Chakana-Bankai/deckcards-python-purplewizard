@@ -1,94 +1,156 @@
 {
   "cards": {
     "campo_protector": {
-      "prompt": "chakana card::campo_protector::andean tactical glyph"
+      "prompt": "chakana card::campo_protector::defense layered sacred geometry with glyph focus",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "chakana_de_luz": {
-      "prompt": "chakana card::chakana_de_luz::andean tactical glyph"
+      "prompt": "chakana card::chakana_de_luz::attack layered sacred geometry with glyph focus",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "eco_de_sabiduria": {
-      "prompt": "chakana card::eco_de_sabiduria::andean tactical glyph"
+      "prompt": "chakana card::eco_de_sabiduria::spirit layered sacred geometry with glyph focus",
+      "style": "spirit",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "embate_del_jaguar": {
-      "prompt": "chakana card::embate_del_jaguar::andean tactical glyph"
+      "prompt": "chakana card::embate_del_jaguar::attack layered sacred geometry with glyph focus",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "escudo_de_luz": {
-      "prompt": "chakana card::escudo_de_luz::andean tactical glyph"
+      "prompt": "chakana card::escudo_de_luz::defense layered sacred geometry with glyph focus",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "escudo_del_chaman": {
-      "prompt": "chakana card::escudo_del_chaman::andean tactical glyph"
+      "prompt": "chakana card::escudo_del_chaman::defense layered sacred geometry with glyph focus",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "espiritu_guardian": {
-      "prompt": "chakana card::espiritu_guardian::andean tactical glyph"
+      "prompt": "chakana card::espiritu_guardian::defense layered sacred geometry with glyph focus",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "estallido_arcano": {
-      "prompt": "chakana card::estallido_arcano::andean tactical glyph"
+      "prompt": "chakana card::estallido_arcano::attack layered sacred geometry with glyph focus",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "filo_astral": {
-      "prompt": "chakana card::filo_astral::andean tactical glyph"
+      "prompt": "chakana card::filo_astral::attack layered sacred geometry with glyph focus",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "filo_en_cadena": {
-      "prompt": "chakana card::filo_en_cadena::andean tactical glyph"
+      "prompt": "chakana card::filo_en_cadena::attack layered sacred geometry with glyph focus",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "firmeza_del_cuerpo": {
-      "prompt": "chakana card::firmeza_del_cuerpo::andean tactical glyph"
+      "prompt": "chakana card::firmeza_del_cuerpo::defense layered sacred geometry with glyph focus",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "fragmento_celeste": {
-      "prompt": "chakana card::fragmento_celeste::andean tactical glyph"
+      "prompt": "chakana card::fragmento_celeste::attack layered sacred geometry with glyph focus",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "fusion_espiritual": {
-      "prompt": "chakana card::fusion_espiritual::andean tactical glyph"
+      "prompt": "chakana card::fusion_espiritual::defense layered sacred geometry with glyph focus",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "garra_espiritual": {
-      "prompt": "chakana card::garra_espiritual::andean tactical glyph"
+      "prompt": "chakana card::garra_espiritual::attack layered sacred geometry with glyph focus",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "guardia_terrenal": {
-      "prompt": "chakana card::guardia_terrenal::andean tactical glyph"
+      "prompt": "chakana card::guardia_terrenal::defense layered sacred geometry with glyph focus",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "invocacion_astral": {
-      "prompt": "chakana card::invocacion_astral::andean tactical glyph"
+      "prompt": "chakana card::invocacion_astral::defense layered sacred geometry with glyph focus",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "lectura_del_destino": {
-      "prompt": "chakana card::lectura_del_destino::andean tactical glyph"
+      "prompt": "chakana card::lectura_del_destino::control layered sacred geometry with glyph focus",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "mantra_del_umbral": {
-      "prompt": "chakana card::mantra_del_umbral::andean tactical glyph"
+      "prompt": "chakana card::mantra_del_umbral::spirit layered sacred geometry with glyph focus",
+      "style": "spirit",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "muralla_de_piedra": {
-      "prompt": "chakana card::muralla_de_piedra::andean tactical glyph"
+      "prompt": "chakana card::muralla_de_piedra::defense layered sacred geometry with glyph focus",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "observacion_sagrada": {
-      "prompt": "chakana card::observacion_sagrada::andean tactical glyph"
+      "prompt": "chakana card::observacion_sagrada::control layered sacred geometry with glyph focus",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "piedra_ritual": {
-      "prompt": "chakana card::piedra_ritual::andean tactical glyph"
+      "prompt": "chakana card::piedra_ritual::defense layered sacred geometry with glyph focus",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "portal_de_la_chakana": {
-      "prompt": "chakana card::portal_de_la_chakana::andean tactical glyph"
+      "prompt": "chakana card::portal_de_la_chakana::control layered sacred geometry with glyph focus",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "pulso_cosmico": {
-      "prompt": "chakana card::pulso_cosmico::andean tactical glyph"
+      "prompt": "chakana card::pulso_cosmico::attack layered sacred geometry with glyph focus",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "resistencia_ancestral": {
-      "prompt": "chakana card::resistencia_ancestral::andean tactical glyph"
+      "prompt": "chakana card::resistencia_ancestral::defense layered sacred geometry with glyph focus",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "revelacion_astral": {
-      "prompt": "chakana card::revelacion_astral::andean tactical glyph"
+      "prompt": "chakana card::revelacion_astral::control layered sacred geometry with glyph focus",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "ritual_de_la_trama": {
-      "prompt": "chakana card::ritual_de_la_trama::andean tactical glyph"
+      "prompt": "chakana card::ritual_de_la_trama::attack layered sacred geometry with glyph focus",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "sello_protector": {
-      "prompt": "chakana card::sello_protector::andean tactical glyph"
+      "prompt": "chakana card::sello_protector::defense layered sacred geometry with glyph focus",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "silencio_interior": {
-      "prompt": "chakana card::silencio_interior::andean tactical glyph"
+      "prompt": "chakana card::silencio_interior::control layered sacred geometry with glyph focus",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "vinculo_de_energia": {
-      "prompt": "chakana card::vinculo_de_energia::andean tactical glyph"
+      "prompt": "chakana card::vinculo_de_energia::spirit layered sacred geometry with glyph focus",
+      "style": "spirit",
+      "updated_at": "1970-01-01T00:00:00Z"
     },
     "vision_del_condor": {
-      "prompt": "chakana card::vision_del_condor::andean tactical glyph"
+      "prompt": "chakana card::vision_del_condor::control layered sacred geometry with glyph focus",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
     }
-  }
+  },
+  "seed": 12345,
+  "version": 1
 }
