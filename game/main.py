@@ -83,6 +83,7 @@ class App:
         self.running = True
         self.rng = SeededRNG(1337)
         self.user_settings = load_settings()
+        self.user_settings.setdefault("dev_skip_intro", False)
         self.loc = LocalizationManager(self.user_settings.get("language", "es"))
         self.renderer = Renderer()
         if self.user_settings.get("fullscreen", False):
@@ -201,7 +202,8 @@ class App:
 
     def _set_boot_screen(self):
         loading_to_menu = lambda: self.sm.set(DataLoadingScreen(self, next_fn=self.goto_menu))
-        if self.user_settings.get("dev_skip_studio_intro", False):
+        skip_intro = self.user_settings.get("dev_skip_intro", False) is True
+        if skip_intro:
             loading_to_menu()
             return
         self.sm.set(StudioIntroScreen(self, next_fn=loading_to_menu, fade_in=1.2, hold=1.5, fade_out=1.2))
@@ -942,6 +944,7 @@ class App:
         self.user_settings["turn_timer_enabled"] = self.user_settings.get("turn_timer_enabled", True)
         self.user_settings["turn_timer_seconds"] = int(self.user_settings.get("turn_timer_seconds", 20))
         self.user_settings["dev_reset_autogen_on_boot"] = bool(self.user_settings.get("dev_reset_autogen_on_boot", False))
+        self.user_settings["dev_skip_intro"] = bool(self.user_settings.get("dev_skip_intro", False))
         self.user_settings["fx_vignette"] = bool(self.user_settings.get("fx_vignette", True))
         self.user_settings["fx_scanlines"] = bool(self.user_settings.get("fx_scanlines", False))
         self.user_settings["fx_glow"] = bool(self.user_settings.get("fx_glow", True))

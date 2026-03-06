@@ -21,6 +21,7 @@ DEFAULT_SETTINGS = {
     "music_mute": False,
     "autogen_art_mode": "missing_only",
     "dev_reset_autogen_on_boot": False,
+    "dev_skip_intro": False,
     "dev_skip_studio_intro": False,
     "fx_vignette": True,
     "fx_scanlines": False,
@@ -43,6 +44,8 @@ def _normalize(raw: dict) -> dict:
     if "music_mute" in source and "music_muted" not in source:
         data["music_muted"] = bool(source.get("music_mute"))
     data["music_mute"] = bool(data.get("music_muted", False))
+    # explicit-only intro skip flag
+    data["dev_skip_intro"] = bool(source.get("dev_skip_intro", False) is True)
     return data
 
 

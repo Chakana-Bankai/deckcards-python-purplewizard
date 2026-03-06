@@ -77,8 +77,8 @@ class DataLoadingScreen:
         self.t = 0.0
 
     def handle_event(self, event):
-        if event.type == pygame.KEYDOWN or (event.type == pygame.MOUSEBUTTONDOWN and event.button == 1):
-            self.t = self.duration + 0.01
+        # Keep boot sequence deterministic: intro -> loading -> menu.
+        return
 
     def update(self, dt):
         self.t += dt

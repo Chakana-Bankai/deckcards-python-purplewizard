@@ -18,7 +18,7 @@ class StudioIntroScreen:
         self.duration = self.fade_in + self.hold + self.fade_out
         self.t = 0.0
         self.particles = []
-        base_size = max(54, int(self.app.big_font.get_height() * 1.6))
+        base_size = max(72, int(self.app.big_font.get_height() * 2.0))
         self.title_font = pygame.font.SysFont("arial", base_size, bold=True)
 
     def on_enter(self):
@@ -27,11 +27,11 @@ class StudioIntroScreen:
             {
                 "x": random.uniform(0, 1920),
                 "y": random.uniform(0, 1080),
-                "vx": random.uniform(-3.5, 3.5),
-                "vy": random.uniform(6.0, 14.0),
+                "vx": random.uniform(-2.6, 2.6),
+                "vy": random.uniform(4.8, 10.2),
                 "r": random.randint(1, 2),
             }
-            for _ in range(42)
+            for _ in range(34)
         ]
         try:
             if hasattr(self.app, "sfx"):
@@ -40,8 +40,8 @@ class StudioIntroScreen:
             pass
 
     def handle_event(self, event):
-        if event.type == pygame.KEYDOWN or (event.type == pygame.MOUSEBUTTONDOWN and event.button == 1):
-            self.t = self.duration + 0.01
+        # Intro skip is controlled only by boot flag (dev_skip_intro).
+        return
 
     def update(self, dt):
         self.t += dt
@@ -60,7 +60,7 @@ class StudioIntroScreen:
         w, h = surface.get_size()
         for y in range(h):
             p = y / max(1, h - 1)
-            c = (int(6 + 10 * p), int(8 + 10 * p), int(20 + 26 * p))
+            c = (int(2 + 5 * p), int(3 + 6 * p), int(10 + 12 * p))
             pygame.draw.line(surface, c, (0, y), (w, y))
 
         t = pygame.time.get_ticks() / 1000.0
@@ -80,7 +80,7 @@ class StudioIntroScreen:
                 p["x"] = w + 8
             if p["x"] > w + 8:
                 p["x"] = -8
-            pygame.draw.circle(surface, (170, 170, 214), (int(p["x"]), int(p["y"])), int(p["r"]))
+            pygame.draw.circle(surface, (142, 142, 192), (int(p["x"]), int(p["y"])), int(p["r"]))
 
         alpha = max(0, min(255, self._title_alpha()))
         label = self.title_font.render("CHAKANA STUDIO", True, (245, 245, 252))
