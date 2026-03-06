@@ -134,4 +134,4 @@ class CardDetailPanel:
 
         if last_played:
             foot = self._wrap_clamp(self.app.tiny_font, f"Última jugada: {last_played}", max_w, 1)[0]
-            surface.blit(self.app.tiny_font.render(foot, True, UI_THEME["good"]), (tx, rect.bottom - 22))
+            surface.blit(self.app.tiny_font.render(foot, True, UI_THEME["muted"]), (tx, rect.bottom - 22))

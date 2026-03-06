@@ -11,7 +11,6 @@ from game.core.paths import data_dir
 from game.core.safe_io import load_json
 from game.combat.play_validation import can_play_card, can_play, reason_to_es, REASON_OK
 from game.ui.anim import TypewriterBanner
-from game.ui.components.card_detail_panel import CardDetailPanel
 from game.ui.components.card_effect_summary import summarize_card_effect
 from game.ui.components.mana_orbs import ManaOrbsWidget
 from game.ui.components.modal_card_picker import ModalCardPicker
@@ -54,7 +53,6 @@ class CombatScreen:
         self.is_boss = is_boss
         self.ctrl = CardInteractionController()
         self.mana_orbs = ManaOrbsWidget()
-        self.detail_panel = CardDetailPanel(app)
         self.dialog_enemy = TypewriterBanner()
         self.dialog_hero = TypewriterBanner()
         self.dialog_cd = 0.0
@@ -638,55 +636,46 @@ class CombatScreen:
 
         for i, e in enumerate(self.c.enemies):
             er = pygame.Rect(inner_strip.x + i * (card_w + 16), inner_strip.y, card_w, inner_strip.h)
-            intent_col = self._intent_led_color(e)
-            slot_pad = 8
-            led_w = max(16, er.w // 18)
-            left_led = pygame.Rect(er.x + slot_pad, er.y + slot_pad, led_w, er.h - slot_pad * 2)
-            right_led = pygame.Rect(er.right - slot_pad - led_w, er.y + slot_pad, led_w, er.h - slot_pad * 2)
+            content = er.inflate(-8, -8)
+            pygame.draw.rect(s, UI_THEME["deep_purple"], content, border_radius=12)
+            pygame.draw.rect(s, UI_THEME["accent_violet"], content, 2, border_radius=12)
 
-            # enemy rgb leds (behind panel)
-            for led in (left_led, right_led):
-                pygame.draw.rect(s, (18, 18, 22), led, border_radius=6)
-                alpha = 42 + int(34 * (0.5 + 0.5 * math.sin(t * 2.4 + i)))
-                glow = pygame.Surface((led.w, led.h), pygame.SRCALPHA)
-                glow.fill((*biome_col, alpha))
-                s.blit(glow, led.topleft)
-                for sy in range(led.y + 2, led.bottom, 6):
-                    pygame.draw.line(s, (*intent_col, 90), (led.x + 2, sy), (led.right - 2, sy), 1)
-
-            # enemy panel frame in the center lane so leds remain visible
-            content = er.inflate(-slot_pad * 2, -slot_pad * 2)
-            content.left = left_led.right + 10
-            content.width = max(100, right_led.left - 10 - content.left)
-            pygame.draw.rect(s, UI_THEME["deep_purple"], content, border_radius=10)
-            pygame.draw.rect(s, UI_THEME["accent_violet"], content, 2, border_radius=10)
-
-            portrait_w = min(120, int(content.w * 0.44))
-            portrait_h = min(146, int(content.h * 0.82))
-            portrait_rect = pygame.Rect(0, 0, portrait_w, portrait_h)
-            portrait_rect.midleft = (content.x + 2, content.y + content.h // 2)
-
-            text_x = portrait_rect.right + 10
-            text_w = max(70, content.right - text_x - 6)
-            intent_txt = str(e.current_intent().get("label", "Preparando"))
             ratio = max(0, e.hp) / max(1, e.max_hp)
-            hp_bar = pygame.Rect(text_x, content.y + 72, text_w, 14)
+            title = pygame.Rect(content.x + 12, content.y + 10, content.w - 24, 24)
+            hp_bar = pygame.Rect(content.x + 12, title.bottom + 6, content.w - 24, 16)
+            counters = pygame.Rect(content.x + 12, hp_bar.bottom + 6, content.w - 24, 18)
+            avatar_h = max(80, content.h - 116)
+            avatar_rect = pygame.Rect(content.x + 18, counters.bottom + 6, content.w - 36, avatar_h)
+            aura_rect = pygame.Rect(content.x + 12, avatar_rect.bottom + 6, content.w - 24, 28)
 
-            # hp bar before sprite
-            pygame.draw.rect(s, (35, 24, 50), hp_bar, border_radius=6)
-            pygame.draw.rect(s, UI_THEME["hp"], pygame.Rect(hp_bar.x, hp_bar.y, int(hp_bar.w * ratio), hp_bar.h), border_radius=6)
+            s.blit(self.app.small_font.render(str(e.name_key), True, UI_THEME["text"]), (title.x, title.y))
+            pygame.draw.rect(s, (35, 24, 50), hp_bar, border_radius=7)
+            pygame.draw.rect(s, UI_THEME["hp"], pygame.Rect(hp_bar.x, hp_bar.y, int(hp_bar.w * ratio), hp_bar.h), border_radius=7)
+            s.blit(self.app.tiny_font.render(f"HP {e.hp}/{e.max_hp}", True, UI_THEME["text"]), (hp_bar.x + 8, hp_bar.y + 1))
 
-            # sprite
-            sprite = self.app.assets.sprite("enemies", e.id, (portrait_rect.w, portrait_rect.h), fallback=(100, 60, 90))
-            s.blit(sprite, portrait_rect.topleft)
+            pattern_len = max(1, len(getattr(e, "pattern", []) or []))
+            deck_est = max(0, pattern_len - ((getattr(e, "intent_index", 0) + 1) % pattern_len))
+            discard_est = min(pattern_len, getattr(e, "intent_index", 0))
+            counter_txt = f"Deck {deck_est}   Hand 1   Discard {discard_est}"
+            s.blit(self.app.tiny_font.render(counter_txt, True, UI_THEME["muted"]), (counters.x, counters.y))
 
-            # text on top
-            guard = int(getattr(e, "block", 0))
-            rupt = int(getattr(e, "statuses", {}).get("rupture", 0))
-            s.blit(self.app.small_font.render(str(e.name_key), True, UI_THEME["text"]), (text_x, content.y + 10))
-            s.blit(self.app.small_font.render(f"Intención: {intent_txt}", True, UI_THEME["gold"]), (text_x, content.y + 36))
-            s.blit(self.app.tiny_font.render(f"HP {e.hp}/{e.max_hp}", True, UI_THEME["text"]), (text_x, hp_bar.bottom + 6))
-            s.blit(self.app.tiny_font.render(f"Guardia {guard}  Ruptura {rupt}", True, UI_THEME["muted"]), (text_x, hp_bar.bottom + 24))
+            sprite = self.app.assets.sprite("enemies", e.id, (avatar_rect.w, avatar_rect.h), fallback=(100, 60, 90))
+            sprite_box = sprite.get_rect(center=avatar_rect.center)
+            s.blit(sprite, sprite_box.topleft)
+
+            intent_col = self._intent_led_color(e)
+            aura_bars = 3
+            gap = 4
+            bar_h = max(4, (aura_rect.h - gap * (aura_bars - 1)) // aura_bars)
+            for b in range(aura_bars):
+                by = aura_rect.y + b * (bar_h + gap)
+                w_ratio = 0.58 + 0.42 * (0.5 + 0.5 * math.sin(t * (2.0 + b * 0.6) + i))
+                bw = int(aura_rect.w * w_ratio)
+                bx = aura_rect.x + (aura_rect.w - bw) // 2
+                alpha = 120 + 20 * b
+                aura = pygame.Surface((bw, bar_h), pygame.SRCALPHA)
+                aura.fill((*intent_col, alpha))
+                s.blit(aura, (bx, by))
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.voices_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.voices_rect, 2, border_radius=12)
@@ -715,16 +704,42 @@ class CombatScreen:
 
         hand = self.c.hand[:6]
         detail_rect = self.layout.card_detail
-        current_idx = self.hover_card_index if self.hover_card_index is not None else self.ctrl.selected_index
-        current_card = hand[current_idx] if current_idx is not None and current_idx < len(hand) else None
-        last_played = self.actions_log[-1] if self.actions_log else None
-        self.detail_panel.render(
-            s,
-            detail_rect,
-            current_card,
-            placeholder_text="Selecciona una carta para ver sus detalles.",
-            last_played=last_played,
-        )
+        pygame.draw.rect(s, UI_THEME["panel"], detail_rect, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], detail_rect, 2, border_radius=12)
+        s.blit(self.app.small_font.render("Panel táctico", True, UI_THEME["gold"]), (detail_rect.x + 12, detail_rect.y + 8))
+
+        panel_x = detail_rect.x + 14
+        panel_y = detail_rect.y + 40
+        panel_w = detail_rect.w - 22
+        enemy = self.c.enemies[0] if self.c.enemies else None
+        intent_txt = str(enemy.current_intent().get("label", "-")) if enemy else "-"
+        for line in self._wrap_panel_text(f"Intención enemiga: {intent_txt}", panel_w, max_lines=2):
+            s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (panel_x, panel_y))
+            panel_y += 16
+
+        statuses = []
+        if enemy:
+            if int(getattr(enemy, "block", 0)) > 0:
+                statuses.append(f"Guardia {int(getattr(enemy, 'block', 0))}")
+            for key, val in sorted((getattr(enemy, "statuses", {}) or {}).items()):
+                if int(val) > 0:
+                    statuses.append(f"{str(key).title()} {int(val)}")
+        status_txt = ", ".join(statuses) if statuses else "Sin efectos activos"
+        for line in self._wrap_panel_text(f"Estados: {status_txt}", panel_w, max_lines=2):
+            s.blit(self.app.tiny_font.render(line, True, UI_THEME["muted"]), (panel_x, panel_y))
+            panel_y += 16
+
+        panel_y += 4
+        s.blit(self.app.tiny_font.render("Notas de combate", True, UI_THEME["gold"]), (panel_x, panel_y))
+        panel_y += 16
+        for note in self.actions_log[-4:][::-1]:
+            for line in self._wrap_panel_text(f"• {note}", panel_w, max_lines=2):
+                if panel_y > detail_rect.bottom - 20:
+                    break
+                s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (panel_x, panel_y))
+                panel_y += 15
+            if panel_y > detail_rect.bottom - 20:
+                break
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.hand_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.hand_rect, 2, border_radius=12)
@@ -826,7 +841,7 @@ class CombatScreen:
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.actions_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.actions_rect, 2, border_radius=12)
-        s.blit(self.app.small_font.render("Acciones", True, UI_THEME["gold"]), (self.layout.actions_rect.x + 12, self.layout.actions_rect.y + 8))
+        s.blit(self.app.small_font.render("Action Feed", True, UI_THEME["gold"]), (self.layout.actions_rect.x + 12, self.layout.actions_rect.y + 8))
         _state, label, disabled, _reason = self._resolve_action_state()
         bcol = (88, 84, 102) if disabled else (116, 86, 184) if self.ctrl.pressed_on_button_id == "action" else UI_THEME["violet"]
         pygame.draw.rect(s, bcol, self.end_turn_rect, border_radius=12)
@@ -846,14 +861,14 @@ class CombatScreen:
         tail = self.actions_log[-6:]
         last = tail[-1] if tail else "-"
         y = log_y
-        for line in self._wrap_panel_text(f"Última jugada: {last}", max_w, max_lines=1):
+        for line in self._wrap_panel_text(f"Última acción: {last}", max_w, max_lines=1):
             if y + 16 > max_bottom:
                 break
             s.blit(self.app.tiny_font.render(line, True, UI_THEME["muted"]), (log_x, y))
             y += 16
 
         enemy_int = self.c.enemies[0].current_intent().get("label", "-") if self.c.enemies else "-"
-        for line in self._wrap_panel_text(f"Turno actual: {self.c.turn}  Intención enemiga: {enemy_int}", max_w, max_lines=2):
+        for line in self._wrap_panel_text(f"Turno {self.c.turn} · Intención enemiga: {enemy_int}", max_w, max_lines=2):
             if y + 16 > max_bottom:
                 break
             s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (log_x, y))
