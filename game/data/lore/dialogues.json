@@ -1,0 +1,30 @@
+{
+  "ending_lines": [
+    "El Tejedor Inverso cayó, pero la Trama exige cuidado constante.",
+    "Hanan, Kay y Ukhu vuelven a respirar en equilibrio.",
+    "Chakana alza el sello violeta: un nuevo ciclo comienza."
+  ],
+  "enemy": {
+    "voidling": {
+      "intro": ["Tu hilo será polvo."],
+      "big_hit": ["Eso apenas me roza."],
+      "block_break": ["Mi guardia se quiebra..."],
+      "rare": ["¿Magia antigua?"],
+      "low_hp": ["No... todavía no."]
+    },
+    "inverse_weaver": {
+      "intro": ["Yo cierro toda puerta."],
+      "big_hit": ["Sientes el peso del vacío."],
+      "block_break": ["¡Imposible!"],
+      "rare": ["Ese sello violeta..."],
+      "low_hp": ["La Trama me abandona..."]
+    }
+  },
+  "chakana": {
+    "intro": ["No rompo la Trama: la restauro."],
+    "big_hit": ["Respiro. Sigo."],
+    "block_break": ["Tu coraza cayó."],
+    "rare": ["Que hable la llama violeta."],
+    "low_hp": ["Este es el cierre."]
+  }
+}
