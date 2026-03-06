@@ -102,8 +102,10 @@ class CombatScreen:
 
     def _refresh_layout(self, surface: pygame.Surface):
         self.layout = build_combat_layout(surface.get_width(), surface.get_height())
-        btn_w = max(220, int(self.layout.actions_rect.w * 0.18))
-        btn_h = max(52, int(self.layout.actions_rect.h * 0.48))
+        base_w = max(220, int(self.layout.actions_rect.w * 0.18))
+        base_h = max(52, int(self.layout.actions_rect.h * 0.48))
+        btn_w = min(self.layout.actions_rect.w - 32, int(base_w * 1.30))
+        btn_h = min(self.layout.actions_rect.h - 18, int(base_h * 1.30))
         self.end_turn_rect = pygame.Rect(self.layout.actions_rect.right - btn_w - 24, self.layout.actions_rect.y + (self.layout.actions_rect.h - btn_h) // 2, btn_w, btn_h)
         self.harmony_seal_rect = pygame.Rect(self.layout.playerhud_rect.right - 112, self.layout.playerhud_rect.y + 170, 96, 28)
 
@@ -143,6 +145,15 @@ class CombatScreen:
     def _playable_cards(self):
         return [c for c in self.c.hand if self._card_playable(c)]
 
+    def _enemy_rupture_total(self) -> int:
+        total = 0
+        for enemy in getattr(self.c, "enemies", []) or []:
+            if not getattr(enemy, "alive", False):
+                continue
+            st = getattr(enemy, "statuses", {}) or {}
+            total += int(st.get("break", 0) or 0)
+            total += int(st.get("rupture", 0) or 0)
+        return max(0, total)
 
     def _ui_locked(self) -> bool:
         return pygame.time.get_ticks() < self._ui_lock_until_ms
@@ -152,23 +163,32 @@ class CombatScreen:
         self._ui_lock_until_ms = pygame.time.get_ticks() + max(150, min(250, cd))
 
     def _resolve_action_state(self):
+        p = self.c.player
+        h_cur = int(p.get("harmony_current", 0) or 0)
+        h_thr = max(1, int(p.get("harmony_ready_threshold", 6) or 6))
+
         if self._ui_locked() or self.resolving_t > 0:
-            fsm, reason, label, disabled = "LOCKED_COOLDOWN", "STATE_LOCK", "FIN DEL RITUAL", True
+            fsm, state, reason, label, disabled = "LOCKED_COOLDOWN", "INVALID_ACTION", "STATE_LOCK", "BLOQUEADO", True
         else:
             idx = self.ctrl.selected_index
             if idx is None or idx >= len(self.c.hand):
-                fsm, reason, label, disabled = "IDLE", REASON_OK, "FIN DEL RITUAL", False
+                if h_cur >= h_thr:
+                    fsm, state, reason, label, disabled = "HARMONY_CHARGED", "HARMONY_READY", REASON_OK, "ACTIVAR SELLO", False
+                else:
+                    fsm, state, reason, label, disabled = "IDLE", "END_TURN", REASON_OK, "FIN DEL RITUAL", False
             else:
                 card = self.c.hand[idx]
                 ok, reason_code, reason_text = can_play(card, self.c)
                 self._last_reason_code = reason_code
-                if ok:
-                    fsm, reason, label, disabled = "READY_TO_EXECUTE", reason_code, "EJECUTAR", False
+                tags = set(getattr(card.definition, "tags", []) or [])
+                if ok and "ritual" in tags:
+                    fsm, state, reason, label, disabled = "READY_RITUAL", "RITUAL_CAST", reason_code, "RITUALIZAR", False
+                elif ok:
+                    fsm, state, reason, label, disabled = "READY_TO_EXECUTE", "EXECUTE_CARD", reason_code, "EJECUTAR", False
                 else:
-                    fsm, reason, label, disabled = "CARD_SELECTED", reason_code, "FIN DEL RITUAL", False
+                    fsm, state, reason, label, disabled = "CARD_INVALID", "INVALID_ACTION", reason_code, "ACCIÓN INVÁLIDA", False
                     self._status_line = reason_text
 
-        state = "PLAY_CARD" if fsm == "READY_TO_EXECUTE" else "END_TURN"
         if DEBUG_UI and (fsm != self._action_button_fsm or reason != self._action_state_reason):
             print(f"[ui] action_fsm={fsm} reason_code={reason}")
         self._action_button_fsm = fsm
@@ -294,8 +314,24 @@ class CombatScreen:
         self.telemetry.info("action_button_press", fsm=self._action_button_fsm, state=state, reason_code=reason)
         if disabled:
             return
-        if state == "PLAY_CARD":
+        if state in {"EXECUTE_CARD", "RITUAL_CAST"}:
             self._execute_selected()
+            return
+        if state == "HARMONY_READY":
+            ok, msg = self.c.activate_harmony_seal()
+            self._push_log(str(msg or "SELLO activado"))
+            if ok:
+                self._lock_ui()
+                enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
+                self.set_dialogue("harmony_ready", enemy_id, {})
+            return
+        if state == "INVALID_ACTION":
+            msg = self._status_line or reason_to_es(reason)
+            self._push_log(f"No se puede jugar: {msg}")
+            try:
+                self.app.sfx.play("deny")
+            except Exception:
+                pass
             return
         if state == "END_TURN":
             self._trigger_dialog("enemy_turn_start")
@@ -851,7 +887,6 @@ class CombatScreen:
         turn_badge = self.app.big_font.render(f"TURNO {self.c.turn}", True, UI_THEME["gold"])
         s.blit(turn_badge, (self.layout.playerhud_rect.right - turn_badge.get_width() - 18, top_y - 8))
         s.blit(self.app.tiny_font.render(f"Bloqueo {p['block']}", True, UI_THEME["block"]), (left_x, top_y + 28))
-        s.blit(self.app.tiny_font.render(f"Ruptura {p['rupture']}", True, UI_THEME["rupture"]), (left_x, top_y + 48))
 
         pc = self._pile_counts()
         draw_n = pc["draw"]
@@ -899,14 +934,66 @@ class CombatScreen:
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.actions_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.actions_rect, 2, border_radius=12)
         s.blit(self.app.small_font.render("Acción", True, UI_THEME["gold"]), (self.layout.actions_rect.x + 12, self.layout.actions_rect.y + 8))
-        _state, label, disabled, _reason = self._resolve_action_state()
-        bcol = (88, 84, 102) if disabled else (116, 86, 184) if self.ctrl.pressed_on_button_id == "action" else UI_THEME["violet"]
-        pygame.draw.rect(s, bcol, self.end_turn_rect, border_radius=12)
-        txt = self.app.font.render(label, True, UI_THEME["text"])
+        state, label, disabled, _reason = self._resolve_action_state()
+
+        energy_now = int(p.get("energy", 0) or 0)
+        h_cur = int(p.get("harmony_current", 0) or 0)
+        h_thr = max(1, int(p.get("harmony_ready_threshold", 6) or 6))
+        enemy_rupture = self._enemy_rupture_total()
+        indicators = [
+            (f"Energía {energy_now}", UI_THEME["energy"]),
+            (f"Armonía {h_cur}/{h_thr}", UI_THEME["violet"] if h_cur >= h_thr else UI_THEME["muted"]),
+            (f"Ruptura Enemiga {enemy_rupture}", UI_THEME["rupture"]),
+        ]
+        ind_x = self.layout.actions_rect.x + 16
+        ind_y = self.layout.actions_rect.y + 42
+        for i, (txtv, colv) in enumerate(indicators):
+            tag = pygame.Rect(ind_x, ind_y + i * 22, 210, 18)
+            pygame.draw.rect(s, UI_THEME["panel_2"], tag, border_radius=7)
+            pygame.draw.rect(s, colv, tag, 1, border_radius=7)
+            s.blit(self.app.tiny_font.render(txtv, True, colv), (tag.x + 8, tag.y + 3))
+
+        pulse = 0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 180.0)
+        bcol_map = {
+            "END_TURN": UI_THEME["gold"],
+            "EXECUTE_CARD": (214, 74, 88),
+            "HARMONY_READY": UI_THEME["violet"],
+            "RITUAL_CAST": (146, 92, 198),
+            "INVALID_ACTION": (118, 102, 132),
+        }
+        gcol_map = {
+            "END_TURN": (240, 212, 140),
+            "EXECUTE_CARD": (255, 94, 110),
+            "HARMONY_READY": (190, 132, 255),
+            "RITUAL_CAST": (184, 106, 255),
+            "INVALID_ACTION": (140, 120, 166),
+        }
+        base_col = bcol_map.get(state, UI_THEME["violet"])
+        glow_col = gcol_map.get(state, UI_THEME["accent_violet"])
+        if self.ctrl.pressed_on_button_id == "action" and not disabled:
+            base_col = tuple(max(0, min(255, int(c * 0.88))) for c in base_col)
+
+        glow_pad = 12
+        glow = pygame.Surface((self.end_turn_rect.w + glow_pad * 2, self.end_turn_rect.h + glow_pad * 2), pygame.SRCALPHA)
+        ga = 60 + int(90 * pulse)
+        if state == "INVALID_ACTION":
+            ga = 40
+        pygame.draw.rect(glow, (*glow_col, ga), glow.get_rect(), border_radius=18)
+        s.blit(glow, (self.end_turn_rect.x - glow_pad, self.end_turn_rect.y - glow_pad))
+
+        pygame.draw.rect(s, base_col, self.end_turn_rect, border_radius=14)
+        pygame.draw.rect(s, UI_THEME["text_dark"] if state == "END_TURN" else UI_THEME["gold"], self.end_turn_rect, 2, border_radius=14)
+        txt = self.app.font.render(label, True, UI_THEME["text_dark"] if state == "END_TURN" else UI_THEME["text"])
         s.blit(txt, (self.end_turn_rect.centerx - txt.get_width() // 2, self.end_turn_rect.centery - txt.get_height() // 2))
-        hint = self._status_line if self._status_line else "Feed y detalle integrados en el panel derecho."
+
+        if state == "RITUAL_CAST":
+            rune = self.app.tiny_font.render("✶", True, UI_THEME["gold"])
+            s.blit(rune, (self.end_turn_rect.x + 10, self.end_turn_rect.y + 8))
+            s.blit(rune, (self.end_turn_rect.right - 20, self.end_turn_rect.y + 8))
+
+        hint = self._status_line if self._status_line else "El botón centraliza turno, cartas, rituales y sello de armonía."
         hint_line = self._wrap_panel_text(hint, self.layout.actions_rect.w - 300, max_lines=1)[0]
-        s.blit(self.app.tiny_font.render(hint_line, True, UI_THEME["muted"]), (self.layout.actions_rect.x + 16, self.layout.actions_rect.y + 40))
+        s.blit(self.app.tiny_font.render(hint_line, True, UI_THEME["muted"]), (self.layout.actions_rect.x + 16, self.layout.actions_rect.y + self.layout.actions_rect.h - 24))
 
         if DEBUG_UI:
             pygame.draw.rect(s, UI_THEME["gold"], self.layout.voices_panel, 2)
