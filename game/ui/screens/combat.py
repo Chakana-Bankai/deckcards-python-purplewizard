@@ -703,54 +703,85 @@ class CombatScreen:
             y += 16
 
         hand = self.c.hand[:6]
-        detail_rect = self.layout.card_detail
-        pygame.draw.rect(s, UI_THEME["panel"], detail_rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], detail_rect, 2, border_radius=12)
-        s.blit(self.app.small_font.render("Panel táctico", True, UI_THEME["gold"]), (detail_rect.x + 12, detail_rect.y + 8))
-
-        panel_x = detail_rect.x + 14
-        panel_y = detail_rect.y + 40
-        panel_w = detail_rect.w - 22
-        enemy = self.c.enemies[0] if self.c.enemies else None
-        intent_txt = str(enemy.current_intent().get("label", "-")) if enemy else "-"
-        for line in self._wrap_panel_text(f"Intención enemiga: {intent_txt}", panel_w, max_lines=2):
-            s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (panel_x, panel_y))
-            panel_y += 16
-
-        statuses = []
-        if enemy:
-            if int(getattr(enemy, "block", 0)) > 0:
-                statuses.append(f"Guardia {int(getattr(enemy, 'block', 0))}")
-            for key, val in sorted((getattr(enemy, "statuses", {}) or {}).items()):
-                if int(val) > 0:
-                    statuses.append(f"{str(key).title()} {int(val)}")
-        status_txt = ", ".join(statuses) if statuses else "Sin efectos activos"
-        for line in self._wrap_panel_text(f"Estados: {status_txt}", panel_w, max_lines=2):
-            s.blit(self.app.tiny_font.render(line, True, UI_THEME["muted"]), (panel_x, panel_y))
-            panel_y += 16
-
-        panel_y += 4
-        s.blit(self.app.tiny_font.render("Notas de combate", True, UI_THEME["gold"]), (panel_x, panel_y))
-        panel_y += 16
-        for note in self.actions_log[-4:][::-1]:
-            for line in self._wrap_panel_text(f"• {note}", panel_w, max_lines=2):
-                if panel_y > detail_rect.bottom - 20:
-                    break
-                s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (panel_x, panel_y))
-                panel_y += 15
-            if panel_y > detail_rect.bottom - 20:
-                break
-
-        pygame.draw.rect(s, UI_THEME["panel"], self.layout.hand_rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.hand_rect, 2, border_radius=12)
-        s.blit(self.app.small_font.render("Mano", True, UI_THEME["gold"]), (self.layout.hand_rect.x + 12, self.layout.hand_rect.y + 8))
-
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.hover_card_index = None
         for i in range(len(hand)):
             if self._card_rect(i, len(hand)).collidepoint(mouse):
                 self.hover_card_index = i
         self.ctrl.on_hover(self.hover_card_index)
+        current_idx = self.hover_card_index if self.hover_card_index is not None else self.ctrl.selected_index
+        current_card = hand[current_idx] if current_idx is not None and current_idx < len(hand) else None
+
+        detail_rect = self.layout.card_detail
+        pygame.draw.rect(s, UI_THEME["panel"], detail_rect, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], detail_rect, 2, border_radius=12)
+        s.blit(self.app.small_font.render("Detalle de combate", True, UI_THEME["gold"]), (detail_rect.x + 12, detail_rect.y + 8))
+
+        panel_x = detail_rect.x + 14
+        panel_y = detail_rect.y + 40
+        panel_w = detail_rect.w - 24
+
+        if current_card is not None:
+            card_name = self.app.loc.t(getattr(current_card.definition, "name_key", getattr(current_card.definition, "id", "Carta")))
+            for ln in self._wrap_panel_text(card_name, panel_w, max_lines=1):
+                s.blit(self.app.small_font.render(ln, True, UI_THEME["text"]), (panel_x, panel_y))
+                panel_y += 24
+
+            summary = summarize_card_effect(current_card.definition, card_instance=current_card, ctx=self.c)
+            stats = summary.get("stats", {}) if isinstance(summary, dict) else {}
+            icon_pairs = []
+            for key, icon in (("damage", "sword"), ("block", "shield"), ("rupture", "crack"), ("draw", "scroll"), ("harmony", "star")):
+                val = int(stats.get(key, 0) or 0)
+                if val > 0:
+                    icon_pairs.append((icon, val))
+            if not icon_pairs:
+                for icon_name in self._card_icons(current_card)[:3]:
+                    icon_pairs.append((icon_name, 1))
+
+            ix = panel_x
+            for icon_name, val in icon_pairs[:4]:
+                ix = draw_icon_with_value(s, icon_name, val, UI_THEME["gold"], self.app.tiny_font, ix, panel_y, size=1)
+            panel_y += 24
+
+            effect_header = str(summary.get("header") or "Efecto")
+            for ln in self._wrap_panel_text(effect_header, panel_w, max_lines=2):
+                s.blit(self.app.tiny_font.render(ln, True, UI_THEME["text"]), (panel_x, panel_y))
+                panel_y += 16
+
+            effect_desc = self.app.loc.t(getattr(current_card.definition, "text_key", ""))
+            for ln in self._wrap_panel_text(effect_desc, panel_w, max_lines=3):
+                s.blit(self.app.tiny_font.render(ln, True, UI_THEME["muted"]), (panel_x, panel_y))
+                panel_y += 16
+
+            lore_key = "lore_short_3" if "ritual" in set(getattr(current_card.definition, "tags", []) or []) else "lore_short_2" if "skill" in set(getattr(current_card.definition, "tags", []) or []) else "lore_short_1"
+            lore_line = self.app.loc.t(lore_key)
+            for ln in self._wrap_panel_text(f'"{lore_line}"', panel_w, max_lines=2):
+                if panel_y > detail_rect.bottom - 20:
+                    break
+                s.blit(self.app.tiny_font.render(ln, True, UI_THEME["gold"]), (panel_x, panel_y))
+                panel_y += 16
+        else:
+            p = self.c.player
+            s.blit(self.app.small_font.render("Estado de Chakana", True, UI_THEME["text"]), (panel_x, panel_y))
+            panel_y += 24
+            rows = [
+                f"HP {p.get('hp',0)}/{p.get('max_hp',0)} · Energía {p.get('energy',0)}",
+                f"Bloqueo {p.get('block',0)} · Ruptura {p.get('rupture',0)}",
+            ]
+            pc = self._pile_counts()
+            rows.append(f"Draw {pc['draw']} · Mano {pc['hand']} · Descarte {pc['discard']}")
+            enemy = self.c.enemies[0] if self.c.enemies else None
+            intent_txt = str(enemy.current_intent().get("label", "-")) if enemy else "-"
+            rows.append(f"Intención enemiga: {intent_txt}")
+            for row in rows:
+                for ln in self._wrap_panel_text(row, panel_w, max_lines=2):
+                    s.blit(self.app.tiny_font.render(ln, True, UI_THEME["muted"]), (panel_x, panel_y))
+                    panel_y += 16
+                panel_y += 2
+
+        pygame.draw.rect(s, UI_THEME["panel"], self.layout.hand_rect, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.hand_rect, 2, border_radius=12)
+        s.blit(self.app.small_font.render("Mano", True, UI_THEME["gold"]), (self.layout.hand_rect.x + 12, self.layout.hand_rect.y + 8))
 
         hand_inner = self.layout.hand_rect.inflate(-8, -8)
         pygame.draw.rect(s, UI_THEME["panel"], hand_inner, border_radius=10)
@@ -763,20 +794,22 @@ class CombatScreen:
             base = self._card_rect(i, len(hand))
             fam = getattr(card.definition, "family", "violet_arcane")
             self._draw_card(s, base, card, selected=(i == self.ctrl.selected_index), family=fam)
+        s.set_clip(old_clip)
 
         if self.hover_card_index is not None and self.hover_card_index < len(hand):
             i = self.hover_card_index
             card = hand[i]
             base_hover = self._card_rect(i, len(hand))
-            ww = int(base_hover.w * 1.25)
-            hh = int(base_hover.h * 1.25)
-            rr = pygame.Rect(base_hover.centerx - ww // 2, base_hover.centery - hh // 2 - 18, ww, hh)
-            rr.clamp_ip(self.layout.hand_rect.inflate(-10, -10))
+            ww = int(base_hover.w * 1.35)
+            hh = int(base_hover.h * 1.35)
+            rr = pygame.Rect(0, 0, ww, hh)
+            rr.centerx = base_hover.centerx
+            rr.centery = base_hover.centery - 40
 
-            shadow = rr.move(8, 10)
-            shadow_surf = pygame.Surface((shadow.w, shadow.h), pygame.SRCALPHA)
-            pygame.draw.rect(shadow_surf, (0, 0, 0, 96), shadow_surf.get_rect(), border_radius=14)
-            s.blit(shadow_surf, shadow.topleft)
+            shadow_rect = rr.inflate(16, 16)
+            shadow = pygame.Surface((shadow_rect.w, shadow_rect.h), pygame.SRCALPHA)
+            pygame.draw.rect(shadow, (0, 0, 0, 120), shadow.get_rect(), border_radius=16)
+            s.blit(shadow, shadow_rect.topleft)
 
             fam = getattr(card.definition, "family", "violet_arcane")
             self._draw_card(s, rr, card, selected=(i == self.ctrl.selected_index), family=fam)
@@ -784,15 +817,13 @@ class CombatScreen:
 
             summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
             tip = str(summary.get("header") or "Efecto: Ritual")
-            tip_rect = pygame.Rect(rr.x, max(120, rr.y - 36), min(360, self.layout.hand_rect.w - 20), 28)
+            tip_rect = pygame.Rect(rr.x, max(120, rr.y - 36), min(460, s.get_width() - rr.x - 12), 28)
             pygame.draw.rect(s, UI_THEME["deep_purple"], tip_rect, border_radius=8)
             pygame.draw.rect(s, UI_THEME["accent_violet"], tip_rect, 1, border_radius=8)
             line = tip
             while self.app.tiny_font.size(line)[0] > tip_rect.w - 12 and len(line) > 4:
                 line = line[:-4] + "..."
             s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (tip_rect.x + 6, tip_rect.y + 6))
-
-        s.set_clip(old_clip)
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.playerhud_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.playerhud_rect, 2, border_radius=12)
@@ -847,9 +878,6 @@ class CombatScreen:
         pygame.draw.rect(s, bcol, self.end_turn_rect, border_radius=12)
         txt = self.app.font.render(label, True, UI_THEME["text"])
         s.blit(txt, (self.end_turn_rect.centerx - txt.get_width() // 2, self.end_turn_rect.centery - txt.get_height() // 2))
-        if self._status_line:
-            status_txt = self.app.tiny_font.render(self._status_line, True, UI_THEME["muted"])
-            s.blit(status_txt, (self.layout.actions_rect.x + 18, self.layout.actions_rect.y + 12))
         content_rect = self.layout.actions_rect.inflate(-16, -10)
         clip_prev = s.get_clip()
         s.set_clip(content_rect)
@@ -873,6 +901,14 @@ class CombatScreen:
                 break
             s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (log_x, y))
             y += 16
+
+        if self._status_line:
+            for line in self._wrap_panel_text(f"Estado: {self._status_line}", max_w, max_lines=1):
+                if y + 16 > max_bottom:
+                    break
+                s.blit(self.app.tiny_font.render(line, True, UI_THEME["good"]), (log_x, y))
+                y += 16
+            y += 2
 
         y += 4
         for line in reversed(tail):
