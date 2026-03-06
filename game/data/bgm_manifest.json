@@ -1,65 +1,194 @@
 {
-  "menu": {
-    "track": "menu",
-    "bpm": 92,
-    "bars_a": 12,
-    "bars_b": 10,
-    "total_bars": 22,
-    "duration": 57.39,
-    "generator_version": "bgm_v2"
+  "boss": {
+    "bars_a": 4,
+    "bars_b": 12,
+    "bpm": 158,
+    "duration": 24.3,
+    "generator_version": "bgm_v3",
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "total_bars": 16,
+    "track": "boss"
   },
-  "map": {
-    "track": "map",
-    "bpm": 96,
-    "bars_a": 10,
-    "bars_b": 10,
-    "total_bars": 20,
-    "duration": 50.0,
-    "generator_version": "bgm_v2"
+  "chest": {
+    "bars_a": 2,
+    "bars_b": 6,
+    "bpm": 142,
+    "duration": 13.52,
+    "generator_version": "bgm_v3",
+    "intro_bars": 2,
+    "loop_bars": 6,
+    "total_bars": 8,
+    "track": "chest"
   },
   "combat": {
-    "track": "combat",
+    "bars_a": 12,
+    "bars_b": 10,
     "bpm": 108,
-    "bars_a": 12,
-    "bars_b": 10,
-    "total_bars": 22,
     "duration": 48.89,
-    "generator_version": "bgm_v2"
-  },
-  "event": {
-    "track": "event",
-    "bpm": 112,
-    "bars_a": 12,
-    "bars_b": 12,
-    "total_bars": 24,
-    "duration": 51.43,
-    "generator_version": "bgm_v2"
-  },
-  "reward": {
-    "track": "reward",
-    "bpm": 110,
-    "bars_a": 12,
-    "bars_b": 10,
+    "generator_version": "bgm_v2",
     "total_bars": 22,
-    "duration": 48.0,
-    "generator_version": "bgm_v2"
+    "track": "combat"
   },
-  "boss": {
-    "track": "boss",
-    "bpm": 132,
-    "bars_a": 14,
+  "combat_forest": {
+    "bars_a": 4,
     "bars_b": 12,
-    "total_bars": 26,
-    "duration": 47.27,
-    "generator_version": "bgm_v2"
+    "bpm": 126,
+    "duration": 30.48,
+    "generator_version": "bgm_v3",
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "total_bars": 16,
+    "track": "combat_forest"
+  },
+  "combat_hanan": {
+    "bars_a": 4,
+    "bars_b": 12,
+    "bpm": 130,
+    "duration": 29.54,
+    "generator_version": "bgm_v3",
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "total_bars": 16,
+    "track": "combat_hanan"
+  },
+  "combat_kaypacha": {
+    "bars_a": 4,
+    "bars_b": 12,
+    "bpm": 128,
+    "duration": 30.0,
+    "generator_version": "bgm_v3",
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "total_bars": 16,
+    "track": "combat_kaypacha"
+  },
+  "combat_umbral": {
+    "bars_a": 4,
+    "bars_b": 12,
+    "bpm": 132,
+    "duration": 29.09,
+    "generator_version": "bgm_v3",
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "total_bars": 16,
+    "track": "combat_umbral"
   },
   "ending": {
-    "track": "ending",
+    "bars_a": 8,
+    "bars_b": 8,
     "bpm": 88,
+    "duration": 43.64,
+    "generator_version": "bgm_v3",
+    "intro_bars": 8,
+    "loop_bars": 8,
+    "total_bars": 16,
+    "track": "ending"
+  },
+  "event": {
+    "bars_a": 6,
+    "bars_b": 12,
+    "bpm": 118,
+    "duration": 36.61,
+    "generator_version": "bgm_v3",
+    "intro_bars": 6,
+    "loop_bars": 12,
+    "total_bars": 18,
+    "track": "event"
+  },
+  "map": {
     "bars_a": 10,
     "bars_b": 10,
+    "bpm": 96,
+    "duration": 50.0,
+    "generator_version": "bgm_v2",
     "total_bars": 20,
-    "duration": 54.55,
-    "generator_version": "bgm_v2"
+    "track": "map"
+  },
+  "map_forest": {
+    "bars_a": 6,
+    "bars_b": 12,
+    "bpm": 112,
+    "duration": 38.57,
+    "generator_version": "bgm_v3",
+    "intro_bars": 6,
+    "loop_bars": 12,
+    "total_bars": 18,
+    "track": "map_forest"
+  },
+  "map_hanan": {
+    "bars_a": 6,
+    "bars_b": 12,
+    "bpm": 114,
+    "duration": 37.89,
+    "generator_version": "bgm_v3",
+    "intro_bars": 6,
+    "loop_bars": 12,
+    "total_bars": 18,
+    "track": "map_hanan"
+  },
+  "map_kaypacha": {
+    "bars_a": 6,
+    "bars_b": 12,
+    "bpm": 116,
+    "duration": 37.24,
+    "generator_version": "bgm_v3",
+    "intro_bars": 6,
+    "loop_bars": 12,
+    "total_bars": 18,
+    "track": "map_kaypacha"
+  },
+  "map_umbral": {
+    "bars_a": 6,
+    "bars_b": 12,
+    "bpm": 118,
+    "duration": 36.61,
+    "generator_version": "bgm_v3",
+    "intro_bars": 6,
+    "loop_bars": 12,
+    "total_bars": 18,
+    "track": "map_umbral"
+  },
+  "menu": {
+    "bars_a": 8,
+    "bars_b": 12,
+    "bpm": 82,
+    "duration": 58.54,
+    "generator_version": "bgm_v3",
+    "intro_bars": 8,
+    "loop_bars": 12,
+    "total_bars": 20,
+    "track": "menu"
+  },
+  "reward": {
+    "bars_a": 12,
+    "bars_b": 10,
+    "bpm": 110,
+    "duration": 48.0,
+    "generator_version": "bgm_v2",
+    "total_bars": 22,
+    "track": "reward"
+  },
+  "shop": {
+    "bars_a": 8,
+    "bars_b": 10,
+    "bpm": 74,
+    "duration": 58.38,
+    "generator_version": "bgm_v3",
+    "intro_bars": 8,
+    "loop_bars": 10,
+    "total_bars": 18,
+    "track": "shop"
+  },
+  "victory": {
+    "bars_a": 2,
+    "bars_b": 6,
+    "bpm": 132,
+    "duration": 14.55,
+    "generator_version": "bgm_v3",
+    "intro_bars": 2,
+    "loop_bars": 6,
+    "total_bars": 8,
+    "track": "victory"
   }
 }
