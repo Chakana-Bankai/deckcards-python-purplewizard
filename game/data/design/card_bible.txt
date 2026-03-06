@@ -1,0 +1,17 @@
+CARD BIBLE
+Naming rules:
+- Use mystical titles, avoid generic names.
+Core starter names:
+- card_strike_name = Sello del Cóndor
+- card_defend_name = Manto de Obsidiana
+Palette families:
+- violet arcane
+- solar gold
+- emerald nature
+- azure cosmic
+- obsidian void
+- crimson chaos
+- moon opal
+- storm cyan
+- andes umber
+- ruby dusk

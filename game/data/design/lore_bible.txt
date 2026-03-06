@@ -1,0 +1,5 @@
+LORE BIBLE
+- Trama mystical language centered on Chakana cosmology.
+- Enemy line appears first and threatens balance.
+- Chakana line answers with restoration and resolve.
+- Dialogue triggers: start, enemy_intent_reveal, player_low_hp, enemy_low_hp, block_break, boss_phase.
