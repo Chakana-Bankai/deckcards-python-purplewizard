@@ -9,7 +9,8 @@
       "map": "map_kaypacha",
       "combat": "combat_kaypacha",
       "boss": "boss",
-      "events": "event"
+      "events": "event",
+      "shop": "shop"
     }
   },
   "forest": {
@@ -22,7 +23,8 @@
       "map": "map_forest",
       "combat": "combat_forest",
       "boss": "boss",
-      "events": "event"
+      "events": "event",
+      "shop": "shop"
     }
   },
   "umbral": {
@@ -35,7 +37,8 @@
       "map": "map_umbral",
       "combat": "combat_umbral",
       "boss": "boss",
-      "events": "event"
+      "events": "event",
+      "shop": "shop"
     }
   },
   "hanan": {
@@ -48,7 +51,8 @@
       "map": "map_hanan",
       "combat": "combat_hanan",
       "boss": "boss",
-      "events": "event"
+      "events": "event",
+      "shop": "shop"
     }
   }
 }

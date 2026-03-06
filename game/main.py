@@ -251,6 +251,7 @@ class App:
             "menu": "menu",
             "map": f"map_{str(biome_id or (self.run_state or {}).get('biome') or 'kaypacha').lower()}",
             "combat": f"combat_{str(biome_id or (self.run_state or {}).get('biome') or 'kaypacha').lower()}",
+            "shop": "shop",
             "boss": "boss",
             "events": "event",
         }
@@ -560,7 +561,7 @@ class App:
     def goto_shop(self):
         pool = [c for c in self.cards_data if c.get("rarity") in {"common", "uncommon"}] or self.cards_data
         self.sm.set(ShopScreen(self, self.rng.choice(pool) or DEFAULT_CARDS[0]))
-        self.music.play_for("map_hanan")
+        self.music.play_for(self.get_bgm_track("shop"))
 
     def goto_event(self):
         event = self.rng.choice(self.events_data) if self.events_data else {"title_key": "map_title", "body_key": "lore_tagline", "choices": [{"text_key": "event_continue", "effects": []}]}

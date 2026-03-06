@@ -36,6 +36,7 @@ class MusicManager:
             "combat_umbral": [music_dir / "combat_umbral.ogg", music_dir / "combat_umbral.wav"],
             "combat_hanan": [music_dir / "combat_hanan.ogg", music_dir / "combat_hanan.wav"],
             "event": [music_dir / "event.ogg", music_dir / "event.wav"],
+            "shop": [music_dir / "shop.ogg", music_dir / "shop.wav"],
             "victory": [music_dir / "victory.ogg", music_dir / "victory.wav"],
             "chest": [music_dir / "chest.ogg", music_dir / "chest.wav"],
             "boss": [music_dir / "boss.ogg", music_dir / "boss.wav"],
