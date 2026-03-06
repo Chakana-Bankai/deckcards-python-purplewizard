@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from pathlib import Path
 
@@ -21,10 +21,29 @@ class SoundManager:
             "exhaust": (0.45, 100),
             "whisper": (0.24, 90),
             "chime": (0.22, 90),
+            "deny": (0.24, 90),
+            "stinger_victory": (0.38, 180),
+            "stinger_defeat": (0.36, 180),
+            "stinger_reward": (0.34, 160),
+            "stinger_seal_ready": (0.30, 150),
+            "stinger_boss_phase": (0.40, 220),
+        }
+        fallback = {
+            "deny": "exhaust",
+            "stinger_victory": "chime",
+            "stinger_defeat": "hit",
+            "stinger_reward": "chime",
+            "stinger_seal_ready": "whisper",
+            "stinger_boss_phase": "hit",
         }
         for name in self.sound_cfg:
             path = Path(ASSETS_DIR) / "sfx" / f"{name}.wav"
-            self.sounds[name] = pygame.mixer.Sound(str(path)) if path.exists() else None
+            if path.exists():
+                self.sounds[name] = pygame.mixer.Sound(str(path))
+                continue
+            alias = fallback.get(name)
+            alias_path = Path(ASSETS_DIR) / "sfx" / f"{alias}.wav" if alias else None
+            self.sounds[name] = pygame.mixer.Sound(str(alias_path)) if alias_path and alias_path.exists() else None
 
     def set_volume(self, value: float):
         self.master_volume = max(0.0, min(1.0, value))

@@ -1,7 +1,8 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import math
+import random
 import struct
 import wave
 from pathlib import Path
@@ -24,6 +25,7 @@ class MusicManager:
         self.current_seconds = 0.0
         self._checked_silence: set[str] = set()
         self._manifest = self._load_manifest()
+        self._last_variant_by_track: dict[str, str] = {}
         music_dir = assets_dir() / "music"
         self.tracks = {
             "menu": [music_dir / "menu.ogg", music_dir / "menu.wav"],
@@ -71,6 +73,29 @@ class MusicManager:
                 return candidate
         return None
 
+    def _variant_paths(self, key: str) -> list[Path]:
+        entry = self._manifest.get(key, {}) if isinstance(self._manifest, dict) else {}
+        variants = entry.get("variants", []) if isinstance(entry, dict) else []
+        paths = []
+        if isinstance(variants, list):
+            for rel in variants:
+                path = assets_dir() / str(rel)
+                if path.exists():
+                    paths.append(path)
+        return paths
+
+    def _choose_variant(self, key: str, candidates: list[Path]) -> Path | None:
+        if not candidates:
+            return None
+        if len(candidates) == 1:
+            picked = candidates[0]
+        else:
+            previous = self._last_variant_by_track.get(key)
+            options = [c for c in candidates if c.name != previous] or list(candidates)
+            picked = random.choice(options)
+        self._last_variant_by_track[key] = picked.name
+        return picked
+
     def _wav_levels(self, path: Path) -> tuple[float, float]:
         try:
             with wave.open(str(path), "rb") as wf:
@@ -104,6 +129,10 @@ class MusicManager:
         return path
 
     def _ensure_track(self, key: str) -> Path:
+        variant_path = self._choose_variant(key, self._variant_paths(key))
+        if variant_path is not None:
+            return self._ensure_audible_wav(key, variant_path)
+
         path = self._find_track(key)
         if path is None:
             generated = assets_dir() / ".cache" / "music" / f"{key}.wav"
@@ -121,7 +150,8 @@ class MusicManager:
         self.current_key = key
         path = self._ensure_track(key)
         self.current_path = path.name
-        self.current_bpm = int(self._manifest.get(key, {}).get("bpm", 0) or 0)
+        manifest_key = str(key).split("__v", 1)[0]
+        self.current_bpm = int(self._manifest.get(manifest_key, {}).get("bpm", 0) or 0)
         try:
             if pygame.mixer.music.get_busy():
                 pygame.mixer.music.fadeout(800)
@@ -131,7 +161,7 @@ class MusicManager:
             self.status = "playing" if pygame.mixer.music.get_busy() else "started"
             self.current_seconds = 0.0
             self.current_section = "A"
-            print(f"[audio] BGM play: track={key}, vol={self.volume:.2f}, mute={self.muted}, ok")
+            print(f"[audio] BGM play: track={key}, file={path.name}, vol={self.volume:.2f}, mute={self.muted}, ok")
         except Exception as exc:
             self.status = f"error:{exc}"
             print(f"[audio] BGM error: {exc}")
@@ -139,7 +169,8 @@ class MusicManager:
     def tick(self):
         pos_ms = pygame.mixer.music.get_pos() if pygame.mixer.get_init() else -1
         self.current_seconds = max(0.0, pos_ms / 1000.0) if pos_ms >= 0 else 0.0
-        meta = self._manifest.get(self.current_key or "", {})
+        manifest_key = str(self.current_key or "").split("__v", 1)[0]
+        meta = self._manifest.get(manifest_key, {})
         intro_bars = int(meta.get("intro_bars", meta.get("bars_a", 8)) or 8)
         bpm = float(meta.get("bpm", self.current_bpm or 100) or 100)
         if bpm <= 0:

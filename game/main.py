@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import traceback
 import shutil
@@ -288,13 +288,21 @@ class App:
                 return track
         fallback = {
             "menu": "menu",
+            "lore": "event",
             "map": f"map_{str(biome_id or (self.run_state or {}).get('biome') or 'kaypacha').lower()}",
             "combat": f"combat_{str(biome_id or (self.run_state or {}).get('biome') or 'kaypacha').lower()}",
             "shop": "shop",
+            "reward": "shop",
             "boss": "boss",
             "events": "event",
         }
         return fallback.get(ctx, "menu")
+
+    def play_stinger(self, name: str):
+        try:
+            self.sfx.play(name)
+        except Exception:
+            pass
 
     def _loading_step(self, label: str, pct: float):
         if not hasattr(self, "loading_screen"):
@@ -311,7 +319,7 @@ class App:
             self._loading_watch_label = label
             self._loading_watch_ts = now
         elif now - getattr(self, "_loading_watch_ts", now) > 12000 and pct < 0.98:
-            self.loading_screen.set_step("Continuando con placeholders…", pct)
+            self.loading_screen.set_step("Continuando con placeholdersâ€¦", pct)
         self.loading_screen.draw(self.renderer.internal, 1.0 / max(1, FPS))
         self.renderer.present()
         for ev in pygame.event.get():
@@ -460,9 +468,11 @@ class App:
         self.sm.set(SettingsScreen(self))
 
     def goto_end(self, victory=True):
+        if not victory:
+            self.play_stinger("stinger_defeat")
         title = "Victoria" if victory else "Derrota"
-        lore = "el eco celebró tu equilibrio." if victory else "la Trama pidió un nuevo intento."
-        self.sm.set(PachaTransitionScreen(self, title, lambda: self.sm.set(EndScreen(self, victory=victory)), lore_line=lore, hint="Cierre del capítulo"))
+        lore = "el eco celebrÃ³ tu equilibrio." if victory else "la Trama pidiÃ³ un nuevo intento."
+        self.sm.set(PachaTransitionScreen(self, title, lambda: self.sm.set(EndScreen(self, victory=victory)), lore_line=lore, hint="Cierre del capÃ­tulo"))
 
     def goto_path_select(self):
         self.sm.set(PathSelectScreen(self))
@@ -551,10 +561,10 @@ class App:
         biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
         if self.last_biome_seen is None:
             self.last_biome_seen = biome_track
-            self.sm.set(PachaTransitionScreen(self, "Comienza la Trama", lambda: self.sm.set(MapScreen(self)), lore_line="Chakana abrió su primer sendero.", hint="Pulsa cualquier tecla para caminar"))
+            self.sm.set(PachaTransitionScreen(self, "Comienza la Trama", lambda: self.sm.set(MapScreen(self)), lore_line="Chakana abriÃ³ su primer sendero.", hint="Pulsa cualquier tecla para caminar"))
         elif self.last_biome_seen != biome_track:
             self.last_biome_seen = biome_track
-            self.sm.set(PachaTransitionScreen(self, f"Mapa: {str(biome_track).title()}", lambda: self.sm.set(MapScreen(self)), lore_line="un nuevo territorio abrió su geometría.", hint="Pulsa cualquier tecla para continuar"))
+            self.sm.set(PachaTransitionScreen(self, f"Mapa: {str(biome_track).title()}", lambda: self.sm.set(MapScreen(self)), lore_line="un nuevo territorio abriÃ³ su geometrÃ­a.", hint="Pulsa cualquier tecla para continuar"))
         else:
             self.sm.set(MapScreen(self))
         self.music.play_for(self.get_bgm_track("map", biome_track))
@@ -570,13 +580,14 @@ class App:
         def _enter_combat():
             self.sm.set(CombatScreen(self, combat_state, is_boss=is_boss))
             if is_boss:
+                self.play_stinger("stinger_boss_phase")
                 self.music.play_for(self.get_bgm_track("boss"))
             else:
                 biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
                 self.music.play_for(self.get_bgm_track("combat", biome_track))
 
         title = "Umbral del Jefe" if is_boss else "Entrando en Combate"
-        lore = "la sombra mayor despertó." if is_boss else "el pulso enemigo se hizo audible."
+        lore = "la sombra mayor despertÃ³." if is_boss else "el pulso enemigo se hizo audible."
         self.sm.set(PachaTransitionScreen(self, title, _enter_combat, lore_line=lore, hint="Pulsa cualquier tecla para preparar tu mano"))
 
     def goto_reward(self, picks=None, gold=None, mode=None, relic=None, guide_reward=None):
@@ -585,7 +596,8 @@ class App:
             reward_data = guide_reward or build_reward_guide("guide", self.rng, self.cards_data, self.run_state or {})
             reward_data["type"] = "guide_choice"
             self.sm.set(RewardScreen(self, reward_data, gold=0, xp_gained=self.debug.get("xp_last_gain", 0)))
-            self.music.play_for("map_hanan")
+            self.play_stinger("stinger_reward")
+            self.music.play_for(self.get_bgm_track("reward"))
             return
 
         if reward_mode == "boss_pack":
@@ -594,7 +606,8 @@ class App:
                 reward_data["relic"] = relic
             reward_data["type"] = "boss_pack"
             self.sm.set(RewardScreen(self, reward_data, gold=gold or 0, xp_gained=self.debug.get("xp_last_gain", 0)))
-            self.music.play_for("victory")
+            self.play_stinger("stinger_reward")
+            self.music.play_for(self.get_bgm_track("reward"))
             return
 
         if picks is None:
@@ -608,7 +621,8 @@ class App:
             gold = self.rng.randint(10, 25)
 
         self.sm.set(RewardScreen(self, reward_data, gold, xp_gained=self.debug.get("xp_last_gain", 0)))
-        self.music.play_for("victory")
+        self.play_stinger("stinger_reward")
+        self.music.play_for(self.get_bgm_track("reward"))
 
     def goto_shop(self):
         pool = [c for c in self.cards_data if c.get("rarity") in {"common", "uncommon"}] or self.cards_data
@@ -740,6 +754,7 @@ class App:
         return levels
 
     def on_combat_victory(self):
+        self.play_stinger("stinger_victory")
         self._complete_current_node()
         node_type = self.run_state.get("last_node_type", "combat")
         if node_type == "boss":
@@ -856,11 +871,11 @@ class App:
                     if p.exists(): p.unlink()
                 except Exception:
                     pass
-            self._loading_step("Reset aplicado. Reiniciando…", 0.15)
+            self._loading_step("Reset aplicado. Reiniciandoâ€¦", 0.15)
             self.request_restart("regen")
             return
 
-        self._draw_progress_splash("Regenerando Trama…", "Reset Autogen Total")
+        self._draw_progress_splash("Regenerando Tramaâ€¦", "Reset Autogen Total")
         try:
             pygame.mixer.music.stop(); pygame.mixer.stop()
             if hasattr(pygame.mixer.music, "unload"):
@@ -1020,7 +1035,7 @@ class App:
         self._restart_reason = reason
 
     def _soft_restart(self):
-        self._loading_step("Reset aplicado. Regenerando Trama…", 0.02)
+        self._loading_step("Reset aplicado. Regenerando Tramaâ€¦", 0.02)
         try:
             pygame.mixer.music.stop()
         except Exception:
@@ -1115,3 +1130,7 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
+
+
+
+

@@ -1,4 +1,4 @@
-"""Generate optional placeholder assets so game runs OOTB."""
+﻿"""Generate optional placeholder assets so game runs OOTB."""
 
 from __future__ import annotations
 
@@ -15,7 +15,38 @@ from game.core.safe_io import atomic_write_json
 
 
 PNG_HEADER = b"\x89PNG\r\n\x1a\n"
-GEN_BGM_VERSION = "bgm_v3"
+GEN_BGM_VERSION = "bgm_v4"
+BGM_TRACKS = [
+    "menu",
+    "map_kaypacha",
+    "map_forest",
+    "map_umbral",
+    "map_hanan",
+    "combat_kaypacha",
+    "combat_forest",
+    "combat_umbral",
+    "combat_hanan",
+    "event",
+    "shop",
+    "victory",
+    "chest",
+    "boss",
+    "ending",
+]
+LOOP_VARIANTS = {
+    "menu": 3,
+    "map_kaypacha": 3,
+    "map_forest": 3,
+    "map_umbral": 3,
+    "map_hanan": 3,
+    "combat_kaypacha": 3,
+    "combat_forest": 3,
+    "combat_umbral": 3,
+    "combat_hanan": 3,
+    "event": 2,
+    "shop": 2,
+    "boss": 2,
+}
 
 
 def _png_chunk(tag: bytes, data: bytes) -> bytes:
@@ -52,24 +83,25 @@ def _write_wav(path: Path, hz: int = 440, ms: int = 120, volume: float = 0.15) -
 
 
 def _profile(track_key: str):
+    base_key = str(track_key or "menu").split("__v", 1)[0]
     profiles = {
-        "menu": {"scale": [0, 2, 3, 7, 9], "root": 174.61, "bpm": 82, "intro": 8, "loop": 12, "character": "ambient_mystic"},
-        "map_kaypacha": {"scale": [0, 2, 3, 5, 7], "root": 138.59, "bpm": 116, "intro": 6, "loop": 12, "character": "chill_house"},
-        "combat_kaypacha": {"scale": [0, 1, 3, 5, 7], "root": 146.83, "bpm": 128, "intro": 4, "loop": 12, "character": "dark_techno"},
-        "map_forest": {"scale": [0, 3, 5, 7, 10], "root": 155.56, "bpm": 112, "intro": 6, "loop": 12, "character": "chill_house"},
-        "combat_forest": {"scale": [0, 2, 5, 7, 9], "root": 164.81, "bpm": 126, "intro": 4, "loop": 12, "character": "dark_techno"},
-        "map_umbral": {"scale": [0, 1, 4, 7, 8], "root": 110.0, "bpm": 118, "intro": 6, "loop": 12, "character": "chill_house"},
-        "combat_umbral": {"scale": [0, 1, 3, 6, 8], "root": 123.47, "bpm": 132, "intro": 4, "loop": 12, "character": "dark_techno"},
-        "map_hanan": {"scale": [0, 2, 4, 7, 9], "root": 196.0, "bpm": 114, "intro": 6, "loop": 12, "character": "chill_house"},
-        "combat_hanan": {"scale": [0, 2, 4, 7, 11], "root": 207.65, "bpm": 130, "intro": 4, "loop": 12, "character": "dark_techno"},
-        "event": {"scale": [0, 2, 5, 7, 9], "root": 164.81, "bpm": 118, "intro": 6, "loop": 12, "character": "dark_techno"},
-        "shop": {"scale": [0, 2, 5, 7, 9], "root": 174.61, "bpm": 74, "intro": 8, "loop": 10, "character": "meditative"},
-        "victory": {"scale": [0, 4, 7, 9, 12], "root": 261.63, "bpm": 132, "intro": 2, "loop": 6, "character": "zelda_victory"},
-        "chest": {"scale": [0, 4, 7, 12], "root": 349.23, "bpm": 142, "intro": 2, "loop": 6, "character": "zelda_chest"},
-        "boss": {"scale": [0, 1, 4, 6, 8], "root": 82.41, "bpm": 158, "intro": 4, "loop": 12, "character": "industrial_hardcore"},
-        "ending": {"scale": [0, 2, 4, 7, 9], "root": 130.81, "bpm": 88, "intro": 8, "loop": 8, "character": "closure"},
+        "menu": {"scale": [0, 2, 3, 7, 9], "root": 174.61, "bpm": 82, "intro": 8, "loop": 12, "character": "chill_mystic", "mood_profile": "menu_map_lore"},
+        "map_kaypacha": {"scale": [0, 2, 3, 5, 7], "root": 138.59, "bpm": 110, "intro": 6, "loop": 12, "character": "chill_mystic", "mood_profile": "menu_map_lore"},
+        "combat_kaypacha": {"scale": [0, 1, 3, 5, 7], "root": 146.83, "bpm": 128, "intro": 4, "loop": 12, "character": "techno_house_ritual", "mood_profile": "combat"},
+        "map_forest": {"scale": [0, 3, 5, 7, 10], "root": 155.56, "bpm": 108, "intro": 6, "loop": 12, "character": "chill_mystic", "mood_profile": "menu_map_lore"},
+        "combat_forest": {"scale": [0, 2, 5, 7, 9], "root": 164.81, "bpm": 126, "intro": 4, "loop": 12, "character": "techno_house_ritual", "mood_profile": "combat"},
+        "map_umbral": {"scale": [0, 1, 4, 7, 8], "root": 110.0, "bpm": 112, "intro": 6, "loop": 12, "character": "chill_mystic", "mood_profile": "menu_map_lore"},
+        "combat_umbral": {"scale": [0, 1, 3, 6, 8], "root": 123.47, "bpm": 132, "intro": 4, "loop": 12, "character": "techno_house_ritual", "mood_profile": "combat"},
+        "map_hanan": {"scale": [0, 2, 4, 7, 9], "root": 196.0, "bpm": 112, "intro": 6, "loop": 12, "character": "chill_mystic", "mood_profile": "menu_map_lore"},
+        "combat_hanan": {"scale": [0, 2, 4, 7, 11], "root": 207.65, "bpm": 130, "intro": 4, "loop": 12, "character": "techno_house_ritual", "mood_profile": "combat"},
+        "event": {"scale": [0, 2, 5, 7, 9], "root": 164.81, "bpm": 92, "intro": 6, "loop": 10, "character": "chill_mystic", "mood_profile": "menu_map_lore"},
+        "shop": {"scale": [0, 2, 5, 7, 9], "root": 174.61, "bpm": 74, "intro": 8, "loop": 10, "character": "meditative_ceremonial", "mood_profile": "shop_reward"},
+        "victory": {"scale": [0, 4, 7, 9, 12], "root": 261.63, "bpm": 110, "intro": 2, "loop": 6, "character": "meditative_ceremonial", "mood_profile": "shop_reward"},
+        "chest": {"scale": [0, 4, 7, 12], "root": 349.23, "bpm": 116, "intro": 2, "loop": 6, "character": "meditative_ceremonial", "mood_profile": "shop_reward"},
+        "boss": {"scale": [0, 1, 4, 6, 8], "root": 82.41, "bpm": 160, "intro": 4, "loop": 12, "character": "hardcore_astral", "mood_profile": "boss"},
+        "ending": {"scale": [0, 2, 4, 7, 9], "root": 130.81, "bpm": 88, "intro": 8, "loop": 8, "character": "chill_mystic", "mood_profile": "menu_map_lore"},
     }
-    return profiles.get(track_key, profiles["menu"])
+    return profiles.get(base_key, profiles["menu"])
 
 
 def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict:
@@ -78,13 +110,14 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
         return {}
 
     profile = _profile(track_key)
+    base_key = str(track_key or "menu").split("__v", 1)[0]
     styles = {
         "event": {"step": 24, "fill_chance": 0.22, "arp_boost": 1.18, "perc": 1.18},
         "shop": {"step": 12, "fill_chance": 0.10, "arp_boost": 0.85, "perc": 0.38},
         "chest": {"step": 16, "fill_chance": 0.12, "arp_boost": 1.30, "perc": 0.85},
         "boss": {"step": 32, "fill_chance": 0.28, "arp_boost": 0.95, "perc": 1.34},
     }
-    style = styles.get(track_key, {"step": 16, "fill_chance": 0.16, "arp_boost": 1.0, "perc": 1.0})
+    style = styles.get(base_key, {"step": 16, "fill_chance": 0.16, "arp_boost": 1.0, "perc": 1.0})
     scale = profile["scale"]
     root = profile["root"]
     bpm = profile["bpm"]
@@ -127,21 +160,24 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
     hat_amp = 0.06
     bell_amp = 0.0
     stab_amp = 0.0
-    if character in {"dark_techno", "industrial", "metroid", "industrial_hardcore", "chill_house"}:
+    if character in {"dark_techno", "industrial", "metroid", "industrial_hardcore", "chill_house", "techno_house_ritual", "hardcore_astral"}:
         kick_amp, snare_amp, hat_amp = 0.30, 0.20, 0.12
         stab_amp = 0.12 if character == "metroid" else 0.08
-        if character == "industrial_hardcore":
+        if character in {"industrial_hardcore", "hardcore_astral"}:
             kick_amp, snare_amp, hat_amp = 0.38, 0.24, 0.14
             stab_amp = 0.16
         elif character == "chill_house":
             kick_amp, snare_amp, hat_amp = 0.22, 0.14, 0.09
             stab_amp = 0.05
+        elif character == "techno_house_ritual":
+            kick_amp, snare_amp, hat_amp = 0.32, 0.20, 0.12
+            stab_amp = 0.11
     elif character in {"ambient_ritual", "ritual"}:
         kick_amp, snare_amp, hat_amp = 0.16, 0.08, 0.05
         bell_amp = 0.08
-    elif character in {"ambient_mystic", "meditative"}:
+    elif character in {"ambient_mystic", "meditative", "chill_mystic", "meditative_ceremonial"}:
         kick_amp, snare_amp, hat_amp = 0.10, 0.04, 0.02
-        bell_amp = 0.14 if character == "ambient_mystic" else 0.12
+        bell_amp = 0.14 if character in {"ambient_mystic", "chill_mystic"} else 0.12
         stab_amp = 0.0
     elif character == "cosmic_choir":
         kick_amp, snare_amp, hat_amp, bell_amp = 0.12, 0.07, 0.03, 0.18
@@ -175,7 +211,7 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
 
             bass_deg = scale[bass_seq[beat] % len(scale)]
             arp_deg = scale[arp_seq[step % len(arp_seq)] % len(scale)]
-            bass = 0.12 * math.sin(two_pi * freq(bass_deg, -1 if track_key != "boss" else -2) * t)
+            bass = 0.12 * math.sin(two_pi * freq(bass_deg, -1 if base_key != "boss" else -2) * t)
             arp = 0.07 * style["arp_boost"] * math.sin(two_pi * freq(arp_deg, 0 if section == "A" else 1) * t)
             pad = 0.06 * math.sin(two_pi * freq(scale[(bar + 2) % len(scale)], -1) * t)
 
@@ -207,6 +243,7 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
 
     return {
         "track": track_key,
+        "base_track": base_key,
         "bpm": bpm,
         "bars_a": bars_a,
         "bars_b": bars_b,
@@ -214,6 +251,8 @@ def synth_ambient_music(path: Path, track_key: str, force: bool = False) -> dict
         "loop_bars": loop_bars,
         "total_bars": total_bars,
         "duration": round(duration, 2),
+        "mood_profile": profile.get("mood_profile", "menu_map_lore"),
+        "character": profile.get("character", "chill_mystic"),
         "generator_version": GEN_BGM_VERSION,
     }
 
@@ -228,16 +267,50 @@ def ensure_placeholder_assets(card_ids: list[str], enemy_ids: list[str]) -> None
     for name, hz in sfx.items():
         _write_wav(a_dir / f"sfx/{name}.wav", hz=hz)
 
+    stingers = {
+        "stinger_victory": (1080, 280, 0.20),
+        "stinger_defeat": (180, 320, 0.20),
+        "stinger_reward": (860, 220, 0.20),
+        "stinger_seal_ready": (780, 180, 0.18),
+        "stinger_boss_phase": (120, 360, 0.22),
+    }
+    for name, (hz, ms, vol) in stingers.items():
+        _write_wav(a_dir / f"sfx/{name}.wav", hz=hz, ms=ms, volume=vol)
+
     ensure_bgm_assets(force_regen=False)
 
 
 def ensure_bgm_assets(force_regen: bool = False) -> dict:
     a_dir = assets_dir()
-    manifest = {}
-    for name in ["menu", "map_kaypacha", "map_forest", "map_umbral", "map_hanan", "combat_kaypacha", "combat_forest", "combat_umbral", "combat_hanan", "event", "shop", "victory", "chest", "boss", "ending"]:
-        meta = synth_ambient_music(a_dir / f"music/{name}.wav", name, force=force_regen)
-        if meta:
-            manifest[name] = meta
+    manifest: dict[str, dict] = {}
+    for name in BGM_TRACKS:
+        base_path = a_dir / f"music/{name}.wav"
+        generated_meta = synth_ambient_music(base_path, name, force=force_regen)
+        profile = _profile(name)
+        entry = generated_meta if generated_meta else {
+            "track": name,
+            "base_track": name,
+            "generator_version": GEN_BGM_VERSION,
+            "mood_profile": profile.get("mood_profile", "menu_map_lore"),
+            "character": profile.get("character", "chill_mystic"),
+            "bpm": int(profile.get("bpm", 0) or 0),
+            "intro_bars": int(profile.get("intro", 8) or 8),
+            "loop_bars": int(profile.get("loop", 12) or 12),
+            "total_bars": int((profile.get("intro", 8) or 8) + (profile.get("loop", 12) or 12)),
+        }
+        variants = []
+        variant_count = max(1, int(LOOP_VARIANTS.get(name, 1)))
+        for idx in range(1, variant_count + 1):
+            variant_key = f"{name}__v{idx}"
+            variant_rel = f"music/{variant_key}.wav"
+            variant_path = a_dir / variant_rel
+            synth_ambient_music(variant_path, variant_key, force=force_regen)
+            if variant_path.exists():
+                variants.append(variant_rel)
+        if variants:
+            entry["variants"] = variants
+        manifest[name] = entry
+
     manifest_path = data_dir() / "bgm_manifest.json"
     if manifest:
         existing = {}
@@ -248,6 +321,5 @@ def ensure_bgm_assets(force_regen: bool = False) -> dict:
         except Exception:
             existing = {}
         existing.update(manifest)
-        if force_regen:
-            atomic_write_json(manifest_path, existing)
+        atomic_write_json(manifest_path, existing)
     return manifest

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import math
 import random
@@ -145,7 +145,7 @@ class CombatScreen:
     def _selected_card_play_state(self):
         idx = self.ctrl.selected_index
         if idx is None or idx >= len(self.c.hand):
-            return False, "OTHER", "Sin selección"
+            return False, "OTHER", "Sin selecciÃ³n"
         return can_play_card(self.c.hand[idx], self.c.player, self.c)
 
     def _playable_cards(self):
@@ -193,7 +193,7 @@ class CombatScreen:
                 if ok:
                     fsm, state, reason, label, disabled = "READY_TO_EXECUTE", "EXECUTE", reason_code, "EJECUTAR", False
                 else:
-                    fsm, state, reason, label, disabled = "CARD_INVALID", "INVALID", reason_code, "ACCIÓN INVÁLIDA", False
+                    fsm, state, reason, label, disabled = "CARD_INVALID", "INVALID", reason_code, "ACCIÃ“N INVÃLIDA", False
                     self._status_line = reason_text
 
         if DEBUG_UI and (fsm != self._action_button_fsm or reason != self._action_state_reason):
@@ -408,15 +408,15 @@ class CombatScreen:
     def _topbar_narrative(self):
         run = self.app.run_state or {}
         deck_name = str(run.get("deck_name") or run.get("starter_name") or "Inicial")
-        left = f"Chakana • Mazo: {deck_name}"
+        left = f"Chakana â€¢ Mazo: {deck_name}"
 
         node = self.app.node_lookup.get(self.app.current_node_id) if getattr(self.app, "current_node_id", None) else None
         pacha = self.app.get_biome_display_name(self.selected_biome or run.get("biome"))
         if isinstance(node, dict):
-            node_name = "Élite" if node.get("type") == "challenge" else self.app.loc.t(f"node_{node.get('type', 'combat')}")
+            node_name = "Ã‰lite" if node.get("type") == "challenge" else self.app.loc.t(f"node_{node.get('type', 'combat')}")
         else:
             node_name = "Nodo desconocido"
-        center = f"{pacha} — {node_name}"
+        center = f"{pacha} â€” {node_name}"
         subtitle = str(self.app.lore_engine.get_map_narration("default") if hasattr(self.app, "lore_engine") else "")
 
         timer_text = f"{self.turn_timer_left:04.1f}s" if self.turn_timer_enabled else "--"
@@ -519,7 +519,7 @@ class CombatScreen:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_e:
             self._execute_selected()
         if event.type == pygame.KEYDOWN and event.key == pygame.K_h:
-            self._push_log("Armonía: se carga con rituales. Cuando está LISTA, potencia defensas o activa SELLO.")
+            self._push_log("ArmonÃ­a: se carga con rituales. Cuando estÃ¡ LISTA, potencia defensas o activa SELLO.")
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
@@ -580,9 +580,9 @@ class CombatScreen:
             row = (int(base[0] * (0.72 + 0.28 * f)), int(base[1] * (0.72 + 0.28 * f)), int(base[2] * (0.72 + 0.28 * f)))
             pygame.draw.line(surf, row, (0, y), (w, y))
         pygame.draw.rect(surf, accent, surf.get_rect(), 1, border_radius=7)
-        glyph = "✦" if tier in {"legendary", "ritual"} else "◈"
+        glyph = "âœ¦" if tier in {"legendary", "ritual"} else "â—ˆ"
         if tier == "ritual":
-            glyph = "ᚱ"
+            glyph = "áš±"
         txt = self.app.small_font.render(glyph, True, (232, 220, 170))
         surf.blit(txt, txt.get_rect(center=surf.get_rect().center))
         return surf
@@ -783,7 +783,7 @@ class CombatScreen:
         for ev in self.c.pop_events():
             if ev.get("type") == "damage" and ev.get("target") == "player" and ev.get("amount", 0) >= 8:
                 self._trigger_dialog("enemy_big_attack")
-                self._push_log(f"Daño recibido: {ev.get('amount',0)}")
+                self._push_log(f"DaÃ±o recibido: {ev.get('amount',0)}")
             if ev.get("type") == "card_played":
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
                 card_id = str(ev.get("card_id", ""))
@@ -799,7 +799,11 @@ class CombatScreen:
                     if iid and new_c < old_c:
                         self._cost_pulse_until[iid] = pygame.time.get_ticks() + 950
             if ev.get("type") == "harmony_ready":
-                self._push_log(str(ev.get("message") or "Armonía lista: desata tu sello."))
+                self._push_log(str(ev.get("message") or "ArmonÃ­a lista: desata tu sello."))
+                try:
+                    self.app.sfx.play("stinger_seal_ready")
+                except Exception:
+                    pass
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
                 self.set_dialogue("harmony_ready", enemy_id, {})
             if ev.get("type") == "enemy_action":
@@ -1234,7 +1238,7 @@ class CombatScreen:
             pygame.draw.rect(s, UI_THEME["gold"], panel, 2, border_radius=16)
             s.blit(self.app.big_font.render("PAUSA", True, UI_THEME["gold"]), (panel.centerx - 90, panel.y + 20))
 
-            options = [("continue", "Continuar", panel.y + 84), ("map", "Salir al mapa", panel.y + 170), ("menu", "Salir al menú principal", panel.y + 256)]
+            options = [("continue", "Continuar", panel.y + 84), ("map", "Salir al mapa", panel.y + 170), ("menu", "Salir al menÃº principal", panel.y + 256)]
             for key, lbl, y in options:
                 r = pygame.Rect(panel.x + 80, y, 400, 64)
                 active_confirm = self.pause_confirm_target == key and key in {"map", "menu"}
@@ -1251,3 +1255,5 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+
