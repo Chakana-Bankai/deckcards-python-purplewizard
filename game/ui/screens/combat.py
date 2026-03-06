@@ -94,6 +94,8 @@ class CombatScreen:
         self._dialogue_action_idx = 0
         self.last_enemy_line = ""
         self.last_player_line = ""
+        self.enemy_voice_label = "VOZ ENEMIGA"
+        self.chakana_voice_label = "VOZ CHAKANA"
         self.topbar = CombatTopBar()
         self.scry_picker = ModalCardPicker()
         self.layout = build_combat_layout(1920, 1080)
@@ -140,7 +142,25 @@ class CombatScreen:
             enemy_line, hero_line = "La Trama cambia de tono.", "Escucho y respondo."
         self._set_dialogue_lines(enemy_line, hero_line, mapped_trigger)
         self.last_enemy_line, self.last_player_line = enemy_line, hero_line
+        self._update_voice_labels(mapped_trigger, enemy_id)
         print(f"[dlg] trigger={mapped_trigger} enemy={enemy_id} ctx={payload}")
+
+    def _update_voice_labels(self, mapped_trigger: str, enemy_id: str):
+        event_label = {
+            "combat_start": "RITO INICIAL",
+            "enemy_intent": "INTENCION",
+            "attack_played": "REACCION AL GOLPE",
+            "block_played": "REACCION AL BLOQUEO",
+            "seal_ready": "PRESAGIO",
+            "seal_release": "DESCARGA",
+            "player_low_hp": "PRESION FINAL",
+            "enemy_low_hp": "QUIEBRE",
+            "victory": "EPILOGO",
+            "defeat": "CAIDA",
+        }.get(str(mapped_trigger or ""), "ECO")
+        enemy_name = str(enemy_id or "enemigo").replace("_", " ").upper()
+        self.enemy_voice_label = f"{enemy_name} · {event_label}"
+        self.chakana_voice_label = f"CHAKANA · {event_label}"
 
     def _card_playable(self, card) -> bool:
         ok, _reason_code, _reason_text = can_play_card(card, self.c.player, self.c)
@@ -312,7 +332,7 @@ class CombatScreen:
         self.c.play_card(idx, target_idx)
         self._lock_ui()
         tags = set(getattr(card.definition, "tags", []) or [])
-        trig = "card_played_attack" if "attack" in tags else "card_played_block" if ("skill" in tags or "defense" in tags or "block" in tags) else "card_played_ritual"
+        trig = "attack_played" if "attack" in tags else "block_played"
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
         self.set_dialogue(trig, enemy_id, {"card_id": card.definition.id})
         self._push_log(f"Jugada: {getattr(card.definition, 'name_key', 'Carta')}")
@@ -337,7 +357,7 @@ class CombatScreen:
             if ok:
                 self._lock_ui()
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-                self.set_dialogue("harmony_seal", enemy_id, {})
+                self.set_dialogue("seal_release", enemy_id, {})
             return
         if state == "INVALID":
             msg = self._status_line or reason_to_es(reason)
@@ -532,7 +552,7 @@ class CombatScreen:
                 self._push_log(msg)
                 if ok:
                     enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-                    self.set_dialogue("harmony_seal", enemy_id, {})
+                    self.set_dialogue("seal_release", enemy_id, {})
 
     def _card_icons(self, card):
         tags = set(getattr(card.definition, "tags", []) or [])
@@ -783,7 +803,7 @@ class CombatScreen:
             self._trigger_dialog("player_turn_start")
             enemy = self.c.enemies[0] if self.c.enemies else None
             if enemy is not None:
-                self.set_dialogue("enemy_intent_set", enemy.id, {"intent": enemy.current_intent().get("label", "")})
+                self.set_dialogue("enemy_intent", enemy.id, {"intent": enemy.current_intent().get("label", "")})
 
         for ev in self.c.pop_events():
             if ev.get("type") == "damage" and ev.get("target") == "player" and ev.get("amount", 0) >= 8:
@@ -794,7 +814,7 @@ class CombatScreen:
                 card_id = str(ev.get("card_id", ""))
                 card_def = next((c for c in self.app.cards_data if c.get("id") == card_id), {}) if card_id else {}
                 tags = set(card_def.get("tags", []) if isinstance(card_def, dict) else [])
-                trig = "card_played_attack" if "attack" in tags else "card_played_block" if ("skill" in tags or "defense" in tags or "block" in tags) else "card_played_ritual"
+                trig = "attack_played" if "attack" in tags else "block_played"
                 self.set_dialogue(trig, enemy_id, {"card_id": card_id})
             if ev.get("type") == "card_cost_changed":
                 if ev.get("in_hand"):
@@ -810,13 +830,13 @@ class CombatScreen:
                 except Exception:
                     pass
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-                self.set_dialogue("harmony_ready", enemy_id, {})
+                self.set_dialogue("seal_ready", enemy_id, {})
             if ev.get("type") == "enemy_action":
-                self.set_dialogue(str(ev.get("intent") or "turn_start"), str(ev.get("enemy") or "default"), {})
+                self.set_dialogue("enemy_intent", str(ev.get("enemy") or "default"), {"intent": str(ev.get("intent") or "")})
             if ev.get("type") == "harmony_seal":
                 self._push_log(str(ev.get("message") or "SELLO activado"))
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-                self.set_dialogue("harmony_seal", enemy_id, {})
+                self.set_dialogue("seal_release", enemy_id, {})
 
         if self.c.scry_pending and not self.scry_picker.open:
             self.scry_picker.show(
@@ -931,11 +951,11 @@ class CombatScreen:
         pygame.draw.rect(s, UI_THEME["accent_violet"], narrative_rect, 2, border_radius=12)
         e_line = self.dialog_enemy.current or "(el enemigo contiene la respiracion...)"
         h_line = self.dialog_hero.current or "(Chakana escucha la Trama...)"
-        latest_action = self.actions_log[-1] if self.actions_log else (self._status_line or "Sin acciones recientes")
+        event_hint = str(self.last_trigger or "eco")
         line_w = narrative_rect.w - 34
         enemy_lines = wrap_text(self.app.small_font, e_line, line_w, max_lines=1)
         hero_lines = wrap_text(self.app.small_font, h_line, line_w, max_lines=1)
-        action_lines = wrap_text(self.app.small_font, str(latest_action), line_w, max_lines=1)
+        action_lines = wrap_text(self.app.small_font, f"Evento narrativo: {event_hint}", line_w, max_lines=1)
         row_h = (narrative_rect.h - 20) // 3
         line_rows = [
             pygame.Rect(narrative_rect.x + 10, narrative_rect.y + 8, narrative_rect.w - 20, row_h),
@@ -949,7 +969,11 @@ class CombatScreen:
         for ridx, row in enumerate(line_rows):
             pygame.draw.rect(s, row_cols[ridx], row, border_radius=8)
             lines = row_lines[ridx]
-            yy = row.y + max(6, (row.h - 16 * max(1, len(lines))) // 2)
+            if ridx == 0:
+                s.blit(self.app.tiny_font.render(self.enemy_voice_label, True, (245, 150, 166)), (row.x + 10, row.y + 4))
+            elif ridx == 1:
+                s.blit(self.app.tiny_font.render(self.chakana_voice_label, True, (166, 240, 190)), (row.x + 10, row.y + 4))
+            yy = row.y + max(18, (row.h - 16 * max(1, len(lines))) // 2)
             for ln in lines:
                 dx = offx if ridx == 0 else 0
                 s.blit(self.app.tiny_font.render(ln, True, UI_THEME["text"]), (row.x + 10 + dx, yy))
@@ -1267,6 +1291,16 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+
+
+
+
+
+
+
+
+
 
 
 
