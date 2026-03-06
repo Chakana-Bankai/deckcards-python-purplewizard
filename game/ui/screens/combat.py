@@ -577,137 +577,169 @@ class CombatScreen:
     def _draw_card_background(self, s, rect: pygame.Rect, card, tier: str, accent: tuple[int, int, int]):
         rng = random.Random(self._seed_from_card(card))
         base_map = {
-            "normal": (198, 180, 148),
-            "rare": (164, 142, 206),
-            "legendary": (214, 186, 118),
-            "ritual": (146, 104, 198),
+            "normal": (70, 60, 48),
+            "rare": (62, 48, 92),
+            "legendary": (96, 66, 30),
+            "ritual": (58, 38, 86),
         }
         border_map = {
-            "normal": (106, 88, 64),
-            "rare": (126, 106, 174),
-            "legendary": (220, 190, 92),
-            "ritual": (172, 126, 240),
+            "normal": (166, 140, 102),
+            "rare": (186, 142, 244),
+            "legendary": (248, 212, 118),
+            "ritual": (210, 154, 255),
         }
         base = base_map.get(tier, base_map["normal"])
         border = border_map.get(tier, border_map["normal"])
 
-        # normal: parchment pixel texture
+        # Solid mystical body to improve readability.
+        for y in range(rect.y, rect.bottom):
+            f = (y - rect.y) / max(1, rect.h - 1)
+            row = (
+                int(base[0] * (0.86 + 0.18 * f)),
+                int(base[1] * (0.86 + 0.18 * f)),
+                int(base[2] * (0.86 + 0.18 * f)),
+            )
+            pygame.draw.line(s, row, (rect.x, y), (rect.right, y))
+
         if tier == "normal":
-            for y in range(rect.y, rect.bottom):
-                f = (y - rect.y) / max(1, rect.h - 1)
-                row = (int(base[0] * (0.94 + 0.06 * f)), int(base[1] * (0.94 + 0.06 * f)), int(base[2] * (0.94 + 0.06 * f)))
-                pygame.draw.line(s, row, (rect.x, y), (rect.right, y))
-            for _ in range(max(40, rect.w * rect.h // 500)):
+            for _ in range(max(28, rect.w * rect.h // 720)):
                 px = rng.randint(rect.x + 2, rect.right - 3)
                 py = rng.randint(rect.y + 2, rect.bottom - 3)
-                n = rng.randint(-16, 18)
-                col = (max(0, min(255, base[0] + n)), max(0, min(255, base[1] + n)), max(0, min(255, base[2] + n)))
+                n = rng.randint(-12, 14)
+                col = (
+                    max(0, min(255, base[0] + n)),
+                    max(0, min(255, base[1] + n)),
+                    max(0, min(255, base[2] + n)),
+                )
                 s.set_at((px, py), col)
-
-        # rare: colored aura
         elif tier == "rare":
-            pygame.draw.rect(s, base, rect, border_radius=12)
-            aura = pygame.Surface((rect.w + 24, rect.h + 24), pygame.SRCALPHA)
-            pygame.draw.rect(aura, (*accent, 82), aura.get_rect(), border_radius=18)
-            s.blit(aura, (rect.x - 12, rect.y - 12))
-            for ring in range(3):
-                alpha = 70 - ring * 16
-                a = pygame.Surface((rect.w + 10 + ring * 10, rect.h + 10 + ring * 10), pygame.SRCALPHA)
-                pygame.draw.rect(a, (*accent, alpha), a.get_rect(), 2, border_radius=14 + ring * 2)
-                s.blit(a, (rect.x - 5 - ring * 5, rect.y - 5 - ring * 5))
-
-        # legendary: sacred geometry
+            aura = pygame.Surface((rect.w + 28, rect.h + 28), pygame.SRCALPHA)
+            pygame.draw.rect(aura, (*accent, 92), aura.get_rect(), border_radius=18)
+            s.blit(aura, (rect.x - 14, rect.y - 14))
+            for ring in range(2):
+                alpha = 92 - ring * 26
+                rr = pygame.Rect(rect.x - 4 - ring * 4, rect.y - 4 - ring * 4, rect.w + 8 + ring * 8, rect.h + 8 + ring * 8)
+                pygame.draw.rect(s, (*accent, alpha), rr, 2, border_radius=14 + ring * 2)
         elif tier == "legendary":
-            pygame.draw.rect(s, base, rect, border_radius=12)
-            cx, cy = rect.center
-            rr = max(24, min(rect.w, rect.h) // 2 - 8)
-            pygame.draw.circle(s, (244, 222, 146), (cx, cy), rr, 2)
-            pygame.draw.circle(s, (238, 206, 120), (cx, cy), max(8, rr - 16), 1)
-            for a in range(0, 360, 60):
-                rad = math.radians(a)
-                x = cx + int(math.cos(rad) * rr)
-                y = cy + int(math.sin(rad) * rr)
-                pygame.draw.line(s, (244, 222, 146), (cx, cy), (x, y), 1)
-            for a in range(0, 360, 30):
-                rad = math.radians(a)
-                x = cx + int(math.cos(rad) * (rr - 8))
-                y = cy + int(math.sin(rad) * (rr - 8))
-                pygame.draw.circle(s, (248, 228, 152), (x, y), 1)
-
-        # ritual: rune pattern
+            glow = pygame.Surface((rect.w + 36, rect.h + 36), pygame.SRCALPHA)
+            pygame.draw.rect(glow, (246, 212, 128, 78), glow.get_rect(), border_radius=20)
+            s.blit(glow, (rect.x - 18, rect.y - 18))
+            inner = rect.inflate(-12, -12)
+            pygame.draw.rect(s, (244, 220, 150), inner, 1, border_radius=10)
         else:
-            pygame.draw.rect(s, base, rect, border_radius=12)
-            rune_col = (220, 182, 255)
-            step = 16
-            glyphs = ["ᚱ", "✶", "ᚨ", "ᛟ"]
-            for iy, y in enumerate(range(rect.y + 8, rect.bottom - 8, step)):
-                for ix, x in enumerate(range(rect.x + 8, rect.right - 8, step)):
-                    g = glyphs[(ix + iy) % len(glyphs)]
-                    gt = self.app.tiny_font.render(g, True, rune_col)
-                    gt.set_alpha(66 if (ix + iy) % 2 == 0 else 42)
-                    s.blit(gt, (x - gt.get_width() // 2, y - gt.get_height() // 2))
-            pulse = 54 + int(42 * (0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 240.0)))
-            glow = pygame.Surface((rect.w + 16, rect.h + 16), pygame.SRCALPHA)
-            pygame.draw.rect(glow, (188, 122, 255, pulse), glow.get_rect(), border_radius=16)
-            s.blit(glow, (rect.x - 8, rect.y - 8))
+            step = 18
+            rune_col = (218, 184, 255)
+            for iy, y in enumerate(range(rect.y + 10, rect.bottom - 10, step)):
+                for ix, x in enumerate(range(rect.x + 10, rect.right - 10, step)):
+                    if (ix + iy) % 2 == 0:
+                        pygame.draw.circle(s, rune_col, (x, y), 1)
 
         pygame.draw.rect(s, border, rect, 3, border_radius=12)
 
+    def _card_kpis(self, summary: dict) -> list[tuple[str, int]]:
+        stats = summary.get("stats", {}) if isinstance(summary, dict) else {}
+        ordered = [
+            ("damage", "sword"),
+            ("block", "shield"),
+            ("rupture", "crack"),
+            ("harmony_delta", "star"),
+            ("scry", "eye"),
+            ("draw", "scroll"),
+        ]
+        out = []
+        for key, icon in ordered:
+            val = int(stats.get(key, 0) or 0)
+            if val > 0:
+                out.append((icon, val))
+        return out[:3]
+
     def _draw_card(self, s, rect, card, selected=False, family="violet_arcane"):
-        accent = {"crimson_chaos": (220, 108, 84), "emerald_spirit": (88, 198, 154), "azure_cosmic": (112, 152, 228), "violet_arcane": (176, 126, 240), "solar_gold": (226, 190, 112)}.get(family, (176, 126, 240))
+        accent = {
+            "crimson_chaos": (220, 108, 84),
+            "emerald_spirit": (88, 198, 154),
+            "azure_cosmic": (112, 152, 228),
+            "violet_arcane": (176, 126, 240),
+            "solar_gold": (226, 190, 112),
+        }.get(family, (176, 126, 240))
         tier = self._card_tier(card)
 
         self._draw_card_background(s, rect, card, tier, accent)
 
-        art_frame = pygame.Rect(rect.x + 6, rect.y + 28, rect.w - 12, int(rect.h * 0.58))
-        pygame.draw.rect(s, (72, 64, 58), art_frame, border_radius=8)
-        pygame.draw.rect(s, accent, art_frame, 1, border_radius=8)
+        art_frame = pygame.Rect(rect.x + 8, rect.y + 32, rect.w - 16, int(rect.h * 0.50))
+        pygame.draw.rect(s, (24, 20, 30), art_frame, border_radius=9)
+        pygame.draw.rect(s, accent, art_frame, 2, border_radius=9)
+        art_inner = art_frame.inflate(-6, -6)
+        pygame.draw.rect(s, (12, 12, 16), art_inner, border_radius=7)
         try:
-            art = self.app.assets.sprite("cards", card.definition.id, (art_frame.w - 6, art_frame.h - 6), fallback=(70, 44, 105))
+            art = self.app.assets.sprite("cards", card.definition.id, (art_inner.w, art_inner.h), fallback=(70, 44, 105))
         except Exception:
             art = None
         if art is None or art.get_width() < 8 or art.get_height() < 8:
-            art = self._fallback_card_art(card, (art_frame.w - 6, art_frame.h - 6), tier, accent)
-        s.blit(art, (art_frame.x + 3, art_frame.y + 3))
+            art = self._fallback_card_art(card, (art_inner.w, art_inner.h), tier, accent)
+        s.blit(art, art_inner.topleft)
+
+        if tier == "legendary":
+            pygame.draw.rect(s, (250, 226, 156), art_frame.inflate(6, 6), 1, border_radius=11)
 
         card_name = self.app.loc.t(getattr(card.definition, "name_key", getattr(card.definition, "id", "Carta")))
-        s.blit(self.app.tiny_font.render(str(card_name)[:18], True, UI_THEME["text_dark"]), (rect.x + 8, rect.y + 6))
+        title = str(card_name)[:20]
+        title_shadow = self.app.small_font.render(title, True, (8, 8, 8))
+        title_txt = self.app.small_font.render(title, True, (245, 238, 220))
+        s.blit(title_shadow, (rect.x + 10, rect.y + 8))
+        s.blit(title_txt, (rect.x + 9, rect.y + 7))
+
         base_cost = int(getattr(card.definition, "cost", card.cost) or 0)
         live_cost = int(card.cost or 0)
         modified = live_cost != base_cost
         reduced = live_cost < base_cost
         cost_col = UI_THEME["energy"] if not modified else (120, 220, 255) if reduced else (228, 132, 108)
-        pygame.draw.circle(s, cost_col, (rect.right - 16, rect.y + 16), 12)
-        s.blit(self.app.tiny_font.render(str(live_cost), True, UI_THEME["text_dark"]), (rect.right - 20, rect.y + 9))
+        cost_bg = (18, 18, 24)
+        center = (rect.right - 20, rect.y + 20)
+        pygame.draw.circle(s, cost_bg, center, 19)
+        pygame.draw.circle(s, cost_col, center, 16)
+        pygame.draw.circle(s, (255, 244, 208), center, 16, 2)
+        cost_txt = self.app.big_font.render(str(live_cost), True, UI_THEME["text_dark"])
+        s.blit(cost_txt, (center[0] - cost_txt.get_width() // 2, center[1] - cost_txt.get_height() // 2))
+
         if modified:
-            trans = f"{base_cost}→{live_cost}"
+            trans = f"{base_cost}->{live_cost}"
             tcol = UI_THEME["good"] if reduced else UI_THEME["bad"]
-            s.blit(self.app.tiny_font.render(trans, True, tcol), (rect.x + 8, rect.y + 22))
+            s.blit(self.app.tiny_font.render(trans, True, tcol), (rect.x + 10, rect.y + 25))
             if reduced:
-                g = pygame.Surface((rect.w + 10, rect.h + 10), pygame.SRCALPHA)
-                alpha = 45
+                g = pygame.Surface((rect.w + 12, rect.h + 12), pygame.SRCALPHA)
+                alpha = 55
                 pid = str(getattr(card, "instance_id", ""))
                 if self._cost_pulse_until.get(pid, 0) > pygame.time.get_ticks():
-                    alpha = 90 + int(70 * (0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 90.0)))
+                    alpha = 92 + int(56 * (0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 90.0)))
                 pygame.draw.rect(g, (96, 210, 255, alpha), g.get_rect(), border_radius=14)
-                s.blit(g, (rect.x - 5, rect.y - 5))
+                s.blit(g, (rect.x - 6, rect.y - 6))
 
         summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
-        stats = summary.get("stats", {}) if isinstance(summary, dict) else {}
-        kpis = []
-        for key, icon in (("damage", "sword"), ("block", "shield"), ("rupture", "crack"), ("draw", "scroll"), ("harmony_delta", "star")):
-            val = int(stats.get(key, 0) or 0)
-            if val > 0:
-                kpis.append((icon, val))
-        x = rect.x + 8
-        for icon_name, val in kpis[:3]:
-            x = draw_icon_with_value(s, icon_name, val, UI_THEME["gold"], self.app.tiny_font, x, rect.bottom - 26, size=1)
-        if not kpis:
-            s.blit(self.app.tiny_font.render("Sin KPI", True, UI_THEME["muted"]), (x, rect.bottom - 24))
+        kpis = self._card_kpis(summary)
+
+        lore = str(summary.get("header") or "")
+        if not lore:
+            lore = self.app.loc.t(getattr(card.definition, "text_key", ""))
+        lore = lore.replace("\n", " ").strip()
+        while self.app.tiny_font.size(lore)[0] > rect.w - 18 and len(lore) > 4:
+            lore = lore[:-4] + "..."
+        if lore:
+            s.blit(self.app.tiny_font.render(lore, True, (236, 228, 206)), (rect.x + 9, art_frame.bottom + 8))
+
+        kpi_band = pygame.Rect(rect.x + 6, rect.bottom - 34, rect.w - 12, 24)
+        pygame.draw.rect(s, (18, 18, 24), kpi_band, border_radius=7)
+        pygame.draw.rect(s, (76, 70, 94), kpi_band, 1, border_radius=7)
+        x = kpi_band.x + 6
+        if kpis:
+            for icon_name, val in kpis:
+                x = draw_icon_with_value(s, icon_name, val, (246, 228, 156), self.app.small_font, x, kpi_band.y + 4, size=1)
+                if x > kpi_band.right - 30:
+                    break
+        else:
+            s.blit(self.app.tiny_font.render("Sin KPI relevantes", True, UI_THEME["muted"]), (kpi_band.x + 6, kpi_band.y + 6))
 
         if selected:
             pygame.draw.rect(s, UI_THEME["gold"], rect.inflate(8, 8), 3, border_radius=14)
-
     def update(self, dt):
         self.c.update(dt)
         self.resolving_t = max(0, self.resolving_t - dt)
@@ -932,24 +964,33 @@ class CombatScreen:
             i = self.hover_card_index
             card = hand[i]
             base_hover = self._card_rect(i, len(hand))
-            ww = int(base_hover.w * 1.35)
-            hh = int(base_hover.h * 1.35)
+            ww = int(base_hover.w * 1.42)
+            hh = int(base_hover.h * 1.42)
             rr = pygame.Rect(0, 0, ww, hh)
             rr.centerx = base_hover.centerx
-            rr.centery = base_hover.centery - 40
+            rr.centery = base_hover.centery - 44
+            rr.x = max(8, min(s.get_width() - rr.w - 8, rr.x))
+            rr.y = max(self.layout.topbar_rect.bottom + 8, min(self.layout.actions_rect.y - rr.h - 8, rr.y))
 
-            shadow_rect = rr.inflate(16, 16)
+            shadow_rect = rr.inflate(28, 28)
             shadow = pygame.Surface((shadow_rect.w, shadow_rect.h), pygame.SRCALPHA)
-            pygame.draw.rect(shadow, (0, 0, 0, 120), shadow.get_rect(), border_radius=16)
+            pygame.draw.rect(shadow, (0, 0, 0, 132), shadow.get_rect(), border_radius=22)
             s.blit(shadow, shadow_rect.topleft)
+            hover_glow = pygame.Surface((rr.w + 18, rr.h + 18), pygame.SRCALPHA)
+            pygame.draw.rect(hover_glow, (214, 174, 255, 72), hover_glow.get_rect(), border_radius=20)
+            s.blit(hover_glow, (rr.x - 9, rr.y - 9))
 
             fam = getattr(card.definition, "family", "violet_arcane")
             self._draw_card(s, rr, card, selected=(i == self.ctrl.selected_index), family=fam)
-            pygame.draw.rect(s, (220, 198, 255), rr.inflate(8, 8), 2, border_radius=14)
+            pygame.draw.rect(s, (236, 220, 255), rr.inflate(8, 8), 2, border_radius=15)
 
             summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
-            tip = str(summary.get("header") or "Efecto: Ritual")
-            tip_rect = pygame.Rect(rr.x, max(120, rr.y - 36), min(460, s.get_width() - rr.x - 12), 28)
+            tip = str(summary.get("header") or "Efecto")
+            tip_w = min(520, s.get_width() - 16)
+            tip_rect = pygame.Rect(rr.centerx - tip_w // 2, rr.y - 34, tip_w, 28)
+            if tip_rect.y < self.layout.topbar_rect.bottom + 8:
+                tip_rect.y = rr.bottom + 6
+            tip_rect.x = max(8, min(s.get_width() - tip_rect.w - 8, tip_rect.x))
             pygame.draw.rect(s, UI_THEME["deep_purple"], tip_rect, border_radius=8)
             pygame.draw.rect(s, UI_THEME["accent_violet"], tip_rect, 1, border_radius=8)
             line = tip
