@@ -1,0 +1,233 @@
+{
+  "boss": {
+    "base_track": "boss",
+    "bpm": 160,
+    "character": "hardcore_astral",
+    "generator_version": "bgm_v4",
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "mood_profile": "boss",
+    "total_bars": 16,
+    "track": "boss",
+    "variants": [
+      "music/boss__v1.wav",
+      "music/boss__v2.wav"
+    ]
+  },
+  "chest": {
+    "base_track": "chest",
+    "bpm": 116,
+    "character": "meditative_ceremonial",
+    "generator_version": "bgm_v4",
+    "intro_bars": 2,
+    "loop_bars": 6,
+    "mood_profile": "shop_reward",
+    "total_bars": 8,
+    "track": "chest",
+    "variants": [
+      "music/chest__v1.wav"
+    ]
+  },
+  "combat_forest": {
+    "base_track": "combat_forest",
+    "bpm": 126,
+    "character": "techno_house_ritual",
+    "generator_version": "bgm_v4",
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "mood_profile": "combat",
+    "total_bars": 16,
+    "track": "combat_forest",
+    "variants": [
+      "music/combat_forest__v1.wav",
+      "music/combat_forest__v2.wav",
+      "music/combat_forest__v3.wav"
+    ]
+  },
+  "combat_hanan": {
+    "base_track": "combat_hanan",
+    "bpm": 130,
+    "character": "techno_house_ritual",
+    "generator_version": "bgm_v4",
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "mood_profile": "combat",
+    "total_bars": 16,
+    "track": "combat_hanan",
+    "variants": [
+      "music/combat_hanan__v1.wav",
+      "music/combat_hanan__v2.wav",
+      "music/combat_hanan__v3.wav"
+    ]
+  },
+  "combat_kaypacha": {
+    "base_track": "combat_kaypacha",
+    "bpm": 128,
+    "character": "techno_house_ritual",
+    "generator_version": "bgm_v4",
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "mood_profile": "combat",
+    "total_bars": 16,
+    "track": "combat_kaypacha",
+    "variants": [
+      "music/combat_kaypacha__v1.wav",
+      "music/combat_kaypacha__v2.wav",
+      "music/combat_kaypacha__v3.wav"
+    ]
+  },
+  "combat_umbral": {
+    "base_track": "combat_umbral",
+    "bpm": 132,
+    "character": "techno_house_ritual",
+    "generator_version": "bgm_v4",
+    "intro_bars": 4,
+    "loop_bars": 12,
+    "mood_profile": "combat",
+    "total_bars": 16,
+    "track": "combat_umbral",
+    "variants": [
+      "music/combat_umbral__v1.wav",
+      "music/combat_umbral__v2.wav",
+      "music/combat_umbral__v3.wav"
+    ]
+  },
+  "ending": {
+    "base_track": "ending",
+    "bpm": 88,
+    "character": "chill_mystic",
+    "generator_version": "bgm_v4",
+    "intro_bars": 8,
+    "loop_bars": 8,
+    "mood_profile": "menu_map_lore",
+    "total_bars": 16,
+    "track": "ending",
+    "variants": [
+      "music/ending__v1.wav"
+    ]
+  },
+  "event": {
+    "base_track": "event",
+    "bpm": 92,
+    "character": "chill_mystic",
+    "generator_version": "bgm_v4",
+    "intro_bars": 6,
+    "loop_bars": 10,
+    "mood_profile": "menu_map_lore",
+    "total_bars": 16,
+    "track": "event",
+    "variants": [
+      "music/event__v1.wav",
+      "music/event__v2.wav"
+    ]
+  },
+  "map_forest": {
+    "base_track": "map_forest",
+    "bpm": 108,
+    "character": "chill_mystic",
+    "generator_version": "bgm_v4",
+    "intro_bars": 6,
+    "loop_bars": 12,
+    "mood_profile": "menu_map_lore",
+    "total_bars": 18,
+    "track": "map_forest",
+    "variants": [
+      "music/map_forest__v1.wav",
+      "music/map_forest__v2.wav",
+      "music/map_forest__v3.wav"
+    ]
+  },
+  "map_hanan": {
+    "base_track": "map_hanan",
+    "bpm": 112,
+    "character": "chill_mystic",
+    "generator_version": "bgm_v4",
+    "intro_bars": 6,
+    "loop_bars": 12,
+    "mood_profile": "menu_map_lore",
+    "total_bars": 18,
+    "track": "map_hanan",
+    "variants": [
+      "music/map_hanan__v1.wav",
+      "music/map_hanan__v2.wav",
+      "music/map_hanan__v3.wav"
+    ]
+  },
+  "map_kaypacha": {
+    "base_track": "map_kaypacha",
+    "bpm": 110,
+    "character": "chill_mystic",
+    "generator_version": "bgm_v4",
+    "intro_bars": 6,
+    "loop_bars": 12,
+    "mood_profile": "menu_map_lore",
+    "total_bars": 18,
+    "track": "map_kaypacha",
+    "variants": [
+      "music/map_kaypacha__v1.wav",
+      "music/map_kaypacha__v2.wav",
+      "music/map_kaypacha__v3.wav"
+    ]
+  },
+  "map_umbral": {
+    "base_track": "map_umbral",
+    "bpm": 112,
+    "character": "chill_mystic",
+    "generator_version": "bgm_v4",
+    "intro_bars": 6,
+    "loop_bars": 12,
+    "mood_profile": "menu_map_lore",
+    "total_bars": 18,
+    "track": "map_umbral",
+    "variants": [
+      "music/map_umbral__v1.wav",
+      "music/map_umbral__v2.wav",
+      "music/map_umbral__v3.wav"
+    ]
+  },
+  "menu": {
+    "base_track": "menu",
+    "bpm": 82,
+    "character": "chill_mystic",
+    "generator_version": "bgm_v4",
+    "intro_bars": 8,
+    "loop_bars": 12,
+    "mood_profile": "menu_map_lore",
+    "total_bars": 20,
+    "track": "menu",
+    "variants": [
+      "music/menu__v1.wav",
+      "music/menu__v2.wav",
+      "music/menu__v3.wav"
+    ]
+  },
+  "shop": {
+    "base_track": "shop",
+    "bpm": 74,
+    "character": "meditative_ceremonial",
+    "generator_version": "bgm_v4",
+    "intro_bars": 8,
+    "loop_bars": 10,
+    "mood_profile": "shop_reward",
+    "total_bars": 18,
+    "track": "shop",
+    "variants": [
+      "music/shop__v1.wav",
+      "music/shop__v2.wav"
+    ]
+  },
+  "victory": {
+    "base_track": "victory",
+    "bpm": 110,
+    "character": "meditative_ceremonial",
+    "generator_version": "bgm_v4",
+    "intro_bars": 2,
+    "loop_bars": 6,
+    "mood_profile": "shop_reward",
+    "total_bars": 8,
+    "track": "victory",
+    "variants": [
+      "music/victory__v1.wav"
+    ]
+  }
+}
