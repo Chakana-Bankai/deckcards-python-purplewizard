@@ -429,6 +429,79 @@ class CombatScreen:
             return (72, 188, 240)
         return (174, 116, 255)
 
+    def _enemy_presence_variant(self, enemy) -> str:
+        eid = str(getattr(enemy, "id", "")).lower()
+        name = str(getattr(enemy, "name_key", "")).lower()
+        tier = str(getattr(enemy, "tier", "")).lower()
+        if any(k in f"{eid} {name} {tier}" for k in ["angel", "seraph", "sacred", "light"]):
+            return "angelic"
+        if any(k in f"{eid} {name} {tier}" for k in ["demon", "void", "shadow", "abyss"]):
+            return "demonic"
+        if any(k in f"{eid} {name} {tier}" for k in ["nephilim", "giant", "titan", "astral"]):
+            return "nephilim"
+        return "nephilim" if tier == "boss" else "angelic"
+
+    def _draw_enemy_geometry_overlay(self, s: pygame.Surface, rect: pygame.Rect, intent_col: tuple[int, int, int], variant: str, boss_factor: float, t: float):
+        pad = 6
+        frame = rect.inflate(pad * 2, pad * 2)
+        geo = pygame.Surface((frame.w, frame.h), pygame.SRCALPHA)
+
+        if variant == "angelic":
+            geo_col = (232, 220, 170)
+            rings = [0.30, 0.46, 0.62]
+        elif variant == "demonic":
+            geo_col = (226, 96, 118)
+            rings = [0.28, 0.44, 0.58]
+        else:
+            geo_col = (174, 146, 248)
+            rings = [0.34, 0.52, 0.68]
+
+        cx, cy = frame.w // 2, frame.h // 2
+        r0 = int(min(frame.w, frame.h) * 0.42)
+        for idx, mul in enumerate(rings):
+            rr = max(8, int(r0 * mul))
+            alpha = int((54 + idx * 16) * boss_factor)
+            pygame.draw.circle(geo, (*geo_col, alpha), (cx, cy), rr, 1)
+
+        # Rotating diamond/star overlay tuned by variant.
+        spin = t * (0.9 + 0.22 * boss_factor)
+        spike = 7 if variant == "demonic" else 4 if variant == "angelic" else 8
+        poly = []
+        for i in range(spike):
+            ang = spin + (2 * math.pi * i / spike)
+            rad = r0 * (0.44 if i % 2 == 0 else 0.24)
+            poly.append((cx + int(math.cos(ang) * rad), cy + int(math.sin(ang) * rad)))
+        pygame.draw.polygon(geo, (*intent_col, int(40 * boss_factor)), poly, 1)
+
+        if boss_factor > 1.2:
+            # Boss-only sacred grid with subtle wobble.
+            gw = max(1, int(frame.w * 0.12))
+            off = int(3 * math.sin(t * 1.7))
+            for x in range(gw // 2, frame.w, gw):
+                pygame.draw.line(geo, (*geo_col, 22), (x + off, 0), (x + off, frame.h), 1)
+            for y in range(gw // 2, frame.h, gw):
+                pygame.draw.line(geo, (*geo_col, 22), (0, y - off), (frame.w, y - off), 1)
+
+        pygame.draw.rect(geo, (*intent_col, int(72 * boss_factor)), geo.get_rect(), 2, border_radius=16)
+        s.blit(geo, (frame.x, frame.y))
+
+    def _draw_enemy_aura(self, s: pygame.Surface, avatar_rect: pygame.Rect, intent_col: tuple[int, int, int], boss_factor: float, variant: str, t: float):
+        layer_count = 3 if boss_factor > 1.2 else 2
+        base_phase = 2.2 if boss_factor > 1.2 else 1.8
+        variant_shift = 0.35 if variant == "angelic" else 0.72 if variant == "demonic" else 1.05
+        for layer in range(layer_count):
+            phase = t * (base_phase + layer * 0.33) + variant_shift
+            wave = 0.5 + 0.5 * math.sin(phase)
+            width_mul = 0.72 + layer * 0.16 + 0.14 * wave
+            aura_w = int(avatar_rect.w * width_mul)
+            aura_h = int((10 + 3 * layer) * boss_factor)
+            aura_x = avatar_rect.centerx - aura_w // 2
+            aura_y = avatar_rect.bottom - 12 + layer * 2
+            alpha = int((92 + layer * 28 + 24 * wave) * (1.08 if boss_factor > 1.2 else 1.0))
+            aura = pygame.Surface((aura_w, aura_h), pygame.SRCALPHA)
+            aura.fill((*intent_col, max(26, min(220, alpha))))
+            s.blit(aura, (aura_x, aura_y))
+
     def _topbar_narrative(self):
         run = self.app.run_state or {}
         deck_name = str(run.get("deck_name") or run.get("starter_name") or "Inicial")
@@ -926,25 +999,34 @@ class CombatScreen:
             counter_txt = f"Deck {deck_est}  Hand 1  Discard {discard_est}"
             s.blit(self.app.tiny_font.render(counter_txt, True, UI_THEME["muted"]), (counters.x, counters.y))
 
+            variant = self._enemy_presence_variant(e)
+            boss_factor = 1.45 if (self.is_boss or str(getattr(e, "tier", "")).lower() == "boss") else 1.0
+
+            # Deep frame to lift sprite readability from busy backgrounds.
+            avatar_frame = avatar_rect.inflate(10, 10)
+            pygame.draw.rect(s, (18, 16, 26), avatar_frame, border_radius=14)
+            pygame.draw.rect(s, (*intent_col, int(98 * boss_factor)), avatar_frame, 2, border_radius=14)
+
             sprite = self.app.assets.sprite("enemies", e.id, (avatar_rect.w, avatar_rect.h), fallback=(100, 60, 90))
             sprite_box = sprite.get_rect(center=(avatar_rect.centerx, avatar_rect.centery + 2))
+            shadow = pygame.Surface((avatar_rect.w + 20, avatar_rect.h + 20), pygame.SRCALPHA)
+            pygame.draw.ellipse(shadow, (0, 0, 0, 118), shadow.get_rect())
+            s.blit(shadow, (avatar_rect.x - 10, avatar_rect.y + 6))
             s.blit(sprite, sprite_box.topleft)
+
+            # Variant-aware sacred geometry overlay and RGB aura 2.0.
+            self._draw_enemy_geometry_overlay(s, avatar_rect, intent_col, variant, boss_factor, t + i * 0.31)
+            self._draw_enemy_aura(s, avatar_rect, intent_col, boss_factor, variant, t + i * 0.27)
 
             pygame.draw.rect(s, (28, 22, 36), hp_bar, border_radius=5)
             pygame.draw.rect(s, UI_THEME["hp"], pygame.Rect(hp_bar.x, hp_bar.y, int(hp_bar.w * ratio), hp_bar.h), border_radius=5)
 
-            boss_factor = 1.35 if (self.is_boss or str(getattr(e, "tier", "")).lower() == "boss") else 1.0
-            aura_h = int(12 * boss_factor)
-            aura_w = int(avatar_rect.w * (0.78 + 0.30 * (0.5 + 0.5 * math.sin(t * (2.1 + i * 0.2) * boss_factor))))
-            aura_x = avatar_rect.centerx - aura_w // 2
-            aura_y = avatar_rect.bottom - 10
-            aura = pygame.Surface((aura_w, aura_h), pygame.SRCALPHA)
-            aura.fill((*intent_col, int(148 * boss_factor)))
-            s.blit(aura, (aura_x, aura_y))
-
-            ring = pygame.Surface((avatar_rect.w + 14, avatar_rect.h + 14), pygame.SRCALPHA)
-            pygame.draw.rect(ring, (*intent_col, int(72 * boss_factor)), ring.get_rect(), 2, border_radius=16)
-            s.blit(ring, (avatar_rect.x - 7, avatar_rect.y - 7))
+            # Boss-only subtle distortion ribbon near base keeps impact high without hiding UI text.
+            if boss_factor > 1.2:
+                wobble_w = int(avatar_rect.w * (0.82 + 0.08 * math.sin((t + i) * 2.6)))
+                wobble = pygame.Surface((wobble_w, 8), pygame.SRCALPHA)
+                wobble.fill((*intent_col, 80))
+                s.blit(wobble, (avatar_rect.centerx - wobble_w // 2, avatar_rect.bottom - 4))
 
         narrative_rect = self.layout.voices_rect.union(self.layout.card_detail)
         pygame.draw.rect(s, UI_THEME["panel"], narrative_rect, border_radius=12)
@@ -1291,6 +1373,8 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+
 
 
 
