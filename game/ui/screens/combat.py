@@ -133,13 +133,13 @@ class CombatScreen:
         print(f"[dlg] trigger={mapped_trigger} enemy={enemy_id} ctx={ctx or {}}")
 
     def _card_playable(self, card) -> bool:
-        ok, _reason = can_play_card(card, self.c.player, self.c)
+        ok, _reason_code, _reason_text = can_play_card(card, self.c.player, self.c)
         return bool(ok)
 
     def _selected_card_play_state(self):
         idx = self.ctrl.selected_index
         if idx is None or idx >= len(self.c.hand):
-            return False, "Sin selección"
+            return False, "OTHER", "Sin selección"
         return can_play_card(self.c.hand[idx], self.c.player, self.c)
 
     def _playable_cards(self):
@@ -162,12 +162,13 @@ class CombatScreen:
                 fsm, reason, label, disabled = "IDLE", REASON_OK, "FIN DEL RITUAL", False
             else:
                 card = self.c.hand[idx]
-                ok, reason = can_play(card, self.c)
-                self._last_reason_code = reason
+                ok, reason_code, reason_text = can_play(card, self.c)
+                self._last_reason_code = reason_code
                 if ok:
-                    fsm, reason, label, disabled = "READY_TO_EXECUTE", reason, "EJECUTAR", False
+                    fsm, reason, label, disabled = "READY_TO_EXECUTE", reason_code, "EJECUTAR", False
                 else:
-                    fsm, reason, label, disabled = "CARD_SELECTED", reason, "FIN DEL RITUAL", False
+                    fsm, reason, label, disabled = "CARD_SELECTED", reason_code, "FIN DEL RITUAL", False
+                    self._status_line = reason_text
 
         state = "PLAY_CARD" if fsm == "READY_TO_EXECUTE" else "END_TURN"
         if DEBUG_UI and (fsm != self._action_button_fsm or reason != self._action_state_reason):
@@ -175,10 +176,10 @@ class CombatScreen:
         self._action_button_fsm = fsm
         self._action_state = state
         self._action_state_reason = reason
-        if reason != REASON_OK:
-            self._status_line = reason_to_es(reason)
-        else:
+        if reason == REASON_OK:
             self._status_line = ""
+        elif fsm == "LOCKED_COOLDOWN":
+            self._status_line = reason_to_es(reason)
         return state, label, disabled, reason
 
     def _set_dialogue_lines(self, enemy_line: str, hero_line: str, trigger: str):
@@ -265,10 +266,10 @@ class CombatScreen:
         if idx is None or idx >= len(self.c.hand):
             return
         card = self.c.hand[idx]
-        ok_code, reason_code = can_play(card, self.c)
+        ok_code, reason_code, reason_text = can_play(card, self.c)
         self.telemetry.info("card_click", card_id=getattr(card.definition, "id", "-"), ok=ok_code, reason_code=reason_code)
         if not ok_code:
-            msg = reason_to_es(reason_code)
+            msg = reason_text
             self._push_log(f"No se puede jugar: {msg}")
             self._status_line = msg
             self._last_reason_code = reason_code
@@ -454,11 +455,12 @@ class CombatScreen:
                     self.ctrl.on_card_click(i)
                     in_card = True
                     sel = self.c.hand[i] if i < len(self.c.hand) else None
-                    ok_code, reason_code = can_play(sel, self.c) if sel else (False, "OTHER")
+                    ok_code, reason_code, reason_text = can_play(sel, self.c) if sel else (False, "OTHER", "No se puede jugar")
                     self._last_reason_code = reason_code
                     self.telemetry.info("card_click", card_id=getattr(getattr(sel, "definition", None), "id", "-"), ok=ok_code, reason_code=reason_code)
                     if not ok_code:
-                        self._status_line = reason_to_es(reason_code)
+                        self._status_line = reason_text
+                        self._push_log(f"No se puede jugar: {reason_text}")
                     break
             if not in_card:
                 self.ctrl.clear_selection("click_outside")
@@ -875,8 +877,8 @@ class CombatScreen:
                 f"harmony: {p.get('harmony_current',0)}/{p.get('harmony_max',10)} thr={p.get('harmony_ready_threshold',6)}",
                 f"last_trigger: {self.last_trigger}",
             ]
-            ok, reason = self._selected_card_play_state()
-            info_lines.append(f"can_play={ok} reason={reason}")
+            ok, reason_code, reason_text = self._selected_card_play_state()
+            info_lines.append(f"can_play={ok} reason={reason_code} ({reason_text})")
             if self.ctrl.selected_index is not None and self.ctrl.selected_index < len(hand):
                 sc = hand[self.ctrl.selected_index]
                 info_lines.append(f"energy={p.get('energy',0)} cost={sc.cost} target_ok={any(e.alive for e in self.c.enemies)}")

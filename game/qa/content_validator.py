@@ -49,8 +49,8 @@ def validate_content(cards_data: list[dict], assets_root: Path) -> dict:
 
         try:
             card = CardInstance(CardDef(**c))
-            ok, reason = can_play(card, dummy_ctx)
-            if isinstance(ok, bool) and isinstance(reason, str):
+            ok, reason_code, reason_text = can_play(card, dummy_ctx)
+            if isinstance(ok, bool) and isinstance(reason_code, str) and isinstance(reason_text, str):
                 can_play_ok += 1
             else:
                 issues.append(f"can_play_contract:{cid}")

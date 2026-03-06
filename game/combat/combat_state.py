@@ -182,11 +182,11 @@ class CombatState:
         if hand_index < 0 or hand_index >= len(self.hand):
             return
         card = self.hand[hand_index]
-        extra_cost = 1 if self.harmony_chaos_pending else 0
-        if card.definition.tags and "attack" in card.definition.tags and self.player["statuses"].get("discount_next_attack",0)>0:
-            extra_cost = max(0, extra_cost-1)
-            self.player["statuses"]["discount_next_attack"] = max(0,self.player["statuses"].get("discount_next_attack",0)-1)
-        if card.cost + extra_cost > self.player["energy"]:
+        play_cost = int(card.cost or 0)
+        if card.definition.tags and "attack" in card.definition.tags and self.player["statuses"].get("discount_next_attack", 0) > 0:
+            play_cost = max(0, play_cost - 1)
+            self.player["statuses"]["discount_next_attack"] = max(0, self.player["statuses"].get("discount_next_attack", 0) - 1)
+        if play_cost > self.player["energy"]:
             return
         if card.definition.target == "enemy":
             if target_idx is None or target_idx >= len(self.enemies) or not self.enemies[target_idx].alive:
@@ -195,7 +195,7 @@ class CombatState:
             target = self.enemies[target_idx]
         else:
             target = self.enemies[0] if self.enemies else None
-        self.player["energy"] -= (card.cost + extra_cost)
+        self.player["energy"] -= play_cost
         if self.harmony_chaos_pending:
             self.harmony_chaos_pending = False
         self.hand.pop(hand_index)
