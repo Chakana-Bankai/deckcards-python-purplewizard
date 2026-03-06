@@ -1,0 +1,1264 @@
+[
+  {
+    "id": "filo_astral",
+    "name_es": "Filo Astral",
+    "direction": "ESTE",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "attack"
+    ],
+    "text_es": "Daño 6",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 6
+      }
+    ]
+  },
+  {
+    "id": "lanza_del_amanecer",
+    "name_es": "Lanza del Amanecer",
+    "direction": "ESTE",
+    "rarity": "common",
+    "cost": 2,
+    "tags": [
+      "attack"
+    ],
+    "text_es": "Daño 9",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 9
+      }
+    ]
+  },
+  {
+    "id": "corte_del_puma",
+    "name_es": "Corte del Puma",
+    "direction": "ESTE",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "attack"
+    ],
+    "text_es": "Daño 5. Si enemigo con Quiebre, +2 daño",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 5
+      },
+      {
+        "type": "damage_if_enemy_break",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "golpe_del_trueno",
+    "name_es": "Golpe del Trueno",
+    "direction": "ESTE",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": [
+      "attack",
+      "break"
+    ],
+    "text_es": "Daño 7 y Quiebre 2",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 7
+      },
+      {
+        "type": "apply_break",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "estallido_arcano",
+    "name_es": "Estallido Arcano",
+    "direction": "ESTE",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "attack",
+      "draw"
+    ],
+    "text_es": "Daño 4, roba 1",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 4
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "ruptura_del_umbral",
+    "name_es": "Ruptura del Umbral",
+    "direction": "ESTE",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": [
+      "attack"
+    ],
+    "text_es": "Daño 8, vulnerable 2",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 8
+      },
+      {
+        "type": "vulnerable_enemy",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "garra_espiritual",
+    "name_es": "Garra Espiritual",
+    "direction": "ESTE",
+    "rarity": "common",
+    "cost": 0,
+    "tags": [
+      "attack"
+    ],
+    "text_es": "Daño 3",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": "tormenta_de_lanzas",
+    "name_es": "Tormenta de Lanzas",
+    "direction": "ESTE",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": [
+      "attack"
+    ],
+    "text_es": "Daño 12",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 12
+      }
+    ]
+  },
+  {
+    "id": "fragmento_celeste",
+    "name_es": "Fragmento Celeste",
+    "direction": "ESTE",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "attack",
+      "scry"
+    ],
+    "text_es": "Daño 5, scry 2",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 5
+      },
+      {
+        "type": "scry",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "embate_del_jaguar",
+    "name_es": "Embate del Jaguar",
+    "direction": "ESTE",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": [
+      "attack",
+      "block"
+    ],
+    "text_es": "Daño 6, Guardia 3",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 6
+      },
+      {
+        "type": "gain_block",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": "punal_de_luz",
+    "name_es": "Puñal de Luz",
+    "direction": "ESTE",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "attack",
+      "heal"
+    ],
+    "text_es": "Daño 4, cura 1",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 4
+      },
+      {
+        "type": "heal",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "desgarro_del_vacio",
+    "name_es": "Desgarro del Vacío",
+    "direction": "ESTE",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": [
+      "attack",
+      "risk"
+    ],
+    "text_es": "Daño 10, recibes Quiebre 1",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 10
+      },
+      {
+        "type": "self_break",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "impacto_solar",
+    "name_es": "Impacto Solar",
+    "direction": "ESTE",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": [
+      "attack"
+    ],
+    "text_es": "Daño 7, si mata roba 1",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 7
+      },
+      {
+        "type": "draw_on_kill",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "corte_dimensional",
+    "name_es": "Corte Dimensional",
+    "direction": "ESTE",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": [
+      "attack",
+      "exhaust"
+    ],
+    "text_es": "Daño 14, exhaust",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 14
+      },
+      {
+        "type": "exhaust_self",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "filo_en_cadena",
+    "name_es": "Filo en Cadena",
+    "direction": "ESTE",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": [
+      "attack"
+    ],
+    "text_es": "Daño 4, si jugaste ESTE roba 1",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 4
+      },
+      {
+        "type": "draw_if_direction_played",
+        "direction": "ESTE",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "sello_protector",
+    "name_es": "Sello Protector",
+    "direction": "SUR",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "block"
+    ],
+    "text_es": "Guardia 6",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 6
+      }
+    ]
+  },
+  {
+    "id": "muralla_de_piedra",
+    "name_es": "Muralla de Piedra",
+    "direction": "SUR",
+    "rarity": "common",
+    "cost": 2,
+    "tags": [
+      "block"
+    ],
+    "text_es": "Guardia 10",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "id": "escudo_de_luz",
+    "name_es": "Escudo de Luz",
+    "direction": "SUR",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "block",
+      "heal"
+    ],
+    "text_es": "Guardia 5, cura 1",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 5
+      },
+      {
+        "type": "heal",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "guardia_terrenal",
+    "name_es": "Guardia Terrenal",
+    "direction": "SUR",
+    "rarity": "common",
+    "cost": 0,
+    "tags": [
+      "block"
+    ],
+    "text_es": "Guardia 3",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": "resistencia_ancestral",
+    "name_es": "Resistencia Ancestral",
+    "direction": "SUR",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": [
+      "block",
+      "retain"
+    ],
+    "text_es": "Guardia 8, retain",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 8
+      },
+      {
+        "type": "retain",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "caparazon_kaypacha",
+    "name_es": "Caparazón Kaypacha",
+    "direction": "SUR",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": [
+      "block",
+      "break"
+    ],
+    "text_es": "Guardia 4, Quiebre 1",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 4
+      },
+      {
+        "type": "apply_break",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "fortaleza_chakana",
+    "name_es": "Fortaleza Chakana",
+    "direction": "SUR",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": [
+      "block",
+      "exhaust"
+    ],
+    "text_es": "Guardia 16, exhaust",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 16
+      },
+      {
+        "type": "exhaust_self",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "refugio_espiritual",
+    "name_es": "Refugio Espiritual",
+    "direction": "SUR",
+    "rarity": "common",
+    "cost": 2,
+    "tags": [
+      "heal"
+    ],
+    "text_es": "Cura 4",
+    "effects": [
+      {
+        "type": "heal",
+        "amount": 4
+      }
+    ]
+  },
+  {
+    "id": "anillo_de_proteccion",
+    "name_es": "Anillo de Protección",
+    "direction": "SUR",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": [
+      "block",
+      "draw"
+    ],
+    "text_es": "Guardia 4, roba 1 si tenías 0 Guardia",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 4
+      },
+      {
+        "type": "draw_if_no_block",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "campo_protector",
+    "name_es": "Campo Protector",
+    "direction": "SUR",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": [
+      "block",
+      "debuff"
+    ],
+    "text_es": "Guardia 7, debilita enemigo 2",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 7
+      },
+      {
+        "type": "weaken_enemy",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "guardia_solar",
+    "name_es": "Guardia Solar",
+    "direction": "SUR",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": [
+      "block",
+      "energy"
+    ],
+    "text_es": "Guardia 6, Mana 1 próximo turno",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 6
+      },
+      {
+        "type": "gain_mana_next_turn",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "escudo_del_chaman",
+    "name_es": "Escudo del Chamán",
+    "direction": "SUR",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "block",
+      "scry"
+    ],
+    "text_es": "Guardia 5, scry 1",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 5
+      },
+      {
+        "type": "scry",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "barrera_sagrada",
+    "name_es": "Barrera Sagrada",
+    "direction": "SUR",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": [
+      "block",
+      "heal"
+    ],
+    "text_es": "Guardia 12, cura 2",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 12
+      },
+      {
+        "type": "heal",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "firmeza_del_cuerpo",
+    "name_es": "Firmeza del Cuerpo",
+    "direction": "SUR",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "heal",
+      "block"
+    ],
+    "text_es": "Cura 2, Guardia 2",
+    "effects": [
+      {
+        "type": "heal",
+        "amount": 2
+      },
+      {
+        "type": "gain_block",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "piedra_ritual",
+    "name_es": "Piedra Ritual",
+    "direction": "SUR",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": [
+      "block",
+      "break"
+    ],
+    "text_es": "Guardia 6, Quiebre 3",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 6
+      },
+      {
+        "type": "apply_break",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": "vision_del_condor",
+    "name_es": "Visión del Cóndor",
+    "direction": "NORTE",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "scry",
+      "draw"
+    ],
+    "text_es": "Scry 3, roba 1",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 3
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "meditacion_profunda",
+    "name_es": "Meditación Profunda",
+    "direction": "NORTE",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "energy",
+      "draw"
+    ],
+    "text_es": "Mana 1 próximo turno, roba 1",
+    "effects": [
+      {
+        "type": "gain_mana_next_turn",
+        "amount": 1
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "claridad_del_hanan",
+    "name_es": "Claridad del Hanan",
+    "direction": "NORTE",
+    "rarity": "common",
+    "cost": 2,
+    "tags": [
+      "draw"
+    ],
+    "text_es": "Roba 2",
+    "effects": [
+      {
+        "type": "draw",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "lectura_del_destino",
+    "name_es": "Lectura del Destino",
+    "direction": "NORTE",
+    "rarity": "common",
+    "cost": 0,
+    "tags": [
+      "scry"
+    ],
+    "text_es": "Scry 2",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "revelacion_astral",
+    "name_es": "Revelación Astral",
+    "direction": "NORTE",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": [
+      "scry",
+      "draw"
+    ],
+    "text_es": "Scry 4, roba 1",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 4
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "eco_de_sabiduria",
+    "name_es": "Eco de Sabiduría",
+    "direction": "NORTE",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": [
+      "copy",
+      "exhaust"
+    ],
+    "text_es": "Copia última carta, exhaust",
+    "effects": [
+      {
+        "type": "copy_last_played",
+        "amount": 1
+      },
+      {
+        "type": "exhaust_self",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "observacion_sagrada",
+    "name_es": "Observación Sagrada",
+    "direction": "NORTE",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "scry"
+    ],
+    "text_es": "Scry 3",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": "calculo_del_cosmos",
+    "name_es": "Cálculo del Cosmos",
+    "direction": "NORTE",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": [
+      "draw",
+      "risk"
+    ],
+    "text_es": "Roba 2, pierde 1 vida",
+    "effects": [
+      {
+        "type": "draw",
+        "amount": 2
+      },
+      {
+        "type": "self_damage",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "mapa_del_destino",
+    "name_es": "Mapa del Destino",
+    "direction": "NORTE",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": [
+      "scry"
+    ],
+    "text_es": "Scry 5",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "id": "profecia_del_umbral",
+    "name_es": "Profecía del Umbral",
+    "direction": "NORTE",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": [
+      "cost"
+    ],
+    "text_es": "Próximo ataque cuesta -1",
+    "effects": [
+      {
+        "type": "discount_next_attack",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "equilibrio_mental",
+    "name_es": "Equilibrio Mental",
+    "direction": "NORTE",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": [
+      "cost"
+    ],
+    "text_es": "Reduce costo de 1 carta en mano -1",
+    "effects": [
+      {
+        "type": "reduce_hand_card_cost",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "mente_serena",
+    "name_es": "Mente Serena",
+    "direction": "NORTE",
+    "rarity": "common",
+    "cost": 0,
+    "tags": [
+      "draw",
+      "block"
+    ],
+    "text_es": "Roba 1, si no jugaste ESTE gana Guardia 2",
+    "effects": [
+      {
+        "type": "draw",
+        "amount": 1
+      },
+      {
+        "type": "gain_block_if_no_direction",
+        "direction": "ESTE",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "silencio_interior",
+    "name_es": "Silencio Interior",
+    "direction": "NORTE",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": [
+      "debuff",
+      "scry"
+    ],
+    "text_es": "Debilita 3, scry 1",
+    "effects": [
+      {
+        "type": "weaken_enemy",
+        "amount": 3
+      },
+      {
+        "type": "scry",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "ojo_interior",
+    "name_es": "Ojo Interior",
+    "direction": "NORTE",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": [
+      "energy"
+    ],
+    "text_es": "Mira intención enemiga, gana Mana 1 si es ataque",
+    "effects": [
+      {
+        "type": "gain_mana_if_enemy_attack_intent",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "ojo_del_condor",
+    "name_es": "Ojo del Cóndor",
+    "direction": "NORTE",
+    "rarity": "legendary",
+    "cost": 3,
+    "tags": [
+      "draw",
+      "scry"
+    ],
+    "text_es": "Roba 3, scry 2, exhaust",
+    "effects": [
+      {
+        "type": "draw",
+        "amount": 3
+      },
+      {
+        "type": "scry",
+        "amount": 2
+      },
+      {
+        "type": "exhaust_self",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "portal_de_la_chakana",
+    "name_es": "Portal de la Chakana",
+    "direction": "OESTE",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": [
+      "break",
+      "draw"
+    ],
+    "text_es": "Quiebre 3, roba 1",
+    "effects": [
+      {
+        "type": "apply_break",
+        "amount": 3
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "invocacion_astral",
+    "name_es": "Invocación Astral",
+    "direction": "OESTE",
+    "rarity": "common",
+    "cost": 2,
+    "tags": [
+      "heal",
+      "block"
+    ],
+    "text_es": "Cura 3, Guardia 3",
+    "effects": [
+      {
+        "type": "heal",
+        "amount": 3
+      },
+      {
+        "type": "gain_block",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": "pulso_cosmico",
+    "name_es": "Pulso Cósmico",
+    "direction": "OESTE",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "break",
+      "attack"
+    ],
+    "text_es": "Quiebre 2 y daño 2",
+    "effects": [
+      {
+        "type": "apply_break",
+        "amount": 2
+      },
+      {
+        "type": "damage",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "mantra_del_umbral",
+    "name_es": "Mantra del Umbral",
+    "direction": "OESTE",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "energy",
+      "heal"
+    ],
+    "text_es": "Mana 1, cura 1",
+    "effects": [
+      {
+        "type": "gain_mana",
+        "amount": 1
+      },
+      {
+        "type": "heal",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "vinculo_de_energia",
+    "name_es": "Vínculo de Energía",
+    "direction": "OESTE",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": [
+      "energy"
+    ],
+    "text_es": "Mana 2 este turno",
+    "effects": [
+      {
+        "type": "gain_mana",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "circulo_de_invocacion",
+    "name_es": "Círculo de Invocación",
+    "direction": "OESTE",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": [
+      "heal",
+      "block",
+      "exhaust"
+    ],
+    "text_es": "Cura 6, Guardia 6, exhaust",
+    "effects": [
+      {
+        "type": "heal",
+        "amount": 6
+      },
+      {
+        "type": "gain_block",
+        "amount": 6
+      },
+      {
+        "type": "exhaust_self",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "fusion_espiritual",
+    "name_es": "Fusión Espiritual",
+    "direction": "OESTE",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": [
+      "block"
+    ],
+    "text_es": "Duplica Guardia (máx +12)",
+    "effects": [
+      {
+        "type": "double_block_cap",
+        "amount": 12
+      }
+    ]
+  },
+  {
+    "id": "luz_del_hanan",
+    "name_es": "Luz del Hanan",
+    "direction": "OESTE",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": [
+      "heal",
+      "debuff"
+    ],
+    "text_es": "Cura 4, vulnerable 2",
+    "effects": [
+      {
+        "type": "heal",
+        "amount": 4
+      },
+      {
+        "type": "vulnerable_enemy",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": "tormenta_mistica",
+    "name_es": "Tormenta Mística",
+    "direction": "OESTE",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": [
+      "attack",
+      "break"
+    ],
+    "text_es": "Daño 8, Quiebre 4",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 8
+      },
+      {
+        "type": "apply_break",
+        "amount": 4
+      }
+    ]
+  },
+  {
+    "id": "espiritu_guardian",
+    "name_es": "Espíritu Guardián",
+    "direction": "OESTE",
+    "rarity": "common",
+    "cost": 1,
+    "tags": [
+      "block",
+      "break"
+    ],
+    "text_es": "Guardia 4, Quiebre 1",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 4
+      },
+      {
+        "type": "apply_break",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "sello_de_los_tres_pachas",
+    "name_es": "Sello de los Tres Pachas",
+    "direction": "OESTE",
+    "rarity": "legendary",
+    "cost": 4,
+    "tags": [
+      "heal",
+      "block",
+      "energy",
+      "exhaust"
+    ],
+    "text_es": "Cura 5, Guardia 8, Mana +1 próximo turno, exhaust",
+    "effects": [
+      {
+        "type": "heal",
+        "amount": 5
+      },
+      {
+        "type": "gain_block",
+        "amount": 8
+      },
+      {
+        "type": "gain_mana_next_turn",
+        "amount": 1
+      },
+      {
+        "type": "exhaust_self",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "espejo_astral",
+    "name_es": "Espejo Astral",
+    "direction": "OESTE",
+    "rarity": "legendary",
+    "cost": 3,
+    "tags": [
+      "copy",
+      "exhaust"
+    ],
+    "text_es": "Copia la próxima carta jugada, exhaust",
+    "effects": [
+      {
+        "type": "copy_next_played",
+        "amount": 1
+      },
+      {
+        "type": "exhaust_self",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "ritual_de_la_trama",
+    "name_es": "Ritual de la Trama",
+    "direction": "OESTE",
+    "rarity": "legendary",
+    "cost": 4,
+    "tags": [
+      "attack",
+      "heal",
+      "exhaust"
+    ],
+    "text_es": "Si BALANCE: daño 12 y cura 4; si no daño 8, exhaust",
+    "effects": [
+      {
+        "type": "ritual_trama",
+        "amount": 1
+      },
+      {
+        "type": "exhaust_self",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "baston_del_umbral",
+    "name_es": "Bastón del Umbral",
+    "direction": "OESTE",
+    "rarity": "legendary",
+    "cost": 2,
+    "tags": [
+      "copy"
+    ],
+    "text_es": "copy_last_played() una vez por combate",
+    "effects": [
+      {
+        "type": "copy_last_played",
+        "amount": 1
+      },
+      {
+        "type": "baston_once",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "chakana_de_luz",
+    "name_es": "Chakana de Luz",
+    "direction": "OESTE",
+    "rarity": "legendary",
+    "cost": 3,
+    "tags": [
+      "attack",
+      "block",
+      "energy",
+      "exhaust"
+    ],
+    "text_es": "Daño 10 + Guardia 5 + Mana 1 próximo turno, exhaust",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 10
+      },
+      {
+        "type": "gain_block",
+        "amount": 5
+      },
+      {
+        "type": "gain_mana_next_turn",
+        "amount": 1
+      },
+      {
+        "type": "exhaust_self",
+        "amount": 1
+      }
+    ]
+  }
+]
