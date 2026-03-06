@@ -84,6 +84,8 @@ class CombatScreen:
         self._ui_lock_until_ms = 0
         self._last_reason_code = REASON_OK
         self._status_line = ""
+        self._invalid_feedback_until_ms = 0
+        self._invalid_feedback_msg = ""
         self._cost_pulse_until = {}
         self.telemetry = TelemetryLogger("INFO")
         self.dialogue_ctrl = CombatDialogueController(self.app.lore_engine, self._set_dialogue_lines)
@@ -103,11 +105,13 @@ class CombatScreen:
 
     def _refresh_layout(self, surface: pygame.Surface):
         self.layout = build_combat_layout(surface.get_width(), surface.get_height())
-        base_w = max(220, int(self.layout.actions_rect.w * 0.18))
-        base_h = max(52, int(self.layout.actions_rect.h * 0.48))
-        btn_w = min(self.layout.actions_rect.w - 32, int(base_w * 1.35))
-        btn_h = min(self.layout.actions_rect.h - 18, int(base_h * 1.30))
-        self.end_turn_rect = pygame.Rect(self.layout.actions_rect.centerx - btn_w // 2, self.layout.actions_rect.y + (self.layout.actions_rect.h - btn_h) // 2, btn_w, btn_h)
+        base_w = max(260, int(self.layout.actions_rect.w * 0.22))
+        base_h = max(62, int(self.layout.actions_rect.h * 0.62))
+        btn_w = min(self.layout.actions_rect.w - 56, int(base_w * 1.60))
+        btn_h = min(self.layout.actions_rect.h - 40, int(base_h * 1.12))
+        top_band = 30
+        btn_y = self.layout.actions_rect.y + top_band + max(0, (self.layout.actions_rect.h - top_band - btn_h - 8) // 2)
+        self.end_turn_rect = pygame.Rect(self.layout.actions_rect.centerx - btn_w // 2, btn_y, btn_w, btn_h)
         self.harmony_seal_rect = pygame.Rect(self.layout.playerhud_rect.right - 108, self.layout.playerhud_rect.y + 122, 92, 26)
 
     def _dialogue_lookup(self, enemy_id: str, trigger: str):
@@ -162,6 +166,10 @@ class CombatScreen:
     def _lock_ui(self):
         cd = int(getattr(self.c, "ui_cooldown_ms", 200) or 200)
         self._ui_lock_until_ms = pygame.time.get_ticks() + max(150, min(250, cd))
+
+    def _set_invalid_feedback(self, message: str):
+        self._invalid_feedback_msg = str(message or "Accion invalida")
+        self._invalid_feedback_until_ms = pygame.time.get_ticks() + 1200
 
     def _resolve_action_state(self):
         p = self.c.player
@@ -312,6 +320,9 @@ class CombatScreen:
         self.telemetry.info("action_button_press", fsm=self._action_button_fsm, state=state, reason_code=reason)
         if disabled:
             return
+        if state != "INVALID":
+            self._invalid_feedback_until_ms = 0
+            self._invalid_feedback_msg = ""
         if state == "EXECUTE":
             self._execute_selected()
             return
@@ -326,6 +337,7 @@ class CombatScreen:
         if state == "INVALID":
             msg = self._status_line or reason_to_es(reason)
             self._push_log(f"No se puede jugar: {msg}")
+            self._set_invalid_feedback(msg)
             try:
                 self.app.sfx.play("deny")
             except Exception:
@@ -1062,52 +1074,79 @@ class CombatScreen:
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.actions_rect, 2, border_radius=12)
         state, label, disabled, _reason = self._resolve_action_state()
 
-        pulse = 0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 180.0)
-        bcol_map = {
-            "END_TURN": UI_THEME["gold"],
-            "EXECUTE": (214, 74, 88),
-            "RELEASE_SEAL": UI_THEME["violet"],
-            "INVALID": (118, 102, 132),
+        state_ui = {
+            "EXECUTE": ("EXECUTE_CARD", "EJECUTAR CARTA", (220, 68, 120), (255, 88, 146), UI_THEME["text"]),
+            "RELEASE_SEAL": ("RELEASE_SEAL", "LIBERAR SELLO", (192, 132, 246), (246, 206, 112), UI_THEME["text"]),
+            "END_TURN": ("END_TURN", "FIN DEL TURNO", UI_THEME["gold"], (244, 220, 154), UI_THEME["text_dark"]),
+            "INVALID": ("INVALID_ACTION", "ACCION INVALIDA", (116, 102, 130), (144, 126, 162), UI_THEME["text"]),
         }
-        gcol_map = {
-            "END_TURN": (240, 212, 140),
-            "EXECUTE": (255, 94, 110),
-            "RELEASE_SEAL": (190, 132, 255),
-            "INVALID": (140, 120, 166),
-        }
-        base_col = bcol_map.get(state, UI_THEME["violet"])
-        glow_col = gcol_map.get(state, UI_THEME["accent_violet"])
+        state_tag, state_label, base_col, glow_col, text_col = state_ui.get(state, state_ui["END_TURN"])
+
         if self.ctrl.pressed_on_button_id == "action" and not disabled:
             base_col = tuple(max(0, min(255, int(c * 0.88))) for c in base_col)
 
-        glow_pad = 12
+        p = self.c.player
+        energy_now = int(p.get("energy", 0) or 0)
+        h_cur = int(p.get("harmony_current", 0) or 0)
+        h_thr = max(1, int(p.get("harmony_ready_threshold", 6) or 6))
+        enemy_rupture = self._enemy_rupture_total()
+
+        info_items = [
+            (f"ENERGIA {energy_now}", UI_THEME["energy"]),
+            (f"ARMONIA {h_cur}/{h_thr}", UI_THEME["violet"] if h_cur >= h_thr else UI_THEME["muted"]),
+        ]
+        if enemy_rupture > 0:
+            info_items.append((f"RUPTURA {enemy_rupture}", UI_THEME["rupture"]))
+
+        chip_y = self.layout.actions_rect.y + 8
+        gap = 8
+        chip_h = 18
+        chip_ws = [max(92, self.app.tiny_font.size(txt)[0] + 16) for txt, _ in info_items]
+        total_w = sum(chip_ws) + gap * max(0, len(chip_ws) - 1)
+        chip_x = self.layout.actions_rect.centerx - total_w // 2
+        for (txtv, colv), cw in zip(info_items, chip_ws):
+            chip = pygame.Rect(chip_x, chip_y, cw, chip_h)
+            pygame.draw.rect(s, UI_THEME["panel_2"], chip, border_radius=7)
+            pygame.draw.rect(s, colv, chip, 1, border_radius=7)
+            s.blit(self.app.tiny_font.render(txtv, True, colv), (chip.x + 8, chip.y + 3))
+            chip_x += cw + gap
+
+        pulse = 0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 180.0)
+        glow_pad = 16
         glow = pygame.Surface((self.end_turn_rect.w + glow_pad * 2, self.end_turn_rect.h + glow_pad * 2), pygame.SRCALPHA)
-        ga = 60 + int(90 * pulse)
+        ga = 66 + int(96 * pulse)
         if state == "INVALID":
             ga = 40
-        pygame.draw.rect(glow, (*glow_col, ga), glow.get_rect(), border_radius=18)
+        if state == "RELEASE_SEAL":
+            ga = 96 + int(110 * pulse)
+        pygame.draw.rect(glow, (*glow_col, ga), glow.get_rect(), border_radius=22)
         s.blit(glow, (self.end_turn_rect.x - glow_pad, self.end_turn_rect.y - glow_pad))
 
-        pygame.draw.rect(s, base_col, self.end_turn_rect, border_radius=14)
-        pygame.draw.rect(s, UI_THEME["text_dark"] if state == "END_TURN" else UI_THEME["gold"], self.end_turn_rect, 2, border_radius=14)
-        txt = self.app.font.render(label, True, UI_THEME["text_dark"] if state == "END_TURN" else UI_THEME["text"])
-        s.blit(txt, (self.end_turn_rect.centerx - txt.get_width() // 2, self.end_turn_rect.centery - txt.get_height() // 2))
+        pygame.draw.rect(s, base_col, self.end_turn_rect, border_radius=16)
+        pygame.draw.rect(s, UI_THEME["gold"], self.end_turn_rect, 2, border_radius=16)
+
+        tag_rect = pygame.Rect(self.end_turn_rect.x + 10, self.end_turn_rect.y + 8, 168, 18)
+        pygame.draw.rect(s, (26, 24, 34), tag_rect, border_radius=7)
+        pygame.draw.rect(s, glow_col, tag_rect, 1, border_radius=7)
+        s.blit(self.app.tiny_font.render(state_tag, True, glow_col), (tag_rect.x + 6, tag_rect.y + 3))
+
+        txt = self.app.big_font.render(state_label, True, text_col)
+        s.blit(txt, (self.end_turn_rect.centerx - txt.get_width() // 2, self.end_turn_rect.centery - txt.get_height() // 2 + 8))
 
         if state == "RELEASE_SEAL":
             rune = self.app.tiny_font.render("*", True, UI_THEME["gold"])
-            s.blit(rune, (self.end_turn_rect.x + 10, self.end_turn_rect.y + 8))
-            s.blit(rune, (self.end_turn_rect.right - 16, self.end_turn_rect.y + 8))
+            s.blit(rune, (self.end_turn_rect.x + 10, self.end_turn_rect.y + 30))
+            s.blit(rune, (self.end_turn_rect.right - 16, self.end_turn_rect.y + 30))
 
-        has_cost_modified = any(int(getattr(c, "cost", 0) or 0) != int(getattr(getattr(c, "definition", None), "cost", 0) or 0) for c in hand)
-        if has_cost_modified:
-            warn = self.app.tiny_font.render("Energia alterada", True, (126, 220, 255))
-            s.blit(warn, (self.end_turn_rect.x - warn.get_width() - 12, self.end_turn_rect.y + 8))
-
-        hint = self._status_line if self._status_line else "El boton centraliza ejecutar, sello y fin de turno."
-        hint_line = self._wrap_panel_text(hint, self.layout.actions_rect.w - 32, max_lines=1)[0]
-        hint_txt = self.app.tiny_font.render(hint_line, True, UI_THEME["muted"])
-        s.blit(hint_txt, (self.layout.actions_rect.centerx - hint_txt.get_width() // 2, self.layout.actions_rect.bottom - 22))
-
+        if pygame.time.get_ticks() < self._invalid_feedback_until_ms:
+            msg = self._invalid_feedback_msg or "Accion invalida"
+            feedback_rect = pygame.Rect(self.layout.actions_rect.centerx - 260, self.layout.actions_rect.bottom - 24, 520, 18)
+            pygame.draw.rect(s, (48, 30, 44), feedback_rect, border_radius=6)
+            pygame.draw.rect(s, (190, 116, 146), feedback_rect, 1, border_radius=6)
+            line = msg
+            while self.app.tiny_font.size(line)[0] > feedback_rect.w - 10 and len(line) > 4:
+                line = line[:-4] + "..."
+            s.blit(self.app.tiny_font.render(line, True, (242, 188, 202)), (feedback_rect.x + 6, feedback_rect.y + 2))
         if DEBUG_UI:
             pygame.draw.rect(s, UI_THEME["gold"], self.layout.voices_panel, 2)
             pygame.draw.rect(s, UI_THEME["gold"], self.layout.card_detail, 2)
