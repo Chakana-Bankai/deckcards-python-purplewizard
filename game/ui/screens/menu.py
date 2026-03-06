@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 
-from game.version import VERSION
 import pygame
 
 from game.ui.components.modal_confirm import ModalConfirm
@@ -102,7 +101,5 @@ class MenuScreen:
                 continue
             b.draw(surface, self.app.font, self.app.loc, UI_THEME, b.rect.collidepoint(mouse))
 
-        surface.blit(self.app.small_font.render("Chakana Gaming", True, UI_THEME["text"]), (846, 965))
-        surface.blit(self.app.small_font.render(f"v{VERSION} • Chakana Purple Wizard", True, UI_THEME["muted"]), (760, 996))
         surface.blit(self.app.tiny_font.render(self.version_line, True, UI_THEME["muted"]), (24, 1048))
         self.modal.render(surface, self.app.font, self.app.small_font)

@@ -46,6 +46,7 @@ from game.ui.screens.qa_results import QAResultsScreen
 from game.ui.screens.pack_opening import PackOpeningScreen
 from game.ui.screens.end import EndScreen
 from game.ui.screens.intro import IntroScreen
+from game.ui.screens.studio_intro import StudioIntroScreen
 from game.ui.screens.pacha_transition import PachaTransitionScreen
 from game.version import VERSION
 from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION
@@ -53,7 +54,7 @@ from game.services.content_service import ContentService
 from game.services.asset_pipeline import AssetPipeline
 from game.services.audio_pipeline import AudioPipeline
 from game.systems.reward_system import build_reward_boss, build_reward_guide, build_reward_normal
-from game.ui.screens.loading import LoadingScreen
+from game.ui.screens.loading import LoadingScreen, DataLoadingScreen
 
 DEFAULT_CARDS = [
     {"id": "strike", "name_key": "card_strike_name", "text_key": "card_strike_desc", "rarity": "basic", "cost": 1, "target": "enemy", "tags": ["attack"], "effects": [{"type": "damage", "amount": 6}]},
@@ -194,7 +195,7 @@ class App:
 
         self.validate_navigation_methods()
         pygame.display.set_caption(self.loc.t("game_title"))
-        self.sm.set(IntroScreen(self))
+        self.sm.set(StudioIntroScreen(self, next_fn=lambda: self.sm.set(DataLoadingScreen(self, next_fn=self.goto_menu))))
         self.music.play_for(self.get_bgm_track("menu"))
 
 
@@ -989,7 +990,7 @@ class App:
         self.debug["content_validation"] = content_report
         print(f"[boot] validate_content status={content_report.get('status')} cards={content_report.get('cards')} summary_ok={content_report.get('summary_ok')} can_play_ok={content_report.get('can_play_ok')} placeholders={content_report.get('placeholders')} issues={len(content_report.get('issues', []))}")
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
-        self.sm.set(IntroScreen(self))
+        self.sm.set(StudioIntroScreen(self, next_fn=lambda: self.sm.set(DataLoadingScreen(self, next_fn=self.goto_menu))))
         self.music.play_for(self.get_bgm_track("menu"))
         self.asset_generation_active = False
 

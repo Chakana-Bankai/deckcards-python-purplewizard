@@ -24,9 +24,5 @@ class IntroScreen:
 
     def render(self, s):
         s.fill((8, 8, 14))
-        p = min(1.0, self.t / self.duration)
-        bar = pygame.Rect(440, 760, 1040, 28)
-        pygame.draw.rect(s, UI_THEME["panel"], bar, border_radius=8)
-        pygame.draw.rect(s, UI_THEME["gold"], (bar.x, bar.y, int(bar.w * p), bar.h), border_radius=8)
-        s.blit(self.app.big_font.render("CARGANDO TRAMA", True, UI_THEME["gold"]), (730, 300))
+        s.blit(self.app.big_font.render("CRÓNICA DE CHAKANA", True, UI_THEME["gold"]), (650, 300))
         s.blit(self.app.font.render(self.text, True, UI_THEME["text"]), (420, 420))
