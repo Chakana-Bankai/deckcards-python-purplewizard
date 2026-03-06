@@ -79,10 +79,10 @@ class CombatState:
         self.last_played_card = None
         self.baston_used = False
         self.balance = self._load_balance_config()
-        self.energy_per_turn = int(self.balance.get("energy_per_turn", 3) or 3)
-        self.draw_per_turn = int(self.balance.get("draw_per_turn", 1) or 1)
+        self.energy_per_turn = int(self.balance.get("energy_base", self.balance.get("energy_per_turn", 3)) or 3)
+        self.draw_per_turn = int(self.balance.get("draw_per_turn", 2) or 2)
         self.starting_hand = int(self.balance.get("starting_hand", 4) or 4)
-        self.hand_max = int(self.balance.get("hand_max", 6) or 6)
+        self.hand_max = int(self.balance.get("hand_limit", self.balance.get("hand_max", 6)) or 6)
         self.ui_cooldown_ms = int(self.balance.get("ui_cooldown_ms", 200) or 200)
         self.fatigue_enabled = bool(self.balance.get("fatigue_enabled", True))
         self.fatigue_start = int(self.balance.get("fatigue_start", 1) or 1)
@@ -144,10 +144,12 @@ class CombatState:
         if not isinstance(raw, dict):
             raw = {}
         return {
-            "energy_per_turn": int(raw.get("energy_per_turn", 3) or 3),
-            "draw_per_turn": int(raw.get("draw_per_turn", 1) or 1),
+            "energy_base": int(raw.get("energy_base", raw.get("energy_per_turn", 3)) or 3),
+            "energy_per_turn": int(raw.get("energy_per_turn", raw.get("energy_base", 3)) or 3),
+            "draw_per_turn": int(raw.get("draw_per_turn", 2) or 2),
             "starting_hand": int(raw.get("starting_hand", 4) or 4),
-            "hand_max": int(raw.get("hand_max", 6) or 6),
+            "hand_limit": int(raw.get("hand_limit", raw.get("hand_max", 6)) or 6),
+            "hand_max": int(raw.get("hand_max", raw.get("hand_limit", 6)) or 6),
             "ui_cooldown_ms": int(raw.get("ui_cooldown_ms", 200) or 200),
             "fatigue_enabled": bool(raw.get("fatigue_enabled", True)),
             "fatigue_start": int(raw.get("fatigue_start", 1) or 1),

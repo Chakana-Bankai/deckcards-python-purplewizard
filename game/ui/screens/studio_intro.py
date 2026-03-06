@@ -9,7 +9,7 @@ from game.ui.theme import UI_THEME
 
 
 class StudioIntroScreen:
-    def __init__(self, app, next_fn, fade_in: float = 1.0, hold: float = 1.5, fade_out: float = 1.0):
+    def __init__(self, app, next_fn, fade_in: float = 1.2, hold: float = 1.5, fade_out: float = 1.2):
         self.app = app
         self.next_fn = next_fn
         self.fade_in = float(fade_in)

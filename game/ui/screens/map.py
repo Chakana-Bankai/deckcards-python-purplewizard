@@ -47,7 +47,7 @@ class MapScreen:
         self.app = app
         self.lore_timer = 0
         self.lore_idx = 0
-        self.deck_btn = pygame.Rect(1560, 146, 300, 52)
+        self.deck_btn = pygame.Rect(1688, 108, 188, 40)
         self.topbar = MapTopBar()
 
     def on_enter(self):
@@ -126,11 +126,30 @@ class MapScreen:
         stage_thought = self.CHAKANA_THOUGHTS[stage_idx]
 
         topbar = pygame.Rect(18, 16, INTERNAL_WIDTH - 36, 92)
-        self.topbar.render(s, self.app, topbar, "Trama", stage_title, "Lee la geometría del destino.", "Pulsa TAB para Mazo")
+        lvl = int(run.get("level", 1) or 1)
+        xp = int(run.get("xp", 0) or 0)
+        xp_need = max(1, lvl * 20)
+        gold = int(run.get("gold", 0) or 0)
+        self.topbar.render(s, self.app, topbar, "Trama", stage_title, "Lee la geometría del destino.", f"XP {xp}/{xp_need} · Oro {gold} · Nivel {lvl}")
 
-        left_rect = pygame.Rect(40, 130, 320, INTERNAL_HEIGHT - 240)
-        center_rect = pygame.Rect(370, 130, 1160, INTERNAL_HEIGHT - 240)
-        right_rect = pygame.Rect(1540, 130, 340, INTERNAL_HEIGHT - 240)
+        chip_y = topbar.bottom + 8
+        chip_specs = [
+            (f"XP {xp}/{xp_need}", UI_THEME["text"]),
+            (f"Oro {gold}", UI_THEME["gold"]),
+            (f"Nivel {lvl}", UI_THEME["violet"]),
+        ]
+        chip_x = 40
+        for txt, col in chip_specs:
+            chip_w = max(140, self.app.tiny_font.size(txt)[0] + 22)
+            chip = pygame.Rect(chip_x, chip_y, chip_w, 30)
+            pygame.draw.rect(s, UI_THEME["panel_2"], chip, border_radius=8)
+            pygame.draw.rect(s, col, chip, 1, border_radius=8)
+            s.blit(self.app.tiny_font.render(txt, True, col), (chip.x + 10, chip.y + 8))
+            chip_x += chip_w + 10
+
+        left_rect = pygame.Rect(40, 146, 320, INTERNAL_HEIGHT - 256)
+        center_rect = pygame.Rect(370, 146, 1160, INTERNAL_HEIGHT - 256)
+        right_rect = pygame.Rect(1540, 146, 340, INTERNAL_HEIGHT - 256)
         for r in (left_rect, center_rect, right_rect):
             pygame.draw.rect(s, UI_THEME["panel"], r, border_radius=16)
             pygame.draw.rect(s, UI_THEME["accent_violet"], r, 2, border_radius=16)
@@ -191,9 +210,6 @@ class MapScreen:
                 s.blit(self.app.tiny_font.render(label[:26], True, UI_THEME["text"]), (node["x"] - 40, node["y"] + radius + 4))
                 s.blit(self.app.tiny_font.render(self.NODE_DIFF.get(node["type"], "?"), True, UI_THEME["muted"]), (node["x"] - 34, node["y"] + radius + 20))
 
-        lvl = int(run.get("level", 1) or 1)
-        xp = int(run.get("xp", 0) or 0)
-        xp_need = max(1, lvl * 20)
         harmony = run.get("player", {}).get("harmony_current", 0) if isinstance(run.get("player", {}), dict) else 0
         harmony_goal = run.get("player", {}).get("harmony_ready_threshold", 6) if isinstance(run.get("player", {}), dict) else 6
         stats = [

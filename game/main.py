@@ -204,7 +204,7 @@ class App:
         if self.user_settings.get("dev_skip_studio_intro", False):
             loading_to_menu()
             return
-        self.sm.set(StudioIntroScreen(self, next_fn=loading_to_menu))
+        self.sm.set(StudioIntroScreen(self, next_fn=loading_to_menu, fade_in=1.2, hold=1.5, fade_out=1.2))
 
     def _log_card_art_status(self):
         cards_dir = assets_dir() / "sprites" / "cards"

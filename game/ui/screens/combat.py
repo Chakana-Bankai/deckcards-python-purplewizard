@@ -170,25 +170,22 @@ class CombatScreen:
         h_thr = max(1, int(p.get("harmony_ready_threshold", 6) or 6))
 
         if self._ui_locked() or self.resolving_t > 0:
-            fsm, state, reason, label, disabled = "LOCKED_COOLDOWN", "INVALID_ACTION", "STATE_LOCK", "BLOQUEADO", True
+            fsm, state, reason, label, disabled = "LOCKED_COOLDOWN", "INVALID", "STATE_LOCK", "BLOQUEADO", True
         else:
             idx = self.ctrl.selected_index
             if idx is None or idx >= len(self.c.hand):
                 if h_cur >= h_thr:
-                    fsm, state, reason, label, disabled = "HARMONY_CHARGED", "HARMONY_READY", REASON_OK, "ACTIVAR SELLO", False
+                    fsm, state, reason, label, disabled = "HARMONY_CHARGED", "RELEASE_SEAL", REASON_OK, "ACTIVAR SELLO", False
                 else:
                     fsm, state, reason, label, disabled = "IDLE", "END_TURN", REASON_OK, "FIN DEL RITUAL", False
             else:
                 card = self.c.hand[idx]
                 ok, reason_code, reason_text = can_play(card, self.c)
                 self._last_reason_code = reason_code
-                tags = set(getattr(card.definition, "tags", []) or [])
-                if ok and "ritual" in tags:
-                    fsm, state, reason, label, disabled = "READY_RITUAL", "RITUAL_CAST", reason_code, "RITUALIZAR", False
-                elif ok:
-                    fsm, state, reason, label, disabled = "READY_TO_EXECUTE", "EXECUTE_CARD", reason_code, "EJECUTAR", False
+                if ok:
+                    fsm, state, reason, label, disabled = "READY_TO_EXECUTE", "EXECUTE", reason_code, "EJECUTAR", False
                 else:
-                    fsm, state, reason, label, disabled = "CARD_INVALID", "INVALID_ACTION", reason_code, "ACCIÓN INVÁLIDA", False
+                    fsm, state, reason, label, disabled = "CARD_INVALID", "INVALID", reason_code, "ACCIÓN INVÁLIDA", False
                     self._status_line = reason_text
 
         if DEBUG_UI and (fsm != self._action_button_fsm or reason != self._action_state_reason):
@@ -316,10 +313,10 @@ class CombatScreen:
         self.telemetry.info("action_button_press", fsm=self._action_button_fsm, state=state, reason_code=reason)
         if disabled:
             return
-        if state in {"EXECUTE_CARD", "RITUAL_CAST"}:
+        if state == "EXECUTE":
             self._execute_selected()
             return
-        if state == "HARMONY_READY":
+        if state == "RELEASE_SEAL":
             ok, msg = self.c.activate_harmony_seal()
             self._push_log(str(msg or "SELLO activado"))
             if ok:
@@ -327,7 +324,7 @@ class CombatScreen:
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
                 self.set_dialogue("harmony_ready", enemy_id, {})
             return
-        if state == "INVALID_ACTION":
+        if state == "INVALID":
             msg = self._status_line or reason_to_es(reason)
             self._push_log(f"No se puede jugar: {msg}")
             try:
@@ -699,18 +696,15 @@ class CombatScreen:
         summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
         stats = summary.get("stats", {}) if isinstance(summary, dict) else {}
         kpis = []
-        for key, icon in (("damage", "sword"), ("block", "shield"), ("rupture", "crack"), ("draw", "scroll"), ("harmony", "star")):
+        for key, icon in (("damage", "sword"), ("block", "shield"), ("rupture", "crack"), ("draw", "scroll"), ("harmony_delta", "star")):
             val = int(stats.get(key, 0) or 0)
             if val > 0:
                 kpis.append((icon, val))
-        if not kpis:
-            icon_row = self._card_icons(card)[:2]
-            for icon_name in icon_row:
-                kpis.append((icon_name, 1))
-
         x = rect.x + 8
         for icon_name, val in kpis[:3]:
             x = draw_icon_with_value(s, icon_name, val, UI_THEME["gold"], self.app.tiny_font, x, rect.bottom - 26, size=1)
+        if not kpis:
+            s.blit(self.app.tiny_font.render("Sin KPI", True, UI_THEME["muted"]), (x, rect.bottom - 24))
 
         if selected:
             pygame.draw.rect(s, UI_THEME["gold"], rect.inflate(8, 8), 3, border_radius=14)
@@ -918,16 +912,15 @@ class CombatScreen:
         if current_card is not None:
             stats = summary.get("stats", {}) if isinstance(summary, dict) else {}
             icon_pairs = []
-            for key, icon in (("damage", "sword"), ("block", "shield"), ("rupture", "crack"), ("draw", "scroll"), ("harmony", "star")):
+            for key, icon in (("damage", "sword"), ("block", "shield"), ("rupture", "crack"), ("draw", "scroll"), ("harmony_delta", "star")):
                 val = int(stats.get(key, 0) or 0)
                 if val > 0:
                     icon_pairs.append((icon, val))
-            if not icon_pairs:
-                for icon_name in self._card_icons(current_card)[:3]:
-                    icon_pairs.append((icon_name, 1))
             ix = panel_x
-            for icon_name, val in icon_pairs[:4]:
+            for icon_name, val in icon_pairs[:3]:
                 ix = draw_icon_with_value(s, icon_name, val, UI_THEME["gold"], self.app.tiny_font, ix, panel_y, size=1)
+            if not icon_pairs:
+                s.blit(self.app.tiny_font.render("Sin KPI relevantes", True, UI_THEME["muted"]), (panel_x, panel_y + 4))
             panel_y += 24
 
         s.blit(self.app.tiny_font.render("Registro de acciones", True, UI_THEME["gold"]), (panel_x, panel_y))
@@ -1082,17 +1075,15 @@ class CombatScreen:
         pulse = 0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 180.0)
         bcol_map = {
             "END_TURN": UI_THEME["gold"],
-            "EXECUTE_CARD": (214, 74, 88),
-            "HARMONY_READY": UI_THEME["violet"],
-            "RITUAL_CAST": (146, 92, 198),
-            "INVALID_ACTION": (118, 102, 132),
+            "EXECUTE": (214, 74, 88),
+            "RELEASE_SEAL": UI_THEME["violet"],
+            "INVALID": (118, 102, 132),
         }
         gcol_map = {
             "END_TURN": (240, 212, 140),
-            "EXECUTE_CARD": (255, 94, 110),
-            "HARMONY_READY": (190, 132, 255),
-            "RITUAL_CAST": (184, 106, 255),
-            "INVALID_ACTION": (140, 120, 166),
+            "EXECUTE": (255, 94, 110),
+            "RELEASE_SEAL": (190, 132, 255),
+            "INVALID": (140, 120, 166),
         }
         base_col = bcol_map.get(state, UI_THEME["violet"])
         glow_col = gcol_map.get(state, UI_THEME["accent_violet"])
@@ -1102,7 +1093,7 @@ class CombatScreen:
         glow_pad = 12
         glow = pygame.Surface((self.end_turn_rect.w + glow_pad * 2, self.end_turn_rect.h + glow_pad * 2), pygame.SRCALPHA)
         ga = 60 + int(90 * pulse)
-        if state == "INVALID_ACTION":
+        if state == "INVALID":
             ga = 40
         pygame.draw.rect(glow, (*glow_col, ga), glow.get_rect(), border_radius=18)
         s.blit(glow, (self.end_turn_rect.x - glow_pad, self.end_turn_rect.y - glow_pad))
@@ -1112,7 +1103,7 @@ class CombatScreen:
         txt = self.app.font.render(label, True, UI_THEME["text_dark"] if state == "END_TURN" else UI_THEME["text"])
         s.blit(txt, (self.end_turn_rect.centerx - txt.get_width() // 2, self.end_turn_rect.centery - txt.get_height() // 2))
 
-        if state == "RITUAL_CAST":
+        if state == "RELEASE_SEAL":
             rune = self.app.tiny_font.render("✶", True, UI_THEME["gold"])
             s.blit(rune, (self.end_turn_rect.x + 10, self.end_turn_rect.y + 8))
             s.blit(rune, (self.end_turn_rect.right - 20, self.end_turn_rect.y + 8))
