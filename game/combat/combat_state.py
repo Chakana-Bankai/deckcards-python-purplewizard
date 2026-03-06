@@ -124,6 +124,14 @@ class CombatState:
             min_hp = hp_range[0] if isinstance(hp_range, list) and hp_range else 20
             max_hp = hp_range[1] if isinstance(hp_range, list) and len(hp_range) > 1 else min_hp
             hp = self.rng.randint(min_hp, max_hp)
+            tier = str(item.get("tier", "common")).lower().strip()
+            tier_target_hp = {
+                "normal": 40,
+                "common": 40,
+                "elite": 70,
+                "boss": 120,
+            }
+            hp = int(tier_target_hp.get(tier, hp))
             pattern = item.get("pattern") or [{"intent": "attack", "value": [5, 5]}]
             en = Enemy(item.get("id", "dummy"), item.get("name_key", "enemy_voidling_name"), hp, hp, pattern)
             en.fable_lesson_key = item.get("fable_lesson_key", "duda")

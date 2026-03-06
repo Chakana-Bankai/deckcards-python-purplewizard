@@ -440,7 +440,7 @@ class App:
         self.run_state = {
             "gold": 80,
             "relics": ["violet_seal"],
-            "player": {"hp": 70, "max_hp": 70, "block": 0, "energy": 3, "rupture": 0, "statuses": {}},
+            "player": {"hp": 60, "max_hp": 60, "block": 0, "energy": 3, "rupture": 0, "statuses": {}},
             "deck": list(starter_deck),
             "sideboard": [],
             "map": self.generate_map(),
