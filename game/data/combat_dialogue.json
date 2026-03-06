@@ -1,0 +1,134 @@
+{
+  "combat_start": {
+    "chakana": [
+      "Entro al circulo y afirmo el eje.",
+      "La cruz andina marca el inicio del duelo.",
+      "Escucho la Trama: comienza el rito."
+    ],
+    "enemy": [
+      "La arena astral ya te esperaba.",
+      "Entraste al circulo; ahora responde.",
+      "La noche ritual se abre ante nosotros."
+    ]
+  },
+  "card_played": {
+    "chakana": [
+      "Trazo un nuevo angulo en la rueda astral.",
+      "Cada carta ajusta la geometria del rito.",
+      "La Trama responde cuando coloco la pieza exacta."
+    ],
+    "enemy": [
+      "Tus signos alteran el pulso del campo.",
+      "Ese trazo cambia la marea del combate.",
+      "Siento el diagrama moverse bajo mis pies."
+    ]
+  },
+  "attack": {
+    "chakana": [
+      "Corto el velo con precision ritual.",
+      "El golpe sigue una linea sagrada.",
+      "Impacto en el nodo donde duele la forma."
+    ],
+    "enemy": [
+      "Ese vector hiere mi patron.",
+      "Tu filo astral encuentra mi grieta.",
+      "Mi coraza no sostiene ese angulo."
+    ]
+  },
+  "big_damage": {
+    "chakana": [
+      "Respiro profundo: la espiral no se rompe.",
+      "El impacto sacude, pero mantengo el eje.",
+      "Doblo la rodilla, no la voluntad."
+    ],
+    "enemy": [
+      "La onda fractura hasta el silencio.",
+      "Ese choque desordena toda la sala ritual.",
+      "La energia cae como piedra celeste."
+    ]
+  },
+  "enemy_attack": {
+    "chakana": [
+      "Leo tu intencion antes del primer paso.",
+      "Tu ataque canta su ruta en el aire.",
+      "Veo la curva de tu golpe en la trama."
+    ],
+    "enemy": [
+      "Ahora cae mi impulso sobre ti.",
+      "Mi embate rompera tu simetria.",
+      "Golpeare el centro de tu mandala."
+    ]
+  },
+  "player_low_hp": {
+    "chakana": [
+      "Aun con poca luz, sostengo la cruz andina.",
+      "No cedo: cada aliento recompone mi figura.",
+      "La Trama me quiere vivo, no comodo."
+    ],
+    "enemy": [
+      "Tu estrella se apaga en esta ronda.",
+      "Tu pulso cae, mago de la Chakana.",
+      "Te inclinas; yo avanzo."
+    ]
+  },
+  "enemy_low_hp": {
+    "chakana": [
+      "Tu forma pierde coherencia.",
+      "La geometria enemiga se desarma.",
+      "Un paso mas y tu patron se derrumba."
+    ],
+    "enemy": [
+      "Mi figura... se deshilacha.",
+      "No puedo mantener el contorno.",
+      "Mi sello se fisura."
+    ]
+  },
+  "seal_ready": {
+    "chakana": [
+      "El sello vibra: umbral completo.",
+      "La Chakana enciende su cuarto brazo.",
+      "Todo el circuito astral esta listo."
+    ],
+    "enemy": [
+      "Ese brillo... no es comun.",
+      "Tu sello despierta y el aire pesa.",
+      "Siento la compuerta ritual abrirse."
+    ]
+  },
+  "seal_release": {
+    "chakana": [
+      "Libero el sello: que hable el centro.",
+      "La energia converge y desata su decreto.",
+      "La cruz gira y sentencia."
+    ],
+    "enemy": [
+      "Ese estallido me parte en dos planos.",
+      "No puedo contener esa descarga.",
+      "El sello me arranca del eje."
+    ]
+  },
+  "victory": {
+    "chakana": [
+      "El rito cierra en equilibrio.",
+      "La Trama acepta mi geometria.",
+      "Victoria: el astral vuelve a su orden."
+    ],
+    "enemy": [
+      "Mi patron cae al vacio.",
+      "La sala ritual ya no me sostiene.",
+      "Tu figura prevalece en el mandala."
+    ]
+  },
+  "defeat": {
+    "chakana": [
+      "Caigo hoy, regreso con mejor forma.",
+      "La derrota tambien enseña coordenadas.",
+      "Recojo fragmentos: el rito continua."
+    ],
+    "enemy": [
+      "La sombra cierra esta ronda.",
+      "Tu diagrama se ha quebrado.",
+      "Hoy manda mi constelacion."
+    ]
+  }
+}

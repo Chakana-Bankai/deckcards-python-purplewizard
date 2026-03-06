@@ -90,7 +90,8 @@ class CombatScreen:
         self._cost_pulse_until = {}
         self.telemetry = TelemetryLogger("INFO")
         self.dialogue_ctrl = CombatDialogueController(self.app.lore_engine, self._set_dialogue_lines)
-        self.dialog_router = DialogueRouter(self.app.lore_engine, cooldown_ms=850)
+        self.dialog_router = DialogueRouter(self.app.lore_engine, cooldown_ms=850, action_gap=2)
+        self._dialogue_action_idx = 0
         self.last_enemy_line = ""
         self.last_player_line = ""
         self.topbar = CombatTopBar()
@@ -128,7 +129,10 @@ class CombatScreen:
         return "", "", "missing"
 
     def set_dialogue(self, trigger: str, enemy_id: str, ctx: dict | None = None):
-        picked = self.dialog_router.pick(enemy_id, trigger, ctx or {})
+        payload = dict(ctx or {})
+        payload.setdefault("action_index", self._dialogue_action_idx)
+        self._dialogue_action_idx += 1
+        picked = self.dialog_router.pick(enemy_id, trigger, payload)
         if picked is None:
             return
         enemy_line, hero_line, mapped_trigger = picked
@@ -136,7 +140,7 @@ class CombatScreen:
             enemy_line, hero_line = "La Trama cambia de tono.", "Escucho y respondo."
         self._set_dialogue_lines(enemy_line, hero_line, mapped_trigger)
         self.last_enemy_line, self.last_player_line = enemy_line, hero_line
-        print(f"[dlg] trigger={mapped_trigger} enemy={enemy_id} ctx={ctx or {}}")
+        print(f"[dlg] trigger={mapped_trigger} enemy={enemy_id} ctx={payload}")
 
     def _card_playable(self, card) -> bool:
         ok, _reason_code, _reason_text = can_play_card(card, self.c.player, self.c)
@@ -333,7 +337,7 @@ class CombatScreen:
             if ok:
                 self._lock_ui()
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-                self.set_dialogue("harmony_ready", enemy_id, {})
+                self.set_dialogue("harmony_seal", enemy_id, {})
             return
         if state == "INVALID":
             msg = self._status_line or reason_to_es(reason)
@@ -528,7 +532,7 @@ class CombatScreen:
                 self._push_log(msg)
                 if ok:
                     enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-                    self.set_dialogue("harmony_ready", enemy_id, {})
+                    self.set_dialogue("harmony_seal", enemy_id, {})
 
     def _card_icons(self, card):
         tags = set(getattr(card.definition, "tags", []) or [])
@@ -810,6 +814,8 @@ class CombatScreen:
                 self.set_dialogue(str(ev.get("intent") or "turn_start"), str(ev.get("enemy") or "default"), {})
             if ev.get("type") == "harmony_seal":
                 self._push_log(str(ev.get("message") or "SELLO activado"))
+                enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
+                self.set_dialogue("harmony_seal", enemy_id, {})
 
         if self.c.scry_pending and not self.scry_picker.open:
             self.scry_picker.show(
@@ -1255,5 +1261,12 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+
+
+
+
+
+
 
 
