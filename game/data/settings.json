@@ -14,7 +14,7 @@
   "fx_scanlines": false,
   "fx_glow": true,
   "fx_particles": true,
-  "force_regen_art": true,
+  "force_regen_art": false,
   "detail_panel": true,
   "update_manifests": false,
   "force_regen_music": false
