@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import time
@@ -115,8 +115,84 @@ class AssetPipeline:
             path = assets_dir() / "sprites" / "guides" / f"{gt}.png"
             self._safe_gen(f"guide:{gt}", path, lambda gt=gt, mode=mode: self.guide_gen.generate(gt, mode=mode), manifest_items, version=GEN_ART_VERSION)
             if progress_cb:
-                progress_cb(f"Generando guías ({i}/{total})", 0.74 + 0.06 * (i / total))
+                progress_cb(f"Generando guÃ­as ({i}/{total})", 0.74 + 0.06 * (i / total))
 
+    def _starter_banner_surface(self, starter_id: str, name: str, size: tuple[int, int]) -> pygame.Surface:
+        w, h = size
+        sid = str(starter_id or "starter")
+        seed = zlib.crc32(sid.encode("utf-8")) & 0xFFFFFFFF
+        r = 48 + (seed % 80)
+        g = 34 + ((seed >> 3) % 70)
+        b = 72 + ((seed >> 7) % 90)
+        surf = pygame.Surface((w, h), pygame.SRCALPHA)
+        top = (min(255, r + 36), min(255, g + 24), min(255, b + 42))
+        bot = (max(18, r - 12), max(18, g - 10), max(26, b - 16))
+        for y in range(h):
+            t = y / max(1, h - 1)
+            col = (
+                int(top[0] * (1.0 - t) + bot[0] * t),
+                int(top[1] * (1.0 - t) + bot[1] * t),
+                int(top[2] * (1.0 - t) + bot[2] * t),
+            )
+            pygame.draw.line(surf, col, (0, y), (w, y))
+        cx, cy = w // 2, h // 2
+        radius = max(20, min(w, h) // 3)
+        pts = chakana_points((cx, cy), radius)
+        pygame.draw.polygon(surf, (236, 216, 158, 60), pts, 2)
+        for i in range(5):
+            rr = max(6, radius - i * 8)
+            pygame.draw.circle(surf, (255, 232, 176, max(16, 44 - i * 7)), (cx, cy), rr, 1)
+        f = pygame.font.SysFont("arial", max(16, h // 5), bold=True)
+        label = str(name or sid).strip()[:26]
+        txt = f.render(label, True, (248, 238, 206))
+        surf.blit(txt, (max(8, (w - txt.get_width()) // 2), h - txt.get_height() - 8))
+        pygame.draw.rect(surf, (244, 214, 132), surf.get_rect(), 2, border_radius=10)
+        return surf
+
+    def ensure_starter_banners(self, settings: dict, starters: list[dict], manifest_items: dict, progress_cb=None):
+        mode = "force_regen" if settings.get("force_regen_art", False) else "missing_only"
+        out_dir = assets_dir() / "sprites" / "starters"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        total = max(1, len(starters))
+        for i, st in enumerate(starters, 1):
+            sid = str(st.get("id") or f"starter_{i}")
+            name = str(st.get("name") or sid)
+            path = out_dir / f"{sid}.png"
+            if mode == "missing_only" and path.exists():
+                manifest_items[f"starter:{sid}"] = {
+                    "id": f"starter:{sid}",
+                    "path": str(path),
+                    "generator_version": GEN_ART_VERSION,
+                    "seed": zlib.crc32(sid.encode("utf-8")) & 0xFFFFFFFF,
+                    "created_at": int(time.time()),
+                    "placeholder": False,
+                }
+            else:
+                try:
+                    banner = self._starter_banner_surface(sid, name, (640, 150))
+                    pygame.image.save(banner, path)
+                    manifest_items[f"starter:{sid}"] = {
+                        "id": f"starter:{sid}",
+                        "path": str(path),
+                        "generator_version": GEN_ART_VERSION,
+                        "seed": zlib.crc32(sid.encode("utf-8")) & 0xFFFFFFFF,
+                        "created_at": int(time.time()),
+                        "placeholder": False,
+                    }
+                except Exception as exc:
+                    print(f"[safe_gen] using placeholder for starter:{sid} due to {exc}")
+                    self._placeholder_png(path, size=(640, 150), label=sid)
+                    manifest_items[f"starter:{sid}"] = {
+                        "id": f"starter:{sid}",
+                        "path": str(path),
+                        "generator_version": GEN_ART_VERSION,
+                        "seed": zlib.crc32(sid.encode("utf-8")) & 0xFFFFFFFF,
+                        "created_at": int(time.time()),
+                        "placeholder": True,
+                        "error": str(exc),
+                    }
+            if progress_cb:
+                progress_cb(f"Generando banners starter ({i}/{total})", 0.74 + 0.05 * (i / total))
     def ensure_biomes(self, manifest: dict, progress_cb=None, write_manifest: bool = False):
         a = assets_dir()
         biome_manifest = {}
@@ -173,6 +249,7 @@ class AssetPipeline:
         (a / "sprites" / "enemies").mkdir(parents=True, exist_ok=True)
         (a / "sprites" / "biomes").mkdir(parents=True, exist_ok=True)
         (a / "sprites" / "guides").mkdir(parents=True, exist_ok=True)
+        (a / "sprites" / "starters").mkdir(parents=True, exist_ok=True)
         (a / "sfx" / "generated").mkdir(parents=True, exist_ok=True)
 
         cards = content.get("cards", [])
@@ -191,6 +268,7 @@ class AssetPipeline:
         self.ensure_card_art(settings, cards, prompt_data, items, progress_cb)
         self.ensure_enemy_portraits(settings, enemies, items, progress_cb)
         self.ensure_guides(settings, content.get("guide_types", []), items, progress_cb)
+        self.ensure_starter_banners(settings, content.get("starter_decks", []), items, progress_cb)
         self.ensure_biomes(art_manifest, progress_cb, write_manifest=write_manifests)
 
         if write_manifests:
@@ -198,10 +276,16 @@ class AssetPipeline:
             cards_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if not str(k).startswith("enemy:") and not str(k).startswith("guide:")}}
             enemies_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if str(k).startswith("enemy:")}}
             guides_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if str(k).startswith("guide:")}}
+            starters_manifest = {"generator_version": GEN_ART_VERSION, "items": {k: v for k, v in items.items() if str(k).startswith("starter:")}}
             atomic_write_json(data_dir() / "art_manifest_cards.json", cards_manifest)
             atomic_write_json(data_dir() / "art_manifest_enemies.json", enemies_manifest)
             atomic_write_json(data_dir() / "art_manifest_guides.json", guides_manifest)
+            atomic_write_json(data_dir() / "art_manifest_starters.json", starters_manifest)
             atomic_write_json(data_dir() / "prompt_manifest.json", {"count": len(cards), "generator_version": GEN_ART_VERSION})
         settings["force_regen_art"] = False
         placeholders = sum(1 for v in items.values() if isinstance(v, dict) and v.get("placeholder"))
         return {"manifest": art_manifest, "placeholders": placeholders}
+
+
+
+

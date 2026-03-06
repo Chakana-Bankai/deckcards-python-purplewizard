@@ -435,6 +435,11 @@ class App:
             "cards": self.cards_data,
             "enemies": self.enemies_data,
             "guide_types": GUIDE_TYPES,
+            "starter_decks": [
+                {"id": "cosmic_warrior", "name": "Cosmic Warrior"},
+                {"id": "harmony_guardian", "name": "Harmony Guardian"},
+                {"id": "oracle_of_fate", "name": "Oracle of Fate"},
+            ],
         }
         try:
             ap = self.asset_pipeline.ensure_all_assets(self.user_settings, content_payload, progress_cb=progress_cb)
@@ -1130,6 +1135,8 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
+
+
 
 
 
