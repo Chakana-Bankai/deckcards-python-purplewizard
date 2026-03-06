@@ -1,5 +1,6 @@
 import pygame
 
+from game.systems.reward_system import build_reward_guide
 from game.ui.anim import TypewriterBanner
 from game.ui.theme import UI_THEME
 
@@ -17,6 +18,7 @@ class EventScreen:
         self.parabola = defaults[:3] if defaults else ["La Trama te observa."]
         self.moraleja = defaults[0] if defaults else "Moraleja: cada decisión pesa."
         self.msg = ""
+        self._resolved_guide_reward = None
 
     def on_enter(self):
         self.writer.set("\n".join(self.parabola[:3]), 1.8)
@@ -39,7 +41,9 @@ class EventScreen:
                 if pygame.Rect(530, 720 + i * 92, 1260, 74).collidepoint(pos):
                     effects = ch.get("effects", [])
                     if str(self.event.get("id", "")) in {"chakana_crossroads", "condor_vision"}:
-                        self.app.goto_guide_reward(str(self.event.get("id", "guide")))
+                        if self._resolved_guide_reward is None:
+                            self._resolved_guide_reward = build_reward_guide(str(self.event.get("id", "guide")), self.app.rng, self.app.cards_data, self.app.run_state or {})
+                        self.app.goto_reward(mode="guide_choice", guide_reward=self._resolved_guide_reward)
                         return
                     self.app.apply_event_effects(effects)
                     self.msg = self.app.loc.t(ch.get("text_key", "event_continue"))

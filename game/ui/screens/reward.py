@@ -32,10 +32,13 @@ class RewardScreen:
         w, h = surface.get_size()
         frame = pygame.Rect(UI_SAFE_SIDE, UI_SAFE_SIDE, w - UI_SAFE_SIDE * 2, h - UI_SAFE_SIDE * 2)
         buttons_y = h - UI_SAFE_BOTTOM
-        self.back_rect.size = (320, 56)
-        self.confirm_rect.size = (360, 56)
-        self.back_rect.center = (w // 2 - 160, buttons_y)
-        self.confirm_rect.center = (w // 2 + 160, buttons_y)
+        self.back_rect.size = (280, 56)
+        self.confirm_rect.size = (320, 56)
+        gap = 24
+        group_w = self.back_rect.w + self.confirm_rect.w + gap
+        start_x = w // 2 - group_w // 2
+        self.back_rect.topleft = (start_x, buttons_y - self.back_rect.h // 2)
+        self.confirm_rect.topleft = (self.back_rect.right + gap, buttons_y - self.confirm_rect.h // 2)
 
         header_h = 132
         content_top = frame.y + header_h
@@ -237,6 +240,10 @@ class RewardScreen:
         avatar_rect = pygame.Rect(left_col.x + 10, left_col.y + 18, left_col.w - 20, min(320, left_col.h - 180))
         pygame.draw.rect(s, UI_THEME["panel"], avatar_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["gold"], avatar_rect, 2, border_radius=12)
+        pulse = 70 + int(46 * (0.5 + 0.5 * pygame.math.Vector2(1, 0).rotate(self.pulse * 58).x))
+        glow = pygame.Surface((avatar_rect.w + 24, avatar_rect.h + 24), pygame.SRCALPHA)
+        pygame.draw.rect(glow, (188, 154, 255, pulse), glow.get_rect(), border_radius=18)
+        s.blit(glow, (avatar_rect.x - 12, avatar_rect.y - 12))
         av = self.app.assets.sprite("guides", "angel", (avatar_rect.w - 32, avatar_rect.h - 32), fallback=(40, 28, 62))
         s.blit(av, (avatar_rect.x + 16, avatar_rect.y + 16))
 
@@ -267,20 +274,23 @@ class RewardScreen:
         elif self.mode == "guide_choice":
             self._draw_guide_mode(s)
 
-        preview_card = self.hover_card
-        if self.selected_idx is not None and self.mode in {"choose1of3", "boss_pack"} and self.selected_idx < len(self.cards):
-            preview_card = self.cards[self.selected_idx]
-        self.preview.render(s, self.right_rect, preview_card, app=self.app)
+        if self.mode in {"choose1of3", "boss_pack"}:
+            preview_card = self.hover_card
+            if self.selected_idx is not None and self.selected_idx < len(self.cards):
+                preview_card = self.cards[self.selected_idx]
+            self.preview.render(s, self.right_rect, preview_card, app=self.app)
 
         confirm_enabled = self._confirm_enabled()
         pygame.draw.rect(s, UI_THEME["violet"] if confirm_enabled else (84, 76, 106), self.confirm_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.confirm_rect, 2, border_radius=10)
-        label = "Confirmar" if self.mode != "boss_pack" else "Tomar recompensas"
-        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.confirm_rect.x + 38, self.confirm_rect.y + 16))
+        label = "Continuar" if self.mode == "guide_choice" else ("Confirmar" if self.mode != "boss_pack" else "Tomar recompensas")
+        lbl = self.app.font.render(label, True, UI_THEME["text"])
+        s.blit(lbl, (self.confirm_rect.centerx - lbl.get_width() // 2, self.confirm_rect.y + 16))
 
         pygame.draw.rect(s, UI_THEME["panel_2"], self.back_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.back_rect, 2, border_radius=10)
-        s.blit(self.app.font.render("Volver", True, UI_THEME["text"]), (self.back_rect.x + 106, self.back_rect.y + 16))
+        back_lbl = self.app.font.render("Volver", True, UI_THEME["text"])
+        s.blit(back_lbl, (self.back_rect.centerx - back_lbl.get_width() // 2, self.back_rect.y + 16))
 
         if self.msg:
             s.blit(self.app.small_font.render(self.msg, True, UI_THEME["good"]), (self.left_rect.x, self.confirm_rect.y - 30))
