@@ -1,0 +1,171 @@
+{
+  "created_at": 1772767778,
+  "generator_version": "bgm_v2",
+  "items": {
+    "boss": {
+      "bars_a": 4,
+      "bars_b": 12,
+      "bpm": 158,
+      "duration": 24.3,
+      "generator_version": "bgm_v3",
+      "intro_bars": 4,
+      "loop_bars": 12,
+      "total_bars": 16,
+      "track": "boss"
+    },
+    "chest": {
+      "bars_a": 2,
+      "bars_b": 6,
+      "bpm": 142,
+      "duration": 13.52,
+      "generator_version": "bgm_v3",
+      "intro_bars": 2,
+      "loop_bars": 6,
+      "total_bars": 8,
+      "track": "chest"
+    },
+    "combat_forest": {
+      "bars_a": 4,
+      "bars_b": 12,
+      "bpm": 126,
+      "duration": 30.48,
+      "generator_version": "bgm_v3",
+      "intro_bars": 4,
+      "loop_bars": 12,
+      "total_bars": 16,
+      "track": "combat_forest"
+    },
+    "combat_hanan": {
+      "bars_a": 4,
+      "bars_b": 12,
+      "bpm": 130,
+      "duration": 29.54,
+      "generator_version": "bgm_v3",
+      "intro_bars": 4,
+      "loop_bars": 12,
+      "total_bars": 16,
+      "track": "combat_hanan"
+    },
+    "combat_kaypacha": {
+      "bars_a": 4,
+      "bars_b": 12,
+      "bpm": 128,
+      "duration": 30.0,
+      "generator_version": "bgm_v3",
+      "intro_bars": 4,
+      "loop_bars": 12,
+      "total_bars": 16,
+      "track": "combat_kaypacha"
+    },
+    "combat_umbral": {
+      "bars_a": 4,
+      "bars_b": 12,
+      "bpm": 132,
+      "duration": 29.09,
+      "generator_version": "bgm_v3",
+      "intro_bars": 4,
+      "loop_bars": 12,
+      "total_bars": 16,
+      "track": "combat_umbral"
+    },
+    "ending": {
+      "bars_a": 8,
+      "bars_b": 8,
+      "bpm": 88,
+      "duration": 43.64,
+      "generator_version": "bgm_v3",
+      "intro_bars": 8,
+      "loop_bars": 8,
+      "total_bars": 16,
+      "track": "ending"
+    },
+    "event": {
+      "bars_a": 6,
+      "bars_b": 12,
+      "bpm": 118,
+      "duration": 36.61,
+      "generator_version": "bgm_v3",
+      "intro_bars": 6,
+      "loop_bars": 12,
+      "total_bars": 18,
+      "track": "event"
+    },
+    "map_forest": {
+      "bars_a": 6,
+      "bars_b": 12,
+      "bpm": 112,
+      "duration": 38.57,
+      "generator_version": "bgm_v3",
+      "intro_bars": 6,
+      "loop_bars": 12,
+      "total_bars": 18,
+      "track": "map_forest"
+    },
+    "map_hanan": {
+      "bars_a": 6,
+      "bars_b": 12,
+      "bpm": 114,
+      "duration": 37.89,
+      "generator_version": "bgm_v3",
+      "intro_bars": 6,
+      "loop_bars": 12,
+      "total_bars": 18,
+      "track": "map_hanan"
+    },
+    "map_kaypacha": {
+      "bars_a": 6,
+      "bars_b": 12,
+      "bpm": 116,
+      "duration": 37.24,
+      "generator_version": "bgm_v3",
+      "intro_bars": 6,
+      "loop_bars": 12,
+      "total_bars": 18,
+      "track": "map_kaypacha"
+    },
+    "map_umbral": {
+      "bars_a": 6,
+      "bars_b": 12,
+      "bpm": 118,
+      "duration": 36.61,
+      "generator_version": "bgm_v3",
+      "intro_bars": 6,
+      "loop_bars": 12,
+      "total_bars": 18,
+      "track": "map_umbral"
+    },
+    "menu": {
+      "bars_a": 8,
+      "bars_b": 12,
+      "bpm": 82,
+      "duration": 58.54,
+      "generator_version": "bgm_v3",
+      "intro_bars": 8,
+      "loop_bars": 12,
+      "total_bars": 20,
+      "track": "menu"
+    },
+    "shop": {
+      "bars_a": 8,
+      "bars_b": 10,
+      "bpm": 74,
+      "duration": 58.38,
+      "generator_version": "bgm_v3",
+      "intro_bars": 8,
+      "loop_bars": 10,
+      "total_bars": 18,
+      "track": "shop"
+    },
+    "victory": {
+      "bars_a": 2,
+      "bars_b": 6,
+      "bpm": 132,
+      "duration": 14.55,
+      "generator_version": "bgm_v3",
+      "intro_bars": 2,
+      "loop_bars": 6,
+      "total_bars": 8,
+      "track": "victory"
+    }
+  }
+}
