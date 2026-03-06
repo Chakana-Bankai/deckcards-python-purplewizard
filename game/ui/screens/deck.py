@@ -1,5 +1,8 @@
+import math
+
 import pygame
 
+from game.ui.components.card_effect_summary import summarize_card_effect
 from game.ui.components.card_preview_panel import CardPreviewPanel
 from game.ui.theme import UI_THEME
 
@@ -24,6 +27,7 @@ class DeckScreen:
         self.side_view_rows = 11
         self.move_to_side_btn = pygame.Rect(720, 930, 260, 48)
         self.move_to_main_btn = pygame.Rect(990, 930, 260, 48)
+        self.preview = CardPreviewPanel(app=app)
 
     def _toast(self, text: str):
         self.toast_text = str(text)
@@ -110,7 +114,6 @@ class DeckScreen:
             if self.move_to_main_btn.collidepoint(pos) and self.selected_zone == "sideboard":
                 self._move_selected(); return
 
-            main_rect, side_rect = self._list_rects()
             m_start, m_end = self._visible_main_range()
             for vi, i in enumerate(range(m_start, m_end)):
                 cid = self.app.run_state["deck"][i]
@@ -142,6 +145,58 @@ class DeckScreen:
         knob = pygame.Rect(bar.x, bar.y + offset, bar.w, knob_h)
         pygame.draw.rect(s, UI_THEME["gold"], knob, border_radius=4)
 
+    def _deck_geometry_stats(self, deck_ids: list[str]) -> dict[str, float]:
+        axes = {"Attack": 0.0, "Defense": 0.0, "Harmony": 0.0, "Control": 0.0, "Ritual": 0.0, "Tempo": 0.0}
+        for cid in deck_ids:
+            card = self.app.card_defs.get(cid, {}) if isinstance(self.app.card_defs, dict) else {}
+            if not isinstance(card, dict):
+                continue
+            summary = summarize_card_effect(card, card_instance=None, ctx=None)
+            stats = summary.get("stats", {}) if isinstance(summary, dict) else {}
+            tags = set(card.get("tags", []) or [])
+            axes["Attack"] += float(stats.get("damage", 0) or 0)
+            axes["Defense"] += float(stats.get("block", 0) or 0)
+            axes["Harmony"] += float(stats.get("harmony", 0) or 0)
+            axes["Control"] += float(stats.get("draw", 0) or 0) + float(stats.get("scry", 0) or 0) + float(stats.get("rupture", 0) or 0)
+            axes["Ritual"] += 1.0 if "ritual" in tags else 0.0
+            axes["Tempo"] += float(stats.get("energy", 0) or 0) + (0.5 if int(card.get("cost", 1) or 1) <= 1 else 0.0)
+        return axes
+
+    def _draw_geometry_map(self, s: pygame.Surface, rect: pygame.Rect, axes: dict[str, float]):
+        pygame.draw.rect(s, (30, 28, 44), rect, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], rect, 1, border_radius=10)
+        labels = ["Attack", "Defense", "Harmony", "Control", "Ritual", "Tempo"]
+        values = [max(0.0, float(axes.get(k, 0.0))) for k in labels]
+        max_v = max(1.0, max(values))
+        cx, cy = rect.centerx, rect.centery + 8
+        radius = min(rect.w, rect.h) * 0.34
+
+        for ring in range(1, 5):
+            rr = radius * (ring / 4.0)
+            pts = []
+            for i in range(6):
+                ang = -math.pi / 2 + i * (2 * math.pi / 6)
+                pts.append((cx + rr * math.cos(ang), cy + rr * math.sin(ang)))
+            pygame.draw.polygon(s, (78, 72, 108), pts, 1)
+
+        poly = []
+        for i, v in enumerate(values):
+            ang = -math.pi / 2 + i * (2 * math.pi / 6)
+            rr = radius * (v / max_v)
+            x = cx + rr * math.cos(ang)
+            y = cy + rr * math.sin(ang)
+            poly.append((x, y))
+            ax = cx + (radius + 18) * math.cos(ang)
+            ay = cy + (radius + 18) * math.sin(ang)
+            t = self.app.tiny_font.render(labels[i], True, UI_THEME["muted"])
+            s.blit(t, t.get_rect(center=(ax, ay)))
+
+        fill = pygame.Surface((rect.w, rect.h), pygame.SRCALPHA)
+        rel = [(x - rect.x, y - rect.y) for x, y in poly]
+        pygame.draw.polygon(fill, (168, 120, 236, 76), rel)
+        pygame.draw.polygon(fill, (226, 196, 255, 180), rel, 2)
+        s.blit(fill, rect.topleft)
+
     def render(self, s):
         s.fill(UI_THEME["bg"])
         pygame.draw.rect(s, UI_THEME["panel"], self.back, border_radius=8)
@@ -157,7 +212,7 @@ class DeckScreen:
 
         s.blit(self.app.small_font.render("Mazo Activo (click para previsualizar)", True, UI_THEME["gold"]), (48, 112))
         s.blit(self.app.small_font.render("Reserva / Sideboard", True, UI_THEME["gold"]), (48, 524))
-        s.blit(self.app.small_font.render("Previsualización", True, UI_THEME["gold"]), (714, 112))
+        s.blit(self.app.small_font.render("Preview + Geometría", True, UI_THEME["gold"]), (714, 112))
 
         attacks = skills = rituals = total_cost = 0
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
@@ -216,9 +271,15 @@ class DeckScreen:
                     hover_card_id = sideboard[i]
                     break
 
-        preview_id = hover_card_id or self.selected_card_id
+        preview_id = hover_card_id or self.selected_card_id or (deck[0] if deck else (sideboard[0] if sideboard else None))
         selected = self.app.card_defs.get(preview_id) if preview_id else None
-        CardPreviewPanel(self.app).render(s, preview_rect.inflate(-16, -18), selected)
+
+        top_preview = pygame.Rect(preview_rect.x + 14, preview_rect.y + 42, preview_rect.w - 28, int(preview_rect.h * 0.52))
+        bottom_geo = pygame.Rect(preview_rect.x + 14, top_preview.bottom + 12, preview_rect.w - 28, preview_rect.bottom - (top_preview.bottom + 26))
+        self.preview.render(s, top_preview, selected, app=self.app)
+
+        axes = self._deck_geometry_stats(deck)
+        self._draw_geometry_map(s, bottom_geo, axes)
 
         side_enabled = self.selected_zone == "main"
         main_enabled = self.selected_zone == "sideboard"
