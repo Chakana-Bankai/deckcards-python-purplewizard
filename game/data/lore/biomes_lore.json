@@ -1,0 +1,54 @@
+{
+  "kaypacha": {
+    "id": "kaypacha",
+    "display_name_es": "Kay Pacha",
+    "description_es": "La tierra viva de los pasos humanos, donde cada decisión deja huella en la ruta.",
+    "palette_hints": ["verde_musgo", "oro_tierra", "violeta_suave"],
+    "bgm_tracks": {
+      "menu": "menu",
+      "map": "map_kaypacha",
+      "combat": "combat_kaypacha",
+      "boss": "boss",
+      "events": "event"
+    }
+  },
+  "forest": {
+    "id": "forest",
+    "display_name_es": "Pampa Astral",
+    "description_es": "Praderas de luz y neblina que confunden el camino, pero revelan secretos al corazón atento.",
+    "palette_hints": ["verde_aurora", "cian_bruma", "azul_profundo"],
+    "bgm_tracks": {
+      "menu": "menu",
+      "map": "map_forest",
+      "combat": "combat_forest",
+      "boss": "boss",
+      "events": "event"
+    }
+  },
+  "umbral": {
+    "id": "umbral",
+    "display_name_es": "Ukhu Pacha",
+    "description_es": "Bajo la piedra y el eco, los miedos toman forma y exigen temple.",
+    "palette_hints": ["obsidiana", "malva_oscuro", "gris_ceniza"],
+    "bgm_tracks": {
+      "menu": "menu",
+      "map": "map_umbral",
+      "combat": "combat_umbral",
+      "boss": "boss",
+      "events": "event"
+    }
+  },
+  "hanan": {
+    "id": "hanan",
+    "display_name_es": "Hanan Pacha",
+    "description_es": "Cielos altos y corrientes sagradas donde la visión supera la fuerza bruta.",
+    "palette_hints": ["azul_celeste", "dorado_solar", "violeta_real"],
+    "bgm_tracks": {
+      "menu": "menu",
+      "map": "map_hanan",
+      "combat": "combat_hanan",
+      "boss": "boss",
+      "events": "event"
+    }
+  }
+}

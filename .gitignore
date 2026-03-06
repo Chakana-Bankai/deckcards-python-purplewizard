@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Test/cache
+.pytest_cache/
+
+# Virtual envs
+.venv/
+game/.venv/
+game\\.venv/
+
+# Logs
+*.log
+logs/
+
+# Runtime caches/temp
+game/assets/.cache/
+game/data/.cache/
+game/assets/tmp/
+*_autogen_tmp*
+
+# Local runtime settings (use settings.default.json as tracked base)
+game/data/settings.json
+
+# Optional dev flags
+.regen_flag
+
+# Keep final shipped assets versioned (do NOT ignore)
+!game/assets/sprites/cards/*.png
+!game/assets/sprites/enemies/*.png
+!game/assets/music/*.wav
+!game/assets/**/.gitkeep
