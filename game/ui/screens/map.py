@@ -43,6 +43,14 @@ class MapScreen:
         "Frente al Monolito, solo queda verdad y voluntad.",
     ]
 
+
+    MAP_HINTS = [
+        "Sigue la ruta iluminada para avanzar al siguiente pacha.",
+        "Explora nodos de guia para control y equilibrio de recursos.",
+        "Si tu armonia esta lista, prioriza nodos de riesgo medio.",
+        "Las reliquias cambian el ritmo: planea 2 nodos por delante.",
+    ]
+
     def __init__(self, app):
         self.app = app
         self.lore_timer = 0
@@ -78,7 +86,8 @@ class MapScreen:
         self.lore_timer += dt
         if self.lore_timer > 3:
             self.lore_timer = 0
-            self.lore_idx = (self.lore_idx + 1) % 3
+            pool = max(1, len(self.MAP_HINTS))
+            self.lore_idx = (self.lore_idx + 1) % pool
 
     def _current_stage_index(self, run: dict) -> int:
         current_id = getattr(self.app, "current_node_id", None)
@@ -184,11 +193,45 @@ class MapScreen:
         s.blit(thought_title, (left_rect.x + 16, left_rect.y + 198))
         thought_line = self._fit_text(self.app.small_font, stage_thought, left_rect.w - 32)
         s.blit(self.app.small_font.render(thought_line, True, UI_THEME["muted"]), (left_rect.x + 16, left_rect.y + 222))
+        hint_box = pygame.Rect(left_rect.x + 14, left_rect.bottom - 86, left_rect.w - 28, 70)
+        pygame.draw.rect(s, UI_THEME["panel_2"], hint_box, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], hint_box, 1, border_radius=10)
+        hint_title = self.app.tiny_font.render("Hint de Trama", True, UI_THEME["gold"])
+        hint_text = self._fit_text(self.app.tiny_font, self.MAP_HINTS[self.lore_idx % max(1, len(self.MAP_HINTS))], hint_box.w - 16)
+        s.blit(hint_title, (hint_box.x + 8, hint_box.y + 8))
+        s.blit(self.app.tiny_font.render(hint_text, True, UI_THEME["muted"]), (hint_box.x + 8, hint_box.y + 32))
 
         center_badge = pygame.Rect(center_rect.x + 14, center_rect.y + 12, 164, 24)
         pygame.draw.rect(s, UI_THEME["panel_2"], center_badge, border_radius=7)
         pygame.draw.rect(s, UI_THEME["gold"], center_badge, 1, border_radius=7)
         s.blit(self.app.tiny_font.render(f"Capitulo {stage_idx + 1}", True, UI_THEME["gold"]), (center_badge.x + 8, center_badge.y + 5))
+
+        # Stage progression rail for fast readability of current route.
+        rail = pygame.Rect(center_badge.right + 18, center_badge.y + 2, center_rect.w - (center_badge.right - center_rect.x) - 34, 18)
+        pygame.draw.rect(s, UI_THEME["panel_2"], rail, border_radius=8)
+        steps = max(2, len(self.STAGE_TITLES))
+        for i in range(steps):
+            x = rail.x + int((i / (steps - 1)) * rail.w)
+            is_done = i < stage_idx
+            is_now = i == stage_idx
+            col = UI_THEME["muted"]
+            rr = 4
+            if is_done:
+                col = UI_THEME["good"]
+                rr = 5
+            if is_now:
+                col = UI_THEME["gold"]
+                rr = 7
+                glow = pygame.Surface((20, 20), pygame.SRCALPHA)
+                pygame.draw.circle(glow, (240, 210, 138, 90), (10, 10), 10)
+                s.blit(glow, (x - 10, rail.centery - 10))
+            pygame.draw.circle(s, col, (x, rail.centery), rr)
+            if i < steps - 1:
+                nx = rail.x + int(((i + 1) / (steps - 1)) * rail.w)
+                line_col = (90, 98, 132)
+                if i < stage_idx:
+                    line_col = (132, 182, 144)
+                pygame.draw.line(s, line_col, (x + rr, rail.centery), (nx - rr, rail.centery), 2)
 
         for ci, col in enumerate(run.get("map", [])):
             if ci < len(run.get("map", [])) - 1:
@@ -198,7 +241,13 @@ class MapScreen:
                         if nxt:
                             active = node.get("state") in {"available", "current", "incomplete"}
                             clr = (122, 132, 182) if active else (68, 70, 88)
-                            pygame.draw.line(s, clr, (node["x"], node["y"]), (nxt["x"], nxt["y"]), 4)
+                            width = 4
+                            if active:
+                                width = 5
+                                glow = pygame.Surface((abs(nxt["x"] - node["x"]) + 18, abs(nxt["y"] - node["y"]) + 18), pygame.SRCALPHA)
+                                pygame.draw.line(glow, (154, 142, 214, 68), (9, 9), (glow.get_width() - 9, glow.get_height() - 9), 6)
+                                s.blit(glow, (min(node["x"], nxt["x"]) - 9, min(node["y"], nxt["y"]) - 9))
+                            pygame.draw.line(s, clr, (node["x"], node["y"]), (nxt["x"], nxt["y"]), width)
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         hovered_node = None
@@ -234,7 +283,7 @@ class MapScreen:
                     pygame.draw.circle(s, color, (node["x"], node["y"]), radius)
                     self._draw_icon(s, node["type"], node["x"], node["y"])
 
-                show_label = node_hover or state in {"current", "incomplete"} or node["type"] == "boss"
+                show_label = node_hover or state == "current" or node["type"] == "boss"
                 if show_label:
                     label = self.NODE_NAMES.get(node["type"], "Ruta")
                     label_txt = self._fit_text(self.app.tiny_font, label, 120)
@@ -243,11 +292,23 @@ class MapScreen:
         harmony = run.get("player", {}).get("harmony_current", 0) if isinstance(run.get("player", {}), dict) else 0
         harmony_goal = run.get("player", {}).get("harmony_ready_threshold", 6) if isinstance(run.get("player", {}), dict) else 6
         deck_size = len(run.get("deck", []) or [])
+        completed_nodes = 0
+        available_nodes = 0
+        for col in run.get("map", []):
+            for node in col:
+                st = node.get("state", "locked")
+                if st in {"completed", "cleared"}:
+                    completed_nodes += 1
+                elif st in {"available", "current", "incomplete"}:
+                    available_nodes += 1
+
         stats = [
             ("Oro", f"{gold}", UI_THEME["gold"]),
             ("XP", f"{xp}/{xp_need}", UI_THEME["text"]),
             ("Armonia meta", f"{harmony}/{harmony_goal}", UI_THEME["violet"]),
             ("Mazo", f"{deck_size}", UI_THEME["text"]),
+            ("Ruta activa", f"{available_nodes}", UI_THEME["good"]),
+            ("Nodos superados", f"{completed_nodes}", UI_THEME["good"]),
         ]
 
         s.blit(self.app.small_font.render("Estado Chakana", True, UI_THEME["gold"]), (right_rect.x + 14, right_rect.y + 14))
@@ -261,14 +322,20 @@ class MapScreen:
             s.blit(value_txt, (row.right - value_txt.get_width() - 10, row.y + 8))
             y += 42
 
+        lore_rect = pygame.Rect(INTERNAL_WIDTH // 2 - 520, INTERNAL_HEIGHT - 90, 1040, 52)
+        pygame.draw.rect(s, UI_THEME["panel"], lore_rect, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], lore_rect, 2, border_radius=12)
         if hovered_node:
             lore_text = self.NODE_LORE.get(hovered_node.get("type"), "La ruta susurra un destino incierto.")
             node_title = self.NODE_NAMES.get(hovered_node.get("type"), "Ruta")
-            lore_rect = pygame.Rect(INTERNAL_WIDTH // 2 - 520, INTERNAL_HEIGHT - 90, 1040, 52)
-            pygame.draw.rect(s, UI_THEME["panel"], lore_rect, border_radius=12)
-            pygame.draw.rect(s, UI_THEME["accent_violet"], lore_rect, 2, border_radius=12)
             title_txt = self.app.tiny_font.render(node_title, True, UI_THEME["gold"])
             lore_line = self._fit_text(self.app.small_font, lore_text, lore_rect.w - title_txt.get_width() - 28)
             lore_txt = self.app.small_font.render(lore_line, True, UI_THEME["muted"])
+            s.blit(title_txt, (lore_rect.x + 12, lore_rect.y + 16))
+            s.blit(lore_txt, (lore_rect.x + 22 + title_txt.get_width(), lore_rect.y + 14))
+        else:
+            title_txt = self.app.tiny_font.render("Ruta", True, UI_THEME["gold"])
+            flavor = self._fit_text(self.app.small_font, self.MAP_HINTS[self.lore_idx % max(1, len(self.MAP_HINTS))], lore_rect.w - title_txt.get_width() - 28)
+            lore_txt = self.app.small_font.render(flavor, True, UI_THEME["muted"])
             s.blit(title_txt, (lore_rect.x + 12, lore_rect.y + 16))
             s.blit(lore_txt, (lore_rect.x + 22 + title_txt.get_width(), lore_rect.y + 14))
