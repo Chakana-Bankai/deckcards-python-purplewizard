@@ -29,12 +29,8 @@ def reason_to_es(reason_code: str, detail: str = "") -> str:
 
 
 def _effective_cost(card, player_state: dict) -> int:
-    cost = int(getattr(card, "cost", getattr(getattr(card, "definition", None), "cost", 0)) or 0)
-    statuses = player_state.get("statuses", {}) if isinstance(player_state.get("statuses", {}), dict) else {}
-    tags = list(getattr(getattr(card, "definition", None), "tags", []) or [])
-    if "attack" in tags and int(statuses.get("discount_next_attack", 0) or 0) > 0:
-        cost = max(0, cost - 1)
-    return cost
+    _ = player_state
+    return max(0, int(getattr(card, "cost", getattr(getattr(card, "definition", None), "cost", 0)) or 0))
 
 
 def _harmony_need(card) -> int:

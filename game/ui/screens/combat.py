@@ -85,6 +85,7 @@ class CombatScreen:
         self._ui_lock_until_ms = 0
         self._last_reason_code = REASON_OK
         self._status_line = ""
+        self._cost_pulse_until = {}
         self.telemetry = TelemetryLogger("INFO")
         self.dialogue_ctrl = CombatDialogueController(self.app.lore_engine, self._set_dialogue_lines)
         self.dialog_router = DialogueRouter(self.app.lore_engine, cooldown_ms=850)
@@ -675,8 +676,25 @@ class CombatScreen:
 
         card_name = self.app.loc.t(getattr(card.definition, "name_key", getattr(card.definition, "id", "Carta")))
         s.blit(self.app.tiny_font.render(str(card_name)[:18], True, UI_THEME["text_dark"]), (rect.x + 8, rect.y + 6))
-        pygame.draw.circle(s, UI_THEME["energy"], (rect.right - 16, rect.y + 16), 12)
-        s.blit(self.app.tiny_font.render(str(card.cost), True, UI_THEME["text_dark"]), (rect.right - 20, rect.y + 9))
+        base_cost = int(getattr(card.definition, "cost", card.cost) or 0)
+        live_cost = int(card.cost or 0)
+        modified = live_cost != base_cost
+        reduced = live_cost < base_cost
+        cost_col = UI_THEME["energy"] if not modified else (120, 220, 255) if reduced else (228, 132, 108)
+        pygame.draw.circle(s, cost_col, (rect.right - 16, rect.y + 16), 12)
+        s.blit(self.app.tiny_font.render(str(live_cost), True, UI_THEME["text_dark"]), (rect.right - 20, rect.y + 9))
+        if modified:
+            trans = f"{base_cost}→{live_cost}"
+            tcol = UI_THEME["good"] if reduced else UI_THEME["bad"]
+            s.blit(self.app.tiny_font.render(trans, True, tcol), (rect.x + 8, rect.y + 22))
+            if reduced:
+                g = pygame.Surface((rect.w + 10, rect.h + 10), pygame.SRCALPHA)
+                alpha = 45
+                pid = str(getattr(card, "instance_id", ""))
+                if self._cost_pulse_until.get(pid, 0) > pygame.time.get_ticks():
+                    alpha = 90 + int(70 * (0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 90.0)))
+                pygame.draw.rect(g, (96, 210, 255, alpha), g.get_rect(), border_radius=14)
+                s.blit(g, (rect.x - 5, rect.y - 5))
 
         summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
         stats = summary.get("stats", {}) if isinstance(summary, dict) else {}
@@ -735,6 +753,13 @@ class CombatScreen:
                 tags = set(card_def.get("tags", []) if isinstance(card_def, dict) else [])
                 trig = "card_played_attack" if "attack" in tags else "card_played_block" if ("skill" in tags or "defense" in tags or "block" in tags) else "card_played_ritual"
                 self.set_dialogue(trig, enemy_id, {"card_id": card_id})
+            if ev.get("type") == "card_cost_changed":
+                if ev.get("in_hand"):
+                    iid = str(ev.get("instance_id") or "")
+                    old_c = int(ev.get("old_cost", 0) or 0)
+                    new_c = int(ev.get("new_cost", 0) or 0)
+                    if iid and new_c < old_c:
+                        self._cost_pulse_until[iid] = pygame.time.get_ticks() + 950
             if ev.get("type") == "harmony_ready":
                 self._push_log(str(ev.get("message") or "Armonía lista: desata tu sello."))
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
@@ -1090,6 +1115,11 @@ class CombatScreen:
             rune = self.app.tiny_font.render("✶", True, UI_THEME["gold"])
             s.blit(rune, (self.end_turn_rect.x + 10, self.end_turn_rect.y + 8))
             s.blit(rune, (self.end_turn_rect.right - 20, self.end_turn_rect.y + 8))
+
+        has_cost_modified = any(int(getattr(c, "cost", 0) or 0) != int(getattr(getattr(c, "definition", None), "cost", 0) or 0) for c in hand)
+        if has_cost_modified:
+            warn = self.app.tiny_font.render("⚡ Energía alterada", True, (126, 220, 255))
+            s.blit(warn, (self.end_turn_rect.x - warn.get_width() - 16, self.end_turn_rect.y + 6))
 
         hint = self._status_line if self._status_line else "El botón centraliza turno, cartas, rituales y sello de armonía."
         hint_line = self._wrap_panel_text(hint, self.layout.actions_rect.w - 300, max_lines=1)[0]

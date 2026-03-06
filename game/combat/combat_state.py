@@ -152,6 +152,41 @@ class CombatState:
             "fatigue_growth": int(raw.get("fatigue_growth", 1) or 1),
         }
 
+    def _cost_modifiers_for_card(self, card) -> int:
+        statuses = self.player.get("statuses", {}) if isinstance(self.player.get("statuses", {}), dict) else {}
+        tags = set(getattr(getattr(card, "definition", None), "tags", []) or [])
+        mod = 0
+        if "attack" in tags and int(statuses.get("discount_next_attack", 0) or 0) > 0:
+            mod -= 1
+        mod += int(statuses.get("cost_up_all", 0) or 0)
+        mod -= int(statuses.get("cost_down_all", 0) or 0)
+        return int(mod)
+
+    def _recalculate_dynamic_costs(self):
+        zones = [
+            (self.hand, True),
+            (self.draw_pile, False),
+            (self.discard_pile, False),
+            (self.exhaust_pile, False),
+        ]
+        for pile, in_hand in zones:
+            for card in pile:
+                base_cost = int(getattr(getattr(card, "definition", None), "cost", 0) or 0)
+                old_cost = int(card.cost or 0)
+                new_cost = max(0, int(base_cost + self._cost_modifiers_for_card(card)))
+                card.temp_cost = int(new_cost)
+                if old_cost != new_cost:
+                    self.combat_events.append(
+                        {
+                            "type": "card_cost_changed",
+                            "card_id": getattr(getattr(card, "definition", None), "id", "-"),
+                            "instance_id": getattr(card, "instance_id", "-"),
+                            "old_cost": int(old_cost),
+                            "new_cost": int(new_cost),
+                            "in_hand": bool(in_hand),
+                        }
+                    )
+
     def start_player_turn(self):
         self.turn += 1
         self.combat_events.append({"type":"turn_start"})
@@ -164,6 +199,7 @@ class CombatState:
             self.combat_events.append({"type": "fatigue", "amount": fatigue_dmg, "counter": self.fatigue_counter})
             self.telemetry.info("fatigue_tick", amount=fatigue_dmg, counter=self.fatigue_counter, hp=self.player.get("hp", 0))
         self.draw(self.draw_per_turn)
+        self._recalculate_dynamic_costs()
 
     def draw(self, n):
         for _ in range(max(0, int(n or 0))):
@@ -190,10 +226,7 @@ class CombatState:
         if hand_index < 0 or hand_index >= len(self.hand):
             return
         card = self.hand[hand_index]
-        play_cost = int(card.cost or 0)
-        if card.definition.tags and "attack" in card.definition.tags and self.player["statuses"].get("discount_next_attack", 0) > 0:
-            play_cost = max(0, play_cost - 1)
-            self.player["statuses"]["discount_next_attack"] = max(0, self.player["statuses"].get("discount_next_attack", 0) - 1)
+        play_cost = max(0, int(card.cost or 0))
         if play_cost > self.player["energy"]:
             return
         if card.definition.target == "enemy":
@@ -204,6 +237,9 @@ class CombatState:
         else:
             target = self.enemies[0] if self.enemies else None
         self.player["energy"] -= play_cost
+        if card.definition.tags and "attack" in card.definition.tags and self.player["statuses"].get("discount_next_attack", 0) > 0:
+            self.player["statuses"]["discount_next_attack"] = max(0, self.player["statuses"].get("discount_next_attack", 0) - 1)
+            self._recalculate_dynamic_costs()
         if self.harmony_chaos_pending:
             self.harmony_chaos_pending = False
         self.hand.pop(hand_index)
