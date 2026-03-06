@@ -196,9 +196,15 @@ class App:
 
         self.validate_navigation_methods()
         pygame.display.set_caption(self.loc.t("game_title"))
-        self.sm.set(StudioIntroScreen(self, next_fn=lambda: self.sm.set(DataLoadingScreen(self, next_fn=self.goto_menu))))
+        self._set_boot_screen()
         self.music.play_for(self.get_bgm_track("menu"))
 
+    def _set_boot_screen(self):
+        loading_to_menu = lambda: self.sm.set(DataLoadingScreen(self, next_fn=self.goto_menu))
+        if self.user_settings.get("dev_skip_studio_intro", False):
+            loading_to_menu()
+            return
+        self.sm.set(StudioIntroScreen(self, next_fn=loading_to_menu))
 
     def _log_card_art_status(self):
         cards_dir = assets_dir() / "sprites" / "cards"
@@ -1008,7 +1014,7 @@ class App:
         self.debug["content_validation"] = content_report
         print(f"[boot] validate_content status={content_report.get('status')} cards={content_report.get('cards')} summary_ok={content_report.get('summary_ok')} can_play_ok={content_report.get('can_play_ok')} placeholders={content_report.get('placeholders')} issues={len(content_report.get('issues', []))}")
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
-        self.sm.set(StudioIntroScreen(self, next_fn=lambda: self.sm.set(DataLoadingScreen(self, next_fn=self.goto_menu))))
+        self._set_boot_screen()
         self.music.play_for(self.get_bgm_track("menu"))
         self.asset_generation_active = False
 

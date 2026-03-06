@@ -21,6 +21,7 @@ DEFAULT_SETTINGS = {
     "music_mute": False,
     "autogen_art_mode": "missing_only",
     "dev_reset_autogen_on_boot": False,
+    "dev_skip_studio_intro": False,
     "fx_vignette": True,
     "fx_scanlines": False,
     "fx_glow": True,
