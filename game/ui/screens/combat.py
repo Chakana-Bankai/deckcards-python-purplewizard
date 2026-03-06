@@ -511,14 +511,27 @@ class CombatScreen:
         pygame.draw.rect(s, accent, rect, 3, border_radius=12)
         art = self.app.assets.sprite("cards", card.definition.id, (rect.w - 14, int(rect.h * 0.56)), fallback=(70, 44, 105))
         s.blit(art, (rect.x + 7, rect.y + 30))
-        s.blit(self.app.tiny_font.render(str(card.definition.name_key), True, UI_THEME["text"]), (rect.x + 8, rect.y + 6))
+        card_name = self.app.loc.t(getattr(card.definition, "name_key", getattr(card.definition, "id", "Carta")))
+        s.blit(self.app.tiny_font.render(str(card_name)[:18], True, UI_THEME["text"]), (rect.x + 8, rect.y + 6))
         pygame.draw.circle(s, UI_THEME["energy"], (rect.right - 16, rect.y + 16), 12)
         s.blit(self.app.tiny_font.render(str(card.cost), True, UI_THEME["text_dark"]), (rect.right - 20, rect.y + 9))
-        icon_row = self._card_icons(card)[:4]
-        if icon_row:
-            x = rect.x + 8
+
+        summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
+        stats = summary.get("stats", {}) if isinstance(summary, dict) else {}
+        kpis = []
+        for key, icon in (("damage", "sword"), ("block", "shield"), ("rupture", "crack"), ("draw", "scroll"), ("harmony", "star")):
+            val = int(stats.get(key, 0) or 0)
+            if val > 0:
+                kpis.append((icon, val))
+        if not kpis:
+            icon_row = self._card_icons(card)[:2]
             for icon_name in icon_row:
-                x = draw_icon_with_value(s, icon_name, 1, UI_THEME["gold"], self.app.tiny_font, x, rect.bottom - 26, size=1)
+                kpis.append((icon_name, 1))
+
+        x = rect.x + 8
+        for icon_name, val in kpis[:3]:
+            x = draw_icon_with_value(s, icon_name, val, UI_THEME["gold"], self.app.tiny_font, x, rect.bottom - 26, size=1)
+
         if selected:
             pygame.draw.rect(s, UI_THEME["gold"], rect.inflate(8, 8), 3, border_radius=14)
 
@@ -724,26 +737,36 @@ class CombatScreen:
                 self.hover_card_index = i
         self.ctrl.on_hover(self.hover_card_index)
 
+        hand_inner = self.layout.hand_rect.inflate(-8, -8)
+        pygame.draw.rect(s, UI_THEME["panel"], hand_inner, border_radius=10)
+
         old_clip = s.get_clip()
         s.set_clip(self.layout.hand_rect)
         for i, card in enumerate(hand):
+            if i == self.hover_card_index:
+                continue
             base = self._card_rect(i, len(hand))
             fam = getattr(card.definition, "family", "violet_arcane")
             self._draw_card(s, base, card, selected=(i == self.ctrl.selected_index), family=fam)
-        s.set_clip(old_clip)
 
         if self.hover_card_index is not None and self.hover_card_index < len(hand):
             i = self.hover_card_index
             card = hand[i]
-            key = card.definition.id
-            cur = self.hover_anim.get(key, 0.0)
-            cur = cur + (1.0 - cur) * 0.32
-            self.hover_anim[key] = cur
-            rr = self._card_rect(i, len(hand)).move(0, int(-14 * cur)).inflate(int(10 * cur), int(10 * cur))
-            rr.clamp_ip(self.layout.hand_rect.inflate(-12, -12))
+            base_hover = self._card_rect(i, len(hand))
+            ww = int(base_hover.w * 1.25)
+            hh = int(base_hover.h * 1.25)
+            rr = pygame.Rect(base_hover.centerx - ww // 2, base_hover.centery - hh // 2 - 18, ww, hh)
+            rr.clamp_ip(self.layout.hand_rect.inflate(-10, -10))
+
+            shadow = rr.move(8, 10)
+            shadow_surf = pygame.Surface((shadow.w, shadow.h), pygame.SRCALPHA)
+            pygame.draw.rect(shadow_surf, (0, 0, 0, 96), shadow_surf.get_rect(), border_radius=14)
+            s.blit(shadow_surf, shadow.topleft)
+
             fam = getattr(card.definition, "family", "violet_arcane")
             self._draw_card(s, rr, card, selected=(i == self.ctrl.selected_index), family=fam)
             pygame.draw.rect(s, (220, 198, 255), rr.inflate(8, 8), 2, border_radius=14)
+
             summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
             tip = str(summary.get("header") or "Efecto: Ritual")
             tip_rect = pygame.Rect(rr.x, max(120, rr.y - 36), min(360, self.layout.hand_rect.w - 20), 28)
@@ -753,6 +776,8 @@ class CombatScreen:
             while self.app.tiny_font.size(line)[0] > tip_rect.w - 12 and len(line) > 4:
                 line = line[:-4] + "..."
             s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (tip_rect.x + 6, tip_rect.y + 6))
+
+        s.set_clip(old_clip)
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.playerhud_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.playerhud_rect, 2, border_radius=12)
