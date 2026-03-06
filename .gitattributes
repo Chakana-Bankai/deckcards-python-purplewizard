@@ -1,0 +1,9 @@
+# Binary assets
+*.png binary
+*.wav binary
+
+# Derived manifests/prompts: prefer local side during merges
+game/data/*manifest*.json merge=ours
+game/data/*_prompts.json merge=ours
+game/data/prompt_manifest.json merge=ours
+game/data/biome_manifest.json merge=ours
