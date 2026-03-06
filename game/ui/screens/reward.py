@@ -151,7 +151,7 @@ class RewardScreen:
             if isinstance(self.relic, dict) and self.relic.get("id"):
                 self.app.run_state.setdefault("relics", []).append(self.relic["id"])
             self.app.run_state["gold"] += self.gold
-            self.app.goto_map()
+            self.app.goto_end(victory=True)
             return
         if self.mode == "guide_choice":
             self._apply_guide_option(self.selected_idx)
