@@ -141,5 +141,8 @@
   "card_defend_name": "Obsidian Mantle",
   "card_strike_desc": "Invoke an andean seal and deal 6 damage.",
   "card_defend_desc": "Wrap yourself in ritual obsidian and gain 5 Block.",
-  "node_treasure": "Treasure"
+  "node_treasure": "Treasure",
+  "lore_short_1": "Chakana cosmology teaches that every action leaves an echo in the Weave: when intent and movement align, the symbol opens a path between sky, world, and root.",
+  "lore_short_2": "Hanan Pacha brings vision, Kay Pacha demands presence, and Ukhu Pacha keeps deep memory; walking across the three worlds without denying any of them is a mage's first wisdom.",
+  "lore_short_3": "Spiritual combat is not blind destruction: it is shape, timely defense, and purposeful strikes; ancient wisdom reminds us that every true victory is born from inner balance."
 }

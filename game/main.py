@@ -48,6 +48,7 @@ from game.ui.screens.end import EndScreen
 from game.ui.screens.intro import IntroScreen
 from game.ui.screens.studio_intro import StudioIntroScreen
 from game.ui.screens.pacha_transition import PachaTransitionScreen
+from game.ui.screens.tutorial import TutorialScreen
 from game.version import VERSION
 from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION
 from game.services.content_service import ContentService
@@ -130,7 +131,7 @@ class App:
         self._restart_requested = False
         self._restart_reason = ""
 
-        self.loading_screen = LoadingScreen(self.big_font, self.font)
+        self.loading_screen = LoadingScreen(self.big_font, self.font, lang=self.user_settings.get("language", "es"))
         self._loading_step("Inicializando", 0.01)
 
         content_payload = ContentService().load_all(progress_cb=self._loading_step)
@@ -429,8 +430,11 @@ class App:
     def goto_deck(self):
         self.sm.set(DeckScreen(self))
 
+    def goto_tutorial(self):
+        self.sm.set(TutorialScreen(self, next_fn=self.goto_path_select))
+
     def new_run(self):
-        self.goto_path_select()
+        self.goto_tutorial()
 
     def start_run_with_deck(self, starter_deck):
         self.run_state = {

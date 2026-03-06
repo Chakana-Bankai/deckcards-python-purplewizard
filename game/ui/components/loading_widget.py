@@ -9,14 +9,22 @@ from game.ui.theme import UI_THEME
 
 
 class LoadingWidget:
-    def __init__(self):
-        self.hints = [
+    def __init__(self, hints: list[str] | None = None):
+        self.hints = list(hints or [
             "La Chakana representa los tres mundos del espíritu.",
             "Kay Pacha, Hanan Pacha y Ukhu Pacha giran en equilibrio.",
             "Cada símbolo abre un sendero en la Trama.",
-        ]
+        ])
         self.hint_idx = 0
         self._hint_t = 0.0
+
+
+    def set_hints(self, hints: list[str]):
+        clean = [str(h).strip() for h in (hints or []) if str(h).strip()]
+        if clean:
+            self.hints = clean
+            self.hint_idx = 0
+            self._hint_t = 0.0
 
     def set_hint(self, label: str | None = None):
         if label:

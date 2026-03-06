@@ -4,17 +4,36 @@ import random
 
 import pygame
 
+from game.core.paths import data_dir
+from game.core.safe_io import load_json
 from game.ui.components.loading_widget import LoadingWidget
 
 
 class LoadingScreen:
-    def __init__(self, title_font, body_font):
+    def __init__(self, title_font, body_font, lang: str = "es"):
         self.title_font = title_font
         self.body_font = body_font
         self.label = "Iniciando..."
         self.pct = 0.0
-        self.widget = LoadingWidget()
+        self.widget = LoadingWidget(self._load_hints(lang))
         self.particles = [{"x": random.randint(0, 1919), "y": random.randint(0, 1079), "vx": random.uniform(-10, 10), "vy": random.uniform(8, 20)} for _ in range(18)]
+
+
+    def _load_hints(self, lang: str) -> list[str]:
+        candidates = [f"hints_{str(lang or 'es').lower()}.json", "hints_es.json"]
+        for name in candidates:
+            payload = load_json(data_dir() / name, default=[])
+            if not isinstance(payload, list):
+                continue
+            hints = [str(item.get("text", "")).strip() for item in payload if isinstance(item, dict)]
+            hints = [h for h in hints if h]
+            if hints:
+                return hints
+        return [
+            "La Chakana representa los tres mundos del espíritu.",
+            "Kay Pacha, Hanan Pacha y Ukhu Pacha giran en equilibrio.",
+            "Cada símbolo abre un sendero en la Trama.",
+        ]
 
     def set_step(self, label: str, pct: float):
         self.label = label
