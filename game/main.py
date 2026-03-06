@@ -532,7 +532,7 @@ class App:
             reward_data = guide_reward or build_reward_guide("guide", self.rng, self.cards_data, self.run_state or {})
             reward_data["type"] = "guide_choice"
             self.sm.set(RewardScreen(self, reward_data, gold=0, xp_gained=self.debug.get("xp_last_gain", 0)))
-            self.music.play_for(self.get_bgm_track("events"))
+            self.music.play_for("map_hanan")
             return
 
         if reward_mode == "boss_pack":
@@ -560,7 +560,7 @@ class App:
     def goto_shop(self):
         pool = [c for c in self.cards_data if c.get("rarity") in {"common", "uncommon"}] or self.cards_data
         self.sm.set(ShopScreen(self, self.rng.choice(pool) or DEFAULT_CARDS[0]))
-        self.music.play_for(self.get_bgm_track("events"))
+        self.music.play_for("map_hanan")
 
     def goto_event(self):
         event = self.rng.choice(self.events_data) if self.events_data else {"title_key": "map_title", "body_key": "lore_tagline", "choices": [{"text_key": "event_continue", "effects": []}]}
