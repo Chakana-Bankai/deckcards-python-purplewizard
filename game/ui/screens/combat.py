@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import math
+import random
 from pathlib import Path
 
 import pygame
@@ -539,38 +540,137 @@ class CombatScreen:
             icons.append("bolt")
         return icons
 
-    def _draw_card(self, s, rect, card, selected=False, family="violet_arcane"):
-        accent = {"crimson_chaos": (220, 108, 84), "emerald_spirit": (88, 198, 154), "azure_cosmic": (112, 152, 228), "violet_arcane": (176, 126, 240), "solar_gold": (226, 190, 112)}.get(family, (176, 126, 240))
-        rarity = str(getattr(card.definition, "rarity", "common") or "common").lower()
-        bg_map = {
-            "common": (198, 180, 148),
-            "basic": (196, 178, 146),
-            "rare": (184, 174, 206),
-            "legendary": (210, 178, 124),
-            "boss": (210, 178, 124),
+    def _card_tier(self, card) -> str:
+        rarity = str(getattr(card.definition, "rarity", "common") or "common").lower().strip()
+        tags = set(getattr(card.definition, "tags", []) or [])
+        if "ritual" in tags:
+            return "ritual"
+        if rarity in {"legendary", "boss"}:
+            return "legendary"
+        if rarity in {"rare", "uncommon"}:
+            return "rare"
+        return "normal"
+
+    def _seed_from_card(self, card) -> int:
+        cid = str(getattr(card.definition, "id", "card") or "card")
+        return sum((i + 1) * ord(ch) for i, ch in enumerate(cid)) % 1000003
+
+    def _fallback_card_art(self, card, size: tuple[int, int], tier: str, accent: tuple[int, int, int]) -> pygame.Surface:
+        w, h = max(24, int(size[0])), max(24, int(size[1]))
+        surf = pygame.Surface((w, h), pygame.SRCALPHA)
+        base_map = {
+            "normal": (90, 78, 60),
+            "rare": (86, 66, 124),
+            "legendary": (118, 84, 36),
+            "ritual": (68, 46, 98),
+        }
+        base = base_map.get(tier, (82, 60, 96))
+        for y in range(h):
+            f = y / max(1, h - 1)
+            row = (int(base[0] * (0.72 + 0.28 * f)), int(base[1] * (0.72 + 0.28 * f)), int(base[2] * (0.72 + 0.28 * f)))
+            pygame.draw.line(surf, row, (0, y), (w, y))
+        pygame.draw.rect(surf, accent, surf.get_rect(), 1, border_radius=7)
+        glyph = "✦" if tier in {"legendary", "ritual"} else "◈"
+        if tier == "ritual":
+            glyph = "ᚱ"
+        txt = self.app.small_font.render(glyph, True, (232, 220, 170))
+        surf.blit(txt, txt.get_rect(center=surf.get_rect().center))
+        return surf
+
+    def _draw_card_background(self, s, rect: pygame.Rect, card, tier: str, accent: tuple[int, int, int]):
+        rng = random.Random(self._seed_from_card(card))
+        base_map = {
+            "normal": (198, 180, 148),
+            "rare": (164, 142, 206),
+            "legendary": (214, 186, 118),
+            "ritual": (146, 104, 198),
         }
         border_map = {
-            "common": (106, 88, 64),
-            "basic": (106, 88, 64),
+            "normal": (106, 88, 64),
             "rare": (126, 106, 174),
-            "legendary": (210, 178, 92),
-            "boss": (210, 178, 92),
+            "legendary": (220, 190, 92),
+            "ritual": (172, 126, 240),
         }
-        bg_col = bg_map.get(rarity, bg_map["common"])
-        border_col = border_map.get(rarity, border_map["common"])
+        base = base_map.get(tier, base_map["normal"])
+        border = border_map.get(tier, border_map["normal"])
 
-        pygame.draw.rect(s, bg_col, rect, border_radius=12)
-        pygame.draw.rect(s, border_col, rect, 3, border_radius=12)
-        if rarity in {"legendary", "boss"}:
-            glow = pygame.Surface((rect.w + 18, rect.h + 18), pygame.SRCALPHA)
-            pygame.draw.rect(glow, (232, 204, 128, 78), glow.get_rect(), border_radius=16)
-            s.blit(glow, (rect.x - 9, rect.y - 9))
-            pygame.draw.rect(s, (242, 220, 136), rect.inflate(6, 6), 2, border_radius=14)
+        # normal: parchment pixel texture
+        if tier == "normal":
+            for y in range(rect.y, rect.bottom):
+                f = (y - rect.y) / max(1, rect.h - 1)
+                row = (int(base[0] * (0.94 + 0.06 * f)), int(base[1] * (0.94 + 0.06 * f)), int(base[2] * (0.94 + 0.06 * f)))
+                pygame.draw.line(s, row, (rect.x, y), (rect.right, y))
+            for _ in range(max(40, rect.w * rect.h // 500)):
+                px = rng.randint(rect.x + 2, rect.right - 3)
+                py = rng.randint(rect.y + 2, rect.bottom - 3)
+                n = rng.randint(-16, 18)
+                col = (max(0, min(255, base[0] + n)), max(0, min(255, base[1] + n)), max(0, min(255, base[2] + n)))
+                s.set_at((px, py), col)
+
+        # rare: colored aura
+        elif tier == "rare":
+            pygame.draw.rect(s, base, rect, border_radius=12)
+            aura = pygame.Surface((rect.w + 24, rect.h + 24), pygame.SRCALPHA)
+            pygame.draw.rect(aura, (*accent, 82), aura.get_rect(), border_radius=18)
+            s.blit(aura, (rect.x - 12, rect.y - 12))
+            for ring in range(3):
+                alpha = 70 - ring * 16
+                a = pygame.Surface((rect.w + 10 + ring * 10, rect.h + 10 + ring * 10), pygame.SRCALPHA)
+                pygame.draw.rect(a, (*accent, alpha), a.get_rect(), 2, border_radius=14 + ring * 2)
+                s.blit(a, (rect.x - 5 - ring * 5, rect.y - 5 - ring * 5))
+
+        # legendary: sacred geometry
+        elif tier == "legendary":
+            pygame.draw.rect(s, base, rect, border_radius=12)
+            cx, cy = rect.center
+            rr = max(24, min(rect.w, rect.h) // 2 - 8)
+            pygame.draw.circle(s, (244, 222, 146), (cx, cy), rr, 2)
+            pygame.draw.circle(s, (238, 206, 120), (cx, cy), max(8, rr - 16), 1)
+            for a in range(0, 360, 60):
+                rad = math.radians(a)
+                x = cx + int(math.cos(rad) * rr)
+                y = cy + int(math.sin(rad) * rr)
+                pygame.draw.line(s, (244, 222, 146), (cx, cy), (x, y), 1)
+            for a in range(0, 360, 30):
+                rad = math.radians(a)
+                x = cx + int(math.cos(rad) * (rr - 8))
+                y = cy + int(math.sin(rad) * (rr - 8))
+                pygame.draw.circle(s, (248, 228, 152), (x, y), 1)
+
+        # ritual: rune pattern
+        else:
+            pygame.draw.rect(s, base, rect, border_radius=12)
+            rune_col = (220, 182, 255)
+            step = 16
+            glyphs = ["ᚱ", "✶", "ᚨ", "ᛟ"]
+            for iy, y in enumerate(range(rect.y + 8, rect.bottom - 8, step)):
+                for ix, x in enumerate(range(rect.x + 8, rect.right - 8, step)):
+                    g = glyphs[(ix + iy) % len(glyphs)]
+                    gt = self.app.tiny_font.render(g, True, rune_col)
+                    gt.set_alpha(66 if (ix + iy) % 2 == 0 else 42)
+                    s.blit(gt, (x - gt.get_width() // 2, y - gt.get_height() // 2))
+            pulse = 54 + int(42 * (0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 240.0)))
+            glow = pygame.Surface((rect.w + 16, rect.h + 16), pygame.SRCALPHA)
+            pygame.draw.rect(glow, (188, 122, 255, pulse), glow.get_rect(), border_radius=16)
+            s.blit(glow, (rect.x - 8, rect.y - 8))
+
+        pygame.draw.rect(s, border, rect, 3, border_radius=12)
+
+    def _draw_card(self, s, rect, card, selected=False, family="violet_arcane"):
+        accent = {"crimson_chaos": (220, 108, 84), "emerald_spirit": (88, 198, 154), "azure_cosmic": (112, 152, 228), "violet_arcane": (176, 126, 240), "solar_gold": (226, 190, 112)}.get(family, (176, 126, 240))
+        tier = self._card_tier(card)
+
+        self._draw_card_background(s, rect, card, tier, accent)
 
         art_frame = pygame.Rect(rect.x + 6, rect.y + 28, rect.w - 12, int(rect.h * 0.58))
         pygame.draw.rect(s, (72, 64, 58), art_frame, border_radius=8)
         pygame.draw.rect(s, accent, art_frame, 1, border_radius=8)
-        art = self.app.assets.sprite("cards", card.definition.id, (art_frame.w - 6, art_frame.h - 6), fallback=(70, 44, 105))
+        try:
+            art = self.app.assets.sprite("cards", card.definition.id, (art_frame.w - 6, art_frame.h - 6), fallback=(70, 44, 105))
+        except Exception:
+            art = None
+        if art is None or art.get_width() < 8 or art.get_height() < 8:
+            art = self._fallback_card_art(card, (art_frame.w - 6, art_frame.h - 6), tier, accent)
         s.blit(art, (art_frame.x + 3, art_frame.y + 3))
 
         card_name = self.app.loc.t(getattr(card.definition, "name_key", getattr(card.definition, "id", "Carta")))
