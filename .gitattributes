@@ -1,9 +1,27 @@
-# Binary assets
+# Binary assets (never merge line-by-line)
 *.png binary
-*.wav binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.bmp binary
 
-# Derived manifests/prompts: prefer local side during merges
-game/data/*manifest*.json merge=ours
-game/data/*_prompts.json merge=ours
-game/data/prompt_manifest.json merge=ours
-game/data/biome_manifest.json merge=ours
+# Audio
+*.wav binary
+*.ogg binary
+*.mp3 binary
+
+# Fonts
+*.ttf binary
+*.otf binary
+
+# Prevent diff noise
+*.png -diff
+*.wav -diff
+*.ogg -diff
+*.mp3 -diff
+
+# JSON (allow normal merge)
+*.json text merge=union
+
+# Python
+*.py text diff=python
