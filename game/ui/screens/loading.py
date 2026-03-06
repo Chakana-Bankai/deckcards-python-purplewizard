@@ -67,20 +67,27 @@ class LoadingScreen:
 
 
 class DataLoadingScreen:
-    def __init__(self, app, next_fn, duration: float = 2.0):
+    def __init__(self, app, next_fn, duration: float = 0.8):
         self.app = app
         self.next_fn = next_fn
         self.duration = float(duration)
         self.t = 0.0
+        self._boot_done = False
 
     def on_enter(self):
         self.t = 0.0
+        self._boot_done = False
 
     def handle_event(self, event):
         # Keep boot sequence deterministic: intro -> loading -> menu.
         return
 
     def update(self, dt):
+        if not self._boot_done:
+            self.app.ensure_boot_content_ready()
+            self._boot_done = True
+            self.t = 0.0
+            return
         self.t += dt
         if self.t >= self.duration:
             self.next_fn()

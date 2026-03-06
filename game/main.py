@@ -133,8 +133,59 @@ class App:
         self._restart_reason = ""
 
         self.loading_screen = LoadingScreen(self.big_font, self.font, lang=self.user_settings.get("language", "es"))
-        self._loading_step("Inicializando", 0.01)
+        self.content = SimpleNamespace(cards=[], enemies=[], bosses=[], dialogues_combat={}, dialogues_events={}, status="PENDING", errors=[])
+        self.content.debug_counts = lambda: {
+            "cards": len(self.content.cards),
+            "enemies": len(self.content.enemies),
+            "bosses": len(self.content.bosses),
+            "dialogues_combat": bool(self.content.dialogues_combat),
+            "dialogues_events": bool(self.content.dialogues_events),
+        }
+        self.debug["content_status"] = "PENDING"
+        self.debug["art_status"] = "PENDING"
+        self.debug["music_status"] = "PENDING"
+        self.debug["biome_status"] = "PENDING"
+        self.debug["last_regen_ts"] = int(time.time())
+        self.cards_data = []
+        self.card_defs = {}
+        self.enemies_data = []
+        self.events_data = []
+        self.relics_data = []
+        self.lore_service = LoreService()
+        self.lore_engine = LoreEngine((data_dir().parent).parent)
+        self.biomes_lore = {}
+        self.lore_data = {}
+        self.debug["lore_status"] = "PENDING"
+        self.debug["lore_paths"] = ""
+        self.design_doc = {"raw": "", "path": str(data_dir() / "design" / "gdd_chakana_purple_wizard.txt")}
+        self.canonical_design_source = str(data_dir() / "design" / "gdd_chakana_purple_wizard.txt")
+        self.art_gen = CardArtGenerator()
+        self.enemy_art_gen = EnemyArtGenerator()
+        self.bg_gen = BackgroundGenerator()
+        self.guide_gen = GuideAvatarGenerator()
+        self.asset_pipeline = AssetPipeline(self.art_gen, self.enemy_art_gen, self.guide_gen, self.bg_gen)
+        self.audio_pipeline = AudioPipeline()
+        self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
+        self.user_settings.setdefault("detail_panel", False)
+        self._boot_content_ready = False
 
+        self.validate_navigation_methods()
+        pygame.display.set_caption(self.loc.t("game_title"))
+        self._set_boot_screen()
+
+    def _set_boot_screen(self):
+        loading_to_menu = lambda: self.sm.set(DataLoadingScreen(self, next_fn=self.goto_menu))
+        skip_intro = self.user_settings.get("dev_skip_intro", False) is True
+        if skip_intro:
+            loading_to_menu()
+            return
+        self.sm.set(StudioIntroScreen(self, next_fn=loading_to_menu, fade_in=1.2, hold=1.5, fade_out=1.2))
+
+    def ensure_boot_content_ready(self):
+        if getattr(self, "_boot_content_ready", False):
+            return
+
+        self._loading_step("Inicializando", 0.01)
         content_payload = ContentService().load_all(progress_cb=self._loading_step)
         self.content = SimpleNamespace(
             cards=content_payload.get("cards", []),
@@ -156,7 +207,6 @@ class App:
         self.debug["art_status"] = "OK"
         self.debug["music_status"] = "OK"
         self.debug["biome_status"] = "OK"
-        self.debug["last_regen_ts"] = int(time.time())
         self.cards_data = self._load_cards_data()
         self.card_defs = {c["id"]: c for c in self.cards_data}
         self.enemies_data = self._load_enemies_data()
@@ -169,16 +219,8 @@ class App:
         self.debug["lore_status"] = self.lore_service.status
         self.debug["lore_paths"] = ",".join(str(v) for v in self.lore_service.paths.values())
         self.design_doc = self._load_design_doc()
-        self.canonical_design_source = str(data_dir() / "design" / "gdd_chakana_purple_wizard.txt")
+
         print(f"[boot] content OK cards={len(self.cards_data)} enemies={len(self.enemies_data)} events={len(self.events_data)} relics={len(self.relics_data)}")
-        self.art_gen = CardArtGenerator()
-        self.enemy_art_gen = EnemyArtGenerator()
-        self.bg_gen = BackgroundGenerator()
-        self.guide_gen = GuideAvatarGenerator()
-        self.asset_pipeline = AssetPipeline(self.art_gen, self.enemy_art_gen, self.guide_gen, self.bg_gen)
-        self.audio_pipeline = AudioPipeline()
-        self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
-        self.user_settings.setdefault("detail_panel", False)
         self._apply_dev_reset_if_enabled()
         self.ensure_assets(progress_cb=self._loading_step)
         self._log_card_art_status()
@@ -194,19 +236,8 @@ class App:
         print("[boot] assets OK")
         print(f"[boot] placeholders used: {self.debug.get('placeholders_used',0)}")
         self.debug["art_regenerated"] = self.art_gen.generated_count + self.art_gen.replaced_count
-
-        self.validate_navigation_methods()
-        pygame.display.set_caption(self.loc.t("game_title"))
-        self._set_boot_screen()
+        self._boot_content_ready = True
         self.music.play_for(self.get_bgm_track("menu"))
-
-    def _set_boot_screen(self):
-        loading_to_menu = lambda: self.sm.set(DataLoadingScreen(self, next_fn=self.goto_menu))
-        skip_intro = self.user_settings.get("dev_skip_intro", False) is True
-        if skip_intro:
-            loading_to_menu()
-            return
-        self.sm.set(StudioIntroScreen(self, next_fn=loading_to_menu, fade_in=1.2, hold=1.5, fade_out=1.2))
 
     def _log_card_art_status(self):
         cards_dir = assets_dir() / "sprites" / "cards"
