@@ -11,13 +11,13 @@ from game.ui.theme import UI_THEME
 class LoadingWidget:
     def __init__(self, hints: list[str] | None = None):
         self.hints = list(hints or [
-            "La Chakana representa los tres mundos del espíritu.",
-            "Kay Pacha, Hanan Pacha y Ukhu Pacha giran en equilibrio.",
-            "Cada símbolo abre un sendero en la Trama.",
+            "La Chakana conecta los tres mundos.",
+            "El equilibrio entre ataque y armonía define al guerrero.",
+            "Prever el destino es tan importante como atacar.",
         ])
         self.hint_idx = 0
         self._hint_t = 0.0
-
+        self._hint_font = None
 
     def set_hints(self, hints: list[str]):
         clean = [str(h).strip() for h in (hints or []) if str(h).strip()]
@@ -27,13 +27,11 @@ class LoadingWidget:
             self._hint_t = 0.0
 
     def set_hint(self, label: str | None = None):
-        if label:
-            self.hints[0] = str(label)
-            self.hint_idx = 0
+        return
 
     def tick(self, dt: float):
         self._hint_t += max(0.0, float(dt))
-        if self._hint_t > 4.0:
+        if self._hint_t > 5.0:
             self._hint_t = 0.0
             self.hint_idx = (self.hint_idx + 1) % len(self.hints)
 
@@ -41,21 +39,32 @@ class LoadingWidget:
         w, h = surface.get_size()
         t = pygame.time.get_ticks() / 1000.0
 
-        anchor = (w - 120, h - 98)
-        rot = t * 0.9
-        pulse = 1.0 + 0.07 * math.sin(t * 3.2)
-        pts = chakana_points(anchor, int(28 * pulse), step=rot)
-        pygame.draw.polygon(surface, UI_THEME["gold"], pts, 3)
-        pygame.draw.circle(surface, UI_THEME["accent_violet"], anchor, 44, 1)
+        anchor = (w - 110, h - 90)
+        core_size = 22
+        rot = t * 0.42
 
-        orb_r = 22
-        ox = anchor[0] + int(math.cos(t * 2.3) * orb_r)
-        oy = anchor[1] + int(math.sin(t * 2.3) * orb_r)
-        glow = pygame.Surface((20, 20), pygame.SRCALPHA)
-        pygame.draw.circle(glow, (220, 196, 255, 180), (10, 10), 7)
-        pygame.draw.circle(glow, (220, 196, 255, 110), (10, 10), 10, 2)
-        surface.blit(glow, (ox - 10, oy - 10))
+        ring = pygame.Surface((120, 120), pygame.SRCALPHA)
+        pygame.draw.circle(ring, (170, 150, 232, 36), (60, 60), 46, 1)
+        pygame.draw.circle(ring, (170, 150, 232, 26), (60, 60), 35, 1)
+        surface.blit(ring, (anchor[0] - 60, anchor[1] - 60))
+
+        pulse = 1.0 + 0.05 * math.sin(t * 2.1)
+        pts = chakana_points(anchor, int(core_size * pulse), step=rot)
+        pygame.draw.polygon(surface, (235, 218, 168), pts, 2)
+
+        orbit_r = 32
+        ox = anchor[0] + int(math.cos(t * 0.9) * orbit_r)
+        oy = anchor[1] + int(math.sin(t * 0.9) * orbit_r)
+        pygame.draw.circle(surface, (158, 214, 242), (ox, oy), 3)
+
+        glow = pygame.Surface((84, 84), pygame.SRCALPHA)
+        alpha = 30 + int(24 * (0.5 + 0.5 * math.sin(t * 2.0)))
+        pygame.draw.circle(glow, (194, 170, 255, alpha), (42, 42), 24)
+        surface.blit(glow, (anchor[0] - 42, anchor[1] - 42))
 
         hint = str(hint_text or self.hints[self.hint_idx])
-        txt = body_font.render(hint, True, UI_THEME["muted"])
-        surface.blit(txt, txt.get_rect(center=(w // 2, h - 66)))
+        if self._hint_font is None:
+            size = max(16, int(getattr(body_font, "get_height", lambda: 22)() * 0.72))
+            self._hint_font = pygame.font.SysFont("arial", size, italic=True)
+        txt = self._hint_font.render(hint, True, UI_THEME["muted"])
+        surface.blit(txt, txt.get_rect(center=(w // 2, h - 34)))
