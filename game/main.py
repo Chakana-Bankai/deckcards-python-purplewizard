@@ -465,14 +465,16 @@ class App:
         x_margin = 140
         x_step = (INTERNAL_WIDTH - x_margin * 2) // (columns - 1)
         for col in range(columns):
-            count = 1 if col in (0, columns - 1) else 3
+            count = 1 if col in (0, columns - 1) else 4
             col_nodes = []
             for row in range(count):
                 node_id = f"{col}_{row}"
                 if count == 1:
                     y = INTERNAL_HEIGHT // 2
                 else:
-                    y = 240 + row * 190
+                    y_top = 210
+                    y_step = 160
+                    y = y_top + row * y_step
                 node_type = type_cycle[col]
                 if node_type == "challenge" and self.rng.randint(0, 100) < 45:
                     node_type = "combat"
