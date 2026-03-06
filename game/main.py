@@ -438,11 +438,22 @@ class App:
         self.goto_tutorial()
 
     def start_run_with_deck(self, starter_deck):
+        base_deck = list(starter_deck or [])
+        min_deck_size = 15
+        max_deck_size = 20
+        if not base_deck:
+            base_deck = [c.get("id") for c in self.cards_data[:min_deck_size] if isinstance(c, dict) and c.get("id")]
+        if not base_deck:
+            base_deck = [DEFAULT_CARDS[0]["id"]]
+        while len(base_deck) < min_deck_size:
+            base_deck.append(base_deck[len(base_deck) % len(base_deck)])
+        base_deck = base_deck[:max_deck_size]
+
         self.run_state = {
             "gold": 80,
             "relics": ["violet_seal"],
             "player": {"hp": 60, "max_hp": 60, "block": 0, "energy": 3, "rupture": 0, "statuses": {}},
-            "deck": list(starter_deck),
+            "deck": list(base_deck),
             "sideboard": [],
             "map": self.generate_map(),
             "biome": self.rng.choice(["kaypacha", "forest", "umbral", "hanan"]),

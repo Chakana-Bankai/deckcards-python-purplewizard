@@ -61,7 +61,7 @@ class CombatState:
         self.cards = self._load_cards(cards_data)
         self.enemies = self._spawn_enemies(enemy_ids, enemies_data)
         first_id = next(iter(self.cards.keys()))
-        deck_ids = run_state.get("deck", []) or [first_id] * 10
+        deck_ids = run_state.get("deck", []) or [first_id] * 15
         self.draw_pile = [CardInstance(self.cards.get(card_id, self.cards[first_id])) for card_id in deck_ids]
         self.discard_pile = []
         self.hand = []
@@ -80,7 +80,8 @@ class CombatState:
         self.baston_used = False
         self.balance = self._load_balance_config()
         self.energy_per_turn = int(self.balance.get("energy_per_turn", 3) or 3)
-        self.draw_per_turn = int(self.balance.get("draw_per_turn", 3) or 3)
+        self.draw_per_turn = int(self.balance.get("draw_per_turn", 1) or 1)
+        self.starting_hand = int(self.balance.get("starting_hand", 4) or 4)
         self.hand_max = int(self.balance.get("hand_max", 6) or 6)
         self.ui_cooldown_ms = int(self.balance.get("ui_cooldown_ms", 200) or 200)
         self.fatigue_enabled = bool(self.balance.get("fatigue_enabled", True))
@@ -129,7 +130,7 @@ class CombatState:
                 "normal": 40,
                 "common": 40,
                 "elite": 70,
-                "boss": 120,
+                "boss": 100,
             }
             hp = int(tier_target_hp.get(tier, hp))
             pattern = item.get("pattern") or [{"intent": "attack", "value": [5, 5]}]
@@ -144,7 +145,8 @@ class CombatState:
             raw = {}
         return {
             "energy_per_turn": int(raw.get("energy_per_turn", 3) or 3),
-            "draw_per_turn": int(raw.get("draw_per_turn", 3) or 3),
+            "draw_per_turn": int(raw.get("draw_per_turn", 1) or 1),
+            "starting_hand": int(raw.get("starting_hand", 4) or 4),
             "hand_max": int(raw.get("hand_max", 6) or 6),
             "ui_cooldown_ms": int(raw.get("ui_cooldown_ms", 200) or 200),
             "fatigue_enabled": bool(raw.get("fatigue_enabled", True)),
@@ -198,7 +200,8 @@ class CombatState:
             self.player["hp"] = max(0, int(self.player.get("hp", 0)) - fatigue_dmg)
             self.combat_events.append({"type": "fatigue", "amount": fatigue_dmg, "counter": self.fatigue_counter})
             self.telemetry.info("fatigue_tick", amount=fatigue_dmg, counter=self.fatigue_counter, hp=self.player.get("hp", 0))
-        self.draw(self.draw_per_turn)
+        draw_n = self.starting_hand if self.turn == 1 else self.draw_per_turn
+        self.draw(draw_n)
         self._recalculate_dynamic_costs()
 
     def draw(self, n):

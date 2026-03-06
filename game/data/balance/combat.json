@@ -1,6 +1,7 @@
 {
   "energy_per_turn": 3,
-  "draw_per_turn": 3,
+  "starting_hand": 4,
+  "draw_per_turn": 1,
   "hand_max": 6,
   "ui_cooldown_ms": 200,
   "fatigue_enabled": true,

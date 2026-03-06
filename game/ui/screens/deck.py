@@ -8,7 +8,7 @@ from game.ui.theme import UI_THEME
 
 
 class DeckScreen:
-    MIN_MAIN_DECK = 10
+    MIN_MAIN_DECK = 15
     MAX_MAIN_DECK = 20
 
     def __init__(self, app):

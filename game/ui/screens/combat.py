@@ -1018,7 +1018,8 @@ class CombatScreen:
         hand_n = pc["hand"]
         disc_n = pc["discard"]
         ex_n = len(getattr(self.c, "exhaust_pile", []))
-        s.blit(self.app.tiny_font.render(f"Draw {draw_n} • Mano {hand_n} • Discarte {disc_n} • Exhaust {ex_n}", True, UI_THEME["muted"]), (left_x, top_y + 70))
+        fatigue_n = int(getattr(self.c, "fatigue_counter", 0) or 0)
+        s.blit(self.app.tiny_font.render(f"Deck {draw_n} • Mano {hand_n} • Discarte {disc_n} • Fatiga {fatigue_n}", True, UI_THEME["muted"]), (left_x, top_y + 70))
 
         h_cur = int(p.get("harmony_current", 0) or 0)
         h_max = max(1, int(p.get("harmony_max", 10) or 10))
