@@ -1152,6 +1152,11 @@ class CombatScreen:
         disc_n = pc["discard"]
         fatigue_n = int(getattr(self.c, "fatigue_counter", 0) or 0)
         energy_now = int(p.get("energy", 0) or 0)
+        base_energy = int(getattr(self.c, "energy_per_turn", 3) or 3)
+        energized_bonus = 1 if int((p.get("statuses", {}) or {}).get("energized", 0) or 0) > 0 else 0
+        energy_cap = max(3, base_energy + energized_bonus, energy_now)
+        energy_buffed = energy_now > (base_energy + energized_bonus) or energized_bonus > 0
+        self.mana_orbs.update(energy_now)
 
         left_x = self.layout.playerhud_rect.x + 14
         top_y = self.layout.playerhud_rect.y + 12
@@ -1178,7 +1183,13 @@ class CombatScreen:
             ("TURN", f"{self.c.turn}", UI_THEME["gold"]),
         ]
         for idx, (title, val, col) in enumerate(row1):
-            _chip(pygame.Rect(left_x + idx * (chip_w + 8), row1_y, chip_w, 48), title, val, col)
+            chip = pygame.Rect(left_x + idx * (chip_w + 8), row1_y, chip_w, 48)
+            _chip(chip, title, val, col)
+            if title == "ENERGY":
+                orb_cap = max(3, min(8, energy_cap))
+                start_x = chip.centerx - ((orb_cap - 1) * 18) // 2
+                orb_y = chip.bottom - 9
+                self.mana_orbs.draw(s, start_x, orb_y, energy_now, max_mana=orb_cap, buffed=energy_buffed)
 
         row2 = [
             ("DECK", f"{draw_n}", UI_THEME["muted"]),
@@ -1373,6 +1384,8 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+
 
 
 
