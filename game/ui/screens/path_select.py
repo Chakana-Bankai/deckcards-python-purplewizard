@@ -6,13 +6,15 @@ from game.ui.components.pixel_icons import draw_icon_with_value
 from game.ui.components.card_renderer import render_card_small
 from game.ui.theme import UI_THEME
 from game.ui.system.components import UIPanel, UIButton
+from game.ui.system.modals import ChoiceModal
 
 
 class PathSelectScreen:
     def __init__(self, app):
         self.app = app
         self.hover_index = None
-        self.selected_index: int | None = None
+        self.choice_modal = ChoiceModal()
+        self.choice_modal.selected_index = None
         self.anim = {}
         self.confirm_rect = pygame.Rect(INTERNAL_WIDTH // 2 - 280, 904, 380, 56)
         self.cancel_rect = pygame.Rect(self.confirm_rect.right + 18, 904, 210, 56)
@@ -69,6 +71,7 @@ class PathSelectScreen:
 
     def on_enter(self):
         self._validate_options()
+        self.choice_modal.choices = [{"title": opt.get("name", "Arquetipo"), "subtitle": opt.get("identity", "")} for opt in self.options]
 
     def _validate_options(self):
         cards = self.app.card_defs if isinstance(self.app.card_defs, dict) else {}
@@ -93,7 +96,7 @@ class PathSelectScreen:
                 )
 
     def _confirm_enabled(self) -> bool:
-        return self.selected_index is not None
+        return self.choice_modal.selected_index is not None
 
     def _confirm_selection(self):
         if not self._confirm_enabled():
@@ -102,7 +105,7 @@ class PathSelectScreen:
             except Exception:
                 pass
             return
-        opt = self.options[self.selected_index]
+        opt = self.options[self.choice_modal.selected_index]
         self.app.sfx.play("ui_click")
         self.app.start_run_with_deck(opt["deck"])
 
@@ -125,10 +128,10 @@ class PathSelectScreen:
             for i, _ in enumerate(self.options):
                 r = self._option_rect(i)
                 if r.collidepoint(pos):
-                    if self.selected_index == i:
-                        self.selected_index = None
+                    if self.choice_modal.selected_index == i:
+                        self.choice_modal.selected_index = None
                     else:
-                        self.selected_index = i
+                        self.choice_modal.selected_index = i
                     self.app.sfx.play("ui_click")
                     return
 
@@ -219,7 +222,7 @@ class PathSelectScreen:
             if hover:
                 self.hover_index = i
 
-            selected = self.selected_index == i
+            selected = self.choice_modal.selected_index == i
             target = 1.02 if (hover or selected) else 1.0
             cur = self.anim.get(i, 1.0)
             cur = cur + (target - cur) * 0.18
@@ -269,7 +272,7 @@ class PathSelectScreen:
         confirm_fill = UI_THEME["violet"] if confirm_enabled else (84, 76, 106)
         confirm_border = UI_THEME["gold"] if confirm_enabled else UI_THEME["muted"]
         if confirm_enabled:
-            chosen = self.options[self.selected_index]["name"]
+            chosen = self.options[self.choice_modal.selected_index]["name"]
             ctext = f"Confirmar mazo: {chosen}"
         else:
             ctext = "Selecciona un mazo para confirmar"
