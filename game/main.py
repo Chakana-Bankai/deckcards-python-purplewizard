@@ -153,6 +153,7 @@ class App:
         self.user_settings.setdefault("detail_panel", False)
         self.user_settings.setdefault("tutorial_completed", False)
         self.pending_tutorial_enabled = False
+        self.story_intro_seen = False
         self.tutorial_flow = TutorialFlowController()
         self._boot_content_ready = False
 
@@ -558,6 +559,13 @@ class App:
 
     def new_run(self):
         self.pending_tutorial_enabled = not bool(self.user_settings.get("tutorial_completed", False))
+        if self.user_settings.get("dev_skip_intro", False) is True:
+            self.goto_path_select()
+            return
+        if not self.story_intro_seen:
+            self.story_intro_seen = True
+            self.sm.set(IntroScreen(self, next_fn=self.goto_path_select))
+            return
         self.goto_path_select()
 
     def _sync_tutorial_run_state(self):

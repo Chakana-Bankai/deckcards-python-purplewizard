@@ -12,39 +12,47 @@ class EndScreen:
         self.app = app
         self.victory = victory
         self.banner = TypewriterBanner()
-        self.lines = app.lore_data.get("ending_lines", ["La Trama respira en paz.", "Un ciclo termina, otro nace."])
         self.idx = 0
-        self.t = 0
+        self.t = 0.0
         self.rng = random.Random(1337)
         self._particles = []
         self.victory_phase = "lore"
+
         self.victory_lore = [
-            "El Monolito Fracturado cayó ante la voluntad de Chakana.",
-            "Las grietas del cielo se cierran; la Trama respira otra vez.",
-            "En silencio, los mundos recuerdan tu nombre.",
+            "El Monolito Fracturado cae ante Chakana.",
+            "La grieta astral cede y el pulso del mundo regresa.",
+            "La Trama recuerda tu nombre en silencio.",
         ]
+        self.defeat_lore = [
+            "La Trama se fractura bajo tus pies.",
+            "Las sombras reclaman el sendero por un instante.",
+            "Aun queda una ruta: vuelve a levantarte.",
+        ]
+
         self.credits_lines = [
             "Chakana Studio",
             "",
-            "Director:",
+            "Creado por:",
             "Mauricio Olivares Chacana",
             "",
-            "Special thanks:",
-            "Tomásito Kuuuuuun",
+            "Cosmovision Andina / inspiracion",
+            "",
+            "Dedicado a Tomas",
         ]
+
         self.buttons = {
             "primary": pygame.Rect(760, 760, 400, 68),
             "menu": pygame.Rect(760, 842, 400, 68),
         }
 
     def on_enter(self):
+        self.t = 0.0
+        self.idx = 0
         if self.victory:
             self.victory_phase = "lore"
-            self.idx = 0
-            msg = self.victory_lore[0]
+            self.banner.set(self.victory_lore[0], 2.0)
         else:
-            msg = "La trama se rompe..."
-        self.banner.set(msg, 2.0)
+            self.banner.set(self.defeat_lore[0], 2.0)
         self._reset_particles()
 
     def _reset_particles(self):
@@ -86,11 +94,13 @@ class EndScreen:
 
     def update(self, dt):
         self.t += dt
-        if self.victory and self.victory_phase == "lore" and self.t > 3.3:
-            self.t = 0
+        if self.t > 3.2:
+            self.t = 0.0
             self.idx += 1
-            if self.idx < len(self.victory_lore):
+            if self.victory and self.victory_phase == "lore" and self.idx < len(self.victory_lore):
                 self.banner.set(self.victory_lore[self.idx], 2.8)
+            if (not self.victory) and self.idx < len(self.defeat_lore):
+                self.banner.set(self.defeat_lore[self.idx], 2.8)
 
         if not self.victory:
             for p in self._particles:
@@ -101,7 +111,7 @@ class EndScreen:
                     p["x"] = float(self.rng.randint(0, 1919))
 
     def _draw_defeat_bg(self, s):
-        self.app.bg_gen.render_parallax(s, "umbral", 777, pygame.time.get_ticks() * 0.02, particles_on=True)
+        self.app.bg_gen.render_parallax(s, "Caverna Umbral", 777, pygame.time.get_ticks() * 0.02, particles_on=True)
         veil = pygame.Surface((s.get_width(), s.get_height()), pygame.SRCALPHA)
         veil.fill((10, 6, 18, 170))
         s.blit(veil, (0, 0))
@@ -111,10 +121,7 @@ class EndScreen:
 
     def render(self, s):
         if self.victory:
-            sky, silhouettes, fog = self.app.bg_gen.get_layers("Templo Obsidiana", 777)
-            s.blit(sky, (0, 0))
-            s.blit(silhouettes, (0, 0))
-            s.blit(fog, (0, 0))
+            self.app.bg_gen.render_parallax(s, "Templo Obsidiana", 777, pygame.time.get_ticks() * 0.02, particles_on=self.app.user_settings.get("fx_particles", True))
         else:
             self._draw_defeat_bg(s)
 
@@ -128,18 +135,19 @@ class EndScreen:
                 body = self.banner.current or self.victory_lore[min(self.idx, len(self.victory_lore) - 1)]
                 s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (840, 230))
                 s.blit(self.app.font.render(body, True, UI_THEME["text"]), (430, 318))
-                labels = {"primary": "Ver créditos", "menu": "Volver al Menú"}
+                labels = {"primary": "Ver creditos", "menu": "Volver al menu"}
             else:
-                title = "Créditos"
+                title = "Creditos"
                 s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (840, 230))
                 for i, line in enumerate(self.credits_lines):
-                    col = UI_THEME["gold"] if line in {"Chakana Studio", "Director:", "Special thanks:"} else UI_THEME["text"]
+                    col = UI_THEME["gold"] if line in {"Chakana Studio", "Creado por:", "Cosmovision Andina / inspiracion", "Dedicado a Tomas"} else UI_THEME["text"]
                     s.blit(self.app.font.render(line, True, col), (620, 308 + i * 42))
-                labels = {"primary": "Finalizar", "menu": "Volver al Menú"}
+                labels = {"primary": "Finalizar", "menu": "Volver al menu"}
         else:
             title = "Derrota"
+            body = self.banner.current or self.defeat_lore[min(self.idx, len(self.defeat_lore) - 1)]
             s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (860, 230))
-            s.blit(self.app.font.render("La trama se rompe...", True, UI_THEME["text"]), (430, 318))
+            s.blit(self.app.font.render(body, True, UI_THEME["text"]), (430, 318))
             labels = {"primary": "Volver al mapa", "menu": "Nueva run"}
 
         for k, r in self.buttons.items():
