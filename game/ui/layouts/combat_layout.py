@@ -1,3 +1,9 @@
+﻿"""DEPRECATED: legacy combat layout module.
+
+This file is kept for backward compatibility during UI system migration.
+Active combat layout source of truth is `game.ui.layout.combat_layout`.
+"""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

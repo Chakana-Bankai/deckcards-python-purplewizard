@@ -1,3 +1,8 @@
+﻿"""DEPRECATED: legacy generic Button wrapper.
+
+Use `game.ui.system.components.UIButton` for new UI code.
+"""
+
 import pygame
 
 
