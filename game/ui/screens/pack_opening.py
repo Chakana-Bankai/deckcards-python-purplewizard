@@ -11,6 +11,29 @@ class PackOpeningScreen:
         self.app = app
         self.msg = "Elige un sobre premium"
         self.packs = [pygame.Rect(80 + i * 390, 160, 360, 280) for i in range(3)]
+        self.pack_defs = [
+            {
+                "id": "normal_pack",
+                "title": "Pack Normal",
+                "subtitle": "Base estable",
+                "desc": "5 cartas de consistencia para escalar.",
+                "color": (140, 128, 186),
+            },
+            {
+                "id": "rare_choice_pack",
+                "title": "Pack Raro",
+                "subtitle": "Alto impacto",
+                "desc": "Prioriza rarezas y control de ritmo.",
+                "color": (116, 188, 228),
+            },
+            {
+                "id": "ritual_reward_pack",
+                "title": "Pack Ritual",
+                "subtitle": "Armonia",
+                "desc": "Sinergias de rito y lectura astral.",
+                "color": (196, 138, 238),
+            },
+        ]
         self.selected_pack = None
         self.cards = []
         self.selected_card = None
@@ -22,42 +45,63 @@ class PackOpeningScreen:
         pool = [c for c in self.app.cards_data if c.get("rarity") in {"rare", "legendary", "uncommon", "common", "basic"}] or self.app.cards_data
         self.pool = pool
 
+    def _card_pool_by_pack(self, pack_id: str):
+        pool = list(self.pool)
+        common_pool = [c for c in pool if c.get("rarity") in {"basic", "common"}] or pool
+        uncommon_pool = [c for c in pool if c.get("rarity") == "uncommon"] or common_pool
+        rare_pool = [c for c in pool if c.get("rarity") == "rare"] or uncommon_pool
+        legendary_pool = [c for c in pool if c.get("rarity") == "legendary"] or rare_pool
+        ritual_pool = [
+            c for c in pool if any(tag in {"ritual", "harmony", "scry", "draw", "control"} for tag in (c.get("tags") or []))
+        ] or uncommon_pool
+
+        if pack_id == "rare_choice_pack":
+            return rare_pool + uncommon_pool + common_pool, legendary_pool, rare_pool, uncommon_pool, common_pool
+        if pack_id == "ritual_reward_pack":
+            return ritual_pool + uncommon_pool + common_pool, legendary_pool, rare_pool, uncommon_pool, common_pool
+        return common_pool + uncommon_pool + rare_pool, legendary_pool, rare_pool, uncommon_pool, common_pool
+
     def _open_pack(self, idx):
+        if not (0 <= idx < len(self.pack_defs)):
+            return
         self.selected_pack = idx
         self.selected_card = None
         self.hover_card = None
+        pack = self.pack_defs[idx]
+        pool, leg_pool, rare_pool, uncommon_pool, common_pool = self._card_pool_by_pack(pack["id"])
+
         self.legendary_pick_mode = bool(self.app.user_settings.get("pack_legendary_pick_enabled", True)) and self.app.rng.random() < 0.18
 
         if self.legendary_pick_mode:
-            leg_pool = [c for c in self.pool if c.get("rarity") == "legendary"]
-            base = leg_pool or [c for c in self.pool if c.get("rarity") == "rare"] or self.pool
+            base = leg_pool or rare_pool or pool
             picked = [self.app.rng.choice(base) for _ in range(5)]
-            self.msg = f"Sobre {idx+1}: evento raro - Elige 1 legendaria"
+            self.msg = f"{pack['title']}: evento raro - Elige 1 legendaria"
         else:
-            leg_pool = [c for c in self.pool if c.get("rarity") == "legendary"]
-            rare_pool = [c for c in self.pool if c.get("rarity") == "rare"]
-            uncommon_pool = [c for c in self.pool if c.get("rarity") == "uncommon"]
-            common_pool = [c for c in self.pool if c.get("rarity") in {"common", "basic"}]
             picked = [
-                self.app.rng.choice(leg_pool or rare_pool or self.pool),
-                self.app.rng.choice(rare_pool or uncommon_pool or self.pool),
-                self.app.rng.choice(uncommon_pool or common_pool or self.pool),
-                self.app.rng.choice(common_pool or self.pool),
-                self.app.rng.choice(self.pool),
+                self.app.rng.choice(leg_pool or rare_pool or pool),
+                self.app.rng.choice(rare_pool or uncommon_pool or pool),
+                self.app.rng.choice(uncommon_pool or common_pool or pool),
+                self.app.rng.choice(common_pool or pool),
+                self.app.rng.choice(pool),
             ]
-            self.msg = f"Sobre {idx+1} abierto. Recibirás las 5 cartas"
+            self.msg = f"{pack['title']} abierto. Recibiras las 5 cartas"
         self.cards = [CardInstance(CardDef(**c)) for c in picked if c]
 
-    def _grid_rect(self, i):
-        return pygame.Rect(78 + i * 236, 520, 220, 300)
+    def _toggle_pack_selection(self, idx):
+        if self.selected_pack == idx:
+            self.selected_pack = None
+        else:
+            self.selected_pack = idx
 
     def _confirm_enabled(self):
         if not self.cards:
-            return False
+            return self.selected_pack is not None
         return self.selected_card is not None if self.legendary_pick_mode else True
 
     def _confirm(self):
         if not self.cards:
+            if self.selected_pack is not None:
+                self._open_pack(self.selected_pack)
             return
         if self.legendary_pick_mode:
             chosen = self.selected_card or self.cards[0]
@@ -73,6 +117,7 @@ class PackOpeningScreen:
                 self.cards = []
                 self.msg = "Elige un sobre premium"
             else:
+                self.selected_pack = None
                 self.app.goto_map()
             return
 
@@ -83,12 +128,17 @@ class PackOpeningScreen:
                     self.cards = []
                     self.msg = "Elige un sobre premium"
                 else:
+                    self.selected_pack = None
                     self.app.goto_map()
                 return
+            if self.confirm_rect.collidepoint(pos) and self._confirm_enabled():
+                self._confirm()
+                return
+
             if not self.cards:
                 for i, r in enumerate(self.packs):
                     if r.collidepoint(pos):
-                        self._open_pack(i)
+                        self._toggle_pack_selection(i)
                         self.app.sfx.play("ui_click")
                         return
             else:
@@ -97,25 +147,39 @@ class PackOpeningScreen:
                         self.selected_card = c
                         self.app.sfx.play("card_pick")
                         return
-                if self.confirm_rect.collidepoint(pos) and self._confirm_enabled():
-                    self._confirm()
+
+    def _grid_rect(self, i):
+        return pygame.Rect(78 + i * 236, 520, 220, 300)
 
     def update(self, dt):
         _ = dt
 
     def render(self, s):
         s.fill(UI_THEME["bg"])
-        s.blit(self.app.big_font.render("Botín / Sobres", True, UI_THEME["gold"]), (760, 42))
+        s.blit(self.app.big_font.render("Botin / Sobres", True, UI_THEME["gold"]), (760, 42))
         s.blit(self.app.font.render(self.msg, True, UI_THEME["text"]), (520, 102))
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.hover_card = None
 
         for i, r in enumerate(self.packs):
-            col = UI_THEME["panel_2"] if r.collidepoint(mouse) else UI_THEME["panel"]
+            pdef = self.pack_defs[i]
+            hovered = r.collidepoint(mouse)
+            selected = self.selected_pack == i
+            col = UI_THEME["panel_2"] if (hovered or selected) else UI_THEME["panel"]
             pygame.draw.rect(s, col, r, border_radius=16)
-            pygame.draw.rect(s, UI_THEME["gold"], r, 2, border_radius=16)
-            s.blit(self.app.big_font.render(f"SOBRE {i+1}", True, UI_THEME["text"]), (r.x + 72, r.y + 54))
-            s.blit(self.app.small_font.render("5 cartas chakánicas", True, UI_THEME["muted"]), (r.x + 64, r.y + 128))
+            border_col = pdef["color"] if selected else UI_THEME["gold"]
+            bw = 4 if selected else 2
+            pygame.draw.rect(s, border_col, r, bw, border_radius=16)
+            if selected:
+                glow = pygame.Surface((r.w + 18, r.h + 18), pygame.SRCALPHA)
+                pygame.draw.rect(glow, (*pdef["color"], 66), glow.get_rect(), border_radius=20)
+                s.blit(glow, (r.x - 9, r.y - 9))
+
+            s.blit(self.app.big_font.render(pdef["title"], True, UI_THEME["text"]), (r.x + 48, r.y + 48))
+            s.blit(self.app.small_font.render(pdef["subtitle"], True, pdef["color"]), (r.x + 48, r.y + 102))
+            s.blit(self.app.tiny_font.render(pdef["desc"], True, UI_THEME["muted"]), (r.x + 48, r.y + 138))
+            if selected:
+                s.blit(self.app.tiny_font.render("Seleccionado", True, UI_THEME["gold"]), (r.x + 48, r.y + 248))
 
         if self.cards:
             for i, card in enumerate(self.cards):
@@ -141,8 +205,11 @@ class PackOpeningScreen:
         enabled = self._confirm_enabled()
         pygame.draw.rect(s, UI_THEME["violet"] if enabled else (82, 78, 104), self.confirm_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.confirm_rect, 2, border_radius=10)
-        label = "Confirmar legendaria" if self.legendary_pick_mode else "Tomar pack"
-        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.confirm_rect.x + 78, self.confirm_rect.y + 16))
+        if not self.cards:
+            label = "Abrir sobre" if self.selected_pack is not None else "Selecciona un sobre"
+        else:
+            label = "Confirmar legendaria" if self.legendary_pick_mode else "Tomar pack"
+        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.confirm_rect.x + 72, self.confirm_rect.y + 16))
 
         pygame.draw.rect(s, UI_THEME["panel_2"], self.back_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.back_rect, 2, border_radius=10)
