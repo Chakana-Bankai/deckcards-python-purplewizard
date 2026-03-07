@@ -1,0 +1,38 @@
+[
+  {
+    "id": "kaypacha",
+    "name": "Kay Pacha",
+    "description": "La tierra viva donde se forja la base del viaje.",
+    "background": "kaypacha",
+    "enemy_pool": ["kay"],
+    "event_pool": ["apacheta_offer", "ayni_pact", "serpent_shed"],
+    "boss": "guardian_de_la_grieta"
+  },
+  {
+    "id": "forest",
+    "name": "Pampa Astral",
+    "description": "Bruma luminosa y presagios de altura.",
+    "background": "forest",
+    "enemy_pool": ["hanan"],
+    "event_pool": ["condor_vision", "puma_trial", "chakana_crossroads"],
+    "boss": "oraculo_del_vacio"
+  },
+  {
+    "id": "umbral",
+    "name": "Ukhu Pacha",
+    "description": "Profundidad, ecos y pruebas del umbral interior.",
+    "background": "umbral",
+    "enemy_pool": ["ukhu"],
+    "event_pool": ["serpent_shed", "apacheta_offer", "chakana_crossroads"],
+    "boss": "oraculo_del_vacio"
+  },
+  {
+    "id": "hanan",
+    "name": "Hanan Pacha",
+    "description": "La cumbre astral antes del monolito final.",
+    "background": "hanan",
+    "enemy_pool": ["hanan"],
+    "event_pool": ["condor_vision", "puma_trial", "ayni_pact"],
+    "boss": "senor_de_la_chakana_rota"
+  }
+]

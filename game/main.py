@@ -136,6 +136,8 @@ class App:
         self.lore_service = LoreService()
         self.lore_engine = LoreEngine((data_dir().parent).parent)
         self.biomes_lore = {}
+        self.biome_defs = []
+        self.biome_def_by_id = {}
         self.lore_data = {}
         self.debug["lore_status"] = "PENDING"
         self.debug["lore_paths"] = ""
@@ -200,6 +202,8 @@ class App:
         self.lore_service = LoreService()
         self.lore_engine = LoreEngine((data_dir().parent).parent)
         self.biomes_lore = self._load_biomes_lore_data()
+        self.biome_defs = self._load_biome_defs()
+        self.biome_def_by_id = {str(b.get("id")).lower(): b for b in self.biome_defs if isinstance(b, dict) and b.get("id")}
         self.lore_data = self.lore_service.data
         self.debug["lore_status"] = self.lore_service.status
         self.debug["lore_paths"] = ",".join(str(v) for v in self.lore_service.paths.values())
@@ -253,6 +257,81 @@ class App:
         payload = load_json(path, default={})
         return payload if isinstance(payload, dict) else {}
 
+    def _load_biome_defs(self) -> list[dict]:
+        path = data_dir() / "biomes.json"
+        payload = load_json(path, default=[])
+        out = []
+        for b in payload if isinstance(payload, list) else []:
+            if not isinstance(b, dict):
+                continue
+            biome_id = str(b.get("id", "")).strip().lower()
+            if not biome_id:
+                continue
+            out.append({
+                "id": biome_id,
+                "name": b.get("name", biome_id.title()),
+                "description": b.get("description", ""),
+                "background": b.get("background", biome_id),
+                "enemy_pool": list(b.get("enemy_pool", [])),
+                "event_pool": list(b.get("event_pool", [])),
+                "boss": b.get("boss"),
+            })
+        if not out:
+            out = [
+                {"id": "kaypacha", "name": "Kay Pacha", "description": "", "background": "kaypacha", "enemy_pool": ["kay"], "event_pool": [], "boss": None},
+                {"id": "forest", "name": "Pampa Astral", "description": "", "background": "forest", "enemy_pool": ["hanan"], "event_pool": [], "boss": None},
+                {"id": "umbral", "name": "Ukhu Pacha", "description": "", "background": "umbral", "enemy_pool": ["ukhu"], "event_pool": [], "boss": None},
+                {"id": "hanan", "name": "Hanan Pacha", "description": "", "background": "hanan", "enemy_pool": ["hanan"], "event_pool": [], "boss": None},
+            ]
+        return out
+
+    def _normalize_biome_id(self, biome_id: str | None) -> str:
+        key = str(biome_id or "").strip().lower()
+        if key in self.biome_def_by_id:
+            return key
+        if self.biome_defs:
+            return str(self.biome_defs[0].get("id") or "kaypacha")
+        return "kaypacha"
+
+    def _biome_progression(self) -> list[str]:
+        if self.biome_defs:
+            return [self._normalize_biome_id(b.get("id")) for b in self.biome_defs if isinstance(b, dict) and b.get("id")]
+        return ["kaypacha", "forest", "umbral", "hanan"]
+
+    def _biome_for_column(self, col: int, total_columns: int) -> str:
+        prog = self._biome_progression()
+        if not prog:
+            return "kaypacha"
+        if total_columns <= 1:
+            return prog[0]
+        idx = int((max(0, min(total_columns - 1, int(col))) * len(prog)) / total_columns)
+        idx = max(0, min(len(prog) - 1, idx))
+        return prog[idx]
+
+    def _enemy_biome_tokens(self, biome_id: str | None) -> set[str]:
+        biome_key = self._normalize_biome_id(biome_id)
+        biome = self.biome_def_by_id.get(biome_key, {})
+        tokens = set()
+        for t in biome.get("enemy_pool", []) if isinstance(biome, dict) else []:
+            tok = str(t or "").strip().lower()
+            if tok:
+                tokens.add(tok)
+        return tokens
+
+    def _event_pool_for_biome(self, biome_id: str | None) -> list[dict]:
+        biome_key = self._normalize_biome_id(biome_id)
+        biome = self.biome_def_by_id.get(biome_key, {})
+        event_ids = [str(x).strip().lower() for x in biome.get("event_pool", []) if str(x).strip()] if isinstance(biome, dict) else []
+        if not event_ids:
+            return list(self.events_data)
+        by_id = {
+            str(e.get("id", "")).strip().lower(): e
+            for e in self.events_data
+            if isinstance(e, dict) and e.get("id")
+        }
+        selected = [by_id[eid] for eid in event_ids if eid in by_id]
+        return selected or list(self.events_data)
+
     def get_biome_lore(self, biome_id: str | None = None) -> dict:
         biome_key = str(biome_id or (self.run_state or {}).get("biome") or "kaypacha").lower()
         data = self.biomes_lore.get(biome_key, {}) if isinstance(self.biomes_lore, dict) else {}
@@ -261,7 +340,10 @@ class App:
     def get_biome_display_name(self, biome_id: str | None = None) -> str:
         biome_key = str(biome_id or (self.run_state or {}).get("biome") or "kaypacha").lower()
         lore = self.get_biome_lore(biome_key)
-        return str(lore.get("display_name_es") or biome_key.title())
+        if isinstance(lore, dict) and lore.get("display_name_es"):
+            return str(lore.get("display_name_es"))
+        biome = self.biome_def_by_id.get(biome_key, {}) if isinstance(self.biome_def_by_id, dict) else {}
+        return str((biome or {}).get("name") or biome_key.title())
 
     def get_bgm_track(self, context: str, biome_id: str | None = None) -> str:
         ctx = str(context or "menu").lower()
@@ -349,6 +431,7 @@ class App:
                 "guard": int(e.get("guard", 0)),
                 "fable_lesson_key": e.get("fable_lesson_key", "duda"),
                 "tier": e.get("tier", "common"),
+                "biome": str(e.get("biome", "")).lower(),
             })
         return valid or [DEFAULT_ENEMY]
 
@@ -513,7 +596,9 @@ class App:
             "deck": list(base_deck),
             "sideboard": [],
             "map": self.generate_map(),
-            "biome": self.rng.choice(["kaypacha", "forest", "umbral", "hanan"]),
+            "biome_progression": self._biome_progression(),
+            "biome_index": 0,
+            "biome": self._biome_for_column(0, 6),
             "xp": 0,
             "level": 1,
             "combats_won": 0,
@@ -547,7 +632,17 @@ class App:
                 node_type = type_cycle[col]
                 if node_type == "challenge" and self.rng.randint(0, 100) < 45:
                     node_type = "combat"
-                node = {"id": node_id, "col": col, "x": x_margin + col * x_step, "y": y, "type": node_type, "next": [], "state": "available" if col == 0 else "locked"}
+                node_biome = self._biome_for_column(col, columns)
+                node = {
+                    "id": node_id,
+                    "col": col,
+                    "x": x_margin + col * x_step,
+                    "y": y,
+                    "type": node_type,
+                    "biome": node_biome,
+                    "next": [],
+                    "state": "available" if col == 0 else "locked",
+                }
                 col_nodes.append(node)
                 self.node_lookup[node_id] = node
             by_col.append(col_nodes)
@@ -639,7 +734,9 @@ class App:
         self.music.play_for(self.get_bgm_track("shop"))
 
     def goto_event(self):
-        event = self.rng.choice(self.events_data) if self.events_data else {"title_key": "map_title", "body_key": "lore_tagline", "choices": [{"text_key": "event_continue", "effects": []}]}
+        biome = self._normalize_biome_id((self.run_state or {}).get("biome"))
+        pool = self._event_pool_for_biome(biome)
+        event = self.rng.choice(pool) if pool else {"title_key": "map_title", "body_key": "lore_tagline", "choices": [{"text_key": "event_continue", "effects": []}]}
         self.sm.set(EventScreen(self, event))
         self.music.play_for(self.get_bgm_track("events"))
 
@@ -658,6 +755,10 @@ class App:
     def select_map_node(self, node):
         self.current_node_id = node["id"]
         node["state"] = "current"
+        biome = self._normalize_biome_id(node.get("biome"))
+        if self.run_state is not None:
+            self.run_state["biome"] = biome
+            self.run_state["biome_index"] = max(0, int(node.get("col", 0)))
         self.debug["current_node_id"] = self.current_node_id
         self.debug["next_nodes_ids"] = ",".join(node.get("next", [])) if node.get("next") else "-"
         self.enter_node(node)
@@ -708,8 +809,14 @@ class App:
         return sum(1 for n in self.node_lookup.values() if n.get("state") == "available")
 
     def _enemy_pool(self, node=None):
-        commons = [e["id"] for e in self.enemies_data if e.get("id") and e.get("tier", "common") == "common"]
-        elites = [e["id"] for e in self.enemies_data if e.get("id") and e.get("tier") == "elite"]
+        node_biome = self._normalize_biome_id((node or {}).get("biome") or (self.run_state or {}).get("biome"))
+        biome_tokens = self._enemy_biome_tokens(node_biome)
+        scoped = []
+        if biome_tokens:
+            scoped = [e for e in self.enemies_data if str(e.get("biome", "")).lower() in biome_tokens]
+        source = scoped or list(self.enemies_data)
+        commons = [e["id"] for e in source if e.get("id") and e.get("tier", "common") == "common"]
+        elites = [e["id"] for e in source if e.get("id") and e.get("tier") == "elite"]
         commons = commons or [DEFAULT_ENEMY["id"]]
         pivot = max(1, len(commons) // 2)
         tier1 = commons[:pivot]
@@ -727,7 +834,15 @@ class App:
         node_type = node.get("type", "combat")
         if node_type in {"combat", "challenge", "boss"}:
             boss_ids = [b.get("id") for b in self.content.bosses if isinstance(b, dict) and b.get("id")]
-            enemy_ids = [self.rng.choice(boss_ids)] if node_type == "boss" and boss_ids else [self.rng.choice(self._enemy_pool(node))]
+            node_biome = self._normalize_biome_id(node.get("biome") or (self.run_state or {}).get("biome"))
+            biome_boss = (self.biome_def_by_id.get(node_biome, {}) or {}).get("boss")
+            if node_type == "boss" and boss_ids:
+                if biome_boss in boss_ids:
+                    enemy_ids = [biome_boss]
+                else:
+                    enemy_ids = [self.rng.choice(boss_ids)]
+            else:
+                enemy_ids = [self.rng.choice(self._enemy_pool(node))]
             self.run_state["last_node_type"] = node_type
             base_state = CombatState(self.rng, self.run_state, enemy_ids, cards_data=self.cards_data, enemies_data=self.enemies_data)
             early = int(self.run_state.get("combats_won", 0)) < 2 and node_type != "boss"
@@ -1063,6 +1178,8 @@ class App:
         self.content.dialogues_events = content_payload.get("dialogues_events", {})
         self.lore_engine.load_all()
         self.biomes_lore = self._load_biomes_lore_data()
+        self.biome_defs = self._load_biome_defs()
+        self.biome_def_by_id = {str(b.get("id")).lower(): b for b in self.biome_defs if isinstance(b, dict) and b.get("id")}
         self.cards_data = self._load_cards_data()
         self.card_defs = {c["id"]: c for c in self.cards_data}
         self.enemies_data = self._load_enemies_data()

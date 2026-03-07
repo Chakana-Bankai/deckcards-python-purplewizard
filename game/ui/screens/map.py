@@ -54,12 +54,21 @@ class MapScreen:
         "Las reliquias cambian el ritmo: planea 2 nodos por delante.",
     ]
 
+    BIOME_BG_NAME = {
+        "kaypacha": "Templo Obsidiana",
+        "forest": "Pampa Astral",
+        "umbral": "Caverna Umbral",
+        "hanan": "Ruinas Chakana",
+    }
+
     def __init__(self, app):
         self.app = app
         self.lore_timer = 0
         self.lore_idx = 0
         self.deck_btn = pygame.Rect(1688, 108, 188, 40)
         self.topbar = MapTopBar()
+        self.selected_biome = "kaypacha"
+        self.bg_seed = abs(hash("map:kaypacha")) % 100000
 
     def on_enter(self):
         self.lore_timer = 0
@@ -139,9 +148,18 @@ class MapScreen:
         return out
 
     def render(self, s):
-        s.fill(UI_THEME["bg"])
         run = self.app.run_state or {"gold": 0, "map": []}
         stage_idx = self._current_stage_index(run)
+        self.selected_biome = str(run.get("biome", "kaypacha") or "kaypacha").lower()
+        bg_name = self.BIOME_BG_NAME.get(self.selected_biome, "Templo Obsidiana")
+        self.bg_seed = abs(hash(f"map:{self.selected_biome}:{stage_idx}")) % 100000
+        self.app.bg_gen.render_parallax(
+            s,
+            bg_name,
+            self.bg_seed,
+            pygame.time.get_ticks() / 1000.0,
+            particles_on=bool(self.app.user_settings.get("fx_particles", True)),
+        )
         stage_title = self.STAGE_TITLES[stage_idx]
         stage_thought = self.CHAKANA_THOUGHTS[stage_idx]
 
