@@ -59,8 +59,18 @@ class MenuScreen:
             return False
         return True
 
+    def on_enter(self):
+        # Prevent stale modal state from previous menu interactions.
+        self.modal.modal.hide()
+        self.modal.modal.title = ""
+        self.modal.modal.message = ""
+
+    def _confirm_start_run(self):
+        self.modal.modal.hide()
+        self.app.new_run()
+
     def start_run(self):
-        self.modal.show("Se iniciara un nuevo viaje.", on_yes=self.app.new_run)
+        self.modal.show("Se iniciara un nuevo viaje.", on_yes=self._confirm_start_run)
 
     def continue_run(self):
         if self.app.run_state:
@@ -114,3 +124,4 @@ class MenuScreen:
 
         surface.blit(self.meta_font.render(self.version_line, True, UColors.MUTED), (24, 1048))
         self.modal.render(surface, self.button_font, self.app.small_font)
+

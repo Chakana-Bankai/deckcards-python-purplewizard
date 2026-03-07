@@ -26,6 +26,8 @@ class MusicManager:
         self._checked_silence: set[str] = set()
         self._manifest = self._load_manifest()
         self._last_variant_by_track: dict[str, str] = {}
+        self._unsupported_paths: set[str] = set()
+        self._last_good_path: str | None = None
         music_dir = assets_dir() / "music"
         self.tracks = {
             "menu": [music_dir / "menu.ogg", music_dir / "menu.wav"],
@@ -69,7 +71,7 @@ class MusicManager:
 
     def _find_track(self, key: str) -> Path | None:
         for candidate in self.tracks.get(key, []):
-            if candidate.exists():
+            if candidate.exists() and str(candidate) not in self._unsupported_paths:
                 return candidate
         return None
 
@@ -80,7 +82,7 @@ class MusicManager:
         if isinstance(variants, list):
             for rel in variants:
                 path = assets_dir() / str(rel)
-                if path.exists():
+                if path.exists() and str(path) not in self._unsupported_paths:
                     paths.append(path)
         return paths
 
@@ -143,28 +145,71 @@ class MusicManager:
             return generated
         return self._ensure_audible_wav(key, path)
 
+    def _fallback_candidates(self, key: str, preferred: Path | None = None) -> list[Path]:
+        candidates: list[Path] = []
+        if preferred is not None:
+            candidates.append(preferred)
+        for variant in self._variant_paths(key):
+            if variant not in candidates:
+                candidates.append(variant)
+        for candidate in self.tracks.get(key, []):
+            if candidate.exists() and candidate not in candidates:
+                candidates.append(candidate)
+        out = []
+        for path in candidates:
+            if str(path) in self._unsupported_paths:
+                continue
+            out.append(self._ensure_audible_wav(key, path))
+        return out
+
     def play_for(self, key: str):
         self.tick()
         if key == self.current_key and pygame.mixer.music.get_busy():
             return
         self.current_key = key
-        path = self._ensure_track(key)
-        self.current_path = path.name
+
         manifest_key = str(key).split("__v", 1)[0]
         self.current_bpm = int(self._manifest.get(manifest_key, {}).get("bpm", 0) or 0)
-        try:
-            if pygame.mixer.music.get_busy():
-                pygame.mixer.music.fadeout(800)
-            pygame.mixer.music.load(str(path))
-            pygame.mixer.music.set_volume(0.0 if self.muted else self.volume)
-            pygame.mixer.music.play(-1, fade_ms=900)
+
+        preferred = self._ensure_track(key)
+        candidates = self._fallback_candidates(key, preferred=preferred)
+        loaded_path = None
+        last_exc = None
+
+        for path in candidates:
+            try:
+                if pygame.mixer.music.get_busy():
+                    pygame.mixer.music.fadeout(800)
+                pygame.mixer.music.load(str(path))
+                pygame.mixer.music.set_volume(0.0 if self.muted else self.volume)
+                pygame.mixer.music.play(-1, fade_ms=900)
+                loaded_path = path
+                break
+            except Exception as exc:
+                last_exc = exc
+                self._unsupported_paths.add(str(path))
+                print(f"[audio] BGM load failed: track={key} file={path.name} err={exc}")
+
+        if loaded_path is not None:
+            self.current_path = loaded_path.name
+            self._last_good_path = str(loaded_path)
             self.status = "playing" if pygame.mixer.music.get_busy() else "started"
             self.current_seconds = 0.0
             self.current_section = "A"
-            print(f"[audio] BGM play: track={key}, file={path.name}, vol={self.volume:.2f}, mute={self.muted}, ok")
-        except Exception as exc:
-            self.status = f"error:{exc}"
-            print(f"[audio] BGM error: {exc}")
+            print(f"[audio] BGM play: track={key}, file={loaded_path.name}, vol={self.volume:.2f}, mute={self.muted}, ok")
+            return
+
+        self.current_path = None
+        if pygame.mixer.music.get_busy():
+            self.status = "degraded_keep_previous"
+            print(f"[audio] BGM fallback: keeping previous track after failure on {key}")
+        else:
+            try:
+                pygame.mixer.music.stop()
+            except Exception:
+                pass
+            self.status = f"error:silent:{last_exc}" if last_exc is not None else "error:silent"
+            print(f"[audio] BGM fallback: silent mode for track={key}")
 
     def tick(self):
         pos_ms = pygame.mixer.music.get_pos() if pygame.mixer.get_init() else -1

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import math
 from pathlib import Path
@@ -103,6 +103,8 @@ class CombatScreen:
         self.layout = build_combat_layout(1920, 1080)
         self.end_turn_rect = pygame.Rect(0, 0, 1, 1)
         self.harmony_seal_rect = pygame.Rect(0, 0, 1, 1)
+        self._player_low_hp_active = False
+        self._enemy_low_hp_active: set[str] = set()
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
         self.set_dialogue("combat_start", enemy_id, {})
 
@@ -161,8 +163,8 @@ class CombatScreen:
             "defeat": "CAIDA",
         }.get(str(mapped_trigger or ""), "ECO")
         enemy_name = str(enemy_id or "enemigo").replace("_", " ").upper()
-        self.enemy_voice_label = f"{enemy_name} · {event_label}"
-        self.chakana_voice_label = f"CHAKANA · {event_label}"
+        self.enemy_voice_label = f"{enemy_name} Â· {event_label}"
+        self.chakana_voice_label = f"CHAKANA Â· {event_label}"
 
     def _card_playable(self, card) -> bool:
         ok, _reason_code, _reason_text = can_play_card(card, self.c.player, self.c)
@@ -311,6 +313,37 @@ class CombatScreen:
             return
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
         self.set_dialogue(trigger, enemy_id, {})
+
+    def _update_low_hp_dialogue_edges(self):
+        player_hp = int(self.c.player.get("hp", 0) or 0)
+        player_max = max(1, int(self.c.player.get("max_hp", 1) or 1))
+        player_threshold = max(10, int(player_max * 0.3))
+        player_is_low = player_hp <= player_threshold
+        if player_is_low and not self._player_low_hp_active:
+            enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
+            self.set_dialogue("player_low_hp", enemy_id, {"hp": player_hp, "threshold": player_threshold})
+        self._player_low_hp_active = player_is_low
+
+        alive_enemy_ids = {str(e.id) for e in self.c.enemies if getattr(e, "alive", False)}
+        self._enemy_low_hp_active.intersection_update(alive_enemy_ids)
+
+        triggered_enemy_id = None
+        for enemy in self.c.enemies:
+            if not getattr(enemy, "alive", False):
+                continue
+            enemy_id = str(enemy.id)
+            enemy_threshold = max(1, int(enemy.max_hp * 0.25))
+            enemy_is_low = int(enemy.hp) <= enemy_threshold
+            was_low = enemy_id in self._enemy_low_hp_active
+            if enemy_is_low and not was_low:
+                self._enemy_low_hp_active.add(enemy_id)
+                if triggered_enemy_id is None:
+                    triggered_enemy_id = enemy_id
+            elif (not enemy_is_low) and was_low:
+                self._enemy_low_hp_active.discard(enemy_id)
+
+        if triggered_enemy_id is not None:
+            self.set_dialogue("enemy_low_hp", triggered_enemy_id, {})
 
     def _execute_selected(self):
         idx = self.ctrl.selected_index
@@ -731,13 +764,7 @@ class CombatScreen:
                 on_cancel=lambda: self.c.apply_scry_keep(None),
             )
 
-        if self.c.player["hp"] <= max(10, self.c.player["max_hp"] * 0.3):
-            enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-            self.set_dialogue("low_hp_player", enemy_id, {})
-
-        if any(e.alive and e.hp <= e.max_hp * 0.25 for e in self.c.enemies):
-            enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-            self.set_dialogue("low_hp_enemy", enemy_id, {})
+        self._update_low_hp_dialogue_edges()
 
         self.ctrl.validate_selection(len(self.c.hand))
         if self.c.result == "victory":
@@ -1178,3 +1205,5 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+

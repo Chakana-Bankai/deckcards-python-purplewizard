@@ -1,4 +1,4 @@
-import math
+﻿import math
 import pygame
 
 from game.settings import INTERNAL_WIDTH
@@ -71,8 +71,13 @@ class PathSelectScreen:
 
     def on_enter(self):
         self._validate_options()
+        # Defensive reset to avoid stale modal chrome leaking into archetype flow.
+        self.choice_modal.hide()
+        self.choice_modal.title = ""
+        self.choice_modal.message = ""
+        self.choice_modal.selected_index = None
+        self.choice_modal.hover_index = None
         self.choice_modal.choices = [{"title": opt.get("name", "Arquetipo"), "subtitle": opt.get("identity", "")} for opt in self.options]
-
     def _validate_options(self):
         cards = self.app.card_defs if isinstance(self.app.card_defs, dict) else {}
         for opt in self.options:
@@ -284,3 +289,4 @@ class PathSelectScreen:
 
         cancel_btn = UIButton(self.cancel_rect, "Cancelar", role="default", premium=False)
         cancel_btn.draw(s, self.app.small_font)
+

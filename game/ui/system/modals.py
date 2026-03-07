@@ -1,4 +1,4 @@
-"""Reusable modal framework for Chakana screens."""
+﻿"""Reusable modal framework for Chakana screens."""
 
 from __future__ import annotations
 
@@ -33,6 +33,13 @@ class ModalBase:
 
     def hide(self):
         self.open = False
+
+    # Legacy aliases used by older wrappers.
+    def close(self):
+        self.hide()
+
+    def dismiss(self):
+        self.hide()
 
     def _base_layout(self, surface: pygame.Surface):
         area = safe_area(surface.get_width(), surface.get_height(), ChakanaBrand.SAFE_MARGIN, ChakanaBrand.BOTTOM_SAFE_MARGIN)
@@ -119,6 +126,17 @@ class ModalBase:
 
         return panel, header, body, footer, confirm_rect, cancel_rect
 
+    # Legacy compatibility adapter for callers that dispatch full pygame events.
+    def handle_event(self, event, mapped_pos=None, surface: pygame.Surface | None = None):
+        if not self.open:
+            return False
+        if surface is None:
+            surface = pygame.display.get_surface()
+            if surface is None:
+                return False
+        if mapped_pos is None:
+            mapped_pos = getattr(event, "pos", pygame.mouse.get_pos())
+        return self._handle_base_event(event, mapped_pos, surface)
 
     # Legacy compatibility adapter for older callers.
     def handle_click(self, pos: tuple[int, int], surface: pygame.Surface):
@@ -141,6 +159,10 @@ class ModalBase:
         if body_font is None or not hasattr(body_font, "render"):
             body_font = pygame.font.Font(None, 22)
         self._render_chrome(surface, title_font, body_font)
+
+    def update(self, dt: float):
+        _ = dt
+        return None
 
 
 class ChoiceModal(ModalBase):
@@ -169,9 +191,15 @@ class ChoiceModal(ModalBase):
             out.append(pygame.Rect(body_rect.x + 8, body_rect.y + 8 + i * (row_h + gap), body_rect.w - 16, row_h))
         return out
 
-    def handle_event(self, event, mapped_pos, surface: pygame.Surface):
+    def handle_event(self, event, mapped_pos=None, surface: pygame.Surface | None = None):
         if not self.open:
             return False
+        if surface is None:
+            surface = pygame.display.get_surface()
+            if surface is None:
+                return False
+        if mapped_pos is None:
+            mapped_pos = getattr(event, "pos", pygame.mouse.get_pos())
         if self._handle_base_event(event, mapped_pos, surface):
             return True
 
@@ -262,9 +290,15 @@ class CardGridModal(ModalBase):
             out.append(pygame.Rect(usable.x + c * (card_w + gap_x), usable.y + r * (card_h + gap_y), card_w, card_h))
         return out
 
-    def handle_event(self, event, mapped_pos, surface: pygame.Surface):
+    def handle_event(self, event, mapped_pos=None, surface: pygame.Surface | None = None):
         if not self.open:
             return False
+        if surface is None:
+            surface = pygame.display.get_surface()
+            if surface is None:
+                return False
+        if mapped_pos is None:
+            mapped_pos = getattr(event, "pos", pygame.mouse.get_pos())
         if self._handle_base_event(event, mapped_pos, surface):
             return True
 
@@ -346,8 +380,19 @@ class LoreModal(ModalBase):
         self.portrait_id = portrait_id
         self.allow_empty_confirm = True
 
-    def render(self, surface: pygame.Surface, app):
-        chrome = self._render_chrome(surface, app.big_font, app.small_font)
+    def handle_event(self, event, mapped_pos=None, surface: pygame.Surface | None = None):
+        # Lore modal is confirm/cancel-only in current flow; safely no-op when closed.
+        return super().handle_event(event, mapped_pos=mapped_pos, surface=surface)
+
+    def render(self, surface: pygame.Surface, app=None, title_font=None, body_font=None):
+        if app is not None and hasattr(app, "big_font") and hasattr(app, "small_font"):
+            title_font = app.big_font
+            body_font = app.small_font
+        if title_font is None or not hasattr(title_font, "render"):
+            title_font = pygame.font.Font(None, 28)
+        if body_font is None or not hasattr(body_font, "render"):
+            body_font = pygame.font.Font(None, 22)
+        chrome = self._render_chrome(surface, title_font, body_font)
         if chrome is None:
             return
         _panel, _header, body, _footer, _confirm, _cancel = chrome
@@ -355,18 +400,23 @@ class LoreModal(ModalBase):
 
         pygame.draw.rect(surface, UColors.PANEL_ALT, left, border_radius=10)
         pygame.draw.rect(surface, UColors.BORDER_SOFT, left, 1, border_radius=10)
-        sprite = app.assets.sprite(self.portrait_group, self.portrait_id, (left.w - 20, left.h - 20), fallback=(42, 32, 62))
+        sprite = None
+        if app is not None and hasattr(app, "assets"):
+            sprite = app.assets.sprite(self.portrait_group, self.portrait_id, (left.w - 20, left.h - 20), fallback=(42, 32, 62))
         if sprite is not None:
             surface.blit(sprite, (left.x + 10, left.y + 10))
 
         pygame.draw.rect(surface, UColors.PANEL, right, border_radius=10)
         pygame.draw.rect(surface, UColors.BORDER_SOFT, right, 1, border_radius=10)
         y = right.y + 12
+        text_font = getattr(app, "font", None) if app is not None else None
+        if text_font is None or not hasattr(text_font, "render"):
+            text_font = body_font
         for ln in self.lines[:8]:
-            for part in UILabel.wrap(str(ln), app.font, right.w - 20, max_lines=2):
+            for part in UILabel.wrap(str(ln), text_font, right.w - 20, max_lines=2):
                 if y > right.bottom - 24:
                     break
-                surface.blit(app.font.render(part, True, UColors.TEXT), (right.x + 10, y))
+                surface.blit(text_font.render(part, True, UColors.TEXT), (right.x + 10, y))
                 y += 24
 
 
