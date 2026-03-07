@@ -1,9 +1,8 @@
 import pygame
 
 from game.ui.components.card_preview_panel import CardPreviewPanel
-from game.ui.components.card_effect_summary import summarize_card_effect
+from game.ui.components.card_renderer import render_card_medium
 from game.ui.theme import UI_THEME, UI_SAFE_BOTTOM, UI_SAFE_SIDE
-from game.ui.components.pixel_icons import draw_icon_with_value
 from game.ui.system.components import UIPanel, UIButton
 from game.ui.system.colors import UColors
 
@@ -204,28 +203,31 @@ class RewardScreen:
 
     def _draw_cards_mode(self, s):
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
+        rects = self._card_rects()
+        self.hover_card = None
         for i, card in enumerate(self.cards):
-            r = self._card_rects()[i]
+            if i >= len(rects):
+                break
+            r = rects[i]
             hover = r.collidepoint(mouse)
             if hover:
                 self.hover_card = card
             sel = self.selected_idx == i
-            pulse_add = int(2 * (1 + pygame.math.Vector2(1, 0).rotate(self.pulse * 60).x)) if sel else 0
-            pygame.draw.rect(s, UI_THEME["panel_2"] if hover else UI_THEME["panel"], r, border_radius=12)
-            pygame.draw.rect(s, UI_THEME["gold"] if (hover or sel) else UI_THEME["accent_violet"], r, 2 + pulse_add, border_radius=12)
-            art_h = min(300 if self.mode != "boss_pack" else 220, r.h - 88)
-            art = self.app.assets.sprite("cards", card.definition.id, (r.w - 20, art_h), fallback=(82, 52, 112))
-            s.blit(art, (r.x + 10, r.y + 8))
-            summary = summarize_card_effect(card.definition, card_instance=card, ctx=None)
-            icon_data = self.preview._icon_row(summary)
-            s.blit(self.app.tiny_font.render(self.app.loc.t(card.definition.name_key)[:24], True, UI_THEME["text"]), (r.x + 8, r.y + art_h + 22))
-            s.blit(self.app.tiny_font.render(f"Coste {card.cost}", True, UI_THEME["energy"]), (r.x + 8, r.y + art_h + 44))
-            x_icon = r.x + 88
-            for icon_name, val in icon_data:
-                x_icon = draw_icon_with_value(s, icon_name, val, UI_THEME["gold"], self.app.tiny_font, x_icon, r.y + art_h + 42, size=1)
+            render_card_medium(
+                s,
+                r,
+                card,
+                theme=UI_THEME,
+                state={
+                    "app": self.app,
+                    "ctx": None,
+                    "selected": sel,
+                    "hovered": hover,
+                },
+            )
 
         if self.mode == "boss_pack":
-            relic_top = min(self.content_rect.bottom - 136, max((rr.bottom for rr in self._card_rects()), default=self.content_rect.y) + 14)
+            relic_top = min(self.content_rect.bottom - 136, max((rr.bottom for rr in rects), default=self.content_rect.y) + 14)
             relic_rect = pygame.Rect(self.content_rect.x + 10, relic_top, self.content_rect.w - 20, 126)
             pygame.draw.rect(s, UI_THEME["panel"], relic_rect, border_radius=12)
             pygame.draw.rect(s, UI_THEME["gold"], relic_rect, 2, border_radius=12)

@@ -3,8 +3,7 @@ from __future__ import annotations
 import pygame
 
 from game.ui.components.card_preview_panel import CardPreviewPanel
-from game.ui.components.card_effect_summary import summarize_card_effect
-from game.ui.components.pixel_icons import draw_icon_with_value
+from game.ui.components.card_renderer import render_card_medium
 from game.ui.theme import UI_THEME, UI_SAFE_BOTTOM, UI_SAFE_SIDE
 
 
@@ -179,32 +178,25 @@ class ModalCardPicker:
         surface.blit(app.big_font.render(self.title, True, UI_THEME["gold"]), (self.panel.x + 24, self.panel.y + 18))
         surface.blit(app.small_font.render(self.help_text, True, UI_THEME["muted"]), (self.panel.x + 26, self.panel.y + 68))
 
+        rects = self._card_rects()
         for i, c in enumerate(self.cards):
-            r = self._card_rects()[i]
+            if i >= len(rects):
+                break
+            r = rects[i]
             sel = i == self.selected_index
             hover = i == self.hover_index
-            pygame.draw.rect(surface, UI_THEME["panel_2"] if hover else UI_THEME["panel"], r, border_radius=12)
-            pulse = 1 + int(1.5 * (1 + pygame.math.Vector2(1, 0).rotate(self._pulse_t * 57).x))
-            border_w = 3 if sel else (2 if hover else 1)
-            color = UI_THEME["gold"] if (sel or hover) else UI_THEME["accent_violet"]
-            pygame.draw.rect(surface, color, r, border_w + (pulse if sel else 0), border_radius=12)
-
-            art_h = min(300, r.h - 90)
-            art = app.assets.sprite("cards", getattr(getattr(c, "definition", None), "id", ""), (r.w - 20, art_h), fallback=(82, 52, 112))
-            surface.blit(art, (r.x + 10, r.y + 8))
-
-            name_key = getattr(getattr(c, "definition", None), "name_key", getattr(c, "id", "Carta"))
-            name = app.loc.t(name_key)
-            surface.blit(app.tiny_font.render(name[:24], True, UI_THEME["text"]), (r.x + 8, r.y + art_h + 22))
-            cost = getattr(c, "cost", getattr(getattr(c, "definition", None), "cost", 0))
-            surface.blit(app.tiny_font.render(f"Coste {cost}", True, UI_THEME["energy"]), (r.x + 8, r.y + art_h + 44))
-
-            summary = summarize_card_effect(getattr(c, "definition", {}), card_instance=c, ctx=None)
-            icon_data = CardPreviewPanel(app)._icon_row(summary)
-            x_icon = r.x + 88
-            for icon_name, val in icon_data[:3]:
-                x_icon = draw_icon_with_value(surface, icon_name, val, UI_THEME["gold"], app.tiny_font, x_icon, r.y + art_h + 42, size=1)
-
+            render_card_medium(
+                surface,
+                r,
+                c,
+                theme=UI_THEME,
+                state={
+                    "app": app,
+                    "ctx": None,
+                    "selected": sel,
+                    "hovered": hover,
+                },
+            )
             if sel:
                 surface.blit(app.tiny_font.render("SE QUEDA ARRIBA", True, UI_THEME["good"]), (r.x + 8, r.bottom - 22))
 

@@ -2,11 +2,8 @@ import pygame
 
 from game.combat.card import CardDef, CardInstance
 from game.ui.components.card_preview_panel import CardPreviewPanel
-from game.ui.components.card_effect_summary import summarize_card_effect
-from game.ui.components.pixel_icons import draw_icon_with_value
+from game.ui.components.card_renderer import render_card_small
 from game.ui.theme import UI_THEME
-
-RARITY_ES = {"common": "Común", "uncommon": "Rara", "rare": "Épica", "legendary": "Legendaria", "basic": "Común"}
 
 
 class PackOpeningScreen:
@@ -35,7 +32,7 @@ class PackOpeningScreen:
             leg_pool = [c for c in self.pool if c.get("rarity") == "legendary"]
             base = leg_pool or [c for c in self.pool if c.get("rarity") == "rare"] or self.pool
             picked = [self.app.rng.choice(base) for _ in range(5)]
-            self.msg = f"Sobre {idx+1}: evento raro — Elige 1 legendaria"
+            self.msg = f"Sobre {idx+1}: evento raro - Elige 1 legendaria"
         else:
             leg_pool = [c for c in self.pool if c.get("rarity") == "legendary"]
             rare_pool = [c for c in self.pool if c.get("rarity") == "rare"]
@@ -127,20 +124,18 @@ class PackOpeningScreen:
                 sel = self.selected_card is card
                 if hover:
                     self.hover_card = card
-                col = (50, 36, 70) if hover else UI_THEME["panel"]
-                pygame.draw.rect(s, col, r, border_radius=10)
-                pygame.draw.rect(s, UI_THEME["gold"] if sel or hover else UI_THEME["accent_violet"], r, 3 if sel or hover else 1, border_radius=10)
-                art = self.app.assets.sprite("cards", card.definition.id, (r.w - 20, 170), fallback=(82, 52, 112))
-                s.blit(art, (r.x + 10, r.y + 8))
-                s.blit(self.app.tiny_font.render(self.app.loc.t(card.definition.name_key)[:20], True, UI_THEME["text"]), (r.x + 8, r.y + 190))
-                rarity_es = RARITY_ES.get(card.definition.rarity, card.definition.rarity.title())
-                s.blit(self.app.tiny_font.render(rarity_es, True, UI_THEME["gold"]), (r.x + 8, r.y + 214))
-                summary = summarize_card_effect(card.definition, card_instance=card, ctx=None)
-                icon_data = self.preview._icon_row(summary)
-                x_icon = r.x + 8
-                for icon_name, val in icon_data[:2]:
-                    x_icon = draw_icon_with_value(s, icon_name, val, UI_THEME["muted"], self.app.tiny_font, x_icon, r.y + 236, size=1)
-
+                render_card_small(
+                    s,
+                    r,
+                    card,
+                    theme=UI_THEME,
+                    state={
+                        "app": self.app,
+                        "ctx": None,
+                        "selected": sel,
+                        "hovered": hover,
+                    },
+                )
         self.preview.render(s, pygame.Rect(1288, 160, 580, 780), self.selected_card or self.hover_card, app=self.app)
 
         enabled = self._confirm_enabled()

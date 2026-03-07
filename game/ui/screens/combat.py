@@ -1,7 +1,6 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import math
-import random
 from pathlib import Path
 
 import pygame
@@ -13,6 +12,7 @@ from game.core.safe_io import load_json
 from game.combat.play_validation import can_play_card, can_play, reason_to_es, REASON_OK
 from game.ui.anim import TypewriterBanner
 from game.ui.components.card_effect_summary import summarize_card_effect
+from game.ui.components.card_renderer import render_card_large, render_card_medium
 from game.ui.components.mana_orbs import ManaOrbsWidget
 from game.ui.components.modal_card_picker import ModalCardPicker
 from game.ui.controllers.card_interaction import CardInteractionController
@@ -24,7 +24,6 @@ from game.ui.system.layers import Layers
 from game.ui.system.components import UIPanel, UITooltip
 from game.ui.system.colors import UColors
 from game.ui.components.topbar import CombatTopBar
-from game.ui.components.pixel_icons import draw_icon_with_value
 from game.telemetry.logger import TelemetryLogger
 
 
@@ -516,7 +515,7 @@ class CombatScreen:
             node_name = "Elite" if node.get("type") == "challenge" else self.app.loc.t(f"node_{node.get('type', 'combat')}")
         else:
             node_name = "Nodo desconocido"
-        center = f"{pacha} â€” {node_name}"
+        center = f"{pacha} - {node_name}"
         subtitle = str(self.app.lore_engine.get_map_narration("default") if hasattr(self.app, "lore_engine") else "")
 
         timer_text = f"{self.turn_timer_left:04.1f}s" if self.turn_timer_enabled else "--"
@@ -650,210 +649,21 @@ class CombatScreen:
             icons.append("bolt")
         return icons
 
-    def _card_tier(self, card) -> str:
-        rarity = str(getattr(card.definition, "rarity", "common") or "common").lower().strip()
-        tags = set(getattr(card.definition, "tags", []) or [])
-        if "ritual" in tags:
-            return "ritual"
-        if rarity in {"legendary", "boss"}:
-            return "legendary"
-        if rarity in {"rare", "uncommon"}:
-            return "rare"
-        return "normal"
-
-    def _seed_from_card(self, card) -> int:
-        cid = str(getattr(card.definition, "id", "card") or "card")
-        return sum((i + 1) * ord(ch) for i, ch in enumerate(cid)) % 1000003
-
-    def _fallback_card_art(self, card, size: tuple[int, int], tier: str, accent: tuple[int, int, int]) -> pygame.Surface:
-        w, h = max(24, int(size[0])), max(24, int(size[1]))
-        surf = pygame.Surface((w, h), pygame.SRCALPHA)
-        base_map = {
-            "normal": (90, 78, 60),
-            "rare": (86, 66, 124),
-            "legendary": (118, 84, 36),
-            "ritual": (68, 46, 98),
+    def _draw_card(self, s, rect, card, selected=False, family="violet_arcane", hovered=False):
+        state = {
+            "app": self.app,
+            "ctx": self.c,
+            "family": family,
+            "selected": bool(selected),
+            "hovered": bool(hovered),
+            "cost_pulse_until": self._cost_pulse_until,
         }
-        base = base_map.get(tier, (82, 60, 96))
-        for y in range(h):
-            f = y / max(1, h - 1)
-            row = (int(base[0] * (0.72 + 0.28 * f)), int(base[1] * (0.72 + 0.28 * f)), int(base[2] * (0.72 + 0.28 * f)))
-            pygame.draw.line(surf, row, (0, y), (w, y))
-        pygame.draw.rect(surf, accent, surf.get_rect(), 1, border_radius=7)
-        glyph = "âœ¦" if tier in {"legendary", "ritual"} else "â—ˆ"
-        if tier == "ritual":
-            glyph = "áš±"
-        txt = self.app.small_font.render(glyph, True, (232, 220, 170))
-        surf.blit(txt, txt.get_rect(center=surf.get_rect().center))
-        return surf
-
-    def _draw_card_background(self, s, rect: pygame.Rect, card, tier: str, accent: tuple[int, int, int]):
-        rng = random.Random(self._seed_from_card(card))
-        base_map = {
-            "normal": (70, 60, 48),
-            "rare": (62, 48, 92),
-            "legendary": (96, 66, 30),
-            "ritual": (58, 38, 86),
-        }
-        border_map = {
-            "normal": (166, 140, 102),
-            "rare": (186, 142, 244),
-            "legendary": (248, 212, 118),
-            "ritual": (210, 154, 255),
-        }
-        base = base_map.get(tier, base_map["normal"])
-        border = border_map.get(tier, border_map["normal"])
-
-        # Solid mystical body to improve readability.
-        for y in range(rect.y, rect.bottom):
-            f = (y - rect.y) / max(1, rect.h - 1)
-            row = (
-                int(base[0] * (0.86 + 0.18 * f)),
-                int(base[1] * (0.86 + 0.18 * f)),
-                int(base[2] * (0.86 + 0.18 * f)),
-            )
-            pygame.draw.line(s, row, (rect.x, y), (rect.right, y))
-
-        if tier == "normal":
-            for _ in range(max(28, rect.w * rect.h // 720)):
-                px = rng.randint(rect.x + 2, rect.right - 3)
-                py = rng.randint(rect.y + 2, rect.bottom - 3)
-                n = rng.randint(-12, 14)
-                col = (
-                    max(0, min(255, base[0] + n)),
-                    max(0, min(255, base[1] + n)),
-                    max(0, min(255, base[2] + n)),
-                )
-                s.set_at((px, py), col)
-        elif tier == "rare":
-            aura = pygame.Surface((rect.w + 28, rect.h + 28), pygame.SRCALPHA)
-            pygame.draw.rect(aura, (*accent, 92), aura.get_rect(), border_radius=18)
-            s.blit(aura, (rect.x - 14, rect.y - 14))
-            for ring in range(2):
-                alpha = 92 - ring * 26
-                rr = pygame.Rect(rect.x - 4 - ring * 4, rect.y - 4 - ring * 4, rect.w + 8 + ring * 8, rect.h + 8 + ring * 8)
-                pygame.draw.rect(s, (*accent, alpha), rr, 2, border_radius=14 + ring * 2)
-        elif tier == "legendary":
-            glow = pygame.Surface((rect.w + 36, rect.h + 36), pygame.SRCALPHA)
-            pygame.draw.rect(glow, (246, 212, 128, 78), glow.get_rect(), border_radius=20)
-            s.blit(glow, (rect.x - 18, rect.y - 18))
-            inner = rect.inflate(-12, -12)
-            pygame.draw.rect(s, (244, 220, 150), inner, 1, border_radius=10)
+        target = pygame.Rect(rect)
+        if target.h >= 450 or target.w >= 420:
+            render_card_large(s, target, card, theme=UI_THEME, state=state)
         else:
-            step = 18
-            rune_col = (218, 184, 255)
-            for iy, y in enumerate(range(rect.y + 10, rect.bottom - 10, step)):
-                for ix, x in enumerate(range(rect.x + 10, rect.right - 10, step)):
-                    if (ix + iy) % 2 == 0:
-                        pygame.draw.circle(s, rune_col, (x, y), 1)
+            render_card_medium(s, target, card, theme=UI_THEME, state=state)
 
-        pygame.draw.rect(s, border, rect, 3, border_radius=12)
-
-    def _card_kpis(self, summary: dict) -> list[tuple[str, int]]:
-        stats = summary.get("stats", {}) if isinstance(summary, dict) else {}
-        ordered = [
-            ("damage", "sword"),
-            ("block", "shield"),
-            ("rupture", "crack"),
-            ("harmony_delta", "star"),
-            ("scry", "eye"),
-            ("draw", "scroll"),
-        ]
-        out = []
-        for key, icon in ordered:
-            val = int(stats.get(key, 0) or 0)
-            if val > 0:
-                out.append((icon, val))
-        return out[:3]
-
-    def _draw_card(self, s, rect, card, selected=False, family="violet_arcane"):
-        accent = {
-            "crimson_chaos": (220, 108, 84),
-            "emerald_spirit": (88, 198, 154),
-            "azure_cosmic": (112, 152, 228),
-            "violet_arcane": (176, 126, 240),
-            "solar_gold": (226, 190, 112),
-        }.get(family, (176, 126, 240))
-        tier = self._card_tier(card)
-
-        self._draw_card_background(s, rect, card, tier, accent)
-
-        art_frame = pygame.Rect(rect.x + 8, rect.y + 32, rect.w - 16, int(rect.h * 0.50))
-        pygame.draw.rect(s, (24, 20, 30), art_frame, border_radius=9)
-        pygame.draw.rect(s, accent, art_frame, 2, border_radius=9)
-        art_inner = art_frame.inflate(-6, -6)
-        pygame.draw.rect(s, (12, 12, 16), art_inner, border_radius=7)
-        try:
-            art = self.app.assets.sprite("cards", card.definition.id, (art_inner.w, art_inner.h), fallback=(70, 44, 105))
-        except Exception:
-            art = None
-        if art is None or art.get_width() < 8 or art.get_height() < 8:
-            art = self._fallback_card_art(card, (art_inner.w, art_inner.h), tier, accent)
-        s.blit(art, art_inner.topleft)
-
-        if tier == "legendary":
-            pygame.draw.rect(s, (250, 226, 156), art_frame.inflate(6, 6), 1, border_radius=11)
-
-        card_name = self.app.loc.t(getattr(card.definition, "name_key", getattr(card.definition, "id", "Carta")))
-        title = str(card_name)[:20]
-        title_shadow = self.app.small_font.render(title, True, (8, 8, 8))
-        title_txt = self.app.small_font.render(title, True, (245, 238, 220))
-        s.blit(title_shadow, (rect.x + 10, rect.y + 8))
-        s.blit(title_txt, (rect.x + 9, rect.y + 7))
-
-        base_cost = int(getattr(card.definition, "cost", card.cost) or 0)
-        live_cost = int(card.cost or 0)
-        modified = live_cost != base_cost
-        reduced = live_cost < base_cost
-        cost_col = UI_THEME["energy"] if not modified else (120, 220, 255) if reduced else (228, 132, 108)
-        cost_bg = (18, 18, 24)
-        center = (rect.right - 24, rect.y + 24)
-        pygame.draw.circle(s, cost_bg, center, 24)
-        pygame.draw.circle(s, cost_col, center, 21)
-        pygame.draw.circle(s, (255, 244, 208), center, 21, 2)
-        pygame.draw.circle(s, (248, 222, 150), center, 24, 1)
-        cost_txt = self.app.big_font.render(str(live_cost), True, UI_THEME["text_dark"])
-        s.blit(cost_txt, (center[0] - cost_txt.get_width() // 2, center[1] - cost_txt.get_height() // 2))
-
-        if modified:
-            trans = f"{base_cost}->{live_cost}"
-            tcol = UI_THEME["good"] if reduced else UI_THEME["bad"]
-            s.blit(self.app.tiny_font.render(trans, True, tcol), (rect.x + 10, rect.y + 25))
-            if reduced:
-                g = pygame.Surface((rect.w + 12, rect.h + 12), pygame.SRCALPHA)
-                alpha = 55
-                pid = str(getattr(card, "instance_id", ""))
-                if self._cost_pulse_until.get(pid, 0) > pygame.time.get_ticks():
-                    alpha = 92 + int(56 * (0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 90.0)))
-                pygame.draw.rect(g, (96, 210, 255, alpha), g.get_rect(), border_radius=14)
-                s.blit(g, (rect.x - 6, rect.y - 6))
-
-        summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
-        kpis = self._card_kpis(summary)
-
-        lore = str(summary.get("header") or "")
-        if not lore:
-            lore = self.app.loc.t(getattr(card.definition, "text_key", ""))
-        lore = lore.replace("\n", " ").strip()
-        while self.app.tiny_font.size(lore)[0] > rect.w - 18 and len(lore) > 4:
-            lore = lore[:-4] + "..."
-        if lore:
-            s.blit(self.app.tiny_font.render(lore, True, (236, 228, 206)), (rect.x + 9, art_frame.bottom + 8))
-
-        kpi_band = pygame.Rect(rect.x + 6, rect.bottom - 38, rect.w - 12, 30)
-        pygame.draw.rect(s, (12, 12, 18), kpi_band, border_radius=8)
-        pygame.draw.rect(s, (156, 136, 204), kpi_band, 1, border_radius=8)
-        x = kpi_band.x + 8
-        if kpis:
-            for icon_name, val in kpis:
-                x = draw_icon_with_value(s, icon_name, val, (255, 246, 196), self.app.small_font, x, kpi_band.y + 5, size=2)
-                if x > kpi_band.right - 30:
-                    break
-        else:
-            s.blit(self.app.tiny_font.render("Sin KPI", True, UI_THEME["muted"]), (kpi_band.x + 8, kpi_band.y + 8))
-
-        if selected:
-            pygame.draw.rect(s, UI_THEME["gold"], rect.inflate(8, 8), 3, border_radius=14)
     def update(self, dt):
         self.c.update(dt)
         self.resolving_t = max(0, self.resolving_t - dt)
@@ -1102,7 +912,7 @@ class CombatScreen:
                 continue
             base = self._card_rect(i, len(hand))
             fam = getattr(card.definition, "family", "violet_arcane")
-            self._draw_card(s, base, card, selected=(i == self.ctrl.selected_index), family=fam)
+            self._draw_card(s, base, card, selected=(i == self.ctrl.selected_index), family=fam, hovered=(i == self.hover_card_index))
         s.set_clip(old_clip)
 
         hover_payload = None
@@ -1270,7 +1080,7 @@ class CombatScreen:
             s.blit(hover_glow, (rr.x - 9, rr.y - 9))
 
             fam = getattr(card.definition, "family", "violet_arcane")
-            self._draw_card(s, rr, card, selected=(i == self.ctrl.selected_index), family=fam)
+            self._draw_card(s, rr, card, selected=(i == self.ctrl.selected_index), family=fam, hovered=True)
             pygame.draw.rect(s, (236, 220, 255), rr.inflate(8, 8), 2, border_radius=15)
 
             summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
@@ -1368,35 +1178,3 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

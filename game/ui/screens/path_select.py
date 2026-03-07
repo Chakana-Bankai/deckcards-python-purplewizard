@@ -1,8 +1,9 @@
-﻿import math
+import math
 import pygame
 
 from game.settings import INTERNAL_WIDTH
 from game.ui.components.pixel_icons import draw_icon_with_value
+from game.ui.components.card_renderer import render_card_small
 from game.ui.theme import UI_THEME
 from game.ui.system.components import UIPanel, UIButton
 
@@ -179,17 +180,20 @@ class PathSelectScreen:
         pygame.draw.rect(s, (56, 42, 30), box, border_radius=12)
         pygame.draw.rect(s, UI_THEME["gold"], box, 2, border_radius=12)
 
-        art_rect = pygame.Rect(box.x + 10, box.y + 12, 84, box.h - 24)
-        pygame.draw.rect(s, (20, 18, 26), art_rect, border_radius=8)
-        pygame.draw.rect(s, UI_THEME["gold"], art_rect, 1, border_radius=8)
-        art = self.app.assets.sprite("cards", legendary_id, (art_rect.w - 4, art_rect.h - 4), fallback=(86, 62, 32))
-        s.blit(art, (art_rect.x + 2, art_rect.y + 2))
+        art_rect = pygame.Rect(box.x + 10, box.y + 10, 110, box.h - 20)
+        render_card_small(
+            s,
+            art_rect,
+            card,
+            theme=UI_THEME,
+            state={"app": self.app, "ctx": None, "selected": False, "hovered": False},
+        )
 
         title = self.app.loc.t(card.get("name_key", legendary_id))
         text = self.app.loc.t(card.get("text_key", ""))
-        s.blit(self.app.tiny_font.render("Legendaria", True, UI_THEME["gold"]), (box.x + 104, box.y + 12))
-        s.blit(self.app.small_font.render(self._fit(self.app.small_font, str(title), box.w - 116), True, UI_THEME["text"]), (box.x + 104, box.y + 34))
-        s.blit(self.app.tiny_font.render(self._fit(self.app.tiny_font, str(text), box.w - 116), True, UI_THEME["muted"]), (box.x + 104, box.y + 70))
+        s.blit(self.app.tiny_font.render("Legendaria", True, UI_THEME["gold"]), (box.x + 130, box.y + 12))
+        s.blit(self.app.small_font.render(self._fit(self.app.small_font, str(title), box.w - 144), True, UI_THEME["text"]), (box.x + 130, box.y + 34))
+        s.blit(self.app.tiny_font.render(self._fit(self.app.tiny_font, str(text), box.w - 144), True, UI_THEME["muted"]), (box.x + 130, box.y + 70))
 
 
     def _ensure_starter_banner(self, option: dict):
@@ -277,4 +281,3 @@ class PathSelectScreen:
 
         cancel_btn = UIButton(self.cancel_rect, "Cancelar", role="default", premium=False)
         cancel_btn.draw(s, self.app.small_font)
-
