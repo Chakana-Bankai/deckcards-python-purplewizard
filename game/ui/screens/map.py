@@ -163,7 +163,7 @@ class MapScreen:
         chip_h = 24
         chip_ws = [max(104, self.app.tiny_font.size(txt)[0] + 18) for txt, _ in chip_specs]
         total_w = sum(chip_ws) + gap * (len(chip_ws) - 1)
-        chip_x = self.deck_btn.x - 14 - total_w
+        chip_x = max(topbar.x + 16, self.deck_btn.x - 14 - total_w)
         chip_y = topbar.y + 56
         for (txt, col), cw in zip(chip_specs, chip_ws):
             chip = pygame.Rect(chip_x, chip_y, cw, chip_h)
@@ -283,7 +283,7 @@ class MapScreen:
                     pygame.draw.circle(s, color, (node["x"], node["y"]), radius)
                     self._draw_icon(s, node["type"], node["x"], node["y"])
 
-                show_label = node_hover or state == "current" or node["type"] == "boss"
+                show_label = node_hover or state == "current"
                 if show_label:
                     label = self.NODE_NAMES.get(node["type"], "Ruta")
                     label_txt = self._fit_text(self.app.tiny_font, label, 120)

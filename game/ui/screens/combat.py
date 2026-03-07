@@ -942,6 +942,8 @@ class CombatScreen:
 
     def render(self, s):
         self._refresh_layout(s)
+
+        # LAYER 1: background
         self.app.bg_gen.render_parallax(
             s,
             self.selected_biome,
@@ -951,6 +953,7 @@ class CombatScreen:
             particles_on=self.app.user_settings.get("fx_particles", True),
         )
 
+        # LAYER 2: board
         left, center, subtitle, timer_text, turn_text = self._topbar_narrative()
         self.topbar.render(s, self.app, self.layout, left, center, subtitle, timer_text, turn_text)
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.enemy_strip_rect, border_radius=14)
@@ -1028,7 +1031,7 @@ class CombatScreen:
                 wobble.fill((*intent_col, 80))
                 s.blit(wobble, (avatar_rect.centerx - wobble_w // 2, avatar_rect.bottom - 4))
 
-        narrative_rect = self.layout.voices_rect.union(self.layout.card_detail)
+        narrative_rect = self.layout.voices_rect
         pygame.draw.rect(s, UI_THEME["panel"], narrative_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], narrative_rect, 2, border_radius=12)
         e_line = self.dialog_enemy.current or "(el enemigo contiene la respiracion...)"
@@ -1058,6 +1061,7 @@ class CombatScreen:
                 s.blit(self.app.tiny_font.render(ln, True, UI_THEME["text"]), (row.x + 10 + dx, yy))
                 yy += 16
 
+        # LAYER 3-4: hud and cards
         hand = self.c.hand[:6]
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.hover_card_index = None
@@ -1102,6 +1106,7 @@ class CombatScreen:
             self._draw_card(s, base, card, selected=(i == self.ctrl.selected_index), family=fam)
         s.set_clip(old_clip)
 
+        hover_payload = None
         if self.hover_card_index is not None and self.hover_card_index < len(hand):
             i = self.hover_card_index
             card = hand[i]
@@ -1113,32 +1118,7 @@ class CombatScreen:
             rr.centery = base_hover.centery - 44
             rr.x = max(8, min(s.get_width() - rr.w - 8, rr.x))
             rr.y = max(self.layout.topbar_rect.bottom + 8, min(self.layout.actions_rect.y - rr.h - 8, rr.y))
-
-            shadow_rect = rr.inflate(28, 28)
-            shadow = pygame.Surface((shadow_rect.w, shadow_rect.h), pygame.SRCALPHA)
-            pygame.draw.rect(shadow, (0, 0, 0, 132), shadow.get_rect(), border_radius=22)
-            s.blit(shadow, shadow_rect.topleft)
-            hover_glow = pygame.Surface((rr.w + 18, rr.h + 18), pygame.SRCALPHA)
-            pygame.draw.rect(hover_glow, (232, 198, 255, 108), hover_glow.get_rect(), border_radius=20)
-            s.blit(hover_glow, (rr.x - 9, rr.y - 9))
-
-            fam = getattr(card.definition, "family", "violet_arcane")
-            self._draw_card(s, rr, card, selected=(i == self.ctrl.selected_index), family=fam)
-            pygame.draw.rect(s, (236, 220, 255), rr.inflate(8, 8), 2, border_radius=15)
-
-            summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
-            tip = str(summary.get("header") or "Efecto")
-            tip_w = min(520, s.get_width() - 16)
-            tip_rect = pygame.Rect(rr.centerx - tip_w // 2, rr.y - 34, tip_w, 28)
-            if tip_rect.y < self.layout.topbar_rect.bottom + 8:
-                tip_rect.y = rr.bottom + 6
-            tip_rect.x = max(8, min(s.get_width() - tip_rect.w - 8, tip_rect.x))
-            pygame.draw.rect(s, UI_THEME["deep_purple"], tip_rect, border_radius=8)
-            pygame.draw.rect(s, UI_THEME["accent_violet"], tip_rect, 1, border_radius=8)
-            line = tip
-            while self.app.tiny_font.size(line)[0] > tip_rect.w - 12 and len(line) > 4:
-                line = line[:-4] + "..."
-            s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (tip_rect.x + 6, tip_rect.y + 6))
+            hover_payload = (i, card, rr)
 
         pygame.draw.rect(s, UI_THEME["panel"], self.layout.playerhud_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.playerhud_rect, 2, border_radius=12)
@@ -1173,6 +1153,13 @@ class CombatScreen:
         row1_y = top_y
         row2_y = row1_y + 48 + row_gap
         row3_y = row2_y + 42 + row_gap
+
+        group_main = pygame.Rect(left_x - 4, row1_y - 4, stat_w + 8, (row2_y + 42) - row1_y + 8)
+        group_flow = pygame.Rect(left_x - 4, row3_y - 4, stat_w + 8, 80)
+        pygame.draw.rect(s, (22, 20, 32), group_main, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], group_main, 1, border_radius=10)
+        pygame.draw.rect(s, (22, 20, 32), group_flow, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], group_flow, 1, border_radius=10)
 
         row1 = [
             ("Vitalidad", f"{p['hp']}/{p['max_hp']}", UI_THEME["hp"]),
@@ -1274,6 +1261,35 @@ class CombatScreen:
             while self.app.tiny_font.size(line)[0] > feedback_rect.w - 10 and len(line) > 4:
                 line = line[:-4] + "..."
             s.blit(self.app.tiny_font.render(line, True, (242, 188, 202)), (feedback_rect.x + 6, feedback_rect.y + 2))
+        # LAYER 5-6: overlays/tooltips
+        if hover_payload is not None:
+            i, card, rr = hover_payload
+            shadow_rect = rr.inflate(28, 28)
+            shadow = pygame.Surface((shadow_rect.w, shadow_rect.h), pygame.SRCALPHA)
+            pygame.draw.rect(shadow, (0, 0, 0, 132), shadow.get_rect(), border_radius=22)
+            s.blit(shadow, shadow_rect.topleft)
+            hover_glow = pygame.Surface((rr.w + 18, rr.h + 18), pygame.SRCALPHA)
+            pygame.draw.rect(hover_glow, (232, 198, 255, 108), hover_glow.get_rect(), border_radius=20)
+            s.blit(hover_glow, (rr.x - 9, rr.y - 9))
+
+            fam = getattr(card.definition, "family", "violet_arcane")
+            self._draw_card(s, rr, card, selected=(i == self.ctrl.selected_index), family=fam)
+            pygame.draw.rect(s, (236, 220, 255), rr.inflate(8, 8), 2, border_radius=15)
+
+            summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
+            tip = str(summary.get("header") or "Efecto")
+            tip_w = min(520, s.get_width() - 16)
+            tip_rect = pygame.Rect(rr.centerx - tip_w // 2, rr.y - 34, tip_w, 28)
+            if tip_rect.y < self.layout.topbar_rect.bottom + 8:
+                tip_rect.y = rr.bottom + 6
+            tip_rect.x = max(8, min(s.get_width() - tip_rect.w - 8, tip_rect.x))
+            pygame.draw.rect(s, UI_THEME["deep_purple"], tip_rect, border_radius=8)
+            pygame.draw.rect(s, UI_THEME["accent_violet"], tip_rect, 1, border_radius=8)
+            line = tip
+            while self.app.tiny_font.size(line)[0] > tip_rect.w - 12 and len(line) > 4:
+                line = line[:-4] + "..."
+            s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (tip_rect.x + 6, tip_rect.y + 6))
+
         if DEBUG_UI:
             pygame.draw.rect(s, UI_THEME["gold"], self.layout.voices_panel, 2)
             pygame.draw.rect(s, UI_THEME["gold"], self.layout.card_detail, 2)

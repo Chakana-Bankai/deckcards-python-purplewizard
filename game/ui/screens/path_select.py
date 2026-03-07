@@ -1,6 +1,4 @@
 ﻿import math
-from pathlib import Path
-
 import pygame
 
 from game.settings import INTERNAL_WIDTH
@@ -14,8 +12,8 @@ class PathSelectScreen:
         self.hover_index = None
         self.selected_index: int | None = None
         self.anim = {}
-        self.confirm_rect = pygame.Rect(INTERNAL_WIDTH // 2 - 230, 898, 440, 56)
-        self.cancel_rect = pygame.Rect(self.confirm_rect.right + 20, 898, 210, 56)
+        self.confirm_rect = pygame.Rect(INTERNAL_WIDTH // 2 - 280, 904, 380, 56)
+        self.cancel_rect = pygame.Rect(self.confirm_rect.right + 18, 904, 210, 56)
         self.options = [
             {
                 "id": "cosmic_warrior",
@@ -137,12 +135,12 @@ class PathSelectScreen:
 
     def _option_rect(self, index: int) -> pygame.Rect:
         cols = 3
-        card_w, card_h = 560, 650
+        card_w, card_h = 540, 620
         gap_x = 34
         col = index % cols
         total_w = cols * card_w + (cols - 1) * gap_x
         x0 = (INTERNAL_WIDTH - total_w) // 2
-        y0 = 174
+        y0 = 182
         return pygame.Rect(x0 + col * (card_w + gap_x), y0, card_w, card_h)
 
     def _fit(self, font, text: str, max_w: int) -> str:
@@ -194,29 +192,12 @@ class PathSelectScreen:
 
 
     def _ensure_starter_banner(self, option: dict):
-        sid = str(option.get("id") or "starter")
-        out = Path(getattr(self.app, "asset_root", "game/assets")) / "sprites" / "starters" / f"{sid}.png"
-        if out.exists():
-            return
-        out.parent.mkdir(parents=True, exist_ok=True)
-        w, h = 640, 150
-        surf = pygame.Surface((w, h), pygame.SRCALPHA)
-        base = (72, 46, 108)
-        for y in range(h):
-            t = y / max(1, h - 1)
-            col = (int(base[0] + 42 * (1 - t)), int(base[1] + 28 * (1 - t)), int(base[2] + 56 * (1 - t)))
-            pygame.draw.line(surf, col, (0, y), (w, y))
-        cx, cy = w // 2, h // 2
-        for r in [26, 40, 56]:
-            pygame.draw.circle(surf, (250, 220, 150, 70), (cx, cy), r, 1)
-        pts = [(cx, cy - 36), (cx + 36, cy), (cx, cy + 36), (cx - 36, cy)]
-        pygame.draw.polygon(surf, (242, 208, 132, 120), pts, 2)
-        f = pygame.font.SysFont("arial", 28, bold=True)
-        txt = f.render(str(option.get("name") or sid)[:24], True, (248, 236, 206))
-        surf.blit(txt, (max(8, (w - txt.get_width()) // 2), h - txt.get_height() - 10))
-        pygame.draw.rect(surf, (244, 214, 132), surf.get_rect(), 2, border_radius=10)
-        pygame.image.save(surf, out)
+        # Stabilization pass: avoid runtime asset writes from UI rendering.
+        return
+
     def render(self, s):
+        self.confirm_rect = pygame.Rect(INTERNAL_WIDTH // 2 - 280, 904, 380, 56)
+        self.cancel_rect = pygame.Rect(self.confirm_rect.right + 18, 904, 210, 56)
         s.fill(UI_THEME["bg"])
         title = self.app.big_font.render("Elige tu Arquetipo", True, UI_THEME["text"])
         sub = self.app.small_font.render("Selecciona un mazo inicial para comenzar.", True, UI_THEME["muted"])
@@ -290,7 +271,7 @@ class PathSelectScreen:
             ctext = f"Confirmar mazo: {chosen}"
         else:
             ctext = "Selecciona un mazo para confirmar"
-        txt = self.app.small_font.render(ctext, True, UI_THEME["text"])
+        txt = self.app.small_font.render(self._fit(self.app.small_font, ctext, self.confirm_rect.w - 20), True, UI_THEME["text"])
         s.blit(txt, txt.get_rect(center=self.confirm_rect.center))
 
         pygame.draw.rect(s, UI_THEME["panel_2"], self.cancel_rect, border_radius=12)
