@@ -120,6 +120,29 @@ class ModalBase:
         return panel, header, body, footer, confirm_rect, cancel_rect
 
 
+    # Legacy compatibility adapter for older callers.
+    def handle_click(self, pos: tuple[int, int], surface: pygame.Surface):
+        if not self.open:
+            return False
+        _panel, _header, _body, _footer, confirm_rect, cancel_rect = self._base_layout(surface)
+        if confirm_rect.collidepoint(pos):
+            if self._confirm_enabled() or self.allow_empty_confirm:
+                self._confirm()
+            return True
+        if cancel_rect.collidepoint(pos):
+            self._cancel()
+            return True
+        return True
+
+    # Legacy compatibility adapter for callers that still use modal.render(...).
+    def render(self, surface: pygame.Surface, title_font=None, body_font=None):
+        if title_font is None or not hasattr(title_font, "render"):
+            title_font = pygame.font.Font(None, 28)
+        if body_font is None or not hasattr(body_font, "render"):
+            body_font = pygame.font.Font(None, 22)
+        self._render_chrome(surface, title_font, body_font)
+
+
 class ChoiceModal(ModalBase):
     def __init__(self):
         super().__init__()
