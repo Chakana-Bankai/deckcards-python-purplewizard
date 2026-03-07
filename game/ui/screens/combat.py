@@ -602,21 +602,47 @@ class CombatScreen:
         s.blit(geo, (frame.x, frame.y))
 
     def _draw_enemy_aura(self, s: pygame.Surface, avatar_rect: pygame.Rect, intent_col: tuple[int, int, int], boss_factor: float, variant: str, t: float):
-        layer_count = 3 if boss_factor > 1.2 else 2
-        base_phase = 2.2 if boss_factor > 1.2 else 1.8
+        # RGB 2.1: stronger side glow footprint and layered pulse.
+        layer_count = 4 if boss_factor > 1.2 else 3
+        base_phase = 2.4 if boss_factor > 1.2 else 1.95
         variant_shift = 0.35 if variant == "angelic" else 0.72 if variant == "demonic" else 1.05
+
+        side_pad = int(16 * boss_factor)
+        side_rect = avatar_rect.inflate(side_pad * 2, int(avatar_rect.h * 0.18))
+        side_rect.centery = avatar_rect.centery + 2
+        side_glow = pygame.Surface((side_rect.w, side_rect.h), pygame.SRCALPHA)
+        for layer in range(layer_count):
+            phase = t * (base_phase + layer * 0.29) + variant_shift
+            wave = 0.5 + 0.5 * math.sin(phase)
+            alpha = int((44 + layer * 22 + 26 * wave) * (1.15 if boss_factor > 1.2 else 1.0))
+            band_h = max(14, int(side_rect.h * (0.26 + layer * 0.12)))
+            band = pygame.Surface((side_rect.w, band_h), pygame.SRCALPHA)
+            band.fill((*intent_col, max(18, min(210, alpha))))
+            by = max(0, side_rect.h // 2 - band_h // 2 + int((layer - 1) * 2))
+            side_glow.blit(band, (0, by))
+        s.blit(side_glow, side_rect.topleft)
+
+        # Base aura and floor ribbons to keep enemy anchored and premium.
         for layer in range(layer_count):
             phase = t * (base_phase + layer * 0.33) + variant_shift
             wave = 0.5 + 0.5 * math.sin(phase)
-            width_mul = 0.72 + layer * 0.16 + 0.14 * wave
+            width_mul = 0.82 + layer * 0.18 + 0.16 * wave
             aura_w = int(avatar_rect.w * width_mul)
-            aura_h = int((10 + 3 * layer) * boss_factor)
+            aura_h = int((11 + 4 * layer) * boss_factor)
             aura_x = avatar_rect.centerx - aura_w // 2
-            aura_y = avatar_rect.bottom - 12 + layer * 2
-            alpha = int((92 + layer * 28 + 24 * wave) * (1.08 if boss_factor > 1.2 else 1.0))
+            aura_y = avatar_rect.bottom - 14 + layer * 2
+            alpha = int((104 + layer * 26 + 24 * wave) * (1.10 if boss_factor > 1.2 else 1.0))
             aura = pygame.Surface((aura_w, aura_h), pygame.SRCALPHA)
-            aura.fill((*intent_col, max(26, min(220, alpha))))
+            aura.fill((*intent_col, max(24, min(228, alpha))))
             s.blit(aura, (aura_x, aura_y))
+
+        if boss_factor > 1.2:
+            # Boss-only extra pulse shell for separation from busy backgrounds.
+            pulse = 0.5 + 0.5 * math.sin(t * 2.2)
+            shell = avatar_rect.inflate(int(34 + 18 * pulse), int(24 + 14 * pulse))
+            shell_surf = pygame.Surface((shell.w, shell.h), pygame.SRCALPHA)
+            pygame.draw.rect(shell_surf, (*intent_col, int(66 + 42 * pulse)), shell_surf.get_rect(), 2, border_radius=22)
+            s.blit(shell_surf, shell.topleft)
 
     def _topbar_narrative(self):
         run = self.app.run_state or {}
@@ -896,13 +922,13 @@ class CombatScreen:
             pygame.draw.rect(s, UI_THEME["accent_violet"], content, 2, border_radius=13)
 
             ratio = max(0, e.hp) / max(1, e.max_hp)
-            title = pygame.Rect(content.x + 16, content.y + 10, content.w - 32, 26)
-            hp_label = pygame.Rect(content.x + 16, title.bottom + 2, content.w - 32, 36)
-            intent_line = pygame.Rect(content.x + 16, hp_label.bottom + 3, content.w - 32, 40)
-            status_line = pygame.Rect(content.x + 16, intent_line.bottom + 2, content.w - 32, 26)
-            counters = pygame.Rect(content.x + 16, content.bottom - 24, content.w - 32, 16)
-            avatar_rect = pygame.Rect(content.x + 20, status_line.bottom + 2, content.w - 40, max(118, counters.y - status_line.bottom - 4))
-            hp_bar = pygame.Rect(content.x + 16, counters.y - 13, content.w - 32, 10)
+            title = pygame.Rect(content.x + 18, content.y + 10, content.w - 36, 26)
+            hp_label = pygame.Rect(content.x + 18, title.bottom + 2, content.w - 36, 36)
+            intent_line = pygame.Rect(content.x + 18, hp_label.bottom + 6, content.w - 36, 46)
+            status_line = pygame.Rect(content.x + 18, intent_line.bottom + 4, content.w - 36, 26)
+            counters = pygame.Rect(content.x + 18, content.bottom - 24, content.w - 36, 16)
+            avatar_rect = pygame.Rect(content.x + 24, status_line.bottom + 6, content.w - 48, max(120, counters.y - status_line.bottom - 8))
+            hp_bar = pygame.Rect(content.x + 18, counters.y - 13, content.w - 36, 10)
 
             enemy_name = str(e.name_key)
             intent_name = str(e.current_intent().get("label", "..."))
@@ -913,39 +939,38 @@ class CombatScreen:
             intent_col = self._intent_led_color(e)
             intent_value = self._intent_value_text(e)
             enemy_block = max(0, int(getattr(e, "block", 0) or 0))
-            chip_gap = 10
-            chip_h = 30
-            left_w = max(140, min(content.w - 170, int(content.w * 0.58)))
-            right_w = content.w - 32 - left_w - chip_gap
+            chip_gap = 14
+            chip_h = 36
+            left_w = max(184, min(content.w - 196, int(content.w * 0.66)))
+            right_w = max(96, content.w - 36 - left_w - chip_gap)
             intent_chip = pygame.Rect(intent_line.x, intent_line.y + 4, left_w, chip_h)
             block_chip = pygame.Rect(intent_chip.right + chip_gap, intent_chip.y, right_w, chip_h)
 
-            pygame.draw.rect(s, (24, 22, 34), intent_chip, border_radius=11)
-            pygame.draw.rect(s, intent_col, intent_chip, 2, border_radius=11)
+            pygame.draw.rect(s, (24, 22, 34), intent_chip, border_radius=12)
+            pygame.draw.rect(s, intent_col, intent_chip, 2, border_radius=12)
             intent_text = f"{intent_value} - {intent_name}"
-            s.blit(self.app.small_font.render(intent_text, True, intent_col), (intent_chip.x + 10, intent_chip.y + 5))
+            s.blit(self.app.small_font.render(intent_text, True, intent_col), (intent_chip.x + 12, intent_chip.y + 7))
 
             blk_col = UI_THEME["block"] if enemy_block > 0 else UI_THEME["muted"]
-            pygame.draw.rect(s, (24, 22, 34), block_chip, border_radius=11)
-            pygame.draw.rect(s, blk_col, block_chip, 2, border_radius=11)
-            s.blit(self.app.small_font.render(f"BLK {enemy_block}", True, blk_col), (block_chip.x + 10, block_chip.y + 5))
+            pygame.draw.rect(s, (24, 22, 34), block_chip, border_radius=12)
+            pygame.draw.rect(s, blk_col, block_chip, 2, border_radius=12)
+            s.blit(self.app.small_font.render(f"BLK {enemy_block}", True, blk_col), (block_chip.x + 10, block_chip.y + 7))
 
             status_tokens = self._enemy_major_statuses(e)
             sx = status_line.x
             for key, val in status_tokens:
-                ww = 70
+                ww = 72
                 rr = pygame.Rect(sx, status_line.y + 2, ww, 20)
                 pygame.draw.rect(s, (28, 24, 40), rr, border_radius=8)
                 pygame.draw.rect(s, UI_THEME["accent_violet"], rr, 1, border_radius=8)
                 s.blit(self.app.tiny_font.render(f"{key} {val}", True, UI_THEME["text"]), (rr.x + 7, rr.y + 3))
-                sx += ww + 6
+                sx += ww + 7
 
             pattern_len = max(1, len(getattr(e, "pattern", []) or []))
             deck_est = max(0, pattern_len - ((getattr(e, "intent_index", 0) + 1) % pattern_len))
             discard_est = min(pattern_len, getattr(e, "intent_index", 0))
             counter_txt = f"Mazo {deck_est}  Mano 1  Ecos {discard_est}"
             s.blit(self.app.tiny_font.render(counter_txt, True, UI_THEME["muted"]), (counters.x, counters.y))
-
             variant = self._enemy_presence_variant(e)
             boss_factor = 1.45 if (self.is_boss or str(getattr(e, "tier", "")).lower() == "boss") else 1.0
 
