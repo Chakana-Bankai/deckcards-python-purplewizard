@@ -53,7 +53,7 @@ class CombatState:
         self.player.setdefault("harmony_ready_threshold", 6)
         self.player.setdefault("harmony_ready", False)
         self.player.setdefault("harmony_seal_used", False)
-        self.player["block"] = 0
+        self._reset_combat_player_state()
         self.turn = 0
         self.pending_if_kill = None
         self.start_line_time = 2.0
@@ -90,6 +90,37 @@ class CombatState:
         self.fatigue_counter = 0
         self.telemetry = TelemetryLogger("INFO")
         self.start_player_turn()
+
+    def _reset_combat_player_state(self):
+        """Reset combat-only transient player state for a fresh encounter."""
+        statuses = self.player.get("statuses", {})
+        if not isinstance(statuses, dict):
+            statuses = {}
+        # Keep run-level progression values; clear temporary combat effects.
+        for key in (
+            "weak",
+            "enemy_damage_down",
+            "discount_next_attack",
+            "copy_next",
+            "phase",
+            "cost_up_all",
+            "cost_down_all",
+            "energized",
+        ):
+            statuses.pop(key, None)
+        self.player["statuses"] = statuses
+
+        self.player["block"] = 0
+        self.player["rupture"] = 0
+        self.player["harmony_current"] = 0
+        self.player["harmony_ready"] = False
+        self.player["harmony_seal_used"] = False
+        # Legacy keys still referenced by some UI/debug paths.
+        self.player["seal_ready"] = False
+        self.player["seal_active"] = False
+        self.player.pop("selected_card", None)
+        self.player.pop("combat_status_banner", None)
+        self.player.pop("combat_banner", None)
 
     def _load_cards(self, cards_data=None):
         raw = cards_data if cards_data else load_json(data_dir() / "cards.json", default=DEFAULT_CARDS)

@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import math
 from pathlib import Path
@@ -105,8 +105,50 @@ class CombatScreen:
         self.harmony_seal_rect = pygame.Rect(0, 0, 1, 1)
         self._player_low_hp_active = False
         self._enemy_low_hp_active: set[str] = set()
+        self._reset_encounter_ui_state()
+        print("[combat_reset] seal/harmony/action state reset OK")
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
         self.set_dialogue("combat_start", enemy_id, {})
+
+
+    def _reset_encounter_ui_state(self):
+        """Reset combat-only UI/session caches for a clean encounter start."""
+        self.ctrl.clear_selection("combat_init")
+        self.ctrl.clear_hover()
+        self.hover_card_index = None
+
+        self._action_state = "END_TURN"
+        self._action_state_reason = "combat_init"
+        self._action_button_fsm = "IDLE"
+        self._last_reason_code = REASON_OK
+        self._status_line = ""
+        self._invalid_feedback_until_ms = 0
+        self._invalid_feedback_msg = ""
+        self._ui_lock_until_ms = 0
+
+        self._player_low_hp_active = False
+        self._enemy_low_hp_active = set()
+
+        self.dialog_cd = 0.0
+        self.enemy_line_fx = 0.0
+        self.hero_line_fx = 0.0
+        self._dialogue_action_idx = 0
+        self.last_enemy_line = ""
+        self.last_player_line = ""
+        self.enemy_voice_label = "VOZ ENEMIGA"
+        self.chakana_voice_label = "VOZ CHAKANA"
+        self.last_trigger = "combat_start"
+
+        self.actions_log.clear()
+        self._cost_pulse_until.clear()
+
+        # Reset dialogue router memory so encounter lines start fresh.
+        self.dialog_router.last_ms = 0
+        self.dialog_router.last_priority = -1
+        self.dialog_router.last_action_index = -999
+
+        self.pause_open = False
+        self.pause_confirm_target = None
 
     def on_leave(self):
         self.ctrl.clear_selection("screen_change")
@@ -1207,8 +1249,3 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
-
-
-
-
-
