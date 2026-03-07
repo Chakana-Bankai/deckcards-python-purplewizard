@@ -7,7 +7,7 @@ from game.ui.components.modal_confirm import ModalConfirm
 from game.ui.system.brand import ChakanaBrand
 from game.ui.system.colors import UColors
 from game.ui.system.components import UIButton, UIPanel
-from game.ui.system.fonts import get_title_font, get_ui_font
+from game.ui.system.typography import BUTTON_FONT, SMALL_FONT, TITLE_FONT
 from game.ui.ui_layout import centered_column
 
 
@@ -27,9 +27,9 @@ class MenuScreen:
         ]
         self.modal = ModalConfirm()
         self.version_line = self._load_version_line()
-        self.title_font = get_title_font(max(48, ChakanaBrand.TITLE_FONT_SIZE))
-        self.button_font = get_ui_font(24)
-        self.meta_font = get_ui_font(18)
+        self.title_font = self.app.typography.get(TITLE_FONT, max(74, ChakanaBrand.TITLE_FONT_SIZE + 8))
+        self.button_font = self.app.typography.get(BUTTON_FONT, 24)
+        self.meta_font = self.app.typography.get(SMALL_FONT, 18)
 
     def _load_version_line(self):
         path = Path(__file__).resolve().parents[2] / "data" / "version.json"
@@ -106,13 +106,27 @@ class MenuScreen:
     def update(self, dt):
         pass
 
+    def _draw_title(self, surface: pygame.Surface, rect: pygame.Rect):
+        title_text = "CHAKANA MAGIC WIZARD"
+        palette = self.app.typography.palette
+
+        # Subtle cyan-violet glow layers below title glyphs.
+        for dx, dy, col, alpha in [(-3, 2, palette.title_glow, 90), (3, -2, palette.title_glow, 70), (0, 0, palette.hud_harmony, 60)]:
+            glow = self.title_font.render(title_text, True, col)
+            glow_surf = pygame.Surface(glow.get_size(), pygame.SRCALPHA)
+            glow_surf.blit(glow, (0, 0))
+            glow_surf.set_alpha(alpha)
+            surface.blit(glow_surf, glow_surf.get_rect(center=(rect.centerx + dx, rect.centery + dy + 2)))
+
+        title = self.title_font.render(title_text, True, palette.title_primary)
+        surface.blit(title, title.get_rect(center=(rect.centerx, rect.centery + 2)))
+
     def render(self, surface):
         self.app.bg_gen.render_parallax(surface, "Ruinas Chakana", 2026, pygame.time.get_ticks() * 0.02, particles_on=self.app.user_settings.get("fx_particles", True))
 
-        title_rect = pygame.Rect(220, 36, 1480, 132)
+        title_rect = pygame.Rect(160, 20, 1600, 166)
         UIPanel(title_rect, variant="alt").draw(surface)
-        title = self.title_font.render(self.app.design_value("CANON_MENU_TITLE", "CHAKANA: Purple Wizard"), True, UColors.HARMONY)
-        surface.blit(title, title.get_rect(center=(960, 102)))
+        self._draw_title(surface, title_rect)
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         for i, item in enumerate(self.buttons):
@@ -122,6 +136,5 @@ class MenuScreen:
             btn = UIButton(item["rect"], label, role="end_turn", premium=True)
             btn.draw(surface, self.button_font, hovered=item["rect"].collidepoint(mouse))
 
-        surface.blit(self.meta_font.render(self.version_line, True, UColors.MUTED), (24, 1048))
+        surface.blit(self.meta_font.render(self.version_line, True, self.app.typography.palette.muted), (24, 1048))
         self.modal.render(surface, self.button_font, self.app.small_font)
-

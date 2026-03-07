@@ -5,6 +5,7 @@ from pathlib import Path
 import pygame
 
 from game.settings import ASSETS_DIR, INTERNAL_HEIGHT, INTERNAL_WIDTH
+from game.ui.system.typography import ChakanaTypography, SMALL_FONT
 
 
 class SoundManager:
@@ -76,7 +77,7 @@ class AssetManager:
         surf.fill(fill)
         pygame.draw.rect(surf, (120, 110, 170), surf.get_rect(), 3)
         if fallback_label:
-            f = pygame.font.SysFont("consolas", max(12, fallback_size[1] // 11))
+            f = ChakanaTypography().get(SMALL_FONT, max(12, fallback_size[1] // 11))
             txt = f.render(fallback_label[:20], True, (230, 226, 246))
             surf.blit(txt, (6, max(4, fallback_size[1] - txt.get_height() - 4)))
         return surf
@@ -132,3 +133,4 @@ class Renderer:
         px = max(0, min(INTERNAL_WIDTH - 1, px))
         py = max(0, min(INTERNAL_HEIGHT - 1, py))
         return px, py
+

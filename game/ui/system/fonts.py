@@ -9,6 +9,7 @@ import pygame
 
 
 _FONT_CACHE: Dict[Tuple[str, int], pygame.font.Font] = {}
+_WARNED_FALLBACK: set[Tuple[str, int]] = set()
 
 
 def _fonts_root() -> Path:
@@ -23,8 +24,18 @@ def _fallback_chain(name: str):
     return ["dejavusans", "arial"]
 
 
+def _warn(name: str, size: int, reason: str):
+    key = (name, int(size))
+    if key in _WARNED_FALLBACK:
+        return
+    _WARNED_FALLBACK.add(key)
+    print(f"[fonts] warning: fallback font name={name} size={size} reason={reason}")
+
+
 def get_font(name: str, size: int) -> pygame.font.Font:
     """Load a named font safely with system fallback and cache."""
+    if not pygame.font.get_init():
+        pygame.font.init()
     key = (name, int(size))
     if key in _FONT_CACHE:
         return _FONT_CACHE[key]
@@ -42,16 +53,21 @@ def get_font(name: str, size: int) -> pygame.font.Font:
         try:
             if path.exists():
                 font = pygame.font.Font(str(path), int(size))
-        except Exception:
+            else:
+                _warn(name, size, f"missing_file:{path.name}")
+        except Exception as exc:
+            _warn(name, size, f"font_load_error:{exc}")
             font = None
     if font is None:
         for fallback in _fallback_chain(name):
             try:
                 font = pygame.font.SysFont(fallback, int(size))
                 break
-            except Exception:
+            except Exception as exc:
+                _warn(name, size, f"sysfont_error:{fallback}:{exc}")
                 font = None
     if font is None:
+        _warn(name, size, "pygame_default")
         font = pygame.font.Font(None, int(size))
 
     _FONT_CACHE[key] = font
@@ -68,3 +84,4 @@ def get_ui_font(size: int) -> pygame.font.Font:
 
 def get_lore_font(size: int) -> pygame.font.Font:
     return get_font("lore", size)
+

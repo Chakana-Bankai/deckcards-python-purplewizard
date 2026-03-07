@@ -49,6 +49,7 @@ from game.ui.screens.intro import IntroScreen
 from game.ui.screens.studio_intro import StudioIntroScreen
 from game.ui.screens.pacha_transition import PachaTransitionScreen
 from game.ui.screens.tutorial import TutorialScreen
+from game.ui.system.typography import ChakanaTypography, SMALL_FONT
 from game.version import VERSION
 from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION
 from game.services.content_service import ContentService
@@ -94,29 +95,9 @@ class App:
         self.sfx.set_volume(self.user_settings.get("sfx_volume", 0.7))
         self.music.set_volume(self.user_settings.get("music_volume", 0.5))
         self.music.set_muted(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False)))
-        # font pipeline (local pack + safe fallback)
-        fonts_dir = data_dir().parent / "assets" / "fonts"
-        fonts_dir.mkdir(parents=True, exist_ok=True)
-        title_path = fonts_dir / "title.ttf"
-        ui_path = fonts_dir / "ui.ttf"
-        mono_path = fonts_dir / "mono.ttf"
-
-        def _safe_font(path, size, fallback_name="arial", bold=False):
-            try:
-                if path.exists():
-                    return pygame.font.Font(str(path), size)
-            except Exception:
-                pass
-            return pygame.font.SysFont(fallback_name, size, bold=bold)
-
-        self.font = _safe_font(ui_path, 24)
-        self.small_font = _safe_font(ui_path, 22)
-        self.tiny_font = _safe_font(ui_path, 18)
-        self.big_font = _safe_font(title_path, 34, bold=True)
-        self.card_text_font = _safe_font(ui_path, 20)
-        self.card_title_font = _safe_font(title_path, 26, bold=True)
-        self.map_font = _safe_font(ui_path, 24)
-        self.mono_font = _safe_font(mono_path, 22)
+        self.typography = ChakanaTypography()
+        self.typography.apply_to_app(self)
+        self.mono_font = self.typography.get(SMALL_FONT, 22)
         self.sm = StateMachine()
         self.run_state = None
         self.menu_return_screen = None
@@ -1135,6 +1116,8 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
+
+
 
 
 

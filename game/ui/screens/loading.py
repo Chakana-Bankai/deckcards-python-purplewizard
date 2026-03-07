@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import random
 
@@ -7,14 +7,15 @@ import pygame
 from game.core.paths import data_dir
 from game.core.safe_io import load_json
 from game.ui.components.loading_widget import LoadingWidget
-from game.ui.system.fonts import get_title_font, get_ui_font
 from game.ui.system.layout import safe_area
+from game.ui.system.typography import ChakanaTypography, LORE_FONT, TITLE_FONT
 
 
 class LoadingScreen:
     def __init__(self, title_font=None, body_font=None, lang: str = "es"):
-        self.title_font = title_font or get_title_font(72)
-        self.body_font = body_font or get_ui_font(28)
+        typ = ChakanaTypography()
+        self.title_font = title_font or typ.get(TITLE_FONT, 72)
+        self.body_font = body_font or typ.get(LORE_FONT, 28)
         self.label = ""
         self.pct = 0.0
         self.widget = LoadingWidget(self._load_hints(lang))

@@ -2,7 +2,7 @@
 
 import pygame
 
-from game.ui.system.fonts import get_ui_font
+from game.ui.system.typography import BUTTON_FONT, LORE_FONT, ChakanaTypography
 from game.ui.system.modals import ModalBase
 
 
@@ -30,6 +30,7 @@ class ModalConfirm:
         return self.modal.handle_click(pos, surface)
 
     def render(self, surface, font, small_font):
-        title_font = get_ui_font(28)
-        body_font = small_font if small_font is not None else get_ui_font(22)
+        title_font = ChakanaTypography().get(BUTTON_FONT, 28)
+        body_font = small_font if small_font is not None else ChakanaTypography().get(LORE_FONT, 22)
         self.modal.render(surface, title_font, body_font)
+

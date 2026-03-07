@@ -977,10 +977,12 @@ class CombatScreen:
         portrait_rect = pygame.Rect(self.layout.playerhud_rect.right - 132, self.layout.playerhud_rect.y + 14, 114, 148)
         stat_w = inner_w - portrait_rect.w - 12
 
+        tpal = self.app.typography.palette
+
         def _chip(rect, title, val, col):
             pygame.draw.rect(s, UI_THEME["panel_2"], rect, border_radius=8)
             pygame.draw.rect(s, col, rect, 1, border_radius=8)
-            s.blit(self.app.tiny_font.render(title, True, UI_THEME["muted"]), (rect.x + 8, rect.y + 4))
+            s.blit(self.app.tiny_font.render(title, True, tpal.muted), (rect.x + 8, rect.y + 4))
             s.blit(self.app.small_font.render(val, True, col), (rect.x + 8, rect.y + 18))
 
         row_gap = 6
@@ -997,9 +999,9 @@ class CombatScreen:
         pygame.draw.rect(s, UI_THEME["accent_violet"], group_flow, 1, border_radius=10)
 
         row1 = [
-            ("Vitalidad", f"{p['hp']}/{p['max_hp']}", UI_THEME["hp"]),
-            ("Energia", f"{energy_now}", UI_THEME["energy"]),
-            ("Turno", f"{self.c.turn}", UI_THEME["gold"]),
+            ("Vitalidad", f"{p['hp']}/{p['max_hp']}", tpal.hud_default),
+            ("Energia", f"{energy_now}", tpal.hud_energy),
+            ("Turno", f"{self.c.turn}", tpal.hud_gold),
         ]
         for idx, (title, val, col) in enumerate(row1):
             chip = pygame.Rect(left_x + idx * (chip_w + 8), row1_y, chip_w, 48)
@@ -1011,9 +1013,9 @@ class CombatScreen:
                 self.mana_orbs.draw(s, start_x, orb_y, energy_now, max_mana=orb_cap, buffed=energy_buffed)
 
         row2 = [
-            ("Mazo", f"{draw_n}", UI_THEME["muted"]),
-            ("Mano", f"{hand_n}", UI_THEME["muted"]),
-            ("Ecos", f"{disc_n}", UI_THEME["muted"]),
+            ("Mazo", f"{draw_n}", tpal.muted),
+            ("Mano", f"{hand_n}", tpal.muted),
+            ("Ecos", f"{disc_n}", tpal.muted),
         ]
         for idx, (title, val, col) in enumerate(row2):
             _chip(pygame.Rect(left_x + idx * (chip_w + 8), row2_y, chip_w, 42), title, val, col)
@@ -1025,13 +1027,13 @@ class CombatScreen:
 
         harmony_rect = pygame.Rect(left_x, row3_y, int(stat_w * 0.64), 44)
         thr_rect = pygame.Rect(harmony_rect.right + 8, row3_y, stat_w - harmony_rect.w - 8, 44)
-        _chip(harmony_rect, "Armonia", f"{h_cur}/{h_max}", UI_THEME["good"] if ready else UI_THEME["text"])
-        _chip(thr_rect, "Umbral", f"{h_thr}", UI_THEME["violet"] if ready else UI_THEME["muted"])
+        _chip(harmony_rect, "Armonia", f"{h_cur}/{h_max}", tpal.hud_harmony if ready else tpal.hud_default)
+        _chip(thr_rect, "Umbral", f"{h_thr}", tpal.hud_harmony if ready else tpal.muted)
 
         bar = pygame.Rect(harmony_rect.x + 8, harmony_rect.bottom - 11, harmony_rect.w - 16, 8)
         pygame.draw.rect(s, (28, 26, 40), bar, border_radius=5)
         pygame.draw.rect(s, UI_THEME["good"], pygame.Rect(bar.x, bar.y, int(bar.w * (h_cur / max(1, h_max))), bar.h), border_radius=5)
-        s.blit(self.app.tiny_font.render(f"Desgaste {fatigue_n}", True, UI_THEME["muted"]), (thr_rect.x + 8, thr_rect.bottom - 15))
+        s.blit(self.app.tiny_font.render(f"Desgaste {fatigue_n}", True, tpal.muted), (thr_rect.x + 8, thr_rect.bottom - 15))
 
         pygame.draw.rect(s, (16, 14, 22), portrait_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], portrait_rect, 2, border_radius=10)
@@ -1205,5 +1207,8 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+
+
 
 

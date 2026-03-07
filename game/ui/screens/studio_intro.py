@@ -1,12 +1,12 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import math
 import random
 
 import pygame
 
-from game.ui.system.fonts import get_title_font
 from game.ui.system.layout import safe_area
+from game.ui.system.typography import TITLE_FONT
 
 
 class StudioIntroScreen:
@@ -84,7 +84,7 @@ class StudioIntroScreen:
             pygame.draw.circle(surface, (142, 142, 192), (int(p["x"]), int(p["y"])), int(p["r"]))
 
         base_size = max(72, int(self.app.big_font.get_height() * 2.0))
-        title_font = get_title_font(base_size)
+        title_font = self.app.typography.get(TITLE_FONT, base_size)
         alpha = max(0, min(255, self._title_alpha()))
         label = title_font.render("CHAKANA STUDIO", True, (245, 245, 252))
         title = pygame.Surface(label.get_size(), pygame.SRCALPHA)

@@ -11,6 +11,7 @@ from .brand import ChakanaBrand
 from .colors import UColors
 from .components import UIButton, UIPanel, UILabel
 from .layout import build_modal_preview_layout, inset, safe_area
+from .typography import BUTTON_FONT, LORE_FONT, SMALL_FONT, ChakanaTypography
 
 
 class ModalBase:
@@ -155,9 +156,9 @@ class ModalBase:
     # Legacy compatibility adapter for callers that still use modal.render(...).
     def render(self, surface: pygame.Surface, title_font=None, body_font=None):
         if title_font is None or not hasattr(title_font, "render"):
-            title_font = pygame.font.Font(None, 28)
+            title_font = ChakanaTypography().get(BUTTON_FONT, 28)
         if body_font is None or not hasattr(body_font, "render"):
-            body_font = pygame.font.Font(None, 22)
+            body_font = ChakanaTypography().get(LORE_FONT, 22)
         self._render_chrome(surface, title_font, body_font)
 
     def update(self, dt: float):
@@ -389,9 +390,9 @@ class LoreModal(ModalBase):
             title_font = app.big_font
             body_font = app.small_font
         if title_font is None or not hasattr(title_font, "render"):
-            title_font = pygame.font.Font(None, 28)
+            title_font = ChakanaTypography().get(BUTTON_FONT, 28)
         if body_font is None or not hasattr(body_font, "render"):
-            body_font = pygame.font.Font(None, 22)
+            body_font = ChakanaTypography().get(LORE_FONT, 22)
         chrome = self._render_chrome(surface, title_font, body_font)
         if chrome is None:
             return
@@ -423,3 +424,4 @@ class LoreModal(ModalBase):
 def modal_preview_columns(panel_rect: pygame.Rect):
     """Helper for card/lore modals with preview columns."""
     return build_modal_preview_layout(panel_rect)
+

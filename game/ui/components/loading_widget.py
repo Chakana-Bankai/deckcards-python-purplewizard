@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import math
 
@@ -6,13 +6,14 @@ import pygame
 
 from game.art.gen_art32 import chakana_points
 from game.ui.theme import UI_THEME
+from game.ui.system.typography import ChakanaTypography, SMALL_FONT
 
 
 class LoadingWidget:
     def __init__(self, hints: list[str] | None = None):
         self.hints = list(hints or [
             "La Chakana conecta los tres mundos.",
-            "El equilibrio entre ataque y armonía define al guerrero.",
+            "El equilibrio entre ataque y armonÃ­a define al guerrero.",
             "Prever el destino es tan importante como atacar.",
         ])
         self.hint_idx = 0
@@ -65,6 +66,7 @@ class LoadingWidget:
         hint = str(hint_text or self.hints[self.hint_idx])
         if self._hint_font is None:
             size = max(16, int(getattr(body_font, "get_height", lambda: 22)() * 0.72))
-            self._hint_font = pygame.font.SysFont("arial", size, italic=True)
+            self._hint_font = ChakanaTypography().get(SMALL_FONT, size)
         txt = self._hint_font.render(hint, True, UI_THEME["muted"])
         surface.blit(txt, txt.get_rect(center=(w // 2, h - 34)))
+
