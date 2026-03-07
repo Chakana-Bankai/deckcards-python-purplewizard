@@ -1,6 +1,8 @@
 import pygame
 
 from game.ui.theme import UI_THEME
+from game.ui.system.brand import ChakanaBrand
+from game.ui.system.layout import anchor_bottom_center, anchor_top_right, build_three_column_layout, inset, safe_area
 
 
 class ShopScreen:
@@ -23,6 +25,10 @@ class ShopScreen:
         self.rare_rect = pygame.Rect(0, 0, 1, 1)
         self.artifact_rect = pygame.Rect(0, 0, 1, 1)
         self.leave_rect = pygame.Rect(0, 0, 1, 1)
+        self.merchant_rect = pygame.Rect(0, 0, 1, 1)
+        self.hint_rect = pygame.Rect(0, 0, 1, 1)
+        self._screen_size = (1920, 1080)
+
         self.particles = [
             {"x": self.app.rng.randint(0, 1919), "y": self.app.rng.randint(0, 1079), "vx": self.app.rng.randint(-8, 8) / 10.0, "vy": self.app.rng.randint(2, 10) / 10.0}
             for _ in range(24)
@@ -33,19 +39,19 @@ class ShopScreen:
 
     def _refresh_layout(self, s):
         w, h = s.get_size()
-        content = pygame.Rect(86, 150, w - 172, h - 270)
-        top_h = 180
-        middle_h = content.h - top_h - 120
+        self._screen_size = (w, h)
 
-        self.merchant_rect = pygame.Rect(content.x, content.y, content.w, top_h)
-        row = pygame.Rect(content.x, self.merchant_rect.bottom + 14, content.w, middle_h)
-        card_w = (row.w - 24 * 2) // 3
-        self.cheap_rect = pygame.Rect(row.x, row.y, card_w, row.h)
-        self.rare_rect = pygame.Rect(self.cheap_rect.right + 24, row.y, card_w, row.h)
-        self.artifact_rect = pygame.Rect(self.rare_rect.right + 24, row.y, card_w, row.h)
+        root = safe_area(w, h, ChakanaBrand.SAFE_MARGIN + 8, ChakanaBrand.BOTTOM_SAFE_MARGIN)
+        shell = inset(root, 14)
+        self.merchant_rect = pygame.Rect(shell.x, shell.y, shell.w, 180)
 
-        self.leave_rect = pygame.Rect(w // 2 - 150, h - 94, 300, 58)
-        self.hint_rect = pygame.Rect(content.x + 18, content.bottom - 84, content.w - 36, 60)
+        body = pygame.Rect(shell.x, self.merchant_rect.bottom + 14, shell.w, shell.h - 194)
+        cards_row = pygame.Rect(body.x, body.y, body.w, max(220, body.h - 92))
+        footer = pygame.Rect(body.x, cards_row.bottom + 8, body.w, body.bottom - (cards_row.bottom + 8))
+
+        self.cheap_rect, self.rare_rect, self.artifact_rect = build_three_column_layout(cards_row, gap=24, ratios=(1, 1, 1))
+        self.hint_rect = inset(footer, 10)
+        self.leave_rect = anchor_bottom_center(root, 300, 58, margin=0)
 
     def _buy_card(self, card, price, tag):
         if self.app.run_state["gold"] < price:
@@ -89,14 +95,15 @@ class ShopScreen:
                 self.app.goto_map()
 
     def update(self, dt):
+        w, h = self._screen_size
         for p in self.particles:
             p["x"] += p["vx"] * dt * 60
             p["y"] += p["vy"] * dt * 60
-            if p["y"] > 1088:
+            if p["y"] > h + 8:
                 p["y"] = -6
             if p["x"] < -8:
-                p["x"] = 1928
-            if p["x"] > 1928:
+                p["x"] = w + 8
+            if p["x"] > w + 8:
                 p["x"] = -8
 
     def _draw_offer_card(self, s, rect, card, title, price, tier_col):
@@ -123,7 +130,8 @@ class ShopScreen:
         pygame.draw.rect(s, UI_THEME["panel"], self.merchant_rect, border_radius=14)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.merchant_rect, 2, border_radius=14)
         s.blit(self.app.big_font.render("Comerciante del Umbral", True, UI_THEME["text"]), (self.merchant_rect.x + 18, self.merchant_rect.y + 14))
-        s.blit(self.app.font.render(f"{self.app.loc.t('gold')}: {self.app.run_state['gold']}", True, UI_THEME["gold"]), (self.merchant_rect.right - 260, self.merchant_rect.y + 26))
+        gold_rect = anchor_top_right(self.merchant_rect, 250, 32, margin=20)
+        s.blit(self.app.font.render(f"{self.app.loc.t('gold')}: {self.app.run_state['gold']}", True, UI_THEME["gold"]), (gold_rect.x, gold_rect.y))
 
         face_box = pygame.Rect(self.merchant_rect.x + 18, self.merchant_rect.y + 56, 140, 110)
         pygame.draw.rect(s, UI_THEME["panel_2"], face_box, border_radius=10)

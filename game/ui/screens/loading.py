@@ -7,12 +7,14 @@ import pygame
 from game.core.paths import data_dir
 from game.core.safe_io import load_json
 from game.ui.components.loading_widget import LoadingWidget
+from game.ui.system.fonts import get_title_font, get_ui_font
+from game.ui.system.layout import safe_area
 
 
 class LoadingScreen:
-    def __init__(self, title_font, body_font, lang: str = "es"):
-        self.title_font = title_font
-        self.body_font = body_font
+    def __init__(self, title_font=None, body_font=None, lang: str = "es"):
+        self.title_font = title_font or get_title_font(72)
+        self.body_font = body_font or get_ui_font(28)
         self.label = ""
         self.pct = 0.0
         self.widget = LoadingWidget(self._load_hints(lang))
@@ -33,7 +35,7 @@ class LoadingScreen:
                 return hints
         return [
             "La Chakana conecta los tres mundos.",
-            "El equilibrio entre ataque y armonía define al guerrero.",
+            "El equilibrio entre ataque y armonia define al guerrero.",
             "Prever el destino es tan importante como atacar.",
         ]
 
@@ -43,6 +45,8 @@ class LoadingScreen:
 
     def draw(self, screen: pygame.Surface, dt: float = 0.016):
         w, h = screen.get_size()
+        area = safe_area(w, h, 20, 20)
+
         for y in range(h):
             t = y / max(1, h - 1)
             c = (int(10 + 16 * t), int(10 + 14 * t), int(24 + 22 * t))
@@ -60,7 +64,11 @@ class LoadingScreen:
             pygame.draw.circle(screen, (120, 116, 176), (int(p["x"]), int(p["y"])), 2)
 
         title = self.title_font.render("CHAKANA", True, (236, 230, 248))
-        screen.blit(title, title.get_rect(center=(w // 2, 154)))
+        screen.blit(title, title.get_rect(center=(area.centerx, area.y + 130)))
+
+        if self.label:
+            label = self.body_font.render(self.label, True, (186, 178, 220))
+            screen.blit(label, label.get_rect(center=(area.centerx, area.y + 188)))
 
         self.widget.tick(dt)
         self.widget.draw(screen, self.body_font, hint_text=None)
@@ -79,7 +87,7 @@ class DataLoadingScreen:
         self._boot_done = False
 
     def handle_event(self, event):
-        # Keep boot sequence deterministic: intro -> loading -> menu.
+        _ = event
         return
 
     def update(self, dt):

@@ -5,7 +5,8 @@ import random
 
 import pygame
 
-from game.ui.theme import UI_THEME
+from game.ui.system.fonts import get_title_font
+from game.ui.system.layout import safe_area
 
 
 class StudioIntroScreen:
@@ -18,8 +19,6 @@ class StudioIntroScreen:
         self.duration = self.fade_in + self.hold + self.fade_out
         self.t = 0.0
         self.particles = []
-        base_size = max(72, int(self.app.big_font.get_height() * 2.0))
-        self.title_font = pygame.font.SysFont("arial", base_size, bold=True)
 
     def on_enter(self):
         self.t = 0.0
@@ -40,7 +39,7 @@ class StudioIntroScreen:
             pass
 
     def handle_event(self, event):
-        # Intro skip is controlled only by boot flag (dev_skip_intro).
+        _ = event
         return
 
     def update(self, dt):
@@ -58,6 +57,8 @@ class StudioIntroScreen:
 
     def render(self, surface):
         w, h = surface.get_size()
+        area = safe_area(w, h, 20, 20)
+
         for y in range(h):
             p = y / max(1, h - 1)
             c = (int(2 + 5 * p), int(3 + 6 * p), int(10 + 12 * p))
@@ -68,7 +69,7 @@ class StudioIntroScreen:
         for i in range(4):
             r = int(260 + i * 80 + 14 * (0.5 + 0.5 * math.sin(t + i)))
             col = (84, 72, 146, max(10, 34 - i * 7))
-            pygame.draw.circle(halo, col, (w // 2, h // 2), r, 2)
+            pygame.draw.circle(halo, col, (area.centerx, area.centery), r, 2)
         surface.blit(halo, (0, 0))
 
         for p in self.particles:
@@ -82,9 +83,11 @@ class StudioIntroScreen:
                 p["x"] = -8
             pygame.draw.circle(surface, (142, 142, 192), (int(p["x"]), int(p["y"])), int(p["r"]))
 
+        base_size = max(72, int(self.app.big_font.get_height() * 2.0))
+        title_font = get_title_font(base_size)
         alpha = max(0, min(255, self._title_alpha()))
-        label = self.title_font.render("CHAKANA STUDIO", True, (245, 245, 252))
+        label = title_font.render("CHAKANA STUDIO", True, (245, 245, 252))
         title = pygame.Surface(label.get_size(), pygame.SRCALPHA)
         title.blit(label, (0, 0))
         title.set_alpha(alpha)
-        surface.blit(title, title.get_rect(center=(w // 2, h // 2)))
+        surface.blit(title, title.get_rect(center=(area.centerx, area.centery)))
