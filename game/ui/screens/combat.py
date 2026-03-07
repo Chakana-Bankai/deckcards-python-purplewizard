@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import math
 from pathlib import Path
@@ -205,8 +205,8 @@ class CombatScreen:
             "defeat": "CAIDA",
         }.get(str(mapped_trigger or ""), "ECO")
         enemy_name = str(enemy_id or "enemigo").replace("_", " ").upper()
-        self.enemy_voice_label = f"{enemy_name} Â· {event_label}"
-        self.chakana_voice_label = f"CHAKANA Â· {event_label}"
+        self.enemy_voice_label = f"{enemy_name} Ã‚Â· {event_label}"
+        self.chakana_voice_label = f"CHAKANA Ã‚Â· {event_label}"
 
     def _card_playable(self, card) -> bool:
         ok, _reason_code, _reason_text = can_play_card(card, self.c.player, self.c)
@@ -505,7 +505,46 @@ class CombatScreen:
         if "blo" in label or "def" in label:
             return (72, 188, 240)
         return (174, 116, 255)
+    def _intent_value_text(self, enemy) -> str:
+        intent = enemy.current_intent() if enemy is not None else {}
+        kind = str(intent.get("intent", "")).lower()
+        value = intent.get("value", 0)
+        if isinstance(value, list):
+            lo = int(value[0]) if value else 0
+            hi = int(value[1]) if len(value) > 1 else lo
+            amount = f"{lo}-{hi}" if lo != hi else str(lo)
+        else:
+            amount = str(int(value or 0))
+        if kind == "attack":
+            return f"ATK {amount}"
+        if kind == "defend":
+            return f"DEF {amount}"
+        if kind == "debuff":
+            return f"DEBUF {max(1, int(intent.get('stacks', 1) or 1))}"
+        if kind == "buff":
+            return f"BUFF {max(1, int(intent.get('stacks', 1) or 1))}"
+        return "INTENCION"
 
+    def _enemy_major_statuses(self, enemy) -> list[tuple[str, int]]:
+        st = getattr(enemy, "statuses", {}) or {}
+        mapping = [
+            ("RUP", int(st.get("rupture", 0) or 0) + int(st.get("break", 0) or 0)),
+            ("RIT", int(st.get("ritual", 0) or 0)),
+            ("DEB", int(st.get("weak", 0) or 0)),
+            ("VUL", int(st.get("vulnerable", 0) or 0)),
+        ]
+        out = [(k, v) for k, v in mapping if v > 0]
+        return out[:3]
+
+    def _player_attack_cue(self) -> int:
+        idx = self.ctrl.selected_index
+        card = self.c.hand[idx] if idx is not None and 0 <= idx < len(self.c.hand) else None
+        if card is None:
+            card = next((c for c in self.c.hand if self._card_playable(c)), None)
+        if card is None:
+            return 0
+        summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c) or {}
+        return max(0, int(summary.get("damage", 0) or 0))
     def _enemy_presence_variant(self, enemy) -> str:
         eid = str(getattr(enemy, "id", "")).lower()
         name = str(getattr(enemy, "name_key", "")).lower()
@@ -859,9 +898,10 @@ class CombatScreen:
             ratio = max(0, e.hp) / max(1, e.max_hp)
             title = pygame.Rect(content.x + 16, content.y + 10, content.w - 32, 26)
             hp_label = pygame.Rect(content.x + 16, title.bottom + 2, content.w - 32, 36)
-            intent_line = pygame.Rect(content.x + 16, hp_label.bottom + 3, content.w - 32, 26)
+            intent_line = pygame.Rect(content.x + 16, hp_label.bottom + 3, content.w - 32, 40)
+            status_line = pygame.Rect(content.x + 16, intent_line.bottom + 2, content.w - 32, 26)
             counters = pygame.Rect(content.x + 16, content.bottom - 24, content.w - 32, 16)
-            avatar_rect = pygame.Rect(content.x + 20, intent_line.bottom + 2, content.w - 40, max(124, counters.y - intent_line.bottom - 4))
+            avatar_rect = pygame.Rect(content.x + 20, status_line.bottom + 2, content.w - 40, max(118, counters.y - status_line.bottom - 4))
             hp_bar = pygame.Rect(content.x + 16, counters.y - 13, content.w - 32, 10)
 
             enemy_name = str(e.name_key)
@@ -871,11 +911,34 @@ class CombatScreen:
             s.blit(hp_txt, (hp_label.x, hp_label.y - 2))
 
             intent_col = self._intent_led_color(e)
-            pill_w = min(content.w - 32, self.app.small_font.size(intent_name)[0] + 26)
-            intent_pill = pygame.Rect(intent_line.centerx - pill_w // 2, intent_line.y + 2, pill_w, 20)
-            pygame.draw.rect(s, (26, 24, 36), intent_pill, border_radius=9)
-            pygame.draw.rect(s, intent_col, intent_pill, 1, border_radius=9)
-            s.blit(self.app.small_font.render(intent_name, True, intent_col), (intent_pill.x + 10, intent_pill.y + 1))
+            intent_value = self._intent_value_text(e)
+            enemy_block = max(0, int(getattr(e, "block", 0) or 0))
+            chip_gap = 10
+            chip_h = 30
+            left_w = max(140, min(content.w - 170, int(content.w * 0.58)))
+            right_w = content.w - 32 - left_w - chip_gap
+            intent_chip = pygame.Rect(intent_line.x, intent_line.y + 4, left_w, chip_h)
+            block_chip = pygame.Rect(intent_chip.right + chip_gap, intent_chip.y, right_w, chip_h)
+
+            pygame.draw.rect(s, (24, 22, 34), intent_chip, border_radius=11)
+            pygame.draw.rect(s, intent_col, intent_chip, 2, border_radius=11)
+            intent_text = f"{intent_value} - {intent_name}"
+            s.blit(self.app.small_font.render(intent_text, True, intent_col), (intent_chip.x + 10, intent_chip.y + 5))
+
+            blk_col = UI_THEME["block"] if enemy_block > 0 else UI_THEME["muted"]
+            pygame.draw.rect(s, (24, 22, 34), block_chip, border_radius=11)
+            pygame.draw.rect(s, blk_col, block_chip, 2, border_radius=11)
+            s.blit(self.app.small_font.render(f"BLK {enemy_block}", True, blk_col), (block_chip.x + 10, block_chip.y + 5))
+
+            status_tokens = self._enemy_major_statuses(e)
+            sx = status_line.x
+            for key, val in status_tokens:
+                ww = 70
+                rr = pygame.Rect(sx, status_line.y + 2, ww, 20)
+                pygame.draw.rect(s, (28, 24, 40), rr, border_radius=8)
+                pygame.draw.rect(s, UI_THEME["accent_violet"], rr, 1, border_radius=8)
+                s.blit(self.app.tiny_font.render(f"{key} {val}", True, UI_THEME["text"]), (rr.x + 7, rr.y + 3))
+                sx += ww + 6
 
             pattern_len = max(1, len(getattr(e, "pattern", []) or []))
             deck_est = max(0, pattern_len - ((getattr(e, "intent_index", 0) + 1) % pattern_len))
@@ -1028,7 +1091,7 @@ class CombatScreen:
             s.blit(self.app.small_font.render(val, True, col), (rect.x + 8, rect.y + 18))
 
         row_gap = 6
-        chip_w = max(86, (stat_w - 16) // 3)
+        chip_w4 = max(76, (stat_w - 24) // 4)
         row1_y = top_y
         row2_y = row1_y + 48 + row_gap
         row3_y = row2_y + 42 + row_gap
@@ -1040,27 +1103,32 @@ class CombatScreen:
         pygame.draw.rect(s, (22, 20, 32), group_flow, border_radius=10)
         pygame.draw.rect(s, UI_THEME["accent_violet"], group_flow, 1, border_radius=10)
 
+        player_block = max(0, int(p.get("block", 0) or 0))
         row1 = [
-            ("Vitalidad", f"{p['hp']}/{p['max_hp']}", tpal.hud_default),
-            ("Energia", f"{energy_now}", tpal.hud_energy),
-            ("Turno", f"{self.c.turn}", tpal.hud_gold),
+            ("VIT", f"{p['hp']}/{p['max_hp']}", tpal.hud_default),
+            ("BLK", f"{player_block}", tpal.hud_block if player_block > 0 else tpal.muted),
+            ("ENE", f"{energy_now}", tpal.hud_energy),
+            ("TRN", f"{self.c.turn}", tpal.hud_gold),
         ]
         for idx, (title, val, col) in enumerate(row1):
-            chip = pygame.Rect(left_x + idx * (chip_w + 8), row1_y, chip_w, 48)
+            chip = pygame.Rect(left_x + idx * (chip_w4 + 8), row1_y, chip_w4, 48)
             _chip(chip, title, val, col)
-            if title == "Energia":
+            if title == "ENE":
                 orb_cap = max(3, min(8, energy_cap))
                 start_x = chip.centerx - ((orb_cap - 1) * 18) // 2
                 orb_y = chip.bottom - 9
                 self.mana_orbs.draw(s, start_x, orb_y, energy_now, max_mana=orb_cap, buffed=energy_buffed)
 
+        dmg_cue = self._player_attack_cue()
+        dmg_txt = str(dmg_cue) if dmg_cue > 0 else "--"
         row2 = [
             ("Mazo", f"{draw_n}", tpal.muted),
             ("Mano", f"{hand_n}", tpal.muted),
             ("Ecos", f"{disc_n}", tpal.muted),
+            ("Golpe", dmg_txt, tpal.hud_damage if dmg_cue > 0 else tpal.muted),
         ]
         for idx, (title, val, col) in enumerate(row2):
-            _chip(pygame.Rect(left_x + idx * (chip_w + 8), row2_y, chip_w, 42), title, val, col)
+            _chip(pygame.Rect(left_x + idx * (chip_w4 + 8), row2_y, chip_w4, 42), title, val, col)
 
         h_cur = int(p.get("harmony_current", 0) or 0)
         h_max = max(1, int(p.get("harmony_max", 10) or 10))
@@ -1249,3 +1317,8 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+
+
+
+
