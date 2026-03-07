@@ -4,6 +4,8 @@ from game.ui.components.card_preview_panel import CardPreviewPanel
 from game.ui.components.card_effect_summary import summarize_card_effect
 from game.ui.theme import UI_THEME, UI_SAFE_BOTTOM, UI_SAFE_SIDE
 from game.ui.components.pixel_icons import draw_icon_with_value
+from game.ui.system.components import UIPanel, UIButton
+from game.ui.system.colors import UColors
 
 
 class RewardScreen:
@@ -184,8 +186,7 @@ class RewardScreen:
         self.reveal_t = min(1.0, self.reveal_t + dt * 2.2)
 
     def _draw_header(self, s, frame):
-        pygame.draw.rect(s, (24, 18, 36), frame, border_radius=16)
-        pygame.draw.rect(s, UI_THEME["gold"], frame, 2, border_radius=16)
+        UIPanel(frame, variant="alt").draw(s)
         title = {
             "choose1of3": "Recompensa",
             "boss_pack": "Botín del Jefe",
@@ -199,7 +200,7 @@ class RewardScreen:
         s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (frame.x + 34, frame.y + 18))
         s.blit(self.app.small_font.render(subtitle, True, UI_THEME["text"]), (frame.x + 36, frame.y + 68))
         if self.mode != "guide_choice":
-            s.blit(self.app.small_font.render(f"+{self.gold} oro • +{self.xp_gained} XP", True, UI_THEME["good"]), (frame.x + 36, frame.y + 102))
+            s.blit(self.app.small_font.render(f"+{self.gold} oro • +{self.xp_gained} XP", True, UColors.SUCCESS), (frame.x + 36, frame.y + 102))
 
     def _draw_cards_mode(self, s):
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
@@ -264,7 +265,7 @@ class RewardScreen:
             pygame.draw.rect(s, UI_THEME["panel"], r, border_radius=12)
             pygame.draw.rect(s, UI_THEME["gold"] if sel else UI_THEME["accent_violet"], r, 3 if sel else 2, border_radius=12)
             s.blit(self.app.small_font.render(opt.get("title", f"Opción {i+1}"), True, UI_THEME["gold"]), (r.x + 14, r.y + 12))
-            s.blit(self.app.tiny_font.render(opt.get("effect_label", ""), True, UI_THEME["good"]), (r.x + 16, r.y + 44))
+            s.blit(self.app.tiny_font.render(opt.get("effect_label", ""), True, UColors.SUCCESS), (r.x + 16, r.y + 44))
             for j, ln in enumerate(self._wrap(self.app.tiny_font, opt.get("lore", ""), r.w - 28, 2)):
                 s.blit(self.app.tiny_font.render(ln, True, UI_THEME["muted"]), (r.x + 16, r.y + 72 + j * 18))
 
@@ -283,19 +284,16 @@ class RewardScreen:
             self.preview.render(s, self.right_rect, preview_card, app=self.app)
 
         confirm_enabled = self._confirm_enabled()
-        pygame.draw.rect(s, UI_THEME["violet"] if confirm_enabled else (84, 76, 106), self.confirm_rect, border_radius=10)
-        pygame.draw.rect(s, UI_THEME["gold"], self.confirm_rect, 2, border_radius=10)
         label = "Continuar" if self.mode == "guide_choice" else ("Confirmar" if self.mode != "boss_pack" else "Tomar recompensas")
-        lbl = self.app.font.render(label, True, UI_THEME["text"])
-        s.blit(lbl, (self.confirm_rect.centerx - lbl.get_width() // 2, self.confirm_rect.y + 16))
+        confirm_btn = UIButton(self.confirm_rect, label, role="seal", premium=True)
+        confirm_btn.disabled = not confirm_enabled
+        confirm_btn.draw(s, self.app.font)
 
-        pygame.draw.rect(s, UI_THEME["panel_2"], self.back_rect, border_radius=10)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], self.back_rect, 2, border_radius=10)
-        back_lbl = self.app.font.render("Volver", True, UI_THEME["text"])
-        s.blit(back_lbl, (self.back_rect.centerx - back_lbl.get_width() // 2, self.back_rect.y + 16))
+        back_btn = UIButton(self.back_rect, "Volver", role="default", premium=False)
+        back_btn.draw(s, self.app.font)
 
         if self.msg:
-            s.blit(self.app.small_font.render(self.msg, True, UI_THEME["good"]), (self.left_rect.x, self.confirm_rect.y - 30))
+            s.blit(self.app.small_font.render(self.msg, True, UColors.SUCCESS), (self.left_rect.x, self.confirm_rect.y - 30))
 
         if self.reveal_t < 1.0:
             ov = pygame.Surface(s.get_size(), pygame.SRCALPHA)

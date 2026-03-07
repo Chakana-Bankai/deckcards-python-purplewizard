@@ -1,12 +1,14 @@
-import json
+﻿import json
 from pathlib import Path
 
 import pygame
 
 from game.ui.components.modal_confirm import ModalConfirm
-from game.ui.theme import UI_THEME
+from game.ui.system.brand import ChakanaBrand
+from game.ui.system.colors import UColors
+from game.ui.system.components import UIButton, UIPanel
+from game.ui.system.fonts import get_title_font, get_ui_font
 from game.ui.ui_layout import centered_column
-from game.ui.widgets import Button
 
 
 DEFAULT_VERSION_LINE = "v0.0.0-dev"
@@ -17,14 +19,17 @@ class MenuScreen:
         self.app = app
         rects = centered_column(5, width=440, height=66, gap=14, y_start=280)
         self.buttons = [
-            Button(rects[0], "menu_play", self.start_run, key="menu_new"),
-            Button(rects[1], "menu_continue", self.continue_run, key="menu_continue"),
-            Button(rects[2], "menu_back", self.go_back, key="menu_back"),
-            Button(rects[3], "menu_settings", self.open_settings, key="menu_settings"),
-            Button(rects[4], "menu_exit", self.exit_game, key="menu_quit"),
+            {"rect": pygame.Rect(rects[0]), "text_key": "menu_play", "cb": self.start_run, "key": "menu_new"},
+            {"rect": pygame.Rect(rects[1]), "text_key": "menu_continue", "cb": self.continue_run, "key": "menu_continue"},
+            {"rect": pygame.Rect(rects[2]), "text_key": "menu_back", "cb": self.go_back, "key": "menu_back"},
+            {"rect": pygame.Rect(rects[3]), "text_key": "menu_settings", "cb": self.open_settings, "key": "menu_settings"},
+            {"rect": pygame.Rect(rects[4]), "text_key": "menu_exit", "cb": self.exit_game, "key": "menu_quit"},
         ]
         self.modal = ModalConfirm()
         self.version_line = self._load_version_line()
+        self.title_font = get_title_font(max(48, ChakanaBrand.TITLE_FONT_SIZE))
+        self.button_font = get_ui_font(24)
+        self.meta_font = get_ui_font(18)
 
     def _load_version_line(self):
         path = Path(__file__).resolve().parents[2] / "data" / "version.json"
@@ -39,15 +44,15 @@ class MenuScreen:
                 return DEFAULT_VERSION_LINE
             line = f"v{version}"
             if build:
-                line += f" • {build}"
+                line += f" | {build}"
             if date:
-                line += f" • {date}"
+                line += f" | {date}"
             return line
         except Exception:
             return DEFAULT_VERSION_LINE
 
-    def _is_button_visible(self, button, index):
-        bkey = getattr(button, "key", None)
+    def _is_button_visible(self, item, index):
+        bkey = item.get("key")
         if (bkey == "menu_continue" or (bkey is None and index == 1)) and not self.app.run_state:
             return False
         if (bkey == "menu_back" or (bkey is None and index == 2)) and self.app.menu_return_screen is None:
@@ -55,7 +60,7 @@ class MenuScreen:
         return True
 
     def start_run(self):
-        self.modal.show("Se iniciará un nuevo viaje.", on_yes=self.app.new_run)
+        self.modal.show("Se iniciara un nuevo viaje.", on_yes=self.app.new_run)
 
     def continue_run(self):
         if self.app.run_state:
@@ -70,7 +75,7 @@ class MenuScreen:
         self.app.goto_settings()
 
     def exit_game(self):
-        self.modal.show("¿Salir del juego?", on_yes=lambda: setattr(self.app, "running", False))
+        self.modal.show("Salir del juego?", on_yes=lambda: setattr(self.app, "running", False))
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
@@ -80,11 +85,13 @@ class MenuScreen:
             if self.modal.open:
                 self.modal.handle_event(pos)
                 return
-            for i, b in enumerate(self.buttons):
-                if not self._is_button_visible(b, i):
+            for i, item in enumerate(self.buttons):
+                if not self._is_button_visible(item, i):
                     continue
-                if b.handle_click(pos):
+                if item["rect"].collidepoint(pos):
+                    item["cb"]()
                     self.app.sfx.play("ui_click")
+                    return
 
     def update(self, dt):
         pass
@@ -92,14 +99,18 @@ class MenuScreen:
     def render(self, surface):
         self.app.bg_gen.render_parallax(surface, "Ruinas Chakana", 2026, pygame.time.get_ticks() * 0.02, particles_on=self.app.user_settings.get("fx_particles", True))
 
-        title = self.app.big_font.render(self.app.design_value("CANON_MENU_TITLE", "CHAKANA: Purple Wizard"), True, UI_THEME["gold"])
-        surface.blit(title, title.get_rect(center=(960, 112)))
+        title_rect = pygame.Rect(220, 36, 1480, 132)
+        UIPanel(title_rect, variant="alt").draw(surface)
+        title = self.title_font.render(self.app.design_value("CANON_MENU_TITLE", "CHAKANA: Purple Wizard"), True, UColors.HARMONY)
+        surface.blit(title, title.get_rect(center=(960, 102)))
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
-        for i, b in enumerate(self.buttons):
-            if not self._is_button_visible(b, i):
+        for i, item in enumerate(self.buttons):
+            if not self._is_button_visible(item, i):
                 continue
-            b.draw(surface, self.app.font, self.app.loc, UI_THEME, b.rect.collidepoint(mouse))
+            label = self.app.loc.t(item["text_key"])
+            btn = UIButton(item["rect"], label, role="end_turn", premium=True)
+            btn.draw(surface, self.button_font, hovered=item["rect"].collidepoint(mouse))
 
-        surface.blit(self.app.tiny_font.render(self.version_line, True, UI_THEME["muted"]), (24, 1048))
-        self.modal.render(surface, self.app.font, self.app.small_font)
+        surface.blit(self.meta_font.render(self.version_line, True, UColors.MUTED), (24, 1048))
+        self.modal.render(surface, self.button_font, self.app.small_font)

@@ -3,6 +3,9 @@ import pygame
 from game.settings import INTERNAL_HEIGHT, INTERNAL_WIDTH
 from game.ui.components.topbar import MapTopBar
 from game.ui.theme import UI_THEME
+from game.ui.system.components import UIPanel
+from game.ui.system.colors import UColors
+from game.ui.system.layout import safe_area
 
 
 class MapScreen:
@@ -147,7 +150,8 @@ class MapScreen:
         xp_need = max(1, lvl * 20)
         gold = int(run.get("gold", 0) or 0)
 
-        topbar = pygame.Rect(18, 16, INTERNAL_WIDTH - 36, 98)
+        viewport = safe_area(INTERNAL_WIDTH, INTERNAL_HEIGHT, 18, 18)
+        topbar = pygame.Rect(viewport.x, 16, viewport.w, 98)
         chapter = f"Pacha {stage_idx + 1}"
         subtitle = "Ruta viva de la Trama"
         self.topbar.render(s, self.app, topbar, chapter, stage_title, subtitle, "")
@@ -167,7 +171,7 @@ class MapScreen:
         chip_y = topbar.y + 56
         for (txt, col), cw in zip(chip_specs, chip_ws):
             chip = pygame.Rect(chip_x, chip_y, cw, chip_h)
-            pygame.draw.rect(s, UI_THEME["panel_2"], chip, border_radius=8)
+            pygame.draw.rect(s, UColors.PANEL_ALT, chip, border_radius=8)
             pygame.draw.rect(s, col, chip, 1, border_radius=8)
             s.blit(self.app.tiny_font.render(txt, True, col), (chip.x + 9, chip.y + 5))
             chip_x += cw + gap
@@ -182,8 +186,7 @@ class MapScreen:
         center_rect = pygame.Rect(left_rect.right + 16, 130, right_rect.x - (left_rect.right + 32), INTERNAL_HEIGHT - 222)
 
         for r in (left_rect, center_rect, right_rect):
-            pygame.draw.rect(s, UI_THEME["panel"], r, border_radius=16)
-            pygame.draw.rect(s, UI_THEME["accent_violet"], r, 2, border_radius=16)
+            UIPanel(r).draw(s)
 
         s.blit(self.app.small_font.render("Trama", True, UI_THEME["gold"]), (left_rect.x + 16, left_rect.y + 14))
         stage_line = self._fit_text(self.app.tiny_font, stage_title, left_rect.w - 32)

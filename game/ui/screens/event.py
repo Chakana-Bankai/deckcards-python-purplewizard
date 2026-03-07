@@ -3,6 +3,7 @@ import pygame
 from game.systems.reward_system import build_reward_guide
 from game.ui.anim import TypewriterBanner
 from game.ui.theme import UI_THEME
+from game.ui.system.components import UIPanel, UIButton
 
 
 class EventScreen:
@@ -58,8 +59,7 @@ class EventScreen:
     def render(self, s):
         self.app.bg_gen.render_parallax(s, "Pampa Astral", 2048, pygame.time.get_ticks() * 0.02, particles_on=self.app.user_settings.get("fx_particles", True))
         panel = pygame.Rect(80, 120, 1760, 850)
-        pygame.draw.rect(s, (34, 24, 52), panel, border_radius=16)
-        pygame.draw.rect(s, UI_THEME["gold"], panel, 2, border_radius=16)
+        UIPanel(panel, variant="alt").draw(s)
 
         title = self.app.loc.t(self.event.get("title_key", "event_title"))
         s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (120, 148))
@@ -71,8 +71,7 @@ class EventScreen:
         s.blit(av, (140, 250))
 
         text_box = pygame.Rect(520, 230, 1280, 420)
-        pygame.draw.rect(s, UI_THEME["panel_2"], text_box, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], text_box, 2, border_radius=12)
+        UIPanel(text_box, variant="alt").draw(s)
         guide_name = self.guide_names.get(self.guide_type, "Guia")
         s.blit(self.app.small_font.render(guide_name, True, UI_THEME["gold"]), (548, 246))
         s.blit(self.app.tiny_font.render("Lore breve", True, UI_THEME["muted"]), (548, 274))
@@ -89,10 +88,8 @@ class EventScreen:
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         for i, ch in enumerate(self.event.get("choices", [])[:3]):
             r = pygame.Rect(530, 720 + i * 92, 1260, 74)
-            col = UI_THEME["panel_2"] if r.collidepoint(mouse) else UI_THEME["panel"]
-            pygame.draw.rect(s, col, r, border_radius=12)
-            pygame.draw.rect(s, UI_THEME["accent_violet"], r, 2, border_radius=12)
-            s.blit(self.app.font.render(self.app.loc.t(ch.get("text_key", "event_continue")), True, UI_THEME["text"]), (560, r.y + 22))
+            label = self.app.loc.t(ch.get("text_key", "event_continue"))
+            UIButton(r, label, role="end_turn", premium=False).draw(s, self.app.font, hovered=r.collidepoint(mouse))
 
         if self.msg:
             s.blit(self.app.small_font.render(self.msg, True, UI_THEME["good"]), (540, 688))

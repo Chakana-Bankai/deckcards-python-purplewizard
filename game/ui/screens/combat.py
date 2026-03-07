@@ -20,6 +20,9 @@ from game.ui.controllers.combat_dialogue_controller import CombatDialogueControl
 from game.ui.controllers.dialogue_router import DialogueRouter
 from game.ui.layout.combat_layout import build_combat_layout
 from game.ui.theme import UI_THEME
+from game.ui.system.layers import Layers
+from game.ui.system.components import UIPanel, UITooltip
+from game.ui.system.colors import UColors
 from game.ui.components.topbar import CombatTopBar
 from game.ui.components.pixel_icons import draw_icon_with_value
 from game.telemetry.logger import TelemetryLogger
@@ -943,7 +946,7 @@ class CombatScreen:
     def render(self, s):
         self._refresh_layout(s)
 
-        # LAYER 1: background
+        # LAYER 1: background (Layers.LAYER_BACKGROUND)
         self.app.bg_gen.render_parallax(
             s,
             self.selected_biome,
@@ -953,11 +956,10 @@ class CombatScreen:
             particles_on=self.app.user_settings.get("fx_particles", True),
         )
 
-        # LAYER 2: board
+        # LAYER 2: board (Layers.LAYER_BOARD)
         left, center, subtitle, timer_text, turn_text = self._topbar_narrative()
         self.topbar.render(s, self.app, self.layout, left, center, subtitle, timer_text, turn_text)
-        pygame.draw.rect(s, UI_THEME["panel"], self.layout.enemy_strip_rect, border_radius=14)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.enemy_strip_rect, 2, border_radius=14)
+        UIPanel(self.layout.enemy_strip_rect).draw(s)
 
         enemy_count = max(1, len(self.c.enemies))
         inner_strip = self.layout.enemy_strip_rect.inflate(-24, -18)
@@ -1032,8 +1034,7 @@ class CombatScreen:
                 s.blit(wobble, (avatar_rect.centerx - wobble_w // 2, avatar_rect.bottom - 4))
 
         narrative_rect = self.layout.voices_rect
-        pygame.draw.rect(s, UI_THEME["panel"], narrative_rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], narrative_rect, 2, border_radius=12)
+        UIPanel(narrative_rect).draw(s)
         e_line = self.dialog_enemy.current or "(el enemigo contiene la respiracion...)"
         h_line = self.dialog_hero.current or "(Chakana escucha la Trama...)"
         line_w = narrative_rect.w - 34
@@ -1061,7 +1062,7 @@ class CombatScreen:
                 s.blit(self.app.tiny_font.render(ln, True, UI_THEME["text"]), (row.x + 10 + dx, yy))
                 yy += 16
 
-        # LAYER 3-4: hud and cards
+        # LAYER 3-4: hud and cards (Layers.LAYER_HUD, Layers.LAYER_CARDS)
         hand = self.c.hand[:6]
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.hover_card_index = None
@@ -1071,8 +1072,7 @@ class CombatScreen:
         self.ctrl.on_hover(self.hover_card_index)
 
         detail_rect = self.layout.card_detail
-        pygame.draw.rect(s, UI_THEME["panel"], detail_rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], detail_rect, 2, border_radius=12)
+        UIPanel(detail_rect, variant="alt").draw(s)
         panel_x = detail_rect.x + 14
         panel_y = detail_rect.y + 14
         panel_w = detail_rect.w - 26
@@ -1090,8 +1090,7 @@ class CombatScreen:
             if panel_y > detail_rect.bottom - 24:
                 break
 
-        pygame.draw.rect(s, UI_THEME["panel"], self.layout.hand_rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.hand_rect, 2, border_radius=12)
+        UIPanel(self.layout.hand_rect).draw(s)
 
         hand_inner = self.layout.hand_rect.inflate(-8, -8)
         pygame.draw.rect(s, UI_THEME["panel"], hand_inner, border_radius=10)
@@ -1120,8 +1119,7 @@ class CombatScreen:
             rr.y = max(self.layout.topbar_rect.bottom + 8, min(self.layout.actions_rect.y - rr.h - 8, rr.y))
             hover_payload = (i, card, rr)
 
-        pygame.draw.rect(s, UI_THEME["panel"], self.layout.playerhud_rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.playerhud_rect, 2, border_radius=12)
+        UIPanel(self.layout.playerhud_rect).draw(s)
         p = self.c.player
         pc = self._pile_counts()
         draw_n = pc["draw"]
@@ -1215,15 +1213,14 @@ class CombatScreen:
             pygame.draw.rect(s, UI_THEME["panel_2"], self.harmony_seal_rect, border_radius=7)
             s.blit(self.app.tiny_font.render("SELLO", True, UI_THEME["muted"]), (self.harmony_seal_rect.x + 34, self.harmony_seal_rect.y + 5))
 
-        pygame.draw.rect(s, UI_THEME["panel"], self.layout.actions_rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], self.layout.actions_rect, 2, border_radius=12)
+        UIPanel(self.layout.actions_rect).draw(s)
         state, label, disabled, _reason = self._resolve_action_state()
 
         state_ui = {
-            "EXECUTE": ("EJECUTAR CARTA", (220, 68, 120), (255, 88, 146), UI_THEME["text"]),
-            "RELEASE_SEAL": ("LIBERAR SELLO", (192, 132, 246), (246, 206, 112), UI_THEME["text"]),
-            "END_TURN": ("FIN DEL TURNO", UI_THEME["gold"], (244, 220, 154), UI_THEME["text_dark"]),
-            "INVALID": ("ACCION INVALIDA", (116, 102, 130), (144, 126, 162), UI_THEME["text"]),
+            "EXECUTE": ("EJECUTAR CARTA", UColors.ROLE["execute"], (255, 88, 146), UI_THEME["text"]),
+            "RELEASE_SEAL": ("LIBERAR SELLO", UColors.ROLE["seal"], (246, 206, 112), UI_THEME["text"]),
+            "END_TURN": ("FIN DEL TURNO", UColors.ROLE["end_turn"], (244, 220, 154), UI_THEME["text_dark"]),
+            "INVALID": ("ACCION INVALIDA", UColors.ROLE["invalid"], (144, 126, 162), UI_THEME["text"]),
         }
         state_label, base_col, glow_col, text_col = state_ui.get(state, state_ui["END_TURN"])
 
@@ -1261,7 +1258,7 @@ class CombatScreen:
             while self.app.tiny_font.size(line)[0] > feedback_rect.w - 10 and len(line) > 4:
                 line = line[:-4] + "..."
             s.blit(self.app.tiny_font.render(line, True, (242, 188, 202)), (feedback_rect.x + 6, feedback_rect.y + 2))
-        # LAYER 5-6: overlays/tooltips
+        # LAYER 5-6: overlays/tooltips (Layers.LAYER_MODALS, Layers.LAYER_TOOLTIPS)
         if hover_payload is not None:
             i, card, rr = hover_payload
             shadow_rect = rr.inflate(28, 28)
@@ -1282,13 +1279,8 @@ class CombatScreen:
             tip_rect = pygame.Rect(rr.centerx - tip_w // 2, rr.y - 34, tip_w, 28)
             if tip_rect.y < self.layout.topbar_rect.bottom + 8:
                 tip_rect.y = rr.bottom + 6
-            tip_rect.x = max(8, min(s.get_width() - tip_rect.w - 8, tip_rect.x))
-            pygame.draw.rect(s, UI_THEME["deep_purple"], tip_rect, border_radius=8)
-            pygame.draw.rect(s, UI_THEME["accent_violet"], tip_rect, 1, border_radius=8)
-            line = tip
-            while self.app.tiny_font.size(line)[0] > tip_rect.w - 12 and len(line) > 4:
-                line = line[:-4] + "..."
-            s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (tip_rect.x + 6, tip_rect.y + 6))
+            tip = tip or "Efecto"
+            UITooltip(tip_rect, tip).draw(s, self.app.tiny_font)
 
         if DEBUG_UI:
             pygame.draw.rect(s, UI_THEME["gold"], self.layout.voices_panel, 2)

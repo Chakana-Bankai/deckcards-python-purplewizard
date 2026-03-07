@@ -4,6 +4,7 @@ import pygame
 from game.settings import INTERNAL_WIDTH
 from game.ui.components.pixel_icons import draw_icon_with_value
 from game.ui.theme import UI_THEME
+from game.ui.system.components import UIPanel, UIButton
 
 
 class PathSelectScreen:
@@ -223,7 +224,7 @@ class PathSelectScreen:
             rr.center = r.center
 
             accent = accents[i % len(accents)]
-            pygame.draw.rect(s, UI_THEME["panel"], rr, border_radius=14)
+            UIPanel(rr, variant="alt" if selected else "default").draw(s)
             border = UI_THEME["gold"] if selected else accent
             bw = 4 if selected else 2
             pygame.draw.rect(s, border, rr, bw, border_radius=14)
@@ -263,19 +264,17 @@ class PathSelectScreen:
         confirm_enabled = self._confirm_enabled()
         confirm_fill = UI_THEME["violet"] if confirm_enabled else (84, 76, 106)
         confirm_border = UI_THEME["gold"] if confirm_enabled else UI_THEME["muted"]
-        pygame.draw.rect(s, confirm_fill, self.confirm_rect, border_radius=12)
-        pygame.draw.rect(s, confirm_border, self.confirm_rect, 2, border_radius=12)
-
         if confirm_enabled:
             chosen = self.options[self.selected_index]["name"]
             ctext = f"Confirmar mazo: {chosen}"
         else:
             ctext = "Selecciona un mazo para confirmar"
-        txt = self.app.small_font.render(self._fit(self.app.small_font, ctext, self.confirm_rect.w - 20), True, UI_THEME["text"])
-        s.blit(txt, txt.get_rect(center=self.confirm_rect.center))
+        ctext = self._fit(self.app.small_font, ctext, self.confirm_rect.w - 20)
 
-        pygame.draw.rect(s, UI_THEME["panel_2"], self.cancel_rect, border_radius=12)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], self.cancel_rect, 2, border_radius=12)
-        cxl = self.app.small_font.render("Cancelar", True, UI_THEME["text"])
-        s.blit(cxl, cxl.get_rect(center=self.cancel_rect.center))
+        confirm_btn = UIButton(self.confirm_rect, ctext, role="seal", premium=True)
+        confirm_btn.disabled = not confirm_enabled
+        confirm_btn.draw(s, self.app.small_font)
+
+        cancel_btn = UIButton(self.cancel_rect, "Cancelar", role="default", premium=False)
+        cancel_btn.draw(s, self.app.small_font)
 
