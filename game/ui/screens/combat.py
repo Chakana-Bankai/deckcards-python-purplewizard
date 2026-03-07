@@ -1160,13 +1160,20 @@ class CombatScreen:
             i = self.hover_card_index
             card = hand[i]
             base_hover = self._card_rect(i, len(hand))
-            ww = int(base_hover.w * 1.42)
-            hh = int(base_hover.h * 1.42)
+            # Contained hover: scale in place, slight lift, minimal drift.
+            ww = int(base_hover.w * 1.22)
+            hh = int(base_hover.h * 1.22)
             rr = pygame.Rect(0, 0, ww, hh)
             rr.centerx = base_hover.centerx
-            rr.centery = base_hover.centery - 44
-            rr.x = max(8, min(s.get_width() - rr.w - 8, rr.x))
-            rr.y = max(self.layout.topbar_rect.bottom + 8, min(self.layout.actions_rect.y - rr.h - 8, rr.y))
+            rr.centery = base_hover.centery - 20
+            safe_overlay = pygame.Rect(
+                self.layout.hand_rect.x + 4,
+                self.layout.playerhud_rect.y + 4,
+                self.layout.hand_rect.w - 8,
+                self.layout.hand_rect.bottom - (self.layout.playerhud_rect.y + 4),
+            )
+            rr.x = max(safe_overlay.x, min(safe_overlay.right - rr.w, rr.x))
+            rr.y = max(safe_overlay.y, min(safe_overlay.bottom - rr.h, rr.y))
             hover_payload = (i, card, rr)
 
         UIPanel(self.layout.playerhud_rect).draw(s)
@@ -1320,13 +1327,13 @@ class CombatScreen:
         # LAYER 5-6: overlays/tooltips (Layers.LAYER_MODALS, Layers.LAYER_TOOLTIPS)
         if hover_payload is not None:
             i, card, rr = hover_payload
-            shadow_rect = rr.inflate(28, 28)
+            shadow_rect = rr.inflate(18, 18)
             shadow = pygame.Surface((shadow_rect.w, shadow_rect.h), pygame.SRCALPHA)
             pygame.draw.rect(shadow, (0, 0, 0, 132), shadow.get_rect(), border_radius=22)
             s.blit(shadow, shadow_rect.topleft)
-            hover_glow = pygame.Surface((rr.w + 18, rr.h + 18), pygame.SRCALPHA)
-            pygame.draw.rect(hover_glow, (232, 198, 255, 108), hover_glow.get_rect(), border_radius=20)
-            s.blit(hover_glow, (rr.x - 9, rr.y - 9))
+            hover_glow = pygame.Surface((rr.w + 12, rr.h + 12), pygame.SRCALPHA)
+            pygame.draw.rect(hover_glow, (232, 198, 255, 88), hover_glow.get_rect(), border_radius=16)
+            s.blit(hover_glow, (rr.x - 6, rr.y - 6))
 
             fam = getattr(card.definition, "family", "violet_arcane")
             self._draw_card(s, rr, card, selected=(i == self.ctrl.selected_index), family=fam, hovered=True)
@@ -1334,7 +1341,7 @@ class CombatScreen:
 
             summary = summarize_card_effect(card.definition, card_instance=card, ctx=self.c)
             tip = str(summary.get("header") or "Efecto")
-            tip_w = min(520, s.get_width() - 16)
+            tip_w = min(360, max(220, rr.w - 24))
             tip_rect = pygame.Rect(rr.centerx - tip_w // 2, rr.y - 34, tip_w, 28)
             if tip_rect.y < self.layout.topbar_rect.bottom + 8:
                 tip_rect.y = rr.bottom + 6
