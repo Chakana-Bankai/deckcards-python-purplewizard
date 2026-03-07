@@ -15,6 +15,7 @@ class CombatLayout:
     hand_area: pygame.Rect
     actions_panel: pygame.Rect
     player_hud: pygame.Rect
+    harmony_core: pygame.Rect
     card_detail: pygame.Rect
 
     @property
@@ -41,14 +42,18 @@ class CombatLayout:
     def playerhud_rect(self) -> pygame.Rect:
         return self.player_hud
 
+    @property
+    def harmony_rect(self) -> pygame.Rect:
+        return self.harmony_core
+
 
 def build_combat_layout(w: int, h: int) -> CombatLayout:
     pad = max(12, int(min(w, h) * 0.02))
-    top_h = max(74, int(h * 0.09))
-    enemy_h = max(260, int(h * 0.32))
-    center_h = max(120, int(h * 0.14))
-    lower_h = max(220, int(h * 0.24))
-    actions_h = max(104, int(h * 0.12))
+    top_h = max(74, int(h * 0.085))
+    enemy_h = max(250, int(h * 0.30))
+    center_h = max(108, int(h * 0.12))
+    status_h = max(150, int(h * 0.18))
+    hand_h = max(190, int(h * 0.22))
 
     topbar_full = pygame.Rect(0, 0, w, top_h)
     left_w = int(topbar_full.w * 0.22)
@@ -61,16 +66,22 @@ def build_combat_layout(w: int, h: int) -> CombatLayout:
     enemy_strip = pygame.Rect(pad, topbar_full.bottom + pad, w - 2 * pad, enemy_h)
 
     center_y = enemy_strip.bottom + pad
-    voices_w = int((w - 3 * pad) * 0.54)
+    voices_w = int((w - 3 * pad) * 0.46)
     voices_panel = pygame.Rect(pad, center_y, voices_w, center_h)
     card_detail = pygame.Rect(voices_panel.right + pad, center_y, w - (voices_panel.right + pad) - pad, center_h)
 
-    actions_y = h - pad - actions_h
-    hand_y = actions_y - pad - lower_h
-    hand_w = int((w - 3 * pad) * 0.64)
-    hand_area = pygame.Rect(pad, hand_y, hand_w, lower_h)
-    player_hud = pygame.Rect(hand_area.right + pad, hand_area.y, w - (hand_area.right + pad) - pad, lower_h)
-    actions_panel = pygame.Rect(pad, actions_y, w - 2 * pad, actions_h)
+    hand_y = h - pad - hand_h
+    hand_area = pygame.Rect(pad, hand_y, w - 2 * pad, hand_h)
+
+    status_y = hand_area.y - pad - status_h
+    total_w = w - 2 * pad
+    player_w = int(total_w * 0.38)
+    harmony_w = int(total_w * 0.24)
+    action_w = total_w - player_w - harmony_w - 2 * pad
+
+    player_hud = pygame.Rect(pad, status_y, player_w, status_h)
+    harmony_core = pygame.Rect(player_hud.right + pad, status_y, harmony_w, status_h)
+    actions_panel = pygame.Rect(harmony_core.right + pad, status_y, action_w, status_h)
 
     return CombatLayout(
         topbar_left=topbar_left,
@@ -81,5 +92,6 @@ def build_combat_layout(w: int, h: int) -> CombatLayout:
         hand_area=hand_area,
         actions_panel=actions_panel,
         player_hud=player_hud,
+        harmony_core=harmony_core,
         card_detail=card_detail,
     )
