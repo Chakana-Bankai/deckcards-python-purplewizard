@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import traceback
 import shutil
@@ -49,6 +49,7 @@ from game.ui.screens.intro import IntroScreen
 from game.ui.screens.studio_intro import StudioIntroScreen
 from game.ui.screens.pacha_transition import PachaTransitionScreen
 from game.ui.screens.tutorial import TutorialScreen
+from game.ui.tutorial_flow import TutorialFlowController
 from game.ui.system.typography import ChakanaTypography, SMALL_FONT
 from game.version import VERSION
 from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION
@@ -148,6 +149,9 @@ class App:
         self.audio_pipeline = AudioPipeline()
         self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
         self.user_settings.setdefault("detail_panel", False)
+        self.user_settings.setdefault("tutorial_completed", False)
+        self.pending_tutorial_enabled = False
+        self.tutorial_flow = TutorialFlowController()
         self._boot_content_ready = False
 
         self.validate_navigation_methods()
@@ -470,7 +474,22 @@ class App:
         self.sm.set(TutorialScreen(self, next_fn=self.goto_path_select))
 
     def new_run(self):
-        self.goto_tutorial()
+        self.pending_tutorial_enabled = not bool(self.user_settings.get("tutorial_completed", False))
+        self.goto_path_select()
+
+    def _sync_tutorial_run_state(self):
+        if not isinstance(self.run_state, dict):
+            return
+        self.run_state["tutorial"] = self.tutorial_flow.snapshot()
+
+    def mark_tutorial_completed(self):
+        if not getattr(self.tutorial_flow, "completed", False):
+            return
+        self.user_settings["tutorial_completed"] = True
+        self.pending_tutorial_enabled = False
+        self._sync_tutorial_run_state()
+        save_settings(self.user_settings)
+        print("[tutorial] completed: first-run guide disabled")
 
     def start_run_with_deck(self, starter_deck):
         base_deck = list(starter_deck or [])
@@ -483,6 +502,9 @@ class App:
         while len(base_deck) < min_deck_size:
             base_deck.append(base_deck[len(base_deck) % len(base_deck)])
         base_deck = base_deck[:max_deck_size]
+
+        tutorial_enabled = bool(self.pending_tutorial_enabled)
+        self.tutorial_flow.start_for_run(tutorial_enabled)
 
         self.run_state = {
             "gold": 80,
@@ -501,6 +523,7 @@ class App:
                 "music_muted": bool(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False))),
             },
         }
+        self._sync_tutorial_run_state()
         self.goto_map()
 
     def generate_map(self):
@@ -1116,11 +1139,3 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
-
-
-
-
-
-
-
-

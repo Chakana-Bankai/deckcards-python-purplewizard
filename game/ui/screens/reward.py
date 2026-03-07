@@ -1,3 +1,4 @@
+import math
 import pygame
 
 from game.ui.system.modals import CardGridModal, ChoiceModal
@@ -34,7 +35,11 @@ class RewardScreen:
         self.choice_modal.on_cancel = self._modal_cancel
 
     def on_enter(self):
-        pass
+        flow = getattr(self.app, "tutorial_flow", None)
+        if flow is not None:
+            flow.on_reward_enter()
+            if hasattr(self.app, "_sync_tutorial_run_state"):
+                self.app._sync_tutorial_run_state()
 
     def _mode_title_subtitle(self):
         title = {
@@ -93,7 +98,24 @@ class RewardScreen:
                 deck = self.app.run_state.get("deck", [])
                 if deck:
                     deck.pop(self.app.rng.randint(0, len(deck) - 1))
+        self._tutorial_reward_confirmed()
         self.app.goto_map()
+
+    def _tutorial_reward_confirmed(self):
+        flow = getattr(self.app, "tutorial_flow", None)
+        if flow is None:
+            return
+        flow.on_reward_confirmed()
+        if flow.consume_completed() and hasattr(self.app, "mark_tutorial_completed"):
+            self.app.mark_tutorial_completed()
+        elif hasattr(self.app, "_sync_tutorial_run_state"):
+            self.app._sync_tutorial_run_state()
+
+    def _tutorial_hint(self):
+        flow = getattr(self.app, "tutorial_flow", None)
+        if flow is None:
+            return None
+        return flow.current_hint("reward")
 
     def confirm(self):
         if self.mode == "choose1of3":
@@ -103,6 +125,7 @@ class RewardScreen:
             card = self.cards[self.selected_idx]
             self.app.run_state["sideboard"].append(card.definition.id)
             self.app.run_state["gold"] += self.gold
+            self._tutorial_reward_confirmed()
             self.app.goto_map()
             return
 
@@ -112,6 +135,7 @@ class RewardScreen:
             if isinstance(self.relic, dict) and self.relic.get("id"):
                 self.app.run_state.setdefault("relics", []).append(self.relic["id"])
             self.app.run_state["gold"] += self.gold
+            self._tutorial_reward_confirmed()
             self.app.goto_end(victory=True)
             return
 
@@ -166,13 +190,41 @@ class RewardScreen:
     def update(self, dt):
         _ = dt
 
+    def _render_tutorial_hint(self, s):
+        hint = self._tutorial_hint()
+        if not hint:
+            return
+        focus = pygame.Rect(260, 176, 1400, 760)
+        shade = pygame.Surface((s.get_width(), s.get_height()), pygame.SRCALPHA)
+        shade.fill((8, 6, 16, 92))
+        s.blit(shade, (0, 0))
+
+        pulse = 0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 210.0)
+        glow = focus.inflate(20, 20)
+        gsurf = pygame.Surface((glow.w, glow.h), pygame.SRCALPHA)
+        pygame.draw.rect(gsurf, (212, 164, 255, int(48 + 42 * pulse)), gsurf.get_rect(), 3, border_radius=14)
+        s.blit(gsurf, glow.topleft)
+        pygame.draw.rect(s, (238, 208, 132), focus, 2, border_radius=12)
+
+        panel = pygame.Rect(40, 40, 740, 136)
+        pygame.draw.rect(s, (30, 22, 44), panel, border_radius=12)
+        pygame.draw.rect(s, (188, 142, 240), panel, 2, border_radius=12)
+        title = f"Tutorial {hint.get('index', 1)}/{hint.get('total', 1)} - {hint.get('title', '')}"
+        s.blit(self.app.small_font.render(title, True, (244, 224, 156)), (panel.x + 16, panel.y + 12))
+        yy = panel.y + 46
+        for line in hint.get("lines", [])[:2]:
+            s.blit(self.app.tiny_font.render(str(line), True, (232, 226, 240)), (panel.x + 16, yy))
+            yy += 26
+
     def render(self, s):
         if self.mode in {"choose1of3", "boss_pack"}:
             self._sync_card_modal()
             self.card_modal.render(s, self.app)
+            self._render_tutorial_hint(s)
             return
 
         if self.mode == "guide_choice":
             self._sync_choice_modal()
             self.choice_modal.render(s, self.app.big_font, self.app.small_font)
+            self._render_tutorial_hint(s)
             return

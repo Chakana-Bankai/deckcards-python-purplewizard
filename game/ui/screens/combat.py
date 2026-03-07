@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import math
 from pathlib import Path
@@ -109,6 +109,14 @@ class CombatScreen:
         print("[combat_reset] seal/harmony/action state reset OK")
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
         self.set_dialogue("combat_start", enemy_id, {})
+
+        self._tutorial_targets: dict[str, pygame.Rect] = {}
+        flow = getattr(self.app, "tutorial_flow", None)
+        if flow is not None:
+            flow.on_combat_enter()
+            if hasattr(self.app, "_sync_tutorial_run_state"):
+                self.app._sync_tutorial_run_state()
+
 
 
     def _reset_encounter_ui_state(self):
@@ -447,6 +455,9 @@ class CombatScreen:
             return
         if state == "END_TURN":
             self._trigger_dialog("enemy_turn_start")
+            flow = getattr(self.app, "tutorial_flow", None)
+            if flow is not None:
+                flow.on_end_turn_pressed()
             self.c.end_turn()
             self._lock_ui()
             self.telemetry.info("end_turn_pressed", turn=self.c.turn, energy=self.c.player.get("energy", 0), hand=len(self.c.hand))
@@ -667,6 +678,41 @@ class CombatScreen:
         if isinstance(node, dict) and node.get("state") not in {"cleared", "completed"}:
             node["state"] = "incomplete"
 
+    def _tutorial_hint(self):
+        flow = getattr(self.app, "tutorial_flow", None)
+        if flow is None:
+            return None
+        return flow.current_hint("combat")
+
+    def _render_tutorial_overlay(self, s: pygame.Surface):
+        hint = self._tutorial_hint()
+        if not hint or self.pause_open:
+            return
+
+        target_key = str(hint.get("target", ""))
+        target = self._tutorial_targets.get(target_key)
+        if target is None:
+            return
+
+        pulse = 0.5 + 0.5 * math.sin(pygame.time.get_ticks() / 220.0)
+        frame = target.inflate(14, 14)
+        glow = pygame.Surface((frame.w, frame.h), pygame.SRCALPHA)
+        pygame.draw.rect(glow, (214, 168, 255, int(58 + 54 * pulse)), glow.get_rect(), 3, border_radius=12)
+        s.blit(glow, frame.topleft)
+        pygame.draw.rect(s, UI_THEME["gold"], target, 2, border_radius=10)
+
+        panel = pygame.Rect(20, self.layout.topbar_rect.bottom + 8, 700, 124)
+        pygame.draw.rect(s, (30, 22, 44), panel, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], panel, 2, border_radius=10)
+
+        title = f"Tutorial {hint.get('index', 1)}/{hint.get('total', 1)} - {hint.get('title', '')}"
+        s.blit(self.app.small_font.render(title, True, UI_THEME["gold"]), (panel.x + 14, panel.y + 10))
+
+        yy = panel.y + 44
+        for line in hint.get("lines", [])[:2]:
+            s.blit(self.app.tiny_font.render(str(line), True, UI_THEME["text"]), (panel.x + 14, yy))
+            yy += 24
+
     def handle_event(self, event):
         if self.scry_picker.open:
             mapped_pos = self.app.renderer.map_mouse(event.pos) if hasattr(event, "pos") else None
@@ -692,6 +738,14 @@ class CombatScreen:
             return
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F6:
             self.art_debug_overlay = not self.art_debug_overlay
+            return
+
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            flow = getattr(self.app, "tutorial_flow", None)
+            if flow is not None and flow.current_hint("combat"):
+                flow.manual_advance()
+                if hasattr(self.app, "_sync_tutorial_run_state"):
+                    self.app._sync_tutorial_run_state()
             return
 
         if self.pause_open:
@@ -736,6 +790,9 @@ class CombatScreen:
             in_card = False
             for i, _ in enumerate(self.c.hand[:6]):
                 if self._card_rect(i, min(6, len(self.c.hand))).collidepoint(pos):
+                    flow = getattr(self.app, "tutorial_flow", None)
+                    if flow is not None:
+                        flow.on_hand_clicked()
                     self.ctrl.on_card_click(i)
                     in_card = True
                     sel = self.c.hand[i] if i < len(self.c.hand) else None
@@ -824,6 +881,9 @@ class CombatScreen:
 
         if self.last_turn != self.c.turn:
             self.last_turn = self.c.turn
+            flow = getattr(self.app, "tutorial_flow", None)
+            if flow is not None:
+                flow.on_turn_advanced()
             self.turn_timer_left = self.turn_timer_limit
             self.ctrl.clear_selection("turn_changed")
             self._trigger_dialog("player_turn_start")
@@ -842,6 +902,10 @@ class CombatScreen:
                 tags = set(card_def.get("tags", []) if isinstance(card_def, dict) else [])
                 trig = "attack_played" if "attack" in tags else "block_played"
                 self.set_dialogue(trig, enemy_id, {"card_id": card_id})
+                flow = getattr(self.app, "tutorial_flow", None)
+                if flow is not None:
+                    is_block = ("skill" in tags) or ("block" in tags)
+                    flow.on_card_played(is_block, int(self.c.player.get("block", 0) or 0))
             if ev.get("type") == "card_cost_changed":
                 if ev.get("in_hand"):
                     iid = str(ev.get("instance_id") or "")
@@ -859,6 +923,9 @@ class CombatScreen:
                 self.set_dialogue("seal_ready", enemy_id, {})
             if ev.get("type") == "enemy_action":
                 self.set_dialogue("enemy_intent", str(ev.get("enemy") or "default"), {"intent": str(ev.get("intent") or "")})
+                flow = getattr(self.app, "tutorial_flow", None)
+                if flow is not None:
+                    flow.on_enemy_intent_seen()
             if ev.get("type") == "harmony_seal":
                 self._push_log(str(ev.get("message") or "SELLO activado"))
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
@@ -873,6 +940,15 @@ class CombatScreen:
 
         self._update_low_hp_dialogue_edges()
 
+        flow = getattr(self.app, "tutorial_flow", None)
+        if flow is not None:
+            pstate = self.c.player or {}
+            h_cur = int(pstate.get("harmony_current", 0) or 0)
+            h_thr = max(1, int(pstate.get("harmony_ready_threshold", 6) or 6))
+            flow.on_harmony_progress(h_cur, h_cur >= h_thr)
+            if hasattr(self.app, "_sync_tutorial_run_state"):
+                self.app._sync_tutorial_run_state()
+
         self.ctrl.validate_selection(len(self.c.hand))
         if self.c.result == "victory":
             enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
@@ -886,6 +962,10 @@ class CombatScreen:
             self.set_dialogue("defeat", enemy_id, {})
             self._push_log("Combate perdido")
             self.app.goto_end(victory=False)
+
+        flow_done = getattr(self.app, "tutorial_flow", None)
+        if flow_done is not None and flow_done.consume_completed() and hasattr(self.app, "mark_tutorial_completed"):
+            self.app.mark_tutorial_completed()
 
     def render(self, s):
         self._refresh_layout(s)
@@ -945,6 +1025,8 @@ class CombatScreen:
             right_w = max(96, content.w - 36 - left_w - chip_gap)
             intent_chip = pygame.Rect(intent_line.x, intent_line.y + 4, left_w, chip_h)
             block_chip = pygame.Rect(intent_chip.right + chip_gap, intent_chip.y, right_w, chip_h)
+            if i == 0:
+                self._tutorial_targets["enemy_intent"] = pygame.Rect(intent_chip)
 
             pygame.draw.rect(s, (24, 22, 34), intent_chip, border_radius=12)
             pygame.draw.rect(s, intent_col, intent_chip, 2, border_radius=12)
@@ -1058,6 +1140,7 @@ class CombatScreen:
                 break
 
         UIPanel(self.layout.hand_rect).draw(s)
+        self._tutorial_targets["hand"] = pygame.Rect(self.layout.hand_rect)
 
         hand_inner = self.layout.hand_rect.inflate(-8, -8)
         pygame.draw.rect(s, UI_THEME["panel"], hand_inner, border_radius=10)
@@ -1138,6 +1221,8 @@ class CombatScreen:
         for idx, (title, val, col) in enumerate(row1):
             chip = pygame.Rect(left_x + idx * (chip_w4 + 8), row1_y, chip_w4, 48)
             _chip(chip, title, val, col)
+            if title == "BLK":
+                self._tutorial_targets["player_block"] = pygame.Rect(chip)
             if title == "ENE":
                 orb_cap = max(3, min(8, energy_cap))
                 start_x = chip.centerx - ((orb_cap - 1) * 18) // 2
@@ -1163,6 +1248,7 @@ class CombatScreen:
         harmony_rect = pygame.Rect(left_x, row3_y, int(stat_w * 0.64), 44)
         thr_rect = pygame.Rect(harmony_rect.right + 8, row3_y, stat_w - harmony_rect.w - 8, 44)
         _chip(harmony_rect, "Armonia", f"{h_cur}/{h_max}", tpal.hud_harmony if ready else tpal.hud_default)
+        self._tutorial_targets["harmony"] = pygame.Rect(harmony_rect)
         _chip(thr_rect, "Umbral", f"{h_thr}", tpal.hud_harmony if ready else tpal.muted)
 
         bar = pygame.Rect(harmony_rect.x + 8, harmony_rect.bottom - 11, harmony_rect.w - 16, 8)
@@ -1217,6 +1303,7 @@ class CombatScreen:
 
         txt = self.app.big_font.render(state_label, True, text_col)
         s.blit(txt, (self.end_turn_rect.centerx - txt.get_width() // 2, self.end_turn_rect.centery - txt.get_height() // 2 + 2))
+        self._tutorial_targets["action_button"] = pygame.Rect(self.end_turn_rect)
 
         if state == "RELEASE_SEAL":
             rune = self.app.tiny_font.render("*", True, UI_THEME["gold"])
@@ -1255,6 +1342,8 @@ class CombatScreen:
                 tip_rect.y = rr.bottom + 6
             tip = tip or "Efecto"
             UITooltip(tip_rect, tip).draw(s, self.app.tiny_font)
+
+        self._render_tutorial_overlay(s)
 
         if DEBUG_UI:
             pygame.draw.rect(s, UI_THEME["gold"], self.layout.voices_panel, 2)
@@ -1342,8 +1431,3 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
-
-
-
-
-

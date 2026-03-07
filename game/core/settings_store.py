@@ -29,6 +29,7 @@ DEFAULT_SETTINGS = {
     "fx_particles": True,
     "force_regen_art": False,
     "detail_panel": False,
+    "tutorial_completed": False,
 }
 
 
@@ -46,6 +47,7 @@ def _normalize(raw: dict) -> dict:
     data["music_mute"] = bool(data.get("music_muted", False))
     # explicit-only intro skip flag
     data["dev_skip_intro"] = bool(source.get("dev_skip_intro", False) is True)
+    data["tutorial_completed"] = bool(source.get("tutorial_completed", False))
     return data
 
 
