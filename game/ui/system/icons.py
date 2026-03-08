@@ -1,4 +1,4 @@
-﻿"""Centralized semantic icon API for Chakana UI.
+"""Centralized semantic icon API for Chakana UI.
 
 This module intentionally avoids font-only glyph icons for KPI rows,
 so missing glyph support never renders broken square placeholders.
@@ -6,8 +6,9 @@ so missing glyph support never renders broken square placeholders.
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pygame
-from game.visual import get_visual_engine
 
 
 ICON_ALIASES = {
@@ -44,7 +45,8 @@ FALLBACK_TEXT = {
 }
 
 _ICON_CACHE: dict[tuple[str, tuple[int, int, int], int], pygame.Surface] = {}
-_VISUAL_ENGINE = None
+_GENERATED_ICON_ROOT = Path(__file__).resolve().parents[2] / "visual" / "generated" / "icons"
+_GENERATED_ICON_FAIL: set[tuple[str, int]] = set()
 
 
 def normalize_icon_name(icon_name: str) -> str:
@@ -85,6 +87,25 @@ def _stroke(surf: pygame.Surface, color: tuple[int, int, int], pts: list[tuple[i
         pygame.draw.lines(surf, color, False, pts, max(1, int(w)))
 
 
+def _try_generated_icon(key: str, px: int, color: tuple[int, int, int]) -> pygame.Surface | None:
+    gk = (key, px)
+    if gk in _GENERATED_ICON_FAIL:
+        return None
+    try:
+        p = _GENERATED_ICON_ROOT / f"{key}_{px}x{px}.png"
+        if not p.exists():
+            return None
+        vis = pygame.image.load(str(p)).convert_alpha()
+        if vis.get_size() != (px, px):
+            vis = pygame.transform.scale(vis, (px, px))
+        vis_col = vis.copy()
+        vis_col.fill((color[0], color[1], color[2], 255), special_flags=pygame.BLEND_RGBA_MULT)
+        return vis_col
+    except Exception:
+        _GENERATED_ICON_FAIL.add(gk)
+        return None
+
+
 def _render_icon_surface(icon_name: str, color: tuple[int, int, int], size: int) -> pygame.Surface:
     key = normalize_icon_name(icon_name)
     scale = max(1, int(size or 1))
@@ -94,24 +115,18 @@ def _render_icon_surface(icon_name: str, color: tuple[int, int, int], size: int)
     if cached is not None:
         return cached
 
-    surf = _make_surface(px)
     c = tuple(int(v) for v in color[:3])
+
+    # Deterministic lookup path: existing generated icon file -> procedural vector icon.
+    # Never trigger runtime icon generation from render path.
+    generated = _try_generated_icon(key, px, c)
+    if generated is not None:
+        _ICON_CACHE[cache_key] = generated
+        return generated
+
+    surf = _make_surface(px)
     lw = max(1, scale)
     mid = px // 2
-
-    # Prefer centralized visual engine icon if available.
-    global _VISUAL_ENGINE
-    try:
-        if _VISUAL_ENGINE is None:
-            _VISUAL_ENGINE = get_visual_engine()
-        vis = _VISUAL_ENGINE.generate("icons", key, (px, px), context="", force=False)
-        if vis is not None:
-            vis_col = vis.copy()
-            vis_col.fill((c[0], c[1], c[2], 255), special_flags=pygame.BLEND_RGBA_MULT)
-            _ICON_CACHE[cache_key] = vis_col
-            return vis_col
-    except Exception:
-        pass
 
     if key == "damage":
         _stroke(surf, c, [(3 * scale, 11 * scale), (11 * scale, 3 * scale)], lw + 1)
@@ -149,8 +164,9 @@ def _render_icon_surface(icon_name: str, color: tuple[int, int, int], size: int)
         _stroke(surf, c, [(2 * scale, mid), (12 * scale, mid)], lw)
         _stroke(surf, c, [(4 * scale, 4 * scale), (10 * scale, 10 * scale)], lw)
         _stroke(surf, c, [(10 * scale, 4 * scale), (4 * scale, 10 * scale)], lw)
+    elif key == "level":
+        pygame.draw.polygon(surf, c, [(mid, 2 * scale), (12 * scale, 8 * scale), (mid, 12 * scale), (2 * scale, 8 * scale)], lw)
     else:
-        # Safe fallback: compact marker, never tofu squares.
         pygame.draw.circle(surf, c, (mid, mid), 4 * scale, lw)
         pygame.draw.circle(surf, c, (mid, mid), max(1, scale), 0)
 

@@ -1021,10 +1021,13 @@ class CombatScreen:
             pygame.draw.rect(s, UI_THEME["accent_violet"], content, 2, border_radius=13)
 
             ratio = max(0, e.hp) / max(1, e.max_hp)
-            info_col_w = max(280, int(content.w * 0.44))
+            avatar_min_w = 300 if enemy_count == 1 else 170
+            info_ratio = 0.40 if enemy_count == 1 else 0.46
+            info_cap = max(180, int(content.w - avatar_min_w - 56))
+            info_col_w = max(220, min(int(content.w * info_ratio), info_cap))
             info_col = pygame.Rect(content.x + 20, content.y + 12, info_col_w, content.h - 24)
-            avatar_rect = pygame.Rect(info_col.right + 20, content.y + 16, content.right - (info_col.right + 30), content.h - 32)
-
+            avatar_w = max(avatar_min_w, content.right - (info_col.right + 30))
+            avatar_rect = pygame.Rect(content.right - avatar_w - 12, content.y + 16, avatar_w, content.h - 32)
             title = pygame.Rect(info_col.x, info_col.y, info_col.w, 28)
             hp_label = pygame.Rect(info_col.x, title.bottom + 2, info_col.w, 36)
             intent_line = pygame.Rect(info_col.x, hp_label.bottom + 6, info_col.w, 48)
@@ -1051,13 +1054,15 @@ class CombatScreen:
             s.blit(chip_glow, (intent_chip.x - 6, intent_chip.y - 5))
             pygame.draw.rect(s, (24, 22, 34), intent_chip, border_radius=12)
             pygame.draw.rect(s, intent_col, intent_chip, 2, border_radius=12)
-            intent_value_txt = self.app.big_font.render(str(intent_value), True, intent_col)
+            iv_text = str(intent_value)
+            iv_font = self.app.big_font if iv_text.isdigit() and len(iv_text) <= 3 else self.app.small_font
+            intent_value_txt = iv_font.render(iv_text, True, intent_col)
             s.blit(intent_value_txt, (intent_chip.x + 12, intent_chip.y + 4))
-            intent_name_txt = self.app.tiny_font.render(intent_name, True, UI_THEME['text'])
+            intent_line_text = self._wrap_panel_text(intent_name, intent_chip.w - 24, max_lines=1)[0]
+            intent_name_txt = self.app.tiny_font.render(intent_line_text, True, UI_THEME["text"])
             s.blit(intent_name_txt, (intent_chip.x + 14, intent_chip.bottom - 14))
-
             blk_col = UI_THEME["block"] if enemy_block > 0 else UI_THEME["muted"]
-            block_chip = pygame.Rect(block_line.x, block_line.y, max(118, int(block_line.w * 0.44)), block_line.h)
+            block_chip = pygame.Rect(block_line.x, block_line.y, max(132, int(block_line.w * 0.46)), block_line.h)
             pygame.draw.rect(s, (24, 22, 34), block_chip, border_radius=10)
             pygame.draw.rect(s, blk_col, block_chip, 2, border_radius=10)
             draw_icon_with_value(s, "block", enemy_block, blk_col, self.app.tiny_font, block_chip.x + 8, block_chip.y + 6, size=1)
@@ -1498,3 +1503,5 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+

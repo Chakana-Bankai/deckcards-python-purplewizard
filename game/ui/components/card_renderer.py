@@ -290,14 +290,17 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     lore = _fit_one_line(tiny_font, lore, rect.w - 18)
 
     if preset == "preview":
-        body1 = lore
-        body2 = ""
-        if app is not None:
-            body2 = _fit_one_line(tiny_font, app.loc.t(payload.get("text_key", "")), rect.w - 18)
-        if body1:
-            surface.blit(tiny_font.render(body1, True, (236, 228, 206)), (rect.x + 9, role_rect.bottom + 4))
-        if body2 and body2 != body1:
-            surface.blit(tiny_font.render(body2, True, theme.get("muted", (180, 170, 200))), (rect.x + 9, role_rect.bottom + 20))
+        preview_lines = []
+        for ln in list(summary.get("lines", []) or []):
+            txt = _fit_one_line(tiny_font, str(ln), rect.w - 18)
+            if txt:
+                preview_lines.append(txt)
+            if len(preview_lines) >= 2:
+                break
+        if not preview_lines and lore:
+            preview_lines = [lore]
+        for idx, line in enumerate(preview_lines[:2]):
+            surface.blit(tiny_font.render(line, True, (236, 228, 206)), (rect.x + 9, role_rect.bottom + 4 + idx * 16))
     elif lore:
         surface.blit(tiny_font.render(lore, True, (236, 228, 206)), (rect.x + 9, role_rect.bottom + 6))
 
@@ -334,3 +337,5 @@ def render_card_large(surface, rect, card, theme=None, state=None):
 
 def render_card_preview(surface, rect, card, theme=None, state=None):
     _draw_core(surface, pygame.Rect(rect), card, theme, state, preset="preview")
+
+

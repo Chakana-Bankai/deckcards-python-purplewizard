@@ -5,7 +5,7 @@ import pygame
 from game.ui.components.card_effect_summary import infer_card_role, summarize_card_effect
 from game.ui.components.card_preview_panel import CardPreviewPanel
 from game.ui.theme import UI_THEME
-from game.ui.system.layout import anchor_bottom_center, inset, safe_area, split_horizontal, split_vertical
+from game.ui.system.layout import inset, safe_area, split_horizontal, split_vertical
 
 
 class DeckScreen:
@@ -49,12 +49,14 @@ class DeckScreen:
 
         self.back = pygame.Rect(root.x, root.y + 6, 170, 46)
 
-        btn_w = 260
+        btn_w = 250
         btn_h = 48
-        gap = 20
-        center_btn = anchor_bottom_center(root, btn_w * 2 + gap, btn_h, margin=4)
-        self.move_to_side_btn = pygame.Rect(center_btn.x, center_btn.y, btn_w, btn_h)
-        self.move_to_main_btn = pygame.Rect(self.move_to_side_btn.right + gap, center_btn.y, btn_w, btn_h)
+        gap = 18
+        total_w = btn_w * 2 + gap
+        btn_x = root.centerx - total_w // 2
+        btn_y = min(root.bottom - btn_h, self.side_rect.bottom + 10)
+        self.move_to_side_btn = pygame.Rect(btn_x, btn_y, btn_w, btn_h)
+        self.move_to_main_btn = pygame.Rect(self.move_to_side_btn.right + gap, btn_y, btn_w, btn_h)
 
     def _toast(self, text: str):
         self.toast_text = str(text)
@@ -291,14 +293,24 @@ class DeckScreen:
 
         n = max(1, len(deck))
         avg = total_cost / n
-        s.blit(self.app.font.render(self.app.loc.t("deck_stats", count=n, avg=f"{avg:.1f}"), True, UI_THEME["gold"]), (self.main_rect.x + 12, self.main_rect.bottom - 36))
-        s.blit(self.app.font.render(self.app.loc.t("deck_stats_tags", atk=attacks, skill=skills, ritual=rituals), True, UI_THEME["muted"]), (self.main_rect.x + 12, self.main_rect.bottom - 12))
+        main_stats_chip = pygame.Rect(self.main_rect.right - 286, self.main_rect.y + 10, 274, 36)
+        pygame.draw.rect(s, UI_THEME["panel_2"], main_stats_chip, border_radius=8)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], main_stats_chip, 1, border_radius=8)
+        main_line = f"Cartas {n} | Coste {avg:.1f} | ATK {attacks} | RIT {rituals}"
+        while self.app.tiny_font.size(main_line)[0] > main_stats_chip.w - 12 and len(main_line) > 8:
+            main_line = main_line[:-4] + "..."
+        s.blit(self.app.tiny_font.render(main_line, True, UI_THEME["gold"]), (main_stats_chip.x + 6, main_stats_chip.y + 10))
 
         reserve_count = len(sideboard)
         top_roles = sorted(role_counts.items(), key=lambda it: it[1], reverse=True)
         role_line = " / ".join(f"{k[:3].upper()} {v}" for k, v in top_roles[:3] if v > 0) or "Sin roles"
-        s.blit(self.app.tiny_font.render(f"Reserva: {reserve_count}", True, UI_THEME["gold"]), (self.side_rect.x + 12, self.side_rect.bottom - 40))
-        s.blit(self.app.tiny_font.render(f"Roles: {role_line}", True, UI_THEME["muted"]), (self.side_rect.x + 12, self.side_rect.bottom - 18))
+        side_stats_chip = pygame.Rect(self.side_rect.right - 286, self.side_rect.y + 10, 274, 36)
+        pygame.draw.rect(s, UI_THEME["panel_2"], side_stats_chip, border_radius=8)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], side_stats_chip, 1, border_radius=8)
+        side_line = f"Reserva {reserve_count} | {role_line}"
+        while self.app.tiny_font.size(side_line)[0] > side_stats_chip.w - 12 and len(side_line) > 8:
+            side_line = side_line[:-4] + "..."
+        s.blit(self.app.tiny_font.render(side_line, True, UI_THEME["muted"]), (side_stats_chip.x + 6, side_stats_chip.y + 10))
 
         hover_card_id = None
         for vi, i in enumerate(range(m_start, m_end)):
@@ -335,3 +347,6 @@ class DeckScreen:
             pygame.draw.rect(s, UI_THEME["deep_purple"], toast_rect, border_radius=10)
             pygame.draw.rect(s, UI_THEME["gold"], toast_rect, 2, border_radius=10)
             s.blit(self.app.small_font.render(self.toast_text[:80], True, UI_THEME["text"]), (toast_rect.x + 14, toast_rect.y + 14))
+
+
+

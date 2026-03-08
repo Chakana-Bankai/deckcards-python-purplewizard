@@ -1,6 +1,7 @@
 import pygame
 
-from game.ui.components.card_effect_summary import infer_card_role, summarize_card_effect
+from game.ui.components.card_effect_summary import infer_card_role
+from game.ui.components.card_preview_panel import CardPreviewPanel
 from game.ui.theme import UI_THEME
 from game.ui.system.brand import ChakanaBrand
 from game.ui.system.icons import draw_icon_with_value
@@ -31,6 +32,7 @@ class ShopScreen:
         self.hint_rect = pygame.Rect(0, 0, 1, 1)
         self.preview_rect = pygame.Rect(0, 0, 1, 1)
         self._screen_size = (1920, 1080)
+        self.preview_card = CardPreviewPanel(app=app)
 
         self.particles = [
             {"x": self.app.rng.randint(0, 1919), "y": self.app.rng.randint(0, 1079), "vx": self.app.rng.randint(-8, 8) / 10.0, "vy": self.app.rng.randint(2, 10) / 10.0}
@@ -49,7 +51,7 @@ class ShopScreen:
         self.merchant_rect = pygame.Rect(shell.x, shell.y, shell.w, 180)
 
         body = pygame.Rect(shell.x, self.merchant_rect.bottom + 14, shell.w, shell.h - 194)
-        preview_w = min(420, max(320, int(body.w * 0.26)))
+        preview_w = min(460, max(340, int(body.w * 0.28)))
         cards_row = pygame.Rect(body.x, body.y, body.w - preview_w - 16, max(220, body.h - 92))
         self.preview_rect = pygame.Rect(cards_row.right + 16, body.y, preview_w, cards_row.h)
         footer = pygame.Rect(body.x, cards_row.bottom + 8, body.w, body.bottom - (cards_row.bottom + 8))
@@ -57,6 +59,15 @@ class ShopScreen:
         self.cheap_rect, self.rare_rect, self.artifact_rect = build_three_column_layout(cards_row, gap=24, ratios=(1, 1, 1))
         self.hint_rect = inset(footer, 10)
         self.leave_rect = anchor_bottom_center(root, 300, 58, margin=0)
+
+    def _blit_contained(self, s: pygame.Surface, image: pygame.Surface, slot: pygame.Rect):
+        iw, ih = image.get_size()
+        if iw <= 0 or ih <= 0:
+            return
+        scale = min(slot.w / float(iw), slot.h / float(ih))
+        tw, th = max(1, int(iw * scale)), max(1, int(ih * scale))
+        img = pygame.transform.scale(image, (tw, th))
+        s.blit(img, img.get_rect(center=slot.center).topleft)
 
     def _buy_card(self, card, price, tag):
         if self.app.run_state["gold"] < price:
@@ -118,14 +129,16 @@ class ShopScreen:
         draw_icon_with_value(s, "gold", int(price), UI_THEME["gold"], self.app.small_font, rect.x + 14, rect.y + 42, size=1)
 
         name = self.app.loc.t(card.get("name_key", card.get("id", "carta")))
-        s.blit(self.app.tiny_font.render(name, True, UI_THEME["muted"]), (rect.x + 14, rect.y + 70))
+        s.blit(self.app.tiny_font.render(name[:26], True, UI_THEME["muted"]), (rect.x + 14, rect.y + 70))
         role = infer_card_role(card).replace("_", " ").title()
         rarity = str(card.get("rarity", "common")).title()
         s.blit(self.app.tiny_font.render(f"{rarity} | {role}", True, UI_THEME["text"]), (rect.x + 14, rect.y + 92))
 
-        art = self.app.assets.sprite("cards", card.get("id", ""), (max(140, rect.w - 84), max(140, rect.h - 190)), fallback=(84, 66, 122))
-        art_r = art.get_rect(center=(rect.centerx, rect.y + rect.h * 0.62))
-        s.blit(art, art_r.topleft)
+        art_slot = pygame.Rect(rect.x + 14, rect.y + 116, rect.w - 28, rect.h - 152)
+        pygame.draw.rect(s, UI_THEME["panel_2"], art_slot, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], art_slot, 1, border_radius=10)
+        art = self.app.assets.sprite("cards", card.get("id", ""), (260, 360), fallback=(84, 66, 122))
+        self._blit_contained(s, art, art_slot.inflate(-10, -10))
         s.blit(self.app.tiny_font.render("Click para comprar", True, UI_THEME["gold"]), (rect.x + 14, rect.bottom - 28))
 
     def _offer_hover_data(self, mouse_pos):
@@ -150,49 +163,38 @@ class ShopScreen:
         y = self.preview_rect.y + 46
         s.blit(self.app.small_font.render(hover_data["title"], True, UI_THEME["text"]), (self.preview_rect.x + 14, y))
         y += 28
-        draw_icon_with_value(s, "gold", int(hover_data['price']), UI_THEME["gold"], self.app.tiny_font, self.preview_rect.x + 14, y - 1, size=1)
+        draw_icon_with_value(s, "gold", int(hover_data["price"]), UI_THEME["gold"], self.app.tiny_font, self.preview_rect.x + 14, y - 1, size=1)
         y += 24
 
         if hover_data["type"] == "card":
             card = hover_data["card"]
-            name = self.app.loc.t(card.get("name_key", card.get("id", "carta")))
-            role = infer_card_role(card).replace("_", " ").title()
-            summary = summarize_card_effect(card)
-            effect_bits = []
-            for key, lbl in (("damage", "Danio"), ("block", "Bloqueo"), ("draw", "Robo"), ("scry", "Prever"), ("harmony_delta", "Armonia"), ("rupture", "Ruptura")):
-                val = int(summary.get(key, 0) or 0)
-                if val:
-                    if key == "harmony_delta":
-                        effect_bits.append(f"{lbl} {val:+d}")
-                    else:
-                        effect_bits.append(f"{lbl} {val}")
-            effect_line = " | ".join(effect_bits[:3]) if effect_bits else "Sinergia tactica variable."
-
-            s.blit(self.app.small_font.render(name, True, UI_THEME["text"]), (self.preview_rect.x + 14, y))
-            y += 30
-            s.blit(self.app.tiny_font.render(f"Rol: {role}", True, UI_THEME["muted"]), (self.preview_rect.x + 14, y))
-            y += 22
-            s.blit(self.app.tiny_font.render(effect_line[:52], True, UI_THEME["text"]), (self.preview_rect.x + 14, y))
-            y += 26
-            s.blit(self.app.tiny_font.render("Compra directa al sideboard.", True, UI_THEME["muted"]), (self.preview_rect.x + 14, y))
+            card_rect = pygame.Rect(self.preview_rect.x + 14, y + 4, self.preview_rect.w - 28, self.preview_rect.h - (y - self.preview_rect.y) - 16)
+            self.preview_card.render(s, card_rect, card, app=self.app)
             return
 
         artifact = hover_data["artifact"]
         rid = artifact.get("id", "artifact")
         name = self.app.loc.t(artifact.get("name_key", rid))
         desc = self.app.loc.t(artifact.get("text_key", "")) or "Reliquia antigua del comerciante."
-        relic_art = self.app.assets.sprite("relics", rid, (112, 112), fallback=(96, 76, 124))
-        relic_rect = relic_art.get_rect(topleft=(self.preview_rect.x + 14, y))
-        s.blit(relic_art, relic_rect.topleft)
-        s.blit(self.app.small_font.render(name, True, UI_THEME["text"]), (relic_rect.right + 12, y + 2))
-        y += 30
-        s.blit(self.app.tiny_font.render("Tipo: Reliquia", True, UI_THEME["muted"]), (relic_rect.right + 12, y))
-        y += 22
-        for line in desc.split(".")[:4]:
-            txt = line.strip()
-            if txt:
-                s.blit(self.app.tiny_font.render(txt[:52], True, UI_THEME["text"]), (self.preview_rect.x + 14, y))
-                y += 22
+
+        frame = pygame.Rect(self.preview_rect.x + 14, y + 2, self.preview_rect.w - 28, self.preview_rect.h - (y - self.preview_rect.y) - 16)
+        pygame.draw.rect(s, UI_THEME["panel"], frame, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["gold"], frame, 1, border_radius=10)
+
+        slot = pygame.Rect(frame.x + 12, frame.y + 12, frame.w - 24, 170)
+        pygame.draw.rect(s, UI_THEME["panel_2"], slot, border_radius=8)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], slot, 1, border_radius=8)
+        relic_art = self.app.assets.sprite("relics", rid, (160, 160), fallback=(96, 76, 124))
+        self._blit_contained(s, relic_art, slot.inflate(-10, -10))
+
+        ty = slot.bottom + 12
+        s.blit(self.app.small_font.render(name[:30], True, UI_THEME["text"]), (frame.x + 12, ty))
+        ty += 28
+        s.blit(self.app.tiny_font.render("Tipo: Reliquia", True, UI_THEME["muted"]), (frame.x + 12, ty))
+        ty += 22
+        for line in [p.strip() for p in desc.split(".") if p.strip()][:3]:
+            s.blit(self.app.tiny_font.render(line[:48], True, UI_THEME["text"]), (frame.x + 12, ty))
+            ty += 20
 
     def render(self, s):
         self._refresh_layout(s)
@@ -228,9 +230,12 @@ class ShopScreen:
         s.blit(self.app.small_font.render("Reliquia del Umbral", True, UI_THEME["gold"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 12))
         draw_icon_with_value(s, "gold", int(self.artifact_price), UI_THEME["gold"], self.app.small_font, self.artifact_rect.x + 14, self.artifact_rect.y + 44, size=1)
         rid = self.artifact.get("id", "artifact")
-        relic_thumb = self.app.assets.sprite("relics", rid, (96, 96), fallback=(96, 76, 124))
-        s.blit(relic_thumb, (self.artifact_rect.right - 112, self.artifact_rect.y + 58))
-        s.blit(self.app.tiny_font.render(self.app.loc.t(self.artifact.get("name_key", rid)), True, UI_THEME["muted"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 70))
+        thumb_slot = pygame.Rect(self.artifact_rect.right - 122, self.artifact_rect.y + 58, 108, 108)
+        pygame.draw.rect(s, UI_THEME["panel_2"], thumb_slot, border_radius=8)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], thumb_slot, 1, border_radius=8)
+        relic_thumb = self.app.assets.sprite("relics", rid, (128, 128), fallback=(96, 76, 124))
+        self._blit_contained(s, relic_thumb, thumb_slot.inflate(-8, -8))
+        s.blit(self.app.tiny_font.render(self.app.loc.t(self.artifact.get("name_key", rid))[:24], True, UI_THEME["muted"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 70))
         desc = self.app.loc.t(self.artifact.get("text_key", ""))
         for i, line in enumerate((desc or "Reliquia antigua del comerciante.").split(".")[:2]):
             line = line.strip()
@@ -252,3 +257,4 @@ class ShopScreen:
         if self.msg:
             col = UI_THEME["good"] if "No" not in self.msg and "Ya" not in self.msg else UI_THEME["bad"]
             s.blit(self.app.font.render(self.msg, True, col), (self.merchant_rect.x + 20, self.hint_rect.y - 32))
+
