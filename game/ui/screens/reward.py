@@ -115,6 +115,8 @@ class RewardScreen:
                         run.setdefault("sideboard", []).append(cid)
             elif typ == "gain_gold":
                 run["gold"] = int(run.get("gold", 0) or 0) + int(effect.get("amount", 0) or 0)
+            elif typ == "gain_xp":
+                run["xp"] = int(run.get("xp", 0) or 0) + int(effect.get("amount", 0) or 0)
             elif typ == "heal_percent":
                 amount = float(effect.get("amount", 0.25) or 0.25)
                 heal = int(player.get("max_hp", 60) * amount)
@@ -127,6 +129,11 @@ class RewardScreen:
                 deck = run.get("deck", [])
                 if deck:
                     deck.pop(self.app.rng.randint(0, len(deck) - 1))
+            elif typ == "gain_relic_random":
+                rarity = str(effect.get("rarity", "common") or "common").lower()
+                pool = [r.get("id") for r in list(getattr(self.app, "relics_data", []) or []) if str(r.get("rarity", "")).lower() == rarity and r.get("id")]
+                if pool:
+                    run.setdefault("relics", []).append(self.app.rng.choice(pool))
 
         self._tutorial_reward_confirmed()
         self.app.goto_map()

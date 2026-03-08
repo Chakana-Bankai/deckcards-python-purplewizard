@@ -1,10 +1,67 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from game.combat.card import CardDef, CardInstance
 
+PACK_ECONOMY = {
+    "normal_pack": {
+        "title": "Pack Normal",
+        "lore": "Base estable para sostener la run.",
+        "expected_value": {
+            "cards_total": 3,
+            "rarity_focus": "common_uncommon",
+            "gold_hint": [20, 35],
+            "strategy": "consistencia",
+        },
+    },
+    "rare_choice_pack": {
+        "title": "Eleccion Rara",
+        "lore": "Tres bifurcaciones de alto impacto tactico.",
+        "expected_value": {
+            "cards_total": 3,
+            "rarity_focus": "rare_uncommon",
+            "gold_hint": [28, 42],
+            "strategy": "power_spike",
+        },
+    },
+    "ritual_reward_pack": {
+        "title": "Pack Ritual",
+        "lore": "Mecanicas de rito y lectura de flujo.",
+        "expected_value": {
+            "cards_total": 3,
+            "rarity_focus": "ritual_control",
+            "gold_hint": [24, 38],
+            "strategy": "harmony_scaling",
+        },
+    },
+    "legendary_reward": {
+        "title": "Recompensa Legendaria",
+        "lore": "La Trama abre una opcion excepcional.",
+        "expected_value": {
+            "cards_total": 3,
+            "rarity_focus": "legendary_rare_mix",
+            "gold_hint": [35, 55],
+            "strategy": "run_defining",
+        },
+    },
+}
+
 
 def _card_instance(card_dict):
-    return CardInstance(CardDef(**card_dict))
+    c = dict(card_dict or {})
+    payload = {
+        "id": c.get("id"),
+        "name_key": c.get("name_key", c.get("id", "card")),
+        "text_key": c.get("text_key", ""),
+        "rarity": c.get("rarity", "common"),
+        "cost": int(c.get("cost", 0) or 0),
+        "target": c.get("target", "enemy"),
+        "tags": list(c.get("tags", []) or []),
+        "effects": list(c.get("effects", []) or []),
+        "role": c.get("role", "combo"),
+        "family": c.get("family", "attack"),
+        "direction": c.get("direction", "ESTE"),
+    }
+    return CardInstance(CardDef(**payload))
 
 
 def _safe_pick(rng, pool, fallback):
@@ -30,26 +87,55 @@ def _pick_unique(rng, pool, count, fallback=None):
     return out
 
 
+def _weighted_pack_roll(rng, table: list[tuple[str, float]]) -> str:
+    roll = rng.random()
+    acc = 0.0
+    for pack_id, weight in table:
+        acc += float(weight)
+        if roll <= acc:
+            return pack_id
+    return table[-1][0]
+
+
 def _pack_profile_for_state(rng, player_state) -> dict:
     level = int((player_state or {}).get("level", 1) or 1)
-    roll = rng.random()
     if level <= 1:
-        if roll < 0.68:
-            return {"id": "normal_pack", "title": "Pack Normal", "lore": "Fragmentos estables para consolidar la ruta."}
-        return {"id": "ritual_reward_pack", "title": "Pack Ritual", "lore": "Ecos rituales para acelerar la armonia."}
-    if roll < 0.44:
-        return {"id": "normal_pack", "title": "Pack Normal", "lore": "Refuerza tu base sin perder ritmo."}
-    if roll < 0.72:
-        return {"id": "rare_choice_pack", "title": "Eleccion Rara", "lore": "Tres bifurcaciones de alto impacto."}
-    if roll < 0.9:
-        return {"id": "ritual_reward_pack", "title": "Pack Ritual", "lore": "Mecanicas de rito y lectura de flujo."}
-    return {"id": "legendary_reward", "title": "Recompensa Legendaria", "lore": "La Trama abre una opcion excepcional."}
+        table = [
+            ("normal_pack", 0.62),
+            ("ritual_reward_pack", 0.28),
+            ("rare_choice_pack", 0.10),
+        ]
+    elif level <= 4:
+        table = [
+            ("normal_pack", 0.40),
+            ("rare_choice_pack", 0.33),
+            ("ritual_reward_pack", 0.20),
+            ("legendary_reward", 0.07),
+        ]
+    else:
+        table = [
+            ("normal_pack", 0.25),
+            ("rare_choice_pack", 0.35),
+            ("ritual_reward_pack", 0.25),
+            ("legendary_reward", 0.15),
+        ]
+    pack_id = _weighted_pack_roll(rng, table)
+    meta = PACK_ECONOMY.get(pack_id, PACK_ECONOMY["normal_pack"])
+    return {"id": pack_id, "title": meta["title"], "lore": meta["lore"], "expected_value": dict(meta["expected_value"])}
 
 
 def build_reward_normal(rng, card_pool, player_state) -> dict:
     pool = list(card_pool or [])
     if not pool:
-        return {"type": "choose1of3", "cards": [], "pack_category": "normal_pack", "pack_title": "Pack Normal", "pack_lore": "Sin cartas disponibles."}
+        return {
+            "type": "choose1of3",
+            "cards": [],
+            "pack_category": "normal_pack",
+            "pack_title": PACK_ECONOMY["normal_pack"]["title"],
+            "pack_lore": "Sin cartas disponibles.",
+            "pack_expected_value": dict(PACK_ECONOMY["normal_pack"]["expected_value"]),
+            "reward_categories": ["single_card_reward", "gold_reward"],
+        }
 
     common_pool = [c for c in pool if c.get("rarity") in {"basic", "common"}] or pool
     uncommon_pool = [c for c in pool if c.get("rarity") == "uncommon"] or common_pool
@@ -84,6 +170,8 @@ def build_reward_normal(rng, card_pool, player_state) -> dict:
         "pack_category": pack_id,
         "pack_title": profile["title"],
         "pack_lore": profile["lore"],
+        "pack_expected_value": dict(profile.get("expected_value", {})),
+        "reward_categories": ["single_card_reward", "gold_reward"],
     }
 
 
@@ -105,11 +193,19 @@ def build_reward_boss(rng, card_pool, relic_pool, player_state) -> dict:
         "pack_category": "legendary_reward",
         "pack_title": "Trofeo del Umbral",
         "pack_lore": "Botin mayor: poder, memoria y reliquia.",
+        "pack_expected_value": {
+            "cards_total": 5,
+            "rarity_focus": "boss_mixed_high_tier",
+            "gold_hint": [120, 180],
+            "strategy": "build_capstone",
+        },
+        "reward_categories": ["full_pack_reward", "relic_reward", "gold_reward"],
     }
 
 
 def build_reward_guide(event_id, rng, card_pool, player_state) -> dict:
     _ = event_id
+    _ = player_state
     pool = list(card_pool or [])
     atk_pool = [c for c in pool if "attack" in (c.get("tags") or [])] or pool
     ritual_pool = [c for c in pool if "ritual" in (c.get("tags") or [])] or pool
@@ -135,10 +231,10 @@ def build_reward_guide(event_id, rng, card_pool, player_state) -> dict:
             "title": "Senda del Jaguar",
             "identity": "Presion ofensiva",
             "lore": "La ruta pide agresion y cierre temprano.",
-            "effect_label": "+2 cartas ataque / +20 oro",
+            "effect_label": "+2 cartas ataque / +24 oro",
             "effects": [
                 {"type": "gain_cards", "cards": [strike_a, strike_b]},
-                {"type": "gain_gold", "amount": 20},
+                {"type": "gain_gold", "amount": 24},
             ],
         },
         {
@@ -155,7 +251,7 @@ def build_reward_guide(event_id, rng, card_pool, player_state) -> dict:
             "title": "Senda del Umbral",
             "identity": "Ritual y control",
             "lore": "Los ecos obedecen a una geometria precisa.",
-            "effect_label": "+2 cartas ritual / +1 armonia",
+            "effect_label": "+2 cartas ritual/control / +1 armonia",
             "effects": [
                 {"type": "gain_cards", "cards": [ritual_a, bonus_c]},
                 {"type": "gain_harmony_perm", "amount": 1},
@@ -171,6 +267,26 @@ def build_reward_guide(event_id, rng, card_pool, player_state) -> dict:
                 {"type": "heal_percent", "amount": 0.20},
             ],
         },
+        {
+            "title": "Senda del Condor",
+            "identity": "Vision estrategica",
+            "lore": "La altura revela rutas mas limpias de recursos.",
+            "effect_label": "+1 carta rara / +18 XP",
+            "effects": [
+                {"type": "gain_cards", "cards": [bonus_c]},
+                {"type": "gain_xp", "amount": 18},
+            ],
+        },
+        {
+            "title": "Senda de la Reliquia",
+            "identity": "Bendicion mayor",
+            "lore": "El guia entrega un sello material de poder.",
+            "effect_label": "Reliquia rara aleatoria / -1 carta mazo",
+            "effects": [
+                {"type": "gain_relic_random", "rarity": "rare"},
+                {"type": "lose_random_deck_card"},
+            ],
+        },
     ]
 
     picks = _pick_unique(rng, templates, 3, fallback=templates)
@@ -184,4 +300,8 @@ def build_reward_guide(event_id, rng, card_pool, player_state) -> dict:
         }
         for opt in picks
     ]
-    return {"type": "guide_choice", "options": options}
+    return {
+        "type": "guide_choice",
+        "options": options,
+        "reward_categories": ["guide_blessing", "single_card_reward", "healing_reward", "gold_reward", "relic_reward"],
+    }

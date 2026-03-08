@@ -4,47 +4,134 @@
     "name_key": "relic_violet_seal_name",
     "text_key": "relic_violet_seal_desc",
     "rarity": "common",
-    "hooks": ["combat_start"],
-    "effects": [{"type": "gain_energy", "amount": 1, "turn": 1}]
+    "hooks": [
+      "combat_start"
+    ],
+    "effects": [
+      {
+        "type": "gain_energy",
+        "amount": 1,
+        "turn": 1
+      }
+    ],
+    "build_links": [
+      "harmony",
+      "aggression"
+    ],
+    "economy_value": "tempo",
+    "tier": "common"
   },
   {
     "id": "chakana_thread",
     "name_key": "relic_chakana_thread_name",
     "text_key": "relic_chakana_thread_desc",
     "rarity": "common",
-    "hooks": ["combat_win"],
-    "effects": [{"type": "heal", "amount": 3}]
+    "hooks": [
+      "combat_win"
+    ],
+    "effects": [
+      {
+        "type": "heal",
+        "amount": 3
+      }
+    ],
+    "build_links": [
+      "control_defense",
+      "harmony"
+    ],
+    "economy_value": "sustain",
+    "tier": "common"
   },
   {
     "id": "condor_feather",
     "name_key": "relic_condor_feather_name",
     "text_key": "relic_condor_feather_desc",
     "rarity": "common",
-    "hooks": ["combat_start"],
-    "effects": [{"type": "draw", "amount": 1, "turn": 1}]
+    "hooks": [
+      "combat_start"
+    ],
+    "effects": [
+      {
+        "type": "draw",
+        "amount": 1,
+        "turn": 1
+      }
+    ],
+    "build_links": [
+      "aggression",
+      "control_defense"
+    ],
+    "economy_value": "card_flow",
+    "tier": "common"
   },
   {
     "id": "puma_pulse",
     "name_key": "relic_puma_pulse_name",
     "text_key": "relic_puma_pulse_desc",
-    "rarity": "uncommon",
-    "hooks": ["turn_block_first_time"],
-    "effects": [{"type": "bonus_block", "amount": 2}]
+    "rarity": "rare",
+    "hooks": [
+      "turn_block_first_time"
+    ],
+    "effects": [
+      {
+        "type": "bonus_block",
+        "amount": 2
+      }
+    ],
+    "build_links": [
+      "aggression",
+      "control_defense"
+    ],
+    "economy_value": "block_conversion",
+    "tier": "rare"
   },
   {
     "id": "serpent_scale",
     "name_key": "relic_serpent_scale_name",
     "text_key": "relic_serpent_scale_desc",
-    "rarity": "uncommon",
-    "hooks": ["on_exhaust"],
-    "effects": [{"type": "block", "amount": 1}]
+    "rarity": "rare",
+    "hooks": [
+      "on_exhaust"
+    ],
+    "effects": [
+      {
+        "type": "block",
+        "amount": 1
+      }
+    ],
+    "build_links": [
+      "control_defense",
+      "harmony"
+    ],
+    "economy_value": "attrition",
+    "tier": "rare"
   },
   {
     "id": "andean_knot",
     "name_key": "relic_andean_knot_name",
     "text_key": "relic_andean_knot_desc",
-    "rarity": "uncommon",
-    "hooks": ["combat_end"],
-    "effects": [{"type": "if_stat_gte", "stat": "rupture", "value": 7, "then": [{"type": "rupture", "amount": -2}]}]
+    "rarity": "legendary",
+    "hooks": [
+      "combat_end"
+    ],
+    "effects": [
+      {
+        "type": "if_stat_gte",
+        "stat": "rupture",
+        "value": 7,
+        "then": [
+          {
+            "type": "rupture",
+            "amount": -2
+          }
+        ]
+      }
+    ],
+    "build_links": [
+      "harmony",
+      "control_defense"
+    ],
+    "economy_value": "run_stabilizer",
+    "tier": "major"
   }
 ]

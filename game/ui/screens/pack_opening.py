@@ -4,6 +4,7 @@ from game.combat.card import CardDef, CardInstance
 from game.ui.components.card_preview_panel import CardPreviewPanel
 from game.ui.components.card_renderer import render_card_small
 from game.ui.theme import UI_THEME
+from game.systems.reward_system import PACK_ECONOMY
 
 
 class PackOpeningScreen:
@@ -179,6 +180,12 @@ class PackOpeningScreen:
         y += 24
         s.blit(self.app.tiny_font.render(pdef["flavor"], True, UI_THEME["text"]), (rect.x + 14, y))
         y += 30
+
+        pack_meta = PACK_ECONOMY.get(pdef["id"], {})
+        ev = pack_meta.get("expected_value", {}) if isinstance(pack_meta, dict) else {}
+        ev_text = f"EV: {ev.get('cards_total', 3)} cartas | foco {ev.get('rarity_focus', 'mixto')}"
+        s.blit(self.app.tiny_font.render(ev_text, True, UI_THEME["text"]), (rect.x + 14, y))
+        y += 24
 
         rule = "Regla: al abrir recibes 5 cartas."
         if self.legendary_pick_mode:
