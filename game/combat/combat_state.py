@@ -132,14 +132,14 @@ class CombatState:
             try:
                 entry = dict(entry)
                 entry.setdefault("role", infer_card_role(entry))
-                card_def = CardDef(**entry)
+                card_def = CardDef.from_dict(entry)
                 by_id[card_def.id] = card_def
             except Exception as exc:
                 print(f"[combat] invalid card entry skipped: {exc}")
         if not by_id:
             for base in DEFAULT_CARDS:
                 if base["id"] not in by_id:
-                    by_id[base["id"]] = CardDef(**base)
+                    by_id[base["id"]] = CardDef.from_dict(base)
         return by_id
 
     def _spawn_enemies(self, enemy_ids, enemies_data=None):

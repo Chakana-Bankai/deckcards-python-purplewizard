@@ -9,7 +9,7 @@ import pygame
 
 
 _FONT_CACHE: Dict[Tuple[str, int], pygame.font.Font] = {}
-_WARNED_FALLBACK: set[Tuple[str, int]] = set()
+_WARNED_FALLBACK: set[Tuple[str, str]] = set()
 
 
 def _fonts_root() -> Path:
@@ -25,7 +25,8 @@ def _fallback_chain(name: str):
 
 
 def _warn(name: str, size: int, reason: str):
-    key = (name, int(size))
+    reason_key = str(reason).split(":", 1)[0]
+    key = (name, reason_key)
     if key in _WARNED_FALLBACK:
         return
     _WARNED_FALLBACK.add(key)

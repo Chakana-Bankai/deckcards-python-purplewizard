@@ -146,6 +146,8 @@ class App:
         self.debug["art_status"] = "PENDING"
         self.debug["music_status"] = "PENDING"
         self.debug["biome_status"] = "PENDING"
+        self._content_validation_cache_key = None
+        self._content_validation_cache_result = None
         self.debug["last_regen_ts"] = int(time.time())
         self.cards_data = []
         self.card_defs = {}
@@ -233,7 +235,7 @@ class App:
         self._apply_dev_reset_if_enabled()
         self.ensure_assets(progress_cb=self._loading_step)
         self._log_card_art_status()
-        content_report = validate_content(self.cards_data, assets_dir())
+        content_report = self._validate_content_cached()
         self.debug["content_validation"] = content_report
         print(f"[boot] validate_content status={content_report.get('status')} cards={content_report.get('cards')} summary_ok={content_report.get('summary_ok')} can_play_ok={content_report.get('can_play_ok')} placeholders={content_report.get('placeholders')} issues={len(content_report.get('issues', []))}")
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
@@ -248,6 +250,25 @@ class App:
         self._try_restore_run_from_save()
         self._boot_content_ready = True
         self.music.play_for(self.get_bgm_track("menu"))
+
+    def _validate_content_cached(self):
+        key = tuple(
+            (
+                str(c.get("id", "")),
+                int(c.get("cost", 0) or 0),
+                str(c.get("rarity", "")),
+                len(list(c.get("effects", []) or [])),
+            )
+            for c in (self.cards_data or [])
+            if isinstance(c, dict)
+        )
+        if self._content_validation_cache_key == key and isinstance(self._content_validation_cache_result, dict):
+            return dict(self._content_validation_cache_result)
+
+        report = validate_content(self.cards_data, assets_dir())
+        self._content_validation_cache_key = key
+        self._content_validation_cache_result = dict(report)
+        return report
 
     def _log_card_art_status(self):
         cards_dir = assets_dir() / "sprites" / "cards"
@@ -1318,7 +1339,7 @@ class App:
         self.enemies_data = self._load_enemies_data()
         self.ensure_assets(progress_cb=self._loading_step)
         self._log_card_art_status()
-        content_report = validate_content(self.cards_data, assets_dir())
+        content_report = self._validate_content_cached()
         self.debug["content_validation"] = content_report
         print(f"[boot] validate_content status={content_report.get('status')} cards={content_report.get('cards')} summary_ok={content_report.get('summary_ok')} can_play_ok={content_report.get('can_play_ok')} placeholders={content_report.get('placeholders')} issues={len(content_report.get('issues', []))}")
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)

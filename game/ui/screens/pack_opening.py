@@ -89,7 +89,7 @@ class PackOpeningScreen:
                 self.app.rng.choice(pool),
             ]
             self.msg = f"{pack['title']} abierto. Recibiras las 5 cartas"
-        self.cards = [CardInstance(CardDef(**c)) for c in picked if c]
+        self.cards = [CardInstance(CardDef.from_dict(c)) for c in picked if c]
 
     def _toggle_pack_selection(self, idx):
         if self.selected_pack == idx:

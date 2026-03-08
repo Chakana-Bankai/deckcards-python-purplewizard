@@ -65,7 +65,7 @@ class QARunner:
         from game.ui.components.modal_card_picker import ModalCardPicker
 
         sample_defs = [c for c in self.app.cards_data[:3] if isinstance(c, dict)]
-        cards = [CardInstance(CardDef(**c)) for c in sample_defs] if sample_defs else []
+        cards = [CardInstance(CardDef.from_dict(c)) for c in sample_defs] if sample_defs else []
         chosen = {"card": None}
         picker = ModalCardPicker()
         picker.show(cards, on_confirm=lambda c: chosen.__setitem__("card", c), required_selections=1)

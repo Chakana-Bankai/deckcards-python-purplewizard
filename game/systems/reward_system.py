@@ -61,7 +61,7 @@ def _card_instance(card_dict):
         "family": c.get("family", "attack"),
         "direction": c.get("direction", "ESTE"),
     }
-    return CardInstance(CardDef(**payload))
+    return CardInstance(CardDef.from_dict(payload))
 
 
 def _safe_pick(rng, pool, fallback):

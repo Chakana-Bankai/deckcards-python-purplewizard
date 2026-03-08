@@ -43,7 +43,7 @@ class ChakanaTypography:
 
     def __init__(self):
         self.palette = TypographyPalette()
-        self._warned: set[tuple[str, int]] = set()
+        self._warned: set[str] = set()
 
     def get(self, role: str, size: int | None = None) -> pygame.font.Font:
         if not pygame.font.get_init():
@@ -56,7 +56,7 @@ class ChakanaTypography:
                 return get_lore_font(sz)
             return get_ui_font(sz)
         except Exception as exc:
-            key = (role, sz)
+            key = role
             if key not in self._warned:
                 self._warned.add(key)
                 print(f"[typography] warning: fallback default font role={role} size={sz} err={exc}")

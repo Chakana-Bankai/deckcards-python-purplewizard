@@ -143,7 +143,7 @@ def validate_content(cards_data: list[dict], assets_root: Path) -> dict:
                 "family": c.get("family", "attack"),
                 "direction": c.get("direction", "ESTE"),
             }
-            card = CardInstance(CardDef(**cdef_payload))
+            card = CardInstance(CardDef.from_dict(cdef_payload))
             ok, reason_code, reason_text = can_play(card, dummy_ctx)
             if isinstance(ok, bool) and isinstance(reason_code, str) and isinstance(reason_text, str):
                 can_play_ok += 1

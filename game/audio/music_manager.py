@@ -28,6 +28,8 @@ class MusicManager:
         self._last_variant_by_track: dict[str, str] = {}
         self._unsupported_paths: set[str] = set()
         self._last_good_path: str | None = None
+        self._resolved_track_cache: dict[str, Path | None] = {}
+        self._missing_reported: set[str] = set()
         music_dir = assets_dir() / "music"
         self.tracks = {
             "menu": [music_dir / "menu.ogg", music_dir / "menu.wav"],
@@ -130,20 +132,43 @@ class MusicManager:
             print(f"[audio] BGM silent: {key} (using existing file)")
         return path
 
-    def _ensure_track(self, key: str) -> Path:
+    def _ensure_track(self, key: str) -> Path | None:
         variant_path = self._choose_variant(key, self._variant_paths(key))
         if variant_path is not None:
+            self._resolved_track_cache[key] = variant_path
             return self._ensure_audible_wav(key, variant_path)
 
+        cached = self._resolved_track_cache.get(key)
+        if isinstance(cached, Path) and cached.exists() and str(cached) not in self._unsupported_paths:
+            return self._ensure_audible_wav(key, cached)
+
         path = self._find_track(key)
-        if path is None:
-            generated = assets_dir() / ".cache" / "music" / f"{key}.wav"
-            generated.parent.mkdir(parents=True, exist_ok=True)
-            synth_ambient_music(generated, key, force=True)
-            print(f"[audio] BGM missing: {key} (generated cache placeholder)")
-            self._manifest = self._load_manifest()
-            return generated
-        return self._ensure_audible_wav(key, path)
+        if path is not None:
+            self._resolved_track_cache[key] = path
+            return self._ensure_audible_wav(key, path)
+
+        generated = assets_dir() / ".cache" / "music" / f"{key}.wav"
+        generated.parent.mkdir(parents=True, exist_ok=True)
+        if not generated.exists():
+            try:
+                synth_ambient_music(generated, key, force=False)
+                self._manifest = self._load_manifest()
+                if key not in self._missing_reported:
+                    self._missing_reported.add(key)
+                    print(f"[audio] BGM missing: {key} (generated cache placeholder)")
+            except Exception as exc:
+                if key not in self._missing_reported:
+                    self._missing_reported.add(key)
+                    print(f"[audio] BGM missing: {key} (placeholder generation failed: {exc})")
+                self._resolved_track_cache[key] = None
+                return None
+
+        if generated.exists():
+            self._resolved_track_cache[key] = generated
+            return self._ensure_audible_wav(key, generated)
+
+        self._resolved_track_cache[key] = None
+        return None
 
     def _fallback_candidates(self, key: str, preferred: Path | None = None) -> list[Path]:
         candidates: list[Path] = []
@@ -155,6 +180,16 @@ class MusicManager:
         for candidate in self.tracks.get(key, []):
             if candidate.exists() and candidate not in candidates:
                 candidates.append(candidate)
+
+        # Session-safe fallback: previous good track, then menu track.
+        if self._last_good_path:
+            p = Path(self._last_good_path)
+            if p.exists() and p not in candidates:
+                candidates.append(p)
+        for menu_candidate in self.tracks.get("menu", []):
+            if menu_candidate.exists() and menu_candidate not in candidates:
+                candidates.append(menu_candidate)
+
         out = []
         for path in candidates:
             if str(path) in self._unsupported_paths:

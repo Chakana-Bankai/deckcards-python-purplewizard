@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import copy
 from pathlib import Path
 
 from game.core.paths import data_dir
@@ -13,11 +14,31 @@ class ContentStatus:
     errors: list[str] = field(default_factory=list)
 
 
+
+
+_CONTENT_CACHE = {"stamp": None, "payload": None}
+
 class ContentService:
     def __init__(self, base: Path | None = None):
         project_root = Path(__file__).resolve().parents[2]
         fallback = project_root / "game" / "data"
         self.base = base or (fallback if fallback.exists() else data_dir())
+
+    def _source_stamp(self):
+        files = [
+            self.base / "cards.json",
+            self.base / "enemies" / "enemies_30.json",
+            self.base / "enemies" / "bosses_3.json",
+            self.base / "lore" / "dialogues_combat.json",
+            self.base / "lore" / "dialogues_events.json",
+        ]
+        stamp = []
+        for f in files:
+            try:
+                stamp.append((str(f), int(f.stat().st_mtime_ns)))
+            except Exception:
+                stamp.append((str(f), -1))
+        return tuple(stamp)
 
     def _step(self, progress_cb, label, pct):
         if progress_cb:
@@ -46,6 +67,10 @@ class ContentService:
         return c if isinstance(c, dict) else {}, e if isinstance(e, dict) else {}
 
     def load_all(self, progress_cb=None) -> dict:
+        stamp = self._source_stamp()
+        if _CONTENT_CACHE.get("stamp") == stamp and isinstance(_CONTENT_CACHE.get("payload"), dict):
+            return copy.deepcopy(_CONTENT_CACHE["payload"])
+
         st = ContentStatus()
         self._step(progress_cb, "Cargando cartas", 0.05)
         cards = self.load_cards(st)
@@ -72,7 +97,7 @@ class ContentService:
                     "victory": {"enemy": "Aún no termina.", "chakana": "Sigo en pie."},
                 }
 
-        return {
+        payload = {
             "cards": cards if isinstance(cards, list) else [],
             "enemies": enemies if isinstance(enemies, list) else [],
             "bosses": bosses if isinstance(bosses, list) else [],
@@ -81,3 +106,6 @@ class ContentService:
             "status": st.status,
             "errors": st.errors,
         }
+        _CONTENT_CACHE["stamp"] = stamp
+        _CONTENT_CACHE["payload"] = copy.deepcopy(payload)
+        return payload
