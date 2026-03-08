@@ -1,0 +1,479 @@
+{
+  "gold": 131,
+  "relics": [
+    "violet_seal"
+  ],
+  "player": {
+    "hp": 47,
+    "max_hp": 60,
+    "block": 0,
+    "energy": 3,
+    "rupture": 0,
+    "statuses": {
+      "enemy_damage_down": 0
+    },
+    "harmony_current": 4,
+    "harmony_max": 10,
+    "harmony_ready_threshold": 6,
+    "harmony_ready": false,
+    "harmony_seal_used": false,
+    "seal_ready": false,
+    "seal_active": false
+  },
+  "deck": [
+    "filo_astral",
+    "estallido_arcano",
+    "pulso_cosmico",
+    "garra_espiritual",
+    "fragmento_celeste",
+    "invocacion_astral",
+    "vision_del_condor",
+    "lectura_del_destino",
+    "sello_protector",
+    "guardia_terrenal",
+    "escudo_de_luz",
+    "embate_del_jaguar",
+    "filo_en_cadena",
+    "resistencia_ancestral",
+    "vinculo_de_energia",
+    "silencio_interior",
+    "portal_de_la_chakana",
+    "fusion_espiritual",
+    "chakana_de_luz"
+  ],
+  "sideboard": [
+    "filo_en_cadena",
+    "chakana_de_luz",
+    "piedra_ritual",
+    "vinculo_de_energia",
+    "pulso_cosmico",
+    "escudo_del_chaman"
+  ],
+  "map": [
+    [
+      {
+        "id": "0_0",
+        "col": 0,
+        "x": 120,
+        "y": 540,
+        "type": "combat",
+        "biome": "kaypacha",
+        "next": [
+          "1_0",
+          "1_1"
+        ],
+        "state": "cleared"
+      }
+    ],
+    [
+      {
+        "id": "1_0",
+        "col": 1,
+        "x": 306,
+        "y": 196,
+        "type": "event",
+        "biome": "kaypacha",
+        "next": [
+          "2_0",
+          "2_3"
+        ],
+        "state": "available"
+      },
+      {
+        "id": "1_1",
+        "col": 1,
+        "x": 306,
+        "y": 481,
+        "type": "event",
+        "biome": "kaypacha",
+        "next": [
+          "2_1",
+          "2_2"
+        ],
+        "state": "cleared"
+      },
+      {
+        "id": "1_2",
+        "col": 1,
+        "x": 306,
+        "y": 766,
+        "type": "event",
+        "biome": "kaypacha",
+        "next": [
+          "2_2"
+        ],
+        "state": "available"
+      }
+    ],
+    [
+      {
+        "id": "2_0",
+        "col": 2,
+        "x": 492,
+        "y": 196,
+        "type": "combat",
+        "biome": "kaypacha",
+        "next": [
+          "3_0",
+          "3_1"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "2_1",
+        "col": 2,
+        "x": 492,
+        "y": 386,
+        "type": "combat",
+        "biome": "kaypacha",
+        "next": [
+          "3_1",
+          "3_2"
+        ],
+        "state": "available"
+      },
+      {
+        "id": "2_2",
+        "col": 2,
+        "x": 492,
+        "y": 576,
+        "type": "combat",
+        "biome": "kaypacha",
+        "next": [
+          "3_2",
+          "3_0"
+        ],
+        "state": "available"
+      },
+      {
+        "id": "2_3",
+        "col": 2,
+        "x": 492,
+        "y": 766,
+        "type": "combat",
+        "biome": "kaypacha",
+        "next": [
+          "3_2"
+        ],
+        "state": "locked"
+      }
+    ],
+    [
+      {
+        "id": "3_0",
+        "col": 3,
+        "x": 678,
+        "y": 196,
+        "type": "shop",
+        "biome": "kaypacha",
+        "next": [
+          "4_0",
+          "4_2"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "3_1",
+        "col": 3,
+        "x": 678,
+        "y": 481,
+        "type": "shop",
+        "biome": "kaypacha",
+        "next": [
+          "4_1",
+          "4_0"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "3_2",
+        "col": 3,
+        "x": 678,
+        "y": 766,
+        "type": "shop",
+        "biome": "kaypacha",
+        "next": [
+          "4_2",
+          "4_3"
+        ],
+        "state": "locked"
+      }
+    ],
+    [
+      {
+        "id": "4_0",
+        "col": 4,
+        "x": 864,
+        "y": 196,
+        "type": "challenge",
+        "biome": "forest",
+        "next": [
+          "5_0",
+          "5_2"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "4_1",
+        "col": 4,
+        "x": 864,
+        "y": 386,
+        "type": "challenge",
+        "biome": "forest",
+        "next": [
+          "5_1"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "4_2",
+        "col": 4,
+        "x": 864,
+        "y": 576,
+        "type": "challenge",
+        "biome": "forest",
+        "next": [
+          "5_2",
+          "5_0"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "4_3",
+        "col": 4,
+        "x": 864,
+        "y": 766,
+        "type": "challenge",
+        "biome": "forest",
+        "next": [
+          "5_2"
+        ],
+        "state": "locked"
+      }
+    ],
+    [
+      {
+        "id": "5_0",
+        "col": 5,
+        "x": 1050,
+        "y": 196,
+        "type": "treasure",
+        "biome": "forest",
+        "next": [
+          "6_0",
+          "6_2"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "5_1",
+        "col": 5,
+        "x": 1050,
+        "y": 481,
+        "type": "treasure",
+        "biome": "forest",
+        "next": [
+          "6_1",
+          "6_3"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "5_2",
+        "col": 5,
+        "x": 1050,
+        "y": 766,
+        "type": "treasure",
+        "biome": "forest",
+        "next": [
+          "6_2",
+          "6_3"
+        ],
+        "state": "locked"
+      }
+    ],
+    [
+      {
+        "id": "6_0",
+        "col": 6,
+        "x": 1236,
+        "y": 196,
+        "type": "combat",
+        "biome": "forest",
+        "next": [
+          "7_0",
+          "7_2"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "6_1",
+        "col": 6,
+        "x": 1236,
+        "y": 386,
+        "type": "combat",
+        "biome": "forest",
+        "next": [
+          "7_1"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "6_2",
+        "col": 6,
+        "x": 1236,
+        "y": 576,
+        "type": "combat",
+        "biome": "forest",
+        "next": [
+          "7_2"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "6_3",
+        "col": 6,
+        "x": 1236,
+        "y": 766,
+        "type": "combat",
+        "biome": "forest",
+        "next": [
+          "7_2",
+          "7_0"
+        ],
+        "state": "locked"
+      }
+    ],
+    [
+      {
+        "id": "7_0",
+        "col": 7,
+        "x": 1422,
+        "y": 196,
+        "type": "event",
+        "biome": "umbral",
+        "next": [
+          "8_0",
+          "8_2"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "7_1",
+        "col": 7,
+        "x": 1422,
+        "y": 481,
+        "type": "event",
+        "biome": "umbral",
+        "next": [
+          "8_1",
+          "8_0"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "7_2",
+        "col": 7,
+        "x": 1422,
+        "y": 766,
+        "type": "event",
+        "biome": "umbral",
+        "next": [
+          "8_2",
+          "8_3"
+        ],
+        "state": "locked"
+      }
+    ],
+    [
+      {
+        "id": "8_0",
+        "col": 8,
+        "x": 1608,
+        "y": 196,
+        "type": "challenge",
+        "biome": "umbral",
+        "next": [
+          "9_0"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "8_1",
+        "col": 8,
+        "x": 1608,
+        "y": 386,
+        "type": "challenge",
+        "biome": "umbral",
+        "next": [
+          "9_0"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "8_2",
+        "col": 8,
+        "x": 1608,
+        "y": 576,
+        "type": "challenge",
+        "biome": "umbral",
+        "next": [
+          "9_0"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "8_3",
+        "col": 8,
+        "x": 1608,
+        "y": 766,
+        "type": "combat",
+        "biome": "umbral",
+        "next": [
+          "9_0"
+        ],
+        "state": "locked"
+      }
+    ],
+    [
+      {
+        "id": "9_0",
+        "col": 9,
+        "x": 1794,
+        "y": 540,
+        "type": "boss",
+        "biome": "umbral",
+        "next": [],
+        "state": "locked"
+      }
+    ]
+  ],
+  "map_columns": 10,
+  "biome_progression": [
+    "kaypacha",
+    "forest",
+    "umbral"
+  ],
+  "biome_index": 0,
+  "biome": "kaypacha",
+  "xp": 9,
+  "level": 2,
+  "combats_won": 1,
+  "settings": {
+    "turn_timer_enabled": true,
+    "turn_timer_seconds": 20,
+    "music_muted": false
+  },
+  "tutorial": {
+    "active": false,
+    "completed": false,
+    "step_id": "",
+    "step_index": 0,
+    "step_total": 7
+  },
+  "last_node_type": "combat",
+  "levelup_pending": 0,
+  "current_node_id": "1_1",
+  "last_biome_seen": "kaypacha",
+  "saved_at": 1772941695
+}
