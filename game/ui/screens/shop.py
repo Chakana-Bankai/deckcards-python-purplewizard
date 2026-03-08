@@ -122,7 +122,7 @@ class ShopScreen:
         rarity = str(card.get("rarity", "common")).title()
         s.blit(self.app.tiny_font.render(f"{rarity} | {role}", True, UI_THEME["text"]), (rect.x + 14, rect.y + 92))
 
-        art = self.app.assets.sprite("cards", card.get("id", ""), (rect.w - 26, rect.h - 128), fallback=(84, 66, 122))
+        art = self.app.assets.sprite("cards", card.get("id", ""), (max(140, rect.w - 84), max(140, rect.h - 190)), fallback=(84, 66, 122))
         art_r = art.get_rect(center=(rect.centerx, rect.y + rect.h * 0.62))
         s.blit(art, art_r.topleft)
         s.blit(self.app.tiny_font.render("Click para comprar", True, UI_THEME["gold"]), (rect.x + 14, rect.bottom - 28))
@@ -180,9 +180,12 @@ class ShopScreen:
         rid = artifact.get("id", "artifact")
         name = self.app.loc.t(artifact.get("name_key", rid))
         desc = self.app.loc.t(artifact.get("text_key", "")) or "Reliquia antigua del comerciante."
-        s.blit(self.app.small_font.render(name, True, UI_THEME["text"]), (self.preview_rect.x + 14, y))
+        relic_art = self.app.assets.sprite("relics", rid, (112, 112), fallback=(96, 76, 124))
+        relic_rect = relic_art.get_rect(topleft=(self.preview_rect.x + 14, y))
+        s.blit(relic_art, relic_rect.topleft)
+        s.blit(self.app.small_font.render(name, True, UI_THEME["text"]), (relic_rect.right + 12, y + 2))
         y += 30
-        s.blit(self.app.tiny_font.render("Tipo: Reliquia", True, UI_THEME["muted"]), (self.preview_rect.x + 14, y))
+        s.blit(self.app.tiny_font.render("Tipo: Reliquia", True, UI_THEME["muted"]), (relic_rect.right + 12, y))
         y += 22
         for line in desc.split(".")[:4]:
             txt = line.strip()
@@ -224,6 +227,8 @@ class ShopScreen:
         s.blit(self.app.small_font.render("Reliquia del Umbral", True, UI_THEME["gold"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 12))
         s.blit(self.app.small_font.render(f"{self.artifact_price} oro", True, UI_THEME["text"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 44))
         rid = self.artifact.get("id", "artifact")
+        relic_thumb = self.app.assets.sprite("relics", rid, (96, 96), fallback=(96, 76, 124))
+        s.blit(relic_thumb, (self.artifact_rect.right - 112, self.artifact_rect.y + 58))
         s.blit(self.app.tiny_font.render(self.app.loc.t(self.artifact.get("name_key", rid)), True, UI_THEME["muted"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 70))
         desc = self.app.loc.t(self.artifact.get("text_key", ""))
         for i, line in enumerate((desc or "Reliquia antigua del comerciante.").split(".")[:2]):

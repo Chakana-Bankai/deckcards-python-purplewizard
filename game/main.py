@@ -601,15 +601,19 @@ class App:
     def goto_end(self, victory=True):
         if not victory:
             self.play_stinger("stinger_defeat")
-        self._clear_saved_run()
-        self.current_combat = None
-        self.run_state = None
-        self.current_node_id = None
-        self.node_lookup = {}
+        can_resume_defeat = (not victory) and isinstance(self.run_state, dict) and bool(self.run_state.get("allow_defeat_continue", False))
+        if victory or not can_resume_defeat:
+            self._clear_saved_run()
+            self.current_combat = None
+            self.run_state = None
+            self.current_node_id = None
+            self.node_lookup = {}
+        else:
+            self.current_combat = None
+            self._autosave_run("defeat_screen_resume_ready")
         title = "Victoria" if victory else "Derrota"
-        lore = "el eco celebrÃ³ tu equilibrio." if victory else "la Trama pidiÃ³ un nuevo intento."
-        self.sm.set(PachaTransitionScreen(self, title, lambda: self.sm.set(EndScreen(self, victory=victory)), lore_line=lore, hint="Cierre del capÃ­tulo"))
-
+        lore = "el eco celebro tu equilibrio." if victory else "la Trama pidio un nuevo intento."
+        self.sm.set(PachaTransitionScreen(self, title, lambda: self.sm.set(EndScreen(self, victory=victory)), lore_line=lore, hint="Cierre del capitulo"))
 
     def goto_path_select(self):
         self.sm.set(PathSelectScreen(self))
@@ -1024,6 +1028,34 @@ class App:
             self.run_state["levelup_pending"] = self.run_state.get("levelup_pending", 0) + levels
         return levels
 
+    def apply_run_rewards(self, *, gold=0, xp=0, cards=None, relics=None, source="unknown"):
+        """Apply run rewards through one stable path with deterministic logging."""
+        if not isinstance(self.run_state, dict):
+            return {"gold": 0, "xp": 0, "levels": 0, "cards": 0, "relics": 0}
+
+        granted_gold = max(0, int(gold or 0))
+        granted_xp = max(0, int(xp or 0))
+        card_ids = [str(cid) for cid in list(cards or []) if cid]
+        relic_ids = [str(rid) for rid in list(relics or []) if rid]
+
+        if granted_gold:
+            self.run_state["gold"] = int(self.run_state.get("gold", 0) or 0) + granted_gold
+        levels = self.gain_xp(granted_xp) if granted_xp else 0
+        if card_ids:
+            self.run_state.setdefault("sideboard", []).extend(card_ids)
+        if relic_ids:
+            owned = self.run_state.setdefault("relics", [])
+            for rid in relic_ids:
+                if rid not in owned:
+                    owned.append(rid)
+
+        print(
+            f"[reward] source={source} gold=+{granted_gold} xp=+{granted_xp} "
+            f"levels=+{levels} cards=+{len(card_ids)} relics=+{len(relic_ids)} "
+            f"pending_packs={self.run_state.get('levelup_pending', 0)}"
+        )
+        self._autosave_run(f"rewards:{source}")
+        return {"gold": granted_gold, "xp": granted_xp, "levels": levels, "cards": len(card_ids), "relics": len(relic_ids)}
 
     def on_combat_victory(self):
         self.play_stinger("stinger_victory")
@@ -1032,7 +1064,7 @@ class App:
         perfect_bonus = 5 if self.current_combat and getattr(self.current_combat, "player_damage_taken", 0) <= 0 else 0
 
         if node_type == "boss":
-            self.gain_xp(100 + perfect_bonus)
+            self.apply_run_rewards(xp=100 + perfect_bonus, source="combat_boss")
             self._apply_post_combat_recovery("boss")
             self.goto_reward(mode="boss_pack", gold=self.rng.randint(120, 180))
             return
@@ -1045,17 +1077,17 @@ class App:
             bonus_gold = self.rng.randint(20, 35)
             xp_gain = self.rng.randint(15, 25) + perfect_bonus
 
-        self.gain_xp(xp_gain)
+        self.apply_run_rewards(xp=xp_gain, source=f"combat_{node_type}")
         self._apply_post_combat_recovery(node_type)
         enemy = self.current_combat.enemies[0] if self.current_combat and self.current_combat.enemies else None
         self.debug["last_lesson_key"] = getattr(enemy, "fable_lesson_key", "duda") if enemy else "duda"
         self.goto_reward(gold=bonus_gold)
 
-
     def consume_levelup_pending(self):
-        pending = self.run_state.get("levelup_pending", 0)
+        pending = int(self.run_state.get("levelup_pending", 0) or 0)
         if pending > 0:
-            self.run_state["levelup_pending"] = pending - 1
+            self.run_state["levelup_pending"] = max(0, pending - 1)
+        print(f"[reward] consume_levelup_pending remaining={self.run_state.get('levelup_pending', 0)}")
         if self.run_state.get("levelup_pending", 0) > 0:
             self.sm.set(PackOpeningScreen(self))
         else:
@@ -1064,13 +1096,16 @@ class App:
     def apply_event_effects(self, effects):
         player = self.run_state["player"]
         rare = any(e.get("type") == "gain_relic" for e in effects)
-        self.gain_xp(self.rng.randint(7, 8) if rare else self.rng.randint(4, 6))
+        event_xp = self.rng.randint(7, 8) if rare else self.rng.randint(4, 6)
+        self.apply_run_rewards(xp=event_xp, source="event_base")
         for effect in effects:
             effect_type = effect.get("type")
             if effect_type == "lose_gold":
                 self.run_state["gold"] = max(0, self.run_state["gold"] - int(effect.get("amount", 0)))
             elif effect_type == "gain_gold":
-                self.run_state["gold"] += int(effect.get("amount", 0))
+                self.apply_run_rewards(gold=int(effect.get("amount", 0) or 0), source="event_gain_gold")
+            elif effect_type == "gain_xp":
+                self.apply_run_rewards(xp=int(effect.get("amount", 0) or 0), source="event_gain_xp")
             elif effect_type == "heal":
                 player["hp"] = min(player["max_hp"], player["hp"] + int(effect.get("amount", 0)))
             elif effect_type == "lose_hp":
@@ -1082,26 +1117,25 @@ class App:
             elif effect_type == "reduce_rupture":
                 player["rupture"] = max(0, player["rupture"] - int(effect.get("amount", 0)))
             elif effect_type == "gain_card":
-                self.run_state["sideboard"].append(effect.get("card_id", "strike"))
+                self.apply_run_rewards(cards=[effect.get("card_id", "strike")], source="event_gain_card")
             elif effect_type == "gain_card_random":
                 rarity = effect.get("rarity")
                 pool = [c.get("id") for c in self.cards_data if c.get("rarity") == rarity and c.get("id")]
                 if pool:
-                    self.run_state["sideboard"].append(self.rng.choice(pool))
+                    self.apply_run_rewards(cards=[self.rng.choice(pool)], source="event_gain_card_random")
             elif effect_type == "remove_card_from_deck" and self.run_state["deck"]:
                 self.run_state["deck"].pop(0)
             elif effect_type == "gain_relic":
                 rid = effect.get("relic_id")
                 if rid:
-                    self.run_state["relics"].append(rid)
+                    self.apply_run_rewards(relics=[rid], source="event_gain_relic")
             elif effect_type == "gain_relic_random":
                 rarity = effect.get("rarity")
                 pool = [r.get("id") for r in self.relics_data if r.get("rarity") == rarity and r.get("id")]
                 if pool:
-                    self.run_state["relics"].append(self.rng.choice(pool))
+                    self.apply_run_rewards(relics=[self.rng.choice(pool)], source="event_gain_relic_random")
             else:
                 print(f"[events] warning: unsupported effect type '{effect_type}'")
-
 
     def recover_map_progression(self):
         if not self.run_state:

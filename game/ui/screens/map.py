@@ -4,7 +4,6 @@ from game.settings import INTERNAL_HEIGHT, INTERNAL_WIDTH
 from game.ui.components.topbar import MapTopBar
 from game.ui.theme import UI_THEME
 from game.ui.system.components import UIPanel
-from game.ui.system.colors import UColors
 from game.ui.system.layout import safe_area
 
 
@@ -232,23 +231,7 @@ class MapScreen:
 
         self.deck_btn = pygame.Rect(topbar.right - 174, topbar.y + 50, 156, 36)
 
-        chip_specs = [
-            (f"XP {xp}/{xp_need}", UI_THEME["text"]),
-            (f"Oro {gold}", UI_THEME["gold"]),
-            (f"Nivel {lvl}", UI_THEME["violet"]),
-        ]
-        gap = 8
-        chip_h = 24
-        chip_ws = [max(104, self.app.tiny_font.size(txt)[0] + 18) for txt, _ in chip_specs]
-        total_w = sum(chip_ws) + gap * (len(chip_ws) - 1)
-        chip_x = max(topbar.x + 16, self.deck_btn.x - 14 - total_w)
-        chip_y = topbar.y + 56
-        for (txt, col), cw in zip(chip_specs, chip_ws):
-            chip = pygame.Rect(chip_x, chip_y, cw, chip_h)
-            pygame.draw.rect(s, UColors.PANEL_ALT, chip, border_radius=8)
-            pygame.draw.rect(s, col, chip, 1, border_radius=8)
-            s.blit(self.app.tiny_font.render(txt, True, col), (chip.x + 9, chip.y + 5))
-            chip_x += cw + gap
+        # XP/Oro/Nivel now live in the right status panel to avoid duplicated map chrome.
 
         pygame.draw.rect(s, UI_THEME["panel_2"], self.deck_btn, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.deck_btn, 2, border_radius=10)

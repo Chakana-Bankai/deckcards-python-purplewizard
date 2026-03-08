@@ -100,6 +100,10 @@ class RewardScreen:
         run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
         player = run.get("player", {}) if isinstance(run.get("player", {}), dict) else {}
         run.setdefault("gold", 0)
+        gain_gold = 0
+        gain_xp = 0
+        gain_cards = []
+        gain_relics = []
 
         for effect in effects:
             typ = str(effect.get("type", ""))
@@ -112,11 +116,11 @@ class RewardScreen:
             elif typ == "gain_cards":
                 for cid in effect.get("cards", []):
                     if cid:
-                        run.setdefault("sideboard", []).append(cid)
+                        gain_cards.append(cid)
             elif typ == "gain_gold":
-                run["gold"] = int(run.get("gold", 0) or 0) + int(effect.get("amount", 0) or 0)
+                gain_gold += int(effect.get("amount", 0) or 0)
             elif typ == "gain_xp":
-                run["xp"] = int(run.get("xp", 0) or 0) + int(effect.get("amount", 0) or 0)
+                gain_xp += int(effect.get("amount", 0) or 0)
             elif typ == "heal_percent":
                 amount = float(effect.get("amount", 0.25) or 0.25)
                 heal = int(player.get("max_hp", 60) * amount)
@@ -133,7 +137,22 @@ class RewardScreen:
                 rarity = str(effect.get("rarity", "common") or "common").lower()
                 pool = [r.get("id") for r in list(getattr(self.app, "relics_data", []) or []) if str(r.get("rarity", "")).lower() == rarity and r.get("id")]
                 if pool:
-                    run.setdefault("relics", []).append(self.app.rng.choice(pool))
+                    gain_relics.append(self.app.rng.choice(pool))
+
+        if hasattr(self.app, "apply_run_rewards"):
+            self.app.apply_run_rewards(
+                gold=gain_gold,
+                xp=gain_xp,
+                cards=gain_cards,
+                relics=gain_relics,
+                source="guide_choice",
+            )
+        else:
+            run["gold"] = int(run.get("gold", 0) or 0) + gain_gold
+            run.setdefault("sideboard", []).extend(gain_cards)
+            run.setdefault("relics", []).extend(gain_relics)
+            if gain_xp:
+                run["xp"] = int(run.get("xp", 0) or 0) + gain_xp
 
         self._tutorial_reward_confirmed()
         self.app.goto_map()
@@ -160,18 +179,26 @@ class RewardScreen:
                 self.app.sfx.play("ui_click")
                 return
             card = self.cards[self.selected_idx]
-            self.app.run_state["sideboard"].append(card.definition.id)
-            self.app.run_state["gold"] += self.gold
+            if hasattr(self.app, "apply_run_rewards"):
+                self.app.apply_run_rewards(cards=[card.definition.id], gold=self.gold, source="reward_choose1")
+            else:
+                self.app.run_state["sideboard"].append(card.definition.id)
+                self.app.run_state["gold"] += self.gold
             self._tutorial_reward_confirmed()
             self.app.goto_map()
             return
 
         if self.mode == "boss_pack":
-            for c in self.cards:
-                self.app.run_state["sideboard"].append(c.definition.id)
-            if isinstance(self.relic, dict) and self.relic.get("id"):
-                self.app.run_state.setdefault("relics", []).append(self.relic["id"])
-            self.app.run_state["gold"] += self.gold
+            cards = [c.definition.id for c in self.cards]
+            relics = [self.relic["id"]] if isinstance(self.relic, dict) and self.relic.get("id") else []
+            if hasattr(self.app, "apply_run_rewards"):
+                self.app.apply_run_rewards(cards=cards, relics=relics, gold=self.gold, source="reward_boss")
+            else:
+                for cid in cards:
+                    self.app.run_state["sideboard"].append(cid)
+                for rid in relics:
+                    self.app.run_state.setdefault("relics", []).append(rid)
+                self.app.run_state["gold"] += self.gold
             self._tutorial_reward_confirmed()
             self.app.goto_end(victory=True)
             return

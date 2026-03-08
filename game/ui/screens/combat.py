@@ -250,6 +250,10 @@ class CombatScreen:
         self._invalid_feedback_msg = str(message or "Accion invalida")
         self._invalid_feedback_until_ms = pygame.time.get_ticks() + 1200
 
+    def _clear_invalid_feedback(self):
+        self._invalid_feedback_until_ms = 0
+        self._invalid_feedback_msg = ""
+
     def _resolve_action_state(self):
         p = self.c.player
         h_cur = int(p.get("harmony_current", 0) or 0)
@@ -807,9 +811,12 @@ class CombatScreen:
                     if not ok_code:
                         self._status_line = reason_text
                         self._push_log(f"No se puede jugar: {reason_text}")
+                    else:
+                        self._clear_invalid_feedback()
                     break
             if not in_card:
                 self.ctrl.clear_selection("click_outside")
+                self._clear_invalid_feedback()
 
         if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
@@ -955,6 +962,9 @@ class CombatScreen:
                 self.app._sync_tutorial_run_state()
 
         self.ctrl.validate_selection(len(self.c.hand))
+        state, _label, disabled, _reason = self._resolve_action_state()
+        if state != "INVALID" and not disabled and self._invalid_feedback_until_ms > 0:
+            self._clear_invalid_feedback()
         if self.c.result == "victory":
             enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
             self.set_dialogue("victory", enemy_id, {})

@@ -2,7 +2,7 @@ import math
 
 import pygame
 
-from game.ui.components.card_effect_summary import summarize_card_effect
+from game.ui.components.card_effect_summary import infer_card_role, summarize_card_effect
 from game.ui.components.card_preview_panel import CardPreviewPanel
 from game.ui.theme import UI_THEME
 from game.ui.system.layout import anchor_bottom_center, inset, safe_area, split_horizontal, split_vertical
@@ -248,6 +248,7 @@ class DeckScreen:
         s.blit(self.app.small_font.render("Preview + Geometria", True, UI_THEME["gold"]), (self.preview_rect.x + 14, self.preview_rect.y + 14))
 
         attacks = skills = rituals = total_cost = 0
+        role_counts = {"attack": 0, "defense": 0, "energy": 0, "control": 0, "ritual": 0, "combo": 0}
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         deck = self.app.run_state["deck"]
         sideboard = self.app.run_state["sideboard"]
@@ -258,6 +259,8 @@ class DeckScreen:
             attacks += int("attack" in tags)
             skills += int("skill" in tags)
             rituals += int("ritual" in tags)
+            role = infer_card_role(cd)
+            role_counts[role] = int(role_counts.get(role, 0)) + 1
 
         m_start, m_end = self._visible_main_range()
         for vi, i in enumerate(range(m_start, m_end)):
@@ -290,6 +293,12 @@ class DeckScreen:
         avg = total_cost / n
         s.blit(self.app.font.render(self.app.loc.t("deck_stats", count=n, avg=f"{avg:.1f}"), True, UI_THEME["gold"]), (self.main_rect.x + 12, self.main_rect.bottom - 36))
         s.blit(self.app.font.render(self.app.loc.t("deck_stats_tags", atk=attacks, skill=skills, ritual=rituals), True, UI_THEME["muted"]), (self.main_rect.x + 12, self.main_rect.bottom - 12))
+
+        reserve_count = len(sideboard)
+        top_roles = sorted(role_counts.items(), key=lambda it: it[1], reverse=True)
+        role_line = " / ".join(f"{k[:3].upper()} {v}" for k, v in top_roles[:3] if v > 0) or "Sin roles"
+        s.blit(self.app.tiny_font.render(f"Reserva: {reserve_count}", True, UI_THEME["gold"]), (self.side_rect.x + 12, self.side_rect.bottom - 40))
+        s.blit(self.app.tiny_font.render(f"Roles: {role_line}", True, UI_THEME["muted"]), (self.side_rect.x + 12, self.side_rect.bottom - 18))
 
         hover_card_id = None
         for vi, i in enumerate(range(m_start, m_end)):
