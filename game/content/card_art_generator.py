@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import zlib
 from collections import deque
 from pathlib import Path
 
@@ -11,6 +10,7 @@ from game.art.gen_art32 import seed_from_id
 from game.art.gen_card_art32 import GEN_CARD_ART_VERSION, generate
 from game.core.paths import assets_dir, data_dir
 from game.core.safe_io import atomic_write_json_if_changed, load_json
+from game.visual.generators.lore_motifs import MOTIF_LIBRARY, motifs_for_archetype
 
 
 class PromptBuilder:
@@ -34,13 +34,25 @@ class PromptBuilder:
             return ("indigo-cyan", "split mystic light", "eye geometry", "spiral streams")
         return ("violet-neutral", "balanced glow", "chakana glyph", "arc traces")
 
+    def lore_profile(self, card: dict) -> tuple[str, str, str]:
+        motifs = motifs_for_archetype(str(card.get("archetype", "")))
+        primary = motifs[0]
+        motif = MOTIF_LIBRARY.get(primary, {})
+        shape = ",".join(list(motif.get("shapes", ("chakana",)))[:2])
+        symbol = ",".join(list(motif.get("symbols", ("seal",)))[:2])
+        tone = str(motif.get("tone", "mystic_order"))
+        return primary, shape, f"{symbol}:{tone}"
+
     def build_entry(self, card: dict) -> dict:
         cid = card.get("id", "unknown")
         ctype = self.family_for(card)
         palette, lighting, symbols, energy = self.archetype_mood(card)
+        primary, shape, lore_tokens = self.lore_profile(card)
         prompt = (
-            f"chakana card::{cid}::{ctype} layered sacred geometry, palette {palette}, "
-            f"lighting {lighting}, symbol composition {symbols}, energy pattern {energy}"
+            f"chakana card::{cid}::{ctype} high density pixel fantasy, layered depth, "
+            f"silhouette discipline, palette {palette}, lighting {lighting}, "
+            f"sacred geometry {symbols}, motif {primary} ({shape}), "
+            f"energy pattern {energy}, lore tokens {lore_tokens}, crisp no blur"
         )
         return {
             "id": cid,
@@ -145,7 +157,6 @@ def export_prompts(cards: list[dict], enemies: list[dict] | None = None):
             for cid, data in legacy_cards.items():
                 payload["cards"].setdefault(cid, data)
 
-    # keep stable updated_at for unchanged card prompts
     for cid, pdata in payload["cards"].items():
         old = existing_cards.get(cid, {}) if isinstance(existing_cards, dict) else {}
         if isinstance(old, dict) and old.get("prompt") == pdata.get("prompt") and old.get("style") == pdata.get("style"):
@@ -154,4 +165,3 @@ def export_prompts(cards: list[dict], enemies: list[dict] | None = None):
     atomic_write_json_if_changed(prompts_path, payload, sort_keys=True)
     atomic_write_json_if_changed(data_dir() / "prompt_manifest.json", {"generator_version": GEN_CARD_ART_VERSION, "count": len(payload.get("cards", {}))}, sort_keys=True)
     atomic_write_json_if_changed(data_dir() / "art_manifest_cards.json", {"generator_version": GEN_CARD_ART_VERSION, "count": len(payload.get("cards", {}))}, sort_keys=True)
-

@@ -11,9 +11,9 @@ from .visual_engine import get_visual_engine
 
 
 class PortraitPipeline:
-    """Portrait source + stylized pipeline with cache and safe fallbacks."""
+    """Portrait source + stylized + holographic pipeline with cache and safe fallbacks."""
 
-    VERSION = "portrait_v1"
+    VERSION = "portrait_v2"
 
     def __init__(self):
         self.root = Path(__file__).resolve().parent
@@ -61,6 +61,12 @@ class PortraitPipeline:
             return "archon"
         return "chakana"
 
+    def _resolve_style(self, name: str) -> str:
+        key = str(name or "").lower()
+        if "oracle" in key or "holo" in key:
+            return "holographic"
+        return "stylized"
+
     def _generated_path(self, role: str, style: str, size: tuple[int, int]) -> Path:
         return self.generated_root / f"{role}_{style}_{size[0]}x{size[1]}.png"
 
@@ -80,7 +86,6 @@ class PortraitPipeline:
         w, h = max(16, int(size[0])), max(16, int(size[1]))
         fitted = self._fit_contain(source, (w, h))
 
-        # Keep crisp pseudo-pixel profile: downscale then upscale with nearest.
         dw = max(16, w // 3)
         dh = max(16, h // 3)
         pixel = pygame.transform.scale(fitted, (dw, dh))
@@ -104,6 +109,24 @@ class PortraitPipeline:
         out.blit(glow_s, (0, 0))
         pygame.draw.rect(out, edge, out.get_rect(), 2, border_radius=8)
         return out
+
+    def _to_holographic(self, source: pygame.Surface, role: str, size: tuple[int, int]) -> pygame.Surface:
+        w, h = max(16, int(size[0])), max(16, int(size[1]))
+        base = self._stylize(source, role, size)
+        tint = pygame.Surface((w, h), pygame.SRCALPHA)
+        if role == "archon":
+            tint.fill((220, 74, 98, 54))
+            line_col = (236, 110, 128)
+        else:
+            tint.fill((88, 150, 255, 48))
+            line_col = (126, 212, 246)
+        base.blit(tint, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
+
+        scan = pygame.Surface((w, h), pygame.SRCALPHA)
+        for y in range(1, h, 3):
+            pygame.draw.line(scan, (*line_col, 30), (2, y), (w - 3, y), 1)
+        base.blit(scan, (0, 0))
+        return base
 
     def _log_source(self, tag: str):
         if tag in self._log_once:
@@ -129,45 +152,51 @@ class PortraitPipeline:
                 continue
         return None
 
-    def get_stylized(self, name: str, size: tuple[int, int]) -> pygame.Surface | None:
+    def _build_style(self, role: str, style: str, size: tuple[int, int]) -> pygame.Surface | None:
+        src = self.get_master(role, size)
+        if src is not None:
+            if style == "holographic":
+                return self._to_holographic(src, role, size)
+            return self._stylize(src, role, size)
+
+        try:
+            ve = get_visual_engine()
+            avatar_id = "archon_oracle" if role == "archon" else "combat_hud"
+            return ve.generate("avatar", avatar_id, size, context=avatar_id, force=False)
+        except Exception:
+            return None
+
+    def get_style(self, name: str, size: tuple[int, int], style: str) -> pygame.Surface | None:
         role = self._resolve_role(name)
+        style = str(style or "stylized").lower()
         size = (max(16, int(size[0])), max(16, int(size[1])))
-        cache_key = (role, "stylized", size)
+        cache_key = (role, style, size)
         if cache_key in self._cache:
             return self._cache[cache_key]
 
-        out_path = self._generated_path(role, "stylized", size)
+        out_path = self._generated_path(role, style, size)
         if out_path.exists():
             try:
                 surf = pygame.image.load(str(out_path)).convert_alpha()
                 self._cache[cache_key] = surf
-                self._log_source("stylized")
+                self._log_source(style)
                 return surf
             except Exception:
                 pass
 
-        src = self.get_master(role, size)
-        if src is not None:
-            surf = self._stylize(src, role, size)
-        else:
-            # Safe stylized fallback from visual engine when no master source is present.
-            try:
-                ve = get_visual_engine()
-                avatar_id = "archon_oracle" if role == "archon" else "combat_hud"
-                surf = ve.generate("avatar", avatar_id, size, context=avatar_id, force=False)
-            except Exception:
-                surf = None
-            if surf is None:
-                return None
+        surf = self._build_style(role, style, size)
+        if surf is None:
+            return None
 
         try:
             pygame.image.save(surf, str(out_path))
         except Exception:
             pass
+
         items = self.manifest.setdefault("items", {})
-        items[f"{role}:{size[0]}x{size[1]}"] = {
+        items[f"{role}:{style}:{size[0]}x{size[1]}"] = {
             "role": role,
-            "style": "stylized",
+            "style": style,
             "size": [size[0], size[1]],
             "path": str(out_path),
             "generated_at": int(time.time()),
@@ -175,11 +204,18 @@ class PortraitPipeline:
         }
         self._save_manifest()
         self._cache[cache_key] = surf
-        self._log_source("stylized")
+        self._log_source(style)
         return surf
 
+    def get_stylized(self, name: str, size: tuple[int, int]) -> pygame.Surface | None:
+        return self.get_style(name, size, "stylized")
+
+    def get_holographic(self, name: str, size: tuple[int, int]) -> pygame.Surface | None:
+        return self.get_style(name, size, "holographic")
+
     def resolve_for_ui(self, name: str, size: tuple[int, int], current_fallback: pygame.Surface | None = None) -> pygame.Surface | None:
-        surf = self.get_stylized(name, size)
+        style = self._resolve_style(name)
+        surf = self.get_style(name, size, style)
         if surf is not None:
             return surf
         if current_fallback is not None:

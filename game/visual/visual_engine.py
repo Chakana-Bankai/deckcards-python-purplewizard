@@ -14,12 +14,13 @@ from .generators import (
     RelicGenerator,
     SacredOverlayGenerator,
 )
+from .generators.lore_motifs import MOTIF_LIBRARY
 
 
 class VisualEngine:
     """Centralized procedural visual identity engine with manifest cache."""
 
-    VERSION = "visual_v1"
+    VERSION = "visual_v2"
     PALETTE = {
         "deep_purple": (28, 18, 44),
         "violet": (126, 82, 196),
@@ -93,6 +94,18 @@ class VisualEngine:
             return None
         return None
 
+    def _lore_tags(self, asset_id: str, context: str) -> list[str]:
+        key = f"{asset_id}:{context}".lower()
+        tags = []
+        for motif in MOTIF_LIBRARY.keys():
+            if motif in key:
+                tags.append(motif)
+        if "archon" in key and "archons" not in tags:
+            tags.append("archons")
+        if "chakana" in key and "chakana" not in tags:
+            tags.append("chakana")
+        return tags
+
     def _register(self, key: str, category: str, asset_id: str, context: str, size: tuple[int, int], path: Path):
         items = self.manifest.setdefault("items", {})
         items[key] = {
@@ -105,6 +118,8 @@ class VisualEngine:
             "version": self.VERSION,
             "generated_at": int(time.time()),
             "size": [int(size[0]), int(size[1])],
+            "state": "valid" if path.exists() else "missing",
+            "lore_tags": self._lore_tags(asset_id, context),
         }
         self._save_manifest()
 
@@ -133,7 +148,7 @@ class VisualEngine:
                 return surf
 
         if cat == "avatar":
-            surf = self.avatar.render(aid, size, seed=self._seed(key))
+            surf = self.avatar.render(aid if not cctx else cctx, size, seed=self._seed(key))
         elif cat == "icons":
             surf = self.icon.render(aid, size)
         elif cat == "relics":
@@ -163,11 +178,13 @@ class VisualEngine:
         return surf
 
     def ensure_core(self, force: bool = False):
-        # Minimal non-destructive baseline generation.
+        # Non-destructive baseline generation only.
         self.generate("avatar", "combat_hud", (192, 192), context="combat_hud", force=force)
         self.generate("avatar", "menu", (256, 256), context="menu", force=force)
+        self.generate("avatar", "archon_oracle", (192, 192), context="archon_oracle", force=force)
         self.generate("relics", "violet_seal", (128, 128), context="rare", force=force)
         self.generate("biomes", "ukhu_pacha", (512, 256), context="sigil", force=force)
+        self.generate("biomes", "fractura_chakana", (512, 256), context="sigil", force=force)
         self.generate("emblems", "cosmic_warrior", (96, 96), context="mini", force=force)
 
 
