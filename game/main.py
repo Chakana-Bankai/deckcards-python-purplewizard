@@ -444,6 +444,7 @@ class App:
                 "role": str(c.get("role") or infer_card_role(c)),
                 "family": (c.get("direction", "ESTE") or "ESTE").lower(),
                 "direction": c.get("direction", "ESTE"),
+                "strategy": c.get("strategy", {}),
             })
         by_id = {c.get("id"): c for c in cooked if c.get("id")}
         if not by_id:
@@ -1387,4 +1388,3 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
-

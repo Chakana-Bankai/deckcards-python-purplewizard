@@ -4,8 +4,8 @@
     "name_es": "Ácaro de Tinta",
     "biome": "ukhu",
     "hp": [
-      44,
-      52
+      34,
+      42
     ],
     "guard": 0,
     "pattern": [
@@ -48,8 +48,8 @@
     "name_es": "Larva del Vacío",
     "biome": "ukhu",
     "hp": [
-      47,
-      56
+      37,
+      45
     ],
     "guard": 0,
     "pattern": [
@@ -64,8 +64,8 @@
       {
         "intent": "defend",
         "value": [
-          4,
-          4
+          3,
+          3
         ],
         "label": "Preparando: Guardia 4"
       },
@@ -87,8 +87,8 @@
     "name_es": "Sabueso Sombrío",
     "biome": "ukhu",
     "hp": [
-      50,
-      60
+      39,
+      48
     ],
     "guard": 0,
     "pattern": [
@@ -126,8 +126,8 @@
     "name_es": "Rata Obsidiana",
     "biome": "kay",
     "hp": [
-      53,
-      64
+      41,
+      51
     ],
     "guard": 0,
     "pattern": [
@@ -163,8 +163,8 @@
     "name_es": "Eco Perdido",
     "biome": "hanan",
     "hp": [
-      56,
-      68
+      44,
+      54
     ],
     "guard": 0,
     "pattern": [
@@ -196,16 +196,16 @@
     "name_es": "Espíritu de Humo",
     "biome": "ukhu",
     "hp": [
-      59,
-      72
+      46,
+      58
     ],
     "guard": 0,
     "pattern": [
       {
         "intent": "defend",
         "value": [
-          5,
-          5
+          4,
+          4
         ],
         "label": "Preparando: Guardia 5"
       },
@@ -235,16 +235,16 @@
     "name_es": "Monolito Fracturado",
     "biome": "kay",
     "hp": [
-      62,
-      76
+      48,
+      61
     ],
     "guard": 0,
     "pattern": [
       {
         "intent": "defend",
         "value": [
-          7,
-          7
+          6,
+          6
         ],
         "label": "Preparando: Guardia 7"
       },
@@ -271,8 +271,8 @@
     "name_es": "Ave de Ceniza",
     "biome": "hanan",
     "hp": [
-      44,
-      52
+      34,
+      42
     ],
     "guard": 0,
     "pattern": [
@@ -307,16 +307,16 @@
     "name_es": "Vigía del Kaypacha",
     "biome": "kay",
     "hp": [
-      47,
-      56
+      37,
+      45
     ],
     "guard": 0,
     "pattern": [
       {
         "intent": "defend",
         "value": [
-          6,
-          6
+          5,
+          5
         ],
         "label": "Preparando: Guardia 6"
       },
@@ -346,8 +346,8 @@
     "name_es": "Máscara Risueña",
     "biome": "hanan",
     "hp": [
-      50,
-      60
+      39,
+      48
     ],
     "guard": 0,
     "pattern": [
@@ -383,8 +383,8 @@
     "name_es": "Portador de Polvo",
     "biome": "kay",
     "hp": [
-      53,
-      64
+      41,
+      51
     ],
     "guard": 0,
     "pattern": [
@@ -419,16 +419,16 @@
     "name_es": "Sombra de Piedra",
     "biome": "ukhu",
     "hp": [
-      56,
-      68
+      44,
+      54
     ],
     "guard": 0,
     "pattern": [
       {
         "intent": "defend",
         "value": [
-          6,
-          6
+          5,
+          5
         ],
         "label": "Preparando: Guardia 6"
       },
@@ -443,8 +443,8 @@
       {
         "intent": "defend",
         "value": [
-          6,
-          6
+          5,
+          5
         ],
         "label": "Preparando: Guardia 6"
       }
@@ -458,8 +458,8 @@
     "name_es": "Insecto de Tela",
     "biome": "ukhu",
     "hp": [
-      59,
-      72
+      46,
+      58
     ],
     "guard": 0,
     "pattern": [
@@ -494,8 +494,8 @@
     "name_es": "Neblina Consciente",
     "biome": "hanan",
     "hp": [
-      62,
-      76
+      48,
+      61
     ],
     "guard": 0,
     "pattern": [
@@ -508,8 +508,8 @@
       {
         "intent": "defend",
         "value": [
-          4,
-          4
+          3,
+          3
         ],
         "label": "Preparando: Guardia 4"
       },
@@ -531,16 +531,16 @@
     "name_es": "Guardia de Raíz",
     "biome": "kay",
     "hp": [
-      44,
-      52
+      34,
+      42
     ],
     "guard": 0,
     "pattern": [
       {
         "intent": "defend",
         "value": [
-          7,
-          7
+          6,
+          6
         ],
         "label": "Preparando: Guardia 7"
       },
@@ -567,8 +567,8 @@
     "name_es": "Runa Errante",
     "biome": "hanan",
     "hp": [
-      47,
-      56
+      37,
+      45
     ],
     "guard": 0,
     "pattern": [
@@ -601,8 +601,8 @@
     "name_es": "Espíritu Puma Menor",
     "biome": "kay",
     "hp": [
-      50,
-      60
+      39,
+      48
     ],
     "guard": 0,
     "pattern": [
@@ -640,8 +640,8 @@
     "name_es": "Espíritu Cóndor Menor",
     "biome": "hanan",
     "hp": [
-      53,
-      64
+      41,
+      51
     ],
     "guard": 0,
     "pattern": [
@@ -676,8 +676,8 @@
     "name_es": "Chamán Corrupto",
     "biome": "ukhu",
     "hp": [
-      106,
-      125
+      95,
+      115
     ],
     "guard": 0,
     "pattern": [
@@ -718,8 +718,8 @@
     "name_es": "Vidente Caído",
     "biome": "hanan",
     "hp": [
-      112,
-      132
+      101,
+      121
     ],
     "guard": 0,
     "pattern": [
@@ -752,8 +752,8 @@
     "name_es": "Devorador de Ecos",
     "biome": "ukhu",
     "hp": [
-      88,
-      104
+      79,
+      96
     ],
     "guard": 0,
     "pattern": [
@@ -796,8 +796,8 @@
     "name_es": "Demonio Obsidiana",
     "biome": "ukhu",
     "hp": [
-      94,
-      111
+      85,
+      102
     ],
     "guard": 0,
     "pattern": [
@@ -832,8 +832,8 @@
     "name_es": "Custodio Astral",
     "biome": "hanan",
     "hp": [
-      100,
-      118
+      90,
+      109
     ],
     "guard": 0,
     "pattern": [
@@ -876,8 +876,8 @@
     "name_es": "Heraldo del Umbral",
     "biome": "kay",
     "hp": [
-      106,
-      125
+      95,
+      115
     ],
     "guard": 0,
     "pattern": [
@@ -919,8 +919,8 @@
     "name_es": "Portador de Silencio",
     "biome": "hanan",
     "hp": [
-      112,
-      132
+      101,
+      121
     ],
     "guard": 0,
     "pattern": [
@@ -953,8 +953,8 @@
     "name_es": "Oráculo Menor",
     "biome": "hanan",
     "hp": [
-      88,
-      104
+      79,
+      96
     ],
     "guard": 0,
     "pattern": [
@@ -990,8 +990,8 @@
     "name_es": "Jaguar Sombrío",
     "biome": "kay",
     "hp": [
-      94,
-      111
+      85,
+      102
     ],
     "guard": 0,
     "pattern": [

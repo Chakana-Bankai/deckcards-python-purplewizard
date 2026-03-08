@@ -13,7 +13,7 @@
     "effects": [
       {
         "type": "gain_block",
-        "amount": 7
+        "amount": 6
       },
       {
         "type": "weaken_enemy",
@@ -21,7 +21,17 @@
       }
     ],
     "family": "sur",
-    "direction": "SUR"
+    "direction": "SUR",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber dano y preparar contraataque.",
+      "synergy_cards": [
+        "sello_protector",
+        "muralla_de_piedra",
+        "fusion_espiritual"
+      ],
+      "weakness": "Pierde tempo si no convierte defensa en valor."
+    }
   },
   {
     "id": "chakana_de_luz",
@@ -60,7 +70,16 @@
       }
     ],
     "family": "oeste",
-    "direction": "OESTE"
+    "direction": "OESTE",
+    "role": "combo",
+    "strategy": {
+      "best_use": "Encadenar efectos para turnos de alto valor.",
+      "synergy_cards": [
+        "eco_de_sabiduria",
+        "filo_en_cadena"
+      ],
+      "weakness": "Depende del orden de mano y setup."
+    }
   },
   {
     "id": "eco_de_sabiduria",
@@ -84,7 +103,16 @@
       }
     ],
     "family": "norte",
-    "direction": "NORTE"
+    "direction": "NORTE",
+    "role": "combo",
+    "strategy": {
+      "best_use": "Encadenar efectos para turnos de alto valor.",
+      "synergy_cards": [
+        "filo_en_cadena",
+        "chakana_de_luz"
+      ],
+      "weakness": "Depende del orden de mano y setup."
+    }
   },
   {
     "id": "embate_del_jaguar",
@@ -100,7 +128,7 @@
     "effects": [
       {
         "type": "damage",
-        "amount": 6
+        "amount": 7
       },
       {
         "type": "gain_block",
@@ -108,7 +136,16 @@
       }
     ],
     "family": "este",
-    "direction": "ESTE"
+    "direction": "ESTE",
+    "role": "attack",
+    "strategy": {
+      "best_use": "Cerrar combates cortos con presion constante.",
+      "synergy_cards": [
+        "filo_astral",
+        "pulso_cosmico"
+      ],
+      "weakness": "Sufre si no roba ritmo."
+    }
   },
   {
     "id": "escudo_de_luz",
@@ -124,7 +161,7 @@
     "effects": [
       {
         "type": "gain_block",
-        "amount": 5
+        "amount": 4
       },
       {
         "type": "heal",
@@ -132,7 +169,17 @@
       }
     ],
     "family": "sur",
-    "direction": "SUR"
+    "direction": "SUR",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber dano y preparar contraataque.",
+      "synergy_cards": [
+        "sello_protector",
+        "muralla_de_piedra",
+        "fusion_espiritual"
+      ],
+      "weakness": "Pierde tempo si no convierte defensa en valor."
+    }
   },
   {
     "id": "escudo_del_chaman",
@@ -156,7 +203,17 @@
       }
     ],
     "family": "sur",
-    "direction": "SUR"
+    "direction": "SUR",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
+      "synergy_cards": [
+        "lectura_del_destino",
+        "observacion_sagrada",
+        "vision_del_condor"
+      ],
+      "weakness": "Menor dano explosivo en turnos tempranos."
+    }
   },
   {
     "id": "espiritu_guardian",
@@ -180,7 +237,17 @@
       }
     ],
     "family": "oeste",
-    "direction": "OESTE"
+    "direction": "OESTE",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber dano y preparar contraataque.",
+      "synergy_cards": [
+        "sello_protector",
+        "muralla_de_piedra",
+        "fusion_espiritual"
+      ],
+      "weakness": "Pierde tempo si no convierte defensa en valor."
+    }
   },
   {
     "id": "estallido_arcano",
@@ -196,7 +263,7 @@
     "effects": [
       {
         "type": "damage",
-        "amount": 4
+        "amount": 5
       },
       {
         "type": "draw",
@@ -204,7 +271,17 @@
       }
     ],
     "family": "este",
-    "direction": "ESTE"
+    "direction": "ESTE",
+    "role": "attack",
+    "strategy": {
+      "best_use": "Cerrar combates cortos con presion constante.",
+      "synergy_cards": [
+        "filo_astral",
+        "embate_del_jaguar",
+        "pulso_cosmico"
+      ],
+      "weakness": "Sufre si no roba ritmo."
+    }
   },
   {
     "id": "filo_astral",
@@ -219,11 +296,20 @@
     "effects": [
       {
         "type": "damage",
-        "amount": 6
+        "amount": 7
       }
     ],
     "family": "este",
-    "direction": "ESTE"
+    "direction": "ESTE",
+    "role": "attack",
+    "strategy": {
+      "best_use": "Cerrar combates cortos con presion constante.",
+      "synergy_cards": [
+        "embate_del_jaguar",
+        "pulso_cosmico"
+      ],
+      "weakness": "Sufre si no roba ritmo."
+    }
   },
   {
     "id": "filo_en_cadena",
@@ -247,7 +333,16 @@
       }
     ],
     "family": "este",
-    "direction": "ESTE"
+    "direction": "ESTE",
+    "role": "combo",
+    "strategy": {
+      "best_use": "Encadenar efectos para turnos de alto valor.",
+      "synergy_cards": [
+        "eco_de_sabiduria",
+        "chakana_de_luz"
+      ],
+      "weakness": "Depende del orden de mano y setup."
+    }
   },
   {
     "id": "firmeza_del_cuerpo",
@@ -271,7 +366,17 @@
       }
     ],
     "family": "sur",
-    "direction": "SUR"
+    "direction": "SUR",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber dano y preparar contraataque.",
+      "synergy_cards": [
+        "sello_protector",
+        "muralla_de_piedra",
+        "fusion_espiritual"
+      ],
+      "weakness": "Pierde tempo si no convierte defensa en valor."
+    }
   },
   {
     "id": "fragmento_celeste",
@@ -295,7 +400,17 @@
       }
     ],
     "family": "este",
-    "direction": "ESTE"
+    "direction": "ESTE",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
+      "synergy_cards": [
+        "lectura_del_destino",
+        "observacion_sagrada",
+        "vision_del_condor"
+      ],
+      "weakness": "Menor dano explosivo en turnos tempranos."
+    }
   },
   {
     "id": "fusion_espiritual",
@@ -310,11 +425,20 @@
     "effects": [
       {
         "type": "double_block_cap",
-        "amount": 12
+        "amount": 10
       }
     ],
     "family": "oeste",
-    "direction": "OESTE"
+    "direction": "OESTE",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber dano y preparar contraataque.",
+      "synergy_cards": [
+        "sello_protector",
+        "muralla_de_piedra"
+      ],
+      "weakness": "Pierde tempo si no convierte defensa en valor."
+    }
   },
   {
     "id": "garra_espiritual",
@@ -329,11 +453,21 @@
     "effects": [
       {
         "type": "damage",
-        "amount": 3
+        "amount": 4
       }
     ],
     "family": "este",
-    "direction": "ESTE"
+    "direction": "ESTE",
+    "role": "attack",
+    "strategy": {
+      "best_use": "Cerrar combates cortos con presion constante.",
+      "synergy_cards": [
+        "filo_astral",
+        "embate_del_jaguar",
+        "pulso_cosmico"
+      ],
+      "weakness": "Sufre si no roba ritmo."
+    }
   },
   {
     "id": "guardia_terrenal",
@@ -352,7 +486,17 @@
       }
     ],
     "family": "sur",
-    "direction": "SUR"
+    "direction": "SUR",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber dano y preparar contraataque.",
+      "synergy_cards": [
+        "sello_protector",
+        "muralla_de_piedra",
+        "fusion_espiritual"
+      ],
+      "weakness": "Pierde tempo si no convierte defensa en valor."
+    }
   },
   {
     "id": "invocacion_astral",
@@ -381,7 +525,17 @@
       }
     ],
     "family": "oeste",
-    "direction": "OESTE"
+    "direction": "OESTE",
+    "role": "ritual",
+    "strategy": {
+      "best_use": "Escalar armonia y explotar umbrales de sello.",
+      "synergy_cards": [
+        "portal_de_la_chakana",
+        "piedra_ritual",
+        "ritual_de_la_trama"
+      ],
+      "weakness": "Puede quedarse corto si no llega al umbral."
+    }
   },
   {
     "id": "lectura_del_destino",
@@ -400,7 +554,16 @@
       }
     ],
     "family": "norte",
-    "direction": "NORTE"
+    "direction": "NORTE",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
+      "synergy_cards": [
+        "observacion_sagrada",
+        "vision_del_condor"
+      ],
+      "weakness": "Menor dano explosivo en turnos tempranos."
+    }
   },
   {
     "id": "mantra_del_umbral",
@@ -429,7 +592,16 @@
       }
     ],
     "family": "oeste",
-    "direction": "OESTE"
+    "direction": "OESTE",
+    "role": "energy",
+    "strategy": {
+      "best_use": "Acelerar turnos clave y habilitar cadenas.",
+      "synergy_cards": [
+        "vinculo_de_energia",
+        "chakana_de_luz"
+      ],
+      "weakness": "Necesita cartas de impacto para capitalizar mana."
+    }
   },
   {
     "id": "muralla_de_piedra",
@@ -444,11 +616,20 @@
     "effects": [
       {
         "type": "gain_block",
-        "amount": 10
+        "amount": 8
       }
     ],
     "family": "sur",
-    "direction": "SUR"
+    "direction": "SUR",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber dano y preparar contraataque.",
+      "synergy_cards": [
+        "sello_protector",
+        "fusion_espiritual"
+      ],
+      "weakness": "Pierde tempo si no convierte defensa en valor."
+    }
   },
   {
     "id": "observacion_sagrada",
@@ -467,7 +648,16 @@
       }
     ],
     "family": "norte",
-    "direction": "NORTE"
+    "direction": "NORTE",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
+      "synergy_cards": [
+        "lectura_del_destino",
+        "vision_del_condor"
+      ],
+      "weakness": "Menor dano explosivo en turnos tempranos."
+    }
   },
   {
     "id": "piedra_ritual",
@@ -496,7 +686,16 @@
       }
     ],
     "family": "sur",
-    "direction": "SUR"
+    "direction": "SUR",
+    "role": "ritual",
+    "strategy": {
+      "best_use": "Escalar armonia y explotar umbrales de sello.",
+      "synergy_cards": [
+        "portal_de_la_chakana",
+        "ritual_de_la_trama"
+      ],
+      "weakness": "Puede quedarse corto si no llega al umbral."
+    }
   },
   {
     "id": "portal_de_la_chakana",
@@ -525,7 +724,16 @@
       }
     ],
     "family": "oeste",
-    "direction": "OESTE"
+    "direction": "OESTE",
+    "role": "ritual",
+    "strategy": {
+      "best_use": "Escalar armonia y explotar umbrales de sello.",
+      "synergy_cards": [
+        "piedra_ritual",
+        "ritual_de_la_trama"
+      ],
+      "weakness": "Puede quedarse corto si no llega al umbral."
+    }
   },
   {
     "id": "pulso_cosmico",
@@ -545,11 +753,20 @@
       },
       {
         "type": "damage",
-        "amount": 2
+        "amount": 3
       }
     ],
     "family": "oeste",
-    "direction": "OESTE"
+    "direction": "OESTE",
+    "role": "attack",
+    "strategy": {
+      "best_use": "Cerrar combates cortos con presion constante.",
+      "synergy_cards": [
+        "filo_astral",
+        "embate_del_jaguar"
+      ],
+      "weakness": "Sufre si no roba ritmo."
+    }
   },
   {
     "id": "resistencia_ancestral",
@@ -565,7 +782,7 @@
     "effects": [
       {
         "type": "gain_block",
-        "amount": 8
+        "amount": 7
       },
       {
         "type": "retain",
@@ -573,7 +790,17 @@
       }
     ],
     "family": "sur",
-    "direction": "SUR"
+    "direction": "SUR",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber dano y preparar contraataque.",
+      "synergy_cards": [
+        "sello_protector",
+        "muralla_de_piedra",
+        "fusion_espiritual"
+      ],
+      "weakness": "Pierde tempo si no convierte defensa en valor."
+    }
   },
   {
     "id": "revelacion_astral",
@@ -602,7 +829,17 @@
       }
     ],
     "family": "norte",
-    "direction": "NORTE"
+    "direction": "NORTE",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
+      "synergy_cards": [
+        "lectura_del_destino",
+        "observacion_sagrada",
+        "vision_del_condor"
+      ],
+      "weakness": "Menor dano explosivo en turnos tempranos."
+    }
   },
   {
     "id": "ritual_de_la_trama",
@@ -636,7 +873,16 @@
       }
     ],
     "family": "oeste",
-    "direction": "OESTE"
+    "direction": "OESTE",
+    "role": "ritual",
+    "strategy": {
+      "best_use": "Escalar armonia y explotar umbrales de sello.",
+      "synergy_cards": [
+        "portal_de_la_chakana",
+        "piedra_ritual"
+      ],
+      "weakness": "Puede quedarse corto si no llega al umbral."
+    }
   },
   {
     "id": "sello_protector",
@@ -651,11 +897,20 @@
     "effects": [
       {
         "type": "gain_block",
-        "amount": 6
+        "amount": 5
       }
     ],
     "family": "sur",
-    "direction": "SUR"
+    "direction": "SUR",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber dano y preparar contraataque.",
+      "synergy_cards": [
+        "muralla_de_piedra",
+        "fusion_espiritual"
+      ],
+      "weakness": "Pierde tempo si no convierte defensa en valor."
+    }
   },
   {
     "id": "silencio_interior",
@@ -679,7 +934,17 @@
       }
     ],
     "family": "norte",
-    "direction": "NORTE"
+    "direction": "NORTE",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
+      "synergy_cards": [
+        "lectura_del_destino",
+        "observacion_sagrada",
+        "vision_del_condor"
+      ],
+      "weakness": "Menor dano explosivo en turnos tempranos."
+    }
   },
   {
     "id": "vinculo_de_energia",
@@ -698,7 +963,16 @@
       }
     ],
     "family": "oeste",
-    "direction": "OESTE"
+    "direction": "OESTE",
+    "role": "energy",
+    "strategy": {
+      "best_use": "Acelerar turnos clave y habilitar cadenas.",
+      "synergy_cards": [
+        "mantra_del_umbral",
+        "chakana_de_luz"
+      ],
+      "weakness": "Necesita cartas de impacto para capitalizar mana."
+    }
   },
   {
     "id": "vision_del_condor",
@@ -727,6 +1001,15 @@
       }
     ],
     "family": "norte",
-    "direction": "NORTE"
+    "direction": "NORTE",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
+      "synergy_cards": [
+        "lectura_del_destino",
+        "observacion_sagrada"
+      ],
+      "weakness": "Menor dano explosivo en turnos tempranos."
+    }
   }
 ]
