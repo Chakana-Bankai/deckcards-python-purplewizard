@@ -12,16 +12,24 @@ class TutorialScreen:
         self.index = 0
         self.slides = [
             {
-                "title": "Cosmología Chakana",
-                "body": "La Chakana no es un simple símbolo: es un mapa vivo del equilibrio. Cada brazo marca un cruce entre voluntad, memoria y destino; cuando juegas una carta, eliges qué parte de la Trama fortalecer y qué parte dejar en silencio.",
+                "title": "Energia y cartas",
+                "body": "Cada turno recibes energia para jugar cartas. Prioriza costo-impacto: no todas las cartas deben jugarse siempre.",
             },
             {
-                "title": "Tres mundos, un pulso",
-                "body": "Hanan Pacha guarda la visión y el espíritu; Kay Pacha sostiene la acción y la materia; Ukhu Pacha conserva las raíces y los miedos. En combate, leer intención enemiga significa reconocer desde qué mundo nace su fuerza.",
+                "title": "Bloqueo e intencion enemiga",
+                "body": "El chip de intencion muestra cuanto golpeara el enemigo. Tu Bloqueo reduce ese dano directamente.",
             },
             {
-                "title": "Combate espiritual",
-                "body": "No luchas solo por daño: luchas por forma. La sabiduría ancestral enseña ritmo, defensa oportuna y golpes con propósito. Alterna ataque, guardia y ritual para mantener la armonía antes de cerrar el turno.",
+                "title": "Armonia y sello",
+                "body": "La Armonia crece con jugadas de control/ritual. Cuando alcanzas el umbral, habilitas el estado de sello.",
+            },
+            {
+                "title": "Flujo de recompensas",
+                "body": "Tras combate eliges recompensa: carta, pack, reliquia u opcion de guia. Elige por sinergia de build, no por brillo aislado.",
+            },
+            {
+                "title": "Estructura de run",
+                "body": "La run es finita y progresa por biomas hasta el arconte final. La vida persiste entre combates y puedes continuar desde autosave.",
             },
         ]
 

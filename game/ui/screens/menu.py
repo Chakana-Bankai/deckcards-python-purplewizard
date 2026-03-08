@@ -17,13 +17,14 @@ DEFAULT_VERSION_LINE = "v0.0.0-dev"
 class MenuScreen:
     def __init__(self, app):
         self.app = app
-        rects = centered_column(5, width=440, height=66, gap=14, y_start=280)
+        rects = centered_column(6, width=440, height=62, gap=12, y_start=252)
         self.buttons = [
             {"rect": pygame.Rect(rects[0]), "text_key": "menu_play", "cb": self.start_run, "key": "menu_new"},
             {"rect": pygame.Rect(rects[1]), "text_key": "menu_continue", "cb": self.continue_run, "key": "menu_continue"},
             {"rect": pygame.Rect(rects[2]), "text_key": "menu_back", "cb": self.go_back, "key": "menu_back"},
             {"rect": pygame.Rect(rects[3]), "text_key": "menu_settings", "cb": self.open_settings, "key": "menu_settings"},
-            {"rect": pygame.Rect(rects[4]), "text_key": "menu_exit", "cb": self.exit_game, "key": "menu_quit"},
+            {"rect": pygame.Rect(rects[4]), "text_key": "menu_codex", "cb": self.open_codex, "key": "menu_codex"},
+            {"rect": pygame.Rect(rects[5]), "text_key": "menu_exit", "cb": self.exit_game, "key": "menu_quit"},
         ]
         self.modal = ModalConfirm()
         self.version_line = self._load_version_line()
@@ -83,6 +84,9 @@ class MenuScreen:
 
     def open_settings(self):
         self.app.goto_settings()
+
+    def open_codex(self):
+        self.app.goto_codex()
 
     def exit_game(self):
         self.modal.show("Salir del juego?", on_yes=lambda: setattr(self.app, "running", False))

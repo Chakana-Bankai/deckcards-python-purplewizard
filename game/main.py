@@ -34,6 +34,7 @@ from game.qa.runner import QARunner
 from game.qa.content_validator import validate_content
 from game.ui.render import AssetManager, Renderer
 from game.ui.screens.combat import CombatScreen
+from game.ui.screens.codex import CodexScreen
 from game.ui.screens.deck import DeckScreen
 from game.ui.screens.error import ErrorScreen
 from game.ui.screens.event import EventScreen
@@ -615,6 +616,9 @@ class App:
 
     def goto_deck(self):
         self.sm.set(DeckScreen(self))
+
+    def goto_codex(self):
+        self.sm.set(CodexScreen(self))
 
     def goto_tutorial(self):
         self.sm.set(TutorialScreen(self, next_fn=self.goto_path_select))

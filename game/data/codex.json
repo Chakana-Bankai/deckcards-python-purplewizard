@@ -1,0 +1,99 @@
+﻿{
+  "sections": [
+    {
+      "id": "lore",
+      "title": "Lore",
+      "items": [
+        "La Chakana conecta Ukhu Pacha, Kay Pacha y Hanan Pacha en una sola Trama.",
+        "Tu viaje culmina en la Fractura de la Chakana, donde se decide el equilibrio final.",
+        "Cada combate representa un ritual de lectura, decision y ejecucion."
+      ]
+    },
+    {
+      "id": "systems",
+      "title": "Sistemas",
+      "items": [
+        "Combate por turnos con cartas, energia, bloqueo y armonia.",
+        "Progresion por mapa con nodos de combate, eventos, guia, tienda y jefe.",
+        "Recompensas por pack, reliquia, oro y bendiciones de guia."
+      ]
+    },
+    {
+      "id": "rules",
+      "title": "Reglas",
+      "items": [
+        "La run es finita: Ukhu Pacha -> Kay Pacha -> Hanan Pacha -> Fractura de la Chakana.",
+        "La vida persiste entre combates y recuperas una porcion al finalizar cada batalla.",
+        "El juego autosalva tras nodos fuera de combate y permite Continue Run.",
+        "Subir de nivel mejora tu progresion y habilita recompensas mas potentes.",
+        "Los packs pueden ser de eleccion (1 de 3) o de lote completo segun el flujo."
+      ]
+    },
+    {
+      "id": "cards",
+      "title": "Cartas",
+      "items": [
+        "Cada carta muestra costo, efecto principal, KPI y rol semantico.",
+        "Roles base: ataque, defensa, energia, control, ritual y combo.",
+        "Prioriza cartas que refuercen la identidad de tu build."
+      ]
+    },
+    {
+      "id": "enemies",
+      "title": "Enemigos",
+      "items": [
+        "Lee la intencion enemiga cada turno para planear bloqueo y tempo.",
+        "Comunes presionan ritmo; elites castigan errores de curva.",
+        "El bloqueo enemigo requiere gestion de dano y quiebre."
+      ]
+    },
+    {
+      "id": "archons",
+      "title": "Arcontes",
+      "items": [
+        "Arconte del Vacio: presion directa y quiebre.",
+        "Arconte del Ritual: control y debilitacion progresiva.",
+        "Arconte Celestial: escalado por fases y castigo sostenido.",
+        "Arconte Supremo: examen final de tempo, recursos y armonia."
+      ]
+    },
+    {
+      "id": "biomes",
+      "title": "Biomas",
+      "items": [
+        "Ukhu Pacha: sombras, umbral y desgaste.",
+        "Kay Pacha: base terrenal para consolidar la run.",
+        "Hanan Pacha: altura astral y pruebas de precision.",
+        "Fractura de la Chakana: reino final del boss supremo."
+      ]
+    },
+    {
+      "id": "relics",
+      "title": "Reliquias",
+      "items": [
+        "Tiers 1.0: common, rare, major.",
+        "Las reliquias potencian agresion, armonia o control/defensa.",
+        "Combina reliquias con cartas del mismo plan para escalar valor."
+      ]
+    },
+    {
+      "id": "builds",
+      "title": "Builds",
+      "items": [
+        "Agresiva: prioriza dano eficiente, energia temprana y cierres rapidos.",
+        "Armonia: busca umbral consistente y conversion de ritual a ventaja.",
+        "Control: maximiza bloqueo, robo/scry y decisiones de tempo."
+      ]
+    },
+    {
+      "id": "tips_help",
+      "title": "Tips / Ayuda",
+      "items": [
+        "Pregunta clave por turno: cuanto pega el enemigo y cuanto bloqueo tengo.",
+        "No gastes energia en cartas de bajo impacto si puedes preparar mejor turno.",
+        "En recompensas, elige por sinergia de run, no por valor aislado.",
+        "Usa el tutorial guiado para repasar fundamentos rapidamente."
+      ]
+    }
+  ]
+}
