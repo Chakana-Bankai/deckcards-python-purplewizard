@@ -81,17 +81,38 @@ class CardPreviewPanel:
             if card is not None:
                 self.set_card_safe(card, app=self.app)
 
+            panel = pygame.Rect(rect)
+            pygame.draw.rect(surface, self.theme["panel"], panel, border_radius=12)
+            pygame.draw.rect(surface, self.theme["accent_violet"], panel, 2, border_radius=12)
+
+            if self.app is not None:
+                surface.blit(self.app.small_font.render("Previsualizacion", True, self.theme["gold"]), (panel.x + 14, panel.y + 12))
+
             if self._card is None:
-                pygame.draw.rect(surface, self.theme["panel"], rect, border_radius=12)
-                pygame.draw.rect(surface, self.theme["accent_violet"], rect, 2, border_radius=12)
                 if self.app is not None:
-                    surface.blit(self.app.small_font.render("Previsualizacion", True, self.theme["gold"]), (rect.x + 14, rect.y + 12))
-                    surface.blit(self.app.tiny_font.render("Pasa el cursor sobre una carta.", True, self.theme["muted"]), (rect.x + 14, rect.y + 40))
+                    surface.blit(self.app.tiny_font.render("Pasa el cursor sobre una carta.", True, self.theme["muted"]), (panel.x + 14, panel.y + 40))
                 return
+
+            # Preserve aspect ratio strictly to avoid stretched/distorted preview cards.
+            card_area = panel.inflate(-28, -52)
+            card_area.y += 18
+            card_area.h = max(120, card_area.h - 18)
+            target_ratio = 0.72  # width / height
+            if card_area.h <= 0 or card_area.w <= 0:
+                return
+
+            fitted_w = min(card_area.w, int(card_area.h * target_ratio))
+            fitted_h = int(fitted_w / target_ratio)
+            if fitted_h > card_area.h:
+                fitted_h = card_area.h
+                fitted_w = int(fitted_h * target_ratio)
+
+            card_rect = pygame.Rect(0, 0, max(90, fitted_w), max(120, fitted_h))
+            card_rect.center = card_area.center
 
             render_card_preview(
                 surface,
-                rect,
+                card_rect,
                 self._card,
                 theme=self.theme,
                 state={"app": self.app, "ctx": None, "selected": False, "hovered": False},

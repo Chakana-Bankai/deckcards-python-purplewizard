@@ -1,4 +1,4 @@
-﻿"""Reusable modal framework for Chakana screens."""
+"""Reusable modal framework for Chakana screens."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from game.ui.components.card_preview_panel import CardPreviewPanel
 from .brand import ChakanaBrand
 from .colors import UColors
 from .components import UIButton, UIPanel, UILabel
-from .layout import build_modal_preview_layout, inset, safe_area
+from .layout import build_modal_preview_layout, inset, safe_area, split_horizontal
 from .typography import BUTTON_FONT, LORE_FONT, SMALL_FONT, ChakanaTypography
 
 
@@ -397,15 +397,26 @@ class LoreModal(ModalBase):
         if chrome is None:
             return
         _panel, _header, body, _footer, _confirm, _cancel = chrome
-        left, right = build_modal_preview_layout(body)
+        art_col, text_col = split_horizontal(body, 0.40)
+        left = inset(art_col, 10)
+        right = inset(text_col, 10)
 
         pygame.draw.rect(surface, UColors.PANEL_ALT, left, border_radius=10)
         pygame.draw.rect(surface, UColors.BORDER_SOFT, left, 1, border_radius=10)
+
+        portrait_box = pygame.Rect(left.x + 10, left.y + 10, left.w - 20, max(120, int(left.h * 0.58)))
+        pygame.draw.rect(surface, UColors.PANEL, portrait_box, border_radius=9)
+        pygame.draw.rect(surface, UColors.BORDER_SOFT, portrait_box, 1, border_radius=9)
+
         sprite = None
         if app is not None and hasattr(app, "assets"):
-            sprite = app.assets.sprite(self.portrait_group, self.portrait_id, (left.w - 20, left.h - 20), fallback=(42, 32, 62))
+            sprite = app.assets.sprite(self.portrait_group, self.portrait_id, (portrait_box.w - 16, portrait_box.h - 16), fallback=(42, 32, 62))
         if sprite is not None:
-            surface.blit(sprite, (left.x + 10, left.y + 10))
+            surface.blit(sprite, sprite.get_rect(center=portrait_box.center).topleft)
+
+        if app is not None and hasattr(app, "tiny_font"):
+            label = str(self.portrait_id or "guia").replace("_", " ").title()
+            surface.blit(app.tiny_font.render(label, True, UColors.MUTED), (left.x + 12, portrait_box.bottom + 10))
 
         pygame.draw.rect(surface, UColors.PANEL, right, border_radius=10)
         pygame.draw.rect(surface, UColors.BORDER_SOFT, right, 1, border_radius=10)
@@ -424,4 +435,5 @@ class LoreModal(ModalBase):
 def modal_preview_columns(panel_rect: pygame.Rect):
     """Helper for card/lore modals with preview columns."""
     return build_modal_preview_layout(panel_rect)
+
 
