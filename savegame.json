@@ -60,7 +60,7 @@
         "biome": "ukhu",
         "next": [
           "2_0",
-          "2_3"
+          "2_1"
         ],
         "state": "locked"
       },
@@ -73,7 +73,7 @@
         "biome": "ukhu",
         "next": [
           "2_1",
-          "2_2"
+          "2_3"
         ],
         "state": "locked"
       },
@@ -85,7 +85,8 @@
         "type": "event",
         "biome": "ukhu",
         "next": [
-          "2_2"
+          "2_2",
+          "2_3"
         ],
         "state": "locked"
       }
@@ -100,7 +101,7 @@
         "biome": "ukhu",
         "next": [
           "3_0",
-          "3_1"
+          "3_2"
         ],
         "state": "locked"
       },
@@ -112,8 +113,7 @@
         "type": "combat",
         "biome": "ukhu",
         "next": [
-          "3_1",
-          "3_2"
+          "3_1"
         ],
         "state": "locked"
       },
@@ -125,8 +125,7 @@
         "type": "combat",
         "biome": "ukhu",
         "next": [
-          "3_2",
-          "3_0"
+          "3_2"
         ],
         "state": "locked"
       },
@@ -153,7 +152,7 @@
         "biome": "kaypacha",
         "next": [
           "4_0",
-          "4_2"
+          "4_1"
         ],
         "state": "locked"
       },
@@ -166,7 +165,7 @@
         "biome": "kaypacha",
         "next": [
           "4_1",
-          "4_0"
+          "4_3"
         ],
         "state": "locked"
       },
@@ -203,7 +202,7 @@
         "col": 4,
         "x": 864,
         "y": 386,
-        "type": "challenge",
+        "type": "combat",
         "biome": "kaypacha",
         "next": [
           "5_1"
@@ -228,10 +227,11 @@
         "col": 4,
         "x": 864,
         "y": 766,
-        "type": "challenge",
+        "type": "combat",
         "biome": "kaypacha",
         "next": [
-          "5_2"
+          "5_2",
+          "5_0"
         ],
         "state": "locked"
       }
@@ -259,7 +259,7 @@
         "biome": "hanan",
         "next": [
           "6_1",
-          "6_3"
+          "6_2"
         ],
         "state": "locked"
       },
@@ -272,7 +272,7 @@
         "biome": "hanan",
         "next": [
           "6_2",
-          "6_3"
+          "6_1"
         ],
         "state": "locked"
       }
@@ -287,7 +287,7 @@
         "biome": "hanan",
         "next": [
           "7_0",
-          "7_2"
+          "7_1"
         ],
         "state": "locked"
       },
@@ -299,7 +299,8 @@
         "type": "combat",
         "biome": "hanan",
         "next": [
-          "7_1"
+          "7_1",
+          "7_2"
         ],
         "state": "locked"
       },
@@ -324,7 +325,7 @@
         "biome": "hanan",
         "next": [
           "7_2",
-          "7_0"
+          "7_1"
         ],
         "state": "locked"
       }
@@ -365,7 +366,7 @@
         "biome": "hanan",
         "next": [
           "8_2",
-          "8_3"
+          "8_0"
         ],
         "state": "locked"
       }
@@ -412,7 +413,7 @@
         "col": 8,
         "x": 1608,
         "y": 766,
-        "type": "combat",
+        "type": "challenge",
         "biome": "fractura_chakana",
         "next": [
           "9_0"
@@ -458,6 +459,6 @@
     "step_total": 7
   },
   "current_node_id": null,
-  "last_biome_seen": "ukhu",
-  "saved_at": 1772943033
+  "last_biome_seen": "kaypacha",
+  "saved_at": 1772944578
 }
