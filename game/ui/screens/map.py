@@ -12,17 +12,17 @@ class MapScreen:
     NODE_NAMES = {
         "event": "Ritual",
         "combat": "Sombra",
-        "challenge": "Guía",
+        "challenge": "Guia",
         "treasure": "Reliquia",
         "shop": "Umbral",
         "boss": "El Monolito Fracturado",
     }
-    NODE_DIFF = {"event": "Eco", "combat": "Peligro II", "challenge": "Prueba", "treasure": "Botín", "shop": "Calma", "boss": "Peligro V"}
+    NODE_DIFF = {"event": "Eco", "combat": "Peligro II", "challenge": "Prueba", "treasure": "Botin", "shop": "Calma", "boss": "Peligro V"}
 
     NODE_LORE = {
-        "event": "Los ecos del templo piden una decisión del espíritu.",
+        "event": "Los ecos del templo piden una decision del espiritu.",
         "combat": "Sombras antiguas custodian este sendero.",
-        "challenge": "Una guía pone a prueba tu equilibrio.",
+        "challenge": "Una guia pone a prueba tu equilibrio.",
         "treasure": "Una reliquia olvidada late bajo la piedra.",
         "shop": "El Comerciante del Umbral ofrece poder por oro.",
         "boss": "El Monolito Fracturado aguarda tras los sellos.",
@@ -33,7 +33,7 @@ class MapScreen:
         "Ecos del Uku Pacha",
         "Pruebas del Hanan Pacha",
         "Umbral de la Trama Viva",
-        "Cámara de los Sellos",
+        "Camara de los Sellos",
         "Portal del Monolito",
     ]
 
@@ -41,11 +41,10 @@ class MapScreen:
         "Respiro. El primer paso define el pulso del viaje.",
         "El eco del Uku me pide mirar sin miedo.",
         "Hanan prueba mi foco: mente calma, mano precisa.",
-        "La Trama viva cambia; yo también debo cambiar.",
+        "La Trama viva cambia; yo tambien debo cambiar.",
         "Siento los sellos vibrar bajo mis pies.",
         "Frente al Monolito, solo queda verdad y voluntad.",
     ]
-
 
     MAP_HINTS = [
         "Sigue la ruta iluminada para avanzar al siguiente pacha.",
@@ -69,9 +68,54 @@ class MapScreen:
         self.topbar = MapTopBar()
         self.selected_biome = "kaypacha"
         self.bg_seed = abs(hash("map:kaypacha")) % 100000
+        self.node_positions = {}
 
     def on_enter(self):
         self.lore_timer = 0
+
+    def _panel_rects(self):
+        left_rect = pygame.Rect(30, 130, 316, INTERNAL_HEIGHT - 222)
+        right_rect = pygame.Rect(INTERNAL_WIDTH - 346, 130, 316, INTERNAL_HEIGHT - 222)
+        center_rect = pygame.Rect(left_rect.right + 16, 130, right_rect.x - (left_rect.right + 32), INTERNAL_HEIGHT - 222)
+        return left_rect, center_rect, right_rect
+
+    def _graph_rect(self, center_rect: pygame.Rect) -> pygame.Rect:
+        # Keep a dedicated safe graph lane inside center panel.
+        return pygame.Rect(center_rect.x + 24, center_rect.y + 92, center_rect.w - 48, center_rect.h - 176)
+
+    def _node_metrics(self, run_map) -> tuple[int, int, int, int]:
+        cols = max(1, len(run_map or []))
+        max_rows = 1
+        for col in run_map or []:
+            max_rows = max(max_rows, len(col) if isinstance(col, list) else 1)
+        dense_score = max(cols - 6, 0) + max(max_rows - 4, 0)
+        base = 22
+        radius = max(14, base - dense_score)
+        boss_radius = min(radius + 4, 24)
+        hit_radius = max(radius + 8, 24)
+        line_w = 3 if dense_score <= 1 else 2
+        return radius, boss_radius, hit_radius, line_w
+
+    def _refresh_graph_layout(self, run):
+        _, center_rect, _ = self._panel_rects()
+        graph_rect = self._graph_rect(center_rect)
+        run_map = run.get("map", []) if isinstance(run, dict) else []
+        cols = max(1, len(run_map))
+
+        self.node_positions = {}
+        for ci, col in enumerate(run_map):
+            if not isinstance(col, list):
+                continue
+            count = max(1, len(col))
+            x = graph_rect.x + int((ci / max(1, cols - 1)) * graph_rect.w)
+            for ri, node in enumerate(col):
+                if not isinstance(node, dict):
+                    continue
+                if count == 1:
+                    y = graph_rect.centery
+                else:
+                    y = graph_rect.y + int((ri / max(1, count - 1)) * graph_rect.h)
+                self.node_positions[str(node.get("id", f"{ci}_{ri}"))] = (x, y)
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN:
@@ -84,12 +128,22 @@ class MapScreen:
             if self.deck_btn.collidepoint(pos):
                 self.app.goto_deck()
                 return
+            run = self.app.run_state or {"map": []}
+            self._refresh_graph_layout(run)
             self.click_node(pos)
 
     def click_node(self, pos):
-        for col in self.app.run_state.get("map", []):
-            for node in col:
-                if pygame.Rect(node["x"] - 34, node["y"] - 34, 68, 68).collidepoint(pos) and node.get("state") in {"available", "incomplete", "current"}:
+        run = self.app.run_state or {"map": []}
+        radius, boss_radius, hit_radius, _ = self._node_metrics(run.get("map", []))
+        for col in run.get("map", []):
+            for node in col if isinstance(col, list) else []:
+                node_id = str(node.get("id", ""))
+                if not node_id or node_id not in self.node_positions:
+                    continue
+                nx, ny = self.node_positions[node_id]
+                rr = boss_radius if node.get("type") == "boss" else radius
+                rr = max(rr, hit_radius - 8)
+                if pygame.Rect(nx - hit_radius, ny - hit_radius, hit_radius * 2, hit_radius * 2).collidepoint(pos) and node.get("state") in {"available", "incomplete", "current"}:
                     self.app.sfx.play("ui_click")
                     self.app.select_map_node(node)
                     return
@@ -116,22 +170,22 @@ class MapScreen:
     def _draw_icon(self, s, node_type, x, y):
         col = (24, 20, 34)
         if node_type == "combat":
-            pygame.draw.line(s, col, (x - 10, y + 10), (x + 8, y - 8), 3)
-            pygame.draw.polygon(s, col, [(x + 8, y - 8), (x + 14, y - 2), (x + 2, y + 4)])
+            pygame.draw.line(s, col, (x - 8, y + 8), (x + 7, y - 7), 2)
+            pygame.draw.polygon(s, col, [(x + 7, y - 7), (x + 12, y - 2), (x + 1, y + 3)])
         elif node_type == "challenge":
-            pts = [(x, y - 12), (x + 8, y - 5), (x + 10, y + 6), (x, y + 12), (x - 10, y + 6), (x - 8, y - 5)]
+            pts = [(x, y - 9), (x + 6, y - 4), (x + 8, y + 5), (x, y + 9), (x - 8, y + 5), (x - 6, y - 4)]
             pygame.draw.polygon(s, col, pts, 2)
         elif node_type == "event":
-            pygame.draw.polygon(s, col, [(x, y - 12), (x + 4, y - 3), (x + 12, y - 2), (x + 6, y + 4), (x + 8, y + 12), (x, y + 7), (x - 8, y + 12), (x - 6, y + 4), (x - 12, y - 2), (x - 4, y - 3)])
+            pygame.draw.polygon(s, col, [(x, y - 9), (x + 3, y - 2), (x + 9, y - 2), (x + 4, y + 3), (x + 6, y + 9), (x, y + 5), (x - 6, y + 9), (x - 4, y + 3), (x - 9, y - 2), (x - 3, y - 2)])
         elif node_type == "treasure":
-            pygame.draw.rect(s, col, (x - 10, y - 4, 20, 12), 2, border_radius=3)
-            pygame.draw.line(s, col, (x - 10, y + 1), (x + 10, y + 1), 2)
+            pygame.draw.rect(s, col, (x - 8, y - 3, 16, 10), 2, border_radius=3)
+            pygame.draw.line(s, col, (x - 8, y + 1), (x + 8, y + 1), 2)
         elif node_type == "shop":
-            pygame.draw.rect(s, col, (x - 9, y - 2, 18, 12), 2, border_radius=3)
-            pygame.draw.arc(s, col, (x - 8, y - 10, 16, 14), 3.14, 6.28, 2)
+            pygame.draw.rect(s, col, (x - 7, y - 2, 14, 10), 2, border_radius=3)
+            pygame.draw.arc(s, col, (x - 6, y - 8, 12, 10), 3.14, 6.28, 2)
         else:
-            pygame.draw.line(s, col, (x - 10, y), (x + 10, y), 3)
-            pygame.draw.line(s, col, (x, y - 10), (x, y + 10), 3)
+            pygame.draw.line(s, col, (x - 8, y), (x + 8, y), 2)
+            pygame.draw.line(s, col, (x, y - 8), (x, y + 8), 2)
 
     def _draw_chakana(self, s, cx, cy, r=42):
         pygame.draw.circle(s, UI_THEME["gold"], (cx, cy), r, 2)
@@ -199,9 +253,7 @@ class MapScreen:
         txt = self.app.map_font.render("Mazo", True, UI_THEME["text"])
         s.blit(txt, txt.get_rect(center=self.deck_btn.center))
 
-        left_rect = pygame.Rect(30, 130, 316, INTERNAL_HEIGHT - 222)
-        right_rect = pygame.Rect(INTERNAL_WIDTH - 346, 130, 316, INTERNAL_HEIGHT - 222)
-        center_rect = pygame.Rect(left_rect.right + 16, 130, right_rect.x - (left_rect.right + 32), INTERNAL_HEIGHT - 222)
+        left_rect, center_rect, right_rect = self._panel_rects()
 
         for r in (left_rect, center_rect, right_rect):
             UIPanel(r).draw(s)
@@ -227,7 +279,6 @@ class MapScreen:
         pygame.draw.rect(s, UI_THEME["gold"], center_badge, 1, border_radius=7)
         s.blit(self.app.tiny_font.render(f"Etapa {stage_idx + 1}", True, UI_THEME["gold"]), (center_badge.x + 8, center_badge.y + 5))
 
-        # Stage progression rail for fast readability of current route.
         rail = pygame.Rect(center_badge.right + 18, center_badge.y + 2, center_rect.w - (center_badge.right - center_rect.x) - 34, 18)
         pygame.draw.rect(s, UI_THEME["panel_2"], rail, border_radius=8)
         steps = max(2, len(self.STAGE_TITLES))
@@ -254,26 +305,36 @@ class MapScreen:
                     line_col = (132, 182, 144)
                 pygame.draw.line(s, line_col, (x + rr, rail.centery), (nx - rr, rail.centery), 2)
 
+        self._refresh_graph_layout(run)
+        radius, boss_radius, hit_radius, line_w = self._node_metrics(run.get("map", []))
+
         for ci, col in enumerate(run.get("map", [])):
             if ci < len(run.get("map", [])) - 1:
-                for node in col:
+                for node in col if isinstance(col, list) else []:
+                    node_id = str(node.get("id", ""))
+                    if node_id not in self.node_positions:
+                        continue
+                    npos = self.node_positions[node_id]
                     for next_id in node.get("next", []):
                         nxt = self.app.node_lookup.get(next_id)
-                        if nxt:
-                            active = node.get("state") in {"available", "current", "incomplete"}
-                            clr = (122, 132, 182) if active else (68, 70, 88)
-                            width = 4
-                            if active:
-                                width = 5
-                                glow = pygame.Surface((abs(nxt["x"] - node["x"]) + 18, abs(nxt["y"] - node["y"]) + 18), pygame.SRCALPHA)
-                                pygame.draw.line(glow, (154, 142, 214, 68), (9, 9), (glow.get_width() - 9, glow.get_height() - 9), 6)
-                                s.blit(glow, (min(node["x"], nxt["x"]) - 9, min(node["y"], nxt["y"]) - 9))
-                            pygame.draw.line(s, clr, (node["x"], node["y"]), (nxt["x"], nxt["y"]), width)
+                        if nxt is None:
+                            continue
+                        nxt_pos = self.node_positions.get(str(next_id))
+                        if not nxt_pos:
+                            continue
+                        active = node.get("state") in {"available", "current", "incomplete"}
+                        clr = (122, 132, 182) if active else (68, 70, 88)
+                        width = line_w + (1 if active else 0)
+                        pygame.draw.line(s, clr, npos, nxt_pos, width)
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         hovered_node = None
         for col in run.get("map", []):
-            for node in col:
+            for node in col if isinstance(col, list) else []:
+                node_id = str(node.get("id", ""))
+                if node_id not in self.node_positions:
+                    continue
+                nx, ny = self.node_positions[node_id]
                 state = node.get("state", "locked")
                 color = (92, 92, 98)
                 if state == "available":
@@ -284,44 +345,35 @@ class MapScreen:
                     color = (210, 128, 86)
                 elif state == "current":
                     color = UI_THEME["card_selected"]
-                if node["type"] == "boss":
+                if node.get("type") == "boss":
                     color = UI_THEME["bad"] if state != "locked" else (90, 40, 40)
 
-                radius = 28 if node["type"] != "boss" else 34
-                node_hover = pygame.Rect(node["x"] - 40, node["y"] - 40, 80, 80).collidepoint(mouse)
+                rr = boss_radius if node.get("type") == "boss" else radius
+                node_hover = pygame.Rect(nx - hit_radius, ny - hit_radius, hit_radius * 2, hit_radius * 2).collidepoint(mouse)
                 if node_hover:
                     hovered_node = node
 
                 if state == "locked":
-                    pygame.draw.circle(s, (40, 40, 56), (node["x"], node["y"]), radius + 4)
-                    pygame.draw.circle(s, color, (node["x"], node["y"]), radius)
-                    pygame.draw.line(s, UI_THEME["muted"], (node["x"] - 7, node["y"]), (node["x"] + 7, node["y"]), 2)
+                    pygame.draw.circle(s, (40, 40, 56), (nx, ny), rr + 3)
+                    pygame.draw.circle(s, color, (nx, ny), rr)
+                    pygame.draw.line(s, UI_THEME["muted"], (nx - 6, ny), (nx + 6, ny), 2)
                 else:
                     if node_hover:
-                        pygame.draw.circle(s, (220, 194, 255), (node["x"], node["y"]), radius + 9)
+                        pygame.draw.circle(s, (220, 194, 255), (nx, ny), rr + 7)
                     elif state == "current":
-                        pygame.draw.circle(s, (200, 180, 245), (node["x"], node["y"]), radius + 6)
-                    pygame.draw.circle(s, color, (node["x"], node["y"]), radius)
-                    self._draw_icon(s, node["type"], node["x"], node["y"])
+                        pygame.draw.circle(s, (200, 180, 245), (nx, ny), rr + 5)
+                    pygame.draw.circle(s, color, (nx, ny), rr)
+                    self._draw_icon(s, node.get("type", "event"), nx, ny)
 
                 show_label = node_hover or state == "current"
                 if show_label:
-                    label = self.NODE_NAMES.get(node["type"], "Ruta")
+                    label = self.NODE_NAMES.get(node.get("type"), "Ruta")
                     label_txt = self._fit_text(self.app.tiny_font, label, 120)
-                    s.blit(self.app.tiny_font.render(label_txt, True, UI_THEME["text"]), (node["x"] - 44, node["y"] + radius + 5))
+                    s.blit(self.app.tiny_font.render(label_txt, True, UI_THEME["text"]), (nx - 44, ny + rr + 4))
 
         harmony = run.get("player", {}).get("harmony_current", 0) if isinstance(run.get("player", {}), dict) else 0
         harmony_goal = run.get("player", {}).get("harmony_ready_threshold", 6) if isinstance(run.get("player", {}), dict) else 6
         deck_size = len(run.get("deck", []) or [])
-        completed_nodes = 0
-        available_nodes = 0
-        for col in run.get("map", []):
-            for node in col:
-                st = node.get("state", "locked")
-                if st in {"completed", "cleared"}:
-                    completed_nodes += 1
-                elif st in {"available", "current", "incomplete"}:
-                    available_nodes += 1
 
         stats = [
             ("Oro", f"{gold}", UI_THEME["gold"]),
@@ -358,4 +410,3 @@ class MapScreen:
             lore_txt = self.app.small_font.render(flavor, True, UI_THEME["muted"])
             s.blit(title_txt, (lore_rect.x + 12, lore_rect.y + 16))
             s.blit(lore_txt, (lore_rect.x + 22 + title_txt.get_width(), lore_rect.y + 14))
-
