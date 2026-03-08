@@ -375,6 +375,8 @@ class CombatScreen:
         if player_is_low and not self._player_low_hp_active:
             enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
             self.set_dialogue("player_low_hp", enemy_id, {"hp": player_hp, "threshold": player_threshold})
+            if hasattr(self.app, "trigger_oracle"):
+                self.app.trigger_oracle("player_low_hp", {"hp": player_hp, "threshold": player_threshold, "id": enemy_id})
         self._player_low_hp_active = player_is_low
 
         alive_enemy_ids = {str(e.id) for e in self.c.enemies if getattr(e, "alive", False)}
@@ -397,6 +399,8 @@ class CombatScreen:
 
         if triggered_enemy_id is not None:
             self.set_dialogue("enemy_low_hp", triggered_enemy_id, {})
+            if hasattr(self.app, "trigger_oracle"):
+                self.app.trigger_oracle("enemy_low_hp", {"id": triggered_enemy_id})
 
     def _execute_selected(self):
         idx = self.ctrl.selected_index

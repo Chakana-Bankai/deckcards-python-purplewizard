@@ -181,6 +181,8 @@ class App:
         self.audio_pipeline = AudioPipeline()
         self.visual_engine = get_visual_engine()
         self.oracle_ui = HolographicOracleUI()
+        self._oracle_last_ms = 0
+        self._oracle_last_by_trigger = {}
         self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
         self.user_settings.setdefault("detail_panel", False)
         self.user_settings.setdefault("tutorial_completed", False)
@@ -600,36 +602,103 @@ class App:
         self.validate_navigation_methods()
         pygame.display.set_caption(self.loc.t("game_title"))
 
-    def _oracle_line(self, trigger: str, payload=None) -> str:
+    def _oracle_line(self, trigger: str, payload=None, speaker: str = "chakana") -> str:
         trig = str(trigger or "").lower()
+        role = str(speaker or "chakana").lower()
         lore_data = self.lore_data if isinstance(self.lore_data, dict) else {}
         event_fragments = list(lore_data.get("event_fragments", []) or [])
-        base = {
+
+        chakana_lines = {
             "run_start": "La Trama despierta. Elige con precision.",
+            "path_selected": "Uno de los 7 Caminos bendice tu voluntad.",
             "event_node": "Un eco ritual reclama tu atencion.",
-            "path_node": "Uno de los 7 Caminos bendice tu voluntad.",
+            "combat_start": "Respira: cada carta define el pulso del rito.",
             "elite_encounter": "La geometria se tensa: se acerca una prueba mayor.",
+            "enemy_low_hp": "Su forma se quiebra. Mantente firme.",
+            "player_low_hp": "Sostente. Aun puedes inclinar la Trama.",
             "boss_reveal": "El Arconte ya observa tu pulso.",
             "victory": "Tu equilibrio altero el destino del pacha.",
             "defeat": "La caida tambien ensena el siguiente trazo.",
         }
-        if trig == "event_node" and event_fragments:
+        archon_lines = {
+            "run_start": "Cada sendero termina en mi umbral.",
+            "path_selected": "Ese camino tambien alimenta mi dominio.",
+            "event_node": "Los ecos no te salvaran del quiebre.",
+            "combat_start": "Tu rito es fragil frente al vacio.",
+            "elite_encounter": "Esta prueba abrira tu fractura.",
+            "enemy_low_hp": "Aun herido, mi designio permanece.",
+            "player_low_hp": "Tu pulso cae. Entr?gate al silencio.",
+            "boss_reveal": "Por fin frente a mi: no habra retorno.",
+            "victory": "Una victoria breve en una guerra infinita.",
+            "defeat": "La Trama te rompe y me pertenece.",
+        }
+
+        if trig == "event_node" and event_fragments and role != "archon":
             return str(self.rng.choice(event_fragments))
-        if trig == "path_node" and isinstance(payload, dict):
+
+        if trig in {"path_selected", "path_node"} and isinstance(payload, dict):
             ptxt = str(payload.get("path_lore") or payload.get("path_name") or "")
             if ptxt:
                 return ptxt
+
         if trig in {"boss_reveal", "elite_encounter"} and isinstance(payload, dict):
             n = str(payload.get("name") or payload.get("id") or "").strip()
             if n:
+                base = archon_lines if role == "archon" else chakana_lines
                 return f"{base.get(trig)} {n}."
+
+        base = archon_lines if role == "archon" else chakana_lines
         return base.get(trig, "La Trama habla en silencio.")
 
     def trigger_oracle(self, trigger: str, payload=None):
         if not hasattr(self, "oracle_ui") or self.oracle_ui is None:
             return
-        line = self._oracle_line(trigger, payload=payload)
-        self.oracle_ui.show(line, trigger=trigger)
+
+        trig = str(trigger or "").lower()
+        now = pygame.time.get_ticks()
+
+        # Anti-spam cooldown (global + per trigger).
+        global_cd_ms = 1400
+        per_trigger_cd = {
+            "player_low_hp": 8500,
+            "enemy_low_hp": 7000,
+            "combat_start": 2800,
+            "event_node": 2600,
+            "path_selected": 2600,
+            "elite_encounter": 3200,
+            "boss_reveal": 3600,
+            "victory": 1200,
+            "defeat": 1200,
+            "run_start": 1200,
+        }
+        if now - int(self._oracle_last_ms or 0) < global_cd_ms:
+            return
+        trig_last = int(self._oracle_last_by_trigger.get(trig, 0) or 0)
+        if now - trig_last < int(per_trigger_cd.get(trig, 2800)):
+            return
+
+        speaker = "chakana"
+        interference = False
+
+        # Archon interference: rare and contextual.
+        rare_roll = self.rng.randint(1, 100)
+        if trig in {"boss_reveal", "elite_encounter", "player_low_hp"}:
+            if trig == "boss_reveal" or rare_roll <= 28:
+                speaker = "archon"
+                interference = True
+        elif trig in {"combat_start", "enemy_low_hp"} and rare_roll <= 12:
+            speaker = "archon"
+            interference = True
+        elif trig in {"victory", "defeat"} and rare_roll <= 18:
+            speaker = "archon"
+            interference = True
+
+        title = "ORACULO CHAKANA" if speaker == "chakana" else "INTERFERENCIA DEL ARCONTE"
+        line = self._oracle_line(trig, payload=payload, speaker=speaker)
+        self.oracle_ui.show(line, trigger=trig, title=title, speaker=speaker, interference=interference)
+
+        self._oracle_last_ms = now
+        self._oracle_last_by_trigger[trig] = now
 
     def goto_menu(self):
         if self.sm.current and not isinstance(self.sm.current, MenuScreen):
@@ -889,6 +958,7 @@ class App:
 
     def goto_combat(self, combat_state, is_boss=False):
         self.current_combat = combat_state
+        self.trigger_oracle("combat_start")
         try:
             pc = combat_state.pile_counts() if hasattr(combat_state, "pile_counts") else {"draw": 0, "hand": len(getattr(combat_state, "hand", []) or []), "discard": 0}
             print(f"[boot] combat_engine piles: draw={pc.get('draw',0)} hand={pc.get('hand',0)} discard={pc.get('discard',0)}")
@@ -1081,7 +1151,7 @@ class App:
         elif node_type == "shop":
             self.goto_shop()
         elif node_type == "path":
-            self.trigger_oracle("path_node", payload=node)
+            self.trigger_oracle("path_selected", payload=node)
             self._complete_current_node()
             blessing = str(node.get("path_name") or "Camino")
             blessings = self.run_state.setdefault("path_blessings", [])

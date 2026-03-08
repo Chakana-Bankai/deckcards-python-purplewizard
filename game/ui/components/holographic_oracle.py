@@ -1,31 +1,39 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import math
 import pygame
 
 
 class HolographicOracleUI:
-    """Codec-style holographic oracle overlay.
-
-    Non-intrusive bottom-left overlay with auto-fade, scanlines and subtle glitch.
-    """
+    """Non-intrusive holographic dialogue overlay with two speaker channels."""
 
     def __init__(self):
         self.active = False
         self.timer = 0.0
         self.duration = 4.2
-        self.fade_in = 0.28
-        self.fade_out = 1.15
+        self.fade_in = 0.24
+        self.fade_out = 1.10
         self.title = "ORACULO CHAKANA"
         self.text = ""
         self.trigger = ""
+        self.speaker = "chakana"
+        self.interference = False
 
-    def show(self, text: str, trigger: str = "", title: str = "ORACULO CHAKANA"):
+    def show(
+        self,
+        text: str,
+        trigger: str = "",
+        title: str = "ORACULO CHAKANA",
+        speaker: str = "chakana",
+        interference: bool = False,
+    ):
         self.active = True
         self.timer = 0.0
         self.title = str(title or "ORACULO CHAKANA")
         self.text = str(text or "")
         self.trigger = str(trigger or "")
+        self.speaker = str(speaker or "chakana").lower()
+        self.interference = bool(interference)
 
     def update(self, dt: float):
         if not self.active:
@@ -63,8 +71,7 @@ class HolographicOracleUI:
                     break
         if len(lines) < max_lines:
             lines.append(cur)
-        lines = lines[:max_lines]
-        return lines
+        return lines[:max_lines]
 
     def render(self, surface: pygame.Surface, app):
         alpha = self._alpha()
@@ -74,60 +81,75 @@ class HolographicOracleUI:
         sw, sh = surface.get_size()
         panel = pygame.Rect(24, sh - 210, min(520, sw // 2 - 40), 172)
 
+        is_archon = self.speaker == "archon"
+        base_glow = (220, 84, 104) if is_archon else (146, 86, 220)
+        border_col = (242, 120, 132) if is_archon else (136, 98, 218)
+        accent_col = (252, 146, 160) if is_archon else (126, 212, 246)
+        text_col = (255, 220, 224) if is_archon else (230, 220, 248)
+        title_col = (255, 170, 182) if is_archon else (190, 240, 255)
+
         layer = pygame.Surface(panel.size, pygame.SRCALPHA)
-        # soft mystical glow
         glow = pygame.Surface((panel.w + 30, panel.h + 30), pygame.SRCALPHA)
-        pygame.draw.rect(glow, (146, 86, 220, int(alpha * 0.16)), glow.get_rect(), border_radius=24)
+        pygame.draw.rect(glow, (*base_glow, int(alpha * 0.16)), glow.get_rect(), border_radius=24)
         surface.blit(glow, (panel.x - 15, panel.y - 15))
 
         pygame.draw.rect(layer, (16, 12, 30, int(alpha * 0.80)), layer.get_rect(), border_radius=14)
-        pygame.draw.rect(layer, (136, 98, 218, int(alpha * 0.92)), layer.get_rect(), 2, border_radius=14)
+        pygame.draw.rect(layer, (*border_col, int(alpha * 0.92)), layer.get_rect(), 2, border_radius=14)
 
-        # scanline overlay
         for y in range(2, panel.h, 4):
-            pygame.draw.line(layer, (190, 150, 255, int(alpha * 0.09)), (8, y), (panel.w - 8, y), 1)
+            pygame.draw.line(layer, (*accent_col, int(alpha * 0.10)), (8, y), (panel.w - 8, y), 1)
 
-        # subtle glitch bar
         phase = pygame.time.get_ticks() * 0.015
         gy = int(50 + math.sin(phase) * 18)
-        pygame.draw.rect(layer, (190, 120, 255, int(alpha * 0.12)), pygame.Rect(10, gy, panel.w - 20, 6), border_radius=3)
+        glitch_col = (252, 116, 132) if (is_archon or self.interference) else (190, 120, 255)
+        pygame.draw.rect(layer, (*glitch_col, int(alpha * 0.12)), pygame.Rect(10, gy, panel.w - 20, 6), border_radius=3)
 
-        # avatar frame
         av_rect = pygame.Rect(14, 18, 122, 136)
         pygame.draw.rect(layer, (30, 22, 54, int(alpha * 0.86)), av_rect, border_radius=10)
-        pygame.draw.rect(layer, (126, 212, 246, int(alpha * 0.86)), av_rect, 1, border_radius=10)
+        pygame.draw.rect(layer, (*accent_col, int(alpha * 0.86)), av_rect, 1, border_radius=10)
 
         avatar = app.assets.sprite("avatar", "codex", (av_rect.w - 10, av_rect.h - 10), fallback=(86, 56, 132)).copy()
-        avatar.set_alpha(int(alpha * 0.92))
-        jx = int(math.sin(phase * 2.4) * 2)
-        layer.blit(avatar, (av_rect.x + 5 + jx, av_rect.y + 5))
+        avatar.set_alpha(int(alpha * 0.90))
+        if is_archon:
+            tint = pygame.Surface(avatar.get_size(), pygame.SRCALPHA)
+            tint.fill((255, 84, 102, 130))
+            avatar.blit(tint, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
+        jitter = 2 if self.interference else 1
+        jx = int(math.sin(phase * 2.4) * jitter)
+        jy = int(math.cos(phase * 1.8) * jitter) if self.interference else 0
+        layer.blit(avatar, (av_rect.x + 5 + jx, av_rect.y + 5 + jy))
 
-        # text bubble
         bubble = pygame.Rect(av_rect.right + 12, 18, panel.w - av_rect.right - 24, panel.h - 36)
         pygame.draw.rect(layer, (32, 24, 62, int(alpha * 0.74)), bubble, border_radius=10)
-        pygame.draw.rect(layer, (138, 104, 228, int(alpha * 0.90)), bubble, 1, border_radius=10)
+        pygame.draw.rect(layer, (*border_col, int(alpha * 0.90)), bubble, 1, border_radius=10)
 
         title_font = getattr(app, "small_font", app.font)
         body_font = getattr(app, "tiny_font", app.font)
-        tcol = (190, 240, 255)
-        bcol = (230, 220, 248)
 
-        title = title_font.render(self.title[:40], True, tcol)
+        title = title_font.render(self.title[:40], True, title_col)
         title.set_alpha(alpha)
         layer.blit(title, (bubble.x + 10, bubble.y + 8))
 
         lines = self._wrap(body_font, self.text, bubble.w - 20, max_lines=4)
         y = bubble.y + 38
         for line in lines:
-            lbl = body_font.render(line, True, bcol)
+            lbl = body_font.render(line, True, text_col)
             lbl.set_alpha(alpha)
             layer.blit(lbl, (bubble.x + 10, y))
             y += 22
 
         if self.trigger:
-            trig = body_font.render(self.trigger.upper()[:30], True, (156, 126, 222))
+            trig_col = (232, 136, 146) if is_archon else (156, 126, 222)
+            trig = body_font.render(self.trigger.upper()[:30], True, trig_col)
             trig.set_alpha(int(alpha * 0.84))
             layer.blit(trig, (bubble.x + 10, bubble.bottom - 24))
 
-        surface.blit(layer, panel.topleft)
+        if self.interference:
+            noise = pygame.Surface(panel.size, pygame.SRCALPHA)
+            for i in range(18):
+                nx = int((i * 37 + pygame.time.get_ticks() // 7) % max(1, panel.w - 30))
+                ny = int((i * 19 + pygame.time.get_ticks() // 11) % max(1, panel.h - 6))
+                pygame.draw.rect(noise, (255, 136, 146, int(alpha * 0.08)), pygame.Rect(nx, ny, 24, 2))
+            surface.blit(noise, panel.topleft)
 
+        surface.blit(layer, panel.topleft)
