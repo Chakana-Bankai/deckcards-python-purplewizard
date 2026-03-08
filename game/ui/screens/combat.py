@@ -580,10 +580,10 @@ class CombatScreen:
     def _enemy_major_statuses(self, enemy) -> list[tuple[str, int]]:
         st = getattr(enemy, "statuses", {}) or {}
         mapping = [
-            ("RUP", int(st.get("rupture", 0) or 0) + int(st.get("break", 0) or 0)),
-            ("RIT", int(st.get("ritual", 0) or 0)),
-            ("DEB", int(st.get("weak", 0) or 0)),
-            ("VUL", int(st.get("vulnerable", 0) or 0)),
+            ("rupture", int(st.get("rupture", 0) or 0) + int(st.get("break", 0) or 0)),
+            ("ritual", int(st.get("ritual", 0) or 0)),
+            ("support", int(st.get("weak", 0) or 0)),
+            ("support", int(st.get("vulnerable", 0) or 0)),
         ]
         out = [(k, v) for k, v in mapping if v > 0]
         return out[:3]
@@ -1095,10 +1095,15 @@ class CombatScreen:
             s.blit(chip_glow, (intent_chip.x - 6, intent_chip.y - 5))
             pygame.draw.rect(s, (24, 22, 34), intent_chip, border_radius=12)
             pygame.draw.rect(s, intent_col, intent_chip, 2, border_radius=12)
-            iv_text = str(intent_value)
-            iv_font = self.app.big_font if iv_text.isdigit() and len(iv_text) <= 3 else self.app.small_font
-            intent_value_txt = iv_font.render(iv_text, True, intent_col)
-            s.blit(intent_value_txt, (intent_chip.x + 12, intent_chip.y + 4))
+            kind = str(e.current_intent().get("intent", "")).lower()
+            icon_name = "damage" if kind == "attack" else "block" if kind == "defend" else "ritual"
+            val_num = 0
+            vraw = e.current_intent().get("value", 0)
+            if isinstance(vraw, list) and vraw:
+                val_num = int(vraw[-1] or 0)
+            else:
+                val_num = int(vraw or 0)
+            draw_icon_with_value(s, icon_name, val_num, intent_col, self.app.small_font, intent_chip.x + 10, intent_chip.y + 7, size=2)
             intent_line_text = self._wrap_panel_text(intent_name, intent_chip.w - 24, max_lines=1)[0]
             intent_name_txt = self.app.tiny_font.render(intent_line_text, True, UI_THEME["text"])
             s.blit(intent_name_txt, (intent_chip.x + 14, intent_chip.bottom - 14))
@@ -1110,12 +1115,12 @@ class CombatScreen:
 
             status_tokens = self._enemy_major_statuses(e)
             sx = status_line.x
-            for key, val in status_tokens:
-                ww = 68
+            for icon_id, val in status_tokens:
+                ww = 78
                 rr = pygame.Rect(sx, status_line.y + 1, ww, 19)
                 pygame.draw.rect(s, (28, 24, 40), rr, border_radius=7)
                 pygame.draw.rect(s, UI_THEME["accent_violet"], rr, 1, border_radius=7)
-                s.blit(self.app.tiny_font.render(f"{key} {val}", True, UI_THEME["text"]), (rr.x + 6, rr.y + 2))
+                draw_icon_with_value(s, icon_id, val, UI_THEME["text"], self.app.tiny_font, rr.x + 4, rr.y + 2, size=1)
                 sx += ww + 6
 
             pattern_len = max(1, len(getattr(e, "pattern", []) or []))

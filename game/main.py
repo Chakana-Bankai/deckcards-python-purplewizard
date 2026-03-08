@@ -73,10 +73,10 @@ DEFAULT_ENEMY = {"id": "dummy", "name_key": "enemy_voidling_name", "hp": [20, 20
 
 MAP_TEMPLATE = [
     {"type": "combat", "count": 1, "types": ["combat"]},
-    {"type": "path", "count": 3, "types": ["combat", "event", "path"]},
-    {"type": "path", "count": 3, "types": ["challenge", "combat", "elite"]},
-    {"type": "path", "count": 3, "types": ["combat", "path", "challenge"]},
-    {"type": "elite", "count": 2, "types": ["elite", "combat"]},
+    {"type": "branch", "count": 4, "types": ["event", "combat", "combat", "sanctuary"]},
+    {"type": "branch", "count": 4, "types": ["combat", "shop", "combat", "event"]},
+    {"type": "branch", "count": 4, "types": ["challenge", "combat", "relic", "combat"]},
+    {"type": "merge", "count": 2, "types": ["combat", "elite"]},
     {"type": "boss", "count": 1, "types": ["boss"]},
 ]
 
@@ -492,22 +492,27 @@ class App:
         for c in cards if isinstance(cards, list) else []:
             if not isinstance(c, dict) or not c.get("id"):
                 continue
+            enriched = self._enrich_card_semantic_fields(c)
             cooked.append({
-                "id": c.get("id"),
-                "name_key": c.get("name_es", c.get("name_key", c.get("id"))),
-                "text_key": c.get("text_es", c.get("text_key", c.get("id"))),
-                "rarity": c.get("rarity", "common"),
-                "cost": int(c.get("cost", 1)),
-                "target": c.get("target", "enemy"),
-                "tags": list(c.get("tags", [])),
-                "effects": list(c.get("effects", [])),
-                "role": str(c.get("role") or infer_card_role(c)),
-                "family": (c.get("direction", "ESTE") or "ESTE").lower(),
-                "direction": c.get("direction", "ESTE"),
-                "strategy": c.get("strategy", {}),
-                "lore_text": c.get("lore_text", ""),
-                "effect_text": c.get("effect_text", c.get("text_key", "")),
-                "archetype": c.get("archetype", ""),
+                "id": enriched.get("id"),
+                "name_key": enriched.get("name_es", enriched.get("name_key", enriched.get("id"))),
+                "text_key": enriched.get("text_es", enriched.get("text_key", enriched.get("id"))),
+                "rarity": enriched.get("rarity", "common"),
+                "cost": int(enriched.get("cost", 1)),
+                "target": enriched.get("target", "enemy"),
+                "tags": list(enriched.get("tags", [])),
+                "effects": list(enriched.get("effects", [])),
+                "role": str(enriched.get("role") or infer_card_role(enriched)),
+                "family": (enriched.get("direction", "ESTE") or "ESTE").lower(),
+                "direction": enriched.get("direction", "ESTE"),
+                "strategy": enriched.get("strategy", {}),
+                "lore_text": enriched.get("lore_text", ""),
+                "effect_text": enriched.get("effect_text", enriched.get("text_key", "")),
+                "archetype": enriched.get("archetype", ""),
+                "motif": enriched.get("motif", ""),
+                "palette": enriched.get("palette", ""),
+                "energy": enriched.get("energy", ""),
+                "symbol": enriched.get("symbol", ""),
             })
         by_id = {c.get("id"): c for c in cooked if c.get("id")}
         if not by_id:
@@ -515,6 +520,66 @@ class App:
                 by_id.setdefault(base["id"], base)
         return list(by_id.values())
 
+    def _enrich_card_semantic_fields(self, card: dict) -> dict:
+        """Ensure runtime card semantics exist for UI/art guidance without changing mechanics."""
+        row = dict(card or {})
+        direction = str(row.get("direction", "ESTE") or "ESTE").upper()
+        role = str(row.get("role") or infer_card_role(row)).strip().lower()
+        tags = {str(t).strip().lower() for t in list(row.get("tags", []) or [])}
+
+        if not str(row.get("archetype", "")).strip():
+            by_dir = {
+                "ESTE": "cosmic_warrior",
+                "SUR": "harmony_guardian",
+                "NORTE": "oracle_of_fate",
+                "OESTE": "oracle_of_fate",
+            }
+            row["archetype"] = by_dir.get(direction, "cosmic_warrior")
+
+        if not str(row.get("motif", "")).strip():
+            if "ritual" in tags:
+                row["motif"] = "ritual_symbols"
+            elif "attack" in tags or role == "attack":
+                row["motif"] = "demons"
+            elif "block" in tags or role == "defense":
+                row["motif"] = "sacred_forms"
+            elif "scry" in tags or "draw" in tags or role in {"control", "combo"}:
+                row["motif"] = "cosmic_geometry"
+            else:
+                row["motif"] = "chakana"
+
+        if not str(row.get("palette", "")).strip():
+            by_arch = {
+                "cosmic_warrior": "crimson-magenta",
+                "harmony_guardian": "teal-gold",
+                "oracle_of_fate": "indigo-cyan",
+            }
+            row["palette"] = by_arch.get(str(row.get("archetype", "")).strip().lower(), "violet-neutral")
+
+        if not str(row.get("energy", "")).strip():
+            if "ritual" in tags:
+                row["energy"] = "ritual_flux"
+            elif "attack" in tags:
+                row["energy"] = "burst_arcs"
+            elif "block" in tags:
+                row["energy"] = "stable_rings"
+            elif "draw" in tags or "scry" in tags:
+                row["energy"] = "spiral_streams"
+            else:
+                row["energy"] = "arc_traces"
+
+        if not str(row.get("symbol", "")).strip():
+            if "attack" in tags:
+                row["symbol"] = "blade_sigil"
+            elif "block" in tags:
+                row["symbol"] = "shield_mandala"
+            elif "ritual" in tags:
+                row["symbol"] = "seal_lock"
+            elif "draw" in tags or "scry" in tags:
+                row["symbol"] = "astral_eye"
+            else:
+                row["symbol"] = "chakana_glyph"
+        return row
     def _apply_phase75_card_tuning(self, cards):
         """Phase 7.5 tuning: keep archetype identity while improving viability and pacing."""
         if not isinstance(cards, list):
@@ -972,29 +1037,8 @@ class App:
                     self.node_lookup[str(node["id"])] = node
 
     def _migrate_legacy_shop_nodes(self):
-        """Migrate old map saves that still use 'shop' nodes into 'path' nodes."""
-        if not isinstance(self.run_state, dict):
-            return 0
-        changed = 0
-        path_cursor = 0
-        run_map = self.run_state.get("map", [])
-        for col in run_map if isinstance(run_map, list) else []:
-            for node in col if isinstance(col, list) else []:
-                if not isinstance(node, dict):
-                    continue
-                if str(node.get("type", "")).lower() != "shop":
-                    continue
-                node["type"] = "path"
-                if not node.get("path_id") or not node.get("path_name"):
-                    path = SEVEN_PATHS[path_cursor % len(SEVEN_PATHS)]
-                    node["path_id"] = str(path.get("id"))
-                    node["path_name"] = str(path.get("title"))
-                    node["path_lore"] = str(path.get("lore"))
-                    path_cursor += 1
-                changed += 1
-        if changed:
-            print(f"[map] migrated_legacy_shop_nodes={changed}")
-        return changed
+        """Legacy hook kept for save compatibility; shop nodes are now first-class again."""
+        return 0
 
     def _autosave_run(self, reason: str = ""):
         if not isinstance(self.run_state, dict):
@@ -1415,8 +1459,8 @@ class App:
     def enter_node(self, node):
         raw_type = str(node.get("type", "combat") or "combat")
         node_type = raw_type
-        if node_type == "shop":
-            node_type = "path"
+        if node_type == "relic":
+            node_type = "treasure"
         if node_type == "elite":
             self.trigger_oracle("elite_encounter", payload=node)
             node_type = "challenge"
@@ -1457,6 +1501,18 @@ class App:
             if blessing not in blessings:
                 blessings.append(blessing)
             self.goto_guide_reward(event_id=str(node.get("path_id") or "seven_paths"))
+        elif node_type == "shop":
+            self._complete_current_node()
+            self.goto_shop()
+        elif node_type == "sanctuary":
+            self._complete_current_node()
+            player = self.run_state.get("player", {}) if isinstance(self.run_state, dict) else {}
+            max_hp = max(1, int(player.get("max_hp", 1) or 1))
+            heal = max(2, int(round(max_hp * 0.12)))
+            player["hp"] = min(max_hp, int(player.get("hp", max_hp) or max_hp) + heal)
+            self.apply_run_rewards(xp=6, source="sanctuary_rest")
+            print(f"[run] sanctuary heal +{heal} ({player.get('hp', 0)}/{max_hp})")
+            self.goto_event()
         elif node_type == "treasure":
             self._complete_current_node()
             self.goto_reward(gold=self.rng.randint(22, 40))
@@ -1920,5 +1976,3 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
-
-

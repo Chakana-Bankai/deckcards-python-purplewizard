@@ -16,6 +16,9 @@ class MapScreen:
         "elite": "Elite",
         "path": "Camino",
         "treasure": "Reliquia",
+        "relic": "Reliquia",
+        "shop": "Mercader",
+        "sanctuary": "Santuario",
         "boss": "Arconte",
     }
 
@@ -25,7 +28,9 @@ class MapScreen:
         "event": "Susurro",
         "path": "Camino",
         "treasure": "Fragmento",
+        "relic": "Reliquia",
         "shop": "Mercader",
+        "sanctuary": "Santuario",
         "boss": "Archonte",
         "elite": "Elite",
     }
@@ -37,6 +42,9 @@ class MapScreen:
         "elite": "Una entidad de alto riesgo marca el rito.",
         "path": "Uno de los 7 Caminos bendice tu progreso.",
         "treasure": "Una reliquia olvidada late bajo la piedra.",
+        "relic": "Una reliquia del camino altera tu destino.",
+        "shop": "El mercader del umbral intercambia poder por oro.",
+        "sanctuary": "Un santuario restaura el pulso antes de continuar.",
         "boss": "El Arconte aguarda al final de la geometria.",
     }
 
@@ -70,6 +78,8 @@ class MapScreen:
         "Camino del Cielo",
         "Camino del Sello",
     ]
+
+    BRANCH_LANES = [("NORTE", "Hanan"), ("ESTE", "Oraculo"), ("OESTE", "Guerrero"), ("SUR", "Uku")]
 
     ARCHON_NAMES = {
         "ukhu": "Arconte del Vacio",
@@ -136,15 +146,16 @@ class MapScreen:
             return base_radius + 9
         if nt in {"elite", "challenge"}:
             return base_radius + 4
-        if nt in {"event", "path", "treasure"}:
+        if nt in {"event", "path", "treasure", "relic", "shop", "sanctuary"}:
             return base_radius + 2
         return base_radius
 
     def _normalized_node_type(self, node_type: str | None) -> str:
         nt = str(node_type or "event").lower()
-        # Compatibility with old saves before shop-node removal.
-        if nt == "shop":
+        if nt == "guide":
             return "path"
+        if nt == "relic":
+            return "treasure"
         return nt
 
     def _refresh_graph_layout(self, run):
@@ -161,6 +172,13 @@ class MapScreen:
             x = graph_rect.x + int((ci / max(1, cols - 1)) * graph_rect.w)
             if count == 1:
                 ys = [graph_rect.centery]
+            elif count == 4:
+                # Chakana-like lane anchors: norte / este / oeste / sur.
+                top = graph_rect.y + max(28, int(graph_rect.h * 0.10))
+                upper = graph_rect.y + int(graph_rect.h * 0.36)
+                lower = graph_rect.y + int(graph_rect.h * 0.64)
+                bottom = graph_rect.bottom - max(28, int(graph_rect.h * 0.10))
+                ys = [int(top), int(upper), int(lower), int(bottom)]
             else:
                 row_gap = min(110, max(68, graph_rect.h // (count + 1)))
                 center_idx = (count - 1) / 2.0
@@ -251,6 +269,14 @@ class MapScreen:
         elif t == "treasure":
             pygame.draw.rect(s, col, (x - 10, y - 4, 20, 12), 2, border_radius=3)
             pygame.draw.line(s, col, (x - 8, y + 1), (x + 8, y + 1), 2)
+        elif t == "shop":
+            pygame.draw.circle(s, col, (x, y), 8, 2)
+            pygame.draw.line(s, col, (x - 4, y), (x + 4, y), 2)
+            pygame.draw.line(s, col, (x, y - 4), (x, y + 4), 2)
+        elif t == "sanctuary":
+            pygame.draw.circle(s, col, (x, y), 8, 2)
+            pygame.draw.line(s, col, (x, y - 6), (x, y + 6), 2)
+            pygame.draw.line(s, col, (x - 6, y), (x + 6, y), 2)
         elif t == "boss":
             pygame.draw.circle(s, col, (x, y), 7, 2)
             pygame.draw.line(s, col, (x - 9, y), (x + 9, y), 2)
@@ -431,6 +457,19 @@ class MapScreen:
         pygame.draw.rect(s, UI_THEME["panel_2"], center_badge, border_radius=7)
         pygame.draw.rect(s, UI_THEME["gold"], center_badge, 1, border_radius=7)
         s.blit(self.app.tiny_font.render(f"Etapa {stage_idx + 1} - {stage_title}", True, UI_THEME["gold"]), (center_badge.x + 8, center_badge.y + 5))
+        # Chakana branch lane hints for fast route readability.
+        lane_ys = [
+            center_rect.y + int(center_rect.h * 0.24),
+            center_rect.y + int(center_rect.h * 0.39),
+            center_rect.y + int(center_rect.h * 0.54),
+            center_rect.y + int(center_rect.h * 0.69),
+        ]
+        for idx, (axis, branch) in enumerate(self.BRANCH_LANES):
+            if idx >= len(lane_ys):
+                break
+            yy = lane_ys[idx]
+            lane_txt = self.app.tiny_font.render(f"{axis} - {branch}", True, UI_THEME["muted"])
+            s.blit(lane_txt, (center_rect.x + 16, yy))
 
         self._refresh_graph_layout(run)
         base_radius, line_w = self._node_metrics(run.get("map", []))
@@ -562,4 +601,3 @@ class MapScreen:
             if tip_rect.y < 10:
                 tip_rect.y = 10
             UITooltip(tip_rect, relic_hover_text).draw(s, self.app.tiny_font)
-

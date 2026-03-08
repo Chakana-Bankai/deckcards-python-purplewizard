@@ -42,6 +42,20 @@ class PromptBuilder:
         return "trazo_mistico"
 
     def archetype_mood(self, card: dict) -> tuple[str, str, str, str]:
+        # Prefer explicit semantic fields from card data/runtime enrichment.
+        palette = str(card.get("palette", "")).strip()
+        energy = str(card.get("energy", "")).strip()
+        symbol = str(card.get("symbol", "")).strip()
+        if palette and energy and symbol:
+            lighting = "balanced glow"
+            if "crimson" in palette or "red" in palette:
+                lighting = "hard rim light"
+            elif "teal" in palette or "gold" in palette:
+                lighting = "soft frontal glow"
+            elif "indigo" in palette or "cyan" in palette:
+                lighting = "split mystic light"
+            return (palette, lighting, symbol.replace("_", " "), energy)
+
         arch = str(card.get("archetype", "")).lower()
         if arch == "cosmic_warrior":
             return ("crimson-magenta", "hard rim light", "blade sigils", "burst arcs")
@@ -52,6 +66,14 @@ class PromptBuilder:
         return ("violet-neutral", "balanced glow", "chakana glyph", "arc traces")
 
     def lore_profile(self, card: dict) -> tuple[str, str, str]:
+        explicit_motif = str(card.get("motif", "")).strip().lower()
+        if explicit_motif:
+            motif = MOTIF_LIBRARY.get(explicit_motif, {})
+            shape = ",".join(list(motif.get("shapes", ("chakana",)))[:2])
+            symbol = ",".join(list(motif.get("symbols", ("seal",)))[:2])
+            tone = str(motif.get("tone", "mystic_order"))
+            return explicit_motif, shape, f"{symbol}:{tone}"
+
         motifs = motifs_for_archetype(str(card.get("archetype", "")))
         primary = motifs[0]
         motif = MOTIF_LIBRARY.get(primary, {})
