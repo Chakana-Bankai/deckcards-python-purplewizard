@@ -53,6 +53,7 @@ from game.ui.screens.pacha_transition import PachaTransitionScreen
 from game.ui.screens.tutorial import TutorialScreen
 from game.ui.tutorial_flow import TutorialFlowController
 from game.ui.components.card_effect_summary import infer_card_role
+from game.ui.components.holographic_oracle import HolographicOracleUI
 from game.ui.system.typography import ChakanaTypography, SMALL_FONT
 from game.version import VERSION
 from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION
@@ -179,6 +180,7 @@ class App:
         self.asset_pipeline = AssetPipeline(self.art_gen, self.enemy_art_gen, self.guide_gen, self.bg_gen)
         self.audio_pipeline = AudioPipeline()
         self.visual_engine = get_visual_engine()
+        self.oracle_ui = HolographicOracleUI()
         self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
         self.user_settings.setdefault("detail_panel", False)
         self.user_settings.setdefault("tutorial_completed", False)
@@ -598,6 +600,37 @@ class App:
         self.validate_navigation_methods()
         pygame.display.set_caption(self.loc.t("game_title"))
 
+    def _oracle_line(self, trigger: str, payload=None) -> str:
+        trig = str(trigger or "").lower()
+        lore_data = self.lore_data if isinstance(self.lore_data, dict) else {}
+        event_fragments = list(lore_data.get("event_fragments", []) or [])
+        base = {
+            "run_start": "La Trama despierta. Elige con precision.",
+            "event_node": "Un eco ritual reclama tu atencion.",
+            "path_node": "Uno de los 7 Caminos bendice tu voluntad.",
+            "elite_encounter": "La geometria se tensa: se acerca una prueba mayor.",
+            "boss_reveal": "El Arconte ya observa tu pulso.",
+            "victory": "Tu equilibrio altero el destino del pacha.",
+            "defeat": "La caida tambien ensena el siguiente trazo.",
+        }
+        if trig == "event_node" and event_fragments:
+            return str(self.rng.choice(event_fragments))
+        if trig == "path_node" and isinstance(payload, dict):
+            ptxt = str(payload.get("path_lore") or payload.get("path_name") or "")
+            if ptxt:
+                return ptxt
+        if trig in {"boss_reveal", "elite_encounter"} and isinstance(payload, dict):
+            n = str(payload.get("name") or payload.get("id") or "").strip()
+            if n:
+                return f"{base.get(trig)} {n}."
+        return base.get(trig, "La Trama habla en silencio.")
+
+    def trigger_oracle(self, trigger: str, payload=None):
+        if not hasattr(self, "oracle_ui") or self.oracle_ui is None:
+            return
+        line = self._oracle_line(trigger, payload=payload)
+        self.oracle_ui.show(line, trigger=trigger)
+
     def goto_menu(self):
         if self.sm.current and not isinstance(self.sm.current, MenuScreen):
             self.menu_return_screen = self.sm.current
@@ -620,6 +653,7 @@ class App:
         else:
             self.current_combat = None
             self._autosave_run("defeat_screen_resume_ready")
+        self.trigger_oracle("victory" if victory else "defeat")
         title = "Victoria" if victory else "Derrota"
         lore = "el eco celebro tu equilibrio." if victory else "la Trama pidio un nuevo intento."
         self.sm.set(PachaTransitionScreen(self, title, lambda: self.sm.set(EndScreen(self, victory=victory)), lore_line=lore, hint="Cierre del capitulo"))
@@ -764,6 +798,7 @@ class App:
         self.current_combat = None
         self._sync_tutorial_run_state()
         self._autosave_run("new_run_started")
+        self.trigger_oracle("run_start")
         self.goto_map()
 
     def generate_map(self):
@@ -869,6 +904,8 @@ class App:
                 biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
                 self.music.play_for(self.get_bgm_track("combat", biome_track))
 
+        if is_boss:
+            self.trigger_oracle("boss_reveal")
         title = "Umbral del Jefe" if is_boss else "Entrando en Combate"
         lore = "la sombra mayor despertÃ³." if is_boss else "el pulso enemigo se hizo audible."
         self.sm.set(PachaTransitionScreen(self, title, _enter_combat, lore_line=lore, hint="Pulsa cualquier tecla para preparar tu mano"))
@@ -916,6 +953,7 @@ class App:
         biome = self._normalize_biome_id((self.run_state or {}).get("biome"))
         pool = self._event_pool_for_biome(biome)
         event = self.rng.choice(pool) if pool else {"title_key": "map_title", "body_key": "lore_tagline", "choices": [{"text_key": "event_continue", "effects": []}]}
+        self.trigger_oracle("event_node", payload=event)
         self.sm.set(EventScreen(self, event))
         self.music.play_for(self.get_bgm_track("events"))
 
@@ -1012,8 +1050,10 @@ class App:
         return pool or commons
 
     def enter_node(self, node):
-        node_type = str(node.get("type", "combat") or "combat")
+        raw_type = str(node.get("type", "combat") or "combat")
+        node_type = raw_type
         if node_type == "elite":
+            self.trigger_oracle("elite_encounter", payload=node)
             node_type = "challenge"
         if node_type in {"combat", "challenge", "boss"}:
             boss_ids = [b.get("id") for b in self.content.bosses if isinstance(b, dict) and b.get("id")]
@@ -1041,6 +1081,7 @@ class App:
         elif node_type == "shop":
             self.goto_shop()
         elif node_type == "path":
+            self.trigger_oracle("path_node", payload=node)
             self._complete_current_node()
             blessing = str(node.get("path_name") or "Camino")
             blessings = self.run_state.setdefault("path_blessings", [])
@@ -1451,9 +1492,13 @@ class App:
                 self._soft_restart()
                 continue
             self.music.tick()
+            if hasattr(self, "oracle_ui") and self.oracle_ui is not None:
+                self.oracle_ui.update(dt)
             self.sm.update(dt)
             self.renderer.internal.fill((8, 8, 14))
             self.sm.render(self.renderer.internal)
+            if hasattr(self, "oracle_ui") and self.oracle_ui is not None:
+                self.oracle_ui.render(self.renderer.internal, self)
             self.draw_debug_overlay()
             self.renderer.present()
         pygame.quit()
@@ -1486,6 +1531,8 @@ if __name__ == "__main__":
                         app.sm.handle_event(event)
                     app.sm.update(1 / FPS)
                     app.sm.render(app.renderer.internal)
+                    if hasattr(app, "oracle_ui") and app.oracle_ui is not None:
+                        app.oracle_ui.render(app.renderer.internal, app)
                     app.renderer.present()
                     app.clock.tick(FPS)
             except Exception:
