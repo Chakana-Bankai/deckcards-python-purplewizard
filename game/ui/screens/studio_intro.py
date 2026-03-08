@@ -13,9 +13,9 @@ from game.ui.system.typography import TITLE_FONT
 
 
 class StudioIntroScreen:
-    """Clean cached studio intro with white Chakana reveal and subtle purple FX."""
+    """Minimal cosmic studio intro with cached starfield and Chakana line reveal."""
 
-    MANIFEST_VERSION = "identity_feedback_intro_v1"
+    MANIFEST_VERSION = "studio_intro_cosmic_v2"
 
     def __init__(self, app, next_fn, fade_in: float = 1.2, hold: float = 1.5, fade_out: float = 1.2):
         self.app = app
@@ -23,15 +23,18 @@ class StudioIntroScreen:
         self.fade_in = float(fade_in)
         self.hold = float(hold)
         self.fade_out = float(fade_out)
-        self.duration = 4.1
+        self.duration = 4.0
         self.t = 0.0
         self.source = "generated"
         self.seed = 1337
         self._done = False
         self._logged_fallback = False
         self.fallback_mode = False
-        self.particles = []
         self.manifest_path = data_dir() / "studio_intro_manifest.json"
+
+        self.stars_far = []
+        self.stars_near = []
+        self.purple_dust = []
 
     def _load_manifest(self) -> dict:
         if not self.manifest_path.exists():
@@ -56,13 +59,13 @@ class StudioIntroScreen:
         valid = isinstance(manifest, dict) and manifest.get("version") == self.MANIFEST_VERSION
         if valid and not force_refresh:
             self.seed = int(manifest.get("seed", 1337) or 1337)
-            self.duration = float(manifest.get("duration", 4.1) or 4.1)
+            self.duration = float(manifest.get("duration", 4.0) or 4.0)
             self.source = "cache"
             print("[studio_intro] source=cache")
             return
 
         self.seed = int(time.time()) % 100000
-        self.duration = 4.1
+        self.duration = 4.0
         self.source = "generated"
         self._save_manifest(
             {
@@ -82,15 +85,36 @@ class StudioIntroScreen:
         self._prepare_cached_timeline()
 
         rng = random.Random(self.seed)
-        self.particles = [
+        # Cached starfield assets: generated once per enter/seed, then reused each frame.
+        self.stars_far = [
             {
                 "x": rng.uniform(0, 1920),
                 "y": rng.uniform(0, 1080),
-                "vx": rng.uniform(-0.12, 0.12),
-                "vy": rng.uniform(-0.09, 0.09),
-                "r": rng.randint(1, 2),
+                "s": rng.uniform(0.08, 0.18),
+                "a": rng.randint(90, 150),
+                "tw": rng.uniform(0.0, math.tau),
             }
-            for _ in range(34)
+            for _ in range(140)
+        ]
+        self.stars_near = [
+            {
+                "x": rng.uniform(0, 1920),
+                "y": rng.uniform(0, 1080),
+                "s": rng.uniform(0.20, 0.42),
+                "a": rng.randint(130, 210),
+                "tw": rng.uniform(0.0, math.tau),
+            }
+            for _ in range(72)
+        ]
+        self.purple_dust = [
+            {
+                "x": rng.uniform(0, 1920),
+                "y": rng.uniform(0, 1080),
+                "vx": rng.uniform(-0.03, 0.03),
+                "vy": rng.uniform(-0.02, 0.02),
+                "a": rng.randint(16, 36),
+            }
+            for _ in range(24)
         ]
 
         try:
@@ -120,44 +144,73 @@ class StudioIntroScreen:
             self._finish()
 
     def _draw_bg(self, surface: pygame.Surface, w: int, h: int):
-        for y in range(h):
-            p = y / max(1, h - 1)
-            c = (0, 0, int(2 + 8 * p))
-            pygame.draw.line(surface, c, (0, y), (w, y))
+        surface.fill((2, 2, 4))
+        # Optional subtle purple nebula tint, very soft and sparse.
+        nebula = pygame.Surface((w, h), pygame.SRCALPHA)
+        pygame.draw.ellipse(nebula, (88, 44, 128, 12), (int(w * 0.10), int(h * 0.18), int(w * 0.46), int(h * 0.34)))
+        pygame.draw.ellipse(nebula, (74, 40, 120, 10), (int(w * 0.54), int(h * 0.42), int(w * 0.34), int(h * 0.26)))
+        surface.blit(nebula, (0, 0))
 
-    def _draw_particles(self, surface: pygame.Surface, w: int, h: int):
-        for p in self.particles:
-            p["x"] += p["vx"]
-            p["y"] += p["vy"]
-            if p["x"] < -8:
-                p["x"] = w + 8
-            if p["x"] > w + 8:
-                p["x"] = -8
-            if p["y"] < -8:
-                p["y"] = h + 8
-            if p["y"] > h + 8:
-                p["y"] = -8
-            pygame.draw.circle(surface, (112, 88, 168), (int(p["x"]), int(p["y"])), int(p["r"]))
+    def _draw_starfield(self, surface: pygame.Surface, w: int, h: int):
+        t = self.t
+        stars = pygame.Surface((w, h), pygame.SRCALPHA)
 
-    def _draw_energy_point(self, surface: pygame.Surface, cx: int, cy: int):
-        if self.t < 0.20:
+        # Slow parallax movement and gentle twinkle.
+        for st in self.stars_far:
+            x = (st["x"] - t * 3.0 * st["s"]) % (w + 8) - 4
+            y = (st["y"] + t * 1.6 * st["s"]) % (h + 8) - 4
+            tw = 0.5 + 0.5 * math.sin(t * 0.9 + st["tw"])
+            a = int(st["a"] * (0.72 + 0.28 * tw))
+            pygame.draw.circle(stars, (220, 224, 236, max(0, min(255, a))), (int(x), int(y)), 1)
+
+        for st in self.stars_near:
+            x = (st["x"] - t * 7.5 * st["s"]) % (w + 8) - 4
+            y = (st["y"] + t * 3.2 * st["s"]) % (h + 8) - 4
+            tw = 0.5 + 0.5 * math.sin(t * 1.5 + st["tw"])
+            a = int(st["a"] * (0.70 + 0.30 * tw))
+            pygame.draw.circle(stars, (244, 246, 250, max(0, min(255, a))), (int(x), int(y)), 1)
+
+        dust = pygame.Surface((w, h), pygame.SRCALPHA)
+        for p in self.purple_dust:
+            px = (p["x"] + t * 5.0 * p["vx"]) % w
+            py = (p["y"] + t * 5.0 * p["vy"]) % h
+            pygame.draw.circle(dust, (126, 84, 176, p["a"]), (int(px), int(py)), 1)
+
+        surface.blit(stars, (0, 0))
+        surface.blit(dust, (0, 0))
+
+    def _draw_center_circles(self, surface: pygame.Surface, cx: int, cy: int):
+        # Circle formation starts after cosmic calm phase.
+        start = 1.05
+        p = max(0.0, min(1.0, (self.t - start) / 1.05))
+        if p <= 0.0:
             return
-        phase = pygame.time.get_ticks() / 230.0
-        pulse = 0.5 + 0.5 * math.sin(phase)
-        rr = int(4 + 4 * pulse)
-        glow = pygame.Surface((72, 72), pygame.SRCALPHA)
-        pygame.draw.circle(glow, (150, 104, 230, 76), (36, 36), 14 + rr)
-        pygame.draw.circle(glow, (255, 255, 255, 58), (36, 36), 5 + rr // 2)
-        surface.blit(glow, (cx - 36, cy - 36))
-        pygame.draw.circle(surface, (250, 250, 255), (cx, cy), max(2, rr // 2))
 
-    def _draw_chakana(self, surface: pygame.Surface, cx: int, cy: int):
-        start, end = 0.45, 2.00
+        ring_spec = [
+            (64, (238, 238, 246), 1),
+            (92, (240, 240, 248), 1),
+            (122, (242, 242, 250), 1),
+            (150, (188, 164, 230), 1),
+        ]
+        for idx, (base_r, col, thick) in enumerate(ring_spec):
+            local = max(0.0, min(1.0, p * 1.1 - idx * 0.12))
+            if local <= 0:
+                continue
+            rr = int(base_r * (0.78 + 0.22 * local))
+            alpha = int(190 * local)
+            ring = pygame.Surface((rr * 2 + 10, rr * 2 + 10), pygame.SRCALPHA)
+            pygame.draw.circle(ring, (*col, alpha), (ring.get_width() // 2, ring.get_height() // 2), rr, thick)
+            surface.blit(ring, (cx - ring.get_width() // 2, cy - ring.get_height() // 2))
+
+    def _draw_chakana_symbol(self, surface: pygame.Surface, cx: int, cy: int):
+        # Simple clean symbol, line-trace draw inspired by loading icon language.
+        start = 1.55
+        end = 2.55
         p = max(0.0, min(1.0, (self.t - start) / max(0.001, end - start)))
         if p <= 0.0:
             return
 
-        size = 112
+        size = 64
         segs = [
             ((cx - size, cy), (cx + size, cy)),
             ((cx, cy - size), (cx, cy + size)),
@@ -165,57 +218,54 @@ class StudioIntroScreen:
             ((cx - size // 2, cy + size // 2), (cx + size // 2, cy + size // 2)),
             ((cx - size // 2, cy - size // 2), (cx - size // 2, cy + size // 2)),
             ((cx + size // 2, cy - size // 2), (cx + size // 2, cy + size // 2)),
+            ((cx - size // 4, cy - size // 4), (cx + size // 4, cy - size // 4)),
+            ((cx - size // 4, cy + size // 4), (cx + size // 4, cy + size // 4)),
+            ((cx - size // 4, cy - size // 4), (cx - size // 4, cy + size // 4)),
+            ((cx + size // 4, cy - size // 4), (cx + size // 4, cy + size // 4)),
         ]
+
         k = p * len(segs)
         full = int(k)
         rem = k - full
-        col = (246, 246, 255)
+
         for i in range(min(full, len(segs))):
-            pygame.draw.line(surface, col, segs[i][0], segs[i][1], 2)
+            pygame.draw.line(surface, (250, 250, 255), segs[i][0], segs[i][1], 1)
         if full < len(segs):
             a, b = segs[full]
             x = int(a[0] + (b[0] - a[0]) * rem)
             y = int(a[1] + (b[1] - a[1]) * rem)
-            pygame.draw.line(surface, col, a, (x, y), 2)
+            pygame.draw.line(surface, (250, 250, 255), a, (x, y), 1)
 
-        # Subtle purple energy around symbol.
-        ring = pygame.Surface((360, 360), pygame.SRCALPHA)
-        energy = int(30 + 28 * p)
-        pygame.draw.circle(ring, (130, 86, 212, energy), (180, 180), int(134 - 8 * p), 2)
-        surface.blit(ring, (cx - 180, cy - 180))
-
-    def _draw_symbol_dissolve(self, surface: pygame.Surface, cx: int, cy: int):
-        start = 2.05
-        if self.t < start:
-            return
-        p = max(0.0, min(1.0, (self.t - start) / 0.75))
-        mask = pygame.Surface((320, 320), pygame.SRCALPHA)
-        alpha = int(180 * p)
-        pygame.draw.circle(mask, (0, 0, 0, alpha), (160, 160), int(46 + 112 * p))
-        surface.blit(mask, (cx - 160, cy - 160))
-
-    def _draw_logo(self, surface: pygame.Surface, cx: int, cy: int):
-        start = 2.55
+    def _draw_title(self, surface: pygame.Surface, cx: int, cy: int):
+        # Symbol fades slightly while text appears.
+        start = 2.45
         alpha = int(255 * max(0.0, min(1.0, (self.t - start) / 0.85)))
         if alpha <= 0:
             return
 
-        title_font = self.app.typography.get(TITLE_FONT, max(74, int(self.app.big_font.get_height() * 2.0)))
-        text = title_font.render("CHAKANA STUDIO", True, (250, 250, 255))
-        gl = pygame.Surface((text.get_width() + 30, text.get_height() + 22), pygame.SRCALPHA)
-        pygame.draw.rect(gl, (126, 92, 196, min(66, alpha // 4)), gl.get_rect(), border_radius=10)
-        surface.blit(gl, (cx - gl.get_width() // 2, cy - text.get_height() // 2 - 10))
+        title_font = self.app.typography.get(TITLE_FONT, max(72, int(self.app.big_font.get_height() * 1.95)))
+        text = title_font.render("CHAKANA STUDIO", True, (248, 248, 252))
+        label = pygame.Surface(text.get_size(), pygame.SRCALPHA)
+        label.blit(text, (0, 0))
+        label.set_alpha(alpha)
+        tr = label.get_rect(center=(cx, cy + 92))
+        surface.blit(label, tr.topleft)
 
-        title = pygame.Surface(text.get_size(), pygame.SRCALPHA)
-        title.blit(text, (0, 0))
-        title.set_alpha(alpha)
-        surface.blit(title, title.get_rect(center=(cx, cy + 2)))
+        # Slight purple particle dust around letters.
+        dust = pygame.Surface((tr.w + 90, tr.h + 40), pygame.SRCALPHA)
+        rng = random.Random(self.seed + 91)
+        for _ in range(24):
+            dx = rng.randint(0, dust.get_width() - 1)
+            dy = rng.randint(0, dust.get_height() - 1)
+            aa = int((24 + rng.randint(0, 34)) * (alpha / 255.0))
+            dust.set_at((dx, dy), (150, 108, 212, aa))
+        surface.blit(dust, (tr.x - 45, tr.y - 20))
 
     def _render_static_fallback(self, surface: pygame.Surface):
         w, h = surface.get_size()
-        self._draw_bg(surface, w, h)
+        surface.fill((2, 2, 4))
         area = safe_area(w, h, 20, 20)
-        title_font = self.app.typography.get(TITLE_FONT, max(72, int(self.app.big_font.get_height() * 2.0)))
+        title_font = self.app.typography.get(TITLE_FONT, max(72, int(self.app.big_font.get_height() * 1.95)))
         label = title_font.render("CHAKANA STUDIO", True, (245, 245, 252))
         surface.blit(label, label.get_rect(center=(area.centerx, area.centery)))
 
@@ -228,18 +278,18 @@ class StudioIntroScreen:
             w, h = surface.get_size()
             area = safe_area(w, h, 20, 20)
             cx, cy = area.centerx, area.centery
-            self._draw_bg(surface, w, h)
-            self._draw_particles(surface, w, h)
-            self._draw_energy_point(surface, cx, cy)
-            self._draw_chakana(surface, cx, cy)
-            self._draw_symbol_dissolve(surface, cx, cy)
-            self._draw_logo(surface, cx, cy)
 
-            # Minimal fade out tail.
-            tail = max(0.0, min(1.0, (self.t - (self.duration - 0.45)) / 0.45))
+            self._draw_bg(surface, w, h)
+            self._draw_starfield(surface, w, h)
+            self._draw_center_circles(surface, cx, cy)
+            self._draw_chakana_symbol(surface, cx, cy)
+            self._draw_title(surface, cx, cy)
+
+            # Clean fade to menu.
+            tail = max(0.0, min(1.0, (self.t - 3.55) / 0.45))
             if tail > 0:
                 fade = pygame.Surface((w, h), pygame.SRCALPHA)
-                fade.fill((0, 0, 0, int(220 * tail)))
+                fade.fill((0, 0, 0, int(240 * tail)))
                 surface.blit(fade, (0, 0))
 
         except Exception:
