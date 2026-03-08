@@ -183,7 +183,7 @@ class DeckScreen:
         pygame.draw.rect(s, UI_THEME["gold"], knob, border_radius=4)
 
     def _deck_geometry_stats(self, deck_ids: list[str]) -> dict[str, float]:
-        axes = {"Attack": 0.0, "Defense": 0.0, "Harmony": 0.0, "Control": 0.0, "Ritual": 0.0, "Tempo": 0.0}
+        axes = {"Ataque": 0.0, "Defensa": 0.0, "Armonia": 0.0, "Control": 0.0, "Ritual": 0.0, "Tempo": 0.0}
         for cid in deck_ids:
             card = self.app.card_defs.get(cid, {}) if isinstance(self.app.card_defs, dict) else {}
             if not isinstance(card, dict):
@@ -191,9 +191,9 @@ class DeckScreen:
             summary = summarize_card_effect(card, card_instance=None, ctx=None)
             stats = summary.get("stats", {}) if isinstance(summary, dict) else {}
             tags = set(card.get("tags", []) or [])
-            axes["Attack"] += float(stats.get("damage", 0) or 0)
-            axes["Defense"] += float(stats.get("block", 0) or 0)
-            axes["Harmony"] += float(stats.get("harmony", 0) or 0)
+            axes["Ataque"] += float(stats.get("damage", 0) or 0)
+            axes["Defensa"] += float(stats.get("block", 0) or 0)
+            axes["Armonia"] += float(stats.get("harmony", 0) or 0)
             axes["Control"] += float(stats.get("draw", 0) or 0) + float(stats.get("scry", 0) or 0) + float(stats.get("rupture", 0) or 0)
             axes["Ritual"] += 1.0 if "ritual" in tags else 0.0
             axes["Tempo"] += float(stats.get("energy", 0) or 0) + (0.5 if int(card.get("cost", 1) or 1) <= 1 else 0.0)
@@ -202,7 +202,7 @@ class DeckScreen:
     def _draw_geometry_map(self, s: pygame.Surface, rect: pygame.Rect, axes: dict[str, float]):
         pygame.draw.rect(s, (30, 28, 44), rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["accent_violet"], rect, 1, border_radius=10)
-        labels = ["Attack", "Defense", "Harmony", "Control", "Ritual", "Tempo"]
+        labels = ["Ataque", "Defensa", "Armonia", "Control", "Ritual", "Tempo"]
         values = [max(0.0, float(axes.get(k, 0.0))) for k in labels]
         max_v = max(1.0, max(values))
         cx, cy = rect.centerx, rect.centery + 8

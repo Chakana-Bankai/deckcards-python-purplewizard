@@ -15,14 +15,31 @@ from game.visual.generators.lore_motifs import MOTIF_LIBRARY, motifs_for_archety
 
 class PromptBuilder:
     def family_for(self, card: dict) -> str:
-        tags = set(card.get("tags", []))
-        if "attack" in tags:
+        tags = {str(t).lower() for t in (card.get("tags", []) or [])}
+        role = str(card.get("role", "")).lower()
+        if "attack" in tags or role == "attack":
             return "attack"
-        if "block" in tags or "defense" in tags:
+        if "block" in tags or "defense" in tags or role == "defense":
             return "defense"
-        if "draw" in tags or "scry" in tags or "control" in tags:
+        if "ritual" in tags or role == "ritual":
+            return "ritual"
+        if "draw" in tags or "scry" in tags or "control" in tags or role == "control":
             return "control"
         return "spirit"
+
+    def effect_signature(self, card: dict) -> str:
+        effects = [str(e.get("type", "")).lower() for e in list(card.get("effects", []) or []) if isinstance(e, dict)]
+        if "damage" in effects:
+            return "impacto_ofensivo"
+        if "gain_block" in effects or "block" in effects:
+            return "barrera_ritual"
+        if "scry" in effects:
+            return "vision_oracular"
+        if "draw" in effects:
+            return "flujo_mental"
+        if "harmony_delta" in effects:
+            return "resonancia_armonica"
+        return "trazo_mistico"
 
     def archetype_mood(self, card: dict) -> tuple[str, str, str, str]:
         arch = str(card.get("archetype", "")).lower()
@@ -48,11 +65,14 @@ class PromptBuilder:
         ctype = self.family_for(card)
         palette, lighting, symbols, energy = self.archetype_mood(card)
         primary, shape, lore_tokens = self.lore_profile(card)
+        role = str(card.get("role", "") or "control").lower()
+        effect_sig = self.effect_signature(card)
         prompt = (
             f"chakana card::{cid}::{ctype} high density pixel fantasy, layered depth, "
-            f"silhouette discipline, palette {palette}, lighting {lighting}, "
+            f"silhouette discipline, role {role}, palette {palette}, lighting {lighting}, "
             f"sacred geometry {symbols}, motif {primary} ({shape}), "
-            f"energy pattern {energy}, lore tokens {lore_tokens}, crisp no blur"
+            f"effect signature {effect_sig}, energy pattern {energy}, lore tokens {lore_tokens}, "
+            f"crisp no blur, intentional composition"
         )
         return {
             "id": cid,

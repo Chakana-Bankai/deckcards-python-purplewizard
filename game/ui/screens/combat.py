@@ -270,16 +270,17 @@ class CombatScreen:
         p = self.c.player
         h_cur = int(p.get("harmony_current", 0) or 0)
         h_thr = max(1, int(p.get("harmony_ready_threshold", 6) or 6))
+        seal_used = bool(p.get("harmony_seal_used", False))
 
         hand_empty = len(self.c.hand) <= 0
-        if hand_empty and h_cur >= h_thr:
+        if hand_empty and (h_cur >= h_thr or seal_used):
             self._reset_seal_action_state("hand_empty")
         if self._ui_locked() or self.resolving_t > 0:
             fsm, state, reason, label, disabled = "LOCKED_COOLDOWN", "INVALID", "STATE_LOCK", "BLOQUEADO", True
         else:
             idx = self.ctrl.selected_index
             if idx is None or idx >= len(self.c.hand):
-                if h_cur >= h_thr:
+                if h_cur >= h_thr and not seal_used:
                     fsm, state, reason, label, disabled = "HARMONY_CHARGED", "RELEASE_SEAL", REASON_OK, "ACTIVAR SELLO", False
                 else:
                     fsm, state, reason, label, disabled = "IDLE", "END_TURN", REASON_OK, "FIN DEL RITUAL", False
@@ -468,11 +469,20 @@ class CombatScreen:
             return
         if state == "RELEASE_SEAL":
             ok, msg = self.c.activate_harmony_seal()
-            self._push_log(str(msg or "SELLO activado"))
             if ok:
+                self._push_log(str(msg or "SELLO activado"))
                 self._lock_ui()
                 enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
                 self.set_dialogue("seal_release", enemy_id, {})
+            else:
+                txt = str(msg or "No se pudo activar el sello")
+                low = txt.lower()
+                if "ya usado" in low:
+                    txt = "Sello ya usado en este combate."
+                    self._reset_seal_action_state("seal_already_used")
+                self._set_invalid_feedback(txt)
+                if not self.actions_log or str(self.actions_log[-1]) != txt:
+                    self._push_log(txt)
             return
         if state == "INVALID":
             msg = self._status_line or reason_to_es(reason)
@@ -859,11 +869,9 @@ class CombatScreen:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = self.app.renderer.map_mouse(event.pos)
             if self.harmony_seal_rect.collidepoint(pos):
-                ok, msg = self.c.activate_harmony_seal()
-                self._push_log(msg)
-                if ok:
-                    enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
-                    self.set_dialogue("seal_release", enemy_id, {})
+                state, _label, disabled, _reason = self._resolve_action_state()
+                if state == "RELEASE_SEAL" and not disabled:
+                    self._activate_action_button()
 
     def _card_icons(self, card):
         tags = set(getattr(card.definition, "tags", []) or [])
@@ -1564,5 +1572,3 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
-
-

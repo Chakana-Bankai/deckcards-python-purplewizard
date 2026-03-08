@@ -73,10 +73,10 @@ DEFAULT_ENEMY = {"id": "dummy", "name_key": "enemy_voidling_name", "hp": [20, 20
 
 MAP_TEMPLATE = [
     {"type": "combat", "count": 1, "types": ["combat"]},
-    {"type": "path", "count": 3, "types": ["path", "event", "path"]},
-    {"type": "path", "count": 3, "types": ["path", "path", "elite"]},
-    {"type": "path", "count": 3, "types": ["path", "path", "combat"]},
-    {"type": "elite", "count": 2, "types": ["elite", "path"]},
+    {"type": "path", "count": 3, "types": ["combat", "event", "path"]},
+    {"type": "path", "count": 3, "types": ["challenge", "combat", "elite"]},
+    {"type": "path", "count": 3, "types": ["combat", "path", "challenge"]},
+    {"type": "elite", "count": 2, "types": ["elite", "combat"]},
     {"type": "boss", "count": 1, "types": ["boss"]},
 ]
 
@@ -486,6 +486,8 @@ class App:
                 except Exception as exc:
                     print(f"[content] archetype rarity auto-fix persist failed: {exc}")
 
+        cards = self._apply_phase75_card_tuning(cards)
+
         cooked = []
         for c in cards if isinstance(cards, list) else []:
             if not isinstance(c, dict) or not c.get("id"):
@@ -512,6 +514,100 @@ class App:
             for base in DEFAULT_CARDS:
                 by_id.setdefault(base["id"], base)
         return list(by_id.values())
+
+    def _apply_phase75_card_tuning(self, cards):
+        """Phase 7.5 tuning: keep archetype identity while improving viability and pacing."""
+        if not isinstance(cards, list):
+            return cards
+
+        tuned = []
+        guardian_damage_ids = {"guardia_terrenal", "hg_lore_15"}
+        guardian_break_ids = {"sello_protector", "hg_lore_27", "muralla_de_piedra", "hg_lore_19"}
+        guardian_hybrid_ids = {"campo_protector"}
+
+        for c in cards:
+            if not isinstance(c, dict):
+                continue
+            cc = dict(c)
+            effects = [dict(e) for e in list(cc.get("effects", []) or []) if isinstance(e, dict)]
+            cc["effects"] = effects
+            cid = str(cc.get("id", ""))
+            arch = str(cc.get("archetype", "")).strip().lower()
+            role = str(cc.get("role", "")).strip().lower()
+            tags = set(cc.get("tags", []) or [])
+
+            def _sum(types: set[str]) -> int:
+                total = 0
+                for ef in effects:
+                    if str(ef.get("type", "")).lower() in types:
+                        total += int(ef.get("amount", 0) or 0)
+                return int(total)
+
+            def _has(ef_type: str) -> bool:
+                k = str(ef_type or "").lower()
+                return any(str(ef.get("type", "")).lower() == k for ef in effects)
+
+            def _append(ef_type: str, amount: int):
+                effects.append({"type": str(ef_type), "amount": int(amount)})
+
+            if arch == "harmony_guardian":
+                if cid in guardian_damage_ids and not _has("damage"):
+                    _append("damage", 2)
+                if cid in guardian_hybrid_ids and _sum({"damage"}) <= 0:
+                    _append("damage", 2)
+                if cid in guardian_break_ids and not _has("apply_break"):
+                    _append("apply_break", 2 if cid in {"muralla_de_piedra", "hg_lore_19"} else 1)
+                if _sum({"damage"}) > 0:
+                    tags.add("attack")
+
+            if arch == "oracle_of_fate":
+                scry = _sum({"scry"})
+                draw = _sum({"draw"})
+                dmg = _sum({"damage", "damage_plus_rupture"})
+                harmony = _sum({"harmony_delta"})
+                cost = int(cc.get("cost", 1) or 1)
+                if role in {"control", "ritual"} and cost >= 2 and dmg <= 0 and (scry >= 3 or harmony > 0):
+                    cc["cost"] = max(0, cost - 1)
+                if scry >= 4 and draw <= 0:
+                    _append("draw", 1)
+                    tags.add("draw")
+
+            cc["tags"] = sorted(tags)
+
+            # Keep card text/KPI coherent with tuned effects.
+            totals = {
+                "damage": _sum({"damage", "damage_plus_rupture"}),
+                "block": _sum({"gain_block", "block"}),
+                "rupture": _sum({"apply_break", "rupture", "set_rupture"}),
+                "scry": _sum({"scry"}),
+                "draw": _sum({"draw"}),
+                "energy": _sum({"gain_mana", "gain_mana_next_turn"}),
+                "harmony": _sum({"harmony_delta"}),
+                "seal": _sum({"consume_harmony"}),
+                "ritual": _sum({"ritual_trama"}),
+                "support": _sum({"weaken_enemy", "debuff", "heal"}),
+            }
+            cc["kpi"] = {k: int(v) for k, v in totals.items() if int(v) > 0}
+
+            labels = [
+                ("damage", "Dano"),
+                ("block", "Bloqueo"),
+                ("rupture", "Ruptura"),
+                ("scry", "Prever"),
+                ("draw", "Roba"),
+                ("energy", "Energia"),
+                ("harmony", "Armonia"),
+                ("seal", "Sello"),
+                ("ritual", "Ritual"),
+                ("support", "Soporte"),
+            ]
+            parts = [f"{label} {int(totals[key])}" for key, label in labels if int(totals.get(key, 0)) > 0]
+            if parts:
+                cc["effect_text"] = ", ".join(parts[:4])
+
+            tuned.append(cc)
+
+        return tuned
 
     def _load_enemies_data(self):
         enemies = self.content.enemies if isinstance(self.content.enemies, list) and self.content.enemies else load_json(data_dir() / "enemies.json", default=[DEFAULT_ENEMY])
@@ -569,10 +665,24 @@ class App:
                 print(f"[prompts] warning duplicate write attempt for card_id={cid}")
                 continue
             seen.add(cid)
-            tags = card.get("tags", []) or []
-            ctype = "attack" if "attack" in tags else "defense" if ("block" in tags or "defense" in tags) else "control" if ("draw" in tags or "scry" in tags or "control" in tags) else "spirit"
+            tags = {str(t).lower() for t in (card.get("tags", []) or [])}
+            arch = str(card.get("archetype", "") or "core").lower()
+            role = str(card.get("role", "") or infer_card_role(card)).lower()
+            effects = [str(e.get("type", "")).lower() for e in list(card.get("effects", []) or []) if isinstance(e, dict)]
+            if "attack" in tags:
+                ctype = "attack"
+            elif "block" in tags or "defense" in tags:
+                ctype = "defense"
+            elif "draw" in tags or "scry" in tags or "control" in tags:
+                ctype = "control"
+            elif "ritual" in tags:
+                ctype = "ritual"
+            else:
+                ctype = "spirit"
+            primary = "damage" if "damage" in effects else "block" if "gain_block" in effects or "block" in effects else "scry" if "scry" in effects else "ritual" if "ritual_trama" in effects else "support"
+            mood = "astral crimson" if arch == "cosmic_warrior" else "guardia dorada" if arch == "harmony_guardian" else "oraculo indigo" if arch == "oracle_of_fate" else "violeta mistico"
             payload["cards"][cid] = {
-                "prompt": f"chakana card::{cid}::{ctype} layered sacred geometry with glyph focus",
+                "prompt": f"chakana card::{cid} role={role} archetype={arch} type={ctype} primary={primary} mood={mood} sacred geometry, crisp pixel art, no blur, intentional silhouette",
                 "style": ctype,
                 "updated_at": "1970-01-01T00:00:00Z",
             }

@@ -372,21 +372,22 @@ class MapScreen:
         relic_hover_text = ""
 
         rows = [
-            ("vida", hp, UI_THEME["bad"], f"{hp}/{max_hp}"),
-            ("harmony", harmony, UI_THEME["violet"], f"{harmony}"),
-            ("level", lvl, UI_THEME["gold"], f"{lvl}"),
-            ("gold", gold, UI_THEME["gold"], f"{gold}"),
-            ("relic", relic_count, UI_THEME["text"], f"{relic_count}"),
+            ("vida", hp, "Vitalidad", UI_THEME["bad"], f"{hp}/{max_hp}"),
+            ("harmony", harmony, "Armonia", UI_THEME["violet"], f"{harmony}"),
+            ("level", lvl, "Nivel", UI_THEME["gold"], f"{lvl}"),
+            ("gold", gold, "Oro", UI_THEME["gold"], f"{gold}"),
+            ("relic", relic_count, "Reliquias", UI_THEME["text"], f"{relic_count}"),
         ]
         y = left_rect.y + 182
-        for icon_name, icon_val, col, val_text in rows:
-            row = pygame.Rect(left_rect.x + 12, y, left_rect.w - 24, 32)
+        for icon_name, icon_val, label, col, val_text in rows:
+            row = pygame.Rect(left_rect.x + 12, y, left_rect.w - 24, 36)
             pygame.draw.rect(s, UI_THEME["panel_2"], row, border_radius=8)
             pygame.draw.rect(s, col, row, 1, border_radius=8)
-            draw_icon_with_value(s, icon_name, icon_val, col, self.app.tiny_font, row.x + 8, row.y + 6, size=1)
+            draw_icon_with_value(s, icon_name, icon_val, col, self.app.tiny_font, row.x + 8, row.y + 8, size=2)
+            s.blit(self.app.tiny_font.render(label, True, UI_THEME["muted"]), (row.x + 60, row.y + 4))
             value_txt = self.app.small_font.render(val_text, True, col)
-            s.blit(value_txt, (row.right - value_txt.get_width() - 10, row.y + 7))
-            y += 38
+            s.blit(value_txt, (row.right - value_txt.get_width() - 10, row.y + 9))
+            y += 42
 
         relic_strip = pygame.Rect(left_rect.x + 12, y + 2, left_rect.w - 24, 44)
         pygame.draw.rect(s, UI_THEME["panel_2"], relic_strip, border_radius=8)
@@ -527,7 +528,7 @@ class MapScreen:
         pygame.draw.rect(s, UI_THEME["panel_2"], progress_box, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], progress_box, 1, border_radius=10)
         s.blit(self.app.tiny_font.render("Frente ritual", True, UI_THEME["gold"]), (progress_box.x + 8, progress_box.y + 8))
-        progress_txt = f"Biome: {self.selected_biome}   Arconte: {archon_id}"
+        progress_txt = f"Pacha: {self.selected_biome}   Arconte: {archon_id}"
         s.blit(self.app.tiny_font.render(self._fit_text(self.app.tiny_font, progress_txt, progress_box.w - 14), True, UI_THEME["muted"]), (progress_box.x + 8, progress_box.y + 30))
         hint = self.MAP_HINTS[self.lore_idx % max(1, len(self.MAP_HINTS))]
         s.blit(self.app.tiny_font.render(self._fit_text(self.app.tiny_font, hint, progress_box.w - 14), True, UI_THEME["text"]), (progress_box.x + 8, progress_box.y + 54))

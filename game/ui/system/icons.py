@@ -13,7 +13,12 @@ import pygame
 
 ICON_ALIASES = {
     "sword": "damage",
+    "attack": "damage",
+    "intent_attack": "damage",
     "shield": "block",
+    "defense": "block",
+    "defend": "block",
+    "intent_block": "block",
     "bolt": "energy",
     "hp": "hp",
     "vida": "hp",
@@ -31,6 +36,8 @@ ICON_ALIASES = {
     "scroll": "draw",
     "focus": "control",
     "support": "support",
+    "weak": "support",
+    "debuff": "support",
     "chain": "combo",
 }
 
