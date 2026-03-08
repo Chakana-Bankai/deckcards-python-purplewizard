@@ -114,11 +114,14 @@ class HolographicOracleUI:
         pygame.draw.rect(layer, (30, 22, 54, int(alpha * 0.86)), av_rect, border_radius=10)
         pygame.draw.rect(layer, (*accent_col, int(alpha * 0.86)), av_rect, 1, border_radius=10)
 
-        avatar = app.assets.sprite("avatar", "codex", (av_rect.w - 10, av_rect.h - 10), fallback=(86, 56, 132)).copy()
+        if is_archon:
+            avatar = app.assets.sprite("overlays", "archon", (av_rect.w - 10, av_rect.h - 10), fallback=(64, 32, 42)).copy()
+        else:
+            avatar = app.assets.sprite("avatar", "codex", (av_rect.w - 10, av_rect.h - 10), fallback=(86, 56, 132)).copy()
         avatar.set_alpha(int(alpha * 0.90))
         if is_archon:
             tint = pygame.Surface(avatar.get_size(), pygame.SRCALPHA)
-            tint.fill((255, 84, 102, 130))
+            tint.fill((255, 84, 102, 114))
             avatar.blit(tint, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
         jitter = 2 if self.interference else 1
         jx = int(math.sin(phase * 2.4) * jitter)
