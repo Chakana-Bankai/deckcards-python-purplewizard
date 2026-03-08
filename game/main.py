@@ -1255,15 +1255,15 @@ class App:
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
         self.user_settings["force_regen_music"] = False
         self.user_settings["update_manifests"] = False
-        self.music._manifest = self.music._load_manifest()
         try:
             pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
         except Exception:
             pass
         self.music = MusicManager()
+        self.sfx = SFXManager()
+        self.sfx.set_volume(self.user_settings.get("sfx_volume", 0.7))
         self.music.set_volume(self.user_settings.get("music_volume", 0.5))
         self.music.set_muted(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False)))
-        self.music._checked_silence.clear()
         self.music.play_for(self.get_bgm_track("menu"))
 
     def regenerate_card_art_with_cleanup(self):

@@ -1,18 +1,20 @@
 {
-  "gold": 106,
+  "gold": 103,
   "relics": [
     "violet_seal"
   ],
   "player": {
-    "hp": 48,
+    "hp": 52,
     "max_hp": 60,
     "block": 0,
     "energy": 3,
     "rupture": 0,
-    "statuses": {},
-    "harmony_current": 2,
-    "harmony_max": 10,
-    "harmony_ready_threshold": 6,
+    "statuses": {
+      "enemy_damage_down": 0
+    },
+    "harmony_current": 4,
+    "harmony_max": 11,
+    "harmony_ready_threshold": 5,
     "harmony_ready": false,
     "harmony_seal_used": false,
     "seal_ready": false,
@@ -41,13 +43,13 @@
     "chakana_de_luz"
   ],
   "sideboard": [
-    "filo_astral",
-    "resistencia_ancestral",
+    "fragmento_celeste",
     "chakana_de_luz",
     "piedra_ritual",
-    "filo_en_cadena",
-    "vision_del_condor",
-    "firmeza_del_cuerpo"
+    "resistencia_ancestral",
+    "fragmento_celeste",
+    "ritual_de_la_trama",
+    "resistencia_ancestral"
   ],
   "map": [
     [
@@ -77,7 +79,7 @@
           "2_0",
           "2_3"
         ],
-        "state": "available"
+        "state": "current"
       },
       {
         "id": "1_1",
@@ -90,7 +92,7 @@
           "2_1",
           "2_2"
         ],
-        "state": "current"
+        "state": "cleared"
       },
       {
         "id": "1_2",
@@ -102,7 +104,7 @@
         "next": [
           "2_2"
         ],
-        "state": "available"
+        "state": "current"
       }
     ],
     [
@@ -130,7 +132,7 @@
           "3_1",
           "3_2"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_2",
@@ -143,7 +145,7 @@
           "3_2",
           "3_0"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_3",
@@ -457,7 +459,7 @@
   ],
   "biome_index": 0,
   "biome": "ukhu",
-  "xp": 14,
+  "xp": 23,
   "level": 2,
   "combats_won": 1,
   "settings": {
@@ -474,7 +476,7 @@
   },
   "last_node_type": "combat",
   "levelup_pending": 0,
-  "current_node_id": "1_1",
+  "current_node_id": "1_2",
   "last_biome_seen": "ukhu",
-  "saved_at": 1772948820
+  "saved_at": 1772949773
 }

@@ -34,7 +34,7 @@ class StudioIntroScreen:
         ]
         try:
             if hasattr(self.app, "sfx"):
-                self.app.sfx.play("ui_click")
+                self.app.sfx.play("studio_intro")
         except Exception:
             pass
 

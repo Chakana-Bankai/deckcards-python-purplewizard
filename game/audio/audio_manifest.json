@@ -1,0 +1,176 @@
+{
+  "version": "chakana_audio_v1",
+  "generated_at": 1772949766,
+  "items": {
+    "menu_a": {
+      "track_id": "menu_a",
+      "type": "bgm",
+      "context": "menu",
+      "variant": "a",
+      "seed": 1752443446,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\menu_a.wav",
+      "generation_date": 1772949669,
+      "version": "chakana_audio_v1"
+    },
+    "combat_a": {
+      "track_id": "combat_a",
+      "type": "bgm",
+      "context": "combat",
+      "variant": "a",
+      "seed": 1531505415,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_a.wav",
+      "generation_date": 1772949670,
+      "version": "chakana_audio_v1"
+    },
+    "stinger_victory": {
+      "track_id": "stinger_victory",
+      "type": "stinger",
+      "context": "victory",
+      "variant": "a",
+      "seed": 1939346136,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\victory.wav",
+      "generation_date": 1772949671,
+      "version": "chakana_audio_v1"
+    },
+    "stinger_defeat": {
+      "track_id": "stinger_defeat",
+      "type": "stinger",
+      "context": "defeat",
+      "variant": "a",
+      "seed": 696664491,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\defeat.wav",
+      "generation_date": 1772949671,
+      "version": "chakana_audio_v1"
+    },
+    "stinger_studio_intro": {
+      "track_id": "stinger_studio_intro",
+      "type": "stinger",
+      "context": "studio_intro",
+      "variant": "a",
+      "seed": 1257372667,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\studio\\studio_intro.wav",
+      "generation_date": 1772949660,
+      "version": "chakana_audio_v1"
+    },
+    "sfx_button_click": {
+      "track_id": "sfx_button_click",
+      "type": "sfx",
+      "context": "button_click",
+      "variant": "a",
+      "seed": 1321379518,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\button_click.wav",
+      "generation_date": 1772949671,
+      "version": "chakana_audio_v1"
+    },
+    "sfx_card_play": {
+      "track_id": "sfx_card_play",
+      "type": "sfx",
+      "context": "card_play",
+      "variant": "a",
+      "seed": 905554576,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\card_play.wav",
+      "generation_date": 1772949671,
+      "version": "chakana_audio_v1"
+    },
+    "menu_c": {
+      "track_id": "menu_c",
+      "type": "bgm",
+      "context": "menu",
+      "variant": "c",
+      "seed": 1681366631,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\menu_c.wav",
+      "generation_date": 1772949672,
+      "version": "chakana_audio_v1"
+    },
+    "map_ukhu_b": {
+      "track_id": "map_ukhu_b",
+      "type": "bgm",
+      "context": "map_ukhu",
+      "variant": "b",
+      "seed": 2011821422,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\map_ukhu_b.wav",
+      "generation_date": 1772949684,
+      "version": "chakana_audio_v1"
+    },
+    "sfx_card_invalid": {
+      "track_id": "sfx_card_invalid",
+      "type": "sfx",
+      "context": "card_invalid",
+      "variant": "a",
+      "seed": 701896711,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\card_invalid.wav",
+      "generation_date": 1772949698,
+      "version": "chakana_audio_v1"
+    },
+    "shop_b": {
+      "track_id": "shop_b",
+      "type": "bgm",
+      "context": "shop",
+      "variant": "b",
+      "seed": 1299255079,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\shop_b.wav",
+      "generation_date": 1772949719,
+      "version": "chakana_audio_v1"
+    },
+    "map_ukhu_a": {
+      "track_id": "map_ukhu_a",
+      "type": "bgm",
+      "context": "map_ukhu",
+      "variant": "a",
+      "seed": 1557593834,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\map_ukhu_a.wav",
+      "generation_date": 1772949724,
+      "version": "chakana_audio_v1"
+    },
+    "event_b": {
+      "track_id": "event_b",
+      "type": "bgm",
+      "context": "event",
+      "variant": "b",
+      "seed": 1074125190,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\event_b.wav",
+      "generation_date": 1772949727,
+      "version": "chakana_audio_v1"
+    },
+    "victory_a": {
+      "track_id": "victory_a",
+      "type": "bgm",
+      "context": "victory",
+      "variant": "a",
+      "seed": 593847497,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\victory_a.wav",
+      "generation_date": 1772949731,
+      "version": "chakana_audio_v1"
+    },
+    "event_a": {
+      "track_id": "event_a",
+      "type": "bgm",
+      "context": "event",
+      "variant": "a",
+      "seed": 1834433901,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\event_a.wav",
+      "generation_date": 1772949738,
+      "version": "chakana_audio_v1"
+    },
+    "shop_a": {
+      "track_id": "shop_a",
+      "type": "bgm",
+      "context": "shop",
+      "variant": "a",
+      "seed": 148042863,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\shop_a.wav",
+      "generation_date": 1772949742,
+      "version": "chakana_audio_v1"
+    },
+    "menu_b": {
+      "track_id": "menu_b",
+      "type": "bgm",
+      "context": "menu",
+      "variant": "b",
+      "seed": 741333164,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\menu_b.wav",
+      "generation_date": 1772949766,
+      "version": "chakana_audio_v1"
+    }
+  }
+}
