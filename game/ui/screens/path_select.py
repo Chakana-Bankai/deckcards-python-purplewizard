@@ -145,12 +145,12 @@ class PathSelectScreen:
 
     def _option_rect(self, index: int) -> pygame.Rect:
         cols = 3
-        card_w, card_h = 540, 620
-        gap_x = 34
+        card_w, card_h = 568, 660
+        gap_x = 28
         col = index % cols
         total_w = cols * card_w + (cols - 1) * gap_x
         x0 = (INTERNAL_WIDTH - total_w) // 2
-        y0 = 182
+        y0 = 152
         return pygame.Rect(x0 + col * (card_w + gap_x), y0, card_w, card_h)
 
     def _fit(self, font, text: str, max_w: int) -> str:
@@ -271,11 +271,11 @@ class PathSelectScreen:
             s.blit(self.app.tiny_font.render("Estrategia", True, UI_THEME["gold"]), (summary_box.x + 10, summary_box.y + 8))
             s.blit(self.app.tiny_font.render(self._fit(self.app.tiny_font, opt["identity"], summary_box.w - 20), True, UI_THEME["text"]), (summary_box.x + 10, summary_box.y + 32))
 
-            radar_box = pygame.Rect(rr.x + 18, rr.y + 276, rr.w - 36, 190)
+            radar_box = pygame.Rect(rr.x + 18, rr.y + 282, rr.w - 36, 214)
             pygame.draw.rect(s, (28, 24, 38), radar_box, border_radius=10)
             pygame.draw.rect(s, accent, radar_box, 1, border_radius=10)
             s.blit(self.app.tiny_font.render("Geometria de mazo", True, UI_THEME["gold"]), (radar_box.x + 10, radar_box.y + 8))
-            self._draw_radar(s, (radar_box.centerx, radar_box.y + 108), 68, opt.get("profile", {}), accent)
+            self._draw_radar(s, (radar_box.centerx, radar_box.y + 124), 78, opt.get("profile", {}), accent)
 
             self._draw_featured_legendary(s, rr, opt["legendary"])
 

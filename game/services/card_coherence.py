@@ -66,7 +66,9 @@ def validate_cards_coherence(cards: list[dict]) -> dict:
         if role and role in VALID_ROLES and role != inferred:
             issues.append(CardCoherenceIssue(cid, "warn", "role_mismatch", f"role={role} inferred={inferred}"))
 
-        if card.get("effects") and sum(abs(int(v or 0)) for v in stats.values()) == 0:
+        effect_types = {str(e.get("type", "")).lower() for e in (card.get("effects", []) or []) if isinstance(e, dict)}
+        numeric_expected = bool(effect_types.intersection({"damage", "block", "gain_block", "draw", "scry", "harmony_delta", "energy", "gain_mana", "gain_mana_next_turn", "rupture", "apply_break", "break"}))
+        if numeric_expected and sum(abs(int(v or 0)) for v in stats.values()) == 0:
             issues.append(CardCoherenceIssue(cid, "warn", "empty_stats", "Efectos sin KPI numerico visible"))
 
         text_nums = _text_numbers(text_key)
@@ -81,6 +83,12 @@ def validate_cards_coherence(cards: list[dict]) -> dict:
             int(stats.get("consume_harmony", 0) or 0),
         ]
         stat_candidates = [x for x in stat_candidates if x > 0]
+
+        if not stat_candidates:
+            tags = {str(t).lower() for t in (card.get("tags", []) or [])}
+            semantic_ok = bool((role in {"control", "combo", "ritual", "defense"}) or tags.intersection({"control", "combo", "support", "ritual", "scry", "draw", "debuff"}) or effect_types.intersection({"copy_last_played", "weaken_enemy", "debuff", "retain", "exhaust_self", "ritual_trama", "double_block_cap"}))
+            if not semantic_ok:
+                issues.append(CardCoherenceIssue(cid, "warn", "semantic_missing", "Carta sin KPI numerico ni semantica visible"))
         if text_nums and stat_candidates:
             if not any(n in stat_candidates for n in text_nums):
                 issues.append(CardCoherenceIssue(cid, "warn", "text_vs_kpi", f"text_nums={text_nums} kpi={stat_candidates}"))

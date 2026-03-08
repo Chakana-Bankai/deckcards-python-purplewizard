@@ -169,7 +169,7 @@ def _draw_card_background(surface, rect: pygame.Rect, payload: dict, tier: str, 
     pygame.draw.rect(surface, border, rect, 3, border_radius=12)
 
 
-def _collect_kpis(summary: dict) -> list[tuple[str, int]]:
+def _collect_kpis(summary: dict, payload: dict) -> list[tuple[str, int]]:
     stats = summary.get("stats", {}) if isinstance(summary, dict) else {}
     ordered = [
         ("damage", "damage"),
@@ -190,7 +190,23 @@ def _collect_kpis(summary: dict) -> list[tuple[str, int]]:
         if val <= 0:
             continue
         out.append((icon, val))
-    return out[:3]
+    if out:
+        return out[:3]
+
+    tags = {str(t).lower() for t in (payload.get("tags", []) or [])}
+    role = str(payload.get("role", "") or "").lower()
+    semantic = []
+    if role == "combo" or "combo" in tags:
+        semantic.append(("combo", 1))
+    if role == "control" or "control" in tags or "scry" in tags or "draw" in tags:
+        semantic.append(("control", 1))
+    if role == "defense" or "support" in tags or "heal" in tags or "debuff" in tags:
+        semantic.append(("support", 1))
+    if role == "ritual" or "ritual" in tags:
+        semantic.append(("ritual", 1))
+    if not semantic:
+        semantic.append(("support", 1))
+    return semantic[:3]
 
 
 def _fit_one_line(font, text: str, max_w: int) -> str:
@@ -282,7 +298,7 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
                 surface.blit(g, (rect.x - 6, rect.y - 6))
 
     summary = summarize_card_effect(payload, card_instance=inst, ctx=ctx)
-    kpis = _collect_kpis(summary)
+    kpis = _collect_kpis(summary, payload)
 
     role_key = infer_card_role(payload)
     role_col = ROLE_COLORS.get(role_key, theme.get("accent_violet", (176, 126, 240)))
@@ -321,8 +337,6 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
         x = draw_icon_with_value(surface, icon_name, val, (255, 246, 196), tiny_font, x, kpi_band.y + 6, size=2 if preset != "small" else 1)
         if x > kpi_band.right - 30:
             break
-    if not kpis:
-        surface.blit(tiny_font.render("Sin KPI", True, theme["muted"]), (kpi_band.x + 8, kpi_band.y + 8))
 
     if hovered:
         hover_glow = pygame.Surface((rect.w + 14, rect.h + 14), pygame.SRCALPHA)

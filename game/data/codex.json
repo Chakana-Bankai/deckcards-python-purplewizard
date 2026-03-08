@@ -1,4 +1,4 @@
-﻿{
+{
   "sections": [
     {
       "id": "lore",
@@ -33,9 +33,9 @@
       "id": "cards",
       "title": "Cartas",
       "items": [
-        "Cada carta muestra costo, efecto principal, KPI y rol semantico.",
-        "Roles base: ataque, defensa, energia, control, ritual y combo.",
-        "Prioriza cartas que refuercen la identidad de tu build."
+        "Framework lock: layout unico con costo, arte, texto y KPI semantico.",
+        "Lore Set 1 define 60 cartas (20 por arquetipo) listas para codex y juego.",
+        "Ninguna carta queda sin lectura funcional: KPI numerico o iconografia semantica."
       ]
     },
     {

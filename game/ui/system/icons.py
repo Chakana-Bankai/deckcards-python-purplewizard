@@ -19,6 +19,9 @@ ICON_ALIASES = {
     "crack": "rupture",
     "eye": "scry",
     "scroll": "draw",
+    "focus": "control",
+    "support": "support",
+    "chain": "combo",
 }
 
 FALLBACK_TEXT = {
@@ -31,6 +34,9 @@ FALLBACK_TEXT = {
     "draw": "+",
     "ritual": "^",
     "seal": "S",
+    "control": "C",
+    "support": "U",
+    "combo": "X",
     "gold": "$",
     "xp": "xp",
     "level": "lvl",
@@ -62,6 +68,9 @@ def normalize_icon_name(icon_name: str) -> str:
         "draw",
         "ritual",
         "seal",
+        "control",
+        "support",
+        "combo",
         "gold",
         "xp",
         "level",
@@ -163,6 +172,15 @@ def _render_icon_surface(icon_name: str, color: tuple[int, int, int], size: int)
         pygame.draw.ellipse(surf, c, ring, lw + 1)
         _stroke(surf, c, [(mid, 3 * scale), (mid, 11 * scale)], lw)
         _stroke(surf, c, [(4 * scale, mid), (10 * scale, mid)], lw)
+    elif key == "control":
+        pygame.draw.rect(surf, c, pygame.Rect(2 * scale, 3 * scale, 10 * scale, 8 * scale), lw + 1, border_radius=max(1, scale))
+        _stroke(surf, c, [(4 * scale, 7 * scale), (10 * scale, 7 * scale)], lw)
+    elif key == "support":
+        _stroke(surf, c, [(mid, 2 * scale), (mid, 12 * scale)], lw)
+        _stroke(surf, c, [(2 * scale, mid), (12 * scale, mid)], lw)
+    elif key == "combo":
+        _stroke(surf, c, [(3 * scale, 4 * scale), (7 * scale, 8 * scale), (11 * scale, 4 * scale)], lw + 1)
+        _stroke(surf, c, [(3 * scale, 10 * scale), (7 * scale, 6 * scale), (11 * scale, 10 * scale)], lw + 1)
     elif key == "gold":
         pygame.draw.circle(surf, c, (mid, mid), 5 * scale, lw + 1)
         pygame.draw.circle(surf, c, (mid, mid), max(1, scale), 0)
@@ -233,7 +251,6 @@ def icon_for_effect(effect_type: str) -> str:
         "gain_mana_next_turn": "energy",
         "harmony": "harmony",
         "harmony_delta": "harmony",
-        "consume_harmony": "harmony",
         "rupture": "rupture",
         "apply_break": "rupture",
         "break": "rupture",
@@ -243,6 +260,9 @@ def icon_for_effect(effect_type: str) -> str:
         "ritual_trama": "ritual",
         "consume_harmony": "seal",
         "seal": "seal",
+        "copy_last_played": "combo",
+        "weaken_enemy": "support",
+        "debuff": "support",
         "gain_gold": "gold",
         "gold": "gold",
         "gain_xp": "xp",

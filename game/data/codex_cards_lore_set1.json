@@ -1,0 +1,808 @@
+{
+  "set_id": "lore_set_1",
+  "set_name": "Lore Set 1",
+  "total_cards": 60,
+  "archetypes": [
+    {
+      "id": "cosmic_warrior",
+      "name": "Cosmic Warrior",
+      "count": 20
+    },
+    {
+      "id": "harmony_guardian",
+      "name": "Harmony Guardian",
+      "count": 20
+    },
+    {
+      "id": "oracle_of_fate",
+      "name": "Oracle of Fate",
+      "count": 20
+    }
+  ],
+  "cards": [
+    {
+      "id": "campo_protector",
+      "name": "Campo Protector",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 6, Debilita 2",
+      "lore_text": "La guardia nace del silencio.",
+      "tags": [
+        "block",
+        "debuff"
+      ]
+    },
+    {
+      "id": "chakana_de_luz",
+      "name": "Chakana de Luz",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "legendary",
+      "gameplay_text": "Armonia +1, Dano 10, Bloqueo 5",
+      "lore_text": "Cada golpe abre una constelacion.",
+      "tags": [
+        "attack",
+        "block",
+        "energy",
+        "exhaust",
+        "ritual"
+      ]
+    },
+    {
+      "id": "eco_de_sabiduria",
+      "name": "Eco de Sabiduría",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "rare",
+      "gameplay_text": "Copia la ultima carta jugada, Se agota",
+      "lore_text": "La voluntad traza el destino astral.",
+      "tags": [
+        "copy",
+        "exhaust"
+      ]
+    },
+    {
+      "id": "embate_del_jaguar",
+      "name": "Embate del Jaguar",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "uncommon",
+      "gameplay_text": "Dano 7, Bloqueo 3",
+      "lore_text": "La chispa violeta rompe el vacio.",
+      "tags": [
+        "attack",
+        "block"
+      ]
+    },
+    {
+      "id": "escudo_de_luz",
+      "name": "Escudo de Luz",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 4, Cura 1",
+      "lore_text": "La guardia nace del silencio.",
+      "tags": [
+        "block",
+        "heal"
+      ]
+    },
+    {
+      "id": "escudo_del_chaman",
+      "name": "Escudo del Chamán",
+      "archetype": "harmony_guardian",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 5, Prever 1",
+      "lore_text": "Toda defensa es un ritual de equilibrio.",
+      "tags": [
+        "block",
+        "scry"
+      ]
+    },
+    {
+      "id": "espiritu_guardian",
+      "name": "Espíritu Guardián",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 4, Ruptura 1",
+      "lore_text": "La piedra recuerda cada juramento.",
+      "tags": [
+        "block",
+        "break"
+      ]
+    },
+    {
+      "id": "estallido_arcano",
+      "name": "Estallido Arcano",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "Dano 5, Roba 1",
+      "lore_text": "La chispa violeta rompe el vacio.",
+      "tags": [
+        "attack",
+        "draw"
+      ]
+    },
+    {
+      "id": "filo_astral",
+      "name": "Filo Astral",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "Dano 7",
+      "lore_text": "El filo escucha al cielo.",
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "filo_en_cadena",
+      "name": "Filo en Cadena",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "uncommon",
+      "gameplay_text": "Dano 4",
+      "lore_text": "Cada golpe abre una constelacion.",
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "firmeza_del_cuerpo",
+      "name": "Firmeza del Cuerpo",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Cura 2, Bloqueo 2",
+      "lore_text": "La piedra recuerda cada juramento.",
+      "tags": [
+        "heal",
+        "block"
+      ]
+    },
+    {
+      "id": "fragmento_celeste",
+      "name": "Fragmento Celeste",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Dano 5, Prever 2",
+      "lore_text": "El sello despierta entre susurros.",
+      "tags": [
+        "attack",
+        "scry"
+      ]
+    },
+    {
+      "id": "fusion_espiritual",
+      "name": "Fusión Espiritual",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "rare",
+      "gameplay_text": "Limite de bloqueo +10",
+      "lore_text": "La guardia nace del silencio.",
+      "tags": [
+        "block",
+        "support"
+      ]
+    },
+    {
+      "id": "garra_espiritual",
+      "name": "Garra Espiritual",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "Dano 4",
+      "lore_text": "Cada golpe abre una constelacion.",
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "guardia_terrenal",
+      "name": "Guardia Terrenal",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 3",
+      "lore_text": "La piedra recuerda cada juramento.",
+      "tags": [
+        "block"
+      ]
+    },
+    {
+      "id": "invocacion_astral",
+      "name": "Invocación Astral",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "common",
+      "gameplay_text": "Armonia +1, Cura 3, Bloqueo 3",
+      "lore_text": "El sello despierta entre susurros.",
+      "tags": [
+        "heal",
+        "block",
+        "ritual"
+      ]
+    },
+    {
+      "id": "lectura_del_destino",
+      "name": "Lectura del Destino",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Prever 2",
+      "lore_text": "El oraculo lee los ecos del tiempo.",
+      "tags": [
+        "scry"
+      ]
+    },
+    {
+      "id": "mantra_del_umbral",
+      "name": "Mantra del Umbral",
+      "archetype": "cosmic_warrior",
+      "role": "energy",
+      "rarity": "common",
+      "gameplay_text": "Armonia +1, Energia +1, Cura 1",
+      "lore_text": "Cada golpe abre una constelacion.",
+      "tags": [
+        "energy",
+        "heal",
+        "ritual"
+      ]
+    },
+    {
+      "id": "muralla_de_piedra",
+      "name": "Muralla de Piedra",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 8",
+      "lore_text": "La piedra recuerda cada juramento.",
+      "tags": [
+        "block"
+      ]
+    },
+    {
+      "id": "observacion_sagrada",
+      "name": "Observación Sagrada",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Prever 3",
+      "lore_text": "El sello despierta entre susurros.",
+      "tags": [
+        "scry"
+      ]
+    },
+    {
+      "id": "piedra_ritual",
+      "name": "Piedra Ritual",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "rare",
+      "gameplay_text": "Armonia +1, Bloqueo 6, Ruptura 3",
+      "lore_text": "El oraculo lee los ecos del tiempo.",
+      "tags": [
+        "block",
+        "break",
+        "ritual"
+      ]
+    },
+    {
+      "id": "portal_de_la_chakana",
+      "name": "Portal de la Chakana",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "uncommon",
+      "gameplay_text": "Armonia +1, Ruptura 3, Roba 1",
+      "lore_text": "Toda vision exige un precio ritual.",
+      "tags": [
+        "break",
+        "draw",
+        "ritual"
+      ]
+    },
+    {
+      "id": "pulso_cosmico",
+      "name": "Pulso Cósmico",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "Ruptura 2, Dano 3",
+      "lore_text": "La voluntad traza el destino astral.",
+      "tags": [
+        "break",
+        "attack"
+      ]
+    },
+    {
+      "id": "resistencia_ancestral",
+      "name": "Resistencia Ancestral",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 7, Retener",
+      "lore_text": "La calma sostiene el umbral.",
+      "tags": [
+        "block",
+        "retain"
+      ]
+    },
+    {
+      "id": "revelacion_astral",
+      "name": "Revelación Astral",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "uncommon",
+      "gameplay_text": "Armonia +1, Prever 4, Roba 1",
+      "lore_text": "El oraculo lee los ecos del tiempo.",
+      "tags": [
+        "scry",
+        "draw",
+        "ritual"
+      ]
+    },
+    {
+      "id": "ritual_de_la_trama",
+      "name": "Ritual de la Trama",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "legendary",
+      "gameplay_text": "Armonia +1, Sello 3, Ritual 1",
+      "lore_text": "Toda vision exige un precio ritual.",
+      "tags": [
+        "attack",
+        "heal",
+        "exhaust",
+        "ritual"
+      ]
+    },
+    {
+      "id": "sello_protector",
+      "name": "Sello Protector",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 5",
+      "lore_text": "La piedra recuerda cada juramento.",
+      "tags": [
+        "block"
+      ]
+    },
+    {
+      "id": "silencio_interior",
+      "name": "Silencio Interior",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "uncommon",
+      "gameplay_text": "Debilita 3, Prever 1",
+      "lore_text": "El sello despierta entre susurros.",
+      "tags": [
+        "debuff",
+        "scry"
+      ]
+    },
+    {
+      "id": "vinculo_de_energia",
+      "name": "Vínculo de Energía",
+      "archetype": "cosmic_warrior",
+      "role": "energy",
+      "rarity": "uncommon",
+      "gameplay_text": "Energia +2",
+      "lore_text": "El filo escucha al cielo.",
+      "tags": [
+        "energy"
+      ]
+    },
+    {
+      "id": "vision_del_condor",
+      "name": "Visión del Cóndor",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Armonia +1, Prever 3, Roba 1",
+      "lore_text": "Toda vision exige un precio ritual.",
+      "tags": [
+        "scry",
+        "draw",
+        "ritual"
+      ]
+    },
+    {
+      "id": "hg_lore_01",
+      "name": "Campo Protector Nova",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 6, Debilita 2",
+      "lore_text": "Toda defensa es un ritual de equilibrio.",
+      "tags": [
+        "block",
+        "debuff"
+      ]
+    },
+    {
+      "id": "cw_lore_02",
+      "name": "Chakana de Luz Nova",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "legendary",
+      "gameplay_text": "Armonia +1, Dano 10, Bloqueo 5",
+      "lore_text": "La voluntad traza el destino astral.",
+      "tags": [
+        "attack",
+        "block",
+        "energy",
+        "exhaust",
+        "ritual"
+      ]
+    },
+    {
+      "id": "cw_lore_03",
+      "name": "Eco de Sabiduría Nova",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "rare",
+      "gameplay_text": "Copia la ultima carta jugada, Se agota",
+      "lore_text": "La chispa violeta rompe el vacio.",
+      "tags": [
+        "copy",
+        "exhaust"
+      ]
+    },
+    {
+      "id": "cw_lore_04",
+      "name": "Embate del Jaguar Nova",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "uncommon",
+      "gameplay_text": "Dano 7, Bloqueo 3",
+      "lore_text": "El filo escucha al cielo.",
+      "tags": [
+        "attack",
+        "block"
+      ]
+    },
+    {
+      "id": "hg_lore_05",
+      "name": "Escudo de Luz Nova",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 4, Cura 1",
+      "lore_text": "Toda defensa es un ritual de equilibrio.",
+      "tags": [
+        "block",
+        "heal"
+      ]
+    },
+    {
+      "id": "hg_lore_06",
+      "name": "Escudo del Chamán Nova",
+      "archetype": "harmony_guardian",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 5, Prever 1",
+      "lore_text": "La piedra recuerda cada juramento.",
+      "tags": [
+        "block",
+        "scry"
+      ]
+    },
+    {
+      "id": "hg_lore_07",
+      "name": "Espíritu Guardián Nova",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 4, Ruptura 1",
+      "lore_text": "La calma sostiene el umbral.",
+      "tags": [
+        "block",
+        "break"
+      ]
+    },
+    {
+      "id": "cw_lore_08",
+      "name": "Estallido Arcano Nova",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "Dano 5, Roba 1",
+      "lore_text": "El filo escucha al cielo.",
+      "tags": [
+        "attack",
+        "draw"
+      ]
+    },
+    {
+      "id": "cw_lore_09",
+      "name": "Filo Astral Nova",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "Dano 7",
+      "lore_text": "Cada golpe abre una constelacion.",
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "cw_lore_10",
+      "name": "Filo en Cadena Nova",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "uncommon",
+      "gameplay_text": "Dano 4",
+      "lore_text": "La voluntad traza el destino astral.",
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "hg_lore_11",
+      "name": "Firmeza del Cuerpo Nova",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Cura 2, Bloqueo 2",
+      "lore_text": "La calma sostiene el umbral.",
+      "tags": [
+        "heal",
+        "block"
+      ]
+    },
+    {
+      "id": "of_lore_12",
+      "name": "Fragmento Celeste Nova",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Dano 5, Prever 2",
+      "lore_text": "El oraculo lee los ecos del tiempo.",
+      "tags": [
+        "attack",
+        "scry"
+      ]
+    },
+    {
+      "id": "hg_lore_13",
+      "name": "Fusión Espiritual Nova",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "rare",
+      "gameplay_text": "Limite de bloqueo +10",
+      "lore_text": "Toda defensa es un ritual de equilibrio.",
+      "tags": [
+        "block",
+        "support"
+      ]
+    },
+    {
+      "id": "cw_lore_14",
+      "name": "Garra Espiritual Nova",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "Dano 4",
+      "lore_text": "La voluntad traza el destino astral.",
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "hg_lore_15",
+      "name": "Guardia Terrenal Nova",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 3",
+      "lore_text": "La calma sostiene el umbral.",
+      "tags": [
+        "block"
+      ]
+    },
+    {
+      "id": "of_lore_16",
+      "name": "Invocación Astral Nova",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "common",
+      "gameplay_text": "Armonia +1, Cura 3, Bloqueo 3",
+      "lore_text": "El oraculo lee los ecos del tiempo.",
+      "tags": [
+        "heal",
+        "block",
+        "ritual"
+      ]
+    },
+    {
+      "id": "of_lore_17",
+      "name": "Lectura del Destino Nova",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Prever 2",
+      "lore_text": "Toda vision exige un precio ritual.",
+      "tags": [
+        "scry"
+      ]
+    },
+    {
+      "id": "cw_lore_18",
+      "name": "Mantra del Umbral Nova",
+      "archetype": "cosmic_warrior",
+      "role": "energy",
+      "rarity": "common",
+      "gameplay_text": "Armonia +1, Energia +1, Cura 1",
+      "lore_text": "La voluntad traza el destino astral.",
+      "tags": [
+        "energy",
+        "heal",
+        "ritual"
+      ]
+    },
+    {
+      "id": "hg_lore_19",
+      "name": "Muralla de Piedra Nova",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 8",
+      "lore_text": "La calma sostiene el umbral.",
+      "tags": [
+        "block"
+      ]
+    },
+    {
+      "id": "of_lore_20",
+      "name": "Observación Sagrada Nova",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Prever 3",
+      "lore_text": "El oraculo lee los ecos del tiempo.",
+      "tags": [
+        "scry"
+      ]
+    },
+    {
+      "id": "of_lore_21",
+      "name": "Piedra Ritual Nova",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "rare",
+      "gameplay_text": "Armonia +1, Bloqueo 6, Ruptura 3",
+      "lore_text": "Toda vision exige un precio ritual.",
+      "tags": [
+        "block",
+        "break",
+        "ritual"
+      ]
+    },
+    {
+      "id": "of_lore_22",
+      "name": "Portal de la Chakana Nova",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "uncommon",
+      "gameplay_text": "Armonia +1, Ruptura 3, Roba 1",
+      "lore_text": "La trama responde al ojo atento.",
+      "tags": [
+        "break",
+        "draw",
+        "ritual"
+      ]
+    },
+    {
+      "id": "cw_lore_23",
+      "name": "Pulso Cósmico Nova",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "Ruptura 2, Dano 3",
+      "lore_text": "La chispa violeta rompe el vacio.",
+      "tags": [
+        "break",
+        "attack"
+      ]
+    },
+    {
+      "id": "hg_lore_24",
+      "name": "Resistencia Ancestral Nova",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 7, Retener",
+      "lore_text": "La guardia nace del silencio.",
+      "tags": [
+        "block",
+        "retain"
+      ]
+    },
+    {
+      "id": "of_lore_25",
+      "name": "Revelación Astral Nova",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "uncommon",
+      "gameplay_text": "Armonia +1, Prever 4, Roba 1",
+      "lore_text": "Toda vision exige un precio ritual.",
+      "tags": [
+        "scry",
+        "draw",
+        "ritual"
+      ]
+    },
+    {
+      "id": "of_lore_26",
+      "name": "Ritual de la Trama Nova",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "legendary",
+      "gameplay_text": "Armonia +1, Sello 3, Ritual 1",
+      "lore_text": "La trama responde al ojo atento.",
+      "tags": [
+        "attack",
+        "heal",
+        "exhaust",
+        "ritual"
+      ]
+    },
+    {
+      "id": "hg_lore_27",
+      "name": "Sello Protector Nova",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 5",
+      "lore_text": "La calma sostiene el umbral.",
+      "tags": [
+        "block"
+      ]
+    },
+    {
+      "id": "of_lore_28",
+      "name": "Silencio Interior Nova",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "uncommon",
+      "gameplay_text": "Debilita 3, Prever 1",
+      "lore_text": "El oraculo lee los ecos del tiempo.",
+      "tags": [
+        "debuff",
+        "scry"
+      ]
+    },
+    {
+      "id": "cw_lore_29",
+      "name": "Vínculo de Energía Nova",
+      "archetype": "cosmic_warrior",
+      "role": "energy",
+      "rarity": "uncommon",
+      "gameplay_text": "Energia +2",
+      "lore_text": "Cada golpe abre una constelacion.",
+      "tags": [
+        "energy"
+      ]
+    },
+    {
+      "id": "of_lore_30",
+      "name": "Visión del Cóndor Nova",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Armonia +1, Prever 3, Roba 1",
+      "lore_text": "La trama responde al ojo atento.",
+      "tags": [
+        "scry",
+        "draw",
+        "ritual"
+      ]
+    }
+  ]
+}

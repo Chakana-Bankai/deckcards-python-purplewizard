@@ -29,6 +29,7 @@ class CodexScreen:
         self.app = app
         self.sections = self._load_sections()
         self.section_by_id = {str(s.get("id", "")): s for s in self.sections}
+        self.lore_set_cards = self._load_lore_set_cards()
         self.active_section_id = self.sections[0].get("id", "lore") if self.sections else "lore"
 
         self.back_btn = pygame.Rect(42, 1008, 220, 52)
@@ -58,6 +59,17 @@ class CodexScreen:
                 out.append(extra)
         return out
 
+
+    def _load_lore_set_cards(self) -> dict:
+        path = data_dir() / "codex_cards_lore_set1.json"
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8-sig"))
+            if isinstance(payload, dict):
+                return payload
+        except Exception:
+            return {}
+        return {}
+
     def _build_section_buttons(self):
         self.section_buttons = []
         y = self.left_panel.y + 16
@@ -74,7 +86,20 @@ class CodexScreen:
         if sid == "cards":
             total = len(getattr(self.app, "cards_data", []) or [])
             roles = sorted({str(c.get("role", "")).lower() for c in (getattr(self.app, "cards_data", []) or []) if isinstance(c, dict) and c.get("role")})
-            return [f"Cartas cargadas: {total}", f"Roles detectados: {', '.join(roles) if roles else 'sin datos'}"]
+            lore_payload = self.lore_set_cards if isinstance(self.lore_set_cards, dict) else {}
+            set_total = int(lore_payload.get("total_cards", 0) or 0)
+            arcs = lore_payload.get("archetypes", []) if isinstance(lore_payload.get("archetypes", []), list) else []
+            arc_line = ", ".join(f"{str(a.get('name','?'))}: {int(a.get('count',0) or 0)}" for a in arcs[:3])
+            hints = [f"Cartas cargadas: {total}", f"Roles detectados: {', '.join(roles) if roles else 'sin datos'}"]
+            if set_total:
+                hints.append(f"Lore Set 1: {set_total} cartas")
+            if arc_line:
+                hints.append(arc_line)
+            cards = lore_payload.get("cards", []) if isinstance(lore_payload.get("cards", []), list) else []
+            if cards:
+                sample = cards[0]
+                hints.append(f"Ejemplo: {sample.get('name','-')} [{sample.get('archetype','-')}]")
+            return hints
         if sid == "enemies":
             total = len(getattr(self.app, "enemies_data", []) or [])
             return [f"Enemigos cargados: {total}"]

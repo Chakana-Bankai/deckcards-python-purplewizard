@@ -489,7 +489,7 @@ class CombatScreen:
 
     def _card_rect(self, i, total):
         inner = self.layout.hand_rect.inflate(-18, -36)
-        w, h, g = 180, inner.h - 8, 12
+        w, h, g = 196, inner.h - 8, 12
         tw = total * w + max(0, total - 1) * g
         x = inner.x + (inner.w - tw) // 2 + i * (w + g)
         y = inner.y + 6
@@ -1196,11 +1196,11 @@ class CombatScreen:
             card = hand[i]
             base_hover = self._card_rect(i, len(hand))
             # Contained hover: scale in place, slight lift, minimal drift.
-            ww = int(base_hover.w * 1.20)
-            hh = int(base_hover.h * 1.20)
+            ww = int(base_hover.w * 1.24)
+            hh = int(base_hover.h * 1.24)
             rr = pygame.Rect(0, 0, ww, hh)
             rr.centerx = base_hover.centerx
-            rr.centery = base_hover.centery - 14
+            rr.centery = base_hover.centery - 18
             safe_overlay = pygame.Rect(
                 self.layout.hand_rect.x + 4,
                 self.layout.playerhud_rect.y + 4,

@@ -78,6 +78,8 @@ def summarize_card_effect(card_def, card_instance=None, ctx=None) -> dict:
         elif typ == "ritual_trama":
             stats["ritual"] += max(1, amount)
             stats["harmony_delta"] += 1
+        elif typ == "double_block_cap":
+            stats["retain"] += max(1, amount)
         elif typ == "gain_gold":
             stats["gold"] += max(0, amount)
         elif typ == "gain_xp":
@@ -108,7 +110,7 @@ def summarize_card_effect(card_def, card_instance=None, ctx=None) -> dict:
     if stats["exhaust"] > 0:
         lines.append("Se agota al usar")
     if stats["retain"] > 0:
-        lines.append("Retener: permanece en mano")
+        lines.append(f"Umbral de bloqueo +{stats["retain"]}")
 
     if not lines:
         lines = ["Efecto: ritual o utilidad"]
