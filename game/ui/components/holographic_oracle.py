@@ -18,6 +18,7 @@ class HolographicOracleUI:
         self.trigger = ""
         self.speaker = "chakana"
         self.interference = False
+        self.priority = 0
 
     def show(
         self,
@@ -26,14 +27,19 @@ class HolographicOracleUI:
         title: str = "ORACULO CHAKANA",
         speaker: str = "chakana",
         interference: bool = False,
+        duration: float | None = None,
+        priority: int = 0,
     ):
         self.active = True
         self.timer = 0.0
+        if duration is not None:
+            self.duration = max(2.4, min(6.8, float(duration)))
         self.title = str(title or "ORACULO CHAKANA")
         self.text = str(text or "")
         self.trigger = str(trigger or "")
         self.speaker = str(speaker or "chakana").lower()
         self.interference = bool(interference)
+        self.priority = int(priority or 0)
 
     def update(self, dt: float):
         if not self.active:
@@ -79,7 +85,7 @@ class HolographicOracleUI:
             return
 
         sw, sh = surface.get_size()
-        panel = pygame.Rect(24, sh - 210, min(520, sw // 2 - 40), 172)
+        panel = pygame.Rect(26, sh - 212, min(512, sw // 2 - 44), 170)
 
         is_archon = self.speaker == "archon"
         base_glow = (220, 84, 104) if is_archon else (146, 86, 220)
@@ -125,10 +131,16 @@ class HolographicOracleUI:
 
         title_font = getattr(app, "small_font", app.font)
         body_font = getattr(app, "tiny_font", app.font)
+        speaker_font = body_font
 
         title = title_font.render(self.title[:40], True, title_col)
         title.set_alpha(alpha)
         layer.blit(title, (bubble.x + 10, bubble.y + 8))
+
+        speaker_label = "CHAKANA" if not is_archon else "ARCONTE"
+        tag = speaker_font.render(speaker_label, True, title_col)
+        tag.set_alpha(int(alpha * 0.9))
+        layer.blit(tag, (bubble.right - tag.get_width() - 10, bubble.y + 10))
 
         lines = self._wrap(body_font, self.text, bubble.w - 20, max_lines=4)
         y = bubble.y + 38

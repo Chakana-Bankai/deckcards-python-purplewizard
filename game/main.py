@@ -183,6 +183,8 @@ class App:
         self.oracle_ui = HolographicOracleUI()
         self._oracle_last_ms = 0
         self._oracle_last_by_trigger = {}
+        self._oracle_active_priority = -1
+        self._oracle_active_until_ms = 0
         self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
         self.user_settings.setdefault("detail_panel", False)
         self.user_settings.setdefault("tutorial_completed", False)
@@ -608,30 +610,45 @@ class App:
         lore_data = self.lore_data if isinstance(self.lore_data, dict) else {}
         event_fragments = list(lore_data.get("event_fragments", []) or [])
 
-        chakana_lines = {
-            "run_start": "La Trama despierta. Elige con precision.",
-            "path_selected": "Uno de los 7 Caminos bendice tu voluntad.",
-            "event_node": "Un eco ritual reclama tu atencion.",
+        # Context pools: lore narration / reactive gameplay / prophecy.
+        lore_pool = {
+            "run_start": "La Trama despierta. El viaje ritual comienza.",
+            "path_selected": "Los 7 Caminos reescriben tu destino.",
+            "event_node": "Un eco ancestral abre una decision.",
+        }
+        reactive_pool = {
             "combat_start": "Respira: cada carta define el pulso del rito.",
             "elite_encounter": "La geometria se tensa: se acerca una prueba mayor.",
             "enemy_low_hp": "Su forma se quiebra. Mantente firme.",
             "player_low_hp": "Sostente. Aun puedes inclinar la Trama.",
+        }
+        prophecy_pool = {
             "boss_reveal": "El Arconte ya observa tu pulso.",
             "victory": "Tu equilibrio altero el destino del pacha.",
             "defeat": "La caida tambien ensena el siguiente trazo.",
         }
-        archon_lines = {
+
+        archon_lore = {
             "run_start": "Cada sendero termina en mi umbral.",
             "path_selected": "Ese camino tambien alimenta mi dominio.",
             "event_node": "Los ecos no te salvaran del quiebre.",
+        }
+        archon_reactive = {
             "combat_start": "Tu rito es fragil frente al vacio.",
             "elite_encounter": "Esta prueba abrira tu fractura.",
             "enemy_low_hp": "Aun herido, mi designio permanece.",
-            "player_low_hp": "Tu pulso cae. Entr?gate al silencio.",
+            "player_low_hp": "Tu pulso cae. Entregate al silencio.",
+        }
+        archon_prophecy = {
             "boss_reveal": "Por fin frente a mi: no habra retorno.",
             "victory": "Una victoria breve en una guerra infinita.",
             "defeat": "La Trama te rompe y me pertenece.",
         }
+
+        if role == "archon":
+            lpool, rpool, ppool = archon_lore, archon_reactive, archon_prophecy
+        else:
+            lpool, rpool, ppool = lore_pool, reactive_pool, prophecy_pool
 
         if trig == "event_node" and event_fragments and role != "archon":
             return str(self.rng.choice(event_fragments))
@@ -643,12 +660,41 @@ class App:
 
         if trig in {"boss_reveal", "elite_encounter"} and isinstance(payload, dict):
             n = str(payload.get("name") or payload.get("id") or "").strip()
-            if n:
-                base = archon_lines if role == "archon" else chakana_lines
-                return f"{base.get(trig)} {n}."
+            base = ppool if trig in ppool else rpool
+            line = base.get(trig, "")
+            if n and line:
+                return f"{line} {n}."
 
-        base = archon_lines if role == "archon" else chakana_lines
-        return base.get(trig, "La Trama habla en silencio.")
+        if trig in ppool:
+            return ppool[trig]
+        if trig in rpool:
+            return rpool[trig]
+        if trig in lpool:
+            return lpool[trig]
+        return "La Trama habla en silencio."
+
+    def _oracle_priority(self, trigger: str, speaker: str) -> int:
+        trig = str(trigger or "").lower()
+        role = str(speaker or "chakana").lower()
+        high = {"boss_reveal", "victory", "defeat"}
+        medium = {"elite_encounter", "path_selected", "event_node", "player_low_hp", "enemy_low_hp"}
+        if trig in high:
+            return 3 if role == "archon" else 2
+        if role == "archon" and trig in {"combat_start", "player_low_hp", "enemy_low_hp"}:
+            return 2
+        if trig in medium:
+            return 1
+        return 0
+
+    def _oracle_duration(self, trigger: str, line: str, speaker: str) -> float:
+        trig = str(trigger or "").lower()
+        words = max(1, len(str(line or "").split()))
+        base = 2.7 if words <= 8 else 3.5 if words <= 14 else 4.4
+        if trig in {"boss_reveal", "victory", "defeat"}:
+            base += 0.8
+        if str(speaker or "").lower() == "archon":
+            base += 0.25
+        return max(2.5, min(5.6, base))
 
     def trigger_oracle(self, trigger: str, payload=None):
         if not hasattr(self, "oracle_ui") or self.oracle_ui is None:
@@ -658,47 +704,62 @@ class App:
         now = pygame.time.get_ticks()
 
         # Anti-spam cooldown (global + per trigger).
-        global_cd_ms = 1400
+        global_cd_ms = 1300
         per_trigger_cd = {
-            "player_low_hp": 8500,
-            "enemy_low_hp": 7000,
-            "combat_start": 2800,
+            "player_low_hp": 9000,
+            "enemy_low_hp": 7600,
+            "combat_start": 3000,
             "event_node": 2600,
             "path_selected": 2600,
-            "elite_encounter": 3200,
-            "boss_reveal": 3600,
-            "victory": 1200,
-            "defeat": 1200,
-            "run_start": 1200,
+            "elite_encounter": 3400,
+            "boss_reveal": 4200,
+            "victory": 1300,
+            "defeat": 1300,
+            "run_start": 1300,
         }
         if now - int(self._oracle_last_ms or 0) < global_cd_ms:
             return
         trig_last = int(self._oracle_last_by_trigger.get(trig, 0) or 0)
-        if now - trig_last < int(per_trigger_cd.get(trig, 2800)):
+        if now - trig_last < int(per_trigger_cd.get(trig, 3000)):
             return
 
         speaker = "chakana"
         interference = False
 
-        # Archon interference: rare and contextual.
+        # Rare Archon interruptions, focused on major beats.
         rare_roll = self.rng.randint(1, 100)
-        if trig in {"boss_reveal", "elite_encounter", "player_low_hp"}:
-            if trig == "boss_reveal" or rare_roll <= 28:
-                speaker = "archon"
-                interference = True
-        elif trig in {"combat_start", "enemy_low_hp"} and rare_roll <= 12:
+        if trig == "boss_reveal":
             speaker = "archon"
             interference = True
-        elif trig in {"victory", "defeat"} and rare_roll <= 18:
+        elif trig in {"elite_encounter", "player_low_hp"} and rare_roll <= 26:
             speaker = "archon"
             interference = True
+        elif trig in {"combat_start", "enemy_low_hp", "victory", "defeat"} and rare_roll <= 12:
+            speaker = "archon"
+            interference = True
+
+        prio = self._oracle_priority(trig, speaker)
+        if bool(getattr(self.oracle_ui, "active", False)) and now < int(self._oracle_active_until_ms or 0):
+            if prio < int(self._oracle_active_priority or 0):
+                return
 
         title = "ORACULO CHAKANA" if speaker == "chakana" else "INTERFERENCIA DEL ARCONTE"
         line = self._oracle_line(trig, payload=payload, speaker=speaker)
-        self.oracle_ui.show(line, trigger=trig, title=title, speaker=speaker, interference=interference)
+        duration = self._oracle_duration(trig, line, speaker)
+        self.oracle_ui.show(
+            line,
+            trigger=trig,
+            title=title,
+            speaker=speaker,
+            interference=interference,
+            duration=duration,
+            priority=prio,
+        )
 
         self._oracle_last_ms = now
         self._oracle_last_by_trigger[trig] = now
+        self._oracle_active_priority = prio
+        self._oracle_active_until_ms = now + int(duration * 1000)
 
     def goto_menu(self):
         if self.sm.current and not isinstance(self.sm.current, MenuScreen):
