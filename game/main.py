@@ -70,16 +70,22 @@ DEFAULT_CARDS = [
 DEFAULT_ENEMY = {"id": "dummy", "name_key": "enemy_voidling_name", "hp": [20, 20], "pattern": [{"intent": "attack", "value": [5, 5]}]}
 
 MAP_TEMPLATE = [
-    {"type": "combat", "count": 1},
-    {"type": "event", "count": 3},
-    {"type": "combat", "count": 4},
-    {"type": "shop", "count": 3},
-    {"type": "challenge", "count": 4},
-    {"type": "treasure", "count": 3},
-    {"type": "combat", "count": 4},
-    {"type": "event", "count": 3},
-    {"type": "challenge", "count": 4},
-    {"type": "boss", "count": 1},
+    {"type": "combat", "count": 1, "types": ["combat"]},
+    {"type": "path", "count": 3, "types": ["path", "event", "path"]},
+    {"type": "path", "count": 3, "types": ["path", "path", "elite"]},
+    {"type": "path", "count": 3, "types": ["path", "path", "combat"]},
+    {"type": "elite", "count": 2, "types": ["elite", "path"]},
+    {"type": "boss", "count": 1, "types": ["boss"]},
+]
+
+SEVEN_PATHS = [
+    {"id": "camino_filo", "title": "Camino del Filo", "lore": "Golpea primero; corta la duda."},
+    {"id": "camino_velo", "title": "Camino del Velo", "lore": "Protege tu pulso antes del rito."},
+    {"id": "camino_eco", "title": "Camino del Eco", "lore": "Toda jugada vuelve con nueva forma."},
+    {"id": "camino_pulso", "title": "Camino del Pulso", "lore": "La energia obedece a quien respira."},
+    {"id": "camino_umbral", "title": "Camino del Umbral", "lore": "Cruza limites para obtener vision."},
+    {"id": "camino_cielo", "title": "Camino del Cielo", "lore": "La armonia alta revela rutas ocultas."},
+    {"id": "camino_sello", "title": "Camino del Sello", "lore": "El sello despierta con voluntad pura."},
 ]
 
 POST_COMBAT_HEAL = {"combat": 0.15, "challenge": 0.12, "boss": 0.10}
@@ -765,20 +771,27 @@ class App:
         columns = len(layout)
         by_col = []
         self.node_lookup = {}
-        x_margin = 120
+        path_cursor = 0
+
+        x_margin = 180
         x_step = (INTERNAL_WIDTH - x_margin * 2) // max(1, (columns - 1))
+        y_center = INTERNAL_HEIGHT // 2
+
         for col, spec in enumerate(layout):
             count = max(1, int(spec.get("count", 1)))
             col_nodes = []
+            row_gap = 96 if count >= 3 else 120
+            center_idx = (count - 1) / 2.0
+            col_types = list(spec.get("types", []) or [])
             for row in range(count):
                 node_id = f"{col}_{row}"
-                if count == 1:
-                    y = INTERNAL_HEIGHT // 2
+                y = y_center if count == 1 else int(y_center + (row - center_idx) * row_gap)
+
+                if col_types:
+                    node_type = str(col_types[min(row, len(col_types) - 1)] or spec.get("type", "combat"))
                 else:
-                    y_top = 196
-                    y_bottom = 766
-                    y = y_top + int((row * (y_bottom - y_top)) / max(1, count - 1))
-                node_type = str(spec.get("type", "combat"))
+                    node_type = str(spec.get("type", "combat"))
+
                 if node_type == "challenge" and self.rng.randint(0, 100) < 28:
                     node_type = "combat"
                 node_biome = self._biome_for_column(col, columns)
@@ -792,16 +805,32 @@ class App:
                     "next": [],
                     "state": "available" if col == 0 else "locked",
                 }
+                if node_type == "path":
+                    path = SEVEN_PATHS[path_cursor % len(SEVEN_PATHS)]
+                    path_cursor += 1
+                    node["path_id"] = str(path.get("id"))
+                    node["path_name"] = str(path.get("title"))
+                    node["path_lore"] = str(path.get("lore"))
                 col_nodes.append(node)
                 self.node_lookup[node_id] = node
             by_col.append(col_nodes)
+
+        # Ritual routing: primary link + nearby alternate to avoid chaotic crossing.
         for col in range(columns - 1):
-            for i, node in enumerate(by_col[col]):
-                next_nodes = by_col[col + 1]
-                node["next"].append(next_nodes[min(i, len(next_nodes) - 1)]["id"])
-                alt = self.rng.choice(next_nodes)
-                if alt["id"] not in node["next"]:
-                    node["next"].append(alt["id"])
+            cur_nodes = by_col[col]
+            next_nodes = by_col[col + 1]
+            if not next_nodes:
+                continue
+            for i, node in enumerate(cur_nodes):
+                mapped = int(round((i / max(1, len(cur_nodes) - 1)) * max(0, len(next_nodes) - 1)))
+                node["next"].append(next_nodes[mapped]["id"])
+                if len(next_nodes) > 1:
+                    alt_idx = mapped + (1 if (i % 2 == 0) else -1)
+                    alt_idx = max(0, min(len(next_nodes) - 1, alt_idx))
+                    alt_id = next_nodes[alt_idx]["id"]
+                    if alt_id not in node["next"]:
+                        node["next"].append(alt_id)
+
         return by_col
 
     def goto_map(self):
@@ -983,7 +1012,9 @@ class App:
         return pool or commons
 
     def enter_node(self, node):
-        node_type = node.get("type", "combat")
+        node_type = str(node.get("type", "combat") or "combat")
+        if node_type == "elite":
+            node_type = "challenge"
         if node_type in {"combat", "challenge", "boss"}:
             boss_ids = [b.get("id") for b in self.content.bosses if isinstance(b, dict) and b.get("id")]
             node_biome = self._normalize_biome_id(node.get("biome") or (self.run_state or {}).get("biome"))
@@ -1009,6 +1040,13 @@ class App:
             self.goto_combat(self.current_combat, is_boss=node_type == "boss")
         elif node_type == "shop":
             self.goto_shop()
+        elif node_type == "path":
+            self._complete_current_node()
+            blessing = str(node.get("path_name") or "Camino")
+            blessings = self.run_state.setdefault("path_blessings", [])
+            if blessing not in blessings:
+                blessings.append(blessing)
+            self.goto_guide_reward(event_id=str(node.get("path_id") or "seven_paths"))
         elif node_type == "treasure":
             self._complete_current_node()
             self.goto_reward(gold=self.rng.randint(22, 40))
