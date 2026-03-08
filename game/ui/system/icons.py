@@ -1,33 +1,14 @@
-"""Centralized semantic icon API for Chakana UI."""
+﻿"""Centralized semantic icon API for Chakana UI.
+
+This module intentionally avoids font-only glyph icons for KPI rows,
+so missing glyph support never renders broken square placeholders.
+"""
 
 from __future__ import annotations
 
 import pygame
 
 
-ICON_GLYPHS = {
-    "damage": "✦",
-    "block": "▣",
-    "energy": "●",
-    "harmony": "◈",
-    "rupture": "⬟",
-    "scry": "◉",
-    "draw": "+",
-    "ritual": "△",
-    "gold": "¤",
-    "xp": "✶",
-    "deck": "M",
-    "hand": "H",
-    "discard": "E",
-    "fatigue": "D",
-    "boss": "⚚",
-    "shop": "¤",
-    "guide": "☉",
-    "relic": "◆",
-    "unknown": "?",
-}
-
-# Backward aliases used by legacy card/icon paths.
 ICON_ALIASES = {
     "sword": "damage",
     "shield": "block",
@@ -38,12 +19,125 @@ ICON_ALIASES = {
     "scroll": "draw",
 }
 
+FALLBACK_TEXT = {
+    "damage": "*",
+    "block": "#",
+    "energy": "!",
+    "harmony": "<>",
+    "rupture": "//",
+    "scry": "o",
+    "draw": "+",
+    "ritual": "^",
+    "gold": "$",
+    "xp": "xp",
+    "deck": "M",
+    "hand": "H",
+    "discard": "E",
+    "fatigue": "D",
+    "boss": "B",
+    "shop": "$",
+    "guide": "G",
+    "relic": "R",
+    "unknown": "?",
+}
+
+_ICON_CACHE: dict[tuple[str, tuple[int, int, int], int], pygame.Surface] = {}
+
 
 def normalize_icon_name(icon_name: str) -> str:
     key = str(icon_name or "unknown").strip().lower()
-    if key in ICON_GLYPHS:
+    semantic = {
+        "damage",
+        "block",
+        "energy",
+        "harmony",
+        "rupture",
+        "scry",
+        "draw",
+        "ritual",
+        "gold",
+        "xp",
+        "deck",
+        "hand",
+        "discard",
+        "fatigue",
+        "boss",
+        "shop",
+        "guide",
+        "relic",
+        "unknown",
+    }
+    if key in semantic:
         return key
     return ICON_ALIASES.get(key, "unknown")
+
+
+def _make_surface(px: int) -> pygame.Surface:
+    return pygame.Surface((px, px), pygame.SRCALPHA)
+
+
+def _stroke(surf: pygame.Surface, color: tuple[int, int, int], pts: list[tuple[int, int]], w: int = 2):
+    if len(pts) >= 2:
+        pygame.draw.lines(surf, color, False, pts, max(1, int(w)))
+
+
+def _render_icon_surface(icon_name: str, color: tuple[int, int, int], size: int) -> pygame.Surface:
+    key = normalize_icon_name(icon_name)
+    scale = max(1, int(size or 1))
+    px = 14 * scale
+    cache_key = (key, tuple(int(c) for c in color), scale)
+    cached = _ICON_CACHE.get(cache_key)
+    if cached is not None:
+        return cached
+
+    surf = _make_surface(px)
+    c = tuple(int(v) for v in color[:3])
+    lw = max(1, scale)
+    mid = px // 2
+
+    if key == "damage":
+        _stroke(surf, c, [(3 * scale, 11 * scale), (11 * scale, 3 * scale)], lw + 1)
+        _stroke(surf, c, [(6 * scale, 3 * scale), (11 * scale, 3 * scale), (11 * scale, 8 * scale)], lw)
+    elif key == "block":
+        poly = [(mid, 2 * scale), (11 * scale, 4 * scale), (10 * scale, 10 * scale), (mid, 12 * scale), (4 * scale, 10 * scale), (3 * scale, 4 * scale)]
+        pygame.draw.polygon(surf, c, poly, lw + 1)
+    elif key == "energy":
+        poly = [(8 * scale, 2 * scale), (5 * scale, 7 * scale), (8 * scale, 7 * scale), (6 * scale, 12 * scale), (10 * scale, 6 * scale), (7 * scale, 6 * scale)]
+        pygame.draw.polygon(surf, c, poly)
+    elif key == "harmony":
+        poly = [(mid, 2 * scale), (11 * scale, mid), (mid, 12 * scale), (3 * scale, mid)]
+        pygame.draw.polygon(surf, c, poly, lw + 1)
+        pygame.draw.circle(surf, c, (mid, mid), max(1, scale), 0)
+    elif key == "rupture":
+        _stroke(surf, c, [(3 * scale, 3 * scale), (7 * scale, 6 * scale), (4 * scale, 8 * scale), (10 * scale, 12 * scale)], lw + 1)
+    elif key == "scry":
+        eye_rect = pygame.Rect(2 * scale, 4 * scale, 10 * scale, 6 * scale)
+        pygame.draw.ellipse(surf, c, eye_rect, lw + 1)
+        pygame.draw.circle(surf, c, (mid, 7 * scale), max(1, scale + 1))
+    elif key == "draw":
+        rect = pygame.Rect(3 * scale, 3 * scale, 8 * scale, 8 * scale)
+        pygame.draw.rect(surf, c, rect, lw + 1, border_radius=max(1, scale))
+        _stroke(surf, c, [(6 * scale, 12 * scale), (11 * scale, 12 * scale)], lw + 1)
+        _stroke(surf, c, [(10 * scale, 10 * scale), (12 * scale, 12 * scale), (10 * scale, 14 * scale)], lw)
+    elif key == "ritual":
+        tri = [(mid, 2 * scale), (11 * scale, 11 * scale), (3 * scale, 11 * scale)]
+        pygame.draw.polygon(surf, c, tri, lw + 1)
+        pygame.draw.circle(surf, c, (mid, 8 * scale), max(1, scale), 0)
+    elif key == "gold":
+        pygame.draw.circle(surf, c, (mid, mid), 5 * scale, lw + 1)
+        pygame.draw.circle(surf, c, (mid, mid), max(1, scale), 0)
+    elif key == "xp":
+        _stroke(surf, c, [(mid, 2 * scale), (mid, 12 * scale)], lw)
+        _stroke(surf, c, [(2 * scale, mid), (12 * scale, mid)], lw)
+        _stroke(surf, c, [(4 * scale, 4 * scale), (10 * scale, 10 * scale)], lw)
+        _stroke(surf, c, [(10 * scale, 4 * scale), (4 * scale, 10 * scale)], lw)
+    else:
+        # Safe fallback: compact marker, never tofu squares.
+        pygame.draw.circle(surf, c, (mid, mid), 4 * scale, lw)
+        pygame.draw.circle(surf, c, (mid, mid), max(1, scale), 0)
+
+    _ICON_CACHE[cache_key] = surf
+    return surf
 
 
 def render_icon(
@@ -55,13 +149,12 @@ def render_icon(
     font: pygame.font.Font,
 ):
     """Render one semantic icon through a single API."""
-    key = normalize_icon_name(icon_name)
-    glyph = ICON_GLYPHS.get(key, ICON_GLYPHS["unknown"])
-    txt = font.render(glyph, True, color)
-    scale = max(1, int(size or 1))
-    if scale > 1:
-        txt = pygame.transform.smoothscale(txt, (int(txt.get_width() * scale), int(txt.get_height() * scale)))
-    surface.blit(txt, pos)
+    icon = _render_icon_surface(icon_name, color, size)
+    if icon is None or icon.get_width() <= 0:
+        label = FALLBACK_TEXT.get(normalize_icon_name(icon_name), "?")
+        surface.blit(font.render(label, True, color), pos)
+        return
+    surface.blit(icon, pos)
 
 
 def draw_icon_with_value(
@@ -75,18 +168,16 @@ def draw_icon_with_value(
     size: int = 1,
 ) -> int:
     """Draw icon + numeric value and return the next x cursor position."""
-    key = normalize_icon_name(icon_name)
-    glyph = ICON_GLYPHS.get(key, ICON_GLYPHS["unknown"])
-    icon = font.render(glyph, True, color)
-    scale = max(1, int(size or 1))
-    if scale > 1:
-        icon = pygame.transform.smoothscale(icon, (int(icon.get_width() * scale), int(icon.get_height() * scale)))
-    surface.blit(icon, (x, y))
+    icon = _render_icon_surface(icon_name, color, size)
+    if icon is None or icon.get_width() <= 0:
+        label = FALLBACK_TEXT.get(normalize_icon_name(icon_name), "?")
+        icon = font.render(label, True, color)
 
+    surface.blit(icon, (x, y))
     txt = font.render(str(int(value or 0)), True, color)
     vy = y + max(0, (icon.get_height() - txt.get_height()) // 2)
     surface.blit(txt, (x + icon.get_width() + 4, vy))
-    return x + icon.get_width() + txt.get_width() + 14
+    return x + icon.get_width() + txt.get_width() + 12
 
 
 def icon_for_effect(effect_type: str) -> str:
