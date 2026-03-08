@@ -50,8 +50,8 @@ class CombatLayout:
 def build_combat_layout(w: int, h: int) -> CombatLayout:
     pad = max(12, int(min(w, h) * 0.02))
     top_h = max(74, int(h * 0.085))
-    enemy_h = max(250, int(h * 0.30))
-    center_h = max(108, int(h * 0.12))
+    enemy_h = max(188, int(h * 0.19))
+    center_h = max(92, int(h * 0.095))
     status_h = max(150, int(h * 0.18))
     hand_h = max(190, int(h * 0.22))
 
