@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from pathlib import Path
 
@@ -6,7 +6,7 @@ import pygame
 
 from game.settings import ASSETS_DIR, INTERNAL_HEIGHT, INTERNAL_WIDTH
 from game.ui.system.typography import ChakanaTypography, SMALL_FONT
-from game.visual import get_visual_engine
+from game.visual import get_portrait_pipeline, get_visual_engine
 
 
 class SoundManager:
@@ -68,6 +68,7 @@ class AssetManager:
     def __init__(self):
         self._cache = {}
         self._visual = None
+        self._portrait = None
         self._visual_log_once = set()
 
     def _load_image(self, path: Path, fallback_size: tuple[int, int], fill=(60, 55, 90), fallback_label: str = ""):
@@ -85,6 +86,21 @@ class AssetManager:
             surf.blit(txt, (6, max(4, fallback_size[1] - txt.get_height() - 4)))
         return surf
 
+    def _try_portrait_pipeline(self, category: str, name: str, size: tuple[int, int], current: pygame.Surface | None):
+        cat = str(category or "").lower()
+        key = str(name or "").lower()
+        use_portrait = (
+            cat in {"avatar", "player"} or (cat == "overlays" and key in {"archon", "archon_oracle", "archon_panel"})
+        )
+        if not use_portrait:
+            return None
+        try:
+            if self._portrait is None:
+                self._portrait = get_portrait_pipeline()
+            return self._portrait.resolve_for_ui(key, size, current_fallback=current)
+        except Exception:
+            return None
+
     def sprite(self, category: str, name: str, size: tuple[int, int], fallback=(60, 55, 90)):
         key = (category, name, size)
         if key in self._cache:
@@ -93,9 +109,12 @@ class AssetManager:
         lbl = name if category == "cards" else ""
         if path.exists():
             img = self._load_image(path, size, fallback, fallback_label=lbl)
+            portrait_img = self._try_portrait_pipeline(category, name, size, img)
+            if portrait_img is not None:
+                img = portrait_img
         else:
-            img = None
-            if category in {"avatar", "player", "relics", "biomes", "starters", "emblems", "overlays"}:
+            img = self._try_portrait_pipeline(category, name, size, None)
+            if img is None and category in {"avatar", "player", "relics", "biomes", "starters", "emblems", "overlays"}:
                 try:
                     if self._visual is None:
                         self._visual = get_visual_engine()
@@ -164,4 +183,3 @@ class Renderer:
         px = max(0, min(INTERNAL_WIDTH - 1, px))
         py = max(0, min(INTERNAL_HEIGHT - 1, py))
         return px, py
-

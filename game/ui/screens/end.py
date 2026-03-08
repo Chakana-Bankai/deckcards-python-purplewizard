@@ -32,7 +32,7 @@ class EndScreen:
         self.credits_lines = [
             "CHAKANA : PURPLE WIZARD",
             "",
-            "Chakana Studio",
+            "CHAKANA STUDIO",
             "",
             "Creado por:",
             "Mauricio Olivares Chacana",
@@ -142,7 +142,7 @@ class EndScreen:
                 title = "Creditos"
                 s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (840, 230))
                 for i, line in enumerate(self.credits_lines):
-                    col = UI_THEME["gold"] if line in {"CHAKANA : PURPLE WIZARD", "Chakana Studio", "Creado por:", "Inspirado en la Cosmovisión Andina", "Dedicado a Tomás"} else UI_THEME["text"]
+                    col = UI_THEME["gold"] if line in {"CHAKANA : PURPLE WIZARD", "CHAKANA STUDIO", "Creado por:", "Inspirado en la Cosmovisión Andina", "Dedicado a Tomás"} else UI_THEME["text"]
                     s.blit(self.app.font.render(line, True, col), (620, 308 + i * 42))
                 labels = {"primary": "Finalizar", "menu": "Volver al menu"}
         else:
@@ -158,3 +158,4 @@ class EndScreen:
             pygame.draw.rect(s, UI_THEME["gold"] if self.victory else UI_THEME["accent_violet"], r, 2, border_radius=12)
             txt = self.app.small_font.render(labels[k], True, UI_THEME["text"])
             s.blit(txt, txt.get_rect(center=r.center))
+
