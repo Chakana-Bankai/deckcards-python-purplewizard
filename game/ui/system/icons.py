@@ -15,6 +15,16 @@ ICON_ALIASES = {
     "sword": "damage",
     "shield": "block",
     "bolt": "energy",
+    "hp": "hp",
+    "vida": "hp",
+    "vitalidad": "hp",
+    "health": "hp",
+    "hearts": "hp",
+    "oro": "gold",
+    "mano": "hand",
+    "mazo": "deck",
+    "ecos": "discard",
+    "desgaste": "fatigue",
     "star": "harmony",
     "crack": "rupture",
     "eye": "scry",
@@ -25,6 +35,7 @@ ICON_ALIASES = {
 }
 
 FALLBACK_TEXT = {
+    "hp": "+",
     "damage": "*",
     "block": "#",
     "energy": "!",
@@ -59,6 +70,7 @@ _GENERATED_ICON_FAIL: set[tuple[str, int]] = set()
 def normalize_icon_name(icon_name: str) -> str:
     key = str(icon_name or "unknown").strip().lower()
     semantic = {
+        "hp",
         "damage",
         "block",
         "energy",
@@ -139,7 +151,12 @@ def _render_icon_surface(icon_name: str, color: tuple[int, int, int], size: int)
     lw = max(1, scale)
     mid = px // 2
 
-    if key == "damage":
+    if key == "hp":
+        pygame.draw.circle(surf, c, (mid, mid), 5 * scale, lw + 1)
+        pygame.draw.circle(surf, c, (mid, mid), max(1, scale), 0)
+        _stroke(surf, c, [(mid, 4 * scale), (mid, 10 * scale)], lw)
+        _stroke(surf, c, [(4 * scale, mid), (10 * scale, mid)], lw)
+    elif key == "damage":
         _stroke(surf, c, [(3 * scale, 11 * scale), (11 * scale, 3 * scale)], lw + 1)
         _stroke(surf, c, [(6 * scale, 3 * scale), (11 * scale, 3 * scale), (11 * scale, 8 * scale)], lw)
     elif key == "block":
@@ -192,8 +209,13 @@ def _render_icon_surface(icon_name: str, color: tuple[int, int, int], size: int)
     elif key == "level":
         pygame.draw.polygon(surf, c, [(mid, 2 * scale), (12 * scale, 8 * scale), (mid, 12 * scale), (2 * scale, 8 * scale)], lw)
     else:
-        pygame.draw.circle(surf, c, (mid, mid), 4 * scale, lw)
-        pygame.draw.circle(surf, c, (mid, mid), max(1, scale), 0)
+        label = FALLBACK_TEXT.get("unknown", "?")
+        try:
+            ff = pygame.font.Font(None, max(12, int(12 * scale)))
+            txt = ff.render(label, True, c)
+            surf.blit(txt, txt.get_rect(center=(mid, mid)).topleft)
+        except Exception:
+            pygame.draw.rect(surf, c, pygame.Rect(4 * scale, 4 * scale, 6 * scale, 6 * scale), lw)
 
     _ICON_CACHE[cache_key] = surf
     return surf
