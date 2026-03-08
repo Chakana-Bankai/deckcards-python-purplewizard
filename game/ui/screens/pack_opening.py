@@ -17,13 +17,15 @@ class PackOpeningScreen:
                 "title": "Pack Normal",
                 "subtitle": "Base estable",
                 "desc": "5 cartas de consistencia para escalar.",
+                "flavor": "Ruta segura para estabilizar la Trama.",
                 "color": (140, 128, 186),
             },
             {
                 "id": "rare_choice_pack",
                 "title": "Pack Raro",
                 "subtitle": "Alto impacto",
-                "desc": "Prioriza rarezas y control de ritmo.",
+                "desc": "Rarezas y control de ritmo.",
+                "flavor": "Mayor riesgo, mayor impacto tactico.",
                 "color": (116, 188, 228),
             },
             {
@@ -31,6 +33,7 @@ class PackOpeningScreen:
                 "title": "Pack Ritual",
                 "subtitle": "Armonia",
                 "desc": "Sinergias de rito y lectura astral.",
+                "flavor": "Afinado para sellos y preparacion.",
                 "color": (196, 138, 238),
             },
         ]
@@ -154,6 +157,34 @@ class PackOpeningScreen:
     def update(self, dt):
         _ = dt
 
+    def _render_pack_preview(self, s):
+        rect = pygame.Rect(1288, 160, 580, 340)
+        pygame.draw.rect(s, UI_THEME["panel_2"], rect, border_radius=14)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], rect, 2, border_radius=14)
+        s.blit(self.app.small_font.render("Preview de sobre", True, UI_THEME["gold"]), (rect.x + 14, rect.y + 12))
+
+        if self.selected_pack is None:
+            s.blit(self.app.tiny_font.render("Selecciona un pack para ver identidad.", True, UI_THEME["muted"]), (rect.x + 14, rect.y + 48))
+            s.blit(self.app.tiny_font.render("Normal: base | Raro: impacto | Ritual: sinergia.", True, UI_THEME["muted"]), (rect.x + 14, rect.y + 72))
+            return
+
+        pdef = self.pack_defs[self.selected_pack]
+        color = pdef["color"]
+        y = rect.y + 48
+        s.blit(self.app.big_font.render(pdef["title"], True, color), (rect.x + 14, y))
+        y += 44
+        s.blit(self.app.small_font.render(pdef["subtitle"], True, UI_THEME["text"]), (rect.x + 14, y))
+        y += 32
+        s.blit(self.app.tiny_font.render(pdef["desc"], True, UI_THEME["muted"]), (rect.x + 14, y))
+        y += 24
+        s.blit(self.app.tiny_font.render(pdef["flavor"], True, UI_THEME["text"]), (rect.x + 14, y))
+        y += 30
+
+        rule = "Regla: al abrir recibes 5 cartas."
+        if self.legendary_pick_mode:
+            rule = "Regla activa: evento raro, eliges 1 legendaria."
+        s.blit(self.app.tiny_font.render(rule, True, UI_THEME["gold"]), (rect.x + 14, y))
+
     def render(self, s):
         s.fill(UI_THEME["bg"])
         s.blit(self.app.big_font.render("Botin / Sobres", True, UI_THEME["gold"]), (760, 42))
@@ -175,9 +206,10 @@ class PackOpeningScreen:
                 pygame.draw.rect(glow, (*pdef["color"], 66), glow.get_rect(), border_radius=20)
                 s.blit(glow, (r.x - 9, r.y - 9))
 
-            s.blit(self.app.big_font.render(pdef["title"], True, UI_THEME["text"]), (r.x + 48, r.y + 48))
-            s.blit(self.app.small_font.render(pdef["subtitle"], True, pdef["color"]), (r.x + 48, r.y + 102))
-            s.blit(self.app.tiny_font.render(pdef["desc"], True, UI_THEME["muted"]), (r.x + 48, r.y + 138))
+            s.blit(self.app.big_font.render(pdef["title"], True, UI_THEME["text"]), (r.x + 48, r.y + 42))
+            s.blit(self.app.small_font.render(pdef["subtitle"], True, pdef["color"]), (r.x + 48, r.y + 96))
+            s.blit(self.app.tiny_font.render(pdef["desc"], True, UI_THEME["muted"]), (r.x + 48, r.y + 132))
+            s.blit(self.app.tiny_font.render(pdef["flavor"], True, UI_THEME["text"]), (r.x + 48, r.y + 156))
             if selected:
                 s.blit(self.app.tiny_font.render("Seleccionado", True, UI_THEME["gold"]), (r.x + 48, r.y + 248))
 
@@ -200,7 +232,9 @@ class PackOpeningScreen:
                         "hovered": hover,
                     },
                 )
-        self.preview.render(s, pygame.Rect(1288, 160, 580, 780), self.selected_card or self.hover_card, app=self.app)
+
+        self._render_pack_preview(s)
+        self.preview.render(s, pygame.Rect(1288, 510, 580, 430), self.selected_card or self.hover_card, app=self.app)
 
         enabled = self._confirm_enabled()
         pygame.draw.rect(s, UI_THEME["violet"] if enabled else (82, 78, 104), self.confirm_rect, border_radius=10)

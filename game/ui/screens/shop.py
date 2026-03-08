@@ -1,5 +1,6 @@
 import pygame
 
+from game.ui.components.card_effect_summary import infer_card_role, summarize_card_effect
 from game.ui.theme import UI_THEME
 from game.ui.system.brand import ChakanaBrand
 from game.ui.system.layout import anchor_bottom_center, anchor_top_right, build_three_column_layout, inset, safe_area
@@ -27,6 +28,7 @@ class ShopScreen:
         self.leave_rect = pygame.Rect(0, 0, 1, 1)
         self.merchant_rect = pygame.Rect(0, 0, 1, 1)
         self.hint_rect = pygame.Rect(0, 0, 1, 1)
+        self.preview_rect = pygame.Rect(0, 0, 1, 1)
         self._screen_size = (1920, 1080)
 
         self.particles = [
@@ -46,7 +48,9 @@ class ShopScreen:
         self.merchant_rect = pygame.Rect(shell.x, shell.y, shell.w, 180)
 
         body = pygame.Rect(shell.x, self.merchant_rect.bottom + 14, shell.w, shell.h - 194)
-        cards_row = pygame.Rect(body.x, body.y, body.w, max(220, body.h - 92))
+        preview_w = min(420, max(320, int(body.w * 0.26)))
+        cards_row = pygame.Rect(body.x, body.y, body.w - preview_w - 16, max(220, body.h - 92))
+        self.preview_rect = pygame.Rect(cards_row.right + 16, body.y, preview_w, cards_row.h)
         footer = pygame.Rect(body.x, cards_row.bottom + 8, body.w, body.bottom - (cards_row.bottom + 8))
 
         self.cheap_rect, self.rare_rect, self.artifact_rect = build_three_column_layout(cards_row, gap=24, ratios=(1, 1, 1))
@@ -111,14 +115,85 @@ class ShopScreen:
         pygame.draw.rect(s, tier_col, rect, 2, border_radius=14)
         s.blit(self.app.small_font.render(title, True, UI_THEME["gold"]), (rect.x + 14, rect.y + 12))
         s.blit(self.app.small_font.render(f"{price} oro", True, UI_THEME["text"]), (rect.x + 14, rect.y + 44))
-        s.blit(self.app.tiny_font.render(self.app.loc.t(card.get("name_key", card.get("id", "carta"))), True, UI_THEME["muted"]), (rect.x + 14, rect.y + 70))
+
+        name = self.app.loc.t(card.get("name_key", card.get("id", "carta")))
+        s.blit(self.app.tiny_font.render(name, True, UI_THEME["muted"]), (rect.x + 14, rect.y + 70))
+        role = infer_card_role(card).replace("_", " ").title()
+        rarity = str(card.get("rarity", "common")).title()
+        s.blit(self.app.tiny_font.render(f"{rarity} | {role}", True, UI_THEME["text"]), (rect.x + 14, rect.y + 92))
+
         art = self.app.assets.sprite("cards", card.get("id", ""), (rect.w - 26, rect.h - 128), fallback=(84, 66, 122))
         art_r = art.get_rect(center=(rect.centerx, rect.y + rect.h * 0.62))
         s.blit(art, art_r.topleft)
+        s.blit(self.app.tiny_font.render("Click para comprar", True, UI_THEME["gold"]), (rect.x + 14, rect.bottom - 28))
+
+    def _offer_hover_data(self, mouse_pos):
+        if self.cheap_rect.collidepoint(mouse_pos):
+            return {"type": "card", "title": "Rito menor", "price": self.cheap_price, "card": self.offer_card}
+        if self.rare_rect.collidepoint(mouse_pos):
+            return {"type": "card", "title": "Rito elevado", "price": self.rare_price, "card": self.rare_card}
+        if self.artifact_rect.collidepoint(mouse_pos):
+            return {"type": "artifact", "title": "Reliquia del Umbral", "price": self.artifact_price, "artifact": self.artifact}
+        return None
+
+    def _draw_preview_panel(self, s, hover_data):
+        pygame.draw.rect(s, UI_THEME["panel_2"], self.preview_rect, border_radius=14)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.preview_rect, 2, border_radius=14)
+        s.blit(self.app.small_font.render("Vista previa", True, UI_THEME["gold"]), (self.preview_rect.x + 14, self.preview_rect.y + 12))
+
+        if not hover_data:
+            s.blit(self.app.tiny_font.render("Pasa el cursor sobre una oferta.", True, UI_THEME["muted"]), (self.preview_rect.x + 14, self.preview_rect.y + 46))
+            s.blit(self.app.tiny_font.render("Veras costo, rol y efecto principal.", True, UI_THEME["muted"]), (self.preview_rect.x + 14, self.preview_rect.y + 70))
+            return
+
+        y = self.preview_rect.y + 46
+        s.blit(self.app.small_font.render(hover_data["title"], True, UI_THEME["text"]), (self.preview_rect.x + 14, y))
+        y += 28
+        s.blit(self.app.tiny_font.render(f"Costo: {hover_data['price']} oro", True, UI_THEME["gold"]), (self.preview_rect.x + 14, y))
+        y += 24
+
+        if hover_data["type"] == "card":
+            card = hover_data["card"]
+            name = self.app.loc.t(card.get("name_key", card.get("id", "carta")))
+            role = infer_card_role(card).replace("_", " ").title()
+            summary = summarize_card_effect(card)
+            effect_bits = []
+            for key, lbl in (("damage", "Danio"), ("block", "Bloqueo"), ("draw", "Robo"), ("scry", "Prever"), ("harmony_delta", "Armonia"), ("rupture", "Ruptura")):
+                val = int(summary.get(key, 0) or 0)
+                if val:
+                    if key == "harmony_delta":
+                        effect_bits.append(f"{lbl} {val:+d}")
+                    else:
+                        effect_bits.append(f"{lbl} {val}")
+            effect_line = " | ".join(effect_bits[:3]) if effect_bits else "Sinergia tactica variable."
+
+            s.blit(self.app.small_font.render(name, True, UI_THEME["text"]), (self.preview_rect.x + 14, y))
+            y += 30
+            s.blit(self.app.tiny_font.render(f"Rol: {role}", True, UI_THEME["muted"]), (self.preview_rect.x + 14, y))
+            y += 22
+            s.blit(self.app.tiny_font.render(effect_line[:52], True, UI_THEME["text"]), (self.preview_rect.x + 14, y))
+            y += 26
+            s.blit(self.app.tiny_font.render("Compra directa al sideboard.", True, UI_THEME["muted"]), (self.preview_rect.x + 14, y))
+            return
+
+        artifact = hover_data["artifact"]
+        rid = artifact.get("id", "artifact")
+        name = self.app.loc.t(artifact.get("name_key", rid))
+        desc = self.app.loc.t(artifact.get("text_key", "")) or "Reliquia antigua del comerciante."
+        s.blit(self.app.small_font.render(name, True, UI_THEME["text"]), (self.preview_rect.x + 14, y))
+        y += 30
+        s.blit(self.app.tiny_font.render("Tipo: Reliquia", True, UI_THEME["muted"]), (self.preview_rect.x + 14, y))
+        y += 22
+        for line in desc.split(".")[:4]:
+            txt = line.strip()
+            if txt:
+                s.blit(self.app.tiny_font.render(txt[:52], True, UI_THEME["text"]), (self.preview_rect.x + 14, y))
+                y += 22
 
     def render(self, s):
         self._refresh_layout(s)
         self.app.bg_gen.render_parallax(s, "hanan", 3030, pygame.time.get_ticks() * 0.015, particles_on=True)
+        mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
 
         veil = pygame.Surface(s.get_size(), pygame.SRCALPHA)
         veil.fill((18, 20, 34, 134))
@@ -155,6 +230,9 @@ class ShopScreen:
             line = line.strip()
             if line:
                 s.blit(self.app.tiny_font.render(line[:44], True, UI_THEME["text"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 104 + i * 20))
+        s.blit(self.app.tiny_font.render("Click para comprar", True, UI_THEME["gold"]), (self.artifact_rect.x + 14, self.artifact_rect.bottom - 28))
+
+        self._draw_preview_panel(s, self._offer_hover_data(mouse))
 
         pygame.draw.rect(s, UI_THEME["violet"], self.leave_rect, border_radius=10)
         leave_lbl = self.app.font.render(self.app.loc.t("shop_leave"), True, UI_THEME["text"])
