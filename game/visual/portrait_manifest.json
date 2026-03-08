@@ -1,6 +1,6 @@
 {
   "version": "portrait_v1",
-  "updated_at": 1772978968,
+  "updated_at": 1772982183,
   "items": {
     "chakana:132x132": {
       "role": "chakana",
@@ -66,6 +66,39 @@
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_stylized_112x152.png",
       "generated_at": 1772978968,
+      "version": "portrait_v1"
+    },
+    "chakana:84x84": {
+      "role": "chakana",
+      "style": "stylized",
+      "size": [
+        84,
+        84
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_stylized_84x84.png",
+      "generated_at": 1772981559,
+      "version": "portrait_v1"
+    },
+    "archon:112x126": {
+      "role": "archon",
+      "style": "stylized",
+      "size": [
+        112,
+        126
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_stylized_112x126.png",
+      "generated_at": 1772981647,
+      "version": "portrait_v1"
+    },
+    "archon:768x147": {
+      "role": "archon",
+      "style": "stylized",
+      "size": [
+        768,
+        147
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_stylized_768x147.png",
+      "generated_at": 1772982183,
       "version": "portrait_v1"
     }
   }

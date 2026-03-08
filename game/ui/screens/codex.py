@@ -1,11 +1,11 @@
 ﻿from __future__ import annotations
 
 import json
-from pathlib import Path
 
 import pygame
 
 from game.core.paths import data_dir
+from game.ui.components.card_renderer import render_card_preview
 from game.ui.theme import UI_THEME
 from game.ui.system.components import UIButton, UIPanel, UILabel
 
@@ -30,7 +30,9 @@ class CodexScreen:
         self.sections = self._load_sections()
         self.section_by_id = {str(s.get("id", "")): s for s in self.sections}
         self.lore_set_cards = self._load_lore_set_cards()
+        self.lore_set_relics = self._load_lore_set_relics()
         self.active_section_id = self.sections[0].get("id", "lore") if self.sections else "lore"
+        self.gallery_index = 0
 
         self.back_btn = pygame.Rect(42, 1008, 220, 52)
         self.tutorial_btn = pygame.Rect(280, 1008, 340, 52)
@@ -59,9 +61,18 @@ class CodexScreen:
                 out.append(extra)
         return out
 
-
     def _load_lore_set_cards(self) -> dict:
         path = data_dir() / "codex_cards_lore_set1.json"
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8-sig"))
+            if isinstance(payload, dict):
+                return payload
+        except Exception:
+            return {}
+        return {}
+
+    def _load_lore_set_relics(self) -> dict:
+        path = data_dir() / "codex_relics_lore_set1.json"
         try:
             payload = json.loads(path.read_text(encoding="utf-8-sig"))
             if isinstance(payload, dict):
@@ -81,6 +92,44 @@ class CodexScreen:
     def _active_section(self) -> dict:
         return self.section_by_id.get(self.active_section_id, self.sections[0] if self.sections else {})
 
+    def _codex_cards(self) -> list[dict]:
+        payload = self.lore_set_cards if isinstance(self.lore_set_cards, dict) else {}
+        items = payload.get("cards", []) if isinstance(payload.get("cards", []), list) else []
+        if not items:
+            return []
+        defs = self.app.card_defs if isinstance(self.app.card_defs, dict) else {}
+        out = []
+        for c in items:
+            cid = str(c.get("id", ""))
+            full = dict(defs.get(cid, {})) if cid in defs else {}
+            if not full:
+                full = {
+                    "id": cid,
+                    "name_key": str(c.get("name", cid)),
+                    "text_key": str(c.get("gameplay_text", "")),
+                    "role": str(c.get("role", "control")),
+                    "rarity": str(c.get("rarity", "common")),
+                    "cost": 1,
+                    "tags": list(c.get("tags", []) or []),
+                    "effects": [],
+                    "archetype": str(c.get("archetype", "")),
+                    "lore_text": str(c.get("lore_text", "")),
+                }
+            full.setdefault("id", cid)
+            full.setdefault("name_key", str(c.get("name", cid)))
+            full.setdefault("text_key", str(c.get("gameplay_text", "")))
+            full.setdefault("archetype", str(c.get("archetype", "")))
+            full.setdefault("lore_text", str(c.get("lore_text", "")))
+            out.append(full)
+        return out
+
+    def _codex_relics(self) -> list[dict]:
+        payload = self.lore_set_relics if isinstance(self.lore_set_relics, dict) else {}
+        items = payload.get("relics", []) if isinstance(payload.get("relics", []), list) else []
+        if items:
+            return [dict(x) for x in items if isinstance(x, dict) and x.get("id")]
+        return [dict(x) for x in list(getattr(self.app, "relics_data", []) or []) if isinstance(x, dict) and x.get("id")]
+
     def _dynamic_hints_for_section(self, sid: str) -> list[str]:
         run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
         if sid == "cards":
@@ -95,11 +144,12 @@ class CodexScreen:
                 hints.append(f"Lore Set 1: {set_total} cartas")
             if arc_line:
                 hints.append(arc_line)
-            cards = lore_payload.get("cards", []) if isinstance(lore_payload.get("cards", []), list) else []
-            if cards:
-                sample = cards[0]
-                hints.append(f"Ejemplo: {sample.get('name','-')} [{sample.get('archetype','-')}]")
+            hints.append("Usa flechas izquierda/derecha para explorar la galeria.")
             return hints
+        if sid == "relics":
+            relics = self._codex_relics()
+            tiers = sorted({str(r.get("tier", r.get("rarity", ""))).lower() for r in relics if isinstance(r, dict)})
+            return [f"Reliquias: {len(relics)}", f"Tiers: {', '.join(tiers) if tiers else 'sin datos'}", "Navega con flechas o rueda del mouse."]
         if sid == "enemies":
             total = len(getattr(self.app, "enemies_data", []) or [])
             return [f"Enemigos cargados: {total}"]
@@ -113,10 +163,6 @@ class CodexScreen:
             if biomes:
                 return [f"Ruta actual 1.0: {' -> '.join(biomes[:4])}"]
             return []
-        if sid == "relics":
-            relics = list(getattr(self.app, "relics_data", []) or [])
-            tiers = sorted({str(r.get("tier", r.get("rarity", ""))).lower() for r in relics if isinstance(r, dict)})
-            return [f"Reliquias: {len(relics)}", f"Tiers: {', '.join(tiers) if tiers else 'sin datos'}"]
         if sid == "rules":
             lvl = int(run.get("level", 1) or 1)
             xp = int(run.get("xp", 0) or 0)
@@ -143,6 +189,110 @@ class CodexScreen:
             lines.append(cur)
         return lines[:max_lines]
 
+    def _draw_gallery_shell(self, s: pygame.Surface) -> pygame.Rect:
+        gallery = pygame.Rect(self.right_panel.x + 18, self.right_panel.y + 86, self.right_panel.w - 36, self.right_panel.h - 190)
+        pygame.draw.rect(s, UI_THEME["panel_2"], gallery, border_radius=12)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], gallery, 1, border_radius=12)
+        return gallery
+
+    def _draw_cards_gallery(self, s: pygame.Surface):
+        cards = self._codex_cards()
+        if not cards:
+            s.blit(self.app.font.render("Sin cartas en Lore Set 1.", True, UI_THEME["muted"]), (self.right_panel.x + 20, self.right_panel.y + 90))
+            return
+
+        self.gallery_index = max(0, min(len(cards) - 1, int(self.gallery_index)))
+        gallery = self._draw_gallery_shell(s)
+
+        center_rect = pygame.Rect(0, 0, 520, 720)
+        center_rect.center = (gallery.centerx, gallery.centery + 12)
+        left_rect = pygame.Rect(0, 0, 290, 410)
+        left_rect.center = (gallery.centerx - 380, gallery.centery + 26)
+        right_rect = pygame.Rect(0, 0, 290, 410)
+        right_rect.center = (gallery.centerx + 380, gallery.centery + 26)
+
+        def _draw_card_slot(card, target_rect, angle=0):
+            tmp = pygame.Surface((target_rect.w, target_rect.h), pygame.SRCALPHA)
+            render_card_preview(tmp, tmp.get_rect(), card, theme=UI_THEME, state={"app": self.app, "ctx": None, "selected": False, "hovered": False})
+            if angle != 0:
+                tmp = pygame.transform.rotozoom(tmp, angle, 1.0)
+            tr = tmp.get_rect(center=target_rect.center)
+            s.blit(tmp, tr.topleft)
+
+        if self.gallery_index > 0:
+            _draw_card_slot(cards[self.gallery_index - 1], left_rect, angle=8)
+        if self.gallery_index < len(cards) - 1:
+            _draw_card_slot(cards[self.gallery_index + 1], right_rect, angle=-8)
+        _draw_card_slot(cards[self.gallery_index], center_rect, angle=0)
+
+        current = cards[self.gallery_index]
+        label = f"{self.gallery_index + 1}/{len(cards)}  {current.get('name_key', current.get('id', ''))}"
+        s.blit(self.app.small_font.render(label, True, UI_THEME["gold"]), (gallery.x + 16, gallery.bottom - 74))
+        s.blit(self.app.tiny_font.render(str(current.get("archetype", "")).replace("_", " "), True, UI_THEME["muted"]), (gallery.x + 16, gallery.bottom - 48))
+
+    def _draw_relics_gallery(self, s: pygame.Surface):
+        relics = self._codex_relics()
+        if not relics:
+            s.blit(self.app.font.render("Sin reliquias cargadas.", True, UI_THEME["muted"]), (self.right_panel.x + 20, self.right_panel.y + 90))
+            return
+
+        self.gallery_index = max(0, min(len(relics) - 1, int(self.gallery_index)))
+        gallery = self._draw_gallery_shell(s)
+
+        center_rect = pygame.Rect(0, 0, 520, 690)
+        center_rect.center = (gallery.centerx, gallery.centery + 4)
+        left_rect = pygame.Rect(0, 0, 280, 380)
+        left_rect.center = (gallery.centerx - 360, gallery.centery + 24)
+        right_rect = pygame.Rect(0, 0, 280, 380)
+        right_rect.center = (gallery.centerx + 360, gallery.centery + 24)
+
+        def _draw_relic_slot(item: dict, target_rect: pygame.Rect, angle: float = 0.0):
+            tmp = pygame.Surface((target_rect.w, target_rect.h), pygame.SRCALPHA)
+            panel = tmp.get_rect()
+            pygame.draw.rect(tmp, UI_THEME["panel"], panel, border_radius=12)
+            pygame.draw.rect(tmp, UI_THEME["gold"], panel, 2, border_radius=12)
+            rid = str(item.get("id", "relic"))
+            name = self.app.loc.t(item.get("name_key", "")) if item.get("name_key") else str(item.get("name", rid))
+            desc = self.app.loc.t(item.get("text_key", "")) if item.get("text_key") else str(item.get("effect", ""))
+            lore = str(item.get("lore_text") or item.get("lore") or "")
+            tier = str(item.get("tier", item.get("rarity", "common"))).title()
+
+            art_slot = pygame.Rect(panel.x + 18, panel.y + 42, panel.w - 36, int(panel.h * 0.42))
+            pygame.draw.rect(tmp, UI_THEME["panel_2"], art_slot, border_radius=8)
+            pygame.draw.rect(tmp, UI_THEME["accent_violet"], art_slot, 1, border_radius=8)
+            art = self.app.assets.sprite("relics", rid, (192, 192), fallback=(96, 76, 124))
+            iw, ih = art.get_size()
+            if iw > 0 and ih > 0:
+                scale = min((art_slot.w - 10) / float(iw), (art_slot.h - 10) / float(ih))
+                tw, th = max(1, int(iw * scale)), max(1, int(ih * scale))
+                img = pygame.transform.scale(art, (tw, th))
+                tmp.blit(img, img.get_rect(center=art_slot.center).topleft)
+
+            tmp.blit(self.app.tiny_font.render(tier, True, UI_THEME["gold"]), (panel.x + 18, panel.y + 12))
+            tmp.blit(self.app.small_font.render(UILabel.clamp(name, self.app.small_font, panel.w - 34), True, UI_THEME["text"]), (panel.x + 18, art_slot.bottom + 10))
+            y = art_slot.bottom + 40
+            for line in self._wrap(desc or "Reliquia ancestral.", panel.w - 34, max_lines=2):
+                tmp.blit(self.app.tiny_font.render(line, True, UI_THEME["muted"]), (panel.x + 18, y))
+                y += 20
+            if lore:
+                tmp.blit(self.app.tiny_font.render(UILabel.clamp(lore, self.app.tiny_font, panel.w - 34), True, UI_THEME["text"]), (panel.x + 18, min(panel.bottom - 26, y + 8)))
+
+            if angle != 0:
+                tmp = pygame.transform.rotozoom(tmp, angle, 1.0)
+            tr = tmp.get_rect(center=target_rect.center)
+            s.blit(tmp, tr.topleft)
+
+        if self.gallery_index > 0:
+            _draw_relic_slot(relics[self.gallery_index - 1], left_rect, angle=7)
+        if self.gallery_index < len(relics) - 1:
+            _draw_relic_slot(relics[self.gallery_index + 1], right_rect, angle=-7)
+        _draw_relic_slot(relics[self.gallery_index], center_rect, angle=0)
+
+        current = relics[self.gallery_index]
+        name = self.app.loc.t(current.get("name_key", "")) if current.get("name_key") else str(current.get("name", current.get("id", "-")))
+        label = f"{self.gallery_index + 1}/{len(relics)}  {name}"
+        s.blit(self.app.small_font.render(UILabel.clamp(label, self.app.small_font, gallery.w - 40), True, UI_THEME["gold"]), (gallery.x + 16, gallery.bottom - 74))
+
     def on_enter(self):
         self._build_section_buttons()
 
@@ -153,6 +303,21 @@ class CodexScreen:
                 return
             if event.key == pygame.K_F1:
                 self.app.toggle_language()
+                return
+            if self.active_section_id in {"cards", "relics"}:
+                items = self._codex_cards() if self.active_section_id == "cards" else self._codex_relics()
+                if items:
+                    if event.key in (pygame.K_RIGHT, pygame.K_d):
+                        self.gallery_index = min(len(items) - 1, self.gallery_index + 1)
+                        return
+                    if event.key in (pygame.K_LEFT, pygame.K_a):
+                        self.gallery_index = max(0, self.gallery_index - 1)
+                        return
+
+        if event.type == pygame.MOUSEWHEEL and self.active_section_id in {"cards", "relics"}:
+            items = self._codex_cards() if self.active_section_id == "cards" else self._codex_relics()
+            if items:
+                self.gallery_index = max(0, min(len(items) - 1, self.gallery_index - int(event.y)))
                 return
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -169,6 +334,7 @@ class CodexScreen:
                 if rect.collidepoint(pos):
                     self.app.sfx.play("ui_click")
                     self.active_section_id = sid
+                    self.gallery_index = 0
                     return
 
     def update(self, dt):
@@ -194,27 +360,39 @@ class CodexScreen:
             sec = self.section_by_id.get(sid, {})
             label = str(sec.get("title", sid)).strip() or sid
             role = "execute" if sid == self.active_section_id else "default"
-            UIButton(rect, label, role=role, premium=(sid == self.active_section_id)).draw(
-                s,
-                self.app.tiny_font,
-                hovered=rect.collidepoint(mouse),
-            )
+            UIButton(rect, label, role=role, premium=(sid == self.active_section_id)).draw(s, self.app.tiny_font, hovered=rect.collidepoint(mouse))
 
         active = self._active_section()
+        active_id = str(active.get("id", ""))
         title = str(active.get("title", "Codex"))
         s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (self.right_panel.x + 20, self.right_panel.y + 20))
 
-        y = self.right_panel.y + 84
-        for line in list(active.get("items", [])):
-            for wrapped in self._wrap(f"- {line}", self.right_panel.w - 40, max_lines=3):
-                s.blit(self.app.font.render(wrapped, True, UI_THEME["text"]), (self.right_panel.x + 20, y))
-                y += 30
-            y += 8
+        if active_id == "cards":
+            self._draw_cards_gallery(s)
+            y = self.right_panel.bottom - 86
+            for hint in self._dynamic_hints_for_section("cards")[:3]:
+                txt = UILabel.clamp(hint, self.app.tiny_font, self.right_panel.w - 40)
+                s.blit(self.app.tiny_font.render(txt, True, UI_THEME["muted"]), (self.right_panel.x + 20, y))
+                y += 20
+        elif active_id == "relics":
+            self._draw_relics_gallery(s)
+            y = self.right_panel.bottom - 86
+            for hint in self._dynamic_hints_for_section("relics")[:3]:
+                txt = UILabel.clamp(hint, self.app.tiny_font, self.right_panel.w - 40)
+                s.blit(self.app.tiny_font.render(txt, True, UI_THEME["muted"]), (self.right_panel.x + 20, y))
+                y += 20
+        else:
+            y = self.right_panel.y + 84
+            for line in list(active.get("items", [])):
+                for wrapped in self._wrap(f"- {line}", self.right_panel.w - 40, max_lines=3):
+                    s.blit(self.app.font.render(wrapped, True, UI_THEME["text"]), (self.right_panel.x + 20, y))
+                    y += 30
+                y += 8
 
-        for hint in self._dynamic_hints_for_section(str(active.get("id", ""))):
-            txt = UILabel.clamp(hint, self.app.small_font, self.right_panel.w - 40)
-            s.blit(self.app.small_font.render(txt, True, UI_THEME["muted"]), (self.right_panel.x + 20, y))
-            y += 28
+            for hint in self._dynamic_hints_for_section(active_id):
+                txt = UILabel.clamp(hint, self.app.small_font, self.right_panel.w - 40)
+                s.blit(self.app.small_font.render(txt, True, UI_THEME["muted"]), (self.right_panel.x + 20, y))
+                y += 28
 
         UIButton(self.back_btn, "Volver", role="default", premium=False).draw(s, self.app.font, hovered=self.back_btn.collidepoint(mouse))
         UIButton(self.tutorial_btn, "Iniciar Tutorial Guiado", role="end_turn", premium=True).draw(s, self.app.font, hovered=self.tutorial_btn.collidepoint(mouse))

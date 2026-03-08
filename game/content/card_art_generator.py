@@ -24,10 +24,24 @@ class PromptBuilder:
             return "control"
         return "spirit"
 
+    def archetype_mood(self, card: dict) -> tuple[str, str, str, str]:
+        arch = str(card.get("archetype", "")).lower()
+        if arch == "cosmic_warrior":
+            return ("crimson-magenta", "hard rim light", "blade sigils", "burst arcs")
+        if arch == "harmony_guardian":
+            return ("teal-gold", "soft frontal glow", "shield mandala", "stable rings")
+        if arch == "oracle_of_fate":
+            return ("indigo-cyan", "split mystic light", "eye geometry", "spiral streams")
+        return ("violet-neutral", "balanced glow", "chakana glyph", "arc traces")
+
     def build_entry(self, card: dict) -> dict:
         cid = card.get("id", "unknown")
         ctype = self.family_for(card)
-        prompt = f"chakana card::{cid}::{ctype} layered sacred geometry with glyph focus"
+        palette, lighting, symbols, energy = self.archetype_mood(card)
+        prompt = (
+            f"chakana card::{cid}::{ctype} layered sacred geometry, palette {palette}, "
+            f"lighting {lighting}, symbol composition {symbols}, energy pattern {energy}"
+        )
         return {
             "id": cid,
             "card_type": ctype,

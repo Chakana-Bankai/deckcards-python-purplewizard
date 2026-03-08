@@ -1,6 +1,6 @@
 {
   "version": "chakana_audio_v1",
-  "generated_at": 1772976760,
+  "generated_at": 1772985747,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
@@ -260,6 +260,26 @@
       "seed": 907560450,
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_boss_b.wav",
       "generation_date": 1772976760,
+      "version": "chakana_audio_v1"
+    },
+    "map_kay_b": {
+      "track_id": "map_kay_b",
+      "type": "bgm",
+      "context": "map_kay",
+      "variant": "b",
+      "seed": 1330152673,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\map_kay_b.wav",
+      "generation_date": 1772981877,
+      "version": "chakana_audio_v1"
+    },
+    "combat_boss_a": {
+      "track_id": "combat_boss_a",
+      "type": "bgm",
+      "context": "combat_boss",
+      "variant": "a",
+      "seed": 132705869,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_boss_a.wav",
+      "generation_date": 1772985747,
       "version": "chakana_audio_v1"
     }
   }

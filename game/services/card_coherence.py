@@ -37,9 +37,17 @@ def _text_numbers(text: str) -> list[int]:
     return [int(x) for x in re.findall(r"\d+", str(text or ""))]
 
 
+def _variety_signature(card: dict, stats: dict[str, int]) -> tuple:
+    effects = tuple((str(e.get("type", "")).lower(), int(e.get("amount", 0) or 0)) for e in (card.get("effects", []) or []) if isinstance(e, dict))
+    kpi = tuple(sorted((k, int(v)) for k, v in stats.items() if int(v or 0) != 0))
+    tags = tuple(sorted(str(t).lower() for t in (card.get("tags", []) or [])))
+    return (int(card.get("cost", 0) or 0), kpi, effects, tags)
+
+
 def validate_cards_coherence(cards: list[dict]) -> dict:
     issues: list[CardCoherenceIssue] = []
     checked = 0
+    seen_signatures: dict[tuple, str] = {}
     for card in cards or []:
         if not isinstance(card, dict):
             continue
@@ -92,6 +100,13 @@ def validate_cards_coherence(cards: list[dict]) -> dict:
         if text_nums and stat_candidates:
             if not any(n in stat_candidates for n in text_nums):
                 issues.append(CardCoherenceIssue(cid, "warn", "text_vs_kpi", f"text_nums={text_nums} kpi={stat_candidates}"))
+
+        sig = _variety_signature(card, stats)
+        prev = seen_signatures.get(sig)
+        if prev is None:
+            seen_signatures[sig] = cid
+        else:
+            issues.append(CardCoherenceIssue(cid, "warn", "duplicate_signature", f"Duplica estructura de {prev}"))
 
     return {
         "checked": checked,

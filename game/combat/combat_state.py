@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from game.combat.actions import ActionQueue, ApplyStatus, DealDamage, GainBlock
 from game.combat.card import CardDef, CardInstance
@@ -9,6 +9,7 @@ from game.core.paths import data_dir
 from game.core.rng import SeededRNG
 from game.core.safe_io import load_json
 from game.telemetry.logger import TelemetryLogger
+from game.services.deck_integrity import audit_and_repair_deck_piles
 
 
 DEFAULT_CARDS = [
@@ -90,6 +91,9 @@ class CombatState:
         self.fatigue_growth = int(self.balance.get("fatigue_growth", 1) or 1)
         self.fatigue_counter = 0
         self.telemetry = TelemetryLogger("INFO")
+        self._deck_expected_total = len(self.draw_pile) + len(self.hand) + len(self.discard_pile) + len(self.exhaust_pile)
+        self._deck_draw_log_budget = 8
+        self._deck_in_flight = 0
         self.start_player_turn()
 
     def _reset_combat_player_state(self):
@@ -160,13 +164,15 @@ class CombatState:
             max_hp = hp_range[1] if isinstance(hp_range, list) and len(hp_range) > 1 else min_hp
             hp = self.rng.randint(min_hp, max_hp)
             tier = str(item.get("tier", "common")).lower().strip()
-            tier_target_hp = {
-                "normal": 40,
-                "common": 40,
-                "elite": 70,
-                "boss": 100,
-            }
-            hp = int(tier_target_hp.get(tier, hp))
+            # Keep data-driven HP while clamping outliers for fair pacing.
+            if tier in {"normal", "common"}:
+                hp = max(30, min(60, int(hp)))
+            elif tier == "elite":
+                hp = max(72, min(130, int(hp)))
+            elif tier == "boss":
+                hp = max(170, min(260, int(hp)))
+            else:
+                hp = int(max(20, hp))
             pattern = item.get("pattern") or [{"intent": "attack", "value": [5, 5]}]
             en = Enemy(item.get("id", "dummy"), item.get("name_key", "enemy_voidling_name"), hp, hp, pattern)
             en.fable_lesson_key = item.get("fable_lesson_key", "duda")
@@ -225,6 +231,35 @@ class CombatState:
                         }
                     )
 
+    def _deck_counts(self) -> dict:
+        return {
+            "draw": len(self.draw_pile),
+            "hand": len(self.hand),
+            "discard": len(self.discard_pile),
+            "exhaust": len(self.exhaust_pile),
+        }
+
+    def _deck_log(self, event: str):
+        c = self._deck_counts()
+        print(f"[deck] {event} draw={c['draw']} hand={c['hand']} discard={c['discard']} exhaust={c['exhaust']}")
+
+    def _audit_deck_integrity(self, reason: str):
+        report = audit_and_repair_deck_piles(
+            self.draw_pile,
+            self.hand,
+            self.discard_pile,
+            self.exhaust_pile,
+            hand_max=self.hand_max,
+            expected_total=max(0, int(self._deck_expected_total) - int(self._deck_in_flight)),
+        )
+        if report.get("repaired"):
+            self._deck_log(f"repair:{reason}")
+        for issue in report.get("issues", []):
+            if str(issue).startswith("missing_cards_detected"):
+                self.telemetry.info("deck_missing_cards", reason=reason, issue=issue)
+                print(f"[deck] warning {issue} reason={reason}")
+        return report
+
     def start_player_turn(self):
         self.turn += 1
         self.combat_events.append({"type":"turn_start"})
@@ -244,12 +279,14 @@ class CombatState:
         for _ in range(max(0, int(n or 0))):
             if len(self.hand) >= self.hand_max:
                 self.combat_events.append({"type": "draw_skipped", "reason": "hand_full", "hand": len(self.hand)})
+                self._deck_log("draw_skipped_hand_full")
                 break
             if not self.draw_pile:
                 if self.discard_pile:
                     self.draw_pile = self.discard_pile
                     self.discard_pile = []
                     self.rng.shuffle(self.draw_pile)
+                    self._deck_log("reshuffle_discard_into_draw")
                     if self.fatigue_enabled:
                         self.fatigue_counter += 1
                         self.telemetry.info("fatigue_reshuffle", fatigue_counter=self.fatigue_counter)
@@ -259,7 +296,12 @@ class CombatState:
                     self.telemetry.info("deck_empty_defeat", draw=0, discard=0)
                     break
             if self.draw_pile and len(self.hand) < self.hand_max:
-                self.hand.append(self.draw_pile.pop())
+                card = self.draw_pile.pop()
+                self.hand.append(card)
+                if self._deck_draw_log_budget > 0:
+                    self._deck_log(f"draw_card:{getattr(getattr(card, 'definition', None), 'id', '?')}")
+                    self._deck_draw_log_budget -= 1
+        self._audit_deck_integrity("draw")
 
     def play_card(self, hand_index: int, target_idx: int | None = None):
         if hand_index < 0 or hand_index >= len(self.hand):
@@ -282,6 +324,7 @@ class CombatState:
         if self.harmony_chaos_pending:
             self.harmony_chaos_pending = False
         self.hand.pop(hand_index)
+        self._deck_in_flight += 1
         harmony_packet = self.resolve_harmony_packet(card)
         self._track_harmony(card.definition.direction if hasattr(card.definition, "direction") else "ESTE")
         interpret_effects(self, card, target, card.definition.effects)
@@ -293,6 +336,9 @@ class CombatState:
             interpret_effects(self, card, target, card.definition.effects)
         if card not in self.exhaust_pile:
             self.discard_pile.append(card)
+        self._deck_in_flight = max(0, self._deck_in_flight - 1)
+        self._deck_log("play_to_discard")
+        self._audit_deck_integrity("play_card")
 
     def gain_harmony(self, amount: int):
         add = max(0, int(amount or 0))
@@ -305,7 +351,7 @@ class CombatState:
         now_ready = cur >= thr
         self.player["harmony_ready"] = now_ready
         if now_ready and not was_ready:
-            self.combat_events.append({"type": "harmony_ready", "message": "Armonía lista: desata tu sello."})
+            self.combat_events.append({"type": "harmony_ready", "message": "ArmonÃ­a lista: desata tu sello."})
             self.telemetry.info("harmony_ready_cross", current=cur, threshold=thr)
 
     def consume_harmony(self, amount: int) -> bool:
@@ -350,14 +396,14 @@ class CombatState:
         cur = int(self.player.get("harmony_current", 0) or 0)
         thr = max(1, int(self.player.get("harmony_ready_threshold", 6) or 6))
         if cur < thr:
-            return False, "Armonía no está LISTA"
+            return False, "ArmonÃ­a no estÃ¡ LISTA"
         if bool(self.player.get("harmony_seal_used", False)):
             return False, "SELLO ya usado en este combate"
         self.player["harmony_seal_used"] = True
         self.player["harmony_current"] = 0
         self.player["harmony_ready"] = False
         self.player["energy"] = int(self.player.get("energy", 0) or 0) + 2
-        self.combat_events.append({"type": "harmony_seal", "message": "SELLO activado: +2 Energía este turno."})
+        self.combat_events.append({"type": "harmony_seal", "message": "SELLO activado: +2 EnergÃ­a este turno."})
         return True, "SELLO activado"
 
     def end_turn(self):
@@ -367,6 +413,7 @@ class CombatState:
         self.enemy_turn()
         if self.result is None:
             self.start_player_turn()
+        self._audit_deck_integrity("end_turn")
 
     def enemy_turn(self):
         self.player["block"] = 0
@@ -485,9 +532,11 @@ class CombatState:
             self.discard_pile.remove(card)
         self.exhaust_pile.append(card)
         self.combat_events.append({"type":"exhaust"})
+        self._audit_deck_integrity("exhaust")
 
     def discard_card(self, card):
         self.discard_pile.append(card)
+        self._audit_deck_integrity("discard_card")
 
 
     def begin_scry(self, amount: int):
@@ -502,6 +551,7 @@ class CombatState:
             return
         self.draw_pile = self.draw_pile[:-n] + list(ordered_cards[::-1])
         self.scry_pending = []
+        self._audit_deck_integrity("scry_order")
 
     def apply_scry_keep(self, keep_card):
         pending = list(self.scry_pending or [])
@@ -516,6 +566,7 @@ class CombatState:
             self.discard_pile.append(c)
         self.draw_pile.append(keep)
         self.scry_pending = []
+        self._audit_deck_integrity("scry_keep")
 
     def _track_harmony(self, direction: str):
         d = (direction or "ESTE").upper()
@@ -566,3 +617,4 @@ class CombatState:
         events = self.combat_events[:]
         self.combat_events.clear()
         return events
+

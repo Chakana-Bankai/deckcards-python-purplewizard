@@ -1,0 +1,168 @@
+{
+  "set_id": "lore_relics_1",
+  "set_name": "Lore Relics Set 1",
+  "total_relics": 12,
+  "tiers": [
+    {
+      "id": "common",
+      "count": 4
+    },
+    {
+      "id": "rare",
+      "count": 5
+    },
+    {
+      "id": "major",
+      "count": 3
+    }
+  ],
+  "relics": [
+    {
+      "id": "violet_seal",
+      "name_key": "relic_violet_seal_name",
+      "text_key": "relic_violet_seal_desc",
+      "rarity": "common",
+      "tier": "common",
+      "tags": [
+        "energy",
+        "tempo"
+      ],
+      "lore_text": "El sello vibra antes del primer gesto."
+    },
+    {
+      "id": "chakana_thread",
+      "name_key": "relic_chakana_thread_name",
+      "text_key": "relic_chakana_thread_desc",
+      "rarity": "common",
+      "tier": "common",
+      "tags": [
+        "heal",
+        "run"
+      ],
+      "lore_text": "Un hilo antiguo cose la herida del viaje."
+    },
+    {
+      "id": "condor_feather",
+      "name_key": "relic_condor_feather_name",
+      "text_key": "relic_condor_feather_desc",
+      "rarity": "common",
+      "tier": "common",
+      "tags": [
+        "draw",
+        "tempo"
+      ],
+      "lore_text": "Donde cae la pluma, la vision llega primero."
+    },
+    {
+      "id": "puma_pulse",
+      "name_key": "relic_puma_pulse_name",
+      "text_key": "relic_puma_pulse_desc",
+      "rarity": "common",
+      "tier": "common",
+      "tags": [
+        "block",
+        "survival"
+      ],
+      "lore_text": "El pulso del puma protege antes del choque."
+    },
+    {
+      "id": "serpent_scale",
+      "name_key": "relic_serpent_scale_name",
+      "text_key": "relic_serpent_scale_desc",
+      "rarity": "rare",
+      "tier": "rare",
+      "tags": [
+        "block",
+        "rupture"
+      ],
+      "lore_text": "La escama desv?a y devuelve el veneno."
+    },
+    {
+      "id": "andean_knot",
+      "name_key": "relic_andean_knot_name",
+      "text_key": "relic_andean_knot_desc",
+      "rarity": "rare",
+      "tier": "rare",
+      "tags": [
+        "gold",
+        "progression"
+      ],
+      "lore_text": "Cada nudo guarda un pago para quien persiste."
+    },
+    {
+      "id": "solar_tumi",
+      "name_key": "relic_solar_tumi_name",
+      "text_key": "relic_solar_tumi_desc",
+      "rarity": "rare",
+      "tier": "rare",
+      "tags": [
+        "rupture",
+        "attack"
+      ],
+      "lore_text": "El filo solar abre grietas en el umbral."
+    },
+    {
+      "id": "oracle_lens",
+      "name_key": "relic_oracle_lens_name",
+      "text_key": "relic_oracle_lens_desc",
+      "rarity": "rare",
+      "tier": "rare",
+      "tags": [
+        "draw",
+        "control"
+      ],
+      "lore_text": "Mirar primero es decidir dos veces."
+    },
+    {
+      "id": "void_mirror",
+      "name_key": "relic_void_mirror_name",
+      "text_key": "relic_void_mirror_desc",
+      "rarity": "rare",
+      "tier": "rare",
+      "tags": [
+        "harmony",
+        "ritual"
+      ],
+      "lore_text": "El espejo devuelve un pulso que no es tuyo."
+    },
+    {
+      "id": "archon_fragment",
+      "name_key": "relic_archon_fragment_name",
+      "text_key": "relic_archon_fragment_desc",
+      "rarity": "legendary",
+      "tier": "major",
+      "tags": [
+        "energy",
+        "draw",
+        "legendary"
+      ],
+      "lore_text": "Un fragmento de arconte acelera la geometria."
+    },
+    {
+      "id": "crown_of_hanan",
+      "name_key": "relic_crown_of_hanan_name",
+      "text_key": "relic_crown_of_hanan_desc",
+      "rarity": "legendary",
+      "tier": "major",
+      "tags": [
+        "xp",
+        "progression",
+        "legendary"
+      ],
+      "lore_text": "La corona pesa, pero acelera tu ascenso."
+    },
+    {
+      "id": "seal_of_seven_paths",
+      "name_key": "relic_seal_of_seven_paths_name",
+      "text_key": "relic_seal_of_seven_paths_desc",
+      "rarity": "legendary",
+      "tier": "major",
+      "tags": [
+        "harmony",
+        "seal",
+        "legendary"
+      ],
+      "lore_text": "Siete rutas, un sello: entrar o quebrarse."
+    }
+  ]
+}

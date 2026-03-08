@@ -60,6 +60,7 @@ from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION
 from game.services.content_service import ContentService
 from game.services.asset_pipeline import AssetPipeline
 from game.services.audio_pipeline import AudioPipeline
+from game.services.archetype_distribution import enforce_archetype_rarity_distribution
 from game.visual import get_visual_engine
 from game.systems.reward_system import build_reward_boss, build_reward_guide, build_reward_normal
 from game.ui.screens.loading import LoadingScreen, DataLoadingScreen
@@ -465,7 +466,22 @@ class App:
                 self.running = False
 
     def _load_cards_data(self):
-        cards = self.content.cards if isinstance(self.content.cards, list) and self.content.cards else load_json(data_dir() / "cards.json", default=[])
+        cards_path = data_dir() / "cards.json"
+        cards = self.content.cards if isinstance(self.content.cards, list) and self.content.cards else load_json(cards_path, default=[])
+
+        # Startup-safe auto-fix for archetype rarity lock (12/7/1 per archetype).
+        if isinstance(cards, list) and cards:
+            fixed = enforce_archetype_rarity_distribution(cards)
+            cards = fixed.get("cards", cards)
+            for line in list(fixed.get("logs", []) or []):
+                print(line)
+            if bool(fixed.get("changed", False)):
+                try:
+                    atomic_write_json_if_changed(cards_path, cards)
+                    print("[content] archetype rarity auto-fix applied")
+                except Exception as exc:
+                    print(f"[content] archetype rarity auto-fix persist failed: {exc}")
+
         cooked = []
         for c in cards if isinstance(cards, list) else []:
             if not isinstance(c, dict) or not c.get("id"):
@@ -483,6 +499,9 @@ class App:
                 "family": (c.get("direction", "ESTE") or "ESTE").lower(),
                 "direction": c.get("direction", "ESTE"),
                 "strategy": c.get("strategy", {}),
+                "lore_text": c.get("lore_text", ""),
+                "effect_text": c.get("effect_text", c.get("text_key", "")),
+                "archetype": c.get("archetype", ""),
             })
         by_id = {c.get("id"): c for c in cooked if c.get("id")}
         if not by_id:
@@ -887,6 +906,76 @@ class App:
         player["hp"] = min(max_hp, hp + heal)
         print(f"[run] post-combat heal +{heal} ({player['hp']}/{max_hp})")
 
+    def _apply_relic_noncombat_hook(self, hook: str):
+        if not isinstance(self.run_state, dict):
+            return
+        owned = {str(rid) for rid in list(self.run_state.get("relics", []) or []) if rid}
+        if not owned:
+            return
+        by_id = {str(r.get("id")): r for r in list(self.relics_data or []) if isinstance(r, dict) and r.get("id")}
+        player = self.run_state.get("player", {}) if isinstance(self.run_state.get("player", {}), dict) else {}
+        for rid in sorted(owned):
+            relic = by_id.get(rid)
+            if not relic:
+                continue
+            hooks = {str(h).lower() for h in list(relic.get("hooks", []) or [])}
+            if str(hook).lower() not in hooks:
+                continue
+            for eff in list(relic.get("effects", []) or []):
+                et = str(eff.get("type", "")).lower()
+                amt = int(eff.get("amount", 0) or 0)
+                if et == "heal":
+                    max_hp = int(player.get("max_hp", 0) or 0)
+                    hp = int(player.get("hp", 0) or 0)
+                    if max_hp > 0 and hp > 0 and amt > 0:
+                        player["hp"] = min(max_hp, hp + amt)
+                elif et == "gain_gold":
+                    self.apply_run_rewards(gold=max(0, amt), source=f"relic_{rid}_{hook}")
+                elif et == "gain_xp":
+                    self.apply_run_rewards(xp=max(0, amt), source=f"relic_{rid}_{hook}")
+                elif et == "gain_max_hp":
+                    if amt > 0:
+                        player["max_hp"] = int(player.get("max_hp", 0) or 0) + amt
+                        player["hp"] = int(player.get("hp", 0) or 0) + amt
+            print(f"[relic] hook={hook} relic={rid}")
+
+    def _apply_relic_combat_start_effects(self, combat_state):
+        if not isinstance(self.run_state, dict) or combat_state is None:
+            return
+        owned = {str(rid) for rid in list(self.run_state.get("relics", []) or []) if rid}
+        if not owned:
+            return
+        by_id = {str(r.get("id")): r for r in list(self.relics_data or []) if isinstance(r, dict) and r.get("id")}
+        for rid in sorted(owned):
+            relic = by_id.get(rid)
+            if not relic:
+                continue
+            hooks = {str(h).lower() for h in list(relic.get("hooks", []) or [])}
+            if "combat_start" not in hooks:
+                continue
+            for eff in list(relic.get("effects", []) or []):
+                et = str(eff.get("type", "")).lower()
+                amt = int(eff.get("amount", 0) or 0)
+                if et in {"gain_energy", "energy", "gain_mana"}:
+                    combat_state.player["energy"] = int(combat_state.player.get("energy", 0) or 0) + amt
+                elif et == "draw":
+                    combat_state.draw(max(0, amt))
+                elif et in {"gain_block", "block"}:
+                    combat_state.player["block"] = int(combat_state.player.get("block", 0) or 0) + max(0, amt)
+                elif et == "heal":
+                    combat_state.heal_player(max(0, amt))
+                elif et == "rupture":
+                    combat_state.player["rupture"] = int(combat_state.player.get("rupture", 0) or 0) + amt
+                elif et == "harmony_delta":
+                    cur = int(combat_state.player.get("harmony_current", 0) or 0)
+                    hmax = int(combat_state.player.get("harmony_max", 10) or 10)
+                    combat_state.player["harmony_current"] = max(0, min(hmax, cur + amt))
+                elif et == "apply_break":
+                    target = next((e for e in list(combat_state.enemies or []) if getattr(e, "alive", False)), None)
+                    if target is not None and hasattr(target, "statuses"):
+                        target.statuses["break"] = int(target.statuses.get("break", 0) or 0) + max(0, amt)
+            print(f"[relic] hook=combat_start relic={rid}")
+
     def start_run_with_deck(self, starter_deck):
         base_deck = list(starter_deck or [])
         min_deck_size = 15
@@ -1199,6 +1288,7 @@ class App:
                 enemy_ids = [self.rng.choice(self._enemy_pool(node))]
             self.run_state["last_node_type"] = node_type
             base_state = CombatState(self.rng, self.run_state, enemy_ids, cards_data=self.cards_data, enemies_data=self.enemies_data)
+            self._apply_relic_combat_start_effects(base_state)
             early = int(self.run_state.get("combats_won", 0)) < 2 and node_type != "boss"
             if early:
                 for e in base_state.enemies:
@@ -1292,6 +1382,7 @@ class App:
 
         self.apply_run_rewards(xp=xp_gain, source=f"combat_{node_type}")
         self._apply_post_combat_recovery(node_type)
+        self._apply_relic_noncombat_hook("combat_win")
         enemy = self.current_combat.enemies[0] if self.current_combat and self.current_combat.enemies else None
         self.debug["last_lesson_key"] = getattr(enemy, "fable_lesson_key", "duda") if enemy else "duda"
         self.goto_reward(gold=bonus_gold)

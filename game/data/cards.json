@@ -107,7 +107,7 @@
     "id": "eco_de_sabiduria",
     "name_key": "Eco de Sabiduría",
     "text_key": "Copia la ultima carta jugada, Se agota",
-    "rarity": "rare",
+    "rarity": "common",
     "cost": 1,
     "target": "self",
     "tags": [
@@ -535,17 +535,27 @@
     "id": "fusion_espiritual",
     "name_key": "Fusión Espiritual",
     "text_key": "Limite de bloqueo +10",
-    "rarity": "rare",
+    "rarity": "legendary",
     "cost": 2,
     "target": "self",
     "tags": [
       "block",
-      "support"
+      "support",
+      "harmony",
+      "seal"
     ],
     "effects": [
       {
         "type": "double_block_cap",
         "amount": 10
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 2
+      },
+      {
+        "type": "gain_block",
+        "amount": 2
       }
     ],
     "family": "oeste",
@@ -562,9 +572,11 @@
     "archetype": "harmony_guardian",
     "artwork": "fusion_espiritual",
     "author": "Chakana Studio",
-    "effect_text": "Limite de bloqueo +10",
+    "effect_text": "Limite de bloqueo +10, Armonia +2, Bloqueo 2",
     "kpi": {
-      "support": 10
+      "support": 10,
+      "harmony": 2,
+      "block": 2
     },
     "lore_text": "La guardia nace del silencio.",
     "name": "Fusión Espiritual"
@@ -785,7 +797,7 @@
     "id": "muralla_de_piedra",
     "name_key": "Muralla de Piedra",
     "text_key": "Bloqueo 8",
-    "rarity": "common",
+    "rarity": "uncommon",
     "cost": 2,
     "target": "self",
     "tags": [
@@ -859,7 +871,7 @@
     "id": "piedra_ritual",
     "name_key": "Piedra Ritual",
     "text_key": "Armonia +1, Bloqueo 6, Ruptura 3",
-    "rarity": "rare",
+    "rarity": "uncommon",
     "cost": 2,
     "target": "enemy",
     "tags": [
@@ -962,7 +974,8 @@
     "target": "enemy",
     "tags": [
       "break",
-      "attack"
+      "attack",
+      "rupture"
     ],
     "effects": [
       {
@@ -1005,7 +1018,8 @@
     "target": "self",
     "tags": [
       "block",
-      "retain"
+      "retain",
+      "harmony"
     ],
     "effects": [
       {
@@ -1014,6 +1028,10 @@
       },
       {
         "type": "retain",
+        "amount": 1
+      },
+      {
+        "type": "harmony_delta",
         "amount": 1
       }
     ],
@@ -1032,10 +1050,11 @@
     "archetype": "harmony_guardian",
     "artwork": "resistencia_ancestral",
     "author": "Chakana Studio",
-    "effect_text": "Bloqueo 7, Retener",
+    "effect_text": "Bloqueo 7, Retener, Armonia +1",
     "kpi": {
       "block": 7,
-      "support": 1
+      "support": 1,
+      "harmony": 1
     },
     "lore_text": "La calma sostiene el umbral.",
     "name": "Resistencia Ancestral"
@@ -1152,12 +1171,18 @@
     "cost": 1,
     "target": "self",
     "tags": [
-      "block"
+      "block",
+      "harmony",
+      "seal"
     ],
     "effects": [
       {
         "type": "gain_block",
         "amount": 5
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 1
       }
     ],
     "family": "sur",
@@ -1174,9 +1199,10 @@
     "archetype": "harmony_guardian",
     "artwork": "sello_protector",
     "author": "Chakana Studio",
-    "effect_text": "Bloqueo 5",
+    "effect_text": "Bloqueo 5, Armonia +1",
     "kpi": {
-      "block": 5
+      "block": 5,
+      "harmony": 1
     },
     "lore_text": "La piedra recuerda cada juramento.",
     "name": "Sello Protector"
@@ -1185,7 +1211,7 @@
     "id": "silencio_interior",
     "name_key": "Silencio Interior",
     "text_key": "Debilita 3, Prever 1",
-    "rarity": "uncommon",
+    "rarity": "common",
     "cost": 2,
     "target": "enemy",
     "tags": [
@@ -1314,7 +1340,7 @@
   {
     "id": "hg_lore_01",
     "name_key": "Campo Protector Nova",
-    "text_key": "Bloqueo 6, Debilita 2",
+    "text_key": "Bloqueo 7, Debilita 2",
     "rarity": "uncommon",
     "cost": 2,
     "target": "enemy",
@@ -1325,7 +1351,7 @@
     "effects": [
       {
         "type": "gain_block",
-        "amount": 6
+        "amount": 7
       },
       {
         "type": "weaken_enemy",
@@ -1347,9 +1373,9 @@
     "archetype": "harmony_guardian",
     "artwork": "hg_lore_01",
     "author": "Chakana Studio",
-    "effect_text": "Bloqueo 6, Debilita 2",
+    "effect_text": "Bloqueo 7, Debilita 2",
     "kpi": {
-      "block": 6,
+      "block": 7,
       "support": 2
     },
     "lore_text": "Toda defensa es un ritual de equilibrio.",
@@ -1358,8 +1384,8 @@
   {
     "id": "cw_lore_02",
     "name_key": "Chakana de Luz Nova",
-    "text_key": "Armonia +1, Dano 10, Bloqueo 5",
-    "rarity": "legendary",
+    "text_key": "Armonia +1, Dano 11, Bloqueo 5",
+    "rarity": "uncommon",
     "cost": 3,
     "target": "enemy",
     "tags": [
@@ -1376,7 +1402,7 @@
       },
       {
         "type": "damage",
-        "amount": 10
+        "amount": 11
       },
       {
         "type": "gain_block",
@@ -1405,9 +1431,9 @@
     "archetype": "cosmic_warrior",
     "artwork": "cw_lore_02",
     "author": "Chakana Studio",
-    "effect_text": "Armonia +1, Dano 10, Bloqueo 5",
+    "effect_text": "Armonia +1, Dano 11, Bloqueo 5",
     "kpi": {
-      "damage": 10,
+      "damage": 11,
       "block": 5,
       "energy": 1,
       "harmony": 1
@@ -1418,8 +1444,8 @@
   {
     "id": "cw_lore_03",
     "name_key": "Eco de Sabiduría Nova",
-    "text_key": "Copia la ultima carta jugada, Se agota",
-    "rarity": "rare",
+    "text_key": "Copia la ultima carta jugada, Se agota, Dano 1",
+    "rarity": "uncommon",
     "cost": 1,
     "target": "self",
     "tags": [
@@ -1433,6 +1459,10 @@
       },
       {
         "type": "exhaust_self",
+        "amount": 1
+      },
+      {
+        "type": "damage",
         "amount": 1
       }
     ],
@@ -1450,8 +1480,9 @@
     "archetype": "cosmic_warrior",
     "artwork": "cw_lore_03",
     "author": "Chakana Studio",
-    "effect_text": "Copia la ultima carta jugada, Se agota",
+    "effect_text": "Copia la ultima carta jugada, Se agota, Dano 1",
     "kpi": {
+      "damage": 1,
       "combo": 1
     },
     "lore_text": "La chispa violeta rompe el vacio.",
@@ -1460,7 +1491,7 @@
   {
     "id": "cw_lore_04",
     "name_key": "Embate del Jaguar Nova",
-    "text_key": "Dano 7, Bloqueo 3",
+    "text_key": "Dano 8, Bloqueo 3",
     "rarity": "uncommon",
     "cost": 2,
     "target": "enemy",
@@ -1471,7 +1502,7 @@
     "effects": [
       {
         "type": "damage",
-        "amount": 7
+        "amount": 8
       },
       {
         "type": "gain_block",
@@ -1492,9 +1523,9 @@
     "archetype": "cosmic_warrior",
     "artwork": "cw_lore_04",
     "author": "Chakana Studio",
-    "effect_text": "Dano 7, Bloqueo 3",
+    "effect_text": "Dano 8, Bloqueo 3",
     "kpi": {
-      "damage": 7,
+      "damage": 8,
       "block": 3
     },
     "lore_text": "El filo escucha al cielo.",
@@ -1503,7 +1534,7 @@
   {
     "id": "hg_lore_05",
     "name_key": "Escudo de Luz Nova",
-    "text_key": "Bloqueo 4, Cura 1",
+    "text_key": "Bloqueo 5",
     "rarity": "common",
     "cost": 1,
     "target": "self",
@@ -1514,7 +1545,7 @@
     "effects": [
       {
         "type": "gain_block",
-        "amount": 4
+        "amount": 5
       },
       {
         "type": "heal",
@@ -1536,10 +1567,9 @@
     "archetype": "harmony_guardian",
     "artwork": "hg_lore_05",
     "author": "Chakana Studio",
-    "effect_text": "Bloqueo 4, Cura 1",
+    "effect_text": "Bloqueo 5",
     "kpi": {
-      "block": 4,
-      "support": 1
+      "block": 5
     },
     "lore_text": "Toda defensa es un ritual de equilibrio.",
     "name": "Escudo de Luz Nova"
@@ -1547,7 +1577,7 @@
   {
     "id": "hg_lore_06",
     "name_key": "Escudo del Chamán Nova",
-    "text_key": "Bloqueo 5, Prever 1",
+    "text_key": "Bloqueo 6, Prever 1",
     "rarity": "common",
     "cost": 1,
     "target": "self",
@@ -1558,7 +1588,7 @@
     "effects": [
       {
         "type": "gain_block",
-        "amount": 5
+        "amount": 6
       },
       {
         "type": "scry",
@@ -1580,9 +1610,9 @@
     "archetype": "harmony_guardian",
     "artwork": "hg_lore_06",
     "author": "Chakana Studio",
-    "effect_text": "Bloqueo 5, Prever 1",
+    "effect_text": "Bloqueo 6, Prever 1",
     "kpi": {
-      "block": 5,
+      "block": 6,
       "scry": 1
     },
     "lore_text": "La piedra recuerda cada juramento.",
@@ -1591,7 +1621,7 @@
   {
     "id": "hg_lore_07",
     "name_key": "Espíritu Guardián Nova",
-    "text_key": "Bloqueo 4, Ruptura 1",
+    "text_key": "Bloqueo 5, Ruptura 1",
     "rarity": "common",
     "cost": 1,
     "target": "enemy",
@@ -1602,7 +1632,7 @@
     "effects": [
       {
         "type": "gain_block",
-        "amount": 4
+        "amount": 5
       },
       {
         "type": "apply_break",
@@ -1624,9 +1654,9 @@
     "archetype": "harmony_guardian",
     "artwork": "hg_lore_07",
     "author": "Chakana Studio",
-    "effect_text": "Bloqueo 4, Ruptura 1",
+    "effect_text": "Bloqueo 5, Ruptura 1",
     "kpi": {
-      "block": 4,
+      "block": 5,
       "rupture": 1
     },
     "lore_text": "La calma sostiene el umbral.",
@@ -1635,7 +1665,7 @@
   {
     "id": "cw_lore_08",
     "name_key": "Estallido Arcano Nova",
-    "text_key": "Dano 5, Roba 1",
+    "text_key": "Dano 6, Roba 1",
     "rarity": "common",
     "cost": 1,
     "target": "enemy",
@@ -1646,7 +1676,7 @@
     "effects": [
       {
         "type": "damage",
-        "amount": 5
+        "amount": 6
       },
       {
         "type": "draw",
@@ -1668,9 +1698,9 @@
     "archetype": "cosmic_warrior",
     "artwork": "cw_lore_08",
     "author": "Chakana Studio",
-    "effect_text": "Dano 5, Roba 1",
+    "effect_text": "Dano 6, Roba 1",
     "kpi": {
-      "damage": 5,
+      "damage": 6,
       "draw": 1
     },
     "lore_text": "El filo escucha al cielo.",
@@ -1679,7 +1709,7 @@
   {
     "id": "cw_lore_09",
     "name_key": "Filo Astral Nova",
-    "text_key": "Dano 7",
+    "text_key": "Dano 8",
     "rarity": "common",
     "cost": 1,
     "target": "enemy",
@@ -1689,7 +1719,7 @@
     "effects": [
       {
         "type": "damage",
-        "amount": 7
+        "amount": 8
       }
     ],
     "family": "este",
@@ -1706,9 +1736,9 @@
     "archetype": "cosmic_warrior",
     "artwork": "cw_lore_09",
     "author": "Chakana Studio",
-    "effect_text": "Dano 7",
+    "effect_text": "Dano 8",
     "kpi": {
-      "damage": 7
+      "damage": 8
     },
     "lore_text": "Cada golpe abre una constelacion.",
     "name": "Filo Astral Nova"
@@ -1716,8 +1746,8 @@
   {
     "id": "cw_lore_10",
     "name_key": "Filo en Cadena Nova",
-    "text_key": "Dano 4",
-    "rarity": "uncommon",
+    "text_key": "Dano 5",
+    "rarity": "common",
     "cost": 1,
     "target": "enemy",
     "tags": [
@@ -1726,7 +1756,7 @@
     "effects": [
       {
         "type": "damage",
-        "amount": 4
+        "amount": 5
       },
       {
         "type": "draw_if_direction_played",
@@ -1748,9 +1778,9 @@
     "archetype": "cosmic_warrior",
     "artwork": "cw_lore_10",
     "author": "Chakana Studio",
-    "effect_text": "Dano 4",
+    "effect_text": "Dano 5",
     "kpi": {
-      "damage": 4
+      "damage": 5
     },
     "lore_text": "La voluntad traza el destino astral.",
     "name": "Filo en Cadena Nova"
@@ -1758,7 +1788,7 @@
   {
     "id": "hg_lore_11",
     "name_key": "Firmeza del Cuerpo Nova",
-    "text_key": "Cura 2, Bloqueo 2",
+    "text_key": "Bloqueo 3",
     "rarity": "common",
     "cost": 1,
     "target": "self",
@@ -1771,165 +1801,6 @@
         "type": "heal",
         "amount": 2
       },
-      {
-        "type": "gain_block",
-        "amount": 2
-      }
-    ],
-    "family": "sur",
-    "direction": "SUR",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "archetype": "harmony_guardian",
-    "artwork": "hg_lore_11",
-    "author": "Chakana Studio",
-    "effect_text": "Cura 2, Bloqueo 2",
-    "kpi": {
-      "block": 2,
-      "support": 2
-    },
-    "lore_text": "La calma sostiene el umbral.",
-    "name": "Firmeza del Cuerpo Nova"
-  },
-  {
-    "id": "of_lore_12",
-    "name_key": "Fragmento Celeste Nova",
-    "text_key": "Dano 5, Prever 2",
-    "rarity": "common",
-    "cost": 1,
-    "target": "enemy",
-    "tags": [
-      "attack",
-      "scry"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 5
-      },
-      {
-        "type": "scry",
-        "amount": 2
-      }
-    ],
-    "family": "este",
-    "direction": "ESTE",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "lectura_del_destino",
-        "observacion_sagrada",
-        "vision_del_condor"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "archetype": "oracle_of_fate",
-    "artwork": "of_lore_12",
-    "author": "Chakana Studio",
-    "effect_text": "Dano 5, Prever 2",
-    "kpi": {
-      "damage": 5,
-      "scry": 2
-    },
-    "lore_text": "El oraculo lee los ecos del tiempo.",
-    "name": "Fragmento Celeste Nova"
-  },
-  {
-    "id": "hg_lore_13",
-    "name_key": "Fusión Espiritual Nova",
-    "text_key": "Limite de bloqueo +10",
-    "rarity": "rare",
-    "cost": 2,
-    "target": "self",
-    "tags": [
-      "block",
-      "support"
-    ],
-    "effects": [
-      {
-        "type": "double_block_cap",
-        "amount": 10
-      }
-    ],
-    "family": "oeste",
-    "direction": "OESTE",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "archetype": "harmony_guardian",
-    "artwork": "hg_lore_13",
-    "author": "Chakana Studio",
-    "effect_text": "Limite de bloqueo +10",
-    "kpi": {
-      "support": 10
-    },
-    "lore_text": "Toda defensa es un ritual de equilibrio.",
-    "name": "Fusión Espiritual Nova"
-  },
-  {
-    "id": "cw_lore_14",
-    "name_key": "Garra Espiritual Nova",
-    "text_key": "Dano 4",
-    "rarity": "common",
-    "cost": 0,
-    "target": "enemy",
-    "tags": [
-      "attack"
-    ],
-    "effects": [
-      {
-        "type": "damage",
-        "amount": 4
-      }
-    ],
-    "family": "este",
-    "direction": "ESTE",
-    "role": "attack",
-    "strategy": {
-      "best_use": "Cerrar combates cortos con presion constante.",
-      "synergy_cards": [
-        "filo_astral",
-        "embate_del_jaguar",
-        "pulso_cosmico"
-      ],
-      "weakness": "Sufre si no roba ritmo."
-    },
-    "archetype": "cosmic_warrior",
-    "artwork": "cw_lore_14",
-    "author": "Chakana Studio",
-    "effect_text": "Dano 4",
-    "kpi": {
-      "damage": 4
-    },
-    "lore_text": "La voluntad traza el destino astral.",
-    "name": "Garra Espiritual Nova"
-  },
-  {
-    "id": "hg_lore_15",
-    "name_key": "Guardia Terrenal Nova",
-    "text_key": "Bloqueo 3",
-    "rarity": "common",
-    "cost": 0,
-    "target": "self",
-    "tags": [
-      "block"
-    ],
-    "effects": [
       {
         "type": "gain_block",
         "amount": 3
@@ -1948,11 +1819,180 @@
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
     "archetype": "harmony_guardian",
-    "artwork": "hg_lore_15",
+    "artwork": "hg_lore_11",
     "author": "Chakana Studio",
     "effect_text": "Bloqueo 3",
     "kpi": {
       "block": 3
+    },
+    "lore_text": "La calma sostiene el umbral.",
+    "name": "Firmeza del Cuerpo Nova"
+  },
+  {
+    "id": "of_lore_12",
+    "name_key": "Fragmento Celeste Nova",
+    "text_key": "Dano 5, Prever 3",
+    "rarity": "common",
+    "cost": 1,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "scry"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 5
+      },
+      {
+        "type": "scry",
+        "amount": 3
+      }
+    ],
+    "family": "este",
+    "direction": "ESTE",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
+      "synergy_cards": [
+        "lectura_del_destino",
+        "observacion_sagrada",
+        "vision_del_condor"
+      ],
+      "weakness": "Menor dano explosivo en turnos tempranos."
+    },
+    "archetype": "oracle_of_fate",
+    "artwork": "of_lore_12",
+    "author": "Chakana Studio",
+    "effect_text": "Dano 5, Prever 3",
+    "kpi": {
+      "damage": 5,
+      "scry": 3
+    },
+    "lore_text": "El oraculo lee los ecos del tiempo.",
+    "name": "Fragmento Celeste Nova"
+  },
+  {
+    "id": "hg_lore_13",
+    "name_key": "Fusión Espiritual Nova",
+    "text_key": "Limite de bloqueo +10, Bloqueo 1",
+    "rarity": "uncommon",
+    "cost": 2,
+    "target": "self",
+    "tags": [
+      "block",
+      "support",
+      "harmony"
+    ],
+    "effects": [
+      {
+        "type": "double_block_cap",
+        "amount": 10
+      },
+      {
+        "type": "gain_block",
+        "amount": 1
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      }
+    ],
+    "family": "oeste",
+    "direction": "OESTE",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber dano y preparar contraataque.",
+      "synergy_cards": [
+        "sello_protector",
+        "muralla_de_piedra"
+      ],
+      "weakness": "Pierde tempo si no convierte defensa en valor."
+    },
+    "archetype": "harmony_guardian",
+    "artwork": "hg_lore_13",
+    "author": "Chakana Studio",
+    "effect_text": "Limite de bloqueo +10, Bloqueo 1, Armonia +1",
+    "kpi": {
+      "block": 1,
+      "support": 10,
+      "harmony": 1
+    },
+    "lore_text": "Toda defensa es un ritual de equilibrio.",
+    "name": "Fusión Espiritual Nova"
+  },
+  {
+    "id": "cw_lore_14",
+    "name_key": "Garra Espiritual Nova",
+    "text_key": "Dano 5",
+    "rarity": "common",
+    "cost": 0,
+    "target": "enemy",
+    "tags": [
+      "attack"
+    ],
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 5
+      }
+    ],
+    "family": "este",
+    "direction": "ESTE",
+    "role": "attack",
+    "strategy": {
+      "best_use": "Cerrar combates cortos con presion constante.",
+      "synergy_cards": [
+        "filo_astral",
+        "embate_del_jaguar",
+        "pulso_cosmico"
+      ],
+      "weakness": "Sufre si no roba ritmo."
+    },
+    "archetype": "cosmic_warrior",
+    "artwork": "cw_lore_14",
+    "author": "Chakana Studio",
+    "effect_text": "Dano 5",
+    "kpi": {
+      "damage": 5
+    },
+    "lore_text": "La voluntad traza el destino astral.",
+    "name": "Garra Espiritual Nova"
+  },
+  {
+    "id": "hg_lore_15",
+    "name_key": "Guardia Terrenal Nova",
+    "text_key": "Bloqueo 4",
+    "rarity": "common",
+    "cost": 0,
+    "target": "self",
+    "tags": [
+      "block"
+    ],
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 4
+      }
+    ],
+    "family": "sur",
+    "direction": "SUR",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber dano y preparar contraataque.",
+      "synergy_cards": [
+        "sello_protector",
+        "muralla_de_piedra",
+        "fusion_espiritual"
+      ],
+      "weakness": "Pierde tempo si no convierte defensa en valor."
+    },
+    "archetype": "harmony_guardian",
+    "artwork": "hg_lore_15",
+    "author": "Chakana Studio",
+    "effect_text": "Bloqueo 4",
+    "kpi": {
+      "block": 4
     },
     "lore_text": "La calma sostiene el umbral.",
     "name": "Guardia Terrenal Nova"
@@ -1960,7 +2000,7 @@
   {
     "id": "of_lore_16",
     "name_key": "Invocación Astral Nova",
-    "text_key": "Armonia +1, Cura 3, Bloqueo 3",
+    "text_key": "Armonia +2, Bloqueo 3",
     "rarity": "common",
     "cost": 2,
     "target": "self",
@@ -1972,7 +2012,7 @@
     "effects": [
       {
         "type": "harmony_delta",
-        "amount": 1
+        "amount": 2
       },
       {
         "type": "heal",
@@ -1998,11 +2038,10 @@
     "archetype": "oracle_of_fate",
     "artwork": "of_lore_16",
     "author": "Chakana Studio",
-    "effect_text": "Armonia +1, Cura 3, Bloqueo 3",
+    "effect_text": "Armonia +2, Bloqueo 3",
     "kpi": {
       "block": 3,
-      "harmony": 1,
-      "support": 3
+      "harmony": 2
     },
     "lore_text": "El oraculo lee los ecos del tiempo.",
     "name": "Invocación Astral Nova"
@@ -2010,7 +2049,7 @@
   {
     "id": "of_lore_17",
     "name_key": "Lectura del Destino Nova",
-    "text_key": "Prever 2",
+    "text_key": "Prever 3",
     "rarity": "common",
     "cost": 0,
     "target": "self",
@@ -2020,7 +2059,7 @@
     "effects": [
       {
         "type": "scry",
-        "amount": 2
+        "amount": 3
       }
     ],
     "family": "norte",
@@ -2037,9 +2076,9 @@
     "archetype": "oracle_of_fate",
     "artwork": "of_lore_17",
     "author": "Chakana Studio",
-    "effect_text": "Prever 2",
+    "effect_text": "Prever 3",
     "kpi": {
-      "scry": 2
+      "scry": 3
     },
     "lore_text": "Toda vision exige un precio ritual.",
     "name": "Lectura del Destino Nova"
@@ -2047,7 +2086,7 @@
   {
     "id": "cw_lore_18",
     "name_key": "Mantra del Umbral Nova",
-    "text_key": "Armonia +1, Energia +1, Cura 1",
+    "text_key": "Armonia +2, Energia +1",
     "rarity": "common",
     "cost": 1,
     "target": "self",
@@ -2059,7 +2098,7 @@
     "effects": [
       {
         "type": "harmony_delta",
-        "amount": 1
+        "amount": 2
       },
       {
         "type": "gain_mana",
@@ -2084,11 +2123,10 @@
     "archetype": "cosmic_warrior",
     "artwork": "cw_lore_18",
     "author": "Chakana Studio",
-    "effect_text": "Armonia +1, Energia +1, Cura 1",
+    "effect_text": "Armonia +2, Energia +1",
     "kpi": {
       "energy": 1,
-      "harmony": 1,
-      "support": 1
+      "harmony": 2
     },
     "lore_text": "La voluntad traza el destino astral.",
     "name": "Mantra del Umbral Nova"
@@ -2096,8 +2134,8 @@
   {
     "id": "hg_lore_19",
     "name_key": "Muralla de Piedra Nova",
-    "text_key": "Bloqueo 8",
-    "rarity": "common",
+    "text_key": "Bloqueo 9",
+    "rarity": "uncommon",
     "cost": 2,
     "target": "self",
     "tags": [
@@ -2106,7 +2144,7 @@
     "effects": [
       {
         "type": "gain_block",
-        "amount": 8
+        "amount": 9
       }
     ],
     "family": "sur",
@@ -2123,9 +2161,9 @@
     "archetype": "harmony_guardian",
     "artwork": "hg_lore_19",
     "author": "Chakana Studio",
-    "effect_text": "Bloqueo 8",
+    "effect_text": "Bloqueo 9",
     "kpi": {
-      "block": 8
+      "block": 9
     },
     "lore_text": "La calma sostiene el umbral.",
     "name": "Muralla de Piedra Nova"
@@ -2133,7 +2171,7 @@
   {
     "id": "of_lore_20",
     "name_key": "Observación Sagrada Nova",
-    "text_key": "Prever 3",
+    "text_key": "Prever 4",
     "rarity": "common",
     "cost": 1,
     "target": "self",
@@ -2143,7 +2181,7 @@
     "effects": [
       {
         "type": "scry",
-        "amount": 3
+        "amount": 4
       }
     ],
     "family": "norte",
@@ -2160,9 +2198,9 @@
     "archetype": "oracle_of_fate",
     "artwork": "of_lore_20",
     "author": "Chakana Studio",
-    "effect_text": "Prever 3",
+    "effect_text": "Prever 4",
     "kpi": {
-      "scry": 3
+      "scry": 4
     },
     "lore_text": "El oraculo lee los ecos del tiempo.",
     "name": "Observación Sagrada Nova"
@@ -2170,8 +2208,8 @@
   {
     "id": "of_lore_21",
     "name_key": "Piedra Ritual Nova",
-    "text_key": "Armonia +1, Bloqueo 6, Ruptura 3",
-    "rarity": "rare",
+    "text_key": "Armonia +2, Bloqueo 6, Ruptura 3",
+    "rarity": "uncommon",
     "cost": 2,
     "target": "enemy",
     "tags": [
@@ -2182,7 +2220,7 @@
     "effects": [
       {
         "type": "harmony_delta",
-        "amount": 1
+        "amount": 2
       },
       {
         "type": "gain_block",
@@ -2207,11 +2245,11 @@
     "archetype": "oracle_of_fate",
     "artwork": "of_lore_21",
     "author": "Chakana Studio",
-    "effect_text": "Armonia +1, Bloqueo 6, Ruptura 3",
+    "effect_text": "Armonia +2, Bloqueo 6, Ruptura 3",
     "kpi": {
       "block": 6,
       "rupture": 3,
-      "harmony": 1
+      "harmony": 2
     },
     "lore_text": "Toda vision exige un precio ritual.",
     "name": "Piedra Ritual Nova"
@@ -2219,7 +2257,7 @@
   {
     "id": "of_lore_22",
     "name_key": "Portal de la Chakana Nova",
-    "text_key": "Armonia +1, Ruptura 3, Roba 1",
+    "text_key": "Armonia +1, Ruptura 3, Roba 2",
     "rarity": "uncommon",
     "cost": 2,
     "target": "enemy",
@@ -2239,7 +2277,7 @@
       },
       {
         "type": "draw",
-        "amount": 1
+        "amount": 2
       }
     ],
     "family": "oeste",
@@ -2256,9 +2294,9 @@
     "archetype": "oracle_of_fate",
     "artwork": "of_lore_22",
     "author": "Chakana Studio",
-    "effect_text": "Armonia +1, Ruptura 3, Roba 1",
+    "effect_text": "Armonia +1, Ruptura 3, Roba 2",
     "kpi": {
-      "draw": 1,
+      "draw": 2,
       "rupture": 3,
       "harmony": 1
     },
@@ -2268,13 +2306,14 @@
   {
     "id": "cw_lore_23",
     "name_key": "Pulso Cósmico Nova",
-    "text_key": "Ruptura 2, Dano 3",
+    "text_key": "Ruptura 2, Dano 4",
     "rarity": "common",
     "cost": 1,
     "target": "enemy",
     "tags": [
       "break",
-      "attack"
+      "attack",
+      "rupture"
     ],
     "effects": [
       {
@@ -2283,7 +2322,7 @@
       },
       {
         "type": "damage",
-        "amount": 3
+        "amount": 4
       }
     ],
     "family": "oeste",
@@ -2300,9 +2339,9 @@
     "archetype": "cosmic_warrior",
     "artwork": "cw_lore_23",
     "author": "Chakana Studio",
-    "effect_text": "Ruptura 2, Dano 3",
+    "effect_text": "Ruptura 2, Dano 4",
     "kpi": {
-      "damage": 3,
+      "damage": 4,
       "rupture": 2
     },
     "lore_text": "La chispa violeta rompe el vacio.",
@@ -2311,21 +2350,26 @@
   {
     "id": "hg_lore_24",
     "name_key": "Resistencia Ancestral Nova",
-    "text_key": "Bloqueo 7, Retener",
+    "text_key": "Bloqueo 8, Retener",
     "rarity": "uncommon",
     "cost": 2,
     "target": "self",
     "tags": [
       "block",
-      "retain"
+      "retain",
+      "harmony"
     ],
     "effects": [
       {
         "type": "gain_block",
-        "amount": 7
+        "amount": 8
       },
       {
         "type": "retain",
+        "amount": 1
+      },
+      {
+        "type": "harmony_delta",
         "amount": 1
       }
     ],
@@ -2344,10 +2388,11 @@
     "archetype": "harmony_guardian",
     "artwork": "hg_lore_24",
     "author": "Chakana Studio",
-    "effect_text": "Bloqueo 7, Retener",
+    "effect_text": "Bloqueo 8, Retener, Armonia +1",
     "kpi": {
-      "block": 7,
-      "support": 1
+      "block": 8,
+      "support": 1,
+      "harmony": 1
     },
     "lore_text": "La guardia nace del silencio.",
     "name": "Resistencia Ancestral Nova"
@@ -2355,9 +2400,236 @@
   {
     "id": "of_lore_25",
     "name_key": "Revelación Astral Nova",
-    "text_key": "Armonia +1, Prever 4, Roba 1",
+    "text_key": "Armonia +1, Prever 5, Roba 1",
     "rarity": "uncommon",
     "cost": 2,
+    "target": "self",
+    "tags": [
+      "scry",
+      "draw",
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      },
+      {
+        "type": "scry",
+        "amount": 5
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "norte",
+    "direction": "NORTE",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
+      "synergy_cards": [
+        "lectura_del_destino",
+        "observacion_sagrada",
+        "vision_del_condor"
+      ],
+      "weakness": "Menor dano explosivo en turnos tempranos."
+    },
+    "archetype": "oracle_of_fate",
+    "artwork": "of_lore_25",
+    "author": "Chakana Studio",
+    "effect_text": "Armonia +1, Prever 5, Roba 1",
+    "kpi": {
+      "draw": 1,
+      "harmony": 1,
+      "scry": 5
+    },
+    "lore_text": "Toda vision exige un precio ritual.",
+    "name": "Revelación Astral Nova"
+  },
+  {
+    "id": "of_lore_26",
+    "name_key": "Ritual de la Trama Nova",
+    "text_key": "Armonia +1, Sello 3, Ritual 2",
+    "rarity": "uncommon",
+    "cost": 4,
+    "target": "enemy",
+    "tags": [
+      "attack",
+      "heal",
+      "exhaust",
+      "ritual"
+    ],
+    "effects": [
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      },
+      {
+        "type": "consume_harmony",
+        "amount": 3
+      },
+      {
+        "type": "ritual_trama",
+        "amount": 2
+      },
+      {
+        "type": "exhaust_self",
+        "amount": 1
+      }
+    ],
+    "family": "oeste",
+    "direction": "OESTE",
+    "role": "ritual",
+    "strategy": {
+      "best_use": "Escalar armonia y explotar umbrales de sello.",
+      "synergy_cards": [
+        "portal_de_la_chakana",
+        "piedra_ritual"
+      ],
+      "weakness": "Puede quedarse corto si no llega al umbral."
+    },
+    "archetype": "oracle_of_fate",
+    "artwork": "of_lore_26",
+    "author": "Chakana Studio",
+    "effect_text": "Armonia +1, Sello 3, Ritual 2",
+    "kpi": {
+      "harmony": 1,
+      "seal": 3,
+      "ritual": 2
+    },
+    "lore_text": "La trama responde al ojo atento.",
+    "name": "Ritual de la Trama Nova"
+  },
+  {
+    "id": "hg_lore_27",
+    "name_key": "Sello Protector Nova",
+    "text_key": "Bloqueo 6",
+    "rarity": "common",
+    "cost": 1,
+    "target": "self",
+    "tags": [
+      "block"
+    ],
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 6
+      }
+    ],
+    "family": "sur",
+    "direction": "SUR",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber dano y preparar contraataque.",
+      "synergy_cards": [
+        "muralla_de_piedra",
+        "fusion_espiritual"
+      ],
+      "weakness": "Pierde tempo si no convierte defensa en valor."
+    },
+    "archetype": "harmony_guardian",
+    "artwork": "hg_lore_27",
+    "author": "Chakana Studio",
+    "effect_text": "Bloqueo 6",
+    "kpi": {
+      "block": 6
+    },
+    "lore_text": "La calma sostiene el umbral.",
+    "name": "Sello Protector Nova"
+  },
+  {
+    "id": "of_lore_28",
+    "name_key": "Silencio Interior Nova",
+    "text_key": "Debilita 3, Prever 2",
+    "rarity": "common",
+    "cost": 2,
+    "target": "enemy",
+    "tags": [
+      "debuff",
+      "scry"
+    ],
+    "effects": [
+      {
+        "type": "weaken_enemy",
+        "amount": 3
+      },
+      {
+        "type": "scry",
+        "amount": 2
+      }
+    ],
+    "family": "norte",
+    "direction": "NORTE",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
+      "synergy_cards": [
+        "lectura_del_destino",
+        "observacion_sagrada",
+        "vision_del_condor"
+      ],
+      "weakness": "Menor dano explosivo en turnos tempranos."
+    },
+    "archetype": "oracle_of_fate",
+    "artwork": "of_lore_28",
+    "author": "Chakana Studio",
+    "effect_text": "Debilita 3, Prever 2",
+    "kpi": {
+      "scry": 2,
+      "support": 3
+    },
+    "lore_text": "El oraculo lee los ecos del tiempo.",
+    "name": "Silencio Interior Nova"
+  },
+  {
+    "id": "cw_lore_29",
+    "name_key": "Vínculo de Energía Nova",
+    "text_key": "Energia +2, Dano 1",
+    "rarity": "uncommon",
+    "cost": 2,
+    "target": "self",
+    "tags": [
+      "energy"
+    ],
+    "effects": [
+      {
+        "type": "gain_mana",
+        "amount": 2
+      },
+      {
+        "type": "damage",
+        "amount": 1
+      }
+    ],
+    "family": "oeste",
+    "direction": "OESTE",
+    "role": "energy",
+    "strategy": {
+      "best_use": "Acelerar turnos clave y habilitar cadenas.",
+      "synergy_cards": [
+        "mantra_del_umbral",
+        "chakana_de_luz"
+      ],
+      "weakness": "Necesita cartas de impacto para capitalizar mana."
+    },
+    "archetype": "cosmic_warrior",
+    "artwork": "cw_lore_29",
+    "author": "Chakana Studio",
+    "effect_text": "Energia +2, Dano 1",
+    "kpi": {
+      "damage": 1,
+      "energy": 2
+    },
+    "lore_text": "Cada golpe abre una constelacion.",
+    "name": "Vínculo de Energía Nova"
+  },
+  {
+    "id": "of_lore_30",
+    "name_key": "Visión del Cóndor Nova",
+    "text_key": "Armonia +1, Prever 4, Roba 1",
+    "rarity": "common",
+    "cost": 1,
     "target": "self",
     "tags": [
       "scry",
@@ -2385,228 +2657,6 @@
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
         "lectura_del_destino",
-        "observacion_sagrada",
-        "vision_del_condor"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "archetype": "oracle_of_fate",
-    "artwork": "of_lore_25",
-    "author": "Chakana Studio",
-    "effect_text": "Armonia +1, Prever 4, Roba 1",
-    "kpi": {
-      "draw": 1,
-      "harmony": 1,
-      "scry": 4
-    },
-    "lore_text": "Toda vision exige un precio ritual.",
-    "name": "Revelación Astral Nova"
-  },
-  {
-    "id": "of_lore_26",
-    "name_key": "Ritual de la Trama Nova",
-    "text_key": "Armonia +1, Sello 3, Ritual 1",
-    "rarity": "legendary",
-    "cost": 4,
-    "target": "enemy",
-    "tags": [
-      "attack",
-      "heal",
-      "exhaust",
-      "ritual"
-    ],
-    "effects": [
-      {
-        "type": "harmony_delta",
-        "amount": 1
-      },
-      {
-        "type": "consume_harmony",
-        "amount": 3
-      },
-      {
-        "type": "ritual_trama",
-        "amount": 1
-      },
-      {
-        "type": "exhaust_self",
-        "amount": 1
-      }
-    ],
-    "family": "oeste",
-    "direction": "OESTE",
-    "role": "ritual",
-    "strategy": {
-      "best_use": "Escalar armonia y explotar umbrales de sello.",
-      "synergy_cards": [
-        "portal_de_la_chakana",
-        "piedra_ritual"
-      ],
-      "weakness": "Puede quedarse corto si no llega al umbral."
-    },
-    "archetype": "oracle_of_fate",
-    "artwork": "of_lore_26",
-    "author": "Chakana Studio",
-    "effect_text": "Armonia +1, Sello 3, Ritual 1",
-    "kpi": {
-      "harmony": 1,
-      "seal": 3,
-      "ritual": 1
-    },
-    "lore_text": "La trama responde al ojo atento.",
-    "name": "Ritual de la Trama Nova"
-  },
-  {
-    "id": "hg_lore_27",
-    "name_key": "Sello Protector Nova",
-    "text_key": "Bloqueo 5",
-    "rarity": "common",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "block"
-    ],
-    "effects": [
-      {
-        "type": "gain_block",
-        "amount": 5
-      }
-    ],
-    "family": "sur",
-    "direction": "SUR",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "muralla_de_piedra",
-        "fusion_espiritual"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "archetype": "harmony_guardian",
-    "artwork": "hg_lore_27",
-    "author": "Chakana Studio",
-    "effect_text": "Bloqueo 5",
-    "kpi": {
-      "block": 5
-    },
-    "lore_text": "La calma sostiene el umbral.",
-    "name": "Sello Protector Nova"
-  },
-  {
-    "id": "of_lore_28",
-    "name_key": "Silencio Interior Nova",
-    "text_key": "Debilita 3, Prever 1",
-    "rarity": "uncommon",
-    "cost": 2,
-    "target": "enemy",
-    "tags": [
-      "debuff",
-      "scry"
-    ],
-    "effects": [
-      {
-        "type": "weaken_enemy",
-        "amount": 3
-      },
-      {
-        "type": "scry",
-        "amount": 1
-      }
-    ],
-    "family": "norte",
-    "direction": "NORTE",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "lectura_del_destino",
-        "observacion_sagrada",
-        "vision_del_condor"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "archetype": "oracle_of_fate",
-    "artwork": "of_lore_28",
-    "author": "Chakana Studio",
-    "effect_text": "Debilita 3, Prever 1",
-    "kpi": {
-      "scry": 1,
-      "support": 3
-    },
-    "lore_text": "El oraculo lee los ecos del tiempo.",
-    "name": "Silencio Interior Nova"
-  },
-  {
-    "id": "cw_lore_29",
-    "name_key": "Vínculo de Energía Nova",
-    "text_key": "Energia +2",
-    "rarity": "uncommon",
-    "cost": 2,
-    "target": "self",
-    "tags": [
-      "energy"
-    ],
-    "effects": [
-      {
-        "type": "gain_mana",
-        "amount": 2
-      }
-    ],
-    "family": "oeste",
-    "direction": "OESTE",
-    "role": "energy",
-    "strategy": {
-      "best_use": "Acelerar turnos clave y habilitar cadenas.",
-      "synergy_cards": [
-        "mantra_del_umbral",
-        "chakana_de_luz"
-      ],
-      "weakness": "Necesita cartas de impacto para capitalizar mana."
-    },
-    "archetype": "cosmic_warrior",
-    "artwork": "cw_lore_29",
-    "author": "Chakana Studio",
-    "effect_text": "Energia +2",
-    "kpi": {
-      "energy": 2
-    },
-    "lore_text": "Cada golpe abre una constelacion.",
-    "name": "Vínculo de Energía Nova"
-  },
-  {
-    "id": "of_lore_30",
-    "name_key": "Visión del Cóndor Nova",
-    "text_key": "Armonia +1, Prever 3, Roba 1",
-    "rarity": "common",
-    "cost": 1,
-    "target": "self",
-    "tags": [
-      "scry",
-      "draw",
-      "ritual"
-    ],
-    "effects": [
-      {
-        "type": "harmony_delta",
-        "amount": 1
-      },
-      {
-        "type": "scry",
-        "amount": 3
-      },
-      {
-        "type": "draw",
-        "amount": 1
-      }
-    ],
-    "family": "norte",
-    "direction": "NORTE",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "lectura_del_destino",
         "observacion_sagrada"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
@@ -2614,11 +2664,11 @@
     "archetype": "oracle_of_fate",
     "artwork": "of_lore_30",
     "author": "Chakana Studio",
-    "effect_text": "Armonia +1, Prever 3, Roba 1",
+    "effect_text": "Armonia +1, Prever 4, Roba 1",
     "kpi": {
       "draw": 1,
       "harmony": 1,
-      "scry": 3
+      "scry": 4
     },
     "lore_text": "La trama responde al ojo atento.",
     "name": "Visión del Cóndor Nova"

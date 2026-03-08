@@ -1,4 +1,5 @@
-﻿import math
+import math
+from collections import defaultdict
 import pygame
 
 from game.settings import INTERNAL_WIDTH
@@ -42,13 +43,13 @@ class PathSelectScreen:
                 "lore": "Custodios del Kay Pacha; bloquean, sostienen y equilibran cada combate.",
                 "identity": "Arquetipo defensivo con escalado de armonia.",
                 "traits": ["Mitigacion alta", "Plan estable", "Contraataque"],
-                "legendary": "chakana_de_luz",
+                "legendary": "fusion_espiritual",
                 "profile": {"ataque": 2, "defensa": 5, "control": 3, "ritual": 4, "tempo": 2},
                 "deck": [
                     "sello_protector", "sello_protector", "muralla_de_piedra", "escudo_de_luz", "escudo_del_chaman", "espiritu_guardian",
                     "firmeza_del_cuerpo", "guardia_terrenal", "observacion_sagrada", "vision_del_condor", "lectura_del_destino", "mantra_del_umbral",
                     "campo_protector", "resistencia_ancestral", "silencio_interior", "vinculo_de_energia", "portal_de_la_chakana", "embate_del_jaguar", "piedra_ritual",
-                    "chakana_de_luz",
+                    "fusion_espiritual",
                 ],
             },
             {
@@ -70,7 +71,7 @@ class PathSelectScreen:
         ]
 
     def on_enter(self):
-        self._validate_options()
+        self._normalize_and_validate_options()
         # Defensive reset to avoid stale modal chrome leaking into archetype flow.
         self.choice_modal.hide()
         self.choice_modal.title = ""
@@ -78,26 +79,95 @@ class PathSelectScreen:
         self.choice_modal.selected_index = None
         self.choice_modal.hover_index = None
         self.choice_modal.choices = [{"title": opt.get("name", "Arquetipo"), "subtitle": opt.get("identity", "")} for opt in self.options]
-    def _validate_options(self):
+    def _build_pool_by_archetype(self):
+        pool = defaultdict(lambda: {"common": [], "uncommon": [], "legendary": []})
+        for c in list(getattr(self.app, "cards_data", []) or []):
+            if not isinstance(c, dict):
+                continue
+            cid = c.get("id")
+            arch = str(c.get("archetype", "")).strip().lower()
+            if not cid or not arch:
+                continue
+            rarity = str(c.get("rarity", "common")).strip().lower()
+            if rarity == "rare":
+                rarity = "uncommon"
+            if rarity not in {"common", "uncommon", "legendary"}:
+                rarity = "common"
+            pool[arch][rarity].append(str(cid))
+        for arch in list(pool.keys()):
+            for r in ("common", "uncommon", "legendary"):
+                pool[arch][r] = sorted(set(pool[arch][r]))
+        return pool
+
+    def _normalize_option_deck(self, opt: dict, pool: dict):
+        arch = str(opt.get("id", "")).strip().lower()
+        p = pool.get(arch, {"common": [], "uncommon": [], "legendary": []})
+        commons = list(p.get("common", []))
+        uncommons = list(p.get("uncommon", []))
+        legends = list(p.get("legendary", []))
+
+        current = [str(x) for x in list(opt.get("deck", []) or [])]
+        current_set = set(current)
+
+        def _pick(candidates, count):
+            chosen = []
+            for cid in candidates:
+                if cid in current_set and cid not in chosen:
+                    chosen.append(cid)
+                if len(chosen) >= count:
+                    return chosen
+            for cid in candidates:
+                if cid not in chosen:
+                    chosen.append(cid)
+                if len(chosen) >= count:
+                    return chosen
+            return chosen
+
+        pick_legend = _pick(legends, 1)
+        if not pick_legend:
+            pick_legend = [str(opt.get("legendary", ""))] if opt.get("legendary") else []
+
+        pick_uncommon = _pick(uncommons, 7)
+        pick_common = _pick(commons, 12)
+
+        deck = (pick_common[:12] + pick_uncommon[:7] + pick_legend[:1])[:20]
+        if len(deck) < 20:
+            filler = [cid for cid in (commons + uncommons + legends) if cid not in deck]
+            deck.extend(filler[: 20 - len(deck)])
+        opt["deck"] = deck[:20]
+        if pick_legend:
+            opt["legendary"] = pick_legend[0]
+
+    def _normalize_and_validate_options(self):
         cards = self.app.card_defs if isinstance(self.app.card_defs, dict) else {}
+        pool = self._build_pool_by_archetype()
+        for opt in self.options:
+            self._normalize_option_deck(opt, pool)
+
         for opt in self.options:
             deck = list(opt.get("deck", []))
             if len(deck) != 20:
-                raise ValueError(f"Archetype '{opt.get('name')}' must have exactly 20 cards")
+                print(f"[content] starter deck '{opt.get('name')}' adjusted to len={len(deck)} (expected 20)")
+                continue
             commons = 0
-            rares = 0
+            uncommons = 0
             legendary = 0
+            seen = set()
             for cid in deck:
+                if cid in seen:
+                    continue
+                seen.add(cid)
                 rarity = str(cards.get(cid, {}).get("rarity", "")).lower()
                 if rarity == "common":
                     commons += 1
                 elif rarity in {"uncommon", "rare"}:
-                    rares += 1
+                    uncommons += 1
                 elif rarity == "legendary":
                     legendary += 1
-            if (commons, rares, legendary) != (12, 7, 1):
-                raise ValueError(
-                    f"Archetype '{opt.get('name')}' invalid 12-7-1 distribution: {(commons, rares, legendary)}"
+            print(f"[content] starter {opt.get('name')}: {commons} common, {uncommons} uncommon, {legendary} legendary")
+            if (commons, uncommons, legendary) != (12, 7, 1):
+                print(
+                    f"[content] starter '{opt.get('name')}' distribution fallback active: {(commons, uncommons, legendary)}"
                 )
 
     def _confirm_enabled(self) -> bool:
