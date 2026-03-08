@@ -857,6 +857,31 @@ class App:
                 if isinstance(node, dict) and node.get("id"):
                     self.node_lookup[str(node["id"])] = node
 
+    def _migrate_legacy_shop_nodes(self):
+        """Migrate old map saves that still use 'shop' nodes into 'path' nodes."""
+        if not isinstance(self.run_state, dict):
+            return 0
+        changed = 0
+        path_cursor = 0
+        run_map = self.run_state.get("map", [])
+        for col in run_map if isinstance(run_map, list) else []:
+            for node in col if isinstance(col, list) else []:
+                if not isinstance(node, dict):
+                    continue
+                if str(node.get("type", "")).lower() != "shop":
+                    continue
+                node["type"] = "path"
+                if not node.get("path_id") or not node.get("path_name"):
+                    path = SEVEN_PATHS[path_cursor % len(SEVEN_PATHS)]
+                    node["path_id"] = str(path.get("id"))
+                    node["path_name"] = str(path.get("title"))
+                    node["path_lore"] = str(path.get("lore"))
+                    path_cursor += 1
+                changed += 1
+        if changed:
+            print(f"[map] migrated_legacy_shop_nodes={changed}")
+        return changed
+
     def _autosave_run(self, reason: str = ""):
         if not isinstance(self.run_state, dict):
             return
@@ -882,6 +907,8 @@ class App:
         if not isinstance(run_map, list) or not isinstance(player, dict) or not isinstance(deck, list):
             return
         self.run_state = payload
+        self.run_state.setdefault("allow_defeat_continue", True)
+        self._migrate_legacy_shop_nodes()
         self.current_node_id = payload.get("current_node_id")
         self.last_biome_seen = payload.get("last_biome_seen")
         self._refresh_node_lookup_from_map()
@@ -1007,6 +1034,7 @@ class App:
             "xp": 0,
             "level": 1,
             "combats_won": 0,
+            "allow_defeat_continue": True,
             "settings": {
                 "turn_timer_enabled": bool(self.user_settings.get("turn_timer_enabled", True)),
                 "turn_timer_seconds": int(self.user_settings.get("turn_timer_seconds", 20)),
@@ -1088,6 +1116,7 @@ class App:
         return by_col
 
     def goto_map(self):
+        self._migrate_legacy_shop_nodes()
         if self.run_state and self.run_state.get("levelup_pending", 0) > 0:
             self.sm.set(PackOpeningScreen(self))
             self.music.play_for("chest")
@@ -1272,6 +1301,8 @@ class App:
     def enter_node(self, node):
         raw_type = str(node.get("type", "combat") or "combat")
         node_type = raw_type
+        if node_type == "shop":
+            node_type = "path"
         if node_type == "elite":
             self.trigger_oracle("elite_encounter", payload=node)
             node_type = "challenge"
@@ -1299,11 +1330,14 @@ class App:
                             pat["value"] = [max(1, int(v) - 1) for v in val]
             self.current_combat = CombatEngine(base_state)
             self.goto_combat(self.current_combat, is_boss=node_type == "boss")
-        elif node_type == "shop":
-            self.goto_shop()
         elif node_type == "path":
             self.trigger_oracle("path_selected", payload=node)
             self._complete_current_node()
+            if not node.get("path_id") or not node.get("path_name"):
+                path = SEVEN_PATHS[self.rng.randint(0, len(SEVEN_PATHS) - 1)]
+                node["path_id"] = str(path.get("id"))
+                node["path_name"] = str(path.get("title"))
+                node["path_lore"] = str(path.get("lore"))
             blessing = str(node.get("path_name") or "Camino")
             blessings = self.run_state.setdefault("path_blessings", [])
             if blessing not in blessings:
@@ -1398,18 +1432,27 @@ class App:
             self.goto_map()
 
     def apply_event_effects(self, effects):
+        effects = list(effects or [])
         player = self.run_state["player"]
-        rare = any(e.get("type") == "gain_relic" for e in effects)
+        rare = any(isinstance(e, dict) and e.get("type") == "gain_relic" for e in effects)
         event_xp = self.rng.randint(7, 8) if rare else self.rng.randint(4, 6)
+        total_gold = 0
+        total_xp = event_xp
         self.apply_run_rewards(xp=event_xp, source="event_base")
         for effect in effects:
+            if not isinstance(effect, dict):
+                continue
             effect_type = effect.get("type")
             if effect_type == "lose_gold":
                 self.run_state["gold"] = max(0, self.run_state["gold"] - int(effect.get("amount", 0)))
             elif effect_type == "gain_gold":
-                self.apply_run_rewards(gold=int(effect.get("amount", 0) or 0), source="event_gain_gold")
+                gain = int(effect.get("amount", 0) or 0)
+                total_gold += max(0, gain)
+                self.apply_run_rewards(gold=gain, source="event_gain_gold")
             elif effect_type == "gain_xp":
-                self.apply_run_rewards(xp=int(effect.get("amount", 0) or 0), source="event_gain_xp")
+                gain = int(effect.get("amount", 0) or 0)
+                total_xp += max(0, gain)
+                self.apply_run_rewards(xp=gain, source="event_gain_xp")
             elif effect_type == "heal":
                 player["hp"] = min(player["max_hp"], player["hp"] + int(effect.get("amount", 0)))
             elif effect_type == "lose_hp":
@@ -1440,6 +1483,7 @@ class App:
                     self.apply_run_rewards(relics=[self.rng.choice(pool)], source="event_gain_relic_random")
             else:
                 print(f"[events] warning: unsupported effect type '{effect_type}'")
+        print(f"[events] applied total_gold=+{total_gold} total_xp=+{total_xp}")
 
     def recover_map_progression(self):
         if not self.run_state:

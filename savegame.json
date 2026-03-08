@@ -1,0 +1,260 @@
+{
+  "gold": 80,
+  "relics": [
+    "violet_seal"
+  ],
+  "player": {
+    "hp": 60,
+    "max_hp": 60,
+    "block": 0,
+    "energy": 3,
+    "rupture": 0,
+    "statuses": {}
+  },
+  "deck": [
+    "estallido_arcano",
+    "filo_astral",
+    "garra_espiritual",
+    "pulso_cosmico",
+    "cw_lore_08",
+    "cw_lore_09",
+    "cw_lore_10",
+    "cw_lore_14",
+    "cw_lore_18",
+    "cw_lore_23",
+    "eco_de_sabiduria",
+    "mantra_del_umbral",
+    "embate_del_jaguar",
+    "filo_en_cadena",
+    "vinculo_de_energia",
+    "cw_lore_02",
+    "cw_lore_03",
+    "cw_lore_04",
+    "cw_lore_29",
+    "chakana_de_luz"
+  ],
+  "sideboard": [],
+  "map": [
+    [
+      {
+        "id": "0_0",
+        "col": 0,
+        "x": 180,
+        "y": 540,
+        "type": "combat",
+        "biome": "ukhu",
+        "next": [
+          "1_0",
+          "1_1"
+        ],
+        "state": "available"
+      }
+    ],
+    [
+      {
+        "id": "1_0",
+        "col": 1,
+        "x": 492,
+        "y": 444,
+        "type": "path",
+        "biome": "ukhu",
+        "next": [
+          "2_0",
+          "2_1"
+        ],
+        "state": "locked",
+        "path_id": "camino_filo",
+        "path_name": "Camino del Filo",
+        "path_lore": "Golpea primero; corta la duda."
+      },
+      {
+        "id": "1_1",
+        "col": 1,
+        "x": 492,
+        "y": 540,
+        "type": "event",
+        "biome": "ukhu",
+        "next": [
+          "2_1",
+          "2_0"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "1_2",
+        "col": 1,
+        "x": 492,
+        "y": 636,
+        "type": "path",
+        "biome": "ukhu",
+        "next": [
+          "2_2"
+        ],
+        "state": "locked",
+        "path_id": "camino_velo",
+        "path_name": "Camino del Velo",
+        "path_lore": "Protege tu pulso antes del rito."
+      }
+    ],
+    [
+      {
+        "id": "2_0",
+        "col": 2,
+        "x": 804,
+        "y": 444,
+        "type": "path",
+        "biome": "kaypacha",
+        "next": [
+          "3_0",
+          "3_1"
+        ],
+        "state": "locked",
+        "path_id": "camino_eco",
+        "path_name": "Camino del Eco",
+        "path_lore": "Toda jugada vuelve con nueva forma."
+      },
+      {
+        "id": "2_1",
+        "col": 2,
+        "x": 804,
+        "y": 540,
+        "type": "path",
+        "biome": "kaypacha",
+        "next": [
+          "3_1",
+          "3_0"
+        ],
+        "state": "locked",
+        "path_id": "camino_pulso",
+        "path_name": "Camino del Pulso",
+        "path_lore": "La energia obedece a quien respira."
+      },
+      {
+        "id": "2_2",
+        "col": 2,
+        "x": 804,
+        "y": 636,
+        "type": "elite",
+        "biome": "kaypacha",
+        "next": [
+          "3_2"
+        ],
+        "state": "locked"
+      }
+    ],
+    [
+      {
+        "id": "3_0",
+        "col": 3,
+        "x": 1116,
+        "y": 444,
+        "type": "path",
+        "biome": "hanan",
+        "next": [
+          "4_0",
+          "4_1"
+        ],
+        "state": "locked",
+        "path_id": "camino_umbral",
+        "path_name": "Camino del Umbral",
+        "path_lore": "Cruza limites para obtener vision."
+      },
+      {
+        "id": "3_1",
+        "col": 3,
+        "x": 1116,
+        "y": 540,
+        "type": "path",
+        "biome": "hanan",
+        "next": [
+          "4_0"
+        ],
+        "state": "locked",
+        "path_id": "camino_cielo",
+        "path_name": "Camino del Cielo",
+        "path_lore": "La armonia alta revela rutas ocultas."
+      },
+      {
+        "id": "3_2",
+        "col": 3,
+        "x": 1116,
+        "y": 636,
+        "type": "combat",
+        "biome": "hanan",
+        "next": [
+          "4_1"
+        ],
+        "state": "locked"
+      }
+    ],
+    [
+      {
+        "id": "4_0",
+        "col": 4,
+        "x": 1428,
+        "y": 480,
+        "type": "elite",
+        "biome": "hanan",
+        "next": [
+          "5_0"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "4_1",
+        "col": 4,
+        "x": 1428,
+        "y": 600,
+        "type": "path",
+        "biome": "hanan",
+        "next": [
+          "5_0"
+        ],
+        "state": "locked",
+        "path_id": "camino_sello",
+        "path_name": "Camino del Sello",
+        "path_lore": "El sello despierta con voluntad pura."
+      }
+    ],
+    [
+      {
+        "id": "5_0",
+        "col": 5,
+        "x": 1740,
+        "y": 540,
+        "type": "boss",
+        "biome": "fractura_chakana",
+        "next": [],
+        "state": "locked"
+      }
+    ]
+  ],
+  "map_columns": 6,
+  "biome_progression": [
+    "ukhu",
+    "kaypacha",
+    "hanan",
+    "fractura_chakana"
+  ],
+  "biome_index": 0,
+  "biome": "ukhu",
+  "xp": 0,
+  "level": 1,
+  "combats_won": 0,
+  "allow_defeat_continue": true,
+  "settings": {
+    "turn_timer_enabled": true,
+    "turn_timer_seconds": 20,
+    "music_muted": false
+  },
+  "tutorial": {
+    "active": false,
+    "completed": false,
+    "step_id": "",
+    "step_index": 0,
+    "step_total": 7
+  },
+  "current_node_id": null,
+  "last_biome_seen": "ukhu",
+  "saved_at": 1772986602
+}

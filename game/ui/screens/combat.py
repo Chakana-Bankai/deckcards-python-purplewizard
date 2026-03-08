@@ -89,6 +89,7 @@ class CombatScreen:
         self._status_line = ""
         self._invalid_feedback_until_ms = 0
         self._invalid_feedback_msg = ""
+        self._invalid_state_since_ms = 0
         self._cost_pulse_until = {}
         self.telemetry = TelemetryLogger("INFO")
         self.dialogue_ctrl = CombatDialogueController(self.app.lore_engine, self._set_dialogue_lines)
@@ -132,6 +133,7 @@ class CombatScreen:
         self._status_line = ""
         self._invalid_feedback_until_ms = 0
         self._invalid_feedback_msg = ""
+        self._invalid_state_since_ms = 0
         self._ui_lock_until_ms = 0
 
         self._player_low_hp_active = False
@@ -277,6 +279,13 @@ class CombatScreen:
                 else:
                     fsm, state, reason, label, disabled = "CARD_INVALID", "INVALID", reason_code, "ACCION INVALIDA", False
                     self._status_line = reason_text
+
+        now_ms = pygame.time.get_ticks()
+        if state == "INVALID":
+            if self._invalid_state_since_ms <= 0:
+                self._invalid_state_since_ms = now_ms
+        else:
+            self._invalid_state_since_ms = 0
 
         if DEBUG_UI and (fsm != self._action_button_fsm or reason != self._action_state_reason):
             print(f"[ui] action_fsm={fsm} reason_code={reason}")
@@ -969,6 +978,15 @@ class CombatScreen:
         state, _label, disabled, _reason = self._resolve_action_state()
         if state != "INVALID" and not disabled and self._invalid_feedback_until_ms > 0:
             self._clear_invalid_feedback()
+
+        # Auto-clear stale INVALID selection to avoid sticky FSM states.
+        if state == "INVALID" and not self._ui_locked() and self.ctrl.selected_index is not None:
+            now_ms = pygame.time.get_ticks()
+            if self._invalid_state_since_ms > 0 and (now_ms - self._invalid_state_since_ms) >= 1200:
+                self.ctrl.clear_selection("invalid_timeout_reset")
+                self._status_line = ""
+                self._clear_invalid_feedback()
+                self._invalid_state_since_ms = 0
         if self.c.result == "victory":
             enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
             self.set_dialogue("victory", enemy_id, {})

@@ -16,7 +16,6 @@ class MapScreen:
         "elite": "Elite",
         "path": "Camino",
         "treasure": "Reliquia",
-        "shop": "Umbral",
         "boss": "Arconte",
     }
 
@@ -27,7 +26,6 @@ class MapScreen:
         "elite": "Una entidad de alto riesgo marca el rito.",
         "path": "Uno de los 7 Caminos bendice tu progreso.",
         "treasure": "Una reliquia olvidada late bajo la piedra.",
-        "shop": "El Comerciante del Umbral escucha en silencio.",
         "boss": "El Arconte aguarda al final de la geometria.",
     }
 
@@ -122,14 +120,21 @@ class MapScreen:
         return base, line_w
 
     def _node_radius(self, node_type: str, base_radius: int) -> int:
-        nt = str(node_type or "event")
+        nt = self._normalized_node_type(node_type)
         if nt == "boss":
             return base_radius + 9
         if nt in {"elite", "challenge"}:
             return base_radius + 4
-        if nt in {"event", "path", "treasure", "shop"}:
+        if nt in {"event", "path", "treasure"}:
             return base_radius + 2
         return base_radius
+
+    def _normalized_node_type(self, node_type: str | None) -> str:
+        nt = str(node_type or "event").lower()
+        # Compatibility with old saves before shop-node removal.
+        if nt == "shop":
+            return "path"
+        return nt
 
     def _refresh_graph_layout(self, run):
         _, center_rect, _ = self._panel_rects()
@@ -218,7 +223,7 @@ class MapScreen:
 
     def _draw_icon(self, s, node_type, x, y):
         col = (24, 20, 34)
-        t = str(node_type or "event")
+        t = self._normalized_node_type(node_type)
         if t == "combat":
             pygame.draw.line(s, col, (x - 8, y + 8), (x + 7, y - 7), 2)
             pygame.draw.polygon(s, col, [(x + 7, y - 7), (x + 12, y - 2), (x + 1, y + 3)])
@@ -425,7 +430,7 @@ class MapScreen:
                 if node_id not in self.node_positions:
                     continue
                 nx, ny = self.node_positions[node_id]
-                ntype = str(node.get("type", "event"))
+                ntype = self._normalized_node_type(node.get("type", "event"))
                 state = node.get("state", "locked")
                 rr = self._node_radius(ntype, base_radius)
                 hover_hit = rr + hit_pad
@@ -493,7 +498,7 @@ class MapScreen:
         pygame.draw.rect(s, UI_THEME["panel"], lore_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], lore_rect, 2, border_radius=12)
         if hovered_node:
-            ntype = str(hovered_node.get("type", "event"))
+            ntype = self._normalized_node_type(hovered_node.get("type", "event"))
             lore_text = self.NODE_LORE.get(ntype, "La ruta susurra un destino incierto.")
             node_title = self.NODE_NAMES.get(ntype, "Ruta")
             if ntype == "path" and hovered_node.get("path_name"):
@@ -510,3 +515,4 @@ class MapScreen:
             lore_txt = self.app.small_font.render(flavor, True, UI_THEME["muted"])
             s.blit(title_txt, (lore_rect.x + 12, lore_rect.y + 14))
             s.blit(lore_txt, (lore_rect.x + 22 + title_txt.get_width(), lore_rect.y + 12))
+

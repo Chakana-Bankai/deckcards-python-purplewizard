@@ -46,10 +46,12 @@ class EndScreen:
             "primary": pygame.Rect(760, 760, 400, 68),
             "menu": pygame.Rect(760, 842, 400, 68),
         }
+        self.can_continue_defeat = False
 
     def on_enter(self):
         self.t = 0.0
         self.idx = 0
+        self.can_continue_defeat = bool((not self.victory) and getattr(self.app, "run_state", None))
         if self.victory:
             self.victory_phase = "lore"
             self.banner.set(self.victory_lore[0], 2.0)
@@ -150,7 +152,7 @@ class EndScreen:
             body = self.banner.current or self.defeat_lore[min(self.idx, len(self.defeat_lore) - 1)]
             s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (860, 230))
             s.blit(self.app.font.render(body, True, UI_THEME["text"]), (430, 318))
-            labels = {"primary": "Volver al mapa", "menu": "Nueva run"}
+            labels = {"primary": "Volver al mapa" if self.can_continue_defeat else "Nueva run", "menu": "Nueva run"}
 
         for k, r in self.buttons.items():
             base = UI_THEME["violet"] if self.victory else (96, 58, 144) if k == "primary" else (72, 48, 112)
