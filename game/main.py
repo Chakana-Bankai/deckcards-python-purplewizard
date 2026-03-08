@@ -27,6 +27,7 @@ from game.core.paths import data_dir, assets_dir
 from game.core.rng import SeededRNG
 from game.core.safe_io import atomic_write_json, atomic_write_json_if_changed, load_json
 from game.core.settings_store import load_settings, save_settings
+from game.core.save import load_run, save_run, clear_run
 from game.core.state_machine import StateMachine
 from game.settings import FPS, INTERNAL_HEIGHT, INTERNAL_WIDTH
 from game.qa.runner import QARunner
@@ -66,6 +67,22 @@ DEFAULT_CARDS = [
 ]
 DEFAULT_ENEMY = {"id": "dummy", "name_key": "enemy_voidling_name", "hp": [20, 20], "pattern": [{"intent": "attack", "value": [5, 5]}]}
 
+MAP_TEMPLATE = [
+    {"type": "combat", "count": 1},
+    {"type": "event", "count": 3},
+    {"type": "combat", "count": 4},
+    {"type": "shop", "count": 3},
+    {"type": "challenge", "count": 4},
+    {"type": "treasure", "count": 3},
+    {"type": "combat", "count": 4},
+    {"type": "event", "count": 3},
+    {"type": "challenge", "count": 4},
+    {"type": "boss", "count": 1},
+]
+
+POST_COMBAT_HEAL = {"combat": 0.15, "challenge": 0.12, "boss": 0.10}
+MAX_LEVEL = 20
+
 
 class App:
     def __init__(self):
@@ -102,6 +119,7 @@ class App:
         self.mono_font = self.typography.get(SMALL_FONT, 22)
         self.sm = StateMachine()
         self.run_state = None
+        self.current_combat = None
         self.menu_return_screen = None
         self.combat_actions_log = []
         self.last_biome_seen = None
@@ -227,6 +245,7 @@ class App:
         print("[boot] assets OK")
         print(f"[boot] placeholders used: {self.debug.get('placeholders_used',0)}")
         self.debug["art_regenerated"] = self.art_gen.generated_count + self.art_gen.replaced_count
+        self._try_restore_run_from_save()
         self._boot_content_ready = True
         self.music.play_for(self.get_bgm_track("menu"))
 
@@ -296,9 +315,21 @@ class App:
         return "kaypacha"
 
     def _biome_progression(self) -> list[str]:
-        if self.biome_defs:
-            return [self._normalize_biome_id(b.get("id")) for b in self.biome_defs if isinstance(b, dict) and b.get("id")]
-        return ["kaypacha", "forest", "umbral", "hanan"]
+        progression = []
+        for b in self.biome_defs if isinstance(self.biome_defs, list) else []:
+            if not isinstance(b, dict) or not b.get("id"):
+                continue
+            bid = self._normalize_biome_id(b.get("id"))
+            if bid not in progression:
+                progression.append(bid)
+            if len(progression) >= 3:
+                break
+        for fallback in ["kaypacha", "forest", "umbral"]:
+            if fallback not in progression:
+                progression.append(fallback)
+            if len(progression) >= 3:
+                break
+        return progression[:3]
 
     def _biome_for_column(self, col: int, total_columns: int) -> str:
         prog = self._biome_progression()
@@ -546,9 +577,15 @@ class App:
     def goto_end(self, victory=True):
         if not victory:
             self.play_stinger("stinger_defeat")
+        self._clear_saved_run()
+        self.current_combat = None
+        self.run_state = None
+        self.current_node_id = None
+        self.node_lookup = {}
         title = "Victoria" if victory else "Derrota"
         lore = "el eco celebrÃ³ tu equilibrio." if victory else "la Trama pidiÃ³ un nuevo intento."
         self.sm.set(PachaTransitionScreen(self, title, lambda: self.sm.set(EndScreen(self, victory=victory)), lore_line=lore, hint="Cierre del capÃ­tulo"))
+
 
     def goto_path_select(self):
         self.sm.set(PathSelectScreen(self))
@@ -584,6 +621,68 @@ class App:
         save_settings(self.user_settings)
         print("[tutorial] completed: first-run guide disabled")
 
+    def xp_needed_for_level(self, level: int) -> int:
+        lvl = max(1, int(level or 1))
+        return 25 + (lvl - 1) * 15
+
+    def _refresh_node_lookup_from_map(self):
+        self.node_lookup = {}
+        if not isinstance(self.run_state, dict):
+            return
+        for col in self.run_state.get("map", []):
+            for node in col if isinstance(col, list) else []:
+                if isinstance(node, dict) and node.get("id"):
+                    self.node_lookup[str(node["id"])] = node
+
+    def _autosave_run(self, reason: str = ""):
+        if not isinstance(self.run_state, dict):
+            return
+        if isinstance(self.sm.current, CombatScreen):
+            return
+        payload = dict(self.run_state)
+        payload["current_node_id"] = self.current_node_id
+        payload["last_biome_seen"] = self.last_biome_seen
+        payload["saved_at"] = int(time.time())
+        save_run(payload)
+        if reason:
+            print(f"[save] autosave: {reason}")
+
+    def _try_restore_run_from_save(self):
+        if self.run_state:
+            return
+        payload = load_run()
+        if not isinstance(payload, dict):
+            return
+        run_map = payload.get("map")
+        player = payload.get("player")
+        deck = payload.get("deck")
+        if not isinstance(run_map, list) or not isinstance(player, dict) or not isinstance(deck, list):
+            return
+        self.run_state = payload
+        self.current_node_id = payload.get("current_node_id")
+        self.last_biome_seen = payload.get("last_biome_seen")
+        self._refresh_node_lookup_from_map()
+        self.recover_map_progression()
+        print("[save] continue run restored")
+
+    def _clear_saved_run(self):
+        clear_run()
+
+    def _apply_post_combat_recovery(self, node_type: str):
+        if not isinstance(self.run_state, dict):
+            return
+        player = self.run_state.get("player", {})
+        if not isinstance(player, dict):
+            return
+        max_hp = int(player.get("max_hp", 0) or 0)
+        hp = int(player.get("hp", 0) or 0)
+        if max_hp <= 0 or hp <= 0:
+            return
+        ratio = POST_COMBAT_HEAL.get(str(node_type or "combat"), POST_COMBAT_HEAL["combat"])
+        heal = max(1, int(max_hp * float(ratio)))
+        player["hp"] = min(max_hp, hp + heal)
+        print(f"[run] post-combat heal +{heal} ({player['hp']}/{max_hp})")
+
     def start_run_with_deck(self, starter_deck):
         base_deck = list(starter_deck or [])
         min_deck_size = 15
@@ -599,16 +698,19 @@ class App:
         tutorial_enabled = bool(self.pending_tutorial_enabled)
         self.tutorial_flow.start_for_run(tutorial_enabled)
 
+        run_map = self.generate_map()
+        map_columns = max(1, len(run_map))
         self.run_state = {
             "gold": 80,
             "relics": ["violet_seal"],
             "player": {"hp": 60, "max_hp": 60, "block": 0, "energy": 3, "rupture": 0, "statuses": {}},
             "deck": list(base_deck),
             "sideboard": [],
-            "map": self.generate_map(),
+            "map": run_map,
+            "map_columns": map_columns,
             "biome_progression": self._biome_progression(),
             "biome_index": 0,
-            "biome": self._biome_for_column(0, 6),
+            "biome": self._biome_for_column(0, map_columns),
             "xp": 0,
             "level": 1,
             "combats_won": 0,
@@ -618,29 +720,32 @@ class App:
                 "music_muted": bool(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False))),
             },
         }
+        self.current_node_id = None
+        self.current_combat = None
         self._sync_tutorial_run_state()
+        self._autosave_run("new_run_started")
         self.goto_map()
 
     def generate_map(self):
-        columns = 6
+        layout = list(MAP_TEMPLATE)
+        columns = len(layout)
         by_col = []
         self.node_lookup = {}
-        type_cycle = ["combat", "event", "challenge", "shop", "treasure", "boss"]
-        x_margin = 140
-        x_step = (INTERNAL_WIDTH - x_margin * 2) // (columns - 1)
-        for col in range(columns):
-            count = 1 if col in (0, columns - 1) else 4
+        x_margin = 120
+        x_step = (INTERNAL_WIDTH - x_margin * 2) // max(1, (columns - 1))
+        for col, spec in enumerate(layout):
+            count = max(1, int(spec.get("count", 1)))
             col_nodes = []
             for row in range(count):
                 node_id = f"{col}_{row}"
                 if count == 1:
                     y = INTERNAL_HEIGHT // 2
                 else:
-                    y_top = 210
-                    y_step = 160
-                    y = y_top + row * y_step
-                node_type = type_cycle[col]
-                if node_type == "challenge" and self.rng.randint(0, 100) < 45:
+                    y_top = 196
+                    y_bottom = 766
+                    y = y_top + int((row * (y_bottom - y_top)) / max(1, count - 1))
+                node_type = str(spec.get("type", "combat"))
+                if node_type == "challenge" and self.rng.randint(0, 100) < 28:
                     node_type = "combat"
                 node_biome = self._biome_for_column(col, columns)
                 node = {
@@ -670,6 +775,7 @@ class App:
             self.sm.set(PackOpeningScreen(self))
             self.music.play_for("chest")
             return
+        self._autosave_run("goto_map")
         self.debug["map_available_count"] = self.available_nodes_count() if self.node_lookup else 0
         self.debug["current_node_id"] = self.current_node_id or "-"
         biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
@@ -732,7 +838,7 @@ class App:
         else:
             reward_data = {"type": "choose1of3", "cards": list(picks)}
         if gold is None:
-            gold = self.rng.randint(10, 25)
+            gold = self.rng.randint(20, 35)
 
         self.sm.set(RewardScreen(self, reward_data, gold, xp_gained=self.debug.get("xp_last_gain", 0)))
         self.play_stinger("stinger_reward")
@@ -768,7 +874,8 @@ class App:
         biome = self._normalize_biome_id(node.get("biome"))
         if self.run_state is not None:
             self.run_state["biome"] = biome
-            self.run_state["biome_index"] = max(0, int(node.get("col", 0)))
+            prog = list(self.run_state.get("biome_progression", []))
+            self.run_state["biome_index"] = prog.index(biome) if biome in prog else max(0, int(node.get("col", 0)))
         self.debug["current_node_id"] = self.current_node_id
         self.debug["next_nodes_ids"] = ",".join(node.get("next", [])) if node.get("next") else "-"
         self.enter_node(node)
@@ -794,6 +901,7 @@ class App:
             unlocked.extend(self._fallback_unlock_next_column(node))
         self.debug["next_nodes_ids"] = ",".join(unlocked) if unlocked else "-"
         self.debug["map_available_count"] = self.available_nodes_count()
+        self._autosave_run("node_completed")
         return unlocked
 
     def _unlock_optional_challenge(self, node):
@@ -875,30 +983,43 @@ class App:
 
     def gain_xp(self, amount: int):
         levels = 0
-        self.debug["xp_last_gain"] = max(0, int(amount))
-        self.run_state["xp"] += amount
-        needed = self.run_state["level"] * 20
-        while self.run_state["xp"] >= needed:
-            self.run_state["xp"] -= needed
+        gain = max(0, int(amount or 0))
+        self.debug["xp_last_gain"] = gain
+        self.run_state["xp"] += gain
+        while self.run_state["level"] < MAX_LEVEL and self.run_state["xp"] >= self.xp_needed_for_level(self.run_state["level"]):
+            self.run_state["xp"] -= self.xp_needed_for_level(self.run_state["level"])
             self.run_state["level"] += 1
             levels += 1
-            needed = self.run_state["level"] * 20
+        if self.run_state["level"] >= MAX_LEVEL:
+            self.run_state["level"] = MAX_LEVEL
+            self.run_state["xp"] = min(self.run_state["xp"], self.xp_needed_for_level(MAX_LEVEL))
         if levels:
             self.run_state["levelup_pending"] = self.run_state.get("levelup_pending", 0) + levels
         return levels
+
 
     def on_combat_victory(self):
         self.play_stinger("stinger_victory")
         self._complete_current_node()
         node_type = self.run_state.get("last_node_type", "combat")
-        if node_type == "boss":
-            self.goto_reward(mode="boss_pack", gold=self.rng.randint(40, 70))
-            return
-        self.run_state["combats_won"] = int(self.run_state.get("combats_won", 0)) + 1
-        bonus_gold = self.rng.randint(16, 30) if node_type == "challenge" else self.rng.randint(10, 25)
-        difficulty_bonus = {"combat": 2, "challenge": 5, "boss": 12}.get(node_type, 2)
         perfect_bonus = 5 if self.current_combat and getattr(self.current_combat, "player_damage_taken", 0) <= 0 else 0
-        self.gain_xp(10 + difficulty_bonus + perfect_bonus)
+
+        if node_type == "boss":
+            self.gain_xp(100 + perfect_bonus)
+            self._apply_post_combat_recovery("boss")
+            self.goto_reward(mode="boss_pack", gold=self.rng.randint(120, 180))
+            return
+
+        self.run_state["combats_won"] = int(self.run_state.get("combats_won", 0)) + 1
+        if node_type == "challenge":
+            bonus_gold = self.rng.randint(40, 70)
+            xp_gain = 40 + perfect_bonus
+        else:
+            bonus_gold = self.rng.randint(20, 35)
+            xp_gain = self.rng.randint(15, 25) + perfect_bonus
+
+        self.gain_xp(xp_gain)
+        self._apply_post_combat_recovery(node_type)
         enemy = self.current_combat.enemies[0] if self.current_combat and self.current_combat.enemies else None
         self.debug["last_lesson_key"] = getattr(enemy, "fable_lesson_key", "duda") if enemy else "duda"
         self.goto_reward(gold=bonus_gold)

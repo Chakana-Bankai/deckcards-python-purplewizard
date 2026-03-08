@@ -17,3 +17,8 @@ def load_run() -> dict | None:
     if not SAVE_PATH.exists():
         return None
     return json.loads(SAVE_PATH.read_text(encoding="utf-8"))
+
+
+def clear_run() -> None:
+    if SAVE_PATH.exists():
+        SAVE_PATH.unlink()

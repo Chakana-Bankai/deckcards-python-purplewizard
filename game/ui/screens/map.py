@@ -165,7 +165,7 @@ class MapScreen:
 
         lvl = int(run.get("level", 1) or 1)
         xp = int(run.get("xp", 0) or 0)
-        xp_need = max(1, lvl * 20)
+        xp_need = self.app.xp_needed_for_level(lvl) if hasattr(self.app, "xp_needed_for_level") else max(1, lvl * 20)
         gold = int(run.get("gold", 0) or 0)
 
         viewport = safe_area(INTERNAL_WIDTH, INTERNAL_HEIGHT, 18, 18)
@@ -358,3 +358,4 @@ class MapScreen:
             lore_txt = self.app.small_font.render(flavor, True, UI_THEME["muted"])
             s.blit(title_txt, (lore_rect.x + 12, lore_rect.y + 16))
             s.blit(lore_txt, (lore_rect.x + 22 + title_txt.get_width(), lore_rect.y + 14))
+
