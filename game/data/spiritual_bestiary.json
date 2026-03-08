@@ -1,0 +1,223 @@
+{
+  "worlds": {
+    "hanan_pacha": {
+      "name": "Hanan Pacha",
+      "description": "Upper world of guardian spirits and celestial geometry."
+    },
+    "kay_pacha": {
+      "name": "Kay Pacha",
+      "description": "Living world of mages, beasts and ritual crossroads."
+    },
+    "uku_pacha": {
+      "name": "Uku Pacha",
+      "description": "Underworld of fractures, shadows and corruption."
+    }
+  },
+  "factions": {
+    "guardians": {
+      "theme": "protective sacred beasts",
+      "default_motif": "guardian"
+    },
+    "oracles": {
+      "theme": "visionary rune speakers",
+      "default_motif": "oracle"
+    },
+    "demons": {
+      "theme": "rupture and void corruption",
+      "default_motif": "demon"
+    },
+    "archons": {
+      "theme": "cosmic tyrants and ritual crowns",
+      "default_motif": "archon"
+    }
+  },
+  "visual_motifs": {
+    "guardian": {
+      "geometry": "chakana geometry light",
+      "shapes": ["wings", "diamond_frame", "rays"]
+    },
+    "oracle": {
+      "geometry": "stars runes eye",
+      "shapes": ["orbits", "rune_ring", "watcher_eye"]
+    },
+    "demon": {
+      "geometry": "fracture spikes void",
+      "shapes": ["spikes", "fracture_ring", "void_teeth"]
+    },
+    "archon": {
+      "geometry": "mandala crown cosmic",
+      "shapes": ["mandala", "crown_arcs", "cosmic_halos"]
+    }
+  },
+  "biomes": {
+    "hanan_mountains": {
+      "world": "hanan_pacha",
+      "palette": "gold_cyan",
+      "energy": "celestial"
+    },
+    "kay_valley": {
+      "world": "kay_pacha",
+      "palette": "violet_cyan",
+      "energy": "living_ritual"
+    },
+    "uku_abyss": {
+      "world": "uku_pacha",
+      "palette": "red_black",
+      "energy": "corruption"
+    }
+  },
+  "entities": [
+    {
+      "id": "condor_hanan",
+      "kind": "ally",
+      "faction": "guardians",
+      "world": "hanan_pacha",
+      "archetype": "guardian_spirit",
+      "motif": "guardian",
+      "palette": "gold_cyan",
+      "energy": "wind_light",
+      "aliases": ["espiritu_condor_menor"]
+    },
+    {
+      "id": "puma_guardian",
+      "kind": "ally",
+      "faction": "guardians",
+      "world": "kay_pacha",
+      "archetype": "guardian_beast",
+      "motif": "guardian",
+      "palette": "emerald_gold",
+      "energy": "earth_guard",
+      "aliases": ["espiritu_puma_menor", "guardia_de_raiz"]
+    },
+    {
+      "id": "amaru_serpent",
+      "kind": "ally",
+      "faction": "oracles",
+      "world": "kay_pacha",
+      "archetype": "ritual_serpent",
+      "motif": "oracle",
+      "palette": "violet_cyan",
+      "energy": "prophecy"
+    },
+    {
+      "id": "mountain_spirit",
+      "kind": "ally",
+      "faction": "guardians",
+      "world": "hanan_pacha",
+      "archetype": "stone_guardian",
+      "motif": "guardian",
+      "palette": "gold_cyan",
+      "energy": "highland_breath"
+    },
+    {
+      "id": "chakana_custodian",
+      "kind": "ally",
+      "faction": "oracles",
+      "world": "kay_pacha",
+      "archetype": "chakana_keeper",
+      "motif": "oracle",
+      "palette": "violet_cyan",
+      "energy": "ritual_balance",
+      "aliases": ["custodio_astral"]
+    },
+    {
+      "id": "shadow_hound",
+      "kind": "enemy",
+      "faction": "demons",
+      "world": "uku_pacha",
+      "archetype": "stalker",
+      "motif": "demon",
+      "palette": "red_black",
+      "energy": "corruption",
+      "aliases": ["sabueso_sombrio", "jaguar_sombrio"]
+    },
+    {
+      "id": "void_parasite",
+      "kind": "enemy",
+      "faction": "demons",
+      "world": "uku_pacha",
+      "archetype": "parasite",
+      "motif": "demon",
+      "palette": "red_black",
+      "energy": "drain",
+      "aliases": ["larva_del_vacio", "acaro_de_tinta", "insecto_de_tela"]
+    },
+    {
+      "id": "fractured_specter",
+      "kind": "enemy",
+      "faction": "oracles",
+      "world": "uku_pacha",
+      "archetype": "rift_echo",
+      "motif": "oracle",
+      "palette": "void_violet",
+      "energy": "fracture",
+      "aliases": ["eco_perdido", "monolito_fracturado", "sombra_de_piedra"]
+    },
+    {
+      "id": "rupture_demon",
+      "kind": "enemy",
+      "faction": "demons",
+      "world": "uku_pacha",
+      "archetype": "rupture_brute",
+      "motif": "demon",
+      "palette": "red_black",
+      "energy": "rupture",
+      "aliases": ["demonio_obsidiana", "devorador_de_ecos"]
+    },
+    {
+      "id": "void_cultist",
+      "kind": "enemy",
+      "faction": "oracles",
+      "world": "kay_pacha",
+      "archetype": "void_ritualist",
+      "motif": "oracle",
+      "palette": "violet_cyan",
+      "energy": "corrupted_ritual",
+      "aliases": ["void_cultist", "chaman_corrupto", "vidente_caido", "oraculo_menor", "runa_errante"]
+    },
+    {
+      "id": "void_archon",
+      "kind": "boss",
+      "faction": "archons",
+      "world": "uku_pacha",
+      "archetype": "world_breaker",
+      "motif": "archon",
+      "palette": "red_black",
+      "energy": "abyssal_ritual",
+      "aliases": ["guardian_de_la_grieta"]
+    },
+    {
+      "id": "crimson_archon",
+      "kind": "boss",
+      "faction": "archons",
+      "world": "kay_pacha",
+      "archetype": "blood_prophet",
+      "motif": "archon",
+      "palette": "crimson_ritual",
+      "energy": "war_ritual",
+      "aliases": ["oraculo_del_vacio"]
+    },
+    {
+      "id": "inverted_chakana_archon",
+      "kind": "boss",
+      "faction": "archons",
+      "world": "hanan_pacha",
+      "archetype": "inverted_judge",
+      "motif": "archon",
+      "palette": "void_violet",
+      "energy": "inversion",
+      "aliases": ["senor_de_la_chakana_rota"]
+    },
+    {
+      "id": "supreme_archon",
+      "kind": "boss",
+      "faction": "archons",
+      "world": "uku_pacha",
+      "archetype": "final_convergence",
+      "motif": "archon",
+      "palette": "crimson_ritual",
+      "energy": "supreme_fracture",
+      "aliases": ["arconte_supremo"]
+    }
+  ]
+}
