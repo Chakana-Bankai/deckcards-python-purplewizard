@@ -6,6 +6,7 @@ import pygame
 
 from game.settings import ASSETS_DIR, INTERNAL_HEIGHT, INTERNAL_WIDTH
 from game.ui.system.typography import ChakanaTypography, SMALL_FONT
+from game.visual import get_visual_engine
 
 
 class SoundManager:
@@ -66,6 +67,8 @@ class SoundManager:
 class AssetManager:
     def __init__(self):
         self._cache = {}
+        self._visual = None
+        self._visual_log_once = set()
 
     def _load_image(self, path: Path, fallback_size: tuple[int, int], fill=(60, 55, 90), fallback_label: str = ""):
         if path.exists():
@@ -88,7 +91,35 @@ class AssetManager:
             return self._cache[key]
         path = Path(ASSETS_DIR) / "sprites" / category / f"{name}.png"
         lbl = name if category == "cards" else ""
-        img = self._load_image(path, size, fallback, fallback_label=lbl)
+        if path.exists():
+            img = self._load_image(path, size, fallback, fallback_label=lbl)
+        else:
+            img = None
+            if category in {"avatar", "player", "relics", "biomes", "starters", "emblems", "overlays"}:
+                try:
+                    if self._visual is None:
+                        self._visual = get_visual_engine()
+                    vcat = {"player": "avatar", "starters": "emblems"}.get(category, category)
+                    ctx = "mini" if category == "starters" else ""
+                    if vcat == "biomes":
+                        ctx = "bg"
+                    if vcat == "avatar":
+                        ctx = str(name or "combat_hud")
+                    if vcat == "relics":
+                        ctx = "rare"
+                    img = self._visual.generate(vcat, str(name or "default"), size, context=ctx, force=False)
+                    log_key = f"{vcat}:{name}:{size[0]}x{size[1]}:{ctx}"
+                    if log_key not in self._visual_log_once:
+                        self._visual_log_once.add(log_key)
+                        print(f"[visual] {vcat}/{name} source=generated_or_cache")
+                except Exception:
+                    img = None
+            if img is None:
+                log_key = f"{category}:{name}:{size[0]}x{size[1]}"
+                if log_key not in self._visual_log_once:
+                    self._visual_log_once.add(log_key)
+                    print(f"[visual] {category}/{name} source=fallback")
+                img = self._load_image(path, size, fallback, fallback_label=lbl)
         if img.get_size() != size:
             img = pygame.transform.scale(img, size)
         self._cache[key] = img

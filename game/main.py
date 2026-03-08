@@ -59,6 +59,7 @@ from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION
 from game.services.content_service import ContentService
 from game.services.asset_pipeline import AssetPipeline
 from game.services.audio_pipeline import AudioPipeline
+from game.visual import get_visual_engine
 from game.systems.reward_system import build_reward_boss, build_reward_guide, build_reward_normal
 from game.ui.screens.loading import LoadingScreen, DataLoadingScreen
 
@@ -171,6 +172,7 @@ class App:
         self.guide_gen = GuideAvatarGenerator()
         self.asset_pipeline = AssetPipeline(self.art_gen, self.enemy_art_gen, self.guide_gen, self.bg_gen)
         self.audio_pipeline = AudioPipeline()
+        self.visual_engine = get_visual_engine()
         self.autogen_art_mode = self.user_settings.get("autogen_art_mode", "missing_only")
         self.user_settings.setdefault("detail_panel", False)
         self.user_settings.setdefault("tutorial_completed", False)
@@ -240,6 +242,7 @@ class App:
         self.debug["content_validation"] = content_report
         print(f"[boot] validate_content status={content_report.get('status')} cards={content_report.get('cards')} summary_ok={content_report.get('summary_ok')} can_play_ok={content_report.get('can_play_ok')} placeholders={content_report.get('placeholders')} issues={len(content_report.get('issues', []))}")
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
+        self.visual_engine.ensure_core(force=bool(self.user_settings.get("force_regen_art", False)))
         self._loading_step("Completado", 1.0)
         dk = int(getattr(self.lore_engine, "keys_count", 0))
         covered = len([e for e in self.enemies_data if isinstance(self.lore_engine.combat_dialogues.get(e.get("id"), {}), dict)]) if isinstance(self.lore_engine.combat_dialogues, dict) else 0
@@ -1253,6 +1256,7 @@ class App:
         self.user_settings["force_regen_music"] = True
         self.user_settings["update_manifests"] = True
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
+        self.visual_engine.ensure_core(force=bool(self.user_settings.get("force_regen_art", False)))
         self.user_settings["force_regen_music"] = False
         self.user_settings["update_manifests"] = False
         try:
@@ -1381,6 +1385,7 @@ class App:
         self.debug["content_validation"] = content_report
         print(f"[boot] validate_content status={content_report.get('status')} cards={content_report.get('cards')} summary_ok={content_report.get('summary_ok')} can_play_ok={content_report.get('can_play_ok')} placeholders={content_report.get('placeholders')} issues={len(content_report.get('issues', []))}")
         self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
+        self.visual_engine.ensure_core(force=bool(self.user_settings.get("force_regen_art", False)))
         self._set_boot_screen()
         self.music.play_for(self.get_bgm_track("menu"))
         self.asset_generation_active = False

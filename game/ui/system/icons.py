@@ -7,6 +7,7 @@ so missing glyph support never renders broken square placeholders.
 from __future__ import annotations
 
 import pygame
+from game.visual import get_visual_engine
 
 
 ICON_ALIASES = {
@@ -30,6 +31,7 @@ FALLBACK_TEXT = {
     "ritual": "^",
     "gold": "$",
     "xp": "xp",
+    "level": "lvl",
     "deck": "M",
     "hand": "H",
     "discard": "E",
@@ -42,6 +44,7 @@ FALLBACK_TEXT = {
 }
 
 _ICON_CACHE: dict[tuple[str, tuple[int, int, int], int], pygame.Surface] = {}
+_VISUAL_ENGINE = None
 
 
 def normalize_icon_name(icon_name: str) -> str:
@@ -57,6 +60,7 @@ def normalize_icon_name(icon_name: str) -> str:
         "ritual",
         "gold",
         "xp",
+        "level",
         "deck",
         "hand",
         "discard",
@@ -94,6 +98,20 @@ def _render_icon_surface(icon_name: str, color: tuple[int, int, int], size: int)
     c = tuple(int(v) for v in color[:3])
     lw = max(1, scale)
     mid = px // 2
+
+    # Prefer centralized visual engine icon if available.
+    global _VISUAL_ENGINE
+    try:
+        if _VISUAL_ENGINE is None:
+            _VISUAL_ENGINE = get_visual_engine()
+        vis = _VISUAL_ENGINE.generate("icons", key, (px, px), context="", force=False)
+        if vis is not None:
+            vis_col = vis.copy()
+            vis_col.fill((c[0], c[1], c[2], 255), special_flags=pygame.BLEND_RGBA_MULT)
+            _ICON_CACHE[cache_key] = vis_col
+            return vis_col
+    except Exception:
+        pass
 
     if key == "damage":
         _stroke(surf, c, [(3 * scale, 11 * scale), (11 * scale, 3 * scale)], lw + 1)
@@ -204,5 +222,6 @@ def icon_for_effect(effect_type: str) -> str:
         "gold": "gold",
         "gain_xp": "xp",
         "xp": "xp",
+        "level": "level",
     }
     return mapping.get(key, "unknown")

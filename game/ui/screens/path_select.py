@@ -217,6 +217,9 @@ class PathSelectScreen:
         s.blit(title, title.get_rect(center=(INTERNAL_WIDTH // 2, 56)))
         s.blit(sub, sub.get_rect(center=(INTERNAL_WIDTH // 2, 94)))
 
+        menu_portrait = self.app.assets.sprite("avatar", "menu", (96, 96), fallback=(86, 56, 132))
+        s.blit(menu_portrait, (54, 34))
+
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.hover_index = None
 
@@ -254,6 +257,9 @@ class PathSelectScreen:
             banner = self.app.assets.sprite("starters", opt["id"], (banner_rect.w, banner_rect.h), fallback=(78, 52, 114))
             s.blit(banner, banner_rect.topleft)
             pygame.draw.rect(s, UI_THEME["gold"], banner_rect, 1, border_radius=8)
+
+            emblem = self.app.assets.sprite("emblems", opt["id"], (64, 64), fallback=(96, 74, 136))
+            s.blit(emblem, (hero.right - 74, hero.y + 96))
 
             draw_icon_with_value(s, opt["icon"], 1, UI_THEME["gold"], self.app.small_font, hero.x + 10, hero.y + 102, size=2)
             s.blit(self.app.map_font.render(opt["name"], True, UI_THEME["gold"]), (hero.x + 52, hero.y + 100))

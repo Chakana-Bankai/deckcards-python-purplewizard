@@ -1,6 +1,7 @@
 import math
 import pygame
 
+from game.ui.system.icons import draw_icon_with_value
 from game.ui.system.modals import CardGridModal, ChoiceModal
 
 
@@ -256,16 +257,29 @@ class RewardScreen:
 
     def _render_identity_badge(self, s):
         ident = self._pack_identity()
-        badge = pygame.Rect(34, 28, 660, 96)
+        badge = pygame.Rect(34, 28, 780, 104)
         pygame.draw.rect(s, (24, 18, 38), badge, border_radius=12)
         pygame.draw.rect(s, ident["color"], badge, 2, border_radius=12)
         s.blit(self.app.small_font.render(ident["title"], True, ident["color"]), (badge.x + 14, badge.y + 12))
         lore = ident["lore"]
-        if self.app.tiny_font.size(lore)[0] > badge.w - 24:
-            while self.app.tiny_font.size(lore + "...")[0] > badge.w - 24 and len(lore) > 6:
+        if self.app.tiny_font.size(lore)[0] > badge.w - 200:
+            while self.app.tiny_font.size(lore + "...")[0] > badge.w - 200 and len(lore) > 6:
                 lore = lore[:-1]
             lore += "..."
         s.blit(self.app.tiny_font.render(lore, True, (228, 224, 240)), (badge.x + 14, badge.y + 48))
+
+        # Progression icon chips.
+        x = badge.x + 14
+        x = draw_icon_with_value(s, "gold", self.gold, (236, 212, 148), self.app.tiny_font, x, badge.y + 74, size=1)
+        x = draw_icon_with_value(s, "xp", self.xp_gained, (214, 226, 246), self.app.tiny_font, x, badge.y + 74, size=1)
+        if self.mode == "boss_pack":
+            draw_icon_with_value(s, "boss", 1, (236, 142, 100), self.app.tiny_font, x, badge.y + 74, size=1)
+
+        # Relic visual identity when present.
+        if isinstance(self.relic, dict) and self.relic.get("id"):
+            rid = str(self.relic.get("id"))
+            relic_tile = self.app.assets.sprite("relics", rid, (84, 84), fallback=(96, 76, 124))
+            s.blit(relic_tile, (badge.right - 98, badge.y + 10))
 
     def _render_tutorial_hint(self, s):
         hint = self._tutorial_hint()

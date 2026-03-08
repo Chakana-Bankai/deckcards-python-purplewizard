@@ -132,6 +132,11 @@ class MenuScreen:
         UIPanel(title_rect, variant="alt").draw(surface)
         self._draw_title(surface, title_rect)
 
+        portrait = self.app.assets.sprite("avatar", "menu", (132, 132), fallback=(86, 56, 132))
+        surface.blit(portrait, (title_rect.x + 20, title_rect.y + 18))
+        emblem = self.app.assets.sprite("emblems", "oracle_of_fate", (72, 72), fallback=(96, 74, 136))
+        surface.blit(emblem, (title_rect.right - 96, title_rect.y + 28))
+
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         for i, item in enumerate(self.buttons):
             if not self._is_button_visible(item, i):

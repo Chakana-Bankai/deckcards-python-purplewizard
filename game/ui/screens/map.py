@@ -4,6 +4,7 @@ from game.settings import INTERNAL_HEIGHT, INTERNAL_WIDTH
 from game.ui.components.topbar import MapTopBar
 from game.ui.theme import UI_THEME
 from game.ui.system.components import UIPanel
+from game.ui.system.icons import draw_icon_with_value
 from game.ui.system.layout import safe_area
 
 
@@ -243,10 +244,15 @@ class MapScreen:
         for r in (left_rect, center_rect, right_rect):
             UIPanel(r).draw(s)
 
+        biome_panel = self.app.assets.sprite("biomes", self.selected_biome, (center_rect.w - 14, center_rect.h - 14), fallback=(40, 32, 60))
+        biome_panel.set_alpha(34)
+        s.blit(biome_panel, (center_rect.x + 7, center_rect.y + 7))
+
         s.blit(self.app.small_font.render("Trama", True, UI_THEME["gold"]), (left_rect.x + 16, left_rect.y + 14))
         stage_line = self._fit_text(self.app.tiny_font, stage_title, left_rect.w - 32)
         s.blit(self.app.tiny_font.render(stage_line, True, UI_THEME["muted"]), (left_rect.x + 16, left_rect.y + 40))
-        self._draw_chakana(s, left_rect.centerx, left_rect.y + 132)
+        avatar = self.app.assets.sprite("avatar", "codex", (112, 112), fallback=(86, 56, 132))
+        s.blit(avatar, avatar.get_rect(center=(left_rect.centerx, left_rect.y + 132)).topleft)
         thought_title = self.app.tiny_font.render("Pensamiento de Chakana", True, UI_THEME["text"])
         s.blit(thought_title, (left_rect.x + 16, left_rect.y + 198))
         thought_line = self._fit_text(self.app.small_font, stage_thought, left_rect.w - 32)
@@ -263,6 +269,8 @@ class MapScreen:
         pygame.draw.rect(s, UI_THEME["panel_2"], center_badge, border_radius=7)
         pygame.draw.rect(s, UI_THEME["gold"], center_badge, 1, border_radius=7)
         s.blit(self.app.tiny_font.render(f"Etapa {stage_idx + 1}", True, UI_THEME["gold"]), (center_badge.x + 8, center_badge.y + 5))
+        biome_sigil = self.app.assets.sprite("biomes", self.selected_biome, (72, 40), fallback=(78, 52, 114))
+        s.blit(biome_sigil, (center_badge.right + 10, center_badge.y - 8))
 
         rail = pygame.Rect(center_badge.right + 18, center_badge.y + 2, center_rect.w - (center_badge.right - center_rect.x) - 34, 18)
         pygame.draw.rect(s, UI_THEME["panel_2"], rail, border_radius=8)
@@ -361,20 +369,21 @@ class MapScreen:
         deck_size = len(run.get("deck", []) or [])
 
         stats = [
-            ("Oro", f"{gold}", UI_THEME["gold"]),
-            ("XP", f"{xp}/{xp_need}", UI_THEME["text"]),
-            ("Armonia", f"{harmony}/{harmony_goal}", UI_THEME["violet"]),
-            ("Mazo", f"{deck_size}", UI_THEME["text"]),
+            ("level", int(lvl), UI_THEME["gold"], f"{lvl}"),
+            ("gold", int(gold), UI_THEME["gold"], f"{gold}"),
+            ("xp", int(xp), UI_THEME["text"], f"{xp}/{xp_need}"),
+            ("harmony", int(harmony), UI_THEME["violet"], f"{harmony}/{harmony_goal}"),
+            ("deck", int(deck_size), UI_THEME["text"], f"{deck_size}"),
         ]
 
         s.blit(self.app.small_font.render("Estado de Chakana", True, UI_THEME["gold"]), (right_rect.x + 14, right_rect.y + 14))
         y = right_rect.y + 52
-        for label, val, col in stats:
+        for icon_name, icon_val, col, val_text in stats:
             row = pygame.Rect(right_rect.x + 12, y, right_rect.w - 24, 34)
             pygame.draw.rect(s, UI_THEME["panel_2"], row, border_radius=8)
             pygame.draw.rect(s, col, row, 1, border_radius=8)
-            s.blit(self.app.tiny_font.render(label, True, UI_THEME["muted"]), (row.x + 10, row.y + 5))
-            value_txt = self.app.small_font.render(val, True, col)
+            draw_icon_with_value(s, icon_name, icon_val, col, self.app.tiny_font, row.x + 8, row.y + 7, size=1)
+            value_txt = self.app.small_font.render(val_text, True, col)
             s.blit(value_txt, (row.right - value_txt.get_width() - 10, row.y + 8))
             y += 42
 

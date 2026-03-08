@@ -5,7 +5,6 @@ from pathlib import Path
 
 import pygame
 
-from game.art.gen_avatar_chakana import render_avatar
 from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
 from game.core.paths import data_dir
 from game.core.safe_io import load_json
@@ -1087,6 +1086,10 @@ class CombatScreen:
             pygame.draw.ellipse(shadow, (0, 0, 0, 118), shadow.get_rect())
             s.blit(shadow, (avatar_rect.x - 10, avatar_rect.y + 6))
             s.blit(sprite, sprite_box.topleft)
+            overlay_kind = "archon" if boss_factor > 1.2 else ("celestial" if "angel" in variant else "guardian" if "nephilim" in variant else "void")
+            sacred = self.app.assets.sprite("overlays", overlay_kind, (avatar_rect.w, avatar_rect.h), fallback=(0, 0, 0))
+            sacred.set_alpha(84 if boss_factor > 1.2 else 52)
+            s.blit(sacred, avatar_rect.topleft)
 
             self._draw_enemy_geometry_overlay(s, avatar_rect, intent_col, variant, boss_factor, t + i * 0.31)
 
@@ -1210,7 +1213,8 @@ class CombatScreen:
 
         pygame.draw.rect(s, (14, 12, 20), portrait_rect, border_radius=11)
         pygame.draw.rect(s, UI_THEME["gold"], portrait_rect, 2, border_radius=11)
-        avatar = render_avatar(pygame.time.get_ticks() / 1000.0, min(portrait_rect.w - 10, portrait_rect.h - 22))
+        portrait_kind = "combat_hud"
+        avatar = self.app.assets.sprite("avatar", portrait_kind, (portrait_rect.w - 10, portrait_rect.h - 22), fallback=(86, 56, 132))
         av_rect = avatar.get_rect(center=(portrait_rect.centerx, portrait_rect.centery - 2))
         s.blit(avatar, av_rect.topleft)
         s.blit(self.app.tiny_font.render("CHAKANA", True, UI_THEME["gold"]), (portrait_rect.x + 26, portrait_rect.bottom - 18))
