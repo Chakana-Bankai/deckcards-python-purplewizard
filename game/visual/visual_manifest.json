@@ -1,6 +1,6 @@
 {
   "version": "visual_v1",
-  "generated_at": 1772976760,
+  "generated_at": 1772980200,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -1848,6 +1848,384 @@
       "size": [
         714,
         147
+      ]
+    },
+    "icons:deck:14x14:": {
+      "asset_id": "deck",
+      "category": "icons",
+      "seed": 419913966,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\icons\\deck_14x14.png"
+      ],
+      "context": "",
+      "version": "visual_v1",
+      "generated_at": 1772977544,
+      "size": [
+        14,
+        14
+      ]
+    },
+    "icons:hand:14x14:": {
+      "asset_id": "hand",
+      "category": "icons",
+      "seed": 673076547,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\icons\\hand_14x14.png"
+      ],
+      "context": "",
+      "version": "visual_v1",
+      "generated_at": 1772977544,
+      "size": [
+        14,
+        14
+      ]
+    },
+    "icons:discard:14x14:": {
+      "asset_id": "discard",
+      "category": "icons",
+      "seed": 1149780627,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\icons\\discard_14x14.png"
+      ],
+      "context": "",
+      "version": "visual_v1",
+      "generated_at": 1772977544,
+      "size": [
+        14,
+        14
+      ]
+    },
+    "relics:condor_feather:96x96:rare": {
+      "asset_id": "condor_feather",
+      "category": "relics",
+      "seed": 687274989,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\condor_feather_96x96_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v1",
+      "generated_at": 1772977654,
+      "size": [
+        96,
+        96
+      ]
+    },
+    "relics:condor_feather:112x112:rare": {
+      "asset_id": "condor_feather",
+      "category": "relics",
+      "seed": 687274989,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\condor_feather_112x112_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v1",
+      "generated_at": 1772977654,
+      "size": [
+        112,
+        112
+      ]
+    },
+    "avatar:archon_oracle:270x200:archon_oracle": {
+      "asset_id": "archon_oracle",
+      "category": "avatar",
+      "seed": 1634281813,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\archon_oracle_270x200_archon_oracle.png"
+      ],
+      "context": "archon_oracle",
+      "version": "visual_v1",
+      "generated_at": 1772978943,
+      "size": [
+        270,
+        200
+      ]
+    },
+    "overlays:celestial:768x147:": {
+      "asset_id": "celestial",
+      "category": "overlays",
+      "seed": 228390213,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\overlays\\celestial_768x147.png"
+      ],
+      "context": "",
+      "version": "visual_v1",
+      "generated_at": 1772980142,
+      "size": [
+        768,
+        147
+      ]
+    },
+    "relics:chakana_thread:128x128:rare": {
+      "asset_id": "chakana_thread",
+      "category": "relics",
+      "seed": 368168046,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\chakana_thread_128x128_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v1",
+      "generated_at": 1772980199,
+      "size": [
+        128,
+        128
+      ]
+    },
+    "relics:chakana_thread:160x160:rare": {
+      "asset_id": "chakana_thread",
+      "category": "relics",
+      "seed": 368168046,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\chakana_thread_160x160_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v1",
+      "generated_at": 1772980200,
+      "size": [
+        160,
+        160
       ]
     }
   }
