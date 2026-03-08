@@ -3,7 +3,7 @@ import pygame
 from game.settings import INTERNAL_HEIGHT, INTERNAL_WIDTH
 from game.ui.components.topbar import MapTopBar
 from game.ui.theme import UI_THEME
-from game.ui.system.components import UIPanel
+from game.ui.system.components import UIPanel, UITooltip
 from game.ui.system.icons import draw_icon_with_value
 from game.ui.system.layout import safe_area
 
@@ -355,7 +355,10 @@ class MapScreen:
         max_hp = int(player.get("max_hp", 0) or 0)
         harmony = int(player.get("harmony_current", 0) or 0)
         blessings = list(run.get("path_blessings", []) or [])
-        relic_count = len(run.get("relics", []) or [])
+        owned_relics = list(run.get("relics", []) or [])
+        relic_count = len(owned_relics)
+        mouse_now = self.app.renderer.map_mouse(pygame.mouse.get_pos())
+        relic_hover_text = ""
 
         rows = [
             ("vida", hp, UI_THEME["bad"], f"{hp}/{max_hp}"),
@@ -374,6 +377,26 @@ class MapScreen:
             s.blit(value_txt, (row.right - value_txt.get_width() - 10, row.y + 7))
             y += 38
 
+        relic_strip = pygame.Rect(left_rect.x + 12, y + 2, left_rect.w - 24, 44)
+        pygame.draw.rect(s, UI_THEME["panel_2"], relic_strip, border_radius=8)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], relic_strip, 1, border_radius=8)
+        s.blit(self.app.tiny_font.render("Reliquias activas", True, UI_THEME["gold"]), (relic_strip.x + 8, relic_strip.y + 4))
+        relic_by_id = {str(r.get("id")): r for r in list(getattr(self.app, "relics_data", []) or []) if isinstance(r, dict) and r.get("id")}
+        rx = relic_strip.x + 8
+        for rid in owned_relics[-5:]:
+            slot = pygame.Rect(rx, relic_strip.y + 18, 22, 22)
+            pygame.draw.rect(s, (30, 24, 42), slot, border_radius=6)
+            pygame.draw.rect(s, UI_THEME["gold"], slot, 1, border_radius=6)
+            icon = self.app.assets.sprite("relics", str(rid), (18, 18), fallback=(96, 76, 124))
+            s.blit(icon, (slot.x + 2, slot.y + 2))
+            if slot.collidepoint(mouse_now):
+                relic = relic_by_id.get(str(rid), {})
+                rname = self.app.loc.t(relic.get("name_key")) if relic.get("name_key") else str(rid).replace("_", " ").title()
+                rdesc = self.app.loc.t(relic.get("text_key")) if relic.get("text_key") else "Reliquia activa en esta run."
+                relic_hover_text = self._fit_text(self.app.tiny_font, f"{rname}: {rdesc}", 340)
+            rx += 26
+
+        y += 50
         path_text = ", ".join([str(x) for x in blessings[-2:]]) if blessings else "Sin bendicion activa"
         s.blit(self.app.tiny_font.render("Camino activo", True, UI_THEME["gold"]), (left_rect.x + 16, y + 4))
         for i, line in enumerate(self._wrap_lines(self.app.tiny_font, path_text, left_rect.w - 28, 2)):
@@ -515,4 +538,12 @@ class MapScreen:
             lore_txt = self.app.small_font.render(flavor, True, UI_THEME["muted"])
             s.blit(title_txt, (lore_rect.x + 12, lore_rect.y + 14))
             s.blit(lore_txt, (lore_rect.x + 22 + title_txt.get_width(), lore_rect.y + 12))
+
+        if relic_hover_text:
+            tip_rect = pygame.Rect(mouse_now[0] + 14, mouse_now[1] - 32, 360, 28)
+            if tip_rect.right > INTERNAL_WIDTH - 12:
+                tip_rect.x = INTERNAL_WIDTH - tip_rect.w - 12
+            if tip_rect.y < 10:
+                tip_rect.y = 10
+            UITooltip(tip_rect, relic_hover_text).draw(s, self.app.tiny_font)
 

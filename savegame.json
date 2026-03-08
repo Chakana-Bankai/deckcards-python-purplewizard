@@ -1,18 +1,27 @@
 {
-  "gold": 80,
+  "gold": 71,
   "relics": [
-    "violet_seal"
+    "violet_seal",
+    "crown_of_hanan"
   ],
   "player": {
-    "hp": 60,
-    "max_hp": 60,
+    "hp": 76,
+    "max_hp": 76,
     "block": 0,
     "energy": 3,
     "rupture": 0,
-    "statuses": {}
+    "statuses": {
+      "vulnerable": 1
+    },
+    "harmony_current": 6,
+    "harmony_max": 11,
+    "harmony_ready_threshold": 5,
+    "harmony_ready": true,
+    "harmony_seal_used": false,
+    "seal_ready": false,
+    "seal_active": false
   },
   "deck": [
-    "estallido_arcano",
     "filo_astral",
     "garra_espiritual",
     "pulso_cosmico",
@@ -31,9 +40,36 @@
     "cw_lore_03",
     "cw_lore_04",
     "cw_lore_29",
-    "chakana_de_luz"
+    "chakana_de_luz",
+    "cw_lore_02"
   ],
-  "sideboard": [],
+  "sideboard": [
+    "of_lore_30",
+    "of_lore_22",
+    "ritual_de_la_trama",
+    "of_lore_21",
+    "of_lore_26",
+    "hg_lore_07",
+    "invocacion_astral",
+    "cw_lore_10",
+    "ritual_de_la_trama",
+    "campo_protector",
+    "fusion_espiritual",
+    "embate_del_jaguar",
+    "fusion_espiritual",
+    "campo_protector",
+    "portal_de_la_chakana",
+    "mantra_del_umbral",
+    "of_lore_12",
+    "cw_lore_02",
+    "of_lore_21",
+    "vinculo_de_energia",
+    "ritual_de_la_trama",
+    "of_lore_22",
+    "portal_de_la_chakana",
+    "of_lore_12",
+    "embate_del_jaguar"
+  ],
   "map": [
     [
       {
@@ -47,7 +83,7 @@
           "1_0",
           "1_1"
         ],
-        "state": "available"
+        "state": "cleared"
       }
     ],
     [
@@ -62,7 +98,7 @@
           "2_0",
           "2_1"
         ],
-        "state": "locked",
+        "state": "cleared",
         "path_id": "camino_filo",
         "path_name": "Camino del Filo",
         "path_lore": "Golpea primero; corta la duda."
@@ -78,7 +114,7 @@
           "2_1",
           "2_0"
         ],
-        "state": "locked"
+        "state": "cleared"
       },
       {
         "id": "1_2",
@@ -90,7 +126,7 @@
         "next": [
           "2_2"
         ],
-        "state": "locked",
+        "state": "cleared",
         "path_id": "camino_velo",
         "path_name": "Camino del Velo",
         "path_lore": "Protege tu pulso antes del rito."
@@ -108,7 +144,7 @@
           "3_0",
           "3_1"
         ],
-        "state": "locked",
+        "state": "cleared",
         "path_id": "camino_eco",
         "path_name": "Camino del Eco",
         "path_lore": "Toda jugada vuelve con nueva forma."
@@ -124,7 +160,7 @@
           "3_1",
           "3_0"
         ],
-        "state": "locked",
+        "state": "cleared",
         "path_id": "camino_pulso",
         "path_name": "Camino del Pulso",
         "path_lore": "La energia obedece a quien respira."
@@ -139,7 +175,7 @@
         "next": [
           "3_2"
         ],
-        "state": "locked"
+        "state": "cleared"
       }
     ],
     [
@@ -154,7 +190,7 @@
           "4_0",
           "4_1"
         ],
-        "state": "locked",
+        "state": "cleared",
         "path_id": "camino_umbral",
         "path_name": "Camino del Umbral",
         "path_lore": "Cruza limites para obtener vision."
@@ -169,7 +205,7 @@
         "next": [
           "4_0"
         ],
-        "state": "locked",
+        "state": "cleared",
         "path_id": "camino_cielo",
         "path_name": "Camino del Cielo",
         "path_lore": "La armonia alta revela rutas ocultas."
@@ -184,7 +220,7 @@
         "next": [
           "4_1"
         ],
-        "state": "locked"
+        "state": "cleared"
       }
     ],
     [
@@ -198,7 +234,7 @@
         "next": [
           "5_0"
         ],
-        "state": "locked"
+        "state": "cleared"
       },
       {
         "id": "4_1",
@@ -210,7 +246,7 @@
         "next": [
           "5_0"
         ],
-        "state": "locked",
+        "state": "cleared",
         "path_id": "camino_sello",
         "path_name": "Camino del Sello",
         "path_lore": "El sello despierta con voluntad pura."
@@ -225,7 +261,7 @@
         "type": "boss",
         "biome": "fractura_chakana",
         "next": [],
-        "state": "locked"
+        "state": "available"
       }
     ]
   ],
@@ -236,11 +272,11 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 0,
-  "biome": "ukhu",
-  "xp": 0,
-  "level": 1,
-  "combats_won": 0,
+  "biome_index": 2,
+  "biome": "hanan",
+  "xp": 22,
+  "level": 5,
+  "combats_won": 4,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
@@ -254,7 +290,18 @@
     "step_index": 0,
     "step_total": 7
   },
-  "current_node_id": null,
-  "last_biome_seen": "ukhu",
-  "saved_at": 1772986602
+  "last_node_type": "challenge",
+  "path_blessings": [
+    "Camino del Filo",
+    "Camino del Velo",
+    "Camino del Eco",
+    "Camino del Pulso",
+    "Camino del Umbral",
+    "Camino del Cielo",
+    "Camino del Sello"
+  ],
+  "levelup_pending": 0,
+  "current_node_id": "4_1",
+  "last_biome_seen": "hanan",
+  "saved_at": 1772987129
 }

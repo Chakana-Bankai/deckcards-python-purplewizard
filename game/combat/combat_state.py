@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from game.combat.actions import ActionQueue, ApplyStatus, DealDamage, GainBlock
 from game.combat.card import CardDef, CardInstance
@@ -170,7 +170,8 @@ class CombatState:
             elif tier == "elite":
                 hp = max(72, min(130, int(hp)))
             elif tier == "boss":
-                hp = max(170, min(260, int(hp)))
+                # Boss fights stay hard, but avoid sponge pacing.
+                hp = max(150, min(230, int(hp)))
             else:
                 hp = int(max(20, hp))
             pattern = item.get("pattern") or [{"intent": "attack", "value": [5, 5]}]

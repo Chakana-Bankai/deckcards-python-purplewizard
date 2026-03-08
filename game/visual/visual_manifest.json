@@ -1,6 +1,6 @@
 {
   "version": "visual_v1",
-  "generated_at": 1772985369,
+  "generated_at": 1772987100,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -2982,6 +2982,258 @@
       "size": [
         192,
         192
+      ]
+    },
+    "relics:violet_seal:18x18:rare": {
+      "asset_id": "violet_seal",
+      "category": "relics",
+      "seed": 1377633296,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\violet_seal_18x18_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v1",
+      "generated_at": 1772986863,
+      "size": [
+        18,
+        18
+      ]
+    },
+    "relics:violet_seal:16x16:rare": {
+      "asset_id": "violet_seal",
+      "category": "relics",
+      "seed": 1377633296,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\violet_seal_16x16_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v1",
+      "generated_at": 1772986890,
+      "size": [
+        16,
+        16
+      ]
+    },
+    "relics:crown_of_hanan:128x128:rare": {
+      "asset_id": "crown_of_hanan",
+      "category": "relics",
+      "seed": 1171568293,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\crown_of_hanan_128x128_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v1",
+      "generated_at": 1772987065,
+      "size": [
+        128,
+        128
+      ]
+    },
+    "relics:crown_of_hanan:160x160:rare": {
+      "asset_id": "crown_of_hanan",
+      "category": "relics",
+      "seed": 1171568293,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\crown_of_hanan_160x160_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v1",
+      "generated_at": 1772987066,
+      "size": [
+        160,
+        160
+      ]
+    },
+    "relics:crown_of_hanan:18x18:rare": {
+      "asset_id": "crown_of_hanan",
+      "category": "relics",
+      "seed": 1171568293,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\crown_of_hanan_18x18_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v1",
+      "generated_at": 1772987077,
+      "size": [
+        18,
+        18
+      ]
+    },
+    "relics:crown_of_hanan:16x16:rare": {
+      "asset_id": "crown_of_hanan",
+      "category": "relics",
+      "seed": 1171568293,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\crown_of_hanan_16x16_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v1",
+      "generated_at": 1772987100,
+      "size": [
+        16,
+        16
       ]
     }
   }

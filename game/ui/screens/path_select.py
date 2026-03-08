@@ -215,12 +215,12 @@ class PathSelectScreen:
 
     def _option_rect(self, index: int) -> pygame.Rect:
         cols = 3
-        card_w, card_h = 568, 660
+        card_w, card_h = 590, 700
         gap_x = 28
         col = index % cols
         total_w = cols * card_w + (cols - 1) * gap_x
         x0 = (INTERNAL_WIDTH - total_w) // 2
-        y0 = 152
+        y0 = 136
         return pygame.Rect(x0 + col * (card_w + gap_x), y0, card_w, card_h)
 
     def _fit(self, font, text: str, max_w: int) -> str:
@@ -254,11 +254,11 @@ class PathSelectScreen:
 
     def _draw_featured_legendary(self, s: pygame.Surface, rect: pygame.Rect, legendary_id: str):
         card = self.app.card_defs.get(legendary_id, {})
-        box = pygame.Rect(rect.x + 18, rect.y + rect.h - 164, rect.w - 36, 124)
+        box = pygame.Rect(rect.x + 16, rect.y + rect.h - 186, rect.w - 32, 150)
         pygame.draw.rect(s, (56, 42, 30), box, border_radius=12)
         pygame.draw.rect(s, UI_THEME["gold"], box, 2, border_radius=12)
 
-        art_rect = pygame.Rect(box.x + 10, box.y + 10, 110, box.h - 20)
+        art_rect = pygame.Rect(box.x + 10, box.y + 10, 124, box.h - 20)
         render_card_small(
             s,
             art_rect,
@@ -269,9 +269,9 @@ class PathSelectScreen:
 
         title = self.app.loc.t(card.get("name_key", legendary_id))
         text = self.app.loc.t(card.get("text_key", ""))
-        s.blit(self.app.tiny_font.render("Legendaria", True, UI_THEME["gold"]), (box.x + 130, box.y + 12))
-        s.blit(self.app.small_font.render(self._fit(self.app.small_font, str(title), box.w - 144), True, UI_THEME["text"]), (box.x + 130, box.y + 34))
-        s.blit(self.app.tiny_font.render(self._fit(self.app.tiny_font, str(text), box.w - 144), True, UI_THEME["muted"]), (box.x + 130, box.y + 70))
+        s.blit(self.app.small_font.render("Legendaria", True, UI_THEME["gold"]), (box.x + 146, box.y + 10))
+        s.blit(self.app.map_font.render(self._fit(self.app.map_font, str(title), box.w - 160), True, UI_THEME["text"]), (box.x + 146, box.y + 44))
+        s.blit(self.app.tiny_font.render(self._fit(self.app.tiny_font, str(text), box.w - 160), True, UI_THEME["muted"]), (box.x + 146, box.y + 92))
 
 
     def _ensure_starter_banner(self, option: dict):

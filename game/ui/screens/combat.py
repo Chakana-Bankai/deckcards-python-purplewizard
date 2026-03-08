@@ -112,6 +112,7 @@ class CombatScreen:
         self.set_dialogue("combat_start", enemy_id, {})
 
         self._tutorial_targets: dict[str, pygame.Rect] = {}
+        self._relic_chip_rects: list[tuple[pygame.Rect, str]] = []
         flow = getattr(self.app, "tutorial_flow", None)
         if flow is not None:
             flow.on_combat_enter()
@@ -1315,6 +1316,25 @@ class CombatScreen:
         px = draw_icon_with_value(s, 'deck', draw_n, tpal.muted, self.app.tiny_font, px, py, size=1)
         px = draw_icon_with_value(s, 'hand', hand_n, tpal.muted, self.app.tiny_font, px, py, size=1)
         _ = draw_icon_with_value(s, 'discard', disc_n, tpal.muted, self.app.tiny_font, px, py, size=1)
+
+        # Compact active relic visibility with hover tooltip.
+        self._relic_chip_rects = []
+        owned_relics = list((self.app.run_state or {}).get("relics", []) or [])
+        if owned_relics:
+            relic_by_id = {str(r.get("id")): r for r in list(getattr(self.app, "relics_data", []) or []) if isinstance(r, dict) and r.get("id")}
+            rx = row3.right - 26
+            for rid in reversed(owned_relics[-4:]):
+                slot = pygame.Rect(rx, row3.bottom - 24, 20, 20)
+                pygame.draw.rect(s, (26, 20, 36), slot, border_radius=6)
+                pygame.draw.rect(s, UI_THEME["gold"], slot, 1, border_radius=6)
+                icon = self.app.assets.sprite("relics", str(rid), (16, 16), fallback=(96, 76, 124))
+                s.blit(icon, (slot.x + 2, slot.y + 2))
+                relic = relic_by_id.get(str(rid), {})
+                rname = self.app.loc.t(relic.get("name_key")) if relic.get("name_key") else str(rid).replace("_", " ").title()
+                rdesc = self.app.loc.t(relic.get("text_key")) if relic.get("text_key") else "Reliquia activa."
+                tip = self._wrap_panel_text(f"{rname}: {rdesc}", 340, max_lines=1)[0]
+                self._relic_chip_rects.append((slot, tip))
+                rx -= 24
         # Harmony core (bottom-center): dedicated visual mechanic with orb/glow readiness.
         UIPanel(self.layout.harmony_rect, variant="alt").draw(s)
         hr = self.layout.harmony_rect
@@ -1432,6 +1452,15 @@ class CombatScreen:
                 tip_rect.y = rr.bottom + 6
             tip = tip or "Efecto"
             UITooltip(tip_rect, tip).draw(s, self.app.tiny_font)
+
+        relic_tip = ""
+        for rr, txt_tip in self._relic_chip_rects:
+            if rr.collidepoint(self.app.renderer.map_mouse(pygame.mouse.get_pos())):
+                relic_tip = txt_tip
+                break
+        if relic_tip:
+            tip_rect = pygame.Rect(self.layout.playerhud_rect.right - 360, self.layout.playerhud_rect.y - 30, 348, 24)
+            UITooltip(tip_rect, relic_tip).draw(s, self.app.tiny_font)
 
         self._render_tutorial_overlay(s)
 
