@@ -1,7 +1,7 @@
 [
   {
     "id": "guardian_de_la_grieta",
-    "name_es": "Guardián de la Grieta",
+    "name_es": "Arconte del Vac?o",
     "hp": 190,
     "phases": [
       0.7,
@@ -78,11 +78,19 @@
     },
     "special_rules": {
       "plus_damage_if_player_no_block": 2
-    }
+    },
+    "combat_identity": "castigo_directo_y_quiebre",
+    "presentation_theme": "void_fracture",
+    "biome_fit": "ukhu",
+    "atmosphere_tags": [
+      "vac?o",
+      "fractura",
+      "umbral"
+    ]
   },
   {
     "id": "oraculo_del_vacio",
-    "name_es": "Oráculo del Vacío",
+    "name_es": "Arconte del Ritual",
     "hp": 210,
     "phases": [
       0.7,
@@ -161,11 +169,19 @@
     },
     "special_rules": {
       "balance_response": "weaken1"
-    }
+    },
+    "combat_identity": "debilitacion_y_control_de_mano",
+    "presentation_theme": "ritual_oracular",
+    "biome_fit": "kaypacha",
+    "atmosphere_tags": [
+      "ritual",
+      "presagio",
+      "control"
+    ]
   },
   {
     "id": "senor_de_la_chakana_rota",
-    "name_es": "Señor de la Chakana Rota",
+    "name_es": "Arconte Celestial",
     "hp": 260,
     "phases": [
       0.75,
@@ -257,6 +273,113 @@
         "OESTE": "break+2"
       },
       "juicio_del_umbral": true
-    }
+    },
+    "combat_identity": "presion_escalada_multigolpe",
+    "presentation_theme": "celestial_geometry",
+    "biome_fit": "hanan",
+    "atmosphere_tags": [
+      "celestial",
+      "juicio",
+      "chakana"
+    ]
+  },
+  {
+    "id": "arconte_supremo",
+    "name_es": "Arconte Supremo",
+    "hp": 320,
+    "phases": [
+      0.8,
+      0.55,
+      0.3
+    ],
+    "patterns_by_phase": {
+      "phase1": [
+        {
+          "intent": "attack",
+          "value": [
+            12,
+            12
+          ],
+          "label": "Preparando: Ataque 12"
+        },
+        {
+          "intent": "defend",
+          "value": [
+            12,
+            12
+          ],
+          "label": "Preparando: Guardia 12"
+        },
+        {
+          "intent": "channel",
+          "label": "Canaliza: Pulso Supremo",
+          "effect": {}
+        }
+      ],
+      "phase2": [
+        {
+          "intent": "attack",
+          "value": [
+            16,
+            16
+          ],
+          "label": "Preparando: Ataque 16"
+        },
+        {
+          "intent": "break",
+          "stacks": 6,
+          "label": "Canaliza: Quiebre 6"
+        },
+        {
+          "intent": "debuff",
+          "status": "vulnerable",
+          "stacks": 2,
+          "label": "Canaliza: vulnerable 2"
+        }
+      ],
+      "phase3": [
+        {
+          "intent": "attack",
+          "value": [
+            20,
+            20
+          ],
+          "label": "Preparando: Ataque 20"
+        },
+        {
+          "intent": "attack",
+          "value": [
+            20,
+            20
+          ],
+          "label": "Preparando: Ataque 20"
+        },
+        {
+          "intent": "channel",
+          "label": "Canaliza: Geometr?a Rupta",
+          "effect": {}
+        },
+        {
+          "intent": "attack",
+          "value": [
+            24,
+            24
+          ],
+          "label": "Preparando: Ataque 24"
+        }
+      ]
+    },
+    "special_rules": {
+      "phase_shift_damage_boost": 2,
+      "juicio_del_umbral": true
+    },
+    "combat_identity": "final_pressure_and_threshold_punish",
+    "presentation_theme": "supreme_astral_fracture",
+    "biome_fit": "fractura_chakana",
+    "atmosphere_tags": [
+      "supremo",
+      "fractura",
+      "apoteosis"
+    ]
   }
 ]

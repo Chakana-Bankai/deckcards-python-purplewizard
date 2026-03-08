@@ -1,0 +1,54 @@
+[
+  {
+    "id": "arconte_del_vacio",
+    "name_es": "Arconte del Vac?o",
+    "biome": "ukhu",
+    "enemy_proxy_id": "guardian_de_la_grieta",
+    "combat_identity": "ofensiva de quiebre y castigo a bloques bajos",
+    "presentation": "aura oscura fractal con geometr?a angular",
+    "atmosphere_tags": [
+      "vac?o",
+      "sombra",
+      "fractura"
+    ]
+  },
+  {
+    "id": "arconte_del_ritual",
+    "name_es": "Arconte del Ritual",
+    "biome": "kaypacha",
+    "enemy_proxy_id": "oraculo_del_vacio",
+    "combat_identity": "control de tempo, debuffs y rituales acumulativos",
+    "presentation": "anillos ceremoniales y pulsos dorado-violeta",
+    "atmosphere_tags": [
+      "ritual",
+      "presagio",
+      "control"
+    ]
+  },
+  {
+    "id": "arconte_celestial",
+    "name_es": "Arconte Celestial",
+    "biome": "hanan",
+    "enemy_proxy_id": "senor_de_la_chakana_rota",
+    "combat_identity": "presi?n astral multigolpe con escalado por fase",
+    "presentation": "geometr?a sagrada luminosa y halo RGB",
+    "atmosphere_tags": [
+      "celestial",
+      "astral",
+      "juicio"
+    ]
+  },
+  {
+    "id": "arconte_supremo",
+    "name_es": "Arconte Supremo",
+    "biome": "fractura_chakana",
+    "enemy_proxy_id": "arconte_supremo",
+    "combat_identity": "encuentro final de alta presi?n con umbrales de fase",
+    "presentation": "fractura de chakana con pulsos extremos",
+    "atmosphere_tags": [
+      "supremo",
+      "apoteosis",
+      "umbral_final"
+    ]
+  }
+]

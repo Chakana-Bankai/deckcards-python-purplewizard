@@ -296,13 +296,14 @@ class App:
                 "enemy_pool": list(b.get("enemy_pool", [])),
                 "event_pool": list(b.get("event_pool", [])),
                 "boss": b.get("boss"),
+                "atmosphere_tags": list(b.get("atmosphere_tags", [])),
             })
         if not out:
             out = [
-                {"id": "kaypacha", "name": "Kay Pacha", "description": "", "background": "kaypacha", "enemy_pool": ["kay"], "event_pool": [], "boss": None},
-                {"id": "forest", "name": "Pampa Astral", "description": "", "background": "forest", "enemy_pool": ["hanan"], "event_pool": [], "boss": None},
-                {"id": "umbral", "name": "Ukhu Pacha", "description": "", "background": "umbral", "enemy_pool": ["ukhu"], "event_pool": [], "boss": None},
-                {"id": "hanan", "name": "Hanan Pacha", "description": "", "background": "hanan", "enemy_pool": ["hanan"], "event_pool": [], "boss": None},
+                {"id": "ukhu", "name": "Ukhu Pacha", "description": "", "background": "umbral", "enemy_pool": ["ukhu"], "event_pool": [], "boss": "guardian_de_la_grieta", "atmosphere_tags": ["subterraneo"]},
+                {"id": "kaypacha", "name": "Kay Pacha", "description": "", "background": "kaypacha", "enemy_pool": ["kay"], "event_pool": [], "boss": "oraculo_del_vacio", "atmosphere_tags": ["terrenal"]},
+                {"id": "hanan", "name": "Hanan Pacha", "description": "", "background": "hanan", "enemy_pool": ["hanan"], "event_pool": [], "boss": "senor_de_la_chakana_rota", "atmosphere_tags": ["astral"]},
+                {"id": "fractura_chakana", "name": "Fractura de la Chakana", "description": "", "background": "ruinas_chakana", "enemy_pool": ["boss", "hanan"], "event_pool": [], "boss": "arconte_supremo", "atmosphere_tags": ["final"]},
             ]
         return out
 
@@ -322,14 +323,14 @@ class App:
             bid = self._normalize_biome_id(b.get("id"))
             if bid not in progression:
                 progression.append(bid)
-            if len(progression) >= 3:
+            if len(progression) >= 4:
                 break
-        for fallback in ["kaypacha", "forest", "umbral"]:
+        for fallback in ["ukhu", "kaypacha", "hanan", "fractura_chakana"]:
             if fallback not in progression:
                 progression.append(fallback)
-            if len(progression) >= 3:
+            if len(progression) >= 4:
                 break
-        return progression[:3]
+        return progression[:4]
 
     def _biome_for_column(self, col: int, total_columns: int) -> str:
         prog = self._biome_progression()
@@ -1261,8 +1262,8 @@ class App:
         x,y,nw,nh,scale = self.renderer._viewport()
         counts = self.content.debug_counts() if hasattr(self, "content") else {}
         ok_cards = f"OK({counts.get('cards',0)})" if counts.get('cards',0)==60 else f"FALLBACK({counts.get('cards',0)})"
-        ok_enemies = f"OK({counts.get('enemies',0)})" if counts.get('enemies',0)==30 else f"FALLBACK({counts.get('enemies',0)})"
-        ok_boss = f"OK({counts.get('bosses',0)})" if counts.get('bosses',0)==3 else f"FALLBACK({counts.get('bosses',0)})"
+        ok_enemies = f"OK({counts.get('enemies',0)})" if counts.get('enemies',0)==31 else f"FALLBACK({counts.get('enemies',0)})"
+        ok_boss = f"OK({counts.get('bosses',0)})" if counts.get('bosses',0)==4 else f"FALLBACK({counts.get('bosses',0)})"
         dlgc = "OK" if counts.get('dialogues_combat') else "MISSING"
         dlge = "OK" if counts.get('dialogues_events') else "MISSING"
         biome_on = "ON" if self.user_settings.get("fx_particles", True) else "OFF"

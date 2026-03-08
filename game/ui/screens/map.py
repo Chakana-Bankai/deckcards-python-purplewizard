@@ -54,10 +54,12 @@ class MapScreen:
     ]
 
     BIOME_BG_NAME = {
+        "ukhu": "Caverna Umbral",
         "kaypacha": "Templo Obsidiana",
+        "hanan": "Ruinas Chakana",
+        "fractura_chakana": "Ruinas Chakana",
         "forest": "Pampa Astral",
         "umbral": "Caverna Umbral",
-        "hanan": "Ruinas Chakana",
     }
 
     def __init__(self, app):

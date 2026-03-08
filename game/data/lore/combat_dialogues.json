@@ -804,5 +804,27 @@
       "enemy": "...",
       "chakana": "Sumaq cierre."
     }
+  },
+  "arconte_supremo": {
+    "start": {
+      "enemy": "Soy el eje final de la Fractura.",
+      "chakana": "Tu forma es inmensa, pero tu pulso puede leerse."
+    },
+    "enemy_intent": {
+      "enemy": "La geometr?a cae sobre ti.",
+      "chakana": "Ajusto mi umbral antes del impacto."
+    },
+    "seal_ready": {
+      "enemy": "Tu sello no bastar?.",
+      "chakana": "Basta para abrir tu fractura."
+    },
+    "victory": {
+      "enemy": "La Trama... se reescribe...",
+      "chakana": "La Chakana respira otra vez."
+    },
+    "defeat": {
+      "enemy": "La Fractura te contiene.",
+      "chakana": "Aprender? el patr?n y volver?."
+    }
   }
 }

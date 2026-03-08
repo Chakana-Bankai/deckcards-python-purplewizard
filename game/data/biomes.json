@@ -1,38 +1,82 @@
 [
   {
+    "id": "ukhu",
+    "name": "Ukhu Pacha",
+    "description": "Estrato de sombras, memoria mineral y pruebas del umbral interior.",
+    "background": "umbral",
+    "enemy_pool": [
+      "ukhu"
+    ],
+    "event_pool": [
+      "serpent_shed",
+      "apacheta_offer",
+      "chakana_crossroads"
+    ],
+    "boss": "guardian_de_la_grieta",
+    "atmosphere_tags": [
+      "subterraneo",
+      "eco",
+      "ritual_sombrio"
+    ]
+  },
+  {
     "id": "kaypacha",
     "name": "Kay Pacha",
-    "description": "La tierra viva donde se forja la base del viaje.",
+    "description": "La tierra viva donde el pulso del combate toma forma.",
     "background": "kaypacha",
-    "enemy_pool": ["kay"],
-    "event_pool": ["apacheta_offer", "ayni_pact", "serpent_shed"],
-    "boss": "guardian_de_la_grieta"
-  },
-  {
-    "id": "forest",
-    "name": "Pampa Astral",
-    "description": "Bruma luminosa y presagios de altura.",
-    "background": "forest",
-    "enemy_pool": ["hanan"],
-    "event_pool": ["condor_vision", "puma_trial", "chakana_crossroads"],
-    "boss": "oraculo_del_vacio"
-  },
-  {
-    "id": "umbral",
-    "name": "Ukhu Pacha",
-    "description": "Profundidad, ecos y pruebas del umbral interior.",
-    "background": "umbral",
-    "enemy_pool": ["ukhu"],
-    "event_pool": ["serpent_shed", "apacheta_offer", "chakana_crossroads"],
-    "boss": "oraculo_del_vacio"
+    "enemy_pool": [
+      "kay"
+    ],
+    "event_pool": [
+      "apacheta_offer",
+      "ayni_pact",
+      "serpent_shed"
+    ],
+    "boss": "oraculo_del_vacio",
+    "atmosphere_tags": [
+      "terrenal",
+      "ceremonial",
+      "trama_viva"
+    ]
   },
   {
     "id": "hanan",
     "name": "Hanan Pacha",
-    "description": "La cumbre astral antes del monolito final.",
+    "description": "Altura astral de vision, juicio y geometria celeste.",
     "background": "hanan",
-    "enemy_pool": ["hanan"],
-    "event_pool": ["condor_vision", "puma_trial", "ayni_pact"],
-    "boss": "senor_de_la_chakana_rota"
+    "enemy_pool": [
+      "hanan"
+    ],
+    "event_pool": [
+      "condor_vision",
+      "puma_trial",
+      "ayni_pact"
+    ],
+    "boss": "senor_de_la_chakana_rota",
+    "atmosphere_tags": [
+      "astral",
+      "luminoso",
+      "geometrico"
+    ]
+  },
+  {
+    "id": "fractura_chakana",
+    "name": "Fractura de la Chakana",
+    "description": "Reino final donde los arcontes convergen y la Trama se quiebra.",
+    "background": "ruinas_chakana",
+    "enemy_pool": [
+      "boss",
+      "hanan"
+    ],
+    "event_pool": [
+      "chakana_crossroads",
+      "condor_vision"
+    ],
+    "boss": "arconte_supremo",
+    "atmosphere_tags": [
+      "apocaliptico",
+      "sagrado",
+      "ruptura_final"
+    ]
   }
 ]

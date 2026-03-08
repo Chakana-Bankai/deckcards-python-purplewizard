@@ -1026,7 +1026,7 @@
   },
   {
     "id": "guardian_de_la_grieta",
-    "name_es": "Guardián de la Grieta",
+    "name_es": "Arconte del Vac?o",
     "biome": "boss",
     "hp": [
       190,
@@ -1062,7 +1062,7 @@
   },
   {
     "id": "oraculo_del_vacio",
-    "name_es": "Oráculo del Vacío",
+    "name_es": "Arconte del Ritual",
     "biome": "boss",
     "hp": [
       210,
@@ -1099,7 +1099,7 @@
   },
   {
     "id": "senor_de_la_chakana_rota",
-    "name_es": "Señor de la Chakana Rota",
+    "name_es": "Arconte Celestial",
     "biome": "boss",
     "hp": [
       260,
@@ -1131,6 +1131,71 @@
     ],
     "ai_notes": "jefe",
     "fable_lesson_key": "soberbia",
+    "tier": "boss"
+  },
+  {
+    "id": "arconte_supremo",
+    "name_es": "Arconte Supremo",
+    "biome": "boss",
+    "hp": [
+      320,
+      320
+    ],
+    "guard": 0,
+    "pattern": [
+      {
+        "intent": "attack",
+        "value": [
+          12,
+          12
+        ],
+        "label": "Preparando: Ataque 12"
+      },
+      {
+        "intent": "defend",
+        "value": [
+          12,
+          12
+        ],
+        "label": "Preparando: Guardia 12"
+      },
+      {
+        "intent": "channel",
+        "label": "Canaliza: Pulso Supremo",
+        "effect": {}
+      },
+      {
+        "intent": "attack",
+        "value": [
+          16,
+          16
+        ],
+        "label": "Preparando: Ataque 16"
+      },
+      {
+        "intent": "break",
+        "stacks": 6,
+        "label": "Canaliza: Quiebre 6"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          20,
+          20
+        ],
+        "label": "Preparando: Ataque 20"
+      },
+      {
+        "intent": "attack",
+        "value": [
+          24,
+          24
+        ],
+        "label": "Preparando: Ataque 24"
+      }
+    ],
+    "ai_notes": "jefe final por fases",
+    "fable_lesson_key": "trascendencia",
     "tier": "boss"
   }
 ]

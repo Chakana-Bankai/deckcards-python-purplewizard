@@ -56,10 +56,10 @@ class ContentService:
 
         if len(self.cards) != 30:
             self._fail(f"cards_count:{len(self.cards)} expected 30 @ {p_cards}")
-        if len(self.enemies) != 30:
-            self._fail(f"enemies_count:{len(self.enemies)} expected 30 @ {p_enemies}")
-        if len(self.bosses) != 3:
-            self._fail(f"bosses_count:{len(self.bosses)} expected 3 @ {p_bosses}")
+        if len(self.enemies) != 31:
+            self._fail(f"enemies_count:{len(self.enemies)} expected 31 @ {p_enemies}")
+        if len(self.bosses) != 4:
+            self._fail(f"bosses_count:{len(self.bosses)} expected 4 @ {p_bosses}")
 
         # dialogue coverage
         ids = [e.get("id") for e in self.enemies if isinstance(e, dict) and e.get("id")]

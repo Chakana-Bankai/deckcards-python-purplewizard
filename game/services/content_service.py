@@ -58,10 +58,10 @@ class ContentService:
 
         if len(cards) != 30:
             st.status = "FALLBACK"; st.errors.append(f"cards_count:{len(cards)} expected 30")
-        if len(enemies) != 30:
-            st.status = "FALLBACK"; st.errors.append(f"enemies_count:{len(enemies)} expected 30")
-        if len(bosses) != 3:
-            st.status = "FALLBACK"; st.errors.append(f"bosses_count:{len(bosses)} expected 3")
+        if len(enemies) != 31:
+            st.status = "FALLBACK"; st.errors.append(f"enemies_count:{len(enemies)} expected 31")
+        if len(bosses) != 4:
+            st.status = "FALLBACK"; st.errors.append(f"bosses_count:{len(bosses)} expected 4")
 
         enemy_ids = [e.get("id") for e in enemies if isinstance(e, dict) and e.get("id")]
         for eid in enemy_ids:
