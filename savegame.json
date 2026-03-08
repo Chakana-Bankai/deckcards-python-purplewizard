@@ -1,26 +1,18 @@
 {
-  "gold": 131,
+  "gold": 80,
   "relics": [
     "violet_seal"
   ],
   "player": {
-    "hp": 47,
+    "hp": 60,
     "max_hp": 60,
     "block": 0,
     "energy": 3,
     "rupture": 0,
-    "statuses": {
-      "enemy_damage_down": 0
-    },
-    "harmony_current": 4,
-    "harmony_max": 10,
-    "harmony_ready_threshold": 6,
-    "harmony_ready": false,
-    "harmony_seal_used": false,
-    "seal_ready": false,
-    "seal_active": false
+    "statuses": {}
   },
   "deck": [
+    "filo_astral",
     "filo_astral",
     "estallido_arcano",
     "pulso_cosmico",
@@ -41,14 +33,7 @@
     "fusion_espiritual",
     "chakana_de_luz"
   ],
-  "sideboard": [
-    "filo_en_cadena",
-    "chakana_de_luz",
-    "piedra_ritual",
-    "vinculo_de_energia",
-    "pulso_cosmico",
-    "escudo_del_chaman"
-  ],
+  "sideboard": [],
   "map": [
     [
       {
@@ -57,12 +42,12 @@
         "x": 120,
         "y": 540,
         "type": "combat",
-        "biome": "kaypacha",
+        "biome": "ukhu",
         "next": [
           "1_0",
           "1_1"
         ],
-        "state": "cleared"
+        "state": "available"
       }
     ],
     [
@@ -72,12 +57,12 @@
         "x": 306,
         "y": 196,
         "type": "event",
-        "biome": "kaypacha",
+        "biome": "ukhu",
         "next": [
           "2_0",
           "2_3"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "1_1",
@@ -85,12 +70,12 @@
         "x": 306,
         "y": 481,
         "type": "event",
-        "biome": "kaypacha",
+        "biome": "ukhu",
         "next": [
           "2_1",
           "2_2"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "1_2",
@@ -98,11 +83,11 @@
         "x": 306,
         "y": 766,
         "type": "event",
-        "biome": "kaypacha",
+        "biome": "ukhu",
         "next": [
           "2_2"
         ],
-        "state": "available"
+        "state": "locked"
       }
     ],
     [
@@ -112,7 +97,7 @@
         "x": 492,
         "y": 196,
         "type": "combat",
-        "biome": "kaypacha",
+        "biome": "ukhu",
         "next": [
           "3_0",
           "3_1"
@@ -125,12 +110,12 @@
         "x": 492,
         "y": 386,
         "type": "combat",
-        "biome": "kaypacha",
+        "biome": "ukhu",
         "next": [
           "3_1",
           "3_2"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "2_2",
@@ -138,12 +123,12 @@
         "x": 492,
         "y": 576,
         "type": "combat",
-        "biome": "kaypacha",
+        "biome": "ukhu",
         "next": [
           "3_2",
           "3_0"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "2_3",
@@ -151,7 +136,7 @@
         "x": 492,
         "y": 766,
         "type": "combat",
-        "biome": "kaypacha",
+        "biome": "ukhu",
         "next": [
           "3_2"
         ],
@@ -206,7 +191,7 @@
         "x": 864,
         "y": 196,
         "type": "challenge",
-        "biome": "forest",
+        "biome": "kaypacha",
         "next": [
           "5_0",
           "5_2"
@@ -219,7 +204,7 @@
         "x": 864,
         "y": 386,
         "type": "challenge",
-        "biome": "forest",
+        "biome": "kaypacha",
         "next": [
           "5_1"
         ],
@@ -231,7 +216,7 @@
         "x": 864,
         "y": 576,
         "type": "challenge",
-        "biome": "forest",
+        "biome": "kaypacha",
         "next": [
           "5_2",
           "5_0"
@@ -244,7 +229,7 @@
         "x": 864,
         "y": 766,
         "type": "challenge",
-        "biome": "forest",
+        "biome": "kaypacha",
         "next": [
           "5_2"
         ],
@@ -258,7 +243,7 @@
         "x": 1050,
         "y": 196,
         "type": "treasure",
-        "biome": "forest",
+        "biome": "hanan",
         "next": [
           "6_0",
           "6_2"
@@ -271,7 +256,7 @@
         "x": 1050,
         "y": 481,
         "type": "treasure",
-        "biome": "forest",
+        "biome": "hanan",
         "next": [
           "6_1",
           "6_3"
@@ -284,7 +269,7 @@
         "x": 1050,
         "y": 766,
         "type": "treasure",
-        "biome": "forest",
+        "biome": "hanan",
         "next": [
           "6_2",
           "6_3"
@@ -299,7 +284,7 @@
         "x": 1236,
         "y": 196,
         "type": "combat",
-        "biome": "forest",
+        "biome": "hanan",
         "next": [
           "7_0",
           "7_2"
@@ -312,7 +297,7 @@
         "x": 1236,
         "y": 386,
         "type": "combat",
-        "biome": "forest",
+        "biome": "hanan",
         "next": [
           "7_1"
         ],
@@ -324,7 +309,7 @@
         "x": 1236,
         "y": 576,
         "type": "combat",
-        "biome": "forest",
+        "biome": "hanan",
         "next": [
           "7_2"
         ],
@@ -336,7 +321,7 @@
         "x": 1236,
         "y": 766,
         "type": "combat",
-        "biome": "forest",
+        "biome": "hanan",
         "next": [
           "7_2",
           "7_0"
@@ -351,7 +336,7 @@
         "x": 1422,
         "y": 196,
         "type": "event",
-        "biome": "umbral",
+        "biome": "hanan",
         "next": [
           "8_0",
           "8_2"
@@ -364,7 +349,7 @@
         "x": 1422,
         "y": 481,
         "type": "event",
-        "biome": "umbral",
+        "biome": "hanan",
         "next": [
           "8_1",
           "8_0"
@@ -377,7 +362,7 @@
         "x": 1422,
         "y": 766,
         "type": "event",
-        "biome": "umbral",
+        "biome": "hanan",
         "next": [
           "8_2",
           "8_3"
@@ -392,7 +377,7 @@
         "x": 1608,
         "y": 196,
         "type": "challenge",
-        "biome": "umbral",
+        "biome": "fractura_chakana",
         "next": [
           "9_0"
         ],
@@ -404,7 +389,7 @@
         "x": 1608,
         "y": 386,
         "type": "challenge",
-        "biome": "umbral",
+        "biome": "fractura_chakana",
         "next": [
           "9_0"
         ],
@@ -416,7 +401,7 @@
         "x": 1608,
         "y": 576,
         "type": "challenge",
-        "biome": "umbral",
+        "biome": "fractura_chakana",
         "next": [
           "9_0"
         ],
@@ -428,7 +413,7 @@
         "x": 1608,
         "y": 766,
         "type": "combat",
-        "biome": "umbral",
+        "biome": "fractura_chakana",
         "next": [
           "9_0"
         ],
@@ -442,7 +427,7 @@
         "x": 1794,
         "y": 540,
         "type": "boss",
-        "biome": "umbral",
+        "biome": "fractura_chakana",
         "next": [],
         "state": "locked"
       }
@@ -450,15 +435,16 @@
   ],
   "map_columns": 10,
   "biome_progression": [
+    "ukhu",
     "kaypacha",
-    "forest",
-    "umbral"
+    "hanan",
+    "fractura_chakana"
   ],
   "biome_index": 0,
-  "biome": "kaypacha",
-  "xp": 9,
-  "level": 2,
-  "combats_won": 1,
+  "biome": "ukhu",
+  "xp": 0,
+  "level": 1,
+  "combats_won": 0,
   "settings": {
     "turn_timer_enabled": true,
     "turn_timer_seconds": 20,
@@ -471,9 +457,7 @@
     "step_index": 0,
     "step_total": 7
   },
-  "last_node_type": "combat",
-  "levelup_pending": 0,
-  "current_node_id": "1_1",
-  "last_biome_seen": "kaypacha",
-  "saved_at": 1772941695
+  "current_node_id": null,
+  "last_biome_seen": "ukhu",
+  "saved_at": 1772942575
 }
