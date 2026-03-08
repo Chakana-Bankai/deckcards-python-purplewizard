@@ -100,6 +100,15 @@ def normalize_icon_name(icon_name: str) -> str:
         return key
     return ICON_ALIASES.get(key, "unknown")
 
+def resolve_icon_id(effect_name: str) -> str:
+    """Deterministic effect/status key -> runtime icon id mapping."""
+    key = str(effect_name or "").strip().lower()
+    if not key:
+        return "unknown"
+    if key in {"hp", "vida", "vitalidad", "health"}:
+        return "hp"
+    return normalize_icon_name(key)
+
 
 def _make_surface(px: int) -> pygame.Surface:
     return pygame.Surface((px, px), pygame.SRCALPHA)
@@ -130,7 +139,7 @@ def _try_generated_icon(key: str, px: int, color: tuple[int, int, int]) -> pygam
 
 
 def _render_icon_surface(icon_name: str, color: tuple[int, int, int], size: int) -> pygame.Surface:
-    key = normalize_icon_name(icon_name)
+    key = resolve_icon_id(icon_name)
     scale = max(1, int(size or 1))
     px = 14 * scale
     cache_key = (key, tuple(int(c) for c in color), scale)
@@ -232,7 +241,7 @@ def render_icon(
     """Render one semantic icon through a single API."""
     icon = _render_icon_surface(icon_name, color, size)
     if icon is None or icon.get_width() <= 0:
-        label = FALLBACK_TEXT.get(normalize_icon_name(icon_name), "?")
+        label = FALLBACK_TEXT.get(resolve_icon_id(icon_name), "?")
         surface.blit(font.render(label, True, color), pos)
         return
     surface.blit(icon, pos)
@@ -251,7 +260,7 @@ def draw_icon_with_value(
     """Draw icon + numeric value and return the next x cursor position."""
     icon = _render_icon_surface(icon_name, color, size)
     if icon is None or icon.get_width() <= 0:
-        label = FALLBACK_TEXT.get(normalize_icon_name(icon_name), "?")
+        label = FALLBACK_TEXT.get(resolve_icon_id(icon_name), "?")
         icon = font.render(label, True, color)
 
     surface.blit(icon, (x, y))

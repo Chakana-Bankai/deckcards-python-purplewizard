@@ -1187,7 +1187,7 @@ class App:
         else:
             reward_data = {"type": "choose1of3", "cards": list(picks)}
         if gold is None:
-            gold = self.rng.randint(20, 35)
+            gold = int(round(self.rng.randint(20, 35) * 1.3))
 
         self.sm.set(RewardScreen(self, reward_data, gold, xp_gained=self.debug.get("xp_last_gain", 0)))
         self.play_stinger("stinger_reward")
@@ -1403,15 +1403,16 @@ class App:
         if node_type == "boss":
             self.apply_run_rewards(xp=100 + perfect_bonus, source="combat_boss")
             self._apply_post_combat_recovery("boss")
-            self.goto_reward(mode="boss_pack", gold=self.rng.randint(120, 180))
+            boss_gold = int(round(self.rng.randint(120, 180) * 1.3))
+            self.goto_reward(mode="boss_pack", gold=boss_gold)
             return
 
         self.run_state["combats_won"] = int(self.run_state.get("combats_won", 0)) + 1
         if node_type == "challenge":
-            bonus_gold = self.rng.randint(40, 70)
+            bonus_gold = int(round(self.rng.randint(40, 70) * 1.3))
             xp_gain = 40 + perfect_bonus
         else:
-            bonus_gold = self.rng.randint(20, 35)
+            bonus_gold = int(round(self.rng.randint(20, 35) * 1.3))
             xp_gain = self.rng.randint(15, 25) + perfect_bonus
 
         self.apply_run_rewards(xp=xp_gain, source=f"combat_{node_type}")
@@ -1446,7 +1447,8 @@ class App:
             if effect_type == "lose_gold":
                 self.run_state["gold"] = max(0, self.run_state["gold"] - int(effect.get("amount", 0)))
             elif effect_type == "gain_gold":
-                gain = int(effect.get("amount", 0) or 0)
+                base_gain = int(effect.get("amount", 0) or 0)
+                gain = int(round(base_gain * 1.2))
                 total_gold += max(0, gain)
                 self.apply_run_rewards(gold=gain, source="event_gain_gold")
             elif effect_type == "gain_xp":

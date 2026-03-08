@@ -6,6 +6,7 @@ from game.ui.components.card_effect_summary import infer_card_role, summarize_ca
 from game.ui.components.card_preview_panel import CardPreviewPanel
 from game.ui.theme import UI_THEME
 from game.ui.system.layout import inset, safe_area, split_horizontal, split_vertical
+from game.ui.system.icons import render_icon
 
 
 class DeckScreen:
@@ -28,6 +29,7 @@ class DeckScreen:
         self.side_view_rows = 11
         self.move_to_side_btn = pygame.Rect(720, 930, 260, 48)
         self.move_to_main_btn = pygame.Rect(990, 930, 260, 48)
+        self.buttons_panel = pygame.Rect(0, 0, 1, 1)
         self.preview = CardPreviewPanel(app=app)
 
         self.main_rect = pygame.Rect(36, 98, 644, 384)
@@ -44,19 +46,17 @@ class DeckScreen:
         top_left, bottom_left = split_vertical(left_col, 0.46)
 
         self.main_rect = inset(top_left, 8)
-        self.side_rect = inset(bottom_left, 8)
+        raw_side = inset(bottom_left, 8)
+        self.buttons_panel = pygame.Rect(raw_side.x, raw_side.bottom - 58, raw_side.w, 54)
+        self.side_rect = pygame.Rect(raw_side.x, raw_side.y, raw_side.w, raw_side.h - 66)
         self.preview_rect = inset(right_col, 8)
 
         self.back = pygame.Rect(root.x, root.y + 6, 170, 46)
 
-        btn_w = 250
-        btn_h = 48
-        gap = 18
-        total_w = btn_w * 2 + gap
-        btn_x = root.centerx - total_w // 2
-        btn_y = min(root.bottom - btn_h, self.side_rect.bottom + 10)
-        self.move_to_side_btn = pygame.Rect(btn_x, btn_y, btn_w, btn_h)
-        self.move_to_main_btn = pygame.Rect(self.move_to_side_btn.right + gap, btn_y, btn_w, btn_h)
+        btn_w = max(180, (self.buttons_panel.w - 22) // 2)
+        btn_h = 46
+        self.move_to_side_btn = pygame.Rect(self.buttons_panel.x + 6, self.buttons_panel.y + 4, btn_w, btn_h)
+        self.move_to_main_btn = pygame.Rect(self.move_to_side_btn.right + 10, self.buttons_panel.y + 4, btn_w, btn_h)
 
     def _toast(self, text: str):
         self.toast_text = str(text)
@@ -234,6 +234,25 @@ class DeckScreen:
         pygame.draw.polygon(fill, (226, 196, 255, 180), rel, 2)
         s.blit(fill, rect.topleft)
 
+
+    def _orientation_icon_id(self, card_def: dict) -> str:
+        role = str(infer_card_role(card_def or {})).lower().strip()
+        rarity = str((card_def or {}).get("rarity", "")).lower().strip()
+        tags = set((card_def or {}).get("tags", []) or [])
+        if rarity == "legendary":
+            return "boss"
+        if role == "attack" or "attack" in tags:
+            return "damage"
+        if role == "defense" or "block" in tags or "skill" in tags:
+            return "block"
+        if role == "ritual" or "ritual" in tags:
+            return "ritual"
+        if role == "passive":
+            return "support"
+        if role in {"control", "energy", "combo"}:
+            return {"control": "scry", "energy": "energy", "combo": "combo"}.get(role, "support")
+        return "support"
+
     def render(self, s):
         self._refresh_layout(s)
         s.fill(UI_THEME["bg"])
@@ -245,9 +264,9 @@ class DeckScreen:
             pygame.draw.rect(s, UI_THEME["panel"], rect, border_radius=12)
             pygame.draw.rect(s, UI_THEME["accent_violet"], rect, 2, border_radius=12)
 
-        s.blit(self.app.small_font.render("Mazo Activo (click para previsualizar)", True, UI_THEME["gold"]), (self.main_rect.x + 12, self.main_rect.y + 14))
-        s.blit(self.app.small_font.render("Reserva / Sideboard", True, UI_THEME["gold"]), (self.side_rect.x + 12, self.side_rect.y + 14))
-        s.blit(self.app.small_font.render("Preview + Geometria", True, UI_THEME["gold"]), (self.preview_rect.x + 14, self.preview_rect.y + 14))
+        s.blit(self.app.small_font.render("Mazo Activo", True, UI_THEME["gold"]), (self.main_rect.x + 12, self.main_rect.y + 14))
+        s.blit(self.app.small_font.render("Reserva", True, UI_THEME["gold"]), (self.side_rect.x + 12, self.side_rect.y + 14))
+        s.blit(self.app.small_font.render("Vista y Geometria", True, UI_THEME["gold"]), (self.preview_rect.x + 14, self.preview_rect.y + 14))
 
         attacks = skills = rituals = total_cost = 0
         role_counts = {"attack": 0, "defense": 0, "energy": 0, "control": 0, "ritual": 0, "combo": 0}
@@ -275,6 +294,8 @@ class DeckScreen:
             if is_selected:
                 pygame.draw.rect(s, UI_THEME["gold"], r, 2, border_radius=4)
             s.blit(self.app.tiny_font.render(f"{i+1:02d}. {self.app.loc.t(cd.get('name_key', cid))}", True, UI_THEME["text"]), (r.x + 6, r.y + 6))
+            icon_id = self._orientation_icon_id(cd if isinstance(cd, dict) else {})
+            render_icon(s, icon_id, (r.right - 20, r.y + 4), 1, UI_THEME["gold"], self.app.tiny_font)
 
         s_start, s_end = self._visible_side_range()
         for vi, i in enumerate(range(s_start, s_end)):
@@ -287,6 +308,8 @@ class DeckScreen:
             if is_selected:
                 pygame.draw.rect(s, UI_THEME["gold"], r, 2, border_radius=4)
             s.blit(self.app.tiny_font.render(f"{i+1:02d}. {self.app.loc.t(cd.get('name_key', cid))}", True, UI_THEME["text"]), (r.x + 6, r.y + 4))
+            icon_id = self._orientation_icon_id(cd if isinstance(cd, dict) else {})
+            render_icon(s, icon_id, (r.right - 20, r.y + 3), 1, UI_THEME["gold"], self.app.tiny_font)
 
         self._draw_scrollbar(s, self.main_rect, len(deck), self.main_view_rows, m_start)
         self._draw_scrollbar(s, self.side_rect, len(sideboard), self.side_view_rows, s_start)
@@ -335,12 +358,14 @@ class DeckScreen:
         axes = self._deck_geometry_stats(deck)
         self._draw_geometry_map(s, bottom_geo, axes)
 
+        pygame.draw.rect(s, UI_THEME["panel_2"], self.buttons_panel, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.buttons_panel, 1, border_radius=10)
         side_enabled = self.selected_zone == "main"
         main_enabled = self.selected_zone == "sideboard"
         pygame.draw.rect(s, UI_THEME["violet"] if side_enabled else (84, 76, 106), self.move_to_side_btn, border_radius=10)
         pygame.draw.rect(s, UI_THEME["violet"] if main_enabled else (84, 76, 106), self.move_to_main_btn, border_radius=10)
-        s.blit(self.app.small_font.render("Mover a reserva", True, UI_THEME["text"]), (self.move_to_side_btn.x + 32, self.move_to_side_btn.y + 12))
-        s.blit(self.app.small_font.render("Mover al mazo", True, UI_THEME["text"]), (self.move_to_main_btn.x + 36, self.move_to_main_btn.y + 12))
+        s.blit(self.app.small_font.render("Move to Reserve", True, UI_THEME["text"]), (self.move_to_side_btn.x + 24, self.move_to_side_btn.y + 12))
+        s.blit(self.app.small_font.render("Move to Deck", True, UI_THEME["text"]), (self.move_to_main_btn.x + 28, self.move_to_main_btn.y + 12))
 
         if self.toast_t > 0 and self.toast_text:
             toast_rect = pygame.Rect(self.preview_rect.right - 560, self.preview_rect.bottom - 58, 560, 52)

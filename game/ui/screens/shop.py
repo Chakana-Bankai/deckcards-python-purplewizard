@@ -33,6 +33,10 @@ class ShopScreen:
         self.preview_rect = pygame.Rect(0, 0, 1, 1)
         self._screen_size = (1920, 1080)
         self.preview_card = CardPreviewPanel(app=app)
+        self.selected_offer = None
+        self.buy_cheap_btn = pygame.Rect(0, 0, 1, 1)
+        self.buy_rare_btn = pygame.Rect(0, 0, 1, 1)
+        self.buy_artifact_btn = pygame.Rect(0, 0, 1, 1)
 
         self.particles = [
             {"x": self.app.rng.randint(0, 1919), "y": self.app.rng.randint(0, 1079), "vx": self.app.rng.randint(-8, 8) / 10.0, "vy": self.app.rng.randint(2, 10) / 10.0}
@@ -57,6 +61,9 @@ class ShopScreen:
         footer = pygame.Rect(body.x, cards_row.bottom + 8, body.w, body.bottom - (cards_row.bottom + 8))
 
         self.cheap_rect, self.rare_rect, self.artifact_rect = build_three_column_layout(cards_row, gap=24, ratios=(1, 1, 1))
+        self.buy_cheap_btn = pygame.Rect(self.cheap_rect.x + 14, self.cheap_rect.bottom - 34, self.cheap_rect.w - 28, 24)
+        self.buy_rare_btn = pygame.Rect(self.rare_rect.x + 14, self.rare_rect.bottom - 34, self.rare_rect.w - 28, 24)
+        self.buy_artifact_btn = pygame.Rect(self.artifact_rect.x + 14, self.artifact_rect.bottom - 34, self.artifact_rect.w - 28, 24)
         footer_inner = inset(footer, 10)
         self.leave_rect = anchor_top_right(footer_inner, 260, 52, margin=0)
         self.hint_rect = pygame.Rect(footer_inner.x, footer_inner.y, max(260, footer_inner.w - self.leave_rect.w - 14), footer_inner.h)
@@ -101,12 +108,18 @@ class ShopScreen:
             pos = self.app.renderer.map_mouse(event.pos)
             self.app.sfx.play("ui_click")
 
-            if self.cheap_rect.collidepoint(pos):
+            if self.buy_cheap_btn.collidepoint(pos):
                 self._buy_card(self.offer_card, self.cheap_price, "Compra")
-            elif self.rare_rect.collidepoint(pos):
+            elif self.buy_rare_btn.collidepoint(pos):
                 self._buy_card(self.rare_card, self.rare_price, "Compra rara")
-            elif self.artifact_rect.collidepoint(pos):
+            elif self.buy_artifact_btn.collidepoint(pos):
                 self._buy_artifact()
+            elif self.cheap_rect.collidepoint(pos):
+                self.selected_offer = "cheap"
+            elif self.rare_rect.collidepoint(pos):
+                self.selected_offer = "rare"
+            elif self.artifact_rect.collidepoint(pos):
+                self.selected_offer = "artifact"
             elif self.leave_rect.collidepoint(pos):
                 self.app._complete_current_node()
                 self.app.goto_map()
@@ -140,7 +153,7 @@ class ShopScreen:
         pygame.draw.rect(s, UI_THEME["accent_violet"], art_slot, 1, border_radius=10)
         art = self.app.assets.sprite("cards", card.get("id", ""), (260, 360), fallback=(84, 66, 122))
         self._blit_contained(s, art, art_slot.inflate(-10, -10))
-        s.blit(self.app.tiny_font.render("Click para comprar", True, UI_THEME["gold"]), (rect.x + 14, rect.bottom - 28))
+        s.blit(self.app.tiny_font.render("Click para previsualizar", True, UI_THEME["gold"]), (rect.x + 14, rect.bottom - 56))
 
     def _offer_hover_data(self, mouse_pos):
         if self.cheap_rect.collidepoint(mouse_pos):
@@ -148,6 +161,12 @@ class ShopScreen:
         if self.rare_rect.collidepoint(mouse_pos):
             return {"type": "card", "title": "Rito elevado", "price": self.rare_price, "card": self.rare_card}
         if self.artifact_rect.collidepoint(mouse_pos):
+            return {"type": "artifact", "title": "Reliquia del Umbral", "price": self.artifact_price, "artifact": self.artifact}
+        if self.selected_offer == "cheap":
+            return {"type": "card", "title": "Rito menor", "price": self.cheap_price, "card": self.offer_card}
+        if self.selected_offer == "rare":
+            return {"type": "card", "title": "Rito elevado", "price": self.rare_price, "card": self.rare_card}
+        if self.selected_offer == "artifact":
             return {"type": "artifact", "title": "Reliquia del Umbral", "price": self.artifact_price, "artifact": self.artifact}
         return None
 
@@ -251,9 +270,15 @@ class ShopScreen:
             line = line.strip()
             if line:
                 s.blit(self.app.tiny_font.render(line[:44], True, UI_THEME["text"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 104 + i * 20))
-        s.blit(self.app.tiny_font.render("Click para comprar", True, UI_THEME["gold"]), (self.artifact_rect.x + 14, self.artifact_rect.bottom - 28))
+        s.blit(self.app.tiny_font.render("Click para previsualizar", True, UI_THEME["gold"]), (self.artifact_rect.x + 14, self.artifact_rect.bottom - 56))
 
         self._draw_preview_panel(s, self._offer_hover_data(mouse))
+
+        for rect in (self.buy_cheap_btn, self.buy_rare_btn, self.buy_artifact_btn):
+            pygame.draw.rect(s, UI_THEME["violet"], rect, border_radius=7)
+            pygame.draw.rect(s, UI_THEME["gold"], rect, 1, border_radius=7)
+            lbl = self.app.tiny_font.render("COMPRAR", True, UI_THEME["text"])
+            s.blit(lbl, lbl.get_rect(center=rect.center))
 
         pygame.draw.rect(s, UI_THEME["violet"], self.leave_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.leave_rect, 2, border_radius=10)

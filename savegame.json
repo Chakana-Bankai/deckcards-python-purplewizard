@@ -1,27 +1,15 @@
 {
-  "gold": 62,
+  "gold": 80,
   "relics": [
-    "violet_seal",
-    "solar_tumi",
-    "void_mirror"
+    "violet_seal"
   ],
   "player": {
-    "hp": 68,
-    "max_hp": 76,
+    "hp": 60,
+    "max_hp": 60,
     "block": 0,
-    "energy": 2,
+    "energy": 3,
     "rupture": 0,
-    "statuses": {
-      "weaken": 3,
-      "cost_plus": 2
-    },
-    "harmony_current": 3,
-    "harmony_max": 10,
-    "harmony_ready_threshold": 6,
-    "harmony_ready": false,
-    "harmony_seal_used": true,
-    "seal_ready": false,
-    "seal_active": false
+    "statuses": {}
   },
   "deck": [
     "estallido_arcano",
@@ -30,6 +18,7 @@
     "pulso_cosmico",
     "cw_lore_08",
     "cw_lore_09",
+    "cw_lore_10",
     "cw_lore_14",
     "cw_lore_18",
     "cw_lore_23",
@@ -42,36 +31,9 @@
     "cw_lore_03",
     "cw_lore_04",
     "cw_lore_29",
-    "cw_lore_04",
-    "cw_lore_02"
+    "chakana_de_luz"
   ],
-  "sideboard": [
-    "hg_lore_27",
-    "chakana_de_luz",
-    "of_lore_26",
-    "hg_lore_13",
-    "invocacion_astral",
-    "firmeza_del_cuerpo",
-    "vinculo_de_energia",
-    "ritual_de_la_trama",
-    "cw_lore_04",
-    "fusion_espiritual",
-    "hg_lore_13",
-    "of_lore_26",
-    "cw_lore_14",
-    "hg_lore_24",
-    "hg_lore_19",
-    "ritual_de_la_trama",
-    "filo_en_cadena",
-    "revelacion_astral",
-    "cw_lore_23",
-    "of_lore_17",
-    "cw_lore_08",
-    "cw_lore_10",
-    "chakana_de_luz",
-    "cw_lore_04",
-    "fusion_espiritual"
-  ],
+  "sideboard": [],
   "map": [
     [
       {
@@ -85,7 +47,7 @@
           "1_0",
           "1_1"
         ],
-        "state": "cleared"
+        "state": "available"
       }
     ],
     [
@@ -100,7 +62,7 @@
           "2_0",
           "2_1"
         ],
-        "state": "cleared",
+        "state": "locked",
         "path_id": "camino_filo",
         "path_name": "Camino del Filo",
         "path_lore": "Golpea primero; corta la duda."
@@ -116,7 +78,7 @@
           "2_1",
           "2_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "1_2",
@@ -128,7 +90,7 @@
         "next": [
           "2_2"
         ],
-        "state": "cleared",
+        "state": "locked",
         "path_id": "camino_velo",
         "path_name": "Camino del Velo",
         "path_lore": "Protege tu pulso antes del rito."
@@ -146,7 +108,7 @@
           "3_0",
           "3_1"
         ],
-        "state": "cleared",
+        "state": "locked",
         "path_id": "camino_eco",
         "path_name": "Camino del Eco",
         "path_lore": "Toda jugada vuelve con nueva forma."
@@ -162,7 +124,7 @@
           "3_1",
           "3_0"
         ],
-        "state": "cleared",
+        "state": "locked",
         "path_id": "camino_pulso",
         "path_name": "Camino del Pulso",
         "path_lore": "La energia obedece a quien respira."
@@ -177,7 +139,7 @@
         "next": [
           "3_2"
         ],
-        "state": "cleared"
+        "state": "locked"
       }
     ],
     [
@@ -192,7 +154,7 @@
           "4_0",
           "4_1"
         ],
-        "state": "cleared",
+        "state": "locked",
         "path_id": "camino_umbral",
         "path_name": "Camino del Umbral",
         "path_lore": "Cruza limites para obtener vision."
@@ -207,7 +169,7 @@
         "next": [
           "4_0"
         ],
-        "state": "cleared",
+        "state": "locked",
         "path_id": "camino_cielo",
         "path_name": "Camino del Cielo",
         "path_lore": "La armonia alta revela rutas ocultas."
@@ -222,7 +184,7 @@
         "next": [
           "4_1"
         ],
-        "state": "cleared"
+        "state": "locked"
       }
     ],
     [
@@ -236,7 +198,7 @@
         "next": [
           "5_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "4_1",
@@ -248,7 +210,7 @@
         "next": [
           "5_0"
         ],
-        "state": "cleared",
+        "state": "locked",
         "path_id": "camino_sello",
         "path_name": "Camino del Sello",
         "path_lore": "El sello despierta con voluntad pura."
@@ -263,7 +225,7 @@
         "type": "boss",
         "biome": "fractura_chakana",
         "next": [],
-        "state": "available"
+        "state": "locked"
       }
     ]
   ],
@@ -274,11 +236,11 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 2,
-  "biome": "hanan",
-  "xp": 1,
-  "level": 5,
-  "combats_won": 4,
+  "biome_index": 0,
+  "biome": "ukhu",
+  "xp": 0,
+  "level": 1,
+  "combats_won": 0,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
@@ -292,18 +254,7 @@
     "step_index": 0,
     "step_total": 7
   },
-  "last_node_type": "challenge",
-  "levelup_pending": 0,
-  "path_blessings": [
-    "Camino del Velo",
-    "Camino del Filo",
-    "Camino del Eco",
-    "Camino del Pulso",
-    "Camino del Umbral",
-    "Camino del Cielo",
-    "Camino del Sello"
-  ],
-  "current_node_id": "4_0",
-  "last_biome_seen": "hanan",
-  "saved_at": 1772987986
+  "current_node_id": null,
+  "last_biome_seen": "ukhu",
+  "saved_at": 1772989069
 }

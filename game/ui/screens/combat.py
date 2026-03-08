@@ -257,11 +257,23 @@ class CombatScreen:
         self._invalid_feedback_until_ms = 0
         self._invalid_feedback_msg = ""
 
+
+    def _reset_seal_action_state(self, reason: str = ""):
+        self._action_button_fsm = "IDLE"
+        self._action_state = "END_TURN"
+        self._action_state_reason = REASON_OK
+        self._invalid_state_since_ms = 0
+        self._clear_invalid_feedback()
+        self.ctrl.clear_selection(reason or "seal_reset")
+
     def _resolve_action_state(self):
         p = self.c.player
         h_cur = int(p.get("harmony_current", 0) or 0)
         h_thr = max(1, int(p.get("harmony_ready_threshold", 6) or 6))
 
+        hand_empty = len(self.c.hand) <= 0
+        if hand_empty and h_cur >= h_thr:
+            self._reset_seal_action_state("hand_empty")
         if self._ui_locked() or self.resolving_t > 0:
             fsm, state, reason, label, disabled = "LOCKED_COOLDOWN", "INVALID", "STATE_LOCK", "BLOQUEADO", True
         else:
@@ -477,6 +489,7 @@ class CombatScreen:
             if flow is not None:
                 flow.on_end_turn_pressed()
             self.c.end_turn()
+            self._reset_seal_action_state("end_turn")
             self._lock_ui()
             self.telemetry.info("end_turn_pressed", turn=self.c.turn, energy=self.c.player.get("energy", 0), hand=len(self.c.hand))
             self._push_log("Jugada: Fin del ritual")
@@ -900,6 +913,7 @@ class CombatScreen:
             if self.turn_timer_left <= 0:
                 self._trigger_dialog("enemy_turn_start")
                 self.c.end_turn()
+                self._reset_seal_action_state("timer_end_turn")
                 self._push_log("Jugada: Fin de turno (timer)")
                 self.ctrl.clear_selection("timer_end_turn")
                 self.ctrl.clear_hover()
@@ -911,7 +925,7 @@ class CombatScreen:
             if flow is not None:
                 flow.on_turn_advanced()
             self.turn_timer_left = self.turn_timer_limit
-            self.ctrl.clear_selection("turn_changed")
+            self._reset_seal_action_state("hand_refill")
             self._trigger_dialog("player_turn_start")
             enemy = self.c.enemies[0] if self.c.enemies else None
             if enemy is not None:
@@ -991,11 +1005,11 @@ class CombatScreen:
         if self.c.result == "victory":
             enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
             self.set_dialogue("victory", enemy_id, {})
-            self.ctrl.clear_selection("victory")
+            self._reset_seal_action_state("combat_end_victory")
             self._push_log("Combate ganado")
             self.app.on_combat_victory()
         elif self.c.result == "defeat":
-            self.ctrl.clear_selection("defeat")
+            self._reset_seal_action_state("combat_end_defeat")
             enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
             self.set_dialogue("defeat", enemy_id, {})
             self._push_log("Combate perdido")

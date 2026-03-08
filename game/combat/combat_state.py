@@ -170,8 +170,9 @@ class CombatState:
             elif tier == "elite":
                 hp = max(72, min(130, int(hp)))
             elif tier == "boss":
-                # Boss fights stay hard, but avoid sponge pacing.
-                hp = max(150, min(230, int(hp)))
+                # Phase 3-4 final tuning: keep mechanics, reduce HP sponge feeling.
+                hp = int(max(1, hp) * 0.75)
+                hp = max(120, min(210, int(hp)))
             else:
                 hp = int(max(20, hp))
             pattern = item.get("pattern") or [{"intent": "attack", "value": [5, 5]}]

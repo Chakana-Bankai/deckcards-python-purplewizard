@@ -19,6 +19,17 @@ class MapScreen:
         "boss": "Arconte",
     }
 
+    NODE_SHORT = {
+        "combat": "Prueba",
+        "challenge": "Prueba",
+        "event": "Susurro",
+        "path": "Camino",
+        "treasure": "Fragmento",
+        "shop": "Mercader",
+        "boss": "Archonte",
+        "elite": "Elite",
+    }
+
     NODE_LORE = {
         "event": "Los ecos del templo piden una decision serena.",
         "combat": "Sombras antiguas custodian este sendero.",
@@ -225,8 +236,8 @@ class MapScreen:
         col = (24, 20, 34)
         t = self._normalized_node_type(node_type)
         if t == "combat":
-            pygame.draw.line(s, col, (x - 8, y + 8), (x + 7, y - 7), 2)
-            pygame.draw.polygon(s, col, [(x + 7, y - 7), (x + 12, y - 2), (x + 1, y + 3)])
+            pygame.draw.line(s, col, (x - 10, y + 10), (x + 9, y - 9), 2)
+            pygame.draw.polygon(s, col, [(x + 9, y - 9), (x + 14, y - 3), (x + 2, y + 4)])
         elif t in {"elite", "challenge"}:
             pts = [(x, y - 10), (x + 7, y - 4), (x + 9, y + 5), (x, y + 10), (x - 9, y + 5), (x - 7, y - 4)]
             pygame.draw.polygon(s, col, pts, 2)
@@ -238,7 +249,7 @@ class MapScreen:
             pygame.draw.circle(s, col, (x + 6, y), 2)
             pygame.draw.line(s, col, (x - 6, y), (x + 6, y), 2)
         elif t == "treasure":
-            pygame.draw.rect(s, col, (x - 8, y - 3, 16, 10), 2, border_radius=3)
+            pygame.draw.rect(s, col, (x - 10, y - 4, 20, 12), 2, border_radius=3)
             pygame.draw.line(s, col, (x - 8, y + 1), (x + 8, y + 1), 2)
         elif t == "boss":
             pygame.draw.circle(s, col, (x, y), 7, 2)
@@ -484,6 +495,10 @@ class MapScreen:
                         pygame.draw.circle(s, (200, 180, 245), (nx, ny), rr + 5)
                     pygame.draw.circle(s, color, (nx, ny), rr)
                     self._draw_icon(s, ntype, nx, ny)
+
+                short_label = self.NODE_SHORT.get(ntype, "Ruta")
+                short_txt = self._fit_text(self.app.tiny_font, short_label, 82)
+                s.blit(self.app.tiny_font.render(short_txt, True, UI_THEME["muted"]), (nx + rr + 6, ny - 7))
 
                 if node_hover or state == "current":
                     label = self.NODE_NAMES.get(ntype, "Ruta")
