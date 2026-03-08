@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "cards": 60,
+  "relics": 12,
+  "enemies": 31,
+  "bosses": 4,
+  "biomes": 4,
+  "events": 6,
+  "archons": 4,
+  "codex_sections": 10,
+  "codex_cards": 60,
+  "codex_relics": 12,
+  "tutorial_steps": 7,
+  "archetypes": {
+    "cosmic_warrior": 20,
+    "harmony_guardian": 20,
+    "oracle_of_fate": 20
+  }
+}

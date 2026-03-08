@@ -4,6 +4,7 @@ from pathlib import Path
 
 from game.core.paths import data_dir
 from game.core.safe_io import load_json
+from game.services.content_lock_validator import validate_content_lock_1_0
 
 
 class ContentService:
@@ -17,6 +18,7 @@ class ContentService:
         self.dialogues_combat = {}
         self.dialogues_events = {}
         self.naming_style = ""
+        self.content_lock = {}
         self._load_all()
 
     def _fail(self, msg: str):
@@ -54,14 +56,13 @@ class ContentService:
         self.dialogues_combat = dcombat if isinstance(dcombat, dict) else {}
         self.dialogues_events = devents if isinstance(devents, dict) else {}
 
-        if len(self.cards) != 30:
-            self._fail(f"cards_count:{len(self.cards)} expected 30 @ {p_cards}")
+        if len(self.cards) != 60:
+            self._fail(f"cards_count:{len(self.cards)} expected 60 @ {p_cards}")
         if len(self.enemies) != 31:
             self._fail(f"enemies_count:{len(self.enemies)} expected 31 @ {p_enemies}")
         if len(self.bosses) != 4:
             self._fail(f"bosses_count:{len(self.bosses)} expected 4 @ {p_bosses}")
 
-        # dialogue coverage
         ids = [e.get("id") for e in self.enemies if isinstance(e, dict) and e.get("id")]
         for bid in [b.get("id") for b in self.bosses if isinstance(b, dict) and b.get("id")]:
             if bid not in ids:
@@ -70,6 +71,12 @@ class ContentService:
             item = self.dialogues_combat.get(eid)
             if not isinstance(item, dict) or "start" not in item:
                 self._fail(f"dialogue_missing_start:{eid} @ {p_dcombat}")
+
+        self.content_lock = validate_content_lock_1_0(self.base)
+        if str(self.content_lock.get("status", "OK")) != "OK":
+            self.status = "WARN"
+            for issue in list(self.content_lock.get("issues", []) or [])[:10]:
+                self.errors.append(f"content_lock:{issue}")
 
     def debug_counts(self) -> dict:
         return {

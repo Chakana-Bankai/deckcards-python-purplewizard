@@ -6,6 +6,7 @@ from pathlib import Path
 
 from game.core.paths import data_dir
 from game.core.safe_io import load_json
+from game.services.content_lock_validator import validate_content_lock_1_0
 
 
 @dataclass
@@ -14,9 +15,8 @@ class ContentStatus:
     errors: list[str] = field(default_factory=list)
 
 
-
-
 _CONTENT_CACHE = {"stamp": None, "payload": None}
+
 
 class ContentService:
     def __init__(self, base: Path | None = None):
@@ -27,8 +27,16 @@ class ContentService:
     def _source_stamp(self):
         files = [
             self.base / "cards.json",
+            self.base / "relics.json",
+            self.base / "events.json",
+            self.base / "biomes.json",
+            self.base / "archons_1_0.json",
+            self.base / "content_lock_1_0.json",
             self.base / "enemies" / "enemies_30.json",
             self.base / "enemies" / "bosses_3.json",
+            self.base / "codex_cards_lore_set1.json",
+            self.base / "codex_relics_lore_set1.json",
+            self.base / "codex.json",
             self.base / "lore" / "dialogues_combat.json",
             self.base / "lore" / "dialogues_events.json",
         ]
@@ -78,15 +86,18 @@ class ContentService:
         enemies = self.load_enemies(st)
         self._step(progress_cb, "Cargando jefes", 0.18)
         bosses = self.load_bosses(st)
-        self._step(progress_cb, "Cargando diálogos", 0.24)
+        self._step(progress_cb, "Cargando dialogos", 0.24)
         dcombat, devents = self.load_dialogues(st)
 
-        if len(cards) != 30:
-            st.status = "FALLBACK"; st.errors.append(f"cards_count:{len(cards)} expected 30")
+        if len(cards) != 60:
+            st.status = "FALLBACK"
+            st.errors.append(f"cards_count:{len(cards)} expected 60")
         if len(enemies) != 31:
-            st.status = "FALLBACK"; st.errors.append(f"enemies_count:{len(enemies)} expected 31")
+            st.status = "FALLBACK"
+            st.errors.append(f"enemies_count:{len(enemies)} expected 31")
         if len(bosses) != 4:
-            st.status = "FALLBACK"; st.errors.append(f"bosses_count:{len(bosses)} expected 4")
+            st.status = "FALLBACK"
+            st.errors.append(f"bosses_count:{len(bosses)} expected 4")
 
         enemy_ids = [e.get("id") for e in enemies if isinstance(e, dict) and e.get("id")]
         for eid in enemy_ids:
@@ -94,8 +105,13 @@ class ContentService:
             if not isinstance(row, dict) or "start" not in row:
                 dcombat[eid] = {
                     "start": {"enemy": "La Trama te prueba.", "chakana": "Respiro. Calculo. Ejecuto."},
-                    "victory": {"enemy": "Aún no termina.", "chakana": "Sigo en pie."},
+                    "victory": {"enemy": "Aun no termina.", "chakana": "Sigo en pie."},
                 }
+
+        lock_report = validate_content_lock_1_0(self.base)
+        if str(lock_report.get("status", "OK")) != "OK":
+            st.status = "WARN"
+            st.errors.extend([f"content_lock:{x}" for x in list(lock_report.get("issues", []) or [])[:10]])
 
         payload = {
             "cards": cards if isinstance(cards, list) else [],
@@ -105,6 +121,7 @@ class ContentService:
             "dialogues_events": devents,
             "status": st.status,
             "errors": st.errors,
+            "content_lock": lock_report,
         }
         _CONTENT_CACHE["stamp"] = stamp
         _CONTENT_CACHE["payload"] = copy.deepcopy(payload)
