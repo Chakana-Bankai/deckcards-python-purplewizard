@@ -1,6 +1,6 @@
 {
-  "version": "chakana_audio_v1",
-  "generated_at": 1772985747,
+  "version": "chakana_audio_v2",
+  "generated_at": 1772990153,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
@@ -72,16 +72,6 @@
       "generation_date": 1772949671,
       "version": "chakana_audio_v1"
     },
-    "menu_c": {
-      "track_id": "menu_c",
-      "type": "bgm",
-      "context": "menu",
-      "variant": "c",
-      "seed": 1681366631,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\menu_c.wav",
-      "generation_date": 1772949672,
-      "version": "chakana_audio_v1"
-    },
     "map_ukhu_b": {
       "track_id": "map_ukhu_b",
       "type": "bgm",
@@ -102,16 +92,6 @@
       "generation_date": 1772949698,
       "version": "chakana_audio_v1"
     },
-    "shop_b": {
-      "track_id": "shop_b",
-      "type": "bgm",
-      "context": "shop",
-      "variant": "b",
-      "seed": 1299255079,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\shop_b.wav",
-      "generation_date": 1772949719,
-      "version": "chakana_audio_v1"
-    },
     "map_ukhu_a": {
       "track_id": "map_ukhu_a",
       "type": "bgm",
@@ -122,16 +102,6 @@
       "generation_date": 1772949724,
       "version": "chakana_audio_v1"
     },
-    "event_b": {
-      "track_id": "event_b",
-      "type": "bgm",
-      "context": "event",
-      "variant": "b",
-      "seed": 1074125190,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\event_b.wav",
-      "generation_date": 1772949727,
-      "version": "chakana_audio_v1"
-    },
     "victory_a": {
       "track_id": "victory_a",
       "type": "bgm",
@@ -140,16 +110,6 @@
       "seed": 593847497,
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\victory_a.wav",
       "generation_date": 1772949731,
-      "version": "chakana_audio_v1"
-    },
-    "event_a": {
-      "track_id": "event_a",
-      "type": "bgm",
-      "context": "event",
-      "variant": "a",
-      "seed": 1834433901,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\event_a.wav",
-      "generation_date": 1772949738,
       "version": "chakana_audio_v1"
     },
     "shop_a": {
@@ -172,26 +132,6 @@
       "generation_date": 1772949766,
       "version": "chakana_audio_v1"
     },
-    "map_ukhu_c": {
-      "track_id": "map_ukhu_c",
-      "type": "bgm",
-      "context": "map_ukhu",
-      "variant": "c",
-      "seed": 788498176,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\map_ukhu_c.wav",
-      "generation_date": 1772976443,
-      "version": "chakana_audio_v1"
-    },
-    "map_kay_c": {
-      "track_id": "map_kay_c",
-      "type": "bgm",
-      "context": "map_kay",
-      "variant": "c",
-      "seed": 519748770,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\map_kay_c.wav",
-      "generation_date": 1772976532,
-      "version": "chakana_audio_v1"
-    },
     "map_kay_a": {
       "track_id": "map_kay_a",
       "type": "bgm",
@@ -200,16 +140,6 @@
       "seed": 1640103485,
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\map_kay_a.wav",
       "generation_date": 1772976539,
-      "version": "chakana_audio_v1"
-    },
-    "map_hanan_c": {
-      "track_id": "map_hanan_c",
-      "type": "bgm",
-      "context": "map_hanan",
-      "variant": "c",
-      "seed": 1011977691,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\map_hanan_c.wav",
-      "generation_date": 1772976598,
       "version": "chakana_audio_v1"
     },
     "map_hanan_b": {
@@ -252,16 +182,6 @@
       "generation_date": 1772976697,
       "version": "chakana_audio_v1"
     },
-    "combat_boss_b": {
-      "track_id": "combat_boss_b",
-      "type": "bgm",
-      "context": "combat_boss",
-      "variant": "b",
-      "seed": 907560450,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_boss_b.wav",
-      "generation_date": 1772976760,
-      "version": "chakana_audio_v1"
-    },
     "map_kay_b": {
       "track_id": "map_kay_b",
       "type": "bgm",
@@ -281,6 +201,94 @@
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_boss_a.wav",
       "generation_date": 1772985747,
       "version": "chakana_audio_v1"
+    },
+    "combat_elite_a": {
+      "track_id": "combat_elite_a",
+      "type": "bgm",
+      "context": "combat_elite",
+      "variant": "a",
+      "seed": 1823441302,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_elite_a.wav",
+      "generation_date": 1772990152,
+      "version": "chakana_audio_v2",
+      "state": "valid"
+    },
+    "defeat_a": {
+      "track_id": "defeat_a",
+      "type": "bgm",
+      "context": "defeat",
+      "variant": "a",
+      "seed": 1862155266,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\defeat_a.wav",
+      "generation_date": 1772990153,
+      "version": "chakana_audio_v2",
+      "state": "valid"
+    },
+    "stinger_combat_start": {
+      "track_id": "stinger_combat_start",
+      "type": "stinger",
+      "context": "combat_start",
+      "variant": "a",
+      "seed": 622562534,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\combat_start.wav",
+      "generation_date": 1772990153,
+      "version": "chakana_audio_v2",
+      "state": "valid"
+    },
+    "stinger_boss_reveal": {
+      "track_id": "stinger_boss_reveal",
+      "type": "stinger",
+      "context": "boss_reveal",
+      "variant": "a",
+      "seed": 280651708,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\boss_reveal.wav",
+      "generation_date": 1772990153,
+      "version": "chakana_audio_v2",
+      "state": "valid"
+    },
+    "stinger_harmony_ready": {
+      "track_id": "stinger_harmony_ready",
+      "type": "stinger",
+      "context": "harmony_ready",
+      "variant": "a",
+      "seed": 1654647542,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\harmony_ready.wav",
+      "generation_date": 1772990153,
+      "version": "chakana_audio_v2",
+      "state": "valid"
+    },
+    "stinger_relic_gain": {
+      "track_id": "stinger_relic_gain",
+      "type": "stinger",
+      "context": "relic_gain",
+      "variant": "a",
+      "seed": 941035584,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\relic_gain.wav",
+      "generation_date": 1772990153,
+      "version": "chakana_audio_v2",
+      "state": "valid"
+    },
+    "stinger_pack_open": {
+      "track_id": "stinger_pack_open",
+      "type": "stinger",
+      "context": "pack_open",
+      "variant": "a",
+      "seed": 1471591358,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\pack_open.wav",
+      "generation_date": 1772990153,
+      "version": "chakana_audio_v2",
+      "state": "valid"
+    },
+    "stinger_level_up": {
+      "track_id": "stinger_level_up",
+      "type": "stinger",
+      "context": "level_up",
+      "variant": "a",
+      "seed": 2113603644,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\level_up.wav",
+      "generation_date": 1772990153,
+      "version": "chakana_audio_v2",
+      "state": "valid"
     }
   }
 }

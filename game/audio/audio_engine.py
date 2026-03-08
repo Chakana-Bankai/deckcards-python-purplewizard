@@ -25,7 +25,7 @@ class ContextSpec:
 class AudioEngine:
     """Procedural audio engine with caching and context-aware playback."""
 
-    VERSION = "chakana_audio_v1"
+    VERSION = "chakana_audio_v2"
     SAMPLE_RATE = 22050
 
     def __init__(self):
@@ -39,30 +39,37 @@ class AudioEngine:
         self.manifest_path = root / "audio_manifest.json"
         self._ensure_dirs()
 
+        # Compact context set: fewer tracks, clearer identity.
         self.context_specs: dict[str, ContextSpec] = {
-            "menu": ContextSpec("mystical calm", ("a", "b", "c"), 26.0, 0.16, 0.42, 0.18),
-            "map_ukhu": ContextSpec("exploration ambient", ("a", "b", "c"), 28.0, 0.18, 0.38, 0.22),
-            "map_kay": ContextSpec("exploration ambient", ("a", "b", "c"), 28.0, 0.20, 0.44, 0.25),
-            "map_hanan": ContextSpec("exploration ambient", ("a", "b", "c"), 28.0, 0.22, 0.50, 0.30),
+            "menu": ContextSpec("mystical calm", ("a", "b"), 26.0, 0.16, 0.42, 0.18),
+            "map_ukhu": ContextSpec("exploration ambient", ("a", "b"), 28.0, 0.18, 0.38, 0.22),
+            "map_kay": ContextSpec("exploration ambient", ("a", "b"), 28.0, 0.20, 0.44, 0.25),
+            "map_hanan": ContextSpec("exploration ambient", ("a", "b"), 28.0, 0.22, 0.50, 0.30),
             "combat": ContextSpec("tense pulse", ("a", "b"), 24.0, 0.34, 0.55, 0.62),
-            "combat_elite": ContextSpec("strong percussion", ("a", "b"), 24.0, 0.40, 0.58, 0.72),
-            "combat_boss": ContextSpec("ceremonial epic", ("a", "b"), 26.0, 0.46, 0.64, 0.88),
-            "event": ContextSpec("mystic narrative", ("a", "b"), 22.0, 0.20, 0.46, 0.26),
-            "shop": ContextSpec("calm ritual", ("a", "b"), 22.0, 0.18, 0.48, 0.24),
+            "combat_elite": ContextSpec("strong percussion", ("a",), 24.0, 0.40, 0.58, 0.72),
+            "combat_boss": ContextSpec("ceremonial epic", ("a",), 26.0, 0.46, 0.64, 0.88),
+            "shop": ContextSpec("calm ritual", ("a",), 22.0, 0.18, 0.48, 0.24),
             "victory": ContextSpec("uplift", ("a",), 18.0, 0.24, 0.62, 0.18),
             "defeat": ContextSpec("falling echo", ("a",), 18.0, 0.14, 0.28, 0.38),
         }
         self.context_alias = {
             "map_kaypacha": "map_kay",
+            "map_fractura_chakana": "map_hanan",
+            "map_fractura": "map_hanan",
             "map_forest": "map_ukhu",
             "map_umbral": "map_ukhu",
+            "combat_ukhu": "combat",
             "combat_kaypacha": "combat",
+            "combat_hanan": "combat_elite",
+            "combat_fractura_chakana": "combat_boss",
+            "combat_fractura": "combat_boss",
             "combat_forest": "combat_elite",
             "combat_umbral": "combat_elite",
-            "combat_hanan": "combat",
             "boss": "combat_boss",
-            "events": "event",
-            "lore": "event",
+            "events": "shop",
+            "event": "shop",
+            "lore": "shop",
+            "sanctuary": "shop",
             "reward": "shop",
             "chest": "victory",
         }
@@ -96,17 +103,41 @@ class AudioEngine:
         self._last_variant_by_context: dict[str, str] = {}
         self._sound_cache: dict[str, pygame.mixer.Sound] = {}
         self._sfx_cooldowns: dict[str, int] = {}
+        self._logged_once: set[str] = set()
         self._music_volume = 0.5
         self._sfx_volume = 0.7
         self._muted = False
+        self._stinger_channel = None
+        self._ui_sfx_channel = None
+        self._impact_channel = None
         self.current_context = "-"
         self.current_variant = "-"
         self.current_path = "-"
         self.status = "stopped"
+        self._init_channels()
 
     def _ensure_dirs(self):
         for d in (self.generated_root, self.bgm_dir, self.sfx_dir, self.stingers_dir, self.studio_dir):
             d.mkdir(parents=True, exist_ok=True)
+
+    def _init_channels(self):
+        try:
+            if not pygame.mixer.get_init():
+                return
+            pygame.mixer.set_num_channels(max(8, pygame.mixer.get_num_channels()))
+            self._stinger_channel = pygame.mixer.Channel(1)
+            self._ui_sfx_channel = pygame.mixer.Channel(2)
+            self._impact_channel = pygame.mixer.Channel(3)
+        except Exception:
+            self._stinger_channel = None
+            self._ui_sfx_channel = None
+            self._impact_channel = None
+
+    def _log_once(self, key: str, text: str):
+        if key in self._logged_once:
+            return
+        self._logged_once.add(key)
+        print(text)
 
     def _load_manifest(self) -> dict:
         if not self.manifest_path.exists():
@@ -239,13 +270,29 @@ class AudioEngine:
         }.get(name, 320.0)
         return self._tone_burst(base, seconds, attack=0.004, decay=0.9)
 
+    def _default_item_path(self, item_id: str, expected_type: str) -> Path:
+        if expected_type == "bgm":
+            return self.bgm_dir / f"{item_id}.wav"
+        if expected_type == "stinger":
+            name = item_id.replace("stinger_", "", 1)
+            folder = self.studio_dir if name == "studio_intro" else self.stingers_dir
+            return folder / f"{name}.wav"
+        if expected_type == "sfx":
+            name = item_id.replace("sfx_", "", 1)
+            return self.sfx_dir / f"{name}.wav"
+        return self.generated_root / f"{item_id}.wav"
+
     def _item_ok(self, item_id: str, expected_type: str) -> Path | None:
         items = self._manifest.get("items", {})
         meta = items.get(item_id, {}) if isinstance(items, dict) else {}
         if not isinstance(meta, dict) or meta.get("type") != expected_type:
-            return None
-        p = Path(str(meta.get("file_path", "")))
-        return p if p.exists() else None
+            fallback = self._default_item_path(item_id, expected_type)
+            return fallback if fallback.exists() else None
+        p = Path(str(meta.get("file_path", ""))).expanduser()
+        if p.exists():
+            return p
+        fallback = self._default_item_path(item_id, expected_type)
+        return fallback if fallback.exists() else None
 
     def _register_item(self, item_id: str, *, item_type: str, context: str, variant: str, seed: int, file_path: Path):
         items = self._manifest.setdefault("items", {})
@@ -258,6 +305,7 @@ class AudioEngine:
             "file_path": str(file_path),
             "generation_date": int(time.time()),
             "version": self.VERSION,
+            "state": "valid",
         }
         self._save_manifest()
 
@@ -265,6 +313,9 @@ class AudioEngine:
         item_id = f"{ctx}_{variant}"
         cached = None if force else self._item_ok(item_id, "bgm")
         if cached is not None:
+            if item_id not in self._manifest.get("items", {}):
+                seed = self._stable_seed(f"bgm:{item_id}")
+                self._register_item(item_id, item_type="bgm", context=ctx, variant=variant, seed=seed, file_path=cached)
             return cached
         spec = self.context_specs[ctx]
         seed = self._stable_seed(f"bgm:{item_id}")
@@ -278,6 +329,9 @@ class AudioEngine:
         item_id = f"stinger_{name}"
         cached = None if force else self._item_ok(item_id, "stinger")
         if cached is not None:
+            if item_id not in self._manifest.get("items", {}):
+                seed = self._stable_seed(item_id)
+                self._register_item(item_id, item_type="stinger", context=name, variant="a", seed=seed, file_path=cached)
             return cached
         seconds = float(self.stingers.get(name, 0.8))
         seed = self._stable_seed(item_id)
@@ -291,6 +345,9 @@ class AudioEngine:
         item_id = f"sfx_{name}"
         cached = None if force else self._item_ok(item_id, "sfx")
         if cached is not None:
+            if item_id not in self._manifest.get("items", {}):
+                seed = self._stable_seed(item_id)
+                self._register_item(item_id, item_type="sfx", context=name, variant="a", seed=seed, file_path=cached)
             return cached
         seconds = float(self.sfx_defs.get(name, 0.14))
         seed = self._stable_seed(item_id)
@@ -300,9 +357,48 @@ class AudioEngine:
         print(f"[Audio] generated: {item_id}")
         return path
 
+    def _prune_manifest(self):
+        items = self._manifest.get("items", {})
+        if not isinstance(items, dict) or not items:
+            return
+        valid_ids = set()
+        for ctx, spec in self.context_specs.items():
+            for var in spec.variants:
+                valid_ids.add(f"{ctx}_{var}")
+        for name in self.stingers:
+            valid_ids.add(f"stinger_{name}")
+        for name in self.sfx_defs:
+            valid_ids.add(f"sfx_{name}")
+
+        changed = False
+        for item_id in list(items.keys()):
+            meta = items.get(item_id, {})
+            p = Path(str((meta or {}).get("file_path", "")))
+            if item_id not in valid_ids or not p.exists():
+                del items[item_id]
+                changed = True
+        if changed:
+            self._save_manifest()
+
     def ensure_core_assets(self, force: bool = False) -> dict:
+        self._prune_manifest()
         self._ensure_bgm_variant("menu", "a", force=force)
+        self._ensure_bgm_variant("map_ukhu", "a", force=force)
+        self._ensure_bgm_variant("map_kay", "a", force=force)
+        self._ensure_bgm_variant("map_hanan", "a", force=force)
         self._ensure_bgm_variant("combat", "a", force=force)
+        self._ensure_bgm_variant("combat_elite", "a", force=force)
+        self._ensure_bgm_variant("combat_boss", "a", force=force)
+        self._ensure_bgm_variant("shop", "a", force=force)
+        self._ensure_bgm_variant("victory", "a", force=force)
+        self._ensure_bgm_variant("defeat", "a", force=force)
+        self._ensure_stinger("combat_start", force=force)
+        self._ensure_stinger("boss_reveal", force=force)
+        self._ensure_stinger("harmony_ready", force=force)
+        self._ensure_stinger("seal_ready", force=force)
+        self._ensure_stinger("relic_gain", force=force)
+        self._ensure_stinger("pack_open", force=force)
+        self._ensure_stinger("level_up", force=force)
         self._ensure_stinger("victory", force=force)
         self._ensure_stinger("defeat", force=force)
         self._ensure_stinger("studio_intro", force=force)
@@ -375,14 +471,23 @@ class AudioEngine:
         nm = str(name or "").lower()
         if nm.startswith("stinger_"):
             nm = nm.replace("stinger_", "", 1)
+        stinger_alias = {
+            "reward": "relic_gain",
+            "boss_phase": "boss_reveal",
+        }
+        nm = stinger_alias.get(nm, nm)
         if nm not in self.stingers:
+            self._log_once(f"missing_stinger:{nm}", f"[Audio] stinger missing: {nm}")
             return
         path = self._ensure_stinger(nm, force=False)
         snd = self._cached_sound(path)
         if snd is None:
             return
         snd.set_volume(0.0 if self._muted else self._sfx_volume)
-        snd.play()
+        if self._stinger_channel is not None:
+            self._stinger_channel.play(snd)
+        else:
+            snd.play()
         print(f"[Audio] stinger: {nm}")
 
     def play_sfx(self, name: str):
@@ -405,6 +510,7 @@ class AudioEngine:
             self.play_stinger("studio_intro")
             return
         if nm not in self.sfx_defs:
+            self._log_once(f"missing_sfx:{nm}", f"[Audio] sfx missing: {nm}")
             return
         now = pygame.time.get_ticks()
         cooldown_ms = {
@@ -423,8 +529,12 @@ class AudioEngine:
         if snd is None:
             return
         snd.set_volume(0.0 if self._muted else self._sfx_volume)
-        snd.play()
-        print(f"[Audio] sfx: {nm}")
+        if nm in {"damage_hit", "card_play", "card_invalid", "seal_activate"} and self._impact_channel is not None:
+            self._impact_channel.play(snd)
+        elif self._ui_sfx_channel is not None:
+            self._ui_sfx_channel.play(snd)
+        else:
+            snd.play()
 
     def play_studio_intro(self):
         self.play_stinger("studio_intro")
