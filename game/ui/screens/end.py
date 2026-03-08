@@ -30,14 +30,16 @@ class EndScreen:
         ]
 
         self.credits_lines = [
+            "CHAKANA : PURPLE WIZARD",
+            "",
             "Chakana Studio",
             "",
             "Creado por:",
             "Mauricio Olivares Chacana",
             "",
-            "Cosmovision Andina / inspiracion",
+            "Inspirado en la Cosmovisión Andina",
             "",
-            "Dedicado a Tomas",
+            "Dedicado a Tomás",
         ]
 
         self.buttons = {
@@ -140,7 +142,7 @@ class EndScreen:
                 title = "Creditos"
                 s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (840, 230))
                 for i, line in enumerate(self.credits_lines):
-                    col = UI_THEME["gold"] if line in {"Chakana Studio", "Creado por:", "Cosmovision Andina / inspiracion", "Dedicado a Tomas"} else UI_THEME["text"]
+                    col = UI_THEME["gold"] if line in {"CHAKANA : PURPLE WIZARD", "Chakana Studio", "Creado por:", "Inspirado en la Cosmovisión Andina", "Dedicado a Tomás"} else UI_THEME["text"]
                     s.blit(self.app.font.render(line, True, col), (620, 308 + i * 42))
                 labels = {"primary": "Finalizar", "menu": "Volver al menu"}
         else:

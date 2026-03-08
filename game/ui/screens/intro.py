@@ -10,7 +10,7 @@ class IntroScreen:
         self.t = 0.0
         self.duration = 9.0
         self.lines = [
-            "Chakana despierta donde la Trama se fractura.",
+            "CHAKANA : PURPLE WIZARD despierta donde la Trama se fractura.",
             "Cada sendero altera el equilibrio entre mundos.",
             "Solo tu voluntad puede sellar el Monolito.",
         ]
@@ -41,7 +41,7 @@ class IntroScreen:
         pygame.draw.rect(s, UI_THEME["panel"], panel, border_radius=16)
         pygame.draw.rect(s, UI_THEME["gold"], panel, 2, border_radius=16)
 
-        title = self.app.big_font.render("CRONICA DE CHAKANA", True, UI_THEME["gold"])
+        title = self.app.big_font.render("CHAKANA : PURPLE WIZARD", True, UI_THEME["gold"])
         s.blit(title, title.get_rect(center=(panel.centerx, panel.y + 82)))
 
         line = self.lines[self.idx]

@@ -111,7 +111,7 @@ class MenuScreen:
         pass
 
     def _draw_title(self, surface: pygame.Surface, rect: pygame.Rect):
-        title_text = "CHAKANA MAGIC WIZARD"
+        title_text = "CHAKANA : PURPLE WIZARD"
         palette = self.app.typography.palette
 
         # Subtle cyan-violet glow layers below title glyphs.
@@ -142,3 +142,4 @@ class MenuScreen:
 
         surface.blit(self.meta_font.render(self.version_line, True, self.app.typography.palette.muted), (24, 1048))
         self.modal.render(surface, self.button_font, self.app.small_font)
+
