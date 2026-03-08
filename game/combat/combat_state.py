@@ -4,6 +4,7 @@ from game.combat.actions import ActionQueue, ApplyStatus, DealDamage, GainBlock
 from game.combat.card import CardDef, CardInstance
 from game.combat.effects import interpret_effects
 from game.combat.enemy import Enemy
+from game.ui.components.card_effect_summary import infer_card_role
 from game.core.paths import data_dir
 from game.core.rng import SeededRNG
 from game.core.safe_io import load_json
@@ -129,6 +130,8 @@ class CombatState:
         by_id = {}
         for entry in raw:
             try:
+                entry = dict(entry)
+                entry.setdefault("role", infer_card_role(entry))
                 card_def = CardDef(**entry)
                 by_id[card_def.id] = card_def
             except Exception as exc:

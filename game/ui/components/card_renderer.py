@@ -4,9 +4,28 @@ import random
 
 import pygame
 
-from game.ui.components.card_effect_summary import summarize_card_effect
-from game.ui.components.pixel_icons import draw_icon_with_value
+from game.ui.components.card_effect_summary import infer_card_role, summarize_card_effect
+from game.ui.system.icons import draw_icon_with_value
 from game.ui.theme import UI_THEME
+
+
+ROLE_COLORS = {
+    "attack": (222, 120, 112),
+    "defense": (124, 184, 238),
+    "energy": (116, 220, 252),
+    "control": (174, 154, 238),
+    "ritual": (228, 196, 116),
+    "combo": (212, 164, 236),
+}
+
+ROLE_LABELS = {
+    "attack": "ATAQUE",
+    "defense": "DEFENSA",
+    "energy": "ENERGIA",
+    "control": "CONTROL",
+    "ritual": "RITUAL",
+    "combo": "COMBO",
+}
 
 
 def _payload(card):
@@ -22,6 +41,7 @@ def _payload(card):
             "cost": getattr(card, "cost", getattr(definition, "cost", 0)),
             "tags": list(getattr(definition, "tags", []) or []),
             "effects": list(getattr(definition, "effects", []) or []),
+            "role": str(getattr(definition, "role", "") or ""),
         }
         return payload, card
     if isinstance(card, dict):
@@ -33,6 +53,7 @@ def _payload(card):
             "cost": int(card.get("cost", 0) or 0),
             "tags": list(card.get("tags", []) or []),
             "effects": list(card.get("effects", []) or []),
+            "role": str(card.get("role", "") or ""),
         }
         return payload, None
     return None, None
@@ -119,11 +140,7 @@ def _draw_card_background(surface, rect: pygame.Rect, payload: dict, tier: str, 
     border = border_map.get(tier, border_map["normal"])
     for y in range(rect.y, rect.bottom):
         f = (y - rect.y) / max(1, rect.h - 1)
-        row = (
-            int(base[0] * (0.86 + 0.18 * f)),
-            int(base[1] * (0.86 + 0.18 * f)),
-            int(base[2] * (0.86 + 0.18 * f)),
-        )
+        row = (int(base[0] * (0.86 + 0.18 * f)), int(base[1] * (0.86 + 0.18 * f)), int(base[2] * (0.86 + 0.18 * f)))
         pygame.draw.line(surface, row, (rect.x, y), (rect.right, y))
 
     if tier == "normal":
@@ -131,11 +148,7 @@ def _draw_card_background(surface, rect: pygame.Rect, payload: dict, tier: str, 
             px = rng.randint(rect.x + 2, rect.right - 3)
             py = rng.randint(rect.y + 2, rect.bottom - 3)
             n = rng.randint(-10, 12)
-            col = (
-                max(0, min(255, base[0] + n)),
-                max(0, min(255, base[1] + n)),
-                max(0, min(255, base[2] + n)),
-            )
+            col = (max(0, min(255, base[0] + n)), max(0, min(255, base[1] + n)), max(0, min(255, base[2] + n)))
             surface.set_at((px, py), col)
     elif tier == "rare":
         aura = pygame.Surface((rect.w + 24, rect.h + 24), pygame.SRCALPHA)
@@ -152,24 +165,22 @@ def _draw_card_background(surface, rect: pygame.Rect, payload: dict, tier: str, 
 def _collect_kpis(summary: dict) -> list[tuple[str, int]]:
     stats = summary.get("stats", {}) if isinstance(summary, dict) else {}
     ordered = [
-        ("damage", "sword"),
-        ("block", "shield"),
-        ("rupture", "crack"),
-        ("harmony_delta", "star"),
-        ("harmony", "star"),
-        ("scry", "eye"),
-        ("draw", "scroll"),
+        ("damage", "damage"),
+        ("block", "block"),
+        ("energy_delta", "energy"),
+        ("harmony_delta", "harmony"),
+        ("rupture", "rupture"),
+        ("draw", "draw"),
+        ("scry", "scry"),
+        ("ritual", "ritual"),
+        ("gold", "gold"),
+        ("xp", "xp"),
     ]
     out = []
-    used_harmony = False
     for key, icon in ordered:
         val = int(stats.get(key, 0) or 0)
         if val <= 0:
             continue
-        if key.startswith("harmony"):
-            if used_harmony:
-                continue
-            used_harmony = True
         out.append((icon, val))
     return out[:3]
 
@@ -264,12 +275,31 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
 
     summary = summarize_card_effect(payload, card_instance=inst, ctx=ctx)
     kpis = _collect_kpis(summary)
+
+    role_key = infer_card_role(payload)
+    role_col = ROLE_COLORS.get(role_key, theme.get("accent_violet", (176, 126, 240)))
+    role_label = ROLE_LABELS.get(role_key, role_key.upper())
+    role_rect = pygame.Rect(rect.x + 10, art_frame.bottom + 6, max(86, min(170, rect.w - 20)), 18)
+    pygame.draw.rect(surface, (20, 18, 28), role_rect, border_radius=8)
+    pygame.draw.rect(surface, role_col, role_rect, 1, border_radius=8)
+    surface.blit(tiny_font.render(role_label, True, role_col), (role_rect.x + 7, role_rect.y + 2))
+
     lore = str(summary.get("header") or "")
     if not lore and app is not None:
         lore = app.loc.t(payload.get("text_key", ""))
     lore = _fit_one_line(tiny_font, lore, rect.w - 18)
-    if lore:
-        surface.blit(tiny_font.render(lore, True, (236, 228, 206)), (rect.x + 9, art_frame.bottom + 8))
+
+    if preset == "preview":
+        body1 = lore
+        body2 = ""
+        if app is not None:
+            body2 = _fit_one_line(tiny_font, app.loc.t(payload.get("text_key", "")), rect.w - 18)
+        if body1:
+            surface.blit(tiny_font.render(body1, True, (236, 228, 206)), (rect.x + 9, role_rect.bottom + 4))
+        if body2 and body2 != body1:
+            surface.blit(tiny_font.render(body2, True, theme.get("muted", (180, 170, 200))), (rect.x + 9, role_rect.bottom + 20))
+    elif lore:
+        surface.blit(tiny_font.render(lore, True, (236, 228, 206)), (rect.x + 9, role_rect.bottom + 6))
 
     kpi_band = pygame.Rect(rect.x + 6, rect.bottom - 38, rect.w - 12, 30)
     pygame.draw.rect(surface, (12, 12, 18), kpi_band, border_radius=8)

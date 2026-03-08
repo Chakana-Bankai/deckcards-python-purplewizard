@@ -50,6 +50,7 @@ from game.ui.screens.studio_intro import StudioIntroScreen
 from game.ui.screens.pacha_transition import PachaTransitionScreen
 from game.ui.screens.tutorial import TutorialScreen
 from game.ui.tutorial_flow import TutorialFlowController
+from game.ui.components.card_effect_summary import infer_card_role
 from game.ui.system.typography import ChakanaTypography, SMALL_FONT
 from game.version import VERSION
 from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION
@@ -409,6 +410,7 @@ class App:
                 "target": c.get("target", "enemy"),
                 "tags": list(c.get("tags", [])),
                 "effects": list(c.get("effects", [])),
+                "role": str(c.get("role") or infer_card_role(c)),
                 "family": (c.get("direction", "ESTE") or "ESTE").lower(),
                 "direction": c.get("direction", "ESTE"),
             })
@@ -1264,3 +1266,4 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
+

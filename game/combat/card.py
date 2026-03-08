@@ -12,6 +12,7 @@ class CardDef:
     target: str
     tags: list[str]
     effects: list[dict]
+    role: str = "combo"
     family: str = "attack"
     direction: str = "ESTE"
 
