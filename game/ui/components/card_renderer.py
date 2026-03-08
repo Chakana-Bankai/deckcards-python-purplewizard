@@ -5,6 +5,7 @@ import random
 import pygame
 
 from game.ui.components.card_effect_summary import infer_card_role, summarize_card_effect
+from game.ui.components.card_framework import to_card_framework_model
 from game.ui.system.icons import draw_icon_with_value
 from game.ui.theme import UI_THEME
 
@@ -42,22 +43,28 @@ def _payload(card):
             "tags": list(getattr(definition, "tags", []) or []),
             "effects": list(getattr(definition, "effects", []) or []),
             "role": str(getattr(definition, "role", "") or ""),
+            "family": str(getattr(definition, "family", "") or ""),
+            "author": str(getattr(definition, "author", "") or ""),
+            "lore_text": str(getattr(definition, "lore_text", "") or ""),
         }
         return payload, card
     if isinstance(card, dict):
         payload = {
             "id": str(card.get("id", "card")),
             "name_key": str(card.get("name_key", card.get("id", "card"))),
-            "text_key": str(card.get("text_key", "")),
+            "text_key": str(card.get("text_key", card.get("effect_text", ""))),
             "rarity": str(card.get("rarity", "common")),
             "cost": int(card.get("cost", 0) or 0),
             "tags": list(card.get("tags", []) or []),
             "effects": list(card.get("effects", []) or []),
             "role": str(card.get("role", "") or ""),
+            "family": str(card.get("family", card.get("archetype", "")) or ""),
+            "author": str(card.get("author", "") or ""),
+            "lore_text": str(card.get("lore_text", card.get("lore", "")) or ""),
+            "artwork": str(card.get("artwork", card.get("id", "card")) or card.get("id", "card")),
         }
         return payload, None
     return None, None
-
 
 def _seed_from_id(card_id: str) -> int:
     return sum((i + 1) * ord(ch) for i, ch in enumerate(str(card_id or "card"))) % 1000003
@@ -170,6 +177,7 @@ def _collect_kpis(summary: dict) -> list[tuple[str, int]]:
         ("energy_delta", "energy"),
         ("harmony_delta", "harmony"),
         ("rupture", "rupture"),
+        ("consume_harmony", "seal"),
         ("draw", "draw"),
         ("scry", "scry"),
         ("ritual", "ritual"),
@@ -284,10 +292,9 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     pygame.draw.rect(surface, role_col, role_rect, 1, border_radius=8)
     surface.blit(tiny_font.render(role_label, True, role_col), (role_rect.x + 7, role_rect.y + 2))
 
-    lore = str(summary.get("header") or "")
-    if not lore and app is not None:
-        lore = app.loc.t(payload.get("text_key", ""))
-    lore = _fit_one_line(tiny_font, lore, rect.w - 18)
+    model = to_card_framework_model(payload, summary=summary, app=app)
+    effect_line = _fit_one_line(tiny_font, model.effect_text or str(summary.get("header") or ""), rect.w - 18)
+    lore_line = _fit_one_line(tiny_font, model.lore_text, rect.w - 18)
 
     if preset == "preview":
         preview_lines = []
@@ -297,12 +304,14 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
                 preview_lines.append(txt)
             if len(preview_lines) >= 2:
                 break
-        if not preview_lines and lore:
-            preview_lines = [lore]
+        if not preview_lines and effect_line:
+            preview_lines = [effect_line]
         for idx, line in enumerate(preview_lines[:2]):
             surface.blit(tiny_font.render(line, True, (236, 228, 206)), (rect.x + 9, role_rect.bottom + 4 + idx * 16))
-    elif lore:
-        surface.blit(tiny_font.render(lore, True, (236, 228, 206)), (rect.x + 9, role_rect.bottom + 6))
+        if lore_line:
+            surface.blit(tiny_font.render(lore_line, True, theme.get("muted", (180, 170, 200))), (rect.x + 9, role_rect.bottom + 36))
+    elif effect_line:
+        surface.blit(tiny_font.render(effect_line, True, (236, 228, 206)), (rect.x + 9, role_rect.bottom + 6))
 
     kpi_band = pygame.Rect(rect.x + 6, rect.bottom - 38, rect.w - 12, 30)
     pygame.draw.rect(surface, (12, 12, 18), kpi_band, border_radius=8)

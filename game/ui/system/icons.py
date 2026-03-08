@@ -30,6 +30,7 @@ FALLBACK_TEXT = {
     "scry": "o",
     "draw": "+",
     "ritual": "^",
+    "seal": "S",
     "gold": "$",
     "xp": "xp",
     "level": "lvl",
@@ -60,6 +61,7 @@ def normalize_icon_name(icon_name: str) -> str:
         "scry",
         "draw",
         "ritual",
+        "seal",
         "gold",
         "xp",
         "level",
@@ -156,6 +158,11 @@ def _render_icon_surface(icon_name: str, color: tuple[int, int, int], size: int)
         tri = [(mid, 2 * scale), (11 * scale, 11 * scale), (3 * scale, 11 * scale)]
         pygame.draw.polygon(surf, c, tri, lw + 1)
         pygame.draw.circle(surf, c, (mid, 8 * scale), max(1, scale), 0)
+    elif key == "seal":
+        ring = pygame.Rect(2 * scale, 2 * scale, 10 * scale, 10 * scale)
+        pygame.draw.ellipse(surf, c, ring, lw + 1)
+        _stroke(surf, c, [(mid, 3 * scale), (mid, 11 * scale)], lw)
+        _stroke(surf, c, [(4 * scale, mid), (10 * scale, mid)], lw)
     elif key == "gold":
         pygame.draw.circle(surf, c, (mid, mid), 5 * scale, lw + 1)
         pygame.draw.circle(surf, c, (mid, mid), max(1, scale), 0)
@@ -234,6 +241,8 @@ def icon_for_effect(effect_type: str) -> str:
         "draw": "draw",
         "ritual": "ritual",
         "ritual_trama": "ritual",
+        "consume_harmony": "seal",
+        "seal": "seal",
         "gain_gold": "gold",
         "gold": "gold",
         "gain_xp": "xp",
