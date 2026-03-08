@@ -22,6 +22,7 @@ from game.ui.theme import UI_THEME
 from game.ui.system.layers import Layers
 from game.ui.system.components import UIPanel, UITooltip
 from game.ui.system.colors import UColors
+from game.ui.system.icons import draw_icon_with_value
 from game.ui.components.topbar import CombatTopBar
 from game.telemetry.logger import TelemetryLogger
 
@@ -1050,14 +1051,16 @@ class CombatScreen:
             s.blit(chip_glow, (intent_chip.x - 6, intent_chip.y - 5))
             pygame.draw.rect(s, (24, 22, 34), intent_chip, border_radius=12)
             pygame.draw.rect(s, intent_col, intent_chip, 2, border_radius=12)
-            intent_text = f"{intent_value} | {intent_name}"
-            s.blit(self.app.small_font.render(intent_text, True, intent_col), (intent_chip.x + 14, intent_chip.y + 12))
+            intent_value_txt = self.app.big_font.render(str(intent_value), True, intent_col)
+            s.blit(intent_value_txt, (intent_chip.x + 12, intent_chip.y + 4))
+            intent_name_txt = self.app.tiny_font.render(intent_name, True, UI_THEME['text'])
+            s.blit(intent_name_txt, (intent_chip.x + 14, intent_chip.bottom - 14))
 
             blk_col = UI_THEME["block"] if enemy_block > 0 else UI_THEME["muted"]
             block_chip = pygame.Rect(block_line.x, block_line.y, max(118, int(block_line.w * 0.44)), block_line.h)
             pygame.draw.rect(s, (24, 22, 34), block_chip, border_radius=10)
             pygame.draw.rect(s, blk_col, block_chip, 2, border_radius=10)
-            s.blit(self.app.tiny_font.render(f"Bloqueo {enemy_block}", True, blk_col), (block_chip.x + 10, block_chip.y + 7))
+            draw_icon_with_value(s, "block", enemy_block, blk_col, self.app.tiny_font, block_chip.x + 8, block_chip.y + 6, size=1)
 
             status_tokens = self._enemy_major_statuses(e)
             sx = status_line.x
@@ -1072,8 +1075,11 @@ class CombatScreen:
             pattern_len = max(1, len(getattr(e, "pattern", []) or []))
             deck_est = max(0, pattern_len - ((getattr(e, "intent_index", 0) + 1) % pattern_len))
             discard_est = min(pattern_len, getattr(e, "intent_index", 0))
-            counter_txt = f"Mazo {deck_est}  Mano 1  Ecos {discard_est}"
-            s.blit(self.app.tiny_font.render(counter_txt, True, UI_THEME["muted"]), (counters.x, counters.y))
+            cx = counters.x
+            cy = counters.y
+            cx = draw_icon_with_value(s, 'deck', deck_est, UI_THEME['muted'], self.app.tiny_font, cx, cy, size=1)
+            cx = draw_icon_with_value(s, 'hand', 1, UI_THEME['muted'], self.app.tiny_font, cx, cy, size=1)
+            _ = draw_icon_with_value(s, 'discard', discard_est, UI_THEME['muted'], self.app.tiny_font, cx, cy, size=1)
             variant = self._enemy_presence_variant(e)
             boss_factor = 1.52 if (self.is_boss or str(getattr(e, "tier", "")).lower() == "boss") else 1.0
 
@@ -1275,13 +1281,17 @@ class CombatScreen:
         self._tutorial_targets["harmony"] = pygame.Rect(row3)
 
         h_col = UI_THEME["gold"] if ready else UI_THEME["text"]
-        s.blit(self.app.tiny_font.render(f"Armonia {h_cur}/{h_max}  Umbral {h_thr}", True, h_col), (row3.x + 8, row3.y + 4))
+        draw_icon_with_value(s, 'harmony', h_cur, h_col, self.app.tiny_font, row3.x + 8, row3.y + 4, size=1)
+        s.blit(self.app.tiny_font.render(f'/{h_max}  Umbral {h_thr}', True, h_col), (row3.x + 60, row3.y + 7))
         bar = pygame.Rect(row3.x + 8, row3.y + 20, row3.w - 16, 8)
         pygame.draw.rect(s, (28, 24, 40), bar, border_radius=5)
         pygame.draw.rect(s, UI_THEME["good"] if ready else UI_THEME["accent_violet"], pygame.Rect(bar.x, bar.y, int(bar.w * (h_cur / max(1, h_max))), bar.h), border_radius=5)
 
-        piles_txt = f"Mazo {draw_n}   Mano {hand_n}   Ecos {disc_n}"
-        s.blit(self.app.tiny_font.render(piles_txt, True, tpal.muted), (row3.x + 8, row3.bottom - 16))
+        px = row3.x + 8
+        py = row3.bottom - 18
+        px = draw_icon_with_value(s, 'deck', draw_n, tpal.muted, self.app.tiny_font, px, py, size=1)
+        px = draw_icon_with_value(s, 'hand', hand_n, tpal.muted, self.app.tiny_font, px, py, size=1)
+        _ = draw_icon_with_value(s, 'discard', disc_n, tpal.muted, self.app.tiny_font, px, py, size=1)
         # Harmony core (bottom-center): dedicated visual mechanic with orb/glow readiness.
         UIPanel(self.layout.harmony_rect, variant="alt").draw(s)
         hr = self.layout.harmony_rect

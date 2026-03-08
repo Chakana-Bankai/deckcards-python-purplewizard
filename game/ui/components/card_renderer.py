@@ -306,7 +306,7 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     pygame.draw.rect(surface, (156, 136, 204), kpi_band, 1, border_radius=8)
     x = kpi_band.x + 8
     for icon_name, val in kpis:
-        x = draw_icon_with_value(surface, icon_name, val, (255, 246, 196), title_font, x, kpi_band.y + 5, size=2 if preset != "small" else 1)
+        x = draw_icon_with_value(surface, icon_name, val, (255, 246, 196), tiny_font, x, kpi_band.y + 6, size=2 if preset != "small" else 1)
         if x > kpi_band.right - 30:
             break
     if not kpis:
