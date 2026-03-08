@@ -353,7 +353,7 @@ class CombatState:
         now_ready = cur >= thr
         self.player["harmony_ready"] = now_ready
         if now_ready and not was_ready:
-            self.combat_events.append({"type": "harmony_ready", "message": "ArmonÃ­a lista: desata tu sello."})
+            self.combat_events.append({"type": "harmony_ready", "message": "Armonia lista: desata tu sello."})
             self.telemetry.info("harmony_ready_cross", current=cur, threshold=thr)
 
     def consume_harmony(self, amount: int) -> bool:
@@ -398,14 +398,14 @@ class CombatState:
         cur = int(self.player.get("harmony_current", 0) or 0)
         thr = max(1, int(self.player.get("harmony_ready_threshold", 6) or 6))
         if cur < thr:
-            return False, "ArmonÃ­a no estÃ¡ LISTA"
+            return False, "Armonia no esta LISTA"
         if bool(self.player.get("harmony_seal_used", False)):
             return False, "SELLO ya usado en este combate"
         self.player["harmony_seal_used"] = True
         self.player["harmony_current"] = 0
         self.player["harmony_ready"] = False
         self.player["energy"] = int(self.player.get("energy", 0) or 0) + 2
-        self.combat_events.append({"type": "harmony_seal", "message": "SELLO activado: +2 EnergÃ­a este turno."})
+        self.combat_events.append({"type": "harmony_seal", "message": "SELLO activado: +2 Energia este turno."})
         return True, "SELLO activado"
 
     def end_turn(self):

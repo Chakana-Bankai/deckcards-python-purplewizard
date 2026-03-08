@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import math
 
@@ -13,7 +13,7 @@ class LoadingWidget:
     def __init__(self, hints: list[str] | None = None):
         self.hints = list(hints or [
             "La Chakana conecta los tres mundos.",
-            "El equilibrio entre ataque y armonÃ­a define al guerrero.",
+            "El equilibrio entre ataque y armonia define al guerrero.",
             "Prever el destino es tan importante como atacar.",
         ])
         self.hint_idx = 0

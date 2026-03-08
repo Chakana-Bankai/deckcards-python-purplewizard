@@ -462,7 +462,7 @@ class App:
             self._loading_watch_label = label
             self._loading_watch_ts = now
         elif now - getattr(self, "_loading_watch_ts", now) > 12000 and pct < 0.98:
-            self.loading_screen.set_step("Continuando con placeholdersÃ¢â‚¬Â¦", pct)
+            self.loading_screen.set_step("Continuando con placeholders...", pct)
         self.loading_screen.draw(self.renderer.internal, 1.0 / max(1, FPS))
         self.renderer.present()
         for ev in pygame.event.get():
@@ -1131,10 +1131,10 @@ class App:
         biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
         if self.last_biome_seen is None:
             self.last_biome_seen = biome_track
-            self.sm.set(PachaTransitionScreen(self, "Comienza la Trama", lambda: self.sm.set(MapScreen(self)), lore_line="Chakana abriÃƒÂ³ su primer sendero.", hint="Pulsa cualquier tecla para caminar"))
+            self.sm.set(PachaTransitionScreen(self, "Comienza la Trama", lambda: self.sm.set(MapScreen(self)), lore_line="Chakana abrio su primer sendero.", hint="Pulsa cualquier tecla para caminar"))
         elif self.last_biome_seen != biome_track:
             self.last_biome_seen = biome_track
-            self.sm.set(PachaTransitionScreen(self, f"Mapa: {str(biome_track).title()}", lambda: self.sm.set(MapScreen(self)), lore_line="un nuevo territorio abriÃƒÂ³ su geometrÃƒÂ­a.", hint="Pulsa cualquier tecla para continuar"))
+            self.sm.set(PachaTransitionScreen(self, f"Mapa: {str(biome_track).title()}", lambda: self.sm.set(MapScreen(self)), lore_line="un nuevo territorio abrio su geometria.", hint="Pulsa cualquier tecla para continuar"))
         else:
             self.sm.set(MapScreen(self))
         self.music.play_for(self.get_bgm_track("map", biome_track))
@@ -1160,7 +1160,7 @@ class App:
         if is_boss:
             self.trigger_oracle("boss_reveal")
         title = "Umbral del Jefe" if is_boss else "Entrando en Combate"
-        lore = "la sombra mayor despertÃƒÂ³." if is_boss else "el pulso enemigo se hizo audible."
+        lore = "la sombra mayor desperto." if is_boss else "el pulso enemigo se hizo audible."
         self.sm.set(PachaTransitionScreen(self, title, _enter_combat, lore_line=lore, hint="Pulsa cualquier tecla para preparar tu mano"))
 
     def goto_reward(self, picks=None, gold=None, mode=None, relic=None, guide_reward=None):
@@ -1541,11 +1541,11 @@ class App:
                     if p.exists(): p.unlink()
                 except Exception:
                     pass
-            self._loading_step("Reset aplicado. ReiniciandoÃ¢â‚¬Â¦", 0.15)
+            self._loading_step("Reset aplicado. Reiniciando...", 0.15)
             self.request_restart("regen")
             return
 
-        self._draw_progress_splash("Regenerando TramaÃ¢â‚¬Â¦", "Reset Autogen Total")
+        self._draw_progress_splash("Regenerando Trama...", "Reset Autogen Total")
         try:
             pygame.mixer.music.stop(); pygame.mixer.stop()
             if hasattr(pygame.mixer.music, "unload"):
@@ -1706,7 +1706,7 @@ class App:
         self._restart_reason = reason
 
     def _soft_restart(self):
-        self._loading_step("Reset aplicado. Regenerando TramaÃ¢â‚¬Â¦", 0.02)
+        self._loading_step("Reset aplicado. Regenerando Trama...", 0.02)
         try:
             pygame.mixer.music.stop()
         except Exception:

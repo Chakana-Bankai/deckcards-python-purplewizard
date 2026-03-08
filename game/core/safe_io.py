@@ -8,13 +8,23 @@ from pathlib import Path
 from typing import Any, Callable
 
 
+_WARNED_IO: set[str] = set()
+
+
+def _log_once(key: str, message: str):
+    if key in _WARNED_IO:
+        return
+    _WARNED_IO.add(key)
+    print(message)
+
+
 def load_json(path: Path, default, optional: bool = False, auto_create: Callable[[], Any] | None = None):
     try:
         if not path.exists():
             if optional:
-                print(f"[safe_io] optional missing file: {path}")
+                _log_once(f"optional_missing:{path}", f"[safe_io] optional missing file: {path}")
             else:
-                print(f"[safe_io] missing file: {path}")
+                _log_once(f"missing:{path}", f"[safe_io] missing file: {path}")
             if auto_create is not None:
                 try:
                     payload = auto_create()
@@ -23,15 +33,15 @@ def load_json(path: Path, default, optional: bool = False, auto_create: Callable
                         json.dump(payload, fh, ensure_ascii=False, indent=2)
                     return payload
                 except Exception as exc:
-                    print(f"[safe_io] failed auto-create {path}: {exc}")
+                    _log_once(f"autocreate_fail:{path}", f"[safe_io] failed auto-create {path}: {exc}")
             return default
         with path.open("r", encoding="utf-8") as fh:
             return json.load(fh)
     except json.JSONDecodeError as exc:
-        print(f"[safe_io] invalid JSON in {path}: {exc}")
+        _log_once(f"invalid_json:{path}", f"[safe_io] invalid JSON in {path}: {exc}")
         return default
     except Exception as exc:
-        print(f"[safe_io] failed loading {path}: {exc}")
+        _log_once(f"load_fail:{path}", f"[safe_io] failed loading {path}: {exc}")
         return default
 
 

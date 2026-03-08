@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 import time
@@ -115,7 +115,7 @@ class AssetPipeline:
             path = assets_dir() / "sprites" / "guides" / f"{gt}.png"
             self._safe_gen(f"guide:{gt}", path, lambda gt=gt, mode=mode: self.guide_gen.generate(gt, mode=mode), manifest_items, version=GEN_ART_VERSION)
             if progress_cb:
-                progress_cb(f"Generando guÃ­as ({i}/{total})", 0.74 + 0.06 * (i / total))
+                progress_cb(f"Generando guias ({i}/{total})", 0.74 + 0.06 * (i / total))
 
     def _starter_banner_surface(self, starter_id: str, name: str, size: tuple[int, int]) -> pygame.Surface:
         w, h = size

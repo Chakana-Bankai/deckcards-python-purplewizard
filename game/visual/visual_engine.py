@@ -42,7 +42,6 @@ class VisualEngine:
         self.emblem = EmblemGenerator()
         self.overlay = SacredOverlayGenerator()
         self._surface_cache: dict[tuple[str, str, tuple[int, int], str], pygame.Surface] = {}
-        self._source_log_once: set[str] = set()
 
     def _ensure_dirs(self):
         for d in [
@@ -132,9 +131,6 @@ class VisualEngine:
         key = self._item_key(cat, aid, size, cctx)
 
         if not force and cache_key in self._surface_cache:
-            if key not in self._source_log_once:
-                self._source_log_once.add(key)
-                print(f"[visual] {cat}/{aid} source=cache")
             return self._surface_cache[cache_key]
 
         path = self._path_for(cat, aid, size, cctx)
@@ -142,9 +138,6 @@ class VisualEngine:
             surf = self._load_surface(path)
             if surf is not None:
                 self._surface_cache[cache_key] = surf
-                if key not in self._source_log_once:
-                    self._source_log_once.add(key)
-                    print(f"[visual] {cat}/{aid} source=cache_file")
                 return surf
 
         if cat == "avatar":

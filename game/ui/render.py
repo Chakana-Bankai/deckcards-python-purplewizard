@@ -69,7 +69,6 @@ class AssetManager:
         self._cache = {}
         self._visual = None
         self._portrait = None
-        self._visual_log_once = set()
 
     def _load_image(self, path: Path, fallback_size: tuple[int, int], fill=(60, 55, 90), fallback_label: str = ""):
         if path.exists():
@@ -127,17 +126,9 @@ class AssetManager:
                     if vcat == "relics":
                         ctx = "rare"
                     img = self._visual.generate(vcat, str(name or "default"), size, context=ctx, force=False)
-                    log_key = f"{vcat}:{name}:{size[0]}x{size[1]}:{ctx}"
-                    if log_key not in self._visual_log_once:
-                        self._visual_log_once.add(log_key)
-                        print(f"[visual] {vcat}/{name} source=generated_or_cache")
                 except Exception:
                     img = None
             if img is None:
-                log_key = f"{category}:{name}:{size[0]}x{size[1]}"
-                if log_key not in self._visual_log_once:
-                    self._visual_log_once.add(log_key)
-                    print(f"[visual] {category}/{name} source=fallback")
                 img = self._load_image(path, size, fallback, fallback_label=lbl)
         if img.get_size() != size:
             img = pygame.transform.scale(img, size)
