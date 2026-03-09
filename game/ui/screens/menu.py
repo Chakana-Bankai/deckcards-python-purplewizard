@@ -1,4 +1,4 @@
-﻿import json
+import json
 from pathlib import Path
 
 import pygame
@@ -6,7 +6,7 @@ import pygame
 from game.ui.components.modal_confirm import ModalConfirm
 from game.ui.system.brand import ChakanaBrand
 from game.ui.system.colors import UColors
-from game.ui.system.components import UIButton, UIPanel
+from game.ui.system.components import UIButton
 from game.ui.system.typography import BUTTON_FONT, SMALL_FONT, TITLE_FONT
 from game.ui.ui_layout import centered_column
 
@@ -129,7 +129,12 @@ class MenuScreen:
         self.app.bg_gen.render_parallax(surface, "Ruinas Chakana", 2026, pygame.time.get_ticks() * 0.02, particles_on=self.app.user_settings.get("fx_particles", True))
 
         title_rect = pygame.Rect(160, 20, 1600, 166)
-        UIPanel(title_rect, variant="alt").draw(surface)
+
+        # Premium header strip: subtle ritual atmosphere, no heavy opaque box.
+        strip = pygame.Surface((title_rect.w, title_rect.h), pygame.SRCALPHA)
+        pygame.draw.rect(strip, (26, 16, 48, 168), strip.get_rect(), border_radius=18)
+        pygame.draw.rect(strip, (184, 140, 255, 84), strip.get_rect(), 1, border_radius=18)
+        surface.blit(strip, title_rect.topleft)
         self._draw_title(surface, title_rect)
 
         portrait = self.app.assets.sprite("avatar", "menu", (132, 132), fallback=(86, 56, 132))
@@ -142,7 +147,7 @@ class MenuScreen:
             if not self._is_button_visible(item, i):
                 continue
             label = self.app.loc.t(item["text_key"])
-            btn = UIButton(item["rect"], label, role="end_turn", premium=True)
+            btn = UIButton(item["rect"], label, role="menu", premium=True)
             btn.draw(surface, self.button_font, hovered=item["rect"].collidepoint(mouse))
 
         surface.blit(self.meta_font.render(self.version_line, True, self.app.typography.palette.muted), (24, 1048))

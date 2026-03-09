@@ -1,4 +1,4 @@
-﻿"""Centralized font loading with UTF-8 friendly fallbacks."""
+"""Centralized font loading with UTF-8 friendly fallbacks."""
 
 from __future__ import annotations
 
@@ -33,6 +33,16 @@ def _warn(name: str, size: int, reason: str):
     print(f"[fonts] warning: fallback font name={name} size={size} reason={reason}")
 
 
+def _candidates(root: Path) -> dict[str, tuple[Path, ...]]:
+    # New personalized pipeline first, legacy names second.
+    return {
+        "title": (root / "chakana_title.ttf", root / "title.ttf"),
+        "ui": (root / "chakana_ui.ttf", root / "ui.ttf"),
+        "lore": (root / "chakana_lore.ttf", root / "lore.ttf"),
+        "mono": (root / "chakana_ui.ttf", root / "mono.ttf"),
+    }
+
+
 def get_font(name: str, size: int) -> pygame.font.Font:
     """Load a named font safely with system fallback and cache."""
     if not pygame.font.get_init():
@@ -42,23 +52,17 @@ def get_font(name: str, size: int) -> pygame.font.Font:
         return _FONT_CACHE[key]
 
     root = _fonts_root()
-    candidates = {
-        "title": root / "title.ttf",
-        "ui": root / "ui.ttf",
-        "lore": root / "lore.ttf",
-        "mono": root / "mono.ttf",
-    }
-    path = candidates.get(name)
     font = None
-    if path is not None:
+    for path in _candidates(root).get(name, ()):
         try:
             if path.exists():
                 font = pygame.font.Font(str(path), int(size))
-            else:
-                _warn(name, size, f"missing_file:{path.name}")
+                break
+            _warn(name, size, f"missing_file:{path.name}")
         except Exception as exc:
-            _warn(name, size, f"font_load_error:{exc}")
+            _warn(name, size, f"font_load_error:{path.name}:{exc}")
             font = None
+
     if font is None:
         for fallback in _fallback_chain(name):
             try:
@@ -85,4 +89,3 @@ def get_ui_font(size: int) -> pygame.font.Font:
 
 def get_lore_font(size: int) -> pygame.font.Font:
     return get_font("lore", size)
-

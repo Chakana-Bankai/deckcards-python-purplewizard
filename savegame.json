@@ -55,24 +55,21 @@
         "id": "1_0",
         "col": 1,
         "x": 492,
-        "y": 444,
-        "type": "path",
+        "y": 396,
+        "type": "event",
         "biome": "ukhu",
         "next": [
           "2_0",
           "2_1"
         ],
-        "state": "locked",
-        "path_id": "camino_filo",
-        "path_name": "Camino del Filo",
-        "path_lore": "Golpea primero; corta la duda."
+        "state": "locked"
       },
       {
         "id": "1_1",
         "col": 1,
         "x": 492,
-        "y": 540,
-        "type": "event",
+        "y": 492,
+        "type": "combat",
         "biome": "ukhu",
         "next": [
           "2_1",
@@ -84,16 +81,27 @@
         "id": "1_2",
         "col": 1,
         "x": 492,
-        "y": 636,
-        "type": "path",
+        "y": 588,
+        "type": "combat",
         "biome": "ukhu",
         "next": [
+          "2_2",
+          "2_3"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "1_3",
+        "col": 1,
+        "x": 492,
+        "y": 684,
+        "type": "sanctuary",
+        "biome": "ukhu",
+        "next": [
+          "2_3",
           "2_2"
         ],
-        "state": "locked",
-        "path_id": "camino_velo",
-        "path_name": "Camino del Velo",
-        "path_lore": "Protege tu pulso antes del rito."
+        "state": "locked"
       }
     ],
     [
@@ -101,42 +109,50 @@
         "id": "2_0",
         "col": 2,
         "x": 804,
-        "y": 444,
-        "type": "path",
+        "y": 396,
+        "type": "combat",
         "biome": "kaypacha",
         "next": [
           "3_0",
           "3_1"
         ],
-        "state": "locked",
-        "path_id": "camino_eco",
-        "path_name": "Camino del Eco",
-        "path_lore": "Toda jugada vuelve con nueva forma."
+        "state": "locked"
       },
       {
         "id": "2_1",
         "col": 2,
         "x": 804,
-        "y": 540,
-        "type": "path",
+        "y": 492,
+        "type": "shop",
         "biome": "kaypacha",
         "next": [
           "3_1",
           "3_0"
         ],
-        "state": "locked",
-        "path_id": "camino_pulso",
-        "path_name": "Camino del Pulso",
-        "path_lore": "La energia obedece a quien respira."
+        "state": "locked"
       },
       {
         "id": "2_2",
         "col": 2,
         "x": 804,
-        "y": 636,
-        "type": "elite",
+        "y": 588,
+        "type": "combat",
         "biome": "kaypacha",
         "next": [
+          "3_2",
+          "3_3"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "2_3",
+        "col": 2,
+        "x": 804,
+        "y": 684,
+        "type": "event",
+        "biome": "kaypacha",
+        "next": [
+          "3_3",
           "3_2"
         ],
         "state": "locked"
@@ -147,42 +163,49 @@
         "id": "3_0",
         "col": 3,
         "x": 1116,
-        "y": 444,
-        "type": "path",
+        "y": 396,
+        "type": "challenge",
         "biome": "hanan",
         "next": [
           "4_0",
           "4_1"
         ],
-        "state": "locked",
-        "path_id": "camino_umbral",
-        "path_name": "Camino del Umbral",
-        "path_lore": "Cruza limites para obtener vision."
+        "state": "locked"
       },
       {
         "id": "3_1",
         "col": 3,
         "x": 1116,
-        "y": 540,
-        "type": "path",
+        "y": 492,
+        "type": "combat",
         "biome": "hanan",
         "next": [
           "4_0"
         ],
-        "state": "locked",
-        "path_id": "camino_cielo",
-        "path_name": "Camino del Cielo",
-        "path_lore": "La armonia alta revela rutas ocultas."
+        "state": "locked"
       },
       {
         "id": "3_2",
         "col": 3,
         "x": 1116,
-        "y": 636,
-        "type": "combat",
+        "y": 588,
+        "type": "relic",
         "biome": "hanan",
         "next": [
           "4_1"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "3_3",
+        "col": 3,
+        "x": 1116,
+        "y": 684,
+        "type": "combat",
+        "biome": "hanan",
+        "next": [
+          "4_1",
+          "4_0"
         ],
         "state": "locked"
       }
@@ -193,7 +216,7 @@
         "col": 4,
         "x": 1428,
         "y": 480,
-        "type": "elite",
+        "type": "combat",
         "biome": "hanan",
         "next": [
           "5_0"
@@ -205,15 +228,12 @@
         "col": 4,
         "x": 1428,
         "y": 600,
-        "type": "path",
+        "type": "elite",
         "biome": "hanan",
         "next": [
           "5_0"
         ],
-        "state": "locked",
-        "path_id": "camino_sello",
-        "path_name": "Camino del Sello",
-        "path_lore": "El sello despierta con voluntad pura."
+        "state": "locked"
       }
     ],
     [
@@ -256,5 +276,5 @@
   },
   "current_node_id": null,
   "last_biome_seen": "ukhu",
-  "saved_at": 1772989069
+  "saved_at": 1773041554
 }

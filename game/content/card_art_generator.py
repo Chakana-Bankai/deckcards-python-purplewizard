@@ -92,7 +92,7 @@ class PromptBuilder:
         prompt = (
             f"chakana card::{cid}::{ctype} high density pixel fantasy, layered depth, "
             f"silhouette discipline, role {role}, palette {palette}, lighting {lighting}, "
-            f"sacred geometry {symbols}, motif {primary} ({shape}), "
+            f"sacred geometry {symbols}, symbolic overlays aligned to motif, motif {primary} ({shape}), "
             f"effect signature {effect_sig}, energy pattern {energy}, lore tokens {lore_tokens}, "
             f"crisp no blur, intentional composition"
         )
@@ -207,3 +207,4 @@ def export_prompts(cards: list[dict], enemies: list[dict] | None = None):
     atomic_write_json_if_changed(prompts_path, payload, sort_keys=True)
     atomic_write_json_if_changed(data_dir() / "prompt_manifest.json", {"generator_version": GEN_CARD_ART_VERSION, "count": len(payload.get("cards", {}))}, sort_keys=True)
     atomic_write_json_if_changed(data_dir() / "art_manifest_cards.json", {"generator_version": GEN_CARD_ART_VERSION, "count": len(payload.get("cards", {}))}, sort_keys=True)
+

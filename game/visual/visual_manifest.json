@@ -1,6 +1,6 @@
 {
-  "version": "visual_v1",
-  "generated_at": 1772987937,
+  "version": "visual_v2",
+  "generated_at": 1773041189,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -3612,6 +3612,988 @@
       "size": [
         16,
         16
+      ]
+    },
+    "avatar:archon_oracle:192x192:archon_oracle": {
+      "asset_id": "archon_oracle",
+      "category": "avatar",
+      "seed": 2053851089,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\archon_oracle_192x192_archon_oracle.png"
+      ],
+      "context": "archon_oracle",
+      "version": "visual_v2",
+      "generated_at": 1773002163,
+      "size": [
+        192,
+        192
+      ],
+      "state": "valid",
+      "lore_tags": [
+        "archons"
+      ]
+    },
+    "biomes:fractura_chakana:512x256:sigil": {
+      "asset_id": "fractura_chakana",
+      "category": "biomes",
+      "seed": 1659777959,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\biomes\\fractura_chakana_512x256_sigil.png"
+      ],
+      "context": "sigil",
+      "version": "visual_v2",
+      "generated_at": 1773002163,
+      "size": [
+        512,
+        256
+      ],
+      "state": "valid",
+      "lore_tags": [
+        "chakana"
+      ]
+    },
+    "relics:archon_fragment:128x128:rare": {
+      "asset_id": "archon_fragment",
+      "category": "relics",
+      "seed": 477175662,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\archon_fragment_128x128_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773002204,
+      "size": [
+        128,
+        128
+      ],
+      "state": "valid",
+      "lore_tags": [
+        "archons"
+      ]
+    },
+    "relics:archon_fragment:176x176:rare": {
+      "asset_id": "archon_fragment",
+      "category": "relics",
+      "seed": 477175662,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\archon_fragment_176x176_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773002205,
+      "size": [
+        176,
+        176
+      ],
+      "state": "valid",
+      "lore_tags": [
+        "archons"
+      ]
+    },
+    "relics:puma_pulse:18x18:rare": {
+      "asset_id": "puma_pulse",
+      "category": "relics",
+      "seed": 1855328998,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\puma_pulse_18x18_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040042,
+      "size": [
+        18,
+        18
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:serpent_scale:128x128:rare": {
+      "asset_id": "serpent_scale",
+      "category": "relics",
+      "seed": 1669400327,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\serpent_scale_128x128_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040078,
+      "size": [
+        128,
+        128
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:serpent_scale:176x176:rare": {
+      "asset_id": "serpent_scale",
+      "category": "relics",
+      "seed": 1669400327,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\serpent_scale_176x176_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040090,
+      "size": [
+        176,
+        176
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:violet_seal:176x176:rare": {
+      "asset_id": "violet_seal",
+      "category": "relics",
+      "seed": 371328948,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\violet_seal_176x176_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040093,
+      "size": [
+        176,
+        176
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:puma_pulse:16x16:rare": {
+      "asset_id": "puma_pulse",
+      "category": "relics",
+      "seed": 1855328998,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\puma_pulse_16x16_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040565,
+      "size": [
+        16,
+        16
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:archon_fragment:18x18:rare": {
+      "asset_id": "archon_fragment",
+      "category": "relics",
+      "seed": 1773282312,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\archon_fragment_18x18_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040601,
+      "size": [
+        18,
+        18
+      ],
+      "state": "valid",
+      "lore_tags": [
+        "archons"
+      ]
+    },
+    "relics:archon_fragment:16x16:rare": {
+      "asset_id": "archon_fragment",
+      "category": "relics",
+      "seed": 1773282312,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\archon_fragment_16x16_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040608,
+      "size": [
+        16,
+        16
+      ],
+      "state": "valid",
+      "lore_tags": [
+        "archons"
+      ]
+    },
+    "relics:serpent_scale:18x18:rare": {
+      "asset_id": "serpent_scale",
+      "category": "relics",
+      "seed": 1669400327,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\serpent_scale_18x18_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040887,
+      "size": [
+        18,
+        18
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:crown_of_hanan:176x176:rare": {
+      "asset_id": "crown_of_hanan",
+      "category": "relics",
+      "seed": 72907646,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\crown_of_hanan_176x176_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040894,
+      "size": [
+        176,
+        176
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:seal_of_seven_paths:128x128:rare": {
+      "asset_id": "seal_of_seven_paths",
+      "category": "relics",
+      "seed": 671143825,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\seal_of_seven_paths_128x128_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040896,
+      "size": [
+        128,
+        128
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:seal_of_seven_paths:176x176:rare": {
+      "asset_id": "seal_of_seven_paths",
+      "category": "relics",
+      "seed": 671143825,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\seal_of_seven_paths_176x176_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040897,
+      "size": [
+        176,
+        176
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:seal_of_seven_paths:18x18:rare": {
+      "asset_id": "seal_of_seven_paths",
+      "category": "relics",
+      "seed": 671143825,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\seal_of_seven_paths_18x18_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040899,
+      "size": [
+        18,
+        18
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "overlays:guardian:768x147:": {
+      "asset_id": "guardian",
+      "category": "overlays",
+      "seed": 2012495116,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\overlays\\guardian_768x147.png"
+      ],
+      "context": "",
+      "version": "visual_v2",
+      "generated_at": 1773040907,
+      "size": [
+        768,
+        147
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:seal_of_seven_paths:16x16:rare": {
+      "asset_id": "seal_of_seven_paths",
+      "category": "relics",
+      "seed": 671143825,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\seal_of_seven_paths_16x16_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040907,
+      "size": [
+        16,
+        16
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:serpent_scale:16x16:rare": {
+      "asset_id": "serpent_scale",
+      "category": "relics",
+      "seed": 1669400327,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\serpent_scale_16x16_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773040907,
+      "size": [
+        16,
+        16
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:puma_pulse:128x128:rare": {
+      "asset_id": "puma_pulse",
+      "category": "relics",
+      "seed": 1855328998,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\puma_pulse_128x128_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773041025,
+      "size": [
+        128,
+        128
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:puma_pulse:176x176:rare": {
+      "asset_id": "puma_pulse",
+      "category": "relics",
+      "seed": 1855328998,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\puma_pulse_176x176_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773041025,
+      "size": [
+        176,
+        176
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "biomes:fractura_chakana:1142x852:bg": {
+      "asset_id": "fractura_chakana",
+      "category": "biomes",
+      "seed": 1612015109,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\biomes\\fractura_chakana_1142x852_bg.png"
+      ],
+      "context": "bg",
+      "version": "visual_v2",
+      "generated_at": 1773041189,
+      "size": [
+        1142,
+        852
+      ],
+      "state": "valid",
+      "lore_tags": [
+        "chakana"
       ]
     }
   }

@@ -25,6 +25,7 @@ class CardFrameworkModel:
     kpi: dict[str, int]
     tags: list[str]
     author: str
+    order: str
 
 
 def _as_dict(card) -> dict:
@@ -46,6 +47,7 @@ def _as_dict(card) -> dict:
         "role": str(getattr(definition, "role", "") or ""),
         "family": str(getattr(definition, "family", "") or ""),
         "author": str(getattr(definition, "author", "") or ""),
+        "order": str(getattr(definition, "order", (getattr(definition, "metadata", {}) or {}).get("order", "")) or ""),
     }
 
 
@@ -95,7 +97,8 @@ def to_card_framework_model(card, summary: dict | None = None, app=None) -> Card
         lore_text=str(lore or "Sin lore ritual."),
         kpi=kpi,
         tags=[str(t) for t in (raw.get("tags", []) or [])],
-        author=str(raw.get("author", "") or "Chakana Studio"),
+        author=str(raw.get("author", "") or "Mauricio"),
+        order=str(raw.get("order", "") or "Chakana"),
     )
 
 
@@ -106,3 +109,5 @@ def fit_card_rect(container: pygame.Rect, target_size: tuple[int, int]) -> pygam
     out = pygame.Rect(0, 0, fw, fh)
     out.center = container.center
     return out
+
+

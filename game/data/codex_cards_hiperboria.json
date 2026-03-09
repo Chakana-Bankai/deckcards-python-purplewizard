@@ -1,0 +1,918 @@
+{
+  "set_id": "hiperboria",
+  "set_name": "HIPERBORIA",
+  "total_cards": 60,
+  "archetypes": [
+    {
+      "id": "cosmic_warrior",
+      "name": "Cosmic Warrior",
+      "count": 20
+    },
+    {
+      "id": "harmony_guardian",
+      "name": "Harmony Guardian",
+      "count": 20
+    },
+    {
+      "id": "oracle_of_fate",
+      "name": "Oracle of Fate",
+      "count": 20
+    }
+  ],
+  "cards": [
+    {
+      "id": "hip_cosmic_warrior_01",
+      "name": "HIP-CW 01",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "damage 4",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "tags": [
+        "attack",
+        "rupture",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_02",
+      "name": "HIP-CW 02",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "common",
+      "gameplay_text": "damage 4, apply_break 1",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "tags": [
+        "attack",
+        "combo",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_03",
+      "name": "HIP-CW 03",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "damage 5",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "tags": [
+        "attack",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_04",
+      "name": "HIP-CW 04",
+      "archetype": "cosmic_warrior",
+      "role": "energy",
+      "rarity": "common",
+      "gameplay_text": "gain_mana 1, damage 3",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "tags": [
+        "energy",
+        "attack",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_05",
+      "name": "HIP-CW 05",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "common",
+      "gameplay_text": "damage_plus_rupture 5",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "tags": [
+        "attack",
+        "combo",
+        "rupture",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_06",
+      "name": "HIP-CW 06",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "damage 5",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "tags": [
+        "attack",
+        "rupture",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_07",
+      "name": "HIP-CW 07",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "common",
+      "gameplay_text": "damage 3, apply_break 1",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "tags": [
+        "attack",
+        "combo",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_08",
+      "name": "HIP-CW 08",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "damage 5",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "tags": [
+        "attack",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_09",
+      "name": "HIP-CW 09",
+      "archetype": "cosmic_warrior",
+      "role": "energy",
+      "rarity": "common",
+      "gameplay_text": "gain_mana 1, damage 3",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "tags": [
+        "energy",
+        "attack",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_10",
+      "name": "HIP-CW 10",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "common",
+      "gameplay_text": "damage_plus_rupture 6",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "tags": [
+        "attack",
+        "combo",
+        "rupture",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_11",
+      "name": "HIP-CW 11",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "damage 4",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "tags": [
+        "attack",
+        "rupture",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_12",
+      "name": "HIP-CW 12",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "common",
+      "gameplay_text": "damage 5, apply_break 1",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "tags": [
+        "attack",
+        "combo",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_13",
+      "name": "HIP-CW 13",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "uncommon",
+      "gameplay_text": "damage 5",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "tags": [
+        "attack",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_14",
+      "name": "HIP-CW 14",
+      "archetype": "cosmic_warrior",
+      "role": "energy",
+      "rarity": "uncommon",
+      "gameplay_text": "gain_mana 1, damage 3",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "tags": [
+        "energy",
+        "attack",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_15",
+      "name": "HIP-CW 15",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "uncommon",
+      "gameplay_text": "damage_plus_rupture 5",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "tags": [
+        "attack",
+        "combo",
+        "rupture",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_16",
+      "name": "HIP-CW 16",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "uncommon",
+      "gameplay_text": "damage 5",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "tags": [
+        "attack",
+        "rupture",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_17",
+      "name": "HIP-CW 17",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "uncommon",
+      "gameplay_text": "damage 4, apply_break 1",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "tags": [
+        "attack",
+        "combo",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_18",
+      "name": "HIP-CW 18",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "uncommon",
+      "gameplay_text": "damage 5",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "tags": [
+        "attack",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_19",
+      "name": "HIP-CW 19",
+      "archetype": "cosmic_warrior",
+      "role": "energy",
+      "rarity": "uncommon",
+      "gameplay_text": "gain_mana 1, damage 3",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "tags": [
+        "energy",
+        "attack",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_cosmic_warrior_20",
+      "name": "HIP-CW 20",
+      "archetype": "cosmic_warrior",
+      "role": "combo",
+      "rarity": "legendary",
+      "gameplay_text": "damage 10, apply_break 2",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "tags": [
+        "attack",
+        "combo",
+        "rupture",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_01",
+      "name": "HIP-HG 01",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "gain_block 4",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "tags": [
+        "block",
+        "harmony",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_02",
+      "name": "HIP-HG 02",
+      "archetype": "harmony_guardian",
+      "role": "ritual",
+      "rarity": "common",
+      "gameplay_text": "harmony_delta 1, consume_harmony 1",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "tags": [
+        "ritual",
+        "seal",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_03",
+      "name": "HIP-HG 03",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "gain_block 5",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "tags": [
+        "block",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_04",
+      "name": "HIP-HG 04",
+      "archetype": "harmony_guardian",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "gain_block 3, scry 1",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "tags": [
+        "block",
+        "scry",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_05",
+      "name": "HIP-HG 05",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "gain_block 4, heal 1",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "tags": [
+        "block",
+        "support",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_06",
+      "name": "HIP-HG 06",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "gain_block 5",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "tags": [
+        "block",
+        "harmony",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_07",
+      "name": "HIP-HG 07",
+      "archetype": "harmony_guardian",
+      "role": "ritual",
+      "rarity": "common",
+      "gameplay_text": "harmony_delta 1, consume_harmony 1",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "tags": [
+        "ritual",
+        "seal",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_08",
+      "name": "HIP-HG 08",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "gain_block 5",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "tags": [
+        "block",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_09",
+      "name": "HIP-HG 09",
+      "archetype": "harmony_guardian",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "gain_block 3, scry 1",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "tags": [
+        "block",
+        "scry",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_10",
+      "name": "HIP-HG 10",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "gain_block 4, heal 1",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "tags": [
+        "block",
+        "support",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_11",
+      "name": "HIP-HG 11",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "gain_block 4",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "tags": [
+        "block",
+        "harmony",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_12",
+      "name": "HIP-HG 12",
+      "archetype": "harmony_guardian",
+      "role": "ritual",
+      "rarity": "common",
+      "gameplay_text": "harmony_delta 1, consume_harmony 1",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "tags": [
+        "ritual",
+        "seal",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_13",
+      "name": "HIP-HG 13",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "gain_block 5",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "tags": [
+        "block",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_14",
+      "name": "HIP-HG 14",
+      "archetype": "harmony_guardian",
+      "role": "control",
+      "rarity": "uncommon",
+      "gameplay_text": "gain_block 3, scry 1",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "tags": [
+        "block",
+        "scry",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_15",
+      "name": "HIP-HG 15",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "gain_block 4, heal 1",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "tags": [
+        "block",
+        "support",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_16",
+      "name": "HIP-HG 16",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "gain_block 5",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "tags": [
+        "block",
+        "harmony",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_17",
+      "name": "HIP-HG 17",
+      "archetype": "harmony_guardian",
+      "role": "ritual",
+      "rarity": "uncommon",
+      "gameplay_text": "harmony_delta 1, consume_harmony 1",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "tags": [
+        "ritual",
+        "seal",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_18",
+      "name": "HIP-HG 18",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "gain_block 5",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "tags": [
+        "block",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_19",
+      "name": "HIP-HG 19",
+      "archetype": "harmony_guardian",
+      "role": "control",
+      "rarity": "uncommon",
+      "gameplay_text": "gain_block 3, scry 1",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "tags": [
+        "block",
+        "scry",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_harmony_guardian_20",
+      "name": "HIP-HG 20",
+      "archetype": "harmony_guardian",
+      "role": "ritual",
+      "rarity": "legendary",
+      "gameplay_text": "gain_block 10, harmony_delta 2",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "tags": [
+        "block",
+        "harmony",
+        "seal",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_01",
+      "name": "HIP-OF 01",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "scry 2, draw 1",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "tags": [
+        "scry",
+        "draw",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_02",
+      "name": "HIP-OF 02",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "common",
+      "gameplay_text": "ritual_trama 1, harmony_delta 1",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "tags": [
+        "ritual",
+        "harmony",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_03",
+      "name": "HIP-OF 03",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "scry 3",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "tags": [
+        "scry",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_04",
+      "name": "HIP-OF 04",
+      "archetype": "oracle_of_fate",
+      "role": "combo",
+      "rarity": "common",
+      "gameplay_text": "draw 2",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "tags": [
+        "draw",
+        "combo",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_05",
+      "name": "HIP-OF 05",
+      "archetype": "oracle_of_fate",
+      "role": "energy",
+      "rarity": "common",
+      "gameplay_text": "gain_mana_next_turn 1, scry 1",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "tags": [
+        "energy",
+        "control",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_06",
+      "name": "HIP-OF 06",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "scry 2, draw 1",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "tags": [
+        "scry",
+        "draw",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_07",
+      "name": "HIP-OF 07",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "common",
+      "gameplay_text": "ritual_trama 1, harmony_delta 1",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "tags": [
+        "ritual",
+        "harmony",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_08",
+      "name": "HIP-OF 08",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "scry 3",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "tags": [
+        "scry",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_09",
+      "name": "HIP-OF 09",
+      "archetype": "oracle_of_fate",
+      "role": "combo",
+      "rarity": "common",
+      "gameplay_text": "draw 2",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "tags": [
+        "draw",
+        "combo",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_10",
+      "name": "HIP-OF 10",
+      "archetype": "oracle_of_fate",
+      "role": "energy",
+      "rarity": "common",
+      "gameplay_text": "gain_mana_next_turn 1, scry 1",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "tags": [
+        "energy",
+        "control",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_11",
+      "name": "HIP-OF 11",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "scry 2, draw 1",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "tags": [
+        "scry",
+        "draw",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_12",
+      "name": "HIP-OF 12",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "common",
+      "gameplay_text": "ritual_trama 1, harmony_delta 1",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "tags": [
+        "ritual",
+        "harmony",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_13",
+      "name": "HIP-OF 13",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "uncommon",
+      "gameplay_text": "scry 3",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "tags": [
+        "scry",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_14",
+      "name": "HIP-OF 14",
+      "archetype": "oracle_of_fate",
+      "role": "combo",
+      "rarity": "uncommon",
+      "gameplay_text": "draw 2",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "tags": [
+        "draw",
+        "combo",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_15",
+      "name": "HIP-OF 15",
+      "archetype": "oracle_of_fate",
+      "role": "energy",
+      "rarity": "uncommon",
+      "gameplay_text": "gain_mana_next_turn 1, scry 1",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "tags": [
+        "energy",
+        "control",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_16",
+      "name": "HIP-OF 16",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "uncommon",
+      "gameplay_text": "scry 2, draw 1",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "tags": [
+        "scry",
+        "draw",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_17",
+      "name": "HIP-OF 17",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "uncommon",
+      "gameplay_text": "ritual_trama 1, harmony_delta 1",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "tags": [
+        "ritual",
+        "harmony",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_18",
+      "name": "HIP-OF 18",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "uncommon",
+      "gameplay_text": "scry 3",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "tags": [
+        "scry",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_19",
+      "name": "HIP-OF 19",
+      "archetype": "oracle_of_fate",
+      "role": "combo",
+      "rarity": "uncommon",
+      "gameplay_text": "draw 2",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "tags": [
+        "draw",
+        "combo",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    },
+    {
+      "id": "hip_oracle_of_fate_20",
+      "name": "HIP-OF 20",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "legendary",
+      "gameplay_text": "scry 4, draw 2, ritual_trama 1",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "tags": [
+        "scry",
+        "draw",
+        "ritual",
+        "hiperboria"
+      ],
+      "set": "HIPERBORIA"
+    }
+  ]
+}

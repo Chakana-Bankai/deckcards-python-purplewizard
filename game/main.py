@@ -513,6 +513,8 @@ class App:
                 "palette": enriched.get("palette", ""),
                 "energy": enriched.get("energy", ""),
                 "symbol": enriched.get("symbol", ""),
+                "author": enriched.get("author", "Mauricio"),
+                "order": enriched.get("order", "Chakana"),
             })
         by_id = {c.get("id"): c for c in cooked if c.get("id")}
         if not by_id:
@@ -579,6 +581,12 @@ class App:
                 row["symbol"] = "astral_eye"
             else:
                 row["symbol"] = "chakana_glyph"
+
+        if not str(row.get("author", "")).strip():
+            row["author"] = "Mauricio"
+        if not str(row.get("order", "")).strip():
+            row["order"] = "Chakana"
+
         return row
     def _apply_phase75_card_tuning(self, cards):
         """Phase 7.5 tuning: keep archetype identity while improving viability and pacing."""
@@ -1976,3 +1984,6 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
+
+
+

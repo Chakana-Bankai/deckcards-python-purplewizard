@@ -1,6 +1,6 @@
 {
-  "version": "portrait_v1",
-  "updated_at": 1772982183,
+  "version": "portrait_v2",
+  "updated_at": 1773040622,
   "items": {
     "chakana:132x132": {
       "role": "chakana",
@@ -100,6 +100,17 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_stylized_768x147.png",
       "generated_at": 1772982183,
       "version": "portrait_v1"
+    },
+    "archon:holographic:112x126": {
+      "role": "archon",
+      "style": "holographic",
+      "size": [
+        112,
+        126
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_holographic_112x126.png",
+      "generated_at": 1773040622,
+      "version": "portrait_v2"
     }
   }
 }

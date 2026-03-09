@@ -1,4 +1,4 @@
-﻿"""Reusable low-level UI components for Chakana screens."""
+"""Reusable low-level UI components for Chakana screens."""
 
 from __future__ import annotations
 
@@ -33,15 +33,23 @@ class UIButton:
 
     def draw(self, surface: pygame.Surface, font: pygame.font.Font, hovered: bool = False, pressed: bool = False):
         role_col = UColors.ROLE.get(self.role, UColors.BORDER)
-        base = UColors.PANEL_ALT if not self.premium else role_col
+        accent = UColors.HARMONY
+
+        # Premium buttons keep dark ritual base; accent is used for selection/highlight only.
+        base = UColors.PANEL if self.premium else UColors.PANEL_ALT
+        border = role_col if self.role in {"execute", "seal", "end_turn", "invalid"} else UColors.BORDER_SOFT
+
         if self.disabled:
-            base = (84, 76, 106)
+            base = (64, 54, 86)
+            border = UColors.BORDER_SOFT
         elif hovered:
-            base = tuple(min(255, c + 12) for c in base)
+            base = tuple(min(255, c + 10) for c in base)
+            border = accent
         if pressed and not self.disabled:
             base = tuple(max(0, c - 16) for c in base)
+
         pygame.draw.rect(surface, base, self.rect, border_radius=10)
-        pygame.draw.rect(surface, UColors.BORDER if not self.disabled else UColors.BORDER_SOFT, self.rect, 2, border_radius=10)
+        pygame.draw.rect(surface, border, self.rect, 2, border_radius=10)
         label = font.render(self.label, True, UColors.TEXT)
         surface.blit(label, label.get_rect(center=self.rect.center))
 
