@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 
@@ -8,6 +8,7 @@ from game.core.paths import data_dir
 from game.ui.components.card_renderer import render_card_preview
 from game.ui.theme import UI_THEME
 from game.ui.system.components import UIButton, UIPanel, UILabel
+from game.ui.system.safety import wrap_lines, clamp_single_line
 
 
 SECTION_ORDER = [
@@ -195,7 +196,7 @@ class CodexScreen:
                     break
         if cur and len(lines) < max_lines:
             lines.append(cur)
-        return lines[:max_lines]
+        return wrap_lines(font, text, width, max_lines)
 
     def _draw_gallery_shell(self, s: pygame.Surface) -> pygame.Rect:
         gallery = pygame.Rect(self.right_panel.x + 18, self.right_panel.y + 86, self.right_panel.w - 36, self.right_panel.h - 190)
@@ -299,7 +300,7 @@ class CodexScreen:
         current = relics[self.gallery_index]
         name = self.app.loc.t(current.get("name_key", "")) if current.get("name_key") else str(current.get("name", current.get("id", "-")))
         label = f"{self.gallery_index + 1}/{len(relics)}  {name}"
-        s.blit(self.app.small_font.render(UILabel.clamp(label, self.app.small_font, gallery.w - 40), True, UI_THEME["gold"]), (gallery.x + 16, gallery.bottom - 74))
+        s.blit(self.app.small_font.render(clamp_single_line(self.app.small_font, label, gallery.w - 40), True, UI_THEME["gold"]), (gallery.x + 16, gallery.bottom - 74))
 
     def on_enter(self):
         self._build_section_buttons()
@@ -427,5 +428,7 @@ class CodexScreen:
 
         UIButton(self.back_btn, "Volver", role="default", premium=False).draw(s, self.app.font, hovered=self.back_btn.collidepoint(mouse))
         UIButton(self.tutorial_btn, "Iniciar Tutorial Guiado", role="end_turn", premium=True).draw(s, self.app.font, hovered=self.tutorial_btn.collidepoint(mouse))
+
+
 
 

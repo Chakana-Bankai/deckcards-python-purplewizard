@@ -1,4 +1,4 @@
-import math
+﻿import math
 from collections import defaultdict
 import pygame
 
@@ -9,6 +9,7 @@ from game.ui.components.floating_card_modal_preview import FloatingCardModalPrev
 from game.ui.theme import UI_THEME
 from game.ui.system.components import UIPanel, UIButton
 from game.ui.system.modals import ChoiceModal
+from game.ui.system.safety import clamp_single_line
 
 
 class PathSelectScreen:
@@ -227,10 +228,7 @@ class PathSelectScreen:
         return pygame.Rect(x0 + col * (card_w + gap_x), y0, card_w, card_h)
 
     def _fit(self, font, text: str, max_w: int) -> str:
-        out = str(text or "").replace("\n", " ").strip()
-        while font.size(out)[0] > max_w and len(out) > 4:
-            out = out[:-4] + "..."
-        return out
+        return clamp_single_line(font, text, max_w)
 
     def _draw_radar(self, s: pygame.Surface, center: tuple[int, int], radius: int, profile: dict[str, int], color):
         keys = ["ataque", "defensa", "control", "ritual", "tempo"]
@@ -383,6 +381,9 @@ class PathSelectScreen:
         if hovered_legendary:
             _spot, card = hovered_legendary
             self.legendary_modal.render(s, self.app, card, title="Vista legendaria", dim_alpha=84)
+
+
+
 
 
 

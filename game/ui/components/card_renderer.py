@@ -8,6 +8,7 @@ from game.ui.components.card_effect_summary import infer_card_role, summarize_ca
 from game.ui.components.card_framework import to_card_framework_model
 from game.ui.system.icons import draw_icon_with_value
 from game.ui.theme import UI_THEME
+from game.ui.system.safety import clamp_single_line, wrap_lines, resolve_view_context
 
 
 ROLE_COLORS = {
@@ -269,34 +270,11 @@ def _collect_kpis(summary: dict, payload: dict) -> list[tuple[str, int]]:
 
 
 def _fit_one_line(font, text: str, max_w: int) -> str:
-    out = str(text or "").replace("\n", " ").strip()
-    if not out:
-        return ""
-    while font.size(out)[0] > max_w and len(out) > 4:
-        out = out[:-4] + "..."
-    return out
+    return clamp_single_line(font, text, max_w)
 
 
 def _fit_lines(font, text: str, max_w: int, max_lines: int) -> list[str]:
-    src = str(text or "").replace("\n", " ").strip()
-    if not src:
-        return []
-    words = src.split()
-    lines = []
-    cur = ""
-    for w in words:
-        cand = (cur + " " + w).strip()
-        if font.size(cand)[0] <= max_w:
-            cur = cand
-        else:
-            if cur:
-                lines.append(cur)
-            cur = w
-            if len(lines) >= max_lines:
-                break
-    if cur and len(lines) < max_lines:
-        lines.append(cur)
-    return lines[:max_lines]
+    return wrap_lines(font, text, max_w, max_lines)
 
 
 def _resolve_render_context(state: dict | None, preset: str) -> dict:
@@ -307,7 +285,11 @@ def _resolve_render_context(state: dict | None, preset: str) -> dict:
         "preview": "codex_view",
     }
     key = str((state or {}).get("render_context", default_by_preset.get(preset, "combat_preview")) or "").strip().lower()
-    return dict(RENDER_CONTEXT_RULES.get(key, RENDER_CONTEXT_RULES["combat_preview"]))
+    safety = resolve_view_context(key)
+    merged = dict(RENDER_CONTEXT_RULES.get(key, RENDER_CONTEXT_RULES["combat_preview"]))
+    if "font_scale" in safety:
+        merged.setdefault("font_scale", safety["font_scale"])
+    return merged
 
 
 def _layout_for(rect: pygame.Rect, preset: str, rules: dict) -> dict:
@@ -633,6 +615,8 @@ def render_card_large(surface, rect, card, theme=None, state=None):
 
 def render_card_preview(surface, rect, card, theme=None, state=None):
     _draw_core(surface, pygame.Rect(rect), card, theme, state, preset="preview")
+
+
 
 
 

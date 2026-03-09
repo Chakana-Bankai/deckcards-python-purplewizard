@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import time
@@ -75,6 +75,7 @@ class PortraitPipeline:
     def _canonical_avatar_roots(self) -> list[Path]:
         aroot = assets_dir()
         return [
+            aroot / "curated" / "avatars",
             aroot / "avatars" / "master",
             aroot / "avatars",
             aroot / "sprites" / "portrait_sources",
@@ -342,3 +343,4 @@ def get_portrait_pipeline() -> PortraitPipeline:
     if _PIPELINE is None:
         _PIPELINE = PortraitPipeline()
     return _PIPELINE
+
