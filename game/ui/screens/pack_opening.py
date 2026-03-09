@@ -149,21 +149,20 @@ class PackOpeningScreen:
             self.app.meta_director.remember(self.app.run_state, "recent_pack_ids", str(pack.get("id", "base_pack")), cap=4)
 
         pool, leg_pool, rare_pool, uncommon_pool, common_pool = self._card_pool_by_pack(pack["id"])
-        self.legendary_pick_mode = bool(self.app.user_settings.get("pack_legendary_pick_enabled", True)) and self.app.rng.random() < 0.18
+        self.legendary_pick_mode = False
 
-        if self.legendary_pick_mode:
-            base = leg_pool or rare_pool or pool
-            picked = [self.app.rng.choice(base) for _ in range(5)]
-            self.msg = f"{pack['title']}: evento raro - Elige 1 legendaria"
+        picked = [
+            self.app.rng.choice(common_pool or pool),
+            self.app.rng.choice(common_pool or pool),
+            self.app.rng.choice(common_pool or pool),
+            self.app.rng.choice(rare_pool or uncommon_pool or pool),
+        ]
+        bonus_legendary = bool(leg_pool) and self.app.rng.random() < 0.10
+        if bonus_legendary:
+            picked.append(self.app.rng.choice(leg_pool))
+            self.msg = f"{pack['title']} abierto. 3 comunes + 1 rara + bonus legendaria"
         else:
-            picked = [
-                self.app.rng.choice(leg_pool or rare_pool or pool),
-                self.app.rng.choice(rare_pool or uncommon_pool or pool),
-                self.app.rng.choice(uncommon_pool or common_pool or pool),
-                self.app.rng.choice(common_pool or pool),
-                self.app.rng.choice(pool),
-            ]
-            self.msg = f"{pack['title']} abierto. Recibiras las 5 cartas"
+            self.msg = f"{pack['title']} abierto. 3 comunes + 1 rara"
 
         self.cards = [CardInstance(CardDef.from_dict(c)) for c in picked if c]
 
@@ -269,9 +268,9 @@ class PackOpeningScreen:
         s.blit(self.app.tiny_font.render(ev_text, True, UI_THEME["text"]), (rect.x + 14, y))
         y += 24
 
-        rule = "Regla: al abrir recibes 5 cartas."
-        if self.legendary_pick_mode:
-            rule = "Regla activa: evento raro, eliges 1 legendaria."
+        rule = "Regla: 3 comunes + 1 rara."
+        if self.cards and len(self.cards) >= 5:
+            rule = "Regla activa: bonus legendaria (10%)."
         s.blit(self.app.tiny_font.render(rule, True, UI_THEME["gold"]), (rect.x + 14, y))
 
     def render(self, s):
@@ -332,7 +331,7 @@ class PackOpeningScreen:
         if not self.cards:
             label = "Abrir sobre" if self.selected_pack is not None else "Selecciona un sobre"
         else:
-            label = "Confirmar legendaria" if self.legendary_pick_mode else "Tomar pack"
+            label = "Tomar pack"
         s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.confirm_rect.x + 72, self.confirm_rect.y + 16))
 
         pygame.draw.rect(s, UI_THEME["panel_2"], self.back_rect, border_radius=10)

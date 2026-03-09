@@ -1,0 +1,39 @@
+﻿CHAKANA : PURPLE WIZARD
+PHASE 10 — CHAKANA ENGINE READINESS
+Date: 2026-03-09
+
+GOAL
+- Evaluate readiness for future extraction into Chakana Engine without breaking current runtime.
+
+CURRENT READINESS SNAPSHOT
+
+1) ENGINE-CANDIDATE AREAS (GOOD CANDIDATES)
+- engine/creative_direction/*
+- game/audio/audio_engine.py (core generation/runtime mapping logic)
+- ui system tokenization modules (font/icon/scale registries)
+- card renderer context system (single canonical entrypoint with context profiles)
+
+2) GAME-SPECIFIC AREAS (KEEP IN GAME LAYER)
+- game/main.py orchestration/state transitions
+- lore text/data content in game/data/*
+- faction/set unlock narrative specifics
+- shop/reward copy and world naming surface strings
+
+3) BLOCKERS TO CLEAN EXTRACTION
+- Audio materialization mismatch (manifest vs missing files on disk).
+- Mixed fallback/curated usage in some portrait keys across screens.
+- Residual legacy naming/flow traces in reward/event UI copy.
+
+4) STRUCTURE READINESS
+- Report/documentation outputs now compacted under reports/* and qa/reports.
+- Root clutter reduced.
+- Clearer separation between runtime code and audit artifacts.
+
+READINESS STATUS
+- WARNING (foundation improved, but audio pipeline materialization and final canonical alias cleanup still required).
+
+NEXT HIGH-IMPACT STEPS
+1) Enforce audio integrity precheck: manifest entries must exist before menu handoff.
+2) Normalize portrait key aliases to curated-first consistently across codex/map/combat/scenes.
+3) Consolidate reward/event legacy labels into one canonical player-facing language path.
+4) Keep report output policy fixed to reports/* + qa/reports only.

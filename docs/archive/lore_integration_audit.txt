@@ -1,0 +1,16 @@
+LORE INTEGRATION AUDIT
+fecha: 2026-03-09 17:27:31
+
+Estado:
+- Facciones y planos definidos (Chakana, Hiperborea, Archons, guias).
+- Integracion de set Hiperborea ya operativa en contenido/codex/tienda/packs.
+- Limpieza reciente de labels tecnicos en capa player-facing.
+
+Debilidades:
+- algunos textos aun demasiado funcionales vs narrativos en transiciones menores.
+- no toda recompensa comunica su peso cosmologico.
+
+Recomendaciones:
+1) Mantener guia de naming diegetico como fuente unica.
+2) Asegurar que cada evento relevante deje traza en codex/lore fragment.
+3) Fortalecer voz de Archons en teasers de boss y nodos de corrupcion.

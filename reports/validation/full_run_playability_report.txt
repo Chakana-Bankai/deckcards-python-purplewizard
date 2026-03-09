@@ -1,0 +1,30 @@
+CHAKANA PHASE 5 - FULL RUN PLAYABILITY REPORT
+generated_at=2026-03-09 20:49:59
+scope=run flow validation and critical blocker check (no new gameplay systems)
+
+validated_flows
+- start_run -> PASS (run starts and map initializes)
+- map_progression -> PASS (node selection and state advance work)
+- battle_flow -> PASS (combat starts with valid piles and resolves to reward)
+- reward_flow -> PASS (reward/pack routing active, no legacy modal hard-block)
+- shop_flow -> PASS (shop opens, interaction path valid, return path valid)
+- codex_access -> PASS (codex route available in runtime smoke path)
+- deck_access -> PASS (deck route available and returns to map)
+- boss_entry -> PASS (boss node enters combat route)
+- defeat_retry -> PASS (retry_current_combat rebuilds encounter safely)
+- screen_return_paths -> PASS (map/shop/deck/event transitions remain stable in smoke)
+
+evidence
+- game.qa.runner run_all: PASS across validate_navigation_methods/start_run/enter_combat/combat_to_reward/reward_to_map/goto_shop/goto_event/goto_deck/back_to_map/enter_boss
+- tools.qa_phase7_extended: PASS overall (unlock/enemy_variety/event_variety/hiperboria_visibility)
+- direct defeat-retry check: retry_ok=True, current_node_id preserved, combat rebuilt with clean state.result=None
+
+critical_blockers_found=0
+changes_applied_in_phase
+- none required for playability blocker resolution in this phase
+
+residual_warnings
+- heavy git dirty tree remains (project-wide ongoing changes not introduced by this phase)
+- run-to-boss was validated by smoke path, but full manual long playthrough still recommended for balance feel
+
+phase_result=PASS

@@ -1,0 +1,24 @@
+DOCUMENTATION REORGANIZATION REPORT
+generated_at: 2026-03-09 17:49:27
+
+Applied moves:
+- Core systems docs regrouped under docs/systems.
+- Engine boundary/extraction docs regrouped under docs/engine.
+- Lore/vision docs regrouped under docs/lore.
+- Architecture/process docs regrouped under docs/architecture.
+- Superseded docs moved to docs/archive (no hard delete).
+
+Priority (active docs):
+- P1 docs/systems/CHAKANA_GAMEPLAY_SYSTEM_1_0.md
+- P1 docs/systems/CHAKANA_COMBAT_SYSTEM_1_0.md
+- P1 docs/systems/CHAKANA_CARD_SYSTEM_1_0.md
+- P1 docs/systems/CHAKANA_ENEMY_SYSTEM_1_0.md
+- P1 docs/systems/CHAKANA_RELIC_SYSTEM_1_0.md
+- P1 docs/systems/CHAKANA_META_ENGINE_DESIGN_1_0.md
+- P1 docs/systems/CHAKANA_MASTER_GAME_BIBLE_1_0.md
+- P1 docs/engine/CHAKANA_ENGINE_EXTRACTION_PLAN.md
+- P1 docs/engine/PURPLE_WIZARD_CONTENT_BOUNDARY.md
+- P1 docs/design/game_design_document.md
+- P1 docs/lore/carta_sagrada_diseno.md
+- P1 docs/lore/lore_biblia_chakana.md
+

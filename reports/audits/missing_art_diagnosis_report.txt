@@ -1,0 +1,32 @@
+CHAKANA MISSING ART DIAGNOSIS REPORT
+generated_at=2026-03-09T19:50:04
+
+[why_art_failures_total_120_happens]
+1. QA checker uses canonical runtime path game/assets/sprites/cards.
+2. That path currently has 0 expected card art files.
+3. Generated card art exists in assets/sprites/cards (legacy/parallel root), not canonical runtime root.
+4. Hiperborea expected ids (hip_*) are missing in both roots (no set-specific generation pass landed there).
+
+[diagnosis_numbers]
+expected_total=120
+missing_in_runtime=120
+missing_in_legacy_root=60
+legacy_extra_non_expected=60
+
+[samples]
+missing_runtime_sample=['campo_protector', 'chakana_de_luz', 'cw_lore_02', 'cw_lore_03', 'cw_lore_04', 'cw_lore_08', 'cw_lore_09', 'cw_lore_10', 'cw_lore_14', 'cw_lore_18', 'cw_lore_23', 'cw_lore_29', 'eco_de_sabiduria', 'embate_del_jaguar', 'escudo_de_luz', 'escudo_del_chaman', 'espiritu_guardian', 'estallido_arcano', 'filo_astral', 'filo_en_cadena']
+missing_legacy_sample=['hip_cosmic_warrior_01', 'hip_cosmic_warrior_02', 'hip_cosmic_warrior_03', 'hip_cosmic_warrior_04', 'hip_cosmic_warrior_05', 'hip_cosmic_warrior_06', 'hip_cosmic_warrior_07', 'hip_cosmic_warrior_08', 'hip_cosmic_warrior_09', 'hip_cosmic_warrior_10', 'hip_cosmic_warrior_11', 'hip_cosmic_warrior_12', 'hip_cosmic_warrior_13', 'hip_cosmic_warrior_14', 'hip_cosmic_warrior_15', 'hip_cosmic_warrior_16', 'hip_cosmic_warrior_17', 'hip_cosmic_warrior_18', 'hip_cosmic_warrior_19', 'hip_cosmic_warrior_20']
+legacy_extra_sample=['campo_protector__pass2_2', 'chakana_de_luz__pass2_1', 'cw_lore_02__pass1_2', 'cw_lore_03__pass2_2', 'cw_lore_04__pass1_5', 'cw_lore_08__pass2_2', 'cw_lore_09__pass1_3', 'cw_lore_10__pass1_0', 'cw_lore_14__pass1_1', 'cw_lore_18__pass1_3', 'cw_lore_23__pass1_0', 'cw_lore_29__pass1_1', 'eco_de_sabiduria__pass1_2', 'embate_del_jaguar__pass1_3', 'escudo_de_luz__pass1_5', 'escudo_del_chaman__pass2_1', 'espiritu_guardian__pass1_5', 'estallido_arcano__pass1_4', 'filo_astral__pass1_5', 'filo_en_cadena__pass1_4']
+
+[primary_causes]
+- Path divergence: generator outputs and QA/runtime canonical paths are misaligned.
+- Incomplete set coverage: Hiperborea card art ids are not present as expected filenames.
+- Candidate artifacts from iterative generation remained as suffixed files (__pass*), increasing noise.
+
+[fix_priority]
+1. Route generation outputs to game/assets/sprites/cards as canonical.
+2. Generate/migrate hip_* files for full expected set coverage.
+3. Keep QA checker canonical-first, fallback-aware only as diagnostic (not success).
+4. Archive suffixed candidate artifacts after final selection.
+
+status=WARNING

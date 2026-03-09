@@ -1,0 +1,16 @@
+GAMEPLAY LOOP EVALUATION
+fecha: 2026-03-09 17:27:31
+
+Loop actual: mapa -> combate -> recompensa/pack -> tienda/evento -> boss.
+
+Hallazgos:
+- Progreso de run es entendible pero aun con pantallas intermedias de baja densidad informativa.
+- Recompensas son funcionales, pero algunas elecciones se sienten obvias por valor.
+- Oro y tienda cumplen funcion, falta mas tension de decision entre corto y largo plazo.
+- Progresion de set Hiperborea ya conectada, pero debe reforzarse su momento de descubrimiento.
+
+Mejoras propuestas:
+1) Reducir friccion entre combate y recompensa (menos pasos no interactivos).
+2) Hacer tienda mas estrategica: ofertas con costo-oportunidad visible.
+3) Integrar feedback de progreso por run en panel persistente (sin duplicar labels).
+4) Mantener pack flow canonico y evitar fallback legacy.

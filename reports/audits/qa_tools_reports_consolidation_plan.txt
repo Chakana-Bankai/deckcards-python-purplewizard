@@ -1,0 +1,80 @@
+CHAKANA QA / TOOLS / REPORTS CONSOLIDATION PLAN
+generated_at=2026-03-09T19:40:27
+
+[current_state]
+qa_scripts_count=0
+qa_reports_current_count=9
+qa_reports_archive_count=13
+root_report_files_count=19
+tools_overlap_with_tools_qa=15
+tools_overlap_with_tools_assets=3
+
+[root_report_migration_candidates]
+- asset_cleanup_report.txt -> reports/cleanup/
+- card_art_upgrade_report.txt -> reports/generated/
+- chakana_project_consolidation_report.txt -> reports/generated/
+- codex_validation_report.txt -> reports/validation/
+- creative_art_master_upgrade_report.txt -> reports/generated/
+- creative_director_report.txt -> reports/generated/
+- docs_cleanup_report.txt -> reports/cleanup/
+- document_audit_report.txt -> reports/audits/
+- documentation_reorganization_report.txt -> reports/generated/
+- project_docs_qa_tools_cleanup_report.txt -> reports/cleanup/
+- project_full_inventory_report.txt -> reports/generated/
+- qa_reorganization_report.txt -> reports/generated/
+- qa_report_build_0_9_106a.txt -> qa/reports/current/qa_report_build_latest.txt (if newest) else qa/reports/archive/
+- render_consistency_report.txt -> reports/generated/
+- repository_structure_report.txt -> reports/generated/
+- root_cleanup_report.txt -> reports/cleanup/
+- root_clutter_audit_report.txt -> reports/audits/
+- system_alignment_report.txt -> reports/generated/
+- tools_reorganization_report.txt -> reports/generated/
+
+[qa_consolidation_policy]
+1. Keep only the latest build-level QA file active: qa_report_build_latest.txt.
+2. Move older qa_report_build_* files to qa/reports/archive/.
+3. Preserve only high-priority current reports in qa/reports/current/.
+4. Move one-off pass reports to reports/generated/ or reports/validation/.
+5. Never delete directly; archive first.
+
+[tools_consolidation_policy]
+1. tools/*.py should contain compatibility entrypoints only for top-level commands.
+2. Canonical QA modules live in tools/qa/.
+3. Canonical asset utilities live in tools/assets/.
+4. Canonical maintenance passes live in tools/maintenance/.
+5. For overlaps, keep wrapper at tools/<name>.py importing canonical module.
+
+[detected_overlaps]
+tools root <> tools/qa
+- check_card_coherence.py
+- check_combat_content_lock.py
+- check_deck_system.py
+- qa_phase1_gameplay_blockers.py
+- qa_phase2_pack_shop_integration.py
+- qa_phase3_hologram_dialogue.py
+- qa_phase3b_event_system.py
+- qa_phase4_asset_pipeline_audit.py
+- qa_phase5_visual_audio_upgrade.py
+- qa_phase6_combat_hud.py
+- qa_phase7_extended.py
+- qa_phase9_supervision.py
+- qa_pre_engine_audit.py
+- qa_visual_runtime_fullhd.py
+- qa_visual_system_normalization.py
+tools root <> tools/assets
+- bootstrap_archon_curated_assets.py
+- build_chakana_master_from_reference.py
+- curated_regen_cache_reset.py
+
+[priority_active_reports_keep]
+- qa_report_build_latest.txt
+- pre_1_0_consolidation_report.txt
+- combat_system_upgrade_report.txt
+- archetype_balance_report.txt
+- visual_consistency_report.txt
+- audio_direction_upgrade.txt
+- ui_hierarchy_report.txt
+
+[phase3_execution_ready]
+status=PASS
+notes=Plan ready for non-destructive migration in next phase.

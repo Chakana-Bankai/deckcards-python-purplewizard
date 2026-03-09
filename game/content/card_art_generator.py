@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 from collections import deque
@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pygame
 
+from engine.creative_direction import CreativeArtDirector
 from game.art.gen_art32 import seed_from_id
 from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
 from game.art.gen_card_art_advanced import generate
@@ -96,7 +97,7 @@ class PromptBuilder:
             f"silhouette discipline, role {role}, rarity {rarity}, palette {palette}, lighting {lighting}, "
             f"sacred geometry {symbols}, symbolic overlays aligned to motif, motif {primary} ({shape}), "
             f"effect signature {effect_sig}, energy pattern {energy}, lore tokens {lore_tokens}, "
-            f"crisp no blur, intentional composition"
+            f"crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character"
         )
         return {
             "id": cid,
@@ -114,6 +115,15 @@ class CardArtGenerator:
         self.replaced_count = 0
         self.version_seed = GEN_CARD_ART_VERSION
         self._recent_hashes: deque[int] = deque(maxlen=5)
+        self._creative_director = CreativeArtDirector()
+
+    def _set_id_from_prompt(self, prompt: str) -> str:
+        low = str(prompt or "").lower()
+        if "hiperboria" in low or "hiperborea" in low or "hip_" in low:
+            return "hiperborea"
+        if "archon" in low or "arconte" in low or "void" in low:
+            return "archon"
+        return "base"
 
     def _placeholder(self, card_id: str) -> pygame.Surface:
         out = pygame.Surface((320, 220), flags=pygame.SRCALPHA, depth=32)
@@ -133,11 +143,28 @@ class CardArtGenerator:
 
         card_type = family or ("attack" if "attack" in tags else "defense" if ("block" in tags or "defense" in tags) else "control" if ("draw" in tags or "scry" in tags or "control" in tags) else "spirit")
         seed = seed_from_id(card_id, GEN_CARD_ART_VERSION)
-        result = generate(card_id, card_type, prompt, seed, path)
+        set_id = self._set_id_from_prompt(prompt)
+
+        def _gen(target_path: Path, use_seed: int) -> dict:
+            result_local = generate(card_id, card_type, prompt, use_seed, target_path)
+            h_local = int(result_local.get("hash16", 0))
+            if any(abs(h_local - prev) < 220 for prev in self._recent_hashes):
+                result_local = generate(card_id, card_type, prompt, use_seed + 991, target_path)
+                h_local = int(result_local.get("hash16", 0))
+            result_local = dict(result_local)
+            result_local["hash16"] = h_local
+            return result_local
+
+        result = self._creative_director.evolve(
+            card_id=card_id,
+            set_id=set_id,
+            base_seed=seed,
+            out_path=path,
+            generate_fn=_gen,
+            threshold=0.62 if str(rarity or "").lower() != "legendary" else 0.70,
+        )
+
         h = int(result.get("hash16", 0))
-        if any(abs(h - prev) < 220 for prev in self._recent_hashes):
-            result = generate(card_id, card_type, prompt, seed + 991, path)
-            h = int(result.get("hash16", 0))
         self._recent_hashes.append(h)
         if not path.exists():
             pygame.image.save(self._placeholder(card_id), str(path))
@@ -209,7 +236,3 @@ def export_prompts(cards: list[dict], enemies: list[dict] | None = None):
     atomic_write_json_if_changed(prompts_path, payload, sort_keys=True)
     atomic_write_json_if_changed(data_dir() / "prompt_manifest.json", {"generator_version": GEN_CARD_ART_VERSION, "count": len(payload.get("cards", {}))}, sort_keys=True)
     atomic_write_json_if_changed(data_dir() / "art_manifest_cards.json", {"generator_version": GEN_CARD_ART_VERSION, "count": len(payload.get("cards", {}))}, sort_keys=True)
-
-
-
-

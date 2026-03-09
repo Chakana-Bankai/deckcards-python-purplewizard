@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 
@@ -9,6 +9,7 @@ from game.ui.components.card_renderer import render_card_preview
 from game.ui.theme import UI_THEME
 from game.ui.system.components import UIButton, UIPanel, UILabel
 from game.ui.system.safety import wrap_lines, clamp_single_line
+from game.ui.system.set_emblems import draw_set_emblem, normalize_set_id
 
 
 SECTION_ORDER = [
@@ -32,11 +33,16 @@ class CodexScreen:
         self.section_by_id = {str(s.get("id", "")): s for s in self.sections}
         self.lore_set_cards = self._load_lore_set_cards()
         self.hiperboria_set_cards = self._load_hiperboria_set_cards()
+        self.arconte_set_cards = self._load_arconte_set_cards()
         self.lore_set_relics = self._load_lore_set_relics()
         self.active_section_id = self.sections[0].get("id", "lore") if self.sections else "lore"
         self.gallery_index = 0
         self.card_set_tab = "all"
+        self.card_rarity_tab = "all"
+        self.card_archetype_tab = "all"
         self.card_tab_rects: list[tuple[pygame.Rect, str]] = []
+        self.card_rarity_tab_rects: list[tuple[pygame.Rect, str]] = []
+        self.card_archetype_tab_rects: list[tuple[pygame.Rect, str]] = []
 
         self.back_btn = pygame.Rect(42, 1008, 220, 52)
         self.tutorial_btn = pygame.Rect(280, 1008, 340, 52)
@@ -85,6 +91,16 @@ class CodexScreen:
             return {}
         return {}
 
+    def _load_arconte_set_cards(self) -> dict:
+        path = data_dir() / "codex_cards_arconte.json"
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8-sig"))
+            if isinstance(payload, dict):
+                return payload
+        except Exception:
+            return {}
+        return {}
+
     def _load_lore_set_relics(self) -> dict:
         path = data_dir() / "codex_relics_lore_set1.json"
         try:
@@ -112,10 +128,13 @@ class CodexScreen:
 
         hip_payload = self.hiperboria_set_cards if isinstance(self.hiperboria_set_cards, dict) else {}
         hip_items = hip_payload.get("cards", []) if isinstance(hip_payload.get("cards", []), list) else []
+        arc_payload = self.arconte_set_cards if isinstance(self.arconte_set_cards, dict) else {}
+        arc_items = arc_payload.get("cards", []) if isinstance(arc_payload.get("cards", []), list) else []
 
         # Codex must expose expansion encyclopedia regardless of acquisition gating.
         items = list(base_items)
         items.extend(list(hip_items))
+        items.extend(list(arc_items))
         if not items:
             return []
 
@@ -146,6 +165,9 @@ class CodexScreen:
             if str(full.get("id", "")).lower().startswith("hip_"):
                 full.setdefault("set", "hiperboria")
                 full["artwork"] = str(full.get("id", cid))
+            if str(full.get("id", "")).lower().startswith("arc_"):
+                full.setdefault("set", "arconte")
+                full["artwork"] = str(full.get("id", cid))
             out.append(full)
 
         tab = str(getattr(self, "card_set_tab", "all") or "all").lower()
@@ -153,6 +175,16 @@ class CodexScreen:
             out = [c for c in out if not (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower() or "hiperborea" in str(c.get("set", "")).lower())]
         elif tab == "hiperborea":
             out = [c for c in out if (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower() or "hiperborea" in str(c.get("set", "")).lower())]
+        elif tab == "arconte":
+            out = [c for c in out if (str(c.get("id", "")).lower().startswith("arc_") or "arconte" in str(c.get("set", "")).lower())]
+
+        rarity_tab = str(getattr(self, "card_rarity_tab", "all") or "all").lower()
+        if rarity_tab != "all":
+            out = [c for c in out if str(c.get("rarity", "")).lower() == rarity_tab]
+
+        arch_tab = str(getattr(self, "card_archetype_tab", "all") or "all").lower()
+        if arch_tab != "all":
+            out = [c for c in out if str(c.get("archetype", "")).lower() == arch_tab]
         return out
 
     def _codex_relics(self) -> list[dict]:
@@ -221,8 +253,8 @@ class CodexScreen:
             lines.append(cur)
         return wrap_lines(font, text, width, max_lines)
 
-    def _draw_gallery_shell(self, s: pygame.Surface) -> pygame.Rect:
-        gallery = pygame.Rect(self.right_panel.x + 18, self.right_panel.y + 86, self.right_panel.w - 36, self.right_panel.h - 190)
+    def _draw_gallery_shell(self, s: pygame.Surface, top_offset: int = 86) -> pygame.Rect:
+        gallery = pygame.Rect(self.right_panel.x + 18, self.right_panel.y + top_offset, self.right_panel.w - 36, self.right_panel.h - (top_offset + 104))
         pygame.draw.rect(s, UI_THEME["panel_2"], gallery, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], gallery, 1, border_radius=12)
         return gallery
@@ -234,7 +266,7 @@ class CodexScreen:
             return
 
         self.gallery_index = max(0, min(len(cards) - 1, int(self.gallery_index)))
-        gallery = self._draw_gallery_shell(s)
+        gallery = self._draw_gallery_shell(s, top_offset=148)
 
         center_rect = pygame.Rect(0, 0, 520, 720)
         center_rect.center = (gallery.centerx, gallery.centery + 12)
@@ -258,8 +290,12 @@ class CodexScreen:
         _draw_card_slot(cards[self.gallery_index], center_rect, angle=0)
 
         current = cards[self.gallery_index]
-        label = f"{self.gallery_index + 1}/{len(cards)}  {current.get('name_key', current.get('id', ''))}"
-        s.blit(self.app.small_font.render(label, True, UI_THEME["gold"]), (gallery.x + 16, gallery.bottom - 74))
+        cname = self.app.loc.t(str(current.get('name_key', current.get('id', ''))))
+        label = f"{self.gallery_index + 1}/{len(cards)}  {cname}"
+        label_pos = (gallery.x + 16, gallery.bottom - 74)
+        s.blit(self.app.small_font.render(clamp_single_line(self.app.small_font, label, gallery.w - 88), True, UI_THEME["gold"]), label_pos)
+        emblem_rect = pygame.Rect(gallery.right - 44, gallery.bottom - 80, 22, 22)
+        draw_set_emblem(s, emblem_rect, normalize_set_id(current))
         s.blit(self.app.tiny_font.render(str(current.get("archetype", "")).replace("_", " "), True, UI_THEME["muted"]), (gallery.x + 16, gallery.bottom - 48))
 
     def _draw_relics_gallery(self, s: pygame.Surface):
@@ -269,7 +305,7 @@ class CodexScreen:
             return
 
         self.gallery_index = max(0, min(len(relics) - 1, int(self.gallery_index)))
-        gallery = self._draw_gallery_shell(s)
+        gallery = self._draw_gallery_shell(s, top_offset=86)
 
         center_rect = pygame.Rect(0, 0, 520, 690)
         center_rect.center = (gallery.centerx, gallery.centery + 4)
@@ -369,6 +405,18 @@ class CodexScreen:
                         self.card_set_tab = tab_id
                         self.gallery_index = 0
                         return
+                for tr, tab_id in self.card_rarity_tab_rects:
+                    if tr.collidepoint(pos):
+                        self.app.sfx.play("ui_click")
+                        self.card_rarity_tab = tab_id
+                        self.gallery_index = 0
+                        return
+                for tr, tab_id in self.card_archetype_tab_rects:
+                    if tr.collidepoint(pos):
+                        self.app.sfx.play("ui_click")
+                        self.card_archetype_tab = tab_id
+                        self.gallery_index = 0
+                        return
 
             for rect, sid in self.section_buttons:
                 if rect.collidepoint(pos):
@@ -377,6 +425,8 @@ class CodexScreen:
                     self.gallery_index = 0
                     if sid != "cards":
                         self.card_set_tab = "all"
+                        self.card_rarity_tab = "all"
+                        self.card_archetype_tab = "all"
                     return
 
     def update(self, dt):
@@ -419,13 +469,24 @@ class CodexScreen:
             run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
             discovered = {str(x).strip().lower() for x in list(run.get("discovered_sets", []) or []) if x}
             _ = discovered
-            tabs = [("all", "Todo"), ("base", "Base"), ("hiperborea", "Hiperborea")]
-            tabs.extend([("relics", "Relics"), ("lore", "Lore")])
-            tabs.extend([("relics", "Relics"), ("lore", "Lore")])
+            tabs = [("all", "Todo"), ("base", "Base"), ("hiperborea", "Hiperborea"), ("arconte", "Arconte")]
+            rarity_tabs = [("all", "Rareza: Todo"), ("common", "Comun"), ("uncommon", "Infrec."), ("rare", "Rara"), ("legendary", "Legend.")]
+            arch_tabs = [("all", "Arquetipo: Todo"), ("cosmic_warrior", "Guerrero"), ("harmony_guardian", "Guardian"), ("oracle_of_fate", "Oraculo"), ("archon_war", "Arconte")]
+
             tab_ids = {tid for tid, _lbl in tabs}
             if self.card_set_tab not in tab_ids:
                 self.card_set_tab = "all"
+            rarity_ids = {tid for tid, _lbl in rarity_tabs}
+            if self.card_rarity_tab not in rarity_ids:
+                self.card_rarity_tab = "all"
+            arch_ids = {tid for tid, _lbl in arch_tabs}
+            if self.card_archetype_tab not in arch_ids:
+                self.card_archetype_tab = "all"
+
             self.card_tab_rects = []
+            self.card_rarity_tab_rects = []
+            self.card_archetype_tab_rects = []
+
             tx = self.right_panel.x + 20
             ty = self.right_panel.y + 58
             for tid, lbl in tabs:
@@ -437,6 +498,31 @@ class CodexScreen:
                 pygame.draw.rect(s, UI_THEME["gold"] if on else UI_THEME["accent_violet"], tr, 2 if on else 1, border_radius=8)
                 s.blit(pixel_label_font.render(lbl, True, UI_THEME["gold"] if on else UI_THEME["muted"]), (tr.x + 8, tr.y + 6))
                 tx += tr.w + 8
+
+            tx = self.right_panel.x + 20
+            ty = self.right_panel.y + 90
+            for tid, lbl in rarity_tabs:
+                tw = 164 if tid == "all" else 118
+                tr = pygame.Rect(tx, ty, tw, 24)
+                self.card_rarity_tab_rects.append((tr, tid))
+                on = (tid == self.card_rarity_tab)
+                pygame.draw.rect(s, UI_THEME["panel_2"], tr, border_radius=7)
+                pygame.draw.rect(s, UI_THEME["gold"] if on else UI_THEME["accent_violet"], tr, 2 if on else 1, border_radius=7)
+                s.blit(self.app.tiny_font.render(lbl, True, UI_THEME["gold"] if on else UI_THEME["muted"]), (tr.x + 7, tr.y + 5))
+                tx += tr.w + 6
+
+            tx = self.right_panel.x + 20
+            ty = self.right_panel.y + 118
+            for tid, lbl in arch_tabs:
+                tw = 178 if tid == "all" else 128
+                tr = pygame.Rect(tx, ty, tw, 24)
+                self.card_archetype_tab_rects.append((tr, tid))
+                on = (tid == self.card_archetype_tab)
+                pygame.draw.rect(s, UI_THEME["panel_2"], tr, border_radius=7)
+                pygame.draw.rect(s, UI_THEME["gold"] if on else UI_THEME["accent_violet"], tr, 2 if on else 1, border_radius=7)
+                s.blit(self.app.tiny_font.render(lbl, True, UI_THEME["gold"] if on else UI_THEME["muted"]), (tr.x + 7, tr.y + 5))
+                tx += tr.w + 6
+
             self._draw_cards_gallery(s)
             y = self.right_panel.bottom - 86
             for hint in self._dynamic_hints_for_section("cards")[:3]:
@@ -465,3 +551,12 @@ class CodexScreen:
 
         UIButton(self.back_btn, "Volver", role="default", premium=False).draw(s, self.app.font, hovered=self.back_btn.collidepoint(mouse))
         UIButton(self.tutorial_btn, "Iniciar Tutorial Guiado", role="end_turn", premium=True).draw(s, self.app.font, hovered=self.tutorial_btn.collidepoint(mouse))
+
+
+
+
+
+
+
+
+

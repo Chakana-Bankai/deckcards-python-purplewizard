@@ -5,9 +5,8 @@ import pygame
 
 from game.ui.components.modal_confirm import ModalConfirm
 from game.ui.system.brand import ChakanaBrand
-from game.ui.system.colors import UColors
 from game.ui.system.components import UIButton
-from game.ui.system.typography import BUTTON_FONT, SMALL_FONT, TITLE_FONT
+from game.ui.system.typography import BUTTON_FONT, PIXEL_FONT, SMALL_FONT
 from game.ui.ui_layout import centered_column
 
 
@@ -28,7 +27,7 @@ class MenuScreen:
         ]
         self.modal = ModalConfirm()
         self.version_line = self._load_version_line()
-        self.title_font = self.app.typography.get(TITLE_FONT, max(74, ChakanaBrand.TITLE_FONT_SIZE + 8))
+        self.title_font = self.app.typography.get(PIXEL_FONT, max(92, ChakanaBrand.TITLE_FONT_SIZE + 22))
         self.button_font = self.app.typography.get(BUTTON_FONT, 24)
         self.meta_font = self.app.typography.get(SMALL_FONT, 18)
 
@@ -128,19 +127,13 @@ class MenuScreen:
     def render(self, surface):
         self.app.bg_gen.render_parallax(surface, "Ruinas Chakana", 2026, pygame.time.get_ticks() * 0.02, particles_on=self.app.user_settings.get("fx_particles", True))
 
-        title_rect = pygame.Rect(160, 20, 1600, 166)
+        title_rect = pygame.Rect(120, 26, 1680, 132)
 
-        # Premium header strip: subtle ritual atmosphere, no heavy opaque box.
-        strip = pygame.Surface((title_rect.w, title_rect.h), pygame.SRCALPHA)
-        pygame.draw.rect(strip, (26, 16, 48, 168), strip.get_rect(), border_radius=18)
-        pygame.draw.rect(strip, (184, 140, 255, 84), strip.get_rect(), 1, border_radius=18)
-        surface.blit(strip, title_rect.topleft)
+        # Clean premium title: no opaque background strip.
+        top_line = pygame.Surface((title_rect.w, 2), pygame.SRCALPHA)
+        top_line.fill((184, 140, 255, 110))
+        surface.blit(top_line, (title_rect.x, title_rect.y - 4))
         self._draw_title(surface, title_rect)
-
-        portrait = self.app.assets.sprite("avatar", "menu", (132, 132), fallback=(86, 56, 132))
-        surface.blit(portrait, (title_rect.x + 20, title_rect.y + 18))
-        emblem = self.app.assets.sprite("emblems", "oracle_of_fate", (72, 72), fallback=(96, 74, 136))
-        surface.blit(emblem, (title_rect.right - 96, title_rect.y + 28))
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         for i, item in enumerate(self.buttons):
@@ -152,4 +145,3 @@ class MenuScreen:
 
         surface.blit(self.meta_font.render(self.version_line, True, self.app.typography.palette.muted), (24, 1048))
         self.modal.render(surface, self.button_font, self.app.small_font)
-

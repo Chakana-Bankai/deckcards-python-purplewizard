@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import pygame
 
-from game.ui.system.icons import draw_icon_with_value as _base_draw_icon_with_value, icon_for_effect, render_icon, resolve_icon_id
+from game.ui.system import icons as _icons
 from game.ui.system.ui_scale_system import ICON_CARD_MEDIUM, ICON_CARD_SMALL, ICON_CARD_KPI, ICON_HUD_SMALL, ICON_HUD_MEDIUM, ICON_HUD_LARGE
 
 
@@ -60,9 +60,9 @@ ALIASES = {
 
 
 def resolve_icon(effect_or_name: str) -> str:
-    key = resolve_icon_id(str(effect_or_name or ""))
+    key = _icons.resolve_icon_id(str(effect_or_name or ""))
     if key == "unknown":
-        key = icon_for_effect(str(effect_or_name or ""))
+        key = _icons.icon_for_effect(str(effect_or_name or ""))
     if key == "unknown":
         key = ALIASES.get(str(effect_or_name or "").strip().lower(), "unknown")
     return key
@@ -76,14 +76,14 @@ def draw_icon(surface: pygame.Surface, effect_or_name: str, x: int, y: int, colo
     icon_id = resolve_icon(effect_or_name)
     px = profile_px(profile)
     size = max(1, int(round(px / 14.0)))
-    render_icon(surface, icon_id, (x, y), size, color, font)
+    _icons.render_icon(surface, icon_id, (x, y), size, color, font)
 
 
 def draw_icon_value(surface: pygame.Surface, effect_or_name: str, value: int, x: int, y: int, color: tuple[int, int, int], font: pygame.font.Font, profile: str = "medium") -> int:
     icon_id = resolve_icon(effect_or_name)
     px = profile_px(profile)
     size = max(1, int(round(px / 14.0)))
-    return _base_draw_icon_with_value(surface, icon_id, int(value), color, font, x, y, size=size, min_icon_px=px)
+    return _icons.draw_icon_with_value(surface, icon_id, int(value), color, font, x, y, size=size, min_icon_px=px)
 
 # Compatibility wrapper for legacy callers.
 def draw_icon_with_value_compat(

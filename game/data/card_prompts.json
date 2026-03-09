@@ -1,302 +1,602 @@
 {
   "cards": {
     "campo_protector": {
-      "prompt": "chakana card::campo_protector::attack high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette teal-gold, lighting soft frontal glow, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
-      "style": "attack",
+      "prompt": "chakana card::campo_protector::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "chakana_de_luz": {
-      "prompt": "chakana card::chakana_de_luz::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity legendary, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature impacto_ofensivo, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::chakana_de_luz::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity legendary, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "cw_lore_02": {
-      "prompt": "chakana card::cw_lore_02::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature impacto_ofensivo, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::cw_lore_02::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity legendary, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "cw_lore_03": {
-      "prompt": "chakana card::cw_lore_03::spirit high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry chakana glyph, symbolic overlays aligned to motif, motif cosmic_geometry (orbital_rings,constellation_grid), effect signature impacto_ofensivo, energy pattern arc_traces, lore tokens astral_eye,star_points:astral_focus, crisp no blur, intentional composition",
+      "prompt": "chakana card::cw_lore_03::spirit high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "spirit",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "cw_lore_04": {
-      "prompt": "chakana card::cw_lore_04::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::cw_lore_04::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity rare, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "cw_lore_08": {
-      "prompt": "chakana card::cw_lore_08::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::cw_lore_08::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "cw_lore_09": {
-      "prompt": "chakana card::cw_lore_09::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::cw_lore_09::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "cw_lore_10": {
-      "prompt": "chakana card::cw_lore_10::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::cw_lore_10::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "cw_lore_14": {
-      "prompt": "chakana card::cw_lore_14::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::cw_lore_14::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "cw_lore_18": {
-      "prompt": "chakana card::cw_lore_18::ritual high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry seal lock, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature resonancia_armonica, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::cw_lore_18::ritual high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature resonancia_armonica, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "ritual",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "cw_lore_23": {
-      "prompt": "chakana card::cw_lore_23::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::cw_lore_23::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "cw_lore_29": {
-      "prompt": "chakana card::cw_lore_29::spirit high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry chakana glyph, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern arc_traces, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition",
+      "prompt": "chakana card::cw_lore_29::spirit high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "spirit",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "eco_de_sabiduria": {
-      "prompt": "chakana card::eco_de_sabiduria::spirit high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry chakana glyph, symbolic overlays aligned to motif, motif cosmic_geometry (orbital_rings,constellation_grid), effect signature trazo_mistico, energy pattern arc_traces, lore tokens astral_eye,star_points:astral_focus, crisp no blur, intentional composition",
+      "prompt": "chakana card::eco_de_sabiduria::spirit high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature trazo_mistico, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "spirit",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "embate_del_jaguar": {
-      "prompt": "chakana card::embate_del_jaguar::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::embate_del_jaguar::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "escudo_de_luz": {
-      "prompt": "chakana card::escudo_de_luz::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::escudo_de_luz::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "escudo_del_chaman": {
-      "prompt": "chakana card::escudo_del_chaman::defense high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::escudo_del_chaman::defense high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "espiritu_guardian": {
-      "prompt": "chakana card::espiritu_guardian::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::espiritu_guardian::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "estallido_arcano": {
-      "prompt": "chakana card::estallido_arcano::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::estallido_arcano::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "filo_astral": {
-      "prompt": "chakana card::filo_astral::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::filo_astral::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "filo_en_cadena": {
-      "prompt": "chakana card::filo_en_cadena::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::filo_en_cadena::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "firmeza_del_cuerpo": {
-      "prompt": "chakana card::firmeza_del_cuerpo::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::firmeza_del_cuerpo::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "fragmento_celeste": {
-      "prompt": "chakana card::fragmento_celeste::attack high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::fragmento_celeste::attack high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature impacto_ofensivo, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "fusion_espiritual": {
-      "prompt": "chakana card::fusion_espiritual::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity legendary, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::fusion_espiritual::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity legendary, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "garra_espiritual": {
-      "prompt": "chakana card::garra_espiritual::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::garra_espiritual::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "guardia_terrenal": {
-      "prompt": "chakana card::guardia_terrenal::attack high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
-      "style": "attack",
+      "prompt": "chakana card::guardia_terrenal::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "hg_lore_01": {
-      "prompt": "chakana card::hg_lore_01::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::hg_lore_01::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "hg_lore_05": {
-      "prompt": "chakana card::hg_lore_05::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::hg_lore_05::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "hg_lore_06": {
-      "prompt": "chakana card::hg_lore_06::defense high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::hg_lore_06::defense high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "hg_lore_07": {
-      "prompt": "chakana card::hg_lore_07::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::hg_lore_07::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "hg_lore_11": {
-      "prompt": "chakana card::hg_lore_11::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::hg_lore_11::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "hg_lore_13": {
-      "prompt": "chakana card::hg_lore_13::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::hg_lore_13::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity rare, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "hg_lore_15": {
-      "prompt": "chakana card::hg_lore_15::attack high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
-      "style": "attack",
+      "prompt": "chakana card::hg_lore_15::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "hg_lore_19": {
-      "prompt": "chakana card::hg_lore_19::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::hg_lore_19::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "hg_lore_24": {
-      "prompt": "chakana card::hg_lore_24::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::hg_lore_24::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity rare, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "hg_lore_27": {
-      "prompt": "chakana card::hg_lore_27::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::hg_lore_27::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
+    "hip_cosmic_warrior_01": {
+      "prompt": "chakana card::hip_cosmic_warrior_01::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_02": {
+      "prompt": "chakana card::hip_cosmic_warrior_02::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_03": {
+      "prompt": "chakana card::hip_cosmic_warrior_03::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_04": {
+      "prompt": "chakana card::hip_cosmic_warrior_04::attack high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_05": {
+      "prompt": "chakana card::hip_cosmic_warrior_05::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature trazo_mistico, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_06": {
+      "prompt": "chakana card::hip_cosmic_warrior_06::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_07": {
+      "prompt": "chakana card::hip_cosmic_warrior_07::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_08": {
+      "prompt": "chakana card::hip_cosmic_warrior_08::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_09": {
+      "prompt": "chakana card::hip_cosmic_warrior_09::attack high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_10": {
+      "prompt": "chakana card::hip_cosmic_warrior_10::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature trazo_mistico, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_11": {
+      "prompt": "chakana card::hip_cosmic_warrior_11::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_12": {
+      "prompt": "chakana card::hip_cosmic_warrior_12::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_13": {
+      "prompt": "chakana card::hip_cosmic_warrior_13::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_14": {
+      "prompt": "chakana card::hip_cosmic_warrior_14::attack high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_15": {
+      "prompt": "chakana card::hip_cosmic_warrior_15::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature trazo_mistico, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_16": {
+      "prompt": "chakana card::hip_cosmic_warrior_16::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_17": {
+      "prompt": "chakana card::hip_cosmic_warrior_17::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_18": {
+      "prompt": "chakana card::hip_cosmic_warrior_18::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_19": {
+      "prompt": "chakana card::hip_cosmic_warrior_19::attack high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_cosmic_warrior_20": {
+      "prompt": "chakana card::hip_cosmic_warrior_20::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity legendary, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern polar_strike_flux, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "attack",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_01": {
+      "prompt": "chakana card::hip_harmony_guardian_01::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_02": {
+      "prompt": "chakana card::hip_harmony_guardian_02::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "ritual",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_03": {
+      "prompt": "chakana card::hip_harmony_guardian_03::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_04": {
+      "prompt": "chakana card::hip_harmony_guardian_04::defense high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_05": {
+      "prompt": "chakana card::hip_harmony_guardian_05::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_06": {
+      "prompt": "chakana card::hip_harmony_guardian_06::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_07": {
+      "prompt": "chakana card::hip_harmony_guardian_07::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "ritual",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_08": {
+      "prompt": "chakana card::hip_harmony_guardian_08::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_09": {
+      "prompt": "chakana card::hip_harmony_guardian_09::defense high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_10": {
+      "prompt": "chakana card::hip_harmony_guardian_10::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_11": {
+      "prompt": "chakana card::hip_harmony_guardian_11::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_12": {
+      "prompt": "chakana card::hip_harmony_guardian_12::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "ritual",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_13": {
+      "prompt": "chakana card::hip_harmony_guardian_13::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_14": {
+      "prompt": "chakana card::hip_harmony_guardian_14::defense high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_15": {
+      "prompt": "chakana card::hip_harmony_guardian_15::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity rare, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_16": {
+      "prompt": "chakana card::hip_harmony_guardian_16::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity rare, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_17": {
+      "prompt": "chakana card::hip_harmony_guardian_17::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity rare, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "ritual",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_18": {
+      "prompt": "chakana card::hip_harmony_guardian_18::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity rare, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_19": {
+      "prompt": "chakana card::hip_harmony_guardian_19::defense high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_harmony_guardian_20": {
+      "prompt": "chakana card::hip_harmony_guardian_20::defense high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity legendary, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern guardian_resonance, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "defense",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_01": {
+      "prompt": "chakana card::hip_oracle_of_fate_01::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_02": {
+      "prompt": "chakana card::hip_oracle_of_fate_02::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature flujo_mental, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "ritual",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_03": {
+      "prompt": "chakana card::hip_oracle_of_fate_03::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_04": {
+      "prompt": "chakana card::hip_oracle_of_fate_04::control high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_05": {
+      "prompt": "chakana card::hip_oracle_of_fate_05::control high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_06": {
+      "prompt": "chakana card::hip_oracle_of_fate_06::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_07": {
+      "prompt": "chakana card::hip_oracle_of_fate_07::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature flujo_mental, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "ritual",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_08": {
+      "prompt": "chakana card::hip_oracle_of_fate_08::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_09": {
+      "prompt": "chakana card::hip_oracle_of_fate_09::control high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_10": {
+      "prompt": "chakana card::hip_oracle_of_fate_10::control high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_11": {
+      "prompt": "chakana card::hip_oracle_of_fate_11::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_12": {
+      "prompt": "chakana card::hip_oracle_of_fate_12::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity common, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature flujo_mental, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "ritual",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_13": {
+      "prompt": "chakana card::hip_oracle_of_fate_13::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_14": {
+      "prompt": "chakana card::hip_oracle_of_fate_14::control high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity rare, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_15": {
+      "prompt": "chakana card::hip_oracle_of_fate_15::control high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_16": {
+      "prompt": "chakana card::hip_oracle_of_fate_16::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity rare, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_17": {
+      "prompt": "chakana card::hip_oracle_of_fate_17::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity rare, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif crystals (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "ritual",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_18": {
+      "prompt": "chakana card::hip_oracle_of_fate_18::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif auroras (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_19": {
+      "prompt": "chakana card::hip_oracle_of_fate_19::control high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity uncommon, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif polar_temples (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "control",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
+    "hip_oracle_of_fate_20": {
+      "prompt": "chakana card::hip_oracle_of_fate_20::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity legendary, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), effect signature impacto_ofensivo, energy pattern aurora_combo_flow, lore tokens seal:mystic_order, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "style": "ritual",
+      "updated_at": "1970-01-01T00:00:00Z"
+    },
     "invocacion_astral": {
-      "prompt": "chakana card::invocacion_astral::defense high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry shield mandala, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature barrera_ritual, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::invocacion_astral::defense high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature barrera_ritual, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "lectura_del_destino": {
-      "prompt": "chakana card::lectura_del_destino::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry astral eye, symbolic overlays aligned to motif, motif cosmic_geometry (orbital_rings,constellation_grid), effect signature vision_oracular, energy pattern spiral_streams, lore tokens astral_eye,star_points:astral_focus, crisp no blur, intentional composition",
+      "prompt": "chakana card::lectura_del_destino::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature vision_oracular, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "control",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "mantra_del_umbral": {
-      "prompt": "chakana card::mantra_del_umbral::ritual high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry seal lock, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature resonancia_armonica, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::mantra_del_umbral::ritual high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature resonancia_armonica, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "ritual",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "muralla_de_piedra": {
-      "prompt": "chakana card::muralla_de_piedra::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::muralla_de_piedra::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "observacion_sagrada": {
-      "prompt": "chakana card::observacion_sagrada::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry astral eye, symbolic overlays aligned to motif, motif cosmic_geometry (orbital_rings,constellation_grid), effect signature vision_oracular, energy pattern spiral_streams, lore tokens astral_eye,star_points:astral_focus, crisp no blur, intentional composition",
+      "prompt": "chakana card::observacion_sagrada::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature vision_oracular, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "control",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "of_lore_12": {
-      "prompt": "chakana card::of_lore_12::attack high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::of_lore_12::attack high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature impacto_ofensivo, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "of_lore_16": {
-      "prompt": "chakana card::of_lore_16::defense high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry shield mandala, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature barrera_ritual, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::of_lore_16::defense high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature barrera_ritual, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "of_lore_17": {
-      "prompt": "chakana card::of_lore_17::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry astral eye, symbolic overlays aligned to motif, motif cosmic_geometry (orbital_rings,constellation_grid), effect signature vision_oracular, energy pattern spiral_streams, lore tokens astral_eye,star_points:astral_focus, crisp no blur, intentional composition",
+      "prompt": "chakana card::of_lore_17::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature vision_oracular, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "control",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "of_lore_20": {
-      "prompt": "chakana card::of_lore_20::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry astral eye, symbolic overlays aligned to motif, motif cosmic_geometry (orbital_rings,constellation_grid), effect signature vision_oracular, energy pattern spiral_streams, lore tokens astral_eye,star_points:astral_focus, crisp no blur, intentional composition",
+      "prompt": "chakana card::of_lore_20::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature vision_oracular, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "control",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "of_lore_21": {
-      "prompt": "chakana card::of_lore_21::defense high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry shield mandala, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature barrera_ritual, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::of_lore_21::defense high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity rare, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature barrera_ritual, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "of_lore_22": {
-      "prompt": "chakana card::of_lore_22::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry seal lock, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature flujo_mental, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::of_lore_22::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature flujo_mental, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "ritual",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "of_lore_25": {
-      "prompt": "chakana card::of_lore_25::ritual high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry seal lock, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature vision_oracular, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::of_lore_25::ritual high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature vision_oracular, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "ritual",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "of_lore_26": {
-      "prompt": "chakana card::of_lore_26::attack high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature resonancia_armonica, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::of_lore_26::attack high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity rare, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature resonancia_armonica, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "of_lore_28": {
-      "prompt": "chakana card::of_lore_28::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry astral eye, symbolic overlays aligned to motif, motif cosmic_geometry (orbital_rings,constellation_grid), effect signature vision_oracular, energy pattern spiral_streams, lore tokens astral_eye,star_points:astral_focus, crisp no blur, intentional composition",
+      "prompt": "chakana card::of_lore_28::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature vision_oracular, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "control",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "of_lore_30": {
-      "prompt": "chakana card::of_lore_30::ritual high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry seal lock, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature vision_oracular, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::of_lore_30::ritual high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature vision_oracular, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "ritual",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "piedra_ritual": {
-      "prompt": "chakana card::piedra_ritual::defense high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry shield mandala, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature barrera_ritual, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::piedra_ritual::defense high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity rare, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature barrera_ritual, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "portal_de_la_chakana": {
-      "prompt": "chakana card::portal_de_la_chakana::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry seal lock, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature flujo_mental, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::portal_de_la_chakana::ritual high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature flujo_mental, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "ritual",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "pulso_cosmico": {
-      "prompt": "chakana card::pulso_cosmico::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif demons (horn_spike,fractured_ring), effect signature impacto_ofensivo, energy pattern burst_arcs, lore tokens abyss_glyph,ember_teeth:corrupt_drive, crisp no blur, intentional composition",
+      "prompt": "chakana card::pulso_cosmico::attack high density pixel fantasy, layered depth, silhouette discipline, role attack, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature impacto_ofensivo, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "resistencia_ancestral": {
-      "prompt": "chakana card::resistencia_ancestral::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::resistencia_ancestral::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity uncommon, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "revelacion_astral": {
-      "prompt": "chakana card::revelacion_astral::ritual high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry seal lock, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature vision_oracular, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::revelacion_astral::ritual high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature vision_oracular, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "ritual",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "ritual_de_la_trama": {
-      "prompt": "chakana card::ritual_de_la_trama::attack high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity legendary, palette indigo-cyan, lighting split mystic light, sacred geometry blade sigil, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature resonancia_armonica, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::ritual_de_la_trama::attack high density pixel fantasy, layered depth, silhouette discipline, role ritual, rarity rare, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature resonancia_armonica, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "sello_protector": {
-      "prompt": "chakana card::sello_protector::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif sacred_forms (diamond_frame,mandala_core), effect signature barrera_ritual, energy pattern stable_rings, lore tokens sacred_ratio,axis_lock:mystic_order, crisp no blur, intentional composition",
+      "prompt": "chakana card::sello_protector::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity common, palette teal-gold, lighting soft frontal glow, sacred geometry shield mandala, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature barrera_ritual, energy pattern stable rings, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "silencio_interior": {
-      "prompt": "chakana card::silencio_interior::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry astral eye, symbolic overlays aligned to motif, motif cosmic_geometry (orbital_rings,constellation_grid), effect signature vision_oracular, energy pattern spiral_streams, lore tokens astral_eye,star_points:astral_focus, crisp no blur, intentional composition",
+      "prompt": "chakana card::silencio_interior::control high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature vision_oracular, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "control",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "vinculo_de_energia": {
-      "prompt": "chakana card::vinculo_de_energia::spirit high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity uncommon, palette crimson-magenta, lighting hard rim light, sacred geometry chakana glyph, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature trazo_mistico, energy pattern arc_traces, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition",
+      "prompt": "chakana card::vinculo_de_energia::spirit high density pixel fantasy, layered depth, silhouette discipline, role energy, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), effect signature trazo_mistico, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "spirit",
       "updated_at": "1970-01-01T00:00:00Z"
     },
     "vision_del_condor": {
-      "prompt": "chakana card::vision_del_condor::ritual high density pixel fantasy, layered depth, silhouette discipline, role control, rarity common, palette indigo-cyan, lighting split mystic light, sacred geometry seal lock, symbolic overlays aligned to motif, motif ritual_symbols (altar_circle,step_nodes), effect signature vision_oracular, energy pattern ritual_flux, lore tokens glyph_chain,seal_lock:ceremonial_charge, crisp no blur, intentional composition",
+      "prompt": "chakana card::vision_del_condor::ritual high density pixel fantasy, layered depth, silhouette discipline, role control, rarity uncommon, palette indigo-cyan, lighting split mystic light, sacred geometry eye geometry, symbolic overlays aligned to motif, motif archons (oracle_mask,broken_halo), effect signature vision_oracular, energy pattern spiral streams, lore tokens archon_sigil,rift_mark:prophetic_threat, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "ritual",
       "updated_at": "1970-01-01T00:00:00Z"
     }

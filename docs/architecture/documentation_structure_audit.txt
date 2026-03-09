@@ -1,0 +1,174 @@
+DOCUMENTATION STRUCTURE AUDIT
+generated_at: 2026-03-09 17:42:22
+scope: docs/, tools/, root *.txt/*.md (qa/ folder expected but missing)
+
+Summary:
+- docs_exists: True
+- tools_exists: True
+- qa_exists: False
+- docs_file_count: 24
+- tools_file_count: 47
+- root_txt_md_count: 52
+- duplicate_or_overlap_groups: 8
+
+Major findings:
+- Missing top-level qa/ directory; QA scripts are in tools/ and QA reports are mostly in repository root.
+- Root clutter is high: many phase/audit reports (*.txt/*.md) are mixed with runtime files.
+- docs/ contains mixed concerns (systems, audits, vision, dev notes) with partial sub-structure.
+- tools/ contains active scripts plus generated __pycache__ artifacts in tracked workspace view.
+
+Inventory (path | file_type | likely_purpose | state | duplication):
+- active_asset_sanitization_report.txt | txt | root report/notes | unknown | unique
+- active_runtime_asset_report.txt | txt | root report/notes | unknown | unique
+- AGENTS.md | md | root report/notes | likely_active | unique
+- asset_classification_report.txt | txt | root report/notes | unknown | unique
+- asset_disk_audit_report.txt | txt | root report/notes | unknown | unique
+- audio_runtime_mapping_report.txt | txt | root report/notes | unknown | unique
+- card_set_emblem_system_report.txt | txt | root report/notes | unknown | unique
+- chakana_game_professionalization_report.txt | txt | root report/notes | active_recent_report | unique
+- combat_hud_polish_report.txt | txt | root report/notes | unknown | unique
+- content_generation_supervision_report.txt | txt | root report/notes | unknown | unique
+- deckbuilder_design_audit.txt | txt | root report/notes | unknown | unique
+- docs/avatar_curated_checklist.md | md | project documentation | likely_active | unique
+- docs/CHAKANA_CARD_SYSTEM_1_0.md | md | project documentation | likely_active | unique
+- docs/CHAKANA_COMBAT_SYSTEM_1_0.md | md | project documentation | likely_active | unique
+- docs/CHAKANA_ENEMY_SYSTEM_1_0.md | md | project documentation | likely_active | unique
+- docs/CHAKANA_ENGINE_EXTRACTION_PLAN.md | md | architecture/engine documentation | likely_active | unique
+- docs/CHAKANA_GAMEPLAY_SYSTEM_1_0.md | md | project documentation | likely_active | unique
+- docs/CHAKANA_MASTER_GAME_BIBLE_1_0.md | md | project documentation | likely_active | unique
+- docs/CHAKANA_META_ENGINE_DESIGN_1_0.md | md | architecture/engine documentation | likely_active | unique
+- docs/CHAKANA_RELIC_SYSTEM_1_0.md | md | project documentation | likely_active | unique
+- docs/CONTENT_LOCK_1_0_REPORT.md | md | audit or QA documentation | likely_active | unique
+- docs/design/game_design_document.md | md | design documentation | likely_active | unique
+- docs/dev/buenas_practicas.md | md | project documentation | likely_active | unique
+- docs/dev/codex_prompt_template.md | md | project documentation | likely_active | unique
+- docs/DEV_WORKFLOW.md | md | project documentation | likely_active | unique
+- docs/HIPERBORIA_SET.md | md | project documentation | likely_active | unique
+- docs/PROJECT_STRUCTURE_AUDIT.md | md | architecture/engine documentation | likely_active | unique
+- docs/PROJECT_STRUCTURE_CLASSIFICATION.json | json | architecture/engine documentation | likely_active | unique
+- docs/PURPLE_WIZARD_CONTENT_BOUNDARY.md | md | project documentation | likely_active | unique
+- docs/QA_PHASE9_SUPERVISION_EXPANDED.md | md | audit or QA documentation | likely_active | unique
+- docs/README.md | md | project documentation | likely_active | overlap
+- docs/SYSTEM_CLEANUP_LOCK.md | md | project documentation | likely_active | unique
+- docs/UI_AUDIT_REPORT.md | md | audit or QA documentation | likely_active | unique
+- docs/vision/carta_sagrada_diseno.md | md | lore/vision documentation | likely_active | unique
+- docs/vision/lore_biblia_chakana.md | md | lore/vision documentation | likely_active | unique
+- event_node_refactor_report.txt | txt | root report/notes | unknown | unique
+- event_system_design_report.txt | txt | root report/notes | unknown | unique
+- final_gameplay_integration_fix_report.md | md | root report/notes | active_recent_report | overlap
+- final_gameplay_integration_fix_report.txt | txt | root report/notes | active_recent_report | overlap
+- gameplay_blocker_report.txt | txt | root report/notes | unknown | unique
+- gameplay_loop_evaluation.txt | txt | root report/notes | unknown | unique
+- hologram_dialogue_integration_report.txt | txt | root report/notes | unknown | unique
+- legacy_purge_plan.txt | txt | root report/notes | unknown | unique
+- lore_integration_audit.txt | txt | root report/notes | unknown | unique
+- lore_language_normalization_report.txt | txt | root report/notes | unknown | unique
+- pack_shop_integration_report.txt | txt | root report/notes | unknown | unique
+- player_experience_review.txt | txt | root report/notes | unknown | unique
+- player_facing_label_audit.txt | txt | root report/notes | unknown | unique
+- portrait_pipeline_upgrade_report.txt | txt | root report/notes | unknown | unique
+- procedural_art_evolution_plan.txt | txt | root report/notes | unknown | unique
+- professionalization_roadmap.txt | txt | root report/notes | active_recent_report | unique
+- qa_card_legibility_fix.txt | txt | root report/notes | unknown | unique
+- qa_report_build_0_9_102.txt | txt | root report/notes | active_recent_or_historical_qa_output | overlap
+- qa_report_build_0_9_103.txt | txt | root report/notes | active_recent_or_historical_qa_output | overlap
+- qa_report_build_0_9_104.txt | txt | root report/notes | active_recent_or_historical_qa_output | overlap
+- qa_report_build_0_9_105.txt | txt | root report/notes | active_recent_or_historical_qa_output | overlap
+- qa_report_build_0_9_106.txt | txt | root report/notes | active_recent_or_historical_qa_output | overlap
+- qa_report_build_0_9_106a.txt | txt | root report/notes | active_recent_or_historical_qa_output | overlap
+- qa_report_build_0_9_98.txt | txt | root report/notes | active_recent_or_historical_qa_output | overlap
+- qa_report_phase7_extended.md | md | root report/notes | likely_active | overlap
+- qa_report_phase7_extended.txt | txt | root report/notes | unknown | overlap
+- qa_report_post_combat_polish_full.md | md | root report/notes | likely_active | overlap
+- qa_report_post_combat_polish_full.txt | txt | root report/notes | unknown | overlap
+- qa_report_visual_system_normalization.md | md | root report/notes | likely_active | overlap
+- qa_report_visual_system_normalization.txt | txt | root report/notes | unknown | overlap
+- qa_visual_runtime_fullhd.txt | txt | root report/notes | unknown | overlap
+- README.md | md | root report/notes | likely_active | overlap
+- regen_audio_report.txt | txt | root report/notes | unknown | unique
+- regen_visual_report.txt | txt | root report/notes | unknown | unique
+- requirements.txt | txt | root report/notes | unknown | unique
+- soundtrack_direction_plan.txt | txt | root report/notes | unknown | unique
+- system_architecture_audit.txt | txt | root report/notes | unknown | unique
+- system_knot_audit_report.txt | txt | root report/notes | unknown | unique
+- tools/__pycache__/bootstrap_archon_curated_assets.cpython-314.pyc | pyc | asset/build maintenance script | legacy_or_generated | unique
+- tools/__pycache__/build_chakana_master_from_reference.cpython-312.pyc | pyc | utility script | legacy_or_generated | overlap
+- tools/__pycache__/build_chakana_master_from_reference.cpython-314.pyc | pyc | utility script | legacy_or_generated | overlap
+- tools/__pycache__/check_card_coherence.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/check_combat_content_lock.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/check_deck_system.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/curated_regen_cache_reset.cpython-314.pyc | pyc | asset/build maintenance script | legacy_or_generated | unique
+- tools/__pycache__/doctor.cpython-314.pyc | pyc | utility script | legacy_or_generated | unique
+- tools/__pycache__/final_gameplay_integration_fix.cpython-314.pyc | pyc | utility script | legacy_or_generated | unique
+- tools/__pycache__/qa_phase1_gameplay_blockers.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/qa_phase2_pack_shop_integration.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/qa_phase3_hologram_dialogue.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/qa_phase3b_event_system.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/qa_phase4_asset_pipeline_audit.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/qa_phase5_visual_audio_upgrade.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/qa_phase6_combat_hud.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/qa_phase7_extended.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/qa_phase9_supervision.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/qa_pre_engine_audit.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/qa_report_generator.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/qa_visual_runtime_fullhd.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/__pycache__/qa_visual_system_normalization.cpython-314.pyc | pyc | qa/validation script | legacy_or_generated | unique
+- tools/bootstrap_archon_curated_assets.py | py | asset/build maintenance script | likely_active | unique
+- tools/build_chakana_master_from_reference.py | py | utility script | likely_active | unique
+- tools/check_card_coherence.py | py | qa/validation script | likely_active | unique
+- tools/check_combat_content_lock.py | py | qa/validation script | likely_active | unique
+- tools/check_deck_system.py | py | qa/validation script | likely_active | unique
+- tools/clean_autogen.py | py | asset/build maintenance script | likely_active | unique
+- tools/curated_regen_cache_reset.py | py | asset/build maintenance script | likely_active | unique
+- tools/doctor.py | py | qa/validation script | likely_active | unique
+- tools/final_gameplay_integration_fix.py | py | utility script | active_recent_report | unique
+- tools/qa_phase1_gameplay_blockers.py | py | qa/validation script | likely_active | unique
+- tools/qa_phase2_pack_shop_integration.py | py | qa/validation script | likely_active | unique
+- tools/qa_phase3_hologram_dialogue.py | py | qa/validation script | likely_active | unique
+- tools/qa_phase3b_event_system.py | py | qa/validation script | likely_active | unique
+- tools/qa_phase4_asset_pipeline_audit.py | py | qa/validation script | likely_active | unique
+- tools/qa_phase5_visual_audio_upgrade.py | py | qa/validation script | likely_active | unique
+- tools/qa_phase6_combat_hud.py | py | qa/validation script | likely_active | unique
+- tools/qa_phase7_extended.py | py | qa/validation script | likely_active | unique
+- tools/qa_phase9_supervision.py | py | qa/validation script | likely_active | unique
+- tools/qa_pre_engine_audit.py | py | qa/validation script | likely_active | unique
+- tools/qa_report_generator.py | py | qa/validation script | likely_active | unique
+- tools/qa_visual_runtime_fullhd.py | py | qa/validation script | likely_active | overlap
+- tools/qa_visual_system_normalization.py | py | qa/validation script | likely_active | unique
+- tools/regen_assets.py | py | asset/build maintenance script | likely_active | unique
+- tools/reset_autogen.ps1 | ps1 | asset/build maintenance script | likely_active | unique
+- tools/validate_prompts.py | py | utility script | likely_active | unique
+- visual_direction_audit.txt | txt | root report/notes | unknown | unique
+- visual_pipeline_upgrade_report.txt | txt | root report/notes | unknown | unique
+- world_naming_conventions.txt | txt | root report/notes | unknown | unique
+
+Duplicate/overlap groups (heuristic):
+- qa_report (7 files)
+  - qa_report_build_0_9_102.txt
+  - qa_report_build_0_9_103.txt
+  - qa_report_build_0_9_104.txt
+  - qa_report_build_0_9_105.txt
+  - qa_report_build_0_9_106.txt
+  - qa_report_build_0_9_106a.txt
+  - qa_report_build_0_9_98.txt
+- build_chakana_master_from_reference.cpython (2 files)
+  - tools/__pycache__/build_chakana_master_from_reference.cpython-312.pyc
+  - tools/__pycache__/build_chakana_master_from_reference.cpython-314.pyc
+- final_gameplay_integration_fix_report (2 files)
+  - final_gameplay_integration_fix_report.md
+  - final_gameplay_integration_fix_report.txt
+- qa_report_phase_extended (2 files)
+  - qa_report_phase7_extended.md
+  - qa_report_phase7_extended.txt
+- qa_report_post_combat_polish_full (2 files)
+  - qa_report_post_combat_polish_full.md
+  - qa_report_post_combat_polish_full.txt
+- qa_report_visual_system_normalization (2 files)
+  - qa_report_visual_system_normalization.md
+  - qa_report_visual_system_normalization.txt
+- qa_visual_runtime_fullhd (2 files)
+  - qa_visual_runtime_fullhd.txt
+  - tools/qa_visual_runtime_fullhd.py
+- readme (2 files)
+  - docs/README.md
+  - README.md

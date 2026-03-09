@@ -1,0 +1,135 @@
+DOCUMENTATION CLASSIFICATION REPORT
+generated_at: 2026-03-09 17:45:01
+
+columns: path | type | category | priority | reason
+- docs/CHAKANA_CARD_SYSTEM_1_0.md | md | ACTIVE_DOC | P1 | core design/engine source of truth
+- docs/CHAKANA_COMBAT_SYSTEM_1_0.md | md | ACTIVE_DOC | P1 | core design/engine source of truth
+- docs/CHAKANA_ENEMY_SYSTEM_1_0.md | md | ACTIVE_DOC | P1 | core design/engine source of truth
+- docs/CHAKANA_ENGINE_EXTRACTION_PLAN.md | md | ACTIVE_DOC | P1 | core design/engine source of truth
+- docs/CHAKANA_GAMEPLAY_SYSTEM_1_0.md | md | ACTIVE_DOC | P1 | core design/engine source of truth
+- docs/CHAKANA_MASTER_GAME_BIBLE_1_0.md | md | ACTIVE_DOC | P1 | core design/engine source of truth
+- docs/CHAKANA_META_ENGINE_DESIGN_1_0.md | md | ACTIVE_DOC | P1 | core design/engine source of truth
+- docs/CHAKANA_RELIC_SYSTEM_1_0.md | md | ACTIVE_DOC | P1 | core design/engine source of truth
+- docs/PURPLE_WIZARD_CONTENT_BOUNDARY.md | md | ACTIVE_DOC | P1 | core design/engine source of truth
+- docs/design/game_design_document.md | md | ACTIVE_DOC | P1 | core design/engine source of truth
+- docs/vision/carta_sagrada_diseno.md | md | ACTIVE_DOC | P1 | core design/engine source of truth
+- docs/DEV_WORKFLOW.md | md | ACTIVE_DOC | P2 | developer workflow support
+- docs/README.md | md | ACTIVE_DOC | P2 | developer workflow support
+- docs/dev/buenas_practicas.md | md | ACTIVE_DOC | P2 | developer workflow support
+- qa_report_build_0_9_102.txt | txt | ACTIVE_QA | P1 | versioned qa output (latest relevant)
+- qa_report_build_0_9_103.txt | txt | ACTIVE_QA | P1 | versioned qa output (latest relevant)
+- qa_report_build_0_9_104.txt | txt | ACTIVE_QA | P1 | versioned qa output (latest relevant)
+- qa_report_build_0_9_105.txt | txt | ACTIVE_QA | P1 | versioned qa output (latest relevant)
+- qa_report_build_0_9_106.txt | txt | ACTIVE_QA | P1 | versioned qa output (latest relevant)
+- qa_report_build_0_9_106a.txt | txt | ACTIVE_QA | P1 | versioned qa output (latest relevant)
+- qa_report_build_0_9_98.txt | txt | ACTIVE_QA | P1 | versioned qa output (latest relevant)
+- tools/check_card_coherence.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/check_combat_content_lock.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/check_deck_system.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/qa_phase1_gameplay_blockers.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/qa_phase2_pack_shop_integration.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/qa_phase3_hologram_dialogue.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/qa_phase3b_event_system.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/qa_phase4_asset_pipeline_audit.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/qa_phase5_visual_audio_upgrade.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/qa_phase6_combat_hud.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/qa_phase7_extended.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/qa_phase9_supervision.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/qa_pre_engine_audit.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/qa_visual_runtime_fullhd.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/qa_visual_system_normalization.py | py | ACTIVE_QA | P2 | qa/check script
+- tools/clean_autogen.py | py | ACTIVE_TOOL | P1 | daily workflow/qa command
+- tools/doctor.py | py | ACTIVE_TOOL | P1 | daily workflow/qa command
+- tools/qa_report_generator.py | py | ACTIVE_TOOL | P1 | daily workflow/qa command
+- tools/regen_assets.py | py | ACTIVE_TOOL | P1 | daily workflow/qa command
+- tools/reset_autogen.ps1 | ps1 | ACTIVE_TOOL | P1 | daily workflow/qa command
+- tools/validate_prompts.py | py | ACTIVE_TOOL | P1 | daily workflow/qa command
+- docs/CONTENT_LOCK_1_0_REPORT.md | md | ARCHIVE_DOC | P3 | historical or superseded documentation
+- docs/HIPERBORIA_SET.md | md | ARCHIVE_DOC | P3 | historical or superseded documentation
+- docs/PROJECT_STRUCTURE_AUDIT.md | md | ARCHIVE_DOC | P3 | historical or superseded documentation
+- docs/PROJECT_STRUCTURE_CLASSIFICATION.json | json | ARCHIVE_DOC | P3 | historical or superseded documentation
+- docs/QA_PHASE9_SUPERVISION_EXPANDED.md | md | ARCHIVE_DOC | P3 | historical or superseded documentation
+- docs/SYSTEM_CLEANUP_LOCK.md | md | ARCHIVE_DOC | P3 | historical or superseded documentation
+- docs/UI_AUDIT_REPORT.md | md | ARCHIVE_DOC | P3 | historical or superseded documentation
+- docs/avatar_curated_checklist.md | md | ARCHIVE_DOC | P3 | historical or superseded documentation
+- docs/dev/codex_prompt_template.md | md | ARCHIVE_DOC | P3 | historical or superseded documentation
+- docs/vision/lore_biblia_chakana.md | md | ARCHIVE_DOC | P3 | historical or superseded documentation
+- active_asset_sanitization_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- active_runtime_asset_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- asset_classification_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- asset_disk_audit_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- audio_runtime_mapping_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- card_set_emblem_system_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- chakana_game_professionalization_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- combat_hud_polish_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- content_generation_supervision_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- deckbuilder_design_audit.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- documentation_structure_audit.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- event_node_refactor_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- event_system_design_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- final_gameplay_integration_fix_report.md | md | ARCHIVE_REPORT | P3 | historical generated report
+- final_gameplay_integration_fix_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- gameplay_blocker_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- gameplay_loop_evaluation.txt | txt | ARCHIVE_REPORT | P3 | phase report in root
+- hologram_dialogue_integration_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- legacy_purge_plan.txt | txt | ARCHIVE_REPORT | P3 | phase report in root
+- lore_integration_audit.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- lore_language_normalization_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- pack_shop_integration_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- player_experience_review.txt | txt | ARCHIVE_REPORT | P3 | phase report in root
+- player_facing_label_audit.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- portrait_pipeline_upgrade_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- procedural_art_evolution_plan.txt | txt | ARCHIVE_REPORT | P3 | phase report in root
+- professionalization_roadmap.txt | txt | ARCHIVE_REPORT | P3 | phase report in root
+- qa_card_legibility_fix.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- qa_report_phase7_extended.md | md | ARCHIVE_REPORT | P3 | historical generated report
+- qa_report_phase7_extended.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- qa_report_post_combat_polish_full.md | md | ARCHIVE_REPORT | P3 | historical generated report
+- qa_report_post_combat_polish_full.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- qa_report_visual_system_normalization.md | md | ARCHIVE_REPORT | P3 | historical generated report
+- qa_report_visual_system_normalization.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- qa_visual_runtime_fullhd.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- regen_audio_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- regen_visual_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- requirements.txt | txt | ARCHIVE_REPORT | P3 | phase report in root
+- soundtrack_direction_plan.txt | txt | ARCHIVE_REPORT | P3 | phase report in root
+- system_architecture_audit.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- system_knot_audit_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- visual_direction_audit.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- visual_pipeline_upgrade_report.txt | txt | ARCHIVE_REPORT | P3 | historical generated report
+- world_naming_conventions.txt | txt | ARCHIVE_REPORT | P3 | phase report in root
+- tools/bootstrap_archon_curated_assets.py | py | LEGACY_TOOL | P3 | one-off or specialized script
+- tools/build_chakana_master_from_reference.py | py | LEGACY_TOOL | P3 | one-off or specialized script
+- tools/curated_regen_cache_reset.py | py | LEGACY_TOOL | P3 | one-off or specialized script
+- tools/final_gameplay_integration_fix.py | py | LEGACY_TOOL | P3 | one-off or specialized script
+- tools/__pycache__/bootstrap_archon_curated_assets.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/build_chakana_master_from_reference.cpython-312.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/build_chakana_master_from_reference.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/check_card_coherence.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/check_combat_content_lock.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/check_deck_system.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/curated_regen_cache_reset.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/doctor.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/final_gameplay_integration_fix.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_phase1_gameplay_blockers.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_phase2_pack_shop_integration.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_phase3_hologram_dialogue.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_phase3b_event_system.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_phase4_asset_pipeline_audit.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_phase5_visual_audio_upgrade.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_phase6_combat_hud.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_phase7_extended.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_phase9_supervision.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_pre_engine_audit.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_report_generator.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_visual_runtime_fullhd.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+- tools/__pycache__/qa_visual_system_normalization.cpython-314.pyc | pyc | REDUNDANT | P4 | generated cache artifact
+
+Summary by category:
+- ACTIVE_DOC: 14
+- ACTIVE_QA: 22
+- ACTIVE_TOOL: 6
+- ARCHIVE_DOC: 10
+- ARCHIVE_REPORT: 44
+- LEGACY_TOOL: 4
+- REDUNDANT: 22

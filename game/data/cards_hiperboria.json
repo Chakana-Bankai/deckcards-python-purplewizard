@@ -22,10 +22,10 @@
   "cards": [
     {
       "id": "hip_cosmic_warrior_01",
-      "name": "HIP-CW 01",
-      "name_key": "HIP-CW 01",
-      "text_key": "damage 4",
-      "effect_text": "damage 4",
+      "name": "Guerrero Astral de Hiperbórea I",
+      "name_key": "Guerrero Astral de Hiperbórea I",
+      "text_key": "Daño 4",
+      "effect_text": "Daño 4",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -43,7 +43,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -57,14 +57,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_cosmic_warrior_02",
-      "name": "HIP-CW 02",
-      "name_key": "HIP-CW 02",
-      "text_key": "damage 4, apply_break 1",
-      "effect_text": "damage 4, apply_break 1",
+      "name": "Guerrero Astral de Hiperbórea II",
+      "name_key": "Guerrero Astral de Hiperbórea II",
+      "text_key": "Daño 4, Ruptura +1",
+      "effect_text": "Daño 4, Ruptura +1",
       "rarity": "common",
       "cost": 2,
       "target": "enemy",
@@ -86,7 +87,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -100,14 +101,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_cosmic_warrior_03",
-      "name": "HIP-CW 03",
-      "name_key": "HIP-CW 03",
-      "text_key": "damage 5",
-      "effect_text": "damage 5",
+      "name": "Guerrero Astral de Hiperbórea III",
+      "name_key": "Guerrero Astral de Hiperbórea III",
+      "text_key": "Daño 5",
+      "effect_text": "Daño 5",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -124,7 +126,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -138,14 +140,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_cosmic_warrior_04",
-      "name": "HIP-CW 04",
-      "name_key": "HIP-CW 04",
-      "text_key": "gain_mana 1, damage 3",
-      "effect_text": "gain_mana 1, damage 3",
+      "name": "Guerrero Astral de Hiperbórea IV",
+      "name_key": "Guerrero Astral de Hiperbórea IV",
+      "text_key": "Energía +1, Daño 3",
+      "effect_text": "Energía +1, Daño 3",
       "rarity": "common",
       "cost": 2,
       "target": "enemy",
@@ -167,7 +170,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -181,14 +184,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_cosmic_warrior_05",
-      "name": "HIP-CW 05",
-      "name_key": "HIP-CW 05",
-      "text_key": "damage_plus_rupture 5",
-      "effect_text": "damage_plus_rupture 5",
+      "name": "Guerrero Astral de Hiperbórea V",
+      "name_key": "Guerrero Astral de Hiperbórea V",
+      "text_key": "Damage Plus Rupture",
+      "effect_text": "Damage Plus Rupture",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -207,7 +211,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -221,14 +225,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_cosmic_warrior_06",
-      "name": "HIP-CW 06",
-      "name_key": "HIP-CW 06",
-      "text_key": "damage 5",
-      "effect_text": "damage 5",
+      "name": "Guerrero Astral de Hiperbórea VI",
+      "name_key": "Guerrero Astral de Hiperbórea VI",
+      "text_key": "Daño 5",
+      "effect_text": "Daño 5",
       "rarity": "common",
       "cost": 2,
       "target": "enemy",
@@ -246,7 +251,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -260,14 +265,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_cosmic_warrior_07",
-      "name": "HIP-CW 07",
-      "name_key": "HIP-CW 07",
-      "text_key": "damage 3, apply_break 1",
-      "effect_text": "damage 3, apply_break 1",
+      "name": "Guerrero Astral de Hiperbórea VII",
+      "name_key": "Guerrero Astral de Hiperbórea VII",
+      "text_key": "Daño 3, Ruptura +1",
+      "effect_text": "Daño 3, Ruptura +1",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -289,7 +295,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -303,14 +309,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_cosmic_warrior_08",
-      "name": "HIP-CW 08",
-      "name_key": "HIP-CW 08",
-      "text_key": "damage 5",
-      "effect_text": "damage 5",
+      "name": "Guerrero Astral de Hiperbórea VIII",
+      "name_key": "Guerrero Astral de Hiperbórea VIII",
+      "text_key": "Daño 5",
+      "effect_text": "Daño 5",
       "rarity": "common",
       "cost": 2,
       "target": "enemy",
@@ -327,7 +334,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -341,14 +348,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_cosmic_warrior_09",
-      "name": "HIP-CW 09",
-      "name_key": "HIP-CW 09",
-      "text_key": "gain_mana 1, damage 3",
-      "effect_text": "gain_mana 1, damage 3",
+      "name": "Guerrero Astral de Hiperbórea IX",
+      "name_key": "Guerrero Astral de Hiperbórea IX",
+      "text_key": "Energía +1, Daño 3",
+      "effect_text": "Energía +1, Daño 3",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -370,7 +378,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -384,15 +392,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_cosmic_warrior_10",
-      "name": "HIP-CW 10",
-      "name_key": "HIP-CW 10",
-      "text_key": "damage_plus_rupture 6",
-      "effect_text": "damage_plus_rupture 6",
-      "rarity": "common",
+      "name": "Guerrero Astral de Hiperbórea X",
+      "name_key": "Guerrero Astral de Hiperbórea X",
+      "text_key": "Damage Plus Rupture",
+      "effect_text": "Damage Plus Rupture",
+      "rarity": "uncommon",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -410,7 +419,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -424,14 +433,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "payoff"
     },
     {
       "id": "hip_cosmic_warrior_11",
-      "name": "HIP-CW 11",
-      "name_key": "HIP-CW 11",
-      "text_key": "damage 4",
-      "effect_text": "damage 4",
+      "name": "Guerrero Astral de Hiperbórea XI",
+      "name_key": "Guerrero Astral de Hiperbórea XI",
+      "text_key": "Daño 4",
+      "effect_text": "Daño 4",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -449,7 +459,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -463,14 +473,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_cosmic_warrior_12",
-      "name": "HIP-CW 12",
-      "name_key": "HIP-CW 12",
-      "text_key": "damage 5, apply_break 1",
-      "effect_text": "damage 5, apply_break 1",
+      "name": "Guerrero Astral de Hiperbórea XII",
+      "name_key": "Guerrero Astral de Hiperbórea XII",
+      "text_key": "Daño 5, Ruptura +1",
+      "effect_text": "Daño 5, Ruptura +1",
       "rarity": "common",
       "cost": 2,
       "target": "enemy",
@@ -492,7 +503,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -506,15 +517,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_cosmic_warrior_13",
-      "name": "HIP-CW 13",
-      "name_key": "HIP-CW 13",
-      "text_key": "damage 5",
-      "effect_text": "damage 5",
-      "rarity": "uncommon",
+      "name": "Guerrero Astral de Hiperbórea XIII",
+      "name_key": "Guerrero Astral de Hiperbórea XIII",
+      "text_key": "Daño 5",
+      "effect_text": "Daño 5",
+      "rarity": "common",
       "cost": 1,
       "target": "enemy",
       "tags": [
@@ -530,7 +542,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -544,15 +556,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_cosmic_warrior_14",
-      "name": "HIP-CW 14",
-      "name_key": "HIP-CW 14",
-      "text_key": "gain_mana 1, damage 3",
-      "effect_text": "gain_mana 1, damage 3",
-      "rarity": "uncommon",
+      "name": "Guerrero Astral de Hiperbórea XIV",
+      "name_key": "Guerrero Astral de Hiperbórea XIV",
+      "text_key": "Energía +1, Daño 3",
+      "effect_text": "Energía +1, Daño 3",
+      "rarity": "common",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -573,7 +586,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -587,14 +600,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_cosmic_warrior_15",
-      "name": "HIP-CW 15",
-      "name_key": "HIP-CW 15",
-      "text_key": "damage_plus_rupture 5",
-      "effect_text": "damage_plus_rupture 5",
+      "name": "Guerrero Astral de Hiperbórea XV",
+      "name_key": "Guerrero Astral de Hiperbórea XV",
+      "text_key": "Damage Plus Rupture",
+      "effect_text": "Damage Plus Rupture",
       "rarity": "uncommon",
       "cost": 1,
       "target": "enemy",
@@ -613,7 +627,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -627,15 +641,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "payoff"
     },
     {
       "id": "hip_cosmic_warrior_16",
-      "name": "HIP-CW 16",
-      "name_key": "HIP-CW 16",
-      "text_key": "damage 5",
-      "effect_text": "damage 5",
-      "rarity": "uncommon",
+      "name": "Guerrero Astral de Hiperbórea XVI",
+      "name_key": "Guerrero Astral de Hiperbórea XVI",
+      "text_key": "Daño 5",
+      "effect_text": "Daño 5",
+      "rarity": "common",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -652,7 +667,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -666,15 +681,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_cosmic_warrior_17",
-      "name": "HIP-CW 17",
-      "name_key": "HIP-CW 17",
-      "text_key": "damage 4, apply_break 1",
-      "effect_text": "damage 4, apply_break 1",
-      "rarity": "uncommon",
+      "name": "Guerrero Astral de Hiperbórea XVII",
+      "name_key": "Guerrero Astral de Hiperbórea XVII",
+      "text_key": "Daño 4, Ruptura +1",
+      "effect_text": "Daño 4, Ruptura +1",
+      "rarity": "common",
       "cost": 1,
       "target": "enemy",
       "tags": [
@@ -695,7 +711,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -709,14 +725,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_cosmic_warrior_18",
-      "name": "HIP-CW 18",
-      "name_key": "HIP-CW 18",
-      "text_key": "damage 5",
-      "effect_text": "damage 5",
+      "name": "Guerrero Astral de Hiperbórea XVIII",
+      "name_key": "Guerrero Astral de Hiperbórea XVIII",
+      "text_key": "Daño 5",
+      "effect_text": "Daño 5",
       "rarity": "uncommon",
       "cost": 2,
       "target": "enemy",
@@ -733,7 +750,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -747,15 +764,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "payoff"
     },
     {
       "id": "hip_cosmic_warrior_19",
-      "name": "HIP-CW 19",
-      "name_key": "HIP-CW 19",
-      "text_key": "gain_mana 1, damage 3",
-      "effect_text": "gain_mana 1, damage 3",
-      "rarity": "uncommon",
+      "name": "Guerrero Astral de Hiperbórea XIX",
+      "name_key": "Guerrero Astral de Hiperbórea XIX",
+      "text_key": "Energía +1, Daño 3",
+      "effect_text": "Energía +1, Daño 3",
+      "rarity": "common",
       "cost": 1,
       "target": "enemy",
       "tags": [
@@ -776,7 +794,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -790,14 +808,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_cosmic_warrior_20",
-      "name": "HIP-CW 20",
-      "name_key": "HIP-CW 20",
-      "text_key": "damage 10, apply_break 2",
-      "effect_text": "damage 10, apply_break 2",
+      "name": "Guerrero Astral de Hiperbórea XX",
+      "name_key": "Guerrero Astral de Hiperbórea XX",
+      "text_key": "Daño 10, Ruptura +2",
+      "effect_text": "Daño 10, Ruptura +2",
       "rarity": "legendary",
       "cost": 3,
       "target": "enemy",
@@ -820,7 +839,7 @@
       "family": "cosmic_warrior",
       "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -834,14 +853,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "payoff"
     },
     {
       "id": "hip_harmony_guardian_01",
-      "name": "HIP-HG 01",
-      "name_key": "HIP-HG 01",
-      "text_key": "gain_block 4, damage 5",
-      "effect_text": "gain_block 4, damage 5",
+      "name": "Guardián del Velo Polar I",
+      "name_key": "Guardián del Velo Polar I",
+      "text_key": "Bloqueo 4, Daño 5",
+      "effect_text": "Bloqueo 4, Daño 5",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -863,7 +883,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -877,15 +897,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_harmony_guardian_02",
-      "name": "HIP-HG 02",
-      "name_key": "HIP-HG 02",
-      "text_key": "harmony_delta 1, consume_harmony 1, damage 8",
-      "effect_text": "harmony_delta 1, consume_harmony 1, damage 8",
-      "rarity": "common",
+      "name": "Guardián del Velo Polar II",
+      "name_key": "Guardián del Velo Polar II",
+      "text_key": "Armonía +1, Liberar Sello, Daño 8",
+      "effect_text": "Armonía +1, Liberar Sello, Daño 8",
+      "rarity": "uncommon",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -910,7 +931,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -924,14 +945,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_harmony_guardian_03",
-      "name": "HIP-HG 03",
-      "name_key": "HIP-HG 03",
-      "text_key": "gain_block 5, damage 4",
-      "effect_text": "gain_block 5, damage 4",
+      "name": "Guardián del Velo Polar III",
+      "name_key": "Guardián del Velo Polar III",
+      "text_key": "Bloqueo 5, Daño 4",
+      "effect_text": "Bloqueo 5, Daño 4",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -952,7 +974,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -966,15 +988,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_harmony_guardian_04",
-      "name": "HIP-HG 04",
-      "name_key": "HIP-HG 04",
-      "text_key": "gain_block 3, scry 1, damage 5",
-      "effect_text": "gain_block 3, scry 1, damage 5",
-      "rarity": "common",
+      "name": "Guardián del Velo Polar IV",
+      "name_key": "Guardián del Velo Polar IV",
+      "text_key": "Bloqueo 3, Prever 1, Daño 5",
+      "effect_text": "Bloqueo 3, Prever 1, Daño 5",
+      "rarity": "uncommon",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -999,7 +1022,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1013,15 +1036,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_harmony_guardian_05",
-      "name": "HIP-HG 05",
-      "name_key": "HIP-HG 05",
-      "text_key": "gain_block 4, heal 1, damage 6",
-      "effect_text": "gain_block 4, heal 1, damage 6",
-      "rarity": "common",
+      "name": "Guardián del Velo Polar V",
+      "name_key": "Guardián del Velo Polar V",
+      "text_key": "Bloqueo 4, Sanar 1, Daño 6",
+      "effect_text": "Bloqueo 4, Sanar 1, Daño 6",
+      "rarity": "uncommon",
       "cost": 1,
       "target": "enemy",
       "tags": [
@@ -1046,7 +1070,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1060,15 +1084,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_harmony_guardian_06",
-      "name": "HIP-HG 06",
-      "name_key": "HIP-HG 06",
-      "text_key": "gain_block 5, damage 5",
-      "effect_text": "gain_block 5, damage 5",
-      "rarity": "common",
+      "name": "Guardián del Velo Polar VI",
+      "name_key": "Guardián del Velo Polar VI",
+      "text_key": "Bloqueo 5, Daño 5",
+      "effect_text": "Bloqueo 5, Daño 5",
+      "rarity": "uncommon",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -1089,7 +1114,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1103,15 +1128,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_harmony_guardian_07",
-      "name": "HIP-HG 07",
-      "name_key": "HIP-HG 07",
-      "text_key": "harmony_delta 1, consume_harmony 1, damage 8",
-      "effect_text": "harmony_delta 1, consume_harmony 1, damage 8",
-      "rarity": "common",
+      "name": "Guardián del Velo Polar VII",
+      "name_key": "Guardián del Velo Polar VII",
+      "text_key": "Armonía +1, Liberar Sello, Daño 8",
+      "effect_text": "Armonía +1, Liberar Sello, Daño 8",
+      "rarity": "uncommon",
       "cost": 1,
       "target": "enemy",
       "tags": [
@@ -1136,7 +1162,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1150,15 +1176,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_harmony_guardian_08",
-      "name": "HIP-HG 08",
-      "name_key": "HIP-HG 08",
-      "text_key": "gain_block 5, damage 5",
-      "effect_text": "gain_block 5, damage 5",
-      "rarity": "common",
+      "name": "Guardián del Velo Polar VIII",
+      "name_key": "Guardián del Velo Polar VIII",
+      "text_key": "Bloqueo 5, Daño 5",
+      "effect_text": "Bloqueo 5, Daño 5",
+      "rarity": "uncommon",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -1178,7 +1205,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1192,14 +1219,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_harmony_guardian_09",
-      "name": "HIP-HG 09",
-      "name_key": "HIP-HG 09",
-      "text_key": "gain_block 3, scry 1, damage 5",
-      "effect_text": "gain_block 3, scry 1, damage 5",
+      "name": "Guardián del Velo Polar IX",
+      "name_key": "Guardián del Velo Polar IX",
+      "text_key": "Bloqueo 3, Prever 1, Daño 5",
+      "effect_text": "Bloqueo 3, Prever 1, Daño 5",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -1225,7 +1253,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1239,15 +1267,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_harmony_guardian_10",
-      "name": "HIP-HG 10",
-      "name_key": "HIP-HG 10",
-      "text_key": "gain_block 4, heal 1, damage 6",
-      "effect_text": "gain_block 4, heal 1, damage 6",
-      "rarity": "common",
+      "name": "Guardián del Velo Polar X",
+      "name_key": "Guardián del Velo Polar X",
+      "text_key": "Bloqueo 4, Sanar 1, Daño 6",
+      "effect_text": "Bloqueo 4, Sanar 1, Daño 6",
+      "rarity": "uncommon",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -1272,7 +1301,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1286,14 +1315,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_harmony_guardian_11",
-      "name": "HIP-HG 11",
-      "name_key": "HIP-HG 11",
-      "text_key": "gain_block 4, damage 5",
-      "effect_text": "gain_block 4, damage 5",
+      "name": "Guardián del Velo Polar XI",
+      "name_key": "Guardián del Velo Polar XI",
+      "text_key": "Bloqueo 4, Daño 5",
+      "effect_text": "Bloqueo 4, Daño 5",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -1315,7 +1345,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1329,15 +1359,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_harmony_guardian_12",
-      "name": "HIP-HG 12",
-      "name_key": "HIP-HG 12",
-      "text_key": "harmony_delta 1, consume_harmony 1, damage 9",
-      "effect_text": "harmony_delta 1, consume_harmony 1, damage 9",
-      "rarity": "common",
+      "name": "Guardián del Velo Polar XII",
+      "name_key": "Guardián del Velo Polar XII",
+      "text_key": "Armonía +1, Liberar Sello, Daño 9",
+      "effect_text": "Armonía +1, Liberar Sello, Daño 9",
+      "rarity": "uncommon",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -1362,7 +1393,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1376,14 +1407,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_harmony_guardian_13",
-      "name": "HIP-HG 13",
-      "name_key": "HIP-HG 13",
-      "text_key": "gain_block 5, damage 6",
-      "effect_text": "gain_block 5, damage 6",
+      "name": "Guardián del Velo Polar XIII",
+      "name_key": "Guardián del Velo Polar XIII",
+      "text_key": "Bloqueo 5, Daño 6",
+      "effect_text": "Bloqueo 5, Daño 6",
       "rarity": "uncommon",
       "cost": 1,
       "target": "enemy",
@@ -1404,7 +1436,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1418,14 +1450,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_harmony_guardian_14",
-      "name": "HIP-HG 14",
-      "name_key": "HIP-HG 14",
-      "text_key": "gain_block 3, scry 1, damage 6",
-      "effect_text": "gain_block 3, scry 1, damage 6",
+      "name": "Guardián del Velo Polar XIV",
+      "name_key": "Guardián del Velo Polar XIV",
+      "text_key": "Bloqueo 3, Prever 1, Daño 6",
+      "effect_text": "Bloqueo 3, Prever 1, Daño 6",
       "rarity": "uncommon",
       "cost": 2,
       "target": "enemy",
@@ -1451,7 +1484,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1465,15 +1498,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_harmony_guardian_15",
-      "name": "HIP-HG 15",
-      "name_key": "HIP-HG 15",
-      "text_key": "gain_block 4, heal 1, damage 7",
-      "effect_text": "gain_block 4, heal 1, damage 7",
-      "rarity": "uncommon",
+      "name": "Guardián del Velo Polar XV",
+      "name_key": "Guardián del Velo Polar XV",
+      "text_key": "Bloqueo 4, Sanar 1, Daño 7",
+      "effect_text": "Bloqueo 4, Sanar 1, Daño 7",
+      "rarity": "rare",
       "cost": 1,
       "target": "enemy",
       "tags": [
@@ -1498,7 +1532,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1512,15 +1546,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "payoff"
     },
     {
       "id": "hip_harmony_guardian_16",
-      "name": "HIP-HG 16",
-      "name_key": "HIP-HG 16",
-      "text_key": "gain_block 5, damage 6",
-      "effect_text": "gain_block 5, damage 6",
-      "rarity": "uncommon",
+      "name": "Guardián del Velo Polar XVI",
+      "name_key": "Guardián del Velo Polar XVI",
+      "text_key": "Bloqueo 5, Daño 6",
+      "effect_text": "Bloqueo 5, Daño 6",
+      "rarity": "rare",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -1541,7 +1576,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1555,15 +1590,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "payoff"
     },
     {
       "id": "hip_harmony_guardian_17",
-      "name": "HIP-HG 17",
-      "name_key": "HIP-HG 17",
-      "text_key": "harmony_delta 1, consume_harmony 1, damage 9",
-      "effect_text": "harmony_delta 1, consume_harmony 1, damage 9",
-      "rarity": "uncommon",
+      "name": "Guardián del Velo Polar XVII",
+      "name_key": "Guardián del Velo Polar XVII",
+      "text_key": "Armonía +1, Liberar Sello, Daño 9",
+      "effect_text": "Armonía +1, Liberar Sello, Daño 9",
+      "rarity": "rare",
       "cost": 1,
       "target": "enemy",
       "tags": [
@@ -1588,7 +1624,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1602,15 +1638,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_harmony_guardian_18",
-      "name": "HIP-HG 18",
-      "name_key": "HIP-HG 18",
-      "text_key": "gain_block 5, damage 6",
-      "effect_text": "gain_block 5, damage 6",
-      "rarity": "uncommon",
+      "name": "Guardián del Velo Polar XVIII",
+      "name_key": "Guardián del Velo Polar XVIII",
+      "text_key": "Bloqueo 5, Daño 6",
+      "effect_text": "Bloqueo 5, Daño 6",
+      "rarity": "rare",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -1630,7 +1667,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1644,14 +1681,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "payoff"
     },
     {
       "id": "hip_harmony_guardian_19",
-      "name": "HIP-HG 19",
-      "name_key": "HIP-HG 19",
-      "text_key": "gain_block 3, scry 1, damage 6",
-      "effect_text": "gain_block 3, scry 1, damage 6",
+      "name": "Guardián del Velo Polar XIX",
+      "name_key": "Guardián del Velo Polar XIX",
+      "text_key": "Bloqueo 3, Prever 1, Daño 6",
+      "effect_text": "Bloqueo 3, Prever 1, Daño 6",
       "rarity": "uncommon",
       "cost": 1,
       "target": "enemy",
@@ -1677,7 +1715,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1691,14 +1729,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_harmony_guardian_20",
-      "name": "HIP-HG 20",
-      "name_key": "HIP-HG 20",
-      "text_key": "gain_block 10, harmony_delta 2, damage 14",
-      "effect_text": "gain_block 10, harmony_delta 2, damage 14",
+      "name": "Guardián del Velo Polar XX",
+      "name_key": "Guardián del Velo Polar XX",
+      "text_key": "Bloqueo 10, Armonía +2, Daño 14",
+      "effect_text": "Bloqueo 10, Armonía +2, Daño 14",
       "rarity": "legendary",
       "cost": 3,
       "target": "enemy",
@@ -1725,7 +1764,7 @@
       "family": "harmony_guardian",
       "direction": "SUR",
       "archetype": "harmony_guardian",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1739,14 +1778,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "payoff"
     },
     {
       "id": "hip_oracle_of_fate_01",
-      "name": "HIP-OF 01",
-      "name_key": "HIP-OF 01",
-      "text_key": "scry 2, draw 1, damage 4",
-      "effect_text": "scry 2, draw 1, damage 4",
+      "name": "Oráculo del Horizonte Boreal I",
+      "name_key": "Oráculo del Horizonte Boreal I",
+      "text_key": "Prever 2, Roba 1, Daño 4",
+      "effect_text": "Prever 2, Roba 1, Daño 4",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -1772,7 +1812,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1786,14 +1826,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_oracle_of_fate_02",
-      "name": "HIP-OF 02",
-      "name_key": "HIP-OF 02",
-      "text_key": "ritual_trama 1, harmony_delta 1, draw 1",
-      "effect_text": "ritual_trama 1, harmony_delta 1, draw 1",
+      "name": "Oráculo del Horizonte Boreal II",
+      "name_key": "Oráculo del Horizonte Boreal II",
+      "text_key": "Ritual +1, Armonía +1, Roba 1",
+      "effect_text": "Ritual +1, Armonía +1, Roba 1",
       "rarity": "common",
       "cost": 2,
       "target": "enemy",
@@ -1819,7 +1860,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1833,14 +1874,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_oracle_of_fate_03",
-      "name": "HIP-OF 03",
-      "name_key": "HIP-OF 03",
-      "text_key": "scry 3, damage 3",
-      "effect_text": "scry 3, damage 3",
+      "name": "Oráculo del Horizonte Boreal III",
+      "name_key": "Oráculo del Horizonte Boreal III",
+      "text_key": "Prever 3, Daño 3",
+      "effect_text": "Prever 3, Daño 3",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -1861,7 +1903,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1875,15 +1917,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_oracle_of_fate_04",
-      "name": "HIP-OF 04",
-      "name_key": "HIP-OF 04",
-      "text_key": "draw 2, damage 5",
-      "effect_text": "draw 2, damage 5",
-      "rarity": "common",
+      "name": "Oráculo del Horizonte Boreal IV",
+      "name_key": "Oráculo del Horizonte Boreal IV",
+      "text_key": "Roba 2, Daño 5",
+      "effect_text": "Roba 2, Daño 5",
+      "rarity": "uncommon",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -1904,7 +1947,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1918,14 +1961,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_oracle_of_fate_05",
-      "name": "HIP-OF 05",
-      "name_key": "HIP-OF 05",
-      "text_key": "gain_mana_next_turn 1, scry 1, damage 4",
-      "effect_text": "gain_mana_next_turn 1, scry 1, damage 4",
+      "name": "Oráculo del Horizonte Boreal V",
+      "name_key": "Oráculo del Horizonte Boreal V",
+      "text_key": "Energía +1, Prever 1, Daño 4",
+      "effect_text": "Energía +1, Prever 1, Daño 4",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -1951,7 +1995,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -1965,15 +2009,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_oracle_of_fate_06",
-      "name": "HIP-OF 06",
-      "name_key": "HIP-OF 06",
-      "text_key": "scry 2, draw 1, damage 4",
-      "effect_text": "scry 2, draw 1, damage 4",
-      "rarity": "common",
+      "name": "Oráculo del Horizonte Boreal VI",
+      "name_key": "Oráculo del Horizonte Boreal VI",
+      "text_key": "Prever 2, Roba 1, Daño 4",
+      "effect_text": "Prever 2, Roba 1, Daño 4",
+      "rarity": "uncommon",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -1998,7 +2043,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2012,14 +2057,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_oracle_of_fate_07",
-      "name": "HIP-OF 07",
-      "name_key": "HIP-OF 07",
-      "text_key": "ritual_trama 1, harmony_delta 1, draw 1",
-      "effect_text": "ritual_trama 1, harmony_delta 1, draw 1",
+      "name": "Oráculo del Horizonte Boreal VII",
+      "name_key": "Oráculo del Horizonte Boreal VII",
+      "text_key": "Ritual +1, Armonía +1, Roba 1",
+      "effect_text": "Ritual +1, Armonía +1, Roba 1",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -2045,7 +2091,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2059,14 +2105,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_oracle_of_fate_08",
-      "name": "HIP-OF 08",
-      "name_key": "HIP-OF 08",
-      "text_key": "scry 3, damage 4",
-      "effect_text": "scry 3, damage 4",
+      "name": "Oráculo del Horizonte Boreal VIII",
+      "name_key": "Oráculo del Horizonte Boreal VIII",
+      "text_key": "Prever 3, Daño 4",
+      "effect_text": "Prever 3, Daño 4",
       "rarity": "common",
       "cost": 2,
       "target": "enemy",
@@ -2087,7 +2134,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2101,14 +2148,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_oracle_of_fate_09",
-      "name": "HIP-OF 09",
-      "name_key": "HIP-OF 09",
-      "text_key": "draw 2, damage 5",
-      "effect_text": "draw 2, damage 5",
+      "name": "Oráculo del Horizonte Boreal IX",
+      "name_key": "Oráculo del Horizonte Boreal IX",
+      "text_key": "Roba 2, Daño 5",
+      "effect_text": "Roba 2, Daño 5",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -2130,7 +2178,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2144,14 +2192,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_oracle_of_fate_10",
-      "name": "HIP-OF 10",
-      "name_key": "HIP-OF 10",
-      "text_key": "gain_mana_next_turn 1, scry 1, damage 4",
-      "effect_text": "gain_mana_next_turn 1, scry 1, damage 4",
+      "name": "Oráculo del Horizonte Boreal X",
+      "name_key": "Oráculo del Horizonte Boreal X",
+      "text_key": "Energía +1, Prever 1, Daño 4",
+      "effect_text": "Energía +1, Prever 1, Daño 4",
       "rarity": "common",
       "cost": 2,
       "target": "enemy",
@@ -2177,7 +2226,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2191,14 +2240,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_oracle_of_fate_11",
-      "name": "HIP-OF 11",
-      "name_key": "HIP-OF 11",
-      "text_key": "scry 2, draw 1, damage 4",
-      "effect_text": "scry 2, draw 1, damage 4",
+      "name": "Oráculo del Horizonte Boreal XI",
+      "name_key": "Oráculo del Horizonte Boreal XI",
+      "text_key": "Prever 2, Roba 1, Daño 4",
+      "effect_text": "Prever 2, Roba 1, Daño 4",
       "rarity": "common",
       "cost": 1,
       "target": "enemy",
@@ -2224,7 +2274,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2238,14 +2288,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_oracle_of_fate_12",
-      "name": "HIP-OF 12",
-      "name_key": "HIP-OF 12",
-      "text_key": "ritual_trama 1, harmony_delta 1, draw 1",
-      "effect_text": "ritual_trama 1, harmony_delta 1, draw 1",
+      "name": "Oráculo del Horizonte Boreal XII",
+      "name_key": "Oráculo del Horizonte Boreal XII",
+      "text_key": "Ritual +1, Armonía +1, Roba 1",
+      "effect_text": "Ritual +1, Armonía +1, Roba 1",
       "rarity": "common",
       "cost": 2,
       "target": "enemy",
@@ -2271,7 +2322,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2285,14 +2336,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "engine"
     },
     {
       "id": "hip_oracle_of_fate_13",
-      "name": "HIP-OF 13",
-      "name_key": "HIP-OF 13",
-      "text_key": "scry 3, damage 4",
-      "effect_text": "scry 3, damage 4",
+      "name": "Oráculo del Horizonte Boreal XIII",
+      "name_key": "Oráculo del Horizonte Boreal XIII",
+      "text_key": "Prever 3, Daño 4",
+      "effect_text": "Prever 3, Daño 4",
       "rarity": "uncommon",
       "cost": 1,
       "target": "enemy",
@@ -2313,7 +2365,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2327,15 +2379,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_oracle_of_fate_14",
-      "name": "HIP-OF 14",
-      "name_key": "HIP-OF 14",
-      "text_key": "draw 2, damage 6",
-      "effect_text": "draw 2, damage 6",
-      "rarity": "uncommon",
+      "name": "Oráculo del Horizonte Boreal XIV",
+      "name_key": "Oráculo del Horizonte Boreal XIV",
+      "text_key": "Roba 2, Daño 6",
+      "effect_text": "Roba 2, Daño 6",
+      "rarity": "rare",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -2356,7 +2409,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2370,14 +2423,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "payoff"
     },
     {
       "id": "hip_oracle_of_fate_15",
-      "name": "HIP-OF 15",
-      "name_key": "HIP-OF 15",
-      "text_key": "gain_mana_next_turn 1, scry 1, damage 5",
-      "effect_text": "gain_mana_next_turn 1, scry 1, damage 5",
+      "name": "Oráculo del Horizonte Boreal XV",
+      "name_key": "Oráculo del Horizonte Boreal XV",
+      "text_key": "Energía +1, Prever 1, Daño 5",
+      "effect_text": "Energía +1, Prever 1, Daño 5",
       "rarity": "uncommon",
       "cost": 1,
       "target": "enemy",
@@ -2403,7 +2457,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2417,15 +2471,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_oracle_of_fate_16",
-      "name": "HIP-OF 16",
-      "name_key": "HIP-OF 16",
-      "text_key": "scry 2, draw 1, damage 5",
-      "effect_text": "scry 2, draw 1, damage 5",
-      "rarity": "uncommon",
+      "name": "Oráculo del Horizonte Boreal XVI",
+      "name_key": "Oráculo del Horizonte Boreal XVI",
+      "text_key": "Prever 2, Roba 1, Daño 5",
+      "effect_text": "Prever 2, Roba 1, Daño 5",
+      "rarity": "rare",
       "cost": 2,
       "target": "enemy",
       "tags": [
@@ -2450,7 +2505,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2464,15 +2519,16 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "payoff"
     },
     {
       "id": "hip_oracle_of_fate_17",
-      "name": "HIP-OF 17",
-      "name_key": "HIP-OF 17",
-      "text_key": "ritual_trama 1, harmony_delta 1, draw 1, damage 4",
-      "effect_text": "ritual_trama 1, harmony_delta 1, draw 1, damage 4",
-      "rarity": "uncommon",
+      "name": "Oráculo del Horizonte Boreal XVII",
+      "name_key": "Oráculo del Horizonte Boreal XVII",
+      "text_key": "Ritual +1, Armonía +1, Roba 1",
+      "effect_text": "Ritual +1, Armonía +1, Roba 1",
+      "rarity": "rare",
       "cost": 1,
       "target": "enemy",
       "tags": [
@@ -2501,7 +2557,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2515,14 +2571,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "payoff"
     },
     {
       "id": "hip_oracle_of_fate_18",
-      "name": "HIP-OF 18",
-      "name_key": "HIP-OF 18",
-      "text_key": "scry 3, damage 5",
-      "effect_text": "scry 3, damage 5",
+      "name": "Oráculo del Horizonte Boreal XVIII",
+      "name_key": "Oráculo del Horizonte Boreal XVIII",
+      "text_key": "Prever 3, Daño 5",
+      "effect_text": "Prever 3, Daño 5",
       "rarity": "uncommon",
       "cost": 2,
       "target": "enemy",
@@ -2543,7 +2600,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2557,14 +2614,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_oracle_of_fate_19",
-      "name": "HIP-OF 19",
-      "name_key": "HIP-OF 19",
-      "text_key": "draw 2, damage 6",
-      "effect_text": "draw 2, damage 6",
+      "name": "Oráculo del Horizonte Boreal XIX",
+      "name_key": "Oráculo del Horizonte Boreal XIX",
+      "text_key": "Roba 2, Daño 6",
+      "effect_text": "Roba 2, Daño 6",
       "rarity": "uncommon",
       "cost": 1,
       "target": "enemy",
@@ -2586,7 +2644,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2600,14 +2658,15 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "bridge"
     },
     {
       "id": "hip_oracle_of_fate_20",
-      "name": "HIP-OF 20",
-      "name_key": "HIP-OF 20",
-      "text_key": "scry 4, draw 2, ritual_trama 1, damage 8",
-      "effect_text": "scry 4, draw 2, ritual_trama 1, damage 8",
+      "name": "Oráculo del Horizonte Boreal XX",
+      "name_key": "Oráculo del Horizonte Boreal XX",
+      "text_key": "Prever 4, Roba 2, Ritual +1",
+      "effect_text": "Prever 4, Roba 2, Ritual +1",
       "rarity": "legendary",
       "cost": 3,
       "target": "enemy",
@@ -2638,7 +2697,7 @@
       "family": "oracle_of_fate",
       "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
       "author": "Mauricio",
       "order": "Chakana",
       "strategy": {
@@ -2652,7 +2711,8 @@
       "symbol": "chakana_polar",
       "kpi": {},
       "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar"
+      "set_emblem": "chakana_polar",
+      "taxonomy": "payoff"
     }
   ]
 }

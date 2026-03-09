@@ -1,0 +1,34 @@
+CHAKANA GAME PROFESSIONALIZATION REPORT
+fecha: 2026-03-09 17:27:31
+
+Lo fuerte:
+- Core loop jugable y estable con QA smoke PASS.
+- 120 cartas integradas (Base + Hiperborea) y distribucion de arquetipos validada.
+- Renderer de cartas unificado y pipeline de emblemas por set activo.
+- Sistema de audio con context mapping + cache/manifest operativo.
+
+Lo debil:
+- deuda legacy/fallback en multiples dominios aumenta complejidad operativa.
+- experiencia audiovisual aun inconsistente entre pantallas modernas y rutas heredadas.
+- arquetipos no agresivos requieren mejor payoff para evitar sensacion de lentitud.
+
+Que cambiar:
+1) consolidar canon runtime (un solo flujo de recompensa, una ruta por sistema).
+2) simplificar UI/HUD con jerarquia estricta de lectura.
+3) mejorar direccion de audio (frases mas largas, menos lead hipnotico).
+4) reforzar integracion diegetica de recompensas/eventos.
+
+Que remover/phase-out:
+- ramas legacy no esenciales en runtime normal.
+- etiquetas tecnicas o nomenclatura no diegetica en capa player-facing.
+- rutas paralelas de render/asset no justificadas por compatibilidad real.
+
+Que evolucionar:
+- taxonomia de cartas (motor/puente/payoff) por arquetipo.
+- directores de variedad para arte y audio con validacion automatica.
+- arquitectura por limites claros engine_candidate vs game_specific.
+
+Camino a 1.0:
+- Sprint corto: limpieza legacy + polish UX + tuning arquetipos.
+- Sprint medio: consolidacion arquitectura y pipelines dirigidos.
+- Sprint largo: hardening pre-extraccion Chakana Engine + content lock final.

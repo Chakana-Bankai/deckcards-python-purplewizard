@@ -1,0 +1,18 @@
+CHAKANA CREATIVE DIRECTOR REPORT
+generated_at=2026-03-09T19:23:16
+
+[quality]
+art_avg=0.787
+music_avg=0.586
+art_candidates_checked=40
+music_candidates_checked=5
+
+[cleanup]
+archive_root=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\assets\archive\creative_director_cleanup\20260309_192316
+assets_moved=0
+
+[stability]
+generation_mode=iterative_supervised
+art_threshold=0.62
+music_threshold=0.58
+status=PASS

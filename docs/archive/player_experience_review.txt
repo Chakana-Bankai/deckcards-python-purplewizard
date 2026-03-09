@@ -1,0 +1,16 @@
+PLAYER EXPERIENCE REVIEW
+fecha: 2026-03-09 17:27:31
+
+Simulacion de jugador nuevo:
+- Inicio: comprensible, pero curva de informacion sigue alta en HUD de combate.
+- Durante run: decisiones mejoran cuando rewards/pack/shop son claros y directos.
+- Fricciones: sobrecarga visual puntual, nomenclatura inconsistente en pantallas secundarias legacy.
+
+Puntos fuertes:
+- identidad visual/lore diferencial respecto a deckbuilders genericos.
+- loop base jugable y estable por smoke/QA.
+
+Puntos a mejorar:
+1) onboarding de iconografia por tooltips progresivos.
+2) menos ruido textual en paneles de estado.
+3) feedback mas claro de progreso build por run (motor/payoff/sinergia).

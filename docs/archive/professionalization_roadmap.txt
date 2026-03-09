@@ -1,0 +1,17 @@
+PROFESSIONALIZATION ROADMAP
+fecha: 2026-03-09 17:27:31
+
+Quick wins (1-2 sprints):
+- Eliminar ramas legacy activas en runtime normal (reward modal, labels residuales).
+- Normalizar terminologia player-facing y acentos en todas las pantallas activas.
+- Reducir redundancia HUD/map con reglas icono+valor.
+
+Medium (2-5 sprints):
+- Consolidar arquitectura por dominios con shims minimos.
+- Fortalecer payoff temprano de arquetipos lentos sin romper balance global.
+- Pipeline de arte/audio con metricas de diversidad y gates autom?ticos.
+
+Major (5+ sprints):
+- Extraccion gradual a Chakana Engine (combat/ui runtime services).
+- Data-driven narrative/event orchestration completa.
+- Build 1.0 con baseline de performance + UX + contenido auditado.

@@ -1,0 +1,46 @@
+CHAKANA ROOT TARGET STRUCTURE PLAN
+generated_at=2026-03-09T19:36:58
+
+[policy]
+Root must keep only project-critical launch/config/docs plus runtime-sensitive state files.
+All generated reports and one-off outputs move out of root.
+Archive instead of delete when uncertain.
+
+[allowed_in_root]
+- .gitattributes
+- .gitignore
+- .gitkeep
+- .regen_flag
+- AGENTS.md
+- README.md
+- requirements.txt
+- reset_generated.ps1
+- run.ps1
+- savegame.json
+
+[target_structure]
+reports/
+  qa/
+    latest/
+    archive/
+  audits/
+  validation/
+  cleanup/
+  generated/
+docs/
+  design/
+  archive/
+
+[migration_rules]
+1. qa_report_build_* -> reports/qa/latest/ (keep only latest per build in active)
+2. *_audit* -> reports/audits/
+3. *_validation* -> reports/validation/
+4. *_cleanup* or *_compaction* -> reports/cleanup/
+5. other *_report.* -> reports/generated/
+6. loose narrative/design .md in root -> docs/design/ or docs/archive/ after content review
+7. runtime-sensitive files remain in root unless runtime code is updated
+
+[phase3_execution_notes]
+- Move files non-destructively and preserve latest report discoverability.
+- Create migration notes/wrappers if any script expects old root paths.
+- Do not move run.ps1/reset_generated.ps1/requirements without explicit runtime checks.

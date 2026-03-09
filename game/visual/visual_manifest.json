@@ -1,6 +1,6 @@
 {
   "version": "visual_v2",
-  "generated_at": 1773083039,
+  "generated_at": 1773100139,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -47,7 +47,7 @@
     "avatar:combat_hud:192x192:combat_hud": {
       "asset_id": "combat_hud",
       "category": "avatar",
-      "seed": 1629451345,
+      "seed": 1068829758,
       "palette": {
         "deep_purple": [
           28,
@@ -79,17 +79,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\combat_hud_192x192_combat_hud.png"
       ],
       "context": "combat_hud",
-      "version": "visual_v1",
-      "generated_at": 1772953093,
+      "version": "visual_v2",
+      "generated_at": 1773100139,
       "size": [
         192,
         192
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "avatar:menu:256x256:menu": {
       "asset_id": "menu",
       "category": "avatar",
-      "seed": 951342332,
+      "seed": 678404906,
       "palette": {
         "deep_purple": [
           28,
@@ -121,17 +123,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\menu_256x256_menu.png"
       ],
       "context": "menu",
-      "version": "visual_v1",
-      "generated_at": 1772953093,
+      "version": "visual_v2",
+      "generated_at": 1773100139,
       "size": [
         256,
         256
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:violet_seal:128x128:rare": {
       "asset_id": "violet_seal",
       "category": "relics",
-      "seed": 1395735699,
+      "seed": 914991754,
       "palette": {
         "deep_purple": [
           28,
@@ -163,17 +167,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\violet_seal_128x128_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772953093,
+      "version": "visual_v2",
+      "generated_at": 1773100139,
       "size": [
         128,
         128
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "biomes:ukhu_pacha:512x256:sigil": {
       "asset_id": "ukhu_pacha",
       "category": "biomes",
-      "seed": 464613524,
+      "seed": 1840994335,
       "palette": {
         "deep_purple": [
           28,
@@ -206,7 +212,7 @@
       ],
       "context": "sigil",
       "version": "visual_v2",
-      "generated_at": 1773061429,
+      "generated_at": 1773100139,
       "size": [
         512,
         256
@@ -217,7 +223,7 @@
     "emblems:cosmic_warrior:96x96:mini": {
       "asset_id": "cosmic_warrior",
       "category": "emblems",
-      "seed": 1129966720,
+      "seed": 814251598,
       "palette": {
         "deep_purple": [
           28,
@@ -249,12 +255,14 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\emblems\\cosmic_warrior_96x96_mini.png"
       ],
       "context": "mini",
-      "version": "visual_v1",
-      "generated_at": 1772953093,
+      "version": "visual_v2",
+      "generated_at": 1773100139,
       "size": [
         96,
         96
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "avatar:menu:132x132:menu": {
       "asset_id": "menu",
@@ -3619,7 +3627,7 @@
     "avatar:archon_oracle:192x192:archon_oracle": {
       "asset_id": "archon_oracle",
       "category": "avatar",
-      "seed": 2053851089,
+      "seed": 1661354675,
       "palette": {
         "deep_purple": [
           28,
@@ -3652,7 +3660,7 @@
       ],
       "context": "archon_oracle",
       "version": "visual_v2",
-      "generated_at": 1773002163,
+      "generated_at": 1773100139,
       "size": [
         192,
         192
@@ -3665,7 +3673,7 @@
     "biomes:fractura_chakana:512x256:sigil": {
       "asset_id": "fractura_chakana",
       "category": "biomes",
-      "seed": 1803217231,
+      "seed": 2006098939,
       "palette": {
         "deep_purple": [
           28,
@@ -3698,7 +3706,7 @@
       ],
       "context": "sigil",
       "version": "visual_v2",
-      "generated_at": 1773061429,
+      "generated_at": 1773100139,
       "size": [
         512,
         256
@@ -5441,6 +5449,226 @@
       "lore_tags": [
         "chakana"
       ]
+    },
+    "avatar:enemy_enemy:280x360:enemy_enemy": {
+      "asset_id": "enemy_enemy",
+      "category": "avatar",
+      "seed": 814410313,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_enemy_280x360_enemy_enemy.png"
+      ],
+      "context": "enemy_enemy",
+      "version": "visual_v2",
+      "generated_at": 1773086484,
+      "size": [
+        280,
+        360
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_enemy:220x280:enemy_enemy": {
+      "asset_id": "enemy_enemy",
+      "category": "avatar",
+      "seed": 814410313,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_enemy_220x280_enemy_enemy.png"
+      ],
+      "context": "enemy_enemy",
+      "version": "visual_v2",
+      "generated_at": 1773086484,
+      "size": [
+        220,
+        280
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_enemy:320x420:enemy_enemy": {
+      "asset_id": "enemy_enemy",
+      "category": "avatar",
+      "seed": 814410313,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_enemy_320x420_enemy_enemy.png"
+      ],
+      "context": "enemy_enemy",
+      "version": "visual_v2",
+      "generated_at": 1773086484,
+      "size": [
+        320,
+        420
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_enemy:80x80:enemy_enemy": {
+      "asset_id": "enemy_enemy",
+      "category": "avatar",
+      "seed": 814410313,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_enemy_80x80_enemy_enemy.png"
+      ],
+      "context": "enemy_enemy",
+      "version": "visual_v2",
+      "generated_at": 1773086484,
+      "size": [
+        80,
+        80
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "overlays:celestial:514x76:": {
+      "asset_id": "celestial",
+      "category": "overlays",
+      "seed": 981334446,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\overlays\\celestial_514x76.png"
+      ],
+      "context": "",
+      "version": "visual_v2",
+      "generated_at": 1773088449,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
     }
   }
 }

@@ -1,0 +1,6 @@
+CHAKANA AVATAR SYSTEM VALIDATION
+
+portrait_size=[512, 512]
+hologram_size=[512, 512]
+portrait_512x512=True
+hologram_transparency_pipeline=implemented (scanline/glow/transparent energy)

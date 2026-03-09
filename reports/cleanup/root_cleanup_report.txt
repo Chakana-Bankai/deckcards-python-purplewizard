@@ -1,0 +1,16 @@
+ROOT CLEANUP REPORT
+generated_at: 2026-03-09 17:49:27
+
+Result:
+- Root report clutter reduced to cleanup/meta outputs only.
+- QA versioned outputs removed from root and normalized under qa/reports/current|archive.
+- Runtime/config files left in place (safe).
+
+Remaining root txt reports (intentional):
+- documentation_reorganization_report.txt
+- qa_reorganization_report.txt
+- tools_reorganization_report.txt
+- root_cleanup_report.txt
+- migration_notes.txt
+- project_docs_qa_tools_cleanup_report.txt
+

@@ -1,0 +1,16 @@
+PROCEDURAL ART EVOLUTION PLAN
+fecha: 2026-03-09 17:27:31
+
+Diagnostico:
+- Existe generador avanzado por capas con fallback seguro.
+- Persisten patrones repetitivos en algunos lotes y dependencia de fallback en casos frontera.
+
+Plan:
+1) Biblioteca de motivos por dominio: arma, criatura, rito, entidad cosmica, civilizacion.
+2) Reglas anti-repeticion por seed family y histogramas de composicion.
+3) Identidad por set:
+   - Base: simbolica sobria fundacional
+   - Hiperborea: polar/aurora/templo
+   - Archon: demoniaco/corrupto/opresivo
+4) Legendarias: capa extra de silhouette contrast + glow controlado + detalle focal.
+5) Validacion automatica: score de variedad por lote antes de aceptar output.

@@ -1,0 +1,1203 @@
+CHAKANA PROJECT FULL INVENTORY REPORT
+generated_at=2026-03-09T19:34:34
+root=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard
+
+[summary]
+total_files=778
+total_folders=157
+root_files=37
+root_reports=17
+unknown_items=184
+legacy_candidates=112
+
+[files_by_top_folder]
+.gitattributes=1
+.gitignore=1
+.gitkeep=1
+.regen_flag=1
+.vscode=3
+AGENTS.md=1
+README.md=1
+art_direction_document.md=1
+art_pipeline_validation.txt=1
+asset_cleanup_report.txt=1
+assets=192
+avatar_system_validation.txt=1
+card_art_upgrade_report.txt=1
+card_balance_validation.txt=1
+chakana_project_consolidation_report.txt=1
+codex_validation_report.txt=1
+creative_art_master_upgrade_report.txt=1
+creative_director_report.txt=1
+docs=71
+docs_cleanup_report.txt=1
+document_audit_report.txt=1
+documentation_reorganization_report.txt=1
+enemy_deck_validation.txt=1
+engine=13
+full_system_validation.txt=1
+game=380
+migration_notes.txt=1
+music_direction_document.md=1
+music_system_validation.txt=1
+project_docs_qa_tools_cleanup_report.txt=1
+qa=26
+qa_reorganization_report.txt=1
+qa_report_build_0_9_106a.txt=1
+render_consistency_report.txt=1
+repository_structure_report.txt=1
+requirements.txt=1
+reset_generated.ps1=1
+root_cleanup_report.txt=1
+run.ps1=1
+savegame.json=1
+system_alignment_report.txt=1
+system_reference.md=1
+tools=56
+tools_reorganization_report.txt=1
+
+[category_counts]
+active runtime core=340
+active support=165
+generated output=72
+report/log=17
+unknown=184
+
+[status_counts]
+active runtime core=340
+active support=113
+duplicate/overlapping=17
+generated output=12
+legacy candidate=112
+unknown=184
+
+[top_extensions]
+.png=316
+.py=203
+.txt=94
+.md=62
+.json=49
+<noext>=27
+.wav=23
+.ps1=3
+.ttf=1
+
+[root_clutter_candidates]
+.gitattributes	<noext>	unknown	unknown	372
+.gitignore	<noext>	unknown	unknown	322
+.gitkeep	<noext>	unknown	unknown	0
+.regen_flag	<noext>	unknown	unknown	19
+AGENTS.md	.md	unknown	unknown	2190
+README.md	.md	unknown	unknown	1610
+art_direction_document.md	.md	unknown	unknown	1378
+art_pipeline_validation.txt	.txt	unknown	unknown	202
+asset_cleanup_report.txt	.txt	report/log	duplicate/overlapping	3266
+avatar_system_validation.txt	.txt	unknown	unknown	190
+card_art_upgrade_report.txt	.txt	report/log	duplicate/overlapping	6471
+card_balance_validation.txt	.txt	unknown	unknown	283
+chakana_project_consolidation_report.txt	.txt	report/log	duplicate/overlapping	1059
+codex_validation_report.txt	.txt	report/log	duplicate/overlapping	221
+creative_art_master_upgrade_report.txt	.txt	report/log	duplicate/overlapping	289
+creative_director_report.txt	.txt	report/log	duplicate/overlapping	434
+docs_cleanup_report.txt	.txt	report/log	duplicate/overlapping	9270
+document_audit_report.txt	.txt	report/log	duplicate/overlapping	4153
+documentation_reorganization_report.txt	.txt	report/log	duplicate/overlapping	972
+enemy_deck_validation.txt	.txt	unknown	unknown	207
+full_system_validation.txt	.txt	unknown	unknown	230
+migration_notes.txt	.txt	unknown	unknown	504
+music_direction_document.md	.md	unknown	unknown	1411
+music_system_validation.txt	.txt	unknown	unknown	621
+project_docs_qa_tools_cleanup_report.txt	.txt	report/log	duplicate/overlapping	957
+qa_reorganization_report.txt	.txt	report/log	duplicate/overlapping	677
+qa_report_build_0_9_106a.txt	.txt	report/log	duplicate/overlapping	1965
+render_consistency_report.txt	.txt	report/log	duplicate/overlapping	554
+repository_structure_report.txt	.txt	report/log	duplicate/overlapping	150
+requirements.txt	.txt	unknown	unknown	15
+reset_generated.ps1	.ps1	unknown	unknown	418
+root_cleanup_report.txt	.txt	report/log	duplicate/overlapping	516
+run.ps1	.ps1	unknown	unknown	81
+savegame.json	.json	unknown	unknown	7184
+system_alignment_report.txt	.txt	report/log	duplicate/overlapping	650
+system_reference.md	.md	unknown	unknown	866
+tools_reorganization_report.txt	.txt	report/log	duplicate/overlapping	635
+
+[unknown_sample]
+.gitattributes	<noext>	unknown	unknown	372
+.gitignore	<noext>	unknown	unknown	322
+.gitkeep	<noext>	unknown	unknown	0
+.regen_flag	<noext>	unknown	unknown	19
+.vscode/settings.json	.json	unknown	unknown	120
+.vscode/task.json	.json	unknown	unknown	706
+.vscode/tasks.json	.json	unknown	unknown	708
+AGENTS.md	.md	unknown	unknown	2190
+README.md	.md	unknown	unknown	1610
+art_direction_document.md	.md	unknown	unknown	1378
+art_pipeline_validation.txt	.txt	unknown	unknown	202
+assets/art_reference/README.md	.md	unknown	unknown	318
+assets/avatars/README.md	.md	unknown	unknown	61
+assets/biomes/README.md	.md	unknown	unknown	60
+assets/cards/README.md	.md	unknown	unknown	59
+assets/enemies/README.md	.md	unknown	unknown	61
+assets/music/README.md	.md	unknown	unknown	59
+assets/music/boss.wav	.wav	unknown	unknown	88244
+assets/music/combat_kaypacha.wav	.wav	unknown	unknown	88244
+assets/music/event.wav	.wav	unknown	unknown	88244
+assets/music/map_kaypacha.wav	.wav	unknown	unknown	88244
+assets/music/menu.wav	.wav	unknown	unknown	88244
+assets/relics/README.md	.md	unknown	unknown	60
+assets/sprites/cards/campo_protector.png	.png	unknown	unknown	44291
+assets/sprites/cards/campo_protector__pass2_2.png	.png	unknown	unknown	44291
+assets/sprites/cards/chakana_de_luz.png	.png	unknown	unknown	39947
+assets/sprites/cards/chakana_de_luz__pass2_1.png	.png	unknown	unknown	39947
+assets/sprites/cards/cw_lore_02.png	.png	unknown	unknown	39521
+assets/sprites/cards/cw_lore_02__pass1_2.png	.png	unknown	unknown	39521
+assets/sprites/cards/cw_lore_03.png	.png	unknown	unknown	42769
+assets/sprites/cards/cw_lore_03__pass2_2.png	.png	unknown	unknown	42769
+assets/sprites/cards/cw_lore_04.png	.png	unknown	unknown	43991
+assets/sprites/cards/cw_lore_04__pass1_5.png	.png	unknown	unknown	43991
+assets/sprites/cards/cw_lore_08.png	.png	unknown	unknown	43350
+assets/sprites/cards/cw_lore_08__pass2_2.png	.png	unknown	unknown	43350
+assets/sprites/cards/cw_lore_09.png	.png	unknown	unknown	42638
+assets/sprites/cards/cw_lore_09__pass1_3.png	.png	unknown	unknown	42638
+assets/sprites/cards/cw_lore_10.png	.png	unknown	unknown	43329
+assets/sprites/cards/cw_lore_10__pass1_0.png	.png	unknown	unknown	43329
+assets/sprites/cards/cw_lore_14.png	.png	unknown	unknown	43255
+assets/sprites/cards/cw_lore_14__pass1_1.png	.png	unknown	unknown	43255
+assets/sprites/cards/cw_lore_18.png	.png	unknown	unknown	43668
+assets/sprites/cards/cw_lore_18__pass1_3.png	.png	unknown	unknown	43668
+assets/sprites/cards/cw_lore_23.png	.png	unknown	unknown	43298
+assets/sprites/cards/cw_lore_23__pass1_0.png	.png	unknown	unknown	43298
+assets/sprites/cards/cw_lore_29.png	.png	unknown	unknown	43273
+assets/sprites/cards/cw_lore_29__pass1_1.png	.png	unknown	unknown	43273
+assets/sprites/cards/eco_de_sabiduria.png	.png	unknown	unknown	43631
+assets/sprites/cards/eco_de_sabiduria__pass1_2.png	.png	unknown	unknown	43631
+assets/sprites/cards/embate_del_jaguar.png	.png	unknown	unknown	43345
+assets/sprites/cards/embate_del_jaguar__pass1_3.png	.png	unknown	unknown	43345
+assets/sprites/cards/escudo_de_luz.png	.png	unknown	unknown	43720
+assets/sprites/cards/escudo_de_luz__pass1_5.png	.png	unknown	unknown	43720
+assets/sprites/cards/escudo_del_chaman.png	.png	unknown	unknown	44217
+assets/sprites/cards/escudo_del_chaman__pass2_1.png	.png	unknown	unknown	44217
+assets/sprites/cards/espiritu_guardian.png	.png	unknown	unknown	43369
+assets/sprites/cards/espiritu_guardian__pass1_5.png	.png	unknown	unknown	43369
+assets/sprites/cards/estallido_arcano.png	.png	unknown	unknown	42587
+assets/sprites/cards/estallido_arcano__pass1_4.png	.png	unknown	unknown	42587
+assets/sprites/cards/filo_astral.png	.png	unknown	unknown	43516
+assets/sprites/cards/filo_astral__pass1_5.png	.png	unknown	unknown	43516
+assets/sprites/cards/filo_en_cadena.png	.png	unknown	unknown	42600
+assets/sprites/cards/filo_en_cadena__pass1_4.png	.png	unknown	unknown	42600
+assets/sprites/cards/firmeza_del_cuerpo.png	.png	unknown	unknown	43730
+assets/sprites/cards/firmeza_del_cuerpo__pass2_1.png	.png	unknown	unknown	43730
+assets/sprites/cards/fragmento_celeste.png	.png	unknown	unknown	47408
+assets/sprites/cards/fragmento_celeste__pass2_3.png	.png	unknown	unknown	47408
+assets/sprites/cards/fusion_espiritual.png	.png	unknown	unknown	40912
+assets/sprites/cards/fusion_espiritual__pass1_4.png	.png	unknown	unknown	40912
+assets/sprites/cards/garra_espiritual.png	.png	unknown	unknown	43536
+assets/sprites/cards/garra_espiritual__pass1_3.png	.png	unknown	unknown	43536
+assets/sprites/cards/guardia_terrenal.png	.png	unknown	unknown	42335
+assets/sprites/cards/guardia_terrenal__pass1_2.png	.png	unknown	unknown	42335
+assets/sprites/cards/hg_lore_01.png	.png	unknown	unknown	43179
+assets/sprites/cards/hg_lore_01__pass1_1.png	.png	unknown	unknown	43179
+assets/sprites/cards/hg_lore_05.png	.png	unknown	unknown	43052
+assets/sprites/cards/hg_lore_05__pass2_3.png	.png	unknown	unknown	43052
+assets/sprites/cards/hg_lore_06.png	.png	unknown	unknown	43251
+assets/sprites/cards/hg_lore_06__pass1_0.png	.png	unknown	unknown	43251
+assets/sprites/cards/hg_lore_07.png	.png	unknown	unknown	43210
+assets/sprites/cards/hg_lore_07__pass1_1.png	.png	unknown	unknown	43210
+assets/sprites/cards/hg_lore_11.png	.png	unknown	unknown	43875
+assets/sprites/cards/hg_lore_11__pass1_0.png	.png	unknown	unknown	43875
+assets/sprites/cards/hg_lore_13.png	.png	unknown	unknown	44293
+assets/sprites/cards/hg_lore_13__pass1_4.png	.png	unknown	unknown	44293
+assets/sprites/cards/hg_lore_15.png	.png	unknown	unknown	42464
+assets/sprites/cards/hg_lore_15__pass1_0.png	.png	unknown	unknown	42464
+assets/sprites/cards/hg_lore_19.png	.png	unknown	unknown	43796
+assets/sprites/cards/hg_lore_19__pass2_3.png	.png	unknown	unknown	43796
+assets/sprites/cards/hg_lore_24.png	.png	unknown	unknown	44529
+assets/sprites/cards/hg_lore_24__pass2_3.png	.png	unknown	unknown	44529
+assets/sprites/cards/hg_lore_27.png	.png	unknown	unknown	44107
+assets/sprites/cards/hg_lore_27__pass2_1.png	.png	unknown	unknown	44107
+assets/sprites/cards/invocacion_astral.png	.png	unknown	unknown	46992
+assets/sprites/cards/invocacion_astral__pass1_1.png	.png	unknown	unknown	46992
+assets/sprites/cards/lectura_del_destino.png	.png	unknown	unknown	48131
+assets/sprites/cards/lectura_del_destino__pass1_1.png	.png	unknown	unknown	48131
+assets/sprites/cards/mantra_del_umbral.png	.png	unknown	unknown	43310
+assets/sprites/cards/mantra_del_umbral__pass2_1.png	.png	unknown	unknown	43310
+assets/sprites/cards/muralla_de_piedra.png	.png	unknown	unknown	43379
+assets/sprites/cards/muralla_de_piedra__pass1_4.png	.png	unknown	unknown	43379
+assets/sprites/cards/observacion_sagrada.png	.png	unknown	unknown	46171
+assets/sprites/cards/observacion_sagrada__pass2_1.png	.png	unknown	unknown	46171
+assets/sprites/cards/of_lore_12.png	.png	unknown	unknown	43888
+assets/sprites/cards/of_lore_12__pass2_1.png	.png	unknown	unknown	43888
+assets/sprites/cards/of_lore_16.png	.png	unknown	unknown	46941
+assets/sprites/cards/of_lore_16__pass2_1.png	.png	unknown	unknown	46941
+assets/sprites/cards/of_lore_17.png	.png	unknown	unknown	47385
+assets/sprites/cards/of_lore_17__pass1_1.png	.png	unknown	unknown	47385
+assets/sprites/cards/of_lore_20.png	.png	unknown	unknown	46765
+assets/sprites/cards/of_lore_20__pass1_5.png	.png	unknown	unknown	46765
+assets/sprites/cards/of_lore_21.png	.png	unknown	unknown	47392
+assets/sprites/cards/of_lore_21__pass1_0.png	.png	unknown	unknown	47392
+assets/sprites/cards/of_lore_22.png	.png	unknown	unknown	46892
+assets/sprites/cards/of_lore_22__pass1_4.png	.png	unknown	unknown	46892
+assets/sprites/cards/of_lore_25.png	.png	unknown	unknown	46728
+assets/sprites/cards/of_lore_25__pass2_2.png	.png	unknown	unknown	46728
+assets/sprites/cards/of_lore_26.png	.png	unknown	unknown	47056
+assets/sprites/cards/of_lore_26__pass2_1.png	.png	unknown	unknown	47056
+assets/sprites/cards/of_lore_28.png	.png	unknown	unknown	46671
+assets/sprites/cards/of_lore_28__pass1_4.png	.png	unknown	unknown	46671
+assets/sprites/cards/of_lore_30.png	.png	unknown	unknown	47680
+assets/sprites/cards/of_lore_30__pass1_0.png	.png	unknown	unknown	47680
+assets/sprites/cards/piedra_ritual.png	.png	unknown	unknown	46607
+assets/sprites/cards/piedra_ritual__pass2_2.png	.png	unknown	unknown	46607
+assets/sprites/cards/portal_de_la_chakana.png	.png	unknown	unknown	47179
+assets/sprites/cards/portal_de_la_chakana__pass2_3.png	.png	unknown	unknown	47179
+assets/sprites/cards/pulso_cosmico.png	.png	unknown	unknown	42540
+assets/sprites/cards/pulso_cosmico__pass1_3.png	.png	unknown	unknown	42540
+assets/sprites/cards/resistencia_ancestral.png	.png	unknown	unknown	43410
+assets/sprites/cards/resistencia_ancestral__pass2_2.png	.png	unknown	unknown	43410
+assets/sprites/cards/revelacion_astral.png	.png	unknown	unknown	47066
+assets/sprites/cards/revelacion_astral__pass1_2.png	.png	unknown	unknown	47066
+assets/sprites/cards/ritual_de_la_trama.png	.png	unknown	unknown	46692
+assets/sprites/cards/ritual_de_la_trama__pass1_4.png	.png	unknown	unknown	46692
+assets/sprites/cards/sello_protector.png	.png	unknown	unknown	44220
+assets/sprites/cards/sello_protector__pass1_2.png	.png	unknown	unknown	44220
+assets/sprites/cards/silencio_interior.png	.png	unknown	unknown	48179
+assets/sprites/cards/silencio_interior__pass1_3.png	.png	unknown	unknown	48179
+assets/sprites/cards/vinculo_de_energia.png	.png	unknown	unknown	43216
+assets/sprites/cards/vinculo_de_energia__pass2_2.png	.png	unknown	unknown	43216
+assets/sprites/cards/vision_del_condor.png	.png	unknown	unknown	47954
+assets/sprites/cards/vision_del_condor__pass1_4.png	.png	unknown	unknown	47954
+avatar_system_validation.txt	.txt	unknown	unknown	190
+card_balance_validation.txt	.txt	unknown	unknown	283
+docs/architecture/PROJECT_STRUCTURE_CLASSIFICATION.json	.json	unknown	unknown	368531
+enemy_deck_validation.txt	.txt	unknown	unknown	207
+full_system_validation.txt	.txt	unknown	unknown	230
+game/assets/.gitkeep	<noext>	unknown	unknown	0
+game/assets/avatars/.gitkeep	<noext>	unknown	unknown	0
+game/assets/avatars/README.txt	.txt	unknown	unknown	251
+game/assets/curated/avatars/README.txt	.txt	unknown	unknown	383
+game/assets/fonts/.gitkeep	<noext>	unknown	unknown	0
+game/assets/music/.gitkeep	<noext>	unknown	unknown	0
+game/assets/sfx/.gitkeep	<noext>	unknown	unknown	0
+game/assets/sprites/.gitkeep	<noext>	unknown	unknown	0
+game/assets/sprites/cards/.gitkeep	<noext>	unknown	unknown	0
+game/assets/sprites/enemies/.gitkeep	<noext>	unknown	unknown	0
+game/assets/sprites/player/.gitkeep	<noext>	unknown	unknown	0
+game/assets/sprites/ui/.gitkeep	<noext>	unknown	unknown	0
+game/cards/README.md	.md	unknown	unknown	59
+game/chakana_world/README.md	.md	unknown	unknown	67
+game/data/card_prompts.txt	.txt	unknown	unknown	5246
+game/data/design/card_bible.txt	.txt	unknown	unknown	347
+game/data/design/enemy_bible.txt	.txt	unknown	unknown	146
+game/data/design/gdd_chakana_purple_wizard.txt	.txt	unknown	unknown	2583
+game/data/design/lore_bible.txt	.txt	unknown	unknown	279
+game/data/design/ui_bible.txt	.txt	unknown	unknown	454
+game/data/lore/chakana_lore.txt	.txt	unknown	unknown	1179
+game/data/lore/naming_style.txt	.txt	unknown	unknown	117
+game/data/lore/world.txt	.txt	unknown	unknown	484
+game/enemies/README.md	.md	unknown	unknown	61
+game/events/README.md	.md	unknown	unknown	60
+game/map/README.md	.md	unknown	unknown	57
+game/narrative/.gitkeep	<noext>	unknown	unknown	0
+game/relics/README.md	.md	unknown	unknown	60
+migration_notes.txt	.txt	unknown	unknown	504
+music_direction_document.md	.md	unknown	unknown	1411
+music_system_validation.txt	.txt	unknown	unknown	621
+requirements.txt	.txt	unknown	unknown	15
+reset_generated.ps1	.ps1	unknown	unknown	418
+run.ps1	.ps1	unknown	unknown	81
+savegame.json	.json	unknown	unknown	7184
+system_reference.md	.md	unknown	unknown	866
+
+[legacy_candidate_sample]
+assets/archive/creative_master_upgrade/20260309_192235/campo_protector.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/chakana_de_luz.png	.png	generated output	legacy candidate	18599
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_02.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_03.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_04.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_08.png	.png	generated output	legacy candidate	18597
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_09.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_10.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_14.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_18.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_23.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_29.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/eco_de_sabiduria.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/embate_del_jaguar.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/escudo_de_luz.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/escudo_del_chaman.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/espiritu_guardian.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/estallido_arcano.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/filo_astral.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/filo_en_cadena.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/firmeza_del_cuerpo.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/fragmento_celeste.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/fusion_espiritual.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/garra_espiritual.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/guardia_terrenal.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_01.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_05.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_06.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_07.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_11.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_13.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_15.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_19.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_24.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_27.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/invocacion_astral.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/lectura_del_destino.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/mantra_del_umbral.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/muralla_de_piedra.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/observacion_sagrada.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_12.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_16.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_17.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_20.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_21.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_22.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_25.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_26.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_28.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_30.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/piedra_ritual.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/portal_de_la_chakana.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/pulso_cosmico.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/resistencia_ancestral.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/revelacion_astral.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/ritual_de_la_trama.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/sello_protector.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/silencio_interior.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/vinculo_de_energia.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/vision_del_condor.png	.png	generated output	legacy candidate	18601
+docs/archive/CONTENT_LOCK_1_0_REPORT.md	.md	active support	legacy candidate	587
+docs/archive/QA_PHASE9_SUPERVISION_EXPANDED.md	.md	active support	legacy candidate	3081
+docs/archive/active_asset_sanitization_report.txt	.txt	active support	legacy candidate	2562
+docs/archive/active_runtime_asset_report.txt	.txt	active support	legacy candidate	1989
+docs/archive/asset_classification_report.txt	.txt	active support	legacy candidate	2653
+docs/archive/asset_disk_audit_report.txt	.txt	active support	legacy candidate	1260
+docs/archive/audio_runtime_mapping_report.txt	.txt	active support	legacy candidate	1523
+docs/archive/card_set_emblem_system_report.txt	.txt	active support	legacy candidate	1608
+docs/archive/chakana_game_professionalization_report.txt	.txt	active support	legacy candidate	1584
+docs/archive/combat_hud_polish_report.txt	.txt	active support	legacy candidate	564
+docs/archive/content_generation_supervision_report.txt	.txt	active support	legacy candidate	942
+docs/archive/deckbuilder_design_audit.txt	.txt	active support	legacy candidate	1744
+docs/archive/event_node_refactor_report.txt	.txt	active support	legacy candidate	745
+docs/archive/event_system_design_report.txt	.txt	active support	legacy candidate	690
+docs/archive/final_gameplay_integration_fix_report.md	.md	active support	legacy candidate	1127
+docs/archive/final_gameplay_integration_fix_report.txt	.txt	active support	legacy candidate	1111
+docs/archive/gameplay_loop_evaluation.txt	.txt	active support	legacy candidate	834
+docs/archive/hologram_dialogue_integration_report.txt	.txt	active support	legacy candidate	621
+docs/archive/legacy_purge_plan.txt	.txt	active support	legacy candidate	820
+docs/archive/lore_integration_audit.txt	.txt	active support	legacy candidate	650
+docs/archive/lore_language_normalization_report.txt	.txt	active support	legacy candidate	574
+docs/archive/pack_shop_integration_report.txt	.txt	active support	legacy candidate	600
+docs/archive/player_experience_review.txt	.txt	active support	legacy candidate	685
+docs/archive/player_facing_label_audit.txt	.txt	active support	legacy candidate	764
+docs/archive/portrait_pipeline_upgrade_report.txt	.txt	active support	legacy candidate	455
+docs/archive/procedural_art_evolution_plan.txt	.txt	active support	legacy candidate	714
+docs/archive/professionalization_roadmap.txt	.txt	active support	legacy candidate	761
+docs/archive/regen_audio_report.txt	.txt	active support	legacy candidate	3201
+docs/archive/regen_visual_report.txt	.txt	active support	legacy candidate	1335
+docs/archive/soundtrack_direction_plan.txt	.txt	active support	legacy candidate	742
+docs/archive/system_architecture_audit.txt	.txt	active support	legacy candidate	893
+docs/archive/system_knot_audit_report.txt	.txt	active support	legacy candidate	565
+docs/archive/visual_direction_audit.txt	.txt	active support	legacy candidate	894
+docs/archive/visual_pipeline_upgrade_report.txt	.txt	active support	legacy candidate	1372
+docs/archive/world_naming_conventions.txt	.txt	active support	legacy candidate	896
+qa/reports/archive/gameplay_blocker_report.txt	.txt	active support	legacy candidate	726
+qa/reports/archive/qa_card_legibility_fix.txt	.txt	active support	legacy candidate	1229
+qa/reports/archive/qa_report_build_0_9_102.txt	.txt	active support	legacy candidate	1657
+qa/reports/archive/qa_report_build_0_9_103.txt	.txt	active support	legacy candidate	1658
+qa/reports/archive/qa_report_build_0_9_104.txt	.txt	active support	legacy candidate	1639
+qa/reports/archive/qa_report_build_0_9_105.txt	.txt	active support	legacy candidate	1662
+qa/reports/archive/qa_report_build_0_9_106.txt	.txt	active support	legacy candidate	1641
+qa/reports/archive/qa_report_build_0_9_106a.txt	.txt	active support	legacy candidate	1492
+qa/reports/archive/qa_report_build_latest_prev_1773089331.txt	.txt	active support	legacy candidate	1650
+qa/reports/archive/qa_report_phase7_extended.md	.md	active support	legacy candidate	984
+qa/reports/archive/qa_report_phase7_extended.txt	.txt	active support	legacy candidate	968
+qa/reports/archive/qa_report_post_combat_polish_full.md	.md	active support	legacy candidate	11083
+qa/reports/archive/qa_report_post_combat_polish_full.txt	.txt	active support	legacy candidate	11713
+qa/reports/archive/qa_report_visual_system_normalization.md	.md	active support	legacy candidate	1359
+qa/reports/archive/qa_report_visual_system_normalization.txt	.txt	active support	legacy candidate	1327
+qa/reports/archive/qa_visual_runtime_fullhd.txt	.txt	active support	legacy candidate	650
+qa/reports/current/legacy_cleanup_report.txt	.txt	active support	legacy candidate	438
+
+[full_file_inventory]
+path	ext	category	status	size_bytes
+.gitattributes	<noext>	unknown	unknown	372
+.gitignore	<noext>	unknown	unknown	322
+.gitkeep	<noext>	unknown	unknown	0
+.regen_flag	<noext>	unknown	unknown	19
+.vscode/settings.json	.json	unknown	unknown	120
+.vscode/task.json	.json	unknown	unknown	706
+.vscode/tasks.json	.json	unknown	unknown	708
+AGENTS.md	.md	unknown	unknown	2190
+README.md	.md	unknown	unknown	1610
+art_direction_document.md	.md	unknown	unknown	1378
+art_pipeline_validation.txt	.txt	unknown	unknown	202
+asset_cleanup_report.txt	.txt	report/log	duplicate/overlapping	3266
+assets/archive/creative_master_upgrade/20260309_192235/campo_protector.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/chakana_de_luz.png	.png	generated output	legacy candidate	18599
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_02.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_03.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_04.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_08.png	.png	generated output	legacy candidate	18597
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_09.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_10.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_14.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_18.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_23.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/cw_lore_29.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/eco_de_sabiduria.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/embate_del_jaguar.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/escudo_de_luz.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/escudo_del_chaman.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/espiritu_guardian.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/estallido_arcano.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/filo_astral.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/filo_en_cadena.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/firmeza_del_cuerpo.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/fragmento_celeste.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/fusion_espiritual.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/garra_espiritual.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/guardia_terrenal.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_01.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_05.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_06.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_07.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_11.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_13.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_15.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_19.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_24.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/hg_lore_27.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/invocacion_astral.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/lectura_del_destino.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/mantra_del_umbral.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/muralla_de_piedra.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/observacion_sagrada.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_12.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_16.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_17.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_20.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_21.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_22.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_25.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_26.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_28.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/of_lore_30.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/piedra_ritual.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/portal_de_la_chakana.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/pulso_cosmico.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/resistencia_ancestral.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/revelacion_astral.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/ritual_de_la_trama.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/sello_protector.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/silencio_interior.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/vinculo_de_energia.png	.png	generated output	legacy candidate	18601
+assets/archive/creative_master_upgrade/20260309_192235/vision_del_condor.png	.png	generated output	legacy candidate	18601
+assets/art_reference/README.md	.md	unknown	unknown	318
+assets/avatars/README.md	.md	unknown	unknown	61
+assets/biomes/README.md	.md	unknown	unknown	60
+assets/cards/README.md	.md	unknown	unknown	59
+assets/enemies/README.md	.md	unknown	unknown	61
+assets/music/README.md	.md	unknown	unknown	59
+assets/music/boss.wav	.wav	unknown	unknown	88244
+assets/music/combat_kaypacha.wav	.wav	unknown	unknown	88244
+assets/music/event.wav	.wav	unknown	unknown	88244
+assets/music/map_kaypacha.wav	.wav	unknown	unknown	88244
+assets/music/menu.wav	.wav	unknown	unknown	88244
+assets/relics/README.md	.md	unknown	unknown	60
+assets/sprites/cards/campo_protector.png	.png	unknown	unknown	44291
+assets/sprites/cards/campo_protector__pass2_2.png	.png	unknown	unknown	44291
+assets/sprites/cards/chakana_de_luz.png	.png	unknown	unknown	39947
+assets/sprites/cards/chakana_de_luz__pass2_1.png	.png	unknown	unknown	39947
+assets/sprites/cards/cw_lore_02.png	.png	unknown	unknown	39521
+assets/sprites/cards/cw_lore_02__pass1_2.png	.png	unknown	unknown	39521
+assets/sprites/cards/cw_lore_03.png	.png	unknown	unknown	42769
+assets/sprites/cards/cw_lore_03__pass2_2.png	.png	unknown	unknown	42769
+assets/sprites/cards/cw_lore_04.png	.png	unknown	unknown	43991
+assets/sprites/cards/cw_lore_04__pass1_5.png	.png	unknown	unknown	43991
+assets/sprites/cards/cw_lore_08.png	.png	unknown	unknown	43350
+assets/sprites/cards/cw_lore_08__pass2_2.png	.png	unknown	unknown	43350
+assets/sprites/cards/cw_lore_09.png	.png	unknown	unknown	42638
+assets/sprites/cards/cw_lore_09__pass1_3.png	.png	unknown	unknown	42638
+assets/sprites/cards/cw_lore_10.png	.png	unknown	unknown	43329
+assets/sprites/cards/cw_lore_10__pass1_0.png	.png	unknown	unknown	43329
+assets/sprites/cards/cw_lore_14.png	.png	unknown	unknown	43255
+assets/sprites/cards/cw_lore_14__pass1_1.png	.png	unknown	unknown	43255
+assets/sprites/cards/cw_lore_18.png	.png	unknown	unknown	43668
+assets/sprites/cards/cw_lore_18__pass1_3.png	.png	unknown	unknown	43668
+assets/sprites/cards/cw_lore_23.png	.png	unknown	unknown	43298
+assets/sprites/cards/cw_lore_23__pass1_0.png	.png	unknown	unknown	43298
+assets/sprites/cards/cw_lore_29.png	.png	unknown	unknown	43273
+assets/sprites/cards/cw_lore_29__pass1_1.png	.png	unknown	unknown	43273
+assets/sprites/cards/eco_de_sabiduria.png	.png	unknown	unknown	43631
+assets/sprites/cards/eco_de_sabiduria__pass1_2.png	.png	unknown	unknown	43631
+assets/sprites/cards/embate_del_jaguar.png	.png	unknown	unknown	43345
+assets/sprites/cards/embate_del_jaguar__pass1_3.png	.png	unknown	unknown	43345
+assets/sprites/cards/escudo_de_luz.png	.png	unknown	unknown	43720
+assets/sprites/cards/escudo_de_luz__pass1_5.png	.png	unknown	unknown	43720
+assets/sprites/cards/escudo_del_chaman.png	.png	unknown	unknown	44217
+assets/sprites/cards/escudo_del_chaman__pass2_1.png	.png	unknown	unknown	44217
+assets/sprites/cards/espiritu_guardian.png	.png	unknown	unknown	43369
+assets/sprites/cards/espiritu_guardian__pass1_5.png	.png	unknown	unknown	43369
+assets/sprites/cards/estallido_arcano.png	.png	unknown	unknown	42587
+assets/sprites/cards/estallido_arcano__pass1_4.png	.png	unknown	unknown	42587
+assets/sprites/cards/filo_astral.png	.png	unknown	unknown	43516
+assets/sprites/cards/filo_astral__pass1_5.png	.png	unknown	unknown	43516
+assets/sprites/cards/filo_en_cadena.png	.png	unknown	unknown	42600
+assets/sprites/cards/filo_en_cadena__pass1_4.png	.png	unknown	unknown	42600
+assets/sprites/cards/firmeza_del_cuerpo.png	.png	unknown	unknown	43730
+assets/sprites/cards/firmeza_del_cuerpo__pass2_1.png	.png	unknown	unknown	43730
+assets/sprites/cards/fragmento_celeste.png	.png	unknown	unknown	47408
+assets/sprites/cards/fragmento_celeste__pass2_3.png	.png	unknown	unknown	47408
+assets/sprites/cards/fusion_espiritual.png	.png	unknown	unknown	40912
+assets/sprites/cards/fusion_espiritual__pass1_4.png	.png	unknown	unknown	40912
+assets/sprites/cards/garra_espiritual.png	.png	unknown	unknown	43536
+assets/sprites/cards/garra_espiritual__pass1_3.png	.png	unknown	unknown	43536
+assets/sprites/cards/guardia_terrenal.png	.png	unknown	unknown	42335
+assets/sprites/cards/guardia_terrenal__pass1_2.png	.png	unknown	unknown	42335
+assets/sprites/cards/hg_lore_01.png	.png	unknown	unknown	43179
+assets/sprites/cards/hg_lore_01__pass1_1.png	.png	unknown	unknown	43179
+assets/sprites/cards/hg_lore_05.png	.png	unknown	unknown	43052
+assets/sprites/cards/hg_lore_05__pass2_3.png	.png	unknown	unknown	43052
+assets/sprites/cards/hg_lore_06.png	.png	unknown	unknown	43251
+assets/sprites/cards/hg_lore_06__pass1_0.png	.png	unknown	unknown	43251
+assets/sprites/cards/hg_lore_07.png	.png	unknown	unknown	43210
+assets/sprites/cards/hg_lore_07__pass1_1.png	.png	unknown	unknown	43210
+assets/sprites/cards/hg_lore_11.png	.png	unknown	unknown	43875
+assets/sprites/cards/hg_lore_11__pass1_0.png	.png	unknown	unknown	43875
+assets/sprites/cards/hg_lore_13.png	.png	unknown	unknown	44293
+assets/sprites/cards/hg_lore_13__pass1_4.png	.png	unknown	unknown	44293
+assets/sprites/cards/hg_lore_15.png	.png	unknown	unknown	42464
+assets/sprites/cards/hg_lore_15__pass1_0.png	.png	unknown	unknown	42464
+assets/sprites/cards/hg_lore_19.png	.png	unknown	unknown	43796
+assets/sprites/cards/hg_lore_19__pass2_3.png	.png	unknown	unknown	43796
+assets/sprites/cards/hg_lore_24.png	.png	unknown	unknown	44529
+assets/sprites/cards/hg_lore_24__pass2_3.png	.png	unknown	unknown	44529
+assets/sprites/cards/hg_lore_27.png	.png	unknown	unknown	44107
+assets/sprites/cards/hg_lore_27__pass2_1.png	.png	unknown	unknown	44107
+assets/sprites/cards/invocacion_astral.png	.png	unknown	unknown	46992
+assets/sprites/cards/invocacion_astral__pass1_1.png	.png	unknown	unknown	46992
+assets/sprites/cards/lectura_del_destino.png	.png	unknown	unknown	48131
+assets/sprites/cards/lectura_del_destino__pass1_1.png	.png	unknown	unknown	48131
+assets/sprites/cards/mantra_del_umbral.png	.png	unknown	unknown	43310
+assets/sprites/cards/mantra_del_umbral__pass2_1.png	.png	unknown	unknown	43310
+assets/sprites/cards/muralla_de_piedra.png	.png	unknown	unknown	43379
+assets/sprites/cards/muralla_de_piedra__pass1_4.png	.png	unknown	unknown	43379
+assets/sprites/cards/observacion_sagrada.png	.png	unknown	unknown	46171
+assets/sprites/cards/observacion_sagrada__pass2_1.png	.png	unknown	unknown	46171
+assets/sprites/cards/of_lore_12.png	.png	unknown	unknown	43888
+assets/sprites/cards/of_lore_12__pass2_1.png	.png	unknown	unknown	43888
+assets/sprites/cards/of_lore_16.png	.png	unknown	unknown	46941
+assets/sprites/cards/of_lore_16__pass2_1.png	.png	unknown	unknown	46941
+assets/sprites/cards/of_lore_17.png	.png	unknown	unknown	47385
+assets/sprites/cards/of_lore_17__pass1_1.png	.png	unknown	unknown	47385
+assets/sprites/cards/of_lore_20.png	.png	unknown	unknown	46765
+assets/sprites/cards/of_lore_20__pass1_5.png	.png	unknown	unknown	46765
+assets/sprites/cards/of_lore_21.png	.png	unknown	unknown	47392
+assets/sprites/cards/of_lore_21__pass1_0.png	.png	unknown	unknown	47392
+assets/sprites/cards/of_lore_22.png	.png	unknown	unknown	46892
+assets/sprites/cards/of_lore_22__pass1_4.png	.png	unknown	unknown	46892
+assets/sprites/cards/of_lore_25.png	.png	unknown	unknown	46728
+assets/sprites/cards/of_lore_25__pass2_2.png	.png	unknown	unknown	46728
+assets/sprites/cards/of_lore_26.png	.png	unknown	unknown	47056
+assets/sprites/cards/of_lore_26__pass2_1.png	.png	unknown	unknown	47056
+assets/sprites/cards/of_lore_28.png	.png	unknown	unknown	46671
+assets/sprites/cards/of_lore_28__pass1_4.png	.png	unknown	unknown	46671
+assets/sprites/cards/of_lore_30.png	.png	unknown	unknown	47680
+assets/sprites/cards/of_lore_30__pass1_0.png	.png	unknown	unknown	47680
+assets/sprites/cards/piedra_ritual.png	.png	unknown	unknown	46607
+assets/sprites/cards/piedra_ritual__pass2_2.png	.png	unknown	unknown	46607
+assets/sprites/cards/portal_de_la_chakana.png	.png	unknown	unknown	47179
+assets/sprites/cards/portal_de_la_chakana__pass2_3.png	.png	unknown	unknown	47179
+assets/sprites/cards/pulso_cosmico.png	.png	unknown	unknown	42540
+assets/sprites/cards/pulso_cosmico__pass1_3.png	.png	unknown	unknown	42540
+assets/sprites/cards/resistencia_ancestral.png	.png	unknown	unknown	43410
+assets/sprites/cards/resistencia_ancestral__pass2_2.png	.png	unknown	unknown	43410
+assets/sprites/cards/revelacion_astral.png	.png	unknown	unknown	47066
+assets/sprites/cards/revelacion_astral__pass1_2.png	.png	unknown	unknown	47066
+assets/sprites/cards/ritual_de_la_trama.png	.png	unknown	unknown	46692
+assets/sprites/cards/ritual_de_la_trama__pass1_4.png	.png	unknown	unknown	46692
+assets/sprites/cards/sello_protector.png	.png	unknown	unknown	44220
+assets/sprites/cards/sello_protector__pass1_2.png	.png	unknown	unknown	44220
+assets/sprites/cards/silencio_interior.png	.png	unknown	unknown	48179
+assets/sprites/cards/silencio_interior__pass1_3.png	.png	unknown	unknown	48179
+assets/sprites/cards/vinculo_de_energia.png	.png	unknown	unknown	43216
+assets/sprites/cards/vinculo_de_energia__pass2_2.png	.png	unknown	unknown	43216
+assets/sprites/cards/vision_del_condor.png	.png	unknown	unknown	47954
+assets/sprites/cards/vision_del_condor__pass1_4.png	.png	unknown	unknown	47954
+avatar_system_validation.txt	.txt	unknown	unknown	190
+card_art_upgrade_report.txt	.txt	report/log	duplicate/overlapping	6471
+card_balance_validation.txt	.txt	unknown	unknown	283
+chakana_project_consolidation_report.txt	.txt	report/log	duplicate/overlapping	1059
+codex_validation_report.txt	.txt	report/log	duplicate/overlapping	221
+creative_art_master_upgrade_report.txt	.txt	report/log	duplicate/overlapping	289
+creative_director_report.txt	.txt	report/log	duplicate/overlapping	434
+docs/README.md	.md	active support	active support	545
+docs/architecture/DEV_WORKFLOW.md	.md	active support	active support	1347
+docs/architecture/PROJECT_STRUCTURE_AUDIT.md	.md	active support	active support	1278
+docs/architecture/PROJECT_STRUCTURE_CLASSIFICATION.json	.json	unknown	unknown	368531
+docs/architecture/buenas_practicas.md	.md	active support	active support	706
+docs/architecture/codex_prompt_template.md	.md	active support	active support	716
+docs/architecture/documentation_classification_report.txt	.txt	active support	active support	11806
+docs/architecture/documentation_structure_audit.txt	.txt	active support	active support	13572
+docs/architecture/non_destructive_cleanup_guided_report.txt	.txt	active support	active support	1532
+docs/architecture/target_structure_plan.txt	.txt	active support	active support	1120
+docs/archive/CONTENT_LOCK_1_0_REPORT.md	.md	active support	legacy candidate	587
+docs/archive/QA_PHASE9_SUPERVISION_EXPANDED.md	.md	active support	legacy candidate	3081
+docs/archive/active_asset_sanitization_report.txt	.txt	active support	legacy candidate	2562
+docs/archive/active_runtime_asset_report.txt	.txt	active support	legacy candidate	1989
+docs/archive/asset_classification_report.txt	.txt	active support	legacy candidate	2653
+docs/archive/asset_disk_audit_report.txt	.txt	active support	legacy candidate	1260
+docs/archive/audio_runtime_mapping_report.txt	.txt	active support	legacy candidate	1523
+docs/archive/card_set_emblem_system_report.txt	.txt	active support	legacy candidate	1608
+docs/archive/chakana_game_professionalization_report.txt	.txt	active support	legacy candidate	1584
+docs/archive/combat_hud_polish_report.txt	.txt	active support	legacy candidate	564
+docs/archive/content_generation_supervision_report.txt	.txt	active support	legacy candidate	942
+docs/archive/deckbuilder_design_audit.txt	.txt	active support	legacy candidate	1744
+docs/archive/event_node_refactor_report.txt	.txt	active support	legacy candidate	745
+docs/archive/event_system_design_report.txt	.txt	active support	legacy candidate	690
+docs/archive/final_gameplay_integration_fix_report.md	.md	active support	legacy candidate	1127
+docs/archive/final_gameplay_integration_fix_report.txt	.txt	active support	legacy candidate	1111
+docs/archive/gameplay_loop_evaluation.txt	.txt	active support	legacy candidate	834
+docs/archive/hologram_dialogue_integration_report.txt	.txt	active support	legacy candidate	621
+docs/archive/legacy_purge_plan.txt	.txt	active support	legacy candidate	820
+docs/archive/lore_integration_audit.txt	.txt	active support	legacy candidate	650
+docs/archive/lore_language_normalization_report.txt	.txt	active support	legacy candidate	574
+docs/archive/pack_shop_integration_report.txt	.txt	active support	legacy candidate	600
+docs/archive/player_experience_review.txt	.txt	active support	legacy candidate	685
+docs/archive/player_facing_label_audit.txt	.txt	active support	legacy candidate	764
+docs/archive/portrait_pipeline_upgrade_report.txt	.txt	active support	legacy candidate	455
+docs/archive/procedural_art_evolution_plan.txt	.txt	active support	legacy candidate	714
+docs/archive/professionalization_roadmap.txt	.txt	active support	legacy candidate	761
+docs/archive/regen_audio_report.txt	.txt	active support	legacy candidate	3201
+docs/archive/regen_visual_report.txt	.txt	active support	legacy candidate	1335
+docs/archive/soundtrack_direction_plan.txt	.txt	active support	legacy candidate	742
+docs/archive/system_architecture_audit.txt	.txt	active support	legacy candidate	893
+docs/archive/system_knot_audit_report.txt	.txt	active support	legacy candidate	565
+docs/archive/visual_direction_audit.txt	.txt	active support	legacy candidate	894
+docs/archive/visual_pipeline_upgrade_report.txt	.txt	active support	legacy candidate	1372
+docs/archive/world_naming_conventions.txt	.txt	active support	legacy candidate	896
+docs/canon/ART_DIRECTION.md	.md	active support	active support	226
+docs/canon/ART_STYLE_GUIDE.md	.md	active support	active support	1381
+docs/canon/BESTIARY.md	.md	active support	active support	289
+docs/canon/CHAKANA_MANUAL_1_0.md	.md	active support	active support	372
+docs/canon/GAME_SYSTEMS_REFERENCE.md	.md	active support	active support	422
+docs/canon/LORE_ATLAS.md	.md	active support	active support	197
+docs/canon/MUSIC_DIRECTION.md	.md	active support	active support	117
+docs/canon/RELICS.md	.md	active support	active support	110
+docs/design/Art_Direction.md	.md	active support	active support	1099
+docs/design/SYSTEM_CLEANUP_LOCK.md	.md	active support	active support	1502
+docs/design/UI_AUDIT_REPORT.md	.md	active support	active support	7415
+docs/design/game_design_document.md	.md	active support	active support	1119
+docs/engine/CHAKANA_ENGINE_EXTRACTION_PLAN.md	.md	active support	active support	3797
+docs/engine/PURPLE_WIZARD_CONTENT_BOUNDARY.md	.md	active support	active support	2093
+docs/lore/HIPERBORIA_SET.md	.md	active support	active support	670
+docs/lore/Lore_Canon.md	.md	active support	active support	1316
+docs/lore/avatar_curated_checklist.md	.md	active support	active support	2234
+docs/lore/carta_sagrada_diseno.md	.md	active support	active support	717
+docs/lore/lore_biblia_chakana.md	.md	active support	active support	735
+docs/systems/CHAKANA_CARD_SYSTEM_1_0.md	.md	active support	active support	802
+docs/systems/CHAKANA_COMBAT_SYSTEM_1_0.md	.md	active support	active support	693
+docs/systems/CHAKANA_ENEMY_SYSTEM_1_0.md	.md	active support	active support	885
+docs/systems/CHAKANA_GAMEPLAY_SYSTEM_1_0.md	.md	active support	active support	1252
+docs/systems/CHAKANA_MASTER_GAME_BIBLE_1_0.md	.md	active support	active support	545
+docs/systems/CHAKANA_META_ENGINE_DESIGN_1_0.md	.md	active support	active support	866
+docs/systems/CHAKANA_RELIC_SYSTEM_1_0.md	.md	active support	active support	727
+docs_cleanup_report.txt	.txt	report/log	duplicate/overlapping	9270
+document_audit_report.txt	.txt	report/log	duplicate/overlapping	4153
+documentation_reorganization_report.txt	.txt	report/log	duplicate/overlapping	972
+enemy_deck_validation.txt	.txt	unknown	unknown	207
+engine/__init__.py	.py	active support	active support	60
+engine/audio_system/README.md	.md	active support	active support	66
+engine/card_engine/README.md	.md	active support	active support	65
+engine/combat/README.md	.md	active support	active support	60
+engine/creative_direction/__init__.py	.py	active support	active support	462
+engine/creative_direction/art_director.py	.py	active support	active support	3234
+engine/creative_direction/music_director.py	.py	active support	active support	2479
+engine/creative_direction/quality_evaluator.py	.py	active support	active support	5257
+engine/creative_direction/style_guide.py	.py	active support	active support	3197
+engine/creative_direction/variation_engine.py	.py	active support	active support	939
+engine/procedural_art/README.md	.md	active support	active support	68
+engine/rendering/README.md	.md	active support	active support	63
+engine/ui_framework/README.md	.md	active support	active support	66
+full_system_validation.txt	.txt	unknown	unknown	230
+game/__init__.py	.py	active runtime core	active runtime core	0
+game/art/gen_art32.py	.py	active runtime core	active runtime core	5987
+game/art/gen_avatar_chakana.py	.py	active runtime core	active runtime core	2983
+game/art/gen_card_art32.py	.py	active runtime core	active runtime core	23002
+game/art/gen_card_art_advanced.py	.py	active runtime core	active runtime core	9513
+game/art/gen_guide_art32.py	.py	active runtime core	active runtime core	1366
+game/assets/.cache/art_direction_pass/arc_art_direction_probe.png	.png	active runtime core	active runtime core	49453
+game/assets/.cache/art_direction_pass/base_art_direction_probe.png	.png	active runtime core	active runtime core	43192
+game/assets/.cache/art_direction_pass/hip_art_direction_probe.png	.png	active runtime core	active runtime core	37861
+game/assets/.cache/biomes/caverna_umbral/bg.png	.png	active runtime core	active runtime core	14951
+game/assets/.cache/biomes/caverna_umbral/fg.png	.png	active runtime core	active runtime core	11047
+game/assets/.cache/biomes/caverna_umbral/mg.png	.png	active runtime core	active runtime core	14585
+game/assets/.cache/biomes/forest/bg.png	.png	active runtime core	active runtime core	16483
+game/assets/.cache/biomes/forest/fg.png	.png	active runtime core	active runtime core	9829
+game/assets/.cache/biomes/forest/mg.png	.png	active runtime core	active runtime core	13467
+game/assets/.cache/biomes/fractura_chakana/bg.png	.png	active runtime core	active runtime core	15824
+game/assets/.cache/biomes/fractura_chakana/fg.png	.png	active runtime core	active runtime core	12748
+game/assets/.cache/biomes/fractura_chakana/mg.png	.png	active runtime core	active runtime core	12460
+game/assets/.cache/biomes/hanan/bg.png	.png	active runtime core	active runtime core	17299
+game/assets/.cache/biomes/hanan/fg.png	.png	active runtime core	active runtime core	13219
+game/assets/.cache/biomes/hanan/mg.png	.png	active runtime core	active runtime core	12743
+game/assets/.cache/biomes/hanan_pacha/bg.png	.png	active runtime core	active runtime core	17331
+game/assets/.cache/biomes/hanan_pacha/fg.png	.png	active runtime core	active runtime core	12901
+game/assets/.cache/biomes/hanan_pacha/mg.png	.png	active runtime core	active runtime core	12504
+game/assets/.cache/biomes/hiperborea/bg.png	.png	active runtime core	active runtime core	16348
+game/assets/.cache/biomes/hiperborea/fg.png	.png	active runtime core	active runtime core	11216
+game/assets/.cache/biomes/hiperborea/mg.png	.png	active runtime core	active runtime core	13867
+game/assets/.cache/biomes/kay_pacha/bg.png	.png	active runtime core	active runtime core	15892
+game/assets/.cache/biomes/kay_pacha/fg.png	.png	active runtime core	active runtime core	12362
+game/assets/.cache/biomes/kay_pacha/mg.png	.png	active runtime core	active runtime core	13465
+game/assets/.cache/biomes/kaypacha/bg.png	.png	active runtime core	active runtime core	15842
+game/assets/.cache/biomes/kaypacha/fg.png	.png	active runtime core	active runtime core	11691
+game/assets/.cache/biomes/kaypacha/mg.png	.png	active runtime core	active runtime core	12474
+game/assets/.cache/biomes/pampa_astral/bg.png	.png	active runtime core	active runtime core	17642
+game/assets/.cache/biomes/pampa_astral/fg.png	.png	active runtime core	active runtime core	12561
+game/assets/.cache/biomes/pampa_astral/mg.png	.png	active runtime core	active runtime core	11443
+game/assets/.cache/biomes/ruinas_chakana/bg.png	.png	active runtime core	active runtime core	15828
+game/assets/.cache/biomes/ruinas_chakana/fg.png	.png	active runtime core	active runtime core	12031
+game/assets/.cache/biomes/ruinas_chakana/mg.png	.png	active runtime core	active runtime core	12439
+game/assets/.cache/biomes/templo_obsidiana/bg.png	.png	active runtime core	active runtime core	15167
+game/assets/.cache/biomes/templo_obsidiana/fg.png	.png	active runtime core	active runtime core	12382
+game/assets/.cache/biomes/templo_obsidiana/mg.png	.png	active runtime core	active runtime core	15146
+game/assets/.cache/biomes/ukhu/bg.png	.png	active runtime core	active runtime core	15062
+game/assets/.cache/biomes/ukhu/fg.png	.png	active runtime core	active runtime core	12240
+game/assets/.cache/biomes/ukhu/mg.png	.png	active runtime core	active runtime core	15885
+game/assets/.cache/biomes/ukhu_pacha/bg.png	.png	active runtime core	active runtime core	15014
+game/assets/.cache/biomes/ukhu_pacha/fg.png	.png	active runtime core	active runtime core	11503
+game/assets/.cache/biomes/ukhu_pacha/mg.png	.png	active runtime core	active runtime core	15303
+game/assets/.cache/biomes/umbral/bg.png	.png	active runtime core	active runtime core	16551
+game/assets/.cache/biomes/umbral/fg.png	.png	active runtime core	active runtime core	10184
+game/assets/.cache/biomes/umbral/mg.png	.png	active runtime core	active runtime core	13273
+game/assets/.cache/music/combat_fractura_chakana.wav	.wav	active runtime core	active runtime core	10325896
+game/assets/.cache/music/combat_ukhu.wav	.wav	active runtime core	active runtime core	10325896
+game/assets/.cache/music/map_fractura_chakana.wav	.wav	active runtime core	active runtime core	10325896
+game/assets/.cache/music/map_ukhu.wav	.wav	active runtime core	active runtime core	10325896
+game/assets/.cache/music/nonexistent_track_for_test.wav	.wav	active runtime core	active runtime core	0
+game/assets/.cache/phase5_card_art/qa_abs.png	.png	active runtime core	active runtime core	28798
+game/assets/.cache/phase5_card_art/qa_archon_dark.png	.png	active runtime core	active runtime core	28843
+game/assets/.cache/phase5_card_art/qa_legend_hip.png	.png	active runtime core	active runtime core	28344
+game/assets/.cache/phase5_card_art/qa_motif.png	.png	active runtime core	active runtime core	33896
+game/assets/.gitkeep	<noext>	unknown	unknown	0
+game/assets/avatars/.gitkeep	<noext>	unknown	unknown	0
+game/assets/avatars/README.txt	.txt	unknown	unknown	251
+game/assets/backgrounds/caverna_umbral_13498.png	.png	active runtime core	active runtime core	31204
+game/assets/backgrounds/caverna_umbral_2026.png	.png	active runtime core	active runtime core	31442
+game/assets/backgrounds/caverna_umbral_46614.png	.png	active runtime core	active runtime core	30139
+game/assets/backgrounds/caverna_umbral_59092.png	.png	active runtime core	active runtime core	30581
+game/assets/backgrounds/caverna_umbral_66173.png	.png	active runtime core	active runtime core	29904
+game/assets/backgrounds/caverna_umbral_75820.png	.png	active runtime core	active runtime core	35021
+game/assets/backgrounds/caverna_umbral_82425.png	.png	active runtime core	active runtime core	32573
+game/assets/backgrounds/pampa_astral_2026.png	.png	active runtime core	active runtime core	32646
+game/assets/backgrounds/pampa_astral_31015.png	.png	active runtime core	active runtime core	35651
+game/assets/backgrounds/pampa_astral_38590.png	.png	active runtime core	active runtime core	36336
+game/assets/backgrounds/pampa_astral_54191.png	.png	active runtime core	active runtime core	35374
+game/assets/backgrounds/pampa_astral_65133.png	.png	active runtime core	active runtime core	34471
+game/assets/backgrounds/pampa_astral_86912.png	.png	active runtime core	active runtime core	36771
+game/assets/backgrounds/ruinas_chakana_2026.png	.png	active runtime core	active runtime core	32671
+game/assets/backgrounds/ruinas_chakana_47584.png	.png	active runtime core	active runtime core	35494
+game/assets/backgrounds/ruinas_chakana_57253.png	.png	active runtime core	active runtime core	33864
+game/assets/backgrounds/ruinas_chakana_76144.png	.png	active runtime core	active runtime core	31035
+game/assets/backgrounds/ruinas_chakana_84724.png	.png	active runtime core	active runtime core	33600
+game/assets/backgrounds/ruinas_chakana_84859.png	.png	active runtime core	active runtime core	33400
+game/assets/backgrounds/templo_obsidiana_12902.png	.png	active runtime core	active runtime core	32041
+game/assets/backgrounds/templo_obsidiana_2026.png	.png	active runtime core	active runtime core	32179
+game/assets/backgrounds/templo_obsidiana_25236.png	.png	active runtime core	active runtime core	29816
+game/assets/backgrounds/templo_obsidiana_32730.png	.png	active runtime core	active runtime core	34595
+game/assets/backgrounds/templo_obsidiana_35806.png	.png	active runtime core	active runtime core	30180
+game/assets/backgrounds/templo_obsidiana_39694.png	.png	active runtime core	active runtime core	32858
+game/assets/backgrounds/templo_obsidiana_39873.png	.png	active runtime core	active runtime core	30883
+game/assets/backgrounds/templo_obsidiana_47918.png	.png	active runtime core	active runtime core	31342
+game/assets/backgrounds/templo_obsidiana_49505.png	.png	active runtime core	active runtime core	34348
+game/assets/backgrounds/templo_obsidiana_59144.png	.png	active runtime core	active runtime core	32689
+game/assets/backgrounds/templo_obsidiana_70399.png	.png	active runtime core	active runtime core	31540
+game/assets/backgrounds/templo_obsidiana_777.png	.png	active runtime core	active runtime core	31796
+game/assets/backgrounds/templo_obsidiana_7780.png	.png	active runtime core	active runtime core	29991
+game/assets/backgrounds/templo_obsidiana_85263.png	.png	active runtime core	active runtime core	29999
+game/assets/backgrounds/templo_obsidiana_97191.png	.png	active runtime core	active runtime core	31518
+game/assets/backgrounds/templo_obsidiana_98055.png	.png	active runtime core	active runtime core	35293
+game/assets/backgrounds/templo_obsidiana_98402.png	.png	active runtime core	active runtime core	30496
+game/assets/curated/avatars/README.txt	.txt	unknown	unknown	383
+game/assets/curated/avatars/archon_master_concept.png	.png	active runtime core	active runtime core	1526
+game/assets/curated/avatars/archon_master_hologram.png	.png	active runtime core	active runtime core	1526
+game/assets/curated/avatars/archon_master_portrait.png	.png	active runtime core	active runtime core	1526
+game/assets/curated/avatars/chakana_mage_codec_reference.png	.png	active runtime core	active runtime core	2763482
+game/assets/curated/avatars/chakana_mage_master_concept.png	.png	active runtime core	active runtime core	625015
+game/assets/curated/avatars/chakana_mage_master_hologram.png	.png	active runtime core	active runtime core	23297
+game/assets/curated/avatars/chakana_mage_master_portrait.png	.png	active runtime core	active runtime core	436000
+game/assets/curated/studio/chakana_emblem.png	.png	active runtime core	active runtime core	2242
+game/assets/curated/studio/chakana_loading_glyph.png	.png	active runtime core	active runtime core	1633
+game/assets/curated/studio/chakana_studio_logo.png	.png	active runtime core	active runtime core	17766
+game/assets/fonts/.gitkeep	<noext>	unknown	unknown	0
+game/assets/fonts/DejaVuSans.ttf	.ttf	active runtime core	active runtime core	1016724
+game/assets/music/.gitkeep	<noext>	unknown	unknown	0
+game/assets/sfx/.gitkeep	<noext>	unknown	unknown	0
+game/assets/sfx/card_pick.wav	.wav	active runtime core	active runtime core	5336
+game/assets/sfx/card_play.wav	.wav	active runtime core	active runtime core	5336
+game/assets/sfx/chime.wav	.wav	active runtime core	active runtime core	5336
+game/assets/sfx/exhaust.wav	.wav	active runtime core	active runtime core	5336
+game/assets/sfx/hit.wav	.wav	active runtime core	active runtime core	5336
+game/assets/sfx/shield.wav	.wav	active runtime core	active runtime core	5336
+game/assets/sfx/stinger_boss_phase.wav	.wav	active runtime core	active runtime core	15920
+game/assets/sfx/stinger_defeat.wav	.wav	active runtime core	active runtime core	14156
+game/assets/sfx/stinger_reward.wav	.wav	active runtime core	active runtime core	9746
+game/assets/sfx/stinger_seal_ready.wav	.wav	active runtime core	active runtime core	7982
+game/assets/sfx/stinger_victory.wav	.wav	active runtime core	active runtime core	12392
+game/assets/sfx/ui_click.wav	.wav	active runtime core	active runtime core	5336
+game/assets/sfx/whisper.wav	.wav	active runtime core	active runtime core	5336
+game/assets/sprites/.gitkeep	<noext>	unknown	unknown	0
+game/assets/sprites/avatar/chakana.png	.png	active runtime core	active runtime core	3505
+game/assets/sprites/avatar/chakana_mage_concept.png	.png	active runtime core	active runtime core	12346
+game/assets/sprites/avatar/chakana_mage_hologram.png	.png	active runtime core	active runtime core	3075
+game/assets/sprites/avatar/chakana_mage_portrait.png	.png	active runtime core	active runtime core	8117
+game/assets/sprites/biomes/astral_codex.png	.png	active runtime core	active runtime core	14328
+game/assets/sprites/biomes/caverna_umbral/bg.png	.png	active runtime core	active runtime core	16621
+game/assets/sprites/biomes/caverna_umbral/fg.png	.png	active runtime core	active runtime core	10162
+game/assets/sprites/biomes/caverna_umbral/mg.png	.png	active runtime core	active runtime core	14015
+game/assets/sprites/biomes/forest/bg.png	.png	active runtime core	active runtime core	16605
+game/assets/sprites/biomes/forest/fg.png	.png	active runtime core	active runtime core	10005
+game/assets/sprites/biomes/forest/mg.png	.png	active runtime core	active runtime core	14506
+game/assets/sprites/biomes/fractura_chakana.png	.png	active runtime core	active runtime core	15058
+game/assets/sprites/biomes/hanan.png	.png	active runtime core	active runtime core	15314
+game/assets/sprites/biomes/hiperborea.png	.png	active runtime core	active runtime core	15314
+game/assets/sprites/biomes/kaypacha.png	.png	active runtime core	active runtime core	14328
+game/assets/sprites/biomes/kaypacha/bg.png	.png	active runtime core	active runtime core	16725
+game/assets/sprites/biomes/kaypacha/fg.png	.png	active runtime core	active runtime core	10193
+game/assets/sprites/biomes/kaypacha/mg.png	.png	active runtime core	active runtime core	13806
+game/assets/sprites/biomes/pampa_astral/bg.png	.png	active runtime core	active runtime core	16744
+game/assets/sprites/biomes/pampa_astral/fg.png	.png	active runtime core	active runtime core	10071
+game/assets/sprites/biomes/pampa_astral/mg.png	.png	active runtime core	active runtime core	12779
+game/assets/sprites/biomes/ritual_cavern.png	.png	active runtime core	active runtime core	14160
+game/assets/sprites/biomes/ruinas_chakana/bg.png	.png	active runtime core	active runtime core	16482
+game/assets/sprites/biomes/ruinas_chakana/fg.png	.png	active runtime core	active runtime core	9844
+game/assets/sprites/biomes/ruinas_chakana/mg.png	.png	active runtime core	active runtime core	13846
+game/assets/sprites/biomes/templo_obsidiana/bg.png	.png	active runtime core	active runtime core	16731
+game/assets/sprites/biomes/templo_obsidiana/fg.png	.png	active runtime core	active runtime core	9729
+game/assets/sprites/biomes/templo_obsidiana/mg.png	.png	active runtime core	active runtime core	13801
+game/assets/sprites/biomes/ukhu.png	.png	active runtime core	active runtime core	14160
+game/assets/sprites/biomes/umbral/bg.png	.png	active runtime core	active runtime core	16512
+game/assets/sprites/biomes/umbral/fg.png	.png	active runtime core	active runtime core	10135
+game/assets/sprites/biomes/umbral/mg.png	.png	active runtime core	active runtime core	13602
+game/assets/sprites/cards/.gitkeep	<noext>	unknown	unknown	0
+game/assets/sprites/enemies/.gitkeep	<noext>	unknown	unknown	0
+game/assets/sprites/guides/angel.png	.png	active runtime core	active runtime core	2849
+game/assets/sprites/guides/arcane_hacker.png	.png	active runtime core	active runtime core	2588
+game/assets/sprites/guides/demon.png	.png	active runtime core	active runtime core	2632
+game/assets/sprites/guides/shaman.png	.png	active runtime core	active runtime core	3049
+game/assets/sprites/player/.gitkeep	<noext>	unknown	unknown	0
+game/assets/sprites/player/chakana_avatar.png	.png	active runtime core	active runtime core	3505
+game/assets/sprites/player/player.png	.png	active runtime core	active runtime core	221
+game/assets/sprites/starters/cosmic_warrior.png	.png	active runtime core	active runtime core	11450
+game/assets/sprites/starters/harmony_guardian.png	.png	active runtime core	active runtime core	11212
+game/assets/sprites/starters/oracle_of_fate.png	.png	active runtime core	active runtime core	10734
+game/assets/sprites/ui/.gitkeep	<noext>	unknown	unknown	0
+game/audio/__init__.py	.py	active runtime core	active runtime core	57
+game/audio/audio_engine.py	.py	active runtime core	active runtime core	27450
+game/audio/audio_manifest.json	.json	active runtime core	active runtime core	17357
+game/audio/generated/.gitkeep	<noext>	generated output	generated output	0
+game/audio/generated/bgm/.gitkeep	<noext>	generated output	generated output	0
+game/audio/generated/sfx/.gitkeep	<noext>	generated output	generated output	0
+game/audio/generated/stingers/.gitkeep	<noext>	generated output	generated output	0
+game/audio/generated/studio/.gitkeep	<noext>	generated output	generated output	0
+game/audio/music_manager.py	.py	active runtime core	active runtime core	1139
+game/audio/sfx_manager.py	.py	active runtime core	active runtime core	526
+game/cards/README.md	.md	unknown	unknown	59
+game/chakana_world/README.md	.md	unknown	unknown	67
+game/combat/__init__.py	.py	active runtime core	active runtime core	0
+game/combat/actions.py	.py	active runtime core	active runtime core	2402
+game/combat/card.py	.py	active runtime core	active runtime core	2290
+game/combat/combat_engine.py	.py	active runtime core	active runtime core	2312
+game/combat/combat_state.py	.py	active runtime core	active runtime core	31955
+game/combat/effects.py	.py	active runtime core	active runtime core	6802
+game/combat/enemy.py	.py	active runtime core	active runtime core	9135
+game/combat/intents.py	.py	active runtime core	active runtime core	144
+game/combat/play_validation.py	.py	active runtime core	active runtime core	3103
+game/combat/statuses.py	.py	active runtime core	active runtime core	97
+game/content/__init__.py	.py	active runtime core	active runtime core	0
+game/content/background_generator.py	.py	active runtime core	active runtime core	8745
+game/content/card_art_generator.py	.py	active runtime core	active runtime core	10971
+game/content/civilizations.py	.py	active runtime core	active runtime core	810
+game/content/enemy_art_generator.py	.py	active runtime core	active runtime core	4747
+game/content/generation_director.py	.py	active runtime core	active runtime core	1836
+game/content/guide_avatar_generator.py	.py	active runtime core	active runtime core	1095
+game/core/__init__.py	.py	active runtime core	active runtime core	0
+game/core/bootstrap_assets.py	.py	active runtime core	active runtime core	14146
+game/core/content_service.py	.py	active runtime core	active runtime core	296
+game/core/localization.py	.py	active runtime core	active runtime core	3508
+game/core/lore_service.py	.py	active runtime core	active runtime core	4274
+game/core/paths.py	.py	active runtime core	active runtime core	433
+game/core/rng.py	.py	active runtime core	active runtime core	547
+game/core/safe_io.py	.py	active runtime core	active runtime core	2677
+game/core/save.py	.py	active runtime core	active runtime core	523
+game/core/settings_store.py	.py	active runtime core	active runtime core	2814
+game/core/state_machine.py	.py	active runtime core	active runtime core	561
+game/data/archons_1_0.json	.json	active runtime core	active runtime core	1528
+game/data/art_manifest.json	.json	active runtime core	active runtime core	7188
+game/data/art_manifest_starters.json	.json	active runtime core	active runtime core	1060
+game/data/balance/combat.json	.json	active runtime core	active runtime core	260
+game/data/bgm_manifest.json	.json	active runtime core	active runtime core	529
+game/data/biomes.json	.json	active runtime core	active runtime core	1797
+game/data/card_prompts.json	.json	active runtime core	active runtime core	33904
+game/data/card_prompts.txt	.txt	unknown	unknown	5246
+game/data/cards.json	.json	active runtime core	active runtime core	67840
+game/data/cards/cards_60.json	.json	active runtime core	active runtime core	23508
+game/data/cards_arconte.json	.json	active runtime core	active runtime core	55700
+game/data/cards_hiperboria.json	.json	active runtime core	active runtime core	76764
+game/data/codex.json	.json	active runtime core	active runtime core	4179
+game/data/codex_cards_arconte.json	.json	active runtime core	active runtime core	27956
+game/data/codex_cards_hiperboria.json	.json	active runtime core	active runtime core	23828
+game/data/codex_cards_lore_set1.json	.json	active runtime core	active runtime core	21176
+game/data/codex_relics_lore_set1.json	.json	active runtime core	active runtime core	4165
+game/data/combat_dialogue.json	.json	active runtime core	active runtime core	3168
+game/data/content_lock_1_0.json	.json	active runtime core	active runtime core	325
+game/data/design/card_bible.txt	.txt	unknown	unknown	347
+game/data/design/enemy_bible.txt	.txt	unknown	unknown	146
+game/data/design/gdd_chakana_purple_wizard.txt	.txt	unknown	unknown	2583
+game/data/design/lore_bible.txt	.txt	unknown	unknown	279
+game/data/design/ui_bible.txt	.txt	unknown	unknown	454
+game/data/enemies.json	.json	active runtime core	active runtime core	2560
+game/data/enemies/bosses_3.json	.json	active runtime core	active runtime core	8277
+game/data/enemies/enemies_30.json	.json	active runtime core	active runtime core	23016
+game/data/enemy_decks.json	.json	active runtime core	active runtime core	8200
+game/data/enemy_prompts.json	.json	active runtime core	active runtime core	6122
+game/data/events.json	.json	active runtime core	active runtime core	3410
+game/data/hints_es.json	.json	active runtime core	active runtime core	3256
+game/data/lang/en.json	.json	active runtime core	active runtime core	7457
+game/data/lang/es.json	.json	active runtime core	active runtime core	13004
+game/data/lore/biomes_lore.json	.json	active runtime core	active runtime core	1768
+game/data/lore/chakana_lore.txt	.txt	unknown	unknown	1179
+game/data/lore/combat_dialogues.json	.json	active runtime core	active runtime core	23702
+game/data/lore/dialogues.json	.json	active runtime core	active runtime core	977
+game/data/lore/dialogues_combat.json	.json	active runtime core	active runtime core	23702
+game/data/lore/dialogues_events.json	.json	active runtime core	active runtime core	117
+game/data/lore/enemies.json	.json	active runtime core	active runtime core	181
+game/data/lore/events.json	.json	active runtime core	active runtime core	159
+game/data/lore/map_narration.json	.json	active runtime core	active runtime core	117
+game/data/lore/naming_style.txt	.txt	unknown	unknown	117
+game/data/lore/world.txt	.txt	unknown	unknown	484
+game/data/relics.json	.json	active runtime core	active runtime core	6794
+game/data/settings.default.json	.json	active runtime core	active runtime core	433
+game/data/settings.json	.json	active runtime core	active runtime core	1160
+game/data/spiritual_bestiary.json	.json	active runtime core	active runtime core	5847
+game/data/studio_intro_manifest.json	.json	active runtime core	active runtime core	112
+game/data/version.json	.json	active runtime core	active runtime core	101
+game/enemies/README.md	.md	unknown	unknown	61
+game/events/README.md	.md	unknown	unknown	60
+game/lore/__init__.py	.py	active runtime core	active runtime core	2
+game/lore/lore_engine.py	.py	active runtime core	active runtime core	4354
+game/main.py	.py	active runtime core	active runtime core	118435
+game/map/README.md	.md	unknown	unknown	57
+game/narrative/.gitkeep	<noext>	unknown	unknown	0
+game/qa/content_validator.py	.py	active runtime core	active runtime core	6883
+game/qa/runner.py	.py	active runtime core	active runtime core	7474
+game/relics/README.md	.md	unknown	unknown	60
+game/services/__init__.py	.py	active runtime core	active runtime core	0
+game/services/archetype_distribution.py	.py	active runtime core	active runtime core	4572
+game/services/asset_pipeline.py	.py	active runtime core	active runtime core	16082
+game/services/audio_pipeline.py	.py	active runtime core	active runtime core	539
+game/services/card_coherence.py	.py	active runtime core	active runtime core	5899
+game/services/combat_content_validator.py	.py	active runtime core	active runtime core	7048
+game/services/content_lock_validator.py	.py	active runtime core	active runtime core	7247
+game/services/content_service.py	.py	active runtime core	active runtime core	5074
+game/services/deck_integrity.py	.py	active runtime core	active runtime core	2880
+game/services/spiritual_bestiary.py	.py	active runtime core	active runtime core	4066
+game/settings.py	.py	active runtime core	active runtime core	758
+game/systems/__init__.py	.py	active runtime core	active runtime core	0
+game/systems/enemy_deck_system.py	.py	active runtime core	active runtime core	2602
+game/systems/enemy_intent_deck.py	.py	active runtime core	active runtime core	3409
+game/systems/event_system.py	.py	active runtime core	active runtime core	4204
+game/systems/gameplay_rules.py	.py	active runtime core	active runtime core	904
+game/systems/meta_director.py	.py	active runtime core	active runtime core	3450
+game/systems/reward_system.py	.py	active runtime core	active runtime core	12370
+game/telemetry/__init__.py	.py	active runtime core	active runtime core	37
+game/telemetry/logger.py	.py	active runtime core	active runtime core	941
+game/ui/__init__.py	.py	active runtime core	active runtime core	0
+game/ui/anim.py	.py	active runtime core	active runtime core	2414
+game/ui/components/__init__.py	.py	active runtime core	active runtime core	2
+game/ui/components/card_detail_panel.py	.py	active runtime core	active runtime core	5990
+game/ui/components/card_effect_summary.py	.py	active runtime core	active runtime core	4963
+game/ui/components/card_framework.py	.py	active runtime core	active runtime core	3626
+game/ui/components/card_preview_panel.py	.py	active runtime core	active runtime core	3414
+game/ui/components/card_renderer.py	.py	active runtime core	active runtime core	27981
+game/ui/components/floating_card_modal_preview.py	.py	active runtime core	active runtime core	1529
+game/ui/components/holographic_oracle.py	.py	active runtime core	active runtime core	7552
+game/ui/components/loading_widget.py	.py	active runtime core	active runtime core	2722
+game/ui/components/mana_orbs.py	.py	active runtime core	active runtime core	1855
+game/ui/components/modal_card_picker.py	.py	active runtime core	active runtime core	2410
+game/ui/components/modal_confirm.py	.py	active runtime core	active runtime core	2299
+game/ui/components/pixel_icons.py	.py	active runtime core	active runtime core	3368
+game/ui/components/topbar.py	.py	active runtime core	active runtime core	2387
+game/ui/controllers/__init__.py	.py	active runtime core	active runtime core	2
+game/ui/controllers/card_interaction.py	.py	active runtime core	active runtime core	1208
+game/ui/controllers/combat_dialogue_controller.py	.py	active runtime core	active runtime core	1450
+game/ui/controllers/dialogue_router.py	.py	active runtime core	active runtime core	3642
+game/ui/input.py	.py	active runtime core	active runtime core	230
+game/ui/layout/combat_layout.py	.py	active runtime core	active runtime core	3523
+game/ui/layouts/__init__.py	.py	active runtime core	active runtime core	2
+game/ui/layouts/combat_layout.py	.py	active runtime core	active runtime core	1563
+game/ui/render.py	.py	active runtime core	active runtime core	7965
+game/ui/screens/__init__.py	.py	active runtime core	active runtime core	0
+game/ui/screens/codex.py	.py	active runtime core	active runtime core	28727
+game/ui/screens/combat.py	.py	active runtime core	active runtime core	88577
+game/ui/screens/deck.py	.py	active runtime core	active runtime core	21233
+game/ui/screens/end.py	.py	active runtime core	active runtime core	7509
+game/ui/screens/error.py	.py	active runtime core	active runtime core	887
+game/ui/screens/event.py	.py	active runtime core	active runtime core	7880
+game/ui/screens/intro.py	.py	active runtime core	active runtime core	2043
+game/ui/screens/loading.py	.py	active runtime core	active runtime core	3617
+game/ui/screens/map.py	.py	active runtime core	active runtime core	31609
+game/ui/screens/menu.py	.py	active runtime core	active runtime core	6331
+game/ui/screens/pacha_transition.py	.py	active runtime core	active runtime core	2431
+game/ui/screens/pack_opening.py	.py	active runtime core	active runtime core	16126
+game/ui/screens/path_select.py	.py	active runtime core	active runtime core	19767
+game/ui/screens/qa_results.py	.py	active runtime core	active runtime core	964
+game/ui/screens/reward.py	.py	active runtime core	active runtime core	14842
+game/ui/screens/scene_fusion.py	.py	active runtime core	active runtime core	6415
+game/ui/screens/settings.py	.py	active runtime core	active runtime core	23337
+game/ui/screens/shop.py	.py	active runtime core	active runtime core	28775
+game/ui/screens/studio_intro.py	.py	active runtime core	active runtime core	13663
+game/ui/screens/tutorial.py	.py	active runtime core	active runtime core	3776
+game/ui/system/__init__.py	.py	active runtime core	active runtime core	186
+game/ui/system/brand.py	.py	active runtime core	active runtime core	929
+game/ui/system/colors.py	.py	active runtime core	active runtime core	1937
+game/ui/system/components.py	.py	active runtime core	active runtime core	5086
+game/ui/system/effects.py	.py	active runtime core	active runtime core	1260
+game/ui/system/fonts.py	.py	active runtime core	active runtime core	3870
+game/ui/system/icons.py	.py	active runtime core	active runtime core	12432
+game/ui/system/icons_atlas.py	.py	active runtime core	active runtime core	3055
+game/ui/system/layers.py	.py	active runtime core	active runtime core	463
+game/ui/system/layout.py	.py	active runtime core	active runtime core	2058
+game/ui/system/modals.py	.py	active runtime core	active runtime core	18840
+game/ui/system/safety.py	.py	active runtime core	active runtime core	2944
+game/ui/system/set_emblems.py	.py	active runtime core	active runtime core	5157
+game/ui/system/typography.py	.py	active runtime core	active runtime core	5696
+game/ui/system/ui_scale_system.py	.py	active runtime core	active runtime core	1272
+game/ui/system/widgets.py	.py	active runtime core	active runtime core	4776
+game/ui/theme.py	.py	active runtime core	active runtime core	297
+game/ui/tutorial_flow.py	.py	active runtime core	active runtime core	6229
+game/ui/ui_layout.py	.py	active runtime core	active runtime core	259
+game/ui/widgets.py	.py	active runtime core	active runtime core	1004
+game/version.py	.py	active runtime core	active runtime core	25
+game/visual/__init__.py	.py	active runtime core	active runtime core	131
+game/visual/generated/.gitkeep	<noext>	generated output	generated output	0
+game/visual/generated/avatar/.gitkeep	<noext>	generated output	generated output	0
+game/visual/generated/biomes/.gitkeep	<noext>	generated output	generated output	0
+game/visual/generated/emblems/.gitkeep	<noext>	generated output	generated output	0
+game/visual/generated/icons/.gitkeep	<noext>	generated output	generated output	0
+game/visual/generated/overlays/.gitkeep	<noext>	generated output	generated output	0
+game/visual/generated/relics/.gitkeep	<noext>	generated output	generated output	0
+game/visual/generators/__init__.py	.py	active runtime core	active runtime core	289
+game/visual/generators/avatar_generator.py	.py	active runtime core	active runtime core	5484
+game/visual/generators/biome_generator.py	.py	active runtime core	active runtime core	3761
+game/visual/generators/emblem_generator.py	.py	active runtime core	active runtime core	1224
+game/visual/generators/icon_generator.py	.py	active runtime core	active runtime core	4214
+game/visual/generators/lore_motifs.py	.py	active runtime core	active runtime core	2313
+game/visual/generators/relic_generator.py	.py	active runtime core	active runtime core	1736
+game/visual/generators/sacred_overlay_generator.py	.py	active runtime core	active runtime core	1186
+game/visual/portrait_manifest.json	.json	active runtime core	active runtime core	35119
+game/visual/portrait_pipeline.py	.py	active runtime core	active runtime core	23229
+game/visual/visual_engine.py	.py	active runtime core	active runtime core	7576
+game/visual/visual_manifest.json	.json	active runtime core	active runtime core	117647
+migration_notes.txt	.txt	unknown	unknown	504
+music_direction_document.md	.md	unknown	unknown	1411
+music_system_validation.txt	.txt	unknown	unknown	621
+project_docs_qa_tools_cleanup_report.txt	.txt	report/log	duplicate/overlapping	957
+qa/reports/ACTIVE_REPORTS.md	.md	active support	active support	1498
+qa/reports/archive/gameplay_blocker_report.txt	.txt	active support	legacy candidate	726
+qa/reports/archive/qa_card_legibility_fix.txt	.txt	active support	legacy candidate	1229
+qa/reports/archive/qa_report_build_0_9_102.txt	.txt	active support	legacy candidate	1657
+qa/reports/archive/qa_report_build_0_9_103.txt	.txt	active support	legacy candidate	1658
+qa/reports/archive/qa_report_build_0_9_104.txt	.txt	active support	legacy candidate	1639
+qa/reports/archive/qa_report_build_0_9_105.txt	.txt	active support	legacy candidate	1662
+qa/reports/archive/qa_report_build_0_9_106.txt	.txt	active support	legacy candidate	1641
+qa/reports/archive/qa_report_build_0_9_106a.txt	.txt	active support	legacy candidate	1492
+qa/reports/archive/qa_report_build_latest_prev_1773089331.txt	.txt	active support	legacy candidate	1650
+qa/reports/archive/qa_report_phase7_extended.md	.md	active support	legacy candidate	984
+qa/reports/archive/qa_report_phase7_extended.txt	.txt	active support	legacy candidate	968
+qa/reports/archive/qa_report_post_combat_polish_full.md	.md	active support	legacy candidate	11083
+qa/reports/archive/qa_report_post_combat_polish_full.txt	.txt	active support	legacy candidate	11713
+qa/reports/archive/qa_report_visual_system_normalization.md	.md	active support	legacy candidate	1359
+qa/reports/archive/qa_report_visual_system_normalization.txt	.txt	active support	legacy candidate	1327
+qa/reports/archive/qa_visual_runtime_fullhd.txt	.txt	active support	legacy candidate	650
+qa/reports/current/archetype_balance_report.txt	.txt	active support	active support	544
+qa/reports/current/audio_direction_upgrade.txt	.txt	active support	active support	288
+qa/reports/current/chakana_card_balance_system_report.txt	.txt	active support	active support	2398
+qa/reports/current/combat_system_upgrade_report.txt	.txt	active support	active support	2037
+qa/reports/current/legacy_cleanup_report.txt	.txt	active support	legacy candidate	438
+qa/reports/current/pre_1_0_consolidation_report.txt	.txt	active support	active support	387
+qa/reports/current/qa_report_build_latest.txt	.txt	active support	active support	1492
+qa/reports/current/ui_hierarchy_report.txt	.txt	active support	active support	295
+qa/reports/current/visual_consistency_report.txt	.txt	active support	active support	160
+qa_reorganization_report.txt	.txt	report/log	duplicate/overlapping	677
+qa_report_build_0_9_106a.txt	.txt	report/log	duplicate/overlapping	1965
+render_consistency_report.txt	.txt	report/log	duplicate/overlapping	554
+repository_structure_report.txt	.txt	report/log	duplicate/overlapping	150
+requirements.txt	.txt	unknown	unknown	15
+reset_generated.ps1	.ps1	unknown	unknown	418
+root_cleanup_report.txt	.txt	report/log	duplicate/overlapping	516
+run.ps1	.ps1	unknown	unknown	81
+savegame.json	.json	unknown	unknown	7184
+system_alignment_report.txt	.txt	report/log	duplicate/overlapping	650
+system_reference.md	.md	unknown	unknown	866
+tools/assets/__init__.py	.py	active support	active support	0
+tools/assets/bootstrap_archon_curated_assets.py	.py	active support	active support	1457
+tools/assets/build_chakana_master_from_reference.py	.py	active support	active support	6354
+tools/assets/curated_regen_cache_reset.py	.py	active support	active support	13714
+tools/bootstrap_archon_curated_assets.py	.py	active support	active support	263
+tools/build_chakana_master_from_reference.py	.py	active support	active support	271
+tools/check_card_coherence.py	.py	active support	active support	233
+tools/check_combat_content_lock.py	.py	active support	active support	243
+tools/check_deck_system.py	.py	active support	active support	227
+tools/clean_autogen.py	.py	active support	active support	3581
+tools/curated_regen_cache_reset.py	.py	active support	active support	251
+tools/doctor.py	.py	active support	active support	2753
+tools/final_gameplay_integration_fix.py	.py	active support	active support	271
+tools/maintenance/__init__.py	.py	active support	active support	0
+tools/maintenance/chakana_card_balance_system_pass.py	.py	active support	active support	8709
+tools/maintenance/chakana_manual_canon_consolidation_pass.py	.py	active support	active support	18134
+tools/maintenance/chakana_project_audit_consolidation.py	.py	active support	active support	15760
+tools/maintenance/creative_art_master_upgrade.py	.py	active support	active support	4649
+tools/maintenance/creative_director_pass.py	.py	active support	active support	6889
+tools/maintenance/final_gameplay_integration_fix.py	.py	active support	active support	7736
+tools/maintenance/non_destructive_cleanup_guided.py	.py	active support	active support	3821
+tools/maintenance/professionalization_execution_pass.py	.py	active support	active support	6668
+tools/qa/__init__.py	.py	active support	active support	0
+tools/qa/card_art_direction_pass.py	.py	active support	active support	4913
+tools/qa/check_card_coherence.py	.py	active support	active support	900
+tools/qa/check_combat_content_lock.py	.py	active support	active support	1520
+tools/qa/check_deck_system.py	.py	active support	active support	3494
+tools/qa/combat_system_upgrade_audit.py	.py	active support	active support	7535
+tools/qa/qa_phase1_gameplay_blockers.py	.py	active support	active support	5949
+tools/qa/qa_phase2_pack_shop_integration.py	.py	active support	active support	3589
+tools/qa/qa_phase3_hologram_dialogue.py	.py	active support	active support	3736
+tools/qa/qa_phase3b_event_system.py	.py	active support	active support	5530
+tools/qa/qa_phase4_asset_pipeline_audit.py	.py	active support	active support	10542
+tools/qa/qa_phase5_visual_audio_upgrade.py	.py	active support	active support	6735
+tools/qa/qa_phase6_combat_hud.py	.py	active support	active support	3703
+tools/qa/qa_phase7_extended.py	.py	active support	active support	10632
+tools/qa/qa_phase9_supervision.py	.py	active support	active support	229
+tools/qa/qa_pre_engine_audit.py	.py	active support	active support	35039
+tools/qa/qa_visual_runtime_fullhd.py	.py	active support	active support	4535
+tools/qa/qa_visual_system_normalization.py	.py	active support	active support	8557
+tools/qa_phase1_gameplay_blockers.py	.py	active support	active support	247
+tools/qa_phase2_pack_shop_integration.py	.py	active support	active support	255
+tools/qa_phase3_hologram_dialogue.py	.py	active support	active support	247
+tools/qa_phase3b_event_system.py	.py	active support	active support	239
+tools/qa_phase4_asset_pipeline_audit.py	.py	active support	active support	253
+tools/qa_phase5_visual_audio_upgrade.py	.py	active support	active support	253
+tools/qa_phase6_combat_hud.py	.py	active support	active support	233
+tools/qa_phase7_extended.py	.py	active support	active support	229
+tools/qa_phase9_supervision.py	.py	active support	active support	21546
+tools/qa_pre_engine_audit.py	.py	active support	active support	231
+tools/qa_report_generator.py	.py	active support	active support	13888
+tools/qa_visual_runtime_fullhd.py	.py	active support	active support	241
+tools/qa_visual_system_normalization.py	.py	active support	active support	253
+tools/regen_assets.py	.py	active support	active support	5279
+tools/reset_autogen.ps1	.ps1	active support	active support	1038
+tools/validate_prompts.py	.py	active support	active support	2024
+tools_reorganization_report.txt	.txt	report/log	duplicate/overlapping	635

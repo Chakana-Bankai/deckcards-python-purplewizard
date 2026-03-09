@@ -8,6 +8,7 @@ from game.ui.components.card_effect_summary import infer_card_role
 from game.core.paths import data_dir
 from game.core.rng import SeededRNG
 from game.core.safe_io import load_json
+from game.systems.enemy_deck_system import resolve_enemy_deck
 from game.telemetry.logger import TelemetryLogger
 from game.services.deck_integrity import audit_and_repair_deck_piles
 from game.systems.gameplay_rules import DEFAULT_PLAYER_RULES, normalized_combat_deck
@@ -185,6 +186,12 @@ class CombatState:
             intent_deck = item.get("intent_deck", []) if isinstance(item.get("intent_deck", []), list) else []
             if intent_deck:
                 en.set_intent_deck(intent_deck, self.rng)
+            # Enemy deck system (cards -> hand/discard/reshuffle) with safe fallback from intents.
+            combat_deck = item.get("enemy_deck", []) if isinstance(item.get("enemy_deck", []), list) else []
+            if not combat_deck:
+                combat_deck = resolve_enemy_deck(item)
+            if combat_deck:
+                en.set_combat_deck(combat_deck, self.rng)
             en.fable_lesson_key = item.get("fable_lesson_key", "duda")
             enemies.append(en)
         return enemies
@@ -440,30 +447,36 @@ class CombatState:
         for enemy in self.enemies:
             if not enemy.alive:
                 continue
-            intent = enemy.current_intent(self.rng)
-            enemy.last_action_name = intent.get("name", intent.get("intent", "action"))
-            intent_kind = intent.get("intent", "attack")
-            if intent_kind == "attack":
-                value = intent.get("value", [5, 5])
-                low = value[0] if isinstance(value, list) else int(value)
-                high = value[1] if isinstance(value, list) and len(value) > 1 else low
-                self.queue.push(DealDamage(enemy, "player", self.rng.randint(low, high)))
-                self.combat_events.append({"type": "enemy_action", "intent": "enemy_attack", "enemy": enemy.id})
-            elif intent_kind == "defend":
-                value = intent.get("value", [5, 5])
-                low = value[0] if isinstance(value, list) else int(value)
-                high = value[1] if isinstance(value, list) and len(value) > 1 else low
-                self.queue.push(GainBlock(enemy, self.rng.randint(low, high)))
-                self.combat_events.append({"type": "enemy_action", "intent": "enemy_defend", "enemy": enemy.id})
-            elif intent_kind in {"debuff", "buff"}:
-                target = "player" if intent_kind == "debuff" else enemy
-                self.queue.push(ApplyStatus(target, intent.get("status", "weak"), intent.get("stacks", 1)))
-            elif intent_kind == "break":
-                self.player["rupture"] += int(intent.get("stacks", 1))
-            elif intent_kind == "heal":
-                enemy.hp = min(enemy.max_hp, enemy.hp + int(intent.get("stacks", 1)))
-            elif intent_kind == "channel":
-                pass
+
+            planned_cards = enemy.draw_playable_cards(self.rng, draw_n=5)
+            planned_intents = planned_cards if planned_cards else [enemy.current_intent(self.rng)]
+            enemy.last_action_name = " + ".join(str(x.get("name", x.get("label", x.get("intent", "action")))) for x in planned_intents[:2])
+
+            for intent in planned_intents[:2]:
+                intent_kind = intent.get("intent", "attack")
+                if intent_kind == "attack":
+                    value = intent.get("value", [5, 5])
+                    low = value[0] if isinstance(value, list) else int(value)
+                    high = value[1] if isinstance(value, list) and len(value) > 1 else low
+                    self.queue.push(DealDamage(enemy, "player", self.rng.randint(low, high)))
+                    self.combat_events.append({"type": "enemy_action", "intent": "enemy_attack", "enemy": enemy.id, "card": intent.get("name", "Ataque")})
+                elif intent_kind == "defend":
+                    value = intent.get("value", [5, 5])
+                    low = value[0] if isinstance(value, list) else int(value)
+                    high = value[1] if isinstance(value, list) and len(value) > 1 else low
+                    self.queue.push(GainBlock(enemy, self.rng.randint(low, high)))
+                    self.combat_events.append({"type": "enemy_action", "intent": "enemy_defend", "enemy": enemy.id, "card": intent.get("name", "Defensa")})
+                elif intent_kind in {"debuff", "buff"}:
+                    target = "player" if intent_kind == "debuff" else enemy
+                    self.queue.push(ApplyStatus(target, intent.get("status", "weak"), intent.get("stacks", 1)))
+                elif intent_kind == "break":
+                    self.player["rupture"] += int(intent.get("stacks", 1))
+                elif intent_kind == "heal":
+                    enemy.hp = min(enemy.max_hp, enemy.hp + int(intent.get("stacks", 1)))
+                elif intent_kind == "channel":
+                    pass
+
+            enemy.end_enemy_turn_cards(planned_cards, self.rng)
             enemy.advance_intent(self.rng)
 
     def update(self, dt):

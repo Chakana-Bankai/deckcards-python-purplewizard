@@ -1,0 +1,31 @@
+CHAKANA PROJECT CONSOLIDATION MASTER REPORT
+
+generated_at=2026-03-09T19:04:10
+
+[system_status]
+- phase1_canon: OK
+- phase2_docs_cleanup: OK
+- phase3_system_alignment: OK
+- phase4_codex: OK
+- phase5_card_validation: OK
+- phase6_enemy_decks: OK
+- phase7_art_pipeline: OK
+- phase8_avatar_hologram: OK
+- phase9_music: OK
+- phase10_repo_structure: OK
+- phase11_full_validation: WARNING
+
+[remaining_issues]
+- Future set auto-registration in Codex runtime should be fully dynamic.
+- Full boss run validation still requires live playthrough.
+- Audio/art validation shows warning state after aggressive asset cleanup until full regen pass.
+
+[engine_extraction_readiness]
+- Canon docs created under docs/canon.
+- Target engine/game/assets directories prepared non-destructively.
+- System references consolidated.
+
+[recommended_roadmap]
+1. Wire codex set tabs to dynamic discovery from content registry.
+2. Run full force regen for art/audio and re-run QA visual/audio.
+3. Execute controlled live run-to-boss checklist and close warnings.

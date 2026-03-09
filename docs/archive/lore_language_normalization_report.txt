@@ -1,0 +1,15 @@
+LORE LANGUAGE NORMALIZATION REPORT
+fecha: 2026-03-09 17:16:30
+
+Cambios aplicados:
+- Nombres tecnicos y snake_case ocultos en capa player-facing mediante localizacion/fallback humanizado.
+- Etiquetas en ingles visibles normalizadas a lenguaje de mundo en menu, tienda y vistas clave.
+- Sobres y elementos de compra alineados a terminologia diegetica.
+- Normalizacion de acentos rotos en lenguaje, pistas y set Hiperborea.
+
+Resultado de auditoria:
+- labels ingles detectadas: 0
+- nombres visibles con snake_case: 0
+- patrones mojibake activos: 0
+
+QA GATE: PASS

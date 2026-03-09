@@ -1,0 +1,18 @@
+PROFESSIONALIZATION EXECUTION PASS - PHASE 2
+taxonomy=engine/bridge/payoff
+
+[metrics]
+
+cosmic_warrior: avg_damage=49.8 avg_turns=3.38 boss_win_rate=1.0 synergy_density=14.73
+harmony_guardian: avg_damage=55.9 avg_turns=9.25 boss_win_rate=1.0 synergy_density=6.04
+oracle_of_fate: avg_damage=46.9 avg_turns=8.25 boss_win_rate=0.5 synergy_density=5.68
+
+[taxonomy_application]
+
+- engine cards: draw/energy/harmony setup
+- bridge cards: convert setup into tempo
+- payoff cards: rare/legendary finishers by archetype
+
+[status]
+
+PASS

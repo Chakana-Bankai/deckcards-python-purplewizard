@@ -1,0 +1,11 @@
+PROFESSIONALIZATION EXECUTION PASS - PHASE 5
+
+[audit]
+
+card_renderer_context_refs=10
+combat_hud_layout_refs=16
+codex_set_tabs_refs=1
+
+[status]
+
+PASS

@@ -1,0 +1,37 @@
+﻿CHAKANA : PURPLE WIZARD
+AUDIO CONTEXT MATERIALIZATION PASS
+Date: 2026-03-09
+
+GOAL
+- Materialize missing audio contexts safely and keep warnings only for contexts without source.
+
+EXECUTED
+- Bounded generation run (dummy audio driver) for missing BGM contexts:
+  map_kay, map_hanan, combat, combat_elite, combat_boss, shop, victory, defeat
+- Stingers materialized:
+  combat_start, elite_encounter, boss_reveal, victory, defeat, level_up, relic_gain, pack_open, seal_ready, harmony_ready, studio_intro
+- SFX materialized:
+  card_play, card_invalid, button_click, gold_gain, xp_gain, damage_hit, heal, seal_activate, relic_pick
+
+RESULT
+- audio_manifest version: chakana_audio_v6
+- manifest items: 40
+- files present: 40
+- files missing: 0
+- generated wav by folder:
+  - bgm: 20
+  - stingers: 10
+  - studio: 1
+  - sfx: 9
+
+WARNING POLICY
+- Warnings should now be emitted only when a new context has no materialized source.
+- Current core context set has full source coverage (no missing source in manifest set).
+
+QA NOTE
+- qa_report_generator still reports art_failures_total=120 (legacy checker metric).
+- This metric remains independent from the new Creative Director scoring pipeline.
+
+STATUS
+- PASS (audio context coverage)
+- WARNING (legacy art checker metric still pending normalization in qa_report_generator).

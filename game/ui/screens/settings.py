@@ -4,7 +4,7 @@ from game.ui.theme import UI_THEME
 
 
 class SettingsScreen:
-    SECTIONS = ["General", "Audio", "Visual", "Combat", "Accessibility", "Debug"]
+    SECTIONS = ["General", "Audio", "Visual", "Combate", "Accesibilidad", "Diagnostico"]
 
     def __init__(self, app, return_screen=None):
         self.app = app
@@ -400,9 +400,9 @@ class SettingsScreen:
             b_play = pygame.Rect(row.right - 270, row.y + 6, 82, 26)
             b_stop = pygame.Rect(row.right - 180, row.y + 6, 82, 26)
             b_reg = pygame.Rect(row.right - 90, row.y + 6, 82, 26)
-            self._draw_btn(s, b_play, "Play")
-            self._draw_btn(s, b_stop, "Stop")
-            self._draw_btn(s, b_reg, "Regen")
+            self._draw_btn(s, b_play, "Reproducir")
+            self._draw_btn(s, b_stop, "Detener")
+            self._draw_btn(s, b_reg, "Regenerar")
             self.row_actions.append({"item": item, "play": b_play, "stop": b_stop, "regen": b_reg})
             y += 42
             if y > panel.bottom - 46:
@@ -498,9 +498,9 @@ class SettingsScreen:
             self._render_audio(surface, panel)
         elif section == "Visual":
             self._render_visual(surface, panel)
-        elif section == "Combat":
+        elif section == "Combate":
             self._render_combat(surface, panel)
-        elif section == "Accessibility":
+        elif section == "Accesibilidad":
             self._render_accessibility(surface, panel)
         else:
             self._render_debug(surface, panel)

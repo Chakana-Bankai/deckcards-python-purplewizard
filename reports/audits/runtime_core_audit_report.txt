@@ -1,0 +1,100 @@
+CHAKANA RUNTIME CORE AUDIT REPORT
+generated_at=2026-03-09T19:42:53
+
+[scope]
+- main game loop
+- combat
+- card system
+- enemy system
+- shop
+- codex
+- event flow
+- avatar / hologram
+- art loading
+- music / audio loading
+
+[canonical_runtime_routes]
+1) Main loop / screen state
+- Canonical: game/main.py + game/core/state_machine.py
+- Route: StudioIntroScreen -> DataLoadingScreen -> Menu/Run screens
+- Status: ACTIVE
+
+2) Combat
+- Canonical: game/combat/combat_state.py + game/combat/combat_engine.py + game/ui/screens/combat.py
+- Notes: player deck normalization, hand limit, discard/reshuffle, enemy deck hookup
+- Status: ACTIVE
+
+3) Enemy decks / intents
+- Canonical: game/systems/enemy_deck_system.py + game/systems/enemy_intent_deck.py
+- Notes: data-driven deck by enemy_id with fallback synthesized intents
+- Status: ACTIVE
+
+4) Shop
+- Canonical: game/ui/screens/shop.py
+- Notes: tabs packs/relics/sell + explicit buy actions + pack opening route
+- Status: ACTIVE
+
+5) Codex
+- Canonical: game/ui/screens/codex.py
+- Notes: merges base + hiperboria + arconte codex payloads, set tabs/filters
+- Status: ACTIVE
+
+6) Event flow
+- Canonical: main.goto_event() -> enrich_event_payload() -> SceneFusion transition -> EventScreen
+- Files: game/main.py, game/systems/event_system.py, game/ui/screens/event.py, game/ui/screens/scene_fusion.py
+- Status: ACTIVE
+
+7) Avatar / hologram
+- Canonical: AssetManager.sprite() with portrait pipeline first for avatar-like categories
+- Files: game/ui/render.py + game/visual/portrait_pipeline.py + holographic_oracle/combat HUD
+- Status: ACTIVE
+
+8) Art loading
+- Canonical load path: game/assets/sprites/<category>/<name>.png via AssetManager
+- Fallback path: portrait pipeline / visual procedural engine / generated fallback surfaces
+- Status: ACTIVE
+
+9) Music / SFX loading
+- Canonical: game/audio/audio_engine.py
+- Access wrappers: game/audio/music_manager.py + game/audio/sfx_manager.py
+- Pipeline trigger: game/services/audio_pipeline.py
+- Status: ACTIVE
+
+[parallel_or_legacy_routes_detected]
+1) Reward routing
+- main.goto_reward() keeps a dead-safe legacy branch (legacy_modal=False hardcoded)
+- Effective route is pack-first (PackOpeningScreen) for normal rewards
+- Classification: LEGACY_CANDIDATE (dead branch kept for rollback)
+
+2) SoundManager in render layer
+- game/ui/render.py defines SoundManager, while runtime uses SFXManager/AudioEngine
+- No active references found to render.SoundManager
+- Classification: LEGACY_CANDIDATE / parallel abstraction
+
+3) Tooling duplicates (not runtime, but maintenance noise)
+- Same QA/asset scripts at tools root and tools/qa or tools/assets
+- Classification: SUPPORT_PARALLEL (cleanup needed)
+
+4) Asset path ambiguity impacting QA
+- Runtime canonical visual load is game/assets/sprites/*
+- Some generation/validation still checks assets/sprites/*
+- Classification: ACTIVE_MISMATCH (not fatal, causes false warnings)
+
+[runtime_flow_health]
+- main loop cohesion: OK
+- combat pipeline cohesion: OK
+- enemy deck integration: OK
+- event -> hologram -> event screen cohesion: OK
+- codex set integration route: OK
+- asset/audio pipeline coherence: WARNING (path and manifest conventions still mixed)
+
+[high_priority_actions_next]
+1. Remove or isolate dead reward legacy branch into explicit rollback helper.
+2. Deprecate game/ui/render.py::SoundManager and route all SFX via SFXManager/AudioEngine only.
+3. Normalize QA art checks to canonical runtime path (game/assets/sprites/cards first, then fallback).
+4. Keep wrappers in tools root but declare canonical script ownership in tools/qa and tools/assets.
+5. Add runtime-core map doc linking each system to one canonical module to prevent branch drift.
+
+[phase4_status]
+status=PASS_WITH_WARNING
+warning_reason=Runtime core is mostly canonical, but legacy/parallel support paths still create maintenance entropy and QA noise.

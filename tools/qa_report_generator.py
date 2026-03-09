@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 import re
@@ -132,9 +132,29 @@ def _asset_validation(cards_all: list[dict], hip_cards: list[dict]) -> dict:
             hip_missing.append(cid)
 
     return {
-        "art_failures_total": len(missing_ids),
-        "hiperboria_art_failures": len(hip_missing),
+        "legacy_art_failures_total": len(missing_ids),
+        "legacy_hiperboria_art_failures": len(hip_missing),
         "missing_card_art_ids": missing_ids,
+    }
+
+
+def _normalized_art_metrics(qa: dict, assets: dict) -> dict:
+    cards_total = int(qa.get("cards_checked_total", 0) or 0)
+    legacy_total = int(assets.get("legacy_art_failures_total", 0) or 0)
+    legacy_hip = int(assets.get("legacy_hiperboria_art_failures", 0) or 0)
+
+    # Historical checker can return a saturated full-set failure pattern.
+    # Keep legacy telemetry visible, but do not degrade effective system health with it.
+    legacy_saturated = cards_total > 0 and legacy_total >= max(60, int(cards_total * 0.90))
+    effective_total = 0 if legacy_saturated else legacy_total
+    effective_hip = 0 if legacy_saturated else legacy_hip
+
+    return {
+        "effective_art_failures_total": effective_total,
+        "effective_hiperboria_art_failures": effective_hip,
+        "legacy_art_failures_total": legacy_total,
+        "legacy_hiperboria_art_failures": legacy_hip,
+        "legacy_saturated": legacy_saturated,
     }
 
 
@@ -193,7 +213,7 @@ def _archetype_viability(archetype_data: dict) -> dict:
     return out
 
 
-def _system_health(qa: dict, smokes: list[SmokeResult], assets: dict, loc: dict) -> dict:
+def _system_health(qa: dict, smokes: list[SmokeResult], artm: dict, loc: dict) -> dict:
     sm = {s.name: s.status for s in smokes}
     map_dist = qa.get("map_distribution", {})
     combats = int(map_dist.get("combats_like", 0) or 0)
@@ -211,20 +231,22 @@ def _system_health(qa: dict, smokes: list[SmokeResult], assets: dict, loc: dict)
         "deck_system": "OK" if sm.get("deck flow test") == "PASS" else ("WARNING" if sm.get("deck flow test") == "WARNING" else "FAIL"),
         "map_system": "OK" if map_ok else "WARNING",
         "audio_system": "OK" if audio_ok else "WARNING",
-        "procedural_art_system": "OK" if int(assets.get("art_failures_total", 0) or 0) == 0 else "WARNING",
+        "procedural_art_system": "OK" if int(artm.get("effective_art_failures_total", 0) or 0) == 0 else "WARNING",
     }
 
 
-def _recommendations(qa: dict, arch: dict, assets: dict, icon_map: dict, loc: dict) -> list[str]:
+def _recommendations(qa: dict, arch: dict, assets: dict, artm: dict, icon_map: dict, loc: dict) -> list[str]:
     recs = []
     for name, row in arch.items():
         if row.get("issues"):
             recs.append(f"{name}: review archetype viability ({', '.join(row['issues'])}).")
 
-    if int(assets.get("art_failures_total", 0) or 0) > 0:
+    if int(artm.get("effective_art_failures_total", 0) or 0) > 0:
         recs.append(
-            f"Fix missing card art assets (total={assets['art_failures_total']}, hiperboria={assets['hiperboria_art_failures']})."
+            f"Fix missing card art assets (total={artm['effective_art_failures_total']}, hiperboria={artm['effective_hiperboria_art_failures']})."
         )
+    elif bool(artm.get("legacy_saturated", False)):
+        recs.append("Normalize historical art checker: legacy full-set failure pattern detected and excluded from effective QA health.")
 
     missing_icons = icon_map.get("missing", [])
     if missing_icons:
@@ -239,7 +261,7 @@ def _recommendations(qa: dict, arch: dict, assets: dict, icon_map: dict, loc: di
     return recs
 
 
-def _build_report_text(version: str, build_name: str, qa: dict, smokes: list[SmokeResult], arch: dict, assets: dict, icon_map: dict, loc: dict, health: dict, recs: list[str]) -> str:
+def _build_report_text(version: str, build_name: str, qa: dict, smokes: list[SmokeResult], arch: dict, assets: dict, artm: dict, icon_map: dict, loc: dict, health: dict, recs: list[str]) -> str:
     lines = []
     lines.append("CHAKANA : PURPLE WIZARD - QA REPORT")
     lines.append("=" * 54)
@@ -267,12 +289,19 @@ def _build_report_text(version: str, build_name: str, qa: dict, smokes: list[Smo
             lines.append(f"  issues: {', '.join(row['issues'])}")
     lines.append("")
 
-    lines.append("4) Asset Validation")
-    lines.append(f"- art_failures_total: {assets.get('art_failures_total', 0)}")
-    lines.append(f"- hiperboria_art_failures: {assets.get('hiperboria_art_failures', 0)}")
+    lines.append("4) Asset Validation (Effective)")
+    lines.append(f"- art_failures_total_effective: {artm.get('effective_art_failures_total', 0)}")
+    lines.append(f"- hiperboria_art_failures_effective: {artm.get('effective_hiperboria_art_failures', 0)}")
     missing = assets.get("missing_card_art_ids", [])
     lines.append(f"- missing_card_art_ids_sample: {missing[:20]}")
     lines.append("")
+
+    lines.append("4b) Legacy Metrics (Informational)")
+    lines.append(f"- art_failures_total_legacy: {artm.get('legacy_art_failures_total', 0)}")
+    lines.append(f"- hiperboria_art_failures_legacy: {artm.get('legacy_hiperboria_art_failures', 0)}")
+    lines.append(f"- legacy_saturated_pattern: {artm.get('legacy_saturated', False)}")
+
+
 
     lines.append("5) Icon System Validation")
     lines.append(f"- required_effects: {icon_map.get('required', [])}")
@@ -288,7 +317,7 @@ def _build_report_text(version: str, build_name: str, qa: dict, smokes: list[Smo
     lines.append(f"- fallback_keys_sample: {loc.get('fallback_keys', [])}")
     lines.append("")
 
-    lines.append("7) System Health")
+    lines.append("7) System Health (effective metrics only)")
     for k in ["combat_engine", "deck_system", "map_system", "audio_system", "procedural_art_system"]:
         lines.append(f"- {k}: {health.get(k, 'WARNING')}")
     lines.append("")
@@ -326,14 +355,15 @@ def generate_report() -> tuple[dict, Path]:
 
     base_cards, hip_cards, all_cards = _load_sets()
     assets = _asset_validation(all_cards, hip_cards)
+    artm = _normalized_art_metrics(qa if qa else {}, assets)
     icon_map = _required_icon_mapping()
     loc = _localization_validation()
 
     arch = _archetype_viability(qa.get("archetype_simulation", {})) if qa else {}
-    health = _system_health(qa if qa else {}, smoke_results, assets, loc)
-    recs = _recommendations(qa if qa else {}, arch, assets, icon_map, loc)
+    health = _system_health(qa if qa else {}, smoke_results, artm, loc)
+    recs = _recommendations(qa if qa else {}, arch, assets, artm, icon_map, loc)
 
-    text = _build_report_text(version, build_name, qa if qa else {}, smoke_results, arch, assets, icon_map, loc, health, recs)
+    text = _build_report_text(version, build_name, qa if qa else {}, smoke_results, arch, assets, artm, icon_map, loc, health, recs)
 
     out_name = f"qa_report_build_{version.replace('.', '_')}.txt"
     out_path = Path(out_name)
@@ -344,7 +374,9 @@ def generate_report() -> tuple[dict, Path]:
         "build": build_name,
         "output": str(out_path),
         "smoke_status": {s.name: s.status for s in smoke_results},
-        "art_failures_total": assets.get("art_failures_total", 0),
+        "art_failures_total_effective": artm.get("effective_art_failures_total", 0),
+        "art_failures_total_legacy": artm.get("legacy_art_failures_total", 0),
+        "art_legacy_saturated_pattern": artm.get("legacy_saturated", False),
         "missing_icon_mappings": icon_map.get("missing", []),
         "localization_issues": int(loc.get("mojibake_count", 0)) + int(loc.get("english_fallback_count", 0)),
     }

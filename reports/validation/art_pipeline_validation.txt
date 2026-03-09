@@ -1,0 +1,9 @@
+CHAKANA ART PIPELINE VALIDATION
+
+- subject=True
+- action=True
+- environment=True
+- base=True
+- hiperborea=True
+- archon=True
+placeholder_assets_removed=manual cleanup required if still present

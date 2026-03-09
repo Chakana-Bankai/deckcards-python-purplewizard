@@ -94,6 +94,34 @@
         "En recompensas, elige por sinergia de run, no por valor aislado.",
         "Usa el tutorial guiado para repasar fundamentos rapidamente."
       ]
+    },
+    {
+      "id": "bestiary",
+      "title": "Bestiary",
+      "items": [
+        "Canon section linked."
+      ]
+    },
+    {
+      "id": "atlas",
+      "title": "Atlas",
+      "items": [
+        "Canon section linked."
+      ]
+    },
+    {
+      "id": "history",
+      "title": "History",
+      "items": [
+        "Canon section linked."
+      ]
+    },
+    {
+      "id": "symbols",
+      "title": "Symbols",
+      "items": [
+        "Canon section linked."
+      ]
     }
   ]
 }

@@ -1,0 +1,27 @@
+PLAYER FACING LABEL AUDIT
+fecha: 2026-03-09 17:16:30
+
+Archivos auditados:
+- game/data/lang/es.json
+- game/data/hints_es.json
+- game/data/cards_hiperboria.json
+- game/ui/screens/combat.py
+- game/ui/screens/shop.py
+- game/ui/screens/settings.py
+- game/ui/screens/codex.py
+
+Hallazgos:
+- labels ingles directas: 0
+- snake_case visible en nombres: 0
+- mojibake por archivo:
+  * game\data\lang\es.json: 0
+  * game\data\hints_es.json: 0
+  * game\data\cards_hiperboria.json: 0
+
+Acciones aplicadas:
+- Localizacion fallback humanizada en capa UI.
+- Render de nombres en combate/codex/tienda pasando por localizacion.
+- Renombrado de packs a lenguaje diegetico.
+- Reparacion de acentos en set Hiperborea y textos de interfaz.
+
+Estado QA gate: PASS

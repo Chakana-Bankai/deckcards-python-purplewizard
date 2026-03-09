@@ -1,0 +1,33 @@
+﻿CHAKANA : PURPLE WIZARD
+PHASE 9 — SAFE CLEANUP / COMPACTION
+Date: 2026-03-09
+
+OBJECTIVE
+- Reduce root clutter and isolate reports without touching runtime-critical code/assets.
+
+CHANGES APPLIED
+- Created canonical report folders:
+  - reports/audits
+  - reports/validation
+  - reports/cleanup
+- Preserved QA latest report visibility in:
+  - qa/reports/qa_report_build_0_9_106a.txt
+- Moved root report artifacts into reports/ hierarchy (36 files migrated).
+- Migration log saved:
+  - reports/cleanup/root_reports_migration_log.txt
+
+RUNTIME SAFETY
+- No runtime Python modules moved.
+- No gameplay/combat/deck/card logic files modified.
+- Root now retains only project-critical files plus canonical docs/scripts.
+
+RESULT
+- Root is significantly cleaner.
+- Reports are now discoverable by category.
+
+STATUS
+- PASS
+
+REMAINING WARNINGS
+- Some historical report naming still mixes audit/validation semantics.
+- Additional report deduplication can be done in future pass.

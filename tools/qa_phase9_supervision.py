@@ -8,7 +8,7 @@ import statistics
 import sys
 from contextlib import redirect_stdout
 from collections import Counter, defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 if __package__ is None or __package__ == "":
@@ -31,6 +31,7 @@ class SimResult:
     win: bool
     turns: int
     damage_done: int
+    card_usage: dict[str, int] = field(default_factory=dict)
 
 
 def _norm_card(c: dict, set_id: str) -> dict:
@@ -246,6 +247,7 @@ def _simulate_one(archetype: str, seed: int, boss: bool, cards_all: list[dict], 
 
     sim_cards = _normalize_effects_for_sim(cards_all)
     st = CombatState(rng, run_state, [enemy_id], cards_data=sim_cards, enemies_data=merged_enemies)
+    usage_counter: Counter = Counter()
 
     start_enemy_hp = sum(int(getattr(e, "max_hp", 0) or 0) for e in list(st.enemies or []))
     max_turns = 36 if boss else 20
@@ -267,7 +269,14 @@ def _simulate_one(archetype: str, seed: int, boss: bool, cards_all: list[dict], 
             playable.sort(reverse=True)
             _, _, idx = playable[0]
             try:
+                card_id = ""
+                try:
+                    card_id = str(getattr(getattr(st.hand[idx], "definition", None), "id", "") or "")
+                except Exception:
+                    card_id = ""
                 st.play_card(idx, 0)
+                if card_id:
+                    usage_counter[card_id] += 1
                 _drain_actions(st)
                 acted = True
             except Exception:
@@ -288,6 +297,7 @@ def _simulate_one(archetype: str, seed: int, boss: bool, cards_all: list[dict], 
         win=(str(st.result) == "victory"),
         turns=max(1, int(st.turn or 1)),
         damage_done=int(dmg_done),
+        card_usage=dict(usage_counter),
     )
 
 
@@ -543,6 +553,11 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
+
+
+
 
 
 

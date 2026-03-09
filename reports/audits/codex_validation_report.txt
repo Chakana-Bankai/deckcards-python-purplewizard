@@ -1,0 +1,6 @@
+CHAKANA CODEX VALIDATION REPORT
+
+sections_total=14
+required_sections_present=True
+set_counts={'base': 60, 'hiperborea': 60, 'archon': 60}
+future_sets_auto_register=WARNING (requires dynamic loader in codex runtime)

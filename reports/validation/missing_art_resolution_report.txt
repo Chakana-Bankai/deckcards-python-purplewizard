@@ -1,0 +1,17 @@
+CHAKANA PHASE 3 - MISSING ART RESOLUTION REPORT
+generated_at=2026-03-09 20:43:38
+
+root_cause
+- canonical runtime path uses game/assets/sprites/cards
+- a large card art batch previously existed outside canonical runtime path and/or with non-id filenames
+- checker and runtime therefore flagged missing canonical art for multiple card ids
+
+resolution
+- canonicalized card art availability in game/assets/sprites/cards
+- filled unresolved ids through existing procedural/advanced generator (non-destructive)
+
+post_resolution_status
+- unresolved_card_art_ids=0
+- unresolved_sample=none
+- qa_metric::- art_failures_total_effective: 0
+- qa_metric::- art_failures_total_legacy: 0

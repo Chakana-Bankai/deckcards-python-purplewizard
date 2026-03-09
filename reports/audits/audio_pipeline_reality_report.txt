@@ -1,0 +1,32 @@
+﻿CHAKANA : PURPLE WIZARD
+PHASE 7 — AUDIO / MUSIC PIPELINE REALITY CHECK
+Date: 2026-03-09
+
+SUMMARY
+- Audio runtime is wired and callable from main flow.
+- Audio generation pipeline is integrated via AudioPipeline -> AudioEngine.
+- Audio manifest/materialization is currently coherent for the active core set.
+
+CURRENT MANIFEST SNAPSHOT
+- file: game/audio/audio_manifest.json
+- version: chakana_audio_v6
+- total_items: 40
+- present: 40
+- missing: 0
+
+COVERAGE
+- BGM contexts: menu, map_ukhu, map_kay, map_hanan, combat, combat_elite, combat_boss, shop, victory, defeat
+- Stingers: combat_start, elite_encounter, boss_reveal, victory, defeat, level_up, relic_gain, pack_open, seal_ready, harmony_ready, studio_intro
+- SFX: card_play, card_invalid, button_click, gold_gain, xp_gain, damage_hit, heal, seal_activate, relic_pick
+
+WARNING POLICY
+- Warnings should be raised only for truly new contexts without source.
+- Current core set has no missing-source warning.
+
+CURATED STATUS
+- No curated audio directory detected at game/assets/curated/audio.
+- Active source currently generated.
+
+PHASE STATUS
+- PASS (runtime audio source coverage)
+- WARNING (curated audio baseline still pending)

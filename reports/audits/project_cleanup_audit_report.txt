@@ -1,0 +1,120 @@
+﻿CHAKANA : PURPLE WIZARD
+PHASE 1 — PROJECT CLEANUP AUDIT
+Date: 2026-03-09
+
+SCOPE INSPECTED
+- root/
+- docs/
+- qa/
+- tools/
+- assets/
+- game/assets/
+- game/audio/
+- game/visual/
+- reports/
+
+INVENTORY SNAPSHOT
+- total_files=4656
+- total_directories=608
+- rough classification counts:
+  - active_core=2505
+  - active_support=92
+  - reports_logs=74
+  - archive_candidate=95
+  - legacy_candidate=1748
+  - unknown=142
+
+TOP CLUTTER / REDUNDANCY FINDINGS
+1) Duplicated asset roots (high risk of ambiguous loading)
+- root/assets/*
+- game/assets/*
+- plus generated pipelines in:
+  - game/audio/generated/*
+  - game/visual/generated/*
+- evidence:
+  - assets/sprites/cards vs game/assets/sprites/cards overlap=0 only_a=120 only_b=1
+  - assets/avatars vs game/assets/avatars overlap=0 only_a=1 only_b=2
+  - assets/music vs game/assets/music overlap=0 only_a=6 only_b=1
+- classification: duplicate/redundant + unknown load priority risk
+
+2) Tool wrappers duplicated with implementation copies
+- top-level tools/*.py duplicates tools/qa/*.py and tools/assets/*.py in many cases.
+- examples:
+  - tools/check_deck_system.py + tools/qa/check_deck_system.py
+  - tools/qa_phaseX_*.py + tools/qa/qa_phaseX_*.py
+  - tools/build_chakana_master_from_reference.py + tools/assets/build_chakana_master_from_reference.py
+- classification: duplicate/redundant (likely compatibility wrappers, but noisy)
+
+3) Reports spread across multiple active roots
+- qa/reports/current + qa/reports/archive + reports/audits + reports/cleanup + reports/validation
+- also historical archive docs in docs/archive.
+- classification: reports/logs + archive_candidate
+
+4) Root still has non-core docs/files
+- root files present: art_direction_document.md, music_direction_document.md, migration_notes.txt, system_reference.md
+- classification: active_support but root clutter
+
+5) Legacy/cache volume is large
+- __pycache__ directories count=196 (filename-group evidence)
+- extensive generated/_deprecated trees under game/audio/generated and game/visual/generated
+- classification: legacy_candidate / archive_candidate
+
+6) QA report duplication by same build name
+- qa_report_build_0_9_106a.txt exists in:
+  - qa/reports/
+  - qa/reports/archive/
+- classification: duplicate/redundant
+
+ACTIVE CORE VS SUPPORT (PHASE 1 CLASSIFICATION)
+- active core:
+  - game/* runtime modules
+  - engine/* shared runtime candidates
+- active support:
+  - docs/canon, docs/systems, docs/engine, docs/design
+  - tools/doctor.py, clean_autogen.py, regen_assets.py, qa_report_generator.py
+- reports/logs:
+  - qa/reports/*
+  - reports/*
+- archive candidate:
+  - docs/archive/*
+  - game/audio/generated/_deprecated/*
+  - game/visual/generated/_deprecated/*
+- legacy candidate:
+  - __pycache__ trees
+  - duplicated wrapper scripts where both wrapper + target remain active
+- duplicate/redundant:
+  - dual asset roots (assets vs game/assets)
+  - duplicate qa report filenames in current+archive
+  - mirrored tool script names (tools root vs tools/qa and tools/assets)
+- unknown:
+  - root/assets/* usage priority not yet canonical in runtime mapping
+
+SMOKE BASELINE (NON-DESTRUCTIVE)
+1) python -m tools.doctor
+- result: PASS (doctor ran)
+- note: git tracked_changes=621 (very dirty tree)
+
+2) python -m tools.check_deck_system
+- result: PASS
+- detail: issues=0
+
+3) python -m tools.check_card_coherence
+- result: PASS
+- detail: checked=60 errors=0 warnings=0
+
+PHASE 1 STATUS
+- WARNING
+
+WHY WARNING
+- No runtime break detected in smokes, but structure ambiguity is high:
+  - dual assets roots,
+  - duplicated tools paths,
+  - multi-location reports and archive overlap,
+  - heavily dirty tree complicating safe moves.
+
+RECOMMENDATION FOR PHASE 2 (REPOSITORY REORDER)
+1) Freeze canonical asset loading policy first (game/assets primary; root/assets as archive/support unless explicitly referenced).
+2) Move root non-core markdown/txt to docs/ or reports/ before any deeper refactor.
+3) Keep only one active QA report per build in qa/reports/current; duplicates to archive with timestamp suffix.
+4) Keep wrapper scripts only where compatibility is required; tag others as legacy in tools/archive (without deleting in this pass).
+5) Apply moves in small batches with verification after each batch due current dirty tree size.

@@ -1,0 +1,50 @@
+CHAKANA ROOT CLUTTER AUDIT REPORT
+generated_at=2026-03-09T19:36:58
+root_files_total=38
+
+[classification_counts]
+KEEP_ROOT_CORE=8
+KEEP_RUNTIME_SENSITIVE=2
+MOVE_DOC_OR_REPORT=10
+MOVE_REPORT=18
+
+[root_files_with_target]
+file	size_bytes	proposed_action	target
+.gitattributes	372	keep	root/ (keep)
+.gitignore	322	keep	root/ (keep)
+.gitkeep	0	keep	root/ (keep)
+.regen_flag	19	keep_runtime_sensitive	root/ (runtime sensitive keep)
+AGENTS.md	2190	keep	root/ (keep)
+art_direction_document.md	1378	move	docs/design/ or docs/archive/ (classify in phase 3)
+art_pipeline_validation.txt	202	move	reports/validation/
+asset_cleanup_report.txt	3266	move	reports/cleanup/
+avatar_system_validation.txt	190	move	reports/validation/
+card_art_upgrade_report.txt	6471	move	reports/generated/
+card_balance_validation.txt	283	move	reports/validation/
+chakana_project_consolidation_report.txt	1059	move	reports/generated/
+codex_validation_report.txt	221	move	reports/validation/
+creative_art_master_upgrade_report.txt	289	move	reports/generated/
+creative_director_report.txt	434	move	reports/generated/
+docs_cleanup_report.txt	9270	move	reports/cleanup/
+document_audit_report.txt	4153	move	reports/audits/
+documentation_reorganization_report.txt	972	move	reports/generated/
+enemy_deck_validation.txt	207	move	reports/validation/
+full_system_validation.txt	230	move	reports/validation/
+migration_notes.txt	504	move	reports/generated/
+music_direction_document.md	1411	move	docs/design/ or docs/archive/ (classify in phase 3)
+music_system_validation.txt	621	move	reports/validation/
+project_docs_qa_tools_cleanup_report.txt	957	move	reports/cleanup/
+project_full_inventory_report.txt	92320	move	reports/generated/
+qa_reorganization_report.txt	677	move	reports/generated/
+qa_report_build_0_9_106a.txt	1965	move	reports/qa/latest/
+README.md	1610	keep	root/ (keep)
+render_consistency_report.txt	554	move	reports/generated/
+repository_structure_report.txt	150	move	reports/generated/
+requirements.txt	15	keep	root/ (keep)
+reset_generated.ps1	418	keep	root/ (keep)
+root_cleanup_report.txt	516	move	reports/cleanup/
+run.ps1	81	keep	root/ (keep)
+savegame.json	7184	keep_runtime_sensitive	root/ (runtime sensitive keep)
+system_alignment_report.txt	650	move	reports/generated/
+system_reference.md	866	move	docs/design/ or docs/archive/ (classify in phase 3)
+tools_reorganization_report.txt	635	move	reports/generated/

@@ -1,0 +1,355 @@
+{
+  "decks": {
+    "void_acolyte": [
+      {
+        "id": "va_void_strike",
+        "name": "Void Strike",
+        "intent": "attack",
+        "value": [
+          5,
+          7
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_001"
+      },
+      {
+        "id": "va_shadow_hex",
+        "name": "Shadow Hex",
+        "intent": "debuff",
+        "status": "weak",
+        "stacks": 1,
+        "source_set": "arconte",
+        "source_card_id": "arc_002"
+      },
+      {
+        "id": "va_corrupt_shield",
+        "name": "Corrupt Shield",
+        "intent": "defend",
+        "value": [
+          4,
+          6
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_003"
+      },
+      {
+        "id": "va_entropy_bite",
+        "name": "Entropy Bite",
+        "intent": "attack",
+        "value": [
+          6,
+          8
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_004"
+      },
+      {
+        "id": "va_void_strike_2",
+        "name": "Void Strike",
+        "intent": "attack",
+        "value": [
+          5,
+          7
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_005"
+      },
+      {
+        "id": "va_choke",
+        "name": "Void Choke",
+        "intent": "break",
+        "stacks": 1,
+        "source_set": "arconte",
+        "source_card_id": "arc_006"
+      },
+      {
+        "id": "va_corrupt_shield_2",
+        "name": "Corrupt Shield",
+        "intent": "defend",
+        "value": [
+          4,
+          6
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_007"
+      },
+      {
+        "id": "va_drain",
+        "name": "Umbral Drain",
+        "intent": "heal",
+        "stacks": 3,
+        "source_set": "arconte",
+        "source_card_id": "arc_008"
+      }
+    ],
+    "corrupt_mage": [
+      {
+        "id": "cm_arcane_rust",
+        "name": "Arcane Rust",
+        "intent": "debuff",
+        "status": "frail",
+        "stacks": 1,
+        "source_set": "arconte",
+        "source_card_id": "arc_009"
+      },
+      {
+        "id": "cm_void_bolt",
+        "name": "Void Bolt",
+        "intent": "attack",
+        "value": [
+          6,
+          9
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_010"
+      },
+      {
+        "id": "cm_dark_ward",
+        "name": "Dark Ward",
+        "intent": "defend",
+        "value": [
+          6,
+          8
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_011"
+      },
+      {
+        "id": "cm_entropy_mark",
+        "name": "Entropy Mark",
+        "intent": "break",
+        "stacks": 2,
+        "source_set": "arconte",
+        "source_card_id": "arc_012"
+      },
+      {
+        "id": "cm_void_bolt_2",
+        "name": "Void Bolt",
+        "intent": "attack",
+        "value": [
+          6,
+          9
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_013"
+      },
+      {
+        "id": "cm_control_field",
+        "name": "Control Field",
+        "intent": "buff",
+        "status": "fortify",
+        "stacks": 1,
+        "source_set": "arconte",
+        "source_card_id": "arc_014"
+      },
+      {
+        "id": "cm_dark_ward_2",
+        "name": "Dark Ward",
+        "intent": "defend",
+        "value": [
+          5,
+          7
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_015"
+      },
+      {
+        "id": "cm_hex_surge",
+        "name": "Hex Surge",
+        "intent": "attack",
+        "value": [
+          7,
+          10
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_016"
+      }
+    ],
+    "archon_guard": [
+      {
+        "id": "ag_guardian_wall",
+        "name": "Guardian Wall",
+        "intent": "defend",
+        "value": [
+          8,
+          11
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_017"
+      },
+      {
+        "id": "ag_crimson_lance",
+        "name": "Crimson Lance",
+        "intent": "attack",
+        "value": [
+          7,
+          10
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_018"
+      },
+      {
+        "id": "ag_archon_order",
+        "name": "Archon Order",
+        "intent": "buff",
+        "status": "focus",
+        "stacks": 1,
+        "source_set": "arconte",
+        "source_card_id": "arc_019"
+      },
+      {
+        "id": "ag_rupture_wave",
+        "name": "Rupture Wave",
+        "intent": "break",
+        "stacks": 2,
+        "source_set": "arconte",
+        "source_card_id": "arc_020"
+      },
+      {
+        "id": "ag_crimson_lance_2",
+        "name": "Crimson Lance",
+        "intent": "attack",
+        "value": [
+          8,
+          11
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_021"
+      },
+      {
+        "id": "ag_guardian_wall_2",
+        "name": "Guardian Wall",
+        "intent": "defend",
+        "value": [
+          8,
+          10
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_022"
+      },
+      {
+        "id": "ag_void_chain",
+        "name": "Void Chain",
+        "intent": "debuff",
+        "status": "vulnerable",
+        "stacks": 1,
+        "source_set": "arconte",
+        "source_card_id": "arc_023"
+      },
+      {
+        "id": "ag_umbra_pulse",
+        "name": "Umbra Pulse",
+        "intent": "attack",
+        "value": [
+          9,
+          12
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_024"
+      }
+    ],
+    "boss_archon": [
+      {
+        "id": "ba_archon_decree",
+        "name": "Archon Decree",
+        "intent": "debuff",
+        "status": "weak",
+        "stacks": 2,
+        "source_set": "arconte",
+        "source_card_id": "arc_025"
+      },
+      {
+        "id": "ba_void_crown",
+        "name": "Void Crown",
+        "intent": "buff",
+        "status": "shielded",
+        "stacks": 2,
+        "source_set": "arconte",
+        "source_card_id": "arc_026"
+      },
+      {
+        "id": "ba_black_sun",
+        "name": "Black Sun",
+        "intent": "attack",
+        "value": [
+          11,
+          14
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_027"
+      },
+      {
+        "id": "ba_entropy_pillar",
+        "name": "Entropy Pillar",
+        "intent": "break",
+        "stacks": 3,
+        "source_set": "arconte",
+        "source_card_id": "arc_028"
+      },
+      {
+        "id": "ba_crimson_ritual",
+        "name": "Crimson Ritual",
+        "intent": "attack",
+        "value": [
+          10,
+          13
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_029"
+      },
+      {
+        "id": "ba_corrupt_bastion",
+        "name": "Corrupt Bastion",
+        "intent": "defend",
+        "value": [
+          10,
+          13
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_030"
+      },
+      {
+        "id": "ba_void_crown_2",
+        "name": "Void Crown",
+        "intent": "buff",
+        "status": "focus",
+        "stacks": 2,
+        "source_set": "arconte",
+        "source_card_id": "arc_031"
+      },
+      {
+        "id": "ba_black_sun_2",
+        "name": "Black Sun",
+        "intent": "attack",
+        "value": [
+          12,
+          15
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_032"
+      },
+      {
+        "id": "ba_reality_shear",
+        "name": "Reality Shear",
+        "intent": "attack",
+        "value": [
+          13,
+          16
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_033"
+      },
+      {
+        "id": "ba_final_entropy",
+        "name": "Final Entropy",
+        "intent": "attack",
+        "value": [
+          14,
+          18
+        ],
+        "source_set": "arconte",
+        "source_card_id": "arc_034"
+      }
+    ]
+  }
+}

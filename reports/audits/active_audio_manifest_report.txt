@@ -1,0 +1,29 @@
+﻿CHAKANA : PURPLE WIZARD
+PHASE 7 — ACTIVE AUDIO MANIFEST REPORT
+Date: 2026-03-09
+
+MANIFEST SOURCE
+- game/audio/audio_manifest.json
+
+HEALTH
+- version: chakana_audio_v6
+- total_items: 40
+- present_files: 40
+- missing_files: 0
+
+BREAKDOWN
+- bgm: 20
+- stinger: 11
+- sfx: 9
+
+ON-DISK WAV COUNT
+- game/audio/generated/bgm: 20
+- game/audio/generated/stingers: 10
+- game/audio/generated/studio: 1
+- game/audio/generated/sfx: 9
+
+INTEGRITY RESULT
+- PASS (manifest and files aligned)
+
+REMAINING WARNING TYPE
+- Only for future/new contexts without source.

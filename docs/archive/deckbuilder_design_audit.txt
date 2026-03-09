@@ -1,0 +1,30 @@
+DECKBUILDER DESIGN AUDIT
+fecha: 2026-03-09 17:27:31
+
+Baseline observado:
+- Cartas: Base 60 + Hiperborea 60 (120 total).
+- Starter/arquetipo: 12 common / 7 uncommon / 1 legendary (guard activo).
+- Hand/deck loop validado por QA smoke en PASS.
+
+Fortalezas:
+- Identidad de 3 arquetipos ya distinguible en contenido.
+- Curva de rareza por arquetipo estable (12/7/1).
+- KPI/icon language consolidado en gran parte del renderer.
+
+Debilidades detectadas:
+- Repeticion de estructuras de efecto en bloques altos del set (riesgo de cartas redundantes).
+- Oracle of Fate mantiene win_rate menor que los otros en QA (0.5 en reporte).
+- Boss pacing puede extenderse sobre objetivo ideal de turnos en algunos perfiles.
+
+Comparativa (STS / Monster Train / Inscryption / Loop Hero):
+- STS: mejor telemetria de riesgo/recompensa por nodo; Chakana aun depende mucho de reward quality puntual.
+- Monster Train: escalado de sinergias mas claro por clan; Chakana necesita payoff mas temprano en control/oraculo.
+- Inscryption: lectura de intencion/ritmo mas dramatica; Chakana ya tiene base lore, falta consistencia de impacto por turno.
+- Loop Hero (estructura): progresion meta clara entre runs; Chakana aun mezcla progreso diegetico y tecnico en algunos puntos.
+
+Propuestas:
+1) Taxonomia: separar cartas en nucleares (motor), payoff y puentes por arquetipo.
+2) Arquetipos: reforzar payoff temprano de Oracle (turnos 2-4) sin subir dano global.
+3) Recompensas: aumentar picks situacionales (remove/upgrade/condicional) frente a puro value bruto.
+4) Nodos riesgo/recompensa: mas eventos de costo real con recompensa garantizada escalable.
+5) Boss curve: mantener amenaza mecanica y reducir variancia de esponja por build no agresiva.

@@ -93,18 +93,25 @@ class HolographicOracleUI:
         border_col = (242, 120, 132) if is_archon else (136, 98, 218)
         accent_col = (252, 146, 160) if is_archon else (126, 212, 246)
         text_col = (255, 220, 224) if is_archon else (230, 220, 248)
-        title_col = (255, 170, 182) if is_archon else (190, 240, 255)
+        title_col = (244, 156, 174) if is_archon else (174, 224, 246)
 
         layer = pygame.Surface(panel.size, pygame.SRCALPHA)
-        glow = pygame.Surface((panel.w + 30, panel.h + 30), pygame.SRCALPHA)
-        pygame.draw.rect(glow, (*base_glow, int(alpha * 0.16)), glow.get_rect(), border_radius=24)
-        surface.blit(glow, (panel.x - 15, panel.y - 15))
+        glow = pygame.Surface((panel.w + 34, panel.h + 34), pygame.SRCALPHA)
+        pygame.draw.rect(glow, (*base_glow, int(alpha * 0.12)), glow.get_rect(), border_radius=24)
+        surface.blit(glow, (panel.x - 17, panel.y - 17))
 
-        pygame.draw.rect(layer, (16, 12, 30, int(alpha * 0.80)), layer.get_rect(), border_radius=14)
+        pygame.draw.rect(layer, (16, 12, 30, int(alpha * 0.76)), layer.get_rect(), border_radius=14)
         pygame.draw.rect(layer, (*border_col, int(alpha * 0.92)), layer.get_rect(), 2, border_radius=14)
 
+        # Scanline pass (lighter, less white dominance).
         for y in range(2, panel.h, 4):
-            pygame.draw.line(layer, (*accent_col, int(alpha * 0.10)), (8, y), (panel.w - 8, y), 1)
+            pygame.draw.line(layer, (*accent_col, int(alpha * 0.07)), (8, y), (panel.w - 8, y), 1)
+
+        # Transparent energy wisps for hologram activity.
+        for i in range(10):
+            ex = 18 + ((i * 41 + int(phase * 24)) % max(1, panel.w - 56))
+            ey = 16 + ((i * 29 + int(phase * 17)) % max(1, panel.h - 42))
+            pygame.draw.arc(layer, (*accent_col, int(alpha * 0.09)), pygame.Rect(ex, ey, 28, 12), 0.1, 2.9, 1)
 
         phase = pygame.time.get_ticks() * 0.015
         gy = int(50 + math.sin(phase) * 18)
@@ -119,7 +126,7 @@ class HolographicOracleUI:
             avatar = app.assets.sprite("avatar", "archon_oracle", (av_rect.w - 10, av_rect.h - 10), fallback=(64, 32, 42)).copy()
         else:
             avatar = app.assets.sprite("avatar", "chakana_mage_hologram", (av_rect.w - 10, av_rect.h - 10), fallback=(86, 56, 132)).copy()
-        avatar.set_alpha(int(alpha * 0.90))
+        avatar.set_alpha(int(alpha * 0.86))
         if is_archon:
             tint = pygame.Surface(avatar.get_size(), pygame.SRCALPHA)
             tint.fill((255, 84, 102, 114))

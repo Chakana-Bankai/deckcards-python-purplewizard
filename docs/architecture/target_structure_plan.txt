@@ -1,0 +1,39 @@
+TARGET STRUCTURE PLAN
+generated_at: 2026-03-09 17:45:16
+
+Canonical target:
+- docs/
+  - architecture/
+  - systems/
+  - design/
+  - lore/
+  - engine/
+  - archive/
+- qa/
+  - scripts/
+  - reports/current/
+  - reports/archive/
+- tools/
+  - build/
+  - qa/
+  - assets/
+  - maintenance/
+  - archive/
+
+Safe adaptation for current repo:
+1) Create qa/ tree (missing today) and move QA reports out of root.
+2) Keep existing root tool entrypoints for compatibility (doctor/clean_autogen/regen_assets/qa_report_generator).
+3) Move non-critical qa/check scripts to tools/qa with wrapper shims at old paths.
+4) Re-home docs by concern:
+   - core systems docs -> docs/systems
+   - engine extraction/boundary -> docs/engine
+   - visual/audio/ui audits -> docs/design
+   - lore/vision naming docs -> docs/lore
+   - superseded notes -> docs/archive
+5) Keep latest QA build report in qa/reports/current and archive older versions.
+
+Priority order:
+P1) QA hierarchy + root report cleanup
+P2) docs concern-based grouping
+P3) tools subgrouping with wrappers
+P4) optional pycache cleanup (non-destructive)

@@ -1,0 +1,9 @@
+CHAKANA FULL SYSTEM VALIDATION
+
+- deck_flow=PASS
+- enemy_deck_logic=PASS
+- shop_purchases=WARNING
+- codex_access=PASS
+- art_loading=WARNING
+- music_playback=WARNING
+run_to_boss=WARNING (requires live runtime playthrough)

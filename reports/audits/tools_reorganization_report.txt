@@ -1,0 +1,20 @@
+TOOLS REORGANIZATION REPORT
+generated_at: 2026-03-09 17:49:27
+
+Canonical tool hierarchy:
+- tools/qa -> qa/check scripts
+- tools/assets -> asset/curation scripts
+- tools/maintenance -> one-off maintenance scripts
+- tools/* root -> compatibility wrappers + canonical daily commands
+
+Compatibility strategy:
+- Moved scripts keep old python -m tools.<name> via thin wrapper modules.
+- Wrapper modules re-export symbols for import compatibility where needed.
+
+Priority active tools:
+- P1 tools/doctor.py
+- P1 tools/clean_autogen.py
+- P1 tools/regen_assets.py
+- P1 tools/validate_prompts.py
+- P1 tools/reset_autogen.ps1
+

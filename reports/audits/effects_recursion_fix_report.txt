@@ -1,0 +1,25 @@
+CHAKANA EFFECTS RECURSION FIX REPORT
+generated_at=2026-03-09T19:46:56
+
+[file_changed]
+- game/combat/effects.py
+
+[changes]
+1. Added _effect_call_key() signature helper for recursion identity.
+2. Added _call_stack parameter to interpret_effects().
+3. Added robust loop break: if call signature repeats in stack, return.
+4. Tightened recursion depth guard (16) and kept step budget guard (180).
+5. Added non-list/no-effect early return and dict type checks for effect items.
+6. Wrapped stack lifecycle in try/finally for guaranteed pop.
+
+[compatibility]
+- No card schema changes.
+- No combat balance tuning.
+- Existing effect types preserved.
+
+[expected_result]
+- interpret_effects no longer enters unbounded recursion loops.
+- copy/chain effects remain functional within safe limits.
+
+[status]
+status=PASS

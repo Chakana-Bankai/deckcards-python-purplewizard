@@ -1,0 +1,16 @@
+PROFESSIONALIZATION EXECUTION PASS - PHASE 4
+
+[changes]
+
+- audio version bump: chakana_audio_v6
+- longer context durations for menu/map/shop/combat/boss
+- slower motif for menu/shop
+- lower high-tone noise and stronger smoothing
+
+[audit]
+
+context_specs=10
+
+[status]
+
+PASS

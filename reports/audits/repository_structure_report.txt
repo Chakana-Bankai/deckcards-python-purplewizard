@@ -1,0 +1,6 @@
+CHAKANA REPOSITORY STRUCTURE REPORT
+
+strategy=non_destructive_prepare_only
+prepared_dirs=18
+runtime_file_moves=0
+import_breakage_risk=minimized

@@ -1,0 +1,6 @@
+CHAKANA ENEMY DECK VALIDATION
+
+enemy_deck_profiles=4
+valid_profiles=4
+turn_flow=draw->play->discard->reshuffle (implemented in combat_state/enemy)
+hud_visibility=current_card+next_intent (implemented)

@@ -1,0 +1,2075 @@
+{
+  "set": "arconte",
+  "cards": [
+    {
+      "id": "arc_001",
+      "name_es": "Arcano del Vacio 01",
+      "name_key": "card_arc_001_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_001_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_002",
+      "name_es": "Arcano del Vacio 02",
+      "name_key": "card_arc_002_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_002_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_003",
+      "name_es": "Arcano del Vacio 03",
+      "name_key": "card_arc_003_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_003_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_004",
+      "name_es": "Arcano del Vacio 04",
+      "name_key": "card_arc_004_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_004_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 4
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_005",
+      "name_es": "Arcano del Vacio 05",
+      "name_key": "card_arc_005_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_005_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_006",
+      "name_es": "Arcano del Vacio 06",
+      "name_key": "card_arc_006_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_006_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_007",
+      "name_es": "Arcano del Vacio 07",
+      "name_key": "card_arc_007_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_007_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_008",
+      "name_es": "Arcano del Vacio 08",
+      "name_key": "card_arc_008_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_008_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 4
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_009",
+      "name_es": "Arcano del Vacio 09",
+      "name_key": "card_arc_009_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_009_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_010",
+      "name_es": "Arcano del Vacio 10",
+      "name_key": "card_arc_010_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_010_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_011",
+      "name_es": "Arcano del Vacio 11",
+      "name_key": "card_arc_011_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_011_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_012",
+      "name_es": "Arcano del Vacio 12",
+      "name_key": "card_arc_012_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_012_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 4
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_013",
+      "name_es": "Arcano del Vacio 13",
+      "name_key": "card_arc_013_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_013_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_014",
+      "name_es": "Arcano del Vacio 14",
+      "name_key": "card_arc_014_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_014_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_015",
+      "name_es": "Arcano del Vacio 15",
+      "name_key": "card_arc_015_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_015_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_016",
+      "name_es": "Arcano del Vacio 16",
+      "name_key": "card_arc_016_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_016_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 4
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_017",
+      "name_es": "Arcano del Vacio 17",
+      "name_key": "card_arc_017_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_017_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_018",
+      "name_es": "Arcano del Vacio 18",
+      "name_key": "card_arc_018_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_018_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_019",
+      "name_es": "Arcano del Vacio 19",
+      "name_key": "card_arc_019_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_019_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_020",
+      "name_es": "Arcano del Vacio 20",
+      "name_key": "card_arc_020_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_020_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 4
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_021",
+      "name_es": "Arcano del Vacio 21",
+      "name_key": "card_arc_021_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_021_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_022",
+      "name_es": "Arcano del Vacio 22",
+      "name_key": "card_arc_022_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_022_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_023",
+      "name_es": "Arcano del Vacio 23",
+      "name_key": "card_arc_023_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_023_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_024",
+      "name_es": "Arcano del Vacio 24",
+      "name_key": "card_arc_024_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_024_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 4
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_025",
+      "name_es": "Arcano del Vacio 25",
+      "name_key": "card_arc_025_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_025_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_026",
+      "name_es": "Arcano del Vacio 26",
+      "name_key": "card_arc_026_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_026_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_027",
+      "name_es": "Arcano del Vacio 27",
+      "name_key": "card_arc_027_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_027_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_028",
+      "name_es": "Arcano del Vacio 28",
+      "name_key": "card_arc_028_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_028_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 4
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_029",
+      "name_es": "Arcano del Vacio 29",
+      "name_key": "card_arc_029_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_029_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_030",
+      "name_es": "Arcano del Vacio 30",
+      "name_key": "card_arc_030_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_030_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_031",
+      "name_es": "Arcano del Vacio 31",
+      "name_key": "card_arc_031_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_031_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_032",
+      "name_es": "Arcano del Vacio 32",
+      "name_key": "card_arc_032_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_032_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 4
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_033",
+      "name_es": "Arcano del Vacio 33",
+      "name_key": "card_arc_033_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_033_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_034",
+      "name_es": "Arcano del Vacio 34",
+      "name_key": "card_arc_034_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_034_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_035",
+      "name_es": "Arcano del Vacio 35",
+      "name_key": "card_arc_035_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_035_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "engine"
+    },
+    {
+      "id": "arc_036",
+      "name_es": "Arcano del Vacio 36",
+      "name_key": "card_arc_036_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_036_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 4
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_037",
+      "name_es": "Arcano del Vacio 37",
+      "name_key": "card_arc_037_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_037_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 6
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_038",
+      "name_es": "Arcano del Vacio 38",
+      "name_key": "card_arc_038_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_038_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_039",
+      "name_es": "Arcano del Vacio 39",
+      "name_key": "card_arc_039_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_039_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_040",
+      "name_es": "Arcano del Vacio 40",
+      "name_key": "card_arc_040_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_040_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 6
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_041",
+      "name_es": "Arcano del Vacio 41",
+      "name_key": "card_arc_041_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_041_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 6
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "payoff"
+    },
+    {
+      "id": "arc_042",
+      "name_es": "Arcano del Vacio 42",
+      "name_key": "card_arc_042_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_042_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_043",
+      "name_es": "Arcano del Vacio 43",
+      "name_key": "card_arc_043_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_043_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_044",
+      "name_es": "Arcano del Vacio 44",
+      "name_key": "card_arc_044_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_044_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 6
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "payoff"
+    },
+    {
+      "id": "arc_045",
+      "name_es": "Arcano del Vacio 45",
+      "name_key": "card_arc_045_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_045_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "rare",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 6
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "payoff"
+    },
+    {
+      "id": "arc_046",
+      "name_es": "Arcano del Vacio 46",
+      "name_key": "card_arc_046_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_046_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_047",
+      "name_es": "Arcano del Vacio 47",
+      "name_key": "card_arc_047_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_047_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_048",
+      "name_es": "Arcano del Vacio 48",
+      "name_key": "card_arc_048_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_048_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "rare",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 6
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "payoff"
+    },
+    {
+      "id": "arc_049",
+      "name_es": "Arcano del Vacio 49",
+      "name_key": "card_arc_049_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_049_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "rare",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 6
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "payoff"
+    },
+    {
+      "id": "arc_050",
+      "name_es": "Arcano del Vacio 50",
+      "name_key": "card_arc_050_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_050_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_051",
+      "name_es": "Arcano del Vacio 51",
+      "name_key": "card_arc_051_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_051_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_052",
+      "name_es": "Arcano del Vacio 52",
+      "name_key": "card_arc_052_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_052_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "rare",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 6
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "payoff"
+    },
+    {
+      "id": "arc_053",
+      "name_es": "Arcano del Vacio 53",
+      "name_key": "card_arc_053_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_053_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "rare",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 6
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "payoff"
+    },
+    {
+      "id": "arc_054",
+      "name_es": "Arcano del Vacio 54",
+      "name_key": "card_arc_054_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_054_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_055",
+      "name_es": "Arcano del Vacio 55",
+      "name_key": "card_arc_055_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_055_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "bridge"
+    },
+    {
+      "id": "arc_056",
+      "name_es": "Arcano del Vacio 56",
+      "name_key": "card_arc_056_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_056_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "rare",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 6
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "payoff"
+    },
+    {
+      "id": "arc_057",
+      "name_es": "Arcano del Vacio 57",
+      "name_key": "card_arc_057_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_057_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "rare",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture",
+        "void"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 6
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "attack",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "payoff"
+    },
+    {
+      "id": "arc_058",
+      "name_es": "Arcano del Vacio 58",
+      "name_key": "card_arc_058_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_058_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "legendary",
+      "cost": 3,
+      "target": "enemy",
+      "tags": [
+        "control",
+        "void",
+        "entropy"
+      ],
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 1
+        },
+        {
+          "type": "draw",
+          "amount": 2
+        }
+      ],
+      "role": "control",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "payoff"
+    },
+    {
+      "id": "arc_059",
+      "name_es": "Arcano del Vacio 59",
+      "name_key": "card_arc_059_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_059_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "legendary",
+      "cost": 3,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "entropy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "rupture",
+          "amount": 2
+        }
+      ],
+      "role": "ritual",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "payoff"
+    },
+    {
+      "id": "arc_060",
+      "name_es": "Arcano del Vacio 60",
+      "name_key": "card_arc_060_name",
+      "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
+      "text_key": "card_arc_060_desc",
+      "lore_text": "Los Arcontes tuercen la Chakana para romper el balance cosmico y profanar Hiperborea.",
+      "rarity": "legendary",
+      "cost": 3,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "control",
+        "corruption"
+      ],
+      "effects": [
+        {
+          "type": "block",
+          "amount": 9
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ],
+      "role": "defense",
+      "family": "archon",
+      "direction": "NORTE",
+      "archetype": "archon_war",
+      "set": "arconte",
+      "author": "Chakana Studio",
+      "order": "Arconte",
+      "taxonomy": "payoff"
+    }
+  ]
+}

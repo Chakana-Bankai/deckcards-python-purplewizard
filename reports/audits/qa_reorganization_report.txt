@@ -1,0 +1,19 @@
+QA REORGANIZATION REPORT
+generated_at: 2026-03-09 17:49:27
+
+Canonical QA hierarchy:
+- qa/reports/current -> only latest active QA outputs
+- qa/reports/archive -> historical QA outputs
+- qa/scripts -> reserved for future non-tool QA runners
+
+Atomic latest policy applied:
+- Active build report normalized to: qa/reports/current/qa_report_build_latest.txt
+- Versioned build reports moved to archive; latest replaces previous current snapshot.
+
+Priority QA artifacts:
+- P1 qa/reports/current/qa_report_build_latest.txt
+- P1 tools/qa_report_generator.py
+- P1 tools/check_card_coherence.py
+- P1 tools/check_combat_content_lock.py
+- P1 tools/check_deck_system.py
+

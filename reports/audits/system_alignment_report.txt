@@ -1,0 +1,15 @@
+CHAKANA SYSTEM ALIGNMENT REPORT
+
+- combat: OK -> docs\systems\CHAKANA_COMBAT_SYSTEM_1_0.md
+- cards: OK -> docs\systems\CHAKANA_CARD_SYSTEM_1_0.md
+- enemy decks: OK -> docs\systems\CHAKANA_ENEMY_SYSTEM_1_0.md
+- shop: OK -> docs\design\game_design_document.md
+- codex: OK -> docs\canon\GAME_SYSTEMS_REFERENCE.md
+- avatar: OK -> docs\lore\avatar_curated_checklist.md
+- art generation: OK -> docs\canon\ART_DIRECTION.md
+- music generation: OK -> docs\canon\MUSIC_DIRECTION.md
+- map: OK -> docs\design\game_design_document.md
+
+[legacy_markers]
+- Runtime kept on canonical card renderer path.
+- Legacy docs remain archived for traceability.

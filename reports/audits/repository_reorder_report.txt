@@ -1,0 +1,54 @@
+﻿CHAKANA : PURPLE WIZARD
+PHASE 2 — REPOSITORY REORDER (SAFE)
+Date: 2026-03-09
+
+OBJECTIVE
+- Reorder repository safely without touching runtime logic.
+- Reduce root clutter.
+- Keep compatibility paths where needed.
+
+ACTIONS EXECUTED
+1) Root cleanup moves
+- project_cleanup_audit_report.txt -> reports/audits/project_cleanup_audit_report.txt
+- art_direction_document.md -> docs/archive/art_direction_document_root_legacy.md
+- music_direction_document.md -> docs/archive/music_direction_document_root_legacy.md
+- system_reference.md -> docs/systems/system_reference.md
+- migration_notes.txt -> docs/architecture/migration_notes.txt
+
+2) QA duplicate report hygiene
+- qa/reports/archive/qa_report_build_0_9_106a.txt
+  -> qa/reports/archive/superseded_duplicates/qa_report_build_0_9_106a_archive_dup.txt
+
+3) Compatibility policy
+- Kept top-level tools wrappers intact (tools/*.py) because they route to tools/qa and tools/assets and are likely external entrypoints.
+- No runtime import routes were modified.
+
+RESULTING ROOT STATE
+- Root file set is now minimal and project-critical only:
+  .gitattributes, .gitignore, .gitkeep, .regen_flag, AGENTS.md, README.md,
+  requirements.txt, reset_generated.ps1, run.ps1, savegame.json
+
+TRACEABILITY
+- Move log written to:
+  reports/cleanup/repository_reorder_moves_log.txt
+
+KNOWN REMAINING REORDER ITEMS (NOT APPLIED IN THIS PHASE)
+- Dual asset roots (assets/ vs game/assets/) remain and require canonicalization policy before moving files.
+- Tool duplication (wrapper + implementation copies) remains by design for compatibility.
+
+SMOKE TESTS
+1) python -m tools.doctor -> PASS
+2) python -m tools.check_deck_system -> PASS (issues=0)
+3) python -m tools.check_card_coherence -> PASS (errors=0 warnings=0)
+
+PHASE STATUS
+- WARNING
+
+WHY WARNING
+- Reorder was safe and successful, but structural ambiguity remains around dual asset roots and wrapper duplication.
+
+RECOMMENDATION FOR PHASE 3 (ART PIPELINE STABILIZATION)
+1) Freeze canonical runtime art root (recommend game/assets as active runtime root).
+2) Map exact load paths used at runtime for cards/avatars/holograms/biomes.
+3) Identify missing art warnings by category (missing vs wrong path vs stale manifest).
+4) Only after mapping, archive obsolete generated/noisy assets outside active lookup paths.

@@ -1,0 +1,50 @@
+﻿CHAKANA : PURPLE WIZARD
+CORE AUDIT MASTER REPORT
+Date: 2026-03-09
+
+1) WHAT IS WORKING TODAY
+- Main gameplay runtime is operational with map/combat/shop/codex entry points.
+- Pack flow and set-aware structure (Base/Hiperborea/Arconte) are integrated in UI paths.
+- Curated avatar files for Chakana master pipeline exist and are wired in key HUD paths.
+- Creative Director architecture is implemented for art/music supervision.
+- Report/QA artifacts are now compacted into canonical folders.
+
+2) WHAT IS DUPLICATED OR REDUNDANT
+- Historical report outputs were scattered in root; now migrated to reports/*.
+- Some legacy naming/copy paths still coexist in reward/event UX strings.
+- Multiple alias routes exist in audio and portrait loading; not all are fully normalized.
+
+3) WHAT IS BLOCKING CORE GOALS
+- Audio runtime materialization mismatch:
+  - manifest populated (40 items) but files missing on disk.
+  - no curated audio folder currently active.
+  - direct heavy regeneration timed out in current validation environment.
+- Remaining lore text repetition quality issues in card narrative surface lines.
+
+4) ARE WE CONVERGING OR LOSING TIME
+- Overall: PARTIALLY CONVERGING.
+- Converging: architecture, set integration, avatar curation pipeline, renderer unification trajectory.
+- Losing time areas: heavy unbounded procedural regeneration without pre-curated baseline, stale manifest churn.
+
+5) WHAT SHOULD BE ARCHIVED
+- Legacy/stale reports now moved from root to reports/audits and reports/cleanup.
+- Continue archiving superseded QA snapshots under qa/archive with latest-only active policy.
+
+6) WHAT SHOULD BE FIXED NEXT
+- Priority 1: audio integrity and fast bounded regen mode.
+- Priority 2: curated-first portrait key normalization across all major screens.
+- Priority 3: final language/lore de-duplication pass in player-facing text.
+
+7) WHAT SHOULD BE PAUSED
+- Broad regeneration sweeps (audio/art) until integrity checks and bounded QA modes are stabilized.
+
+PHASE STATUS SUMMARY
+- Phase 7 (audio reality): WARNING
+- Phase 8 (creative convergence): PARTIALLY CONVERGING
+- Phase 9 (compaction): PASS
+- Phase 10 (engine readiness): WARNING
+
+FINAL GATE
+- Runtime not intentionally modified in gameplay systems.
+- No destructive deletes performed.
+- Core repository organization is cleaner and more maintainable.

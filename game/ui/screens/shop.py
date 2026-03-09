@@ -37,7 +37,7 @@ class ShopScreen:
         relic_pool = list(getattr(self.app, "relics_data", []) or [])
         self.artifact = self.app.rng.choice(relic_pool) if relic_pool else {"id": "violet_seal", "name_key": "relic_violet_seal_name", "text_key": "relic_violet_seal_desc"}
         self._set_hint = "Hiperborea activa" if (self.offer_card in hip_pool or self.rare_card in hip_pool) else "Set base"
-        self.pack_offer = self.app.rng.choice(["base_pack", "hiperborea_pack", "mystery_pack"])
+        self.pack_offer = self.app.rng.choice(["base_pack", "hiperborea_pack"])
         self.pack_price = 95
 
         self.msg = ""
@@ -61,11 +61,30 @@ class ShopScreen:
         self.buy_rare_btn = pygame.Rect(0, 0, 1, 1)
         self.buy_artifact_btn = pygame.Rect(0, 0, 1, 1)
         self.buy_pack_btn = pygame.Rect(0, 0, 1, 1)
+        self.active_tab = "packs"
+        self.tab_rects = {
+            "packs": pygame.Rect(0, 0, 1, 1),
+            "relics": pygame.Rect(0, 0, 1, 1),
+            "sell": pygame.Rect(0, 0, 1, 1),
+        }
+        self.sell_btn = pygame.Rect(0, 0, 1, 1)
+        self.pack_prev_btn = pygame.Rect(0, 0, 1, 1)
+        self.pack_next_btn = pygame.Rect(0, 0, 1, 1)
+        self.sell_rows: list[tuple[pygame.Rect, str, int, int]] = []
 
         self.particles = [
             {"x": self.app.rng.randint(0, 1919), "y": self.app.rng.randint(0, 1079), "vx": self.app.rng.randint(-8, 8) / 10.0, "vy": self.app.rng.randint(2, 10) / 10.0}
             for _ in range(24)
         ]
+
+    def _pack_label(self, pack_id: str) -> str:
+        pid = str(pack_id or "").lower().strip()
+        labels = {
+            "base_pack": "Sobre del Origen",
+            "hiperborea_pack": "Sobre de Hiperb?rea",
+            "mystery_pack": "Sobre del Velo",
+        }
+        return labels.get(pid, "Sobre Ritual")
 
     def on_enter(self):
         pass
@@ -92,7 +111,16 @@ class ShopScreen:
         self.leave_rect = anchor_top_right(footer_inner, 260, 52, margin=0)
         self.hint_rect = pygame.Rect(footer_inner.x, footer_inner.y, max(260, footer_inner.w - self.leave_rect.w - 14), footer_inner.h)
         self.buy_pack_btn = pygame.Rect(self.leave_rect.x - 226, self.leave_rect.y, 210, 52)
-        self.hint_rect = pygame.Rect(footer_inner.x, footer_inner.y, max(260, footer_inner.w - self.leave_rect.w - self.buy_pack_btn.w - 26), footer_inner.h)
+        self.pack_prev_btn = pygame.Rect(self.buy_pack_btn.x - 42, self.buy_pack_btn.y + 8, 30, 36)
+        self.pack_next_btn = pygame.Rect(self.buy_pack_btn.right + 10, self.buy_pack_btn.y + 8, 30, 36)
+        self.hint_rect = pygame.Rect(footer_inner.x, footer_inner.y, max(260, footer_inner.w - self.leave_rect.w - self.buy_pack_btn.w - 92), footer_inner.h)
+
+        tx = self.merchant_rect.x + 186
+        ty = self.merchant_rect.y + 118
+        self.tab_rects["packs"] = pygame.Rect(tx, ty, 118, 34)
+        self.tab_rects["relics"] = pygame.Rect(tx + 126, ty, 118, 34)
+        self.tab_rects["sell"] = pygame.Rect(tx + 252, ty, 118, 34)
+        self.sell_btn = pygame.Rect(self.hint_rect.right - 220, self.hint_rect.y + 8, 210, max(36, self.hint_rect.h - 16))
     def _blit_contained(self, s: pygame.Surface, image: pygame.Surface, slot: pygame.Rect):
         iw, ih = image.get_size()
         if iw <= 0 or ih <= 0:
@@ -138,17 +166,69 @@ class ShopScreen:
             self.msg = "No tienes oro suficiente"
             return
         self.app.run_state["gold"] -= self.pack_price
-        self.msg = f"Pack adquirido: {self.pack_offer}"
+        self.msg = f"Sobre adquirido: {self._pack_label(self.pack_offer)}"
         reward_data = {
             "type": "choose1of3",
             "pack_category": str(self.pack_offer),
-            "pack_title": "Pack de tienda",
-            "pack_lore": "Compra directa del comerciante.",
+            "pack_title": self._pack_label(self.pack_offer),
+            "pack_lore": "Un legado sellado por el mercader del umbral.",
         }
         if hasattr(self.app, "goto_pack_opening"):
             self.app.goto_pack_opening(reward_data=reward_data, source="shop")
         else:
             self.app.sm.set(__import__("game.ui.screens.pack_opening", fromlist=["PackOpeningScreen"]).PackOpeningScreen(self.app, reward_data=reward_data, source="shop"))
+    def _duplicate_inventory_rows(self):
+        run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
+        cards = list(run.get("deck", []) or []) + list(run.get("sideboard", []) or [])
+        counts = {}
+        for cid in cards:
+            key = str(cid or "").strip()
+            if not key:
+                continue
+            counts[key] = counts.get(key, 0) + 1
+        rows = []
+        for cid, cnt in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0])):
+            dup = int(cnt) - 1
+            if dup <= 0:
+                continue
+            price = self._card_sell_price(cid)
+            rows.append((cid, dup, price))
+        return rows
+
+    def _card_sell_price(self, cid: str) -> int:
+        card = dict((self.app.card_defs or {}).get(str(cid), {}) or {})
+        rarity = str(card.get("rarity", "common") or "common").lower()
+        by = {"basic": 8, "common": 12, "uncommon": 24, "rare": 55, "legendary": 120}
+        return int(by.get(rarity, 12))
+
+    def _sell_duplicate(self, cid: str):
+        run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
+        deck = list(run.get("deck", []) or [])
+        side = list(run.get("sideboard", []) or [])
+        total = sum(1 for x in (deck + side) if str(x) == str(cid))
+        if total <= 1:
+            self.msg = "No hay duplicados para vender"
+            return
+        # prefer sideboard removal first
+        removed = False
+        for arr_name in ("sideboard", "deck"):
+            arr = side if arr_name == "sideboard" else deck
+            for i, x in enumerate(arr):
+                if str(x) == str(cid):
+                    arr.pop(i)
+                    removed = True
+                    break
+            if removed:
+                break
+        if not removed:
+            self.msg = "No hay duplicados para vender"
+            return
+        run["deck"] = deck
+        run["sideboard"] = side
+        gain = self._card_sell_price(cid)
+        run["gold"] = int(run.get("gold", 0) or 0) + gain
+        self.msg = f"Vendida copia de {cid} (+{gain} oro)"
+
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_F1:
@@ -160,14 +240,36 @@ class ShopScreen:
             pos = self.app.renderer.map_mouse(event.pos)
             self.app.sfx.play("ui_click")
 
-            if self.buy_cheap_btn.collidepoint(pos):
+            for tid, tr in self.tab_rects.items():
+                if tr.collidepoint(pos):
+                    self.active_tab = tid
+                    return
+
+            if self.pack_prev_btn.collidepoint(pos):
+                seq = ["base_pack", "hiperborea_pack"]
+                cur = seq.index(self.pack_offer) if self.pack_offer in seq else 0
+                self.pack_offer = seq[(cur - 1) % len(seq)]
+                return
+            if self.pack_next_btn.collidepoint(pos):
+                seq = ["base_pack", "hiperborea_pack"]
+                cur = seq.index(self.pack_offer) if self.pack_offer in seq else 0
+                self.pack_offer = seq[(cur + 1) % len(seq)]
+                return
+
+            if self.active_tab == "packs" and self.buy_cheap_btn.collidepoint(pos):
                 self._buy_card(self.offer_card, self.cheap_price, "Compra")
-            elif self.buy_pack_btn.collidepoint(pos):
+            elif self.active_tab == "packs" and self.buy_pack_btn.collidepoint(pos):
                 self._buy_pack()
-            elif self.buy_rare_btn.collidepoint(pos):
+            elif self.active_tab == "packs" and self.buy_rare_btn.collidepoint(pos):
                 self._buy_card(self.rare_card, self.rare_price, "Compra rara")
-            elif self.buy_artifact_btn.collidepoint(pos):
+            elif self.active_tab == "relics" and self.buy_artifact_btn.collidepoint(pos):
                 self._buy_artifact()
+            elif self.active_tab == "sell" and self.sell_btn.collidepoint(pos):
+                rows = self._duplicate_inventory_rows()
+                if rows:
+                    self._sell_duplicate(rows[0][0])
+                else:
+                    self.msg = "No hay duplicados para vender"
             elif self.cheap_rect.collidepoint(pos):
                 self.selected_offer = "cheap"
             elif self.rare_rect.collidepoint(pos):
@@ -293,6 +395,12 @@ class ShopScreen:
         s.blit(self.app.tiny_font.render("Intercambio ritual y reliquias del viaje", True, UI_THEME["muted"]), (self.merchant_rect.x + 20, self.merchant_rect.y + 46))
         s.blit(self.app.tiny_font.render(self._set_hint, True, UI_THEME["gold"]), (self.merchant_rect.x + 20, self.merchant_rect.y + 66))
         s.blit(self.app.tiny_font.render("Categorias: Cartas / Reliquias / Sobres", True, UI_THEME["muted"]), (self.merchant_rect.x + 20, self.merchant_rect.y + 86))
+        for tid, tr in self.tab_rects.items():
+            on = (tid == self.active_tab)
+            pygame.draw.rect(s, UI_THEME["panel_2"], tr, border_radius=8)
+            pygame.draw.rect(s, UI_THEME["gold"] if on else UI_THEME["accent_violet"], tr, 2 if on else 1, border_radius=8)
+            lbl = {"packs": "Packs", "relics": "Reliquias", "sell": "Vender"}.get(tid, tid)
+            s.blit(self.app.tiny_font.render(lbl, True, UI_THEME["gold"] if on else UI_THEME["muted"]), (tr.x + 10, tr.y + 9))
         gold_rect = anchor_top_right(self.merchant_rect, 320, 46, margin=18)
         pygame.draw.rect(s, UI_THEME["panel_2"], gold_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], gold_rect, 2, border_radius=10)
@@ -339,8 +447,14 @@ class ShopScreen:
 
         pygame.draw.rect(s, UI_THEME["violet"], self.buy_pack_btn, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.buy_pack_btn, 2, border_radius=10)
-        ptxt = self.app.tiny_font.render(f"SOBRE {self.pack_offer.upper()} ({self.pack_price})", True, UI_THEME["text"])
+        ptxt = self.app.tiny_font.render(f"{self._pack_label(self.pack_offer).upper()} ({self.pack_price})", True, UI_THEME["text"])
         s.blit(ptxt, ptxt.get_rect(center=self.buy_pack_btn.center))
+        pygame.draw.rect(s, UI_THEME["panel_2"], self.pack_prev_btn, border_radius=8)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.pack_prev_btn, 1, border_radius=8)
+        s.blit(self.app.small_font.render("<", True, UI_THEME["text"]), (self.pack_prev_btn.x + 9, self.pack_prev_btn.y + 4))
+        pygame.draw.rect(s, UI_THEME["panel_2"], self.pack_next_btn, border_radius=8)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.pack_next_btn, 1, border_radius=8)
+        s.blit(self.app.small_font.render(">", True, UI_THEME["text"]), (self.pack_next_btn.x + 9, self.pack_next_btn.y + 4))
         pygame.draw.rect(s, UI_THEME["violet"], self.leave_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.leave_rect, 2, border_radius=10)
         leave_lbl = self.app.font.render("Volver", True, UI_THEME["text"])
@@ -351,6 +465,15 @@ class ShopScreen:
         hint_lbl = self.app.tiny_font.render(self.hint, True, UI_THEME["muted"])
         s.blit(hint_lbl, (self.hint_rect.x + 12, self.hint_rect.centery - hint_lbl.get_height() // 2))
 
+        if self.active_tab == "sell":
+            rows = self._duplicate_inventory_rows()
+            info = "Sin duplicados" if not rows else ", ".join([f"{cid} x{dup} (+{price})" for cid, dup, price in rows[:2]])
+            s.blit(self.app.tiny_font.render(f"Duplicados: {info}", True, UI_THEME["text"]), (self.hint_rect.x + 12, self.hint_rect.y + 8))
+            pygame.draw.rect(s, UI_THEME["violet"], self.sell_btn, border_radius=10)
+            pygame.draw.rect(s, UI_THEME["gold"], self.sell_btn, 2, border_radius=10)
+            s.blit(self.app.tiny_font.render("VENDER 1 DUPLICADA", True, UI_THEME["text"]), self.app.tiny_font.render("VENDER 1 DUPLICADA", True, UI_THEME["text"]).get_rect(center=self.sell_btn.center))
+
         if self.msg:
             col = UI_THEME["good"] if "No" not in self.msg and "Ya" not in self.msg else UI_THEME["bad"]
             s.blit(self.app.font.render(self.msg, True, col), (self.merchant_rect.x + 20, self.hint_rect.y - 32))
+

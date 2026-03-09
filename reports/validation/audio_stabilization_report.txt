@@ -1,0 +1,48 @@
+CHAKANA PHASE 4 - AUDIO STABILIZATION REPORT
+generated_at=2026-03-09 20:47:38
+scope=audio pipeline stabilization (no gameplay logic changes)
+
+runtime_canonical_paths
+- engine=game/audio/audio_engine.py
+- generated_audio_root=game/audio/generated
+- manifest_runtime=game/audio/audio_manifest.json
+- manifest_support=game/data/bgm_manifest.json (synced)
+
+audit_summary
+- audio_manifest_version=chakana_audio_v6
+- manifest_items_total=40
+- bgm_items=20 avg_seconds=37.20
+- stinger_items=11 avg_seconds=1.74
+- sfx_items=9 avg_seconds=0.19
+- manifest_missing_files=0
+- manifest_bad_version_items=0
+- duplicate_binary_groups=3
+- legacy_music_files_active_path=0 (non-primary)
+- bgm_manifest_contexts=13
+- bgm_manifest_missing_paths=0
+
+stabilization_actions
+- synced game/data/bgm_manifest.json to current audio_engine v6 generated outputs
+- validated core audio assets with ensure_core_assets(force=False)
+- kept runtime priority on game/audio/generated and avoided legacy path fallback drift
+- switched reward music routing to victory context for clearer reward identity
+
+active_bgm_contexts
+- combat
+- combat_boss
+- combat_elite
+- defeat
+- map_hanan
+- map_kay
+- map_ukhu
+- menu
+- shop
+- victory
+
+duplicate_binary_groups_detail
+- type=bgm count=2 ids=['menu_a', 'menu_b']
+- type=bgm count=2 ids=['shop_a', 'shop_b']
+- type=bgm count=2 ids=['victory_a', 'victory_b']
+
+warnings
+- none

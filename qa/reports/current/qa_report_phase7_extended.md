@@ -1,0 +1,28 @@
+```text
+CHAKANA - PHASE 7 EXTENDED QA
+============================================
+version=0.9.106a
+build=Font Context Normalization Hotfix
+overall=PASS
+
+Checks
+- unlock_after_3_combats: PASS
+- enemy_variety: PASS
+- event_variety: PASS
+- hiperboria_visibility(shop/pack): PASS
+
+Metrics
+- combats_for_unlock: 3
+- hiperboria_unlocked_after_3: True
+- discovered_sets: ['base', 'hiperboria']
+- reveal_scene_seen: True
+- enemy_ids: ['sabueso_sombrio', 'larva_del_vacio', 'espiritu_puma_menor', 'rata_obsidiana', 'ave_de_ceniza', 'neblina_consciente', 'espiritu_condor_menor', 'oraculo_menor']
+- enemy_unique_ratio: 1.000
+- enemy_consecutive_repeat_rate: 0.000
+- event_ids: ['condor_vision', 'puma_trial', 'ayni_pact', 'ayni_pact', 'ayni_pact', 'puma_trial', 'condor_vision', 'ayni_pact']
+- event_unique_ratio: 0.375
+- event_consecutive_repeat_rate: 0.286
+- shop_has_hiperboria_pool: True
+- pack_has_hiperboria_pool: True
+
+```

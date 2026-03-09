@@ -76,6 +76,16 @@ PACK_ECONOMY = {
 }
 
 
+LEGACY_PACK_ALIAS = {
+    "normal_pack": "base_pack",
+    "rare_choice_pack": "mystery_pack",
+    "ritual_reward_pack": "mystery_pack",
+}
+
+
+def normalize_pack_id(pack_id: str) -> str:
+    key = str(pack_id or "").strip().lower()
+    return LEGACY_PACK_ALIAS.get(key, key)
 def _card_instance(card_dict):
     c = dict(card_dict or {})
     payload = {
@@ -131,26 +141,26 @@ def _pack_profile_for_state(rng, player_state) -> dict:
     level = int((player_state or {}).get("level", 1) or 1)
     if level <= 1:
         table = [
-            ("normal_pack", 0.62),
-            ("ritual_reward_pack", 0.28),
-            ("rare_choice_pack", 0.10),
+            ("base_pack", 0.60),
+            ("mystery_pack", 0.28),
+            ("hiperborea_pack", 0.12),
         ]
     elif level <= 4:
         table = [
-            ("normal_pack", 0.40),
-            ("rare_choice_pack", 0.33),
-            ("ritual_reward_pack", 0.20),
-            ("legendary_reward", 0.07),
+            ("base_pack", 0.36),
+            ("mystery_pack", 0.36),
+            ("hiperborea_pack", 0.20),
+            ("legendary_reward", 0.08),
         ]
     else:
         table = [
-            ("normal_pack", 0.25),
-            ("rare_choice_pack", 0.35),
-            ("ritual_reward_pack", 0.25),
-            ("legendary_reward", 0.15),
+            ("base_pack", 0.24),
+            ("mystery_pack", 0.34),
+            ("hiperborea_pack", 0.24),
+            ("legendary_reward", 0.18),
         ]
-    pack_id = _weighted_pack_roll(rng, table)
-    meta = PACK_ECONOMY.get(pack_id, PACK_ECONOMY["normal_pack"])
+    pack_id = normalize_pack_id(_weighted_pack_roll(rng, table))
+    meta = PACK_ECONOMY.get(pack_id, PACK_ECONOMY["base_pack"])
     return {"id": pack_id, "title": meta["title"], "lore": meta["lore"], "expected_value": dict(meta["expected_value"])}
 
 
@@ -160,10 +170,10 @@ def build_reward_normal(rng, card_pool, player_state) -> dict:
         return {
             "type": "choose1of3",
             "cards": [],
-            "pack_category": "normal_pack",
-            "pack_title": PACK_ECONOMY["normal_pack"]["title"],
+            "pack_category": "base_pack",
+            "pack_title": PACK_ECONOMY["base_pack"]["title"],
             "pack_lore": "Sin cartas disponibles.",
-            "pack_expected_value": dict(PACK_ECONOMY["normal_pack"]["expected_value"]),
+            "pack_expected_value": dict(PACK_ECONOMY["base_pack"]["expected_value"]),
             "reward_categories": ["single_card_reward", "gold_reward"],
         }
 
@@ -178,9 +188,9 @@ def build_reward_normal(rng, card_pool, player_state) -> dict:
     ] or uncommon_pool
 
     profile = _pack_profile_for_state(rng, player_state)
-    pack_id = profile["id"]
+    pack_id = normalize_pack_id(profile["id"])
 
-    if pack_id == "rare_choice_pack":
+    if pack_id == "mystery_pack":
         picks = _pick_unique(rng, rare_pool + uncommon_pool, 3, fallback=pool)
     elif pack_id == "legendary_reward":
         picks = [
@@ -189,8 +199,8 @@ def build_reward_normal(rng, card_pool, player_state) -> dict:
             _safe_pick(rng, uncommon_pool, common_pool),
         ]
         picks = [p for p in picks if p is not None]
-    elif pack_id == "ritual_reward_pack":
-        picks = _pick_unique(rng, ritual_pool, 3, fallback=pool)
+    elif pack_id == "hiperborea_pack":
+        picks = _pick_unique(rng, rare_pool + ritual_pool, 3, fallback=pool)
     else:
         picks = _pick_unique(rng, common_pool + uncommon_pool, 3, fallback=pool)
 
@@ -335,3 +345,6 @@ def build_reward_guide(event_id, rng, card_pool, player_state) -> dict:
         "options": options,
         "reward_categories": ["guide_blessing", "single_card_reward", "healing_reward", "gold_reward", "relic_reward"],
     }
+
+
+

@@ -1,0 +1,95 @@
+CHAKANA DOCUMENT AUDIT REPORT
+
+generated_at=2026-03-09T18:44:01
+docs_files=62
+qa_files=25
+tools_files=86
+
+[duplicate_documents_exact_hash]
+- hash_group size=3
+  - tools\assets\__init__.py
+  - tools\maintenance\__init__.py
+  - tools\qa\__init__.py
+
+[outdated_or_archived_candidates]
+- docs\archive\active_asset_sanitization_report.txt
+- docs\archive\active_runtime_asset_report.txt
+- docs\archive\asset_classification_report.txt
+- docs\archive\asset_disk_audit_report.txt
+- docs\archive\audio_runtime_mapping_report.txt
+- docs\archive\card_set_emblem_system_report.txt
+- docs\archive\chakana_game_professionalization_report.txt
+- docs\archive\combat_hud_polish_report.txt
+- docs\archive\content_generation_supervision_report.txt
+- docs\archive\CONTENT_LOCK_1_0_REPORT.md
+- docs\archive\deckbuilder_design_audit.txt
+- docs\archive\event_node_refactor_report.txt
+- docs\archive\event_system_design_report.txt
+- docs\archive\final_gameplay_integration_fix_report.md
+- docs\archive\final_gameplay_integration_fix_report.txt
+- docs\archive\gameplay_loop_evaluation.txt
+- docs\archive\hologram_dialogue_integration_report.txt
+- docs\archive\legacy_purge_plan.txt
+- docs\archive\lore_integration_audit.txt
+- docs\archive\lore_language_normalization_report.txt
+- docs\archive\pack_shop_integration_report.txt
+- docs\archive\player_experience_review.txt
+- docs\archive\player_facing_label_audit.txt
+- docs\archive\portrait_pipeline_upgrade_report.txt
+- docs\archive\procedural_art_evolution_plan.txt
+- docs\archive\professionalization_roadmap.txt
+- docs\archive\QA_PHASE9_SUPERVISION_EXPANDED.md
+- docs\archive\regen_audio_report.txt
+- docs\archive\regen_visual_report.txt
+- docs\archive\soundtrack_direction_plan.txt
+- docs\archive\system_architecture_audit.txt
+- docs\archive\system_knot_audit_report.txt
+- docs\archive\visual_direction_audit.txt
+- docs\archive\visual_pipeline_upgrade_report.txt
+- docs\archive\world_naming_conventions.txt
+- qa\reports\archive\gameplay_blocker_report.txt
+- qa\reports\archive\qa_card_legibility_fix.txt
+- qa\reports\archive\qa_report_build_0_9_102.txt
+- qa\reports\archive\qa_report_build_0_9_103.txt
+- qa\reports\archive\qa_report_build_0_9_104.txt
+- qa\reports\archive\qa_report_build_0_9_105.txt
+- qa\reports\archive\qa_report_build_0_9_106.txt
+- qa\reports\archive\qa_report_build_0_9_106a.txt
+- qa\reports\archive\qa_report_build_latest_prev_1773089331.txt
+- qa\reports\archive\qa_report_phase7_extended.md
+- qa\reports\archive\qa_report_phase7_extended.txt
+- qa\reports\archive\qa_report_post_combat_polish_full.md
+- qa\reports\archive\qa_report_post_combat_polish_full.txt
+- qa\reports\archive\qa_report_visual_system_normalization.md
+- qa\reports\archive\qa_report_visual_system_normalization.txt
+- qa\reports\archive\qa_visual_runtime_fullhd.txt
+
+[experimental_or_planning_candidates]
+- docs\architecture\codex_prompt_template.md
+- docs\architecture\documentation_structure_audit.txt
+- docs\architecture\PROJECT_STRUCTURE_AUDIT.md
+- docs\architecture\target_structure_plan.txt
+- docs\archive\asset_disk_audit_report.txt
+- docs\archive\deckbuilder_design_audit.txt
+- docs\archive\legacy_purge_plan.txt
+- docs\archive\lore_integration_audit.txt
+- docs\archive\player_facing_label_audit.txt
+- docs\archive\procedural_art_evolution_plan.txt
+- docs\archive\soundtrack_direction_plan.txt
+- docs\archive\system_architecture_audit.txt
+- docs\archive\system_knot_audit_report.txt
+- docs\archive\visual_direction_audit.txt
+- docs\design\UI_AUDIT_REPORT.md
+- docs\engine\CHAKANA_ENGINE_EXTRACTION_PLAN.md
+- tools\maintenance\chakana_project_audit_consolidation.py
+- tools\qa\combat_system_upgrade_audit.py
+- tools\qa\qa_phase4_asset_pipeline_audit.py
+- tools\qa\qa_pre_engine_audit.py
+- tools\qa_phase4_asset_pipeline_audit.py
+- tools\qa_pre_engine_audit.py
+
+[redundant_qa_report_groups]
+- group=qa_report_build count=8
+  - keep_candidate=qa\reports\archive\qa_report_build_0_9_106a.txt
+  - keep_candidate=qa\reports\archive\qa_report_build_latest_prev_1773089331.txt
+  - keep_candidate=qa\reports\current\qa_report_build_latest.txt

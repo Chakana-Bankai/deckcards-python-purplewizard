@@ -1,0 +1,16 @@
+PROFESSIONALIZATION EXECUTION PASS - PHASE 3
+reading_order=enemy -> player -> cards -> actions
+
+[changes]
+
+- duplicate harmony label removed from player HUD row3
+- row3 keeps deck/hand/discard + relic strip only
+
+[audit]
+
+harmony_label_refs=1
+enemy_panel_refs=47
+
+[status]
+
+PASS

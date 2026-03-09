@@ -1,0 +1,6 @@
+CHAKANA CARD BALANCE VALIDATION
+
+set_sizes={'Base': 60, 'Hiperborea': 60, 'Archon': 60, 'Total': 180}
+rarity_distribution={'uncommon': 60, 'legendary': 9, 'common': 90, 'rare': 21}
+role_distribution={'bridge': 54, 'payoff': 36, 'engine': 90}
+simulation_100_per_archetype=FOUND

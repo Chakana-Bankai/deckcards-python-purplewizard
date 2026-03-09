@@ -1,0 +1,29 @@
+CHAKANA ACTIVE ART MANIFEST REPORT
+generated_at=2026-03-09T19:50:04
+
+[art_manifest]
+exists=True
+items=60
+path_prefix_assets=60
+
+[art_manifest_cards]
+exists=False
+items=0
+path_prefixes=none
+
+[visual_manifest]
+exists=True
+items=132
+path_prefixes=none
+
+[portrait_manifest]
+exists=True
+items=69
+path_prefix_C:=69
+
+[manifest_consistency]
+- art_manifest points to assets/... root paths (parallel to runtime canonical game/assets).
+- art_manifest_cards.json missing; card-level manifest split is incomplete.
+- portrait_manifest present; portrait pipeline metadata is active.
+
+status=WARNING

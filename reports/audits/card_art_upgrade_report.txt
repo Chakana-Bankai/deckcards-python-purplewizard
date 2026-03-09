@@ -1,0 +1,129 @@
+CHAKANA ART DIRECTION PASS
+
+[status]
+- Procedural card art narrative composition: APPLIED
+- Set style direction (Base/Hiperborea/Archon): APPLIED
+- Avatar portrait pipeline 512x512 focus: APPLIED (tooling)
+- Hologram treatment (scanline/glow/transparent energy): APPLIED
+
+[card_generation_samples]
+- base_art_direction_probe: ok=True size=[320, 220] set_style=base narrative=True path=game\assets\.cache\art_direction_pass\base_art_direction_probe.png
+- hip_art_direction_probe: ok=True size=[320, 220] set_style=hiperborea narrative=True path=game\assets\.cache\art_direction_pass\hip_art_direction_probe.png
+- arc_art_direction_probe: ok=True size=[320, 220] set_style=archon narrative=True path=game\assets\.cache\art_direction_pass\arc_art_direction_probe.png
+
+[avatar_pipeline]
+- portrait_512x512=True
+- hologram_asset_present=True
+- concept: exists=True size=[768, 1024] path=game\assets\curated\avatars\chakana_mage_master_concept.png
+- portrait: exists=True size=[512, 512] path=game\assets\curated\avatars\chakana_mage_master_portrait.png
+- hologram: exists=True size=[512, 512] path=game\assets\curated\avatars\chakana_mage_master_hologram.png
+- note: Run python -m tools.build_chakana_master_from_reference --source <ruta_imagen> to rebuild curated assets with new 512x512 portrait pipeline.
+
+[raw_json]
+{
+  "sample": {
+    "generator": "advanced_v4_narrative::card_gen_v6",
+    "samples": [
+      {
+        "id": "base_art_direction_probe",
+        "ok": true,
+        "size": [
+          320,
+          220
+        ],
+        "result": {
+          "card_id": "base_art_direction_probe",
+          "card_type": "attack",
+          "prompt": "base set mystical warrior, chakana motifs, gold violet palette, subject casts ritual blade motif-forward treatment, clear central symbol, reduced random repetition, narrative composition. set identity base: mystic geometry, chakana motifs, ceremonial runes, gold + violet palette. narrative composition rules: subject 50-60 percent frame, environment 20-30 percent, energy action 10-20 percent. Always show subject + visible action + readable environment context. keep pixel clarity full hd no blur no stretch.",
+          "generator_used": "card_gen_v6",
+          "variant": 3,
+          "hash16": 44325,
+          "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\.cache\\art_direction_pass\\base_art_direction_probe.png",
+          "treatment_mode": "procedural_motif",
+          "prompt_enriched": true,
+          "illustrative_finish": true,
+          "narrative_composition": true,
+          "set_style": "base"
+        },
+        "path": "game\\assets\\.cache\\art_direction_pass\\base_art_direction_probe.png"
+      },
+      {
+        "id": "hip_art_direction_probe",
+        "ok": true,
+        "size": [
+          320,
+          220
+        ],
+        "result": {
+          "card_id": "hip_art_direction_probe",
+          "card_type": "control",
+          "prompt": "hiperborea set, atlantean polar temple, crystal technology, ancient advanced civilization illustrated fantasy card art treatment, painterly brush texture, cinematic lighting, strong character/motif readability. set identity hiperborea: ancient advanced civilization, atlantean polar temples, crystal technology, marble white + ice blue + ancient gold palette. narrative composition rules: subject 50-60 percent frame, environment 20-30 percent, energy action 10-20 percent. Always show subject + visible action + readable environment context. keep pixel clarity full hd no blur no stretch.",
+          "generator_used": "card_gen_v6",
+          "variant": 2,
+          "hash16": 53004,
+          "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\.cache\\art_direction_pass\\hip_art_direction_probe.png",
+          "treatment_mode": "illustrative_hybrid",
+          "prompt_enriched": true,
+          "illustrative_finish": true,
+          "narrative_composition": true,
+          "set_style": "hiperborea"
+        },
+        "path": "game\\assets\\.cache\\art_direction_pass\\hip_art_direction_probe.png"
+      },
+      {
+        "id": "arc_art_direction_probe",
+        "ok": true,
+        "size": [
+          320,
+          220
+        ],
+        "result": {
+          "card_id": "arc_art_direction_probe",
+          "card_type": "legendary",
+          "prompt": "archon void corruption gnostic horror dark entity oppressive demonic premium legendary treatment, expanded motif detail, illustrated focal subject, richer glow layering, ceremonial silhouette priority. set identity archon: dark entities, void corruption, gnostic horror, oppressive silhouettes, dark purple + crimson + black palette. narrative composition rules: subject 50-60 percent frame, environment 20-30 percent, energy action 10-20 percent. Always show subject + visible action + readable environment context. keep pixel clarity full hd no blur no stretch.",
+          "generator_used": "card_gen_v6",
+          "variant": 1,
+          "hash16": 68684,
+          "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\.cache\\art_direction_pass\\arc_art_direction_probe.png",
+          "treatment_mode": "premium_legendary",
+          "prompt_enriched": true,
+          "illustrative_finish": true,
+          "narrative_composition": true,
+          "set_style": "archon"
+        },
+        "path": "game\\assets\\.cache\\art_direction_pass\\arc_art_direction_probe.png"
+      }
+    ]
+  },
+  "avatar": {
+    "assets": {
+      "concept": {
+        "exists": true,
+        "size": [
+          768,
+          1024
+        ],
+        "path": "game\\assets\\curated\\avatars\\chakana_mage_master_concept.png"
+      },
+      "portrait": {
+        "exists": true,
+        "size": [
+          512,
+          512
+        ],
+        "path": "game\\assets\\curated\\avatars\\chakana_mage_master_portrait.png"
+      },
+      "hologram": {
+        "exists": true,
+        "size": [
+          512,
+          512
+        ],
+        "path": "game\\assets\\curated\\avatars\\chakana_mage_master_hologram.png"
+      }
+    },
+    "portrait_512x512": true,
+    "hologram_asset_present": true,
+    "note": "Run python -m tools.build_chakana_master_from_reference --source <ruta_imagen> to rebuild curated assets with new 512x512 portrait pipeline."
+  }
+}

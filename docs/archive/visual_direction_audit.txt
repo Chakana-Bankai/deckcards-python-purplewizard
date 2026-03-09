@@ -1,0 +1,21 @@
+VISUAL DIRECTION AUDIT
+fecha: 2026-03-09 17:27:31
+
+Estado:
+- Renderer de cartas unificado y jerarquia mejorada.
+- Sistema de iconos central existe, pero hay contextos con densidad visual alta en HUD.
+- Paneles de mapa/combate mejoraron, aun hay oportunidades de simplificacion de labels.
+
+Problemas:
+- redundancia textual en algunos paneles de estado.
+- mezcla de estilos entre pantallas legacy y pantallas nuevas.
+- algunos layouts conservan bloques demasiado comprimidos en Full HD.
+
+Mejoras:
+1) Consolidar spacing tokens por contexto (HUD, map panel, modal).
+2) Reducir labels duplicados y priorizar icono+valor+micro-label.
+3) Mantener tarjetas mini/mid/full estrictas sin fuga de detalle en mini.
+4) Codex/map: normalizar terminologia a C?dice/Hiperb?rea/Cr?nicas.
+
+Safe pass aplicado:
+- Correccion de labels player-facing en Map/Codex (C?dice, Hiperb?rea, Cr?nicas).

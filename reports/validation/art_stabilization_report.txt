@@ -1,0 +1,19 @@
+CHAKANA PHASE 3 - ART STABILIZATION REPORT
+generated_at=2026-03-09 20:43:38
+
+scope=art pipeline stabilization (no gameplay logic changes)
+canonical_assets_root=game/assets
+legacy_assets_root=assets (audit/support only)
+
+diagnostics
+- cards_required_total=120
+- canonical_card_png_total=240
+- legacy_card_png_total=120
+- missing_after_stabilization=0
+- resolved_via_existing_legacy_sync=60
+- resolved_via_canonical_generation=60
+
+stability_actions
+- ensured canonical card art directory is populated under game/assets/sprites/cards
+- generated missing canonical card arts for unresolved ids using existing card art generator pipeline
+- validated qa_report_generator now sees effective+legacy art failures in sync with real runtime assets

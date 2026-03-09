@@ -338,7 +338,7 @@ class MapScreen:
         return boss_id or biome_key, boss_name, line
 
     def _draw_top_buttons(self, s, topbar: pygame.Rect):
-        labels = [("deck", "Mazo"), ("shop", "Tienda"), ("codex", "Codex")]
+        labels = [("deck", "Mazo"), ("shop", "Tienda"), ("codex", "C?dice")]
         reg = getattr(self.app, "font_registry", {}) or {}
         pix_font = reg.get("special_pixel_label", self.app.tiny_font)
         x = topbar.right - 430

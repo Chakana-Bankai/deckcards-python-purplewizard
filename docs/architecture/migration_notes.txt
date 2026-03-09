@@ -1,0 +1,13 @@
+MIGRATION NOTES
+generated_at: 2026-03-09 17:49:27
+
+Canonical paths now:
+- docs/* grouped by domain (systems/design/lore/engine/architecture/archive).
+- qa/reports/current/qa_report_build_latest.txt is the single active QA build output.
+- qa/reports/archive stores historical outputs.
+- tools/qa, tools/assets, tools/maintenance host grouped scripts.
+
+Backward compatibility:
+- Old tool entrypoints preserved through wrappers in tools/*.py.
+- No runtime gameplay modules moved in this pass.
+

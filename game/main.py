@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import traceback
 import shutil
@@ -62,6 +62,7 @@ from game.services.asset_pipeline import AssetPipeline
 from game.services.audio_pipeline import AudioPipeline
 from game.services.archetype_distribution import enforce_archetype_rarity_distribution
 from game.systems.enemy_intent_deck import build_enemy_intent_deck, infer_ai_profile, infer_enemy_type
+from game.systems.enemy_deck_system import load_enemy_decks, resolve_enemy_deck
 from game.visual import get_visual_engine
 from game.systems.reward_system import build_reward_boss, build_reward_guide, build_reward_normal
 from game.systems.meta_director import MetaDirector
@@ -443,7 +444,7 @@ class App:
             "map": f"map_{str(biome_id or (self.run_state or {}).get('biome') or 'kaypacha').lower()}",
             "combat": f"combat_{str(biome_id or (self.run_state or {}).get('biome') or 'kaypacha').lower()}",
             "shop": "shop",
-            "reward": "shop",
+            "reward": "victory",
             "boss": "boss",
             "events": "event",
         }
@@ -524,7 +525,9 @@ class App:
                 "author": enriched.get("author", "Mauricio"),
                 "order": enriched.get("order", "Chakana"),
                 "set": str(enriched.get("set", "base") or "base"),
+                "taxonomy": str(enriched.get("taxonomy", "") or ""),
             })
+        cooked = self._enforce_taxonomy_coverage(cooked)
         by_id = {c.get("id"): c for c in cooked if c.get("id")}
         if not by_id:
             for base in DEFAULT_CARDS:
@@ -563,8 +566,38 @@ class App:
                 "author": enriched.get("author", "Mauricio"),
                 "order": enriched.get("order", "Chakana"),
                 "set": str(enriched.get("set", "hiperboria") or "hiperboria"),
+                "taxonomy": str(enriched.get("taxonomy", "") or ""),
             })
-        return cooked
+        return self._enforce_taxonomy_coverage(cooked)
+
+    def _enforce_taxonomy_coverage(self, cards):
+        if not isinstance(cards, list):
+            return cards
+        by_arch = {}
+        for c in cards:
+            if not isinstance(c, dict):
+                continue
+            arch = str(c.get("archetype", "")).strip().lower()
+            if not arch:
+                continue
+            by_arch.setdefault(arch, []).append(c)
+        for arch, arr in by_arch.items():
+            have = {str(x.get("taxonomy", "")).strip().lower() for x in arr}
+            missing = [k for k in ("engine", "bridge", "payoff") if k not in have]
+            if not missing:
+                continue
+            # Promote safe candidates without changing effects.
+            for miss in missing:
+                cand = None
+                if miss == "payoff":
+                    cand = next((x for x in arr if str(x.get("rarity", "")).lower() in {"rare", "legendary"}), None)
+                if cand is None:
+                    cand = next((x for x in arr if str(x.get("taxonomy", "")).lower() not in {"payoff"}), None)
+                if cand is None and arr:
+                    cand = arr[0]
+                if isinstance(cand, dict):
+                    cand["taxonomy"] = miss
+        return cards
 
     def _enrich_card_semantic_fields(self, card: dict) -> dict:
         """Ensure runtime card semantics exist for UI/art guidance without changing mechanics."""
@@ -630,6 +663,20 @@ class App:
             row["author"] = "Mauricio"
         if not str(row.get("order", "")).strip():
             row["order"] = "Chakana"
+
+        if not str(row.get("taxonomy", "")).strip():
+            effects = [str(e.get("type", "")).lower() for e in list(row.get("effects", []) or []) if isinstance(e, dict)]
+            rarity = str(row.get("rarity", "common") or "common").lower()
+            dmg = 0
+            for e in list(row.get("effects", []) or []):
+                if isinstance(e, dict) and str(e.get("type", "")).lower() in {"damage", "damage_plus_rupture"}:
+                    dmg += int(e.get("amount", e.get("base", 0)) or 0)
+            if rarity in {"rare", "legendary"} or dmg >= 8 or "ritual_trama" in effects:
+                row["taxonomy"] = "payoff"
+            elif any(x in effects for x in {"draw", "scry", "gain_mana", "gain_mana_next_turn", "harmony_delta", "block", "gain_block"}):
+                row["taxonomy"] = "engine"
+            else:
+                row["taxonomy"] = "bridge"
 
         return row
     def _apply_phase75_card_tuning(self, cards):
@@ -729,6 +776,7 @@ class App:
     def _load_enemies_data(self):
         enemies = self.content.enemies if isinstance(self.content.enemies, list) and self.content.enemies else load_json(data_dir() / "enemies.json", default=[DEFAULT_ENEMY])
         valid = []
+        enemy_decks = load_enemy_decks()
         for e in enemies if isinstance(enemies, list) else []:
             if not isinstance(e, dict) or not e.get("id"):
                 continue
@@ -740,6 +788,7 @@ class App:
                 "hp": e.get("hp", [20, 20]),
                 "pattern": e.get("pattern", [{"intent": "attack", "value": [5, 5]}]),
                 "intent_deck": intent_deck,
+                "enemy_deck": resolve_enemy_deck(e, enemy_decks),
                 "enemy_type": str(e.get("enemy_type", infer_enemy_type(e))).lower(),
                 "ai_profile": str(e.get("ai_profile", infer_ai_profile(intent_deck, tier))).lower(),
                 "guard": int(e.get("guard", 0)),
@@ -1624,9 +1673,9 @@ class App:
             self.music.play_for(self.get_bgm_track("reward"))
             return
 
-        # Phase 2 integration: packs become the primary post-combat reward flow.
-        # Legacy modal can still be forced through settings for compatibility testing.
-        legacy_modal = bool(self.user_settings.get("legacy_reward_modal_enabled", False))
+        # Phase 2 integration lock: pack flow is canonical.
+        # Legacy reward modal is deprecated and only remains as dead-safe branch for rollback.
+        legacy_modal = False
         if picks is None:
             unlock_level = self.run_state.get("level", 1) if self.run_state else 1
             rarities = {"basic", "common"} if unlock_level < 2 else {"common", "uncommon", "rare"}
@@ -2337,6 +2386,7 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
+
 
 
 

@@ -1,4 +1,4 @@
-"""Localization manager."""
+﻿"""Localization manager."""
 
 from __future__ import annotations
 
@@ -25,7 +25,68 @@ class LocalizationManager:
 
     def t(self, key: str, **kwargs) -> str:
         raw = self.translations.get(key, key)
+        if raw == key:
+            raw = self._humanize_missing_key(str(key or ""))
         try:
             return str(raw).format(**kwargs)
         except Exception:
             return str(raw)
+
+    def _humanize_missing_key(self, key: str) -> str:
+        k = str(key or "").strip()
+        if not k:
+            return ""
+        low = k.lower()
+        if " " in k:
+            return k
+
+        fixed = {
+            "menu_play": "Iniciar Travesia",
+            "menu_continue": "Continuar Travesia",
+            "menu_codex": "Codice Sagrado",
+            "menu_settings": "Ajustes",
+            "menu_back": "Volver",
+            "intent_attack": "Golpe Ritual",
+            "intent_defend": "Velo Protector",
+            "intent_debuff": "Influencia Oscura",
+            "intent_buff": "Bendicion Arcana",
+            "draw": "Revelacion",
+            "discard": "Ecos",
+            "damage": "Impacto",
+            "energy": "Energia",
+            "buff": "Bendicion",
+            "debuff": "Maldicion",
+        }
+        if low in fixed:
+            return fixed[low]
+
+        if low.startswith("enemy_") and low.endswith("_name"):
+            core = low.removeprefix("enemy_").removesuffix("_name").replace("_", " ").title()
+            return core
+        if low.startswith("relic_") and low.endswith("_name"):
+            core = low.removeprefix("relic_").removesuffix("_name").replace("_", " ").title()
+            return core
+        if low.startswith("card_") and low.endswith("_name"):
+            core = low.removeprefix("card_").removesuffix("_name").replace("_", " ").title()
+            return core
+
+        if low.startswith("hip_"):
+            toks = low.split("_")
+            roman = ""
+            if toks and toks[-1].isdigit():
+                idx = int(toks[-1])
+                roman_map = {
+                    1: "I", 2: "II", 3: "III", 4: "IV", 5: "V",
+                    6: "VI", 7: "VII", 8: "VIII", 9: "IX", 10: "X",
+                    11: "XI", 12: "XII", 13: "XIII", 14: "XIV", 15: "XV",
+                    16: "XVI", 17: "XVII", 18: "XVIII", 19: "XIX", 20: "XX",
+                }
+                roman = roman_map.get(idx, str(idx))
+                toks = toks[:-1]
+            core = " ".join(toks[1:]).replace("cosmic warrior", "Guerrero Cosmico").replace("harmony guardian", "Guardian de Armonia").replace("oracle of fate", "Oraculo del Destino").replace("_", " ")
+            core = core.title()
+            return f"{core} de Hiperborea {roman}".strip()
+
+        if "_" in k:
+            return k.replace("_", " ").title()
+        return k

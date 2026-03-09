@@ -1,0 +1,14 @@
+SOUNDTRACK DIRECTION PLAN
+fecha: 2026-03-09 17:27:31
+
+Estado:
+- Context mapping existe en audio engine con cache/manifest.
+- Riesgo reportado por usuario: loops percibidos como cortos/hipnoticos (bip-bop).
+
+Direccion propuesta:
+1) Estructura por contexto (menu/map/shop/combat/boss/dialogue/pack) con templates ritmicos distintos.
+2) Aumentar frases musicales y reducir lider agudo persistente.
+3) Variacion por capas: percusion, pad, textura ritual, motif melodico rotativo.
+4) Boss: mayor contraste dinamico y desarrollo en 2-3 secciones, no loop plano corto.
+5) Stingers: identidad clara por evento y mezcla separada por canal.
+6) QA audio: detectar similitud alta entre pistas del mismo contexto y rechazar near-duplicates.

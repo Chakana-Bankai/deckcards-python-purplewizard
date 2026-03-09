@@ -1,0 +1,20 @@
+SYSTEM ARCHITECTURE AUDIT
+fecha: 2026-03-09 17:27:31
+
+Duplicaciones/legacy detectado:
+- wrappers de compatibilidad aun presentes (audio/music manager, content_service shim).
+- ramas legacy/fallback en reward, assets y portrait pipeline extensas.
+- modulos marcados DEPRECATED coexistiendo con nuevos sistemas.
+
+Riesgos:
+- mantenimiento alto por rutas paralelas (canon vs legacy).
+- dificultad para aislar engine_candidate por deuda de compatibilidad.
+
+Consolidacion recomendada:
+1) Declarar rutas canonicas por dominio (combat/ui/content/audio/visual).
+2) Mantener shims solo de lectura y eliminar escrituras legacy en runtime normal.
+3) Centralizar feature flags de compatibilidad en un solo modulo de runtime policy.
+4) Reducir fallbacks visuales activos cuando curated existe.
+
+Safe pass aplicado:
+- Reward legacy modal desactivado en flujo normal (pack flow canonico).

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import math
@@ -11,6 +11,7 @@ from random import Random
 
 import pygame
 
+from engine.creative_direction import CreativeMusicDirector
 from game.core.paths import assets_dir
 
 
@@ -27,8 +28,8 @@ class ContextSpec:
 class AudioEngine:
     """Procedural audio engine with caching and context-aware playback."""
 
-    VERSION = "chakana_audio_v3"
-    SAMPLE_RATE = 22050
+    VERSION = "chakana_audio_v6"
+    SAMPLE_RATE = 32000
 
     def __init__(self):
         root = Path(__file__).resolve().parent
@@ -44,16 +45,16 @@ class AudioEngine:
 
         # Compact context set: fewer tracks, clearer identity.
         self.context_specs: dict[str, ContextSpec] = {
-            "menu": ContextSpec("mystical calm", ("a", "b"), 26.0, 0.16, 0.42, 0.18),
-            "map_ukhu": ContextSpec("exploration ambient", ("a", "b"), 28.0, 0.18, 0.38, 0.22),
-            "map_kay": ContextSpec("exploration ambient", ("a", "b"), 28.0, 0.20, 0.44, 0.25),
-            "map_hanan": ContextSpec("exploration ambient", ("a", "b"), 28.0, 0.22, 0.50, 0.30),
-            "combat": ContextSpec("tense pulse", ("a", "b"), 24.0, 0.34, 0.55, 0.62),
-            "combat_elite": ContextSpec("strong percussion", ("a", "b"), 24.0, 0.40, 0.58, 0.72),
-            "combat_boss": ContextSpec("ceremonial epic", ("a", "b"), 26.0, 0.46, 0.64, 0.88),
-            "shop": ContextSpec("calm ritual", ("a", "b"), 22.0, 0.18, 0.48, 0.24),
-            "victory": ContextSpec("uplift", ("a", "b"), 18.0, 0.24, 0.62, 0.18),
-            "defeat": ContextSpec("falling echo", ("a", "b"), 18.0, 0.14, 0.28, 0.38),
+            "menu": ContextSpec("mystical calm", ("a", "b"), 116.0, 0.07, 0.38, 0.15),
+            "map_ukhu": ContextSpec("exploration ambient", ("a", "b"), 108.0, 0.10, 0.34, 0.21),
+            "map_kay": ContextSpec("exploration ambient", ("a", "b"), 108.0, 0.11, 0.40, 0.25),
+            "map_hanan": ContextSpec("exploration ambient", ("a", "b"), 110.0, 0.12, 0.48, 0.31),
+            "combat": ContextSpec("tense pulse", ("a", "b"), 86.0, 0.18, 0.52, 0.60),
+            "combat_elite": ContextSpec("strong percussion", ("a", "b"), 92.0, 0.22, 0.56, 0.72),
+            "combat_boss": ContextSpec("ceremonial epic", ("a", "b"), 102.0, 0.27, 0.60, 0.88),
+            "shop": ContextSpec("calm ritual", ("a", "b"), 84.0, 0.07, 0.44, 0.20),
+            "victory": ContextSpec("uplift", ("a", "b"), 32.0, 0.14, 0.60, 0.20),
+            "defeat": ContextSpec("falling echo", ("a", "b"), 34.0, 0.08, 0.26, 0.40),
         }
         self.context_alias = {
             "map_kaypacha": "map_kay",
@@ -84,16 +85,16 @@ class AudioEngine:
         }
 
         self.stingers = {
-            "combat_start": 0.7,
-            "elite_encounter": 0.9,
-            "boss_reveal": 1.2,
-            "victory": 1.1,
-            "defeat": 1.1,
-            "level_up": 0.8,
-            "relic_gain": 0.9,
-            "pack_open": 0.9,
-            "seal_ready": 0.7,
-            "harmony_ready": 0.8,
+            "combat_start": 1.25,
+            "elite_encounter": 1.45,
+            "boss_reveal": 2.2,
+            "victory": 1.8,
+            "defeat": 1.8,
+            "level_up": 1.3,
+            "relic_gain": 1.5,
+            "pack_open": 1.5,
+            "seal_ready": 1.2,
+            "harmony_ready": 1.3,
             "studio_intro": 3.8,
         }
         self.sfx_defs = {
@@ -124,6 +125,7 @@ class AudioEngine:
         self.current_path = "-"
         self.status = "stopped"
         self._init_channels()
+        self._creative_music_director = CreativeMusicDirector()
 
     def _ensure_dirs(self):
         for d in (self.generated_root, self.bgm_dir, self.sfx_dir, self.stingers_dir, self.studio_dir):
@@ -181,51 +183,65 @@ class AudioEngine:
         v = (phase / (2 * math.pi)) % 1.0
         return 4.0 * abs(v - 0.5) - 1.0
 
-    def _music_samples(self, ctx: str, variant: str, seconds: float) -> array:
+    def _music_samples(self, ctx: str, variant: str, seconds: float, seed_hint: int = 0) -> array:
         spec = self.context_specs[ctx]
-        seed = self._stable_seed(f"bgm:{ctx}:{variant}")
+        seed = self._stable_seed(f"bgm:{ctx}:{variant}:{int(seed_hint)}")
         rng = Random(seed)
         total = max(1, int(seconds * self.SAMPLE_RATE))
         samples = array("h")
 
-        base_roots = [52.0, 58.0, 65.0, 73.0]
-        rng.shuffle(base_roots)
-        bar_sec = 60.0 / max(40.0, 72.0 + 64.0 * spec.pulse)
+        # Long-form harmonic progression + evolving motif to avoid repetitive bip loops.
+        roots = [43.65, 49.0, 55.0, 61.74, 65.41]
+        rng.shuffle(roots)
+        section_sec = max(10.0, seconds / 6.0)
+        motif_step = (0.62 if ("menu" in ctx or "shop" in ctx) else max(0.34, 0.44 - spec.pulse * 0.12))
+        motif = [0, 2, 4, 2, 5, 4, 2, 0]
 
+        prev = 0.0
+        prev2 = 0.0
         for i in range(total):
             t = i / self.SAMPLE_RATE
-            bar_idx = int(t / max(0.01, bar_sec * 2.0)) % len(base_roots)
-            root = base_roots[bar_idx]
-            pulse_freq = root * (1.5 + 0.2 * spec.tension)
-            overtone = root * (2.0 + 0.15 * spec.brightness)
+            sec_idx = int(t / section_sec) % len(roots)
+            root = roots[sec_idx]
+            chord = (root, root * 1.20, root * 1.5)
+
+            slow_lfo = 0.5 + 0.5 * math.sin(2 * math.pi * 0.05 * t + 0.6)
+            pulse_env = 0.76 + 0.24 * math.sin(2 * math.pi * (0.10 + spec.pulse * 0.16) * t)
+
+            mot_i = int(t / motif_step) % len(motif)
+            melody_freq = root * (2 ** (motif[mot_i] / 12.0))
 
             pad = (
-                0.38 * math.sin(2 * math.pi * root * t)
-                + 0.24 * math.sin(2 * math.pi * (root * 1.25) * t + 0.7)
-                + 0.14 * math.sin(2 * math.pi * (root * 1.5) * t + 1.9)
+                0.30 * math.sin(2 * math.pi * chord[0] * t)
+                + 0.23 * math.sin(2 * math.pi * chord[1] * t + 0.6)
+                + 0.16 * math.sin(2 * math.pi * chord[2] * t + 1.4)
             )
-            arp = 0.18 * math.sin(2 * math.pi * overtone * t + 0.6 * math.sin(t * 0.7))
-            gate = 0.5 + 0.5 * math.sin(2 * math.pi * (1.0 + spec.pulse) * t)
-            rhythm = gate * self._triangle(2 * math.pi * pulse_freq * t)
-            # Reduce high-pitched whistle by shifting texture band lower and softer.
-            noise = 0.008 * math.sin(2 * math.pi * (210 + 28 * spec.brightness) * t + 0.14 * math.sin(t * 1.6))
+            bass = 0.24 * math.sin(2 * math.pi * (root * 0.5) * t + 0.15 * math.sin(t * 0.18))
+            motif_voice = 0.12 * math.sin(2 * math.pi * melody_freq * t + 0.22 * math.sin(t * 0.45))
+            shimmer = 0.05 * math.sin(2 * math.pi * (root * 1.33) * t + 0.3)
 
-            bass = 0.16 * math.sin(2 * math.pi * (root * 0.5) * t + 0.12 * math.sin(t * 0.3))
-            shimmer = 0.07 * math.sin(2 * math.pi * (overtone * 1.25) * t + 0.5)
-            x = (0.42 * pad) + (0.24 * arp) + (0.16 * rhythm) + (0.12 * bass) + shimmer + noise
-            if spec.tension > 0.6:
-                x += 0.05 * math.sin(2 * math.pi * (root * 2.8) * t)
-            if "shop" in ctx or "menu" in ctx:
-                x *= 0.90
+            # Context accents (boss/combat get punch, menu/shop remain calm).
+            accent = 0.0
+            if "boss" in ctx:
+                accent = 0.16 * math.sin(2 * math.pi * (root * 0.72) * t + 0.35 * math.sin(t * 0.8))
+            elif "combat" in ctx:
+                accent = 0.10 * math.sin(2 * math.pi * (root * 0.95) * t + 0.26 * math.sin(t * 0.62))
+            elif "menu" in ctx or "shop" in ctx:
+                accent = 0.04 * math.sin(2 * math.pi * (root * 1.25) * t + 1.1)
 
-            fade_in = min(1.0, t / 1.2)
-            fade_out = min(1.0, (seconds - t) / 1.0)
+            noise = 0.0012 * math.sin(2 * math.pi * (42 + 8 * spec.brightness) * t + 0.06 * math.sin(t * 0.7))
+            x = ((pad * pulse_env) + bass + motif_voice + shimmer + accent + noise) * (0.86 + 0.14 * slow_lfo)
+
+            fade_in = min(1.0, t / 2.0)
+            fade_out = min(1.0, (seconds - t) / 1.7)
             amp = max(0.0, min(1.0, fade_in * fade_out))
-            # Gentle low-pass smoothing to avoid sharp oscillator harshness.
-            if i > 0:
-                prev = samples[-1] / 32767.0
-                x = 0.82 * x + 0.18 * prev
-            y = int(max(-1.0, min(1.0, x * amp * 0.82)) * 32767)
+
+            # Two-stage smoothing to avoid sharp beep-like edges and whistle feel.
+            x = 0.86 * x + 0.14 * prev
+            x = 0.90 * x + 0.10 * prev2
+            prev2 = prev
+            prev = x
+            y = int(max(-1.0, min(1.0, x * amp * 0.86)) * 32767)
             samples.append(y)
         return samples
 
@@ -251,42 +267,68 @@ class AudioEngine:
             out = array("h")
             for i in range(total):
                 t = i / self.SAMPLE_RATE
-                env = min(1.0, t / 0.35) * max(0.0, min(1.0, (seconds - t) / 0.8))
-                bell = math.sin(2 * math.pi * (420 + 18 * math.sin(t * 0.9)) * t) * math.exp(-t * 0.7)
-                cosmic = math.sin(2 * math.pi * (120 + 40 * t) * t + 0.4 * math.sin(t * 2.2))
-                rise = self._triangle(2 * math.pi * (40 + 90 * min(1.0, t / seconds)) * t)
-                chord = math.sin(2 * math.pi * 260 * t) + 0.5 * math.sin(2 * math.pi * 325 * t)
-                x = 0.38 * bell + 0.28 * cosmic + 0.20 * rise + (0.26 * chord if t > seconds - 0.9 else 0.0)
-                out.append(int(max(-1.0, min(1.0, x * env * 0.88)) * 32767))
+                env = min(1.0, t / 0.45) * max(0.0, min(1.0, (seconds - t) / 1.0))
+                bell = math.sin(2 * math.pi * (390 + 16 * math.sin(t * 0.7)) * t) * math.exp(-t * 0.6)
+                cosmic = math.sin(2 * math.pi * (110 + 34 * t) * t + 0.3 * math.sin(t * 1.9))
+                chord = math.sin(2 * math.pi * 248 * t) + 0.55 * math.sin(2 * math.pi * 312 * t)
+                x = 0.40 * bell + 0.30 * cosmic + (0.24 * chord if t > seconds - 1.1 else 0.0)
+                out.append(int(max(-1.0, min(1.0, x * env * 0.86)) * 32767))
             return out
 
-        base = {
-            "combat_start": 220.0,
-            "elite_encounter": 182.0,
-            "boss_reveal": 146.0,
-            "victory": 312.0,
-            "defeat": 118.0,
-            "level_up": 392.0,
-            "relic_gain": 358.0,
-            "pack_open": 268.0,
-            "seal_ready": 420.0,
-            "harmony_ready": 452.0,
-        }.get(name, 300.0)
-        return self._tone_burst(base, seconds, attack=0.02, decay=0.6)
+        # Multi-tone short phrases to avoid single-note "bip" feel.
+        phrase = {
+            "combat_start": (220.0, 294.0, 330.0),
+            "elite_encounter": (196.0, 246.0, 294.0),
+            "boss_reveal": (146.0, 174.0, 220.0),
+            "victory": (312.0, 392.0, 468.0),
+            "defeat": (166.0, 146.0, 118.0),
+            "level_up": (392.0, 468.0, 524.0),
+            "relic_gain": (358.0, 426.0, 512.0),
+            "pack_open": (268.0, 320.0, 402.0),
+            "seal_ready": (420.0, 374.0, 452.0),
+            "harmony_ready": (452.0, 508.0, 560.0),
+        }.get(name, (280.0, 340.0, 410.0))
+
+        total = max(1, int(seconds * self.SAMPLE_RATE))
+        out = array("h")
+        seg = max(1, total // len(phrase))
+        for i in range(total):
+            t = i / self.SAMPLE_RATE
+            idx = min(len(phrase) - 1, i // seg)
+            f = phrase[idx]
+            env = min(1.0, t / 0.02) * max(0.0, min(1.0, (seconds - t) / 0.18))
+            x = (
+                0.62 * math.sin(2 * math.pi * f * t)
+                + 0.20 * math.sin(2 * math.pi * (f * 1.5) * t + 0.2)
+                + 0.10 * self._triangle(2 * math.pi * (f * 0.5) * t)
+            )
+            out.append(int(max(-1.0, min(1.0, x * env * 0.82)) * 32767))
+        return out
 
     def _sfx_samples(self, name: str, seconds: float) -> array:
         base = {
-            "card_play": 340.0,
-            "card_invalid": 170.0,
-            "button_click": 420.0,
-            "gold_gain": 460.0,
-            "xp_gain": 500.0,
-            "damage_hit": 120.0,
-            "heal": 280.0,
-            "seal_activate": 240.0,
-            "relic_pick": 440.0,
-        }.get(name, 320.0)
-        return self._tone_burst(base, seconds, attack=0.004, decay=0.9)
+            "card_play": 280.0,
+            "card_invalid": 150.0,
+            "button_click": 320.0,
+            "gold_gain": 360.0,
+            "xp_gain": 396.0,
+            "damage_hit": 96.0,
+            "heal": 246.0,
+            "seal_activate": 186.0,
+            "relic_pick": 330.0,
+        }.get(name, 260.0)
+        # Softer tonal center + tiny motion to avoid pure beep character.
+        total = max(1, int(seconds * self.SAMPLE_RATE))
+        samples = array("h")
+        for i in range(total):
+            t = i / self.SAMPLE_RATE
+            env = min(1.0, t / 0.006) * max(0.0, min(1.0, (seconds - t) / 0.09))
+            harmonic = 0.62 * math.sin(2 * math.pi * base * t) + 0.22 * math.sin(2 * math.pi * (base * 1.42) * t + 0.3)
+            body = 0.10 * self._triangle(2 * math.pi * (base * 0.62) * t)
+            noise = 0.03 * math.sin(2 * math.pi * (46 + base * 0.04) * t)
+            x = harmonic + body + noise
+            samples.append(int(max(-1.0, min(1.0, x * env * 0.82)) * 32767))
+        return samples
 
     def _curated_item_path(self, item_id: str, expected_type: str) -> Path | None:
         root = self.curated_audio_root
@@ -372,8 +414,16 @@ class AudioEngine:
         spec = self.context_specs[ctx]
         seed = self._stable_seed(f"bgm:{item_id}")
         path = self.bgm_dir / f"{item_id}.wav"
-        self._write_wave(path, self._music_samples(ctx, variant, spec.seconds))
-        self._register_item(item_id, item_type="bgm", context=ctx, variant=variant, seed=seed, file_path=path, source="generated")
+        best_samples, meta = self._creative_music_director.evolve_samples(
+            context=ctx,
+            variant=variant,
+            seconds=spec.seconds,
+            sample_rate=self.SAMPLE_RATE,
+            generate_samples_fn=lambda c, v, s, sh: self._music_samples(c, v, s, sh),
+            threshold=0.58,
+        )
+        self._write_wave(path, best_samples)
+        self._register_item(item_id, item_type="bgm", context=ctx, variant=variant, seed=int(meta.get("seed", seed)), file_path=path, source="generated")
         print(f"[Audio] generated: {item_id}")
         return path
 
@@ -601,6 +651,19 @@ def get_audio_engine() -> AudioEngine:
     if _ENGINE is None:
         _ENGINE = AudioEngine()
     return _ENGINE
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

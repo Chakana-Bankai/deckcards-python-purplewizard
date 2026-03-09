@@ -1,0 +1,25 @@
+CHAKANA RUNTIME ERROR AUDIT REPORT
+generated_at=2026-03-09T19:46:56
+
+[observed_exception]
+- RecursionError: maximum recursion depth exceeded
+- Path: game/combat/effects.py -> interpret_effects()
+
+[root_cause_analysis]
+- Effect interpreter supports recursive branches (if / copy_last_played).
+- Previous protections were partial; recursion could still loop under circular call signatures in legacy runs.
+- copy_last_played cards detected in data can amplify chain risk when state.last_played_card creates repeat references.
+
+[risk_surface]
+- cards_with_copy_effects=2
+  - eco_de_sabiduria: ['copy_last_played', 'exhaust_self']
+  - cw_lore_03: ['copy_last_played', 'exhaust_self', 'damage']
+
+[fix_strategy]
+- add call-stack based recursion guard keyed by (card_id, target_id, effect_signature)
+- keep depth limit
+- keep global step budget
+- preserve gameplay behavior while preventing infinite recursion
+
+[status]
+status=FIX_APPLIED_LOW_RISK

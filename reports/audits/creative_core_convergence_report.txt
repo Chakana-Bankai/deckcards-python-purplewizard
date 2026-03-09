@@ -1,0 +1,98 @@
+﻿CHAKANA : PURPLE WIZARD
+PHASE 8 — CREATIVE CORE CONVERGENCE AUDIT
+Date: 2026-03-09
+
+CORE GOALS EVALUATED
+1) Unique art with recognizable forms and lore
+2) Functional portraits/avatars framed and scaled
+3) Readable holograms with identity
+4) Studio-quality soundtrack direction
+5) Clean repository structure
+6) Reliable runtime/generation pipelines
+7) Focus on gameplay/balance over project entropy
+
+AREA STATUS
+
+A) CARD ART / VISUAL IDENTITY
+- Status: PARTIALLY CONVERGING
+- Evidence:
+  - Advanced art direction hooks exist (Creative Director + layered art pipeline references).
+  - Context-aware card renderer and set emblems are present.
+- Blockers:
+  - Historical QA metric still reports inherited failures in older checker paths.
+  - Real generated output quality remains uneven without stricter curation thresholds.
+
+B) AVATAR / PORTRAIT PIPELINE
+- Status: CONVERGING
+- Evidence:
+  - Curated avatar assets exist in game/assets/curated/avatars, including:
+    - chakana_mage_master_concept.png
+    - chakana_mage_master_portrait.png
+    - chakana_mage_master_hologram.png
+    - archon_master_* assets scaffolded.
+  - Combat HUD uses chakana_mage_master_hologram path.
+- Blockers:
+  - Some screens still use generic keys (codex/fallback alias paths) and need final normalization.
+
+C) HOLOGRAM READABILITY
+- Status: PARTIALLY CONVERGING
+- Evidence:
+  - Scene fusion and hologram components are wired.
+  - Settings expose hologram intensity controls.
+- Blockers:
+  - Some flows still show mixed fallback visuals depending on asset key/source.
+
+D) AUDIO / SOUNDTRACK
+- Status: BLOCKED
+- Evidence:
+  - Audio context architecture and CreativeMusicDirector integration exist.
+  - Runtime hooks from main/options are correctly wired.
+- Blockers (critical):
+  - audio_manifest.json populated but points to missing files (40/40 missing).
+  - No curated audio folder found.
+  - Direct regeneration in current environment timed out (heavy iterative generation).
+
+E) CODEX + SET VISIBILITY
+- Status: CONVERGING
+- Evidence:
+  - Codex tabs include Base/Hiperborea/Arconte.
+  - Shop and pack flow include Base/Hiperborea pack logic.
+  - Hiperborea references present in progression/lore and UI routes.
+- Blockers:
+  - Lore text quality repetition still high in data content.
+
+F) SHOP / REWARD PRESENTATION
+- Status: PARTIALLY CONVERGING
+- Evidence:
+  - Canonical pack opening screen is active.
+  - Shop has tabs and pack purchase flow.
+- Blockers:
+  - Some reward screen legacy labels/paths remain and should be consolidated to one canonical language path.
+
+G) REPOSITORY FOCUS / ENTROPY
+- Status: PARTIALLY CONVERGING
+- Evidence:
+  - Ongoing audits and reports exist.
+- Blockers:
+  - Root/report sprawl policy still needs strict consolidation in reports/ hierarchy.
+
+BRUTALLY HONEST CONCLUSIONS
+- What helps:
+  - Curated avatar pipeline and scene/hologram integration are real and usable.
+  - Set integration (Base/Hiperborea/Arconte) is structurally connected.
+  - Creative Director architecture is implemented.
+- What wastes time right now:
+  - Regenerating heavy procedural audio without bounded mode or curated baseline.
+  - Maintaining stale manifest states that do not reflect actual disk assets.
+  - Parallel legacy labels/flows in some reward/UI text layers.
+- What should be paused:
+  - Further broad audio regeneration passes until bounded QA mode or curated pack is in place.
+- What should be archived/isolated next:
+  - Stale manifest snapshots and legacy report duplicates after migration into canonical reports folders.
+- What must be improved immediately:
+  1) Audio materialization (curated-first + bounded regen + manifest integrity precheck).
+  2) Final avatar key normalization in codex/map/combat cross-context aliases.
+  3) Player-facing lore text de-duplication in card data narrative lines.
+
+OVERALL CONVERGENCE
+- Current state: PARTIALLY CONVERGING (high potential, still blocked by audio runtime materialization and residual legacy clutter).

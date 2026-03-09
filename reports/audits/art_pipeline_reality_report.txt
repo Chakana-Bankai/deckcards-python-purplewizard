@@ -1,0 +1,29 @@
+CHAKANA ART PIPELINE REALITY REPORT
+generated_at=2026-03-09T19:50:04
+
+[expected_scope]
+base_cards=60
+hiperboria_cards=60
+expected_art_ids_total=120
+
+[runtime_load_paths]
+- Canonical runtime sprite root: game/assets/sprites/* (via game/settings.ASSETS_DIR and AssetManager)
+- Legacy/parallel sprite root detected: assets/sprites/*
+
+[coverage]
+runtime_cards_dir=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\assets\sprites\cards
+runtime_expected_found=0
+runtime_expected_missing=120
+legacy_cards_dir=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\assets\sprites\cards
+legacy_expected_found=60
+legacy_expected_missing=60
+legacy_extra_files_not_expected=60
+
+[style_convergence]
+- Creative Director quality now PASS, but runtime sprite root is not receiving generated outputs.
+- High-value outputs exist, yet they are mostly outside canonical runtime path.
+- Result: gameplay can run via fallbacks, while QA reports missing art.
+
+[status]
+status=WARNING
+reason=Runtime canonical art path lacks expected card assets.

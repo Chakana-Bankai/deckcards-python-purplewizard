@@ -1,0 +1,8 @@
+CHAKANA MUSIC SYSTEM VALIDATION
+
+contexts_present={'menu': 2, 'combat': 2, 'victory': 3, 'defeat': 3, 'studio_intro': 1, 'button_click': 1, 'card_play': 1, 'map_ukhu': 2, 'card_invalid': 1, 'shop': 2, 'map_kay': 2, 'map_hanan': 2, 'seal_ready': 1, 'combat_boss': 2, 'combat_elite': 2, 'combat_start': 1, 'boss_reveal': 1, 'harmony_ready': 1, 'relic_gain': 1, 'pack_open': 1, 'level_up': 1, 'elite_encounter': 1, 'gold_gain': 1, 'xp_gain': 1, 'damage_hit': 1, 'heal': 1, 'seal_activate': 1, 'relic_pick': 1}
+- menu=True
+- map=True
+- combat=True
+- boss=True
+structure=intro+loop+variation+stinger (manifest-driven)

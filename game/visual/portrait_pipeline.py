@@ -49,10 +49,16 @@ class PortraitPipeline:
 
     def _resolve_role(self, name: str) -> str:
         key = str(name or "").lower().strip()
+        if key.startswith("enemy__"):
+            return key
+        if key.startswith("archon__"):
+            return key
+        if key.startswith("guide__"):
+            return key
         if key in {"angel", "shaman", "demon", "arcane_hacker", "guide"}:
             return "guide"
         if key.startswith("enemy_") or key in {"enemy", "boss"}:
-            return "enemy"
+            return f"enemy__{key}"
         if key in {
             "archon",
             "archon_oracle",
@@ -65,6 +71,19 @@ class PortraitPipeline:
         }:
             return "archon"
         return "chakana_mage"
+
+    def _split_role(self, role: str) -> tuple[str, str]:
+        raw = str(role or "chakana_mage").strip().lower()
+        if "__" in raw:
+            parts = raw.split("__")
+            family = parts[0] if parts else "chakana_mage"
+            ident = parts[1] if len(parts) > 1 else family
+            if ident.endswith("_hologram"):
+                ident = ident[: -len("_hologram")]
+            if ident.endswith("_portrait"):
+                ident = ident[: -len("_portrait")]
+            return family, ident
+        return raw, raw
 
     def _resolve_style(self, name: str) -> str:
         key = str(name or "").lower().strip()
@@ -81,6 +100,7 @@ class PortraitPipeline:
         return "portrait"
 
     def _role_profile(self, role: str) -> dict:
+        family, ident = self._split_role(role)
         profiles = {
             "chakana_mage": {
                 "tint": (90, 160, 255, 52),
@@ -115,7 +135,42 @@ class PortraitPipeline:
                 "rgb_shift": (1, -1),
             },
         }
-        return profiles.get(role, profiles["chakana_mage"])
+        if family == "enemy" and ident:
+            try:
+                from game.services.spiritual_bestiary import resolve_entity_profile
+
+                prof = resolve_entity_profile(ident, kind="boss" if "archon" in ident else "enemy")
+                faction = str(prof.get("faction", "demons")).lower().strip()
+                if faction == "archons":
+                    return {
+                        "tint": (228, 88, 110, 62),
+                        "accent": (255, 164, 182),
+                        "edge": (238, 104, 126),
+                        "scanline": (255, 126, 150),
+                        "noise": (255, 128, 152, 34),
+                        "rgb_shift": (2, -2),
+                    }
+                if faction == "guardians":
+                    return {
+                        "tint": (112, 188, 162, 48),
+                        "accent": (198, 248, 228),
+                        "edge": (144, 220, 188),
+                        "scanline": (178, 244, 224),
+                        "noise": (176, 240, 224, 26),
+                        "rgb_shift": (1, 0),
+                    }
+                if faction == "oracles":
+                    return {
+                        "tint": (136, 124, 220, 50),
+                        "accent": (220, 210, 255),
+                        "edge": (170, 158, 238),
+                        "scanline": (210, 196, 252),
+                        "noise": (210, 196, 255, 28),
+                        "rgb_shift": (1, -1),
+                    }
+            except Exception:
+                pass
+        return profiles.get(family, profiles["chakana_mage"])
 
     def _canonical_avatar_roots(self) -> list[Path]:
         aroot = assets_dir()
@@ -131,15 +186,15 @@ class PortraitPipeline:
         ]
 
     def _source_candidates(self, role: str, style: str) -> list[tuple[Path, str]]:
-        role = str(role or "chakana_mage").lower().strip()
+        family, ident = self._split_role(role)
         style = str(style or "portrait").lower().strip()
         roots = self._canonical_avatar_roots()
 
-        if role == "chakana_mage":
+        if family == "chakana_mage":
             explicit_master = {
-                "concept": ["chakana_mage_master_concept.png"],
-                "portrait": ["chakana_mage_master_portrait.png"],
-                "hologram": ["chakana_mage_master_hologram.png"],
+                "concept": ["chakana_mage_master_concept.png", "chakana_mage_reference.png", "chakana_mage_codec_reference.png"],
+                "portrait": ["chakana_mage_master_portrait.png", "chakana_mage_reference.png", "chakana_mage_codec_reference.png", "chakana_mage_radio_portrait.png"],
+                "hologram": ["chakana_mage_master_hologram.png", "chakana_mage_codec_reference.png"],
             }
             generated = {
                 "concept": ["chakana_mage_concept.png"],
@@ -163,7 +218,7 @@ class PortraitPipeline:
                     out.append((root / filename, "placeholder"))
             return out
 
-        if role == "guide":
+        if family == "guide":
             guide_files = {
                 "concept": [("guide_master_concept.png", "official_master"), ("guide_portrait.png", "generated"), ("angel.png", "placeholder")],
                 "portrait": [("guide_master_portrait.png", "official_master"), ("guide_portrait.png", "generated"), ("angel.png", "placeholder")],
@@ -176,16 +231,57 @@ class PortraitPipeline:
                 out.append((assets_dir() / "sprites" / "guides" / filename, tag))
             return out
 
-        if role == "enemy":
-            enemy_files = {
-                "concept": [("enemy_master_concept.png", "official_master"), ("enemy_portrait.png", "generated"), ("archon.png", "placeholder")],
-                "portrait": [("enemy_master_portrait.png", "official_master"), ("enemy_portrait.png", "generated"), ("archon.png", "placeholder")],
-                "hologram": [("enemy_master_hologram.png", "official_master"), ("enemy_hologram.png", "generated"), ("archon_holo.png", "placeholder")],
+        if family == "enemy":
+            faction = "demons"
+            motif = "demon"
+            if ident:
+                try:
+                    from game.services.spiritual_bestiary import resolve_entity_profile
+
+                    prof = resolve_entity_profile(ident, kind="boss" if "archon" in ident else "enemy")
+                    faction = str(prof.get("faction", "demons")).lower().strip()
+                    motif = str(prof.get("motif", "demon")).lower().strip()
+                except Exception:
+                    pass
+            master = {
+                "concept": [
+                    f"{ident}_master_concept.png",
+                    f"enemy_{ident}_master_concept.png",
+                    f"enemy_{faction}_master_concept.png",
+                    f"enemy_{motif}_master_concept.png",
+                    "enemy_master_concept.png",
+                ],
+                "portrait": [
+                    f"{ident}_master_portrait.png",
+                    f"enemy_{ident}_master_portrait.png",
+                    f"enemy_{faction}_master_portrait.png",
+                    f"enemy_{motif}_master_portrait.png",
+                    "enemy_master_portrait.png",
+                ],
+                "hologram": [
+                    f"{ident}_master_hologram.png",
+                    f"enemy_{ident}_master_hologram.png",
+                    f"enemy_{faction}_master_hologram.png",
+                    f"enemy_{motif}_master_hologram.png",
+                    "enemy_master_hologram.png",
+                ],
+            }
+            generated = {
+                "concept": [f"{ident}_concept.png", f"enemy_{ident}_concept.png", "enemy_concept.png", "enemy_portrait.png"],
+                "portrait": [f"{ident}_portrait.png", f"enemy_{ident}_portrait.png", "enemy_portrait.png", "archon.png"],
+                "hologram": [f"{ident}_hologram.png", f"enemy_{ident}_hologram.png", "enemy_hologram.png", "archon_holo.png"],
             }
             out: list[tuple[Path, str]] = []
-            for filename, tag in enemy_files.get(style, []):
+            for filename in master.get(style, []):
                 for root in roots:
-                    out.append((root / filename, tag))
+                    out.append((root / filename, "official_master"))
+            for filename in generated.get(style, []):
+                for root in roots:
+                    out.append((root / filename, "generated"))
+            # Allow direct enemy sprite as lowest visual fallback.
+            if ident:
+                out.append((assets_dir() / "sprites" / "enemies" / f"{ident}.png", "placeholder"))
+            out.append((assets_dir() / "sprites" / "enemies" / "default.png", "placeholder"))
             return out
 
         archon = {
@@ -213,7 +309,8 @@ class PortraitPipeline:
         return out
 
     def _generated_path(self, role: str, style: str, size: tuple[int, int]) -> Path:
-        return self.generated_root / f"{role}_{style}_{size[0]}x{size[1]}.png"
+        role_key = str(role or "").replace("::", "__").replace(":", "_")
+        return self.generated_root / f"{role_key}_{style}_{size[0]}x{size[1]}.png"
 
     def _fit_contain(self, source: pygame.Surface, size: tuple[int, int]) -> pygame.Surface:
         w, h = max(16, int(size[0])), max(16, int(size[1]))
@@ -351,7 +448,8 @@ class PortraitPipeline:
 
         try:
             ve = get_visual_engine()
-            avatar_id = "archon_oracle" if role == "archon" else "combat_hud"
+            family, ident = self._split_role(role)
+            avatar_id = "archon_oracle" if family == "archon" else (f"enemy_{ident}" if family == "enemy" and ident else "combat_hud")
             generated = ve.generate("avatar", avatar_id, size, context=avatar_id, force=False)
             return generated, "generated_or_cache", f"visual_engine:{avatar_id}"
         except Exception:
@@ -440,3 +538,16 @@ def get_portrait_pipeline() -> PortraitPipeline:
     if _PIPELINE is None:
         _PIPELINE = PortraitPipeline()
     return _PIPELINE
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from pathlib import Path
 
@@ -90,14 +90,19 @@ class AssetManager:
         cat = str(category or "").lower()
         key = str(name or "").lower()
         use_portrait = (
-            cat in {"avatar", "player"} or (cat == "overlays" and key in {"archon", "archon_oracle", "archon_panel"})
+            cat in {"avatar", "player", "enemies", "guides"} or (cat == "overlays" and key in {"archon", "archon_oracle", "archon_panel"})
         )
         if not use_portrait:
             return None
         try:
             if self._portrait is None:
                 self._portrait = get_portrait_pipeline()
-            return self._portrait.resolve_for_ui(key, size, current_fallback=current)
+            portrait_key = key
+            if cat == "enemies":
+                portrait_key = f"enemy__{key}__hologram"
+            elif cat == "guides":
+                portrait_key = f"guide__{key}__portrait"
+            return self._portrait.resolve_for_ui(portrait_key, size, current_fallback=current)
         except Exception:
             return None
 
@@ -185,5 +190,9 @@ class Renderer:
         px = max(0, min(INTERNAL_WIDTH - 1, px))
         py = max(0, min(INTERNAL_HEIGHT - 1, py))
         return px, py
+
+
+
+
 
 

@@ -10,6 +10,7 @@ from game.ui.system.icons_atlas import draw_icon_with_value
 from game.ui.theme import UI_THEME
 from game.ui.system.safety import clamp_single_line, wrap_lines, resolve_view_context
 from game.ui.system.ui_scale_system import ICON_CARD_SMALL, ICON_CARD_MEDIUM, ICON_CARD_KPI
+from game.ui.system.set_emblems import draw_set_emblem, normalize_set_id
 
 
 ROLE_COLORS = {
@@ -105,25 +106,10 @@ def _card_tier(payload: dict) -> str:
     return "normal"
 
 
-def _is_hiperboria(payload: dict) -> bool:
-    set_name = str(payload.get("set", "") or "").strip().lower()
-    cid = str(payload.get("id", "") or "").strip().lower()
-    return "hiperboria" in set_name or cid.startswith("hip_")
 
 
-def _draw_hiperborea_emblem(surface: pygame.Surface, art_rect: pygame.Rect):
-    # Chakana Polar: small snow-cross emblem at art bottom-right.
-    cx = art_rect.right - 14
-    cy = art_rect.bottom - 14
-    col = (226, 206, 140)
-    ice = (180, 224, 248)
-    pygame.draw.circle(surface, (26, 34, 52), (cx, cy), 11)
-    pygame.draw.circle(surface, ice, (cx, cy), 10, 1)
-    pygame.draw.circle(surface, col, (cx, cy), 8, 1)
-    pygame.draw.line(surface, col, (cx - 6, cy), (cx + 6, cy), 1)
-    pygame.draw.line(surface, col, (cx, cy - 6), (cx, cy + 6), 1)
-    pygame.draw.line(surface, ice, (cx - 4, cy - 4), (cx + 4, cy + 4), 1)
-    pygame.draw.line(surface, ice, (cx + 4, cy - 4), (cx - 4, cy + 4), 1)
+
+
 
 
 def _font(app, fallback_name: str):
@@ -357,8 +343,9 @@ def _layout_for(rect: pygame.Rect, preset: str, rules: dict) -> dict:
 
     footer = pygame.Rect(content.x, y, content.w, footer_h)
 
-    type_label = pygame.Rect(type_bar.x + 8, type_bar.y + 2, max(86, int(type_bar.w * 0.62)), max(14, type_bar.h - 4))
-    emblem = pygame.Rect(type_bar.right - 112, type_bar.y + 1, 106, max(14, type_bar.h - 2))
+    emblem_w = max(18, min(28, type_bar.h + 4))
+    emblem = pygame.Rect(type_bar.right - emblem_w - 6, type_bar.y + max(1, (type_bar.h - emblem_w) // 2), emblem_w, emblem_w)
+    type_label = pygame.Rect(type_bar.x + 8, type_bar.y + 2, max(72, emblem.x - (type_bar.x + 12)), max(14, type_bar.h - 4))
     author = pygame.Rect(footer.x + 8, footer.bottom - 12, max(92, int(footer.w * 0.58)), 10)
     stats = pygame.Rect(footer.x + 6, footer.y + 1, max(92, footer.w - 12), max(18, footer.h - 14))
 
@@ -417,7 +404,8 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     hovered = bool(state.get("hovered", False))
     accent_color = _accent(theme, state)
     tier = _card_tier(payload)
-    is_hip = _is_hiperboria(payload)
+    set_id = normalize_set_id(payload)
+    is_hip = (set_id == "hiperborea")
 
     title_font = _font(app, "small_font")
     tiny_font = _font(app, "tiny_font")
@@ -455,8 +443,6 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     if art is None or art.get_width() < 8 or art.get_height() < 8:
         art = _fallback_card_art(app, (art_inner.w, art_inner.h), tier, accent_color)
     surface.blit(art, art_inner.topleft)
-    if is_hip:
-        _draw_hiperborea_emblem(surface, art_inner)
 
     if tier == "legendary":
         pygame.draw.rect(surface, (250, 226, 156), art_frame.inflate(6, 6), 1, border_radius=11)
@@ -513,12 +499,8 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     type_y = sec["type_label"].y + max(1, (sec["type_label"].h - type_lbl.get_height()) // 2)
     surface.blit(type_lbl, (sec["type_label"].x + 2, type_y))
 
-    set_text = "HIPERBOREA" if is_hip else "BASE"
-    set_col = (226, 206, 140) if is_hip else (170, 156, 196)
-    set_lbl = _fit_one_line(tiny_font, set_text, sec["emblem"].w - 6)
-    set_surf = tiny_font.render(set_lbl, True, set_col)
-    set_y = sec["emblem"].y + max(1, (sec["emblem"].h - set_surf.get_height()) // 2)
-    surface.blit(set_surf, (sec["emblem"].x + max(3, (sec["emblem"].w - set_surf.get_width()) // 2), set_y))
+    # Set emblem: icon-only identity (no textual BASE/HIPERBOREA label).
+    draw_set_emblem(surface, sec["emblem"], set_id)
 
     effect_items = _collect_kpis(summary, payload) or [("support", 1)]
     density = _density_for(len(effect_items))

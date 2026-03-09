@@ -1,0 +1,17 @@
+CHAKANA COMBAT + ARCONTE DECK SYSTEM PASS
+
+[enemy deck logic]
+status=PASS
+{"checked": 9, "ok": 9, "failed_ids": []}
+
+[pack distribution]
+status=PASS
+{"total_cards_opened": 2454, "packs_opened": 600, "legendary_cards": 54, "legendary_rate_cards": 0.022, "legendary_rate_packs": 0.09, "per_pack_cards": {"base_pack": 1231, "hiperborea_pack": 1223}}
+
+[combat fairness + archetype viability]
+status=PASS
+{"avg_turns_combat_all_arch": 8.42, "avg_boss_win_rate_all_arch": 1.0, "phase9_avg_turns_boss": 10.29, "phase9_boss_win_rate": 0.857, "archetype_simulation": {"cosmic_warrior": {"avg_damage": 49.8, "avg_turns_combat": 3.38, "avg_turns_boss": 3.5, "boss_win_rate": 1.0}, "harmony_guardian": {"avg_damage": 53.3, "avg_turns_combat": 9.88, "avg_turns_boss": 8.5, "boss_win_rate": 1.0}, "oracle_of_fate": {"avg_damage": 46.3, "avg_turns_combat": 12, "avg_turns_boss": 12, "boss_win_rate": 1.0}}}
+
+[simulate_100_per_archetype]
+status=PASS
+{"flags": [], "data": {"cosmic_warrior": {"runs": 100, "avg_turns": 4.49, "win_rate": 1.0, "avg_damage": 62.84, "card_usage_top10": [["chakana_de_luz", 73], ["cw_lore_14", 67], ["cw_lore_09", 63], ["cw_lore_04", 61], ["cw_lore_08", 59], ["garra_espiritual", 55], ["cw_lore_02", 55], ["cw_lore_10", 51], ["embate_del_jaguar", 51], ["filo_astral", 51]]}, "harmony_guardian": {"runs": 100, "avg_turns": 11.53, "win_rate": 0.66, "avg_damage": 55.49, "card_usage_top10": [["hg_lore_15", 147], ["hg_lore_05", 123], ["firmeza_del_cuerpo", 122], ["hg_lore_11", 122], ["hg_lore_06", 119], ["guardia_terrenal", 119], ["espiritu_guardian", 115], ["escudo_del_chaman", 108], ["hg_lore_27", 107], ["escudo_de_luz", 106]]}, "oracle_of_fate": {"runs": 100, "avg_turns": 9.76, "win_rate": 0.66, "avg_damage": 49.92, "card_usage_top10": [["fragmento_celeste", 164], ["vision_del_condor", 132], ["observacion_sagrada", 126], ["of_lore_17", 124], ["of_lore_20", 120], ["lectura_del_destino", 119], ["of_lore_12", 116], ["of_lore_30", 106], ["hip_oracle_of_fate_18", 68], ["hip_oracle_of_fate_01", 66]]}}}

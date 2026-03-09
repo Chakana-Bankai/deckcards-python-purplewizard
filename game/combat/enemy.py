@@ -35,19 +35,56 @@ class Enemy:
     ai_profile: str = "balanced"
     enemy_type: str = "criatura"
 
+    # Phase: enemy deck system
+    combat_draw_pile: list[dict] = field(default_factory=list)
+    combat_discard_pile: list[dict] = field(default_factory=list)
+    combat_hand: list[dict] = field(default_factory=list)
+    current_enemy_card: dict | None = None
+    next_enemy_card: dict | None = None
+
     @property
     def alive(self) -> bool:
         return self.hp > 0
 
-    def set_intent_deck(self, intent_deck: list[dict], rng=None):
-        self.intent_draw_pile = [dict(x) for x in list(intent_deck or []) if isinstance(x, dict)]
-        self.intent_discard_pile = []
-        self.active_intent = None
-        if rng is not None and len(self.intent_draw_pile) > 1:
-            rng.shuffle(self.intent_draw_pile)
+    def _normalize_enemy_card(self, card: dict) -> dict:
+        c = dict(card or {})
+        c.setdefault("intent", "attack")
+        c.setdefault("id", str(c.get("name", "enemy_card")).lower().replace(" ", "_"))
+        c.setdefault("name", str(c.get("id", "enemy_card")).replace("_", " ").title())
+        if c.get("intent") in {"attack", "defend"} and not isinstance(c.get("value"), list):
+            v = int(c.get("value", 6) or 6)
+            c["value"] = [v, v]
+        c.setdefault("label", _intent_phrase(c))
+        return c
 
-    def _intent_score(self, intent: dict, rng=None) -> float:
-        kind = str(intent.get("intent", "attack")).lower()
+    def set_combat_deck(self, deck_cards: list[dict], rng=None):
+        self.combat_draw_pile = [self._normalize_enemy_card(x) for x in list(deck_cards or []) if isinstance(x, dict)]
+        self.combat_discard_pile = []
+        self.combat_hand = []
+        self.current_enemy_card = None
+        self.next_enemy_card = None
+        if rng is not None and len(self.combat_draw_pile) > 1:
+            rng.shuffle(self.combat_draw_pile)
+
+    def _reshuffle_combat(self, rng=None):
+        if self.combat_draw_pile or not self.combat_discard_pile:
+            return
+        self.combat_draw_pile = list(self.combat_discard_pile)
+        self.combat_discard_pile = []
+        if rng is not None and len(self.combat_draw_pile) > 1:
+            rng.shuffle(self.combat_draw_pile)
+
+    def _draw_combat_cards(self, n: int, rng=None):
+        need = max(0, int(n or 0))
+        for _ in range(need):
+            if not self.combat_draw_pile:
+                self._reshuffle_combat(rng)
+            if not self.combat_draw_pile:
+                break
+            self.combat_hand.append(self.combat_draw_pile.pop())
+
+    def _card_score(self, card: dict, rng=None) -> float:
+        kind = str(card.get("intent", "attack")).lower()
         score = {
             "attack": 2.0,
             "break": 1.9,
@@ -89,6 +126,41 @@ class Enemy:
             score += float(rng.random()) * 0.25
         return score
 
+    def draw_playable_cards(self, rng=None, draw_n: int = 5) -> list[dict]:
+        if not self.combat_draw_pile and not self.combat_discard_pile and not self.combat_hand:
+            return []
+        self._draw_combat_cards(draw_n, rng)
+        if not self.combat_hand:
+            self.current_enemy_card = None
+            self.next_enemy_card = None
+            return []
+
+        hand = list(self.combat_hand)
+        hand.sort(key=lambda c: self._card_score(c, rng), reverse=True)
+        max_play = 2 if str(self.enemy_type or "").lower() in {"guardian", "arconte"} else 1
+        picks = hand[:max_play]
+        picked_ids = {id(x) for x in picks}
+        self.combat_hand = [c for c in self.combat_hand if id(c) not in picked_ids]
+
+        self.current_enemy_card = dict(picks[0]) if picks else None
+        self.next_enemy_card = dict(picks[1]) if len(picks) > 1 else (dict(self.combat_hand[0]) if self.combat_hand else None)
+        return [dict(x) for x in picks]
+
+    def end_enemy_turn_cards(self, played_cards: list[dict] | None = None, rng=None):
+        for c in list(played_cards or []):
+            self.combat_discard_pile.append(self._normalize_enemy_card(c))
+        for c in list(self.combat_hand or []):
+            self.combat_discard_pile.append(self._normalize_enemy_card(c))
+        self.combat_hand = []
+        self._reshuffle_combat(rng)
+
+    def set_intent_deck(self, intent_deck: list[dict], rng=None):
+        self.intent_draw_pile = [dict(x) for x in list(intent_deck or []) if isinstance(x, dict)]
+        self.intent_discard_pile = []
+        self.active_intent = None
+        if rng is not None and len(self.intent_draw_pile) > 1:
+            rng.shuffle(self.intent_draw_pile)
+
     def _draw_intent_from_deck(self, rng=None) -> dict | None:
         if not self.intent_draw_pile and self.intent_discard_pile:
             self.intent_draw_pile = self.intent_discard_pile
@@ -104,7 +176,7 @@ class Enemy:
         best_score = -9999.0
         for i in range(start, len(self.intent_draw_pile)):
             cand = self.intent_draw_pile[i]
-            score = self._intent_score(cand, rng)
+            score = self._card_score(cand, rng)
             if score > best_score:
                 best_score = score
                 best_idx = i
@@ -112,6 +184,12 @@ class Enemy:
         return picked
 
     def current_intent(self, rng=None) -> dict:
+        # Enemy deck system takes precedence for HUD visibility.
+        if isinstance(self.current_enemy_card, dict):
+            it = dict(self.current_enemy_card)
+            it.setdefault("label", _intent_phrase(it))
+            return it
+
         if self.intent_draw_pile or self.intent_discard_pile or self.active_intent is not None:
             if self.active_intent is None:
                 self.active_intent = self._draw_intent_from_deck(rng)
@@ -123,6 +201,17 @@ class Enemy:
         it = dict(self.pattern[self.intent_index % len(self.pattern)])
         it.setdefault("label", _intent_phrase(it))
         return it
+
+    def next_intent_preview(self, rng=None) -> dict:
+        if isinstance(self.next_enemy_card, dict):
+            it = dict(self.next_enemy_card)
+            it.setdefault("label", _intent_phrase(it))
+            return it
+        if self.intent_draw_pile:
+            it = dict(self.intent_draw_pile[-1])
+            it.setdefault("label", _intent_phrase(it))
+            return it
+        return self.current_intent(rng)
 
     def advance_intent(self, rng=None):
         if self.intent_draw_pile or self.intent_discard_pile or self.active_intent is not None:

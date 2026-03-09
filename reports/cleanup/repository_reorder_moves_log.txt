@@ -1,0 +1,6 @@
+﻿project_cleanup_audit_report.txt -> reports/audits/
+art_direction_document.md -> docs/archive/art_direction_document_root_legacy.md
+music_direction_document.md -> docs/archive/music_direction_document_root_legacy.md
+system_reference.md -> docs/systems/system_reference.md
+migration_notes.txt -> docs/architecture/migration_notes.txt
+qa/reports/archive/qa_report_build_0_9_106a.txt -> qa/reports/archive/superseded_duplicates/qa_report_build_0_9_106a_archive_dup.txt

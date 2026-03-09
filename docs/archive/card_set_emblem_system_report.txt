@@ -1,0 +1,33 @@
+CARD SET EMBLEM SYSTEM REPORT
+fecha: 2026-03-09 17:24:36
+
+Objetivo: reemplazar etiquetas textuales de set en cartas por un sistema de emblemas reutilizable.
+
+Cambios implementados:
+- Eliminada la etiqueta textual BASE/HIPERBOREA en el card renderer (fila de tipo).
+- Nuevo pipeline de emblemas en game/ui/system/set_emblems.py con registry future-proof:
+  * BASE
+  * HIPERBOREA
+  * ARCHON_WAR (scaffold)
+  * SOLAR_AWAKENING (scaffold)
+- Estandarizada la posicion del emblema: opuesto al texto de tipo, bajo arte y sobre texto/lore.
+- Ajustada geometria para mantener margen y evitar solape en contexts mini/mid/full.
+- Codex integrado: cada carta en galeria muestra emblema de set junto al label de entrada.
+- Emblema Hiperborea preservado mediante estilo polar en registry (no redise?o agresivo).
+
+Archivos modificados:
+- game/ui/system/set_emblems.py (nuevo)
+- game/ui/components/card_renderer.py
+- game/ui/screens/codex.py
+
+Validaciones ejecutadas:
+1) python -m py_compile game/ui/system/set_emblems.py game/ui/components/card_renderer.py game/ui/screens/codex.py -> PASS
+2) python -m tools.qa_report_generator -> PASS (deck flow/card coherence/full QA/path guard)
+3) rg -n "set_emblem|normalize_set_id|draw_set_emblem" ... -> PASS (integracion verificada)
+
+QA Gate: PASS
+- Base set usa emblema iconico en carta (sin texto BASE).
+- Hiperborea mantiene emblema funcional y claro.
+- Emblemas alineados con fila de tipo y sin flotacion alta.
+- Renderer soporta futuras expansiones via registry + normalize_set_id().
+- Codex muestra emblema de expansion por entrada de carta.

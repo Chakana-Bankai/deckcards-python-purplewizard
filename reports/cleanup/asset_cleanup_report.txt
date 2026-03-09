@@ -1,0 +1,81 @@
+CHAKANA ASSET CLEANUP REPORT
+
+assets_scanned=438
+duplicate_asset_groups=5
+placeholder_candidates=23
+unused_audio_candidates=30
+
+[duplicate_asset_groups_sample]
+- group size=3
+  - game\assets\curated\avatars\archon_master_concept.png
+  - game\assets\curated\avatars\archon_master_hologram.png
+  - game\assets\curated\avatars\archon_master_portrait.png
+- group size=2
+  - game\assets\sprites\avatar\chakana.png
+  - game\assets\sprites\player\chakana_avatar.png
+- group size=2
+  - game\assets\sprites\biomes\astral_codex.png
+  - game\assets\sprites\biomes\kaypacha.png
+- group size=2
+  - game\assets\sprites\biomes\hanan.png
+  - game\assets\sprites\biomes\hiperborea.png
+- group size=2
+  - game\assets\sprites\biomes\ritual_cavern.png
+  - game\assets\sprites\biomes\ukhu.png
+
+[placeholder_candidates_sample]
+- game\assets\.cache\art_direction_pass\arc_art_direction_probe.png
+- game\assets\.cache\art_direction_pass\base_art_direction_probe.png
+- game\assets\.cache\art_direction_pass\hip_art_direction_probe.png
+- game\assets\.cache\music\nonexistent_track_for_test.wav
+- game\assets\backgrounds\templo_obsidiana_12902.png
+- game\assets\backgrounds\templo_obsidiana_2026.png
+- game\assets\backgrounds\templo_obsidiana_25236.png
+- game\assets\backgrounds\templo_obsidiana_32730.png
+- game\assets\backgrounds\templo_obsidiana_35806.png
+- game\assets\backgrounds\templo_obsidiana_39694.png
+- game\assets\backgrounds\templo_obsidiana_39873.png
+- game\assets\backgrounds\templo_obsidiana_47918.png
+- game\assets\backgrounds\templo_obsidiana_49505.png
+- game\assets\backgrounds\templo_obsidiana_59144.png
+- game\assets\backgrounds\templo_obsidiana_70399.png
+- game\assets\backgrounds\templo_obsidiana_777.png
+- game\assets\backgrounds\templo_obsidiana_7780.png
+- game\assets\backgrounds\templo_obsidiana_85263.png
+- game\assets\backgrounds\templo_obsidiana_97191.png
+- game\assets\backgrounds\templo_obsidiana_98055.png
+- game\assets\backgrounds\templo_obsidiana_98402.png
+- game\assets\sprites\cards\_placeholder.png
+- game\assets\sprites\enemies\_placeholder.png
+
+[unused_audio_candidates_sample]
+- game\assets\.cache\music\combat_fractura_chakana.wav
+- game\assets\.cache\music\combat_ukhu.wav
+- game\assets\.cache\music\map_fractura_chakana.wav
+- game\assets\.cache\music\map_ukhu.wav
+- game\assets\.cache\music\nonexistent_track_for_test.wav
+- game\assets\music\boss.wav
+- game\assets\music\chest.wav
+- game\assets\music\combat_forest.wav
+- game\assets\music\combat_hanan.wav
+- game\assets\music\combat_kaypacha.wav
+- game\assets\music\combat_umbral.wav
+- game\assets\music\ending.wav
+- game\assets\music\event.wav
+- game\assets\music\map_forest.wav
+- game\assets\music\map_hanan.wav
+- game\assets\music\map_kaypacha.wav
+- game\assets\music\map_umbral.wav
+- game\assets\music\menu.wav
+- game\assets\music\shop.wav
+- game\assets\sfx\card_pick.wav
+- game\assets\sfx\chime.wav
+- game\assets\sfx\exhaust.wav
+- game\assets\sfx\shield.wav
+- game\assets\sfx\stinger_boss_phase.wav
+- game\assets\sfx\stinger_defeat.wav
+- game\assets\sfx\stinger_reward.wav
+- game\assets\sfx\stinger_seal_ready.wav
+- game\assets\sfx\stinger_victory.wav
+- game\assets\sfx\ui_click.wav
+- game\assets\sfx\whisper.wav

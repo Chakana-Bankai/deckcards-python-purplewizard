@@ -1,6 +1,6 @@
 {
   "version": "portrait_v6",
-  "updated_at": 1773083456,
+  "updated_at": 1773088772,
   "items": {
     "chakana:132x132": {
       "role": "chakana",
@@ -120,7 +120,7 @@
         132
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_portrait_132x132.png",
-      "generated_at": 1773082402,
+      "generated_at": 1773084964,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_portrait.png"
@@ -157,7 +157,7 @@
         200
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_portrait_270x200.png",
-      "generated_at": 1773082429,
+      "generated_at": 1773088402,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_portrait.png"
@@ -170,7 +170,7 @@
         126
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_hologram_112x126.png",
-      "generated_at": 1773082429,
+      "generated_at": 1773088402,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_hologram.png"
@@ -231,7 +231,7 @@
         84
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_concept_84x84.png",
-      "generated_at": 1773082470,
+      "generated_at": 1773088346,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_concept.png"
@@ -270,7 +270,7 @@
         114
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_hologram_112x114.png",
-      "generated_at": 1773082521,
+      "generated_at": 1773084830,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_hologram.png"
@@ -283,7 +283,7 @@
         360
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_concept_280x360.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_concept.png"
@@ -296,7 +296,7 @@
         360
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_portrait_280x360.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_portrait.png"
@@ -309,7 +309,7 @@
         280
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_hologram_220x280.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_hologram.png"
@@ -322,7 +322,7 @@
         420
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_codex_320x420.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_portrait.png"
@@ -335,7 +335,7 @@
         80
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_mini_80x80.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_hologram.png"
@@ -348,7 +348,7 @@
         360
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_concept_280x360.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_concept.png"
@@ -361,7 +361,7 @@
         360
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_portrait_280x360.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_portrait.png"
@@ -374,7 +374,7 @@
         280
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_hologram_220x280.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_hologram.png"
@@ -387,7 +387,7 @@
         420
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_codex_320x420.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_portrait.png"
@@ -400,7 +400,7 @@
         80
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_mini_80x80.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_hologram.png"
@@ -413,7 +413,7 @@
         360
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide_concept_280x360.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "placeholder",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
@@ -426,7 +426,7 @@
         360
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide_portrait_280x360.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "placeholder",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
@@ -439,7 +439,7 @@
         280
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide_hologram_220x280.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "placeholder",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\arcane_hacker.png"
@@ -452,7 +452,7 @@
         420
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide_codex_320x420.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "placeholder",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
@@ -465,7 +465,7 @@
         80
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide_mini_80x80.png",
-      "generated_at": 1773082233,
+      "generated_at": 1773086484,
       "version": "portrait_v6",
       "source": "placeholder",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\arcane_hacker.png"
@@ -543,7 +543,7 @@
         344
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_portrait_224x344.png",
-      "generated_at": 1773082741,
+      "generated_at": 1773088642,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_portrait.png"
@@ -556,7 +556,7 @@
         118
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_codex_118x118.png",
-      "generated_at": 1773082429,
+      "generated_at": 1773088402,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_portrait.png"
@@ -569,7 +569,7 @@
         344
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_hologram_224x344.png",
-      "generated_at": 1773082518,
+      "generated_at": 1773088447,
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_hologram.png"
@@ -599,6 +599,279 @@
       "version": "portrait_v6",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_portrait.png"
+    },
+    "enemy__enemy:concept:280x360": {
+      "role": "enemy__enemy",
+      "style": "concept",
+      "size": [
+        280,
+        360
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__enemy_concept_280x360.png",
+      "generated_at": 1773086484,
+      "version": "portrait_v6",
+      "source": "generated_or_cache",
+      "source_path": "visual_engine:enemy_enemy"
+    },
+    "enemy__enemy:portrait:280x360": {
+      "role": "enemy__enemy",
+      "style": "portrait",
+      "size": [
+        280,
+        360
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__enemy_portrait_280x360.png",
+      "generated_at": 1773086484,
+      "version": "portrait_v6",
+      "source": "generated_or_cache",
+      "source_path": "visual_engine:enemy_enemy"
+    },
+    "enemy__enemy:hologram:220x280": {
+      "role": "enemy__enemy",
+      "style": "hologram",
+      "size": [
+        220,
+        280
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__enemy_hologram_220x280.png",
+      "generated_at": 1773086484,
+      "version": "portrait_v6",
+      "source": "generated_or_cache",
+      "source_path": "visual_engine:enemy_enemy"
+    },
+    "enemy__enemy:codex:320x420": {
+      "role": "enemy__enemy",
+      "style": "codex",
+      "size": [
+        320,
+        420
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__enemy_codex_320x420.png",
+      "generated_at": 1773086484,
+      "version": "portrait_v6",
+      "source": "generated_or_cache",
+      "source_path": "visual_engine:enemy_enemy"
+    },
+    "enemy__enemy:mini:80x80": {
+      "role": "enemy__enemy",
+      "style": "mini",
+      "size": [
+        80,
+        80
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__enemy_mini_80x80.png",
+      "generated_at": 1773086484,
+      "version": "portrait_v6",
+      "source": "generated_or_cache",
+      "source_path": "visual_engine:enemy_enemy"
+    },
+    "guide__arcane_hacker__portrait:portrait:100x100": {
+      "role": "guide__arcane_hacker__portrait",
+      "style": "portrait",
+      "size": [
+        100,
+        100
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide__arcane_hacker__portrait_portrait_100x100.png",
+      "generated_at": 1773088411,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
+    },
+    "enemy__sabueso_sombrio__hologram:hologram:514x76": {
+      "role": "enemy__sabueso_sombrio__hologram",
+      "style": "hologram",
+      "size": [
+        514,
+        76
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__sabueso_sombrio__hologram_hologram_514x76.png",
+      "generated_at": 1773088449,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\sabueso_sombrio.png"
+    },
+    "chakana_mage:hologram:124x112": {
+      "role": "chakana_mage",
+      "style": "hologram",
+      "size": [
+        124,
+        112
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_hologram_124x112.png",
+      "generated_at": 1773088449,
+      "version": "portrait_v6",
+      "source": "official_master",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_hologram.png"
+    },
+    "guide__angel__portrait:portrait:224x344": {
+      "role": "guide__angel__portrait",
+      "style": "portrait",
+      "size": [
+        224,
+        344
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide__angel__portrait_portrait_224x344.png",
+      "generated_at": 1773088489,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
+    },
+    "guide__arcane_hacker__portrait:portrait:88x88": {
+      "role": "guide__arcane_hacker__portrait",
+      "style": "portrait",
+      "size": [
+        88,
+        88
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide__arcane_hacker__portrait_portrait_88x88.png",
+      "generated_at": 1773088492,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
+    },
+    "guide__arcane_hacker__portrait:portrait:517x310": {
+      "role": "guide__arcane_hacker__portrait",
+      "style": "portrait",
+      "size": [
+        517,
+        310
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide__arcane_hacker__portrait_portrait_517x310.png",
+      "generated_at": 1773088492,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
+    },
+    "guide__demon__portrait:portrait:224x344": {
+      "role": "guide__demon__portrait",
+      "style": "portrait",
+      "size": [
+        224,
+        344
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide__demon__portrait_portrait_224x344.png",
+      "generated_at": 1773088506,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
+    },
+    "enemy__larva_del_vacio__hologram:hologram:514x76": {
+      "role": "enemy__larva_del_vacio__hologram",
+      "style": "hologram",
+      "size": [
+        514,
+        76
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__larva_del_vacio__hologram_hologram_514x76.png",
+      "generated_at": 1773088514,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\larva_del_vacio.png"
+    },
+    "guide__shaman__portrait:portrait:88x88": {
+      "role": "guide__shaman__portrait",
+      "style": "portrait",
+      "size": [
+        88,
+        88
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide__shaman__portrait_portrait_88x88.png",
+      "generated_at": 1773088559,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
+    },
+    "guide__shaman__portrait:portrait:517x310": {
+      "role": "guide__shaman__portrait",
+      "style": "portrait",
+      "size": [
+        517,
+        310
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide__shaman__portrait_portrait_517x310.png",
+      "generated_at": 1773088559,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
+    },
+    "guide__shaman__portrait:portrait:224x344": {
+      "role": "guide__shaman__portrait",
+      "style": "portrait",
+      "size": [
+        224,
+        344
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide__shaman__portrait_portrait_224x344.png",
+      "generated_at": 1773088599,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
+    },
+    "enemy__guardia_de_raiz__hologram:hologram:514x76": {
+      "role": "enemy__guardia_de_raiz__hologram",
+      "style": "hologram",
+      "size": [
+        514,
+        76
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__guardia_de_raiz__hologram_hologram_514x76.png",
+      "generated_at": 1773088611,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\guardia_de_raiz.png"
+    },
+    "enemy__portador_de_polvo__hologram:hologram:514x76": {
+      "role": "enemy__portador_de_polvo__hologram",
+      "style": "hologram",
+      "size": [
+        514,
+        76
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__portador_de_polvo__hologram_hologram_514x76.png",
+      "generated_at": 1773088662,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\portador_de_polvo.png"
+    },
+    "enemy__espiritu_condor_menor__hologram:hologram:514x76": {
+      "role": "enemy__espiritu_condor_menor__hologram",
+      "style": "hologram",
+      "size": [
+        514,
+        76
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__espiritu_condor_menor__hologram_hologram_514x76.png",
+      "generated_at": 1773088718,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\espiritu_condor_menor.png"
+    },
+    "enemy__mascara_risuena__hologram:hologram:514x76": {
+      "role": "enemy__mascara_risuena__hologram",
+      "style": "hologram",
+      "size": [
+        514,
+        76
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__mascara_risuena__hologram_hologram_514x76.png",
+      "generated_at": 1773088748,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\mascara_risuena.png"
+    },
+    "enemy__neblina_consciente__hologram:hologram:514x76": {
+      "role": "enemy__neblina_consciente__hologram",
+      "style": "hologram",
+      "size": [
+        514,
+        76
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__neblina_consciente__hologram_hologram_514x76.png",
+      "generated_at": 1773088772,
+      "version": "portrait_v6",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\enemies\\neblina_consciente.png"
     }
   }
 }

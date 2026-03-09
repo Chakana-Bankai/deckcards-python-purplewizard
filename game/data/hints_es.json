@@ -1,32 +1,122 @@
 [
-  {"id":"h001","text":"Gastar toda tu energía no siempre es óptimo: deja margen para el próximo turno."},
-  {"id":"h002","text":"Bloquear temprano reduce daño total más que curar tarde."},
-  {"id":"h003","text":"Si la intención enemiga es ataque, prioriza Bloqueo o control."},
-  {"id":"h004","text":"Prever te deja ordenar tu destino: úsalo antes de quedarte sin opciones."},
-  {"id":"h005","text":"No todas las manos ganan daño; a veces ganar tempo es defender."},
-  {"id":"h006","text":"Tu mazo mejora cuando cada carta tiene un propósito claro."},
-  {"id":"h007","text":"Si robas mucho, evita inflar el coste promedio sin soporte."},
-  {"id":"h008","text":"Ruptura es presión acumulada: prepara el golpe antes del remate."},
-  {"id":"h009","text":"Las reliquias fuertes brillan más con mazos compactos."},
-  {"id":"h010","text":"Hover sobre cartas para leer efecto real antes de ejecutar."},
-  {"id":"h011","text":"Fin de turno también es táctica: no regales recursos por ansiedad."},
-  {"id":"h012","text":"Armonía sube con rituales: observa cuándo conviene guardarla."},
-  {"id":"h013","text":"Cuando Armonía esté LISTA, decide: bonus pasivo o activar SELLO."},
-  {"id":"h014","text":"El SELLO de Chakana cambia turnos perdidos en oportunidades."},
-  {"id":"h015","text":"Si un enemigo se protege, prepara utilidad antes de daño bruto."},
-  {"id":"h016","text":"Un turno defensivo inteligente puede abrir una victoria limpia."},
-  {"id":"h017","text":"No repitas jugadas por costumbre: lee intención y adapta."},
-  {"id":"h018","text":"Mazo bajo = robos más consistentes; sobrecargarlo reduce control."},
-  {"id":"h019","text":"Si no puedes ejecutar una carta, revisa energía, objetivo y estados."},
-  {"id":"h020","text":"La Trama premia paciencia: prepara dos turnos, no solo uno."},
-  {"id":"h021","text":"En combate largo, cada punto de bloqueo ahorra vida futura."},
-  {"id":"h022","text":"No subestimes cartas de utilidad: ordenan manos mediocres."},
-  {"id":"h023","text":"Cuando tu vida cae al 30%, prioriza supervivencia sobre brillo."},
-  {"id":"h024","text":"Si vas por daño, asegúrate de poder sostener defensa mínima."},
-  {"id":"h025","text":"Usa el panel de voces: puede anticipar cambios de ritmo."},
-  {"id":"h026","text":"Un mazo equilibrado responde mejor a eventos imprevisibles."},
-  {"id":"h027","text":"La economía de oro también es táctica: compra sin romper curva."},
-  {"id":"h028","text":"Cada ruta en mapa es una apuesta: mide riesgo y recompensa."},
-  {"id":"h029","text":"Chakana no corre: canaliza, decide, ejecuta."},
-  {"id":"h030","text":"La mejor jugada es la que mantiene abiertas tus siguientes dos."}
+  {
+    "id": "h001",
+    "text": "Gastar toda tu energía no siempre es ptimo: deja margen para el próximo turno."
+  },
+  {
+    "id": "h002",
+    "text": "Bloquear temprano reduce daño total más que curar tarde."
+  },
+  {
+    "id": "h003",
+    "text": "Si la intención enemiga es ataque, prioriza Bloqueo o control."
+  },
+  {
+    "id": "h004",
+    "text": "Prever te deja ordenar tu destino: salo antes de quedarte sin opciones."
+  },
+  {
+    "id": "h005",
+    "text": "No todas las manos ganan daño; a veces ganar tempo es defender."
+  },
+  {
+    "id": "h006",
+    "text": "Tu mazo mejora cuando cada carta tiene un propósito claro."
+  },
+  {
+    "id": "h007",
+    "text": "Si robas mucho, evita inflar el coste promedio sin soporte."
+  },
+  {
+    "id": "h008",
+    "text": "Ruptura es presión acumulada: prepara el golpe antes del remate."
+  },
+  {
+    "id": "h009",
+    "text": "Las reliquias fuertes brillan más con mazos compactos."
+  },
+  {
+    "id": "h010",
+    "text": "Pasa el cursor sobre cartas para leer su efecto real antes de ejecutar."
+  },
+  {
+    "id": "h011",
+    "text": "Fin de turno también es táctica: no regales recursos por ansiedad."
+  },
+  {
+    "id": "h012",
+    "text": "Armonía sube con rituales: observa cuándo conviene guardarla."
+  },
+  {
+    "id": "h013",
+    "text": "Cuando Armonía está LISTA, decide: bonus pasivo o activar SELLO."
+  },
+  {
+    "id": "h014",
+    "text": "El SELLO de Chakana cambia turnos perdidos en oportunidades."
+  },
+  {
+    "id": "h015",
+    "text": "Si un enemigo se protege, prepara utilidad antes de daño bruto."
+  },
+  {
+    "id": "h016",
+    "text": "Un turno defensivo inteligente puede abrir una victoria limpia."
+  },
+  {
+    "id": "h017",
+    "text": "No repitas jugadas por costumbre: lee intención y adapta."
+  },
+  {
+    "id": "h018",
+    "text": "Mazo bajo = robos más consistentes; sobrecargarlo reduce control."
+  },
+  {
+    "id": "h019",
+    "text": "Si no puedes ejecutar una carta, revisa energía, objetivo y estados."
+  },
+  {
+    "id": "h020",
+    "text": "La Trama premia paciencia: prepara dos turnos, no solo uno."
+  },
+  {
+    "id": "h021",
+    "text": "En combate largo, cada punto de bloqueo ahorra vida futura."
+  },
+  {
+    "id": "h022",
+    "text": "No subestimes cartas de utilidad: ordenan manos mediocres."
+  },
+  {
+    "id": "h023",
+    "text": "Cuando tu vida cae al 30%, prioriza supervivencia sobre brillo."
+  },
+  {
+    "id": "h024",
+    "text": "Si vas por daño, asegúrate de poder sostener defensa mínima."
+  },
+  {
+    "id": "h025",
+    "text": "Usa el panel de voces: puede anticipar cambios de ritmo."
+  },
+  {
+    "id": "h026",
+    "text": "Un mazo equilibrado responde mejor a eventos imprevisibles."
+  },
+  {
+    "id": "h027",
+    "text": "La economía de oro también es táctica: compra sin romper curva."
+  },
+  {
+    "id": "h028",
+    "text": "Cada ruta en mapa es una apuesta: mide riesgo y recompensa."
+  },
+  {
+    "id": "h029",
+    "text": "Chakana no corre: canaliza, decide, ejecuta."
+  },
+  {
+    "id": "h030",
+    "text": "La mejor jugada es la que mantiene abiertas tus siguientes dos."
+  }
 ]

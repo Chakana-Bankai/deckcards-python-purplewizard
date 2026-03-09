@@ -1,0 +1,20 @@
+WORLD NAMING CONVENTIONS
+fecha: 2026-03-09 17:16:30
+
+Estilo global:
+- Mistico, espiritual, simbolico, ancestral y legible en espanol.
+- Evitar terminos tecnicos, debug labels e identificadores internos.
+- Preferir semantica de mundo: Trama, Umbral, Sello, Camino, Presagio, Velo.
+
+Facciones y tono:
+- Chakana: equilibrio entre planos, guia y voluntad ritual.
+- Hiperborea: memoria polar ancestral, disciplina y legado.
+- Archons: corrupcion cosmica, dominio y fractura espiritual.
+- Guias/Angeles: revelacion, orientacion y prueba.
+- Planos (Hanan/Kay/Ukhu): ascenso, presencia y profundidad.
+
+Patrones de nombres:
+- Cartas: verbo/simbolo + funcion (ej. Revelacion del Camino).
+- Reliquias: objeto ritual + energia cosmica (ej. Lente del Oraculo).
+- Eventos: titulo ceremonial corto + consecuencia narrativa.
+- Sobres: Sobre del Origen / Sobre de Hiperborea / Sobre del Velo.

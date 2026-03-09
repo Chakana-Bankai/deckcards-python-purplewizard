@@ -1,0 +1,26 @@
+PROJECT DOCS QA TOOLS CLEANUP REPORT
+generated_at: 2026-03-09 17:49:27
+
+What was moved:
+- Root QA reports -> qa/reports/current + qa/reports/archive.
+- Docs regrouped by domain under docs/.
+- QA/asset/maintenance scripts regrouped under tools/ subfolders.
+
+What was archived:
+- Historical QA reports and superseded docs (archive folders).
+
+What remained active (priority):
+- P1 QA: qa/reports/current/qa_report_build_latest.txt
+- P1 Tools: doctor/clean_autogen/regen_assets/qa_report_generator
+- P1 Docs: CHAKANA_*_SYSTEM_1_0 + engine boundary/extraction docs
+
+Atomic policy enforced:
+- Build QA keeps one active latest; previous latest is archived.
+
+Warnings:
+- __pycache__ artifacts were not deleted in this non-destructive pass.
+- Further semantic dedup of archive reports can be done later.
+
+Next recommendation:
+- Add a tiny post-QA hook to auto-move new qa_report_build_* into qa/reports/current/qa_report_build_latest.txt.
+

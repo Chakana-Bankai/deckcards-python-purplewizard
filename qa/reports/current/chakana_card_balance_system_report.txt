@@ -1,0 +1,103 @@
+CHAKANA CARD BALANCE SYSTEM PASS
+
+{
+  "sets": [
+    {
+      "set": "base",
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\data\\cards.json",
+      "status": "ok",
+      "rarity": {
+        "uncommon": 20,
+        "legendary": 3,
+        "common": 30,
+        "rare": 7
+      },
+      "taxonomy": {
+        "bridge": 18,
+        "payoff": 12,
+        "engine": 30
+      },
+      "taxonomy_by_archetype": {
+        "harmony_guardian": {
+          "bridge": 6,
+          "engine": 10,
+          "payoff": 4
+        },
+        "cosmic_warrior": {
+          "payoff": 4,
+          "engine": 10,
+          "bridge": 6
+        },
+        "oracle_of_fate": {
+          "engine": 10,
+          "payoff": 4,
+          "bridge": 6
+        }
+      }
+    },
+    {
+      "set": "hiperboria",
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\data\\cards_hiperboria.json",
+      "status": "ok",
+      "rarity": {
+        "common": 30,
+        "uncommon": 20,
+        "legendary": 3,
+        "rare": 7
+      },
+      "taxonomy": {
+        "engine": 30,
+        "bridge": 18,
+        "payoff": 12
+      },
+      "taxonomy_by_archetype": {
+        "cosmic_warrior": {
+          "engine": 10,
+          "bridge": 6,
+          "payoff": 4
+        },
+        "harmony_guardian": {
+          "engine": 10,
+          "bridge": 6,
+          "payoff": 4
+        },
+        "oracle_of_fate": {
+          "engine": 10,
+          "bridge": 6,
+          "payoff": 4
+        }
+      }
+    },
+    {
+      "set": "arconte",
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\data\\cards_arconte.json",
+      "status": "ok",
+      "rarity": {
+        "common": 30,
+        "uncommon": 20,
+        "rare": 7,
+        "legendary": 3
+      },
+      "taxonomy": {
+        "engine": 30,
+        "bridge": 18,
+        "payoff": 12
+      },
+      "taxonomy_by_archetype": {
+        "archon_war": {
+          "engine": 30,
+          "bridge": 18,
+          "payoff": 12
+        }
+      }
+    }
+  ],
+  "codex_arconte": {
+    "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\data\\codex_cards_arconte.json",
+    "cards": 60
+  },
+  "enemy_deck_linking": {
+    "status": "ok",
+    "updated_cards": 34
+  }
+}
