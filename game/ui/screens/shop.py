@@ -152,7 +152,7 @@ class ShopScreen:
         pygame.draw.rect(s, UI_THEME["panel_2"], art_slot, border_radius=10)
         pygame.draw.rect(s, UI_THEME["accent_violet"], art_slot, 1, border_radius=10)
         art = self.app.assets.sprite("cards", card.get("id", ""), (260, 360), fallback=(84, 66, 122))
-        self._blit_contained(s, art, art_slot.inflate(-10, -10))
+        self._blit_contained(s, art, art_slot.inflate(-18, -18))
         s.blit(self.app.tiny_font.render("Click para previsualizar", True, UI_THEME["gold"]), (rect.x + 14, rect.bottom - 56))
 
     def _offer_hover_data(self, mouse_pos):
@@ -263,7 +263,7 @@ class ShopScreen:
         pygame.draw.rect(s, UI_THEME["panel_2"], thumb_slot, border_radius=8)
         pygame.draw.rect(s, UI_THEME["accent_violet"], thumb_slot, 1, border_radius=8)
         relic_thumb = self.app.assets.sprite("relics", rid, (128, 128), fallback=(96, 76, 124))
-        self._blit_contained(s, relic_thumb, thumb_slot.inflate(-8, -8))
+        self._blit_contained(s, relic_thumb, thumb_slot.inflate(-14, -14))
         s.blit(self.app.tiny_font.render(self.app.loc.t(self.artifact.get("name_key", rid))[:24], True, UI_THEME["muted"]), (self.artifact_rect.x + 14, self.artifact_rect.y + 70))
         desc = self.app.loc.t(self.artifact.get("text_key", ""))
         for i, line in enumerate((desc or "Reliquia antigua del comerciante.").split(".")[:2]):
@@ -293,4 +293,3 @@ class ShopScreen:
         if self.msg:
             col = UI_THEME["good"] if "No" not in self.msg and "Ya" not in self.msg else UI_THEME["bad"]
             s.blit(self.app.font.render(self.msg, True, col), (self.merchant_rect.x + 20, self.hint_rect.y - 32))
-

@@ -85,7 +85,8 @@ class HolographicOracleUI:
             return
 
         sw, sh = surface.get_size()
-        panel = pygame.Rect(26, sh - 212, min(512, sw // 2 - 44), 170)
+        panel_w = min(560, max(420, sw // 2 - 36))
+        panel = pygame.Rect(26, sh - 212, panel_w, 170)
 
         is_archon = self.speaker == "archon"
         base_glow = (220, 84, 104) if is_archon else (146, 86, 220)
@@ -123,7 +124,7 @@ class HolographicOracleUI:
             tint = pygame.Surface(avatar.get_size(), pygame.SRCALPHA)
             tint.fill((255, 84, 102, 114))
             avatar.blit(tint, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
-        jitter = 2 if self.interference else 1
+        jitter = 2 if self.interference else 0
         jx = int(math.sin(phase * 2.4) * jitter)
         jy = int(math.cos(phase * 1.8) * jitter) if self.interference else 0
         layer.blit(avatar, (av_rect.x + 5 + jx, av_rect.y + 5 + jy))
@@ -168,4 +169,3 @@ class HolographicOracleUI:
             surface.blit(noise, panel.topleft)
 
         surface.blit(layer, panel.topleft)
-

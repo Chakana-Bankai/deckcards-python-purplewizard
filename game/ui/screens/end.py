@@ -37,9 +37,9 @@ class EndScreen:
             "Creado por:",
             "Mauricio Olivares Chacana",
             "",
-            "Inspirado en la Cosmovisión Andina",
+            "Inspirado en la Cosmovision Andina",
             "",
-            "Dedicado a Tomás",
+            "Dedicado a Tomas",
         ]
 
         self.buttons = {
@@ -88,7 +88,7 @@ class EndScreen:
                     self._advance_victory_phase()
                 else:
                     if self.app.run_state:
-                        self.app.goto_map()
+                        self.app.retry_current_combat()
                     else:
                         self.app.new_run()
             elif self.buttons["secondary"].collidepoint(pos):
@@ -147,7 +147,7 @@ class EndScreen:
                 title = "Creditos"
                 s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (840, 230))
                 for i, line in enumerate(self.credits_lines):
-                    col = UI_THEME["gold"] if line in {"CHAKANA : PURPLE WIZARD", "CHAKANA STUDIO", "Creado por:", "Inspirado en la Cosmovisión Andina", "Dedicado a Tomás"} else UI_THEME["text"]
+                    col = UI_THEME["gold"] if line in {"CHAKANA : PURPLE WIZARD", "CHAKANA STUDIO", "Creado por:", "Inspirado en la Cosmovision Andina", "Dedicado a Tomas"} else UI_THEME["text"]
                     s.blit(self.app.font.render(line, True, col), (620, 308 + i * 42))
                 labels = {"primary": "Finalizar", "secondary": "Volver al menu", "menu": "Volver al menu"}
         else:
@@ -155,7 +155,7 @@ class EndScreen:
             body = self.banner.current or self.defeat_lore[min(self.idx, len(self.defeat_lore) - 1)]
             s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (860, 230))
             s.blit(self.app.font.render(body, True, UI_THEME["text"]), (430, 318))
-            labels = {"primary": "Reintentar" if self.can_continue_defeat else "Nueva run", "secondary": "Nueva run", "menu": "Volver al menu"}
+            labels = {"primary": "Reintentar combate" if self.can_continue_defeat else "Nueva run", "secondary": "Nueva run", "menu": "Volver al menu"}
 
         draw_keys = ["primary", "secondary"] if self.victory else ["primary", "secondary", "menu"]
         for k in draw_keys:
@@ -165,4 +165,3 @@ class EndScreen:
             pygame.draw.rect(s, UI_THEME["gold"] if self.victory else UI_THEME["accent_violet"], r, 2, border_radius=12)
             txt = self.app.small_font.render(labels[k], True, UI_THEME["text"])
             s.blit(txt, txt.get_rect(center=r.center))
-

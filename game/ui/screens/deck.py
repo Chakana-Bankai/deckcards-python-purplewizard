@@ -323,6 +323,20 @@ class DeckScreen:
         while self.app.tiny_font.size(main_line)[0] > main_stats_chip.w - 12 and len(main_line) > 8:
             main_line = main_line[:-4] + "..."
         s.blit(self.app.tiny_font.render(main_line, True, UI_THEME["gold"]), (main_stats_chip.x + 6, main_stats_chip.y + 10))
+        base_count = 0
+        hip_count = 0
+        for cid in deck:
+            cdef = self.app.card_defs.get(cid, {}) if isinstance(self.app.card_defs, dict) else {}
+            sid = str(cdef.get("set", "") or "").lower()
+            if str(cid).lower().startswith("hip_") or "hiperboria" in sid:
+                hip_count += 1
+            else:
+                base_count += 1
+        set_chip = pygame.Rect(main_stats_chip.x, main_stats_chip.bottom + 4, main_stats_chip.w, 22)
+        pygame.draw.rect(s, UI_THEME["panel_2"], set_chip, border_radius=6)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], set_chip, 1, border_radius=6)
+        set_line = f"Sets -> Base {base_count} | Hiperborea {hip_count}"
+        s.blit(self.app.tiny_font.render(set_line, True, UI_THEME["muted"]), (set_chip.x + 6, set_chip.y + 4))
 
         reserve_count = len(sideboard)
         top_roles = sorted(role_counts.items(), key=lambda it: it[1], reverse=True)
@@ -372,6 +386,3 @@ class DeckScreen:
             pygame.draw.rect(s, UI_THEME["deep_purple"], toast_rect, border_radius=10)
             pygame.draw.rect(s, UI_THEME["gold"], toast_rect, 2, border_radius=10)
             s.blit(self.app.small_font.render(self.toast_text[:80], True, UI_THEME["text"]), (toast_rect.x + 14, toast_rect.y + 14))
-
-
-

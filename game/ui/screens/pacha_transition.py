@@ -5,9 +5,9 @@ from game.ui.theme import UI_THEME
 
 
 class PachaTransitionScreen:
-    def __init__(self, app, title, next_fn, lore_line="Era una vez… la Trama susurró un cambio.", hint="Pulsa cualquier tecla", min_seconds=0.9, auto_seconds=6.0):
+    def __init__(self, app, title, next_fn, lore_line="Era una vez... la Trama susurro un cambio.", hint="Pulsa cualquier tecla", min_seconds=0.9, auto_seconds=6.0):
         self.app = app
-        self.title = str(title or "Transición")
+        self.title = str(title or "Transicion")
         self.next_fn = next_fn
         self.lore_line = str(lore_line)
         self.hint = str(hint)
@@ -51,6 +51,6 @@ class PachaTransitionScreen:
         s.blit(avatar, (panel.x + 70, panel.y + 210))
 
         s.blit(self.app.big_font.render(self.title, True, UI_THEME["gold"]), (panel.x + 240, panel.y + 70))
-        s.blit(self.app.font.render(f"Era una vez… {self.lore_line}", True, UI_THEME["text"]), (panel.x + 240, panel.y + 156))
+        s.blit(self.app.font.render(f"Era una vez... {self.lore_line}", True, UI_THEME["text"]), (panel.x + 240, panel.y + 156))
         s.blit(self.app.small_font.render(self.hint, True, UI_THEME["muted"]), (panel.x + 240, panel.y + 202))
         s.blit(self.app.small_font.render("Pulsa cualquier tecla", True, UI_THEME["good"] if self.ready else UI_THEME["muted"]), (panel.x + 240, panel.y + 312))

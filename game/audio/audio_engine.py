@@ -198,11 +198,11 @@ class AudioEngine:
             arp = 0.18 * math.sin(2 * math.pi * overtone * t + 0.6 * math.sin(t * 0.7))
             gate = 0.5 + 0.5 * math.sin(2 * math.pi * (1.0 + spec.pulse) * t)
             rhythm = gate * self._triangle(2 * math.pi * pulse_freq * t)
-            noise = 0.05 * math.sin(2 * math.pi * (900 + 80 * spec.brightness) * t + 0.3 * math.sin(t * 3.7))
+            noise = 0.02 * math.sin(2 * math.pi * (520 + 50 * spec.brightness) * t + 0.18 * math.sin(t * 2.1))
 
-            x = (0.46 * pad) + (0.26 * arp) + (0.20 * rhythm) + noise
+            x = (0.48 * pad) + (0.26 * arp) + (0.14 * rhythm) + noise
             if spec.tension > 0.6:
-                x += 0.08 * math.sin(2 * math.pi * (root * 4.0) * t)
+                x += 0.04 * math.sin(2 * math.pi * (root * 3.0) * t)
 
             fade_in = min(1.0, t / 1.2)
             fade_out = min(1.0, (seconds - t) / 1.0)
@@ -260,9 +260,9 @@ class AudioEngine:
         base = {
             "card_play": 340.0,
             "card_invalid": 170.0,
-            "button_click": 620.0,
-            "gold_gain": 520.0,
-            "xp_gain": 560.0,
+            "button_click": 420.0,
+            "gold_gain": 460.0,
+            "xp_gain": 500.0,
             "damage_hit": 120.0,
             "heal": 280.0,
             "seal_activate": 240.0,

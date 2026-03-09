@@ -50,6 +50,7 @@ from game.ui.screens.end import EndScreen
 from game.ui.screens.intro import IntroScreen
 from game.ui.screens.studio_intro import StudioIntroScreen
 from game.ui.screens.pacha_transition import PachaTransitionScreen
+from game.ui.screens.scene_fusion import SceneFusionScreen
 from game.ui.screens.tutorial import TutorialScreen
 from game.ui.tutorial_flow import TutorialFlowController
 from game.ui.components.card_effect_summary import infer_card_role
@@ -193,6 +194,7 @@ class App:
         self.story_intro_seen = False
         self.tutorial_flow = TutorialFlowController()
         self._boot_content_ready = False
+        self.pending_scene_reveal = None
 
         self.validate_navigation_methods()
         pygame.display.set_caption(self.loc.t("game_title"))
@@ -967,6 +969,53 @@ class App:
         self._oracle_active_priority = prio
         self._oracle_active_until_ms = now + int(duration * 1000)
 
+    def _detect_card_set(self, card_id: str) -> str:
+        cid = str(card_id or '').strip().lower()
+        if not cid:
+            return 'base'
+        cdef = self.card_defs.get(cid, {}) if isinstance(self.card_defs, dict) else {}
+        set_name = str((cdef or {}).get('set', '') or '').strip().lower()
+        if 'hiperboria' in set_name or cid.startswith('hip_'):
+            return 'hiperboria'
+        return 'base'
+
+    def _queue_set_discovery(self, set_id: str):
+        if not isinstance(self.run_state, dict):
+            return
+        sid = str(set_id or '').strip().lower()
+        if not sid:
+            return
+        discovered = self.run_state.setdefault('discovered_sets', [])
+        if sid in discovered:
+            return
+        discovered.append(sid)
+        if sid == 'hiperboria':
+            self.pending_scene_reveal = {
+                'set': 'hiperboria',
+                'title': 'Revelacion de Civilizacion',
+                'dialogue': 'Antiguos sellos de Hiperborea despiertan en tu mazo.',
+                'lore': 'El conocimiento polar comienza a cruzar la Trama.',
+                'speaker': 'CHAKANA',
+                'portrait': 'codex',
+                'biome': str((self.run_state or {}).get('biome', 'kaypacha')),
+            }
+            print('[scene] queued set reveal: hiperboria')
+
+    def retry_current_combat(self):
+        if not isinstance(self.run_state, dict):
+            self.new_run()
+            return
+        if not self.current_node_id:
+            self.goto_map()
+            return
+        node = self.node_lookup.get(self.current_node_id)
+        if not isinstance(node, dict):
+            self.goto_map()
+            return
+        node['state'] = 'available'
+        self.current_combat = None
+        self.enter_node(node)
+
     def goto_menu(self):
         if self.sm.current and not isinstance(self.sm.current, MenuScreen):
             self.menu_return_screen = self.sm.current
@@ -1206,6 +1255,7 @@ class App:
                 "turn_timer_seconds": int(self.user_settings.get("turn_timer_seconds", 20)),
                 "music_muted": bool(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False))),
             },
+            "discovered_sets": ["base"],
         }
         self.current_node_id = None
         self.current_combat = None
@@ -1286,6 +1336,27 @@ class App:
         if self.run_state and self.run_state.get("levelup_pending", 0) > 0:
             self.sm.set(PackOpeningScreen(self))
             self.music.play_for("chest")
+            return
+        if isinstance(self.pending_scene_reveal, dict):
+            reveal = dict(self.pending_scene_reveal)
+            self.pending_scene_reveal = None
+            biome_key = str(reveal.get("biome") or (self.run_state or {}).get("biome") or "kaypacha")
+            self.sm.set(
+                SceneFusionScreen(
+                    self,
+                    reveal.get("title", "Revelacion"),
+                    reveal.get("dialogue", "Una nueva civilizacion despierta."),
+                    reveal.get("lore", "La Trama se expande."),
+                    self.goto_map,
+                    background="Ruinas Chakana",
+                    biome_layer=biome_key,
+                    portrait_key=reveal.get("portrait", "codex"),
+                    speaker_label=reveal.get("speaker", "CHAKANA"),
+                    set_label="Civilizacion: HIPERBOREA",
+                    min_seconds=0.9,
+                    auto_seconds=4.0,
+                )
+            )
             return
         self._autosave_run("goto_map")
         self.debug["map_available_count"] = self.available_nodes_count() if self.node_lookup else 0
@@ -1558,6 +1629,8 @@ class App:
         levels = self.gain_xp(granted_xp) if granted_xp else 0
         if card_ids:
             self.run_state.setdefault("sideboard", []).extend(card_ids)
+            for cid in card_ids:
+                self._queue_set_discovery(self._detect_card_set(cid))
         if relic_ids:
             owned = self.run_state.setdefault("relics", [])
             for rid in relic_ids:
@@ -1984,6 +2057,3 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
-
-
-
