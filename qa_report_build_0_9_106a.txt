@@ -1,0 +1,47 @@
+CHAKANA : PURPLE WIZARD - QA REPORT
+======================================================
+
+1) Build Information
+- game_version: 0.9.106a
+- build_name: Font Context Normalization Hotfix
+- total_cards: 120
+- card_sets: base=60 hiperboria=60
+
+2) Smoke Tests
+- deck flow test: PASS (rc=0 issues=0)
+- card coherence checker: PASS (rc=0 errors=0 warnings=0)
+- full QA run: PASS (qa_phase9_report_generated)
+- path selection distribution guard: PASS (all archetypes 12/7/1)
+
+3) Archetype Viability
+- cosmic_warrior: PASS dmg=49.8 turns=3.38 win_rate=1.0
+- harmony_guardian: PASS dmg=55.9 turns=9.25 win_rate=1.0
+- oracle_of_fate: PASS dmg=46.9 turns=8.25 win_rate=0.5
+
+4) Asset Validation
+- art_failures_total: 0
+- hiperboria_art_failures: 0
+- missing_card_art_ids_sample: []
+
+5) Icon System Validation
+- required_effects: ['damage', 'gain_block', 'draw', 'heal', 'retain', 'harmony_delta', 'ritual', 'energy', 'exhaust_self', 'rupture']
+- missing_mappings: []
+- missing_icon_types_from_full_qa: {'draw_if_direction_played': 2, 'double_block_cap': 2, 'damage_plus_rupture': 3}
+
+6) Localization Check
+- mojibake_count: 0
+- english_fallback_count: 5
+- accent_samples_present: True
+- mojibake_keys_sample: []
+- fallback_keys_sample: ['game_title', 'intent_debuff', 'intent_buff', 'deck_stats_tags', 'menu_codex']
+
+7) System Health
+- combat_engine: OK
+- deck_system: OK
+- map_system: OK
+- audio_system: OK
+- procedural_art_system: OK
+
+8) Suggested Actions
+- Boss pacing warning: boss fights exceed target 4-7 turns in QA simulation.
+- Localization cleanup required: resolve mojibake and English fallback keys.
