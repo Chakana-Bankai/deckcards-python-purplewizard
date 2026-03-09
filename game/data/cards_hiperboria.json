@@ -1,0 +1,2658 @@
+{
+  "set_id": "hiperboria",
+  "set_name": "HIPERBOREA",
+  "total_cards": 60,
+  "archetypes": [
+    {
+      "id": "cosmic_warrior",
+      "name": "Cosmic Warrior",
+      "count": 20
+    },
+    {
+      "id": "harmony_guardian",
+      "name": "Harmony Guardian",
+      "count": 20
+    },
+    {
+      "id": "oracle_of_fate",
+      "name": "Oracle of Fate",
+      "count": 20
+    }
+  ],
+  "cards": [
+    {
+      "id": "hip_cosmic_warrior_01",
+      "name": "HIP-CW 01",
+      "name_key": "HIP-CW 01",
+      "text_key": "damage 4",
+      "effect_text": "damage 4",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "role": "attack",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_01",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_02",
+      "name": "HIP-CW 02",
+      "name_key": "HIP-CW 02",
+      "text_key": "damage 4, apply_break 1",
+      "effect_text": "damage 4, apply_break 1",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "combo"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "combo",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_02",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_03",
+      "name": "HIP-CW 03",
+      "name_key": "HIP-CW 03",
+      "text_key": "damage 5",
+      "effect_text": "damage 5",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "attack",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_03",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_04",
+      "name": "HIP-CW 04",
+      "name_key": "HIP-CW 04",
+      "text_key": "gain_mana 1, damage 3",
+      "effect_text": "gain_mana 1, damage 3",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "energy",
+        "attack"
+      ],
+      "effects": [
+        {
+          "type": "gain_mana",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 3
+        }
+      ],
+      "role": "energy",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_04",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_05",
+      "name": "HIP-CW 05",
+      "name_key": "HIP-CW 05",
+      "text_key": "damage_plus_rupture 5",
+      "effect_text": "damage_plus_rupture 5",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "combo",
+        "rupture"
+      ],
+      "effects": [
+        {
+          "type": "damage_plus_rupture",
+          "amount": 5
+        }
+      ],
+      "role": "combo",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_05",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_06",
+      "name": "HIP-CW 06",
+      "name_key": "HIP-CW 06",
+      "text_key": "damage 5",
+      "effect_text": "damage 5",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "attack",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_06",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_07",
+      "name": "HIP-CW 07",
+      "name_key": "HIP-CW 07",
+      "text_key": "damage 3, apply_break 1",
+      "effect_text": "damage 3, apply_break 1",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "combo"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 3
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "combo",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_07",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_08",
+      "name": "HIP-CW 08",
+      "name_key": "HIP-CW 08",
+      "text_key": "damage 5",
+      "effect_text": "damage 5",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "attack",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_08",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_09",
+      "name": "HIP-CW 09",
+      "name_key": "HIP-CW 09",
+      "text_key": "gain_mana 1, damage 3",
+      "effect_text": "gain_mana 1, damage 3",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "energy",
+        "attack"
+      ],
+      "effects": [
+        {
+          "type": "gain_mana",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 3
+        }
+      ],
+      "role": "energy",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_09",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_10",
+      "name": "HIP-CW 10",
+      "name_key": "HIP-CW 10",
+      "text_key": "damage_plus_rupture 6",
+      "effect_text": "damage_plus_rupture 6",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "combo",
+        "rupture"
+      ],
+      "effects": [
+        {
+          "type": "damage_plus_rupture",
+          "amount": 6
+        }
+      ],
+      "role": "combo",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_10",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_11",
+      "name": "HIP-CW 11",
+      "name_key": "HIP-CW 11",
+      "text_key": "damage 4",
+      "effect_text": "damage 4",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "role": "attack",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_11",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_12",
+      "name": "HIP-CW 12",
+      "name_key": "HIP-CW 12",
+      "text_key": "damage 5, apply_break 1",
+      "effect_text": "damage 5, apply_break 1",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "combo"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 5
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "combo",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_12",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_13",
+      "name": "HIP-CW 13",
+      "name_key": "HIP-CW 13",
+      "text_key": "damage 5",
+      "effect_text": "damage 5",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "attack",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_13",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_14",
+      "name": "HIP-CW 14",
+      "name_key": "HIP-CW 14",
+      "text_key": "gain_mana 1, damage 3",
+      "effect_text": "gain_mana 1, damage 3",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "energy",
+        "attack"
+      ],
+      "effects": [
+        {
+          "type": "gain_mana",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 3
+        }
+      ],
+      "role": "energy",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_14",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_15",
+      "name": "HIP-CW 15",
+      "name_key": "HIP-CW 15",
+      "text_key": "damage_plus_rupture 5",
+      "effect_text": "damage_plus_rupture 5",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "combo",
+        "rupture"
+      ],
+      "effects": [
+        {
+          "type": "damage_plus_rupture",
+          "amount": 5
+        }
+      ],
+      "role": "combo",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_15",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_16",
+      "name": "HIP-CW 16",
+      "name_key": "HIP-CW 16",
+      "text_key": "damage 5",
+      "effect_text": "damage 5",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "rupture"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "attack",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_16",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_17",
+      "name": "HIP-CW 17",
+      "name_key": "HIP-CW 17",
+      "text_key": "damage 4, apply_break 1",
+      "effect_text": "damage 4, apply_break 1",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "combo"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "role": "combo",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_17",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_18",
+      "name": "HIP-CW 18",
+      "name_key": "HIP-CW 18",
+      "text_key": "damage 5",
+      "effect_text": "damage 5",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "attack"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "attack",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_18",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_19",
+      "name": "HIP-CW 19",
+      "name_key": "HIP-CW 19",
+      "text_key": "gain_mana 1, damage 3",
+      "effect_text": "gain_mana 1, damage 3",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "energy",
+        "attack"
+      ],
+      "effects": [
+        {
+          "type": "gain_mana",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 3
+        }
+      ],
+      "role": "energy",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_19",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_cosmic_warrior_20",
+      "name": "HIP-CW 20",
+      "name_key": "HIP-CW 20",
+      "text_key": "damage 10, apply_break 2",
+      "effect_text": "damage 10, apply_break 2",
+      "rarity": "legendary",
+      "cost": 3,
+      "target": "enemy",
+      "tags": [
+        "attack",
+        "combo",
+        "rupture"
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 10
+        },
+        {
+          "type": "apply_break",
+          "amount": 2
+        }
+      ],
+      "role": "combo",
+      "family": "cosmic_warrior",
+      "direction": "ESTE",
+      "archetype": "cosmic_warrior",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guerrero Hiperboreo"
+      },
+      "artwork": "hip_cosmic_warrior_20",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "polar_strike_flux",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_01",
+      "name": "HIP-HG 01",
+      "name_key": "HIP-HG 01",
+      "text_key": "gain_block 4, damage 5",
+      "effect_text": "gain_block 4, damage 5",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "harmony"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 4
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "defense",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_01",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_02",
+      "name": "HIP-HG 02",
+      "name_key": "HIP-HG 02",
+      "text_key": "harmony_delta 1, consume_harmony 1, damage 8",
+      "effect_text": "harmony_delta 1, consume_harmony 1, damage 8",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "seal"
+      ],
+      "effects": [
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        },
+        {
+          "type": "consume_harmony",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 8
+        }
+      ],
+      "role": "ritual",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_02",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_03",
+      "name": "HIP-HG 03",
+      "name_key": "HIP-HG 03",
+      "text_key": "gain_block 5, damage 4",
+      "effect_text": "gain_block 5, damage 4",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 5
+        },
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "role": "defense",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_03",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_04",
+      "name": "HIP-HG 04",
+      "name_key": "HIP-HG 04",
+      "text_key": "gain_block 3, scry 1, damage 5",
+      "effect_text": "gain_block 3, scry 1, damage 5",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "scry"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 3
+        },
+        {
+          "type": "scry",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "control",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_04",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_05",
+      "name": "HIP-HG 05",
+      "name_key": "HIP-HG 05",
+      "text_key": "gain_block 4, heal 1, damage 6",
+      "effect_text": "gain_block 4, heal 1, damage 6",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "support"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 4
+        },
+        {
+          "type": "heal",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 6
+        }
+      ],
+      "role": "defense",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_05",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_06",
+      "name": "HIP-HG 06",
+      "name_key": "HIP-HG 06",
+      "text_key": "gain_block 5, damage 5",
+      "effect_text": "gain_block 5, damage 5",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "harmony"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 5
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "defense",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_06",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_07",
+      "name": "HIP-HG 07",
+      "name_key": "HIP-HG 07",
+      "text_key": "harmony_delta 1, consume_harmony 1, damage 8",
+      "effect_text": "harmony_delta 1, consume_harmony 1, damage 8",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "seal"
+      ],
+      "effects": [
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        },
+        {
+          "type": "consume_harmony",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 8
+        }
+      ],
+      "role": "ritual",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_07",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_08",
+      "name": "HIP-HG 08",
+      "name_key": "HIP-HG 08",
+      "text_key": "gain_block 5, damage 5",
+      "effect_text": "gain_block 5, damage 5",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "block"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 5
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "defense",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_08",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_09",
+      "name": "HIP-HG 09",
+      "name_key": "HIP-HG 09",
+      "text_key": "gain_block 3, scry 1, damage 5",
+      "effect_text": "gain_block 3, scry 1, damage 5",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "scry"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 3
+        },
+        {
+          "type": "scry",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "control",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_09",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_10",
+      "name": "HIP-HG 10",
+      "name_key": "HIP-HG 10",
+      "text_key": "gain_block 4, heal 1, damage 6",
+      "effect_text": "gain_block 4, heal 1, damage 6",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "support"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 4
+        },
+        {
+          "type": "heal",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 6
+        }
+      ],
+      "role": "defense",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_10",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_11",
+      "name": "HIP-HG 11",
+      "name_key": "HIP-HG 11",
+      "text_key": "gain_block 4, damage 5",
+      "effect_text": "gain_block 4, damage 5",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "harmony"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 4
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "defense",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_11",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_12",
+      "name": "HIP-HG 12",
+      "name_key": "HIP-HG 12",
+      "text_key": "harmony_delta 1, consume_harmony 1, damage 9",
+      "effect_text": "harmony_delta 1, consume_harmony 1, damage 9",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "seal"
+      ],
+      "effects": [
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        },
+        {
+          "type": "consume_harmony",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 9
+        }
+      ],
+      "role": "ritual",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_12",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_13",
+      "name": "HIP-HG 13",
+      "name_key": "HIP-HG 13",
+      "text_key": "gain_block 5, damage 6",
+      "effect_text": "gain_block 5, damage 6",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 5
+        },
+        {
+          "type": "damage",
+          "amount": 6
+        }
+      ],
+      "role": "defense",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_13",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_14",
+      "name": "HIP-HG 14",
+      "name_key": "HIP-HG 14",
+      "text_key": "gain_block 3, scry 1, damage 6",
+      "effect_text": "gain_block 3, scry 1, damage 6",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "scry"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 3
+        },
+        {
+          "type": "scry",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 6
+        }
+      ],
+      "role": "control",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_14",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_15",
+      "name": "HIP-HG 15",
+      "name_key": "HIP-HG 15",
+      "text_key": "gain_block 4, heal 1, damage 7",
+      "effect_text": "gain_block 4, heal 1, damage 7",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "support"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 4
+        },
+        {
+          "type": "heal",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 7
+        }
+      ],
+      "role": "defense",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_15",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_16",
+      "name": "HIP-HG 16",
+      "name_key": "HIP-HG 16",
+      "text_key": "gain_block 5, damage 6",
+      "effect_text": "gain_block 5, damage 6",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "harmony"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 5
+        },
+        {
+          "type": "damage",
+          "amount": 6
+        }
+      ],
+      "role": "defense",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_16",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_17",
+      "name": "HIP-HG 17",
+      "name_key": "HIP-HG 17",
+      "text_key": "harmony_delta 1, consume_harmony 1, damage 9",
+      "effect_text": "harmony_delta 1, consume_harmony 1, damage 9",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "seal"
+      ],
+      "effects": [
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        },
+        {
+          "type": "consume_harmony",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 9
+        }
+      ],
+      "role": "ritual",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_17",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_18",
+      "name": "HIP-HG 18",
+      "name_key": "HIP-HG 18",
+      "text_key": "gain_block 5, damage 6",
+      "effect_text": "gain_block 5, damage 6",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "block"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 5
+        },
+        {
+          "type": "damage",
+          "amount": 6
+        }
+      ],
+      "role": "defense",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_18",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_19",
+      "name": "HIP-HG 19",
+      "name_key": "HIP-HG 19",
+      "text_key": "gain_block 3, scry 1, damage 6",
+      "effect_text": "gain_block 3, scry 1, damage 6",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "scry"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 3
+        },
+        {
+          "type": "scry",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 6
+        }
+      ],
+      "role": "control",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_19",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_harmony_guardian_20",
+      "name": "HIP-HG 20",
+      "name_key": "HIP-HG 20",
+      "text_key": "gain_block 10, harmony_delta 2, damage 14",
+      "effect_text": "gain_block 10, harmony_delta 2, damage 14",
+      "rarity": "legendary",
+      "cost": 3,
+      "target": "enemy",
+      "tags": [
+        "block",
+        "harmony",
+        "seal"
+      ],
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 10
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 2
+        },
+        {
+          "type": "damage",
+          "amount": 14
+        }
+      ],
+      "role": "ritual",
+      "family": "harmony_guardian",
+      "direction": "SUR",
+      "archetype": "harmony_guardian",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Guardian Hiperboreo"
+      },
+      "artwork": "hip_harmony_guardian_20",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "guardian_resonance",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_01",
+      "name": "HIP-OF 01",
+      "name_key": "HIP-OF 01",
+      "text_key": "scry 2, draw 1, damage 4",
+      "effect_text": "scry 2, draw 1, damage 4",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "scry",
+        "draw"
+      ],
+      "effects": [
+        {
+          "type": "scry",
+          "amount": 2
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "role": "control",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_01",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_02",
+      "name": "HIP-OF 02",
+      "name_key": "HIP-OF 02",
+      "text_key": "ritual_trama 1, harmony_delta 1, draw 1",
+      "effect_text": "ritual_trama 1, harmony_delta 1, draw 1",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "harmony"
+      ],
+      "effects": [
+        {
+          "type": "ritual_trama",
+          "amount": 1
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_02",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_03",
+      "name": "HIP-OF 03",
+      "name_key": "HIP-OF 03",
+      "text_key": "scry 3, damage 3",
+      "effect_text": "scry 3, damage 3",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "scry"
+      ],
+      "effects": [
+        {
+          "type": "scry",
+          "amount": 3
+        },
+        {
+          "type": "damage",
+          "amount": 3
+        }
+      ],
+      "role": "control",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_03",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_04",
+      "name": "HIP-OF 04",
+      "name_key": "HIP-OF 04",
+      "text_key": "draw 2, damage 5",
+      "effect_text": "draw 2, damage 5",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "draw",
+        "combo"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 2
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "combo",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_04",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_05",
+      "name": "HIP-OF 05",
+      "name_key": "HIP-OF 05",
+      "text_key": "gain_mana_next_turn 1, scry 1, damage 4",
+      "effect_text": "gain_mana_next_turn 1, scry 1, damage 4",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "energy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "gain_mana_next_turn",
+          "amount": 1
+        },
+        {
+          "type": "scry",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "role": "energy",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_05",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_06",
+      "name": "HIP-OF 06",
+      "name_key": "HIP-OF 06",
+      "text_key": "scry 2, draw 1, damage 4",
+      "effect_text": "scry 2, draw 1, damage 4",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "scry",
+        "draw"
+      ],
+      "effects": [
+        {
+          "type": "scry",
+          "amount": 2
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "role": "control",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_06",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_07",
+      "name": "HIP-OF 07",
+      "name_key": "HIP-OF 07",
+      "text_key": "ritual_trama 1, harmony_delta 1, draw 1",
+      "effect_text": "ritual_trama 1, harmony_delta 1, draw 1",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "harmony"
+      ],
+      "effects": [
+        {
+          "type": "ritual_trama",
+          "amount": 1
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_07",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_08",
+      "name": "HIP-OF 08",
+      "name_key": "HIP-OF 08",
+      "text_key": "scry 3, damage 4",
+      "effect_text": "scry 3, damage 4",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "scry"
+      ],
+      "effects": [
+        {
+          "type": "scry",
+          "amount": 3
+        },
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "role": "control",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_08",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_09",
+      "name": "HIP-OF 09",
+      "name_key": "HIP-OF 09",
+      "text_key": "draw 2, damage 5",
+      "effect_text": "draw 2, damage 5",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "draw",
+        "combo"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 2
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "combo",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_09",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_10",
+      "name": "HIP-OF 10",
+      "name_key": "HIP-OF 10",
+      "text_key": "gain_mana_next_turn 1, scry 1, damage 4",
+      "effect_text": "gain_mana_next_turn 1, scry 1, damage 4",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "energy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "gain_mana_next_turn",
+          "amount": 1
+        },
+        {
+          "type": "scry",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "role": "energy",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_10",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_11",
+      "name": "HIP-OF 11",
+      "name_key": "HIP-OF 11",
+      "text_key": "scry 2, draw 1, damage 4",
+      "effect_text": "scry 2, draw 1, damage 4",
+      "rarity": "common",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "scry",
+        "draw"
+      ],
+      "effects": [
+        {
+          "type": "scry",
+          "amount": 2
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "role": "control",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_11",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_12",
+      "name": "HIP-OF 12",
+      "name_key": "HIP-OF 12",
+      "text_key": "ritual_trama 1, harmony_delta 1, draw 1",
+      "effect_text": "ritual_trama 1, harmony_delta 1, draw 1",
+      "rarity": "common",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "harmony"
+      ],
+      "effects": [
+        {
+          "type": "ritual_trama",
+          "amount": 1
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "role": "ritual",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_12",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_13",
+      "name": "HIP-OF 13",
+      "name_key": "HIP-OF 13",
+      "text_key": "scry 3, damage 4",
+      "effect_text": "scry 3, damage 4",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "scry"
+      ],
+      "effects": [
+        {
+          "type": "scry",
+          "amount": 3
+        },
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "role": "control",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_13",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_14",
+      "name": "HIP-OF 14",
+      "name_key": "HIP-OF 14",
+      "text_key": "draw 2, damage 6",
+      "effect_text": "draw 2, damage 6",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "draw",
+        "combo"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 2
+        },
+        {
+          "type": "damage",
+          "amount": 6
+        }
+      ],
+      "role": "combo",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_14",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_15",
+      "name": "HIP-OF 15",
+      "name_key": "HIP-OF 15",
+      "text_key": "gain_mana_next_turn 1, scry 1, damage 5",
+      "effect_text": "gain_mana_next_turn 1, scry 1, damage 5",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "energy",
+        "control"
+      ],
+      "effects": [
+        {
+          "type": "gain_mana_next_turn",
+          "amount": 1
+        },
+        {
+          "type": "scry",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "energy",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_15",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_16",
+      "name": "HIP-OF 16",
+      "name_key": "HIP-OF 16",
+      "text_key": "scry 2, draw 1, damage 5",
+      "effect_text": "scry 2, draw 1, damage 5",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "scry",
+        "draw"
+      ],
+      "effects": [
+        {
+          "type": "scry",
+          "amount": 2
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "control",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_16",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_17",
+      "name": "HIP-OF 17",
+      "name_key": "HIP-OF 17",
+      "text_key": "ritual_trama 1, harmony_delta 1, draw 1, damage 4",
+      "effect_text": "ritual_trama 1, harmony_delta 1, draw 1, damage 4",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "ritual",
+        "harmony"
+      ],
+      "effects": [
+        {
+          "type": "ritual_trama",
+          "amount": 1
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "role": "ritual",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "La runa helada convierte duda en forma.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_17",
+      "motif": "crystals",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_18",
+      "name": "HIP-OF 18",
+      "name_key": "HIP-OF 18",
+      "text_key": "scry 3, damage 5",
+      "effect_text": "scry 3, damage 5",
+      "rarity": "uncommon",
+      "cost": 2,
+      "target": "enemy",
+      "tags": [
+        "scry"
+      ],
+      "effects": [
+        {
+          "type": "scry",
+          "amount": 3
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "role": "control",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_18",
+      "motif": "auroras",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_19",
+      "name": "HIP-OF 19",
+      "name_key": "HIP-OF 19",
+      "text_key": "draw 2, damage 6",
+      "effect_text": "draw 2, damage 6",
+      "rarity": "uncommon",
+      "cost": 1,
+      "target": "enemy",
+      "tags": [
+        "draw",
+        "combo"
+      ],
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 2
+        },
+        {
+          "type": "damage",
+          "amount": 6
+        }
+      ],
+      "role": "combo",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_19",
+      "motif": "polar_temples",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    },
+    {
+      "id": "hip_oracle_of_fate_20",
+      "name": "HIP-OF 20",
+      "name_key": "HIP-OF 20",
+      "text_key": "scry 4, draw 2, ritual_trama 1, damage 8",
+      "effect_text": "scry 4, draw 2, ritual_trama 1, damage 8",
+      "rarity": "legendary",
+      "cost": 3,
+      "target": "enemy",
+      "tags": [
+        "scry",
+        "draw",
+        "ritual"
+      ],
+      "effects": [
+        {
+          "type": "scry",
+          "amount": 4
+        },
+        {
+          "type": "draw",
+          "amount": 2
+        },
+        {
+          "type": "ritual_trama",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 8
+        }
+      ],
+      "role": "ritual",
+      "family": "oracle_of_fate",
+      "direction": "NORTE",
+      "archetype": "oracle_of_fate",
+      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "author": "Mauricio",
+      "order": "Chakana",
+      "strategy": {
+        "set": "HIPERBOREA",
+        "archetype": "Oraculo Hiperboreo"
+      },
+      "artwork": "hip_oracle_of_fate_20",
+      "motif": "ancient_guardians",
+      "palette": "marble-ice-gold",
+      "energy": "aurora_combo_flow",
+      "symbol": "chakana_polar",
+      "kpi": {},
+      "set": "HIPERBOREA",
+      "set_emblem": "chakana_polar"
+    }
+  ]
+}

@@ -139,7 +139,7 @@ def _asset_validation(cards_all: list[dict], hip_cards: list[dict]) -> dict:
 
 
 def _required_icon_mapping() -> dict:
-    required = ["damage", "gain_block", "draw", "heal", "retain", "harmony_delta", "ritual", "energy"]
+    required = ["damage", "gain_block", "draw", "heal", "retain", "harmony_delta", "ritual", "energy", "exhaust_self", "rupture"]
     missing = [name for name in required if icon_for_effect(name) == "unknown"]
     return {"required": required, "missing": missing}
 

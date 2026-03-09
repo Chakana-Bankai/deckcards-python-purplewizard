@@ -5,22 +5,22 @@
 - `cards_checked_base`: 60
 - `cards_checked_hiperboria`: 60
 - `invalid_cards`: 0
-- `duplicate_logic_cards`: 25
+- `duplicate_logic_cards`: 10
 - `duplicate_visual_cards`: 0
-- `avg_turns_battle`: 12.95
-- `avg_turns_boss`: 14.43
-- `boss_win_rate`: 0.286
+- `avg_turns_battle`: 8.86
+- `avg_turns_boss`: 9.29
+- `boss_win_rate`: 1.0
 - `relic_errors`: 0
-- `art_failures`: 60
+- `art_failures`: 0
 - `localization_issues`: 5
-- `missing_kpi_icons`: 26
+- `missing_kpi_icons`: 7
 - `effect_text_overflow_risk`: 0
 - `deck_check_rc`: 0
 
 ## Archetype Simulation (10 each)
 - `cosmic_warrior`: avg_damage=49.8 avg_turns_combat=4.12 avg_turns_boss=4.5 boss_win_rate=1.0
-- `harmony_guardian`: avg_damage=0 avg_turns_combat=18.38 avg_turns_boss=16.5 boss_win_rate=0.0
-- `oracle_of_fate`: avg_damage=21.3 avg_turns_combat=17.62 avg_turns_boss=16.5 boss_win_rate=0.0
+- `harmony_guardian`: avg_damage=54.2 avg_turns_combat=8.5 avg_turns_boss=10.5 boss_win_rate=1.0
+- `oracle_of_fate`: avg_damage=49 avg_turns_combat=6.62 avg_turns_boss=10.5 boss_win_rate=1.0
 
 ## Map Distribution
 - combats_like=10 events=2 relic=1 shop=1 boss=1 sanctuary=1
@@ -33,12 +33,9 @@
 ## Issues Sample
 
 ## Missing Icon Types
-- `heal`: 11
-- `exhaust_self`: 6
 - `damage_plus_rupture`: 3
 - `draw_if_direction_played`: 2
 - `double_block_cap`: 2
-- `retain`: 2
 
 ## Raw JSON
 ```json
@@ -47,16 +44,16 @@
   "cards_checked_base": 60,
   "cards_checked_hiperboria": 60,
   "invalid_cards": 0,
-  "duplicate_logic_cards": 25,
+  "duplicate_logic_cards": 10,
   "duplicate_visual_cards": 0,
-  "avg_turns_battle": 12.95,
-  "avg_turns_boss": 14.43,
-  "boss_win_rate": 0.286,
+  "avg_turns_battle": 8.86,
+  "avg_turns_boss": 9.29,
+  "boss_win_rate": 1.0,
   "relic_errors": 0,
-  "art_failures": 60,
+  "art_failures": 0,
   "localization_issues": 5,
   "deck_check_rc": 0,
-  "missing_kpi_icons": 26,
+  "missing_kpi_icons": 7,
   "effect_text_overflow_risk": 0,
   "map_distribution": {
     "combats_like": 10,
@@ -84,16 +81,16 @@
       "boss_win_rate": 1.0
     },
     "harmony_guardian": {
-      "avg_damage": 0,
-      "avg_turns_combat": 18.38,
-      "avg_turns_boss": 16.5,
-      "boss_win_rate": 0.0
+      "avg_damage": 54.2,
+      "avg_turns_combat": 8.5,
+      "avg_turns_boss": 10.5,
+      "boss_win_rate": 1.0
     },
     "oracle_of_fate": {
-      "avg_damage": 21.3,
-      "avg_turns_combat": 17.62,
-      "avg_turns_boss": 16.5,
-      "boss_win_rate": 0.0
+      "avg_damage": 49,
+      "avg_turns_combat": 6.62,
+      "avg_turns_boss": 10.5,
+      "boss_win_rate": 1.0
     }
   },
   "audio_intro": {
@@ -123,11 +120,8 @@
   },
   "required_field_issues_sample": [],
   "missing_icon_types": {
-    "exhaust_self": 6,
-    "heal": 11,
     "draw_if_direction_played": 2,
     "double_block_cap": 2,
-    "retain": 2,
     "damage_plus_rupture": 3
   }
 }

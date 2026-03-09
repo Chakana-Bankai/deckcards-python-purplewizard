@@ -7,13 +7,21 @@ import pygame
 
 from game.art.gen_art32 import seed_from_id
 
-GEN_CARD_ART_VERSION = "card_gen_v4"
+GEN_CARD_ART_VERSION = "card_gen_v5"
 
 TYPE_PALETTES = {
     "attack": ((24, 8, 20), (126, 24, 44), (236, 110, 40), (96, 26, 112)),
     "defense": ((10, 28, 36), (20, 98, 106), (56, 164, 126), (74, 40, 130)),
     "control": ((10, 24, 56), (24, 56, 140), (64, 98, 196), (78, 236, 246)),
     "spirit": ((10, 10, 16), (78, 56, 24), (184, 146, 56), (108, 64, 156)),
+}
+
+ARCHETYPE_PALETTE_HINTS = {
+    "crimson-magenta": ((20, 8, 20), (122, 22, 58), (236, 104, 64), (182, 64, 176)),
+    "teal-gold": ((8, 20, 24), (18, 84, 104), (138, 142, 74), (214, 182, 86)),
+    "indigo-cyan": ((8, 16, 38), (34, 44, 126), (70, 116, 206), (86, 234, 236)),
+    "violet-neutral": ((14, 10, 24), (74, 56, 124), (142, 102, 188), (210, 164, 236)),
+    "marble-ice-gold": ((224, 232, 240), (186, 214, 236), (138, 166, 204), (214, 186, 112)),
 }
 
 
@@ -29,6 +37,35 @@ def _family_to_type(card_type: str) -> str:
         "solar_gold": "spirit",
     }
     return mapping.get(c, "spirit")
+
+
+def _extract_field(prompt: str, key: str, stop_tokens: tuple[str, ...]) -> str:
+    src = str(prompt or "")
+    i = src.lower().find(key)
+    if i < 0:
+        return ""
+    start = i + len(key)
+    tail = src[start:]
+    end = len(tail)
+    for st in stop_tokens:
+        j = tail.lower().find(st)
+        if j >= 0:
+            end = min(end, j)
+    return tail[:end].strip(" ,:;.")
+
+
+def _semantic_from_prompt(prompt: str) -> dict:
+    p = str(prompt or "")
+    pal = _extract_field(p, "palette ", ("lighting", "sacred geometry", "motif", "effect signature", "energy pattern"))
+    motif = _extract_field(p, "motif ", ("(", "effect signature", "energy pattern", "lore tokens"))
+    symbol = _extract_field(p, "sacred geometry ", ("motif", "effect signature", "energy pattern"))
+    energy = _extract_field(p, "energy pattern ", ("lore tokens",))
+    return {
+        "palette": pal.lower(),
+        "motif": motif.lower(),
+        "symbol": symbol.lower(),
+        "energy": energy.lower(),
+    }
 
 
 def _draw_gradient(surface: pygame.Surface, pal):
@@ -96,9 +133,18 @@ def _draw_chakana_frame(surface: pygame.Surface, color):
     r = pygame.Rect(10, 8, w - 20, h - 16)
     step = 8
     pts = [
-        (r.left + step, r.top), (r.right - step, r.top), (r.right - step, r.top + step), (r.right, r.top + step),
-        (r.right, r.bottom - step), (r.right - step, r.bottom - step), (r.right - step, r.bottom), (r.left + step, r.bottom),
-        (r.left + step, r.bottom - step), (r.left, r.bottom - step), (r.left, r.top + step), (r.left + step, r.top + step),
+        (r.left + step, r.top),
+        (r.right - step, r.top),
+        (r.right - step, r.top + step),
+        (r.right, r.top + step),
+        (r.right, r.bottom - step),
+        (r.right - step, r.bottom - step),
+        (r.right - step, r.bottom),
+        (r.left + step, r.bottom),
+        (r.left + step, r.bottom - step),
+        (r.left, r.bottom - step),
+        (r.left, r.top + step),
+        (r.left + step, r.top + step),
     ]
     pygame.draw.lines(surface, (*color, 124), True, pts, 2)
 
@@ -112,6 +158,25 @@ def _draw_geometry(surface: pygame.Surface, variant: int, rng: random.Random, co
         _draw_grid_nodes(surface, rng, color)
     else:
         _draw_chakana_frame(surface, color)
+
+
+def _draw_symbol_overlay(surface: pygame.Surface, symbol: str, color: tuple[int, int, int]):
+    s = str(symbol or "")
+    if not s:
+        return
+    w, h = surface.get_size()
+    cx, cy = w // 2, h // 2
+    if "blade" in s:
+        pygame.draw.line(surface, (*color, 140), (cx - 28, cy + 24), (cx + 26, cy - 22), 2)
+    elif "shield" in s:
+        pygame.draw.polygon(surface, (*color, 132), [(cx, cy - 24), (cx + 24, cy - 6), (cx + 16, cy + 26), (cx - 16, cy + 26), (cx - 24, cy - 6)], 2)
+    elif "eye" in s:
+        pygame.draw.ellipse(surface, (*color, 132), (cx - 30, cy - 14, 60, 28), 2)
+        pygame.draw.circle(surface, (*color, 132), (cx, cy), 4)
+    elif "seal" in s or "glyph" in s:
+        pygame.draw.circle(surface, (*color, 116), (cx, cy), 22, 2)
+        pygame.draw.line(surface, (*color, 116), (cx - 16, cy), (cx + 16, cy), 1)
+        pygame.draw.line(surface, (*color, 116), (cx, cy - 16), (cx, cy + 16), 1)
 
 
 def _draw_glyph(surface: pygame.Surface, glyph: str, color):
@@ -154,10 +219,19 @@ def _draw_silhouette(surface: pygame.Surface, ctype: str, accent: tuple[int, int
     surface.blit(lay, (0, 0))
 
 
-def _draw_energy(surface: pygame.Surface, rng: random.Random, accent: tuple[int, int, int]):
+def _draw_energy(surface: pygame.Surface, rng: random.Random, accent: tuple[int, int, int], energy_hint: str = ""):
     w, h = surface.get_size()
     fx = pygame.Surface((w, h), pygame.SRCALPHA)
-    for _ in range(8):
+    energy = str(energy_hint or "")
+    lines = 8
+    if "burst" in energy:
+        lines = 12
+    elif "stable" in energy:
+        lines = 6
+    elif "spiral" in energy:
+        lines = 10
+
+    for _ in range(lines):
         x1, y1 = rng.randint(8, w - 8), rng.randint(8, h - 8)
         x2, y2 = x1 + rng.randint(-20, 20), y1 + rng.randint(-20, 20)
         pygame.draw.line(fx, (*accent, 122), (x1, y1), (x2, y2), 1)
@@ -185,28 +259,55 @@ def _prompt_hint(prompt: str) -> str:
     return "spirit"
 
 
+def _palette_from_semantic(default_pal, semantic: dict):
+    key = str(semantic.get("palette", "")).strip().lower()
+    return ARCHETYPE_PALETTE_HINTS.get(key, default_pal)
+
+
 def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Path) -> dict:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     ctype = _family_to_type(card_type)
     hint = _prompt_hint(prompt)
     if hint != "spirit":
         ctype = hint
-    pal = TYPE_PALETTES.get(ctype, TYPE_PALETTES["spirit"])
+
+    semantic = _semantic_from_prompt(prompt)
+    pal = _palette_from_semantic(TYPE_PALETTES.get(ctype, TYPE_PALETTES["spirit"]), semantic)
+
     glyphs = ["sword", "shield", "eye", "orb", "mask", "portal"]
     last_hash = None
     chosen_variant = 0
-    for attempt in range(4):
-        rng = random.Random(seed + attempt * 313)
+    sem_hash = seed_from_id(f"{card_id}:{semantic.get('motif','')}:{semantic.get('symbol','')}:{semantic.get('energy','')}", GEN_CARD_ART_VERSION)
+
+    for attempt in range(5):
+        rng = random.Random(seed + sem_hash + attempt * 313)
         low = pygame.Surface((160, 112), pygame.SRCALPHA, 32)
         _draw_gradient(low, pal)
         _add_dither(low, rng)
 
-        chosen_variant = (seed + attempt) % 4
+        variant_pool = [0, 1, 2, 3]
+        motif = str(semantic.get("motif", ""))
+        if "cosmic" in motif:
+            variant_pool = [2, 1, 3, 0]
+        elif "ritual" in motif or "chakana" in motif:
+            variant_pool = [3, 0, 1, 2]
+        elif "demons" in motif:
+            variant_pool = [1, 2, 0, 3]
+        elif "crystals" in motif:
+            variant_pool = [2, 3, 1, 0]
+        elif "auroras" in motif:
+            variant_pool = [1, 2, 3, 0]
+        elif "polar_temple" in motif or "polar_temples" in motif:
+            variant_pool = [3, 2, 0, 1]
+        elif "ancient_guardian" in motif or "ancient_guardians" in motif:
+            variant_pool = [0, 3, 1, 2]
+        chosen_variant = variant_pool[(seed + attempt + sem_hash) % len(variant_pool)]
+
         _draw_geometry(low, chosen_variant, rng, pal[3])
         _draw_geometry(low, (chosen_variant + 2) % 4, rng, pal[2])
         _draw_silhouette(low, ctype, pal[2])
 
-        glyph = glyphs[(seed + attempt) % len(glyphs)]
+        glyph = glyphs[(seed + sem_hash + attempt) % len(glyphs)]
         if ctype == "attack":
             glyph = "sword"
         elif ctype == "defense":
@@ -214,8 +315,9 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
         elif ctype == "control":
             glyph = "eye"
         _draw_glyph(low, glyph, pal[2])
+        _draw_symbol_overlay(low, semantic.get("symbol", ""), pal[3])
 
-        _draw_energy(low, rng, pal[3])
+        _draw_energy(low, rng, pal[3], semantic.get("energy", ""))
 
         for c in [(6, 6), (154, 6), (6, 106), (154, 106)]:
             pygame.draw.circle(low, pal[3], c, 4, 1)
@@ -224,7 +326,7 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
         low.blit(vign, (0, 0))
 
         h = _hash16(low)
-        if last_hash is None or abs(h - last_hash) > 120:
+        if last_hash is None or abs(h - last_hash) > 100:
             last_hash = h
             break
         last_hash = h
@@ -253,5 +355,6 @@ def render_card(card_id: str, family: str, symbol: str) -> pygame.Surface:
     _draw_geometry(low, seed % 4, rng, pal[3])
     _draw_silhouette(low, ctype, pal[2])
     _draw_glyph(low, ["sword", "shield", "eye", "orb", "mask", "portal"][seed % 6], pal[2])
-    _draw_energy(low, rng, pal[3])
+    _draw_symbol_overlay(low, symbol, pal[3])
+    _draw_energy(low, rng, pal[3], "arc_traces")
     return pygame.transform.scale(low, (320, 220)).convert_alpha()

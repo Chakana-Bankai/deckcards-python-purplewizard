@@ -39,6 +39,10 @@ ICON_ALIASES = {
     "weak": "support",
     "debuff": "support",
     "chain": "combo",
+    "heal": "hp",
+    "retain": "retain",
+    "exhaust": "exhaust",
+    "exhaust_self": "exhaust",
 }
 
 FALLBACK_TEXT = {
@@ -55,6 +59,8 @@ FALLBACK_TEXT = {
     "control": "C",
     "support": "U",
     "combo": "X",
+    "retain": "R",
+    "exhaust": "EX",
     "gold": "$",
     "xp": "xp",
     "level": "lvl",
@@ -90,6 +96,8 @@ def normalize_icon_name(icon_name: str) -> str:
         "control",
         "support",
         "combo",
+        "retain",
+        "exhaust",
         "gold",
         "xp",
         "level",
@@ -214,6 +222,13 @@ def _render_icon_surface(icon_name: str, color: tuple[int, int, int], size: int)
     elif key == "combo":
         _stroke(surf, c, [(3 * scale, 4 * scale), (7 * scale, 8 * scale), (11 * scale, 4 * scale)], lw + 1)
         _stroke(surf, c, [(3 * scale, 10 * scale), (7 * scale, 6 * scale), (11 * scale, 10 * scale)], lw + 1)
+    elif key == "retain":
+        pygame.draw.rect(surf, c, pygame.Rect(3 * scale, 3 * scale, 8 * scale, 9 * scale), lw + 1, border_radius=max(1, scale))
+        _stroke(surf, c, [(5 * scale, 6 * scale), (9 * scale, 6 * scale)], lw)
+    elif key == "exhaust":
+        pygame.draw.rect(surf, c, pygame.Rect(3 * scale, 3 * scale, 8 * scale, 8 * scale), lw, border_radius=max(1, scale))
+        _stroke(surf, c, [(4 * scale, 4 * scale), (10 * scale, 10 * scale)], lw + 1)
+        _stroke(surf, c, [(10 * scale, 4 * scale), (4 * scale, 10 * scale)], lw + 1)
     elif key == "gold":
         pygame.draw.circle(surf, c, (mid, mid), 5 * scale, lw + 1)
         pygame.draw.circle(surf, c, (mid, mid), max(1, scale), 0)
@@ -263,9 +278,17 @@ def draw_icon_with_value(
     x: int,
     y: int,
     size: int = 1,
+    min_icon_px: int = 0,
 ) -> int:
     """Draw icon + numeric value and return the next x cursor position."""
-    icon = _render_icon_surface(icon_name, color, size)
+    draw_size = max(1, int(size or 1))
+    if int(min_icon_px or 0) > 0:
+        # Base icon is 14px * size. Increase size until reaching min requested px.
+        needed = int(min_icon_px)
+        while 14 * draw_size < needed:
+            draw_size += 1
+
+    icon = _render_icon_surface(icon_name, color, draw_size)
     if icon is None or icon.get_width() <= 0:
         label = FALLBACK_TEXT.get(resolve_icon_id(icon_name), "?")
         icon = font.render(label, True, color)
@@ -299,6 +322,10 @@ def icon_for_effect(effect_type: str) -> str:
         "consume_harmony": "seal",
         "seal": "seal",
         "copy_last_played": "combo",
+        "heal": "hp",
+        "retain": "retain",
+        "exhaust": "exhaust",
+        "exhaust_self": "exhaust",
         "weaken_enemy": "support",
         "debuff": "support",
         "gain_gold": "gold",
@@ -308,3 +335,5 @@ def icon_for_effect(effect_type: str) -> str:
         "level": "level",
     }
     return mapping.get(key, "unknown")
+
+
