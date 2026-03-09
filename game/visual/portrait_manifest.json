@@ -1,6 +1,6 @@
 {
   "version": "portrait_v5",
-  "updated_at": 1773051546,
+  "updated_at": 1773056923,
   "items": {
     "chakana:132x132": {
       "role": "chakana",
@@ -120,7 +120,7 @@
         132
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_portrait_132x132.png",
-      "generated_at": 1773051460,
+      "generated_at": 1773056569,
       "version": "portrait_v5",
       "source": "placeholder",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\avatar\\chakana.png"
@@ -144,7 +144,7 @@
         118
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_portrait_118x118.png",
-      "generated_at": 1773051494,
+      "generated_at": 1773056588,
       "version": "portrait_v5",
       "source": "placeholder",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\avatar\\chakana.png"
@@ -179,7 +179,7 @@
         110
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_portrait_110x110.png",
-      "generated_at": 1773051546,
+      "generated_at": 1773056659,
       "version": "portrait_v5",
       "source": "placeholder",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\avatar\\chakana.png"
@@ -225,10 +225,36 @@
         84
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_concept_84x84.png",
-      "generated_at": 1773051462,
+      "generated_at": 1773056638,
       "version": "portrait_v5",
       "source": "placeholder",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\avatar\\chakana.png"
+    },
+    "chakana_mage:hologram:112x132": {
+      "role": "chakana_mage",
+      "style": "hologram",
+      "size": [
+        112,
+        132
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_hologram_112x132.png",
+      "generated_at": 1773056661,
+      "version": "portrait_v5",
+      "source": "placeholder",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\avatar\\chakana.png"
+    },
+    "archon:portrait:568x76": {
+      "role": "archon",
+      "style": "portrait",
+      "size": [
+        568,
+        76
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_portrait_568x76.png",
+      "generated_at": 1773056923,
+      "version": "portrait_v5",
+      "source": "generated_or_cache",
+      "source_path": "visual_engine:archon_oracle"
     }
   }
 }

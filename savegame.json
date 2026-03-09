@@ -1,19 +1,20 @@
 {
-  "gold": 114,
+  "gold": 96,
   "relics": [
-    "violet_seal"
+    "violet_seal",
+    "crown_of_hanan"
   ],
   "player": {
-    "hp": 60,
+    "hp": 58,
     "max_hp": 60,
-    "block": 7,
-    "energy": 0,
+    "block": 0,
+    "energy": 2,
     "rupture": 0,
     "statuses": {},
-    "harmony_current": 4,
+    "harmony_current": 6,
     "harmony_max": 10,
     "harmony_ready_threshold": 6,
-    "harmony_ready": false,
+    "harmony_ready": true,
     "harmony_seal_used": false,
     "seal_ready": false,
     "seal_active": false
@@ -41,7 +42,26 @@
     "chakana_de_luz"
   ],
   "sideboard": [
-    "pulso_cosmico"
+    "of_lore_12",
+    "of_lore_22",
+    "ritual_de_la_trama",
+    "of_lore_21",
+    "of_lore_26",
+    "hg_lore_07",
+    "invocacion_astral",
+    "cw_lore_08",
+    "ritual_de_la_trama",
+    "cw_lore_04",
+    "piedra_ritual",
+    "vision_del_condor",
+    "hg_lore_01",
+    "cw_lore_18",
+    "lectura_del_destino",
+    "chakana_de_luz",
+    "piedra_ritual",
+    "embate_del_jaguar",
+    "eco_de_sabiduria",
+    "fragmento_celeste"
   ],
   "map": [
     [
@@ -84,7 +104,7 @@
           "2_1",
           "2_0"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "1_2",
@@ -110,7 +130,7 @@
           "2_3",
           "2_2"
         ],
-        "state": "available"
+        "state": "cleared"
       }
     ],
     [
@@ -125,7 +145,7 @@
           "3_0",
           "3_1"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_1",
@@ -138,7 +158,7 @@
           "3_1",
           "3_0"
         ],
-        "state": "locked"
+        "state": "cleared"
       },
       {
         "id": "2_2",
@@ -151,7 +171,7 @@
           "3_2",
           "3_3"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_3",
@@ -164,7 +184,7 @@
           "3_3",
           "3_2"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -179,7 +199,7 @@
           "4_0",
           "4_1"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "3_1",
@@ -191,7 +211,7 @@
         "next": [
           "4_0"
         ],
-        "state": "locked"
+        "state": "cleared"
       },
       {
         "id": "3_2",
@@ -230,7 +250,7 @@
         "next": [
           "5_0"
         ],
-        "state": "locked"
+        "state": "cleared"
       },
       {
         "id": "4_1",
@@ -242,7 +262,7 @@
         "next": [
           "5_0"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -254,7 +274,7 @@
         "type": "boss",
         "biome": "fractura_chakana",
         "next": [],
-        "state": "locked"
+        "state": "available"
       }
     ]
   ],
@@ -265,11 +285,11 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 0,
-  "biome": "ukhu",
-  "xp": 23,
-  "level": 1,
-  "combats_won": 1,
+  "biome_index": 2,
+  "biome": "hanan",
+  "xp": 27,
+  "level": 4,
+  "combats_won": 4,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
@@ -288,7 +308,8 @@
   },
   "civilization": "base_world",
   "last_node_type": "combat",
-  "current_node_id": "0_0",
-  "last_biome_seen": "ukhu",
-  "saved_at": 1773051927
+  "levelup_pending": 0,
+  "current_node_id": "4_0",
+  "last_biome_seen": "hanan",
+  "saved_at": 1773056918
 }
