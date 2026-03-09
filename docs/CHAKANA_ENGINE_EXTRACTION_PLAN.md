@@ -79,3 +79,9 @@ This document defines a safe extraction path from the current game codebase into
 - Added runtime reward/shop/pack card pool gating by discovered sets.
 - Added separate Hiperborea card catalog loader (cards_hiperboria.json).
 - Codex now loads Hiperborea entries from codex_cards_hiperboria.json and reveals the tab when unlocked.
+
+## 2026-03-09 - Fase 5 Relic Slots Consolidation
+
+- Added reusable relic inventory helpers in runtime (_relic_slot_limit, _add_relics_to_inventory).
+- Enforced non-breaking relic slot cap (8) across rewards/shop.
+- Map/combat HUD now surface relic occupancy (x/slots) for clarity.

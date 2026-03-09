@@ -406,6 +406,7 @@ class MapScreen:
         blessings = list(run.get("path_blessings", []) or [])
         owned_relics = list(run.get("relics", []) or [])
         relic_count = len(owned_relics)
+        relic_slots_max = int(run.get("relic_slots_max", 8) or 8)
         mouse_now = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         relic_hover_text = ""
 
@@ -414,7 +415,7 @@ class MapScreen:
             ("harmony", harmony, "Armonia", UI_THEME["violet"], f"{harmony}"),
             ("level", lvl, "Nivel", UI_THEME["gold"], f"{lvl}"),
             ("gold", gold, "Oro", UI_THEME["gold"], f"{gold}"),
-            ("relic", relic_count, "Reliquias", UI_THEME["text"], f"{relic_count}"),
+            ("relic", relic_count, "Reliquias", UI_THEME["text"], f"{relic_count}/{relic_slots_max}"),
         ]
         y = left_rect.y + 182
         for icon_name, icon_val, label, col, val_text in rows:
@@ -430,7 +431,7 @@ class MapScreen:
         relic_strip = pygame.Rect(left_rect.x + 12, y + 2, left_rect.w - 24, 78)
         pygame.draw.rect(s, UI_THEME["panel_2"], relic_strip, border_radius=8)
         pygame.draw.rect(s, UI_THEME["accent_violet"], relic_strip, 1, border_radius=8)
-        s.blit(pixel_label_font.render("Reliquias activas", True, UI_THEME["gold"]), (relic_strip.x + 8, relic_strip.y + 4))
+        s.blit(pixel_label_font.render(f"Reliquias activas ({relic_count}/{relic_slots_max})", True, UI_THEME["gold"]), (relic_strip.x + 8, relic_strip.y + 4))
         relic_by_id = {str(r.get("id")): r for r in list(getattr(self.app, "relics_data", []) or []) if isinstance(r, dict) and r.get("id")}
 
         # 3x3 compact grid (up to 9) for better relic visibility.
@@ -621,10 +622,3 @@ class MapScreen:
             if tip_rect.y < 10:
                 tip_rect.y = 10
             UITooltip(tip_rect, relic_hover_text).draw(s, self.app.tiny_font)
-
-
-
-
-
-
-

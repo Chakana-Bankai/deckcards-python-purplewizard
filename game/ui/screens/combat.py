@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import math
 from pathlib import Path
@@ -1431,7 +1431,12 @@ class CombatScreen:
 
         # Compact active relic visibility with hover tooltip.
         self._relic_chip_rects = []
-        owned_relics = list((self.app.run_state or {}).get("relics", []) or [])
+        run_state = self.app.run_state or {}
+        owned_relics = list(run_state.get("relics", []) or [])
+        relic_slots_max = int(run_state.get("relic_slots_max", 8) or 8)
+        slot_text = f"Relics {len(owned_relics)}/{relic_slots_max}"
+        slot_lbl = self.app.tiny_font.render(slot_text, True, UI_THEME["muted"])
+        s.blit(slot_lbl, (row3.x + 8, row3.bottom - slot_lbl.get_height() - 2))
         if owned_relics:
             relic_by_id = {str(r.get("id")): r for r in list(getattr(self.app, "relics_data", []) or []) if isinstance(r, dict) and r.get("id")}
             rx = row3.right - 26
@@ -1662,14 +1667,3 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
-
-
-
-
-
-
-
-
-
-
-

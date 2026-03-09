@@ -108,7 +108,14 @@ class ShopScreen:
             self.msg = "Ya posees este artefacto"
             return
         self.app.run_state["gold"] -= self.artifact_price
-        self.app.run_state.setdefault("relics", []).append(rid)
+        if hasattr(self.app, '_add_relics_to_inventory'):
+            added = self.app._add_relics_to_inventory([rid], source="shop_buy_relic")
+            if not added:
+                self.app.run_state["gold"] += self.artifact_price
+                self.msg = "Slots de reliquia llenos"
+                return
+        else:
+            self.app.run_state.setdefault("relics", []).append(rid)
         self.msg = f"Artefacto: {self.app.loc.t(self.artifact.get('name_key', rid))}"
 
     def handle_event(self, event):

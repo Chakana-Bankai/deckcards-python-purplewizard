@@ -94,6 +94,7 @@ SEVEN_PATHS = [
 
 POST_COMBAT_HEAL = {"combat": 0.15, "challenge": 0.12, "boss": 0.10}
 MAX_LEVEL = 20
+MAX_RELIC_SLOTS = 8
 
 
 class App:
@@ -1227,6 +1228,7 @@ class App:
             return
         self.run_state = payload
         self.run_state.setdefault("allow_defeat_continue", True)
+        self.run_state.setdefault("relic_slots_max", MAX_RELIC_SLOTS)
         self._migrate_legacy_shop_nodes()
         self.current_node_id = payload.get("current_node_id")
         self.last_biome_seen = payload.get("last_biome_seen")
@@ -1343,6 +1345,7 @@ class App:
         self.run_state = {
             "gold": 80,
             "relics": ["violet_seal"],
+            "relic_slots_max": MAX_RELIC_SLOTS,
             "player": {"hp": 60, "max_hp": 60, "block": 0, "energy": 3, "rupture": 0, "statuses": {}},
             "deck": list(base_deck),
             "sideboard": [],
@@ -1724,6 +1727,27 @@ class App:
             self.run_state["levelup_pending"] = self.run_state.get("levelup_pending", 0) + levels
         return levels
 
+    def _relic_slot_limit(self) -> int:
+        if not isinstance(self.run_state, dict):
+            return MAX_RELIC_SLOTS
+        return max(1, int(self.run_state.get("relic_slots_max", MAX_RELIC_SLOTS) or MAX_RELIC_SLOTS))
+
+    def _add_relics_to_inventory(self, relic_ids, source: str = "unknown") -> list[str]:
+        if not isinstance(self.run_state, dict):
+            return []
+        owned = self.run_state.setdefault("relics", [])
+        limit = self._relic_slot_limit()
+        added: list[str] = []
+        for rid in [str(x) for x in list(relic_ids or []) if x]:
+            if rid in owned:
+                continue
+            if len(owned) >= limit:
+                print(f"[relic] slots_full source={source} kept={len(owned)}/{limit} drop={rid}")
+                continue
+            owned.append(rid)
+            added.append(rid)
+        return added
+
     def apply_run_rewards(self, *, gold=0, xp=0, cards=None, relics=None, source="unknown"):
         """Apply run rewards through one stable path with deterministic logging."""
         if not isinstance(self.run_state, dict):
@@ -1741,19 +1765,15 @@ class App:
             self.run_state.setdefault("sideboard", []).extend(card_ids)
             for cid in card_ids:
                 self._queue_set_discovery(self._detect_card_set(cid))
-        if relic_ids:
-            owned = self.run_state.setdefault("relics", [])
-            for rid in relic_ids:
-                if rid not in owned:
-                    owned.append(rid)
+        added_relics = self._add_relics_to_inventory(relic_ids, source=source) if relic_ids else []
 
         print(
             f"[reward] source={source} gold=+{granted_gold} xp=+{granted_xp} "
-            f"levels=+{levels} cards=+{len(card_ids)} relics=+{len(relic_ids)} "
+            f"levels=+{levels} cards=+{len(card_ids)} relics=+{len(added_relics)} "
             f"pending_packs={self.run_state.get('levelup_pending', 0)}"
         )
         self._autosave_run(f"rewards:{source}")
-        return {"gold": granted_gold, "xp": granted_xp, "levels": levels, "cards": len(card_ids), "relics": len(relic_ids)}
+        return {"gold": granted_gold, "xp": granted_xp, "levels": levels, "cards": len(card_ids), "relics": len(added_relics)}
 
     def on_combat_victory(self):
         self.play_stinger("stinger_victory")
