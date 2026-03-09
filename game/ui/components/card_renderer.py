@@ -291,26 +291,66 @@ def _fit_lines(font, text: str, max_w: int, max_lines: int) -> list[str]:
 
 def _layout_for(rect: pygame.Rect, preset: str) -> dict:
     cfg = {
-        "small": {"pad": 10, "header_h": 46, "type_h": 22, "stats_h": 52, "text_pad": 8, "art_ratio": 0.42},
-        "medium": {"pad": 10, "header_h": 48, "type_h": 22, "stats_h": 54, "text_pad": 8, "art_ratio": 0.44},
-        "large": {"pad": 11, "header_h": 52, "type_h": 24, "stats_h": 56, "text_pad": 9, "art_ratio": 0.46},
-        "preview": {"pad": 12, "header_h": 56, "type_h": 26, "stats_h": 60, "text_pad": 10, "art_ratio": 0.48},
-    }.get(preset, {"pad": 10, "header_h": 48, "type_h": 22, "stats_h": 54, "text_pad": 8, "art_ratio": 0.44})
+        "small": {"pad": 10, "text_pad": 6},
+        "medium": {"pad": 10, "text_pad": 7},
+        "large": {"pad": 11, "text_pad": 8},
+        "preview": {"pad": 12, "text_pad": 9},
+    }.get(preset, {"pad": 10, "text_pad": 7})
 
     content = rect.inflate(-cfg["pad"] * 2, -cfg["pad"] * 2)
-    header = pygame.Rect(content.x, content.y, content.w, cfg["header_h"])
-    stats = pygame.Rect(content.x, content.bottom - cfg["stats_h"], content.w, cfg["stats_h"])
+    gap = cfg["text_pad"]
 
-    art_h = int(content.h * cfg["art_ratio"])
-    art_top = header.bottom + cfg["text_pad"]
-    art_bottom_limit = stats.top - (cfg["type_h"] + cfg["text_pad"] * 3 + 64)
-    art_h = max(88, min(art_h, max(88, art_bottom_limit - art_top)))
-    art = pygame.Rect(content.x, art_top, content.w, art_h)
+    # Requested baseline ratios for definitive card layout.
+    ratio_header = 0.10
+    ratio_art = 0.50
+    ratio_type = 0.06
+    ratio_effects = 0.16
+    ratio_lore = 0.06
+    ratio_footer = 0.04
 
-    type_bar = pygame.Rect(content.x, art.bottom + cfg["text_pad"], max(112, min(220, int(content.w * 0.58))), cfg["type_h"])
-    text = pygame.Rect(content.x, type_bar.bottom + cfg["text_pad"], content.w, max(62, stats.top - (type_bar.bottom + cfg["text_pad"] * 2)))
-    lore = pygame.Rect(text.x, text.bottom - 20, text.w, 18)
-    signature = pygame.Rect(text.x, text.bottom - 38, text.w, 16)
+    # Keep minimum readable heights in full HD contexts.
+    h = content.h
+    header_h = max(34, int(h * ratio_header))
+    art_h = max(86, int(h * ratio_art))
+    type_h = max(18, int(h * ratio_type))
+    effects_h = max(42, int(h * ratio_effects))
+    lore_h = max(16, int(h * ratio_lore))
+    footer_h = max(42, int(h * ratio_footer))
+
+    used = header_h + art_h + type_h + effects_h + lore_h + footer_h + gap * 5
+    if used > h:
+        # Compress effects/lore first, preserving header/cost/art/KPI readability.
+        overflow = used - h
+        cut_effects = min(overflow, max(0, effects_h - 32))
+        effects_h -= cut_effects
+        overflow -= cut_effects
+        if overflow > 0:
+            cut_lore = min(overflow, max(0, lore_h - 14))
+            lore_h -= cut_lore
+            overflow -= cut_lore
+        if overflow > 0:
+            art_h = max(72, art_h - overflow)
+
+    y = content.y
+    header = pygame.Rect(content.x, y, content.w, header_h)
+    y = header.bottom + gap
+    art = pygame.Rect(content.x, y, content.w, art_h)
+    y = art.bottom + gap
+
+    # Slightly narrower capsule to avoid collisions with edges.
+    type_w = max(106, min(210, int(content.w * 0.54)))
+    type_bar = pygame.Rect(content.x, y, type_w, type_h)
+    y = type_bar.bottom + gap
+
+    text = pygame.Rect(content.x, y, content.w, effects_h)
+    y = text.bottom + gap
+    lore = pygame.Rect(content.x, y, content.w, lore_h)
+    y = lore.bottom + gap
+
+    stats = pygame.Rect(content.x, y, content.w, footer_h)
+
+    signature = pygame.Rect(lore.x + 4, lore.y, max(80, lore.w - 62), lore.h)
+    emblem = pygame.Rect(lore.right - 42, lore.y - 1, 40, max(14, lore.h + 2))
 
     return {
         "cfg": cfg,
@@ -321,6 +361,7 @@ def _layout_for(rect: pygame.Rect, preset: str) -> dict:
         "text": text,
         "lore": lore,
         "signature": signature,
+        "emblem": emblem,
         "stats": stats,
     }
 
@@ -377,7 +418,7 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     sec = _layout_for(rect, preset)
 
     # Definitive zones: header / art / type / text+lore / stats
-    for r in (sec["header"], sec["art"], sec["text"], sec["stats"]):
+    for r in (sec["header"], sec["art"], sec["text"], sec["lore"], sec["stats"]):
         pygame.draw.rect(surface, (12, 11, 18, 62), r, border_radius=8)
 
     art_frame = sec["art"]
@@ -406,18 +447,28 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     else:
         card_name = payload.get("id", "Carta")
 
-    title = _fit_one_line(title_font, str(card_name), sec["header"].w - 66)
-    title_shadow = title_font.render(title, True, (8, 8, 8))
-    title_txt = title_font.render(title, True, (245, 238, 220))
-    surface.blit(title_shadow, (sec["header"].x + 10, sec["header"].y + 8))
-    surface.blit(title_txt, (sec["header"].x + 9, sec["header"].y + 7))
+    title_bar = pygame.Rect(sec["header"].x + 6, sec["header"].y + 3, max(72, sec["header"].w - 54), sec["header"].h - 6)
+    pygame.draw.rect(surface, (20, 18, 28), title_bar, border_radius=9)
+    pygame.draw.rect(surface, accent_color, title_bar, 1, border_radius=9)
+
+    title = _fit_one_line(title_font, str(card_name), title_bar.w - 20)
+    # Auto-shrink title in dense cards to avoid overflow/collision with cost orb.
+    title_renderer = title_font
+    if preset in {"small", "medium"} and len(title) > 20 and app is not None:
+        title_renderer = tiny_font
+    title_shadow = title_renderer.render(title, True, (8, 8, 8))
+    title_txt = title_renderer.render(title, True, (245, 238, 220))
+    tx = title_bar.x + 10
+    ty = title_bar.y + max(1, (title_bar.h - title_txt.get_height()) // 2)
+    surface.blit(title_shadow, (tx + 1, ty + 1))
+    surface.blit(title_txt, (tx, ty))
 
     base_cost = int(payload.get("cost", 0) or 0)
     live_cost = int(getattr(inst, "cost", base_cost) if inst is not None else base_cost)
     modified = live_cost != base_cost
     reduced = live_cost < base_cost
     cost_col = theme["energy"] if not modified else (120, 220, 255) if reduced else (228, 132, 108)
-    center = (sec["header"].right - 24, sec["header"].y + 24)
+    center = (sec["header"].right - 22, sec["header"].y + sec["header"].h // 2)
     pygame.draw.circle(surface, (18, 18, 24), center, 24)
     pygame.draw.circle(surface, cost_col, center, 21)
     pygame.draw.circle(surface, (255, 244, 208), center, 21, 2)
@@ -438,7 +489,8 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     type_label = _type_label(role_key, payload, tier)
     pygame.draw.rect(surface, (20, 18, 28), sec["type_bar"], border_radius=8)
     pygame.draw.rect(surface, role_col, sec["type_bar"], 1, border_radius=8)
-    surface.blit(tiny_font.render(type_label, True, role_col), (sec["type_bar"].x + 8, sec["type_bar"].y + 3))
+    type_txt = _fit_one_line(tiny_font, type_label, sec["type_bar"].w - 12)
+    surface.blit(tiny_font.render(type_txt, True, role_col), (sec["type_bar"].x + 7, sec["type_bar"].y + 2))
 
     effects = _effect_lines(summary, model, max_lines=8)
     density = _density_for(len(effects))
@@ -447,13 +499,15 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     if preset in {"preview", "large"}:
         max_effect_lines = 5 if density != "dense" else 6
         line_h = 16 if density == "normal" else 14
+    if density == "dense" and preset in {"small", "medium"}:
+        line_h = 11
 
     draw_lines = effects[:max_effect_lines]
     ty = sec["text"].y + 4
     for ln in draw_lines:
         prefix = "- " if density == "dense" else ""
-        eff = _fit_one_line(tiny_font, f"{prefix}{ln}", sec["text"].w - 12)
-        surface.blit(tiny_font.render(eff, True, (236, 228, 206)), (sec["text"].x + 6, ty))
+        eff = _fit_one_line(tiny_font, f"{prefix}{ln}", sec["text"].w - 18)
+        surface.blit(tiny_font.render(eff, True, (236, 228, 206)), (sec["text"].x + 10, ty))
         ty += line_h
 
     # Lore is always present; in dense mode keeps one-line brief in normal views.
@@ -461,16 +515,29 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     if preset in {"preview", "large"}:
         lore_max_lines = 3
 
-    lore_lines = _fit_lines(tiny_font, model.lore_text, sec["lore"].w - 8, lore_max_lines)
-    ly = sec["lore"].y - max(0, (len(lore_lines) - 1) * 14)
+    lore_lines = _fit_lines(tiny_font, model.lore_text, sec["lore"].w - 10, lore_max_lines)
+    ly = sec["lore"].y + max(0, (sec["lore"].h - max(1, len(lore_lines)) * 12) // 2)
     for line in lore_lines:
-        surface.blit(tiny_font.render(line, True, theme.get("muted", (180, 170, 200))), (sec["lore"].x + 4, ly))
-        ly += 14
+        lbl = tiny_font.render(line, True, theme.get("muted", (180, 170, 200)))
+        lx = sec["lore"].x + max(4, (sec["lore"].w - lbl.get_width()) // 2)
+        surface.blit(lbl, (lx, ly))
+        ly += 12
 
     sig_short = _fit_one_line(tiny_font, f"{model.author} · Orden {model.order}", sec["signature"].w - 8)
     sig_full = _fit_one_line(tiny_font, f"Autor: {model.author} · Orden: {model.order}", sec["signature"].w - 8)
     sig = sig_full if preset in {"preview", "large"} else sig_short
     surface.blit(tiny_font.render(sig, True, (190, 176, 214)), (sec["signature"].x + 4, sec["signature"].y))
+
+    # Edition / set emblem zone (Base subtle, Hiperborea explicit).
+    embl = sec.get("emblem")
+    if isinstance(embl, pygame.Rect):
+        pygame.draw.rect(surface, (20, 18, 26), embl, border_radius=6)
+        pygame.draw.rect(surface, (132, 118, 164), embl, 1, border_radius=6)
+        if is_hip:
+            label = _fit_one_line(tiny_font, "Chakana Polar", embl.w - 6)
+            surface.blit(tiny_font.render(label, True, (226, 206, 140)), (embl.x + 3, embl.y + 2))
+        else:
+            surface.blit(tiny_font.render("Base", True, (170, 156, 196)), (embl.x + 6, embl.y + 2))
 
     # KPI bar keeps size priority regardless of text density.
     kpis = _collect_kpis(summary, payload)

@@ -526,7 +526,7 @@ class CombatScreen:
 
     def _card_rect(self, i, total):
         inner = self.layout.hand_rect.inflate(-18, -36)
-        w, h, g = 196, inner.h - 8, 12
+        w, h, g = 236, inner.h - 8, 10
         tw = total * w + max(0, total - 1) * g
         x = inner.x + (inner.w - tw) // 2 + i * (w + g)
         y = inner.y + 6
@@ -1207,6 +1207,10 @@ class CombatScreen:
             if self._card_rect(i, len(hand)).collidepoint(mouse):
                 self.hover_card_index = i
         self.ctrl.on_hover(self.hover_card_index)
+        for idx in range(len(hand)):
+            tgt = 1.0 if idx == self.hover_card_index else 0.0
+            cur = float(self.hover_anim.get(idx, 0.0))
+            self.hover_anim[idx] = cur + (tgt - cur) * 0.22
 
         detail_rect = self.layout.card_detail
         UIPanel(detail_rect, variant="alt").draw(s)
@@ -1248,12 +1252,14 @@ class CombatScreen:
             i = self.hover_card_index
             card = hand[i]
             base_hover = self._card_rect(i, len(hand))
-            # Contained hover: scale in place, slight lift, minimal drift.
-            ww = int(base_hover.w * 1.24)
-            hh = int(base_hover.h * 1.24)
+            # Premium hover: larger scale + eased lift, still contained.
+            ww = int(base_hover.w * 1.35)
+            hh = int(base_hover.h * 1.35)
             rr = pygame.Rect(0, 0, ww, hh)
+            hover_t = min(1.0, max(0.0, self.hover_anim.get(i, 0.0)))
+            eased = 1.0 - ((1.0 - hover_t) ** 3)
             rr.centerx = base_hover.centerx
-            rr.centery = base_hover.centery - 18
+            rr.centery = int(base_hover.centery - (14 + 12 * eased))
             safe_overlay = pygame.Rect(
                 self.layout.hand_rect.x + 4,
                 self.layout.playerhud_rect.y + 4,

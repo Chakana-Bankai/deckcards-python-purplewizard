@@ -6,6 +6,7 @@ from game.ui.theme import UI_THEME
 from game.ui.system.components import UIPanel, UITooltip
 from game.ui.system.icons import draw_icon_with_value
 from game.ui.system.layout import safe_area
+from game.content.civilizations import civilization_for_progress, civilization_title
 
 
 class MapScreen:
@@ -352,6 +353,8 @@ class MapScreen:
     def render(self, s):
         run = self.app.run_state or {"gold": 0, "map": []}
         stage_idx = self._current_stage_index(run)
+        if not run.get("civilization"):
+            run["civilization"] = civilization_for_progress(stage_idx)
         self.selected_biome = str(run.get("biome", "kaypacha") or "kaypacha").lower()
         bg_name = self.BIOME_BG_NAME.get(self.selected_biome, "Templo Obsidiana")
         self.bg_seed = abs(hash(f"map:{self.selected_biome}:{stage_idx}")) % 100000
@@ -415,14 +418,22 @@ class MapScreen:
             s.blit(value_txt, (row.right - value_txt.get_width() - 10, row.y + 9))
             y += 42
 
-        relic_strip = pygame.Rect(left_rect.x + 12, y + 2, left_rect.w - 24, 44)
+        relic_strip = pygame.Rect(left_rect.x + 12, y + 2, left_rect.w - 24, 78)
         pygame.draw.rect(s, UI_THEME["panel_2"], relic_strip, border_radius=8)
         pygame.draw.rect(s, UI_THEME["accent_violet"], relic_strip, 1, border_radius=8)
         s.blit(self.app.tiny_font.render("Reliquias activas", True, UI_THEME["gold"]), (relic_strip.x + 8, relic_strip.y + 4))
         relic_by_id = {str(r.get("id")): r for r in list(getattr(self.app, "relics_data", []) or []) if isinstance(r, dict) and r.get("id")}
-        rx = relic_strip.x + 8
-        for rid in owned_relics[-5:]:
-            slot = pygame.Rect(rx, relic_strip.y + 18, 22, 22)
+
+        # 3x3 compact grid (up to 9) for better relic visibility.
+        grid_cols = 3
+        slot_w = 22
+        gap = 4
+        gx0 = relic_strip.x + 8
+        gy0 = relic_strip.y + 20
+        for idx, rid in enumerate(owned_relics[-9:]):
+            col = idx % grid_cols
+            row = idx // grid_cols
+            slot = pygame.Rect(gx0 + col * (slot_w + gap), gy0 + row * (slot_w + gap), slot_w, slot_w)
             pygame.draw.rect(s, (30, 24, 42), slot, border_radius=6)
             pygame.draw.rect(s, UI_THEME["gold"], slot, 1, border_radius=6)
             icon = self.app.assets.sprite("relics", str(rid), (18, 18), fallback=(96, 76, 124))
@@ -432,9 +443,8 @@ class MapScreen:
                 rname = self.app.loc.t(relic.get("name_key")) if relic.get("name_key") else str(rid).replace("_", " ").title()
                 rdesc = self.app.loc.t(relic.get("text_key")) if relic.get("text_key") else "Reliquia activa en esta run."
                 relic_hover_text = self._fit_text(self.app.tiny_font, f"{rname}: {rdesc}", 340)
-            rx += 26
 
-        y += 50
+        y += 84
         path_text = ", ".join([str(x) for x in blessings[-2:]]) if blessings else "Sin bendicion activa"
         s.blit(self.app.tiny_font.render("Camino activo", True, UI_THEME["gold"]), (left_rect.x + 16, y + 4))
         for i, line in enumerate(self._wrap_lines(self.app.tiny_font, path_text, left_rect.w - 28, 2)):
@@ -567,7 +577,8 @@ class MapScreen:
         pygame.draw.rect(s, UI_THEME["panel_2"], progress_box, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], progress_box, 1, border_radius=10)
         s.blit(self.app.tiny_font.render("Frente ritual", True, UI_THEME["gold"]), (progress_box.x + 8, progress_box.y + 8))
-        progress_txt = f"Pacha: {self.selected_biome}   Arconte: {archon_id}"
+        civ_indicator = civilization_title(str(run.get("civilization") or "base_world"))
+        progress_txt = f"Pacha: {self.selected_biome}   Arconte: {archon_id}   Civilizacion: {civ_indicator}"
         s.blit(self.app.tiny_font.render(self._fit_text(self.app.tiny_font, progress_txt, progress_box.w - 14), True, UI_THEME["muted"]), (progress_box.x + 8, progress_box.y + 30))
         hint = self.MAP_HINTS[self.lore_idx % max(1, len(self.MAP_HINTS))]
         s.blit(self.app.tiny_font.render(self._fit_text(self.app.tiny_font, hint, progress_box.w - 14), True, UI_THEME["text"]), (progress_box.x + 8, progress_box.y + 54))
@@ -601,3 +612,5 @@ class MapScreen:
             if tip_rect.y < 10:
                 tip_rect.y = 10
             UITooltip(tip_rect, relic_hover_text).draw(s, self.app.tiny_font)
+
+

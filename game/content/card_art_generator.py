@@ -7,7 +7,8 @@ from pathlib import Path
 import pygame
 
 from game.art.gen_art32 import seed_from_id
-from game.art.gen_card_art32 import GEN_CARD_ART_VERSION, generate
+from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
+from game.art.gen_card_art_advanced import generate
 from game.core.paths import assets_dir, data_dir
 from game.core.safe_io import atomic_write_json_if_changed, load_json
 from game.visual.generators.lore_motifs import MOTIF_LIBRARY, motifs_for_archetype
@@ -208,6 +209,7 @@ def export_prompts(cards: list[dict], enemies: list[dict] | None = None):
     atomic_write_json_if_changed(prompts_path, payload, sort_keys=True)
     atomic_write_json_if_changed(data_dir() / "prompt_manifest.json", {"generator_version": GEN_CARD_ART_VERSION, "count": len(payload.get("cards", {}))}, sort_keys=True)
     atomic_write_json_if_changed(data_dir() / "art_manifest_cards.json", {"generator_version": GEN_CARD_ART_VERSION, "count": len(payload.get("cards", {}))}, sort_keys=True)
+
 
 
 

@@ -33,6 +33,8 @@ class CodexScreen:
         self.lore_set_relics = self._load_lore_set_relics()
         self.active_section_id = self.sections[0].get("id", "lore") if self.sections else "lore"
         self.gallery_index = 0
+        self.card_set_tab = "all"
+        self.card_tab_rects: list[tuple[pygame.Rect, str]] = []
 
         self.back_btn = pygame.Rect(42, 1008, 220, 52)
         self.tutorial_btn = pygame.Rect(280, 1008, 340, 52)
@@ -121,6 +123,12 @@ class CodexScreen:
             full.setdefault("archetype", str(c.get("archetype", "")))
             full.setdefault("lore_text", str(c.get("lore_text", "")))
             out.append(full)
+
+        tab = str(getattr(self, "card_set_tab", "all") or "all").lower()
+        if tab == "base":
+            out = [c for c in out if not (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower())]
+        elif tab == "hiperborea":
+            out = [c for c in out if (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower())]
         return out
 
     def _codex_relics(self) -> list[dict]:
@@ -330,11 +338,21 @@ class CodexScreen:
                 self.app.sfx.play("ui_click")
                 self.app.goto_tutorial()
                 return
+            if self.active_section_id == "cards":
+                for tr, tab_id in self.card_tab_rects:
+                    if tr.collidepoint(pos):
+                        self.app.sfx.play("ui_click")
+                        self.card_set_tab = tab_id
+                        self.gallery_index = 0
+                        return
+
             for rect, sid in self.section_buttons:
                 if rect.collidepoint(pos):
                     self.app.sfx.play("ui_click")
                     self.active_section_id = sid
                     self.gallery_index = 0
+                    if sid != "cards":
+                        self.card_set_tab = "all"
                     return
 
     def update(self, dt):
@@ -368,6 +386,19 @@ class CodexScreen:
         s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (self.right_panel.x + 20, self.right_panel.y + 20))
 
         if active_id == "cards":
+            tabs = [("all", "Todo"), ("base", "Base"), ("hiperborea", "Hiperborea"), ("relics", "Relics"), ("lore", "Lore")]
+            self.card_tab_rects = []
+            tx = self.right_panel.x + 20
+            ty = self.right_panel.y + 58
+            for tid, lbl in tabs:
+                tw = 116 if tid != "hiperborea" else 154
+                tr = pygame.Rect(tx, ty, tw, 28)
+                self.card_tab_rects.append((tr, tid))
+                on = (tid == self.card_set_tab)
+                pygame.draw.rect(s, UI_THEME["panel_2"], tr, border_radius=8)
+                pygame.draw.rect(s, UI_THEME["gold"] if on else UI_THEME["accent_violet"], tr, 2 if on else 1, border_radius=8)
+                s.blit(self.app.tiny_font.render(lbl, True, UI_THEME["gold"] if on else UI_THEME["muted"]), (tr.x + 8, tr.y + 6))
+                tx += tr.w + 8
             self._draw_cards_gallery(s)
             y = self.right_panel.bottom - 86
             for hint in self._dynamic_hints_for_section("cards")[:3]:

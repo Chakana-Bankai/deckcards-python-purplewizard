@@ -254,11 +254,11 @@ class PathSelectScreen:
 
     def _draw_featured_legendary(self, s: pygame.Surface, rect: pygame.Rect, legendary_id: str):
         card = self.app.card_defs.get(legendary_id, {})
-        box = pygame.Rect(rect.x + 16, rect.y + rect.h - 186, rect.w - 32, 150)
+        box = pygame.Rect(rect.x + 16, rect.y + rect.h - 204, rect.w - 32, 168)
         pygame.draw.rect(s, (56, 42, 30), box, border_radius=12)
         pygame.draw.rect(s, UI_THEME["gold"], box, 2, border_radius=12)
 
-        art_rect = pygame.Rect(box.x + 10, box.y + 10, 124, box.h - 20)
+        art_rect = pygame.Rect(box.x + 10, box.y + 10, 140, box.h - 20)
         render_card_small(
             s,
             art_rect,
@@ -270,8 +270,8 @@ class PathSelectScreen:
         title = self.app.loc.t(card.get("name_key", legendary_id))
         text = self.app.loc.t(card.get("text_key", ""))
         s.blit(self.app.small_font.render("Legendaria", True, UI_THEME["gold"]), (box.x + 146, box.y + 10))
-        s.blit(self.app.map_font.render(self._fit(self.app.map_font, str(title), box.w - 160), True, UI_THEME["text"]), (box.x + 146, box.y + 44))
-        s.blit(self.app.tiny_font.render(self._fit(self.app.tiny_font, str(text), box.w - 160), True, UI_THEME["muted"]), (box.x + 146, box.y + 92))
+        s.blit(self.app.map_font.render(self._fit(self.app.map_font, str(title), box.w - 176), True, UI_THEME["text"]), (box.x + 160, box.y + 44))
+        s.blit(self.app.tiny_font.render(self._fit(self.app.tiny_font, str(text), box.w - 176), True, UI_THEME["muted"]), (box.x + 160, box.y + 94))
 
 
     def _ensure_starter_banner(self, option: dict):
@@ -286,9 +286,6 @@ class PathSelectScreen:
         sub = self.app.small_font.render("Selecciona un mazo inicial para comenzar.", True, UI_THEME["muted"])
         s.blit(title, title.get_rect(center=(INTERNAL_WIDTH // 2, 56)))
         s.blit(sub, sub.get_rect(center=(INTERNAL_WIDTH // 2, 94)))
-
-        menu_portrait = self.app.assets.sprite("avatar", "menu", (96, 96), fallback=(86, 56, 132))
-        s.blit(menu_portrait, (54, 34))
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.hover_index = None

@@ -198,7 +198,8 @@ class AudioEngine:
             arp = 0.18 * math.sin(2 * math.pi * overtone * t + 0.6 * math.sin(t * 0.7))
             gate = 0.5 + 0.5 * math.sin(2 * math.pi * (1.0 + spec.pulse) * t)
             rhythm = gate * self._triangle(2 * math.pi * pulse_freq * t)
-            noise = 0.02 * math.sin(2 * math.pi * (520 + 50 * spec.brightness) * t + 0.18 * math.sin(t * 2.1))
+            # Reduce high-pitched whistle by shifting texture band lower and softer.
+            noise = 0.008 * math.sin(2 * math.pi * (210 + 28 * spec.brightness) * t + 0.14 * math.sin(t * 1.6))
 
             x = (0.48 * pad) + (0.26 * arp) + (0.14 * rhythm) + noise
             if spec.tension > 0.6:
@@ -207,6 +208,10 @@ class AudioEngine:
             fade_in = min(1.0, t / 1.2)
             fade_out = min(1.0, (seconds - t) / 1.0)
             amp = max(0.0, min(1.0, fade_in * fade_out))
+            # Gentle low-pass smoothing to avoid sharp oscillator harshness.
+            if i > 0:
+                prev = samples[-1] / 32767.0
+                x = 0.82 * x + 0.18 * prev
             y = int(max(-1.0, min(1.0, x * amp * 0.82)) * 32767)
             samples.append(y)
         return samples

@@ -338,6 +338,19 @@ class DeckScreen:
         set_line = f"Sets -> Base {base_count} | Hiperborea {hip_count}"
         s.blit(self.app.tiny_font.render(set_line, True, UI_THEME["muted"]), (set_chip.x + 6, set_chip.y + 4))
 
+        # Visual set tabs for clear grouping across deck/codex contexts.
+        tabs = [("Base", base_count), ("Hiperborea", hip_count), ("Relics", len(self.app.run_state.get("relics", []) or [])), ("Enemies", len(getattr(self.app, "enemies_data", []) or [])), ("Lore", len(getattr(self.app, "cards_data", []) or []))]
+        tx = self.preview_rect.x + 14
+        ty = self.preview_rect.y + 44
+        for name, val in tabs:
+            tw = 110 if name != "Hiperborea" else 148
+            tr = pygame.Rect(tx, ty, tw, 24)
+            pygame.draw.rect(s, UI_THEME["panel_2"], tr, border_radius=7)
+            pygame.draw.rect(s, UI_THEME["gold"] if name in {"Base", "Hiperborea"} else UI_THEME["accent_violet"], tr, 1, border_radius=7)
+            txt = self.app.tiny_font.render(f"{name}: {int(val)}", True, UI_THEME["gold"] if name in {"Base", "Hiperborea"} else UI_THEME["muted"])
+            s.blit(txt, (tr.x + 6, tr.y + 5))
+            tx += tw + 8
+
         reserve_count = len(sideboard)
         top_roles = sorted(role_counts.items(), key=lambda it: it[1], reverse=True)
         role_line = " / ".join(f"{k[:3].upper()} {v}" for k, v in top_roles[:3] if v > 0) or "Sin roles"
