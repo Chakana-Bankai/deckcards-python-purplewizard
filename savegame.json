@@ -1,15 +1,22 @@
 {
-  "gold": 80,
+  "gold": 186,
   "relics": [
     "violet_seal"
   ],
   "player": {
-    "hp": 60,
-    "max_hp": 60,
-    "block": 0,
-    "energy": 3,
+    "hp": 68,
+    "max_hp": 68,
+    "block": 5,
+    "energy": 0,
     "rupture": 0,
-    "statuses": {}
+    "statuses": {},
+    "harmony_current": 4,
+    "harmony_max": 10,
+    "harmony_ready_threshold": 6,
+    "harmony_ready": false,
+    "harmony_seal_used": false,
+    "seal_ready": false,
+    "seal_active": false
   },
   "deck": [
     "estallido_arcano",
@@ -33,7 +40,20 @@
     "cw_lore_29",
     "chakana_de_luz"
   ],
-  "sideboard": [],
+  "sideboard": [
+    "of_lore_30",
+    "chakana_de_luz",
+    "cw_lore_03",
+    "muralla_de_piedra",
+    "hg_lore_15",
+    "guardia_terrenal",
+    "revelacion_astral",
+    "fusion_espiritual",
+    "revelacion_astral",
+    "hg_lore_01",
+    "of_lore_16",
+    "hg_lore_07"
+  ],
   "map": [
     [
       {
@@ -47,7 +67,7 @@
           "1_0",
           "1_1"
         ],
-        "state": "available"
+        "state": "cleared"
       }
     ],
     [
@@ -62,7 +82,7 @@
           "2_0",
           "2_1"
         ],
-        "state": "locked"
+        "state": "current"
       },
       {
         "id": "1_1",
@@ -75,20 +95,20 @@
           "2_1",
           "2_0"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "1_2",
         "col": 1,
         "x": 492,
         "y": 588,
-        "type": "combat",
+        "type": "challenge",
         "biome": "ukhu",
         "next": [
           "2_2",
           "2_3"
         ],
-        "state": "locked"
+        "state": "cleared"
       },
       {
         "id": "1_3",
@@ -101,7 +121,7 @@
           "2_3",
           "2_2"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -129,7 +149,7 @@
           "3_1",
           "3_0"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_2",
@@ -142,7 +162,7 @@
           "3_2",
           "3_3"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_3",
@@ -155,7 +175,7 @@
           "3_3",
           "3_2"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -258,9 +278,9 @@
   ],
   "biome_index": 0,
   "biome": "ukhu",
-  "xp": 0,
-  "level": 1,
-  "combats_won": 0,
+  "xp": 10,
+  "level": 3,
+  "combats_won": 2,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
@@ -277,7 +297,10 @@
     "step_index": 0,
     "step_total": 7
   },
-  "current_node_id": null,
+  "civilization": "base_world",
+  "last_node_type": "challenge",
+  "levelup_pending": 0,
+  "current_node_id": "1_2",
   "last_biome_seen": "ukhu",
-  "saved_at": 1773065405
+  "saved_at": 1773066955
 }
