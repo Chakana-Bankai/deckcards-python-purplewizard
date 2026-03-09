@@ -1,29 +1,25 @@
 {
-  "gold": 14,
+  "gold": 114,
   "relics": [
-    "violet_seal",
-    "condor_feather",
-    "serpent_scale"
+    "violet_seal"
   ],
   "player": {
-    "hp": 38,
+    "hp": 60,
     "max_hp": 60,
-    "block": 0,
-    "energy": 2,
+    "block": 7,
+    "energy": 0,
     "rupture": 0,
-    "statuses": {
-      "weaken": 3,
-      "cost_plus": 3
-    },
-    "harmony_current": 0,
+    "statuses": {},
+    "harmony_current": 4,
     "harmony_max": 10,
     "harmony_ready_threshold": 6,
     "harmony_ready": false,
-    "harmony_seal_used": true,
+    "harmony_seal_used": false,
     "seal_ready": false,
     "seal_active": false
   },
   "deck": [
+    "estallido_arcano",
     "filo_astral",
     "garra_espiritual",
     "pulso_cosmico",
@@ -45,27 +41,7 @@
     "chakana_de_luz"
   ],
   "sideboard": [
-    "cw_lore_18",
-    "hg_lore_24",
-    "chakana_de_luz",
-    "of_lore_26",
-    "hg_lore_13",
-    "invocacion_astral",
-    "hg_lore_05",
-    "of_lore_12",
-    "piedra_ritual",
-    "ritual_de_la_trama",
-    "filo_en_cadena",
-    "hg_lore_19",
-    "eco_de_sabiduria",
-    "cw_lore_02",
-    "of_lore_25",
-    "ritual_de_la_trama",
-    "embate_del_jaguar",
-    "cw_lore_29",
-    "of_lore_30",
-    "guardia_terrenal",
-    "cw_lore_29"
+    "pulso_cosmico"
   ],
   "map": [
     [
@@ -95,7 +71,7 @@
           "2_0",
           "2_1"
         ],
-        "state": "cleared"
+        "state": "available"
       },
       {
         "id": "1_1",
@@ -115,13 +91,13 @@
         "col": 1,
         "x": 492,
         "y": 588,
-        "type": "challenge",
+        "type": "combat",
         "biome": "ukhu",
         "next": [
           "2_2",
           "2_3"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "1_3",
@@ -134,7 +110,7 @@
           "2_3",
           "2_2"
         ],
-        "state": "cleared"
+        "state": "available"
       }
     ],
     [
@@ -149,7 +125,7 @@
           "3_0",
           "3_1"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "2_1",
@@ -162,7 +138,7 @@
           "3_1",
           "3_0"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "2_2",
@@ -175,7 +151,7 @@
           "3_2",
           "3_3"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "2_3",
@@ -188,7 +164,7 @@
           "3_3",
           "3_2"
         ],
-        "state": "cleared"
+        "state": "locked"
       }
     ],
     [
@@ -203,7 +179,7 @@
           "4_0",
           "4_1"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "3_1",
@@ -227,7 +203,7 @@
         "next": [
           "4_1"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "3_3",
@@ -240,7 +216,7 @@
           "4_1",
           "4_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       }
     ],
     [
@@ -254,7 +230,7 @@
         "next": [
           "5_0"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "4_1",
@@ -266,7 +242,7 @@
         "next": [
           "5_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       }
     ],
     [
@@ -278,7 +254,7 @@
         "type": "boss",
         "biome": "fractura_chakana",
         "next": [],
-        "state": "available"
+        "state": "locked"
       }
     ]
   ],
@@ -289,11 +265,11 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 1,
-  "biome": "kaypacha",
-  "xp": 20,
-  "level": 4,
-  "combats_won": 4,
+  "biome_index": 0,
+  "biome": "ukhu",
+  "xp": 23,
+  "level": 1,
+  "combats_won": 1,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
@@ -311,9 +287,8 @@
     "step_total": 7
   },
   "civilization": "base_world",
-  "last_node_type": "challenge",
-  "levelup_pending": 0,
-  "current_node_id": "2_3",
-  "last_biome_seen": "kaypacha",
-  "saved_at": 1773048332
+  "last_node_type": "combat",
+  "current_node_id": "0_0",
+  "last_biome_seen": "ukhu",
+  "saved_at": 1773051927
 }

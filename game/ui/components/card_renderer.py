@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import random
 
@@ -325,20 +325,20 @@ def _layout_for(rect: pygame.Rect, preset: str, rules: dict) -> dict:
     gap = cfg["text_pad"]
 
     ratio_header = 0.10
-    ratio_art = 0.50
-    ratio_type = 0.06
+    ratio_art = 0.55
+    ratio_type = 0.05
     ratio_effects = 0.16
     ratio_lore = 0.06
-    ratio_footer = 0.04
+    ratio_footer = 0.03
 
     h = content.h
     header_h = max(34, int(h * ratio_header))
     art_h = max(86, int(h * ratio_art))
-    type_h = max(18, int(h * ratio_type))
+    type_h = max(16, int(h * ratio_type))
     effects_h = max(42, int(h * ratio_effects))
     lore_h = max(16, int(h * ratio_lore))
     footer_h = max(30, int(h * ratio_footer))
-    kpi_h = max(38, int(h * 0.08))
+    kpi_h = max(34, int(h * 0.06))
 
     used = header_h + art_h + type_h + effects_h + lore_h + footer_h + kpi_h + gap * 6
     if used > h:
@@ -551,26 +551,34 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
         lore_max_lines = max(2, lore_max_lines)
 
     lore_lines = _fit_lines(tiny_font, model.lore_text, sec["lore"].w - 10, lore_max_lines)
+    lore_alpha = 255 if hovered or preset in {"preview", "large"} else int(255 * 0.85)
     ly = sec["lore"].y + max(0, (sec["lore"].h - max(1, len(lore_lines)) * 12) // 2)
+    italic_prev = False
+    if hasattr(tiny_font, "get_italic"):
+        italic_prev = bool(tiny_font.get_italic())
+    if hasattr(tiny_font, "set_italic"):
+        tiny_font.set_italic(True)
     for line in lore_lines:
-        lbl = tiny_font.render(line, True, theme.get("muted", (180, 170, 200)))
+        lbl = tiny_font.render(line, True, (198, 176, 224))
+        lbl.set_alpha(lore_alpha)
         lx = sec["lore"].x + max(4, (sec["lore"].w - lbl.get_width()) // 2)
         surface.blit(lbl, (lx, ly))
         ly += 12
+    if hasattr(tiny_font, "set_italic"):
+        tiny_font.set_italic(italic_prev)
 
-    sig_short = _fit_one_line(tiny_font, f"{model.author} | Orden {model.order}", sec["signature"].w - 8)
-    sig_full = _fit_one_line(tiny_font, f"Autor: {model.author} | Orden: {model.order}", sec["signature"].w - 8)
     footer_mode = str(rules.get("footer_mode", "compact"))
-    if footer_mode != "set_only":
-        sig = sig_full if footer_mode == "full" else sig_short
-        if preset in {"small"} and footer_mode == "compact":
-            sig = _fit_one_line(tiny_font, f"{model.author}", sec["signature"].w - 8)
-        surface.blit(tiny_font.render(sig, True, (190, 176, 214)), (sec["signature"].x + 4, sec["signature"].y))
-
-    footer_lore = _fit_one_line(tiny_font, model.lore_text, sec["footer_lore"].w - 6)
-    if footer_mode == "full" and footer_lore:
-        surface.blit(tiny_font.render(footer_lore, True, theme.get("muted", (180, 170, 200))), (sec["footer_lore"].x + 2, sec["footer_lore"].y))
-
+    border_meta = _fit_one_line(
+        tiny_font,
+        f"Autor: {model.author or 'Chakana Studio'} | Orden: {model.order or 'Chakana'}",
+        rect.w - 28,
+    )
+    if footer_mode != "set_only" and border_meta:
+        meta = tiny_font.render(border_meta, True, (142, 124, 176))
+        meta.set_alpha(int(255 * 0.55))
+        mx = rect.x + max(8, (rect.w - meta.get_width()) // 2)
+        my = rect.bottom - meta.get_height() - 4
+        surface.blit(meta, (mx, my))
     # Edition / set emblem zone (Base subtle, Hiperborea explicit).
     embl = sec.get("emblem")
     if isinstance(embl, pygame.Rect):
@@ -625,6 +633,9 @@ def render_card_large(surface, rect, card, theme=None, state=None):
 
 def render_card_preview(surface, rect, card, theme=None, state=None):
     _draw_core(surface, pygame.Rect(rect), card, theme, state, preset="preview")
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import random
 from pathlib import Path
@@ -132,10 +132,10 @@ def _draw_grid_nodes(surface: pygame.Surface, rng: random.Random, color):
     w, h = surface.get_size()
     step = 12 + rng.randint(0, 4)
     for x in range(-w // 2, w + w // 2, step):
-        pygame.draw.line(surface, (*color, 40), (x, 0), (x + h, h), 1)
+        pygame.draw.line(surface, (*color, 35), (x, 0), (x + h, h), 1)
     for x in range(0, w, step * 2):
         for y in range(0, h, step * 2):
-            pygame.draw.circle(surface, (*color, 90), (x + rng.randint(-1, 1), y + rng.randint(-1, 1)), 1)
+            pygame.draw.circle(surface, (*color, 78), (x + rng.randint(-1, 1), y + rng.randint(-1, 1)), 1)
 
 
 def _draw_chakana_frame(surface: pygame.Surface, color):
@@ -156,7 +156,7 @@ def _draw_chakana_frame(surface: pygame.Surface, color):
         (r.left, r.top + step),
         (r.left + step, r.top + step),
     ]
-    pygame.draw.lines(surface, (*color, 124), True, pts, 2)
+    pygame.draw.lines(surface, (*color, 108), True, pts, 2)
 
 
 def _draw_geometry(surface: pygame.Surface, variant: int, rng: random.Random, color):
@@ -177,16 +177,16 @@ def _draw_symbol_overlay(surface: pygame.Surface, symbol: str, color: tuple[int,
     w, h = surface.get_size()
     cx, cy = w // 2, h // 2
     if "blade" in s:
-        pygame.draw.line(surface, (*color, 140), (cx - 28, cy + 24), (cx + 26, cy - 22), 2)
+        pygame.draw.line(surface, (*color, 122), (cx - 28, cy + 24), (cx + 26, cy - 22), 2)
     elif "shield" in s:
-        pygame.draw.polygon(surface, (*color, 132), [(cx, cy - 24), (cx + 24, cy - 6), (cx + 16, cy + 26), (cx - 16, cy + 26), (cx - 24, cy - 6)], 2)
+        pygame.draw.polygon(surface, (*color, 116), [(cx, cy - 24), (cx + 24, cy - 6), (cx + 16, cy + 26), (cx - 16, cy + 26), (cx - 24, cy - 6)], 2)
     elif "eye" in s:
-        pygame.draw.ellipse(surface, (*color, 132), (cx - 30, cy - 14, 60, 28), 2)
-        pygame.draw.circle(surface, (*color, 132), (cx, cy), 4)
+        pygame.draw.ellipse(surface, (*color, 116), (cx - 30, cy - 14, 60, 28), 2)
+        pygame.draw.circle(surface, (*color, 116), (cx, cy), 4)
     elif "seal" in s or "glyph" in s:
-        pygame.draw.circle(surface, (*color, 116), (cx, cy), 22, 2)
-        pygame.draw.line(surface, (*color, 116), (cx - 16, cy), (cx + 16, cy), 1)
-        pygame.draw.line(surface, (*color, 116), (cx, cy - 16), (cx, cy + 16), 1)
+        pygame.draw.circle(surface, (*color, 102), (cx, cy), 22, 2)
+        pygame.draw.line(surface, (*color, 102), (cx - 16, cy), (cx + 16, cy), 1)
+        pygame.draw.line(surface, (*color, 102), (cx, cy - 16), (cx, cy + 16), 1)
 
 
 def _draw_glyph(surface: pygame.Surface, glyph: str, color):
@@ -233,18 +233,18 @@ def _draw_energy(surface: pygame.Surface, rng: random.Random, accent: tuple[int,
     w, h = surface.get_size()
     fx = pygame.Surface((w, h), pygame.SRCALPHA)
     energy = str(energy_hint or "")
-    lines = 8
+    lines = 7
     if "burst" in energy:
-        lines = 12
+        lines = 9
     elif "stable" in energy:
-        lines = 6
+        lines = 5
     elif "spiral" in energy:
-        lines = 10
+        lines = 9
 
     for _ in range(lines):
         x1, y1 = rng.randint(8, w - 8), rng.randint(8, h - 8)
         x2, y2 = x1 + rng.randint(-20, 20), y1 + rng.randint(-20, 20)
-        pygame.draw.line(fx, (*accent, 122), (x1, y1), (x2, y2), 1)
+        pygame.draw.line(fx, (*accent, 108), (x1, y1), (x2, y2), 1)
     surface.blit(fx, (0, 0))
 
 
@@ -410,6 +410,14 @@ def _mix(a: tuple[int, int, int], b: tuple[int, int, int], t: float) -> tuple[in
     )
 
 
+
+def _soften_color(color: tuple[int, int, int], amount: float = 0.88) -> tuple[int, int, int]:
+    a = max(0.0, min(1.0, float(amount)))
+    return (
+        max(0, min(255, int(color[0] * a))),
+        max(0, min(255, int(color[1] * a))),
+        max(0, min(255, int(color[2] * a))),
+    )
 def _background_palette_from_semantic(pal, semantic: dict):
     lore = str(semantic.get("lore_tokens", "")).lower()
     motif = str(semantic.get("motif", "")).lower()
@@ -494,14 +502,14 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
         rot = (sem_hash + attempt) % len(variant_pool)
         variant_pool = variant_pool[rot:] + variant_pool[:rot]
         chosen_variant = variant_pool[(seed + attempt + sem_hash) % len(variant_pool)]
-        _draw_geometry(low, chosen_variant, rng, pal[3])
-        _draw_geometry(low, (chosen_variant + 2) % 4, rng, pal[2])
-        _draw_geometry(low, (chosen_variant + 1) % 4, rng, _mix(pal[2], pal[3], 0.5))
+        _draw_geometry(low, chosen_variant, rng, _soften_color(pal[3], 0.88))
+        _draw_geometry(low, (chosen_variant + 2) % 4, rng, _soften_color(pal[2], 0.88))
+        _draw_geometry(low, (chosen_variant + 1) % 4, rng, _soften_color(_mix(pal[2], pal[3], 0.5), 0.86))
 
         # Layer 3: symbol
         _draw_silhouette(low, ctype, pal[2])
         _draw_glyph(low, _glyph_for_theme(ctype, motif_group, seed + sem_hash + attempt), pal[2])
-        _draw_symbol_overlay(low, semantic.get("symbol", ""), pal[3])
+        _draw_symbol_overlay(low, semantic.get("symbol", ""), _soften_color(pal[3], 0.9))
 
         # Layer 4: motif
         _draw_motif_layer(low, motif_group, pal[2], rng)
@@ -510,7 +518,7 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
         _draw_energy(low, rng, pal[3], semantic.get("energy", ""))
         if legendary:
             _draw_energy_glow(low, pal[3], intensity=2)
-            _draw_geometry(low, (chosen_variant + 1) % 4, rng, pal[3])
+            _draw_geometry(low, (chosen_variant + 1) % 4, rng, _soften_color(pal[3], 0.9))
             _draw_motif_layer(low, motif_group, _mix(pal[2], pal[3], 0.6), rng)
             _boost_legendary_saturation(low)
             pygame.draw.circle(low, (*pal[3], 96), (80, 56), 34, 2)
@@ -549,15 +557,19 @@ def render_card(card_id: str, family: str, symbol: str) -> pygame.Surface:
 
     _draw_gradient(low, pal)
     _add_dither(low, rng)
-    _draw_geometry(low, seed % 4, rng, pal[3])
+    _draw_geometry(low, seed % 4, rng, _soften_color(pal[3], 0.88))
     _draw_silhouette(low, ctype, pal[2])
     motif_group = _motif_group({"motif": family, "symbol": symbol, "energy": "arc_traces"}, ctype)
     _draw_motif_layer(low, motif_group, pal[2], rng)
     _draw_glyph(low, _glyph_for_theme(ctype, motif_group, seed), pal[2])
-    _draw_symbol_overlay(low, symbol, pal[3])
+    _draw_symbol_overlay(low, symbol, _soften_color(pal[3], 0.9))
     _draw_energy(low, rng, pal[3], "arc_traces")
     if ctype == "legendary":
         _draw_energy_glow(low, pal[3], intensity=2)
 
     return pygame.transform.scale(low, (320, 220)).convert_alpha()
+
+
+
+
 
