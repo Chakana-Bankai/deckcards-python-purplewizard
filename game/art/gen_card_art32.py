@@ -7,12 +7,14 @@ import pygame
 
 from game.art.gen_art32 import seed_from_id
 
-GEN_CARD_ART_VERSION = "card_gen_v5"
+GEN_CARD_ART_VERSION = "card_gen_v6"
 
 TYPE_PALETTES = {
     "attack": ((24, 8, 20), (126, 24, 44), (236, 110, 40), (96, 26, 112)),
     "defense": ((10, 28, 36), (20, 98, 106), (56, 164, 126), (74, 40, 130)),
     "control": ((10, 24, 56), (24, 56, 140), (64, 98, 196), (78, 236, 246)),
+    "ritual": ((18, 12, 28), (72, 44, 118), (162, 106, 214), (214, 186, 112)),
+    "legendary": ((16, 10, 14), (92, 54, 28), (214, 158, 74), (236, 208, 136)),
     "spirit": ((10, 10, 16), (78, 56, 24), (184, 146, 56), (108, 64, 156)),
 }
 
@@ -35,6 +37,8 @@ def _family_to_type(card_type: str) -> str:
         "azure_cosmic": "control",
         "violet_arcane": "spirit",
         "solar_gold": "spirit",
+        "ritual": "ritual",
+        "legendary": "legendary",
     }
     return mapping.get(c, "spirit")
 
@@ -60,11 +64,15 @@ def _semantic_from_prompt(prompt: str) -> dict:
     motif = _extract_field(p, "motif ", ("(", "effect signature", "energy pattern", "lore tokens"))
     symbol = _extract_field(p, "sacred geometry ", ("motif", "effect signature", "energy pattern"))
     energy = _extract_field(p, "energy pattern ", ("lore tokens",))
+    rarity = _extract_field(p, "rarity ", ("sacred geometry", "motif", "effect signature", "energy pattern", "lore tokens"))
+    role = _extract_field(p, "role ", ("palette", "lighting", "rarity", "sacred geometry"))
     return {
         "palette": pal.lower(),
         "motif": motif.lower(),
         "symbol": symbol.lower(),
         "energy": energy.lower(),
+        "rarity": rarity.lower(),
+        "role": role.lower(),
     }
 
 
@@ -238,6 +246,17 @@ def _draw_energy(surface: pygame.Surface, rng: random.Random, accent: tuple[int,
     surface.blit(fx, (0, 0))
 
 
+def _draw_energy_glow(surface: pygame.Surface, accent: tuple[int, int, int], intensity: int = 1):
+    w, h = surface.get_size()
+    glow = pygame.Surface((w, h), pygame.SRCALPHA)
+    cx, cy = w // 2, h // 2
+    base = min(w, h) // 3
+    for i in range(1, 3 + max(0, intensity)):
+        r = base + i * 8
+        pygame.draw.circle(glow, (*accent, max(18, 62 - i * 10)), (cx, cy), r, 1)
+    surface.blit(glow, (0, 0))
+
+
 def _hash16(surface: pygame.Surface) -> int:
     tiny = pygame.transform.smoothscale(surface, (16, 16))
     total = 0
@@ -256,7 +275,123 @@ def _prompt_hint(prompt: str) -> str:
         return "defense"
     if "oracle_of_fate" in p or "eye geometry" in p:
         return "control"
+    if "ritual" in p or "seal" in p:
+        return "ritual"
+    if "legendary" in p:
+        return "legendary"
     return "spirit"
+
+
+def _motif_group(semantic: dict, ctype: str) -> str:
+    motif = str(semantic.get("motif", "")).lower()
+    symbol = str(semantic.get("symbol", "")).lower()
+    energy = str(semantic.get("energy", "")).lower()
+    if any(k in motif for k in ("weapon", "blade", "spear", "strike")):
+        return "weapon"
+    if any(k in motif for k in ("animal", "beast", "puma", "condor", "serpent")):
+        return "animal"
+    if any(k in motif for k in ("ritual", "sigil", "seal", "chakana")):
+        return "ritual_symbol"
+    if any(k in motif for k in ("cosmic", "star", "astral", "constellation", "aurora")):
+        return "cosmic_structure"
+    if any(k in motif for k in ("civilization", "temple", "hyperborea", "polar", "archon")):
+        return "civilization_symbol"
+    if "eye" in symbol:
+        return "cosmic_structure"
+    if "shield" in symbol:
+        return "ritual_symbol"
+    if "burst" in energy:
+        return "weapon"
+    if ctype == "attack":
+        return "weapon"
+    if ctype == "defense":
+        return "ritual_symbol"
+    if ctype in {"control", "ritual"}:
+        return "cosmic_structure"
+    return "civilization_symbol"
+
+
+def _draw_motif_weapon(surface: pygame.Surface, color: tuple[int, int, int], rng: random.Random):
+    w, h = surface.get_size()
+    cx, cy = w // 2, h // 2
+    tilt = rng.randint(-8, 8)
+    pygame.draw.line(surface, (*color, 138), (cx - 34, cy + 26), (cx + 28, cy - 24), 2)
+    pygame.draw.polygon(surface, (*color, 120), [(cx + 28, cy - 24), (cx + 18, cy - 12), (cx + 34 + tilt, cy - 10), (cx + 24, cy - 20)], 1)
+
+
+def _draw_motif_animal(surface: pygame.Surface, color: tuple[int, int, int]):
+    w, h = surface.get_size()
+    cx, cy = w // 2, h // 2
+    pygame.draw.polygon(surface, (*color, 128), [(cx - 16, cy + 16), (cx - 8, cy - 18), (cx + 8, cy - 18), (cx + 16, cy + 16)], 2)
+    pygame.draw.circle(surface, (*color, 122), (cx - 6, cy - 4), 2)
+    pygame.draw.circle(surface, (*color, 122), (cx + 6, cy - 4), 2)
+
+
+def _draw_motif_ritual(surface: pygame.Surface, color: tuple[int, int, int]):
+    w, h = surface.get_size()
+    cx, cy = w // 2, h // 2
+    pygame.draw.circle(surface, (*color, 120), (cx, cy), 26, 2)
+    for d in (-16, 0, 16):
+        pygame.draw.line(surface, (*color, 112), (cx - 20, cy + d), (cx + 20, cy + d), 1)
+
+
+def _draw_motif_cosmic(surface: pygame.Surface, color: tuple[int, int, int], rng: random.Random):
+    w, h = surface.get_size()
+    stars = [(rng.randint(24, w - 24), rng.randint(20, h - 20)) for _ in range(6)]
+    for a, b in zip(stars, stars[1:]):
+        pygame.draw.line(surface, (*color, 98), a, b, 1)
+    for s in stars:
+        pygame.draw.circle(surface, (*color, 140), s, 1)
+
+
+def _draw_motif_civilization(surface: pygame.Surface, color: tuple[int, int, int]):
+    w, h = surface.get_size()
+    cx, cy = w // 2, h // 2
+    pygame.draw.rect(surface, (*color, 112), (cx - 26, cy - 24, 52, 44), 2)
+    pygame.draw.line(surface, (*color, 112), (cx - 20, cy - 12), (cx + 20, cy - 12), 1)
+    pygame.draw.line(surface, (*color, 112), (cx - 16, cy), (cx + 16, cy), 1)
+
+
+def _draw_motif_layer(surface: pygame.Surface, group: str, color: tuple[int, int, int], rng: random.Random):
+    if group == "weapon":
+        _draw_motif_weapon(surface, color, rng)
+    elif group == "animal":
+        _draw_motif_animal(surface, color)
+    elif group == "ritual_symbol":
+        _draw_motif_ritual(surface, color)
+    elif group == "cosmic_structure":
+        _draw_motif_cosmic(surface, color, rng)
+    else:
+        _draw_motif_civilization(surface, color)
+
+
+def _glyph_for_theme(ctype: str, motif_group: str, seed: int) -> str:
+    if ctype == "attack":
+        return "sword"
+    if ctype == "defense":
+        return "shield"
+    if ctype == "control":
+        return "eye"
+    if ctype == "ritual":
+        return "orb"
+    if ctype == "legendary":
+        return "mask"
+    if motif_group == "weapon":
+        return "sword"
+    if motif_group == "animal":
+        return "mask"
+    if motif_group == "cosmic_structure":
+        return "eye"
+    return ["orb", "portal", "mask"][seed % 3]
+
+
+def _is_legendary(semantic: dict, ctype: str, card_id: str) -> bool:
+    if ctype == "legendary":
+        return True
+    rarity = str(semantic.get("rarity", "")).lower()
+    role = str(semantic.get("role", "")).lower()
+    cid = str(card_id).lower()
+    return "legendary" in rarity or "legendary" in role or "legendary" in cid
 
 
 def _palette_from_semantic(default_pal, semantic: dict):
@@ -274,17 +409,24 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
     semantic = _semantic_from_prompt(prompt)
     pal = _palette_from_semantic(TYPE_PALETTES.get(ctype, TYPE_PALETTES["spirit"]), semantic)
 
-    glyphs = ["sword", "shield", "eye", "orb", "mask", "portal"]
     last_hash = None
     chosen_variant = 0
     sem_hash = seed_from_id(f"{card_id}:{semantic.get('motif','')}:{semantic.get('symbol','')}:{semantic.get('energy','')}", GEN_CARD_ART_VERSION)
+    motif_group = _motif_group(semantic, ctype)
+    legendary = _is_legendary(semantic, ctype, card_id)
+    if legendary and ctype != "legendary":
+        ctype = "legendary"
+        pal = _palette_from_semantic(TYPE_PALETTES["legendary"], semantic)
 
     for attempt in range(5):
         rng = random.Random(seed + sem_hash + attempt * 313)
         low = pygame.Surface((160, 112), pygame.SRCALPHA, 32)
+
+        # Layer 1: background
         _draw_gradient(low, pal)
         _add_dither(low, rng)
 
+        # Layer 2: geometry
         variant_pool = [0, 1, 2, 3]
         motif = str(semantic.get("motif", ""))
         if "cosmic" in motif:
@@ -302,22 +444,23 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
         elif "ancient_guardian" in motif or "ancient_guardians" in motif:
             variant_pool = [0, 3, 1, 2]
         chosen_variant = variant_pool[(seed + attempt + sem_hash) % len(variant_pool)]
-
         _draw_geometry(low, chosen_variant, rng, pal[3])
         _draw_geometry(low, (chosen_variant + 2) % 4, rng, pal[2])
-        _draw_silhouette(low, ctype, pal[2])
 
-        glyph = glyphs[(seed + sem_hash + attempt) % len(glyphs)]
-        if ctype == "attack":
-            glyph = "sword"
-        elif ctype == "defense":
-            glyph = "shield"
-        elif ctype == "control":
-            glyph = "eye"
-        _draw_glyph(low, glyph, pal[2])
+        # Layer 3: symbol
+        _draw_silhouette(low, ctype, pal[2])
+        _draw_glyph(low, _glyph_for_theme(ctype, motif_group, seed + sem_hash + attempt), pal[2])
         _draw_symbol_overlay(low, semantic.get("symbol", ""), pal[3])
 
+        # Layer 4: motif
+        _draw_motif_layer(low, motif_group, pal[2], rng)
+
+        # Layer 5: energy FX
         _draw_energy(low, rng, pal[3], semantic.get("energy", ""))
+        if legendary:
+            _draw_energy_glow(low, pal[3], intensity=2)
+            _draw_geometry(low, (chosen_variant + 1) % 4, rng, pal[3])
+            pygame.draw.circle(low, (*pal[3], 96), (80, 56), 34, 2)
 
         for c in [(6, 6), (154, 6), (6, 106), (154, 106)]:
             pygame.draw.circle(low, pal[3], c, 4, 1)
@@ -350,11 +493,17 @@ def render_card(card_id: str, family: str, symbol: str) -> pygame.Surface:
     seed = seed_from_id(card_id, GEN_CARD_ART_VERSION)
     rng = random.Random(seed)
     low = pygame.Surface((160, 112), pygame.SRCALPHA, 32)
+
     _draw_gradient(low, pal)
     _add_dither(low, rng)
     _draw_geometry(low, seed % 4, rng, pal[3])
     _draw_silhouette(low, ctype, pal[2])
-    _draw_glyph(low, ["sword", "shield", "eye", "orb", "mask", "portal"][seed % 6], pal[2])
+    motif_group = _motif_group({"motif": family, "symbol": symbol, "energy": "arc_traces"}, ctype)
+    _draw_motif_layer(low, motif_group, pal[2], rng)
+    _draw_glyph(low, _glyph_for_theme(ctype, motif_group, seed), pal[2])
     _draw_symbol_overlay(low, symbol, pal[3])
     _draw_energy(low, rng, pal[3], "arc_traces")
+    if ctype == "legendary":
+        _draw_energy_glow(low, pal[3], intensity=2)
+
     return pygame.transform.scale(low, (320, 220)).convert_alpha()
