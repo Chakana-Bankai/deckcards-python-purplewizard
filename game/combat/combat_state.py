@@ -180,6 +180,8 @@ class CombatState:
                 hp = int(max(20, hp))
             pattern = item.get("pattern") or [{"intent": "attack", "value": [5, 5]}]
             en = Enemy(item.get("id", "dummy"), item.get("name_key", "enemy_voidling_name"), hp, hp, pattern)
+            en.enemy_type = str(item.get("enemy_type", "criatura") or "criatura").lower()
+            en.ai_profile = str(item.get("ai_profile", "balanced") or "balanced").lower()
             intent_deck = item.get("intent_deck", []) if isinstance(item.get("intent_deck", []), list) else []
             if intent_deck:
                 en.set_intent_deck(intent_deck, self.rng)
@@ -632,4 +634,3 @@ class CombatState:
         events = self.combat_events[:]
         self.combat_events.clear()
         return events
-

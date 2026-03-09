@@ -62,6 +62,7 @@ from game.services.content_service import ContentService
 from game.services.asset_pipeline import AssetPipeline
 from game.services.audio_pipeline import AudioPipeline
 from game.services.archetype_distribution import enforce_archetype_rarity_distribution
+from game.systems.enemy_intent_deck import build_enemy_intent_deck, infer_ai_profile, infer_enemy_type
 from game.visual import get_visual_engine
 from game.systems.reward_system import build_reward_boss, build_reward_guide, build_reward_normal
 from game.ui.screens.loading import LoadingScreen, DataLoadingScreen
@@ -691,18 +692,22 @@ class App:
         for e in enemies if isinstance(enemies, list) else []:
             if not isinstance(e, dict) or not e.get("id"):
                 continue
+            tier = str(e.get("tier", "common"))
+            intent_deck = build_enemy_intent_deck(e)
             valid.append({
                 "id": e.get("id"),
                 "name_key": e.get("name_es", e.get("name_key", e.get("id"))),
                 "hp": e.get("hp", [20, 20]),
                 "pattern": e.get("pattern", [{"intent": "attack", "value": [5, 5]}]),
+                "intent_deck": intent_deck,
+                "enemy_type": str(e.get("enemy_type", infer_enemy_type(e))).lower(),
+                "ai_profile": str(e.get("ai_profile", infer_ai_profile(intent_deck, tier))).lower(),
                 "guard": int(e.get("guard", 0)),
                 "fable_lesson_key": e.get("fable_lesson_key", "duda"),
-                "tier": e.get("tier", "common"),
+                "tier": tier,
                 "biome": str(e.get("biome", "")).lower(),
             })
         return valid or [DEFAULT_ENEMY]
-
     def _load_events_data(self):
         events = load_json(data_dir() / "events.json", default=[])
         return events if isinstance(events, list) else []
@@ -2066,7 +2071,3 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
-
-
-
-

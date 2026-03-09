@@ -60,3 +60,15 @@ This document defines a safe extraction path from the current game codebase into
   - overdraw redirected to discard.
 - Added safe prep for enemy intent mini-decks (`intent_deck`) with fallback to existing pattern.
 - No ID migrations, no destructive content cleanup.
+
+## 2026-03-09 - Fase 3 Enemy Deck System
+
+- Added enemy intent-deck builder: `game/systems/enemy_intent_deck.py`.
+- Enemy content load now enriches each enemy with:
+  - `enemy_type`
+  - `intent_deck`
+  - `ai_profile`
+- `Enemy` now supports:
+  - intent deck draw/discard/reshuffle
+  - simple scoring AI for intent choice
+  - safe fallback to legacy pattern.
