@@ -237,6 +237,7 @@ class PackOpeningScreen:
                         "ctx": None,
                         "selected": sel,
                         "hovered": hover,
+                        "render_context": "pack_view",
                     },
                 )
 
@@ -256,3 +257,4 @@ class PackOpeningScreen:
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.back_rect, 2, border_radius=10)
         back_lbl = "Cancelar" if self.cards else "Volver"
         s.blit(self.app.font.render(back_lbl, True, UI_THEME["text"]), (self.back_rect.x + 88, self.back_rect.y + 16))
+

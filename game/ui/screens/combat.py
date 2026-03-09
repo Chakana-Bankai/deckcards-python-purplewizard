@@ -524,13 +524,37 @@ class CombatScreen:
             "discard": len(getattr(self.c, "discard_pile", []) or []),
         }
 
+    def _card_pose(self, i, total):
+        inner = self.layout.hand_rect.inflate(-20, -40)
+        total = max(1, int(total or 1))
+        card_w = 236
+        card_h = max(260, inner.h - 12)
+        mid = (total - 1) / 2.0
+        offset_x = 60
+        rotation_step = 4.0
+        dx = i - mid
+        cx = int(inner.centerx + dx * offset_x)
+        arc = int(abs(dx) ** 1.35 * 5)
+        cy = inner.y + card_h // 2 + 6 + arc
+        rect = pygame.Rect(0, 0, card_w, card_h)
+        rect.center = (cx, cy)
+
+        # Keep a safe bottom margin so cards never invade end-turn button zone.
+        safe_bottom = inner.bottom
+        button_guard = self.end_turn_rect.inflate(18, 22)
+        if rect.colliderect(button_guard):
+            safe_bottom = min(safe_bottom, button_guard.y - 12)
+        if rect.bottom > safe_bottom:
+            rect.y -= (rect.bottom - safe_bottom)
+
+        rect.x = max(inner.x + 2, min(inner.right - rect.w - 2, rect.x))
+        rect.y = max(inner.y + 2, rect.y)
+        angle = float(dx * rotation_step)
+        return rect, angle
+
     def _card_rect(self, i, total):
-        inner = self.layout.hand_rect.inflate(-18, -36)
-        w, h, g = 236, inner.h - 8, 10
-        tw = total * w + max(0, total - 1) * g
-        x = inner.x + (inner.w - tw) // 2 + i * (w + g)
-        y = inner.y + 6
-        return pygame.Rect(x, y, w, h)
+        rect, _angle = self._card_pose(i, total)
+        return rect
 
     def _art_debug_info(self, card):
         try:
@@ -900,7 +924,7 @@ class CombatScreen:
             icons.append("bolt")
         return icons
 
-    def _draw_card(self, s, rect, card, selected=False, family="violet_arcane", hovered=False):
+    def _draw_card(self, s, rect, card, selected=False, family="violet_arcane", hovered=False, angle=0.0):
         state = {
             "app": self.app,
             "ctx": self.c,
@@ -911,6 +935,15 @@ class CombatScreen:
             "render_context": "hover_view" if hovered else "hand_view",
         }
         target = pygame.Rect(rect)
+        if abs(float(angle or 0.0)) > 0.01 and not hovered:
+            tmp = pygame.Surface((target.w, target.h), pygame.SRCALPHA)
+            if target.h >= 450 or target.w >= 420:
+                render_card_large(tmp, tmp.get_rect(), card, theme=UI_THEME, state=state)
+            else:
+                render_card_medium(tmp, tmp.get_rect(), card, theme=UI_THEME, state=state)
+            rotated = pygame.transform.rotozoom(tmp, -float(angle), 1.0)
+            s.blit(rotated, rotated.get_rect(center=target.center).topleft)
+            return
         if target.h >= 450 or target.w >= 420:
             render_card_large(s, target, card, theme=UI_THEME, state=state)
         else:
@@ -1243,32 +1276,35 @@ class CombatScreen:
         for i, card in enumerate(hand):
             if i == self.hover_card_index:
                 continue
-            base = self._card_rect(i, len(hand))
+            base, angle = self._card_pose(i, len(hand))
             fam = getattr(card.definition, "family", "violet_arcane")
-            self._draw_card(s, base, card, selected=(i == self.ctrl.selected_index), family=fam, hovered=(i == self.hover_card_index))
+            self._draw_card(s, base, card, selected=(i == self.ctrl.selected_index), family=fam, hovered=(i == self.hover_card_index), angle=angle)
         s.set_clip(old_clip)
 
         hover_payload = None
         if self.hover_card_index is not None and self.hover_card_index < len(hand):
             i = self.hover_card_index
             card = hand[i]
-            base_hover = self._card_rect(i, len(hand))
-            # Premium hover: larger scale + eased lift, still contained.
+            base_hover, _angle = self._card_pose(i, len(hand))
+            # Hover: lift + scale + center for readability, keeping safe UI bounds.
             ww = int(base_hover.w * 1.35)
             hh = int(base_hover.h * 1.35)
             rr = pygame.Rect(0, 0, ww, hh)
             hover_t = min(1.0, max(0.0, self.hover_anim.get(i, 0.0)))
             eased = 1.0 - ((1.0 - hover_t) ** 3)
-            rr.centerx = base_hover.centerx
-            rr.centery = int(base_hover.centery - (14 + 12 * eased))
+            rr.centerx = s.get_width() // 2
+            rr.centery = int(s.get_height() * (0.50 - 0.04 * eased))
             safe_overlay = pygame.Rect(
                 self.layout.hand_rect.x + 4,
-                self.layout.playerhud_rect.y + 4,
+                self.layout.topbar_rect.bottom + 8,
                 self.layout.hand_rect.w - 8,
-                self.layout.hand_rect.bottom - (self.layout.playerhud_rect.y + 4),
+                self.layout.hand_rect.bottom - (self.layout.topbar_rect.bottom + 8),
             )
             rr.x = max(safe_overlay.x, min(safe_overlay.right - rr.w, rr.x))
             rr.y = max(safe_overlay.y, min(safe_overlay.bottom - rr.h, rr.y))
+            end_guard = self.end_turn_rect.inflate(24, 24)
+            if rr.colliderect(end_guard):
+                rr.y = max(safe_overlay.y, end_guard.y - rr.h - 12)
             hover_payload = (i, card, rr)
 
         UIPanel(self.layout.playerhud_rect).draw(s)

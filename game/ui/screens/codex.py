@@ -123,6 +123,10 @@ class CodexScreen:
             full.setdefault("text_key", str(c.get("gameplay_text", "")))
             full.setdefault("archetype", str(c.get("archetype", "")))
             full.setdefault("lore_text", str(c.get("lore_text", "")))
+            full.setdefault("artwork", str(full.get("id", cid)))
+            if str(full.get("id", "")).lower().startswith("hip_"):
+                full.setdefault("set", "hiperboria")
+                full["artwork"] = str(full.get("id", cid))
             out.append(full)
 
         tab = str(getattr(self, "card_set_tab", "all") or "all").lower()

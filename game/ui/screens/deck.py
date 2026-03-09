@@ -42,7 +42,7 @@ class DeckScreen:
 
         top_h = 58
         body = pygame.Rect(root.x, root.y + top_h + 12, root.w, root.h - top_h - 12)
-        left_col, right_col = split_horizontal(body, 0.36)
+        left_col, right_col = split_horizontal(body, 0.34)
         top_left, bottom_left = split_vertical(left_col, 0.46)
 
         self.main_rect = inset(top_left, 8)
@@ -51,12 +51,11 @@ class DeckScreen:
         self.side_rect = pygame.Rect(raw_side.x, raw_side.y, raw_side.w, raw_side.h - 66)
         self.preview_rect = inset(right_col, 8)
 
-        self.back = pygame.Rect(root.x, root.y + 6, 170, 46)
-
-        btn_w = max(180, (self.buttons_panel.w - 22) // 2)
+        btn_w = max(156, (self.buttons_panel.w - 28) // 3)
         btn_h = 46
         self.move_to_side_btn = pygame.Rect(self.buttons_panel.x + 6, self.buttons_panel.y + 4, btn_w, btn_h)
-        self.move_to_main_btn = pygame.Rect(self.move_to_side_btn.right + 10, self.buttons_panel.y + 4, btn_w, btn_h)
+        self.move_to_main_btn = pygame.Rect(self.move_to_side_btn.right + 8, self.buttons_panel.y + 4, btn_w, btn_h)
+        self.back = pygame.Rect(self.move_to_main_btn.right + 8, self.buttons_panel.y + 4, btn_w, btn_h)
 
     def _toast(self, text: str):
         self.toast_text = str(text)
@@ -257,9 +256,6 @@ class DeckScreen:
         self._refresh_layout(s)
         s.fill(UI_THEME["bg"])
 
-        pygame.draw.rect(s, UI_THEME["panel"], self.back, border_radius=8)
-        s.blit(self.app.font.render(self.app.loc.t("menu_back"), True, UI_THEME["text"]), (self.back.x + 40, self.back.y + 10))
-
         for rect in (self.main_rect, self.side_rect, self.preview_rect):
             pygame.draw.rect(s, UI_THEME["panel"], rect, border_radius=12)
             pygame.draw.rect(s, UI_THEME["accent_violet"], rect, 2, border_radius=12)
@@ -380,7 +376,7 @@ class DeckScreen:
 
         top_preview = pygame.Rect(self.preview_rect.x + 14, self.preview_rect.y + 42, self.preview_rect.w - 28, int(self.preview_rect.h * 0.52))
         bottom_geo = pygame.Rect(self.preview_rect.x + 14, top_preview.bottom + 12, self.preview_rect.w - 28, self.preview_rect.bottom - (top_preview.bottom + 26))
-        self.preview.render(s, top_preview, selected, app=self.app)
+        self.preview.render(s, top_preview, selected, app=self.app, render_context="deck_builder")
 
         axes = self._deck_geometry_stats(deck)
         self._draw_geometry_map(s, bottom_geo, axes)
@@ -391,11 +387,16 @@ class DeckScreen:
         main_enabled = self.selected_zone == "sideboard"
         pygame.draw.rect(s, UI_THEME["violet"] if side_enabled else (84, 76, 106), self.move_to_side_btn, border_radius=10)
         pygame.draw.rect(s, UI_THEME["violet"] if main_enabled else (84, 76, 106), self.move_to_main_btn, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["panel"], self.back, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], self.back, 1, border_radius=10)
         s.blit(self.app.small_font.render("Move to Reserve", True, UI_THEME["text"]), (self.move_to_side_btn.x + 24, self.move_to_side_btn.y + 12))
         s.blit(self.app.small_font.render("Move to Deck", True, UI_THEME["text"]), (self.move_to_main_btn.x + 28, self.move_to_main_btn.y + 12))
+        back_lbl = self.app.small_font.render("Volver", True, UI_THEME["text"])
+        s.blit(back_lbl, back_lbl.get_rect(center=self.back.center))
 
         if self.toast_t > 0 and self.toast_text:
             toast_rect = pygame.Rect(self.preview_rect.right - 560, self.preview_rect.bottom - 58, 560, 52)
             pygame.draw.rect(s, UI_THEME["deep_purple"], toast_rect, border_radius=10)
             pygame.draw.rect(s, UI_THEME["gold"], toast_rect, 2, border_radius=10)
             s.blit(self.app.small_font.render(self.toast_text[:80], True, UI_THEME["text"]), (toast_rect.x + 14, toast_rect.y + 14))
+

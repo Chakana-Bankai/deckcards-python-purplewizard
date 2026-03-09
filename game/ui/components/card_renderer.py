@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import random
 
@@ -34,6 +34,7 @@ RENDER_CONTEXT_RULES = {
     "hover_view": {"pad": 12, "text_pad": 8, "title_scale": 1.0, "effect_scale": 0.96, "lore_mode": "full", "footer_mode": "full", "art_fit_mode": "contain"},
     "combat_preview": {"pad": 11, "text_pad": 7, "title_scale": 0.98, "effect_scale": 0.95, "lore_mode": "normal", "footer_mode": "compact", "art_fit_mode": "contain"},
     "deck_view": {"pad": 10, "text_pad": 7, "title_scale": 0.94, "effect_scale": 0.92, "lore_mode": "brief", "footer_mode": "compact", "art_fit_mode": "contain"},
+    "deck_builder": {"pad": 10, "text_pad": 7, "title_scale": 0.94, "effect_scale": 0.92, "lore_mode": "brief", "footer_mode": "compact", "art_fit_mode": "contain"},
     "codex_view": {"pad": 12, "text_pad": 8, "title_scale": 1.0, "effect_scale": 0.98, "lore_mode": "full", "footer_mode": "full", "art_fit_mode": "contain"},
     "shop_view": {"pad": 10, "text_pad": 7, "title_scale": 0.95, "effect_scale": 0.93, "lore_mode": "normal", "footer_mode": "compact", "art_fit_mode": "contain"},
     "pack_view": {"pad": 10, "text_pad": 7, "title_scale": 0.95, "effect_scale": 0.93, "lore_mode": "normal", "footer_mode": "compact", "art_fit_mode": "contain"},
@@ -308,10 +309,10 @@ def _layout_for(rect: pygame.Rect, preset: str, rules: dict) -> dict:
 
     ratio_header = 0.10
     ratio_art = 0.55
-    ratio_type = 0.05
-    ratio_effects = 0.16
-    ratio_lore = 0.06
-    ratio_footer = 0.03
+    ratio_type = 0.06
+    ratio_effects = 0.12
+    ratio_lore = 0.08
+    ratio_footer = 0.09
 
     h = content.h
     header_h = max(34, int(h * ratio_header))
@@ -320,16 +321,15 @@ def _layout_for(rect: pygame.Rect, preset: str, rules: dict) -> dict:
     effects_h = max(42, int(h * ratio_effects))
     lore_h = max(16, int(h * ratio_lore))
     footer_h = max(30, int(h * ratio_footer))
-    kpi_h = max(34, int(h * 0.06))
 
-    used = header_h + art_h + type_h + effects_h + lore_h + footer_h + kpi_h + gap * 6
+    used = header_h + art_h + type_h + effects_h + lore_h + footer_h + gap * 5
     if used > h:
         overflow = used - h
-        cut_effects = min(overflow, max(0, effects_h - 32))
+        cut_effects = min(overflow, max(0, effects_h - 30))
         effects_h -= cut_effects
         overflow -= cut_effects
         if overflow > 0:
-            cut_lore = min(overflow, max(0, lore_h - 14))
+            cut_lore = min(overflow, max(0, lore_h - 18))
             lore_h -= cut_lore
             overflow -= cut_lore
         if overflow > 0:
@@ -341,23 +341,20 @@ def _layout_for(rect: pygame.Rect, preset: str, rules: dict) -> dict:
     art = pygame.Rect(content.x, y, content.w, art_h)
     y = art.bottom + gap
 
-    type_w = max(106, min(210, int(content.w * 0.54)))
-    type_bar = pygame.Rect(content.x, y, type_w, type_h)
+    type_bar = pygame.Rect(content.x, y, content.w, type_h)
     y = type_bar.bottom + gap
 
-    text = pygame.Rect(content.x, y, content.w, effects_h)
-    y = text.bottom + gap
+    effects = pygame.Rect(content.x, y, content.w, effects_h)
+    y = effects.bottom + gap
     lore = pygame.Rect(content.x, y, content.w, lore_h)
     y = lore.bottom + gap
 
     footer = pygame.Rect(content.x, y, content.w, footer_h)
-    y = footer.bottom + gap
 
-    stats = pygame.Rect(content.x, y, content.w, kpi_h)
-
-    signature = pygame.Rect(footer.x + 6, footer.y + 2, max(72, int(footer.w * 0.45)), max(16, footer.h - 4))
-    footer_lore = pygame.Rect(signature.right + 4, footer.y + 2, max(62, int(footer.w * 0.30)), max(16, footer.h - 4))
-    emblem = pygame.Rect(footer.right - 86, footer.y + 1, 80, max(16, footer.h - 2))
+    type_label = pygame.Rect(type_bar.x + 8, type_bar.y + 2, max(86, int(type_bar.w * 0.62)), max(14, type_bar.h - 4))
+    emblem = pygame.Rect(type_bar.right - 112, type_bar.y + 1, 106, max(14, type_bar.h - 2))
+    author = pygame.Rect(footer.x + 8, footer.y + 2, max(92, int(footer.w * 0.52)), max(18, footer.h - 4))
+    stats = pygame.Rect(author.right + 4, footer.y + 1, max(92, footer.right - (author.right + 10)), max(18, footer.h - 2))
 
     return {
         "cfg": cfg,
@@ -365,11 +362,11 @@ def _layout_for(rect: pygame.Rect, preset: str, rules: dict) -> dict:
         "header": header,
         "art": art,
         "type_bar": type_bar,
-        "text": text,
+        "type_label": type_label,
+        "effects": effects,
         "lore": lore,
         "footer": footer,
-        "signature": signature,
-        "footer_lore": footer_lore,
+        "author": author,
         "emblem": emblem,
         "stats": stats,
     }
@@ -427,7 +424,7 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     sec = _layout_for(rect, preset, rules)
 
     # Definitive zones: header / art / type / text+lore / stats
-    for r in (sec["header"], sec["art"], sec["text"], sec["lore"], sec["footer"], sec["stats"]):
+    for r in (sec["header"], sec["art"], sec["effects"], sec["lore"], sec["footer"]):
         pygame.draw.rect(surface, (12, 11, 18, 62), r, border_radius=8)
 
     art_frame = sec["art"]
@@ -498,33 +495,54 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     type_label = _type_label(role_key, payload, tier)
     pygame.draw.rect(surface, (20, 18, 28), sec["type_bar"], border_radius=8)
     pygame.draw.rect(surface, role_col, sec["type_bar"], 1, border_radius=8)
-    type_txt = _fit_one_line(tiny_font, type_label, sec["type_bar"].w - 12)
+    type_txt = _fit_one_line(tiny_font, type_label, sec["type_label"].w - 8)
     type_lbl = tiny_font.render(type_txt, True, role_col)
-    type_y = sec["type_bar"].y + max(1, (sec["type_bar"].h - type_lbl.get_height()) // 2)
-    surface.blit(type_lbl, (sec["type_bar"].x + 7, type_y))
+    type_y = sec["type_label"].y + max(1, (sec["type_label"].h - type_lbl.get_height()) // 2)
+    surface.blit(type_lbl, (sec["type_label"].x + 2, type_y))
 
-    effects = _effect_lines(summary, model, max_lines=8)
-    density = _density_for(len(effects))
-    line_h = 16 if density == "normal" else 14 if density == "compact" else 12
-    max_effect_lines = 2 if density == "normal" else 3 if density == "compact" else 4
-    if preset in {"preview", "large"}:
-        max_effect_lines = 5 if density != "dense" else 6
-        line_h = 16 if density == "normal" else 14
-    if density == "dense" and preset in {"small", "medium"}:
-        line_h = 11
+    set_text = "HIPERBOREA" if is_hip else "BASE"
+    set_col = (226, 206, 140) if is_hip else (170, 156, 196)
+    set_lbl = _fit_one_line(tiny_font, set_text, sec["emblem"].w - 6)
+    set_surf = tiny_font.render(set_lbl, True, set_col)
+    set_y = sec["emblem"].y + max(1, (sec["emblem"].h - set_surf.get_height()) // 2)
+    surface.blit(set_surf, (sec["emblem"].x + max(3, (sec["emblem"].w - set_surf.get_width()) // 2), set_y))
+
+    effect_items = _collect_kpis(summary, payload) or [("support", 1)]
+    density = _density_for(len(effect_items))
+    row_h = 18 if density == "normal" else 16 if density == "compact" else 14
     if rules.get("effect_scale", 1.0) < 0.95:
-        line_h = max(10, line_h - 1)
+        row_h = max(12, row_h - 1)
 
-    draw_lines = effects[:max_effect_lines]
-    ty = sec["text"].y + 4
-    for ln in draw_lines:
-        prefix = "- " if density == "dense" else ""
-        eff = _fit_one_line(tiny_font, f"{prefix}{ln}", sec["text"].w - 18)
-        surface.blit(tiny_font.render(eff, True, (236, 228, 206)), (sec["text"].x + 10, ty))
-        ty += line_h
+    ex = sec["effects"].x + 8
+    ey = sec["effects"].y + max(2, (sec["effects"].h - (row_h * 2 + 2)) // 2)
+    second_row_used = False
+    for icon_name, val in effect_items:
+        token = f"{icon_name}:{val}"
+        tw = max(62, tiny_font.size(token)[0] + 34)
+        if ex + tw > sec["effects"].right - 8 and not second_row_used:
+            ex = sec["effects"].x + 8
+            ey += row_h + 2
+            second_row_used = True
+        if ex + tw > sec["effects"].right - 8:
+            break
+        token_rect = pygame.Rect(ex, ey, tw, row_h)
+        pygame.draw.rect(surface, (20, 18, 30), token_rect, border_radius=6)
+        pygame.draw.rect(surface, (120, 110, 162), token_rect, 1, border_radius=6)
+        draw_icon_with_value(
+            surface,
+            icon_name,
+            val,
+            (255, 246, 196),
+            tiny_font,
+            token_rect.x + 4,
+            token_rect.y + max(1, (token_rect.h - 18) // 2),
+            size=1,
+            min_icon_px=18,
+        )
+        ex = token_rect.right + 6
 
-    # Lore is always present; in dense mode keeps one-line brief in normal views.
-    lore_max_lines = 2 if density == "normal" else 1
+    # Lore is always present and italic with a subtle alpha in non-hover contexts.
+    lore_max_lines = 2
     if preset in {"preview", "large"}:
         lore_max_lines = 3
     if rules.get("lore_mode") == "brief":
@@ -553,44 +571,33 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     border_meta = _fit_one_line(
         tiny_font,
         f"Autor: {model.author or 'Chakana Studio'} | Orden: {model.order or 'Chakana'}",
-        rect.w - 28,
+        sec["author"].w - 6,
     )
     if footer_mode != "set_only" and border_meta:
         meta = tiny_font.render(border_meta, True, (142, 124, 176))
         meta.set_alpha(int(255 * 0.55))
-        mx = rect.x + max(8, (rect.w - meta.get_width()) // 2)
-        my = rect.bottom - meta.get_height() - 4
+        mx = sec["author"].x + max(2, (sec["author"].w - meta.get_width()) // 2)
+        my = sec["author"].y + max(1, (sec["author"].h - meta.get_height()) // 2)
         surface.blit(meta, (mx, my))
-    # Edition / set emblem zone (Base subtle, Hiperborea explicit).
-    embl = sec.get("emblem")
-    if isinstance(embl, pygame.Rect):
-        pygame.draw.rect(surface, (20, 18, 26), embl, border_radius=6)
-        pygame.draw.rect(surface, (132, 118, 164), embl, 1, border_radius=6)
-        if is_hip:
-            label = _fit_one_line(tiny_font, "Chakana Polar", embl.w - 6)
-            surface.blit(tiny_font.render(label, True, (226, 206, 140)), (embl.x + 3, embl.y + 2))
-        else:
-            surface.blit(tiny_font.render("Base", True, (170, 156, 196)), (embl.x + 6, embl.y + 2))
 
-    # KPI bar keeps size priority regardless of text density.
-    kpis = _collect_kpis(summary, payload)
-    pygame.draw.rect(surface, (12, 12, 18), sec["stats"], border_radius=8)
-    pygame.draw.rect(surface, (156, 136, 204), sec["stats"], 1, border_radius=8)
-    x = sec["stats"].x + 8
-    y = sec["stats"].y + max(2, (sec["stats"].h - 36) // 2)
-    for icon_name, val in kpis:
-        x = draw_icon_with_value(
+    stat_rect = sec["stats"]
+    pygame.draw.rect(surface, (16, 14, 24), stat_rect, border_radius=7)
+    pygame.draw.rect(surface, (132, 118, 164), stat_rect, 1, border_radius=7)
+    sx = stat_rect.x + 5
+    sy = stat_rect.y + max(1, (stat_rect.h - 16) // 2)
+    for icon_name, val in effect_items[:3]:
+        sx = draw_icon_with_value(
             surface,
             icon_name,
             val,
-            (255, 246, 196),
+            (236, 226, 194),
             tiny_font,
-            x,
-            y,
-            size=2,
-            min_icon_px=36,
+            sx,
+            sy,
+            size=1,
+            min_icon_px=16,
         )
-        if x > sec["stats"].right - 44:
+        if sx > stat_rect.right - 28:
             break
 
     if hovered:
@@ -615,6 +622,9 @@ def render_card_large(surface, rect, card, theme=None, state=None):
 
 def render_card_preview(surface, rect, card, theme=None, state=None):
     _draw_core(surface, pygame.Rect(rect), card, theme, state, preset="preview")
+
+
+
 
 
 
