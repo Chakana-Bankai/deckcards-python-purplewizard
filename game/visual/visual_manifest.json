@@ -1,6 +1,6 @@
 {
   "version": "visual_v2",
-  "generated_at": 1773046420,
+  "generated_at": 1773048351,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -4856,6 +4856,138 @@
       "size": [
         84,
         84
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:condor_feather:176x176:rare": {
+      "asset_id": "condor_feather",
+      "category": "relics",
+      "seed": 1772748561,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\condor_feather_176x176_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773048322,
+      "size": [
+        176,
+        176
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:condor_feather:18x18:rare": {
+      "asset_id": "condor_feather",
+      "category": "relics",
+      "seed": 1772748561,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\condor_feather_18x18_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773048327,
+      "size": [
+        18,
+        18
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:condor_feather:16x16:rare": {
+      "asset_id": "condor_feather",
+      "category": "relics",
+      "seed": 1772748561,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\condor_feather_16x16_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773048351,
+      "size": [
+        16,
+        16
       ],
       "state": "valid",
       "lore_tags": []
