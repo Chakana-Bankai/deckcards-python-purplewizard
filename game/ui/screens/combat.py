@@ -22,8 +22,7 @@ from game.ui.theme import UI_THEME
 from game.ui.system.layers import Layers
 from game.ui.system.components import UIPanel, UITooltip
 from game.ui.system.colors import UColors
-from game.ui.system.icons_atlas import draw_icon_with_value
-from game.ui.system.icons import icon_for_effect
+from game.ui.system.icons_atlas import draw_icon_with_value, resolve_icon
 from game.ui.components.topbar import CombatTopBar
 from game.telemetry.logger import TelemetryLogger
 
@@ -180,7 +179,7 @@ class CombatScreen:
         return self.app.small_font
 
     def _icon_id(self, effect_name: str) -> str:
-        return icon_for_effect(str(effect_name or ""))
+        return resolve_icon(str(effect_name or ""))
 
     def _refresh_layout(self, surface: pygame.Surface):
         self.layout = build_combat_layout(surface.get_width(), surface.get_height())
@@ -573,6 +572,15 @@ class CombatScreen:
         rect, _angle = self._card_pose(i, total)
         return rect
 
+    def _card_hit_rect(self, i, total):
+        """Hitbox tuned to match lifted/overlapping hand cards."""
+        rect = self._card_rect(i, total)
+        hit = rect.inflate(12, 10)
+        hover_t = float(self.hover_anim.get(i, 0.0) or 0.0)
+        if hover_t > 0.0:
+            hit = hit.inflate(10, 16)
+            hit.y -= int(10 * min(1.0, hover_t))
+        return hit
     def _art_debug_info(self, card):
         try:
             cid = card.definition.id if card else "-"
@@ -886,8 +894,9 @@ class CombatScreen:
                 self.ctrl.on_mouse_down("action")
                 return
             in_card = False
-            for i, _ in enumerate(self.c.hand[:6]):
-                if self._card_rect(i, min(6, len(self.c.hand))).collidepoint(pos):
+            total_cards = min(6, len(self.c.hand))
+            for i in reversed(range(total_cards)):
+                if self._card_hit_rect(i, total_cards).collidepoint(pos):
                     flow = getattr(self.app, "tutorial_flow", None)
                     if flow is not None:
                         flow.on_hand_clicked()
@@ -1254,9 +1263,10 @@ class CombatScreen:
         hand = self.c.hand[:6]
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.hover_card_index = None
-        for i in range(len(hand)):
-            if self._card_rect(i, len(hand)).collidepoint(mouse):
+        for i in reversed(range(len(hand))):
+            if self._card_hit_rect(i, len(hand)).collidepoint(mouse):
                 self.hover_card_index = i
+                break
         self.ctrl.on_hover(self.hover_card_index)
         for idx in range(len(hand)):
             tgt = 1.0 if idx == self.hover_card_index else 0.0
@@ -1652,3 +1662,12 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+
+
+
+
+
+
+
+

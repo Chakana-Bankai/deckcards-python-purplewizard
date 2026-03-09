@@ -88,7 +88,9 @@ class EndScreen:
                     self._advance_victory_phase()
                 else:
                     if self.app.run_state:
-                        self.app.retry_current_combat()
+                        ok = bool(self.app.retry_current_combat())
+                        if not ok:
+                            self.app.new_run()
                     else:
                         self.app.new_run()
             elif self.buttons["secondary"].collidepoint(pos):
@@ -165,3 +167,6 @@ class EndScreen:
             pygame.draw.rect(s, UI_THEME["gold"] if self.victory else UI_THEME["accent_violet"], r, 2, border_radius=12)
             txt = self.app.small_font.render(labels[k], True, UI_THEME["text"])
             s.blit(txt, txt.get_rect(center=r.center))
+
+
+

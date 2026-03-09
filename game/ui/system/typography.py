@@ -20,13 +20,13 @@ CONTEXT_FONT_SIZES: Dict[str, tuple[str, int]] = {
     "combat_title": (TITLE_FONT, FONT_CONTEXT_SIZES["combat_title"]),
     "combat_label": (HUD_FONT, FONT_CONTEXT_SIZES["combat_label"]),
     "combat_value": (HUD_FONT, FONT_CONTEXT_SIZES["combat_value"]),
-    "combat_labels": (HUD_FONT, 22),
-    "hud_numbers": (HUD_FONT, 28),
+    "combat_labels": (HUD_FONT, 24),
+    "hud_numbers": (HUD_FONT, 30),
     "card_titles": (TITLE_FONT, FONT_CONTEXT_SIZES["card_title"]),
     "card_title": (TITLE_FONT, FONT_CONTEXT_SIZES["card_title"]),
     "card_type": (HUD_FONT, FONT_CONTEXT_SIZES["card_type"]),
     "card_effect": (LORE_FONT, FONT_CONTEXT_SIZES["card_effect"]),
-    "card_body": (LORE_FONT, 20),
+    "card_body": (LORE_FONT, 22),
     "card_lore": (LORE_FONT, FONT_CONTEXT_SIZES["card_lore"]),
     "card_footer": (LORE_FONT, FONT_CONTEXT_SIZES["card_footer"]),
     "lore_text": (LORE_FONT, 22),
@@ -89,10 +89,10 @@ class ChakanaTypography:
         """Attach role fonts to app plus legacy aliases for compatibility."""
         app.typography = self
         app.font = self.get(LORE_FONT, FONT_SECTION)
-        app.small_font = self.get(LORE_FONT, FONT_LABEL)
-        app.tiny_font = self.get(SMALL_FONT, FONT_SMALL)
-        app.big_font = self.get(TITLE_FONT, 40)
-        app.card_text_font = self.get(LORE_FONT, 20)
+        app.small_font = self.get(LORE_FONT, FONT_LABEL + 2)
+        app.tiny_font = self.get(SMALL_FONT, FONT_SMALL + 1)
+        app.big_font = self.get(TITLE_FONT, 46)
+        app.card_text_font = self.get(LORE_FONT, 22)
         app.card_title_font = self.get(TITLE_FONT, 28)
         app.map_font = self.get(HUD_FONT, FONT_SECTION)
         app.button_font = self.get(BUTTON_FONT, FONT_SECTION)
@@ -100,3 +100,4 @@ class ChakanaTypography:
         app.lore_font = self.get(LORE_FONT, FONT_SECTION)
         app.title_font = self.get(TITLE_FONT, 72)
         app.font_registry = {ctx: self.get(role, sz) for ctx, (role, sz) in CONTEXT_FONT_SIZES.items()}
+

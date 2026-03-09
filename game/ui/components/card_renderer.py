@@ -314,11 +314,11 @@ def _layout_for(rect: pygame.Rect, preset: str, rules: dict) -> dict:
     gap = cfg["text_pad"]
 
     ratio_header = 0.10
-    ratio_art = 0.59
+    ratio_art = 0.60
     ratio_type = 0.06
-    ratio_effects = 0.11
-    ratio_lore = 0.08
-    ratio_footer = 0.08
+    ratio_effects = 0.13
+    ratio_lore = 0.07
+    ratio_footer = 0.06
 
     h = content.h
     header_h = max(34, int(h * ratio_header))
@@ -359,8 +359,8 @@ def _layout_for(rect: pygame.Rect, preset: str, rules: dict) -> dict:
 
     type_label = pygame.Rect(type_bar.x + 8, type_bar.y + 2, max(86, int(type_bar.w * 0.62)), max(14, type_bar.h - 4))
     emblem = pygame.Rect(type_bar.right - 112, type_bar.y + 1, 106, max(14, type_bar.h - 2))
-    author = pygame.Rect(footer.x + 8, footer.y + 2, max(92, int(footer.w * 0.52)), max(18, footer.h - 4))
-    stats = pygame.Rect(author.right + 4, footer.y + 1, max(92, footer.right - (author.right + 10)), max(18, footer.h - 2))
+    author = pygame.Rect(footer.x + 8, footer.bottom - 12, max(92, int(footer.w * 0.58)), 10)
+    stats = pygame.Rect(footer.x + 6, footer.y + 1, max(92, footer.w - 12), max(18, footer.h - 14))
 
     return {
         "cfg": cfg,
@@ -431,7 +431,7 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
 
     # Definitive zones: header / art / type / text+lore / stats
     for r in (sec["header"], sec["art"], sec["effects"], sec["lore"], sec["footer"]):
-        pygame.draw.rect(surface, (12, 11, 18, 62), r, border_radius=8)
+        pygame.draw.rect(surface, (14, 12, 20), r, border_radius=8)
 
     art_frame = sec["art"]
     pygame.draw.rect(surface, (24, 20, 30), art_frame, border_radius=9)
@@ -515,38 +515,33 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
 
     effect_items = _collect_kpis(summary, payload) or [("support", 1)]
     density = _density_for(len(effect_items))
-    row_h = 18 if density == "normal" else 16 if density == "compact" else 14
+    row_h = 17 if density == "normal" else 15 if density == "compact" else 14
     if rules.get("effect_scale", 1.0) < 0.95:
         row_h = max(12, row_h - 1)
 
+    fx_font = title_font if density == "normal" else tiny_font
     ex = sec["effects"].x + 8
     ey = sec["effects"].y + max(2, (sec["effects"].h - (row_h * 2 + 2)) // 2)
     second_row_used = False
     for icon_name, val in effect_items:
-        token = f"{icon_name}:{val}"
-        tw = max(62, tiny_font.size(token)[0] + 34)
-        if ex + tw > sec["effects"].right - 8 and not second_row_used:
+        token_w = max(56, fx_font.size(str(int(val or 0)))[0] + 30)
+        if ex + token_w > sec["effects"].right - 8 and not second_row_used:
             ex = sec["effects"].x + 8
             ey += row_h + 2
             second_row_used = True
-        if ex + tw > sec["effects"].right - 8:
+        if ex + token_w > sec["effects"].right - 8:
             break
-        token_rect = pygame.Rect(ex, ey, tw, row_h)
-        pygame.draw.rect(surface, (20, 18, 30), token_rect, border_radius=6)
-        pygame.draw.rect(surface, (120, 110, 162), token_rect, 1, border_radius=6)
-        draw_icon_with_value(
+        ex = draw_icon_with_value(
             surface,
             icon_name,
             val,
-            (255, 246, 196),
-            title_font,
-            token_rect.x + 4,
-            token_rect.y + max(1, (token_rect.h - ICON_CARD_SMALL) // 2),
+            (250, 242, 206),
+            fx_font,
+            ex,
+            ey,
             size=1,
-            min_icon_px=ICON_CARD_MEDIUM,
-        )
-        ex = token_rect.right + 6
-
+            min_icon_px=ICON_CARD_SMALL,
+        ) + 8
     # Lore is always present and italic with a subtle alpha in non-hover contexts.
     lore_max_lines = 2
     if preset in {"preview", "large"}:
@@ -581,7 +576,7 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     )
     if footer_mode != "set_only" and border_meta:
         meta = tiny_font.render(border_meta, True, (142, 124, 176))
-        meta.set_alpha(int(255 * 0.55))
+        meta.set_alpha(int(255 * 0.48))
         mx = sec["author"].x + max(2, (sec["author"].w - meta.get_width()) // 2)
         my = sec["author"].y + max(1, (sec["author"].h - meta.get_height()) // 2)
         surface.blit(meta, (mx, my))
@@ -597,11 +592,11 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
             icon_name,
             val,
             (236, 226, 194),
-            tiny_font,
+            title_font,
             sx,
             sy,
             size=1,
-            min_icon_px=ICON_CARD_MEDIUM,
+            min_icon_px=ICON_CARD_SMALL,
         )
         if sx > stat_rect.right - 28:
             break
@@ -628,6 +623,12 @@ def render_card_large(surface, rect, card, theme=None, state=None):
 
 def render_card_preview(surface, rect, card, theme=None, state=None):
     _draw_core(surface, pygame.Rect(rect), card, theme, state, preset="preview")
+
+
+
+
+
+
 
 
 

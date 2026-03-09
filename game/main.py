@@ -1005,17 +1005,23 @@ class App:
     def retry_current_combat(self):
         if not isinstance(self.run_state, dict):
             self.new_run()
-            return
+            return False
         if not self.current_node_id:
             self.goto_map()
-            return
+            return False
         node = self.node_lookup.get(self.current_node_id)
         if not isinstance(node, dict):
+            self._refresh_node_lookup_from_map()
+            node = self.node_lookup.get(self.current_node_id)
+        if not isinstance(node, dict):
             self.goto_map()
-            return
+            return False
         node['state'] = 'available'
+        # Reset transient combat references so retry rebuilds from node data.
         self.current_combat = None
+        self.run_state['last_node_type'] = str(node.get('type', self.run_state.get('last_node_type', 'combat')))
         self.enter_node(node)
+        return True
 
     def goto_menu(self):
         if self.sm.current and not isinstance(self.sm.current, MenuScreen):
@@ -2060,4 +2066,7 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
+
+
+
 

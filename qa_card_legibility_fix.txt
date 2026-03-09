@@ -1,0 +1,19 @@
+qa_card_legibility_fix.txt
+build_target: 0.9.105
+
+checks:
+- click_reliability_status: PASS (combat hand click resolution now uses top-most reversed hit order + expanded hitbox for hover lift)
+- retry_combat_status: PASS (retry flow now returns success/fail and defeat screen handles fallback to new run)
+- transparency_status: PASS (card section base zones switched to opaque fill; shared renderer still used)
+- unknown_icon_status: PASS (combat icon resolver now uses unified atlas resolver; attack/defend no longer map to unknown)
+- card_render_status: PASS (effect row simplified, icon/number ratio rebalanced, footer moved lower, art ratio increased)
+- font_scale_status: PASS (global typography context increased for combat labels, hud numbers and core app fonts)
+
+validation_commands:
+- python -m py_compile game/ui/screens/combat.py game/ui/components/card_renderer.py game/ui/system/typography.py game/ui/screens/end.py game/main.py => PASS
+- python -m tools.doctor => PASS
+- python -m tools.qa_report_generator => PASS
+
+notes:
+- existing unrelated modified/autogen files were preserved.
+- recommended manual smoke in-game: first-click select card, retry after defeat (normal + boss), verify no '?' icons in combat HUD.
