@@ -2,26 +2,33 @@
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from typing import Dict
 
 import pygame
 
-from .fonts import get_lore_font, get_title_font, get_ui_font
+from .fonts import get_lore_font, get_pixel_font, get_title_font, get_ui_font
 from .ui_scale_system import FONT_CONTEXT_SIZES, FONT_LABEL, FONT_SECTION, FONT_SMALL, FONT_TITLE
 
 TITLE_FONT = "TITLE_FONT"
 HUD_FONT = "HUD_FONT"
 LORE_FONT = "LORE_FONT"
+PIXEL_FONT = "PIXEL_FONT"
 SMALL_FONT = "SMALL_FONT"
 BUTTON_FONT = "BUTTON_FONT"
 
 CONTEXT_FONT_SIZES: Dict[str, tuple[str, int]] = {
+    "menu_title": (TITLE_FONT, FONT_CONTEXT_SIZES["menu_title"]),
+    "menu_label": (HUD_FONT, FONT_CONTEXT_SIZES["menu_label"]),
     "combat_title": (TITLE_FONT, FONT_CONTEXT_SIZES["combat_title"]),
     "combat_label": (HUD_FONT, FONT_CONTEXT_SIZES["combat_label"]),
     "combat_value": (HUD_FONT, FONT_CONTEXT_SIZES["combat_value"]),
     "combat_labels": (HUD_FONT, 24),
     "hud_numbers": (HUD_FONT, 30),
+    "hud_value": (HUD_FONT, FONT_CONTEXT_SIZES["hud_value"]),
+    "modal_title": (TITLE_FONT, FONT_CONTEXT_SIZES["modal_title"]),
+    "modal_label": (HUD_FONT, FONT_CONTEXT_SIZES["modal_label"]),
     "card_titles": (TITLE_FONT, FONT_CONTEXT_SIZES["card_title"]),
     "card_title": (TITLE_FONT, FONT_CONTEXT_SIZES["card_title"]),
     "card_type": (HUD_FONT, FONT_CONTEXT_SIZES["card_type"]),
@@ -32,10 +39,12 @@ CONTEXT_FONT_SIZES: Dict[str, tuple[str, int]] = {
     "lore_text": (LORE_FONT, 22),
     "codex_header": (TITLE_FONT, FONT_CONTEXT_SIZES["codex_header"]),
     "codex_headers": (TITLE_FONT, FONT_CONTEXT_SIZES["codex_header"]),
+    "map_title": (TITLE_FONT, FONT_CONTEXT_SIZES["map_title"]),
     "map_label": (HUD_FONT, FONT_CONTEXT_SIZES["map_label"]),
     "map_labels": (HUD_FONT, FONT_CONTEXT_SIZES["map_label"]),
     "shop_header": (TITLE_FONT, FONT_CONTEXT_SIZES["shop_header"]),
     "shop_headers": (TITLE_FONT, FONT_CONTEXT_SIZES["shop_header"]),
+    "special_pixel_label": (PIXEL_FONT, FONT_CONTEXT_SIZES["special_pixel_label"]),
 }
 
 
@@ -60,6 +69,7 @@ class ChakanaTypography:
         TITLE_FONT: FONT_TITLE,
         HUD_FONT: 30,
         LORE_FONT: FONT_SECTION,
+        PIXEL_FONT: FONT_LABEL,
         SMALL_FONT: FONT_LABEL,
         BUTTON_FONT: FONT_SECTION,
     }
@@ -67,6 +77,7 @@ class ChakanaTypography:
     def __init__(self):
         self.palette = TypographyPalette()
         self._warned: set[str] = set()
+        self._debug = str(os.environ.get("CHAKANA_FONT_DEBUG", "0")).strip().lower() in {"1", "true", "yes"}
 
     def get(self, role: str, size: int | None = None) -> pygame.font.Font:
         if not pygame.font.get_init():
@@ -77,6 +88,8 @@ class ChakanaTypography:
                 return get_title_font(sz)
             if role == LORE_FONT:
                 return get_lore_font(sz)
+            if role == PIXEL_FONT:
+                return get_pixel_font(sz)
             return get_ui_font(sz)
         except Exception as exc:
             key = role
@@ -85,13 +98,20 @@ class ChakanaTypography:
                 print(f"[typography] warning: fallback default font role={role} size={sz} err={exc}")
             return pygame.font.Font(None, sz)
 
+    def for_context(self, app, context: str, fallback_attr: str = "small_font") -> pygame.font.Font:
+        reg = getattr(app, "font_registry", {}) or {}
+        font = reg.get(str(context or ""))
+        if font is not None:
+            return font
+        return getattr(app, fallback_attr, getattr(app, "font", pygame.font.Font(None, FONT_SECTION)))
+
     def apply_to_app(self, app):
         """Attach role fonts to app plus legacy aliases for compatibility."""
         app.typography = self
         app.font = self.get(LORE_FONT, FONT_SECTION)
-        app.small_font = self.get(LORE_FONT, FONT_LABEL + 2)
-        app.tiny_font = self.get(SMALL_FONT, FONT_SMALL + 1)
-        app.big_font = self.get(TITLE_FONT, 46)
+        app.small_font = self.get(LORE_FONT, FONT_LABEL + 3)
+        app.tiny_font = self.get(SMALL_FONT, FONT_SMALL + 2)
+        app.big_font = self.get(TITLE_FONT, 48)
         app.card_text_font = self.get(LORE_FONT, 22)
         app.card_title_font = self.get(TITLE_FONT, 28)
         app.map_font = self.get(HUD_FONT, FONT_SECTION)
@@ -99,5 +119,9 @@ class ChakanaTypography:
         app.hud_font = self.get(HUD_FONT, 30)
         app.lore_font = self.get(LORE_FONT, FONT_SECTION)
         app.title_font = self.get(TITLE_FONT, 72)
+        app.special_pixel_font = self.get(PIXEL_FONT, FONT_CONTEXT_SIZES["special_pixel_label"])
         app.font_registry = {ctx: self.get(role, sz) for ctx, (role, sz) in CONTEXT_FONT_SIZES.items()}
-
+        app.get_font_context = lambda context, fallback_attr="small_font": self.for_context(app, context, fallback_attr)
+        if self._debug:
+            for ctx, font in sorted(app.font_registry.items()):
+                print(f"[typography] context={ctx} size={font.get_height()}")

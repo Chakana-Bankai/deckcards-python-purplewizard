@@ -58,6 +58,7 @@ def _candidates(root: Path) -> dict[str, tuple[Path, ...]]:
     return {
         "title": (root / "chakana_title.ttf", root / "title.ttf"),
         "ui": (root / "chakana_ui.ttf", root / "chakana_pixel.ttf", root / "ui.ttf"),
+        "pixel": (root / "chakana_pixel.ttf", root / "chakana_ui.ttf", root / "ui.ttf"),
         "lore": (root / "chakana_lore.ttf", root / "lore.ttf"),
         "mono": (root / "chakana_mono.ttf", root / "mono.ttf", root / "chakana_ui.ttf"),
     }
@@ -101,6 +102,10 @@ def get_title_font(size: int) -> pygame.font.Font:
 
 def get_ui_font(size: int) -> pygame.font.Font:
     return get_font("ui", size)
+
+
+def get_pixel_font(size: int) -> pygame.font.Font:
+    return get_font("pixel", size)
 
 
 def get_lore_font(size: int) -> pygame.font.Font:

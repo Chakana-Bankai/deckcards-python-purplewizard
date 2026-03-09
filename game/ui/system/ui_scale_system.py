@@ -23,17 +23,24 @@ SECTION_GAP = 6
 TEXT_SAFE_PADDING = 8
 
 FONT_CONTEXT_SIZES: dict[str, int] = {
+    "menu_title": 44,
+    "menu_label": FONT_SECTION,
     "combat_title": FONT_SECTION,
     "combat_label": FONT_LABEL,
     "combat_value": FONT_SECTION,
+    "modal_title": 30,
+    "modal_label": FONT_LABEL,
+    "map_title": 28,
+    "map_label": FONT_LABEL,
     "card_title": 28,
     "card_type": FONT_SMALL,
     "card_effect": FONT_SMALL,
     "card_lore": FONT_SMALL,
     "card_footer": FONT_TINY,
+    "hud_value": FONT_SECTION,
     "codex_header": FONT_SECTION,
-    "map_label": FONT_SMALL,
     "shop_header": FONT_SECTION,
+    "special_pixel_label": FONT_SMALL + 2,
 }
 
 ICON_SIZE_PROFILE: dict[str, int] = {

@@ -52,14 +52,14 @@ class CardPreviewPanel:
             pygame.draw.rect(surface, self.theme["accent_violet"], panel, 2, border_radius=12)
 
             if self.app is not None:
-                surface.blit(self.app.small_font.render("Previsualizacion", True, self.theme["gold"]), (panel.x + 14, panel.y + 12))
+                title_font = self.app.get_font_context("modal_title", "small_font") if hasattr(self.app, "get_font_context") else self.app.small_font
+                surface.blit(title_font.render("Previsualizacion", True, self.theme["gold"]), (panel.x + 14, panel.y + 12))
 
             if self._card is None:
                 if self.app is not None:
                     surface.blit(self.app.tiny_font.render("Pasa el cursor sobre una carta.", True, self.theme["muted"]), (panel.x + 14, panel.y + 40))
                 return
 
-            # Framework lock: preview/modal sizes with strict contained fit (no stretch).
             card_area = panel.inflate(-28, -52)
             card_area.y += 18
             card_area.h = max(120, card_area.h - 18)
@@ -83,4 +83,3 @@ class CardPreviewPanel:
             pygame.draw.rect(surface, self.theme.get("accent_violet", (120, 80, 170)), rect, 2, border_radius=12)
             if self.app is not None:
                 surface.blit(self.app.small_font.render("Preview no disponible", True, self.theme.get("muted", (180, 170, 200))), (rect.x + 14, rect.y + 14))
-

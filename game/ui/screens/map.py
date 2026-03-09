@@ -339,6 +339,8 @@ class MapScreen:
 
     def _draw_top_buttons(self, s, topbar: pygame.Rect):
         labels = [("deck", "Mazo"), ("shop", "Tienda"), ("codex", "Codex")]
+        reg = getattr(self.app, "font_registry", {}) or {}
+        pix_font = reg.get("special_pixel_label", self.app.tiny_font)
         x = topbar.right - 430
         y = topbar.y + 54
         for key, label in labels:
@@ -346,7 +348,7 @@ class MapScreen:
             self.top_buttons[key] = rect
             pygame.draw.rect(s, UI_THEME["panel_2"], rect, border_radius=9)
             pygame.draw.rect(s, UI_THEME["gold"] if key != "shop" else UI_THEME["accent_violet"], rect, 2, border_radius=9)
-            txt = self.app.tiny_font.render(label, True, UI_THEME["text"])
+            txt = pix_font.render(label, True, UI_THEME["text"])
             s.blit(txt, txt.get_rect(center=rect.center))
             x += 142
 
@@ -369,6 +371,13 @@ class MapScreen:
         stage_title = self.STAGE_TITLES[min(stage_idx, len(self.STAGE_TITLES) - 1)]
         stage_thought = self.CHAKANA_THOUGHTS[min(stage_idx, len(self.CHAKANA_THOUGHTS) - 1)]
 
+        reg = getattr(self.app, "font_registry", {}) or {}
+        map_title_font = reg.get("map_title", self.app.small_font)
+        map_label_font = reg.get("map_label", self.app.tiny_font)
+        modal_title_font = reg.get("modal_title", self.app.small_font)
+        hud_value_font = reg.get("hud_value", self.app.small_font)
+        pixel_label_font = reg.get("special_pixel_label", self.app.tiny_font)
+
         lvl = int(run.get("level", 1) or 1)
         xp = int(run.get("xp", 0) or 0)
         xp_need = self.app.xp_needed_for_level(lvl) if hasattr(self.app, "xp_needed_for_level") else max(1, lvl * 20)
@@ -386,7 +395,7 @@ class MapScreen:
             UIPanel(r).draw(s)
 
         # Left panel: mage journey state.
-        s.blit(self.app.small_font.render("Chakana", True, UI_THEME["gold"]), (left_rect.x + 16, left_rect.y + 14))
+        s.blit(map_title_font.render("Chakana", True, UI_THEME["gold"]), (left_rect.x + 16, left_rect.y + 14))
         avatar = self.app.assets.sprite("avatar", "codex", (118, 118), fallback=(86, 56, 132))
         s.blit(avatar, avatar.get_rect(center=(left_rect.centerx, left_rect.y + 110)).topleft)
 
@@ -412,16 +421,16 @@ class MapScreen:
             row = pygame.Rect(left_rect.x + 12, y, left_rect.w - 24, 36)
             pygame.draw.rect(s, UI_THEME["panel_2"], row, border_radius=8)
             pygame.draw.rect(s, col, row, 1, border_radius=8)
-            draw_icon_with_value(s, icon_name, icon_val, col, self.app.tiny_font, row.x + 8, row.y + 8, size=2)
-            s.blit(self.app.tiny_font.render(label, True, UI_THEME["muted"]), (row.x + 60, row.y + 4))
-            value_txt = self.app.small_font.render(val_text, True, col)
+            draw_icon_with_value(s, icon_name, icon_val, col, map_label_font, row.x + 8, row.y + 8, size=2)
+            s.blit(map_label_font.render(label, True, UI_THEME["muted"]), (row.x + 60, row.y + 4))
+            value_txt = hud_value_font.render(val_text, True, col)
             s.blit(value_txt, (row.right - value_txt.get_width() - 10, row.y + 9))
             y += 42
 
         relic_strip = pygame.Rect(left_rect.x + 12, y + 2, left_rect.w - 24, 78)
         pygame.draw.rect(s, UI_THEME["panel_2"], relic_strip, border_radius=8)
         pygame.draw.rect(s, UI_THEME["accent_violet"], relic_strip, 1, border_radius=8)
-        s.blit(self.app.tiny_font.render("Reliquias activas", True, UI_THEME["gold"]), (relic_strip.x + 8, relic_strip.y + 4))
+        s.blit(pixel_label_font.render("Reliquias activas", True, UI_THEME["gold"]), (relic_strip.x + 8, relic_strip.y + 4))
         relic_by_id = {str(r.get("id")): r for r in list(getattr(self.app, "relics_data", []) or []) if isinstance(r, dict) and r.get("id")}
 
         # 3x3 compact grid (up to 9) for better relic visibility.
@@ -446,14 +455,14 @@ class MapScreen:
 
         y += 84
         path_text = ", ".join([str(x) for x in blessings[-2:]]) if blessings else "Sin bendicion activa"
-        s.blit(self.app.tiny_font.render("Camino activo", True, UI_THEME["gold"]), (left_rect.x + 16, y + 4))
+        s.blit(pixel_label_font.render("Camino activo", True, UI_THEME["gold"]), (left_rect.x + 16, y + 4))
         for i, line in enumerate(self._wrap_lines(self.app.tiny_font, path_text, left_rect.w - 28, 2)):
             s.blit(self.app.tiny_font.render(line, True, UI_THEME["muted"]), (left_rect.x + 16, y + 24 + i * 16))
 
         lore_box = pygame.Rect(left_rect.x + 14, left_rect.bottom - 108, left_rect.w - 28, 92)
         pygame.draw.rect(s, UI_THEME["panel_2"], lore_box, border_radius=10)
         pygame.draw.rect(s, UI_THEME["accent_violet"], lore_box, 1, border_radius=10)
-        s.blit(self.app.tiny_font.render("Cronica del viaje", True, UI_THEME["gold"]), (lore_box.x + 8, lore_box.y + 8))
+        s.blit(pixel_label_font.render("Cronica del viaje", True, UI_THEME["gold"]), (lore_box.x + 8, lore_box.y + 8))
         lore_lines = self._wrap_lines(self.app.small_font, stage_thought, lore_box.w - 14, 2)
         for i, line in enumerate(lore_lines):
             s.blit(self.app.small_font.render(line, True, UI_THEME["muted"]), (lore_box.x + 8, lore_box.y + 30 + i * 22))
@@ -466,7 +475,7 @@ class MapScreen:
         center_badge = pygame.Rect(center_rect.x + 14, center_rect.y + 12, 220, 24)
         pygame.draw.rect(s, UI_THEME["panel_2"], center_badge, border_radius=7)
         pygame.draw.rect(s, UI_THEME["gold"], center_badge, 1, border_radius=7)
-        s.blit(self.app.tiny_font.render(f"Etapa {stage_idx + 1} - {stage_title}", True, UI_THEME["gold"]), (center_badge.x + 8, center_badge.y + 5))
+        s.blit(pixel_label_font.render(f"Etapa {stage_idx + 1} - {stage_title}", True, UI_THEME["gold"]), (center_badge.x + 8, center_badge.y + 5))
         # Chakana branch lane hints for fast route readability.
         lane_ys = [
             center_rect.y + int(center_rect.h * 0.24),
@@ -478,7 +487,7 @@ class MapScreen:
             if idx >= len(lane_ys):
                 break
             yy = lane_ys[idx]
-            lane_txt = self.app.tiny_font.render(f"{axis} - {branch}", True, UI_THEME["muted"])
+            lane_txt = map_label_font.render(f"{axis} - {branch}", True, UI_THEME["muted"])
             s.blit(lane_txt, (center_rect.x + 16, yy))
 
         self._refresh_graph_layout(run)
@@ -559,7 +568,7 @@ class MapScreen:
 
         # Right panel: archon anticipation.
         archon_id, archon_name, archon_line = self._archon_data()
-        s.blit(self.app.small_font.render("Presagio del Arconte", True, UI_THEME["gold"]), (right_rect.x + 14, right_rect.y + 14))
+        s.blit(modal_title_font.render("Presagio del Arconte", True, UI_THEME["gold"]), (right_rect.x + 14, right_rect.y + 14))
         archon_rect = pygame.Rect(right_rect.x + 24, right_rect.y + 46, right_rect.w - 48, 220)
         pygame.draw.rect(s, UI_THEME["panel_2"], archon_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], archon_rect, 1, border_radius=12)
@@ -576,7 +585,7 @@ class MapScreen:
         progress_box = pygame.Rect(right_rect.x + 14, right_rect.bottom - 118, right_rect.w - 28, 102)
         pygame.draw.rect(s, UI_THEME["panel_2"], progress_box, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], progress_box, 1, border_radius=10)
-        s.blit(self.app.tiny_font.render("Frente ritual", True, UI_THEME["gold"]), (progress_box.x + 8, progress_box.y + 8))
+        s.blit(pixel_label_font.render("Frente ritual", True, UI_THEME["gold"]), (progress_box.x + 8, progress_box.y + 8))
         civ_indicator = civilization_title(str(run.get("civilization") or "base_world"))
         progress_txt = f"Pacha: {self.selected_biome}   Arconte: {archon_id}   Civilizacion: {civ_indicator}"
         s.blit(self.app.tiny_font.render(self._fit_text(self.app.tiny_font, progress_txt, progress_box.w - 14), True, UI_THEME["muted"]), (progress_box.x + 8, progress_box.y + 30))
@@ -612,6 +621,10 @@ class MapScreen:
             if tip_rect.y < 10:
                 tip_rect.y = 10
             UITooltip(tip_rect, relic_hover_text).draw(s, self.app.tiny_font)
+
+
+
+
 
 
 

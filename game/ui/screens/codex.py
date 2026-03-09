@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 
@@ -372,8 +372,14 @@ class CodexScreen:
             particles_on=self.app.user_settings.get("fx_particles", True),
         )
 
-        UIPanel(self.left_panel, variant="panel", title="Codex").draw(s, self.app.small_font)
-        UIPanel(self.right_panel, variant="alt", title="Contenido").draw(s, self.app.small_font)
+        reg = getattr(self.app, "font_registry", {}) or {}
+        modal_title_font = reg.get("modal_title", self.app.small_font)
+        modal_label_font = reg.get("modal_label", self.app.tiny_font)
+        codex_header_font = reg.get("codex_header", self.app.big_font)
+        pixel_label_font = reg.get("special_pixel_label", self.app.tiny_font)
+
+        UIPanel(self.left_panel, variant="panel", title="Codex").draw(s, modal_title_font)
+        UIPanel(self.right_panel, variant="alt", title="Contenido").draw(s, modal_title_font)
 
         portrait = self.app.assets.sprite("avatar", "chakana_mage_concept", (84, 84), fallback=(86, 56, 132))
         s.blit(portrait, (self.left_panel.x + self.left_panel.w - 106, self.left_panel.y + 10))
@@ -383,12 +389,12 @@ class CodexScreen:
             sec = self.section_by_id.get(sid, {})
             label = str(sec.get("title", sid)).strip() or sid
             role = "execute" if sid == self.active_section_id else "default"
-            UIButton(rect, label, role=role, premium=(sid == self.active_section_id)).draw(s, self.app.tiny_font, hovered=rect.collidepoint(mouse))
+            UIButton(rect, label, role=role, premium=(sid == self.active_section_id)).draw(s, modal_label_font, hovered=rect.collidepoint(mouse))
 
         active = self._active_section()
         active_id = str(active.get("id", ""))
         title = str(active.get("title", "Codex"))
-        s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (self.right_panel.x + 20, self.right_panel.y + 20))
+        s.blit(codex_header_font.render(title, True, UI_THEME["gold"]), (self.right_panel.x + 20, self.right_panel.y + 20))
 
         if active_id == "cards":
             tabs = [("all", "Todo"), ("base", "Base"), ("hiperborea", "Hiperborea"), ("relics", "Relics"), ("lore", "Lore")]
@@ -402,7 +408,7 @@ class CodexScreen:
                 on = (tid == self.card_set_tab)
                 pygame.draw.rect(s, UI_THEME["panel_2"], tr, border_radius=8)
                 pygame.draw.rect(s, UI_THEME["gold"] if on else UI_THEME["accent_violet"], tr, 2 if on else 1, border_radius=8)
-                s.blit(self.app.tiny_font.render(lbl, True, UI_THEME["gold"] if on else UI_THEME["muted"]), (tr.x + 8, tr.y + 6))
+                s.blit(pixel_label_font.render(lbl, True, UI_THEME["gold"] if on else UI_THEME["muted"]), (tr.x + 8, tr.y + 6))
                 tx += tr.w + 8
             self._draw_cards_gallery(s)
             y = self.right_panel.bottom - 86
@@ -432,6 +438,8 @@ class CodexScreen:
 
         UIButton(self.back_btn, "Volver", role="default", premium=False).draw(s, self.app.font, hovered=self.back_btn.collidepoint(mouse))
         UIButton(self.tutorial_btn, "Iniciar Tutorial Guiado", role="end_turn", premium=True).draw(s, self.app.font, hovered=self.tutorial_btn.collidepoint(mouse))
+
+
 
 
 

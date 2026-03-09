@@ -156,9 +156,9 @@ class ModalBase:
     # Legacy compatibility adapter for callers that still use modal.render(...).
     def render(self, surface: pygame.Surface, title_font=None, body_font=None):
         if title_font is None or not hasattr(title_font, "render"):
-            title_font = ChakanaTypography().get(BUTTON_FONT, 28)
+            title_font = ChakanaTypography().get(BUTTON_FONT, 34)
         if body_font is None or not hasattr(body_font, "render"):
-            body_font = ChakanaTypography().get(LORE_FONT, 22)
+            body_font = ChakanaTypography().get(LORE_FONT, 23)
         self._render_chrome(surface, title_font, body_font)
 
     def update(self, dt: float):
@@ -337,7 +337,9 @@ class CardGridModal(ModalBase):
         return True
 
     def render(self, surface: pygame.Surface, app):
-        chrome = self._render_chrome(surface, app.big_font, app.small_font)
+        title_font = app.get_font_context("modal_title", "big_font") if hasattr(app, "get_font_context") else app.big_font
+        body_font = app.get_font_context("modal_label", "small_font") if hasattr(app, "get_font_context") else app.small_font
+        chrome = self._render_chrome(surface, title_font, body_font)
         if chrome is None:
             return
         _panel, _header, body, _footer, _confirm, _cancel = chrome
@@ -390,9 +392,9 @@ class LoreModal(ModalBase):
             title_font = app.big_font
             body_font = app.small_font
         if title_font is None or not hasattr(title_font, "render"):
-            title_font = ChakanaTypography().get(BUTTON_FONT, 28)
+            title_font = ChakanaTypography().get(BUTTON_FONT, 34)
         if body_font is None or not hasattr(body_font, "render"):
-            body_font = ChakanaTypography().get(LORE_FONT, 22)
+            body_font = ChakanaTypography().get(LORE_FONT, 23)
         chrome = self._render_chrome(surface, title_font, body_font)
         if chrome is None:
             return
@@ -435,5 +437,7 @@ class LoreModal(ModalBase):
 def modal_preview_columns(panel_rect: pygame.Rect):
     """Helper for card/lore modals with preview columns."""
     return build_modal_preview_layout(panel_rect)
+
+
 
 
