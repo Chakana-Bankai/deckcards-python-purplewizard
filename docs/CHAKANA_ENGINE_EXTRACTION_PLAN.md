@@ -85,3 +85,10 @@ This document defines a safe extraction path from the current game codebase into
 - Added reusable relic inventory helpers in runtime (_relic_slot_limit, _add_relics_to_inventory).
 - Enforced non-breaking relic slot cap (8) across rewards/shop.
 - Map/combat HUD now surface relic occupancy (x/slots) for clarity.
+
+## 2026-03-09 - Fase 6 Meta Engine 1.0 (Safe)
+
+- Added lightweight MetaDirector runtime module (game/systems/meta_director.py).
+- Non-destructive anti-repetition hooks integrated in enemy/event selection.
+- Direction tags (`visual_direction_tags`, `audio_direction_tags`) now tracked in run-state for future engine extraction.
+

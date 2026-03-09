@@ -16,7 +16,7 @@ class ShopScreen:
         hip_pool = [c for c in all_cards if str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower()]
         base_pool = [c for c in all_cards if c not in hip_pool] or list(all_cards)
         stage_level = int(run.get("level", 1) or 1)
-        hip_chance = 0.0 if stage_level < 3 else 0.25 if stage_level < 5 else 0.45
+        hip_chance = float(getattr(getattr(self.app, "meta_director", None), "hiperborea_chance", lambda r, lvl: (0.0 if lvl < 3 else (0.25 if lvl < 5 else 0.45)))(run, stage_level))
         source_pool = hip_pool if hip_pool and self.app.rng.random() < hip_chance else all_cards
 
         self.offer_card = self.app.rng.choice(source_pool or all_cards or [offer_card]) if all_cards else offer_card
@@ -97,6 +97,8 @@ class ShopScreen:
         self.app.run_state["sideboard"].append(card["id"])
         if hasattr(self.app, '_queue_set_discovery') and hasattr(self.app, '_detect_card_set'):
             self.app._queue_set_discovery(self.app._detect_card_set(card.get('id', '')))
+        if hasattr(getattr(self.app, "meta_director", None), "remember"):
+            self.app.meta_director.remember(self.app.run_state, "recent_shop_card_ids", str(card.get("id", "")), cap=5)
         self.msg = f"{tag}: {self.app.loc.t(card.get('name_key', card['id']))}"
 
     def _buy_artifact(self):

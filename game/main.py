@@ -65,6 +65,7 @@ from game.services.archetype_distribution import enforce_archetype_rarity_distri
 from game.systems.enemy_intent_deck import build_enemy_intent_deck, infer_ai_profile, infer_enemy_type
 from game.visual import get_visual_engine
 from game.systems.reward_system import build_reward_boss, build_reward_guide, build_reward_normal
+from game.systems.meta_director import MetaDirector
 from game.ui.screens.loading import LoadingScreen, DataLoadingScreen
 
 DEFAULT_CARDS = [
@@ -196,6 +197,7 @@ class App:
         self.pending_tutorial_enabled = False
         self.story_intro_seen = False
         self.tutorial_flow = TutorialFlowController()
+        self.meta_director = MetaDirector()
         self._boot_content_ready = False
         self.pending_scene_reveal = None
 
@@ -1070,10 +1072,12 @@ class App:
         self.run_state['tutorial_combats_won'] = tutorial_wins
         unlocked = 'hiperboria' in seen
         self.run_state['hiperboria_unlocked'] = bool(unlocked)
-        if (not unlocked) and tutorial_wins >= 3:
+        unlock_target = int(self.meta_director.set_unlock_target())
+        self.run_state['hiperboria_unlock_target'] = unlock_target
+        if (not unlocked) and tutorial_wins >= unlock_target:
             self._queue_set_discovery('hiperboria')
             self.run_state['hiperboria_unlocked'] = True
-            print(f"[content] hiperboria unlocked tutorial_combats={tutorial_wins}")
+            print(f"[content] hiperboria unlocked tutorial_combats={tutorial_wins} target={unlock_target}")
             return True
         return False
 
@@ -1235,6 +1239,7 @@ class App:
         self._refresh_node_lookup_from_map()
         self.recover_map_progression()
         self._refresh_set_unlock_state()
+        self.meta_director.ensure_state(self.run_state)
         print("[save] continue run restored")
 
     def _clear_saved_run(self):
@@ -1370,6 +1375,7 @@ class App:
         self.current_node_id = None
         self.current_combat = None
         self._sync_tutorial_run_state()
+        self.meta_director.ensure_state(self.run_state)
         self._refresh_set_unlock_state()
         self._autosave_run("new_run_started")
         self.trigger_oracle("run_start")
@@ -1473,6 +1479,7 @@ class App:
         self.debug["map_available_count"] = self.available_nodes_count() if self.node_lookup else 0
         self.debug["current_node_id"] = self.current_node_id or "-"
         biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
+        self.meta_director.register_direction_tags(self.run_state, biome_track, "map")
         if self.last_biome_seen is None:
             self.last_biome_seen = biome_track
             self.sm.set(PachaTransitionScreen(self, "Comienza la Trama", lambda: self.sm.set(MapScreen(self)), lore_line="Chakana abrio su primer sendero.", hint="Pulsa cualquier tecla para caminar"))
@@ -1551,7 +1558,20 @@ class App:
     def goto_event(self):
         biome = self._normalize_biome_id((self.run_state or {}).get("biome"))
         pool = self._event_pool_for_biome(biome)
-        event = self.rng.choice(pool) if pool else {"title_key": "map_title", "body_key": "lore_tagline", "choices": [{"text_key": "event_continue", "effects": []}]}
+        event = {"title_key": "map_title", "body_key": "lore_tagline", "choices": [{"text_key": "event_continue", "effects": []}]}
+        if pool:
+            idx_to_id = []
+            for i, ev in enumerate(pool):
+                if not isinstance(ev, dict):
+                    continue
+                eid = str(ev.get("id") or ev.get("title_key") or f"event_{i}")
+                idx_to_id.append((eid, i))
+            picked_id = self.meta_director.anti_repeat_choice(self.run_state, self.rng, "recent_event_ids", [x[0] for x in idx_to_id], cap=5)
+            picked_idx = next((i for eid, i in idx_to_id if eid == picked_id), None)
+            if picked_idx is None:
+                picked_idx = self.rng.randint(0, len(pool) - 1)
+            event = pool[picked_idx]
+        self.meta_director.register_direction_tags(self.run_state, biome, "event")
         self.trigger_oracle("event_node", payload=event)
         self.sm.set(EventScreen(self, event))
         self.music.play_for(self.get_bgm_track("events"))
@@ -1651,6 +1671,7 @@ class App:
     def enter_node(self, node):
         raw_type = str(node.get("type", "combat") or "combat")
         node_type = raw_type
+        self.meta_director.register_direction_tags(self.run_state, self._normalize_biome_id(node.get("biome") or (self.run_state or {}).get("biome")), node_type)
         if node_type == "relic":
             node_type = "treasure"
         if node_type == "elite":
@@ -1666,7 +1687,9 @@ class App:
                 else:
                     enemy_ids = [self.rng.choice(boss_ids)]
             else:
-                enemy_ids = [self.rng.choice(self._enemy_pool(node))]
+                epool = self._enemy_pool(node)
+                chosen_enemy = self.meta_director.anti_repeat_choice(self.run_state, self.rng, "recent_enemy_ids", epool, cap=5) if epool else None
+                enemy_ids = [chosen_enemy or self.rng.choice(epool)]
             self.run_state["last_node_type"] = node_type
             base_state = CombatState(self.rng, self.run_state, enemy_ids, cards_data=self._combat_card_catalog(), enemies_data=self.enemies_data)
             self._apply_relic_combat_start_effects(base_state)

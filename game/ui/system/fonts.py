@@ -74,19 +74,27 @@ def get_font(name: str, size: int) -> pygame.font.Font:
     root = _fonts_root()
     font = None
     source = ""
+    missing_files: list[str] = []
+    load_errors: list[str] = []
     for path in _candidates(root).get(name, ()):  # prioritized
         try:
             if path.exists():
                 font = pygame.font.Font(str(path), int(size))
                 source = str(path.name)
                 break
-            _warn(name, size, f"missing_file:{path.name}")
+            missing_files.append(path.name)
         except Exception as exc:
-            _warn(name, size, f"font_load_error:{path.name}:{exc}")
+            load_errors.append(f"{path.name}:{exc}")
             font = None
 
     if font is None:
-        _warn(name, size, "pygame_default")
+        if load_errors:
+            _warn(name, size, f"pygame_default:font_load_error:{load_errors[0]}")
+        elif missing_files:
+            sample = ",".join(missing_files[:3])
+            _warn(name, size, f"pygame_default:missing_candidates:{sample}")
+        else:
+            _warn(name, size, "pygame_default:no_candidates")
         _FONT_STATS["fallback"] = int(_FONT_STATS.get("fallback", 0)) + 1
         font = pygame.font.Font(None, int(size))
         source = "pygame_default"

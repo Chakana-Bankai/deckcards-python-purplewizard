@@ -56,8 +56,7 @@ class PackOpeningScreen:
     def _card_pool_by_pack(self, pack_id: str):
         run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
         level = int(run.get("level", 1) or 1)
-        hip_unlocked = bool(getattr(self.app, 'is_set_unlocked', lambda _sid: False)('hiperboria'))
-        hip_chance = 0.0 if (not hip_unlocked) else (0.25 if level < 5 else 0.45)
+        hip_chance = float(getattr(getattr(self.app, "meta_director", None), "hiperborea_chance", lambda run, lvl: (0.0 if lvl < 3 else (0.25 if lvl < 5 else 0.45)))(run, level))
         use_hip = bool(self.hip_pool) and self.app.rng.random() < hip_chance
         pool = list(self.hip_pool if use_hip else self.base_pool)
         if not pool:
@@ -83,6 +82,8 @@ class PackOpeningScreen:
         self.selected_card = None
         self.hover_card = None
         pack = self.pack_defs[idx]
+        if hasattr(getattr(self.app, "meta_director", None), "remember"):
+            self.app.meta_director.remember(self.app.run_state, "recent_pack_ids", str(pack.get("id", "normal_pack")), cap=4)
         pool, leg_pool, rare_pool, uncommon_pool, common_pool = self._card_pool_by_pack(pack["id"])
 
         self.legendary_pick_mode = bool(self.app.user_settings.get("pack_legendary_pick_enabled", True)) and self.app.rng.random() < 0.18
