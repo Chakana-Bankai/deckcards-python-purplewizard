@@ -17,11 +17,9 @@ def _fonts_root() -> Path:
 
 
 def _fallback_chain(name: str):
-    if name == "title":
-        return ["dejavusans", "arial"]
-    if name == "lore":
-        return ["dejavuserif", "timesnewroman", "arial"]
-    return ["dejavusans", "arial"]
+    # Engine-safe: avoid OS/system font dependency for deterministic visual identity.
+    _ = name
+    return []
 
 
 def _warn(name: str, size: int, reason: str):
@@ -37,9 +35,9 @@ def _candidates(root: Path) -> dict[str, tuple[Path, ...]]:
     # New personalized pipeline first, legacy names second.
     return {
         "title": (root / "chakana_title.ttf", root / "title.ttf"),
-        "ui": (root / "chakana_ui.ttf", root / "ui.ttf"),
+        "ui": (root / "chakana_ui.ttf", root / "chakana_pixel.ttf", root / "ui.ttf"),
         "lore": (root / "chakana_lore.ttf", root / "lore.ttf"),
-        "mono": (root / "chakana_ui.ttf", root / "mono.ttf"),
+        "mono": (root / "chakana_mono.ttf", root / "mono.ttf", root / "chakana_ui.ttf"),
     }
 
 
@@ -64,14 +62,7 @@ def get_font(name: str, size: int) -> pygame.font.Font:
             font = None
 
     if font is None:
-        for fallback in _fallback_chain(name):
-            try:
-                font = pygame.font.SysFont(fallback, int(size))
-                break
-            except Exception as exc:
-                _warn(name, size, f"sysfont_error:{fallback}:{exc}")
-                font = None
-    if font is None:
+        # No system-font probing: go directly to pygame default fallback.
         _warn(name, size, "pygame_default")
         font = pygame.font.Font(None, int(size))
 

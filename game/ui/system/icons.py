@@ -39,7 +39,7 @@ ICON_ALIASES = {
     "weak": "support",
     "debuff": "support",
     "chain": "combo",
-    "heal": "hp",
+    "heal": "heal",
     "retain": "retain",
     "exhaust": "exhaust",
     "exhaust_self": "exhaust",
@@ -47,6 +47,7 @@ ICON_ALIASES = {
 
 FALLBACK_TEXT = {
     "hp": "+",
+    "heal": "+",
     "damage": "*",
     "block": "#",
     "energy": "!",
@@ -84,6 +85,7 @@ def normalize_icon_name(icon_name: str) -> str:
     key = str(icon_name or "unknown").strip().lower()
     semantic = {
         "hp",
+        "heal",
         "damage",
         "block",
         "energy",
@@ -180,6 +182,10 @@ def _render_icon_surface(icon_name: str, color: tuple[int, int, int], size: int)
         pygame.draw.circle(surf, c, (mid, mid), max(1, scale), 0)
         _stroke(surf, c, [(mid, 4 * scale), (mid, 10 * scale)], lw)
         _stroke(surf, c, [(4 * scale, mid), (10 * scale, mid)], lw)
+    elif key == "heal":
+        pygame.draw.circle(surf, c, (mid, mid), 5 * scale, lw + 1)
+        _stroke(surf, c, [(mid, 4 * scale), (mid, 10 * scale)], lw + 1)
+        _stroke(surf, c, [(4 * scale, mid), (10 * scale, mid)], lw + 1)
     elif key == "damage":
         _stroke(surf, c, [(3 * scale, 11 * scale), (11 * scale, 3 * scale)], lw + 1)
         _stroke(surf, c, [(6 * scale, 3 * scale), (11 * scale, 3 * scale), (11 * scale, 8 * scale)], lw)
@@ -322,7 +328,7 @@ def icon_for_effect(effect_type: str) -> str:
         "consume_harmony": "seal",
         "seal": "seal",
         "copy_last_played": "combo",
-        "heal": "hp",
+        "heal": "heal",
         "retain": "retain",
         "exhaust": "exhaust",
         "exhaust_self": "exhaust",

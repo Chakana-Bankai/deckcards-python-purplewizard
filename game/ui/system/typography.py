@@ -15,6 +15,15 @@ LORE_FONT = "LORE_FONT"
 SMALL_FONT = "SMALL_FONT"
 BUTTON_FONT = "BUTTON_FONT"
 
+CONTEXT_FONT_SIZES: Dict[str, tuple[str, int]] = {
+    "combat_labels": (HUD_FONT, 22),
+    "hud_numbers": (HUD_FONT, 28),
+    "card_titles": (TITLE_FONT, 28),
+    "card_body": (LORE_FONT, 20),
+    "lore_text": (LORE_FONT, 22),
+}
+
+
 
 @dataclass(frozen=True)
 class TypographyPalette:
@@ -76,4 +85,8 @@ class ChakanaTypography:
         app.hud_font = self.get(HUD_FONT, 30)
         app.lore_font = self.get(LORE_FONT, 24)
         app.title_font = self.get(TITLE_FONT, 72)
+        app.font_registry = {
+            ctx: self.get(role, sz)
+            for ctx, (role, sz) in CONTEXT_FONT_SIZES.items()
+        }
 

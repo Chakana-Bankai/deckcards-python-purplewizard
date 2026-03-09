@@ -22,7 +22,7 @@ from game.ui.theme import UI_THEME
 from game.ui.system.layers import Layers
 from game.ui.system.components import UIPanel, UITooltip
 from game.ui.system.colors import UColors
-from game.ui.system.icons import draw_icon_with_value
+from game.ui.system.icons import draw_icon_with_value, icon_for_effect
 from game.ui.components.topbar import CombatTopBar
 from game.telemetry.logger import TelemetryLogger
 
@@ -167,6 +167,19 @@ class CombatScreen:
 
     def on_leave(self):
         self.ctrl.clear_selection("screen_change")
+
+    def _font_ctx(self, key: str):
+        reg = getattr(self.app, "font_registry", {}) or {}
+        if key in reg:
+            return reg[key]
+        if key == "hud_numbers":
+            return self.app.big_font
+        if key == "lore_text":
+            return self.app.font
+        return self.app.small_font
+
+    def _icon_id(self, effect_name: str) -> str:
+        return icon_for_effect(str(effect_name or ""))
 
     def _refresh_layout(self, surface: pygame.Surface):
         self.layout = build_combat_layout(surface.get_width(), surface.get_height())
@@ -330,6 +343,9 @@ class CombatScreen:
         entry = str(text).strip()
         if not entry:
             return
+        low = entry.lower()
+        if "fin del ritual" in low:
+            entry = "Fin de turno"
 
         if self.actions_log:
             prev = str(self.actions_log[-1])
@@ -610,6 +626,10 @@ class CombatScreen:
         mapping = [
             ("rupture", int(st.get("rupture", 0) or 0) + int(st.get("break", 0) or 0)),
             ("ritual", int(st.get("ritual", 0) or 0)),
+            ("draw", int(st.get("draw", 0) or 0)),
+            ("heal", int(st.get("regen", 0) or 0)),
+            ("retain", int(st.get("retain", 0) or 0)),
+            ("exhaust", int(st.get("exhaust", 0) or 0)),
             ("support", int(st.get("weak", 0) or 0)),
             ("support", int(st.get("vulnerable", 0) or 0)),
         ]
@@ -1085,6 +1105,9 @@ class CombatScreen:
         left, center, subtitle, timer_text, turn_text = self._topbar_narrative()
         self.topbar.render(s, self.app, self.layout, left, center, subtitle, timer_text, turn_text)
         UIPanel(self.layout.enemy_strip_rect).draw(s)
+        f_label = self._font_ctx("combat_labels")
+        f_num = self._font_ctx("hud_numbers")
+        f_lore = self._font_ctx("lore_text")
 
         enemy_count = max(1, len(self.c.enemies))
         inner_strip = self.layout.enemy_strip_rect.inflate(-24, -18)
@@ -1103,25 +1126,26 @@ class CombatScreen:
             pygame.draw.rect(s, UI_THEME["accent_violet"], content, 2, border_radius=13)
 
             ratio = max(0, e.hp) / max(1, e.max_hp)
-            avatar_min_w = 300 if enemy_count == 1 else 170
-            info_ratio = 0.40 if enemy_count == 1 else 0.46
-            info_cap = max(180, int(content.w - avatar_min_w - 56))
-            info_col_w = max(220, min(int(content.w * info_ratio), info_cap))
-            info_col = pygame.Rect(content.x + 20, content.y + 12, info_col_w, content.h - 24)
-            avatar_w = max(avatar_min_w, content.right - (info_col.right + 30))
-            avatar_rect = pygame.Rect(content.right - avatar_w - 12, content.y + 16, avatar_w, content.h - 32)
-            title = pygame.Rect(info_col.x, info_col.y, info_col.w, 28)
-            hp_label = pygame.Rect(info_col.x, title.bottom + 2, info_col.w, 36)
-            intent_line = pygame.Rect(info_col.x, hp_label.bottom + 6, info_col.w, 48)
-            block_line = pygame.Rect(info_col.x, intent_line.bottom + 5, info_col.w, 30)
-            status_line = pygame.Rect(info_col.x, block_line.bottom + 4, info_col.w, 22)
-            hp_bar = pygame.Rect(info_col.x, info_col.bottom - 14, info_col.w, 8)
-            counters = pygame.Rect(info_col.x, info_col.bottom - 34, info_col.w, 16)
+            panel = content.inflate(-10, -8)
+            avatar_h = max(56, int(panel.h * 0.30))
+            avatar_w = min(panel.w - 24, max(120, int(panel.w * (0.42 if enemy_count == 1 else 0.52))))
+            avatar_rect = pygame.Rect(panel.centerx - avatar_w // 2, panel.y + 8, avatar_w, avatar_h)
+
+            info_top = avatar_rect.bottom + 8
+            info_h = max(76, panel.bottom - info_top - 8)
+            info_col = pygame.Rect(panel.x + 14, info_top, panel.w - 28, info_h)
+
+            title = pygame.Rect(info_col.x, info_col.y, info_col.w, 24)
+            hp_label = pygame.Rect(info_col.x, title.bottom + 2, info_col.w, 24)
+            hp_bar = pygame.Rect(info_col.x, hp_label.bottom + 3, info_col.w, 8)
+            intent_line = pygame.Rect(info_col.x, hp_bar.bottom + 6, info_col.w, 34)
+            block_line = pygame.Rect(info_col.x, intent_line.bottom + 4, max(156, int(info_col.w * 0.46)), 24)
+            status_line = pygame.Rect(info_col.x, block_line.bottom + 3, info_col.w, max(18, info_col.bottom - (block_line.bottom + 3)))
 
             enemy_name = str(e.name_key)
             intent_name = str(e.current_intent().get("label", "..."))
-            s.blit(self.app.small_font.render(enemy_name, True, UI_THEME["text"]), (title.x, title.y))
-            hp_txt = self.app.big_font.render(f"{e.hp}/{e.max_hp}", True, UI_THEME["hp"])
+            s.blit(f_label.render(enemy_name, True, UI_THEME["text"]), (title.x, title.y))
+            hp_txt = f_num.render(f"{e.hp}/{e.max_hp}", True, UI_THEME["hp"])
             s.blit(hp_txt, (hp_label.x, hp_label.y - 2))
 
             intent_col = self._intent_led_color(e)
@@ -1137,22 +1161,22 @@ class CombatScreen:
             pygame.draw.rect(s, (24, 22, 34), intent_chip, border_radius=12)
             pygame.draw.rect(s, intent_col, intent_chip, 2, border_radius=12)
             kind = str(e.current_intent().get("intent", "")).lower()
-            icon_name = "damage" if kind == "attack" else "block" if kind == "defend" else "ritual"
+            icon_name = "damage" if kind == "attack" else "block" if kind == "defend" else ("draw" if kind == "buff" else "ritual")
             val_num = 0
             vraw = e.current_intent().get("value", 0)
             if isinstance(vraw, list) and vraw:
                 val_num = int(vraw[-1] or 0)
             else:
                 val_num = int(vraw or 0)
-            draw_icon_with_value(s, icon_name, val_num, intent_col, self.app.small_font, intent_chip.x + 10, intent_chip.y + 7, size=2)
+            draw_icon_with_value(s, self._icon_id(icon_name), val_num, intent_col, f_label, intent_chip.x + 8, intent_chip.y + 5, size=2)
             intent_line_text = self._wrap_panel_text(intent_name, intent_chip.w - 24, max_lines=1)[0]
-            intent_name_txt = self.app.tiny_font.render(intent_line_text, True, UI_THEME["text"])
+            intent_name_txt = f_lore.render(intent_line_text, True, UI_THEME["text"])
             s.blit(intent_name_txt, (intent_chip.x + 14, intent_chip.bottom - 14))
             blk_col = UI_THEME["block"] if enemy_block > 0 else UI_THEME["muted"]
             block_chip = pygame.Rect(block_line.x, block_line.y, max(132, int(block_line.w * 0.46)), block_line.h)
             pygame.draw.rect(s, (24, 22, 34), block_chip, border_radius=10)
             pygame.draw.rect(s, blk_col, block_chip, 2, border_radius=10)
-            draw_icon_with_value(s, "block", enemy_block, blk_col, self.app.tiny_font, block_chip.x + 8, block_chip.y + 6, size=1)
+            draw_icon_with_value(s, self._icon_id("block"), enemy_block, blk_col, f_label, block_chip.x + 6, block_chip.y + 3, size=1)
 
             status_tokens = self._enemy_major_statuses(e)
             sx = status_line.x
@@ -1161,17 +1185,9 @@ class CombatScreen:
                 rr = pygame.Rect(sx, status_line.y + 1, ww, 19)
                 pygame.draw.rect(s, (28, 24, 40), rr, border_radius=7)
                 pygame.draw.rect(s, UI_THEME["accent_violet"], rr, 1, border_radius=7)
-                draw_icon_with_value(s, icon_id, val, UI_THEME["text"], self.app.tiny_font, rr.x + 4, rr.y + 2, size=1)
+                draw_icon_with_value(s, self._icon_id(icon_id), val, UI_THEME["text"], f_label, rr.x + 3, rr.y + 1, size=1)
                 sx += ww + 6
 
-            pattern_len = max(1, len(getattr(e, "pattern", []) or []))
-            deck_est = max(0, pattern_len - ((getattr(e, "intent_index", 0) + 1) % pattern_len))
-            discard_est = min(pattern_len, getattr(e, "intent_index", 0))
-            cx = counters.x
-            cy = counters.y
-            cx = draw_icon_with_value(s, 'deck', deck_est, UI_THEME['muted'], self.app.tiny_font, cx, cy, size=1)
-            cx = draw_icon_with_value(s, 'hand', 1, UI_THEME['muted'], self.app.tiny_font, cx, cy, size=1)
-            _ = draw_icon_with_value(s, 'discard', discard_est, UI_THEME['muted'], self.app.tiny_font, cx, cy, size=1)
             variant = self._enemy_presence_variant(e)
             boss_factor = 1.52 if (self.is_boss or str(getattr(e, "tier", "")).lower() == "boss") else 1.0
 
@@ -1209,8 +1225,8 @@ class CombatScreen:
         e_line = self.dialog_enemy.current or "(el enemigo contiene la respiracion...)"
         h_line = self.dialog_hero.current or "(Chakana escucha la Trama...)"
         line_w = narrative_rect.w - 34
-        enemy_lines = wrap_text(self.app.small_font, e_line, line_w, max_lines=1)
-        hero_lines = wrap_text(self.app.small_font, h_line, line_w, max_lines=1)
+        enemy_lines = wrap_text(f_lore, e_line, line_w, max_lines=1)
+        hero_lines = wrap_text(f_lore, h_line, line_w, max_lines=1)
         row_h = (narrative_rect.h - 20) // 2
         line_rows = [
             pygame.Rect(narrative_rect.x + 10, narrative_rect.y + 8, narrative_rect.w - 20, row_h),
@@ -1224,13 +1240,13 @@ class CombatScreen:
             pygame.draw.rect(s, row_cols[ridx], row, border_radius=8)
             lines = row_lines[ridx]
             if ridx == 0:
-                s.blit(self.app.tiny_font.render(self.enemy_voice_label, True, (245, 150, 166)), (row.x + 10, row.y + 4))
+                s.blit(f_label.render(self.enemy_voice_label, True, (245, 150, 166)), (row.x + 10, row.y + 4))
             elif ridx == 1:
-                s.blit(self.app.tiny_font.render(self.chakana_voice_label, True, (166, 240, 190)), (row.x + 10, row.y + 4))
+                s.blit(f_label.render(self.chakana_voice_label, True, (166, 240, 190)), (row.x + 10, row.y + 4))
             yy = row.y + max(18, (row.h - 16 * max(1, len(lines))) // 2)
             for ln in lines:
                 dx = offx if ridx == 0 else 0
-                s.blit(self.app.tiny_font.render(ln, True, UI_THEME["text"]), (row.x + 10 + dx, yy))
+                s.blit(f_lore.render(ln, True, UI_THEME["text"]), (row.x + 10 + dx, yy))
                 yy += 16
 
         # LAYER 3-4: hud and cards (Layers.LAYER_HUD, Layers.LAYER_CARDS)
@@ -1260,7 +1276,7 @@ class CombatScreen:
             for ln in self._wrap_panel_text(f"- {item}", panel_w, max_lines=1):
                 if panel_y > detail_rect.bottom - 24:
                     break
-                s.blit(self.app.tiny_font.render(ln, True, UI_THEME["text"]), (panel_x, panel_y))
+                s.blit(f_lore.render(ln, True, UI_THEME["text"]), (panel_x, panel_y))
                 panel_y += 16
             if panel_y > detail_rect.bottom - 24:
                 break
@@ -1338,11 +1354,10 @@ class CombatScreen:
         row2 = pygame.Rect(stats_rect.x, row1.bottom + row_gap, stats_rect.w, row2_h)
         row3 = pygame.Rect(stats_rect.x, row2.bottom + row_gap, stats_rect.w, row3_h)
 
-        def _value_chip(rect, title, value, col):
+        def _value_chip(rect, icon_name, value, col):
             pygame.draw.rect(s, UI_THEME["panel_2"], rect, border_radius=8)
             pygame.draw.rect(s, col, rect, 1, border_radius=8)
-            s.blit(self.app.tiny_font.render(title, True, tpal.muted), (rect.x + 8, rect.y + 4))
-            s.blit(self.app.small_font.render(str(value), True, col), (rect.x + 8, rect.y + 18))
+            draw_icon_with_value(s, self._icon_id(icon_name), int(value), col, f_num, rect.x + 8, rect.y + 9, size=1)
 
         # ROW 1: Vitalidad / Bloqueo / Turno (primary at-a-glance read)
         r1_gap = 8
@@ -1350,15 +1365,15 @@ class CombatScreen:
         vit = pygame.Rect(row1.x, row1.y, r1_w, row1.h)
         blk = pygame.Rect(vit.right + r1_gap, row1.y, r1_w, row1.h)
         trn = pygame.Rect(blk.right + r1_gap, row1.y, row1.w - (r1_w * 2 + r1_gap * 2), row1.h)
-        _value_chip(vit, "Vitalidad", f"{p['hp']}/{p['max_hp']}", UI_THEME["hp"])
-        _value_chip(blk, "Bloqueo", f"{player_block}", tpal.hud_block if player_block > 0 else tpal.muted)
-        _value_chip(trn, "Turno", f"{self.c.turn}", tpal.hud_gold)
+        _value_chip(vit, "hp", int(p["hp"]), UI_THEME["hp"])
+        _value_chip(blk, "block", player_block, tpal.hud_block if player_block > 0 else tpal.muted)
+        _value_chip(trn, "ritual", int(self.c.turn), tpal.hud_gold)
         self._tutorial_targets["player_block"] = pygame.Rect(blk)
 
         # ROW 2: Energy orbs (primary visual) + numeric support
         pygame.draw.rect(s, UI_THEME["panel_2"], row2, border_radius=8)
         pygame.draw.rect(s, UI_THEME["energy"], row2, 1, border_radius=8)
-        s.blit(self.app.tiny_font.render("Energia", True, tpal.muted), (row2.x + 8, row2.y + 3))
+        s.blit(f_label.render("Energia", True, tpal.muted), (row2.x + 8, row2.y + 3))
 
         base_energy = int(getattr(self.c, "energy_per_turn", 3) or 3)
         energized_bonus = 1 if int((p.get("statuses", {}) or {}).get("energized", 0) or 0) > 0 else 0
@@ -1369,7 +1384,7 @@ class CombatScreen:
         start_x = row2.x + 16
         orb_y = row2.y + 26
         self.mana_orbs.draw(s, start_x, orb_y, energy_now, max_mana=orb_cap, buffed=energy_buffed)
-        energy_num = self.app.small_font.render(f"{energy_now}/{orb_cap}", True, UI_THEME["energy"])
+        energy_num = f_num.render(f"{energy_now}/{orb_cap}", True, UI_THEME["energy"])
         s.blit(energy_num, (row2.right - energy_num.get_width() - 10, row2.y + 14))
 
         # ROW 3: Harmony/Umbral + secondary piles (Mazo/Mano/Ecos)
@@ -1382,17 +1397,26 @@ class CombatScreen:
         self._tutorial_targets["harmony"] = pygame.Rect(row3)
 
         h_col = UI_THEME["gold"] if ready else UI_THEME["text"]
-        draw_icon_with_value(s, 'harmony', h_cur, h_col, self.app.tiny_font, row3.x + 8, row3.y + 4, size=1)
-        s.blit(self.app.tiny_font.render(f'/{h_max}  Umbral {h_thr}', True, h_col), (row3.x + 60, row3.y + 7))
+        draw_icon_with_value(s, self._icon_id('harmony'), h_cur, h_col, f_label, row3.x + 8, row3.y + 4, size=1)
+        s.blit(f_label.render(f'/{h_max}  Umbral {h_thr}', True, h_col), (row3.x + 60, row3.y + 7))
         bar = pygame.Rect(row3.x + 8, row3.y + 20, row3.w - 16, 8)
         pygame.draw.rect(s, (28, 24, 40), bar, border_radius=5)
         pygame.draw.rect(s, UI_THEME["good"] if ready else UI_THEME["accent_violet"], pygame.Rect(bar.x, bar.y, int(bar.w * (h_cur / max(1, h_max))), bar.h), border_radius=5)
 
         px = row3.x + 8
         py = row3.bottom - 18
-        px = draw_icon_with_value(s, 'deck', draw_n, tpal.muted, self.app.tiny_font, px, py, size=1)
-        px = draw_icon_with_value(s, 'hand', hand_n, tpal.muted, self.app.tiny_font, px, py, size=1)
-        _ = draw_icon_with_value(s, 'discard', disc_n, tpal.muted, self.app.tiny_font, px, py, size=1)
+        px = draw_icon_with_value(s, self._icon_id('deck'), draw_n, tpal.muted, f_label, px, py, size=1)
+        px = draw_icon_with_value(s, self._icon_id('draw'), hand_n, tpal.muted, f_label, px, py, size=1)
+        _ = draw_icon_with_value(s, self._icon_id('exhaust'), disc_n, tpal.muted, f_label, px, py, size=1)
+        st = p.get("statuses", {}) or {}
+        sx = row3.right - 160
+        for sid in ("heal", "retain", "rupture", "draw", "exhaust"):
+            sval = int(st.get(sid, 0) or 0)
+            if sval <= 0:
+                continue
+            sx = draw_icon_with_value(s, self._icon_id(sid), sval, UI_THEME["text"], f_label, sx, row3.y + 3, size=1)
+            if sx > row3.right - 24:
+                break
 
         # Compact active relic visibility with hover tooltip.
         self._relic_chip_rects = []
@@ -1422,7 +1446,7 @@ class CombatScreen:
         self._tutorial_targets["harmony"] = pygame.Rect(hr)
 
         title_col = UI_THEME["gold"] if ready else UI_THEME["text"]
-        s.blit(self.app.small_font.render("NUCLEO DE ARMONIA", True, title_col), (hr.x + 14, hr.y + 10))
+        s.blit(f_label.render("NUCLEO DE ARMONIA", True, title_col), (hr.x + 14, hr.y + 10))
 
         orb_slots = min(8, max(5, h_thr))
         ox = hr.centerx - ((orb_slots - 1) * 22) // 2
@@ -1449,7 +1473,7 @@ class CombatScreen:
         pygame.draw.rect(s, meter_col, pygame.Rect(meter.x, meter.y, int(meter.w * (h_cur / max(1, h_max))), meter.h), border_radius=5)
         if near_ready:
             pygame.draw.rect(s, UI_THEME["gold"], meter, 1, border_radius=5)
-        s.blit(self.app.tiny_font.render(f"Armonia {h_cur}/{h_max}  Umbral {h_thr}", True, UI_THEME["text"]), (meter.x, meter.y - 15))
+        s.blit(f_label.render(f"Armonia {h_cur}/{h_max}  Umbral {h_thr}", True, UI_THEME["text"]), (meter.x, meter.y - 15))
 
         if ready:
             self.harmony_seal_rect = pygame.Rect(hr.centerx - 64, hr.bottom - 22, 128, 18)
@@ -1489,7 +1513,7 @@ class CombatScreen:
         pygame.draw.rect(s, base_col, self.end_turn_rect, border_radius=18)
         pygame.draw.rect(s, UI_THEME["gold"], self.end_turn_rect, 2, border_radius=18)
 
-        txt = self.app.big_font.render(state_label, True, text_col)
+        txt = f_num.render(state_label, True, text_col)
         s.blit(txt, (self.end_turn_rect.centerx - txt.get_width() // 2, self.end_turn_rect.centery - txt.get_height() // 2 + 2))
         self._tutorial_targets["action_button"] = pygame.Rect(self.end_turn_rect)
         if state == "RELEASE_SEAL":

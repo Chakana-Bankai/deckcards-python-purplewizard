@@ -49,11 +49,7 @@ class CombatLayout:
 
 def build_combat_layout(w: int, h: int) -> CombatLayout:
     pad = max(12, int(min(w, h) * 0.02))
-    top_h = max(74, int(h * 0.085))
-    enemy_h = max(188, int(h * 0.19))
-    center_h = max(92, int(h * 0.095))
-    status_h = max(150, int(h * 0.18))
-    hand_h = max(190, int(h * 0.22))
+    top_h = max(64, int(h * 0.07))
 
     topbar_full = pygame.Rect(0, 0, w, top_h)
     left_w = int(topbar_full.w * 0.22)
@@ -63,23 +59,31 @@ def build_combat_layout(w: int, h: int) -> CombatLayout:
     topbar_center = pygame.Rect(topbar_left.right, topbar_full.y, center_w, topbar_full.h)
     topbar_right = pygame.Rect(topbar_center.right, topbar_full.y, right_w, topbar_full.h)
 
-    enemy_strip = pygame.Rect(pad, topbar_full.bottom + pad, w - 2 * pad, enemy_h)
+    combat_area = pygame.Rect(pad, topbar_full.bottom + pad, w - 2 * pad, h - (topbar_full.bottom + pad) - pad)
+    enemy_h = max(178, int(combat_area.h * 0.30))
+    center_h = max(92, int(combat_area.h * 0.20))
+    bottom_h = max(220, combat_area.h - enemy_h - center_h - 2 * pad)
+
+    enemy_strip = pygame.Rect(combat_area.x, combat_area.y, combat_area.w, enemy_h)
 
     center_y = enemy_strip.bottom + pad
-    voices_w = int((w - 3 * pad) * 0.46)
-    voices_panel = pygame.Rect(pad, center_y, voices_w, center_h)
-    card_detail = pygame.Rect(voices_panel.right + pad, center_y, w - (voices_panel.right + pad) - pad, center_h)
+    voices_w = int((combat_area.w - pad) * 0.46)
+    voices_panel = pygame.Rect(combat_area.x, center_y, voices_w, center_h)
+    card_detail = pygame.Rect(voices_panel.right + pad, center_y, combat_area.right - (voices_panel.right + pad), center_h)
 
-    hand_y = h - pad - hand_h
-    hand_area = pygame.Rect(pad, hand_y, w - 2 * pad, hand_h)
+    bottom_y = center_y + center_h + pad
+    hand_h = max(188, int(bottom_h * 0.56))
+    status_h = max(140, bottom_h - hand_h - pad)
+    status_y = bottom_y
+    hand_y = status_y + status_h + pad
+    hand_area = pygame.Rect(combat_area.x, hand_y, combat_area.w, max(172, bottom_h - status_h - pad))
 
-    status_y = hand_area.y - pad - status_h
-    total_w = w - 2 * pad
+    total_w = combat_area.w
     player_w = int(total_w * 0.38)
     harmony_w = int(total_w * 0.24)
     action_w = total_w - player_w - harmony_w - 2 * pad
 
-    player_hud = pygame.Rect(pad, status_y, player_w, status_h)
+    player_hud = pygame.Rect(combat_area.x, status_y, player_w, status_h)
     harmony_core = pygame.Rect(player_hud.right + pad, status_y, harmony_w, status_h)
     actions_panel = pygame.Rect(harmony_core.right + pad, status_y, action_w, status_h)
 
