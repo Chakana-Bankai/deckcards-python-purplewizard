@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import math
 from pathlib import Path
@@ -543,8 +543,8 @@ class CombatScreen:
     def _card_pose(self, i, total):
         inner = self.layout.hand_rect.inflate(-20, -40)
         total = max(1, int(total or 1))
-        card_w = 236
-        card_h = max(260, inner.h - 12)
+        card_w = 222
+        card_h = max(280, inner.h - 4)
         mid = (total - 1) / 2.0
         offset_x = 60
         rotation_step = 4.0
@@ -1662,6 +1662,8 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+
 
 
 

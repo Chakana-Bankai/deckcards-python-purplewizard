@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import random
 
@@ -428,6 +428,13 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     _draw_card_background(surface, rect, payload, tier, accent_color, is_hip=is_hip)
     rules = _resolve_render_context(state, preset)
     sec = _layout_for(rect, preset, rules)
+    ctx_key = str((state or {}).get("render_context", "") or "").strip().lower()
+    if ctx_key in {"hand_view", "combat_hand"}:
+        mode = "mini"
+    elif ctx_key in {"hover_view", "hover_preview", "codex_view", "preview"}:
+        mode = "full"
+    else:
+        mode = "mid"
 
     # Definitive zones: header / art / type / text+lore / stats
     for r in (sec["header"], sec["art"], sec["effects"], sec["lore"], sec["footer"]):
@@ -515,58 +522,67 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
 
     effect_items = _collect_kpis(summary, payload) or [("support", 1)]
     density = _density_for(len(effect_items))
-    row_h = 17 if density == "normal" else 15 if density == "compact" else 14
-    if rules.get("effect_scale", 1.0) < 0.95:
-        row_h = max(12, row_h - 1)
 
-    fx_font = title_font if density == "normal" else tiny_font
-    ex = sec["effects"].x + 8
-    ey = sec["effects"].y + max(2, (sec["effects"].h - (row_h * 2 + 2)) // 2)
-    second_row_used = False
-    for icon_name, val in effect_items:
-        token_w = max(56, fx_font.size(str(int(val or 0)))[0] + 30)
-        if ex + token_w > sec["effects"].right - 8 and not second_row_used:
-            ex = sec["effects"].x + 8
-            ey += row_h + 2
-            second_row_used = True
-        if ex + token_w > sec["effects"].right - 8:
-            break
-        ex = draw_icon_with_value(
-            surface,
-            icon_name,
-            val,
-            (250, 242, 206),
-            fx_font,
-            ex,
-            ey,
-            size=1,
-            min_icon_px=ICON_CARD_SMALL,
-        ) + 8
-    # Lore is always present and italic with a subtle alpha in non-hover contexts.
-    lore_max_lines = 2
-    if preset in {"preview", "large"}:
-        lore_max_lines = 3
-    if rules.get("lore_mode") == "brief":
-        lore_max_lines = 1
-    if rules.get("lore_mode") == "full":
-        lore_max_lines = max(2, lore_max_lines)
+    if mode == "mini":
+        # Mini mode: KPI-only quick read in compact contexts.
+        row_h = 17 if density == "normal" else 15 if density == "compact" else 14
+        fx_font = title_font if density == "normal" else tiny_font
+        ex = sec["effects"].x + 8
+        ey = sec["effects"].y + max(2, (sec["effects"].h - (row_h * 2 + 2)) // 2)
+        second_row_used = False
+        for icon_name, val in effect_items[:3]:
+            token_w = max(56, fx_font.size(str(int(val or 0)))[0] + 30)
+            if ex + token_w > sec["effects"].right - 8 and not second_row_used:
+                ex = sec["effects"].x + 8
+                ey += row_h + 2
+                second_row_used = True
+            if ex + token_w > sec["effects"].right - 8:
+                break
+            ex = draw_icon_with_value(surface, icon_name, val, (250, 242, 206), fx_font, ex, ey, size=1, min_icon_px=ICON_CARD_SMALL) + 8
+    else:
+        # Mid/full mode: single summarized effect text block.
+        label_map = {
+            "damage": "Daño", "block": "Bloq.", "energy": "Energía", "harmony": "Armonía",
+            "rupture": "Ruptura", "seal": "Sello", "draw": "Robo", "scry": "Prever",
+            "ritual": "Ritual", "support": "Soporte", "control": "Control", "combo": "Combo",
+        }
+        parts = []
+        for icon_name, val in effect_items:
+            nm = label_map.get(str(icon_name), str(icon_name).title())
+            sign = "+" if int(val or 0) > 0 and icon_name in {"energy", "harmony", "draw", "scry", "block"} else ""
+            parts.append(f"{nm} {sign}{int(val or 0)}")
+        effect_text = ", ".join(parts)
+        mid_font = getattr(app, "small_font", title_font)
+        ef_font = title_font if mode == "full" else mid_font
+        max_lines = 2 if mode == "full" else 1
+        lines = _fit_lines(ef_font, effect_text, sec["effects"].w - 12, max_lines)
+        ey = sec["effects"].y + max(2, (sec["effects"].h - max(1, len(lines)) * ef_font.get_height()) // 2)
+        for line in lines:
+            surface.blit(ef_font.render(line, True, (248, 240, 206)), (sec["effects"].x + 6, ey))
+            ey += ef_font.get_height() - 1
 
-    lore_lines = _fit_lines(tiny_font, model.lore_text, sec["lore"].w - 10, lore_max_lines)
-    lore_alpha = 255 if hovered or preset in {"preview", "large"} else int(255 * 0.85)
-    ly = sec["lore"].y + max(0, (sec["lore"].h - max(1, len(lore_lines)) * 12) // 2)
-    italic_prev = False
-    if hasattr(tiny_font, "get_italic"):
-        italic_prev = bool(tiny_font.get_italic())
-    if hasattr(tiny_font, "set_italic"):
-        tiny_font.set_italic(True)
-    for line in lore_lines:
-        lbl = tiny_font.render(line, True, (198, 176, 224))
-        lbl.set_alpha(lore_alpha)
-        lx = sec["lore"].x + max(4, (sec["lore"].w - lbl.get_width()) // 2)
-        surface.blit(lbl, (lx, ly))
-        ly += 12
-    if hasattr(tiny_font, "set_italic"):
-        tiny_font.set_italic(italic_prev)
+    # Lore is context-aware per mode.
+    lore_max_lines = 0 if mode == "mini" else 1 if mode == "mid" else 3
+    lore_text = str(model.lore_text or "").strip()
+    if mode == "full" and lore_text:
+        lore_text = f"\"{lore_text}\""
+    if lore_max_lines > 0 and lore_text:
+        lore_lines = _fit_lines(tiny_font, lore_text, sec["lore"].w - 10, lore_max_lines)
+        lore_alpha = 255 if mode == "full" or hovered or preset in {"preview", "large"} else int(255 * 0.82)
+        ly = sec["lore"].y + max(0, (sec["lore"].h - max(1, len(lore_lines)) * 12) // 2)
+        italic_prev = False
+        if hasattr(tiny_font, "get_italic"):
+            italic_prev = bool(tiny_font.get_italic())
+        if hasattr(tiny_font, "set_italic"):
+            tiny_font.set_italic(True)
+        for line in lore_lines:
+            lbl = tiny_font.render(line, True, (198, 176, 224))
+            lbl.set_alpha(lore_alpha)
+            lx = sec["lore"].x + max(4, (sec["lore"].w - lbl.get_width()) // 2)
+            surface.blit(lbl, (lx, ly))
+            ly += 12
+        if hasattr(tiny_font, "set_italic"):
+            tiny_font.set_italic(italic_prev)
 
     footer_mode = str(rules.get("footer_mode", "compact"))
     border_meta = _fit_one_line(
@@ -574,7 +590,7 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
         f"Autor: {model.author or 'Chakana Studio'} | Orden: {model.order or 'Chakana'}",
         sec["author"].w - 6,
     )
-    if footer_mode != "set_only" and border_meta:
+    if mode == "full" and footer_mode != "set_only" and border_meta:
         meta = tiny_font.render(border_meta, True, (142, 124, 176))
         meta.set_alpha(int(255 * 0.48))
         mx = sec["author"].x + max(2, (sec["author"].w - meta.get_width()) // 2)
@@ -586,7 +602,8 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     pygame.draw.rect(surface, (132, 118, 164), stat_rect, 1, border_radius=7)
     sx = stat_rect.x + 5
     sy = stat_rect.y + max(1, (stat_rect.h - 16) // 2)
-    for icon_name, val in effect_items[:3]:
+    kpi_cap = 3 if mode == "mini" else 5 if mode == "mid" else max(6, len(effect_items))
+    for icon_name, val in effect_items[:kpi_cap]:
         sx = draw_icon_with_value(
             surface,
             icon_name,
@@ -623,6 +640,13 @@ def render_card_large(surface, rect, card, theme=None, state=None):
 
 def render_card_preview(surface, rect, card, theme=None, state=None):
     _draw_core(surface, pygame.Rect(rect), card, theme, state, preset="preview")
+
+
+
+
+
+
+
 
 
 

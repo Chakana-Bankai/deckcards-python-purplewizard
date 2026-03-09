@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from dataclasses import dataclass
 
@@ -72,7 +72,7 @@ def build_combat_layout(w: int, h: int) -> CombatLayout:
     card_detail = pygame.Rect(voices_panel.right + pad, center_y, combat_area.right - (voices_panel.right + pad), center_h)
 
     bottom_y = center_y + center_h + pad
-    hand_h = max(188, int(bottom_h * 0.56))
+    hand_h = max(200, int(bottom_h * 0.60))
     status_h = max(140, bottom_h - hand_h - pad)
     status_y = bottom_y
     hand_y = status_y + status_h + pad
@@ -99,3 +99,5 @@ def build_combat_layout(w: int, h: int) -> CombatLayout:
         harmony_core=harmony_core,
         card_detail=card_detail,
     )
+
+
