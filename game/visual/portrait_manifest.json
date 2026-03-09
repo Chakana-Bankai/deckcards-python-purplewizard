@@ -1,6 +1,6 @@
 {
-  "version": "portrait_v2",
-  "updated_at": 1773040622,
+  "version": "portrait_v3",
+  "updated_at": 1773046420,
   "items": {
     "chakana:132x132": {
       "role": "chakana",
@@ -111,6 +111,116 @@
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_holographic_112x126.png",
       "generated_at": 1773040622,
       "version": "portrait_v2"
+    },
+    "chakana_mage:portrait:132x132": {
+      "role": "chakana_mage",
+      "style": "portrait",
+      "size": [
+        132,
+        132
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_portrait_132x132.png",
+      "generated_at": 1773046134,
+      "version": "portrait_v3"
+    },
+    "chakana_mage:portrait:96x96": {
+      "role": "chakana_mage",
+      "style": "portrait",
+      "size": [
+        96,
+        96
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_portrait_96x96.png",
+      "generated_at": 1773046138,
+      "version": "portrait_v3"
+    },
+    "chakana_mage:portrait:118x118": {
+      "role": "chakana_mage",
+      "style": "portrait",
+      "size": [
+        118,
+        118
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_portrait_118x118.png",
+      "generated_at": 1773046144,
+      "version": "portrait_v3"
+    },
+    "archon:portrait:270x200": {
+      "role": "archon",
+      "style": "portrait",
+      "size": [
+        270,
+        200
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_portrait_270x200.png",
+      "generated_at": 1773046144,
+      "version": "portrait_v3"
+    },
+    "chakana_mage:hologram:112x126": {
+      "role": "chakana_mage",
+      "style": "hologram",
+      "size": [
+        112,
+        126
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_hologram_112x126.png",
+      "generated_at": 1773046144,
+      "version": "portrait_v3"
+    },
+    "chakana_mage:portrait:110x110": {
+      "role": "chakana_mage",
+      "style": "portrait",
+      "size": [
+        110,
+        110
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_portrait_110x110.png",
+      "generated_at": 1773046169,
+      "version": "portrait_v3"
+    },
+    "chakana_mage:hologram:112x152": {
+      "role": "chakana_mage",
+      "style": "hologram",
+      "size": [
+        112,
+        152
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_hologram_112x152.png",
+      "generated_at": 1773046172,
+      "version": "portrait_v3"
+    },
+    "archon:portrait:768x147": {
+      "role": "archon",
+      "style": "portrait",
+      "size": [
+        768,
+        147
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_portrait_768x147.png",
+      "generated_at": 1773046381,
+      "version": "portrait_v3"
+    },
+    "archon:hologram:112x126": {
+      "role": "archon",
+      "style": "hologram",
+      "size": [
+        112,
+        126
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\archon_hologram_112x126.png",
+      "generated_at": 1773046403,
+      "version": "portrait_v3"
+    },
+    "chakana_mage:concept:84x84": {
+      "role": "chakana_mage",
+      "style": "concept",
+      "size": [
+        84,
+        84
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_concept_84x84.png",
+      "generated_at": 1773046420,
+      "version": "portrait_v3"
     }
   }
 }

@@ -1,18 +1,27 @@
 {
-  "gold": 80,
+  "gold": 137,
   "relics": [
-    "violet_seal"
+    "violet_seal",
+    "crown_of_hanan"
   ],
   "player": {
-    "hp": 60,
+    "hp": 50,
     "max_hp": 60,
     "block": 0,
-    "energy": 3,
+    "energy": 2,
     "rupture": 0,
-    "statuses": {}
+    "statuses": {
+      "cost_plus": 3
+    },
+    "harmony_current": 3,
+    "harmony_max": 11,
+    "harmony_ready_threshold": 6,
+    "harmony_ready": false,
+    "harmony_seal_used": true,
+    "seal_ready": false,
+    "seal_active": false
   },
   "deck": [
-    "estallido_arcano",
     "filo_astral",
     "garra_espiritual",
     "pulso_cosmico",
@@ -33,7 +42,21 @@
     "cw_lore_29",
     "chakana_de_luz"
   ],
-  "sideboard": [],
+  "sideboard": [
+    "cw_lore_18",
+    "of_lore_16",
+    "of_lore_25",
+    "fusion_espiritual",
+    "of_lore_26",
+    "hg_lore_19",
+    "silencio_interior",
+    "of_lore_20",
+    "filo_astral",
+    "hg_lore_07",
+    "chakana_de_luz",
+    "cw_lore_04",
+    "chakana_de_luz"
+  ],
   "map": [
     [
       {
@@ -47,7 +70,7 @@
           "1_0",
           "1_1"
         ],
-        "state": "available"
+        "state": "cleared"
       }
     ],
     [
@@ -62,7 +85,7 @@
           "2_0",
           "2_1"
         ],
-        "state": "locked"
+        "state": "cleared"
       },
       {
         "id": "1_1",
@@ -75,20 +98,20 @@
           "2_1",
           "2_0"
         ],
-        "state": "locked"
+        "state": "cleared"
       },
       {
         "id": "1_2",
         "col": 1,
         "x": 492,
         "y": 588,
-        "type": "combat",
+        "type": "challenge",
         "biome": "ukhu",
         "next": [
           "2_2",
           "2_3"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "1_3",
@@ -116,7 +139,7 @@
           "3_0",
           "3_1"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_1",
@@ -129,20 +152,20 @@
           "3_1",
           "3_0"
         ],
-        "state": "locked"
+        "state": "cleared"
       },
       {
         "id": "2_2",
         "col": 2,
         "x": 804,
         "y": 588,
-        "type": "combat",
+        "type": "challenge",
         "biome": "kaypacha",
         "next": [
           "3_2",
           "3_3"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_3",
@@ -170,7 +193,7 @@
           "4_0",
           "4_1"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "3_1",
@@ -182,7 +205,7 @@
         "next": [
           "4_0"
         ],
-        "state": "locked"
+        "state": "cleared"
       },
       {
         "id": "3_2",
@@ -221,7 +244,7 @@
         "next": [
           "5_0"
         ],
-        "state": "locked"
+        "state": "cleared"
       },
       {
         "id": "4_1",
@@ -233,7 +256,7 @@
         "next": [
           "5_0"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -245,7 +268,7 @@
         "type": "boss",
         "biome": "fractura_chakana",
         "next": [],
-        "state": "locked"
+        "state": "available"
       }
     ]
   ],
@@ -256,17 +279,20 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 0,
-  "biome": "ukhu",
-  "xp": 0,
-  "level": 1,
-  "combats_won": 0,
+  "biome_index": 2,
+  "biome": "hanan",
+  "xp": 11,
+  "level": 4,
+  "combats_won": 4,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
     "turn_timer_seconds": 20,
     "music_muted": false
   },
+  "discovered_sets": [
+    "base"
+  ],
   "tutorial": {
     "active": false,
     "completed": false,
@@ -274,7 +300,9 @@
     "step_index": 0,
     "step_total": 7
   },
-  "current_node_id": null,
-  "last_biome_seen": "ukhu",
-  "saved_at": 1773041554
+  "last_node_type": "combat",
+  "levelup_pending": 0,
+  "current_node_id": "4_0",
+  "last_biome_seen": "hanan",
+  "saved_at": 1773046377
 }

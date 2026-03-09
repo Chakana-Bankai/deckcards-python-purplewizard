@@ -1,6 +1,6 @@
 {
   "version": "visual_v2",
-  "generated_at": 1773041189,
+  "generated_at": 1773046420,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -4595,6 +4595,270 @@
       "lore_tags": [
         "chakana"
       ]
+    },
+    "avatar:combat_hud:132x132:combat_hud": {
+      "asset_id": "combat_hud",
+      "category": "avatar",
+      "seed": 1552869293,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\combat_hud_132x132_combat_hud.png"
+      ],
+      "context": "combat_hud",
+      "version": "visual_v2",
+      "generated_at": 1773046134,
+      "size": [
+        132,
+        132
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:combat_hud:96x96:combat_hud": {
+      "asset_id": "combat_hud",
+      "category": "avatar",
+      "seed": 1552869293,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\combat_hud_96x96_combat_hud.png"
+      ],
+      "context": "combat_hud",
+      "version": "visual_v2",
+      "generated_at": 1773046138,
+      "size": [
+        96,
+        96
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:combat_hud:118x118:combat_hud": {
+      "asset_id": "combat_hud",
+      "category": "avatar",
+      "seed": 1552869293,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\combat_hud_118x118_combat_hud.png"
+      ],
+      "context": "combat_hud",
+      "version": "visual_v2",
+      "generated_at": 1773046144,
+      "size": [
+        118,
+        118
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:combat_hud:112x126:combat_hud": {
+      "asset_id": "combat_hud",
+      "category": "avatar",
+      "seed": 1552869293,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\combat_hud_112x126_combat_hud.png"
+      ],
+      "context": "combat_hud",
+      "version": "visual_v2",
+      "generated_at": 1773046144,
+      "size": [
+        112,
+        126
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:combat_hud:110x110:combat_hud": {
+      "asset_id": "combat_hud",
+      "category": "avatar",
+      "seed": 1552869293,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\combat_hud_110x110_combat_hud.png"
+      ],
+      "context": "combat_hud",
+      "version": "visual_v2",
+      "generated_at": 1773046169,
+      "size": [
+        110,
+        110
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:combat_hud:84x84:combat_hud": {
+      "asset_id": "combat_hud",
+      "category": "avatar",
+      "seed": 1552869293,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\combat_hud_84x84_combat_hud.png"
+      ],
+      "context": "combat_hud",
+      "version": "visual_v2",
+      "generated_at": 1773046420,
+      "size": [
+        84,
+        84
+      ],
+      "state": "valid",
+      "lore_tags": []
     }
   }
 }
