@@ -28,3 +28,9 @@ Estabilizar el loop de run sin romper QA existente, separando reglas engine-cand
 ## Clasificacion
 - engine_candidate: reglas de mano/robo/descarte, normalizacion de mazo
 - game_specific: narrativa de planos, textos, eventos de lore
+
+## Fase 4 (integrada)
+- Unlock Hiperborea tras 3 combates tutorial (`tutorial_combats_won`).
+- Se dispara escena de descubrimiento al desbloquear.
+- Recompensas/tienda/sobres consumen pool por set desbloqueado.
+- Save/continue sincroniza estado de sets desbloqueados de forma segura.

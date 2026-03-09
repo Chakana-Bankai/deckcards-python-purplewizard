@@ -238,7 +238,8 @@ class App:
         self.debug["music_status"] = "OK"
         self.debug["biome_status"] = "OK"
         self.cards_data = self._load_cards_data()
-        self.card_defs = {c["id"]: c for c in self.cards_data}
+        self.hiperboria_cards_data = self._load_hiperboria_cards_data()
+        self.card_defs = {c["id"]: c for c in (list(self.cards_data) + list(self.hiperboria_cards_data)) if isinstance(c, dict) and c.get('id')}
         self.enemies_data = self._load_enemies_data()
         self.events_data = self._load_events_data()
         self.relics_data = self._load_relics_data()
@@ -519,12 +520,48 @@ class App:
                 "symbol": enriched.get("symbol", ""),
                 "author": enriched.get("author", "Mauricio"),
                 "order": enriched.get("order", "Chakana"),
+                "set": str(enriched.get("set", "base") or "base"),
             })
         by_id = {c.get("id"): c for c in cooked if c.get("id")}
         if not by_id:
             for base in DEFAULT_CARDS:
                 by_id.setdefault(base["id"], base)
         return list(by_id.values())
+
+    def _load_hiperboria_cards_data(self):
+        path = data_dir() / "cards_hiperboria.json"
+        payload = load_json(path, default={})
+        rows = payload.get("cards", []) if isinstance(payload, dict) else payload if isinstance(payload, list) else []
+        cooked = []
+        for c in rows if isinstance(rows, list) else []:
+            if not isinstance(c, dict) or not c.get("id"):
+                continue
+            enriched = self._enrich_card_semantic_fields(c)
+            cooked.append({
+                "id": enriched.get("id"),
+                "name_key": enriched.get("name_es", enriched.get("name_key", enriched.get("id"))),
+                "text_key": enriched.get("text_es", enriched.get("text_key", enriched.get("id"))),
+                "rarity": enriched.get("rarity", "common"),
+                "cost": int(enriched.get("cost", 1)),
+                "target": enriched.get("target", "enemy"),
+                "tags": list(enriched.get("tags", [])),
+                "effects": list(enriched.get("effects", [])),
+                "role": str(enriched.get("role") or infer_card_role(enriched)),
+                "family": (enriched.get("direction", "ESTE") or "ESTE").lower(),
+                "direction": enriched.get("direction", "ESTE"),
+                "strategy": enriched.get("strategy", {}),
+                "lore_text": enriched.get("lore_text", ""),
+                "effect_text": enriched.get("effect_text", enriched.get("text_key", "")),
+                "archetype": enriched.get("archetype", ""),
+                "motif": enriched.get("motif", ""),
+                "palette": enriched.get("palette", ""),
+                "energy": enriched.get("energy", ""),
+                "symbol": enriched.get("symbol", ""),
+                "author": enriched.get("author", "Mauricio"),
+                "order": enriched.get("order", "Chakana"),
+                "set": str(enriched.get("set", "hiperboria") or "hiperboria"),
+            })
+        return cooked
 
     def _enrich_card_semantic_fields(self, card: dict) -> dict:
         """Ensure runtime card semantics exist for UI/art guidance without changing mechanics."""
@@ -1007,6 +1044,59 @@ class App:
             }
             print('[scene] queued set reveal: hiperboria')
 
+    def is_set_unlocked(self, set_id: str) -> bool:
+        if not isinstance(self.run_state, dict):
+            return str(set_id or '').strip().lower() == 'base'
+        sid = str(set_id or '').strip().lower()
+        discovered = {str(x).strip().lower() for x in list(self.run_state.get('discovered_sets', []) or []) if x}
+        return sid in discovered
+
+    def _refresh_set_unlock_state(self) -> bool:
+        if not isinstance(self.run_state, dict):
+            return False
+        discovered = [str(x).strip().lower() for x in list(self.run_state.get('discovered_sets', []) or []) if x]
+        if 'base' not in discovered:
+            discovered.insert(0, 'base')
+        seen = set()
+        normalized = []
+        for sid in discovered:
+            if sid and sid not in seen:
+                seen.add(sid)
+                normalized.append(sid)
+        self.run_state['discovered_sets'] = normalized
+
+        tutorial_wins = int(self.run_state.get('tutorial_combats_won', self.run_state.get('combats_won', 0)) or 0)
+        self.run_state['tutorial_combats_won'] = tutorial_wins
+        unlocked = 'hiperboria' in seen
+        self.run_state['hiperboria_unlocked'] = bool(unlocked)
+        if (not unlocked) and tutorial_wins >= 3:
+            self._queue_set_discovery('hiperboria')
+            self.run_state['hiperboria_unlocked'] = True
+            print(f"[content] hiperboria unlocked tutorial_combats={tutorial_wins}")
+            return True
+        return False
+
+    def _reward_card_pool(self) -> list[dict]:
+        base_pool = list(getattr(self, 'cards_data', []) or [])
+        if not self.is_set_unlocked('hiperboria'):
+            return base_pool
+        extra = list(getattr(self, 'hiperboria_cards_data', []) or [])
+        by_id = {}
+        for row in base_pool + extra:
+            if isinstance(row, dict) and row.get('id'):
+                by_id[str(row.get('id'))] = row
+        return list(by_id.values())
+
+    def _combat_card_catalog(self) -> list[dict]:
+        # Combat must always resolve known card ids from base + unlocked sets safely.
+        base_pool = list(getattr(self, 'cards_data', []) or [])
+        extra = list(getattr(self, 'hiperboria_cards_data', []) or [])
+        by_id = {}
+        for row in base_pool + extra:
+            if isinstance(row, dict) and row.get('id'):
+                by_id[str(row.get('id'))] = row
+        return list(by_id.values())
+
     def retry_current_combat(self):
         if not isinstance(self.run_state, dict):
             self.new_run()
@@ -1142,6 +1232,7 @@ class App:
         self.last_biome_seen = payload.get("last_biome_seen")
         self._refresh_node_lookup_from_map()
         self.recover_map_progression()
+        self._refresh_set_unlock_state()
         print("[save] continue run restored")
 
     def _clear_saved_run(self):
@@ -1263,6 +1354,7 @@ class App:
             "xp": 0,
             "level": 1,
             "combats_won": 0,
+            "tutorial_combats_won": 0,
             "allow_defeat_continue": True,
             "settings": {
                 "turn_timer_enabled": bool(self.user_settings.get("turn_timer_enabled", True)),
@@ -1270,10 +1362,12 @@ class App:
                 "music_muted": bool(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False))),
             },
             "discovered_sets": ["base"],
+            "hiperboria_unlocked": False,
         }
         self.current_node_id = None
         self.current_combat = None
         self._sync_tutorial_run_state()
+        self._refresh_set_unlock_state()
         self._autosave_run("new_run_started")
         self.trigger_oracle("run_start")
         self.goto_map()
@@ -1413,7 +1507,7 @@ class App:
     def goto_reward(self, picks=None, gold=None, mode=None, relic=None, guide_reward=None):
         reward_mode = mode or "choose1of3"
         if reward_mode == "guide_choice":
-            reward_data = guide_reward or build_reward_guide("guide", self.rng, self.cards_data, self.run_state or {})
+            reward_data = guide_reward or build_reward_guide("guide", self.rng, self._reward_card_pool(), self.run_state or {})
             reward_data["type"] = "guide_choice"
             self.sm.set(RewardScreen(self, reward_data, gold=0, xp_gained=self.debug.get("xp_last_gain", 0)))
             self.play_stinger("stinger_reward")
@@ -1421,7 +1515,7 @@ class App:
             return
 
         if reward_mode == "boss_pack":
-            reward_data = build_reward_boss(self.rng, self.cards_data, self.relics_data, self.run_state or {})
+            reward_data = build_reward_boss(self.rng, self._reward_card_pool(), self.relics_data, self.run_state or {})
             if relic is not None:
                 reward_data["relic"] = relic
             reward_data["type"] = "boss_pack"
@@ -1433,7 +1527,8 @@ class App:
         if picks is None:
             unlock_level = self.run_state.get("level", 1) if self.run_state else 1
             rarities = {"basic", "common"} if unlock_level < 2 else {"common", "uncommon", "rare"}
-            pool = [c for c in self.cards_data if c.get("rarity") in rarities] or self.cards_data
+            reward_cards = self._reward_card_pool()
+            pool = [c for c in reward_cards if c.get("rarity") in rarities] or reward_cards
             reward_data = build_reward_normal(self.rng, pool, self.run_state or {})
         else:
             reward_data = {"type": "choose1of3", "cards": list(picks)}
@@ -1445,7 +1540,8 @@ class App:
         self.music.play_for(self.get_bgm_track("reward"))
 
     def goto_shop(self):
-        pool = [c for c in self.cards_data if c.get("rarity") in {"common", "uncommon"}] or self.cards_data
+        reward_cards = self._reward_card_pool()
+        pool = [c for c in reward_cards if c.get("rarity") in {"common", "uncommon"}] or reward_cards
         self.sm.set(ShopScreen(self, self.rng.choice(pool) or DEFAULT_CARDS[0]))
         self.music.play_for(self.get_bgm_track("shop"))
 
@@ -1458,7 +1554,7 @@ class App:
         self.music.play_for(self.get_bgm_track("events"))
 
     def goto_guide_reward(self, event_id: str = "guide"):
-        reward_data = build_reward_guide(event_id, self.rng, self.cards_data, self.run_state or {})
+        reward_data = build_reward_guide(event_id, self.rng, self._reward_card_pool(), self.run_state or {})
         self.goto_reward(mode="guide_choice", guide_reward=reward_data)
 
     def run_qa_mode(self):
@@ -1569,7 +1665,7 @@ class App:
             else:
                 enemy_ids = [self.rng.choice(self._enemy_pool(node))]
             self.run_state["last_node_type"] = node_type
-            base_state = CombatState(self.rng, self.run_state, enemy_ids, cards_data=self.cards_data, enemies_data=self.enemies_data)
+            base_state = CombatState(self.rng, self.run_state, enemy_ids, cards_data=self._combat_card_catalog(), enemies_data=self.enemies_data)
             self._apply_relic_combat_start_effects(base_state)
             early = int(self.run_state.get("combats_won", 0)) < 2 and node_type != "boss"
             if early:
@@ -1673,6 +1769,8 @@ class App:
             return
 
         self.run_state["combats_won"] = int(self.run_state.get("combats_won", 0)) + 1
+        self.run_state["tutorial_combats_won"] = int(self.run_state.get("tutorial_combats_won", 0)) + 1
+        self._refresh_set_unlock_state()
         if node_type == "challenge":
             bonus_gold = int(round(self.rng.randint(40, 70) * 1.3))
             xp_gain = 40 + perfect_bonus
@@ -1989,7 +2087,8 @@ class App:
         self.biome_defs = self._load_biome_defs()
         self.biome_def_by_id = {str(b.get("id")).lower(): b for b in self.biome_defs if isinstance(b, dict) and b.get("id")}
         self.cards_data = self._load_cards_data()
-        self.card_defs = {c["id"]: c for c in self.cards_data}
+        self.hiperboria_cards_data = self._load_hiperboria_cards_data()
+        self.card_defs = {c["id"]: c for c in (list(self.cards_data) + list(self.hiperboria_cards_data)) if isinstance(c, dict) and c.get('id')}
         self.enemies_data = self._load_enemies_data()
         self.ensure_assets(progress_cb=self._loading_step)
         self._log_card_art_status()

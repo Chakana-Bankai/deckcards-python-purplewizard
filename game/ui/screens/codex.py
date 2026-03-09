@@ -31,6 +31,7 @@ class CodexScreen:
         self.sections = self._load_sections()
         self.section_by_id = {str(s.get("id", "")): s for s in self.sections}
         self.lore_set_cards = self._load_lore_set_cards()
+        self.hiperboria_set_cards = self._load_hiperboria_set_cards()
         self.lore_set_relics = self._load_lore_set_relics()
         self.active_section_id = self.sections[0].get("id", "lore") if self.sections else "lore"
         self.gallery_index = 0
@@ -74,6 +75,16 @@ class CodexScreen:
             return {}
         return {}
 
+    def _load_hiperboria_set_cards(self) -> dict:
+        path = data_dir() / "codex_cards_hiperboria.json"
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8-sig"))
+            if isinstance(payload, dict):
+                return payload
+        except Exception:
+            return {}
+        return {}
+
     def _load_lore_set_relics(self) -> dict:
         path = data_dir() / "codex_relics_lore_set1.json"
         try:
@@ -96,8 +107,17 @@ class CodexScreen:
         return self.section_by_id.get(self.active_section_id, self.sections[0] if self.sections else {})
 
     def _codex_cards(self) -> list[dict]:
-        payload = self.lore_set_cards if isinstance(self.lore_set_cards, dict) else {}
-        items = payload.get("cards", []) if isinstance(payload.get("cards", []), list) else []
+        base_payload = self.lore_set_cards if isinstance(self.lore_set_cards, dict) else {}
+        base_items = base_payload.get("cards", []) if isinstance(base_payload.get("cards", []), list) else []
+        run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
+        discovered = {str(x).strip().lower() for x in list(run.get("discovered_sets", []) or []) if x}
+        hip_unlocked = "hiperboria" in discovered
+        hip_payload = self.hiperboria_set_cards if isinstance(self.hiperboria_set_cards, dict) else {}
+        hip_items = hip_payload.get("cards", []) if isinstance(hip_payload.get("cards", []), list) else []
+
+        items = list(base_items)
+        if hip_unlocked:
+            items.extend(list(hip_items))
         if not items:
             return []
         defs = self.app.card_defs if isinstance(self.app.card_defs, dict) else {}
@@ -397,7 +417,15 @@ class CodexScreen:
         s.blit(codex_header_font.render(title, True, UI_THEME["gold"]), (self.right_panel.x + 20, self.right_panel.y + 20))
 
         if active_id == "cards":
-            tabs = [("all", "Todo"), ("base", "Base"), ("hiperborea", "Hiperborea"), ("relics", "Relics"), ("lore", "Lore")]
+            run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
+            discovered = {str(x).strip().lower() for x in list(run.get("discovered_sets", []) or []) if x}
+            tabs = [("all", "Todo"), ("base", "Base")]
+            if "hiperboria" in discovered:
+                tabs.append(("hiperborea", "Hiperborea"))
+            tabs.extend([("relics", "Relics"), ("lore", "Lore")])
+            tab_ids = {tid for tid, _lbl in tabs}
+            if self.card_set_tab not in tab_ids:
+                self.card_set_tab = "all"
             self.card_tab_rects = []
             tx = self.right_panel.x + 20
             ty = self.right_panel.y + 58
@@ -438,9 +466,3 @@ class CodexScreen:
 
         UIButton(self.back_btn, "Volver", role="default", premium=False).draw(s, self.app.font, hovered=self.back_btn.collidepoint(mouse))
         UIButton(self.tutorial_btn, "Iniciar Tutorial Guiado", role="end_turn", premium=True).draw(s, self.app.font, hovered=self.tutorial_btn.collidepoint(mouse))
-
-
-
-
-
-

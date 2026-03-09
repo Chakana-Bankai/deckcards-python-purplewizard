@@ -23,3 +23,8 @@ Estado: Base estable + preparado para expansion
 ## Boundary
 - engine_candidate: renderer canónico + validadores
 - game_specific: nombres, lore, textos, arte asociado
+
+## Fase 4 (integrada)
+- Catalogo de runtime extendido para incluir cards_hiperboria.json sin romper Base.
+- Definiciones de combate usan catalogo base+hiperborea para evitar IDs huerfanos.
+- Codex carga codex_cards_hiperboria.json y habilita pestaña Hiperborea solo tras unlock.

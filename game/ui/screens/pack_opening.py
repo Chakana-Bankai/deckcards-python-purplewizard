@@ -46,7 +46,8 @@ class PackOpeningScreen:
         self.back_rect = pygame.Rect(420, 980, 280, 56)
         self.preview = CardPreviewPanel(app=app)
         self.legendary_pick_mode = False
-        pool_all = [c for c in self.app.cards_data if c.get("rarity") in {"rare", "legendary", "uncommon", "common", "basic"}] or self.app.cards_data
+        source_cards = list(getattr(self.app, '_reward_card_pool', lambda: list(getattr(self.app, 'cards_data', []) or []))() or [])
+        pool_all = [c for c in source_cards if c.get("rarity") in {"rare", "legendary", "uncommon", "common", "basic"}] or source_cards
         self.base_pool = [c for c in pool_all if not (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower())] or list(pool_all)
         self.hip_pool = [c for c in pool_all if c not in self.base_pool]
         self.pool = list(pool_all)
@@ -55,7 +56,8 @@ class PackOpeningScreen:
     def _card_pool_by_pack(self, pack_id: str):
         run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
         level = int(run.get("level", 1) or 1)
-        hip_chance = 0.0 if level < 3 else 0.25 if level < 5 else 0.45
+        hip_unlocked = bool(getattr(self.app, 'is_set_unlocked', lambda _sid: False)('hiperboria'))
+        hip_chance = 0.0 if (not hip_unlocked) else (0.25 if level < 5 else 0.45)
         use_hip = bool(self.hip_pool) and self.app.rng.random() < hip_chance
         pool = list(self.hip_pool if use_hip else self.base_pool)
         if not pool:
@@ -119,9 +121,13 @@ class PackOpeningScreen:
         if self.legendary_pick_mode:
             chosen = self.selected_card or self.cards[0]
             self.app.run_state["sideboard"].append(chosen.definition.id)
+            if hasattr(self.app, '_queue_set_discovery') and hasattr(self.app, '_detect_card_set'):
+                self.app._queue_set_discovery(self.app._detect_card_set(chosen.definition.id))
         else:
             for c in self.cards:
                 self.app.run_state["sideboard"].append(c.definition.id)
+                if hasattr(self.app, '_queue_set_discovery') and hasattr(self.app, '_detect_card_set'):
+                    self.app._queue_set_discovery(self.app._detect_card_set(c.definition.id))
         self.app.consume_levelup_pending()
 
     def handle_event(self, event):

@@ -12,7 +12,7 @@ class ShopScreen:
     def __init__(self, app, offer_card):
         self.app = app
         run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
-        all_cards = list(getattr(self.app, "cards_data", []) or [])
+        all_cards = list(getattr(self.app, "_reward_card_pool", lambda: list(getattr(self.app, 'cards_data', []) or []))() or [])
         hip_pool = [c for c in all_cards if str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower()]
         base_pool = [c for c in all_cards if c not in hip_pool] or list(all_cards)
         stage_level = int(run.get("level", 1) or 1)
@@ -95,6 +95,8 @@ class ShopScreen:
             return
         self.app.run_state["gold"] -= price
         self.app.run_state["sideboard"].append(card["id"])
+        if hasattr(self.app, '_queue_set_discovery') and hasattr(self.app, '_detect_card_set'):
+            self.app._queue_set_discovery(self.app._detect_card_set(card.get('id', '')))
         self.msg = f"{tag}: {self.app.loc.t(card.get('name_key', card['id']))}"
 
     def _buy_artifact(self):
@@ -306,9 +308,3 @@ class ShopScreen:
         if self.msg:
             col = UI_THEME["good"] if "No" not in self.msg and "Ya" not in self.msg else UI_THEME["bad"]
             s.blit(self.app.font.render(self.msg, True, col), (self.merchant_rect.x + 20, self.hint_rect.y - 32))
-
-
-
-
-
-

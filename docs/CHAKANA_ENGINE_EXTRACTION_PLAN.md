@@ -1,4 +1,4 @@
-﻿# CHAKANA Engine Extraction Plan
+# CHAKANA Engine Extraction Plan
 
 ## Scope
 This document defines a safe extraction path from the current game codebase into reusable Chakana Engine modules without breaking Purple Wizard runtime.
@@ -72,3 +72,10 @@ This document defines a safe extraction path from the current game codebase into
   - intent deck draw/discard/reshuffle
   - simple scoring AI for intent choice
   - safe fallback to legacy pattern.
+
+## 2026-03-09 - Fase 4 Hiperborea Unlock + Codex Integration
+
+- Added safe set unlock gate after 3 tutorial combats.
+- Added runtime reward/shop/pack card pool gating by discovered sets.
+- Added separate Hiperborea card catalog loader (cards_hiperboria.json).
+- Codex now loads Hiperborea entries from codex_cards_hiperboria.json and reveals the tab when unlocked.
