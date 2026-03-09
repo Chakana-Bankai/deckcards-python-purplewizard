@@ -1,6 +1,5 @@
 import pygame
 
-from game.art.gen_avatar_chakana import render_avatar
 from game.ui.theme import UI_THEME
 
 
@@ -47,7 +46,7 @@ class PachaTransitionScreen:
         pygame.draw.line(s, UI_THEME["gold"], (cx - 58, cy), (cx + 58, cy), 2)
         pygame.draw.line(s, UI_THEME["gold"], (cx, cy - 58), (cx, cy + 58), 2)
         pygame.draw.rect(s, UI_THEME["gold"], pygame.Rect(cx - 14, cy - 14, 28, 28), 2)
-        avatar = render_avatar(pygame.time.get_ticks() / 1000.0, 110)
+        avatar = self.app.assets.sprite("avatar", "chakana_mage_portrait", (110, 110), fallback=(86, 56, 132))
         s.blit(avatar, (panel.x + 70, panel.y + 210))
 
         s.blit(self.app.big_font.render(self.title, True, UI_THEME["gold"]), (panel.x + 240, panel.y + 70))

@@ -18,7 +18,7 @@ class SceneFusionScreen:
         *,
         background: str = "Ruinas Chakana",
         biome_layer: str | None = None,
-        portrait_key: str = "codex",
+        portrait_key: str = "chakana_mage_portrait",
         speaker_label: str = "CHAKANA",
         set_label: str = "",
         min_seconds: float = 0.8,
@@ -31,7 +31,7 @@ class SceneFusionScreen:
         self.next_fn = next_fn
         self.background = str(background or "Ruinas Chakana")
         self.biome_layer = str(biome_layer) if biome_layer else None
-        self.portrait_key = str(portrait_key or "codex")
+        self.portrait_key = str(portrait_key or "chakana_mage_portrait")
         self.speaker_label = str(speaker_label or "CHAKANA")
         self.set_label = str(set_label or "")
         self.min_seconds = float(min_seconds)
@@ -144,3 +144,5 @@ class SceneFusionScreen:
         hint_s = self.app.small_font.render(hint, True, UI_THEME["good"] if self._ready else UI_THEME["muted"])
         hint_s.set_alpha(alpha)
         s.blit(hint_s, (panel.centerx - hint_s.get_width() // 2, panel.bottom - 38))
+
+

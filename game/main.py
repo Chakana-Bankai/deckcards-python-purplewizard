@@ -996,7 +996,7 @@ class App:
                 'dialogue': 'Antiguos sellos de Hiperborea despiertan en tu mazo.',
                 'lore': 'El conocimiento polar comienza a cruzar la Trama.',
                 'speaker': 'CHAKANA',
-                'portrait': 'codex',
+                'portrait': 'chakana_mage_portrait',
                 'biome': str((self.run_state or {}).get('biome', 'kaypacha')),
             }
             print('[scene] queued set reveal: hiperboria')
@@ -2057,3 +2057,4 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
+

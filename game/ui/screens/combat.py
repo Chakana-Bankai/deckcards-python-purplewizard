@@ -1274,7 +1274,7 @@ class CombatScreen:
 
         pygame.draw.rect(s, (14, 12, 20), portrait_rect, border_radius=11)
         pygame.draw.rect(s, UI_THEME["gold"], portrait_rect, 2, border_radius=11)
-        portrait_kind = "combat_hud"
+        portrait_kind = "chakana_mage_holo"
         avatar = self.app.assets.sprite("avatar", portrait_kind, (portrait_rect.w - 10, portrait_rect.h - 22), fallback=(86, 56, 132))
         av_rect = avatar.get_rect(center=(portrait_rect.centerx, portrait_rect.centery - 2))
         s.blit(avatar, av_rect.topleft)
@@ -1577,3 +1577,4 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+

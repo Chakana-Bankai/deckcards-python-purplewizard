@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 
@@ -352,7 +352,7 @@ class CodexScreen:
         UIPanel(self.left_panel, variant="panel", title="Codex").draw(s, self.app.small_font)
         UIPanel(self.right_panel, variant="alt", title="Contenido").draw(s, self.app.small_font)
 
-        portrait = self.app.assets.sprite("avatar", "codex", (84, 84), fallback=(86, 56, 132))
+        portrait = self.app.assets.sprite("avatar", "chakana_mage_concept", (84, 84), fallback=(86, 56, 132))
         s.blit(portrait, (self.left_panel.x + self.left_panel.w - 106, self.left_panel.y + 10))
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
@@ -396,3 +396,4 @@ class CodexScreen:
 
         UIButton(self.back_btn, "Volver", role="default", premium=False).draw(s, self.app.font, hovered=self.back_btn.collidepoint(mouse))
         UIButton(self.tutorial_btn, "Iniciar Tutorial Guiado", role="end_turn", premium=True).draw(s, self.app.font, hovered=self.tutorial_btn.collidepoint(mouse))
+
