@@ -10,6 +10,7 @@ from game.core.rng import SeededRNG
 from game.core.safe_io import load_json
 from game.telemetry.logger import TelemetryLogger
 from game.services.deck_integrity import audit_and_repair_deck_piles
+from game.systems.gameplay_rules import DEFAULT_PLAYER_RULES, normalized_combat_deck
 
 
 DEFAULT_CARDS = [
@@ -62,8 +63,11 @@ class CombatState:
         self.start_line = rng.choice(["lore_short_1", "lore_short_2", "lore_short_3"]) or "lore_short_1"
         self.cards = self._load_cards(cards_data)
         self.enemies = self._spawn_enemies(enemy_ids, enemies_data)
+        self.balance = self._load_balance_config()
         first_id = next(iter(self.cards.keys()))
-        deck_ids = run_state.get("deck", []) or [first_id] * 15
+        raw_deck_ids = run_state.get("deck", []) or [first_id] * 15
+        self.player_combat_deck_size = int(self.balance.get("player_combat_deck_size", DEFAULT_PLAYER_RULES["player_combat_deck_size"]) or DEFAULT_PLAYER_RULES["player_combat_deck_size"])
+        deck_ids = normalized_combat_deck(raw_deck_ids, first_id, self.player_combat_deck_size)
         self.draw_pile = [CardInstance(self.cards.get(card_id, self.cards[first_id])) for card_id in deck_ids]
         self.discard_pile = []
         self.hand = []
@@ -80,11 +84,10 @@ class CombatState:
         self.next_turn_bonus_energy = 0
         self.last_played_card = None
         self.baston_used = False
-        self.balance = self._load_balance_config()
-        self.energy_per_turn = int(self.balance.get("energy_base", self.balance.get("energy_per_turn", 3)) or 3)
-        self.draw_per_turn = int(self.balance.get("draw_per_turn", 2) or 2)
-        self.starting_hand = int(self.balance.get("starting_hand", 4) or 4)
-        self.hand_max = int(self.balance.get("hand_limit", self.balance.get("hand_max", 6)) or 6)
+        self.energy_per_turn = int(self.balance.get("energy_base", self.balance.get("energy_per_turn", DEFAULT_PLAYER_RULES["energy_per_turn"])) or DEFAULT_PLAYER_RULES["energy_per_turn"])
+        self.draw_per_turn = int(self.balance.get("draw_per_turn", DEFAULT_PLAYER_RULES["draw_per_turn"]) or DEFAULT_PLAYER_RULES["draw_per_turn"])
+        self.starting_hand = int(self.balance.get("starting_hand", DEFAULT_PLAYER_RULES["starting_hand"]) or DEFAULT_PLAYER_RULES["starting_hand"])
+        self.hand_max = int(self.balance.get("hand_limit", self.balance.get("hand_max", DEFAULT_PLAYER_RULES["hand_limit"])) or DEFAULT_PLAYER_RULES["hand_limit"])
         self.ui_cooldown_ms = int(self.balance.get("ui_cooldown_ms", 200) or 200)
         self.fatigue_enabled = bool(self.balance.get("fatigue_enabled", True))
         self.fatigue_start = int(self.balance.get("fatigue_start", 1) or 1)
@@ -177,6 +180,9 @@ class CombatState:
                 hp = int(max(20, hp))
             pattern = item.get("pattern") or [{"intent": "attack", "value": [5, 5]}]
             en = Enemy(item.get("id", "dummy"), item.get("name_key", "enemy_voidling_name"), hp, hp, pattern)
+            intent_deck = item.get("intent_deck", []) if isinstance(item.get("intent_deck", []), list) else []
+            if intent_deck:
+                en.set_intent_deck(intent_deck, self.rng)
             en.fable_lesson_key = item.get("fable_lesson_key", "duda")
             enemies.append(en)
         return enemies
@@ -186,12 +192,13 @@ class CombatState:
         if not isinstance(raw, dict):
             raw = {}
         return {
-            "energy_base": int(raw.get("energy_base", raw.get("energy_per_turn", 3)) or 3),
-            "energy_per_turn": int(raw.get("energy_per_turn", raw.get("energy_base", 3)) or 3),
-            "draw_per_turn": int(raw.get("draw_per_turn", 2) or 2),
-            "starting_hand": int(raw.get("starting_hand", 4) or 4),
-            "hand_limit": int(raw.get("hand_limit", raw.get("hand_max", 6)) or 6),
-            "hand_max": int(raw.get("hand_max", raw.get("hand_limit", 6)) or 6),
+            "energy_base": int(raw.get("energy_base", raw.get("energy_per_turn", DEFAULT_PLAYER_RULES["energy_per_turn"])) or DEFAULT_PLAYER_RULES["energy_per_turn"]),
+            "energy_per_turn": int(raw.get("energy_per_turn", raw.get("energy_base", DEFAULT_PLAYER_RULES["energy_per_turn"])) or DEFAULT_PLAYER_RULES["energy_per_turn"]),
+            "draw_per_turn": int(raw.get("draw_per_turn", DEFAULT_PLAYER_RULES["draw_per_turn"]) or DEFAULT_PLAYER_RULES["draw_per_turn"]),
+            "starting_hand": int(raw.get("starting_hand", DEFAULT_PLAYER_RULES["starting_hand"]) or DEFAULT_PLAYER_RULES["starting_hand"]),
+            "hand_limit": int(raw.get("hand_limit", raw.get("hand_max", DEFAULT_PLAYER_RULES["hand_limit"])) or DEFAULT_PLAYER_RULES["hand_limit"]),
+            "hand_max": int(raw.get("hand_max", raw.get("hand_limit", DEFAULT_PLAYER_RULES["hand_limit"])) or DEFAULT_PLAYER_RULES["hand_limit"]),
+            "player_combat_deck_size": int(raw.get("player_combat_deck_size", DEFAULT_PLAYER_RULES["player_combat_deck_size"]) or DEFAULT_PLAYER_RULES["player_combat_deck_size"]),
             "ui_cooldown_ms": int(raw.get("ui_cooldown_ms", 200) or 200),
             "fatigue_enabled": bool(raw.get("fatigue_enabled", True)),
             "fatigue_start": int(raw.get("fatigue_start", 1) or 1),
@@ -279,10 +286,6 @@ class CombatState:
 
     def draw(self, n):
         for _ in range(max(0, int(n or 0))):
-            if len(self.hand) >= self.hand_max:
-                self.combat_events.append({"type": "draw_skipped", "reason": "hand_full", "hand": len(self.hand)})
-                self._deck_log("draw_skipped_hand_full")
-                break
             if not self.draw_pile:
                 if self.discard_pile:
                     self.draw_pile = self.discard_pile
@@ -297,12 +300,22 @@ class CombatState:
                     self.combat_events.append({"type": "deck_empty", "message": "Derrota: tu mazo se ha vaciado."})
                     self.telemetry.info("deck_empty_defeat", draw=0, discard=0)
                     break
-            if self.draw_pile and len(self.hand) < self.hand_max:
-                card = self.draw_pile.pop()
-                self.hand.append(card)
-                if self._deck_draw_log_budget > 0:
-                    self._deck_log(f"draw_card:{getattr(getattr(card, 'definition', None), 'id', '?')}")
-                    self._deck_draw_log_budget -= 1
+
+            if not self.draw_pile:
+                break
+
+            card = self.draw_pile.pop()
+            if len(self.hand) >= self.hand_max:
+                # Avoid turn soft-lock when hand is full.
+                self.discard_pile.append(card)
+                self.combat_events.append({"type": "draw_overflow_to_discard", "reason": "hand_full", "hand": len(self.hand)})
+                self._deck_log("draw_overflow_to_discard")
+                continue
+
+            self.hand.append(card)
+            if self._deck_draw_log_budget > 0:
+                self._deck_log(f"draw_card:{getattr(getattr(card, 'definition', None), 'id', '?')}")
+                self._deck_draw_log_budget -= 1
         self._audit_deck_integrity("draw")
 
     def play_card(self, hand_index: int, target_idx: int | None = None):
@@ -422,7 +435,7 @@ class CombatState:
         for enemy in self.enemies:
             if not enemy.alive:
                 continue
-            intent = enemy.current_intent()
+            intent = enemy.current_intent(self.rng)
             enemy.last_action_name = intent.get("name", intent.get("intent", "action"))
             intent_kind = intent.get("intent", "attack")
             if intent_kind == "attack":
@@ -446,7 +459,7 @@ class CombatState:
                 enemy.hp = min(enemy.max_hp, enemy.hp + int(intent.get("stacks", 1)))
             elif intent_kind == "channel":
                 pass
-            enemy.advance_intent()
+            enemy.advance_intent(self.rng)
 
     def update(self, dt):
         self.start_line_time = max(0.0, self.start_line_time - dt)

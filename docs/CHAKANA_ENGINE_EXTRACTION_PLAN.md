@@ -48,3 +48,15 @@ This document defines a safe extraction path from the current game codebase into
 - Canonical portrait pipeline documented.
 - Audio cache ownership documented.
 - Import shim policy accepted.
+
+## 2026-03-09 - Fase 1-2 Integration Update
+
+- Added engine-candidate gameplay rules module: `game/systems/gameplay_rules.py`.
+- Combat now reads normalized baseline rules from `game/data/balance/combat.json`.
+- Deck flow lock:
+  - starting hand 5
+  - draw per turn 5
+  - hand max 10
+  - overdraw redirected to discard.
+- Added safe prep for enemy intent mini-decks (`intent_deck`) with fallback to existing pattern.
+- No ID migrations, no destructive content cleanup.

@@ -45,3 +45,19 @@ Define what remains Purple Wizard-specific and what should become reusable Engin
 - Curated master avatar structure is ready path-wise, but assets may still be incomplete.
 - Card renderer is centralized and should remain canonical for all contexts.
 - Audio context manifest is active and should remain single source for runtime mapping.
+
+## 2026-03-09 - Boundary Addendum (Phase 1-2)
+
+### engine_candidate
+- `game/systems/gameplay_rules.py`
+- combat pile flow rules and deck normalization in `game/combat/combat_state.py`
+- enemy intent deck runtime adapter in `game/combat/enemy.py`
+
+### game_specific
+- set unlock narratives
+- codex textual lore blocks
+- card/relic/enemy naming and flavor
+
+### non_destructive policy
+- no renaming/removal of active content IDs
+- no global migration in a single pass
