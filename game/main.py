@@ -132,6 +132,7 @@ class App:
         self.run_state = None
         self.current_combat = None
         self.menu_return_screen = None
+        self.settings_return_screen = None
         self.combat_actions_log = []
         self.last_biome_seen = None
         self.node_lookup = {}
@@ -1023,7 +1024,9 @@ class App:
         self.music.play_for(self.get_bgm_track("menu"))
 
     def goto_settings(self):
-        self.sm.set(SettingsScreen(self))
+        if self.sm.current and not isinstance(self.sm.current, SettingsScreen):
+            self.settings_return_screen = self.sm.current
+        self.sm.set(SettingsScreen(self, return_screen=self.settings_return_screen))
 
     def goto_end(self, victory=True):
         if not victory:
