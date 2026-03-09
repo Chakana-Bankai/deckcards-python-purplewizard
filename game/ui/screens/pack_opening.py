@@ -46,11 +46,20 @@ class PackOpeningScreen:
         self.back_rect = pygame.Rect(420, 980, 280, 56)
         self.preview = CardPreviewPanel(app=app)
         self.legendary_pick_mode = False
-        pool = [c for c in self.app.cards_data if c.get("rarity") in {"rare", "legendary", "uncommon", "common", "basic"}] or self.app.cards_data
-        self.pool = pool
+        pool_all = [c for c in self.app.cards_data if c.get("rarity") in {"rare", "legendary", "uncommon", "common", "basic"}] or self.app.cards_data
+        self.base_pool = [c for c in pool_all if not (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower())] or list(pool_all)
+        self.hip_pool = [c for c in pool_all if c not in self.base_pool]
+        self.pool = list(pool_all)
+        self.reveal_mode = "fan"
 
     def _card_pool_by_pack(self, pack_id: str):
-        pool = list(self.pool)
+        run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
+        level = int(run.get("level", 1) or 1)
+        hip_chance = 0.0 if level < 3 else 0.25 if level < 5 else 0.45
+        use_hip = bool(self.hip_pool) and self.app.rng.random() < hip_chance
+        pool = list(self.hip_pool if use_hip else self.base_pool)
+        if not pool:
+            pool = list(self.pool)
         common_pool = [c for c in pool if c.get("rarity") in {"basic", "common"}] or pool
         uncommon_pool = [c for c in pool if c.get("rarity") == "uncommon"] or common_pool
         rare_pool = [c for c in pool if c.get("rarity") == "rare"] or uncommon_pool
@@ -257,4 +266,3 @@ class PackOpeningScreen:
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.back_rect, 2, border_radius=10)
         back_lbl = "Cancelar" if self.cards else "Volver"
         s.blit(self.app.font.render(back_lbl, True, UI_THEME["text"]), (self.back_rect.x + 88, self.back_rect.y + 16))
-

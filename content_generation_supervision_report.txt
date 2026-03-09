@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-03-09T09:37:02-03:00",
+  "version": "0.9.103",
+  "supervision": {
+    "card_family_distribution": {
+      "harmony_guardian": 40,
+      "cosmic_warrior": 40,
+      "oracle_of_fate": 40
+    },
+    "tag_diversity": 18,
+    "art_manifest_items": 63,
+    "audio_contexts": [
+      "boss",
+      "chest",
+      "combat_forest",
+      "combat_hanan",
+      "combat_kaypacha",
+      "combat_umbral",
+      "ending",
+      "event",
+      "map_forest",
+      "map_hanan",
+      "map_kaypacha",
+      "map_umbral",
+      "menu",
+      "shop",
+      "victory"
+    ],
+    "audio_variants": 36,
+    "procedural_diversity_score": 96
+  },
+  "notes": [
+    "No destructive cleanup applied in this pass.",
+    "Diversity score is a heuristic for supervision, not gameplay quality.",
+    "Use this report to prioritize curated replacements and generator tuning."
+  ]
+}

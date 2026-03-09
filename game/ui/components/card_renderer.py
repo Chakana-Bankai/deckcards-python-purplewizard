@@ -6,9 +6,10 @@ import pygame
 
 from game.ui.components.card_effect_summary import infer_card_role, summarize_card_effect
 from game.ui.components.card_framework import to_card_framework_model
-from game.ui.system.icons import draw_icon_with_value
+from game.ui.system.icons_atlas import draw_icon_with_value
 from game.ui.theme import UI_THEME
 from game.ui.system.safety import clamp_single_line, wrap_lines, resolve_view_context
+from game.ui.system.ui_scale_system import ICON_CARD_SMALL, ICON_CARD_MEDIUM, ICON_CARD_KPI
 
 
 ROLE_COLORS = {
@@ -34,11 +35,14 @@ RENDER_CONTEXT_RULES = {
     "hover_view": {"pad": 12, "text_pad": 8, "title_scale": 1.0, "effect_scale": 0.96, "lore_mode": "full", "footer_mode": "full", "art_fit_mode": "contain"},
     "combat_preview": {"pad": 11, "text_pad": 7, "title_scale": 0.98, "effect_scale": 0.95, "lore_mode": "normal", "footer_mode": "compact", "art_fit_mode": "contain"},
     "deck_view": {"pad": 10, "text_pad": 7, "title_scale": 0.94, "effect_scale": 0.92, "lore_mode": "brief", "footer_mode": "compact", "art_fit_mode": "contain"},
-    "deck_builder": {"pad": 10, "text_pad": 7, "title_scale": 0.94, "effect_scale": 0.92, "lore_mode": "brief", "footer_mode": "compact", "art_fit_mode": "contain"},
     "codex_view": {"pad": 12, "text_pad": 8, "title_scale": 1.0, "effect_scale": 0.98, "lore_mode": "full", "footer_mode": "full", "art_fit_mode": "contain"},
     "shop_view": {"pad": 10, "text_pad": 7, "title_scale": 0.95, "effect_scale": 0.93, "lore_mode": "normal", "footer_mode": "compact", "art_fit_mode": "contain"},
     "pack_view": {"pad": 10, "text_pad": 7, "title_scale": 0.95, "effect_scale": 0.93, "lore_mode": "normal", "footer_mode": "compact", "art_fit_mode": "contain"},
     "archetype_preview": {"pad": 11, "text_pad": 7, "title_scale": 0.94, "effect_scale": 0.9, "lore_mode": "brief", "footer_mode": "set_only", "art_fit_mode": "contain"},
+    "combat_hand": {"pad": 9, "text_pad": 6, "title_scale": 0.94, "effect_scale": 0.92, "lore_mode": "brief", "footer_mode": "compact", "art_fit_mode": "contain"},
+    "hover_preview": {"pad": 12, "text_pad": 8, "title_scale": 1.0, "effect_scale": 0.96, "lore_mode": "full", "footer_mode": "full", "art_fit_mode": "contain"},
+    "pack_reward": {"pad": 10, "text_pad": 7, "title_scale": 0.95, "effect_scale": 0.93, "lore_mode": "normal", "footer_mode": "compact", "art_fit_mode": "contain"},
+    "archetype_modal": {"pad": 11, "text_pad": 7, "title_scale": 0.94, "effect_scale": 0.9, "lore_mode": "brief", "footer_mode": "set_only", "art_fit_mode": "contain"},
 }
 
 def _payload(card):
@@ -286,6 +290,8 @@ def _resolve_render_context(state: dict | None, preset: str) -> dict:
         "preview": "codex_view",
     }
     key = str((state or {}).get("render_context", default_by_preset.get(preset, "combat_preview")) or "").strip().lower()
+    aliases = {"combat_hand": "hand_view", "hover_preview": "hover_view", "deck_builder": "deck_view", "pack_reward": "pack_view", "archetype_modal": "archetype_preview"}
+    key = aliases.get(key, key)
     safety = resolve_view_context(key)
     merged = dict(RENDER_CONTEXT_RULES.get(key, RENDER_CONTEXT_RULES["combat_preview"]))
     if "font_scale" in safety:
@@ -308,11 +314,11 @@ def _layout_for(rect: pygame.Rect, preset: str, rules: dict) -> dict:
     gap = cfg["text_pad"]
 
     ratio_header = 0.10
-    ratio_art = 0.55
+    ratio_art = 0.59
     ratio_type = 0.06
-    ratio_effects = 0.12
+    ratio_effects = 0.11
     ratio_lore = 0.08
-    ratio_footer = 0.09
+    ratio_footer = 0.08
 
     h = content.h
     header_h = max(34, int(h * ratio_header))
@@ -533,11 +539,11 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
             icon_name,
             val,
             (255, 246, 196),
-            tiny_font,
+            title_font,
             token_rect.x + 4,
-            token_rect.y + max(1, (token_rect.h - 18) // 2),
+            token_rect.y + max(1, (token_rect.h - ICON_CARD_SMALL) // 2),
             size=1,
-            min_icon_px=18,
+            min_icon_px=ICON_CARD_MEDIUM,
         )
         ex = token_rect.right + 6
 
@@ -595,7 +601,7 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
             sx,
             sy,
             size=1,
-            min_icon_px=16,
+            min_icon_px=ICON_CARD_MEDIUM,
         )
         if sx > stat_rect.right - 28:
             break
@@ -622,6 +628,19 @@ def render_card_large(surface, rect, card, theme=None, state=None):
 
 def render_card_preview(surface, rect, card, theme=None, state=None):
     _draw_core(surface, pygame.Rect(rect), card, theme, state, preset="preview")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

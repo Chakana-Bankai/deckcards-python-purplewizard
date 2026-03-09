@@ -1,0 +1,56 @@
+VISUAL SYSTEM NORMALIZATION QA REPORT
+==============================================
+{
+  "generated_at": "2026-03-09T09:37:02-03:00",
+  "version": "0.9.103",
+  "build": "Visual System Normalization + Content Director",
+  "status": "PASS",
+  "legibility": {
+    "score": 100,
+    "missing_contexts": [],
+    "available_contexts": [
+      "card_body",
+      "card_effect",
+      "card_footer",
+      "card_lore",
+      "card_title",
+      "card_titles",
+      "card_type",
+      "codex_header",
+      "codex_headers",
+      "combat_label",
+      "combat_labels",
+      "combat_title",
+      "combat_value",
+      "hud_numbers",
+      "lore_text",
+      "map_label",
+      "map_labels",
+      "shop_header",
+      "shop_headers"
+    ]
+  },
+  "icon_visibility": {
+    "score": 94,
+    "missing_required_icons": [],
+    "missing_used_effect_icons": [
+      "damage_plus_rupture",
+      "double_block_cap",
+      "draw_if_direction_played"
+    ]
+  },
+  "hiperborea_visibility": {
+    "base_cards": 60,
+    "hiperboria_cards": 60,
+    "codex_hiperboria_cards": 60,
+    "shop_hiperboria_candidates": 60,
+    "missing_in_codex": [],
+    "codex_orphans": []
+  },
+  "baseline_phase9": {
+    "avg_turns_battle": 8.86,
+    "avg_turns_boss": 9.29,
+    "missing_kpi_icons": 7,
+    "art_failures": 0
+  }
+}

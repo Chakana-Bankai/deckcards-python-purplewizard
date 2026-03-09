@@ -4,18 +4,30 @@ from game.ui.components.card_effect_summary import infer_card_role
 from game.ui.components.card_preview_panel import CardPreviewPanel
 from game.ui.theme import UI_THEME
 from game.ui.system.brand import ChakanaBrand
-from game.ui.system.icons import draw_icon_with_value
+from game.ui.system.icons_atlas import draw_icon_with_value
 from game.ui.system.layout import anchor_bottom_center, anchor_top_right, build_three_column_layout, inset, safe_area
 
 
 class ShopScreen:
     def __init__(self, app, offer_card):
         self.app = app
-        self.offer_card = offer_card
-        premium_pool = [c for c in self.app.cards_data if c.get("rarity") in {"rare", "legendary", "uncommon"}]
-        self.rare_card = self.app.rng.choice(premium_pool) if premium_pool else offer_card
+        run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
+        all_cards = list(getattr(self.app, "cards_data", []) or [])
+        hip_pool = [c for c in all_cards if str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower()]
+        base_pool = [c for c in all_cards if c not in hip_pool] or list(all_cards)
+        stage_level = int(run.get("level", 1) or 1)
+        hip_chance = 0.0 if stage_level < 3 else 0.25 if stage_level < 5 else 0.45
+        source_pool = hip_pool if hip_pool and self.app.rng.random() < hip_chance else all_cards
+
+        self.offer_card = self.app.rng.choice(source_pool or all_cards or [offer_card]) if all_cards else offer_card
+        premium_pool = [c for c in (source_pool or all_cards) if c.get("rarity") in {"rare", "legendary", "uncommon"}]
+        if not premium_pool:
+            premium_pool = [c for c in all_cards if c.get("rarity") in {"rare", "legendary", "uncommon"}]
+        self.rare_card = self.app.rng.choice(premium_pool) if premium_pool else self.offer_card
+
         relic_pool = list(getattr(self.app, "relics_data", []) or [])
         self.artifact = self.app.rng.choice(relic_pool) if relic_pool else {"id": "violet_seal", "name_key": "relic_violet_seal_name", "text_key": "relic_violet_seal_desc"}
+        self._set_hint = "Hiperborea activa" if (self.offer_card in hip_pool or self.rare_card in hip_pool) else "Set base"
 
         self.msg = ""
         self.hint = "El comerciante conoce caminos olvidados."
@@ -237,6 +249,7 @@ class ShopScreen:
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.merchant_rect, 2, border_radius=14)
         s.blit(self.app.big_font.render("Comerciante del Umbral", True, UI_THEME["text"]), (self.merchant_rect.x + 18, self.merchant_rect.y + 10))
         s.blit(self.app.tiny_font.render("Intercambio ritual y reliquias del viaje", True, UI_THEME["muted"]), (self.merchant_rect.x + 20, self.merchant_rect.y + 46))
+        s.blit(self.app.tiny_font.render(self._set_hint, True, UI_THEME["gold"]), (self.merchant_rect.x + 20, self.merchant_rect.y + 66))
         gold_rect = anchor_top_right(self.merchant_rect, 320, 46, margin=18)
         pygame.draw.rect(s, UI_THEME["panel_2"], gold_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], gold_rect, 2, border_radius=10)
@@ -293,4 +306,9 @@ class ShopScreen:
         if self.msg:
             col = UI_THEME["good"] if "No" not in self.msg and "Ya" not in self.msg else UI_THEME["bad"]
             s.blit(self.app.font.render(self.msg, True, col), (self.merchant_rect.x + 20, self.hint_rect.y - 32))
+
+
+
+
+
 

@@ -22,7 +22,8 @@ from game.ui.theme import UI_THEME
 from game.ui.system.layers import Layers
 from game.ui.system.components import UIPanel, UITooltip
 from game.ui.system.colors import UColors
-from game.ui.system.icons import draw_icon_with_value, icon_for_effect
+from game.ui.system.icons_atlas import draw_icon_with_value
+from game.ui.system.icons import icon_for_effect
 from game.ui.components.topbar import CombatTopBar
 from game.telemetry.logger import TelemetryLogger
 
@@ -1303,13 +1304,13 @@ class CombatScreen:
             card = hand[i]
             base_hover, _angle = self._card_pose(i, len(hand))
             # Hover: lift + scale + center for readability, keeping safe UI bounds.
-            ww = int(base_hover.w * 1.35)
-            hh = int(base_hover.h * 1.35)
+            ww = int(base_hover.w * 1.12)
+            hh = int(base_hover.h * 1.12)
             rr = pygame.Rect(0, 0, ww, hh)
             hover_t = min(1.0, max(0.0, self.hover_anim.get(i, 0.0)))
             eased = 1.0 - ((1.0 - hover_t) ** 3)
-            rr.centerx = s.get_width() // 2
-            rr.centery = int(s.get_height() * (0.50 - 0.04 * eased))
+            rr.centerx = int(base_hover.centerx + (self.layout.hand_rect.centerx - base_hover.centerx) * 0.22 * eased)
+            rr.centery = int(base_hover.centery - (34 + 10 * eased))
             safe_overlay = pygame.Rect(
                 self.layout.hand_rect.x + 4,
                 self.layout.topbar_rect.bottom + 8,
@@ -1651,10 +1652,3 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
-
-
-
-
-
-
-

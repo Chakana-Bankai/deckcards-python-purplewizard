@@ -4,7 +4,7 @@ from game.settings import INTERNAL_HEIGHT, INTERNAL_WIDTH
 from game.ui.components.topbar import MapTopBar
 from game.ui.theme import UI_THEME
 from game.ui.system.components import UIPanel, UITooltip
-from game.ui.system.icons import draw_icon_with_value
+from game.ui.system.icons_atlas import draw_icon_with_value
 from game.ui.system.layout import safe_area
 from game.content.civilizations import civilization_for_progress, civilization_title
 
@@ -612,5 +612,6 @@ class MapScreen:
             if tip_rect.y < 10:
                 tip_rect.y = 10
             UITooltip(tip_rect, relic_hover_text).draw(s, self.app.tiny_font)
+
 
 

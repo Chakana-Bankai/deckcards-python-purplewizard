@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-03-09T09:37:02-03:00",
+  "version": "0.9.103",
+  "asset_classification": {
+    "counts": {
+      "curated": 1,
+      "generated": 0,
+      "fallback": 0,
+      "deprecated": 0,
+      "visual_generated": 149,
+      "audio_generated": 33
+    },
+    "card_sprite_count": 151,
+    "near_duplicate_size_risk": 11
+  },
+  "policy": {
+    "curated_priority": true,
+    "generated_as_cache": true,
+    "fallback_safe": true,
+    "aggressive_delete": false
+  }
+}
