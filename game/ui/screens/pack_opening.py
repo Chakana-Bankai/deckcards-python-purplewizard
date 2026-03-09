@@ -48,7 +48,15 @@ class PackOpeningScreen:
         self.legendary_pick_mode = False
         source_cards = list(getattr(self.app, '_reward_card_pool', lambda: list(getattr(self.app, 'cards_data', []) or []))() or [])
         pool_all = [c for c in source_cards if c.get("rarity") in {"rare", "legendary", "uncommon", "common", "basic"}] or source_cards
-        self.base_pool = [c for c in pool_all if not (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower())] or list(pool_all)
+        self.base_pool = [
+            c
+            for c in pool_all
+            if not (
+                str(c.get("id", "")).lower().startswith("hip_")
+                or ("hiperboria" in str(c.get("set", "")).lower())
+                or ("hiperborea" in str(c.get("set", "")).lower())
+            )
+        ] or list(pool_all)
         self.hip_pool = [c for c in pool_all if c not in self.base_pool]
         self.pool = list(pool_all)
         self.reveal_mode = "fan"

@@ -13,8 +13,17 @@ class ShopScreen:
         self.app = app
         run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
         all_cards = list(getattr(self.app, "_reward_card_pool", lambda: list(getattr(self.app, 'cards_data', []) or []))() or [])
-        hip_pool = [c for c in all_cards if str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower()]
+        hip_pool = [
+            c
+            for c in all_cards
+            if str(c.get("id", "")).lower().startswith("hip_")
+            or ("hiperboria" in str(c.get("set", "")).lower())
+            or ("hiperborea" in str(c.get("set", "")).lower())
+        ]
         base_pool = [c for c in all_cards if c not in hip_pool] or list(all_cards)
+        # Expose pools for diagnostics/QA without changing shop behavior.
+        self.hip_pool = list(hip_pool)
+        self.base_pool = list(base_pool)
         stage_level = int(run.get("level", 1) or 1)
         hip_chance = float(getattr(getattr(self.app, "meta_director", None), "hiperborea_chance", lambda r, lvl: (0.0 if lvl < 3 else (0.25 if lvl < 5 else 0.45)))(run, stage_level))
         source_pool = hip_pool if hip_pool and self.app.rng.random() < hip_chance else all_cards

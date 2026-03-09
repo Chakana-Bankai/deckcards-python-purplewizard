@@ -1021,7 +1021,7 @@ class App:
             return 'base'
         cdef = self.card_defs.get(cid, {}) if isinstance(self.card_defs, dict) else {}
         set_name = str((cdef or {}).get('set', '') or '').strip().lower()
-        if 'hiperboria' in set_name or cid.startswith('hip_'):
+        if ('hiperboria' in set_name) or ('hiperborea' in set_name) or cid.startswith('hip_'):
             return 'hiperboria'
         return 'base'
 
