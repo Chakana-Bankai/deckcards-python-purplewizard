@@ -68,6 +68,8 @@ class CombatScreen:
         self.bg_seed = abs(hash(f"{self.selected_biome}:{self.c.turn}:{self.c.enemies[0].id if self.c.enemies else 'none'}")) % 100000
         self.pause_open = False
         self.pause_confirm_target = None
+
+        self.combat_start_t = pygame.time.get_ticks() / 1000.0
         self.hover_card_index = None
         self.dialog_debug_overlay = False
         self.qa_debug_overlay = False
@@ -106,6 +108,7 @@ class CombatScreen:
         self.harmony_seal_rect = pygame.Rect(0, 0, 1, 1)
         self._player_low_hp_active = False
         self._enemy_low_hp_active: set[str] = set()
+        self.combat_start_t = pygame.time.get_ticks() / 1000.0
         self._reset_encounter_ui_state()
         print("[combat_reset] seal/harmony/action state reset OK")
         enemy_id = self.c.enemies[0].id if self.c.enemies else "default"
@@ -160,6 +163,7 @@ class CombatScreen:
 
         self.pause_open = False
         self.pause_confirm_target = None
+
 
     def on_leave(self):
         self.ctrl.clear_selection("screen_change")
@@ -809,10 +813,12 @@ class CombatScreen:
                     if k == "continue":
                         self.pause_open = False
                         self.pause_confirm_target = None
+
                     elif k == "map":
                         if self.pause_confirm_target == "map":
                             self.pause_open = False
                             self.pause_confirm_target = None
+
                             self._mark_current_node_incomplete()
                             self.app.goto_map()
                         else:
@@ -821,6 +827,7 @@ class CombatScreen:
                         if self.pause_confirm_target == "menu":
                             self.pause_open = False
                             self.pause_confirm_target = None
+
                             self._mark_current_node_incomplete()
                             self.app.menu_return_screen = None
                             self.app.goto_menu()
@@ -1274,7 +1281,7 @@ class CombatScreen:
 
         pygame.draw.rect(s, (14, 12, 20), portrait_rect, border_radius=11)
         pygame.draw.rect(s, UI_THEME["gold"], portrait_rect, 2, border_radius=11)
-        portrait_kind = "chakana_mage_holo"
+        portrait_kind = "chakana_mage_hologram"
         avatar = self.app.assets.sprite("avatar", portrait_kind, (portrait_rect.w - 10, portrait_rect.h - 22), fallback=(86, 56, 132))
         av_rect = avatar.get_rect(center=(portrait_rect.centerx, portrait_rect.centery - 2))
         s.blit(avatar, av_rect.topleft)
@@ -1577,4 +1584,8 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+
+
+
 

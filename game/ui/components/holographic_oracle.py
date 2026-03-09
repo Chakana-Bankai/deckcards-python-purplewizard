@@ -118,7 +118,7 @@ class HolographicOracleUI:
         if is_archon:
             avatar = app.assets.sprite("avatar", "archon_oracle", (av_rect.w - 10, av_rect.h - 10), fallback=(64, 32, 42)).copy()
         else:
-            avatar = app.assets.sprite("avatar", "chakana_mage_holo", (av_rect.w - 10, av_rect.h - 10), fallback=(86, 56, 132)).copy()
+            avatar = app.assets.sprite("avatar", "chakana_mage_hologram", (av_rect.w - 10, av_rect.h - 10), fallback=(86, 56, 132)).copy()
         avatar.set_alpha(int(alpha * 0.90))
         if is_archon:
             tint = pygame.Surface(avatar.get_size(), pygame.SRCALPHA)
@@ -169,4 +169,5 @@ class HolographicOracleUI:
             surface.blit(noise, panel.topleft)
 
         surface.blit(layer, panel.topleft)
+
 

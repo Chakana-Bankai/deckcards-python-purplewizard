@@ -13,7 +13,7 @@ from .visual_engine import get_visual_engine
 class PortraitPipeline:
     """Multi-tier character pipeline: concept art, portrait, hologram."""
 
-    VERSION = "portrait_v3"
+    VERSION = "portrait_v4"
 
     def __init__(self):
         self.root = Path(__file__).resolve().parent
@@ -58,7 +58,7 @@ class PortraitPipeline:
             return "concept"
         if "portrait" in key or key in {"dialogue", "scene", "lore_panel", "menu"}:
             return "portrait"
-        if "holo" in key or "oracle" in key or key in {"combat_hud", "player_hud", "hud"}:
+        if "holo" in key or "hologram" in key or "oracle" in key or key in {"combat_hud", "player_hud", "hud"}:
             return "hologram"
         return "portrait"
 
@@ -70,18 +70,23 @@ class PortraitPipeline:
         if role == "chakana_mage":
             explicit = {
                 "concept": [
+                    aroot / "avatars" / "chakana_mage_concept.png",
                     aroot / "sprites" / "concept_art" / "chakana_mage.png",
                     aroot / "sprites" / "portrait_sources" / "chakana_mage_master.png",
                     aroot / "sprites" / "portrait_sources" / "chakana.png",
                 ],
                 "portrait": [
+                    aroot / "avatars" / "chakana_mage_portrait.png",
                     aroot / "sprites" / "portrait" / "chakana_mage_portrait.png",
                     aroot / "sprites" / "portrait_sources" / "chakana_mage.png",
                     aroot / "sprites" / "avatar" / "chakana_mage_portrait.png",
                 ],
                 "hologram": [
+                    aroot / "avatars" / "chakana_mage_hologram.png",
                     aroot / "sprites" / "hologram" / "chakana_mage_holo.png",
+                    aroot / "sprites" / "hologram" / "chakana_mage_hologram.png",
                     aroot / "sprites" / "avatar" / "chakana_mage_holo.png",
+                    aroot / "sprites" / "avatar" / "chakana_mage_hologram.png",
                     aroot / "sprites" / "avatar" / "combat_hud.png",
                 ],
             }
@@ -89,20 +94,22 @@ class PortraitPipeline:
 
         explicit_archon = {
             "concept": [
+                aroot / "avatars" / "archon_concept.png",
                 aroot / "sprites" / "concept_art" / "archon.png",
                 aroot / "sprites" / "portrait_sources" / "archon_master.png",
             ],
             "portrait": [
+                aroot / "avatars" / "archon_portrait.png",
                 aroot / "sprites" / "portrait" / "archon_portrait.png",
                 aroot / "sprites" / "portrait_sources" / "archon.png",
             ],
             "hologram": [
+                aroot / "avatars" / "archon_hologram.png",
                 aroot / "sprites" / "hologram" / "archon_holo.png",
                 aroot / "sprites" / "avatar" / "archon_oracle.png",
             ],
         }
         return explicit_archon.get(style, [])
-
     def _generated_path(self, role: str, style: str, size: tuple[int, int]) -> Path:
         return self.generated_root / f"{role}_{style}_{size[0]}x{size[1]}.png"
 
@@ -146,15 +153,27 @@ class PortraitPipeline:
             line_col = (236, 110, 128)
             edge = (242, 126, 142)
         else:
+            # Chakana hologram palette: cyan + violet + electric blue.
             tint.fill((90, 160, 255, 52))
             line_col = (126, 212, 246)
             edge = (152, 228, 255)
         base.blit(tint, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
+        if role != "archon":
+            violet = pygame.Surface((w, h), pygame.SRCALPHA)
+            violet.fill((146, 96, 238, 30))
+            base.blit(violet, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
         scan = pygame.Surface((w, h), pygame.SRCALPHA)
         for y in range(1, h, 3):
             pygame.draw.line(scan, (*line_col, 34), (2, y), (w - 3, y), 1)
         base.blit(scan, (0, 0))
+
+        # Subtle static-like distortion to keep hologram identity readable at small sizes.
+        for y in range(6, h - 6, 13):
+            wobble = 1 if ((y // 13) % 2 == 0) else -1
+            band = base.subsurface(pygame.Rect(0, y, w, 1)).copy()
+            base.blit(band, (wobble, y))
+
         pygame.draw.rect(base, edge, base.get_rect(), 1, border_radius=8)
         return base
 
@@ -269,4 +288,9 @@ def get_portrait_pipeline() -> PortraitPipeline:
     if _PIPELINE is None:
         _PIPELINE = PortraitPipeline()
     return _PIPELINE
+
+
+
+
+
 
