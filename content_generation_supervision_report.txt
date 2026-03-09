@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-03-09T09:37:02-03:00",
-  "version": "0.9.103",
+  "generated_at": "2026-03-09T09:53:23-03:00",
+  "version": "0.9.104",
   "supervision": {
     "card_family_distribution": {
       "harmony_guardian": 40,
@@ -10,6 +10,7 @@
     "tag_diversity": 18,
     "art_manifest_items": 63,
     "audio_contexts": [
+      "_core_context_map",
       "boss",
       "chest",
       "combat_forest",

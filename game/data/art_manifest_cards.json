@@ -2,7 +2,7 @@
   "generator_version": "art32_v1",
   "items": {
     "campo_protector": {
-      "created_at": 1773059929,
+      "created_at": 1773061500,
       "generator_version": "card_gen_v6",
       "id": "campo_protector",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\campo_protector.png",
@@ -10,7 +10,7 @@
       "seed": 4155041546
     },
     "chakana_de_luz": {
-      "created_at": 1773059929,
+      "created_at": 1773061500,
       "generator_version": "card_gen_v6",
       "id": "chakana_de_luz",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\chakana_de_luz.png",
@@ -18,7 +18,7 @@
       "seed": 606169678
     },
     "cw_lore_02": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "cw_lore_02",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\cw_lore_02.png",
@@ -26,7 +26,7 @@
       "seed": 2343680269
     },
     "cw_lore_03": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "cw_lore_03",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\cw_lore_03.png",
@@ -34,7 +34,7 @@
       "seed": 4239821211
     },
     "cw_lore_04": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "cw_lore_04",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\cw_lore_04.png",
@@ -42,7 +42,7 @@
       "seed": 1657936952
     },
     "cw_lore_08": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "cw_lore_08",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\cw_lore_08.png",
@@ -50,7 +50,7 @@
       "seed": 1801736211
     },
     "cw_lore_09": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "cw_lore_09",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\cw_lore_09.png",
@@ -58,7 +58,7 @@
       "seed": 476274821
     },
     "cw_lore_10": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "cw_lore_10",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\cw_lore_10.png",
@@ -66,7 +66,7 @@
       "seed": 2091182432
     },
     "cw_lore_14": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "cw_lore_14",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\cw_lore_14.png",
@@ -74,7 +74,7 @@
       "seed": 2076781945
     },
     "cw_lore_18": {
-      "created_at": 1773059932,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "cw_lore_18",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\cw_lore_18.png",
@@ -82,7 +82,7 @@
       "seed": 1920950610
     },
     "cw_lore_23": {
-      "created_at": 1773059932,
+      "created_at": 1773061503,
       "generator_version": "card_gen_v6",
       "id": "cw_lore_23",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\cw_lore_23.png",
@@ -90,7 +90,7 @@
       "seed": 3464555289
     },
     "cw_lore_29": {
-      "created_at": 1773059932,
+      "created_at": 1773061503,
       "generator_version": "card_gen_v6",
       "id": "cw_lore_29",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\cw_lore_29.png",
@@ -98,7 +98,7 @@
       "seed": 777323015
     },
     "eco_de_sabiduria": {
-      "created_at": 1773059930,
+      "created_at": 1773061500,
       "generator_version": "card_gen_v6",
       "id": "eco_de_sabiduria",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\eco_de_sabiduria.png",
@@ -106,7 +106,7 @@
       "seed": 1166720347
     },
     "embate_del_jaguar": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "embate_del_jaguar",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\embate_del_jaguar.png",
@@ -114,7 +114,7 @@
       "seed": 50670169
     },
     "escudo_de_luz": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "escudo_de_luz",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\escudo_de_luz.png",
@@ -122,7 +122,7 @@
       "seed": 3112154271
     },
     "escudo_del_chaman": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "escudo_del_chaman",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\escudo_del_chaman.png",
@@ -130,7 +130,7 @@
       "seed": 1412761258
     },
     "espiritu_guardian": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "espiritu_guardian",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\espiritu_guardian.png",
@@ -138,7 +138,7 @@
       "seed": 26486385
     },
     "estallido_arcano": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "estallido_arcano",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\estallido_arcano.png",
@@ -146,7 +146,7 @@
       "seed": 433506803
     },
     "filo_astral": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "filo_astral",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\filo_astral.png",
@@ -154,7 +154,7 @@
       "seed": 1845829972
     },
     "filo_en_cadena": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "filo_en_cadena",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\filo_en_cadena.png",
@@ -162,7 +162,7 @@
       "seed": 2634039569
     },
     "firmeza_del_cuerpo": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "firmeza_del_cuerpo",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\firmeza_del_cuerpo.png",
@@ -170,7 +170,7 @@
       "seed": 547478413
     },
     "fragmento_celeste": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "fragmento_celeste",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\fragmento_celeste.png",
@@ -178,7 +178,7 @@
       "seed": 3468558360
     },
     "fusion_espiritual": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "fusion_espiritual",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\fusion_espiritual.png",
@@ -186,7 +186,7 @@
       "seed": 2665405702
     },
     "garra_espiritual": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "garra_espiritual",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\garra_espiritual.png",
@@ -194,7 +194,7 @@
       "seed": 1242426527
     },
     "guardia_terrenal": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "guardia_terrenal",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\guardia_terrenal.png",
@@ -202,7 +202,7 @@
       "seed": 127833840
     },
     "hg_lore_01": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "hg_lore_01",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\hg_lore_01.png",
@@ -210,7 +210,7 @@
       "seed": 1184387377
     },
     "hg_lore_05": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "hg_lore_05",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\hg_lore_05.png",
@@ -218,7 +218,7 @@
       "seed": 1106613544
     },
     "hg_lore_06": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "hg_lore_06",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\hg_lore_06.png",
@@ -226,7 +226,7 @@
       "seed": 3640444050
     },
     "hg_lore_07": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "hg_lore_07",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\hg_lore_07.png",
@@ -234,7 +234,7 @@
       "seed": 2952524804
     },
     "hg_lore_11": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "hg_lore_11",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\hg_lore_11.png",
@@ -242,7 +242,7 @@
       "seed": 1602445424
     },
     "hg_lore_13": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "hg_lore_13",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\hg_lore_13.png",
@@ -250,7 +250,7 @@
       "seed": 2978808156
     },
     "hg_lore_15": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "hg_lore_15",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\hg_lore_15.png",
@@ -258,7 +258,7 @@
       "seed": 1492034665
     },
     "hg_lore_19": {
-      "created_at": 1773059932,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "hg_lore_19",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\hg_lore_19.png",
@@ -266,7 +266,7 @@
       "seed": 1364781122
     },
     "hg_lore_24": {
-      "created_at": 1773059932,
+      "created_at": 1773061503,
       "generator_version": "card_gen_v6",
       "id": "hg_lore_24",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\hg_lore_24.png",
@@ -274,7 +274,7 @@
       "seed": 80004924
     },
     "hg_lore_27": {
-      "created_at": 1773059932,
+      "created_at": 1773061503,
       "generator_version": "card_gen_v6",
       "id": "hg_lore_27",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\hg_lore_27.png",
@@ -282,7 +282,7 @@
       "seed": 2647496326
     },
     "invocacion_astral": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "invocacion_astral",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\invocacion_astral.png",
@@ -290,7 +290,7 @@
       "seed": 3182230165
     },
     "lectura_del_destino": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "lectura_del_destino",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\lectura_del_destino.png",
@@ -298,7 +298,7 @@
       "seed": 655156270
     },
     "mantra_del_umbral": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "mantra_del_umbral",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\mantra_del_umbral.png",
@@ -306,7 +306,7 @@
       "seed": 3118346195
     },
     "muralla_de_piedra": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "muralla_de_piedra",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\muralla_de_piedra.png",
@@ -314,7 +314,7 @@
       "seed": 1700030846
     },
     "observacion_sagrada": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "observacion_sagrada",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\observacion_sagrada.png",
@@ -322,7 +322,7 @@
       "seed": 3238218400
     },
     "of_lore_12": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "of_lore_12",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\of_lore_12.png",
@@ -330,7 +330,7 @@
       "seed": 858603248
     },
     "of_lore_16": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "of_lore_16",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\of_lore_16.png",
@@ -338,7 +338,7 @@
       "seed": 876673769
     },
     "of_lore_17": {
-      "created_at": 1773059932,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "of_lore_17",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\of_lore_17.png",
@@ -346,7 +346,7 @@
       "seed": 1128778367
     },
     "of_lore_20": {
-      "created_at": 1773059932,
+      "created_at": 1773061503,
       "generator_version": "card_gen_v6",
       "id": "of_lore_20",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\of_lore_20.png",
@@ -354,7 +354,7 @@
       "seed": 4128115743
     },
     "of_lore_21": {
-      "created_at": 1773059932,
+      "created_at": 1773061503,
       "generator_version": "card_gen_v6",
       "id": "of_lore_21",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\of_lore_21.png",
@@ -362,7 +362,7 @@
       "seed": 2164866185
     },
     "of_lore_22": {
-      "created_at": 1773059932,
+      "created_at": 1773061503,
       "generator_version": "card_gen_v6",
       "id": "of_lore_22",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\of_lore_22.png",
@@ -370,7 +370,7 @@
       "seed": 402681139
     },
     "of_lore_25": {
-      "created_at": 1773059932,
+      "created_at": 1773061503,
       "generator_version": "card_gen_v6",
       "id": "of_lore_25",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\of_lore_25.png",
@@ -378,7 +378,7 @@
       "seed": 2254764176
     },
     "of_lore_26": {
-      "created_at": 1773059932,
+      "created_at": 1773061503,
       "generator_version": "card_gen_v6",
       "id": "of_lore_26",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\of_lore_26.png",
@@ -386,7 +386,7 @@
       "seed": 527280426
     },
     "of_lore_28": {
-      "created_at": 1773059932,
+      "created_at": 1773061503,
       "generator_version": "card_gen_v6",
       "id": "of_lore_28",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\of_lore_28.png",
@@ -394,7 +394,7 @@
       "seed": 4174742573
     },
     "of_lore_30": {
-      "created_at": 1773059932,
+      "created_at": 1773061503,
       "generator_version": "card_gen_v6",
       "id": "of_lore_30",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\of_lore_30.png",
@@ -402,7 +402,7 @@
       "seed": 4011146590
     },
     "piedra_ritual": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "piedra_ritual",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\piedra_ritual.png",
@@ -410,7 +410,7 @@
       "seed": 2989519828
     },
     "portal_de_la_chakana": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "portal_de_la_chakana",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\portal_de_la_chakana.png",
@@ -418,7 +418,7 @@
       "seed": 3574793291
     },
     "pulso_cosmico": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "pulso_cosmico",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\pulso_cosmico.png",
@@ -426,7 +426,7 @@
       "seed": 2703012781
     },
     "resistencia_ancestral": {
-      "created_at": 1773059930,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "resistencia_ancestral",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\resistencia_ancestral.png",
@@ -434,7 +434,7 @@
       "seed": 3245661967
     },
     "revelacion_astral": {
-      "created_at": 1773059931,
+      "created_at": 1773061501,
       "generator_version": "card_gen_v6",
       "id": "revelacion_astral",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\revelacion_astral.png",
@@ -442,7 +442,7 @@
       "seed": 2968212449
     },
     "ritual_de_la_trama": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "ritual_de_la_trama",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\ritual_de_la_trama.png",
@@ -450,7 +450,7 @@
       "seed": 267294702
     },
     "sello_protector": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "sello_protector",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\sello_protector.png",
@@ -458,7 +458,7 @@
       "seed": 2128776870
     },
     "silencio_interior": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "silencio_interior",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\silencio_interior.png",
@@ -466,7 +466,7 @@
       "seed": 387661731
     },
     "starter:cosmic_warrior": {
-      "created_at": 1773059933,
+      "created_at": 1773061504,
       "generator_version": "art32_v1",
       "id": "starter:cosmic_warrior",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\starters\\cosmic_warrior.png",
@@ -474,7 +474,7 @@
       "seed": 3072416225
     },
     "starter:harmony_guardian": {
-      "created_at": 1773059933,
+      "created_at": 1773061504,
       "generator_version": "art32_v1",
       "id": "starter:harmony_guardian",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\starters\\harmony_guardian.png",
@@ -482,7 +482,7 @@
       "seed": 3779845072
     },
     "starter:oracle_of_fate": {
-      "created_at": 1773059933,
+      "created_at": 1773061504,
       "generator_version": "art32_v1",
       "id": "starter:oracle_of_fate",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\starters\\oracle_of_fate.png",
@@ -490,7 +490,7 @@
       "seed": 3262198346
     },
     "vinculo_de_energia": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "vinculo_de_energia",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\vinculo_de_energia.png",
@@ -498,7 +498,7 @@
       "seed": 1235305663
     },
     "vision_del_condor": {
-      "created_at": 1773059931,
+      "created_at": 1773061502,
       "generator_version": "card_gen_v6",
       "id": "vision_del_condor",
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\cards\\vision_del_condor.png",

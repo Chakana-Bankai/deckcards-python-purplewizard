@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import pygame
 
-from game.ui.system.icons import draw_icon_with_value, icon_for_effect, render_icon, resolve_icon_id
+from game.ui.system.icons import draw_icon_with_value as _base_draw_icon_with_value, icon_for_effect, render_icon, resolve_icon_id
 from game.ui.system.ui_scale_system import ICON_CARD_MEDIUM, ICON_CARD_SMALL, ICON_CARD_KPI, ICON_HUD_SMALL, ICON_HUD_MEDIUM, ICON_HUD_LARGE
 
 
@@ -83,10 +83,10 @@ def draw_icon_value(surface: pygame.Surface, effect_or_name: str, value: int, x:
     icon_id = resolve_icon(effect_or_name)
     px = profile_px(profile)
     size = max(1, int(round(px / 14.0)))
-    return draw_icon_with_value(surface, icon_id, int(value), color, font, x, y, size=size, min_icon_px=px)
+    return _base_draw_icon_with_value(surface, icon_id, int(value), color, font, x, y, size=size, min_icon_px=px)
 
 # Compatibility wrapper for legacy callers.
-def draw_icon_with_value(
+def draw_icon_with_value_compat(
     surface: pygame.Surface,
     icon_name: str,
     value: int,
@@ -103,3 +103,6 @@ def draw_icon_with_value(
     elif int(min_icon_px or 0) >= ICON_HUD_LARGE:
         profile = "large"
     return draw_icon_value(surface, icon_name, int(value), x, y, color, font, profile=profile)
+
+# Backward-compatible export expected by existing screens.
+draw_icon_with_value = draw_icon_with_value_compat

@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-03-09T09:37:02-03:00",
-  "version": "0.9.103",
+  "generated_at": "2026-03-09T09:53:23-03:00",
+  "version": "0.9.104",
   "asset_classification": {
     "counts": {
-      "curated": 1,
+      "curated": 7,
       "generated": 0,
       "fallback": 0,
       "deprecated": 0,
       "visual_generated": 149,
-      "audio_generated": 33
+      "audio_generated": 43
     },
     "card_sprite_count": 151,
     "near_duplicate_size_risk": 11

@@ -1,6 +1,6 @@
 {
   "version": "visual_v2",
-  "generated_at": 1773056923,
+  "generated_at": 1773061429,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -173,7 +173,7 @@
     "biomes:ukhu_pacha:512x256:sigil": {
       "asset_id": "ukhu_pacha",
       "category": "biomes",
-      "seed": 1844520806,
+      "seed": 464613524,
       "palette": {
         "deep_purple": [
           28,
@@ -205,12 +205,14 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\biomes\\ukhu_pacha_512x256_sigil.png"
       ],
       "context": "sigil",
-      "version": "visual_v1",
-      "generated_at": 1772953093,
+      "version": "visual_v2",
+      "generated_at": 1773061429,
       "size": [
         512,
         256
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "emblems:cosmic_warrior:96x96:mini": {
       "asset_id": "cosmic_warrior",
@@ -3663,7 +3665,7 @@
     "biomes:fractura_chakana:512x256:sigil": {
       "asset_id": "fractura_chakana",
       "category": "biomes",
-      "seed": 1659777959,
+      "seed": 1803217231,
       "palette": {
         "deep_purple": [
           28,
@@ -3696,7 +3698,7 @@
       ],
       "context": "sigil",
       "version": "visual_v2",
-      "generated_at": 1773002163,
+      "generated_at": 1773061429,
       "size": [
         512,
         256

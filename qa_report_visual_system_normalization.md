@@ -1,13 +1,13 @@
 # Visual System Normalization QA Report
 
 - Status: **PASS**
-- Generated: 2026-03-09T09:37:02-03:00
+- Generated: 2026-03-09T09:53:23-03:00
 
 ```json
 {
-  "generated_at": "2026-03-09T09:37:02-03:00",
-  "version": "0.9.103",
-  "build": "Visual System Normalization + Content Director",
+  "generated_at": "2026-03-09T09:53:23-03:00",
+  "version": "0.9.104",
+  "build": "Curated Regen + Cache Reset",
   "status": "PASS",
   "legibility": {
     "score": 100,
