@@ -48,7 +48,7 @@ class PortraitPipeline:
 
     def _resolve_role(self, name: str) -> str:
         key = str(name or "").lower().strip()
-        if key in {"archon", "archon_oracle", "archon_panel", "corrupt_oracle", "archon_holo", "archon_portrait", "archon_concept"}:
+        if key in {"archon", "archon_oracle", "archon_panel", "corrupt_oracle", "archon_holo", "archon_hologram", "archon_portrait", "archon_concept"}:
             return "archon"
         return "chakana_mage"
 
@@ -288,6 +288,7 @@ def get_portrait_pipeline() -> PortraitPipeline:
     if _PIPELINE is None:
         _PIPELINE = PortraitPipeline()
     return _PIPELINE
+
 
 
 

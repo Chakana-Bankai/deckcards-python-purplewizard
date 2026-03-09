@@ -64,6 +64,7 @@ def _semantic_from_prompt(prompt: str) -> dict:
     motif = _extract_field(p, "motif ", ("(", "effect signature", "energy pattern", "lore tokens"))
     symbol = _extract_field(p, "sacred geometry ", ("motif", "effect signature", "energy pattern"))
     energy = _extract_field(p, "energy pattern ", ("lore tokens",))
+    lore_tokens = _extract_field(p, "lore tokens ", ())
     rarity = _extract_field(p, "rarity ", ("sacred geometry", "motif", "effect signature", "energy pattern", "lore tokens"))
     role = _extract_field(p, "role ", ("palette", "lighting", "rarity", "sacred geometry"))
     return {
@@ -71,6 +72,7 @@ def _semantic_from_prompt(prompt: str) -> dict:
         "motif": motif.lower(),
         "symbol": symbol.lower(),
         "energy": energy.lower(),
+        "lore_tokens": lore_tokens.lower(),
         "rarity": rarity.lower(),
         "role": role.lower(),
     }
@@ -399,6 +401,49 @@ def _palette_from_semantic(default_pal, semantic: dict):
     return ARCHETYPE_PALETTE_HINTS.get(key, default_pal)
 
 
+def _mix(a: tuple[int, int, int], b: tuple[int, int, int], t: float) -> tuple[int, int, int]:
+    tt = max(0.0, min(1.0, float(t)))
+    return (
+        int(a[0] * (1.0 - tt) + b[0] * tt),
+        int(a[1] * (1.0 - tt) + b[1] * tt),
+        int(a[2] * (1.0 - tt) + b[2] * tt),
+    )
+
+
+def _background_palette_from_semantic(pal, semantic: dict):
+    lore = str(semantic.get("lore_tokens", "")).lower()
+    motif = str(semantic.get("motif", "")).lower()
+
+    # Biome/civilization flavored background while preserving card type identity.
+    if any(k in lore for k in ("ukhu", "underworld", "void", "fractura")) or any(k in motif for k in ("void", "demon", "rupture")):
+        tint = (58, 18, 36)
+    elif any(k in lore for k in ("hanan", "celestial", "upper world")):
+        tint = (160, 170, 214)
+    elif any(k in lore for k in ("kay", "living world", "ritual balance")):
+        tint = (74, 114, 126)
+    elif any(k in lore for k in ("hyperborea", "hiperboria", "polar", "ice")):
+        tint = (184, 212, 232)
+    else:
+        tint = None
+
+    if tint is None:
+        return pal
+    top, mid, low, acc = pal
+    return (
+        _mix(top, tint, 0.18),
+        _mix(mid, tint, 0.14),
+        _mix(low, tint, 0.12),
+        _mix(acc, tint, 0.08),
+    )
+
+
+def _boost_legendary_saturation(surface: pygame.Surface):
+    w, h = surface.get_size()
+    sat = pygame.Surface((w, h), pygame.SRCALPHA)
+    sat.fill((26, 18, 8, 34))
+    surface.blit(sat, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
+
+
 def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Path) -> dict:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     ctype = _family_to_type(card_type)
@@ -408,6 +453,7 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
 
     semantic = _semantic_from_prompt(prompt)
     pal = _palette_from_semantic(TYPE_PALETTES.get(ctype, TYPE_PALETTES["spirit"]), semantic)
+    pal = _background_palette_from_semantic(pal, semantic)
 
     last_hash = None
     chosen_variant = 0
@@ -443,9 +489,14 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
             variant_pool = [3, 2, 0, 1]
         elif "ancient_guardian" in motif or "ancient_guardians" in motif:
             variant_pool = [0, 3, 1, 2]
+
+        # Diversify geometry order by semantic hash to avoid repeated pattern cadence.
+        rot = (sem_hash + attempt) % len(variant_pool)
+        variant_pool = variant_pool[rot:] + variant_pool[:rot]
         chosen_variant = variant_pool[(seed + attempt + sem_hash) % len(variant_pool)]
         _draw_geometry(low, chosen_variant, rng, pal[3])
         _draw_geometry(low, (chosen_variant + 2) % 4, rng, pal[2])
+        _draw_geometry(low, (chosen_variant + 1) % 4, rng, _mix(pal[2], pal[3], 0.5))
 
         # Layer 3: symbol
         _draw_silhouette(low, ctype, pal[2])
@@ -460,6 +511,8 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
         if legendary:
             _draw_energy_glow(low, pal[3], intensity=2)
             _draw_geometry(low, (chosen_variant + 1) % 4, rng, pal[3])
+            _draw_motif_layer(low, motif_group, _mix(pal[2], pal[3], 0.6), rng)
+            _boost_legendary_saturation(low)
             pygame.draw.circle(low, (*pal[3], 96), (80, 56), 34, 2)
 
         for c in [(6, 6), (154, 6), (6, 106), (154, 106)]:
@@ -507,3 +560,4 @@ def render_card(card_id: str, family: str, symbol: str) -> pygame.Surface:
         _draw_energy_glow(low, pal[3], intensity=2)
 
     return pygame.transform.scale(low, (320, 220)).convert_alpha()
+
