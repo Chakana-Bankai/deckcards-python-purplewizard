@@ -1,0 +1,20 @@
+## Visual Regeneration
+timestamp=2026-03-09 09:53:57
+avatar_curated=game\assets\curated\avatars\chakana_mage_master_concept.png
+avatar_curated=game\assets\curated\avatars\chakana_mage_master_portrait.png
+avatar_curated=game\assets\curated\avatars\chakana_mage_master_hologram.png
+avatar_runtime=game\assets\sprites\avatar\chakana_mage_concept.png
+avatar_runtime=game\assets\sprites\avatar\chakana_mage_portrait.png
+avatar_runtime=game\assets\sprites\avatar\chakana_mage_hologram.png
+biome=ukhu source=ukhu_pacha file=game\assets\sprites\biomes\ukhu.png
+biome=kaypacha source=kay_pacha file=game\assets\sprites\biomes\kaypacha.png
+biome=hanan source=hanan_pacha file=game\assets\sprites\biomes\hanan.png
+biome=fractura_chakana source=fractura_chakana file=game\assets\sprites\biomes\fractura_chakana.png
+biome=hiperborea source=hanan_pacha file=game\assets\sprites\biomes\hiperborea.png
+biome=ritual_cavern source=ukhu_pacha file=game\assets\sprites\biomes\ritual_cavern.png
+biome=astral_codex source=kay_pacha file=game\assets\sprites\biomes\astral_codex.png
+## Studio Branding
+created=game\assets\curated\studio\chakana_studio_logo.png
+created=game\assets\curated\studio\chakana_loading_glyph.png
+created=game\assets\curated\studio\chakana_emblem.png
+studio_manifest=game/data/studio_intro_manifest.json refreshed

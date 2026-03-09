@@ -1,4 +1,20 @@
 {
+  "_core_context_map": {
+    "contexts": {
+      "boss_battle": "game/audio/generated/core/boss_battle.wav",
+      "civilization_reveal": "game/audio/generated/core/civilization_reveal.wav",
+      "combat_standard": "game/audio/generated/core/combat_standard.wav",
+      "defeat_stinger": "game/audio/generated/core/defeat_stinger.wav",
+      "map_exploration": "game/audio/generated/core/map_exploration.wav",
+      "menu_main": "game/audio/generated/core/menu_main.wav",
+      "reward_reveal": "game/audio/generated/core/reward_reveal.wav",
+      "shop_ritual": "game/audio/generated/core/shop_ritual.wav",
+      "studio_logo_intro": "game/audio/generated/core/studio_logo_intro.wav",
+      "victory_stinger": "game/audio/generated/core/victory_stinger.wav"
+    },
+    "generated_at": 1773060837,
+    "version": "0.9.104"
+  },
   "boss": {
     "base_track": "boss",
     "bpm": 160,

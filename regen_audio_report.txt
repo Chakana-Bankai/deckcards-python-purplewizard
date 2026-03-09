@@ -1,0 +1,34 @@
+## Audio Regeneration
+timestamp=2026-03-09 09:53:43
+action=ensure_core_assets(force=True)
+stinger=studio_intro file=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\studio\studio_intro.wav
+stinger=combat_start file=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\stingers\combat_start.wav
+stinger=boss_reveal file=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\stingers\boss_reveal.wav
+stinger=relic_gain file=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\stingers\relic_gain.wav
+stinger=victory file=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\stingers\victory.wav
+stinger=defeat file=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\stingers\defeat.wav
+stinger=pack_open file=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\stingers\pack_open.wav
+stinger=level_up file=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\stingers\level_up.wav
+stinger=harmony_ready file=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\stingers\harmony_ready.wav
+stinger=seal_ready file=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\stingers\seal_ready.wav
+context=menu_main old=menu_a.wav new=game\audio\generated\core\menu_main.wav
+context=map_exploration old=map_kay_a.wav new=game\audio\generated\core\map_exploration.wav
+context=shop_ritual old=shop_a.wav new=game\audio\generated\core\shop_ritual.wav
+context=combat_standard old=combat_a.wav new=game\audio\generated\core\combat_standard.wav
+context=boss_battle old=combat_boss_a.wav new=game\audio\generated\core\boss_battle.wav
+context=reward_reveal old=victory_a.wav new=game\audio\generated\core\reward_reveal.wav
+context=defeat_stinger old=defeat.wav new=game\audio\generated\core\defeat_stinger.wav
+context=victory_stinger old=victory.wav new=game\audio\generated\core\victory_stinger.wav
+context=civilization_reveal old=relic_gain.wav new=game\audio\generated\core\civilization_reveal.wav
+context=studio_logo_intro old=studio_intro.wav new=game\audio\generated\core\studio_logo_intro.wav
+manifest=game/data/bgm_manifest.json updated=_core_context_map
+mapping=menu_main old=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\bgm\menu_a.wav
+mapping=map_exploration old=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\bgm\map_kay_a.wav
+mapping=shop_ritual old=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\bgm\shop_a.wav
+mapping=combat_standard old=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\bgm\combat_a.wav
+mapping=boss_battle old=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\bgm\combat_boss_a.wav
+mapping=reward_reveal old=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\game\audio\generated\bgm\victory_a.wav
+mapping=defeat_stinger old=-
+mapping=victory_stinger old=-
+mapping=civilization_reveal old=-
+mapping=studio_logo_intro old=-

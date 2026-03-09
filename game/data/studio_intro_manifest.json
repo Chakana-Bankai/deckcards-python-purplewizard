@@ -1,6 +1,8 @@
 {
-  "version": "studio_intro_cosmic_v2",
-  "seed": 59925,
+  "branding_asset": "game/assets/curated/studio/chakana_studio_logo.png",
   "duration": 4.0,
-  "updated_at": 1773059925
+  "seed": 60838,
+  "source": "generated_or_cache",
+  "updated_at": 1773060838,
+  "version": "studio_intro_cosmic_v3_curated_regen"
 }

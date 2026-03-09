@@ -72,6 +72,12 @@ class AudioEngine:
             "sanctuary": "shop",
             "reward": "shop",
             "chest": "victory",
+            "menu_main": "menu",
+            "map_exploration": "map_kay",
+            "shop_ritual": "shop",
+            "combat_standard": "combat",
+            "boss_battle": "combat_boss",
+            "reward_reveal": "victory",
         }
 
         self.stingers = {
@@ -455,7 +461,7 @@ class AudioEngine:
             self.current_variant = var
             self.current_path = path.name
             self.status = "playing"
-            print(f"[Audio] context: {ctx} variant:{var}")
+            print(f"[Audio] context: {ctx} variant:{var} file:{path.name}")
         except Exception as exc:
             self.status = f"error:{exc}"
             print(f"[Audio] context error: {ctx} err={exc}")
@@ -493,7 +499,7 @@ class AudioEngine:
             self._stinger_channel.play(snd)
         else:
             snd.play()
-        print(f"[Audio] stinger: {nm}")
+        print(f"[Audio] stinger: {nm} file:{path.name}")
 
     def play_sfx(self, name: str):
         nm = str(name or "").lower()
@@ -569,3 +575,5 @@ def get_audio_engine() -> AudioEngine:
     if _ENGINE is None:
         _ENGINE = AudioEngine()
     return _ENGINE
+
+

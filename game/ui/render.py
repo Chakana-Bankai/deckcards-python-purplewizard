@@ -69,6 +69,7 @@ class AssetManager:
         self._cache = {}
         self._visual = None
         self._portrait = None
+        self._load_logged = set()
 
     def _load_image(self, path: Path, fallback_size: tuple[int, int], fill=(60, 55, 90), fallback_label: str = ""):
         if path.exists():
@@ -106,13 +107,18 @@ class AssetManager:
             return self._cache[key]
         path = Path(ASSETS_DIR) / "sprites" / category / f"{name}.png"
         lbl = name if category == "cards" else ""
+        src = "fallback"
         if path.exists():
             img = self._load_image(path, size, fallback, fallback_label=lbl)
+            src = f"sprite:{path.name}"
             portrait_img = self._try_portrait_pipeline(category, name, size, img)
             if portrait_img is not None:
                 img = portrait_img
+                src = "portrait_pipeline"
         else:
             img = self._try_portrait_pipeline(category, name, size, None)
+            if img is not None:
+                src = "portrait_pipeline"
             if img is None and category in {"avatar", "player", "relics", "biomes", "starters", "emblems", "overlays"}:
                 try:
                     if self._visual is None:
@@ -126,16 +132,21 @@ class AssetManager:
                     if vcat == "relics":
                         ctx = "rare"
                     img = self._visual.generate(vcat, str(name or "default"), size, context=ctx, force=False)
+                    src = "visual_generated"
                 except Exception:
                     img = None
             if img is None:
                 img = self._load_image(path, size, fallback, fallback_label=lbl)
+                src = "fallback"
         if img.get_size() != size:
             img = pygame.transform.scale(img, size)
+        if str(category).lower() in {"avatar", "player", "enemies", "biomes"}:
+            lk = f"{str(category).lower()}:{str(name).lower()}:{src}"
+            if lk not in self._load_logged:
+                self._load_logged.add(lk)
+                print(f"[asset] category={category} name={name} source={src}")
         self._cache[key] = img
         return img
-
-
 class Renderer:
     def __init__(self):
         self.window = pygame.display.set_mode((INTERNAL_WIDTH, INTERNAL_HEIGHT), pygame.RESIZABLE)
@@ -174,3 +185,5 @@ class Renderer:
         px = max(0, min(INTERNAL_WIDTH - 1, px))
         py = max(0, min(INTERNAL_HEIGHT - 1, py))
         return px, py
+
+
