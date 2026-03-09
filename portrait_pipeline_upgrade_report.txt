@@ -1,0 +1,15 @@
+PHASE 5 - PORTRAIT PIPELINE UPGRADE REPORT
+=============================================
+portrait_pipeline_version=portrait_v6
+audio_manifest_version=chakana_audio_v3
+bgm_items=20
+stinger_items=11
+audio_version_active=True
+
+Hologram features scaffold
+- portrait base image: enabled
+- glow/tint layer: enabled
+- scanlines: enabled
+- digital interference/noise: enabled
+- controlled rgb separation: enabled
+- faction visual identity: enabled

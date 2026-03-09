@@ -1137,24 +1137,25 @@ class CombatScreen:
 
             ratio = max(0, e.hp) / max(1, e.max_hp)
             panel = content.inflate(-10, -8)
-            avatar_h = max(56, int(panel.h * 0.30))
-            avatar_w = min(panel.w - 24, max(120, int(panel.w * (0.42 if enemy_count == 1 else 0.52))))
+            avatar_h = max(52, int(panel.h * 0.28))
+            avatar_w = min(panel.w - 24, max(112, int(panel.w * (0.40 if enemy_count == 1 else 0.48))))
             avatar_rect = pygame.Rect(panel.centerx - avatar_w // 2, panel.y + 8, avatar_w, avatar_h)
 
-            info_top = avatar_rect.bottom + 8
-            info_h = max(76, panel.bottom - info_top - 8)
+            info_top = avatar_rect.bottom + 7
+            info_h = max(84, panel.bottom - info_top - 8)
             info_col = pygame.Rect(panel.x + 14, info_top, panel.w - 28, info_h)
 
-            title = pygame.Rect(info_col.x, info_col.y, info_col.w, 24)
-            hp_label = pygame.Rect(info_col.x, title.bottom + 2, info_col.w, 24)
+            title = pygame.Rect(info_col.x, info_col.y, info_col.w, 23)
+            hp_label = pygame.Rect(info_col.x, title.bottom + 1, info_col.w, 23)
             hp_bar = pygame.Rect(info_col.x, hp_label.bottom + 3, info_col.w, 8)
-            intent_line = pygame.Rect(info_col.x, hp_bar.bottom + 6, info_col.w, 34)
-            block_line = pygame.Rect(info_col.x, intent_line.bottom + 4, max(156, int(info_col.w * 0.46)), 24)
-            status_line = pygame.Rect(info_col.x, block_line.bottom + 3, info_col.w, max(18, info_col.bottom - (block_line.bottom + 3)))
+            intent_line = pygame.Rect(info_col.x, hp_bar.bottom + 5, info_col.w, 32)
+            block_line = pygame.Rect(info_col.x, intent_line.bottom + 3, max(142, int(info_col.w * 0.44)), 22)
+            status_line = pygame.Rect(info_col.x, block_line.bottom + 2, info_col.w, max(18, info_col.bottom - (block_line.bottom + 2)))
 
             enemy_name = str(e.name_key)
             intent_name = str(e.current_intent().get("label", "..."))
-            s.blit(f_label.render(enemy_name, True, UI_THEME["text"]), (title.x, title.y))
+            enemy_name_line = self._wrap_panel_text(enemy_name, title.w - 4, max_lines=1)[0]
+            s.blit(f_label.render(enemy_name_line, True, UI_THEME["text"]), (title.x, title.y))
             hp_txt = f_num.render(f"{e.hp}/{e.max_hp}", True, UI_THEME["hp"])
             s.blit(hp_txt, (hp_label.x, hp_label.y - 2))
 
@@ -1190,13 +1191,20 @@ class CombatScreen:
 
             status_tokens = self._enemy_major_statuses(e)
             sx = status_line.x
+            clip_limit = status_line.right - 74
+            drawn_status = 0
             for icon_id, val in status_tokens:
-                ww = 78
+                if sx > clip_limit:
+                    break
+                ww = 74
                 rr = pygame.Rect(sx, status_line.y + 1, ww, 19)
                 pygame.draw.rect(s, (28, 24, 40), rr, border_radius=7)
                 pygame.draw.rect(s, UI_THEME["accent_violet"], rr, 1, border_radius=7)
                 draw_icon_with_value(s, self._icon_id(icon_id), val, UI_THEME["text"], f_label, rr.x + 3, rr.y + 1, size=1)
-                sx += ww + 6
+                sx += ww + 5
+                drawn_status += 1
+            if drawn_status == 0:
+                s.blit(self.app.tiny_font.render("Sin estados", True, UI_THEME["muted"]), (status_line.x + 2, status_line.y + 2))
 
             variant = self._enemy_presence_variant(e)
             boss_factor = 1.52 if (self.is_boss or str(getattr(e, "tier", "")).lower() == "boss") else 1.0
@@ -1358,9 +1366,16 @@ class CombatScreen:
         s.blit(self.app.tiny_font.render("CHAKANA", True, UI_THEME["gold"]), (portrait_rect.x + 26, portrait_rect.bottom - 18))
 
         row_gap = 6
-        row1_h = 44
-        row2_h = 40
+        row1_h = 42
+        row2_h = 36
         row3_h = stats_rect.h - row1_h - row2_h - row_gap * 2
+        if row3_h < 52:
+            need = 52 - row3_h
+            cut1 = min(8, need // 2)
+            cut2 = min(8, need - cut1)
+            row1_h = max(36, row1_h - cut1)
+            row2_h = max(30, row2_h - cut2)
+            row3_h = stats_rect.h - row1_h - row2_h - row_gap * 2
         row1 = pygame.Rect(stats_rect.x, stats_rect.y, stats_rect.w, row1_h)
         row2 = pygame.Rect(stats_rect.x, row1.bottom + row_gap, stats_rect.w, row2_h)
         row3 = pygame.Rect(stats_rect.x, row2.bottom + row_gap, stats_rect.w, row3_h)

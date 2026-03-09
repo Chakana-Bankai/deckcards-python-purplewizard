@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-03-09T08:15:31-03:00",
+  "generated_at": "2026-03-09T15:42:46-03:00",
   "counts": {
-    "game_specific": 2341,
+    "game_specific": 2355,
     "legacy_or_deprecated": 4,
     "generated_asset": 225,
-    "curated_asset": 1,
-    "engine_candidate": 230
+    "curated_asset": 10,
+    "engine_candidate": 272
   },
   "files": [
     {
@@ -8617,7 +8617,43 @@
       "category": "game_specific"
     },
     {
+      "path": "game/assets/curated/avatars/archon_master_concept.png",
+      "category": "curated_asset"
+    },
+    {
+      "path": "game/assets/curated/avatars/archon_master_hologram.png",
+      "category": "curated_asset"
+    },
+    {
+      "path": "game/assets/curated/avatars/archon_master_portrait.png",
+      "category": "curated_asset"
+    },
+    {
+      "path": "game/assets/curated/avatars/chakana_mage_master_concept.png",
+      "category": "curated_asset"
+    },
+    {
+      "path": "game/assets/curated/avatars/chakana_mage_master_hologram.png",
+      "category": "curated_asset"
+    },
+    {
+      "path": "game/assets/curated/avatars/chakana_mage_master_portrait.png",
+      "category": "curated_asset"
+    },
+    {
       "path": "game/assets/curated/avatars/README.txt",
+      "category": "curated_asset"
+    },
+    {
+      "path": "game/assets/curated/studio/chakana_emblem.png",
+      "category": "curated_asset"
+    },
+    {
+      "path": "game/assets/curated/studio/chakana_loading_glyph.png",
+      "category": "curated_asset"
+    },
+    {
+      "path": "game/assets/curated/studio/chakana_studio_logo.png",
       "category": "curated_asset"
     },
     {
@@ -8901,6 +8937,22 @@
       "category": "game_specific"
     },
     {
+      "path": "game/assets/sprites/avatar/chakana_mage_concept.png",
+      "category": "game_specific"
+    },
+    {
+      "path": "game/assets/sprites/avatar/chakana_mage_hologram.png",
+      "category": "game_specific"
+    },
+    {
+      "path": "game/assets/sprites/avatar/chakana_mage_portrait.png",
+      "category": "game_specific"
+    },
+    {
+      "path": "game/assets/sprites/biomes/astral_codex.png",
+      "category": "game_specific"
+    },
+    {
       "path": "game/assets/sprites/biomes/caverna_umbral/bg.png",
       "category": "game_specific"
     },
@@ -8925,6 +8977,18 @@
       "category": "game_specific"
     },
     {
+      "path": "game/assets/sprites/biomes/fractura_chakana.png",
+      "category": "game_specific"
+    },
+    {
+      "path": "game/assets/sprites/biomes/hanan.png",
+      "category": "game_specific"
+    },
+    {
+      "path": "game/assets/sprites/biomes/hiperborea.png",
+      "category": "game_specific"
+    },
+    {
       "path": "game/assets/sprites/biomes/kaypacha/bg.png",
       "category": "game_specific"
     },
@@ -8937,6 +9001,10 @@
       "category": "game_specific"
     },
     {
+      "path": "game/assets/sprites/biomes/kaypacha.png",
+      "category": "game_specific"
+    },
+    {
       "path": "game/assets/sprites/biomes/pampa_astral/bg.png",
       "category": "game_specific"
     },
@@ -8946,6 +9014,10 @@
     },
     {
       "path": "game/assets/sprites/biomes/pampa_astral/mg.png",
+      "category": "game_specific"
+    },
+    {
+      "path": "game/assets/sprites/biomes/ritual_cavern.png",
       "category": "game_specific"
     },
     {
@@ -8970,6 +9042,10 @@
     },
     {
       "path": "game/assets/sprites/biomes/templo_obsidiana/mg.png",
+      "category": "game_specific"
+    },
+    {
+      "path": "game/assets/sprites/biomes/ukhu.png",
       "category": "game_specific"
     },
     {
@@ -9801,11 +9877,23 @@
       "category": "engine_candidate"
     },
     {
+      "path": "game/audio/generated/bgm/combat_boss_b.wav",
+      "category": "engine_candidate"
+    },
+    {
       "path": "game/audio/generated/bgm/combat_elite_a.wav",
       "category": "engine_candidate"
     },
     {
+      "path": "game/audio/generated/bgm/combat_elite_b.wav",
+      "category": "engine_candidate"
+    },
+    {
       "path": "game/audio/generated/bgm/defeat_a.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/bgm/defeat_b.wav",
       "category": "engine_candidate"
     },
     {
@@ -9845,7 +9933,55 @@
       "category": "engine_candidate"
     },
     {
+      "path": "game/audio/generated/bgm/shop_b.wav",
+      "category": "engine_candidate"
+    },
+    {
       "path": "game/audio/generated/bgm/victory_a.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/bgm/victory_b.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/core/boss_battle.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/core/civilization_reveal.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/core/combat_standard.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/core/defeat_stinger.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/core/map_exploration.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/core/menu_main.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/core/reward_reveal.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/core/shop_ritual.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/core/studio_logo_intro.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/core/victory_stinger.wav",
       "category": "engine_candidate"
     },
     {
@@ -9865,6 +10001,30 @@
       "category": "engine_candidate"
     },
     {
+      "path": "game/audio/generated/sfx/damage_hit.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/sfx/gold_gain.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/sfx/heal.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/sfx/relic_pick.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/sfx/seal_activate.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/sfx/xp_gain.wav",
+      "category": "engine_candidate"
+    },
+    {
       "path": "game/audio/generated/stingers/.gitkeep",
       "category": "engine_candidate"
     },
@@ -9878,6 +10038,10 @@
     },
     {
       "path": "game/audio/generated/stingers/defeat.wav",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/audio/generated/stingers/elite_encounter.wav",
       "category": "engine_candidate"
     },
     {
@@ -9978,6 +10142,10 @@
     },
     {
       "path": "game/content/enemy_art_generator.py",
+      "category": "game_specific"
+    },
+    {
+      "path": "game/content/generation_director.py",
       "category": "game_specific"
     },
     {
@@ -10217,10 +10385,6 @@
       "category": "game_specific"
     },
     {
-      "path": "game/data/regen_on_boot.flag",
-      "category": "game_specific"
-    },
-    {
       "path": "game/data/relics.json",
       "category": "game_specific"
     },
@@ -10314,6 +10478,22 @@
     },
     {
       "path": "game/systems/__init__.py",
+      "category": "game_specific"
+    },
+    {
+      "path": "game/systems/enemy_intent_deck.py",
+      "category": "game_specific"
+    },
+    {
+      "path": "game/systems/event_system.py",
+      "category": "game_specific"
+    },
+    {
+      "path": "game/systems/gameplay_rules.py",
+      "category": "game_specific"
+    },
+    {
+      "path": "game/systems/meta_director.py",
       "category": "game_specific"
     },
     {
@@ -10541,6 +10721,10 @@
       "category": "engine_candidate"
     },
     {
+      "path": "game/ui/system/icons_atlas.py",
+      "category": "engine_candidate"
+    },
+    {
       "path": "game/ui/system/layers.py",
       "category": "engine_candidate"
     },
@@ -10558,6 +10742,10 @@
     },
     {
       "path": "game/ui/system/typography.py",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/ui/system/ui_scale_system.py",
       "category": "engine_candidate"
     },
     {
@@ -10593,6 +10781,118 @@
       "category": "engine_candidate"
     },
     {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/biomes/fractura_chakana_1142x852_bg.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/biomes/fractura_chakana_512x256_sigil.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/biomes/hanan_1142x852_bg.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/biomes/kaypacha_1142x852_bg.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/biomes/ukhu_1142x852_bg.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/biomes/ukhu_pacha_512x256_sigil.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/archon_hologram_112x126.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/archon_holographic_112x126.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/archon_portrait_270x200.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/archon_portrait_568x76.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/archon_portrait_768x147.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/archon_stylized_112x126.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/archon_stylized_270x200.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/archon_stylized_768x147.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_mage_concept_84x84.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_mage_hologram_112x126.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_mage_hologram_112x132.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_mage_hologram_112x152.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_mage_portrait_110x110.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_mage_portrait_118x118.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_mage_portrait_132x132.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_mage_portrait_96x96.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_stylized_112x126.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_stylized_112x152.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_stylized_118x118.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_stylized_132x132.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_stylized_84x84.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/_deprecated/20260309_095358/_deprecated/20260309_095309/portraits/chakana_stylized_96x96.png",
+      "category": "engine_candidate"
+    },
+    {
       "path": "game/visual/generated/avatar/.gitkeep",
       "category": "engine_candidate"
     },
@@ -10606,6 +10906,10 @@
     },
     {
       "path": "game/visual/generated/avatar/archon_oracle_270x200_archon_oracle.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/avatar/archon_oracle_568x76_archon_oracle.png",
       "category": "engine_candidate"
     },
     {
@@ -10677,23 +10981,7 @@
       "category": "engine_candidate"
     },
     {
-      "path": "game/visual/generated/biomes/fractura_chakana_1142x852_bg.png",
-      "category": "engine_candidate"
-    },
-    {
       "path": "game/visual/generated/biomes/fractura_chakana_512x256_sigil.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/biomes/hanan_1142x852_bg.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/biomes/kaypacha_1142x852_bg.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/biomes/ukhu_1142x852_bg.png",
       "category": "engine_candidate"
     },
     {
@@ -10837,6 +11125,14 @@
       "category": "engine_candidate"
     },
     {
+      "path": "game/visual/generated/overlays/celestial_541x71.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/overlays/celestial_568x76.png",
+      "category": "engine_candidate"
+    },
+    {
       "path": "game/visual/generated/overlays/celestial_714x147.png",
       "category": "engine_candidate"
     },
@@ -10853,27 +11149,11 @@
       "category": "engine_candidate"
     },
     {
-      "path": "game/visual/generated/portraits/archon_holographic_112x126.png",
-      "category": "engine_candidate"
-    },
-    {
       "path": "game/visual/generated/portraits/archon_portrait_270x200.png",
       "category": "engine_candidate"
     },
     {
-      "path": "game/visual/generated/portraits/archon_portrait_768x147.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/portraits/archon_stylized_112x126.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/portraits/archon_stylized_270x200.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/portraits/archon_stylized_768x147.png",
+      "path": "game/visual/generated/portraits/archon_portrait_568x76.png",
       "category": "engine_candidate"
     },
     {
@@ -10881,11 +11161,15 @@
       "category": "engine_candidate"
     },
     {
+      "path": "game/visual/generated/portraits/chakana_mage_hologram_112x114.png",
+      "category": "engine_candidate"
+    },
+    {
       "path": "game/visual/generated/portraits/chakana_mage_hologram_112x126.png",
       "category": "engine_candidate"
     },
     {
-      "path": "game/visual/generated/portraits/chakana_mage_hologram_112x152.png",
+      "path": "game/visual/generated/portraits/chakana_mage_hologram_112x132.png",
       "category": "engine_candidate"
     },
     {
@@ -10898,34 +11182,6 @@
     },
     {
       "path": "game/visual/generated/portraits/chakana_mage_portrait_132x132.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/portraits/chakana_mage_portrait_96x96.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/portraits/chakana_stylized_112x126.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/portraits/chakana_stylized_112x152.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/portraits/chakana_stylized_118x118.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/portraits/chakana_stylized_132x132.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/portraits/chakana_stylized_84x84.png",
-      "category": "engine_candidate"
-    },
-    {
-      "path": "game/visual/generated/portraits/chakana_stylized_96x96.png",
       "category": "engine_candidate"
     },
     {
@@ -10978,6 +11234,10 @@
     },
     {
       "path": "game/visual/generated/relics/chakana_thread_160x160_rare.png",
+      "category": "engine_candidate"
+    },
+    {
+      "path": "game/visual/generated/relics/chakana_thread_176x176_rare.png",
       "category": "engine_candidate"
     },
     {

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import os
@@ -148,8 +148,10 @@ def _probe_events(app: App, iterations: int = 8) -> list[str]:
     out = []
     for _ in range(iterations):
         app.goto_event()
+        _force_scene_continue(app)
         cur = app.sm.current
         if cur is None or cur.__class__.__name__ != "EventScreen":
+            app.goto_map()
             continue
         ev = getattr(cur, "event", {}) if isinstance(getattr(cur, "event", {}), dict) else {}
         eid = str(ev.get("id") or ev.get("title_key") or "event_unknown")
@@ -292,3 +294,4 @@ if __name__ == "__main__":
     report, txt_path, md_path = generate_phase7_reports()
     print("[qa_phase7_extended] generated")
     print(json.dumps({"overall": report.get("overall"), "txt": str(txt_path), "md": str(md_path), "summary": report.get("summary", {})}, ensure_ascii=False, indent=2))
+

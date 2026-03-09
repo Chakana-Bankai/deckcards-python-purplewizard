@@ -7,7 +7,7 @@ import time
 
 import pygame
 
-from game.core.paths import data_dir
+from game.core.paths import data_dir, assets_dir
 from game.ui.system.layout import safe_area
 from game.ui.system.typography import TITLE_FONT
 
@@ -35,6 +35,9 @@ class StudioIntroScreen:
         self.stars_far = []
         self.stars_near = []
         self.purple_dust = []
+        self._curated_logo = None
+        self._curated_emblem = None
+        self._curated_glyph = None
 
     def _load_manifest(self) -> dict:
         if not self.manifest_path.exists():
@@ -52,6 +55,26 @@ class StudioIntroScreen:
             self.manifest_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         except Exception:
             pass
+
+    def _load_curated_brand_assets(self):
+        croot = assets_dir() / "curated" / "studio"
+        self._curated_logo = None
+        self._curated_emblem = None
+        self._curated_glyph = None
+        try:
+            logo = croot / "chakana_studio_logo.png"
+            emblem = croot / "chakana_emblem.png"
+            glyph = croot / "chakana_loading_glyph.png"
+            if logo.exists():
+                self._curated_logo = pygame.image.load(str(logo)).convert_alpha()
+            if emblem.exists():
+                self._curated_emblem = pygame.image.load(str(emblem)).convert_alpha()
+            if glyph.exists():
+                self._curated_glyph = pygame.image.load(str(glyph)).convert_alpha()
+        except Exception:
+            self._curated_logo = None
+            self._curated_emblem = None
+            self._curated_glyph = None
 
     def _prepare_cached_timeline(self):
         force_refresh = bool(self.app.user_settings.get("force_regen_art", False))
@@ -83,6 +106,7 @@ class StudioIntroScreen:
         self.fallback_mode = False
         self._logged_fallback = False
         self._prepare_cached_timeline()
+        self._load_curated_brand_assets()
 
         rng = random.Random(self.seed)
         # Cached starfield assets: generated once per enter/seed, then reused each frame.
@@ -236,6 +260,13 @@ class StudioIntroScreen:
             y = int(a[1] + (b[1] - a[1]) * rem)
             pygame.draw.line(surface, (250, 250, 255), a, (x, y), 1)
 
+        curated = self._curated_emblem or self._curated_glyph
+        if curated is not None:
+            target = max(84, int(size * 1.8))
+            icon = pygame.transform.smoothscale(curated, (target, target)).copy()
+            icon.set_alpha(int(190 * p))
+            surface.blit(icon, icon.get_rect(center=(cx, cy)).topleft)
+
     def _draw_title(self, surface: pygame.Surface, cx: int, cy: int):
         # Symbol fades slightly while text appears.
         start = 2.45
@@ -250,6 +281,15 @@ class StudioIntroScreen:
         label.set_alpha(alpha)
         tr = label.get_rect(center=(cx, cy + 92))
         surface.blit(label, tr.topleft)
+
+        if self._curated_logo is not None:
+            max_w = min(720, int(surface.get_width() * 0.45))
+            scale = max(1.0, self._curated_logo.get_width())
+            logo_h = max(40, int(self._curated_logo.get_height() * (max_w / scale)))
+            logo = pygame.transform.smoothscale(self._curated_logo, (max_w, logo_h)).copy()
+            logo.set_alpha(int(118 * (alpha / 255.0)))
+            lrect = logo.get_rect(center=(cx, cy + 146))
+            surface.blit(logo, lrect.topleft)
 
         # Slight purple particle dust around letters.
         dust = pygame.Surface((tr.w + 90, tr.h + 40), pygame.SRCALPHA)

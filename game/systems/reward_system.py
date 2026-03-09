@@ -1,8 +1,38 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from game.combat.card import CardDef, CardInstance
 
 PACK_ECONOMY = {
+    "base_pack": {
+        "title": "Base Pack",
+        "lore": "Fundamentos estables para escalar la run.",
+        "expected_value": {
+            "cards_total": 5,
+            "rarity_focus": "base_consistency",
+            "gold_hint": [20, 35],
+            "strategy": "consistencia",
+        },
+    },
+    "hiperborea_pack": {
+        "title": "Hiperborea Pack",
+        "lore": "Tecnicas polares y lectura ancestral.",
+        "expected_value": {
+            "cards_total": 5,
+            "rarity_focus": "hiperborea_identity",
+            "gold_hint": [28, 46],
+            "strategy": "expansion_synergy",
+        },
+    },
+    "mystery_pack": {
+        "title": "Mystery Pack",
+        "lore": "Apuesta tactica con mezcla incierta.",
+        "expected_value": {
+            "cards_total": 5,
+            "rarity_focus": "mixed_surprise",
+            "gold_hint": [30, 50],
+            "strategy": "high_variance",
+        },
+    },
     "normal_pack": {
         "title": "Pack Normal",
         "lore": "Base estable para sostener la run.",

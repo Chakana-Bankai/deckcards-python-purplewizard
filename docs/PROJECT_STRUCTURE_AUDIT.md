@@ -1,6 +1,6 @@
 # Project Structure Audit
 
-- Generated: `2026-03-09T08:15:31-03:00`
+- Generated: `2026-03-09T15:42:46-03:00`
 - Root: `C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard`
 
 ## Domain Snapshot
@@ -14,9 +14,9 @@
 - `tools`: present
 
 ## Classification Counts
-- `curated_asset`: 1
-- `engine_candidate`: 230
-- `game_specific`: 2341
+- `curated_asset`: 10
+- `engine_candidate`: 272
+- `game_specific`: 2355
 - `generated_asset`: 225
 - `legacy_or_deprecated`: 4
 

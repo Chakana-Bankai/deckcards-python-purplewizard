@@ -19,6 +19,8 @@ class EventScreen:
         self.msg = ""
         self.guide_names = {"angel": "Oraculo Solar", "shaman": "Amauta de Ceniza", "demon": "Custodio del Vacio", "arcane_hacker": "Arquitecto del Umbral"}
         self._resolved_guide_reward = None
+        self.event_type = str(event.get("event_type") or "lore")
+        self.event_tags = [str(t) for t in list(event.get("tags", []) or []) if t]
 
         self.stage = "lore"
         self.lore_modal = LoreModal()
@@ -150,10 +152,12 @@ class EventScreen:
         pygame.draw.rect(s, (164, 132, 232), badge, 2, border_radius=12)
         title = self.app.loc.t(self.event.get("title_key", "event_title"))
         subtitle = self.app.loc.t(self.event.get("body_key", "lore_tagline"))
+        tags_txt = ", ".join(self.event_tags[:3]) if self.event_tags else self.event_type
         guide = self.guide_names.get(self.guide_type, "Guia del Umbral")
         s.blit(self.app.small_font.render(title, True, (238, 226, 186)), (badge.x + 14, badge.y + 10))
         s.blit(self.app.tiny_font.render(f"Guia: {guide}", True, (190, 176, 224)), (badge.x + 14, badge.y + 40))
-        s.blit(self.app.tiny_font.render(subtitle[:90], True, (214, 208, 236)), (badge.x + 14, badge.y + 66))
+        s.blit(self.app.tiny_font.render(subtitle[:74], True, (214, 208, 236)), (badge.x + 14, badge.y + 66))
+        s.blit(self.app.tiny_font.render(f"Tipo: {self.event_type.upper()} | {tags_txt}", True, (186, 216, 236)), (badge.x + 14, badge.y + 88))
         art = self.app.assets.sprite("guides", self.guide_type, (88, 88), fallback=(74, 58, 106))
         s.blit(art, art.get_rect(center=(badge.right - 56, badge.centery)).topleft)
 

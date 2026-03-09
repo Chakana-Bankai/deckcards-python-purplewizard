@@ -1,0 +1,17 @@
+CHAKANA - SYSTEM KNOT AUDIT
+========================================
+overall=PASS
+
+- gameplay -> combat: PASS
+- combat -> rewards/packs: PASS
+- narrative -> hologram: PASS
+- events -> node flow: PASS
+- content -> assets runtime: PASS
+- visual/audio pipeline: PASS
+- combat HUD polish: PASS
+- unlock + variety + visibility: PASS
+
+Priority Risks
+- P1 runtime_break: none detected
+- P2 visual_integrity: keep monitoring HUD/card/codex snapshots in Full HD
+- P3 extraction_readiness: consolidate duplicate UI paths into canonical modules incrementally

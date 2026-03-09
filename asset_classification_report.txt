@@ -1,22 +1,68 @@
-{
-  "generated_at": "2026-03-09T09:53:23-03:00",
-  "version": "0.9.104",
-  "asset_classification": {
-    "counts": {
-      "curated": 7,
-      "generated": 0,
-      "fallback": 0,
-      "deprecated": 0,
-      "visual_generated": 149,
-      "audio_generated": 43
-    },
-    "card_sprite_count": 151,
-    "near_duplicate_size_risk": 11
-  },
-  "policy": {
-    "curated_priority": true,
-    "generated_as_cache": true,
-    "fallback_safe": true,
-    "aggressive_delete": false
-  }
-}
+PHASE 4 - ASSET CLASSIFICATION REPORT
+==========================================
+
+curated_active: 9
+- game/assets/curated/avatars/archon_master_concept.png
+- game/assets/curated/avatars/archon_master_hologram.png
+- game/assets/curated/avatars/archon_master_portrait.png
+- game/assets/curated/avatars/chakana_mage_master_concept.png
+- game/assets/curated/avatars/chakana_mage_master_hologram.png
+- game/assets/curated/avatars/chakana_mage_master_portrait.png
+- game/assets/curated/studio/chakana_emblem.png
+- game/assets/curated/studio/chakana_loading_glyph.png
+- game/assets/curated/studio/chakana_studio_logo.png
+
+generated_active: 427
+- game/assets/sprites/avatar/chakana.png
+- game/assets/sprites/avatar/chakana_mage_concept.png
+- game/assets/sprites/avatar/chakana_mage_hologram.png
+- game/assets/sprites/avatar/chakana_mage_portrait.png
+- game/assets/sprites/biomes/astral_codex.png
+- game/assets/sprites/biomes/fractura_chakana.png
+- game/assets/sprites/biomes/hanan.png
+- game/assets/sprites/biomes/hiperborea.png
+- game/assets/sprites/biomes/kaypacha.png
+- game/assets/sprites/biomes/ritual_cavern.png
+- game/assets/sprites/biomes/ukhu.png
+- game/assets/sprites/cards/anillo_de_proteccion.png
+- game/assets/sprites/cards/barrera_sagrada.png
+- game/assets/sprites/cards/baston_del_umbral.png
+- game/assets/sprites/cards/calculo_del_cosmos.png
+- game/assets/sprites/cards/campo_protector.png
+- game/assets/sprites/cards/caparazon_kaypacha.png
+- game/assets/sprites/cards/chakana_de_luz.png
+- game/assets/sprites/cards/circulo_de_invocacion.png
+- game/assets/sprites/cards/claridad_del_hanan.png
+- ... +407 more
+
+fallback_active: 2
+- game/assets/sprites/cards/_placeholder.png
+- game/assets/sprites/enemies/_placeholder.png
+
+legacy_archive: 64
+- game/assets/music/boss.wav
+- game/assets/music/boss__v1.wav
+- game/assets/music/boss__v2.wav
+- game/assets/music/chest.wav
+- game/assets/music/chest__v1.wav
+- game/assets/music/combat_forest.wav
+- game/assets/music/combat_forest__v1.wav
+- game/assets/music/combat_forest__v2.wav
+- game/assets/music/combat_forest__v3.wav
+- game/assets/music/combat_hanan.wav
+- game/assets/music/combat_hanan__v1.wav
+- game/assets/music/combat_hanan__v2.wav
+- game/assets/music/combat_hanan__v3.wav
+- game/assets/music/combat_kaypacha.wav
+- game/assets/music/combat_kaypacha__v1.wav
+- game/assets/music/combat_kaypacha__v2.wav
+- game/assets/music/combat_kaypacha__v3.wav
+- game/assets/music/combat_umbral.wav
+- game/assets/music/combat_umbral__v1.wav
+- game/assets/music/combat_umbral__v2.wav
+- ... +44 more
+
+deprecated_unused: 0
+
+placeholder_only: 0
+

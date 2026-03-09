@@ -1,6 +1,6 @@
 {
   "version": "visual_v2",
-  "generated_at": 1773061429,
+  "generated_at": 1773083039,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -5128,6 +5128,318 @@
       "state": "valid",
       "lore_tags": [
         "archons"
+      ]
+    },
+    "avatar:combat_hud:280x360:combat_hud": {
+      "asset_id": "combat_hud",
+      "category": "avatar",
+      "seed": 2105085795,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\combat_hud_280x360_combat_hud.png"
+      ],
+      "context": "combat_hud",
+      "version": "visual_v2",
+      "generated_at": 1773082233,
+      "size": [
+        280,
+        360
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:combat_hud:220x280:combat_hud": {
+      "asset_id": "combat_hud",
+      "category": "avatar",
+      "seed": 2105085795,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\combat_hud_220x280_combat_hud.png"
+      ],
+      "context": "combat_hud",
+      "version": "visual_v2",
+      "generated_at": 1773082233,
+      "size": [
+        220,
+        280
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:combat_hud:320x420:combat_hud": {
+      "asset_id": "combat_hud",
+      "category": "avatar",
+      "seed": 2105085795,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\combat_hud_320x420_combat_hud.png"
+      ],
+      "context": "combat_hud",
+      "version": "visual_v2",
+      "generated_at": 1773082233,
+      "size": [
+        320,
+        420
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:combat_hud:80x80:combat_hud": {
+      "asset_id": "combat_hud",
+      "category": "avatar",
+      "seed": 2105085795,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\combat_hud_80x80_combat_hud.png"
+      ],
+      "context": "combat_hud",
+      "version": "visual_v2",
+      "generated_at": 1773082233,
+      "size": [
+        80,
+        80
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:oracle_lens:128x128:rare": {
+      "asset_id": "oracle_lens",
+      "category": "relics",
+      "seed": 1361567402,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\oracle_lens_128x128_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773083025,
+      "size": [
+        128,
+        128
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:chakana_thread:18x18:rare": {
+      "asset_id": "chakana_thread",
+      "category": "relics",
+      "seed": 667361750,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\chakana_thread_18x18_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773083036,
+      "size": [
+        18,
+        18
+      ],
+      "state": "valid",
+      "lore_tags": [
+        "chakana"
+      ]
+    },
+    "relics:chakana_thread:16x16:rare": {
+      "asset_id": "chakana_thread",
+      "category": "relics",
+      "seed": 667361750,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\chakana_thread_16x16_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773083039,
+      "size": [
+        16,
+        16
+      ],
+      "state": "valid",
+      "lore_tags": [
+        "chakana"
       ]
     }
   }

@@ -1,0 +1,20 @@
+PHASE 4 - LEGACY PURGE PLAN (NON-DESTRUCTIVE)
+===================================================
+
+Rules
+- No direct deletion in this phase.
+- Move candidates to archive only after runtime mapping verification.
+- Keep import/runtime compatibility.
+
+Archive candidates
+- game/assets/music/*.wav: 51 files (runtime currently uses game/audio/generated)
+- game/assets/sfx/*.wav: 13 files (legacy fallback paths; verify before archive)
+
+Recommended sequence
+1. Snapshot current runtime mapping (audio + avatar + biome + card).
+2. Move legacy candidates to assets/deprecated/ in batches.
+3. Run smoke tests + QA reports.
+4. If any missing file fallback appears, restore specific asset from archive.
+
+WARNING
+- Do not purge visual/generated manifests yet; they are still consumed by runtime fallback paths.

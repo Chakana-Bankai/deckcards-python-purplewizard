@@ -55,12 +55,14 @@ def _debug_loaded(name: str, size: int, source: str):
 
 
 def _candidates(root: Path) -> dict[str, tuple[Path, ...]]:
+    # DejaVuSans keeps runtime stable when custom Chakana fonts are still pending.
+    base = root / "DejaVuSans.ttf"
     return {
-        "title": (root / "chakana_title.ttf", root / "title.ttf"),
-        "ui": (root / "chakana_ui.ttf", root / "chakana_pixel.ttf", root / "ui.ttf"),
-        "pixel": (root / "chakana_pixel.ttf", root / "chakana_ui.ttf", root / "ui.ttf"),
-        "lore": (root / "chakana_lore.ttf", root / "lore.ttf"),
-        "mono": (root / "chakana_mono.ttf", root / "mono.ttf", root / "chakana_ui.ttf"),
+        "title": (root / "chakana_title.ttf", root / "title.ttf", base),
+        "ui": (root / "chakana_ui.ttf", root / "chakana_pixel.ttf", root / "ui.ttf", base),
+        "pixel": (root / "chakana_pixel.ttf", root / "chakana_ui.ttf", root / "ui.ttf", base),
+        "lore": (root / "chakana_lore.ttf", root / "lore.ttf", base),
+        "mono": (root / "chakana_mono.ttf", root / "mono.ttf", root / "chakana_ui.ttf", base),
     }
 
 

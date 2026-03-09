@@ -1,0 +1,19 @@
+CHAKANA PHASE 3B - EVENT NODE REFACTOR REPORT
+==========================================================
+overall=PASS
+
+Checks
+- event_node_routes_hologram_then_event_screen: PASS
+- event_payload_has_type_tags_speaker: PASS
+- event_type_mapping_and_tags_available: PASS
+- conditional_event_flags_supported: PASS
+
+Details
+- starts_with_hologram=True
+- enters_event_screen=True
+- payload_event_type=sanctuary
+- payload_tags=['healing', 'lore']
+- payload_speaker=ANGEL
+- payload_portrait=angel
+- mapped_types={"apacheta_offer": "guide", "ayni_pact": "risk", "serpent_shed": "corruption"}
+- event_flags={"next_combat_bonus": 2, "next_shop_discount": 15, "next_shop_pack_reveal": "hiperborea_pack", "unlock_hiperborea_entry": true}

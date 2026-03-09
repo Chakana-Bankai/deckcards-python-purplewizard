@@ -19,6 +19,7 @@ class SceneFusionScreen:
         background: str = "Ruinas Chakana",
         biome_layer: str | None = None,
         portrait_key: str = "chakana_mage_portrait",
+        portrait_group: str = "avatar",
         speaker_label: str = "CHAKANA",
         set_label: str = "",
         min_seconds: float = 0.8,
@@ -32,6 +33,7 @@ class SceneFusionScreen:
         self.background = str(background or "Ruinas Chakana")
         self.biome_layer = str(biome_layer) if biome_layer else None
         self.portrait_key = str(portrait_key or "chakana_mage_portrait")
+        self.portrait_group = str(portrait_group or "avatar")
         self.speaker_label = str(speaker_label or "CHAKANA")
         self.set_label = str(set_label or "")
         self.min_seconds = float(min_seconds)
@@ -102,7 +104,7 @@ class SceneFusionScreen:
         avatar_slot = pygame.Rect(panel.x + 24, panel.y + 66, 240, 360)
         pygame.draw.rect(s, UI_THEME["panel_2"], avatar_slot, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], avatar_slot, 1, border_radius=12)
-        avatar = self.app.assets.sprite("avatar", self.portrait_key, (avatar_slot.w - 16, avatar_slot.h - 16), fallback=(86, 56, 132)).copy()
+        avatar = self.app.assets.sprite(self.portrait_group, self.portrait_key, (avatar_slot.w - 16, avatar_slot.h - 16), fallback=(86, 56, 132)).copy()
         avatar.set_alpha(int(236 * (alpha / 255.0)))
         s.blit(avatar, avatar.get_rect(center=avatar_slot.center).topleft)
 

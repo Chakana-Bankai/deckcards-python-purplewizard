@@ -1,0 +1,56 @@
+PHASE 4 - ACTIVE RUNTIME ASSET REPORT
+============================================
+
+Canonical runtime paths and priority
+- Avatar/Portrait/Hologram priority: curated_active -> generated_active -> fallback_active
+- Card art: game/assets/sprites/cards/<id>.png (fallback placeholder if missing)
+- Biomes: game/assets/sprites/biomes/* then visual/generated fallback
+- Audio BGM/SFX/Stingers: game/audio/generated/* via game/audio/audio_engine.py
+- Studio intro visual: game/ui/screens/studio_intro.py (generated timeline + data/studio_intro_manifest.json)
+
+Avatar source resolution
+{
+  "chakana_mage": {
+    "concept": {
+      "source": "official_master",
+      "path": "game/assets/curated/avatars/chakana_mage_master_concept.png"
+    },
+    "portrait": {
+      "source": "official_master",
+      "path": "game/assets/curated/avatars/chakana_mage_master_portrait.png"
+    },
+    "hologram": {
+      "source": "official_master",
+      "path": "game/assets/curated/avatars/chakana_mage_master_hologram.png"
+    }
+  },
+  "archon": {
+    "concept": {
+      "source": "official_master",
+      "path": "game/assets/curated/avatars/archon_master_concept.png"
+    },
+    "portrait": {
+      "source": "official_master",
+      "path": "game/assets/curated/avatars/archon_master_portrait.png"
+    },
+    "hologram": {
+      "source": "official_master",
+      "path": "game/assets/curated/avatars/archon_master_hologram.png"
+    }
+  }
+}
+
+Runtime visual sample map
+{
+  "avatar_chakana_mage_portrait": "portrait_pipeline",
+  "avatar_chakana_mage_hologram": "portrait_pipeline",
+  "cards_strike": "assets/sprites/cards",
+  "biomes_kaypacha": "assets/sprites/biomes or visual/generated fallback",
+  "studio_intro_visual": "data/studio_intro_manifest.json + generated starfield timeline"
+}
+
+Runtime logging hooks already present
+- [asset] category=... source=...
+- [portrait] source=...
+- [Audio] context: ... file:...
+- [Audio] stinger: ... file:...

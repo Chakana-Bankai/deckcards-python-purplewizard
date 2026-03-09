@@ -3,10 +3,10 @@ CHAKANA PRE-ENGINE QA AUDITOR + SAFE RESTRUCTURE PASS
 
 Build Snapshot
 {
-  "game_version": "0.9.102",
-  "build_name": "Pre-Engine QA Auditor + Safe Restructure Prep",
-  "git_commit_hash": "fcfce69",
-  "generated_at": "2026-03-09T08:15:29-03:00",
+  "game_version": "0.9.106a",
+  "build_name": "Font Context Normalization Hotfix",
+  "git_commit_hash": "0bd2874",
+  "generated_at": "2026-03-09T15:42:43-03:00",
   "total_cards": 120,
   "total_cards_base": 60,
   "total_cards_hiperboria": 60,
@@ -14,14 +14,14 @@ Build Snapshot
   "total_enemies": 31,
   "total_bosses": 4,
   "total_codex_entries": 142,
-  "total_generated_assets": 177,
-  "total_curated_assets": 1
+  "total_generated_assets": 217,
+  "total_curated_assets": 10
 }
 
 Overall Status: WARNING
 
 [WARNING] Baseline QA
-  cards=120 avg_turns_battle=8.86 avg_turns_boss=9.29 boss_win_rate=1.0
+  cards=120 avg_turns_battle=7.93 avg_turns_boss=7.29 boss_win_rate=1.0
   {
     "cards_checked_total": 120,
     "cards_checked_base": 60,
@@ -29,8 +29,8 @@ Overall Status: WARNING
     "invalid_cards": 0,
     "duplicate_logic_cards": 10,
     "duplicate_visual_cards": 0,
-    "avg_turns_battle": 8.86,
-    "avg_turns_boss": 9.29,
+    "avg_turns_battle": 7.93,
+    "avg_turns_boss": 7.29,
     "boss_win_rate": 1.0,
     "relic_errors": 0,
     "art_failures": 0,
@@ -59,21 +59,21 @@ Overall Status: WARNING
     "archetype_simulation": {
       "cosmic_warrior": {
         "avg_damage": 49.8,
-        "avg_turns_combat": 4.12,
-        "avg_turns_boss": 4.5,
+        "avg_turns_combat": 3.38,
+        "avg_turns_boss": 3.5,
         "boss_win_rate": 1.0
       },
       "harmony_guardian": {
-        "avg_damage": 54.2,
-        "avg_turns_combat": 8.5,
-        "avg_turns_boss": 10.5,
+        "avg_damage": 55.9,
+        "avg_turns_combat": 9.25,
+        "avg_turns_boss": 9.5,
         "boss_win_rate": 1.0
       },
       "oracle_of_fate": {
-        "avg_damage": 49,
-        "avg_turns_combat": 6.62,
-        "avg_turns_boss": 10.5,
-        "boss_win_rate": 1.0
+        "avg_damage": 46.9,
+        "avg_turns_combat": 8.25,
+        "avg_turns_boss": 13,
+        "boss_win_rate": 0.5
       }
     },
     "audio_intro": {
@@ -278,20 +278,20 @@ Overall Status: WARNING
   {
     "states": {
       "3": {
-        "spacing": 866,
-        "left": 21,
+        "spacing": 860,
+        "left": 22,
         "right": 1899,
         "in_bounds": true
       },
       "5": {
-        "spacing": 433,
-        "left": 21,
+        "spacing": 430,
+        "left": 22,
         "right": 1899,
         "in_bounds": true
       },
       "7": {
-        "spacing": 288,
-        "left": 23,
+        "spacing": 286,
+        "left": 24,
         "right": 1897,
         "in_bounds": true
       }
@@ -300,7 +300,7 @@ Overall Status: WARNING
   }
 
 [WARNING] Fonts
-  missing_custom_files=5 missing_contexts=3
+  missing_custom_files=5 missing_contexts=0
   {
     "font_dir": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\fonts",
     "missing_custom_files": [
@@ -313,16 +313,33 @@ Overall Status: WARNING
     "fallback_font_count": 5,
     "registered_contexts": [
       "card_body",
+      "card_effect",
+      "card_footer",
+      "card_lore",
+      "card_title",
       "card_titles",
-      "combat_labels",
-      "hud_numbers",
-      "lore_text"
-    ],
-    "missing_contexts": [
-      "map_labels",
+      "card_type",
+      "codex_header",
       "codex_headers",
-      "shop_headers"
-    ]
+      "combat_label",
+      "combat_labels",
+      "combat_title",
+      "combat_value",
+      "hud_numbers",
+      "hud_value",
+      "lore_text",
+      "map_label",
+      "map_labels",
+      "map_title",
+      "menu_label",
+      "menu_title",
+      "modal_label",
+      "modal_title",
+      "shop_header",
+      "shop_headers",
+      "special_pixel_label"
+    ],
+    "missing_contexts": []
   }
 
 [WARNING] Icons
@@ -383,15 +400,11 @@ Overall Status: WARNING
     "whistle_artifact_check": "manual_review_required"
   }
 
-[WARNING] Scenes
-  missing_scene_files=0 missing_portrait_assets=3
+[PASS] Scenes
+  missing_scene_files=0 missing_portrait_assets=0
   {
     "missing_scene_files": [],
-    "missing_portrait_assets": [
-      "game\\assets\\curated\\avatars\\chakana_mage_master_concept.png",
-      "game\\assets\\curated\\avatars\\chakana_mage_master_portrait.png",
-      "game\\assets\\curated\\avatars\\chakana_mage_master_hologram.png"
-    ],
+    "missing_portrait_assets": [],
     "missing_dialogue_files": [],
     "text_bounds_check": "wrapped dialogue blocks present; keep manual visual verification"
   }
@@ -414,27 +427,27 @@ Overall Status: WARNING
     "benchmarks_ms": [
       {
         "label": "card_render",
-        "avg_ms": 4.55,
-        "p95_ms": 4.791,
-        "max_ms": 6.072
+        "avg_ms": 4.757,
+        "p95_ms": 5.834,
+        "max_ms": 7.029
       },
       {
         "label": "hover_render",
-        "avg_ms": 5.322,
-        "p95_ms": 5.806,
-        "max_ms": 7.116
+        "avg_ms": 5.551,
+        "p95_ms": 7.313,
+        "max_ms": 11.705
       },
       {
         "label": "combat_hud_render",
-        "avg_ms": 0.534,
-        "p95_ms": 0.572,
-        "max_ms": 1.144
+        "avg_ms": 0.59,
+        "p95_ms": 0.728,
+        "max_ms": 0.854
       },
       {
         "label": "codex_card_preview",
-        "avg_ms": 5.338,
-        "p95_ms": 5.541,
-        "max_ms": 5.913
+        "avg_ms": 5.342,
+        "p95_ms": 6.183,
+        "max_ms": 6.804
       },
       {
         "label": "scene_hologram_render",
@@ -446,15 +459,15 @@ Overall Status: WARNING
     "heavy_contexts": [
       {
         "label": "hover_render",
-        "avg_ms": 5.322,
-        "p95_ms": 5.806,
-        "max_ms": 7.116
+        "avg_ms": 5.551,
+        "p95_ms": 7.313,
+        "max_ms": 11.705
       },
       {
         "label": "codex_card_preview",
-        "avg_ms": 5.338,
-        "p95_ms": 5.541,
-        "max_ms": 5.913
+        "avg_ms": 5.342,
+        "p95_ms": 6.183,
+        "max_ms": 6.804
       }
     ]
   }
@@ -465,12 +478,11 @@ Risk Summary
   "priority_2_visual_integrity": [
     "Content Registry: registries=8 duplicate_ids=1 missing_ids=0",
     "Cards: cards=120 base=60 hiperboria=60 invalid=0",
-    "Audio: contexts_missing=0 stale_manifest_entries=0",
-    "Scenes: missing_scene_files=0 missing_portrait_assets=3"
+    "Audio: contexts_missing=0 stale_manifest_entries=0"
   ],
   "priority_3_maintainability": [
-    "Baseline QA: cards=120 avg_turns_battle=8.86 avg_turns_boss=9.29 boss_win_rate=1.0",
-    "Fonts: missing_custom_files=5 missing_contexts=3",
+    "Baseline QA: cards=120 avg_turns_battle=7.93 avg_turns_boss=7.29 boss_win_rate=1.0",
+    "Fonts: missing_custom_files=5 missing_contexts=0",
     "Icons: missing_required=1 missing_mappings=3",
     "Performance: benchmarks=5 heavy_contexts=2"
   ]
@@ -478,5 +490,4 @@ Risk Summary
 
 Recommended Next Actions
 1. font pipeline consolidation (custom files + context mapping).
-2. master avatar art pass (curated concept/portrait/hologram).
-3. audio cache/manifest cleanup and context track verification.
+2. audio cache/manifest cleanup and context track verification.

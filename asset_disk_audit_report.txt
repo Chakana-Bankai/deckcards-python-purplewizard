@@ -1,0 +1,44 @@
+PHASE 4 - ASSET DISK AUDIT REPORT
+========================================
+
+overall=PASS
+
+Root counts
+- assets_curated: 9
+- assets_music: 51
+- assets_sfx: 13
+- assets_sprites: 224
+- audio_generated: 50
+- visual_generated: 155
+
+Detected duplicate groups (top)
+- chakana_mage_portrait: 8 files
+- menu: 8 files
+- combat_hud: 8 files
+- condor_feather: 8 files
+- chakana_mage_hologram: 7 files
+- bg: 7 files
+- fg: 7 files
+- mg: 7 files
+- crown_of_hanan: 6 files
+- chakana_stylized: 6 files
+- archon_oracle: 5 files
+- archon_portrait: 5 files
+- andean_knot: 5 files
+- archon_fragment: 5 files
+- puma_pulse: 5 files
+- seal_of_seven_paths: 5 files
+- serpent_scale: 5 files
+- solar_tumi: 5 files
+- violet_seal: 5 files
+- void_mirror: 5 files
+- fractura_chakana: 4 files
+- combat_forest: 4 files
+- combat_hanan: 4 files
+- combat_kaypacha: 4 files
+- combat_umbral: 4 files
+
+Operational observations
+- Audio runtime is canonical on game/audio/generated/*; legacy game/assets/music remains archived compatibility.
+- Portrait runtime resolves curated->generated->placeholder deterministically; historical sizes remain as non-primary fallback.
+- Studio intro keeps procedural base and can layer curated studio assets when present.

@@ -49,7 +49,6 @@ from game.ui.screens.pack_opening import PackOpeningScreen
 from game.ui.screens.end import EndScreen
 from game.ui.screens.intro import IntroScreen
 from game.ui.screens.studio_intro import StudioIntroScreen
-from game.ui.screens.pacha_transition import PachaTransitionScreen
 from game.ui.screens.scene_fusion import SceneFusionScreen
 from game.ui.screens.tutorial import TutorialScreen
 from game.ui.tutorial_flow import TutorialFlowController
@@ -66,6 +65,7 @@ from game.systems.enemy_intent_deck import build_enemy_intent_deck, infer_ai_pro
 from game.visual import get_visual_engine
 from game.systems.reward_system import build_reward_boss, build_reward_guide, build_reward_normal
 from game.systems.meta_director import MetaDirector
+from game.systems.event_system import enrich_event_payload, apply_event_state_flags
 from game.ui.screens.loading import LoadingScreen, DataLoadingScreen
 
 DEFAULT_CARDS = [
@@ -847,7 +847,7 @@ class App:
 
 
     def validate_navigation_methods(self):
-        required = ["goto_menu", "goto_map", "goto_combat", "goto_reward", "goto_shop", "goto_event", "goto_deck", "goto_settings", "goto_end"]
+        required = ["goto_menu", "goto_map", "goto_combat", "goto_reward", "goto_shop", "goto_event", "goto_deck", "goto_settings", "goto_end", "goto_pack_opening"]
         missing = [m for m in required if not hasattr(self, m)]
         if missing:
             raise RuntimeError(f"Missing navigation methods: {', '.join(missing)}")
@@ -1102,6 +1102,25 @@ class App:
                 by_id[str(row.get('id'))] = row
         return list(by_id.values())
 
+    def _reset_retry_transient_state(self):
+        if not isinstance(self.run_state, dict):
+            return
+        player = self.run_state.get("player", {}) if isinstance(self.run_state.get("player", {}), dict) else {}
+        statuses = player.get("statuses", {}) if isinstance(player.get("statuses", {}), dict) else {}
+        for key in ("stun", "silence", "phase", "discount_next_attack", "copy_next", "enemy_damage_down", "weak"):
+            statuses.pop(key, None)
+        player["statuses"] = statuses
+        player["block"] = 0
+        player["harmony_current"] = 0
+        player["harmony_ready"] = False
+        player["harmony_seal_used"] = False
+        player["seal_ready"] = False
+        player["seal_active"] = False
+        player.pop("selected_card", None)
+        self.run_state["player"] = player
+        self.run_state["combat_invalid_reason"] = ""
+        self.run_state["combat_invalid_until_ms"] = 0
+
     def retry_current_combat(self):
         if not isinstance(self.run_state, dict):
             self.new_run()
@@ -1117,6 +1136,7 @@ class App:
             self.goto_map()
             return False
         node['state'] = 'available'
+        self._reset_retry_transient_state()
         # Reset transient combat references so retry rebuilds from node data.
         self.current_combat = None
         self.run_state['last_node_type'] = str(node.get('type', self.run_state.get('last_node_type', 'combat')))
@@ -1150,7 +1170,16 @@ class App:
         self.trigger_oracle("victory" if victory else "defeat")
         title = "Victoria" if victory else "Derrota"
         lore = "el eco celebro tu equilibrio." if victory else "la Trama pidio un nuevo intento."
-        self.sm.set(PachaTransitionScreen(self, title, lambda: self.sm.set(EndScreen(self, victory=victory)), lore_line=lore, hint="Cierre del capitulo"))
+        self._show_hologram_transition(
+            title,
+            "Transmision de cierre del enfrentamiento.",
+            lore,
+            lambda: self.sm.set(EndScreen(self, victory=victory)),
+            speaker="CHAKANA" if victory else "ARCONTE",
+            portrait_key="chakana_mage_portrait" if victory else "archon_oracle",
+            biome_layer=(self.run_state.get("biome", "kaypacha") if isinstance(self.run_state, dict) else "kaypacha"),
+            auto_seconds=3.0,
+        )
 
     def goto_path_select(self):
         self.sm.set(PathSelectScreen(self))
@@ -1448,10 +1477,41 @@ class App:
 
         return by_col
 
+    def _show_hologram_transition(
+        self,
+        title: str,
+        dialogue: str,
+        lore_line: str,
+        next_fn,
+        *,
+        speaker: str = "CHAKANA",
+        portrait_key: str = "chakana_mage_portrait",
+        portrait_group: str = "avatar",
+        set_label: str = "",
+        biome_layer: str | None = None,
+        auto_seconds: float = 3.8,
+    ):
+        self.sm.set(
+            SceneFusionScreen(
+                self,
+                title,
+                dialogue,
+                lore_line,
+                next_fn,
+                background="Ruinas Chakana",
+                biome_layer=biome_layer,
+                portrait_key=portrait_key,
+                portrait_group=portrait_group,
+                speaker_label=speaker,
+                set_label=set_label,
+                min_seconds=0.75,
+                auto_seconds=auto_seconds,
+            )
+        )
     def goto_map(self):
         self._migrate_legacy_shop_nodes()
         if self.run_state and self.run_state.get("levelup_pending", 0) > 0:
-            self.sm.set(PackOpeningScreen(self))
+            self.goto_pack_opening(source="levelup_pending")
             self.music.play_for("chest")
             return
         if isinstance(self.pending_scene_reveal, dict):
@@ -1475,19 +1535,40 @@ class App:
                 )
             )
             return
+
         self._autosave_run("goto_map")
         self.debug["map_available_count"] = self.available_nodes_count() if self.node_lookup else 0
         self.debug["current_node_id"] = self.current_node_id or "-"
         biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
         self.meta_director.register_direction_tags(self.run_state, biome_track, "map")
+
         if self.last_biome_seen is None:
             self.last_biome_seen = biome_track
-            self.sm.set(PachaTransitionScreen(self, "Comienza la Trama", lambda: self.sm.set(MapScreen(self)), lore_line="Chakana abrio su primer sendero.", hint="Pulsa cualquier tecla para caminar"))
+            self._show_hologram_transition(
+                "Comienza la Trama",
+                "El oraculo sincroniza tu camino inicial.",
+                "Chakana abrio su primer sendero.",
+                lambda: self.sm.set(MapScreen(self)),
+                speaker="CHAKANA",
+                portrait_key="chakana_mage_portrait",
+                biome_layer=biome_track,
+                auto_seconds=3.2,
+            )
         elif self.last_biome_seen != biome_track:
             self.last_biome_seen = biome_track
-            self.sm.set(PachaTransitionScreen(self, f"Mapa: {str(biome_track).title()}", lambda: self.sm.set(MapScreen(self)), lore_line="un nuevo territorio abrio su geometria.", hint="Pulsa cualquier tecla para continuar"))
+            self._show_hologram_transition(
+                f"Mapa: {str(biome_track).title()}",
+                "Transmision estable: nuevo plano detectado.",
+                "Un nuevo territorio abrio su geometria.",
+                lambda: self.sm.set(MapScreen(self)),
+                speaker="CHAKANA",
+                portrait_key="chakana_mage_hologram",
+                biome_layer=biome_track,
+                auto_seconds=3.0,
+            )
         else:
             self.sm.set(MapScreen(self))
+
         self.music.play_for(self.get_bgm_track("map", biome_track))
 
     def goto_combat(self, combat_state, is_boss=False):
@@ -1512,7 +1593,16 @@ class App:
             self.trigger_oracle("boss_reveal")
         title = "Umbral del Jefe" if is_boss else "Entrando en Combate"
         lore = "la sombra mayor desperto." if is_boss else "el pulso enemigo se hizo audible."
-        self.sm.set(PachaTransitionScreen(self, title, _enter_combat, lore_line=lore, hint="Pulsa cualquier tecla para preparar tu mano"))
+        self._show_hologram_transition(
+            title,
+            "Transmision tactica establecida.",
+            lore,
+            _enter_combat,
+            speaker="ARCONTE" if is_boss else "CHAKANA",
+            portrait_key="archon_oracle" if is_boss else "chakana_mage_hologram",
+            biome_layer=(self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"),
+            auto_seconds=3.2 if is_boss else 2.6,
+        )
 
     def goto_reward(self, picks=None, gold=None, mode=None, relic=None, guide_reward=None):
         reward_mode = mode or "choose1of3"
@@ -1534,6 +1624,9 @@ class App:
             self.music.play_for(self.get_bgm_track("reward"))
             return
 
+        # Phase 2 integration: packs become the primary post-combat reward flow.
+        # Legacy modal can still be forced through settings for compatibility testing.
+        legacy_modal = bool(self.user_settings.get("legacy_reward_modal_enabled", False))
         if picks is None:
             unlock_level = self.run_state.get("level", 1) if self.run_state else 1
             rarities = {"basic", "common"} if unlock_level < 2 else {"common", "uncommon", "rare"}
@@ -1542,10 +1635,22 @@ class App:
             reward_data = build_reward_normal(self.rng, pool, self.run_state or {})
         else:
             reward_data = {"type": "choose1of3", "cards": list(picks)}
+
         if gold is None:
             gold = int(round(self.rng.randint(20, 35) * 1.3))
 
-        self.sm.set(RewardScreen(self, reward_data, gold, xp_gained=self.debug.get("xp_last_gain", 0)))
+        if legacy_modal:
+            self.sm.set(RewardScreen(self, reward_data, gold, xp_gained=self.debug.get("xp_last_gain", 0)))
+            self.play_stinger("stinger_reward")
+            self.music.play_for(self.get_bgm_track("reward"))
+            return
+
+        # Apply gold reward immediately and route to pack object flow.
+        self.apply_run_rewards(gold=int(gold or 0), source="reward_pack_entry")
+        self.goto_pack_opening(reward_data=reward_data, source="reward")
+
+    def goto_pack_opening(self, reward_data=None, source: str = "reward"):
+        self.sm.set(PackOpeningScreen(self, reward_data=reward_data, source=source))
         self.play_stinger("stinger_reward")
         self.music.play_for(self.get_bgm_track("reward"))
 
@@ -1571,10 +1676,26 @@ class App:
             if picked_idx is None:
                 picked_idx = self.rng.randint(0, len(pool) - 1)
             event = pool[picked_idx]
+
+        enriched = enrich_event_payload(event, self.loc)
         self.meta_director.register_direction_tags(self.run_state, biome, "event")
-        self.trigger_oracle("event_node", payload=event)
-        self.sm.set(EventScreen(self, event))
-        self.music.play_for(self.get_bgm_track("events"))
+        self.trigger_oracle("event_node", payload=enriched)
+
+        def _enter_event():
+            self.sm.set(EventScreen(self, enriched))
+            self.music.play_for(self.get_bgm_track("events"))
+
+        self._show_hologram_transition(
+            title=str(enriched.get("lore_line") or self.loc.t("event_title")),
+            dialogue=str(enriched.get("dialogue") or self.loc.t("event_continue")),
+            lore_line=f"Tipo: {str(enriched.get('event_type', 'lore')).upper()} | {', '.join(list(enriched.get('tags', []) or [])[:3])}",
+            next_fn=_enter_event,
+            speaker=str(enriched.get("speaker_label") or "CHAKANA"),
+            portrait_key=str(enriched.get("portrait_key") or "chakana_mage_portrait"),
+            portrait_group="guides" if str(enriched.get("portrait_key") or "").lower() in {"angel", "shaman", "demon", "arcane_hacker"} else "avatar",
+            biome_layer=biome,
+            auto_seconds=2.8,
+        )
 
     def goto_guide_reward(self, event_id: str = "guide"):
         reward_data = build_reward_guide(event_id, self.rng, self._reward_card_pool(), self.run_state or {})
@@ -1834,7 +1955,7 @@ class App:
             self.run_state["levelup_pending"] = max(0, pending - 1)
         print(f"[reward] consume_levelup_pending remaining={self.run_state.get('levelup_pending', 0)}")
         if self.run_state.get("levelup_pending", 0) > 0:
-            self.sm.set(PackOpeningScreen(self))
+            self.goto_pack_opening(source="levelup_pending")
         else:
             self.goto_map()
 
@@ -1889,6 +2010,9 @@ class App:
                 pool = [r.get("id") for r in self.relics_data if r.get("rarity") == rarity and r.get("id")]
                 if pool:
                     self.apply_run_rewards(relics=[self.rng.choice(pool)], source="event_gain_relic_random")
+
+            elif apply_event_state_flags(self.run_state, effect):
+                print(f"[events] state_flag applied type={effect_type}")
             else:
                 print(f"[events] warning: unsupported effect type '{effect_type}'")
         print(f"[events] applied total_gold=+{total_gold} total_xp=+{total_xp}")
@@ -2213,3 +2337,6 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
+
+
+

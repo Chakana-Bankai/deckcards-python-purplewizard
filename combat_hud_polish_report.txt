@@ -1,0 +1,14 @@
+PHASE 6 - COMBAT HUD POLISH REPORT
+========================================
+overall=PASS
+
+Checks
+- enemy_avatar_capped_to_28_percent: PASS
+- enemy_intent_block_status_compact_layout: PASS
+- enemy_status_tokens_clipped: PASS
+- player_row3_min_height_guard: PASS
+- harmony_seal_inside_harmony_core: PASS
+- combat_screen_runtime_render: PASS
+
+Runtime details
+- {"render_ok": true, "error": "", "end_turn_rect": [1325, 643, 475, 112], "harmony_seal_rect": [930, 752, 100, 18], "harmony_rect": [755, 618, 450, 156], "playerhud_rect": [21, 618, 713, 156]}

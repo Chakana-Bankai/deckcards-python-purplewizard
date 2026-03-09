@@ -321,6 +321,9 @@ class CombatState:
         self._audit_deck_integrity("draw")
 
     def play_card(self, hand_index: int, target_idx: int | None = None):
+        # Guard against stale overflow states before validating play.
+        if len(self.hand) > self.hand_max:
+            self._audit_deck_integrity("pre_play")
         if hand_index < 0 or hand_index >= len(self.hand):
             return
         card = self.hand[hand_index]

@@ -1,0 +1,16 @@
+CHAKANA PHASE 3B - EVENT SYSTEM DESIGN REPORT
+=========================================================
+Design decisions
+- Event node flow: Map node -> SceneFusion hologram -> EventScreen decision modal.
+- Event payload enrichment: event_type, tags, speaker_label, portrait_key, alignment.
+- Reward philosophy: events favor conditional/small rewards; major rewards remain combat/shop/pack.
+- Conditional event flags supported:
+  - set_next_combat_bonus
+  - set_next_shop_discount
+  - set_temp_curse
+  - unlock_hiperborea_entry
+  - guarantee_next_elite_relic
+  - set_next_shop_pack_reveal
+- Guide/angel/demon speakers preserved through mapped speaker profiles.
+
+overall=PASS

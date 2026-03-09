@@ -11,6 +11,8 @@ from random import Random
 
 import pygame
 
+from game.core.paths import assets_dir
+
 
 @dataclass(frozen=True)
 class ContextSpec:
@@ -25,7 +27,7 @@ class ContextSpec:
 class AudioEngine:
     """Procedural audio engine with caching and context-aware playback."""
 
-    VERSION = "chakana_audio_v2"
+    VERSION = "chakana_audio_v3"
     SAMPLE_RATE = 22050
 
     def __init__(self):
@@ -37,6 +39,7 @@ class AudioEngine:
         self.stingers_dir = self.generated_root / "stingers"
         self.studio_dir = self.generated_root / "studio"
         self.manifest_path = root / "audio_manifest.json"
+        self.curated_audio_root = assets_dir() / "curated" / "audio"
         self._ensure_dirs()
 
         # Compact context set: fewer tracks, clearer identity.
@@ -46,11 +49,11 @@ class AudioEngine:
             "map_kay": ContextSpec("exploration ambient", ("a", "b"), 28.0, 0.20, 0.44, 0.25),
             "map_hanan": ContextSpec("exploration ambient", ("a", "b"), 28.0, 0.22, 0.50, 0.30),
             "combat": ContextSpec("tense pulse", ("a", "b"), 24.0, 0.34, 0.55, 0.62),
-            "combat_elite": ContextSpec("strong percussion", ("a",), 24.0, 0.40, 0.58, 0.72),
-            "combat_boss": ContextSpec("ceremonial epic", ("a",), 26.0, 0.46, 0.64, 0.88),
-            "shop": ContextSpec("calm ritual", ("a",), 22.0, 0.18, 0.48, 0.24),
-            "victory": ContextSpec("uplift", ("a",), 18.0, 0.24, 0.62, 0.18),
-            "defeat": ContextSpec("falling echo", ("a",), 18.0, 0.14, 0.28, 0.38),
+            "combat_elite": ContextSpec("strong percussion", ("a", "b"), 24.0, 0.40, 0.58, 0.72),
+            "combat_boss": ContextSpec("ceremonial epic", ("a", "b"), 26.0, 0.46, 0.64, 0.88),
+            "shop": ContextSpec("calm ritual", ("a", "b"), 22.0, 0.18, 0.48, 0.24),
+            "victory": ContextSpec("uplift", ("a", "b"), 18.0, 0.24, 0.62, 0.18),
+            "defeat": ContextSpec("falling echo", ("a", "b"), 18.0, 0.14, 0.28, 0.38),
         }
         self.context_alias = {
             "map_kaypacha": "map_kay",
@@ -207,9 +210,13 @@ class AudioEngine:
             # Reduce high-pitched whistle by shifting texture band lower and softer.
             noise = 0.008 * math.sin(2 * math.pi * (210 + 28 * spec.brightness) * t + 0.14 * math.sin(t * 1.6))
 
-            x = (0.48 * pad) + (0.26 * arp) + (0.14 * rhythm) + noise
+            bass = 0.16 * math.sin(2 * math.pi * (root * 0.5) * t + 0.12 * math.sin(t * 0.3))
+            shimmer = 0.07 * math.sin(2 * math.pi * (overtone * 1.25) * t + 0.5)
+            x = (0.42 * pad) + (0.24 * arp) + (0.16 * rhythm) + (0.12 * bass) + shimmer + noise
             if spec.tension > 0.6:
-                x += 0.04 * math.sin(2 * math.pi * (root * 3.0) * t)
+                x += 0.05 * math.sin(2 * math.pi * (root * 2.8) * t)
+            if "shop" in ctx or "menu" in ctx:
+                x *= 0.90
 
             fade_in = min(1.0, t / 1.2)
             fade_out = min(1.0, (seconds - t) / 1.0)
@@ -281,6 +288,35 @@ class AudioEngine:
         }.get(name, 320.0)
         return self._tone_burst(base, seconds, attack=0.004, decay=0.9)
 
+    def _curated_item_path(self, item_id: str, expected_type: str) -> Path | None:
+        root = self.curated_audio_root
+        if expected_type == "bgm":
+            if "_" in item_id:
+                ctx, var = item_id.rsplit("_", 1)
+                p = root / "bgm" / f"{ctx}_{var}.wav"
+                if p.exists():
+                    return p
+                p2 = root / "bgm" / f"{ctx}.wav"
+                if p2.exists():
+                    return p2
+            p3 = root / "bgm" / f"{item_id}.wav"
+            return p3 if p3.exists() else None
+        if expected_type == "stinger":
+            nm = item_id.replace("stinger_", "", 1)
+            for p in (root / "stingers" / f"{nm}.wav", root / "studio" / f"{nm}.wav"):
+                if p.exists():
+                    return p
+            return None
+        if expected_type == "sfx":
+            nm = item_id.replace("sfx_", "", 1)
+            p = root / "sfx" / f"{nm}.wav"
+            return p if p.exists() else None
+        return None
+
+    def _source_from_path(self, path: Path) -> str:
+        sp = str(path).replace("\\", "/").lower()
+        return "curated" if "/assets/curated/" in sp else "generated"
+
     def _default_item_path(self, item_id: str, expected_type: str) -> Path:
         if expected_type == "bgm":
             return self.bgm_dir / f"{item_id}.wav"
@@ -294,18 +330,22 @@ class AudioEngine:
         return self.generated_root / f"{item_id}.wav"
 
     def _item_ok(self, item_id: str, expected_type: str) -> Path | None:
+        curated = self._curated_item_path(item_id, expected_type)
+        if curated is not None:
+            return curated
+
         items = self._manifest.get("items", {})
         meta = items.get(item_id, {}) if isinstance(items, dict) else {}
         if not isinstance(meta, dict) or meta.get("type") != expected_type:
-            fallback = self._default_item_path(item_id, expected_type)
-            return fallback if fallback.exists() else None
+            return None
+        if str(meta.get("version", "")) != self.VERSION:
+            return None
         p = Path(str(meta.get("file_path", ""))).expanduser()
         if p.exists():
             return p
-        fallback = self._default_item_path(item_id, expected_type)
-        return fallback if fallback.exists() else None
+        return None
 
-    def _register_item(self, item_id: str, *, item_type: str, context: str, variant: str, seed: int, file_path: Path):
+    def _register_item(self, item_id: str, *, item_type: str, context: str, variant: str, seed: int, file_path: Path, source: str = "generated"):
         items = self._manifest.setdefault("items", {})
         items[item_id] = {
             "track_id": item_id,
@@ -317,6 +357,7 @@ class AudioEngine:
             "generation_date": int(time.time()),
             "version": self.VERSION,
             "state": "valid",
+            "source": str(source or "generated"),
         }
         self._save_manifest()
 
@@ -326,13 +367,13 @@ class AudioEngine:
         if cached is not None:
             if item_id not in self._manifest.get("items", {}):
                 seed = self._stable_seed(f"bgm:{item_id}")
-                self._register_item(item_id, item_type="bgm", context=ctx, variant=variant, seed=seed, file_path=cached)
+                self._register_item(item_id, item_type="bgm", context=ctx, variant=variant, seed=seed, file_path=cached, source=self._source_from_path(cached))
             return cached
         spec = self.context_specs[ctx]
         seed = self._stable_seed(f"bgm:{item_id}")
         path = self.bgm_dir / f"{item_id}.wav"
         self._write_wave(path, self._music_samples(ctx, variant, spec.seconds))
-        self._register_item(item_id, item_type="bgm", context=ctx, variant=variant, seed=seed, file_path=path)
+        self._register_item(item_id, item_type="bgm", context=ctx, variant=variant, seed=seed, file_path=path, source="generated")
         print(f"[Audio] generated: {item_id}")
         return path
 
@@ -342,13 +383,13 @@ class AudioEngine:
         if cached is not None:
             if item_id not in self._manifest.get("items", {}):
                 seed = self._stable_seed(item_id)
-                self._register_item(item_id, item_type="stinger", context=name, variant="a", seed=seed, file_path=cached)
+                self._register_item(item_id, item_type="stinger", context=name, variant="a", seed=seed, file_path=cached, source=self._source_from_path(cached))
             return cached
         seconds = float(self.stingers.get(name, 0.8))
         seed = self._stable_seed(item_id)
         path = (self.studio_dir if name == "studio_intro" else self.stingers_dir) / f"{name}.wav"
         self._write_wave(path, self._stinger_samples(name, seconds))
-        self._register_item(item_id, item_type="stinger", context=name, variant="a", seed=seed, file_path=path)
+        self._register_item(item_id, item_type="stinger", context=name, variant="a", seed=seed, file_path=path, source="generated")
         print(f"[Audio] generated: {item_id}")
         return path
 
@@ -358,13 +399,13 @@ class AudioEngine:
         if cached is not None:
             if item_id not in self._manifest.get("items", {}):
                 seed = self._stable_seed(item_id)
-                self._register_item(item_id, item_type="sfx", context=name, variant="a", seed=seed, file_path=cached)
+                self._register_item(item_id, item_type="sfx", context=name, variant="a", seed=seed, file_path=cached, source=self._source_from_path(cached))
             return cached
         seconds = float(self.sfx_defs.get(name, 0.14))
         seed = self._stable_seed(item_id)
         path = self.sfx_dir / f"{name}.wav"
         self._write_wave(path, self._sfx_samples(name, seconds))
-        self._register_item(item_id, item_type="sfx", context=name, variant="a", seed=seed, file_path=path)
+        self._register_item(item_id, item_type="sfx", context=name, variant="a", seed=seed, file_path=path, source="generated")
         print(f"[Audio] generated: {item_id}")
         return path
 
@@ -393,28 +434,13 @@ class AudioEngine:
 
     def ensure_core_assets(self, force: bool = False) -> dict:
         self._prune_manifest()
-        self._ensure_bgm_variant("menu", "a", force=force)
-        self._ensure_bgm_variant("map_ukhu", "a", force=force)
-        self._ensure_bgm_variant("map_kay", "a", force=force)
-        self._ensure_bgm_variant("map_hanan", "a", force=force)
-        self._ensure_bgm_variant("combat", "a", force=force)
-        self._ensure_bgm_variant("combat_elite", "a", force=force)
-        self._ensure_bgm_variant("combat_boss", "a", force=force)
-        self._ensure_bgm_variant("shop", "a", force=force)
-        self._ensure_bgm_variant("victory", "a", force=force)
-        self._ensure_bgm_variant("defeat", "a", force=force)
-        self._ensure_stinger("combat_start", force=force)
-        self._ensure_stinger("boss_reveal", force=force)
-        self._ensure_stinger("harmony_ready", force=force)
-        self._ensure_stinger("seal_ready", force=force)
-        self._ensure_stinger("relic_gain", force=force)
-        self._ensure_stinger("pack_open", force=force)
-        self._ensure_stinger("level_up", force=force)
-        self._ensure_stinger("victory", force=force)
-        self._ensure_stinger("defeat", force=force)
-        self._ensure_stinger("studio_intro", force=force)
-        self._ensure_sfx("button_click", force=force)
-        self._ensure_sfx("card_play", force=force)
+        for ctx, spec in self.context_specs.items():
+            for var in spec.variants:
+                self._ensure_bgm_variant(ctx, var, force=force)
+        for name in self.stingers:
+            self._ensure_stinger(name, force=force)
+        for name in self.sfx_defs:
+            self._ensure_sfx(name, force=force)
         return self._manifest
 
     def set_music_volume(self, value: float):
@@ -575,5 +601,6 @@ def get_audio_engine() -> AudioEngine:
     if _ENGINE is None:
         _ENGINE = AudioEngine()
     return _ENGINE
+
 
 

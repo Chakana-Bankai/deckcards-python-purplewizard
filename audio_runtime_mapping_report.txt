@@ -1,0 +1,29 @@
+PHASE 4 - AUDIO RUNTIME MAPPING REPORT
+============================================
+manifest_items=40
+
+Context/file mapping
+- bgm:combat: game/audio/generated/bgm/combat_a.wav
+- bgm:combat_boss: game/audio/generated/bgm/combat_boss_a.wav
+- bgm:combat_elite: game/audio/generated/bgm/combat_elite_a.wav
+- bgm:defeat: game/audio/generated/bgm/defeat_a.wav
+- bgm:map_hanan: game/audio/generated/bgm/map_hanan_a.wav
+- bgm:map_kay: game/audio/generated/bgm/map_kay_a.wav
+- bgm:map_ukhu: game/audio/generated/bgm/map_ukhu_a.wav
+- bgm:menu: game/audio/generated/bgm/menu_a.wav
+- bgm:shop: game/audio/generated/bgm/shop_a.wav
+- bgm:victory: game/audio/generated/bgm/victory_a.wav
+- stinger:boss_reveal: game/audio/generated/stingers/boss_reveal.wav
+- stinger:combat_start: game/audio/generated/stingers/combat_start.wav
+- stinger:defeat: game/audio/generated/stingers/defeat.wav
+- stinger:harmony_ready: game/audio/generated/stingers/harmony_ready.wav
+- stinger:level_up: game/audio/generated/stingers/level_up.wav
+- stinger:pack_open: game/audio/generated/stingers/pack_open.wav
+- stinger:relic_gain: game/audio/generated/stingers/relic_gain.wav
+- stinger:seal_ready: game/audio/generated/stingers/seal_ready.wav
+- stinger:studio_intro: game/audio/generated/studio/studio_intro.wav
+- stinger:victory: game/audio/generated/stingers/victory.wav
+
+Findings
+- Audio runtime is deterministic through audio_manifest + generated wav paths.
+- Legacy assets in game/assets/music are not primary runtime source.

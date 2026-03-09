@@ -13,7 +13,7 @@ from .visual_engine import get_visual_engine
 class PortraitPipeline:
     """Multi-tier character pipeline: concept art, portrait, hologram."""
 
-    VERSION = "portrait_v5"
+    VERSION = "portrait_v6"
 
     def __init__(self):
         self.root = Path(__file__).resolve().parent
@@ -49,6 +49,10 @@ class PortraitPipeline:
 
     def _resolve_role(self, name: str) -> str:
         key = str(name or "").lower().strip()
+        if key in {"angel", "shaman", "demon", "arcane_hacker", "guide"}:
+            return "guide"
+        if key.startswith("enemy_") or key in {"enemy", "boss"}:
+            return "enemy"
         if key in {
             "archon",
             "archon_oracle",
@@ -64,6 +68,10 @@ class PortraitPipeline:
 
     def _resolve_style(self, name: str) -> str:
         key = str(name or "").lower().strip()
+        if "mini" in key or key in {"hud_mini", "fallback_mini"}:
+            return "mini"
+        if "codex" in key:
+            return "codex"
         if "concept" in key or key in {"codex_entry"}:
             return "concept"
         if "portrait" in key or key in {"dialogue", "scene", "lore_panel", "menu"}:
@@ -71,6 +79,43 @@ class PortraitPipeline:
         if "holo" in key or "hologram" in key or "oracle" in key or key in {"combat_hud", "player_hud", "hud"}:
             return "hologram"
         return "portrait"
+
+    def _role_profile(self, role: str) -> dict:
+        profiles = {
+            "chakana_mage": {
+                "tint": (90, 160, 255, 52),
+                "accent": (152, 228, 255),
+                "edge": (206, 176, 116),
+                "scanline": (126, 212, 246),
+                "noise": (156, 236, 255, 26),
+                "rgb_shift": (1, -1),
+            },
+            "archon": {
+                "tint": (220, 74, 98, 58),
+                "accent": (242, 126, 142),
+                "edge": (226, 84, 104),
+                "scanline": (236, 110, 128),
+                "noise": (255, 124, 146, 32),
+                "rgb_shift": (2, -2),
+            },
+            "guide": {
+                "tint": (122, 210, 176, 46),
+                "accent": (206, 248, 214),
+                "edge": (152, 214, 182),
+                "scanline": (188, 246, 214),
+                "noise": (176, 248, 214, 24),
+                "rgb_shift": (1, 0),
+            },
+            "enemy": {
+                "tint": (156, 94, 210, 52),
+                "accent": (228, 196, 255),
+                "edge": (168, 112, 226),
+                "scanline": (206, 172, 248),
+                "noise": (212, 182, 255, 28),
+                "rgb_shift": (1, -1),
+            },
+        }
+        return profiles.get(role, profiles["chakana_mage"])
 
     def _canonical_avatar_roots(self) -> list[Path]:
         aroot = assets_dir()
@@ -118,6 +163,31 @@ class PortraitPipeline:
                     out.append((root / filename, "placeholder"))
             return out
 
+        if role == "guide":
+            guide_files = {
+                "concept": [("guide_master_concept.png", "official_master"), ("guide_portrait.png", "generated"), ("angel.png", "placeholder")],
+                "portrait": [("guide_master_portrait.png", "official_master"), ("guide_portrait.png", "generated"), ("angel.png", "placeholder")],
+                "hologram": [("guide_master_hologram.png", "official_master"), ("guide_hologram.png", "generated"), ("arcane_hacker.png", "placeholder")],
+            }
+            out: list[tuple[Path, str]] = []
+            for filename, tag in guide_files.get(style, []):
+                for root in roots:
+                    out.append((root / filename, tag))
+                out.append((assets_dir() / "sprites" / "guides" / filename, tag))
+            return out
+
+        if role == "enemy":
+            enemy_files = {
+                "concept": [("enemy_master_concept.png", "official_master"), ("enemy_portrait.png", "generated"), ("archon.png", "placeholder")],
+                "portrait": [("enemy_master_portrait.png", "official_master"), ("enemy_portrait.png", "generated"), ("archon.png", "placeholder")],
+                "hologram": [("enemy_master_hologram.png", "official_master"), ("enemy_hologram.png", "generated"), ("archon_holo.png", "placeholder")],
+            }
+            out: list[tuple[Path, str]] = []
+            for filename, tag in enemy_files.get(style, []):
+                for root in roots:
+                    out.append((root / filename, tag))
+            return out
+
         archon = {
             "concept": [
                 ("archon_master_concept.png", "official_master"),
@@ -160,41 +230,39 @@ class PortraitPipeline:
     def _stylize_portrait(self, source: pygame.Surface, role: str, size: tuple[int, int]) -> pygame.Surface:
         w, h = max(16, int(size[0])), max(16, int(size[1]))
         fitted = self._fit_contain(source, (w, h))
+        profile = self._role_profile(role)
+
         dw = max(24, w // 2)
         dh = max(24, h // 2)
         pixel = pygame.transform.scale(fitted, (dw, dh))
         pixel = pygame.transform.scale(pixel, (w, h))
 
+        vignette = pygame.Surface((w, h), pygame.SRCALPHA)
+        pygame.draw.rect(vignette, (0, 0, 0, 72), vignette.get_rect(), 5, border_radius=12)
+        pixel.blit(vignette, (0, 0))
+
         shade = pygame.Surface((w, h), pygame.SRCALPHA)
-        if role == "archon":
-            shade.fill((90, 28, 40, 70))
-            edge = (226, 84, 104)
-        else:
-            shade.fill((62, 40, 98, 62))
-            edge = (206, 176, 116)
+        tr, tg, tb, _ = profile["tint"]
+        shade.fill((int(tr * 0.45), int(tg * 0.35), int(tb * 0.35), 54))
         pixel.blit(shade, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
-        pygame.draw.rect(pixel, edge, pixel.get_rect(), 2, border_radius=8)
+
+        left = pygame.Surface((max(8, w // 10), h), pygame.SRCALPHA)
+        left.fill((*profile["accent"], 18))
+        pixel.blit(left, (0, 0))
+        pygame.draw.rect(pixel, profile["edge"], pixel.get_rect(), 2, border_radius=8)
         return pixel
 
     def _to_holographic(self, source: pygame.Surface, role: str, size: tuple[int, int]) -> pygame.Surface:
         w, h = max(16, int(size[0])), max(16, int(size[1]))
         base = self._stylize_portrait(source, role, size)
+        profile = self._role_profile(role)
+
         tint = pygame.Surface((w, h), pygame.SRCALPHA)
-        if role == "archon":
-            tint.fill((220, 74, 98, 58))
-            line_col = (236, 110, 128)
-            edge = (242, 126, 142)
-        else:
-            tint.fill((90, 160, 255, 52))
-            line_col = (126, 212, 246)
-            edge = (152, 228, 255)
+        tint.fill(profile["tint"])
         base.blit(tint, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
-        if role != "archon":
-            violet = pygame.Surface((w, h), pygame.SRCALPHA)
-            violet.fill((146, 96, 238, 30))
-            base.blit(violet, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
         scan = pygame.Surface((w, h), pygame.SRCALPHA)
+        line_col = profile["scanline"]
         for y in range(1, h, 3):
             pygame.draw.line(scan, (*line_col, 34), (2, y), (w - 3, y), 1)
         base.blit(scan, (0, 0))
@@ -204,7 +272,23 @@ class PortraitPipeline:
             band = base.subsurface(pygame.Rect(0, y, w, 1)).copy()
             base.blit(band, (wobble, y))
 
-        pygame.draw.rect(base, edge, base.get_rect(), 1, border_radius=8)
+        rx, bx = profile["rgb_shift"]
+        if rx or bx:
+            r = base.copy()
+            b = base.copy()
+            r.fill((255, 0, 0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            b.fill((0, 0, 255, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            base.blit(r, (rx, 0), special_flags=pygame.BLEND_RGBA_ADD)
+            base.blit(b, (bx, 0), special_flags=pygame.BLEND_RGBA_ADD)
+
+        noise = pygame.Surface((w, h), pygame.SRCALPHA)
+        nr, ng, nb, na = profile["noise"]
+        for y in range(0, h, 7):
+            if (y // 7) % 2 == 0:
+                pygame.draw.line(noise, (nr, ng, nb, na), (4, y), (w - 4, y), 1)
+        base.blit(noise, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
+
+        pygame.draw.rect(base, profile["accent"], base.get_rect(), 1, border_radius=8)
         return base
 
     def _source_stamp(self, role: str, style: str) -> str:
@@ -240,6 +324,13 @@ class PortraitPipeline:
             print(f"[portrait] source={tag}")
 
     def _build_style(self, role: str, style: str, size: tuple[int, int]) -> tuple[pygame.Surface | None, str, str]:
+        if style == "codex":
+            style = "portrait"
+            size = (max(64, int(size[0])), max(64, int(size[1])))
+        if style == "mini":
+            style = "hologram"
+            size = (max(28, int(size[0])), max(28, int(size[1])))
+
         direct, direct_tag, direct_path = self._load_source_by_style(role, style, size)
         if direct is not None:
             if direct_tag == "official_master":
@@ -271,7 +362,7 @@ class PortraitPipeline:
         style = str(style or "portrait").lower()
         size = (max(16, int(size[0])), max(16, int(size[1])))
         cache_key = (role, style, size)
-        current_stamp = self._source_stamp(role, style)
+        current_stamp = self._source_stamp(role, style if style not in {"codex", "mini"} else ("portrait" if style == "codex" else "hologram"))
 
         if cache_key in self._cache and self._cache_stamp.get(cache_key) == current_stamp:
             return self._cache[cache_key]
@@ -325,6 +416,12 @@ class PortraitPipeline:
     def get_hologram(self, name: str, size: tuple[int, int]) -> pygame.Surface | None:
         return self.get_style(name, size, "hologram")
 
+    def get_codex_portrait(self, name: str, size: tuple[int, int]) -> pygame.Surface | None:
+        return self.get_style(name, size, "codex")
+
+    def get_mini_avatar(self, name: str, size: tuple[int, int]) -> pygame.Surface | None:
+        return self.get_style(name, size, "mini")
+
     def resolve_for_ui(self, name: str, size: tuple[int, int], current_fallback: pygame.Surface | None = None) -> pygame.Surface | None:
         style = self._resolve_style(name)
         surf = self.get_style(name, size, style)
@@ -343,4 +440,3 @@ def get_portrait_pipeline() -> PortraitPipeline:
     if _PIPELINE is None:
         _PIPELINE = PortraitPipeline()
     return _PIPELINE
-

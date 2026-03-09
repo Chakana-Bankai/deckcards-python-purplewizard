@@ -1,0 +1,38 @@
+PHASE 5 - VISUAL PIPELINE UPGRADE REPORT
+============================================
+overall=PASS
+
+Portrait / avatar pipeline
+- target: master portrait / hologram portrait / codex portrait / fallback mini avatar
+- chakana_mage:concept: PASS size=[280, 360]
+- chakana_mage:portrait: PASS size=[280, 360]
+- chakana_mage:hologram: PASS size=[220, 280]
+- chakana_mage:codex: PASS size=[320, 420]
+- chakana_mage:mini: PASS size=[80, 80]
+- archon:concept: PASS size=[280, 360]
+- archon:portrait: PASS size=[280, 360]
+- archon:hologram: PASS size=[220, 280]
+- archon:codex: PASS size=[320, 420]
+- archon:mini: PASS size=[80, 80]
+- guide:concept: PASS size=[280, 360]
+- guide:portrait: PASS size=[280, 360]
+- guide:hologram: PASS size=[220, 280]
+- guide:codex: PASS size=[320, 420]
+- guide:mini: PASS size=[80, 80]
+- enemy:concept: PASS size=[280, 360]
+- enemy:portrait: PASS size=[280, 360]
+- enemy:hologram: PASS size=[220, 280]
+- enemy:codex: PASS size=[320, 420]
+- enemy:mini: PASS size=[80, 80]
+
+Card art advanced modes
+- modes_found=['premium_legendary', 'procedural_abstract', 'procedural_motif']
+- modes_complete=True
+
+Biome direction signatures (bg mean rgb)
+- Hanan Pacha: (46, 73, 124)
+- Kay Pacha: (64, 43, 91)
+- Ukhu Pacha: (31, 21, 40)
+- Hiperborea: (47, 79, 115)
+- Fractura Chakana: (65, 44, 92)
+- biome_direction_unique=True

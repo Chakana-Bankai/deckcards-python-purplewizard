@@ -1,0 +1,17 @@
+CHAKANA PHASE 2 - PACK/SHOP/HIPERBOREA INTEGRATION REPORT
+================================================================
+overall=PASS
+
+Checks
+- legacy_pack_modal_replaced_as_primary: PASS
+- pack_object_flow_types: PASS
+- shop_supports_cards_relics_packs: PASS
+- hiperborea_visible_in_codex: PASS
+- hiperborea_connected_to_reward_pool: PASS
+
+Details
+- current_reward_screen=PackOpeningScreen
+- pack_ids=['base_pack', 'hiperborea_pack', 'mystery_pack']
+- codex_tabs=['all', 'base', 'hiperborea', 'relics', 'lore', 'relics', 'lore']
+- reward_pool_total=120
+- reward_pool_has_hip=True

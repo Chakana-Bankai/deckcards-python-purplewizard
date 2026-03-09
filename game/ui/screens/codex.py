@@ -109,17 +109,16 @@ class CodexScreen:
     def _codex_cards(self) -> list[dict]:
         base_payload = self.lore_set_cards if isinstance(self.lore_set_cards, dict) else {}
         base_items = base_payload.get("cards", []) if isinstance(base_payload.get("cards", []), list) else []
-        run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
-        discovered = {str(x).strip().lower() for x in list(run.get("discovered_sets", []) or []) if x}
-        hip_unlocked = "hiperboria" in discovered
+
         hip_payload = self.hiperboria_set_cards if isinstance(self.hiperboria_set_cards, dict) else {}
         hip_items = hip_payload.get("cards", []) if isinstance(hip_payload.get("cards", []), list) else []
 
+        # Codex must expose expansion encyclopedia regardless of acquisition gating.
         items = list(base_items)
-        if hip_unlocked:
-            items.extend(list(hip_items))
+        items.extend(list(hip_items))
         if not items:
             return []
+
         defs = self.app.card_defs if isinstance(self.app.card_defs, dict) else {}
         out = []
         for c in items:
@@ -151,9 +150,9 @@ class CodexScreen:
 
         tab = str(getattr(self, "card_set_tab", "all") or "all").lower()
         if tab == "base":
-            out = [c for c in out if not (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower())]
+            out = [c for c in out if not (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower() or "hiperborea" in str(c.get("set", "")).lower())]
         elif tab == "hiperborea":
-            out = [c for c in out if (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower())]
+            out = [c for c in out if (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower() or "hiperborea" in str(c.get("set", "")).lower())]
         return out
 
     def _codex_relics(self) -> list[dict]:
@@ -419,9 +418,9 @@ class CodexScreen:
         if active_id == "cards":
             run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
             discovered = {str(x).strip().lower() for x in list(run.get("discovered_sets", []) or []) if x}
-            tabs = [("all", "Todo"), ("base", "Base")]
-            if "hiperboria" in discovered:
-                tabs.append(("hiperborea", "Hiperborea"))
+            _ = discovered
+            tabs = [("all", "Todo"), ("base", "Base"), ("hiperborea", "Hiperborea")]
+            tabs.extend([("relics", "Relics"), ("lore", "Lore")])
             tabs.extend([("relics", "Relics"), ("lore", "Lore")])
             tab_ids = {tid for tid, _lbl in tabs}
             if self.card_set_tab not in tab_ids:

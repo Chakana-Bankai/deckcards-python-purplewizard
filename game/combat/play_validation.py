@@ -10,9 +10,9 @@ REASON_OTHER = "OTHER"
 
 _REASON_ES = {
     REASON_OK: "OK",
-    REASON_NO_ENERGY: "Energía insuficiente",
+    REASON_NO_ENERGY: "EnergÃƒÂ­a insuficiente",
     REASON_NO_TARGET: "Requiere objetivo",
-    REASON_CONDITION_FAIL: "Condición de carta no cumplida",
+    REASON_CONDITION_FAIL: "CondiciÃƒÂ³n de carta no cumplida",
     REASON_STATE_LOCK: "Bloqueada por estado",
     REASON_HAND_FULL: "Mano llena",
     REASON_OTHER: "No se puede jugar",
@@ -75,11 +75,7 @@ def can_play(card, ctx) -> tuple[bool, str, str]:
     if need_harmony > 0:
         cur = int(player_state.get("harmony_current", 0) or 0)
         if cur < need_harmony:
-            return False, REASON_CONDITION_FAIL, f"Requiere Armonía {need_harmony}"
-
-    if len(getattr(ctx, "hand", [])) > int(getattr(ctx, "hand_max", 6)):
-        return False, REASON_HAND_FULL, reason_to_es(REASON_HAND_FULL)
-
+            return False, REASON_CONDITION_FAIL, f"Requiere Armonia {need_harmony}"
     return True, REASON_OK, reason_to_es(REASON_OK)
 
 

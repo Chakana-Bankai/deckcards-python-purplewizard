@@ -1,44 +1,59 @@
 import pygame
 
 from game.combat.card import CardDef, CardInstance
+from game.systems.reward_system import PACK_ECONOMY
 from game.ui.components.card_preview_panel import CardPreviewPanel
 from game.ui.components.card_renderer import render_card_small
 from game.ui.theme import UI_THEME
-from game.systems.reward_system import PACK_ECONOMY
 
 
 class PackOpeningScreen:
-    def __init__(self, app):
+    def __init__(self, app, reward_data=None, source: str = "reward"):
         self.app = app
+        self.reward_data = reward_data if isinstance(reward_data, dict) else {}
+        self.source = str(source or "reward")
+
         self.msg = "Elige un sobre premium"
         self.packs = [pygame.Rect(80 + i * 390, 160, 360, 280) for i in range(3)]
         self.pack_defs = [
             {
-                "id": "normal_pack",
-                "title": "Pack Normal",
-                "subtitle": "Base estable",
-                "desc": "5 cartas de consistencia para escalar.",
-                "flavor": "Ruta segura para estabilizar la Trama.",
+                "id": "base_pack",
+                "title": "Base Pack",
+                "subtitle": "Fundamentos",
+                "desc": "Cartas base para sostener consistencia.",
+                "flavor": "El mazo aprende a respirar antes del riesgo.",
                 "color": (140, 128, 186),
             },
             {
-                "id": "rare_choice_pack",
-                "title": "Pack Raro",
-                "subtitle": "Alto impacto",
-                "desc": "Rarezas y control de ritmo.",
-                "flavor": "Mayor riesgo, mayor impacto tactico.",
-                "color": (116, 188, 228),
+                "id": "hiperborea_pack",
+                "title": "Hiperborea Pack",
+                "subtitle": "Conocimiento polar",
+                "desc": "Tecnicas antiguas de precision y rito.",
+                "flavor": "Sellos helados emergen desde civilizaciones olvidadas.",
+                "color": (144, 208, 236),
             },
             {
-                "id": "ritual_reward_pack",
-                "title": "Pack Ritual",
-                "subtitle": "Armonia",
-                "desc": "Sinergias de rito y lectura astral.",
-                "flavor": "Afinado para sellos y preparacion.",
+                "id": "mystery_pack",
+                "title": "Mystery Pack",
+                "subtitle": "Umbral incierto",
+                "desc": "Mezcla impredecible con potencial alto.",
+                "flavor": "El vacio entrega poder a cambio de incertidumbre.",
                 "color": (196, 138, 238),
             },
         ]
+
         self.selected_pack = None
+        self.forced_pack_id = str(self.reward_data.get("pack_category", "") or "").lower()
+        self._pack_alias = {
+            "normal_pack": "base_pack",
+            "rare_choice_pack": "mystery_pack",
+            "ritual_reward_pack": "mystery_pack",
+            "legendary_reward": "mystery_pack",
+            "base_pack": "base_pack",
+            "hiperborea_pack": "hiperborea_pack",
+            "mystery_pack": "mystery_pack",
+        }
+
         self.cards = []
         self.selected_card = None
         self.hover_card = None
@@ -46,7 +61,8 @@ class PackOpeningScreen:
         self.back_rect = pygame.Rect(420, 980, 280, 56)
         self.preview = CardPreviewPanel(app=app)
         self.legendary_pick_mode = False
-        source_cards = list(getattr(self.app, '_reward_card_pool', lambda: list(getattr(self.app, 'cards_data', []) or []))() or [])
+
+        source_cards = list(getattr(self.app, "_reward_card_pool", lambda: list(getattr(self.app, "cards_data", []) or []))() or [])
         pool_all = [c for c in source_cards if c.get("rarity") in {"rare", "legendary", "uncommon", "common", "basic"}] or source_cards
         self.base_pool = [
             c
@@ -59,29 +75,59 @@ class PackOpeningScreen:
         ] or list(pool_all)
         self.hip_pool = [c for c in pool_all if c not in self.base_pool]
         self.pool = list(pool_all)
-        self.reveal_mode = "fan"
+
+    def on_enter(self):
+        forced_id = self._pack_alias.get(self.forced_pack_id, self.forced_pack_id)
+        if forced_id:
+            idx = next((i for i, x in enumerate(self.pack_defs) if str(x.get("id", "")).lower() == forced_id), None)
+            if idx is not None:
+                self._open_pack(idx)
 
     def _card_pool_by_pack(self, pack_id: str):
         run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
         level = int(run.get("level", 1) or 1)
-        hip_chance = float(getattr(getattr(self.app, "meta_director", None), "hiperborea_chance", lambda run, lvl: (0.0 if lvl < 3 else (0.25 if lvl < 5 else 0.45)))(run, level))
-        use_hip = bool(self.hip_pool) and self.app.rng.random() < hip_chance
-        pool = list(self.hip_pool if use_hip else self.base_pool)
-        if not pool:
-            pool = list(self.pool)
-        common_pool = [c for c in pool if c.get("rarity") in {"basic", "common"}] or pool
-        uncommon_pool = [c for c in pool if c.get("rarity") == "uncommon"] or common_pool
-        rare_pool = [c for c in pool if c.get("rarity") == "rare"] or uncommon_pool
-        legendary_pool = [c for c in pool if c.get("rarity") == "legendary"] or rare_pool
-        ritual_pool = [
-            c for c in pool if any(tag in {"ritual", "harmony", "scry", "draw", "control"} for tag in (c.get("tags") or []))
-        ] or uncommon_pool
+        hip_chance = float(
+            getattr(getattr(self.app, "meta_director", None), "hiperborea_chance", lambda _run, lvl: (0.0 if lvl < 3 else (0.25 if lvl < 5 else 0.45)))(run, level)
+        )
 
-        if pack_id == "rare_choice_pack":
-            return rare_pool + uncommon_pool + common_pool, legendary_pool, rare_pool, uncommon_pool, common_pool
-        if pack_id == "ritual_reward_pack":
-            return ritual_pool + uncommon_pool + common_pool, legendary_pool, rare_pool, uncommon_pool, common_pool
-        return common_pool + uncommon_pool + rare_pool, legendary_pool, rare_pool, uncommon_pool, common_pool
+        base_pool = list(self.base_pool)
+        hip_pool = list(self.hip_pool)
+        all_pool = list(self.pool)
+
+        common_pool = [c for c in all_pool if c.get("rarity") in {"basic", "common"}] or all_pool
+        uncommon_pool = [c for c in all_pool if c.get("rarity") == "uncommon"] or common_pool
+        rare_pool = [c for c in all_pool if c.get("rarity") == "rare"] or uncommon_pool
+        legendary_pool = [c for c in all_pool if c.get("rarity") == "legendary"] or rare_pool
+
+        if pack_id == "base_pack":
+            source = [c for c in (base_pool or all_pool) if c.get("rarity") in {"basic", "common", "uncommon"}] or (base_pool or all_pool)
+            return source, legendary_pool, rare_pool, uncommon_pool, common_pool
+
+        if pack_id == "hiperborea_pack":
+            source = [
+                c
+                for c in (hip_pool or all_pool)
+                if str(c.get("id", "")).lower().startswith("hip_")
+                or ("hiperboria" in str(c.get("set", "")).lower())
+                or ("hiperborea" in str(c.get("set", "")).lower())
+            ] or (hip_pool or all_pool)
+            return (
+                source,
+                [c for c in source if c.get("rarity") == "legendary"] or legendary_pool,
+                [c for c in source if c.get("rarity") == "rare"] or rare_pool,
+                [c for c in source if c.get("rarity") == "uncommon"] or uncommon_pool,
+                [c for c in source if c.get("rarity") in {"basic", "common"}] or common_pool,
+            )
+
+        use_hip = bool(hip_pool) and self.app.rng.random() < hip_chance
+        source = list(hip_pool if use_hip else all_pool)
+        return (
+            source,
+            [c for c in source if c.get("rarity") == "legendary"] or legendary_pool,
+            [c for c in source if c.get("rarity") == "rare"] or rare_pool,
+            [c for c in source if c.get("rarity") == "uncommon"] or uncommon_pool,
+            [c for c in source if c.get("rarity") in {"basic", "common"}] or common_pool,
+        )
 
     def _open_pack(self, idx):
         if not (0 <= idx < len(self.pack_defs)):
@@ -89,11 +135,20 @@ class PackOpeningScreen:
         self.selected_pack = idx
         self.selected_card = None
         self.hover_card = None
-        pack = self.pack_defs[idx]
-        if hasattr(getattr(self.app, "meta_director", None), "remember"):
-            self.app.meta_director.remember(self.app.run_state, "recent_pack_ids", str(pack.get("id", "normal_pack")), cap=4)
-        pool, leg_pool, rare_pool, uncommon_pool, common_pool = self._card_pool_by_pack(pack["id"])
 
+        pack = self.pack_defs[idx]
+        forced_id = self._pack_alias.get(self.forced_pack_id, self.forced_pack_id)
+        if forced_id:
+            mapped = next((x for x in self.pack_defs if str(x.get("id", "")).lower() == forced_id), None)
+            if isinstance(mapped, dict):
+                pack = mapped
+                self.selected_pack = next((i for i, x in enumerate(self.pack_defs) if x is mapped), idx)
+            self.forced_pack_id = ""
+
+        if hasattr(getattr(self.app, "meta_director", None), "remember"):
+            self.app.meta_director.remember(self.app.run_state, "recent_pack_ids", str(pack.get("id", "base_pack")), cap=4)
+
+        pool, leg_pool, rare_pool, uncommon_pool, common_pool = self._card_pool_by_pack(pack["id"])
         self.legendary_pick_mode = bool(self.app.user_settings.get("pack_legendary_pick_enabled", True)) and self.app.rng.random() < 0.18
 
         if self.legendary_pick_mode:
@@ -109,6 +164,7 @@ class PackOpeningScreen:
                 self.app.rng.choice(pool),
             ]
             self.msg = f"{pack['title']} abierto. Recibiras las 5 cartas"
+
         self.cards = [CardInstance(CardDef.from_dict(c)) for c in picked if c]
 
     def _toggle_pack_selection(self, idx):
@@ -127,16 +183,18 @@ class PackOpeningScreen:
             if self.selected_pack is not None:
                 self._open_pack(self.selected_pack)
             return
+
         if self.legendary_pick_mode:
             chosen = self.selected_card or self.cards[0]
             self.app.run_state["sideboard"].append(chosen.definition.id)
-            if hasattr(self.app, '_queue_set_discovery') and hasattr(self.app, '_detect_card_set'):
+            if hasattr(self.app, "_queue_set_discovery") and hasattr(self.app, "_detect_card_set"):
                 self.app._queue_set_discovery(self.app._detect_card_set(chosen.definition.id))
         else:
-            for c in self.cards:
-                self.app.run_state["sideboard"].append(c.definition.id)
-                if hasattr(self.app, '_queue_set_discovery') and hasattr(self.app, '_detect_card_set'):
-                    self.app._queue_set_discovery(self.app._detect_card_set(c.definition.id))
+            for card in self.cards:
+                self.app.run_state["sideboard"].append(card.definition.id)
+                if hasattr(self.app, "_queue_set_discovery") and hasattr(self.app, "_detect_card_set"):
+                    self.app._queue_set_discovery(self.app._detect_card_set(card.definition.id))
+
         self.app.consume_levelup_pending()
 
     def handle_event(self, event):
@@ -164,15 +222,15 @@ class PackOpeningScreen:
                 return
 
             if not self.cards:
-                for i, r in enumerate(self.packs):
-                    if r.collidepoint(pos):
+                for i, rect in enumerate(self.packs):
+                    if rect.collidepoint(pos):
                         self._toggle_pack_selection(i)
                         self.app.sfx.play("ui_click")
                         return
             else:
-                for i, c in enumerate(self.cards):
+                for i, card in enumerate(self.cards):
                     if self._grid_rect(i).collidepoint(pos):
-                        self.selected_card = c
+                        self.selected_card = card
                         self.app.sfx.play("card_pick")
                         return
 
@@ -190,7 +248,7 @@ class PackOpeningScreen:
 
         if self.selected_pack is None:
             s.blit(self.app.tiny_font.render("Selecciona un pack para ver identidad.", True, UI_THEME["muted"]), (rect.x + 14, rect.y + 48))
-            s.blit(self.app.tiny_font.render("Normal: base | Raro: impacto | Ritual: sinergia.", True, UI_THEME["muted"]), (rect.x + 14, rect.y + 72))
+            s.blit(self.app.tiny_font.render("Base: consistencia | Hiperborea: identidad | Mystery: sorpresa.", True, UI_THEME["muted"]), (rect.x + 14, rect.y + 72))
             return
 
         pdef = self.pack_defs[self.selected_pack]
@@ -223,37 +281,37 @@ class PackOpeningScreen:
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.hover_card = None
 
-        for i, r in enumerate(self.packs):
+        for i, rect in enumerate(self.packs):
             pdef = self.pack_defs[i]
-            hovered = r.collidepoint(mouse)
+            hovered = rect.collidepoint(mouse)
             selected = self.selected_pack == i
             col = UI_THEME["panel_2"] if (hovered or selected) else UI_THEME["panel"]
-            pygame.draw.rect(s, col, r, border_radius=16)
+            pygame.draw.rect(s, col, rect, border_radius=16)
             border_col = pdef["color"] if selected else UI_THEME["gold"]
             bw = 4 if selected else 2
-            pygame.draw.rect(s, border_col, r, bw, border_radius=16)
+            pygame.draw.rect(s, border_col, rect, bw, border_radius=16)
             if selected:
-                glow = pygame.Surface((r.w + 18, r.h + 18), pygame.SRCALPHA)
+                glow = pygame.Surface((rect.w + 18, rect.h + 18), pygame.SRCALPHA)
                 pygame.draw.rect(glow, (*pdef["color"], 66), glow.get_rect(), border_radius=20)
-                s.blit(glow, (r.x - 9, r.y - 9))
+                s.blit(glow, (rect.x - 9, rect.y - 9))
 
-            s.blit(self.app.big_font.render(pdef["title"], True, UI_THEME["text"]), (r.x + 48, r.y + 42))
-            s.blit(self.app.small_font.render(pdef["subtitle"], True, pdef["color"]), (r.x + 48, r.y + 96))
-            s.blit(self.app.tiny_font.render(pdef["desc"], True, UI_THEME["muted"]), (r.x + 48, r.y + 132))
-            s.blit(self.app.tiny_font.render(pdef["flavor"], True, UI_THEME["text"]), (r.x + 48, r.y + 156))
+            s.blit(self.app.big_font.render(pdef["title"], True, UI_THEME["text"]), (rect.x + 48, rect.y + 42))
+            s.blit(self.app.small_font.render(pdef["subtitle"], True, pdef["color"]), (rect.x + 48, rect.y + 96))
+            s.blit(self.app.tiny_font.render(pdef["desc"], True, UI_THEME["muted"]), (rect.x + 48, rect.y + 132))
+            s.blit(self.app.tiny_font.render(pdef["flavor"], True, UI_THEME["text"]), (rect.x + 48, rect.y + 156))
             if selected:
-                s.blit(self.app.tiny_font.render("Seleccionado", True, UI_THEME["gold"]), (r.x + 48, r.y + 248))
+                s.blit(self.app.tiny_font.render("Seleccionado", True, UI_THEME["gold"]), (rect.x + 48, rect.y + 248))
 
         if self.cards:
             for i, card in enumerate(self.cards):
-                r = self._grid_rect(i)
-                hover = r.collidepoint(mouse)
+                rect = self._grid_rect(i)
+                hover = rect.collidepoint(mouse)
                 sel = self.selected_card is card
                 if hover:
                     self.hover_card = card
                 render_card_small(
                     s,
-                    r,
+                    rect,
                     card,
                     theme=UI_THEME,
                     state={

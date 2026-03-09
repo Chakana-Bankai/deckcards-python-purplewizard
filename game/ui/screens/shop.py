@@ -37,6 +37,8 @@ class ShopScreen:
         relic_pool = list(getattr(self.app, "relics_data", []) or [])
         self.artifact = self.app.rng.choice(relic_pool) if relic_pool else {"id": "violet_seal", "name_key": "relic_violet_seal_name", "text_key": "relic_violet_seal_desc"}
         self._set_hint = "Hiperborea activa" if (self.offer_card in hip_pool or self.rare_card in hip_pool) else "Set base"
+        self.pack_offer = self.app.rng.choice(["base_pack", "hiperborea_pack", "mystery_pack"])
+        self.pack_price = 95
 
         self.msg = ""
         self.hint = "El comerciante conoce caminos olvidados."
@@ -58,6 +60,7 @@ class ShopScreen:
         self.buy_cheap_btn = pygame.Rect(0, 0, 1, 1)
         self.buy_rare_btn = pygame.Rect(0, 0, 1, 1)
         self.buy_artifact_btn = pygame.Rect(0, 0, 1, 1)
+        self.buy_pack_btn = pygame.Rect(0, 0, 1, 1)
 
         self.particles = [
             {"x": self.app.rng.randint(0, 1919), "y": self.app.rng.randint(0, 1079), "vx": self.app.rng.randint(-8, 8) / 10.0, "vy": self.app.rng.randint(2, 10) / 10.0}
@@ -88,7 +91,8 @@ class ShopScreen:
         footer_inner = inset(footer, 10)
         self.leave_rect = anchor_top_right(footer_inner, 260, 52, margin=0)
         self.hint_rect = pygame.Rect(footer_inner.x, footer_inner.y, max(260, footer_inner.w - self.leave_rect.w - 14), footer_inner.h)
-
+        self.buy_pack_btn = pygame.Rect(self.leave_rect.x - 226, self.leave_rect.y, 210, 52)
+        self.hint_rect = pygame.Rect(footer_inner.x, footer_inner.y, max(260, footer_inner.w - self.leave_rect.w - self.buy_pack_btn.w - 26), footer_inner.h)
     def _blit_contained(self, s: pygame.Surface, image: pygame.Surface, slot: pygame.Rect):
         iw, ih = image.get_size()
         if iw <= 0 or ih <= 0:
@@ -129,6 +133,22 @@ class ShopScreen:
             self.app.run_state.setdefault("relics", []).append(rid)
         self.msg = f"Artefacto: {self.app.loc.t(self.artifact.get('name_key', rid))}"
 
+    def _buy_pack(self):
+        if self.app.run_state["gold"] < self.pack_price:
+            self.msg = "No tienes oro suficiente"
+            return
+        self.app.run_state["gold"] -= self.pack_price
+        self.msg = f"Pack adquirido: {self.pack_offer}"
+        reward_data = {
+            "type": "choose1of3",
+            "pack_category": str(self.pack_offer),
+            "pack_title": "Pack de tienda",
+            "pack_lore": "Compra directa del comerciante.",
+        }
+        if hasattr(self.app, "goto_pack_opening"):
+            self.app.goto_pack_opening(reward_data=reward_data, source="shop")
+        else:
+            self.app.sm.set(__import__("game.ui.screens.pack_opening", fromlist=["PackOpeningScreen"]).PackOpeningScreen(self.app, reward_data=reward_data, source="shop"))
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_F1:
@@ -142,6 +162,8 @@ class ShopScreen:
 
             if self.buy_cheap_btn.collidepoint(pos):
                 self._buy_card(self.offer_card, self.cheap_price, "Compra")
+            elif self.buy_pack_btn.collidepoint(pos):
+                self._buy_pack()
             elif self.buy_rare_btn.collidepoint(pos):
                 self._buy_card(self.rare_card, self.rare_price, "Compra rara")
             elif self.buy_artifact_btn.collidepoint(pos):
@@ -270,6 +292,7 @@ class ShopScreen:
         s.blit(self.app.big_font.render("Comerciante del Umbral", True, UI_THEME["text"]), (self.merchant_rect.x + 18, self.merchant_rect.y + 10))
         s.blit(self.app.tiny_font.render("Intercambio ritual y reliquias del viaje", True, UI_THEME["muted"]), (self.merchant_rect.x + 20, self.merchant_rect.y + 46))
         s.blit(self.app.tiny_font.render(self._set_hint, True, UI_THEME["gold"]), (self.merchant_rect.x + 20, self.merchant_rect.y + 66))
+        s.blit(self.app.tiny_font.render("Categorias: Cartas / Reliquias / Sobres", True, UI_THEME["muted"]), (self.merchant_rect.x + 20, self.merchant_rect.y + 86))
         gold_rect = anchor_top_right(self.merchant_rect, 320, 46, margin=18)
         pygame.draw.rect(s, UI_THEME["panel_2"], gold_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], gold_rect, 2, border_radius=10)
@@ -313,6 +336,11 @@ class ShopScreen:
             lbl = self.app.tiny_font.render("COMPRAR", True, UI_THEME["text"])
             s.blit(lbl, lbl.get_rect(center=rect.center))
 
+
+        pygame.draw.rect(s, UI_THEME["violet"], self.buy_pack_btn, border_radius=10)
+        pygame.draw.rect(s, UI_THEME["gold"], self.buy_pack_btn, 2, border_radius=10)
+        ptxt = self.app.tiny_font.render(f"SOBRE {self.pack_offer.upper()} ({self.pack_price})", True, UI_THEME["text"])
+        s.blit(ptxt, ptxt.get_rect(center=self.buy_pack_btn.center))
         pygame.draw.rect(s, UI_THEME["violet"], self.leave_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.leave_rect, 2, border_radius=10)
         leave_lbl = self.app.font.render("Volver", True, UI_THEME["text"])
