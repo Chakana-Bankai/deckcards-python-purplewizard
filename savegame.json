@@ -1,22 +1,22 @@
 {
-  "gold": 137,
+  "gold": 320,
   "relics": [
-    "violet_seal",
-    "crown_of_hanan"
+    "violet_seal"
   ],
   "player": {
-    "hp": 50,
+    "hp": 38,
     "max_hp": 60,
     "block": 0,
     "energy": 2,
     "rupture": 0,
     "statuses": {
+      "weaken": 3,
       "cost_plus": 3
     },
-    "harmony_current": 3,
-    "harmony_max": 11,
+    "harmony_current": 6,
+    "harmony_max": 10,
     "harmony_ready_threshold": 6,
-    "harmony_ready": false,
+    "harmony_ready": true,
     "harmony_seal_used": true,
     "seal_ready": false,
     "seal_active": false
@@ -43,19 +43,22 @@
     "chakana_de_luz"
   ],
   "sideboard": [
-    "cw_lore_18",
-    "of_lore_16",
-    "of_lore_25",
-    "fusion_espiritual",
+    "pulso_cosmico",
     "of_lore_26",
-    "hg_lore_19",
-    "silencio_interior",
-    "of_lore_20",
-    "filo_astral",
-    "hg_lore_07",
-    "chakana_de_luz",
-    "cw_lore_04",
-    "chakana_de_luz"
+    "fusion_espiritual",
+    "cw_lore_02",
+    "embate_del_jaguar",
+    "fusion_espiritual",
+    "of_lore_21",
+    "of_lore_22",
+    "hg_lore_11",
+    "cw_lore_02",
+    "estallido_arcano",
+    "fusion_espiritual",
+    "hg_lore_01",
+    "campo_protector",
+    "guardia_terrenal",
+    "hg_lore_06"
   ],
   "map": [
     [
@@ -85,7 +88,7 @@
           "2_0",
           "2_1"
         ],
-        "state": "cleared"
+        "state": "available"
       },
       {
         "id": "1_1",
@@ -105,13 +108,13 @@
         "col": 1,
         "x": 492,
         "y": 588,
-        "type": "challenge",
+        "type": "combat",
         "biome": "ukhu",
         "next": [
           "2_2",
           "2_3"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "1_3",
@@ -124,7 +127,7 @@
           "2_3",
           "2_2"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -152,20 +155,20 @@
           "3_1",
           "3_0"
         ],
-        "state": "cleared"
+        "state": "available"
       },
       {
         "id": "2_2",
         "col": 2,
         "x": 804,
         "y": 588,
-        "type": "challenge",
+        "type": "combat",
         "biome": "kaypacha",
         "next": [
           "3_2",
           "3_3"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "2_3",
@@ -178,7 +181,7 @@
           "3_3",
           "3_2"
         ],
-        "state": "locked"
+        "state": "cleared"
       }
     ],
     [
@@ -193,7 +196,7 @@
           "4_0",
           "4_1"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "3_1",
@@ -205,7 +208,7 @@
         "next": [
           "4_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "3_2",
@@ -217,7 +220,7 @@
         "next": [
           "4_1"
         ],
-        "state": "locked"
+        "state": "cleared"
       },
       {
         "id": "3_3",
@@ -230,7 +233,7 @@
           "4_1",
           "4_0"
         ],
-        "state": "locked"
+        "state": "cleared"
       }
     ],
     [
@@ -244,7 +247,7 @@
         "next": [
           "5_0"
         ],
-        "state": "cleared"
+        "state": "available"
       },
       {
         "id": "4_1",
@@ -256,7 +259,7 @@
         "next": [
           "5_0"
         ],
-        "state": "available"
+        "state": "cleared"
       }
     ],
     [
@@ -281,7 +284,7 @@
   ],
   "biome_index": 2,
   "biome": "hanan",
-  "xp": 11,
+  "xp": 1,
   "level": 4,
   "combats_won": 4,
   "allow_defeat_continue": true,
@@ -300,9 +303,9 @@
     "step_index": 0,
     "step_total": 7
   },
-  "last_node_type": "combat",
+  "last_node_type": "challenge",
   "levelup_pending": 0,
-  "current_node_id": "4_0",
+  "current_node_id": "4_1",
   "last_biome_seen": "hanan",
-  "saved_at": 1773046377
+  "saved_at": 1773047430
 }
