@@ -200,7 +200,7 @@ class ShopScreen:
         if hover_data["type"] == "card":
             card = hover_data["card"]
             card_rect = art_slot.inflate(-8, -8)
-            self.preview_card.render(s, card_rect, card, app=self.app)
+            self.preview_card.render(s, card_rect, card, app=self.app, render_context="shop_view")
             name = self.app.loc.t(card.get("name_key", card.get("id", "Carta")))
             role = infer_card_role(card).replace("_", " ").title()
             effect = self.app.loc.t(card.get("text_key", ""))
@@ -293,3 +293,4 @@ class ShopScreen:
         if self.msg:
             col = UI_THEME["good"] if "No" not in self.msg and "Ya" not in self.msg else UI_THEME["bad"]
             s.blit(self.app.font.render(self.msg, True, col), (self.merchant_rect.x + 20, self.hint_rect.y - 32))
+

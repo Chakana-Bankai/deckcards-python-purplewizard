@@ -13,7 +13,7 @@ from .visual_engine import get_visual_engine
 class PortraitPipeline:
     """Multi-tier character pipeline: concept art, portrait, hologram."""
 
-    VERSION = "portrait_v4"
+    VERSION = "portrait_v5"
 
     def __init__(self):
         self.root = Path(__file__).resolve().parent
@@ -22,6 +22,7 @@ class PortraitPipeline:
         self.manifest_path = self.root / "portrait_manifest.json"
         self.manifest = self._load_manifest()
         self._cache: dict[tuple[str, str, tuple[int, int]], pygame.Surface] = {}
+        self._cache_stamp: dict[tuple[str, str, tuple[int, int]], str] = {}
         self._log_once: set[str] = set()
 
     def _load_manifest(self) -> dict:
@@ -48,7 +49,16 @@ class PortraitPipeline:
 
     def _resolve_role(self, name: str) -> str:
         key = str(name or "").lower().strip()
-        if key in {"archon", "archon_oracle", "archon_panel", "corrupt_oracle", "archon_holo", "archon_hologram", "archon_portrait", "archon_concept"}:
+        if key in {
+            "archon",
+            "archon_oracle",
+            "archon_panel",
+            "corrupt_oracle",
+            "archon_holo",
+            "archon_hologram",
+            "archon_portrait",
+            "archon_concept",
+        }:
             return "archon"
         return "chakana_mage"
 
@@ -62,54 +72,75 @@ class PortraitPipeline:
             return "hologram"
         return "portrait"
 
-    def _source_candidates(self, role: str, style: str) -> list[Path]:
+    def _canonical_avatar_roots(self) -> list[Path]:
         aroot = assets_dir()
+        return [
+            aroot / "avatars" / "master",
+            aroot / "avatars",
+            aroot / "sprites" / "portrait_sources",
+            aroot / "sprites" / "portrait",
+            aroot / "sprites" / "hologram",
+            aroot / "sprites" / "avatar",
+            aroot / "sprites" / "player",
+        ]
+
+    def _source_candidates(self, role: str, style: str) -> list[tuple[Path, str]]:
         role = str(role or "chakana_mage").lower().strip()
         style = str(style or "portrait").lower().strip()
+        roots = self._canonical_avatar_roots()
 
         if role == "chakana_mage":
-            explicit = {
-                "concept": [
-                    aroot / "avatars" / "chakana_mage_concept.png",
-                    aroot / "sprites" / "concept_art" / "chakana_mage.png",
-                    aroot / "sprites" / "portrait_sources" / "chakana_mage_master.png",
-                    aroot / "sprites" / "portrait_sources" / "chakana.png",
-                ],
-                "portrait": [
-                    aroot / "avatars" / "chakana_mage_portrait.png",
-                    aroot / "sprites" / "portrait" / "chakana_mage_portrait.png",
-                    aroot / "sprites" / "portrait_sources" / "chakana_mage.png",
-                    aroot / "sprites" / "avatar" / "chakana_mage_portrait.png",
-                ],
-                "hologram": [
-                    aroot / "avatars" / "chakana_mage_hologram.png",
-                    aroot / "sprites" / "hologram" / "chakana_mage_holo.png",
-                    aroot / "sprites" / "hologram" / "chakana_mage_hologram.png",
-                    aroot / "sprites" / "avatar" / "chakana_mage_holo.png",
-                    aroot / "sprites" / "avatar" / "chakana_mage_hologram.png",
-                    aroot / "sprites" / "avatar" / "combat_hud.png",
-                ],
+            explicit_master = {
+                "concept": ["chakana_mage_master_concept.png"],
+                "portrait": ["chakana_mage_master_portrait.png"],
+                "hologram": ["chakana_mage_master_hologram.png"],
             }
-            return explicit.get(style, [])
+            generated = {
+                "concept": ["chakana_mage_concept.png"],
+                "portrait": ["chakana_mage_portrait.png"],
+                "hologram": ["chakana_mage_hologram.png", "chakana_mage_holo.png"],
+            }
+            placeholders = {
+                "concept": ["chakana_mage.png", "chakana.png"],
+                "portrait": ["chakana_mage.png", "chakana.png"],
+                "hologram": ["combat_hud.png", "chakana_mage_holo.png", "chakana_mage_hologram.png"],
+            }
+            out: list[tuple[Path, str]] = []
+            for filename in explicit_master.get(style, []):
+                for root in roots:
+                    out.append((root / filename, "official_master"))
+            for filename in generated.get(style, []):
+                for root in roots:
+                    out.append((root / filename, "generated"))
+            for filename in placeholders.get(style, []):
+                for root in roots:
+                    out.append((root / filename, "placeholder"))
+            return out
 
-        explicit_archon = {
+        archon = {
             "concept": [
-                aroot / "avatars" / "archon_concept.png",
-                aroot / "sprites" / "concept_art" / "archon.png",
-                aroot / "sprites" / "portrait_sources" / "archon_master.png",
+                ("archon_master_concept.png", "official_master"),
+                ("archon_concept.png", "generated"),
+                ("archon.png", "placeholder"),
             ],
             "portrait": [
-                aroot / "avatars" / "archon_portrait.png",
-                aroot / "sprites" / "portrait" / "archon_portrait.png",
-                aroot / "sprites" / "portrait_sources" / "archon.png",
+                ("archon_master_portrait.png", "official_master"),
+                ("archon_portrait.png", "generated"),
+                ("archon.png", "placeholder"),
             ],
             "hologram": [
-                aroot / "avatars" / "archon_hologram.png",
-                aroot / "sprites" / "hologram" / "archon_holo.png",
-                aroot / "sprites" / "avatar" / "archon_oracle.png",
+                ("archon_master_hologram.png", "official_master"),
+                ("archon_hologram.png", "generated"),
+                ("archon_holo.png", "placeholder"),
+                ("archon_oracle.png", "placeholder"),
             ],
         }
-        return explicit_archon.get(style, [])
+        out: list[tuple[Path, str]] = []
+        for filename, tag in archon.get(style, []):
+            for root in roots:
+                out.append((root / filename, tag))
+        return out
+
     def _generated_path(self, role: str, style: str, size: tuple[int, int]) -> Path:
         return self.generated_root / f"{role}_{style}_{size[0]}x{size[1]}.png"
 
@@ -153,7 +184,6 @@ class PortraitPipeline:
             line_col = (236, 110, 128)
             edge = (242, 126, 142)
         else:
-            # Chakana hologram palette: cyan + violet + electric blue.
             tint.fill((90, 160, 255, 52))
             line_col = (126, 212, 246)
             edge = (152, 228, 255)
@@ -168,7 +198,6 @@ class PortraitPipeline:
             pygame.draw.line(scan, (*line_col, 34), (2, y), (w - 3, y), 1)
         base.blit(scan, (0, 0))
 
-        # Subtle static-like distortion to keep hologram identity readable at small sizes.
         for y in range(6, h - 6, 13):
             wobble = 1 if ((y // 13) % 2 == 0) else -1
             band = base.subsurface(pygame.Rect(0, y, w, 1)).copy()
@@ -177,68 +206,90 @@ class PortraitPipeline:
         pygame.draw.rect(base, edge, base.get_rect(), 1, border_radius=8)
         return base
 
-    def _load_source_by_style(self, role: str, style: str, size: tuple[int, int]) -> pygame.Surface | None:
-        for p in self._source_candidates(role, style):
+    def _source_stamp(self, role: str, style: str) -> str:
+        for p, tag in self._source_candidates(role, style):
+            if not p.exists():
+                continue
+            try:
+                stat = p.stat()
+                return f"{tag}:{p.name}:{int(stat.st_mtime)}:{int(stat.st_size)}"
+            except Exception:
+                return f"{tag}:{p.name}"
+        return "none"
+
+    def _load_source_by_style(self, role: str, style: str, size: tuple[int, int]) -> tuple[pygame.Surface | None, str, str]:
+        for p, tag in self._source_candidates(role, style):
             if not p.exists():
                 continue
             try:
                 src = pygame.image.load(str(p)).convert_alpha()
-                return self._fit_contain(src, size)
+                return self._fit_contain(src, size), tag, str(p)
             except Exception:
                 continue
-        return None
+        return None, "missing", ""
 
-    def _log_source(self, tag: str):
-        if tag in self._log_once:
+    def _log_source(self, tag: str, detail: str = ""):
+        key = f"{tag}:{detail}" if detail else tag
+        if key in self._log_once:
             return
-        self._log_once.add(tag)
-        print(f"[portrait] source={tag}")
+        self._log_once.add(key)
+        if detail:
+            print(f"[portrait] source={tag} file={detail}")
+        else:
+            print(f"[portrait] source={tag}")
 
-    def _build_style(self, role: str, style: str, size: tuple[int, int]) -> pygame.Surface | None:
-        direct = self._load_source_by_style(role, style, size)
+    def _build_style(self, role: str, style: str, size: tuple[int, int]) -> tuple[pygame.Surface | None, str, str]:
+        direct, direct_tag, direct_path = self._load_source_by_style(role, style, size)
         if direct is not None:
+            if direct_tag == "official_master":
+                return direct, direct_tag, direct_path
             if style == "concept":
-                return direct
+                return direct, direct_tag, direct_path
             if style == "portrait":
-                return self._stylize_portrait(direct, role, size)
-            return self._to_holographic(direct, role, size)
+                return self._stylize_portrait(direct, role, size), direct_tag, direct_path
+            return self._to_holographic(direct, role, size), direct_tag, direct_path
 
-        # Derive portrait/hologram from concept when explicit asset is missing.
-        concept = self._load_source_by_style(role, "concept", size)
+        concept, concept_tag, concept_path = self._load_source_by_style(role, "concept", size)
         if concept is not None:
             if style == "concept":
-                return concept
+                return concept, concept_tag, concept_path
             if style == "portrait":
-                return self._stylize_portrait(concept, role, size)
-            return self._to_holographic(concept, role, size)
+                return self._stylize_portrait(concept, role, size), concept_tag, concept_path
+            return self._to_holographic(concept, role, size), concept_tag, concept_path
 
-        # Final fallback: visual engine generated avatar.
         try:
             ve = get_visual_engine()
             avatar_id = "archon_oracle" if role == "archon" else "combat_hud"
-            return ve.generate("avatar", avatar_id, size, context=avatar_id, force=False)
+            generated = ve.generate("avatar", avatar_id, size, context=avatar_id, force=False)
+            return generated, "generated_or_cache", f"visual_engine:{avatar_id}"
         except Exception:
-            return None
+            return None, "fallback:current", ""
 
     def get_style(self, name: str, size: tuple[int, int], style: str) -> pygame.Surface | None:
         role = self._resolve_role(name)
         style = str(style or "portrait").lower()
         size = (max(16, int(size[0])), max(16, int(size[1])))
         cache_key = (role, style, size)
-        if cache_key in self._cache:
+        current_stamp = self._source_stamp(role, style)
+
+        if cache_key in self._cache and self._cache_stamp.get(cache_key) == current_stamp:
             return self._cache[cache_key]
 
+        self._cache.pop(cache_key, None)
+        self._cache_stamp.pop(cache_key, None)
+
         out_path = self._generated_path(role, style, size)
-        if out_path.exists():
+        if out_path.exists() and current_stamp == "none":
             try:
                 surf = pygame.image.load(str(out_path)).convert_alpha()
                 self._cache[cache_key] = surf
-                self._log_source(style)
+                self._cache_stamp[cache_key] = current_stamp
+                self._log_source("cache_file", out_path.name)
                 return surf
             except Exception:
                 pass
 
-        surf = self._build_style(role, style, size)
+        surf, source_tag, source_path = self._build_style(role, style, size)
         if surf is None:
             return None
 
@@ -255,10 +306,13 @@ class PortraitPipeline:
             "path": str(out_path),
             "generated_at": int(time.time()),
             "version": self.VERSION,
+            "source": source_tag,
+            "source_path": source_path,
         }
         self._save_manifest()
         self._cache[cache_key] = surf
-        self._log_source(style)
+        self._cache_stamp[cache_key] = current_stamp
+        self._log_source(source_tag, Path(source_path).name if source_path else style)
         return surf
 
     def get_concept(self, name: str, size: tuple[int, int]) -> pygame.Surface | None:
@@ -288,10 +342,3 @@ def get_portrait_pipeline() -> PortraitPipeline:
     if _PIPELINE is None:
         _PIPELINE = PortraitPipeline()
     return _PIPELINE
-
-
-
-
-
-
-

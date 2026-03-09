@@ -221,7 +221,7 @@ class CodexScreen:
 
         def _draw_card_slot(card, target_rect, angle=0):
             tmp = pygame.Surface((target_rect.w, target_rect.h), pygame.SRCALPHA)
-            render_card_preview(tmp, tmp.get_rect(), card, theme=UI_THEME, state={"app": self.app, "ctx": None, "selected": False, "hovered": False})
+            render_card_preview(tmp, tmp.get_rect(), card, theme=UI_THEME, state={"app": self.app, "ctx": None, "selected": False, "hovered": False, "render_context": "codex_view"})
             if angle != 0:
                 tmp = pygame.transform.rotozoom(tmp, angle, 1.0)
             tr = tmp.get_rect(center=target_rect.center)
@@ -427,4 +427,5 @@ class CodexScreen:
 
         UIButton(self.back_btn, "Volver", role="default", premium=False).draw(s, self.app.font, hovered=self.back_btn.collidepoint(mouse))
         UIButton(self.tutorial_btn, "Iniciar Tutorial Guiado", role="end_turn", premium=True).draw(s, self.app.font, hovered=self.tutorial_btn.collidepoint(mouse))
+
 

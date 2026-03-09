@@ -36,7 +36,7 @@ class CardPreviewPanel:
             return
         self._card = card
 
-    def render(self, surface: pygame.Surface, rect: pygame.Rect | None = None, card=None, app=None):
+    def render(self, surface: pygame.Surface, rect: pygame.Rect | None = None, card=None, app=None, render_context: str = "codex_view"):
         try:
             if app is not None:
                 self.app = app
@@ -74,7 +74,7 @@ class CardPreviewPanel:
                 card_rect,
                 self._card,
                 theme=self.theme,
-                state={"app": self.app, "ctx": None, "selected": False, "hovered": False},
+                state={"app": self.app, "ctx": None, "selected": False, "hovered": False, "render_context": str(render_context or "codex_view")},
             )
         except Exception:
             if rect is None:
@@ -83,3 +83,4 @@ class CardPreviewPanel:
             pygame.draw.rect(surface, self.theme.get("accent_violet", (120, 80, 170)), rect, 2, border_radius=12)
             if self.app is not None:
                 surface.blit(self.app.small_font.render("Preview no disponible", True, self.theme.get("muted", (180, 170, 200))), (rect.x + 14, rect.y + 14))
+

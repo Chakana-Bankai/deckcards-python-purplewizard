@@ -908,6 +908,7 @@ class CombatScreen:
             "selected": bool(selected),
             "hovered": bool(hovered),
             "cost_pulse_until": self._cost_pulse_until,
+            "render_context": "hover_view" if hovered else "hand_view",
         }
         target = pygame.Rect(rect)
         if target.h >= 450 or target.w >= 420:
@@ -1590,6 +1591,8 @@ class CombatScreen:
                 s.blit(hint, (panel.centerx - hint.get_width() // 2, panel.y + 340))
 
         self.scry_picker.render(s, self.app)
+
+
 
 
 

@@ -5,6 +5,7 @@ import pygame
 from game.settings import INTERNAL_WIDTH
 from game.ui.components.pixel_icons import draw_icon_with_value
 from game.ui.components.card_renderer import render_card_small
+from game.ui.components.floating_card_modal_preview import FloatingCardModalPreview
 from game.ui.theme import UI_THEME
 from game.ui.system.components import UIPanel, UIButton
 from game.ui.system.modals import ChoiceModal
@@ -17,6 +18,8 @@ class PathSelectScreen:
         self.choice_modal = ChoiceModal()
         self.choice_modal.selected_index = None
         self.anim = {}
+        self.legendary_modal = FloatingCardModalPreview()
+        self._legendary_hotspots: list[tuple[pygame.Rect, dict]] = []
         self.confirm_rect = pygame.Rect(INTERNAL_WIDTH // 2 - 280, 904, 380, 56)
         self.cancel_rect = pygame.Rect(self.confirm_rect.right + 18, 904, 210, 56)
         self.options = [
@@ -254,25 +257,37 @@ class PathSelectScreen:
 
     def _draw_featured_legendary(self, s: pygame.Surface, rect: pygame.Rect, legendary_id: str):
         card = self.app.card_defs.get(legendary_id, {})
-        box = pygame.Rect(rect.x + 16, rect.y + rect.h - 204, rect.w - 32, 168)
+        box = pygame.Rect(rect.x + 16, rect.y + rect.h - 232, rect.w - 32, 196)
         pygame.draw.rect(s, (56, 42, 30), box, border_radius=12)
         pygame.draw.rect(s, UI_THEME["gold"], box, 2, border_radius=12)
 
-        art_rect = pygame.Rect(box.x + 10, box.y + 10, 140, box.h - 20)
-        render_card_small(
-            s,
-            art_rect,
-            card,
-            theme=UI_THEME,
-            state={"app": self.app, "ctx": None, "selected": False, "hovered": False},
-        )
+        thumb = pygame.Rect(box.x + 10, box.y + 10, 132, box.h - 20)
+        pygame.draw.rect(s, UI_THEME["panel_2"], thumb, border_radius=8)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], thumb, 1, border_radius=8)
+        art = self.app.assets.sprite("cards", card.get("id", legendary_id), (thumb.w - 10, thumb.h - 10), fallback=(96, 72, 124))
+        s.blit(art, art.get_rect(center=thumb.center).topleft)
 
         title = self.app.loc.t(card.get("name_key", legendary_id))
         text = self.app.loc.t(card.get("text_key", ""))
-        s.blit(self.app.small_font.render("Legendaria", True, UI_THEME["gold"]), (box.x + 146, box.y + 10))
-        s.blit(self.app.map_font.render(self._fit(self.app.map_font, str(title), box.w - 176), True, UI_THEME["text"]), (box.x + 160, box.y + 44))
-        s.blit(self.app.tiny_font.render(self._fit(self.app.tiny_font, str(text), box.w - 176), True, UI_THEME["muted"]), (box.x + 160, box.y + 94))
+        cost = int(card.get("cost", 0) or 0)
+        rarity = str(card.get("rarity", "legendary")).title()
+        role = str(card.get("role", "combo")).replace("_", " ").title()
 
+        s.blit(self.app.small_font.render("Legendaria", True, UI_THEME["gold"]), (box.x + 148, box.y + 10))
+        s.blit(self.app.map_font.render(self._fit(self.app.map_font, str(title), box.w - 176), True, UI_THEME["text"]), (box.x + 148, box.y + 44))
+        s.blit(self.app.tiny_font.render(f"Costo {cost} | {rarity} | {role}", True, UI_THEME["muted"]), (box.x + 148, box.y + 74))
+
+        summary_lines = [ln.strip() for ln in str(text or "").split(".") if ln.strip()][:2]
+        yy = box.y + 98
+        for ln in summary_lines:
+            s.blit(self.app.tiny_font.render(self._fit(self.app.tiny_font, ln, box.w - 182), True, UI_THEME["text"]), (box.x + 148, yy))
+            yy += 20
+
+        inspect_rect = pygame.Rect(box.x + 148, box.bottom - 30, 188, 20)
+        pygame.draw.rect(s, UI_THEME["panel_2"], inspect_rect, border_radius=6)
+        pygame.draw.rect(s, UI_THEME["gold"], inspect_rect, 1, border_radius=6)
+        s.blit(self.app.tiny_font.render("Hover para inspeccionar", True, UI_THEME["gold"]), (inspect_rect.x + 8, inspect_rect.y + 3))
+        self._legendary_hotspots.append((box, card))
 
     def _ensure_starter_banner(self, option: dict):
         # Stabilization pass: avoid runtime asset writes from UI rendering.
@@ -289,6 +304,7 @@ class PathSelectScreen:
 
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.hover_index = None
+        self._legendary_hotspots = []
 
         accents = [(214, 86, 132), (126, 198, 180), (168, 140, 244)]
         for i, opt in enumerate(self.options):
@@ -362,4 +378,21 @@ class PathSelectScreen:
 
         cancel_btn = UIButton(self.cancel_rect, "Cancelar", role="default", premium=False)
         cancel_btn.draw(s, self.app.small_font)
+
+        hovered_legendary = next((entry for entry in self._legendary_hotspots if entry[0].collidepoint(mouse)), None)
+        if hovered_legendary:
+            _spot, card = hovered_legendary
+            self.legendary_modal.render(s, self.app, card, title="Vista legendaria", dim_alpha=84)
+
+
+
+
+
+
+
+
+
+
+
+
 

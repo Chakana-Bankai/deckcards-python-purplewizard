@@ -28,6 +28,16 @@ ROLE_LABELS = {
     "combo": "COMBO",
 }
 
+RENDER_CONTEXT_RULES = {
+    "hand_view": {"pad": 9, "text_pad": 6, "title_scale": 0.94, "effect_scale": 0.92, "lore_mode": "brief", "footer_mode": "compact", "art_fit_mode": "contain"},
+    "hover_view": {"pad": 12, "text_pad": 8, "title_scale": 1.0, "effect_scale": 0.96, "lore_mode": "full", "footer_mode": "full", "art_fit_mode": "contain"},
+    "combat_preview": {"pad": 11, "text_pad": 7, "title_scale": 0.98, "effect_scale": 0.95, "lore_mode": "normal", "footer_mode": "compact", "art_fit_mode": "contain"},
+    "deck_view": {"pad": 10, "text_pad": 7, "title_scale": 0.94, "effect_scale": 0.92, "lore_mode": "brief", "footer_mode": "compact", "art_fit_mode": "contain"},
+    "codex_view": {"pad": 12, "text_pad": 8, "title_scale": 1.0, "effect_scale": 0.98, "lore_mode": "full", "footer_mode": "full", "art_fit_mode": "contain"},
+    "shop_view": {"pad": 10, "text_pad": 7, "title_scale": 0.95, "effect_scale": 0.93, "lore_mode": "normal", "footer_mode": "compact", "art_fit_mode": "contain"},
+    "pack_view": {"pad": 10, "text_pad": 7, "title_scale": 0.95, "effect_scale": 0.93, "lore_mode": "normal", "footer_mode": "compact", "art_fit_mode": "contain"},
+    "archetype_preview": {"pad": 11, "text_pad": 7, "title_scale": 0.94, "effect_scale": 0.9, "lore_mode": "brief", "footer_mode": "set_only", "art_fit_mode": "contain"},
+}
 
 def _payload(card):
     if card is None:
@@ -289,7 +299,18 @@ def _fit_lines(font, text: str, max_w: int, max_lines: int) -> list[str]:
     return lines[:max_lines]
 
 
-def _layout_for(rect: pygame.Rect, preset: str) -> dict:
+def _resolve_render_context(state: dict | None, preset: str) -> dict:
+    default_by_preset = {
+        "small": "hand_view",
+        "medium": "combat_preview",
+        "large": "hover_view",
+        "preview": "codex_view",
+    }
+    key = str((state or {}).get("render_context", default_by_preset.get(preset, "combat_preview")) or "").strip().lower()
+    return dict(RENDER_CONTEXT_RULES.get(key, RENDER_CONTEXT_RULES["combat_preview"]))
+
+
+def _layout_for(rect: pygame.Rect, preset: str, rules: dict) -> dict:
     cfg = {
         "small": {"pad": 10, "text_pad": 6},
         "medium": {"pad": 10, "text_pad": 7},
@@ -297,10 +318,12 @@ def _layout_for(rect: pygame.Rect, preset: str) -> dict:
         "preview": {"pad": 12, "text_pad": 9},
     }.get(preset, {"pad": 10, "text_pad": 7})
 
+    cfg["pad"] = int(max(7, rules.get("pad", cfg["pad"])))
+    cfg["text_pad"] = int(max(4, rules.get("text_pad", cfg["text_pad"])))
+
     content = rect.inflate(-cfg["pad"] * 2, -cfg["pad"] * 2)
     gap = cfg["text_pad"]
 
-    # Requested baseline ratios for definitive card layout.
     ratio_header = 0.10
     ratio_art = 0.50
     ratio_type = 0.06
@@ -308,18 +331,17 @@ def _layout_for(rect: pygame.Rect, preset: str) -> dict:
     ratio_lore = 0.06
     ratio_footer = 0.04
 
-    # Keep minimum readable heights in full HD contexts.
     h = content.h
     header_h = max(34, int(h * ratio_header))
     art_h = max(86, int(h * ratio_art))
     type_h = max(18, int(h * ratio_type))
     effects_h = max(42, int(h * ratio_effects))
     lore_h = max(16, int(h * ratio_lore))
-    footer_h = max(42, int(h * ratio_footer))
+    footer_h = max(30, int(h * ratio_footer))
+    kpi_h = max(38, int(h * 0.08))
 
-    used = header_h + art_h + type_h + effects_h + lore_h + footer_h + gap * 5
+    used = header_h + art_h + type_h + effects_h + lore_h + footer_h + kpi_h + gap * 6
     if used > h:
-        # Compress effects/lore first, preserving header/cost/art/KPI readability.
         overflow = used - h
         cut_effects = min(overflow, max(0, effects_h - 32))
         effects_h -= cut_effects
@@ -337,7 +359,6 @@ def _layout_for(rect: pygame.Rect, preset: str) -> dict:
     art = pygame.Rect(content.x, y, content.w, art_h)
     y = art.bottom + gap
 
-    # Slightly narrower capsule to avoid collisions with edges.
     type_w = max(106, min(210, int(content.w * 0.54)))
     type_bar = pygame.Rect(content.x, y, type_w, type_h)
     y = type_bar.bottom + gap
@@ -347,10 +368,14 @@ def _layout_for(rect: pygame.Rect, preset: str) -> dict:
     lore = pygame.Rect(content.x, y, content.w, lore_h)
     y = lore.bottom + gap
 
-    stats = pygame.Rect(content.x, y, content.w, footer_h)
+    footer = pygame.Rect(content.x, y, content.w, footer_h)
+    y = footer.bottom + gap
 
-    signature = pygame.Rect(lore.x + 4, lore.y, max(80, lore.w - 62), lore.h)
-    emblem = pygame.Rect(lore.right - 42, lore.y - 1, 40, max(14, lore.h + 2))
+    stats = pygame.Rect(content.x, y, content.w, kpi_h)
+
+    signature = pygame.Rect(footer.x + 6, footer.y + 2, max(72, int(footer.w * 0.45)), max(16, footer.h - 4))
+    footer_lore = pygame.Rect(signature.right + 4, footer.y + 2, max(62, int(footer.w * 0.30)), max(16, footer.h - 4))
+    emblem = pygame.Rect(footer.right - 86, footer.y + 1, 80, max(16, footer.h - 2))
 
     return {
         "cfg": cfg,
@@ -360,11 +385,12 @@ def _layout_for(rect: pygame.Rect, preset: str) -> dict:
         "type_bar": type_bar,
         "text": text,
         "lore": lore,
+        "footer": footer,
         "signature": signature,
+        "footer_lore": footer_lore,
         "emblem": emblem,
         "stats": stats,
     }
-
 
 def _type_label(role_key: str, payload: dict, tier: str) -> str:
     tags = {str(t).lower() for t in (payload.get("tags", []) or [])}
@@ -415,10 +441,11 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
         return
 
     _draw_card_background(surface, rect, payload, tier, accent_color, is_hip=is_hip)
-    sec = _layout_for(rect, preset)
+    rules = _resolve_render_context(state, preset)
+    sec = _layout_for(rect, preset, rules)
 
     # Definitive zones: header / art / type / text+lore / stats
-    for r in (sec["header"], sec["art"], sec["text"], sec["lore"], sec["stats"]):
+    for r in (sec["header"], sec["art"], sec["text"], sec["lore"], sec["footer"], sec["stats"]):
         pygame.draw.rect(surface, (12, 11, 18, 62), r, border_radius=8)
 
     art_frame = sec["art"]
@@ -454,7 +481,7 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     title = _fit_one_line(title_font, str(card_name), title_bar.w - 20)
     # Auto-shrink title in dense cards to avoid overflow/collision with cost orb.
     title_renderer = title_font
-    if preset in {"small", "medium"} and len(title) > 20 and app is not None:
+    if (preset in {"small", "medium"} or rules.get("title_scale", 1.0) < 1.0) and len(title) > 18 and app is not None:
         title_renderer = tiny_font
     title_shadow = title_renderer.render(title, True, (8, 8, 8))
     title_txt = title_renderer.render(title, True, (245, 238, 220))
@@ -490,7 +517,9 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     pygame.draw.rect(surface, (20, 18, 28), sec["type_bar"], border_radius=8)
     pygame.draw.rect(surface, role_col, sec["type_bar"], 1, border_radius=8)
     type_txt = _fit_one_line(tiny_font, type_label, sec["type_bar"].w - 12)
-    surface.blit(tiny_font.render(type_txt, True, role_col), (sec["type_bar"].x + 7, sec["type_bar"].y + 2))
+    type_lbl = tiny_font.render(type_txt, True, role_col)
+    type_y = sec["type_bar"].y + max(1, (sec["type_bar"].h - type_lbl.get_height()) // 2)
+    surface.blit(type_lbl, (sec["type_bar"].x + 7, type_y))
 
     effects = _effect_lines(summary, model, max_lines=8)
     density = _density_for(len(effects))
@@ -501,6 +530,8 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
         line_h = 16 if density == "normal" else 14
     if density == "dense" and preset in {"small", "medium"}:
         line_h = 11
+    if rules.get("effect_scale", 1.0) < 0.95:
+        line_h = max(10, line_h - 1)
 
     draw_lines = effects[:max_effect_lines]
     ty = sec["text"].y + 4
@@ -514,6 +545,10 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
     lore_max_lines = 2 if density == "normal" else 1
     if preset in {"preview", "large"}:
         lore_max_lines = 3
+    if rules.get("lore_mode") == "brief":
+        lore_max_lines = 1
+    if rules.get("lore_mode") == "full":
+        lore_max_lines = max(2, lore_max_lines)
 
     lore_lines = _fit_lines(tiny_font, model.lore_text, sec["lore"].w - 10, lore_max_lines)
     ly = sec["lore"].y + max(0, (sec["lore"].h - max(1, len(lore_lines)) * 12) // 2)
@@ -523,10 +558,18 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
         surface.blit(lbl, (lx, ly))
         ly += 12
 
-    sig_short = _fit_one_line(tiny_font, f"{model.author} · Orden {model.order}", sec["signature"].w - 8)
-    sig_full = _fit_one_line(tiny_font, f"Autor: {model.author} · Orden: {model.order}", sec["signature"].w - 8)
-    sig = sig_full if preset in {"preview", "large"} else sig_short
-    surface.blit(tiny_font.render(sig, True, (190, 176, 214)), (sec["signature"].x + 4, sec["signature"].y))
+    sig_short = _fit_one_line(tiny_font, f"{model.author} | Orden {model.order}", sec["signature"].w - 8)
+    sig_full = _fit_one_line(tiny_font, f"Autor: {model.author} | Orden: {model.order}", sec["signature"].w - 8)
+    footer_mode = str(rules.get("footer_mode", "compact"))
+    if footer_mode != "set_only":
+        sig = sig_full if footer_mode == "full" else sig_short
+        if preset in {"small"} and footer_mode == "compact":
+            sig = _fit_one_line(tiny_font, f"{model.author}", sec["signature"].w - 8)
+        surface.blit(tiny_font.render(sig, True, (190, 176, 214)), (sec["signature"].x + 4, sec["signature"].y))
+
+    footer_lore = _fit_one_line(tiny_font, model.lore_text, sec["footer_lore"].w - 6)
+    if footer_mode == "full" and footer_lore:
+        surface.blit(tiny_font.render(footer_lore, True, theme.get("muted", (180, 170, 200))), (sec["footer_lore"].x + 2, sec["footer_lore"].y))
 
     # Edition / set emblem zone (Base subtle, Hiperborea explicit).
     embl = sec.get("emblem")
@@ -582,3 +625,15 @@ def render_card_large(surface, rect, card, theme=None, state=None):
 
 def render_card_preview(surface, rect, card, theme=None, state=None):
     _draw_core(surface, pygame.Rect(rect), card, theme, state, preset="preview")
+
+
+
+
+
+
+
+
+
+
+
+
