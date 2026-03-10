@@ -42,6 +42,7 @@ class ShopScreen:
 
         self.msg = ""
         self.hint = "El comerciante conoce caminos olvidados."
+        self.tab_hint = "Cartas y sobres rituales del tramo actual."
 
         self.cheap_price = 35
         self.rare_price = 85
@@ -292,6 +293,20 @@ class ShopScreen:
             if p["x"] > w + 8:
                 p["x"] = -8
 
+    def _tab_caption(self):
+        captions = {
+            "packs": "Cartas y sobres rituales del tramo actual.",
+            "relics": "Reliquias singulares para alterar el destino.",
+            "sell": "Convierte duplicadas en oro sin ruido visual.",
+        }
+        return captions.get(self.active_tab, "Intercambio ritual en calma.")
+
+    def _draw_inactive_overlay(self, s, rect):
+        veil = pygame.Surface((rect.w, rect.h), pygame.SRCALPHA)
+        veil.fill((10, 12, 20, 146))
+        s.blit(veil, rect.topleft)
+        pygame.draw.rect(s, UI_THEME["muted"], rect, 1, border_radius=14)
+
     def _draw_offer_card(self, s, rect, card, title, price, tier_col):
         pygame.draw.rect(s, UI_THEME["panel"], rect, border_radius=14)
         pygame.draw.rect(s, tier_col, rect, 2, border_radius=14)
@@ -438,12 +453,27 @@ class ShopScreen:
 
         self._draw_preview_panel(s, self._offer_hover_data(mouse))
 
-        for rect in (self.buy_cheap_btn, self.buy_rare_btn, self.buy_artifact_btn):
-            pygame.draw.rect(s, UI_THEME["violet"], rect, border_radius=7)
-            pygame.draw.rect(s, UI_THEME["gold"], rect, 1, border_radius=7)
-            lbl = self.app.tiny_font.render("COMPRAR", True, UI_THEME["text"])
-            s.blit(lbl, lbl.get_rect(center=rect.center))
+        if self.active_tab == "packs":
+            self._draw_inactive_overlay(s, self.artifact_rect)
+        elif self.active_tab == "relics":
+            self._draw_inactive_overlay(s, self.cheap_rect)
+            self._draw_inactive_overlay(s, self.rare_rect)
+        elif self.active_tab == "sell":
+            self._draw_inactive_overlay(s, self.cheap_rect)
+            self._draw_inactive_overlay(s, self.rare_rect)
+            self._draw_inactive_overlay(s, self.artifact_rect)
 
+        if self.active_tab == "packs":
+            for rect in (self.buy_cheap_btn, self.buy_rare_btn):
+                pygame.draw.rect(s, UI_THEME["violet"], rect, border_radius=7)
+                pygame.draw.rect(s, UI_THEME["gold"], rect, 1, border_radius=7)
+                lbl = self.app.tiny_font.render("COMPRAR", True, UI_THEME["text"])
+                s.blit(lbl, lbl.get_rect(center=rect.center))
+        elif self.active_tab == "relics":
+            pygame.draw.rect(s, UI_THEME["violet"], self.buy_artifact_btn, border_radius=7)
+            pygame.draw.rect(s, UI_THEME["gold"], self.buy_artifact_btn, 1, border_radius=7)
+            lbl = self.app.tiny_font.render("COMPRAR", True, UI_THEME["text"])
+            s.blit(lbl, lbl.get_rect(center=self.buy_artifact_btn.center))
 
         pack_focus = pygame.Rect(self.buy_pack_btn.x - 12, self.buy_pack_btn.y - 18, self.buy_pack_btn.w + 24, self.buy_pack_btn.h + 36)
         pygame.draw.rect(s, UI_THEME["panel_2"], pack_focus, border_radius=14)
@@ -466,7 +496,8 @@ class ShopScreen:
 
         pygame.draw.rect(s, UI_THEME["panel_2"], self.hint_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.hint_rect, 1, border_radius=10)
-        hint_lbl = self.app.tiny_font.render(self.hint, True, UI_THEME["muted"])
+        hint_text = self._tab_caption() if self.active_tab in {"packs", "relics", "sell"} else self.hint
+        hint_lbl = self.app.tiny_font.render(hint_text, True, UI_THEME["muted"])
         s.blit(hint_lbl, (self.hint_rect.x + 12, self.hint_rect.centery - hint_lbl.get_height() // 2))
 
         if self.active_tab == "sell":

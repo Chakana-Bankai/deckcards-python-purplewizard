@@ -1,0 +1,19 @@
+Premium portrait + set emblem pass
+================================
+
+Fecha: 2026-03-10
+
+1. Emblemas por set
+- FIX: el normalizador ahora reconoce `arconte`, `archon`, `arc_*`, `family=archon` y `archetype=archon_war`.
+- RESULTADO: las cartas Arconte ya no deben caer al emblema Base.
+
+2. Pipeline de retratos premium enemy/boss
+- VERSION: `portrait_v7` para invalidar cache heredado.
+- FIX: bosses y faccion Arconte priorizan `archon_master_concept.png`, `archon_master_portrait.png` y `archon_master_hologram.png` antes que generated.
+- FIX: el loader de retratos ya no depende de `convert_alpha()` cuando no hay display activo, evitando falsos fallbacks en tooling y QA.
+- FIX: el pipeline tambien intenta `assets/sprites/avatar/enemy_<id>.png` antes de caer al placeholder de enemigos.
+
+3. Estado real
+- PASS: emblema Arconte correctamente normalizado.
+- PASS: boss Arconte ya puede regenerar portrait/hologram desde master curado.
+- WARNING: enemigos no Arconte siguen dependiendo en mayor parte de generated/fallback hasta que existan masters curados por faccion.

@@ -1,6 +1,6 @@
 {
-  "version": "chakana_audio_v6",
-  "generated_at": 1773151042,
+  "version": "chakana_audio_v7",
+  "generated_at": 1773156989,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
@@ -586,6 +586,19 @@
       "state": "valid",
       "source": "generated",
       "relative_path": "game/audio/generated/ambient/codex_ambience.wav"
+    },
+    "combat_c": {
+      "track_id": "combat_c",
+      "type": "bgm",
+      "context": "combat",
+      "variant": "c",
+      "seed": 502400997,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_c.wav",
+      "relative_path": "game/audio/generated/bgm/combat_c.wav",
+      "generation_date": 1773156989,
+      "version": "chakana_audio_v7",
+      "state": "valid",
+      "source": "generated"
     }
   }
 }

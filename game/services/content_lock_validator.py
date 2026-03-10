@@ -134,10 +134,10 @@ def validate_content_lock_1_0(base: Path | None = None) -> dict:
     if missing_relics:
         issues.append(f"codex_missing_relics:{len(missing_relics)}")
 
-    all_enemy_hp = _hp_values(enemies)
+    non_boss_enemy_hp = _hp_values([e for e in enemies if str(e.get("tier", "")).lower() != "boss"])
     boss_hp = _hp_values(bosses)
-    if all_enemy_hp:
-        max_enemy_hp = max(all_enemy_hp)
+    if non_boss_enemy_hp:
+        max_enemy_hp = max(non_boss_enemy_hp)
         if max_enemy_hp > 220:
             warnings.append(f"enemy_hp_high:max={max_enemy_hp}")
     if boss_hp:

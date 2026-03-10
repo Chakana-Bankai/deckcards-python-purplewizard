@@ -2,5 +2,10 @@
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
-  "git.autorefresh": true
+  "git.autorefresh": true,
+  "files.exclude": {
+    "**/assets/_archive": true,
+    "**/qa/reports/archive": true,
+    "**/docs/archive": true
+  }
 }

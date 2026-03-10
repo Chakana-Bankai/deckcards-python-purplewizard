@@ -1,6 +1,6 @@
 {
-  "version": "portrait_v6",
-  "updated_at": 1773154780,
+  "version": "portrait_v7",
+  "updated_at": 1773156802,
   "items": {
     "chakana:132x132": {
       "role": "chakana",
@@ -675,7 +675,7 @@
         100
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide__arcane_hacker__portrait_portrait_100x100.png",
-      "generated_at": 1773154189,
+      "generated_at": 1773155489,
       "version": "portrait_v6",
       "source": "placeholder",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
@@ -688,8 +688,8 @@
         76
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__sabueso_sombrio__hologram_hologram_514x76.png",
-      "generated_at": 1773107534,
-      "version": "portrait_v6",
+      "generated_at": 1773156724,
+      "version": "portrait_v7",
       "source": "generated_or_cache",
       "source_path": "visual_engine:enemy_sabueso_sombrio"
     },
@@ -935,10 +935,10 @@
         76
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__arconte_supremo__hologram_hologram_514x76.png",
-      "generated_at": 1773111964,
-      "version": "portrait_v6",
-      "source": "generated_or_cache",
-      "source_path": "visual_engine:enemy_arconte_supremo"
+      "generated_at": 1773156802,
+      "version": "portrait_v7",
+      "source": "official_master",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_hologram.png"
     },
     "archon:portrait:514x76": {
       "role": "archon",
@@ -1004,6 +1004,19 @@
       "version": "portrait_v6",
       "source": "generated_or_cache",
       "source_path": "visual_engine:enemy_ave_de_ceniza"
+    },
+    "enemy__arconte_supremo__portrait:portrait:270x200": {
+      "role": "enemy__arconte_supremo__portrait",
+      "style": "portrait",
+      "size": [
+        270,
+        200
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__arconte_supremo__portrait_portrait_270x200.png",
+      "generated_at": 1773156802,
+      "version": "portrait_v7",
+      "source": "official_master",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_portrait.png"
     }
   }
 }

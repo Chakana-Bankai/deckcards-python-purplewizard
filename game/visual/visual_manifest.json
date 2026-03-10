@@ -1,6 +1,6 @@
 {
   "version": "visual_v2",
-  "generated_at": 1773153380,
+  "generated_at": 1773156724,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -5735,7 +5735,7 @@
     "avatar:enemy_sabueso_sombrio:514x76:enemy_sabueso_sombrio": {
       "asset_id": "enemy_sabueso_sombrio",
       "category": "avatar",
-      "seed": 2109605146,
+      "seed": 1702095772,
       "palette": {
         "deep_purple": [
           28,
@@ -5768,7 +5768,7 @@
       ],
       "context": "enemy_sabueso_sombrio",
       "version": "visual_v2",
-      "generated_at": 1773107534,
+      "generated_at": 1773156724,
       "size": [
         514,
         76
@@ -6175,7 +6175,7 @@
     "avatar:enemy_arconte_supremo:514x76:enemy_arconte_supremo": {
       "asset_id": "enemy_arconte_supremo",
       "category": "avatar",
-      "seed": 439447912,
+      "seed": 1527676117,
       "palette": {
         "deep_purple": [
           28,
@@ -6208,7 +6208,7 @@
       ],
       "context": "enemy_arconte_supremo",
       "version": "visual_v2",
-      "generated_at": 1773111964,
+      "generated_at": 1773156724,
       "size": [
         514,
         76
@@ -6564,6 +6564,50 @@
       "size": [
         16,
         16
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_arconte_supremo:270x200:enemy_arconte_supremo": {
+      "asset_id": "enemy_arconte_supremo",
+      "category": "avatar",
+      "seed": 1527676117,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_arconte_supremo_270x200_enemy_arconte_supremo.png"
+      ],
+      "context": "enemy_arconte_supremo",
+      "version": "visual_v2",
+      "generated_at": 1773156724,
+      "size": [
+        270,
+        200
       ],
       "state": "valid",
       "lore_tags": []

@@ -33,7 +33,7 @@ class ContextSpec:
 class AudioEngine:
     """Procedural audio engine with caching and context-aware playback."""
 
-    VERSION = "chakana_audio_v6"
+    VERSION = "chakana_audio_v7"
     SAMPLE_RATE = 32000
 
     def __init__(self):
@@ -54,16 +54,16 @@ class AudioEngine:
 
         # Compact context set: fewer tracks, clearer identity.
         self.context_specs: dict[str, ContextSpec] = {
-            "menu": ContextSpec("mystical calm", ("a", "b"), 116.0, 0.07, 0.38, 0.15),
+            "menu": ContextSpec("mystical calm", ("a", "b", "c"), 132.0, 0.07, 0.38, 0.15),
             "map_ukhu": ContextSpec("exploration ambient", ("a", "b"), 108.0, 0.10, 0.34, 0.21),
             "map_kay": ContextSpec("exploration ambient", ("a", "b"), 108.0, 0.11, 0.40, 0.25),
             "map_hanan": ContextSpec("exploration ambient", ("a", "b"), 110.0, 0.12, 0.48, 0.31),
-            "combat": ContextSpec("tense pulse", ("a", "b"), 86.0, 0.18, 0.52, 0.60),
-            "combat_elite": ContextSpec("strong percussion", ("a", "b"), 92.0, 0.22, 0.56, 0.72),
-            "combat_boss": ContextSpec("ceremonial epic", ("a", "b"), 102.0, 0.27, 0.60, 0.88),
-            "shop": ContextSpec("calm ritual", ("a", "b"), 84.0, 0.07, 0.44, 0.20),
-            "victory": ContextSpec("uplift", ("a", "b"), 32.0, 0.14, 0.60, 0.20),
-            "defeat": ContextSpec("falling echo", ("a", "b"), 34.0, 0.08, 0.26, 0.40),
+            "combat": ContextSpec("tense pulse", ("a", "b", "c"), 108.0, 0.18, 0.52, 0.60),
+            "combat_elite": ContextSpec("strong percussion", ("a", "b", "c"), 116.0, 0.22, 0.56, 0.72),
+            "combat_boss": ContextSpec("ceremonial epic", ("a", "b", "c"), 128.0, 0.27, 0.60, 0.88),
+            "shop": ContextSpec("calm ritual", ("a", "b", "c"), 104.0, 0.07, 0.44, 0.20),
+            "victory": ContextSpec("uplift", ("a", "b", "c"), 42.0, 0.14, 0.60, 0.20),
+            "defeat": ContextSpec("falling echo", ("a", "b", "c"), 44.0, 0.08, 0.26, 0.40),
         }
         self.context_alias = {
             "map_kaypacha": "map_kay",
@@ -129,6 +129,7 @@ class AudioEngine:
 
         self._manifest = self._load_manifest()
         self._last_variant_by_context: dict[str, str] = {}
+        self._variant_history_by_context: dict[str, list[str]] = {}
         self._sound_cache: dict[str, pygame.mixer.Sound] = {}
         self._sfx_cooldowns: dict[str, int] = {}
         self._logged_once: set[str] = set()
@@ -788,10 +789,20 @@ class AudioEngine:
         variants = self.context_specs[context].variants
         if len(variants) <= 1:
             return variants[0]
+        history = list(self._variant_history_by_context.get(context, []))[-4:]
         last = self._last_variant_by_context.get(context)
-        opts = [v for v in variants if v != last]
-        choice = opts[Random().randint(0, len(opts) - 1)] if opts else variants[0]
+        scores = []
+        for variant in variants:
+            recency_penalty = 3 if variant == last else 0
+            recency_penalty += history.count(variant)
+            scores.append((recency_penalty, variant))
+        scores.sort(key=lambda item: (item[0], item[1]))
+        best_score = scores[0][0]
+        best = [variant for score, variant in scores if score == best_score]
+        choice = best[Random().randint(0, len(best) - 1)]
         self._last_variant_by_context[context] = choice
+        history.append(choice)
+        self._variant_history_by_context[context] = history[-6:]
         return choice
 
     def _state_from_context(self, context: str) -> str:

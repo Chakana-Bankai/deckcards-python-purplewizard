@@ -1,0 +1,23 @@
+Regularizacion canon + estado creativo
+====================================
+
+Fecha: 2026-03-10
+
+1. Estructura documental canon
+- OK: `docs/canon/` ya esta anidado por `manual/`, `systems/`, `lore/`, `direction/`, `reference/`.
+- OK: el manual, atlas, direccion artistica, direccion musical y game bible fueron reescritos con lenguaje limpio y consistente.
+- OK: `ART_STYLE_GUIDE` y `BESTIARY` se normalizaron a espanol ritual legible.
+
+2. Assets visibles en VS Code
+- OK: `assets/_archive/` se mantiene como historico no runtime.
+- OK: `assets/art_reference/` se mantiene visible porque es biblioteca activa para Creative Director.
+- OK: `.vscode/settings.json` oculta `_archive` y carpetas de archivo documental/QA.
+
+3. Estado real de arte y musica
+- RESUELTO: existe arquitectura nueva para direccion creativa, manifests, audio state system y rutas canonicas.
+- RESUELTO: la documentacion ya define subject/action/environment/symbol y direccion por set.
+- PARCIAL: el runtime ya puede priorizar curated, generated y fallback de forma mas limpia.
+- PENDIENTE: la calidad de salida aun no es studio-grade en todo el pool. Faltan retratos maestros por faccion, mas arte ilustrado premium de cartas y musica mas larga y menos repetitiva por contexto.
+
+4. Conclusion honesta
+La nueva tecnologia programada ya existe y esta conectada, pero todavia necesita mejor curacion de contenido para alcanzar el nivel visual y musical objetivo. La base ya no esta improvisada; el cuello de botella principal es calidad de salida y cobertura curada, no falta de arquitectura.

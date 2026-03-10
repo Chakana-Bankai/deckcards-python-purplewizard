@@ -13,6 +13,8 @@ class SetEmblemProfile:
     expansion_symbolic_theme: str
 
 
+ARCHON_PALETTE = ((222, 106, 106), (118, 42, 74), (32, 18, 28))
+
 SET_EMBLEM_REGISTRY: dict[str, SetEmblemProfile] = {
     "base": SetEmblemProfile(
         expansion_id="BASE",
@@ -26,10 +28,16 @@ SET_EMBLEM_REGISTRY: dict[str, SetEmblemProfile] = {
         expansion_palette=((226, 206, 140), (178, 220, 244), (36, 46, 62)),
         expansion_symbolic_theme="polar_ancestral_aurora",
     ),
+    "arconte": SetEmblemProfile(
+        expansion_id="ARCONTE",
+        expansion_emblem="archon_crown",
+        expansion_palette=ARCHON_PALETTE,
+        expansion_symbolic_theme="corrupcion_arconte_guerra_cosmica",
+    ),
     "archon_war": SetEmblemProfile(
         expansion_id="ARCHON_WAR",
         expansion_emblem="archon_crown",
-        expansion_palette=((222, 106, 106), (118, 42, 74), (32, 18, 28)),
+        expansion_palette=ARCHON_PALETTE,
         expansion_symbolic_theme="corrupcion_arconte_guerra_cosmica",
     ),
     "solar_awakening": SetEmblemProfile(
@@ -44,13 +52,34 @@ SET_EMBLEM_REGISTRY: dict[str, SetEmblemProfile] = {
 def normalize_set_id(card_like: dict | None) -> str:
     card_like = card_like or {}
     sid = str(card_like.get("set", "") or "").strip().lower()
+    sid_alt = str(card_like.get("set_id", "") or "").strip().lower()
     cid = str(card_like.get("id", "") or "").strip().lower()
     raw_emblem = str(card_like.get("set_emblem", "") or "").strip().lower()
-    if "hiperborea" in sid or "hiperborea" in raw_emblem or raw_emblem == "chakana_polar" or cid.startswith("hip_"):
+    archetype = str(card_like.get("archetype", "") or "").strip().lower()
+    family = str(card_like.get("family", "") or "").strip().lower()
+    if (
+        "hiperborea" in sid
+        or "hiperboria" in sid
+        or "hiperborea" in sid_alt
+        or "hiperboria" in sid_alt
+        or "hiperborea" in raw_emblem
+        or raw_emblem == "chakana_polar"
+        or cid.startswith("hip_")
+    ):
         return "hiperborea"
-    if "archon" in sid or "archon" in raw_emblem:
-        return "archon_war"
-    if "solar" in sid or "solar" in raw_emblem:
+    if (
+        "arconte" in sid
+        or "archon" in sid
+        or "arconte" in sid_alt
+        or "archon" in sid_alt
+        or "arconte" in raw_emblem
+        or "archon" in raw_emblem
+        or cid.startswith("arc_")
+        or archetype == "archon_war"
+        or family == "archon"
+    ):
+        return "arconte"
+    if "solar" in sid or "solar" in sid_alt or "solar" in raw_emblem:
         return "solar_awakening"
     return "base"
 

@@ -145,7 +145,8 @@ def run() -> dict:
     for k, data in payload["details"].items():
         lines.append(f"- {k}: {json.dumps(data, ensure_ascii=False)}")
 
-    report_path = Path("gameplay_blocker_report.txt")
+    report_path = Path("reports/validation/gameplay_blocker_report.txt")
+    report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     payload["report"] = str(report_path)
     return payload

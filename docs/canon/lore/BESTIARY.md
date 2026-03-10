@@ -1,20 +1,23 @@
-# BESTIARY
+# BESTIARIO
 
-## Allies
-- condor_hanan
-- puma_guardian
-- amaru_serpent
-- mountain_spirit
-- chakana_custodian
+## Aliados y guardianes
+- Condor de Hanan
+- Guardian Puma
+- Amaru de la Trama
+- Espiritu de la Montana
+- Custodio Chakana
 
-## Enemies
-- shadow_hound
-- void_parasite
-- fractured_specter
-- rupture_demon
-- void_cultist
+## Enemigos
+- Sabueso Sombrio
+- Parasito del Vacio
+- Espectro Fracturado
+- Demonio de la Ruptura
+- Cultista del Vacio
 
-## Bosses
-- void_archon
-- crimson_archon
-- inverted_chakana_archon
+## Arcontes y bosses
+- Arconte del Vacio
+- Arconte Carmesi
+- Arconte de la Chakana Invertida
+
+## Regla visible
+Los nombres tecnicos internos pueden seguir existiendo en datos y codigo, pero la capa mostrada al jugador debe usar siempre lenguaje ritual y legible.

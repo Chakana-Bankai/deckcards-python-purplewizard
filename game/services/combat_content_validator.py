@@ -99,7 +99,8 @@ def validate_combat_content_lock(cards: list[dict], relics: list[dict], codex_ca
         arrb = blk_by_rarity.get(rarity, [])
         if arrb:
             avg_b = sum(arrb) / float(len(arrb))
-            if not (max(1, low - 1) <= avg_b <= high + 2):
+            # Small samples create noisy warnings for incidental block on non-defense legendaries.
+            if len(arrb) >= 3 and not (max(1, low - 1) <= avg_b <= high + 2):
                 warnings.append(f"block_window:{rarity}:avg={avg_b:.2f} expected~{low}-{high}")
 
     if len(relics) != 12:

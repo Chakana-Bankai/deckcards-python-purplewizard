@@ -13,7 +13,7 @@ from .visual_engine import get_visual_engine
 class PortraitPipeline:
     """Multi-tier character pipeline: concept art, portrait, hologram."""
 
-    VERSION = "portrait_v6"
+    VERSION = "portrait_v7"
 
     def __init__(self):
         self.root = visual_dir()
@@ -233,6 +233,7 @@ class PortraitPipeline:
         if family == "enemy":
             faction = "demons"
             motif = "demon"
+            kind = "enemy"
             if ident:
                 try:
                     from game.services.spiritual_bestiary import resolve_entity_profile
@@ -240,10 +241,13 @@ class PortraitPipeline:
                     prof = resolve_entity_profile(ident, kind="boss" if "archon" in ident else "enemy")
                     faction = str(prof.get("faction", "demons")).lower().strip()
                     motif = str(prof.get("motif", "demon")).lower().strip()
+                    kind = str(prof.get("kind", "enemy")).lower().strip()
                 except Exception:
                     pass
+            is_archon_faction = faction == "archons" or kind == "boss" or "archon" in ident
             master = {
                 "concept": [
+                    "archon_master_concept.png" if is_archon_faction else "",
                     f"{ident}_master_concept.png",
                     f"enemy_{ident}_master_concept.png",
                     f"enemy_{faction}_master_concept.png",
@@ -251,6 +255,7 @@ class PortraitPipeline:
                     "enemy_master_concept.png",
                 ],
                 "portrait": [
+                    "archon_master_portrait.png" if is_archon_faction else "",
                     f"{ident}_master_portrait.png",
                     f"enemy_{ident}_master_portrait.png",
                     f"enemy_{faction}_master_portrait.png",
@@ -258,6 +263,7 @@ class PortraitPipeline:
                     "enemy_master_portrait.png",
                 ],
                 "hologram": [
+                    "archon_master_hologram.png" if is_archon_faction else "",
                     f"{ident}_master_hologram.png",
                     f"enemy_{ident}_master_hologram.png",
                     f"enemy_{faction}_master_hologram.png",
@@ -271,7 +277,7 @@ class PortraitPipeline:
                 "hologram": [f"{ident}_hologram.png", f"enemy_{ident}_hologram.png", "enemy_hologram.png", "archon_holo.png"],
             }
             out: list[tuple[Path, str]] = []
-            for filename in master.get(style, []):
+            for filename in [x for x in master.get(style, []) if x]:
                 for root in roots:
                     out.append((root / filename, "official_master"))
             for filename in generated.get(style, []):
@@ -279,6 +285,7 @@ class PortraitPipeline:
                     out.append((root / filename, "generated"))
             # Allow direct enemy sprite as lowest visual fallback.
             if ident:
+                out.append((sprite_category_dir("avatar") / f"enemy_{ident}.png", "generated"))
                 out.append((sprite_category_dir("enemies") / f"{ident}.png", "placeholder"))
             out.append((sprite_category_dir("enemies") / "default.png", "placeholder"))
             return out
@@ -403,7 +410,9 @@ class PortraitPipeline:
             if not p.exists():
                 continue
             try:
-                src = pygame.image.load(str(p)).convert_alpha()
+                src = pygame.image.load(str(p))
+                if pygame.display.get_surface() is not None:
+                    src = src.convert_alpha()
                 return self._fit_contain(src, size), tag, str(p)
             except Exception:
                 continue

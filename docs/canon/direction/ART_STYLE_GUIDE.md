@@ -1,46 +1,45 @@
-﻿# CHAKANA ART STYLE GUIDE 1.0
+# CHAKANA GUIA DE ESTILO ARTISTICO 1.0
 
-## Core Composition Rule
-Every generated visual must include:
+## Regla central de composicion
+Todo visual generado debe incluir:
 1. SUBJECT
 2. ACTION
 3. ENVIRONMENT
 4. SYMBOL
 
-### Card Art Canon
-- 1 main character or symbolic focal object.
-- 1 visible magical action/energy behavior.
-- 1 readable environment plane.
-- 1 sacred symbolic layer (chakana/sigils/geometry).
+## Canon de arte de carta
+- 1 figura principal o foco simbolico reconocible.
+- 1 accion magica, ritual o energetica visible.
+- 1 entorno legible que ubique la escena en un plano o bioma.
+- 1 capa simbolica sagrada asociada al universo Chakana.
 
-## Set Palettes
-
+## Paletas por set
 ### BASE
-- Identity: mystic geometry, ritual order.
-- Palette: gold, violet, cosmic blue.
-- Visual anchor: balanced sacred geometry.
+- Identidad: geometria mistica y orden ritual.
+- Paleta: oro, violeta y azul cosmico.
+- Ancla visual: equilibrio, simetria y sellos Chakana.
 
 ### HIPERBOREA
-- Identity: crystalline ancient advanced civilization.
-- Palette: marble white, ice blue, ancient gold.
-- Visual anchor: light architecture, polar symbols, crystal tech.
+- Identidad: civilizacion cristalina y conocimiento polar.
+- Paleta: blanco marmol, azul hielo y oro antiguo.
+- Ancla visual: arquitectura luminosa, auroras y tecnologia ceremonial.
 
 ### ARCONTES
-- Identity: dark distortion and corruption energy.
-- Palette: deep red, black, corrupted violet.
-- Visual anchor: void pressure, broken mandalas, oppressive silhouettes.
+- Identidad: distorsion oscura y energia corrupta.
+- Paleta: rojo profundo, negro y violeta corrompido.
+- Ancla visual: vacio, presion, runas rotas y siluetas opresivas.
 
-## Anti-Noise Rules
-- No first-pass acceptance.
-- Generate multiple candidates, score, then refine around best.
-- Reject candidates with low subject recognizability.
-- Reject candidates with weak symbol presence.
+## Reglas anti ruido
+- no aceptar la primera generacion
+- generar multiples candidatos, puntuar y refinar sobre el mejor
+- rechazar piezas con sujeto poco reconocible
+- rechazar piezas con simbolo debil o profundidad insuficiente
 
-## Quality Thresholds
-- Art minimum score: 0.62
-- Legendary target score: 0.70
+## Umbrales de calidad
+- score minimo de arte: 0.62
+- target legendario: 0.70 o superior
 
-## Lore-driven Directives
-- Hiperborea: crystalline cities, auroras, ancient technical temples.
-- Archons: corrupted temples, distortion runes, demonic pressure.
-- Base: ritual mountains, cosmic geometry, Chakana order symbols.
+## Direccion por lore
+- Hiperborea: ciudades cristalinas, auroras, templos tecnicos antiguos.
+- Arcontes: templos corruptos, runas de distorsion, presion demoniaca.
+- Base: montanas rituales, geometria cosmica y simbolos de la Orden Chakana.

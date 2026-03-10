@@ -1,5 +1,5 @@
 {
-  "version": "chakana_audio_v6",
+  "version": "chakana_audio_v7",
   "source": "game/data/audio_manifest.json",
   "items": {
     "stinger_combat_start": {

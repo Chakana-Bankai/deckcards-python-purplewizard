@@ -14,25 +14,25 @@
   },
   "deck": [
     "strike",
-    "defend",
     "strike",
-    "defend",
     "strike",
-    "defend",
     "strike",
-    "defend",
     "strike",
-    "defend",
     "strike",
-    "defend",
     "strike",
-    "defend",
     "strike",
-    "defend",
     "strike",
-    "defend",
     "strike",
-    "defend"
+    "strike",
+    "strike",
+    "strike",
+    "strike",
+    "strike",
+    "strike",
+    "strike",
+    "strike",
+    "strike",
+    "strike"
   ],
   "sideboard": [],
   "map": [
@@ -291,5 +291,5 @@
   "hiperboria_unlock_target": 3,
   "current_node_id": null,
   "last_biome_seen": "ukhu",
-  "saved_at": 1773155207
+  "saved_at": 1773155489
 }

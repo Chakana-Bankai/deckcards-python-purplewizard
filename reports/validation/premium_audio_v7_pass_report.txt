@@ -1,0 +1,22 @@
+Premium audio v7 pass
+====================
+
+Fecha: 2026-03-10
+
+1. Motor
+- VERSION subida a `chakana_audio_v7`.
+- Menu, shop, combat, combat_elite, combat_boss, victory y defeat ahora soportan variante `c`.
+- Duraciones ampliadas en contextos clave para bajar sensacion de loop corto.
+
+2. Anti repeticion
+- La seleccion de variantes ya no alterna solo contra la ultima.
+- Ahora usa historial corto por contexto y elige la variante menos reciente entre las disponibles.
+
+3. Resultado esperado
+- Menos sensacion de `bip-bop` repetido por alternancia pobre.
+- Mas aire entre repeticiones de menu/shop/combat/boss.
+- Mejor base para futuros reemplazos curados por contexto.
+
+4. Estado real
+- PASS: audio engine premium base mejorado y variantes nuevas generables.
+- WARNING: la calidad studio-grade final aun requiere reemplazos curados o generacion dirigida de mayor riqueza melodica.

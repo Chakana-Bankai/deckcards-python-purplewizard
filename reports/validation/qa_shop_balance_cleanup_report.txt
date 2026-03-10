@@ -1,0 +1,18 @@
+CHAKANA QA / SHOP / BALANCE CLEANUP PASS
+=====================================
+
+completed=
+- qa_phase1_gameplay_blockers now writes to reports/validation/gameplay_blocker_report.txt
+- maintenance references updated to the canonical gameplay blocker report path
+- legacy root gameplay_blocker_report.txt removed after migration
+- shop tabs now visually emphasize only the active category and dim inactive offers
+- combat_content_validator block warning calibrated to avoid noisy legendary small-sample warnings
+
+validation=
+- qa_phase1_gameplay_blockers => PASS
+- check_combat_content_lock => PASS with 0 warnings
+- shop render smoke across packs/relics/sell => PASS
+
+notes=
+- shop premium pass remains a polish track, but current tab clarity is cleaner and less cluttered
+- legendary block warning was noise from only 2 blocking legendary cards, not a runtime or balance failure

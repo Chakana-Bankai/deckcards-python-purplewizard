@@ -53,7 +53,7 @@ def run_phase8_integration() -> dict:
     checks: list[CheckResult] = []
 
     qa_jobs = [
-        ("phase1_gameplay_blockers", [sys.executable, "-m", "tools.qa_phase1_gameplay_blockers"], ROOT / "gameplay_blocker_report.txt"),
+        ("phase1_gameplay_blockers", [sys.executable, "-m", "tools.qa_phase1_gameplay_blockers"], ROOT / "reports" / "validation" / "gameplay_blocker_report.txt"),
         ("phase2_pack_shop", [sys.executable, "-m", "tools.qa_phase2_pack_shop_integration"], ROOT / "pack_shop_integration_report.txt"),
         ("phase3_hologram_dialogue", [sys.executable, "-m", "tools.qa_phase3_hologram_dialogue"], ROOT / "hologram_dialogue_integration_report.txt"),
         ("phase3b_event_system", [sys.executable, "-m", "tools.qa_phase3b_event_system"], ROOT / "event_node_refactor_report.txt"),
@@ -76,7 +76,7 @@ def run_phase8_integration() -> dict:
         checks.append(CheckResult(name=name, status=status, detail=detail))
 
     key_reports = {
-        "gameplay_blocker_report": (ROOT / "gameplay_blocker_report.txt").exists(),
+        "gameplay_blocker_report": (ROOT / "reports" / "validation" / "gameplay_blocker_report.txt").exists(),
         "pack_shop_integration_report": (ROOT / "pack_shop_integration_report.txt").exists(),
         "hologram_dialogue_report": (ROOT / "hologram_dialogue_integration_report.txt").exists(),
         "event_system_reports": (ROOT / "event_node_refactor_report.txt").exists() and (ROOT / "event_system_design_report.txt").exists(),

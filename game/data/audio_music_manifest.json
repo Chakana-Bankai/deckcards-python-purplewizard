@@ -1,5 +1,5 @@
 {
-  "version": "chakana_audio_v6",
+  "version": "chakana_audio_v7",
   "source": "game/data/audio_manifest.json",
   "items": {
     "menu_a": {
@@ -201,6 +201,16 @@
       "state": "valid",
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\defeat_b.wav",
       "relative_path": "game/audio/generated/bgm/defeat_b.wav"
+    },
+    "combat_c": {
+      "track_id": "combat_c",
+      "type": "bgm",
+      "context": "combat",
+      "variant": "c",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_c.wav",
+      "relative_path": "game/audio/generated/bgm/combat_c.wav"
     }
   }
 }
