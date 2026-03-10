@@ -42,3 +42,32 @@ Cada imagen importante debe contener:
 
 ## Regla
 Curated-first cuando exista pieza maestra. Procedural como apoyo, no como excusa para aceptar arte debil.
+
+
+## Estandar de Carta Premium por Capas
+Cada arte de carta debe aspirar a una composicion por capas, no a ruido abstracto uniforme.
+
+### Capas obligatorias
+1. **Fondo base**
+   - mar, selva, desierto ritual, templo, espacio, vacio, ruinas, glaciar, observatorio
+2. **Sujeto principal**
+   - personaje, criatura, guardian, arconte, simbolo vivo o estructura dominante
+3. **Objeto o foco**
+   - espada, codex, sello, reliquia, altar, gema, chakana, mascara, fragmento ritual
+4. **Efectos y adornos**
+   - runas, halos, particulas, grietas, aura, rayos, niebla, trazas de accion
+5. **Integracion final / profundidad 2D-2.5D**
+   - bloom contenido, niebla de distancia, siluetas secundarias, separacion de planos, lectura focal
+
+### Regla de lectura
+Cada arte debe responder claramente:
+- donde ocurre
+- quien o que domina la imagen
+- cual es el objeto/simbolo central
+- que energia o accion esta ocurriendo
+
+### Variacion por rareza
+- **Comun**: composicion clara, menos ornamento, lectura rapida
+- **Infrecuente**: mas capas atmosfericas, mejor objeto focal
+- **Rara**: mejor silueta, mejor contraste, mas profundidad
+- **Legendaria**: puesta en escena premium, sujeto dominante, objeto ritual memorable, integracion de capas mas rica

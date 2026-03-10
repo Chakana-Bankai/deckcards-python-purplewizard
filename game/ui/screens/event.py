@@ -158,6 +158,12 @@ class EventScreen:
 
     def update(self, dt):
         self.t += dt
+        chars = self.writer.update(dt)
+        if chars > 0 and (pygame.time.get_ticks() // 55) % 2 == 0:
+            try:
+                self.app.sfx.play("button_click")
+            except Exception:
+                pass
 
     def render(self, s):
         self.app.bg_gen.render_parallax(s, "Pampa Astral", 2048, pygame.time.get_ticks() * 0.02, particles_on=self.app.user_settings.get("fx_particles", True))

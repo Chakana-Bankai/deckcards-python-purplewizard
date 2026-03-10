@@ -120,6 +120,12 @@ class EndScreen:
 
     def update(self, dt):
         self.t += dt
+        chars = self.banner.update(dt)
+        if chars > 0 and (pygame.time.get_ticks() // 60) % 2 == 0:
+            try:
+                self.app.sfx.play("button_click")
+            except Exception:
+                pass
         if self.t > 3.2:
             self.t = 0.0
             self.idx += 1

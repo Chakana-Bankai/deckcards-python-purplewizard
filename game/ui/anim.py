@@ -43,9 +43,10 @@ class TypewriterBanner:
         cps = max(1.0, len(str(text or "")) / max(0.1, duration)) if text else self.cps
         self.set_text(text, reset=True, duration=duration, cps=cps)
 
-    def update(self, dt: float):
+    def update(self, dt: float) -> int:
         if not self.active or self.is_done:
-            return
+            return 0
+        prev = self.index
         self.timer += max(0.0, float(dt))
         target_idx = min(len(self.full_text), int(self.timer * self.cps))
         if target_idx != self.index:
@@ -55,6 +56,7 @@ class TypewriterBanner:
             self.visible_text = self.full_text
             self.is_done = True
             self.active = False
+        return max(0, self.index - prev)
 
     def draw(self, surface: pygame.Surface, font: pygame.font.Font, pos: tuple[int, int], color=(245, 245, 250)):
         txt = self.visible_text if self.visible_text else (self.full_text if self.is_done else "")
