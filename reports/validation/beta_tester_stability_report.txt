@@ -1,0 +1,36 @@
+Beta tester stability report
+===========================
+
+Fecha: 2026-03-10
+
+1. Codex
+- Lore, Atlas, History, Symbols, Systems y Rules ya renderizan como panel canon centrado, manteniendo el visualizador de cartas intacto.
+
+2. Premium visual
+- Arconte: emblema de set corregido.
+- Enemy factions: guardians, oracles y demons ya tienen masters curados minimos para portrait/concept/hologram.
+- Boss Arconte ya usa master curado oficial.
+
+3. Audio premium base
+- audio_engine v7 con variantes c en menu/shop/combat/combat_boss/victory/defeat.
+- anti repeticion por historial corto y duraciones mas largas.
+
+4. Run stability
+- retry con hp negativo sigue recuperando hp y reconstruyendo combate.
+- shop y reward pack renderizan sin quiebre en smoke local.
+- deck flow sigue en PASS.
+
+5. Warnings restantes
+- qa_phase2_pack_shop_integration no se cerro en este pase por timeout del script completo; se cubrio con smoke directo de shop y reward.
+- falta seguir subiendo calidad premium de arte de cartas y musica curada para llegar a target studio-grade.
+
+6. Smokes finales
+- shop packs/relics/sell render: PASS
+- reward pack screen render: PASS
+- boot + routing hooks presentes: PASS
+
+6. Smokes finales
+- shop packs/relics/sell render: PASS
+- reward pack screen render: PASS
+- codex lore/systems/rules/cards render: PASS
+- enemy faction curated masters: PASS

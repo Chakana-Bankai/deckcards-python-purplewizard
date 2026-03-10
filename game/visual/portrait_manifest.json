@@ -1,6 +1,6 @@
 {
   "version": "portrait_v7",
-  "updated_at": 1773156802,
+  "updated_at": 1773158242,
   "items": {
     "chakana:132x132": {
       "role": "chakana",
@@ -233,8 +233,8 @@
         84
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_concept_84x84.png",
-      "generated_at": 1773154156,
-      "version": "portrait_v6",
+      "generated_at": 1773157519,
+      "version": "portrait_v7",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_concept.png"
     },
@@ -675,8 +675,8 @@
         100
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide__arcane_hacker__portrait_portrait_100x100.png",
-      "generated_at": 1773155489,
-      "version": "portrait_v6",
+      "generated_at": 1773158242,
+      "version": "portrait_v7",
       "source": "placeholder",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"
     },
@@ -1017,6 +1017,45 @@
       "version": "portrait_v7",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_portrait.png"
+    },
+    "enemy__guardia_de_raiz__portrait:portrait:270x200": {
+      "role": "enemy__guardia_de_raiz__portrait",
+      "style": "portrait",
+      "size": [
+        270,
+        200
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__guardia_de_raiz__portrait_portrait_270x200.png",
+      "generated_at": 1773157518,
+      "version": "portrait_v7",
+      "source": "official_master",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\enemy_guardians_master_portrait.png"
+    },
+    "enemy__oraculo_menor__portrait:portrait:270x200": {
+      "role": "enemy__oraculo_menor__portrait",
+      "style": "portrait",
+      "size": [
+        270,
+        200
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__oraculo_menor__portrait_portrait_270x200.png",
+      "generated_at": 1773157518,
+      "version": "portrait_v7",
+      "source": "official_master",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\enemy_oracles_master_portrait.png"
+    },
+    "enemy__sabueso_sombrio__portrait:portrait:270x200": {
+      "role": "enemy__sabueso_sombrio__portrait",
+      "style": "portrait",
+      "size": [
+        270,
+        200
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__sabueso_sombrio__portrait_portrait_270x200.png",
+      "generated_at": 1773157518,
+      "version": "portrait_v7",
+      "source": "official_master",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\enemy_demons_master_portrait.png"
     }
   }
 }

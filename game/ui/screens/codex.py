@@ -1,6 +1,7 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pygame
 
@@ -51,6 +52,7 @@ class CodexScreen:
 
         self.section_buttons = []
         self._build_section_buttons()
+        self._canon_docs = self._load_canon_docs()
 
     def _load_sections(self) -> list[dict]:
         path = data_dir() / "codex.json"
@@ -252,6 +254,84 @@ class CodexScreen:
             xp = int(run.get("xp", 0) or 0)
             return [f"Run actual: nivel {lvl}, xp {xp}"]
         return []
+
+    def _load_canon_docs(self) -> dict[str, dict]:
+        mapping = {
+            "lore": ("Lore del Universo", Path("docs/canon/lore/LORE_ATLAS.md")),
+            "systems": ("Sistemas Chakana", Path("docs/canon/reference/GAME_SYSTEMS_REFERENCE.md")),
+            "rules": ("Manual de Run", Path("docs/canon/manual/CHAKANA_MANUAL_1_0.md")),
+            "atlas": ("Atlas de Chakana", Path("docs/canon/lore/LORE_ATLAS.md")),
+            "history": ("Historia y Biblia", Path("docs/canon/manual/CHAKANA_MASTER_GAME_BIBLE_1_0.md")),
+            "symbols": ("Simbolos Sagrados", Path("docs/canon/direction/ART_STYLE_GUIDE.md")),
+            "tips_help": ("Tutorial y Ayuda", Path("docs/canon/manual/CHAKANA_MANUAL_1_0.md")),
+        }
+        out = {}
+        for sid, (title, rel) in mapping.items():
+            try:
+                text = rel.read_text(encoding="utf-8")
+            except Exception:
+                continue
+            paragraphs = []
+            for raw in text.splitlines():
+                line = str(raw).strip()
+                if not line:
+                    continue
+                if line.startswith('#'):
+                    paragraphs.append(line.lstrip('#').strip())
+                elif line.startswith('- '):
+                    paragraphs.append(line[2:].strip())
+                elif line[0].isdigit() and '. ' in line:
+                    paragraphs.append(line.split('. ', 1)[1].strip())
+                else:
+                    paragraphs.append(line)
+            if paragraphs:
+                out[sid] = {"title": title, "paragraphs": paragraphs[:18]}
+        return out
+
+    def _draw_canon_text_panel(self, s: pygame.Surface, active_id: str, title: str):
+        gallery = self._draw_gallery_shell(s, top_offset=86)
+        doc = dict(self._canon_docs.get(active_id, {}))
+        fallback_items = [str(x) for x in list(self._active_section().get("items", []))]
+        panel_title = str(doc.get("title") or title or "Codex")
+        paragraphs = list(doc.get("paragraphs", [])) or fallback_items
+
+        header_font = getattr(self.app, 'big_font', self.app.small_font)
+        section_font = getattr(self.app, 'small_font', self.app.font)
+        body_font = getattr(self.app, 'font', self.app.tiny_font)
+        tiny_font = getattr(self.app, 'tiny_font', body_font)
+
+        title_surf = header_font.render(panel_title, True, UI_THEME['gold'])
+        s.blit(title_surf, title_surf.get_rect(center=(gallery.centerx, gallery.y + 36)).topleft)
+
+        intro = 'Universo Chakana, reglas de run y memoria ritual en una sola vista.' if active_id in {'lore','atlas','history','symbols'} else 'Resumen canonico y tutorial jugable del sistema actual.'
+        intro_lines = wrap_lines(section_font, intro, gallery.w - 120, 2)
+        iy = gallery.y + 68
+        for line in intro_lines:
+            surf = section_font.render(line, True, UI_THEME['muted'])
+            s.blit(surf, surf.get_rect(center=(gallery.centerx, iy)).topleft)
+            iy += surf.get_height() + 4
+
+        text_x = gallery.x + 90
+        text_w = gallery.w - 180
+        y = iy + 18
+        for idx, paragraph in enumerate(paragraphs[:10]):
+            if y > gallery.bottom - 120:
+                break
+            font = section_font if idx == 0 else body_font
+            color = UI_THEME['text'] if idx < 3 else UI_THEME['muted']
+            lines = wrap_lines(font, str(paragraph), text_w, 3 if idx < 3 else 2)
+            for line in lines:
+                surf = font.render(line, True, color)
+                s.blit(surf, surf.get_rect(center=(gallery.centerx, y)).topleft)
+                y += surf.get_height() + 4
+            y += 10
+
+        tips = self._dynamic_hints_for_section(active_id)[:3]
+        fy = gallery.bottom - 86
+        for tip in tips:
+            surf = tiny_font.render(clamp_single_line(tiny_font, tip, gallery.w - 60), True, UI_THEME['gold'])
+            s.blit(surf, surf.get_rect(center=(gallery.centerx, fy)).topleft)
+            fy += 18
 
     def _wrap(self, text: str, width: int, max_lines: int = 3) -> list[str]:
         font = self.app.font
@@ -557,20 +637,11 @@ class CodexScreen:
                 s.blit(self.app.tiny_font.render(txt, True, UI_THEME["muted"]), (self.right_panel.x + 20, y))
                 y += 20
         else:
-            y = self.right_panel.y + 84
-            for line in list(active.get("items", [])):
-                for wrapped in self._wrap(f"- {line}", self.right_panel.w - 40, max_lines=3):
-                    s.blit(self.app.font.render(wrapped, True, UI_THEME["text"]), (self.right_panel.x + 20, y))
-                    y += 30
-                y += 8
-
-            for hint in self._dynamic_hints_for_section(active_id):
-                txt = UILabel.clamp(hint, self.app.small_font, self.right_panel.w - 40)
-                s.blit(self.app.small_font.render(txt, True, UI_THEME["muted"]), (self.right_panel.x + 20, y))
-                y += 28
+            self._draw_canon_text_panel(s, active_id, title)
 
         UIButton(self.back_btn, "Volver", role="default", premium=False).draw(s, self.app.font, hovered=self.back_btn.collidepoint(mouse))
         UIButton(self.tutorial_btn, "Iniciar Tutorial Guiado", role="end_turn", premium=True).draw(s, self.app.font, hovered=self.tutorial_btn.collidepoint(mouse))
+
 
 
 

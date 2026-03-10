@@ -416,11 +416,13 @@ class ShopScreen:
             pygame.draw.rect(s, UI_THEME["gold"] if on else UI_THEME["accent_violet"], tr, 2 if on else 1, border_radius=8)
             lbl = {"packs": "Packs", "relics": "Reliquias", "sell": "Vender"}.get(tid, tid)
             s.blit(self.app.tiny_font.render(lbl, True, UI_THEME["gold"] if on else UI_THEME["muted"]), (tr.x + 10, tr.y + 9))
+        run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
+        gold_value = int(run.get("gold", 0) or 0)
         gold_rect = anchor_top_right(self.merchant_rect, 320, 46, margin=18)
         pygame.draw.rect(s, UI_THEME["panel_2"], gold_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], gold_rect, 2, border_radius=10)
         s.blit(self.app.tiny_font.render("ORO DISPONIBLE", True, UI_THEME["muted"]), (gold_rect.x + 10, gold_rect.y + 4))
-        draw_icon_with_value(s, "gold", int(self.app.run_state["gold"]), UI_THEME["gold"], self.app.small_font, gold_rect.x + 10, gold_rect.y + 18, size=2)
+        draw_icon_with_value(s, "gold", gold_value, UI_THEME["gold"], self.app.small_font, gold_rect.x + 10, gold_rect.y + 18, size=2)
 
         face_box = pygame.Rect(self.merchant_rect.x + 18, self.merchant_rect.y + 56, 140, 110)
         pygame.draw.rect(s, UI_THEME["panel_2"], face_box, border_radius=10)
