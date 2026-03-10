@@ -3,6 +3,6 @@ batch=legendary_core
 cards=3
 layer_standard=background_base,subject_character,focus_object,magic_effects,integration_depth_pass
 composition_rule=background+subject+object+effects+integration
+cw_lore_10=cw_lore_10.png|refs=arbol sagrado gaia 01,arbol sagrado gaia 02,cóndor 01
 hip_cosmic_warrior_20=hip_cosmic_warrior_20.png|refs=auroras 01,cielos rituales 01,cielos rituales 02
 arc_060=arc_060.png|refs=caida revelacion 01,coronas 01,heraldos 01
-cw_lore_10=cw_lore_10.png|refs=arbol sagrado gaia 01,arbol sagrado gaia 02,cóndor 01

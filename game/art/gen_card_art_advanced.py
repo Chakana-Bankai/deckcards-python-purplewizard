@@ -6,6 +6,7 @@ from pathlib import Path
 import pygame
 
 from game.art import gen_card_art32
+from game.art.scene_engine import generate_scene_art
 
 # Keep version aligned with active generator while exposing an advanced entrypoint.
 GEN_CARD_ART_ADVANCED_VERSION = f"advanced_v4_narrative::{gen_card_art32.GEN_CARD_ART_VERSION}"
@@ -212,7 +213,7 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
     }.get(mode, 0)
 
     try:
-        result = gen_card_art32.generate(card_id, card_type, enriched_prompt, seed + seed_bump, out_path)
+        result = generate_scene_art(card_id, enriched_prompt, seed + seed_bump, out_path)
         comp = _narrative_pass(out_path, seed + seed_bump, mode, enriched_prompt)
         if isinstance(result, dict):
             result = dict(result)

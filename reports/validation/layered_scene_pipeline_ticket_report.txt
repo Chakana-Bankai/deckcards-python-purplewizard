@@ -1,0 +1,9 @@
+status=ok
+ticket=layered_scene_pipeline_replacement
+scope=frame_engine+scene_engine+reference_sampler+silhouette_builder+fx_layer
+runtime_policy=external_only_for_art_generation
+integration=game/art/gen_card_art_advanced.py now prefers scene_engine and keeps fallback safety via exception path
+samples=3
+sample_outputs=reports/validation/scene_pipeline_samples/cw_lore_10_art.png,reports/validation/scene_pipeline_samples/hip_cosmic_warrior_20_art.png,reports/validation/scene_pipeline_samples/arc_060_art.png
+smoke_beta_run=PASS
+next_step=inspect sample outputs and iterate silhouette/object logic before mass regeneration

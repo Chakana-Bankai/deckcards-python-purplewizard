@@ -1,7 +1,8 @@
 {
-  "gold": 128,
+  "gold": 108,
   "relics": [
-    "violet_seal"
+    "violet_seal",
+    "chakana_thread"
   ],
   "relic_slots_max": 8,
   "player": {
@@ -46,6 +47,10 @@
     "hg_lore_06",
     "of_lore_17",
     "of_lore_26",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana",
     "cw_lore_09",
     "hg_lore_11",
     "filo_astral",
@@ -133,7 +138,7 @@
           "3_0",
           "3_1"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "2_1",
@@ -159,7 +164,7 @@
           "3_2",
           "3_3"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "2_3",
@@ -187,7 +192,7 @@
           "4_0",
           "4_1"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "3_1",
@@ -199,7 +204,7 @@
         "next": [
           "4_0"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "3_2",
@@ -211,20 +216,20 @@
         "next": [
           "4_1"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "3_3",
         "col": 3,
         "x": 1116,
         "y": 684,
-        "type": "combat",
+        "type": "challenge",
         "biome": "hanan",
         "next": [
           "4_1",
           "4_0"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -273,9 +278,9 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 0,
-  "biome": "ukhu",
-  "xp": 16,
+  "biome_index": 1,
+  "biome": "kaypacha",
+  "xp": 22,
   "level": 2,
   "combats_won": 1,
   "tutorial_combats_won": 1,
@@ -300,31 +305,33 @@
     "recent_enemy_ids": [
       "sabueso_sombrio",
       "larva_del_vacio",
-      "acaro_de_tinta"
+      "acaro_de_tinta",
+      "monolito_fracturado",
+      "vigia_del_kaypacha"
     ],
     "recent_event_ids": [
-      "chakana_crossroads"
+      "chakana_crossroads",
+      "apacheta_offer"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
       "base_pack",
+      "base_pack",
       "base_pack"
     ],
     "visual_direction_tags": [
-      "biome:ukhu",
-      "mood:underworld"
+      "biome:kaypacha"
     ],
     "audio_direction_tags": [
       "ctx:map",
-      "biome:ukhu",
-      "mood:dark"
+      "biome:kaypacha"
     ]
   },
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
-  "last_node_type": "challenge",
+  "last_node_type": "combat",
   "levelup_pending": 1,
-  "current_node_id": "1_2",
-  "last_biome_seen": "ukhu",
-  "saved_at": 1773177085
+  "current_node_id": "2_2",
+  "last_biome_seen": "kaypacha",
+  "saved_at": 1773183142
 }
