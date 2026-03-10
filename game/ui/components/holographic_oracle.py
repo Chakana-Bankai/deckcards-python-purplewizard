@@ -80,7 +80,7 @@ class HolographicOracleUI:
         return lines[:max_lines]
 
     def render(self, surface: pygame.Surface, app):
-        phase = getattr(self, "phase", 0)
+        phase = pygame.time.get_ticks() * 0.015
         alpha = self._alpha()
         if alpha <= 0:
             return
@@ -113,8 +113,6 @@ class HolographicOracleUI:
             ex = 18 + ((i * 41 + int(phase * 24)) % max(1, panel.w - 56))
             ey = 16 + ((i * 29 + int(phase * 17)) % max(1, panel.h - 42))
             pygame.draw.arc(layer, (*accent_col, int(alpha * 0.09)), pygame.Rect(ex, ey, 28, 12), 0.1, 2.9, 1)
-
-        phase = pygame.time.get_ticks() * 0.015
         gy = int(50 + math.sin(phase) * 18)
         glitch_col = (252, 116, 132) if (is_archon or self.interference) else (190, 120, 255)
         pygame.draw.rect(layer, (*glitch_col, int(alpha * 0.12)), pygame.Rect(10, gy, panel.w - 20, 6), border_radius=3)
@@ -177,5 +175,6 @@ class HolographicOracleUI:
             surface.blit(noise, panel.topleft)
 
         surface.blit(layer, panel.topleft)
+
 
 

@@ -604,6 +604,41 @@ class App:
                     cand["taxonomy"] = miss
         return cards
 
+    def _fallback_card_lore(self, row: dict) -> str:
+        card_id = str(row.get("id", "carta")).strip().lower()
+        set_id = str(row.get("set", row.get("strategy", {}).get("set", "base")) or "base").strip().lower()
+        archetype = str(row.get("archetype", "cosmic_warrior") or "cosmic_warrior").strip().lower()
+        role = str(row.get("role", infer_card_role(row)) or "combo").strip().lower()
+        motif = str(row.get("motif", "chakana") or "chakana").replace("_", " ")
+        set_label = {
+            "base": "la Orden Chakana",
+            "hiperboria": "la memoria de Hiperborea",
+            "hiperborea": "la memoria de Hiperborea",
+            "arconte": "el dominio de los Arcontes",
+            "archon": "el dominio de los Arcontes",
+        }.get(set_id, "la Trama")
+        arch_label = {
+            "cosmic_warrior": "el Guerrero Cosmico",
+            "harmony_guardian": "el Guardian de Armonia",
+            "oracle_of_fate": "el Oraculo del Destino",
+            "archon": "el Arconte",
+        }.get(archetype, "el viajero ritual")
+        role_line = {
+            "attack": "corta el velo con decision",
+            "defense": "sostiene el pulso frente al abismo",
+            "energy": "abre cauces para una nueva respiracion",
+            "control": "ordena los ecos antes del siguiente signo",
+            "ritual": "convoca una forma sagrada que altera la Trama",
+            "combo": "espera el instante exacto para revelarse",
+        }.get(role, "resuena en silencio bajo la Chakana")
+        seed = sum((i + 1) * ord(ch) for i, ch in enumerate(card_id)) % 3
+        variants = [
+            f"{arch_label} escucha a {set_label} mientras {role_line}.",
+            f"Entre {set_label}, {arch_label.lower()} reconoce un motivo de {motif} y {role_line}.",
+            f"La carta guarda un eco de {set_label}: {arch_label.lower()} {role_line}.",
+        ]
+        return variants[seed]
+
     def _enrich_card_semantic_fields(self, card: dict) -> dict:
         """Ensure runtime card semantics exist for UI/art guidance without changing mechanics."""
         row = dict(card or {})
@@ -668,6 +703,15 @@ class App:
             row["author"] = "Mauricio"
         if not str(row.get("order", "")).strip():
             row["order"] = "Chakana"
+
+        lore_text = str(row.get("lore_text", "") or "").strip()
+        generic_lore = {
+            "la chakana sostiene el balance cosmico ante los arcontes y el eco de hiperborea.",
+            "sin lore ritual.",
+            "",
+        }
+        if lore_text.lower() in generic_lore:
+            row["lore_text"] = self._fallback_card_lore(row)
 
         if not str(row.get("taxonomy", "")).strip():
             effects = [str(e.get("type", "")).lower() for e in list(row.get("effects", []) or []) if isinstance(e, dict)]
@@ -1170,6 +1214,9 @@ class App:
         player["harmony_seal_used"] = False
         player["seal_ready"] = False
         player["seal_active"] = False
+        max_hp = max(1, int(player.get("max_hp", 1) or 1))
+        current_hp = int(player.get("hp", max_hp) or 0)
+        player["hp"] = max_hp if current_hp <= 0 else min(max_hp, current_hp)
         player.pop("selected_card", None)
         self.run_state["player"] = player
         self.run_state["combat_invalid_reason"] = ""

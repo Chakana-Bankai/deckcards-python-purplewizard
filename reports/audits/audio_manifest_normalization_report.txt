@@ -1,0 +1,17 @@
+PHASE 8 - AUDIO MANIFEST NORMALIZATION
+status: PASS
+canonical_manifest: game/data/audio_manifest.json
+compatibility_manifest: game/audio/audio_manifest.json
+export_music_manifest: game/data/audio_music_manifest.json
+export_stinger_manifest: game/data/audio_stinger_manifest.json
+export_sfx_manifest: game/data/audio_sfx_manifest.json
+export_ambient_manifest: game/data/audio_ambient_manifest.json
+mirror_manifest: game/data/bgm_manifest.json
+normalization_rules:
+- runtime now prefers game/data/audio_manifest.json
+- legacy game/audio/audio_manifest.json remains as compatibility mirror
+- file paths are normalized with relative_path for portable loading
+- type-specific export manifests are generated from the canonical manifest
+- bgm manifest now points to normalized relative paths instead of machine-absolute paths
+- items_normalized: 45
+- bgm_entries_exported: 13

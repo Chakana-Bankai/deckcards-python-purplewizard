@@ -17,7 +17,7 @@ from engine.audio.music.music_transition_manager import MusicTransitionManager
 from engine.audio.music.music_layer_controller import MusicLayerController
 from engine.audio.mixer.audio_bus_manager import AudioBusManager
 from engine.audio.mixer.ducking_controller import DuckingController
-from game.core.paths import assets_dir
+from game.core.paths import assets_dir, data_dir
 
 
 @dataclass(frozen=True)
@@ -44,7 +44,12 @@ class AudioEngine:
         self.sfx_dir = self.generated_root / "sfx"
         self.stingers_dir = self.generated_root / "stingers"
         self.studio_dir = self.generated_root / "studio"
-        self.manifest_path = root / "audio_manifest.json"
+        self.legacy_manifest_path = root / "audio_manifest.json"
+        self.manifest_path = data_dir() / "audio_manifest.json"
+        self.music_manifest_path = data_dir() / "audio_music_manifest.json"
+        self.stinger_manifest_path = data_dir() / "audio_stinger_manifest.json"
+        self.sfx_manifest_path = data_dir() / "audio_sfx_manifest.json"
+        self.ambient_manifest_path = data_dir() / "audio_ambient_manifest.json"
         self.curated_audio_root = assets_dir() / "curated" / "audio"
         self._ensure_dirs()
 
@@ -87,6 +92,8 @@ class AudioEngine:
             "combat_standard": "combat",
             "boss_battle": "combat_boss",
             "reward_reveal": "victory",
+            "credits": "victory",
+            "ending": "victory",
         }
 
         self.stingers = {
@@ -165,7 +172,21 @@ class AudioEngine:
             "dialogue": "shop",
             "defeat": "defeat",
             "victory": "victory",
+            "credits": "victory",
         }
+        self.direction_profiles = {
+            "menu": {"plane": "chakana", "faction": "studio", "intensity": "low", "anti_repeat_group": "menu", "tags": ("mystical", "identity", "calm")},
+            "map": {"plane": "kay_pacha", "faction": "chakana", "intensity": "low_mid", "anti_repeat_group": "map", "tags": ("travel", "wonder", "exploration")},
+            "combat": {"plane": "fractura", "faction": "neutral", "intensity": "mid", "anti_repeat_group": "combat", "tags": ("tactical", "ritual", "pressure")},
+            "boss": {"plane": "fractura", "faction": "archon", "intensity": "high", "anti_repeat_group": "boss", "tags": ("ceremonial", "threat", "climax")},
+            "shop": {"plane": "sanctuary", "faction": "guide", "intensity": "low", "anti_repeat_group": "shop", "tags": ("calm", "ritual", "intimate")},
+            "reward": {"plane": "echo", "faction": "chakana", "intensity": "mid", "anti_repeat_group": "reward", "tags": ("uplift", "discovery", "release")},
+            "dialogue": {"plane": "codex", "faction": "oracle", "intensity": "low", "anti_repeat_group": "dialogue", "tags": ("hologram", "lore", "focus")},
+            "defeat": {"plane": "umbral", "faction": "archon", "intensity": "low", "anti_repeat_group": "defeat", "tags": ("fall", "echo", "loss")},
+            "victory": {"plane": "ascension", "faction": "chakana", "intensity": "mid", "anti_repeat_group": "victory", "tags": ("closure", "gratitude", "transcendence")},
+            "credits": {"plane": "ascension", "faction": "studio", "intensity": "low_mid", "anti_repeat_group": "credits", "tags": ("reflection", "gratitude", "continuation")},
+        }
+        self._recent_state_history: list[str] = []
 
     def _ensure_dirs(self):
         self.bgm_layers_dir = self.generated_root / "bgm_layers"
@@ -194,24 +215,134 @@ class AudioEngine:
         self._logged_once.add(key)
         print(text)
 
-    def _load_manifest(self) -> dict:
-        if not self.manifest_path.exists():
-            return {"version": self.VERSION, "generated_at": int(time.time()), "items": {}}
-        try:
-            data = json.loads(self.manifest_path.read_text(encoding="utf-8"))
-            if isinstance(data, dict):
-                data.setdefault("version", self.VERSION)
-                data.setdefault("generated_at", int(time.time()))
-                data.setdefault("items", {})
-                return data
-        except Exception:
-            pass
+    def _new_manifest_payload(self) -> dict:
         return {"version": self.VERSION, "generated_at": int(time.time()), "items": {}}
 
+    def _manifest_candidates(self) -> tuple[Path, ...]:
+        return (self.manifest_path, self.legacy_manifest_path)
+
+    def _resolve_manifest_file_path(self, meta: dict) -> Path:
+        raw = str((meta or {}).get("relative_path", "") or "").strip()
+        if raw:
+            candidate = Path(raw)
+            if not candidate.is_absolute():
+                candidate = Path.cwd() / candidate
+            return candidate.expanduser()
+        raw = str((meta or {}).get("file_path", "") or "").strip()
+        if raw:
+            return Path(raw).expanduser()
+        return Path()
+
+    def _serialize_manifest_path(self, file_path: Path) -> tuple[str, str]:
+        absolute = file_path.resolve()
+        try:
+            relative = absolute.relative_to(Path.cwd().resolve())
+            rel_str = str(relative).replace('\\', '/')
+        except ValueError:
+            rel_str = str(absolute).replace('\\', '/')
+        return str(absolute), rel_str
+
+    def _normalize_manifest_payload(self, data: dict) -> dict:
+        payload = self._new_manifest_payload()
+        if isinstance(data, dict):
+            payload.update({k: v for k, v in data.items() if k != "items"})
+            items = data.get("items", {})
+            if isinstance(items, dict):
+                payload["items"] = items
+        payload.setdefault("items", {})
+        items = payload.get("items", {})
+        if isinstance(items, dict):
+            for meta in items.values():
+                if isinstance(meta, dict):
+                    resolved = self._resolve_manifest_file_path(meta)
+                    if str(resolved):
+                        absolute, relative = self._serialize_manifest_path(resolved)
+                        meta["file_path"] = absolute
+                        meta["relative_path"] = relative
+        payload["version"] = self.VERSION
+        payload["generated_at"] = int(time.time())
+        return payload
+
+    def _load_manifest(self) -> dict:
+        for candidate in self._manifest_candidates():
+            if not candidate.exists():
+                continue
+            try:
+                data = json.loads(candidate.read_text(encoding="utf-8"))
+                if isinstance(data, dict):
+                    return self._normalize_manifest_payload(data)
+            except Exception:
+                continue
+        return self._new_manifest_payload()
+
     def _save_manifest(self):
-        self._manifest["version"] = self.VERSION
-        self._manifest["generated_at"] = int(time.time())
-        self.manifest_path.write_text(json.dumps(self._manifest, indent=2, ensure_ascii=False), encoding="utf-8")
+        self._manifest = self._normalize_manifest_payload(self._manifest)
+        self.manifest_path.parent.mkdir(parents=True, exist_ok=True)
+        payload = json.dumps(self._manifest, indent=2, ensure_ascii=False)
+        self.manifest_path.write_text(payload, encoding="utf-8")
+        self.legacy_manifest_path.write_text(payload, encoding="utf-8")
+        self._export_runtime_manifests()
+
+    def _manifest_entry(self, meta: dict) -> dict:
+        if not isinstance(meta, dict):
+            return {}
+        file_path = self._resolve_manifest_file_path(meta)
+        absolute, relative = self._serialize_manifest_path(file_path) if str(file_path) else ("", "")
+        return {
+            "track_id": str(meta.get("track_id", "") or ""),
+            "type": str(meta.get("type", "") or ""),
+            "context": str(meta.get("context", "") or ""),
+            "variant": str(meta.get("variant", "") or ""),
+            "source": str(meta.get("source", "generated") or "generated"),
+            "state": str(meta.get("state", "valid") or "valid"),
+            "file_path": absolute,
+            "relative_path": relative,
+        }
+
+    def _write_export_manifest(self, path: Path, payload: dict):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    def _export_runtime_manifests(self):
+        items = self._manifest.get("items", {})
+        if not isinstance(items, dict):
+            return
+
+        music_items = {}
+        stinger_items = {}
+        sfx_items = {}
+        ambient_items = {}
+
+        for item_id, meta in items.items():
+            entry = self._manifest_entry(meta)
+            if not entry:
+                continue
+            item_type = entry.get("type", "")
+            if item_type == "bgm":
+                music_items[item_id] = entry
+            elif item_type == "stinger":
+                stinger_items[item_id] = entry
+            elif item_type == "sfx":
+                sfx_items[item_id] = entry
+            elif item_type == "ambient":
+                ambient_items[item_id] = entry
+
+        self._write_export_manifest(
+            self.music_manifest_path,
+            {"version": self.VERSION, "source": "game/data/audio_manifest.json", "items": music_items},
+        )
+        self._write_export_manifest(
+            self.stinger_manifest_path,
+            {"version": self.VERSION, "source": "game/data/audio_manifest.json", "items": stinger_items},
+        )
+        self._write_export_manifest(
+            self.sfx_manifest_path,
+            {"version": self.VERSION, "source": "game/data/audio_manifest.json", "items": sfx_items},
+        )
+        self._write_export_manifest(
+            self.ambient_manifest_path,
+            {"version": self.VERSION, "source": "game/data/audio_manifest.json", "items": ambient_items},
+        )
 
     def _stable_seed(self, key: str) -> int:
         return abs(hash(f"{self.VERSION}:{key}")) % (2**31 - 1)
@@ -460,7 +591,7 @@ class AudioEngine:
             return None
         if str(meta.get("version", "")) != self.VERSION:
             return None
-        p = Path(str(meta.get("file_path", ""))).expanduser()
+        p = self._resolve_manifest_file_path(meta)
         if p.exists():
             return p
         return None
@@ -473,7 +604,8 @@ class AudioEngine:
             "context": context,
             "variant": variant,
             "seed": int(seed),
-            "file_path": str(file_path),
+            "file_path": self._serialize_manifest_path(file_path)[0],
+            "relative_path": self._serialize_manifest_path(file_path)[1],
             "generation_date": int(time.time()),
             "version": self.VERSION,
             "state": "valid",
@@ -571,7 +703,7 @@ class AudioEngine:
         changed = False
         for item_id in list(items.keys()):
             meta = items.get(item_id, {})
-            p = Path(str((meta or {}).get("file_path", "")))
+            p = self._resolve_manifest_file_path(meta)
             if item_id not in valid_ids or not p.exists():
                 del items[item_id]
                 changed = True
@@ -679,9 +811,32 @@ class AudioEngine:
             return "defeat"
         if ctx.startswith("reward"):
             return "reward"
+        if ctx.startswith("credits") or ctx.startswith("ending"):
+            return "credits"
         if ctx.startswith("dialogue") or ctx.startswith("event") or ctx.startswith("lore"):
             return "dialogue"
         return "menu"
+
+    def get_direction_profile(self, state: str | None = None) -> dict:
+        key = str(state or self.current_state or "menu").lower()
+        return dict(self.direction_profiles.get(key, self.direction_profiles["menu"]))
+
+    def _register_state_history(self, state: str):
+        key = str(state or "menu").lower()
+        self._recent_state_history.append(key)
+        self._recent_state_history = self._recent_state_history[-6:]
+
+    def _anti_repeat_variant(self, ctx: str, variant: str) -> str:
+        state = self._state_from_context(ctx)
+        profile = self.get_direction_profile(state)
+        group = str(profile.get("anti_repeat_group", state))
+        recent = [item for item in self._recent_state_history[-3:] if item == group]
+        if len(recent) >= 2:
+            variants = self.context_specs[ctx].variants
+            for alt in variants:
+                if alt != variant:
+                    return alt
+        return variant
 
     def play_state(self, state: str, context_override: str | None = None):
         target_state = str(state or "menu").lower()
@@ -838,7 +993,7 @@ class AudioEngine:
         except Exception:
             pass
 
-        var = self._choose_variant(ctx)
+        var = self._anti_repeat_variant(ctx, self._choose_variant(ctx))
         path = self._ensure_bgm_variant(ctx, var, force=False)
         path = self._resolve_layer_playback(ctx, var, path)
         fade_ms = int(transition.get("fade_in_ms", 450) or 450)
@@ -856,6 +1011,7 @@ class AudioEngine:
                     fade_in_ms=max(0, fade_ms),
                 )
             )
+            self._register_state_history(self.current_state)
             self.status = "playing"
             self.play_ambient(self._ambient_from_music_context(ctx))
             print(f"[Audio] state:{self.current_state} context:{ctx} variant:{var} layer:{self.current_layer} file:{path.name}")
@@ -1004,7 +1160,7 @@ class AudioEngine:
             f"state={self.current_state} context={self.current_context} variant={self.current_variant} layer={self.current_layer} ambient={self.current_ambient} "
             f"path={self.current_path} status={self.status} mode={self._layer_mode} intensity={self._music_intensity:.2f} "
             f"layers=pad:{int(ls['pad'])},bass:{int(ls['bass'])},melody:{int(ls['melody'])},percussion:{int(ls['percussion'])},fx:{int(ls['fx'])} "
-            f"music_vol={self._music_volume:.2f} sfx_vol={self._sfx_volume:.2f} stinger_vol={self._stinger_volume:.2f} ambient_vol={self._ambient_volume:.2f} "
+            f"music_vol={self._music_volume:.2f} sfx_vol={self._sfx_volume:.2f} stinger_vol={self._stinger_volume:.2f} ambient_vol={self._ambient_volume:.2f} profile={self.get_direction_profile()} "
             f"duck={self._duck_music_amount:.2f} buses={mx['buses']} ducking={mx['ducking']} muted={self._muted}"
         )
 

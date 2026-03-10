@@ -1,0 +1,10 @@
+PHASE 1 - INTRO SCENE AUDIT
+status: PASS
+root_cause_duplicate_text: curated logo render + title text render were both visible in the intro timeline
+root_cause_purple_rectangle: heavy logo/brand layer under title contributed to boxed visual clutter
+timing_issue: intro duration was too short at 4.0 seconds
+fix_summary:
+- bumped manifest/version to studio_intro_cosmic_v3
+- extended intro duration to 5.8 seconds
+- removed duplicate curated logo render beneath title
+- softened background nebula and delayed title reveal for cleaner pacing

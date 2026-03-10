@@ -1,0 +1,10 @@
+RUN STABILITY QUICKFIX
+status: PARTIAL_PASS
+implemented:
+- retry_current_combat now restores player HP to max_hp if retry occurs with hp <= 0
+- transient combat statuses continue to reset before encounter rebuild
+- boss attack payloads are scaled by 0.90 for pattern attacks and enemy deck attacks
+pending_next:
+- validate retry flow from real defeat screen with negative HP state
+- review boss ids/tier data coverage if some bosses are defined outside enemies.json
+- continue with archon naming, enemy card HUD, shop rewards modal, repeated lore text, and duplicated directories audit

@@ -17,6 +17,8 @@ class EndScreen:
         self.rng = random.Random(1337)
         self._particles = []
         self.victory_phase = "lore"
+        self.credits_scroll_y = 0.0
+        self.credits_speed = 48.0
 
         self.victory_lore = [
             "El Monolito Fracturado cae ante Chakana.",
@@ -30,16 +32,24 @@ class EndScreen:
         ]
 
         self.credits_lines = [
-            "CHAKANA : PURPLE WIZARD",
-            "",
-            "CHAKANA STUDIO",
-            "",
-            "Creado por:",
-            "Mauricio Olivares Chacana",
-            "",
-            "Inspirado en la Cosmovision Andina",
-            "",
-            "Dedicado a Tomas",
+            {"text": "CHAKANA : PURPLE WIZARD", "role": "title"},
+            {"text": "", "role": "space"},
+            {"text": "Team Chakana Studio", "role": "section"},
+            {"text": "Mauricio Olivares Chacana", "role": "body"},
+            {"text": "", "role": "space"},
+            {"text": "Chakana Engine Coming Soon", "role": "section"},
+            {"text": "Arquitectura ritual, combate y codex en evolucion.", "role": "body"},
+            {"text": "", "role": "space"},
+            {"text": "John... Mi Guia", "role": "section"},
+            {"text": "Presencia, escucha y direccion en la Trama.", "role": "body"},
+            {"text": "", "role": "space"},
+            {"text": "Un saludo especial para", "role": "dedication"},
+            {"text": "Tomas", "role": "dedication_name"},
+            {"text": "Mi hijo.", "role": "dedication"},
+            {"text": "Te amo con todo mi corazon.", "role": "dedication"},
+            {"text": "", "role": "space"},
+            {"text": "Gracias por recorrer este plano.", "role": "final"},
+            {"text": "La Chakana permanece encendida.", "role": "final"},
         ]
 
         self.buttons = {
@@ -52,12 +62,18 @@ class EndScreen:
     def on_enter(self):
         self.t = 0.0
         self.idx = 0
+        self.credits_scroll_y = 900.0
+        self.credits_speed = 48.0
         self.can_continue_defeat = bool((not self.victory) and getattr(self.app, "run_state", None))
         if self.victory:
             self.victory_phase = "lore"
             self.banner.set(self.victory_lore[0], 2.0)
+            if hasattr(self.app, "music"):
+                self.app.music.play_for("credits")
         else:
             self.banner.set(self.defeat_lore[0], 2.0)
+            if hasattr(self.app, "music"):
+                self.app.music.play_for("defeat")
         self._reset_particles()
 
     def _reset_particles(self):
@@ -76,6 +92,7 @@ class EndScreen:
     def _advance_victory_phase(self):
         if self.victory_phase == "lore":
             self.victory_phase = "credits"
+            self.credits_scroll_y = 900.0
             self.banner.set("", 0.1)
         else:
             self.app.goto_menu()
@@ -110,6 +127,9 @@ class EndScreen:
                 self.banner.set(self.victory_lore[self.idx], 2.8)
             if (not self.victory) and self.idx < len(self.defeat_lore):
                 self.banner.set(self.defeat_lore[self.idx], 2.8)
+
+        if self.victory and self.victory_phase == "credits":
+            self.credits_scroll_y -= self.credits_speed * dt
 
         if not self.victory:
             for p in self._particles:
@@ -147,10 +167,41 @@ class EndScreen:
                 labels = {"primary": "Ver creditos", "secondary": "Volver al menu", "menu": "Volver al menu"}
             else:
                 title = "Creditos"
-                s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (840, 230))
-                for i, line in enumerate(self.credits_lines):
-                    col = UI_THEME["gold"] if line in {"CHAKANA : PURPLE WIZARD", "CHAKANA STUDIO", "Creado por:", "Inspirado en la Cosmovision Andina", "Dedicado a Tomas"} else UI_THEME["text"]
-                    s.blit(self.app.font.render(line, True, col), (620, 308 + i * 42))
+                s.blit(self.app.big_font.render(title, True, UI_THEME["gold"]), (820, 210))
+                clip = pygame.Rect(panel.x + 90, panel.y + 120, panel.w - 180, panel.h - 190)
+                old_clip = s.get_clip()
+                s.set_clip(clip)
+                y = int(self.credits_scroll_y)
+                for item in self.credits_lines:
+                    role = item.get("role", "body")
+                    line = item.get("text", "")
+                    if role == "space":
+                        y += 28
+                        continue
+                    if role == "title":
+                        font = self.app.big_font
+                        col = UI_THEME["gold"]
+                    elif role == "section":
+                        font = self.app.small_font
+                        col = (232, 216, 166)
+                    elif role == "dedication_name":
+                        font = self.app.big_font
+                        col = (244, 230, 194)
+                    elif role == "dedication":
+                        font = self.app.small_font
+                        col = (228, 220, 244)
+                    elif role == "final":
+                        font = self.app.small_font
+                        col = (188, 160, 234)
+                    else:
+                        font = self.app.font
+                        col = UI_THEME["text"]
+                    surf = font.render(line, True, col)
+                    s.blit(surf, surf.get_rect(center=(panel.centerx, y)))
+                    y += 54 if role in {"title", "dedication_name"} else 40
+                s.set_clip(old_clip)
+                hint = self.app.font.render("Desplazamiento ritual en curso", True, (180, 164, 214))
+                s.blit(hint, hint.get_rect(center=(panel.centerx, panel.bottom - 86)))
                 labels = {"primary": "Finalizar", "secondary": "Volver al menu", "menu": "Volver al menu"}
         else:
             title = "Derrota"

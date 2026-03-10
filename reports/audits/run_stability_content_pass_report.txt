@@ -1,0 +1,14 @@
+RUN STABILITY + CONTENT PRESENTATION PASS
+status: PARTIAL_PASS
+implemented:
+- enemy deck card names now use lore-facing Spanish names
+- boss enemy names are prefixed as Arconte in combat HUD when applicable
+- combat HUD labels now show Carta actual / Proxima carta for enemy deck visibility
+- repeated generic card lore now falls back to set/archetype/role-aware ritual lore text
+- pack opening selection now uses 3 ritual packs in vertical randomized presentation
+- pack labels normalized to Sobre del Origen / Sobre de Hiperborea / Sobre del Velo
+pending:
+- audit/create missing Archon art assets
+- review shop screen for premium final visual pass
+- inspect remaining duplicated directories and runtime paths
+- verify all archon/boss names across codex and other screens

@@ -13,12 +13,12 @@ class PackOpeningScreen:
         self.reward_data = reward_data if isinstance(reward_data, dict) else {}
         self.source = str(source or "reward")
 
-        self.msg = "Elige un sobre premium"
-        self.packs = [pygame.Rect(80 + i * 390, 160, 360, 280) for i in range(3)]
+        self.msg = "Elige 1 de 3 sobres rituales"
+        self.packs = [pygame.Rect(96, 160 + i * 242, 420, 220) for i in range(3)]
         self.pack_defs = [
             {
                 "id": "base_pack",
-                "title": "Base Pack",
+                "title": "Sobre del Origen",
                 "subtitle": "Fundamentos",
                 "desc": "Cartas base para sostener consistencia.",
                 "flavor": "El mazo aprende a respirar antes del riesgo.",
@@ -26,7 +26,7 @@ class PackOpeningScreen:
             },
             {
                 "id": "hiperborea_pack",
-                "title": "Hiperborea Pack",
+                "title": "Sobre de Hiperborea",
                 "subtitle": "Conocimiento polar",
                 "desc": "Tecnicas antiguas de precision y rito.",
                 "flavor": "Sellos helados emergen desde civilizaciones olvidadas.",
@@ -34,7 +34,7 @@ class PackOpeningScreen:
             },
             {
                 "id": "mystery_pack",
-                "title": "Mystery Pack",
+                "title": "Sobre del Velo",
                 "subtitle": "Umbral incierto",
                 "desc": "Mezcla impredecible con potencial alto.",
                 "flavor": "El vacio entrega poder a cambio de incertidumbre.",
@@ -77,6 +77,7 @@ class PackOpeningScreen:
         self.pool = list(pool_all)
 
     def on_enter(self):
+        self.app.rng.shuffle(self.pack_defs)
         forced_id = self._pack_alias.get(self.forced_pack_id, self.forced_pack_id)
         if forced_id:
             idx = next((i for i, x in enumerate(self.pack_defs) if str(x.get("id", "")).lower() == forced_id), None)
@@ -200,7 +201,7 @@ class PackOpeningScreen:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             if self.cards:
                 self.cards = []
-                self.msg = "Elige un sobre premium"
+                self.msg = "Elige 1 de 3 sobres rituales"
             else:
                 self.selected_pack = None
                 self.app.goto_map()
@@ -211,7 +212,7 @@ class PackOpeningScreen:
             if self.back_rect.collidepoint(pos):
                 if self.cards:
                     self.cards = []
-                    self.msg = "Elige un sobre premium"
+                    self.msg = "Elige 1 de 3 sobres rituales"
                 else:
                     self.selected_pack = None
                     self.app.goto_map()
@@ -240,7 +241,7 @@ class PackOpeningScreen:
         _ = dt
 
     def _render_pack_preview(self, s):
-        rect = pygame.Rect(1288, 160, 580, 340)
+        rect = pygame.Rect(1288, 160, 580, 520)
         pygame.draw.rect(s, UI_THEME["panel_2"], rect, border_radius=14)
         pygame.draw.rect(s, UI_THEME["accent_violet"], rect, 2, border_radius=14)
         s.blit(self.app.small_font.render("Preview de sobre", True, UI_THEME["gold"]), (rect.x + 14, rect.y + 12))
@@ -294,12 +295,12 @@ class PackOpeningScreen:
                 pygame.draw.rect(glow, (*pdef["color"], 66), glow.get_rect(), border_radius=20)
                 s.blit(glow, (rect.x - 9, rect.y - 9))
 
-            s.blit(self.app.big_font.render(pdef["title"], True, UI_THEME["text"]), (rect.x + 48, rect.y + 42))
-            s.blit(self.app.small_font.render(pdef["subtitle"], True, pdef["color"]), (rect.x + 48, rect.y + 96))
-            s.blit(self.app.tiny_font.render(pdef["desc"], True, UI_THEME["muted"]), (rect.x + 48, rect.y + 132))
-            s.blit(self.app.tiny_font.render(pdef["flavor"], True, UI_THEME["text"]), (rect.x + 48, rect.y + 156))
+            s.blit(self.app.big_font.render(pdef["title"], True, UI_THEME["text"]), (rect.x + 38, rect.y + 28))
+            s.blit(self.app.small_font.render(pdef["subtitle"], True, pdef["color"]), (rect.x + 38, rect.y + 78))
+            s.blit(self.app.tiny_font.render(pdef["desc"], True, UI_THEME["muted"]), (rect.x + 38, rect.y + 116))
+            s.blit(self.app.tiny_font.render(pdef["flavor"], True, UI_THEME["text"]), (rect.x + 38, rect.y + 140))
             if selected:
-                s.blit(self.app.tiny_font.render("Seleccionado", True, UI_THEME["gold"]), (rect.x + 48, rect.y + 248))
+                s.blit(self.app.tiny_font.render("Seleccionado", True, UI_THEME["gold"]), (rect.x + 38, rect.y + 184))
 
         if self.cards:
             for i, card in enumerate(self.cards):
@@ -323,7 +324,7 @@ class PackOpeningScreen:
                 )
 
         self._render_pack_preview(s)
-        self.preview.render(s, pygame.Rect(1288, 510, 580, 430), self.selected_card or self.hover_card, app=self.app)
+        self.preview.render(s, pygame.Rect(1288, 700, 580, 250), self.selected_card or self.hover_card, app=self.app)
 
         enabled = self._confirm_enabled()
         pygame.draw.rect(s, UI_THEME["violet"] if enabled else (82, 78, 104), self.confirm_rect, border_radius=10)

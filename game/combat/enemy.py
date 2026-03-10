@@ -1,5 +1,7 @@
 from dataclasses import dataclass, field
 
+from game.systems.enemy_deck_system import lore_enemy_card_name
+
 
 def _intent_phrase(intent: dict) -> str:
     kind = intent.get("intent", "attack")
@@ -50,7 +52,7 @@ class Enemy:
         c = dict(card or {})
         c.setdefault("intent", "attack")
         c.setdefault("id", str(c.get("name", "enemy_card")).lower().replace(" ", "_"))
-        c.setdefault("name", str(c.get("id", "enemy_card")).replace("_", " ").title())
+        c["name"] = lore_enemy_card_name(str(c.get("name", c.get("id", "enemy_card"))))
         if c.get("intent") in {"attack", "defend"} and not isinstance(c.get("value"), list):
             v = int(c.get("value", 6) or 6)
             c["value"] = [v, v]

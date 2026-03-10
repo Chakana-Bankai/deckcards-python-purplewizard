@@ -1,0 +1,12 @@
+STUDIO INTRO + CREDITS VALIDATION
+status: PASS
+validated:
+- intro text duplication removed
+- purple boxed look reduced by removing stacked logo layer
+- intro pacing extended for readability
+- credits screen now scrolls in a dedicated ritual panel
+- dedication block added for Tomas
+- credits music routed through audio engine credits context
+notes:
+- credits currently use victory-family playback via credits alias for safe migration
+- next gameplay stability pass can proceed on top of this audio/intro base

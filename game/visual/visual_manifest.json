@@ -1,6 +1,6 @@
 {
   "version": "visual_v2",
-  "generated_at": 1773113500,
+  "generated_at": 1773116785,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -3425,7 +3425,7 @@
     "relics:solar_tumi:18x18:rare": {
       "asset_id": "solar_tumi",
       "category": "relics",
-      "seed": 2040553964,
+      "seed": 860001104,
       "palette": {
         "deep_purple": [
           28,
@@ -3457,17 +3457,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\solar_tumi_18x18_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772987684,
+      "version": "visual_v2",
+      "generated_at": 1773116517,
       "size": [
         18,
         18
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:solar_tumi:16x16:rare": {
       "asset_id": "solar_tumi",
       "category": "relics",
-      "seed": 2040553964,
+      "seed": 860001104,
       "palette": {
         "deep_purple": [
           28,
@@ -3499,12 +3501,14 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\solar_tumi_16x16_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772987688,
+      "version": "visual_v2",
+      "generated_at": 1773116541,
       "size": [
         16,
         16
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:void_mirror:128x128:rare": {
       "asset_id": "void_mirror",
@@ -6381,6 +6385,50 @@
       "context": "enemy_vidente_caido",
       "version": "visual_v2",
       "generated_at": 1773113500,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_ave_de_ceniza:514x76:enemy_ave_de_ceniza": {
+      "asset_id": "enemy_ave_de_ceniza",
+      "category": "avatar",
+      "seed": 686428043,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_ave_de_ceniza_514x76_enemy_ave_de_ceniza.png"
+      ],
+      "context": "enemy_ave_de_ceniza",
+      "version": "visual_v2",
+      "generated_at": 1773116785,
       "size": [
         514,
         76

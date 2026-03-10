@@ -1,0 +1,96 @@
+{
+  "version": "chakana_audio_v6",
+  "source": "game/data/audio_manifest.json",
+  "items": {
+    "sfx_card_play": {
+      "track_id": "sfx_card_play",
+      "type": "sfx",
+      "context": "card_play",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\card_play.wav",
+      "relative_path": "game/audio/generated/sfx/card_play.wav"
+    },
+    "sfx_card_invalid": {
+      "track_id": "sfx_card_invalid",
+      "type": "sfx",
+      "context": "card_invalid",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\card_invalid.wav",
+      "relative_path": "game/audio/generated/sfx/card_invalid.wav"
+    },
+    "sfx_button_click": {
+      "track_id": "sfx_button_click",
+      "type": "sfx",
+      "context": "button_click",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\button_click.wav",
+      "relative_path": "game/audio/generated/sfx/button_click.wav"
+    },
+    "sfx_gold_gain": {
+      "track_id": "sfx_gold_gain",
+      "type": "sfx",
+      "context": "gold_gain",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\gold_gain.wav",
+      "relative_path": "game/audio/generated/sfx/gold_gain.wav"
+    },
+    "sfx_xp_gain": {
+      "track_id": "sfx_xp_gain",
+      "type": "sfx",
+      "context": "xp_gain",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\xp_gain.wav",
+      "relative_path": "game/audio/generated/sfx/xp_gain.wav"
+    },
+    "sfx_damage_hit": {
+      "track_id": "sfx_damage_hit",
+      "type": "sfx",
+      "context": "damage_hit",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\damage_hit.wav",
+      "relative_path": "game/audio/generated/sfx/damage_hit.wav"
+    },
+    "sfx_heal": {
+      "track_id": "sfx_heal",
+      "type": "sfx",
+      "context": "heal",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\heal.wav",
+      "relative_path": "game/audio/generated/sfx/heal.wav"
+    },
+    "sfx_seal_activate": {
+      "track_id": "sfx_seal_activate",
+      "type": "sfx",
+      "context": "seal_activate",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\seal_activate.wav",
+      "relative_path": "game/audio/generated/sfx/seal_activate.wav"
+    },
+    "sfx_relic_pick": {
+      "track_id": "sfx_relic_pick",
+      "type": "sfx",
+      "context": "relic_pick",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\relic_pick.wav",
+      "relative_path": "game/audio/generated/sfx/relic_pick.wav"
+    }
+  }
+}

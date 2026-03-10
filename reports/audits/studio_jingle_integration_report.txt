@@ -1,0 +1,8 @@
+PHASE 3 - OFFICIAL STUDIO JINGLE
+status: PASS
+runtime_hook: game/audio/audio_engine.py::play_studio_intro()
+playback_path: studio_intro -> stinger studio_intro
+direction:
+- concise mystical studio sting
+- controlled ducking against music buses
+- preserved compatibility through existing SFX entry point

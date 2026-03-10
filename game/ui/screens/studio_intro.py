@@ -15,15 +15,15 @@ from game.ui.system.typography import TITLE_FONT
 class StudioIntroScreen:
     """Minimal cosmic studio intro with cached starfield and Chakana line reveal."""
 
-    MANIFEST_VERSION = "studio_intro_cosmic_v2"
+    MANIFEST_VERSION = "studio_intro_cosmic_v3"
 
-    def __init__(self, app, next_fn, fade_in: float = 1.2, hold: float = 1.5, fade_out: float = 1.2):
+    def __init__(self, app, next_fn, fade_in: float = 1.45, hold: float = 2.15, fade_out: float = 1.4):
         self.app = app
         self.next_fn = next_fn
         self.fade_in = float(fade_in)
         self.hold = float(hold)
         self.fade_out = float(fade_out)
-        self.duration = 4.0
+        self.duration = 5.8
         self.t = 0.0
         self.source = "generated"
         self.seed = 1337
@@ -82,13 +82,13 @@ class StudioIntroScreen:
         valid = isinstance(manifest, dict) and manifest.get("version") == self.MANIFEST_VERSION
         if valid and not force_refresh:
             self.seed = int(manifest.get("seed", 1337) or 1337)
-            self.duration = float(manifest.get("duration", 4.0) or 4.0)
+            self.duration = float(manifest.get("duration", 5.8) or 5.8)
             self.source = "cache"
             print("[studio_intro] source=cache")
             return
 
         self.seed = int(time.time()) % 100000
-        self.duration = 4.0
+        self.duration = 5.8
         self.source = "generated"
         self._save_manifest(
             {
@@ -169,10 +169,9 @@ class StudioIntroScreen:
 
     def _draw_bg(self, surface: pygame.Surface, w: int, h: int):
         surface.fill((2, 2, 4))
-        # Optional subtle purple nebula tint, very soft and sparse.
         nebula = pygame.Surface((w, h), pygame.SRCALPHA)
-        pygame.draw.ellipse(nebula, (88, 44, 128, 12), (int(w * 0.10), int(h * 0.18), int(w * 0.46), int(h * 0.34)))
-        pygame.draw.ellipse(nebula, (74, 40, 120, 10), (int(w * 0.54), int(h * 0.42), int(w * 0.34), int(h * 0.26)))
+        pygame.draw.ellipse(nebula, (64, 38, 108, 10), (int(w * 0.12), int(h * 0.16), int(w * 0.42), int(h * 0.28)))
+        pygame.draw.ellipse(nebula, (38, 78, 118, 10), (int(w * 0.50), int(h * 0.40), int(w * 0.28), int(h * 0.22)))
         surface.blit(nebula, (0, 0))
 
     def _draw_starfield(self, surface: pygame.Surface, w: int, h: int):
@@ -269,7 +268,7 @@ class StudioIntroScreen:
 
     def _draw_title(self, surface: pygame.Surface, cx: int, cy: int):
         # Symbol fades slightly while text appears.
-        start = 2.45
+        start = 2.85
         alpha = int(255 * max(0.0, min(1.0, (self.t - start) / 0.85)))
         if alpha <= 0:
             return
@@ -279,17 +278,8 @@ class StudioIntroScreen:
         label = pygame.Surface(text.get_size(), pygame.SRCALPHA)
         label.blit(text, (0, 0))
         label.set_alpha(alpha)
-        tr = label.get_rect(center=(cx, cy + 92))
+        tr = label.get_rect(center=(cx, cy + 118))
         surface.blit(label, tr.topleft)
-
-        if self._curated_logo is not None:
-            max_w = min(720, int(surface.get_width() * 0.45))
-            scale = max(1.0, self._curated_logo.get_width())
-            logo_h = max(40, int(self._curated_logo.get_height() * (max_w / scale)))
-            logo = pygame.transform.smoothscale(self._curated_logo, (max_w, logo_h)).copy()
-            logo.set_alpha(int(118 * (alpha / 255.0)))
-            lrect = logo.get_rect(center=(cx, cy + 146))
-            surface.blit(logo, lrect.topleft)
 
         # Slight purple particle dust around letters.
         dust = pygame.Surface((tr.w + 90, tr.h + 40), pygame.SRCALPHA)
@@ -326,7 +316,7 @@ class StudioIntroScreen:
             self._draw_title(surface, cx, cy)
 
             # Clean fade to menu.
-            tail = max(0.0, min(1.0, (self.t - 3.55) / 0.45))
+            tail = max(0.0, min(1.0, (self.t - 5.05) / 0.70))
             if tail > 0:
                 fade = pygame.Surface((w, h), pygame.SRCALPHA)
                 fade.fill((0, 0, 0, int(240 * tail)))

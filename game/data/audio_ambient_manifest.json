@@ -1,0 +1,56 @@
+{
+  "version": "chakana_audio_v6",
+  "source": "game/data/audio_manifest.json",
+  "items": {
+    "ambient_gaia_mountain_wind": {
+      "track_id": "ambient_gaia_mountain_wind",
+      "type": "ambient",
+      "context": "gaia_mountain_wind",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\ambient\\gaia_mountain_wind.wav",
+      "relative_path": "game/audio/generated/ambient/gaia_mountain_wind.wav"
+    },
+    "ambient_temple_resonance": {
+      "track_id": "ambient_temple_resonance",
+      "type": "ambient",
+      "context": "temple_resonance",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\ambient\\temple_resonance.wav",
+      "relative_path": "game/audio/generated/ambient/temple_resonance.wav"
+    },
+    "ambient_archon_void_drones": {
+      "track_id": "ambient_archon_void_drones",
+      "type": "ambient",
+      "context": "archon_void_drones",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\ambient\\archon_void_drones.wav",
+      "relative_path": "game/audio/generated/ambient/archon_void_drones.wav"
+    },
+    "ambient_shop_ambience": {
+      "track_id": "ambient_shop_ambience",
+      "type": "ambient",
+      "context": "shop_ambience",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\ambient\\shop_ambience.wav",
+      "relative_path": "game/audio/generated/ambient/shop_ambience.wav"
+    },
+    "ambient_codex_ambience": {
+      "track_id": "ambient_codex_ambience",
+      "type": "ambient",
+      "context": "codex_ambience",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\ambient\\codex_ambience.wav",
+      "relative_path": "game/audio/generated/ambient/codex_ambience.wav"
+    }
+  }
+}

@@ -81,7 +81,7 @@ class ShopScreen:
         pid = str(pack_id or "").lower().strip()
         labels = {
             "base_pack": "Sobre del Origen",
-            "hiperborea_pack": "Sobre de Hiperb?rea",
+            "hiperborea_pack": "Sobre de Hiperborea",
             "mystery_pack": "Sobre del Velo",
         }
         return labels.get(pid, "Sobre Ritual")

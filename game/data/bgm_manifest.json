@@ -1,58 +1,84 @@
 {
-  "version": "bgm_manifest_v2",
-  "source": "game/audio/audio_manifest.json",
+  "version": "bgm_manifest_v3",
+  "source": "game/data/audio_manifest.json",
   "items": {
     "menu": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/menu_a.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/menu_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "menu_a",
+      "source": "generated"
     },
     "map_kaypacha": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/map_kay_a.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/map_kay_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "map_kay_a",
+      "source": "generated"
     },
     "map_hanan": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/map_hanan_a.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/map_hanan_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "map_hanan_a",
+      "source": "generated"
     },
     "map_ukhu": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/map_ukhu_a.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/map_ukhu_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "map_ukhu_a",
+      "source": "generated"
     },
     "combat_kaypacha": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/combat_a.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/combat_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "combat_a",
+      "source": "generated"
     },
     "combat_ukhu": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/combat_a.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/combat_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "combat_a",
+      "source": "generated"
     },
     "combat_hanan": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/combat_elite_a.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/combat_elite_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "combat_elite_a",
+      "source": "generated"
     },
     "boss": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/combat_boss_a.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/combat_boss_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "combat_boss_a",
+      "source": "generated"
     },
     "shop": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/shop_a.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/shop_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "shop_a",
+      "source": "generated"
     },
     "event": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/shop_b.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/shop_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "shop_a",
+      "source": "generated"
     },
     "reward": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/victory_a.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/victory_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "victory_a",
+      "source": "generated"
     },
     "victory": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/victory_b.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/victory_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "victory_a",
+      "source": "generated"
     },
     "defeat": {
-      "path": "C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/audio/generated/bgm/defeat_a.wav",
-      "mode": "audio_engine_v6_synced"
+      "path": "game/audio/generated/bgm/defeat_a.wav",
+      "mode": "audio_engine_manifest_v8",
+      "track_id": "defeat_a",
+      "source": "generated"
     }
   }
 }

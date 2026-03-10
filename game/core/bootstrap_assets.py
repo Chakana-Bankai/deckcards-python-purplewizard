@@ -281,45 +281,16 @@ def ensure_placeholder_assets(card_ids: list[str], enemy_ids: list[str]) -> None
 
 
 def ensure_bgm_assets(force_regen: bool = False) -> dict:
-    a_dir = assets_dir()
-    manifest: dict[str, dict] = {}
-    for name in BGM_TRACKS:
-        base_path = a_dir / f"music/{name}.wav"
-        generated_meta = synth_ambient_music(base_path, name, force=force_regen)
-        profile = _profile(name)
-        entry = generated_meta if generated_meta else {
-            "track": name,
-            "base_track": name,
-            "generator_version": GEN_BGM_VERSION,
-            "mood_profile": profile.get("mood_profile", "menu_map_lore"),
-            "character": profile.get("character", "chill_mystic"),
-            "bpm": int(profile.get("bpm", 0) or 0),
-            "intro_bars": int(profile.get("intro", 8) or 8),
-            "loop_bars": int(profile.get("loop", 12) or 12),
-            "total_bars": int((profile.get("intro", 8) or 8) + (profile.get("loop", 12) or 12)),
-        }
-        variants = []
-        variant_count = max(1, int(LOOP_VARIANTS.get(name, 1)))
-        for idx in range(1, variant_count + 1):
-            variant_key = f"{name}__v{idx}"
-            variant_rel = f"music/{variant_key}.wav"
-            variant_path = a_dir / variant_rel
-            synth_ambient_music(variant_path, variant_key, force=force_regen)
-            if variant_path.exists():
-                variants.append(variant_rel)
-        if variants:
-            entry["variants"] = variants
-        manifest[name] = entry
+    """Compatibility wrapper that routes legacy BGM bootstrap through AudioEngine."""
+    from game.audio.audio_engine import get_audio_engine
 
-    manifest_path = data_dir() / "bgm_manifest.json"
-    if manifest:
-        existing = {}
-        try:
-            existing = json.loads(manifest_path.read_text(encoding="utf-8"))
-            if not isinstance(existing, dict):
-                existing = {}
-        except Exception:
-            existing = {}
-        existing.update(manifest)
-        atomic_write_json(manifest_path, existing)
-    return manifest
+    engine = get_audio_engine()
+    manifest = engine.ensure_core_assets(force=force_regen)
+    if not isinstance(manifest, dict):
+        return {}
+    items = manifest.get("items", {}) if isinstance(manifest.get("items", {}), dict) else {}
+    return {
+        item_id: meta
+        for item_id, meta in items.items()
+        if isinstance(meta, dict) and str(meta.get("type", "")) == "bgm"
+    }

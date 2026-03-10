@@ -20,10 +20,44 @@ ENEMY_DECK_ALIAS = {
 }
 
 
+ENEMY_CARD_NAME_MAP = {
+    "void strike": "Golpe del Vacio",
+    "shadow hex": "Hexe Sombrio",
+    "corrupt shield": "Escudo Corrupto",
+    "entropy bite": "Mordida Entropica",
+    "void choke": "Asfixia del Vacio",
+    "umbral drain": "Drenaje Umbral",
+    "arcane rust": "Oxido Arcano",
+    "void bolt": "Rayo del Vacio",
+    "dark ward": "Guardia Oscura",
+    "entropy mark": "Marca Entropica",
+    "control field": "Campo de Control",
+    "hex surge": "Oleada Hex",
+    "guardian wall": "Muro del Guardian",
+    "crimson lance": "Lanza Carmesi",
+    "archon order": "Mandato del Arconte",
+    "rupture wave": "Ola de Ruptura",
+    "null decree": "Decreto Nulo",
+    "abyssal hymn": "Himno Abisal",
+    "void coronation": "Coronacion del Vacio",
+    "black sun": "Sol Negro",
+}
+
+
+def lore_enemy_card_name(raw_name: str) -> str:
+    name = str(raw_name or "").strip()
+    if not name:
+        return "Presagio Arconte"
+    low = name.lower()
+    if low in ENEMY_CARD_NAME_MAP:
+        return ENEMY_CARD_NAME_MAP[low]
+    return name.replace("_", " ").title()
+
+
 def _normalize_card(card: dict[str, Any]) -> dict[str, Any]:
     c = dict(card or {})
     c.setdefault("id", str(c.get("name", "enemy_card")).strip().lower().replace(" ", "_"))
-    c.setdefault("name", str(c.get("id", "enemy_card")).replace("_", " ").title())
+    c["name"] = lore_enemy_card_name(str(c.get("name", c.get("id", "enemy_card"))))
     c.setdefault("intent", "attack")
     if c.get("intent") in {"attack", "defend"} and not isinstance(c.get("value"), list):
         v = int(c.get("value", 6) or 6)
@@ -38,7 +72,7 @@ def _cards_from_intents(enemy_row: dict[str, Any]) -> list[dict[str, Any]]:
             continue
         card = dict(it)
         card.setdefault("id", f"{str(enemy_row.get('id', 'enemy')).lower()}_intent_{i}")
-        card.setdefault("name", str(it.get("label", card["id"]).strip() or card["id"]))
+        card["name"] = lore_enemy_card_name(str(it.get("name", it.get("label", card["id"])).strip() or card["id"]))
         out.append(_normalize_card(card))
     return out
 

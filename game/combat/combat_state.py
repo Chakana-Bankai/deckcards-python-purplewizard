@@ -151,6 +151,21 @@ class CombatState:
         return by_id
 
     def _spawn_enemies(self, enemy_ids, enemies_data=None):
+        def _scale_enemy_attack_payload(cards_or_pattern, factor: float):
+            scaled = []
+            for card in list(cards_or_pattern or []):
+                if not isinstance(card, dict):
+                    continue
+                cooked = dict(card)
+                if str(cooked.get("intent", "")).lower() == "attack":
+                    value = cooked.get("value", [0, 0])
+                    if isinstance(value, list):
+                        cooked["value"] = [max(1, int(round(float(v or 0) * factor))) for v in value]
+                    else:
+                        cooked["value"] = max(1, int(round(float(value or 0) * factor)))
+                scaled.append(cooked)
+            return scaled
+
         raw = enemies_data if enemies_data else load_json(data_dir() / "enemies.json", default=[DEFAULT_ENEMY])
         if not isinstance(raw, list) or not raw:
             raw = [DEFAULT_ENEMY]
@@ -170,16 +185,18 @@ class CombatState:
             tier = str(item.get("tier", "common")).lower().strip()
             # Keep data-driven HP while clamping outliers for fair pacing.
             if tier in {"normal", "common"}:
-                hp = max(30, min(60, int(hp)))
+                hp = max(18, min(35, int(hp)))
             elif tier == "elite":
-                hp = max(72, min(130, int(hp)))
+                hp = max(34, min(78, int(hp)))
             elif tier == "boss":
                 # Phase 3-4 final tuning: keep mechanics, reduce HP sponge feeling.
                 hp = int(max(1, hp) * 0.75)
-                hp = max(120, min(210, int(hp)))
+                hp = max(68, min(100, int(hp)))
             else:
                 hp = int(max(20, hp))
             pattern = item.get("pattern") or [{"intent": "attack", "value": [5, 5]}]
+            if tier == "boss":
+                pattern = _scale_enemy_attack_payload(pattern, 0.90)
             en = Enemy(item.get("id", "dummy"), item.get("name_key", "enemy_voidling_name"), hp, hp, pattern)
             en.enemy_type = str(item.get("enemy_type", "criatura") or "criatura").lower()
             en.ai_profile = str(item.get("ai_profile", "balanced") or "balanced").lower()
@@ -190,6 +207,8 @@ class CombatState:
             combat_deck = item.get("enemy_deck", []) if isinstance(item.get("enemy_deck", []), list) else []
             if not combat_deck:
                 combat_deck = resolve_enemy_deck(item)
+            if tier == "boss" and combat_deck:
+                combat_deck = _scale_enemy_attack_payload(combat_deck, 0.90)
             if combat_deck:
                 en.set_combat_deck(combat_deck, self.rng)
             en.fable_lesson_key = item.get("fable_lesson_key", "duda")

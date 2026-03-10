@@ -1,0 +1,10 @@
+PHASE 10 - SOUNDTRACK DIRECTION HOOKS
+status: PASS
+implemented:
+- direction_profiles per state/context
+- credits state support
+- anti-repeat recent state history for variant selection
+- debug_state now exposes active direction profile
+ready_for_next_pass:
+- faction/plane-specific curation can now build on state profiles
+- credits can diverge from victory musically without changing runtime API

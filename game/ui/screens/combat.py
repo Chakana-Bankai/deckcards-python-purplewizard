@@ -1158,6 +1158,8 @@ class CombatScreen:
             status_line = pygame.Rect(info_col.x, block_line.bottom + 2, info_col.w, max(16, info_col.bottom - (block_line.bottom + 2)))
 
             enemy_name = self.app.loc.t(str(e.name_key or e.id))
+            if (self.is_boss or str(getattr(e, "tier", "")).lower() == "boss") and "Arconte" not in enemy_name:
+                enemy_name = f"Arconte {enemy_name}"
             intent_name = str(e.current_intent().get("label", "..."))
             enemy_name_line = self._wrap_panel_text(enemy_name, title.w - 4, max_lines=1)[0]
             s.blit(f_label.render(enemy_name_line, True, UI_THEME["text"]), (title.x, title.y))
@@ -1191,10 +1193,10 @@ class CombatScreen:
             cur_card = str((getattr(e, "current_enemy_card", None) or {}).get("name", "")).strip()
             nxt_card = str((getattr(e, "next_enemy_card", None) or {}).get("name", "")).strip()
             if cur_card:
-                cur_line = self._wrap_panel_text(f"Juega: {cur_card}", info_col.w - 8, max_lines=1)[0]
+                cur_line = self._wrap_panel_text(f"Carta actual: {cur_card}", info_col.w - 8, max_lines=1)[0]
                 s.blit(self.app.tiny_font.render(cur_line, True, UI_THEME["gold"]), (info_col.x + 2, intent_chip.bottom + 2))
             if nxt_card:
-                nxt_line = self._wrap_panel_text(f"Sigue: {nxt_card}", info_col.w - 8, max_lines=1)[0]
+                nxt_line = self._wrap_panel_text(f"Proxima carta: {nxt_card}", info_col.w - 8, max_lines=1)[0]
                 s.blit(self.app.tiny_font.render(nxt_line, True, UI_THEME["muted"]), (info_col.x + 2, intent_chip.bottom + 18))
             blk_col = UI_THEME["block"] if enemy_block > 0 else UI_THEME["muted"]
             block_chip = pygame.Rect(block_line.x, block_line.y, max(132, int(block_line.w * 0.46)), block_line.h)

@@ -1,0 +1,16 @@
+PHASE 9 - AUDIO RUNTIME MIGRATION
+status: PASS
+canonical_runtime_loader: game/audio/audio_engine.py
+compatibility_wrappers:
+- game/audio/music_manager.py -> AudioEngine
+- game/audio/sfx_manager.py -> AudioEngine
+- game/services/audio_pipeline.py -> AudioEngine.ensure_core_assets()
+- game/core/bootstrap_assets.py.ensure_bgm_assets() -> AudioEngine.ensure_core_assets()
+migration_notes:
+- legacy bootstrap BGM generation path now routes through AudioEngine instead of writing its own manifest format
+- canonical manifest remains game/data/audio_manifest.json
+- exported manifests remain available for music/stinger/sfx/ambient consumers
+- game/audio/audio_manifest.json is preserved as compatibility mirror during migration
+residual_legacy:
+- game/data/bgm_manifest.json still exists as a mirror for older tooling
+- studio intro keeps its own small manifest for visual intro cache only

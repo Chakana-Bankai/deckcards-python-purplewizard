@@ -4,7 +4,7 @@ from game.combat.card import CardDef, CardInstance
 
 PACK_ECONOMY = {
     "base_pack": {
-        "title": "Base Pack",
+        "title": "Sobre del Origen",
         "lore": "Fundamentos estables para escalar la run.",
         "expected_value": {
             "cards_total": 5,
@@ -14,7 +14,7 @@ PACK_ECONOMY = {
         },
     },
     "hiperborea_pack": {
-        "title": "Hiperborea Pack",
+        "title": "Sobre de Hiperborea",
         "lore": "Tecnicas polares y lectura ancestral.",
         "expected_value": {
             "cards_total": 5,
@@ -24,7 +24,7 @@ PACK_ECONOMY = {
         },
     },
     "mystery_pack": {
-        "title": "Mystery Pack",
+        "title": "Sobre del Velo",
         "lore": "Apuesta tactica con mezcla incierta.",
         "expected_value": {
             "cards_total": 5,
