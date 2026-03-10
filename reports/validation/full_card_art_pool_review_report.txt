@@ -1,0 +1,8 @@
+status=ok
+total_cards=180
+present=180
+missing=0
+avg_file_size=88656
+min_file_size=75129
+max_file_size=112684
+review=full_pool_regenerated_high_work_resolution

@@ -1,18 +1,18 @@
 {
-  "gold": 84,
+  "gold": 36,
   "relics": [
     "violet_seal",
     "puma_pulse"
   ],
   "relic_slots_max": 8,
   "player": {
-    "hp": 8,
+    "hp": 46,
     "max_hp": 60,
     "block": 2,
     "energy": 4,
     "rupture": 0,
     "statuses": {
-      "focus": 1
+      "focus": 2
     },
     "harmony_current": 0,
     "harmony_max": 10,
@@ -111,6 +111,15 @@
     "cw_lore_09",
     "hg_lore_11",
     "filo_astral",
+    "portal_de_la_chakana",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana",
     "portal_de_la_chakana"
   ],
   "map": [
@@ -337,10 +346,10 @@
   ],
   "biome_index": 2,
   "biome": "hanan",
-  "xp": 36,
-  "level": 4,
-  "combats_won": 2,
-  "tutorial_combats_won": 2,
+  "xp": 50,
+  "level": 6,
+  "combats_won": 7,
+  "tutorial_combats_won": 7,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
@@ -348,9 +357,10 @@
     "music_muted": false
   },
   "discovered_sets": [
-    "base"
+    "base",
+    "hiperboria"
   ],
-  "hiperboria_unlocked": false,
+  "hiperboria_unlocked": true,
   "tutorial": {
     "active": false,
     "completed": false,
@@ -367,11 +377,11 @@
       "runa_errante"
     ],
     "recent_event_ids": [
-      "puma_trial",
-      "condor_vision",
       "ayni_pact",
       "ayni_pact",
-      "ayni_pact"
+      "ayni_pact",
+      "ayni_pact",
+      "puma_trial"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
@@ -392,10 +402,10 @@
   },
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
-  "last_node_type": "challenge",
-  "levelup_pending": 1,
+  "last_node_type": "combat",
+  "levelup_pending": 0,
   "current_node_id": "4_1",
   "last_biome_seen": "hanan",
-  "saved_at": 1773171810,
+  "saved_at": 1773172753,
   "event_flags": {}
 }

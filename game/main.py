@@ -2166,9 +2166,9 @@ class App:
         perfect_bonus = 5 if self.current_combat and getattr(self.current_combat, "player_damage_taken", 0) <= 0 else 0
 
         if node_type == "boss":
-            self.apply_run_rewards(xp=100 + perfect_bonus, source="combat_boss")
+            self.apply_run_rewards(xp=112 + perfect_bonus, source="combat_boss")
             self._apply_post_combat_recovery("boss")
-            boss_gold = int(round(self.rng.randint(120, 180) * 1.3))
+            boss_gold = int(round(self.rng.randint(132, 190) * 1.3))
             self.goto_reward(mode="boss_pack", gold=boss_gold)
             return
 
@@ -2176,11 +2176,11 @@ class App:
         self.run_state["tutorial_combats_won"] = int(self.run_state.get("tutorial_combats_won", 0)) + 1
         self._refresh_set_unlock_state()
         if node_type == "challenge":
-            bonus_gold = int(round(self.rng.randint(40, 70) * 1.3))
-            xp_gain = 40 + perfect_bonus
+            bonus_gold = int(round(self.rng.randint(46, 78) * 1.3))
+            xp_gain = 46 + perfect_bonus
         else:
-            bonus_gold = int(round(self.rng.randint(20, 35) * 1.3))
-            xp_gain = self.rng.randint(15, 25) + perfect_bonus
+            bonus_gold = int(round(self.rng.randint(28, 44) * 1.3))
+            xp_gain = self.rng.randint(20, 30) + perfect_bonus
 
         self.apply_run_rewards(xp=xp_gain, source=f"combat_{node_type}")
         self._apply_post_combat_recovery(node_type)

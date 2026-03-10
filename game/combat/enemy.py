@@ -124,6 +124,18 @@ class Enemy:
             if kind in {"attack", "break"}:
                 score -= 0.2
 
+        # Boss pacing: keep threat, but reduce streaky double-attack pressure
+        # and favor mixed turns so the fight feels tactical instead of spiky.
+        if str(self.enemy_type or "").lower() == "arconte":
+            if kind in {"attack", "break"}:
+                score -= 0.22
+            if kind in {"defend", "buff", "debuff", "channel"}:
+                score += 0.18
+            if int(self.block or 0) <= 4 and kind == "defend":
+                score += 0.24
+            if hp_ratio <= 0.45 and kind == "heal":
+                score += 0.28
+
         if rng is not None:
             score += float(rng.random()) * 0.25
         return score
@@ -141,6 +153,18 @@ class Enemy:
         hand.sort(key=lambda c: self._card_score(c, rng), reverse=True)
         max_play = 2 if str(self.enemy_type or "").lower() in {"guardian", "arconte"} else 1
         picks = hand[:max_play]
+
+        if str(self.enemy_type or "").lower() == "arconte" and len(picks) > 1:
+            first_kind = str(picks[0].get("intent", "")).lower()
+            second_kind = str(picks[1].get("intent", "")).lower()
+            if first_kind in {"attack", "break"} and second_kind in {"attack", "break"}:
+                alt = next(
+                    (c for c in hand[2:] if str(c.get("intent", "")).lower() not in {"attack", "break"}),
+                    None,
+                )
+                if alt is not None:
+                    picks[1] = alt
+
         picked_ids = {id(x) for x in picks}
         self.combat_hand = [c for c in self.combat_hand if id(c) not in picked_ids]
 

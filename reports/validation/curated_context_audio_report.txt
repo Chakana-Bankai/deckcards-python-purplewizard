@@ -1,2 +1,2 @@
 status=ok
-combat_boss_a=combat_boss_a.wav
+studio_intro=studio_intro.wav
