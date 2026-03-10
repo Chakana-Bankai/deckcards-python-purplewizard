@@ -1,0 +1,24 @@
+CHAKANA ROOT CLEANUP MASTER REPORT (PHASE 8)
+
+generated_at=2026-03-09T21:33:34
+scope=final validation after root cleanup + asset canonicalization + compatibility layer
+
+[final_checks]
+- root_minimal: PASS (noncritical_root_files=[])
+- manifest_canonical_paths: PASS (canonical=60/60)
+- manifest_missing_assets: PASS (missing=0)
+- avatar_hologram_presence: PASS (curated_master_triplet_exists)
+- bgm_required_contexts: PASS (missing=[])
+- legacy_cards_active_duplication_reduced: PASS (legacy_cards_png=0 runtime_cards_png=240)
+- legacy_music_active_duplication_reduced: PASS (legacy_music_wav=0)
+- qa_clean_state: PASS (qa_no_actions=True audio_ok=True art_ok=True)
+
+[metrics]
+- root_files=10
+- art_manifest_items=60
+- runtime_cards_png=240
+- legacy_cards_png=0
+- legacy_music_wav=0
+
+[status]
+result=PASS
