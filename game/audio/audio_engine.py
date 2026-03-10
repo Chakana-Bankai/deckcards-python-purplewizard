@@ -17,7 +17,7 @@ from engine.audio.music.music_transition_manager import MusicTransitionManager
 from engine.audio.music.music_layer_controller import MusicLayerController
 from engine.audio.mixer.audio_bus_manager import AudioBusManager
 from engine.audio.mixer.ducking_controller import DuckingController
-from game.core.paths import assets_dir, data_dir
+from game.core.paths import audio_dir, audio_generated_dir, curated_audio_dir, data_dir
 
 
 @dataclass(frozen=True)
@@ -37,20 +37,19 @@ class AudioEngine:
     SAMPLE_RATE = 32000
 
     def __init__(self):
-        root = Path(__file__).resolve().parent
-        self.audio_root = root
-        self.generated_root = root / "generated"
+        self.audio_root = audio_dir()
+        self.generated_root = audio_generated_dir()
         self.bgm_dir = self.generated_root / "bgm"
         self.sfx_dir = self.generated_root / "sfx"
         self.stingers_dir = self.generated_root / "stingers"
         self.studio_dir = self.generated_root / "studio"
-        self.legacy_manifest_path = root / "audio_manifest.json"
+        self.legacy_manifest_path = self.audio_root / "audio_manifest.json"
         self.manifest_path = data_dir() / "audio_manifest.json"
         self.music_manifest_path = data_dir() / "audio_music_manifest.json"
         self.stinger_manifest_path = data_dir() / "audio_stinger_manifest.json"
         self.sfx_manifest_path = data_dir() / "audio_sfx_manifest.json"
         self.ambient_manifest_path = data_dir() / "audio_ambient_manifest.json"
-        self.curated_audio_root = assets_dir() / "curated" / "audio"
+        self.curated_audio_root = curated_audio_dir()
         self._ensure_dirs()
 
         # Compact context set: fewer tracks, clearer identity.

@@ -11,7 +11,7 @@ from game.art.gen_art32 import GEN_ART_VERSION, GEN_BIOME_VERSION, chakana_point
 from game.art.gen_avatar_chakana import GEN_AVATAR_VERSION, render_avatar
 from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
 from game.content.card_art_generator import export_prompts
-from game.core.paths import assets_dir, data_dir
+from game.core.paths import assets_dir, data_dir, sprite_category_dir
 from game.core.safe_io import atomic_write_json, load_json
 
 
@@ -71,7 +71,7 @@ class AssetPipeline:
 
     def ensure_card_art(self, settings: dict, cards: list[dict], prompt_data: dict, manifest_items: dict, progress_cb=None):
         mode = "force_regen" if settings.get("force_regen_art", False) else "missing_only"
-        a = assets_dir() / "sprites" / "cards"
+        a = sprite_category_dir("cards")
         total = max(1, len(cards))
         prompt_lookup = self._prompt_lookup(prompt_data)
         for i, c in enumerate(cards, 1):
@@ -93,7 +93,7 @@ class AssetPipeline:
 
     def ensure_enemy_portraits(self, settings: dict, enemies: list[dict], manifest_items: dict, progress_cb=None):
         mode = "force_regen" if settings.get("force_regen_art", False) else "missing_only"
-        a = assets_dir() / "sprites" / "enemies"
+        a = sprite_category_dir("enemies")
         total = max(1, len(enemies))
         for i, e in enumerate(enemies, 1):
             eid = e.get("id", "dummy")
@@ -112,7 +112,7 @@ class AssetPipeline:
         mode = "force_regen" if settings.get("force_regen_art", False) else "missing_only"
         total = max(1, len(guide_types))
         for i, gt in enumerate(guide_types, 1):
-            path = assets_dir() / "sprites" / "guides" / f"{gt}.png"
+            path = sprite_category_dir("guides") / f"{gt}.png"
             self._safe_gen(f"guide:{gt}", path, lambda gt=gt, mode=mode: self.guide_gen.generate(gt, mode=mode), manifest_items, version=GEN_ART_VERSION)
             if progress_cb:
                 progress_cb(f"Generando guias ({i}/{total})", 0.74 + 0.06 * (i / total))
@@ -151,7 +151,7 @@ class AssetPipeline:
 
     def ensure_starter_banners(self, settings: dict, starters: list[dict], manifest_items: dict, progress_cb=None):
         mode = "force_regen" if settings.get("force_regen_art", False) else "missing_only"
-        out_dir = assets_dir() / "sprites" / "starters"
+        out_dir = sprite_category_dir("starters")
         out_dir.mkdir(parents=True, exist_ok=True)
         total = max(1, len(starters))
         for i, st in enumerate(starters, 1):
@@ -202,11 +202,11 @@ class AssetPipeline:
                 self.bg_gen.get_layers(biome, 2026)
             except Exception as exc:
                 print(f"[safe_gen] using placeholder for biome:{biome} due to {exc}")
-                bdir = a / "sprites" / "biomes" / biome.lower().replace(" ", "_")
+                bdir = sprite_category_dir("biomes") / biome.lower().replace(" ", "_")
                 bdir.mkdir(parents=True, exist_ok=True)
                 for name in ["bg", "mg", "fg"]:
                     self._placeholder_png(bdir / f"{name}.png", size=(1920, 610), label=biome)
-            bdir = a / "sprites" / "biomes" / biome.lower().replace(" ", "_")
+            bdir = sprite_category_dir("biomes") / biome.lower().replace(" ", "_")
             biome_manifest[biome] = {"bg": str(bdir / "bg.png"), "mg": str(bdir / "mg.png"), "fg": str(bdir / "fg.png"), "generator_version": GEN_BIOME_VERSION}
             if progress_cb:
                 progress_cb(f"Generando biomas ({biome})", 0.80 + 0.10 * (i / total))
@@ -215,8 +215,8 @@ class AssetPipeline:
 
 
     def ensure_avatar(self, write_manifest: bool = False):
-        p_preview = assets_dir() / "sprites" / "avatar" / "chakana.png"
-        p_player = assets_dir() / "sprites" / "player" / "chakana_avatar.png"
+        p_preview = sprite_category_dir("avatar") / "chakana.png"
+        p_player = sprite_category_dir("player") / "chakana_avatar.png"
         p_preview.parent.mkdir(parents=True, exist_ok=True)
         p_player.parent.mkdir(parents=True, exist_ok=True)
         try:
@@ -245,11 +245,11 @@ class AssetPipeline:
         self.ensure_avatar(write_manifest=write_manifests)
         a = assets_dir()
         (a / "music").mkdir(parents=True, exist_ok=True)
-        (a / "sprites" / "cards").mkdir(parents=True, exist_ok=True)
-        (a / "sprites" / "enemies").mkdir(parents=True, exist_ok=True)
-        (a / "sprites" / "biomes").mkdir(parents=True, exist_ok=True)
-        (a / "sprites" / "guides").mkdir(parents=True, exist_ok=True)
-        (a / "sprites" / "starters").mkdir(parents=True, exist_ok=True)
+        sprite_category_dir("cards").mkdir(parents=True, exist_ok=True)
+        sprite_category_dir("enemies").mkdir(parents=True, exist_ok=True)
+        sprite_category_dir("biomes").mkdir(parents=True, exist_ok=True)
+        sprite_category_dir("guides").mkdir(parents=True, exist_ok=True)
+        sprite_category_dir("starters").mkdir(parents=True, exist_ok=True)
         (a / "sfx" / "generated").mkdir(parents=True, exist_ok=True)
 
         cards = content.get("cards", [])

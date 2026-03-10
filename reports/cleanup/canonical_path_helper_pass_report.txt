@@ -1,0 +1,47 @@
+CHAKANA CANONICAL PATH HELPER PASS
+==================================
+
+scope=low_risk_support_modules
+goal=reduce duplicated path construction without changing runtime flow
+
+updated_files=
+- game/core/paths.py
+- game/visual/portrait_pipeline.py
+- game/visual/visual_engine.py
+- game/audio/audio_engine.py
+- game/ui/system/icons.py
+- game/ui/system/fonts.py
+
+new_helpers=
+- curated_assets_dir()
+- curated_avatars_dir()
+- curated_audio_dir()
+- fonts_dir()
+- sprites_dir()
+- sprite_category_dir(category)
+- visual_dir()
+- visual_generated_dir()
+- visual_generated_category_dir(category)
+- audio_dir()
+- audio_generated_dir()
+- audio_generated_category_dir(category)
+- assets_archive_dir()
+- art_reference_dir()
+
+normalized_modules=
+- portrait_pipeline now resolves roots through canonical helpers
+- visual_engine now uses game/core/paths visual roots
+- audio_engine now uses canonical audio roots from game/core/paths
+- icons loader now uses canonical generated icon root
+- fonts loader now uses canonical fonts root
+
+expected_effect=
+- fewer duplicated path literals
+- safer future cleanup of duplicated directories
+- clearer ownership of curated/generated/archive roots
+- less ambiguity between support code and runtime paths
+
+non_goals=
+- no asset moves
+- no manifest rewrite
+- no gameplay/runtime flow redesign

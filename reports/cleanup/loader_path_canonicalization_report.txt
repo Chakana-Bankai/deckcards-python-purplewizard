@@ -1,0 +1,24 @@
+LOADER / PATH CANONICALIZATION PASS
+==================================
+
+scope=runtime_support_loaders
+goal=align generation and runtime sprite paths with canonical helpers
+
+updated_files=
+- game/services/asset_pipeline.py
+- game/ui/render.py
+
+changes=
+- asset_pipeline now uses sprite_category_dir() for cards, enemies, guides, starters, biomes, avatar and player outputs
+- runtime support directory creation now points to canonical sprite category roots
+- AssetManager sprite lookup now resolves through sprite_category_dir(category)
+
+expected_effect=
+- generation and runtime loading now agree on sprite roots
+- fewer duplicated string paths for sprites
+- lower risk when cleaning duplicated asset directories later
+
+non_goals=
+- no asset move
+- no manifest migration yet
+- no gameplay or render hierarchy change

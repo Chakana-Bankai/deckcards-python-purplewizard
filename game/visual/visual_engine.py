@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pygame
 
+from game.core.paths import visual_dir, visual_generated_dir
 from .generators import (
     AvatarGenerator,
     BiomeGenerator,
@@ -30,8 +31,8 @@ class VisualEngine:
     }
 
     def __init__(self):
-        self.root = Path(__file__).resolve().parent
-        self.generated_root = self.root / "generated"
+        self.root = visual_dir()
+        self.generated_root = visual_generated_dir()
         self.manifest_path = self.root / "visual_manifest.json"
         self._ensure_dirs()
         self.manifest = self._load_manifest()

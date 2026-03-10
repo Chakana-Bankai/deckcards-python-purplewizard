@@ -10,6 +10,8 @@ from pathlib import Path
 
 import pygame
 
+from game.core.paths import visual_generated_category_dir
+
 
 ICON_ALIASES = {
     "sword": "damage",
@@ -77,7 +79,7 @@ FALLBACK_TEXT = {
 }
 
 _ICON_CACHE: dict[tuple[str, tuple[int, int, int], int], pygame.Surface] = {}
-_GENERATED_ICON_ROOT = Path(__file__).resolve().parents[2] / "visual" / "generated" / "icons"
+_GENERATED_ICON_ROOT = visual_generated_category_dir("icons")
 _GENERATED_ICON_FAIL: set[tuple[str, int]] = set()
 
 

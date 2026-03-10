@@ -1,6 +1,6 @@
 {
   "version": "portrait_v6",
-  "updated_at": 1773154236,
+  "updated_at": 1773154780,
   "items": {
     "chakana:132x132": {
       "role": "chakana",
@@ -133,8 +133,10 @@
         96
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_portrait_96x96.png",
-      "generated_at": 1773046138,
-      "version": "portrait_v3"
+      "generated_at": 1773154780,
+      "version": "portrait_v6",
+      "source": "official_master",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_portrait.png"
     },
     "chakana_mage:portrait:118x118": {
       "role": "chakana_mage",

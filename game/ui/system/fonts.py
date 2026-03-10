@@ -8,6 +8,8 @@ from typing import Dict, Tuple
 
 import pygame
 
+from game.core.paths import fonts_dir
+
 
 _FONT_CACHE: Dict[Tuple[str, int], pygame.font.Font] = {}
 _WARNED_FALLBACK: set[Tuple[str, str]] = set()
@@ -33,7 +35,7 @@ def get_font_stats() -> dict:
 
 
 def _fonts_root() -> Path:
-    return Path(__file__).resolve().parents[2] / "assets" / "fonts"
+    return fonts_dir()
 
 
 def _warn(name: str, size: int, reason: str):

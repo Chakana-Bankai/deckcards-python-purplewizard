@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pygame
 
-from game.core.paths import assets_dir
+from game.core.paths import curated_avatars_dir, sprite_category_dir, visual_dir, visual_generated_category_dir
 from .visual_engine import get_visual_engine
 
 
@@ -16,8 +16,8 @@ class PortraitPipeline:
     VERSION = "portrait_v6"
 
     def __init__(self):
-        self.root = Path(__file__).resolve().parent
-        self.generated_root = self.root / "generated" / "portraits"
+        self.root = visual_dir()
+        self.generated_root = visual_generated_category_dir("portraits")
         self.generated_root.mkdir(parents=True, exist_ok=True)
         self.manifest_path = self.root / "portrait_manifest.json"
         self.manifest = self._load_manifest()
@@ -173,16 +173,15 @@ class PortraitPipeline:
         return profiles.get(family, profiles["chakana_mage"])
 
     def _canonical_avatar_roots(self) -> list[Path]:
-        aroot = assets_dir()
         return [
-            aroot / "curated" / "avatars",
-            aroot / "avatars" / "master",
-            aroot / "avatars",
-            aroot / "sprites" / "portrait_sources",
-            aroot / "sprites" / "portrait",
-            aroot / "sprites" / "hologram",
-            aroot / "sprites" / "avatar",
-            aroot / "sprites" / "player",
+            curated_avatars_dir(),
+            curated_avatars_dir().parent / "avatars" / "master",
+            curated_avatars_dir().parent / "avatars",
+            sprite_category_dir("portrait_sources"),
+            sprite_category_dir("portrait"),
+            sprite_category_dir("hologram"),
+            sprite_category_dir("avatar"),
+            sprite_category_dir("player"),
         ]
 
     def _source_candidates(self, role: str, style: str) -> list[tuple[Path, str]]:
@@ -228,7 +227,7 @@ class PortraitPipeline:
             for filename, tag in guide_files.get(style, []):
                 for root in roots:
                     out.append((root / filename, tag))
-                out.append((assets_dir() / "sprites" / "guides" / filename, tag))
+                out.append((sprite_category_dir("guides") / filename, tag))
             return out
 
         if family == "enemy":
@@ -280,8 +279,8 @@ class PortraitPipeline:
                     out.append((root / filename, "generated"))
             # Allow direct enemy sprite as lowest visual fallback.
             if ident:
-                out.append((assets_dir() / "sprites" / "enemies" / f"{ident}.png", "placeholder"))
-            out.append((assets_dir() / "sprites" / "enemies" / "default.png", "placeholder"))
+                out.append((sprite_category_dir("enemies") / f"{ident}.png", "placeholder"))
+            out.append((sprite_category_dir("enemies") / "default.png", "placeholder"))
             return out
 
         archon = {

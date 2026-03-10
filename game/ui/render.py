@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pygame
 
+from game.core.paths import sprite_category_dir
 from game.settings import ASSETS_DIR, INTERNAL_HEIGHT, INTERNAL_WIDTH
 from game.ui.system.typography import ChakanaTypography, SMALL_FONT
 from game.visual import get_portrait_pipeline, get_visual_engine
@@ -110,7 +111,7 @@ class AssetManager:
         key = (category, name, size)
         if key in self._cache:
             return self._cache[key]
-        path = Path(ASSETS_DIR) / "sprites" / category / f"{name}.png"
+        path = sprite_category_dir(category) / f"{name}.png"
         lbl = name if category == "cards" else ""
         src = "fallback"
         if path.exists():
