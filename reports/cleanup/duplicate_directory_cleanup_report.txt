@@ -1,0 +1,10 @@
+CHAKANA : PURPLE WIZARD
+DUPLICATE DIRECTORY CLEANUP PASS
+
+Status: PASS
+
+moved_to_assets__archive=creative_master_upgrade
+removed_empty_dir=assets/archive
+removed_empty_dir=game/assets/tmp
+
+canonical_archive_root=assets/_archive

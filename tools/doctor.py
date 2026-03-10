@@ -48,15 +48,17 @@ def _git_status_report() -> None:
 def _folder_checks() -> None:
     print("[doctor] folders:")
     folders = [
-        ROOT / "assets" / "sprites" / "cards",
-        ROOT / "assets" / "music",
-        ROOT / "game" / "data",
-        ROOT / "game" / "assets" / "sprites" / "cards",
-        ROOT / "game" / "assets" / "music",
+        (ROOT / "assets" / "art_reference", "support_reference"),
+        (ROOT / "assets" / "_archive", "archive_root"),
+        (ROOT / "game" / "data", "runtime_data"),
+        (ROOT / "game" / "assets" / "curated", "curated_assets"),
+        (ROOT / "game" / "assets" / "sprites" / "cards", "runtime_card_art"),
+        (ROOT / "game" / "audio" / "generated", "runtime_audio_generated"),
+        (ROOT / "game" / "visual" / "generated", "runtime_visual_generated"),
     ]
-    for p in folders:
+    for p, label in folders:
         exists = p.exists()
-        print(f"  {p.relative_to(ROOT)}: {'OK' if exists else 'MISSING'}")
+        print(f"  {label}: {p.relative_to(ROOT)} => {'OK' if exists else 'MISSING'}")
 
 
 def _autogen_files_checks() -> None:

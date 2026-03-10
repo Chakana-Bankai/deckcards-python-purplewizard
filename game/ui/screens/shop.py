@@ -445,6 +445,10 @@ class ShopScreen:
             s.blit(lbl, lbl.get_rect(center=rect.center))
 
 
+        pack_focus = pygame.Rect(self.buy_pack_btn.x - 12, self.buy_pack_btn.y - 18, self.buy_pack_btn.w + 24, self.buy_pack_btn.h + 36)
+        pygame.draw.rect(s, UI_THEME["panel_2"], pack_focus, border_radius=14)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], pack_focus, 1, border_radius=14)
+        s.blit(self.app.tiny_font.render("Sobre ritual destacado", True, UI_THEME["gold"]), (pack_focus.x + 12, pack_focus.y + 8))
         pygame.draw.rect(s, UI_THEME["violet"], self.buy_pack_btn, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.buy_pack_btn, 2, border_radius=10)
         ptxt = self.app.tiny_font.render(f"{self._pack_label(self.pack_offer).upper()} ({self.pack_price})", True, UI_THEME["text"])

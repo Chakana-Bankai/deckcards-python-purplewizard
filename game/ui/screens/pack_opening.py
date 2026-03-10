@@ -79,10 +79,18 @@ class PackOpeningScreen:
     def on_enter(self):
         self.app.rng.shuffle(self.pack_defs)
         forced_id = self._pack_alias.get(self.forced_pack_id, self.forced_pack_id)
-        if forced_id:
+        auto_open_forced = self.source in {"shop", "levelup_pending", "boss_reward", "direct_pack"}
+        if forced_id and auto_open_forced:
             idx = next((i for i, x in enumerate(self.pack_defs) if str(x.get("id", "")).lower() == forced_id), None)
             if idx is not None:
                 self._open_pack(idx)
+                return
+        self.selected_pack = None
+        self.cards = []
+        self.selected_card = None
+        self.hover_card = None
+        if self.source == "reward":
+            self.msg = "Elige 1 de 3 sobres rituales"
 
     def _card_pool_by_pack(self, pack_id: str):
         run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
@@ -247,8 +255,10 @@ class PackOpeningScreen:
         s.blit(self.app.small_font.render("Preview de sobre", True, UI_THEME["gold"]), (rect.x + 14, rect.y + 12))
 
         if self.selected_pack is None:
-            s.blit(self.app.tiny_font.render("Selecciona un pack para ver identidad.", True, UI_THEME["muted"]), (rect.x + 14, rect.y + 48))
-            s.blit(self.app.tiny_font.render("Base: consistencia | Hiperborea: identidad | Mystery: sorpresa.", True, UI_THEME["muted"]), (rect.x + 14, rect.y + 72))
+            s.blit(self.app.tiny_font.render("Selecciona un sobre para leer su pulso.", True, UI_THEME["muted"]), (rect.x + 14, rect.y + 48))
+            s.blit(self.app.tiny_font.render("Origen: consistencia | Hiperborea: identidad | Velo: sorpresa.", True, UI_THEME["muted"]), (rect.x + 14, rect.y + 72))
+            if self.source == "reward":
+                s.blit(self.app.tiny_font.render("Recompensa ritual: elige tu sobre antes de abrirlo.", True, UI_THEME["gold"]), (rect.x + 14, rect.y + 102))
             return
 
         pdef = self.pack_defs[self.selected_pack]

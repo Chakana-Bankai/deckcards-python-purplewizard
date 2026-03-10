@@ -1725,9 +1725,8 @@ class App:
             self.music.play_for(self.get_bgm_track("reward"))
             return
 
-        # Phase 2 integration lock: pack flow is canonical.
-        # Legacy reward modal is deprecated and only remains as dead-safe branch for rollback.
-        legacy_modal = False
+        # Pack flow is canonical for standard post-combat rewards.
+        # RewardScreen remains reserved for guide-choice and boss summary style flows.
         if picks is None:
             unlock_level = self.run_state.get("level", 1) if self.run_state else 1
             rarities = {"basic", "common"} if unlock_level < 2 else {"common", "uncommon", "rare"}
@@ -1739,12 +1738,6 @@ class App:
 
         if gold is None:
             gold = int(round(self.rng.randint(20, 35) * 1.3))
-
-        if legacy_modal:
-            self.sm.set(RewardScreen(self, reward_data, gold, xp_gained=self.debug.get("xp_last_gain", 0)))
-            self.play_stinger("stinger_reward")
-            self.music.play_for(self.get_bgm_track("reward"))
-            return
 
         # Apply gold reward immediately and route to pack object flow.
         self.apply_run_rewards(gold=int(gold or 0), source="reward_pack_entry")

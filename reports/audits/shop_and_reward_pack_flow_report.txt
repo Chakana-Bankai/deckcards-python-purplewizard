@@ -1,0 +1,15 @@
+CHAKANA : PURPLE WIZARD
+SHOP + REWARD PACK FLOW PASS
+
+Status: PASS
+
+Applied fixes:
+- Standard reward flow keeps PackOpeningScreen as canonical and no longer auto-opens a forced pack on reward entry.
+- Reward context now shows the 3 ritual packs vertically before opening one.
+- Shop context still auto-opens the specifically purchased pack.
+- Shop pack CTA received a clearer premium focus container so the pack offer reads as a featured ritual purchase.
+
+Validation targets:
+- reward source => selected_pack stays None until player chooses
+- shop source => selected pack opens immediately
+- pack screen and shop screen compile cleanly
