@@ -207,28 +207,35 @@ class SettingsScreen:
 
     def _debug_action(self, action: str):
         eng = self._audio_engine()
-        if action == "reload_assets":
-            self.app.assets._cache.clear()
-            self.app.visual_engine._surface_cache.clear()
-            self.app.visual_engine.ensure_core(force=False)
-            print("[options][debug] reload_assets=ok")
-        elif action == "clear_audio_cache" and eng is not None:
-            eng._sound_cache.clear()
-            print("[options][debug] clear_audio_cache=ok")
-        elif action == "clear_visual_cache":
-            self.app.assets._cache.clear()
-            self.app.visual_engine._surface_cache.clear()
-            print("[options][debug] clear_visual_cache=ok")
-        elif action == "rebuild_manifests":
-            self.app.user_settings["update_manifests"] = True
-            self.app.audio_pipeline.ensure_music_assets(self.app.user_settings)
-            self.app.visual_engine.ensure_core(force=False)
-            self.app.user_settings["update_manifests"] = False
-            print("[options][debug] rebuild_manifests=ok")
-        elif action == "print_active_asset_report":
-            if eng is not None:
-                print(f"[options][debug] audio_state {eng.debug_state()}")
-            print(f"[options][debug] visual_cache={len(self.app.visual_engine._surface_cache)}")
+        try:
+            if action == "reload_assets":
+                self.app.assets._cache.clear()
+                self.app.visual_engine._surface_cache.clear()
+                self.progress = "Assets recargados"
+                print("[options][debug] reload_assets=ok")
+            elif action == "clear_audio_cache" and eng is not None:
+                eng._sound_cache.clear()
+                self.progress = "Cache de audio limpiada"
+                print("[options][debug] clear_audio_cache=ok")
+            elif action == "clear_visual_cache":
+                self.app.assets._cache.clear()
+                self.app.visual_engine._surface_cache.clear()
+                self.progress = "Cache visual limpiada"
+                print("[options][debug] clear_visual_cache=ok")
+            elif action == "rebuild_manifests":
+                self.app.user_settings["update_manifests"] = True
+                self.app.audio_pipeline.ensure_music_assets(self.app.user_settings)
+                self.app.user_settings["update_manifests"] = False
+                self.progress = "Manifests reconstruidos"
+                print("[options][debug] rebuild_manifests=ok")
+            elif action == "print_active_asset_report":
+                if eng is not None:
+                    print(f"[options][debug] audio_state {eng.debug_state()}")
+                print(f"[options][debug] visual_cache={len(self.app.visual_engine._surface_cache)}")
+                self.progress = "Reporte impreso en consola"
+        except Exception as exc:
+            self.progress = f"Debug error: {exc}"
+            print(f"[options][debug] action_failed action={action} err={exc}")
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN:

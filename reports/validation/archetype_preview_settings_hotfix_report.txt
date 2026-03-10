@@ -1,0 +1,21 @@
+Archetype preview + settings debug hotfix
+=======================================
+
+Fecha: 2026-03-10
+
+Cambios:
+- PathSelectScreen ya no usa modal gigante centrado para la legendaria destacada.
+- El preview de legendaria ahora se renderiza inline, anclado dentro del panel del arquetipo.
+- SettingsScreen debug actions quedaron envueltas en modo seguro para evitar salidas silenciosas.
+- reload_assets y clear_visual_cache ahora limpian cache sin forzar ensure_core durante la propia pantalla.
+- Se agrega progress message para feedback local en Opciones.
+
+Comandos:
+- game\\.venv\\Scripts\\python.exe -m py_compile game/ui/screens/path_select.py game/ui/screens/settings.py -> PASS
+- render de PathSelectScreen + hover legendary inline -> PASS
+- debug actions reload_assets / clear_visual_cache / print_active_asset_report -> PASS
+
+Observaciones:
+- Los logs del run muestran un warning funcional real en eventos: unsupported effect type 'upgrade_random_card'.
+- La musica sigue estable pero todavia monotona; el siguiente paso ahi no es otro hotfix de estabilidad sino direccion sonora por contexto y capas mas distintivas.
+- La visibilidad de arte Arconte en codex/juego sigue siendo un tema de integracion de consumo visual, no solo de assets existentes.

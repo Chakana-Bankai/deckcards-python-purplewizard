@@ -4,7 +4,7 @@ import pygame
 
 from game.settings import INTERNAL_WIDTH
 from game.ui.components.pixel_icons import draw_icon_with_value
-from game.ui.components.card_renderer import render_card_small
+from game.ui.components.card_renderer import render_card_preview, render_card_small
 from game.ui.components.floating_card_modal_preview import FloatingCardModalPreview
 from game.ui.theme import UI_THEME
 from game.ui.system.components import UIPanel, UIButton
@@ -379,8 +379,18 @@ class PathSelectScreen:
 
         hovered_legendary = next((entry for entry in self._legendary_hotspots if entry[0].collidepoint(mouse)), None)
         if hovered_legendary:
-            _spot, card = hovered_legendary
-            self.legendary_modal.render(s, self.app, card, title="Vista legendaria", dim_alpha=84)
+            spot, card = hovered_legendary
+            panel = pygame.Rect(spot.right - 176, spot.y + 10, 160, 176)
+            pygame.draw.rect(s, UI_THEME["panel_2"], panel, border_radius=10)
+            pygame.draw.rect(s, UI_THEME["gold"], panel, 1, border_radius=10)
+            mini = panel.inflate(-12, -12)
+            render_card_preview(
+                s,
+                mini,
+                card,
+                theme=UI_THEME,
+                state={"app": self.app, "ctx": None, "selected": False, "hovered": True, "render_context": "archetype_preview"},
+            )
 
 
 
