@@ -319,11 +319,11 @@ class MapScreen:
     def _archon_data(self):
         biome_key = str(self.selected_biome or "kaypacha").lower()
         fallback = self.ARCHON_NAMES.get(biome_key, "Arconte Desconocido")
-        line = self.ARCHON_LINES.get(biome_key, "La profecia aun no se revela.")
+        line = self.app.loc.t(self.ARCHON_LINES.get(biome_key, "La profec\u00eda aun no se revela."))
         boss_id = ""
         if hasattr(self.app, "biome_def_by_id") and isinstance(self.app.biome_def_by_id, dict):
             boss_id = str((self.app.biome_def_by_id.get(biome_key, {}) or {}).get("boss", "") or "")
-        boss_name = fallback
+        boss_name = self.app.loc.t(fallback)
         if boss_id:
             pool = []
             if hasattr(self.app, "content") and self.app.content:
@@ -332,13 +332,13 @@ class MapScreen:
             for entry in pool:
                 if not isinstance(entry, dict) or str(entry.get("id", "")) != boss_id:
                     continue
-                name_key = entry.get("name_key")
-                boss_name = self.app.loc.t(name_key) if name_key else str(entry.get("name", boss_id)).replace("_", " ").title()
+                source_name = entry.get("name_es") or entry.get("name_key") or entry.get("name") or boss_id
+                boss_name = self.app.loc.t(str(source_name))
                 break
         return boss_id or biome_key, boss_name, line
 
     def _draw_top_buttons(self, s, topbar: pygame.Rect):
-        labels = [("deck", "Mazo"), ("shop", "Tienda"), ("codex", "C?dice")]
+        labels = [("deck", "Mazo"), ("shop", "Tienda"), ("codex", "C\u00f3dice")]
         reg = getattr(self.app, "font_registry", {}) or {}
         pix_font = reg.get("special_pixel_label", self.app.tiny_font)
         x = topbar.right - 430
@@ -588,7 +588,8 @@ class MapScreen:
         pygame.draw.rect(s, UI_THEME["gold"], progress_box, 1, border_radius=10)
         s.blit(pixel_label_font.render("Frente ritual", True, UI_THEME["gold"]), (progress_box.x + 8, progress_box.y + 8))
         civ_indicator = civilization_title(str(run.get("civilization") or "base_world"))
-        progress_txt = f"Pacha: {self.selected_biome}   Arconte: {archon_id}   Civilizacion: {civ_indicator}"
+        biome_label = self.app.display_biome_name(self.selected_biome) if hasattr(self.app, "display_biome_name") else self.app.loc.t(str(self.selected_biome).replace("_", " ").title())
+        progress_txt = f"Pacha: {biome_label}   Arconte: {archon_name}   Civilización: {civ_indicator}"
         s.blit(self.app.tiny_font.render(self._fit_text(self.app.tiny_font, progress_txt, progress_box.w - 14), True, UI_THEME["muted"]), (progress_box.x + 8, progress_box.y + 30))
         hint = self.MAP_HINTS[self.lore_idx % max(1, len(self.MAP_HINTS))]
         s.blit(self.app.tiny_font.render(self._fit_text(self.app.tiny_font, hint, progress_box.w - 14), True, UI_THEME["text"]), (progress_box.x + 8, progress_box.y + 54))

@@ -122,6 +122,25 @@ class CodexScreen:
     def _active_section(self) -> dict:
         return self.section_by_id.get(self.active_section_id, self.sections[0] if self.sections else {})
 
+    def _to_roman(self, value: int) -> str:
+        table = {
+            1: "I", 2: "II", 3: "III", 4: "IV", 5: "V",
+            6: "VI", 7: "VII", 8: "VIII", 9: "IX", 10: "X",
+            11: "XI", 12: "XII", 13: "XIII", 14: "XIV", 15: "XV",
+            16: "XVI", 17: "XVII", 18: "XVIII", 19: "XIX", 20: "XX",
+        }
+        return table.get(int(value), str(value))
+
+    def _display_text(self, value: str) -> str:
+        return self.app.loc.t(str(value or ""))
+
+    def _display_card_name(self, card: dict, fallback: str = "") -> str:
+        raw = str(card.get("name_key") or card.get("name") or fallback or card.get("id") or "").strip()
+        if (str(card.get("set", "")).lower() == "arconte" or str(card.get("id", "")).lower().startswith("arc_")) and raw.lower().startswith("arcano del vacio"):
+            suffix = raw.split()[-1]
+            raw = f"Arcano del Vac\u00edo {self._to_roman(int(suffix))}" if suffix.isdigit() else raw.replace("Vacio", "Vac\u00edo")
+        return self._display_text(raw)
+
     def _codex_cards(self) -> list[dict]:
         base_payload = self.lore_set_cards if isinstance(self.lore_set_cards, dict) else {}
         base_items = base_payload.get("cards", []) if isinstance(base_payload.get("cards", []), list) else []
@@ -158,6 +177,7 @@ class CodexScreen:
                 }
             full.setdefault("id", cid)
             full.setdefault("name_key", str(c.get("name", cid)))
+            full["name_key"] = self._display_card_name(full, str(c.get("name", cid)))
             full.setdefault("text_key", str(c.get("gameplay_text", "")))
             full.setdefault("archetype", str(c.get("archetype", "")))
             full.setdefault("lore_text", str(c.get("lore_text", "")))
@@ -218,7 +238,7 @@ class CodexScreen:
             total = len(getattr(self.app, "enemies_data", []) or [])
             return [f"Enemigos cargados: {total}"]
         if sid == "archons":
-            bosses = [b.get("name_es", b.get("id", "-")) for b in list(getattr(self.app, "content", {}).bosses or []) if isinstance(b, dict)] if hasattr(getattr(self.app, "content", None), "bosses") else []
+            bosses = [self._display_text(b.get("name_es") or b.get("name_key") or b.get("id", "-")) for b in list(getattr(self.app, "content", {}).bosses or []) if isinstance(b, dict)] if hasattr(getattr(self.app, "content", None), "bosses") else []
             if bosses:
                 return [f"Arcontes activos: {', '.join(bosses[:4])}"]
             return []
@@ -290,7 +310,7 @@ class CodexScreen:
         _draw_card_slot(cards[self.gallery_index], center_rect, angle=0)
 
         current = cards[self.gallery_index]
-        cname = self.app.loc.t(str(current.get('name_key', current.get('id', ''))))
+        cname = self._display_card_name(current)
         label = f"{self.gallery_index + 1}/{len(cards)}  {cname}"
         label_pos = (gallery.x + 16, gallery.bottom - 74)
         s.blit(self.app.small_font.render(clamp_single_line(self.app.small_font, label, gallery.w - 88), True, UI_THEME["gold"]), label_pos)

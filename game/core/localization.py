@@ -28,9 +28,35 @@ class LocalizationManager:
         if raw == key:
             raw = self._humanize_missing_key(str(key or ""))
         try:
-            return str(raw).format(**kwargs)
+            rendered = str(raw).format(**kwargs)
         except Exception:
-            return str(raw)
+            rendered = str(raw)
+        return self._normalize_display_text(rendered)
+
+    def _normalize_display_text(self, text: str) -> str:
+        out = str(text or "")
+        fixes = {
+            "C?dice": "Códice",
+            "Codice Sagrado": "Códice Sagrado",
+            "C?dice Sagrado": "Códice Sagrado",
+            "Vac?o": "Vacío",
+            "vac?o": "vacío",
+            "geometr?a": "geometría",
+            "presi?n": "presión",
+            "profecia": "profecía",
+            "profec?a": "profecía",
+            "armonia": "armonía",
+            "armon?a": "armonía",
+            "civilizacion": "civilización",
+            "civilizaci?n": "civilización",
+            "Oraculo": "Oráculo",
+            "Or?culo": "Oráculo",
+            "oraculo": "oráculo",
+            "or?culo": "oráculo",
+        }
+        for bad, good in fixes.items():
+            out = out.replace(bad, good)
+        return out
 
     def _humanize_missing_key(self, key: str) -> str:
         k = str(key or "").strip()
@@ -43,7 +69,7 @@ class LocalizationManager:
         fixed = {
             "menu_play": "Iniciar Travesia",
             "menu_continue": "Continuar Travesia",
-            "menu_codex": "Codice Sagrado",
+            "menu_codex": "C\u00f3dice Sagrado",
             "menu_settings": "Ajustes",
             "menu_back": "Volver",
             "intent_attack": "Golpe Ritual",

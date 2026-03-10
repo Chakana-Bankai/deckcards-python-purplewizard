@@ -1,0 +1,26 @@
+CHAKANA : PURPLE WIZARD
+ARCHON ART + NAMING PASS
+
+Status: PASS with follow-up warnings
+
+Applied fixes:
+- Localization now normalizes visible encoding artifacts such as C?dice, Vac?o, profec?a y Or?culo.
+- Map screen now shows visible Archon name instead of raw archon_id in ritual progress text.
+- Map top button label now uses C?dice in player-facing UI.
+- Codex now normalizes Archon card fallback titles for player-facing display (example: Arcano del Vac?o I).
+- Codex Archon hints now resolve name_es/name_key through localization instead of exposing raw ids.
+
+Archon asset audit:
+- Generated enemy avatar files matching archon: 1
+- Generated enemy hologram portrait files matching archon: 1
+- Avatar samples: enemy_arconte_supremo_514x76_enemy_arconte_supremo.png
+- Hologram samples: enemy__arconte_supremo__hologram_hologram_514x76.png
+
+Conclusion:
+- The current warning is no longer ?all Archon art missing?.
+- The remaining issue is quality/canonicalization of Archon portraits and broader presentation consistency across screens.
+
+Remaining warnings:
+- Some source data files still contain legacy encoding artifacts, now masked at player-facing render time.
+- Archon curated-first portrait pipeline still needs a premium art pass beyond generated fallback assets.
+- Shop premium visual pass and duplicate directory/path cleanup remain pending.
