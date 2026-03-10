@@ -1,12 +1,12 @@
 {
-  "gold": 54,
+  "gold": 84,
   "relics": [
     "violet_seal",
     "puma_pulse"
   ],
   "relic_slots_max": 8,
   "player": {
-    "hp": 60,
+    "hp": 54,
     "max_hp": 60,
     "block": 2,
     "energy": 4,
@@ -21,7 +21,6 @@
     "seal_active": false
   },
   "deck": [
-    "filo_astral",
     "garra_espiritual",
     "pulso_cosmico",
     "vinculo_de_energia",
@@ -54,7 +53,15 @@
     "hg_lore_15",
     "observacion_sagrada",
     "firmeza_del_cuerpo",
-    "hg_lore_24"
+    "hg_lore_24",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana",
+    "pulso_cosmico",
+    "observacion_sagrada",
+    "guardia_terrenal",
+    "of_lore_21"
   ],
   "map": [
     [
@@ -110,7 +117,7 @@
           "2_2",
           "2_3"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "1_3",
@@ -164,7 +171,7 @@
           "3_2",
           "3_3"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "2_3",
@@ -177,7 +184,7 @@
           "3_3",
           "3_2"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -192,7 +199,7 @@
           "4_0",
           "4_1"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "3_1",
@@ -204,7 +211,7 @@
         "next": [
           "4_0"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "3_2",
@@ -216,7 +223,7 @@
         "next": [
           "4_1"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "3_3",
@@ -243,7 +250,7 @@
         "next": [
           "5_0"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "4_1",
@@ -255,7 +262,7 @@
         "next": [
           "5_0"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -278,10 +285,10 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 0,
-  "biome": "ukhu",
-  "xp": 35,
-  "level": 2,
+  "biome_index": 2,
+  "biome": "hanan",
+  "xp": 10,
+  "level": 3,
   "combats_won": 2,
   "tutorial_combats_won": 2,
   "allow_defeat_continue": true,
@@ -303,37 +310,40 @@
   },
   "meta_director": {
     "recent_enemy_ids": [
-      "larva_del_vacio",
-      "portador_de_polvo",
-      "sabueso_sombrio",
       "acaro_de_tinta",
-      "acaro_de_tinta"
+      "larva_del_vacio",
+      "monolito_fracturado",
+      "ave_de_ceniza",
+      "espiritu_condor_menor"
     ],
     "recent_event_ids": [
       "apacheta_offer",
-      "chakana_crossroads"
+      "chakana_crossroads",
+      "serpent_shed",
+      "ayni_pact"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
+      "base_pack",
       "mystery_pack",
-      "hiperborea_pack",
-      "mystery_pack"
+      "base_pack",
+      "base_pack"
     ],
     "visual_direction_tags": [
-      "biome:ukhu",
-      "mood:underworld"
+      "biome:hanan",
+      "mood:ascendant"
     ],
     "audio_direction_tags": [
       "ctx:map",
-      "biome:ukhu",
-      "mood:dark"
+      "biome:hanan",
+      "mood:ethereal"
     ]
   },
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
   "last_node_type": "combat",
   "levelup_pending": 0,
-  "current_node_id": "1_1",
-  "last_biome_seen": "ukhu",
-  "saved_at": 1773167503
+  "current_node_id": "3_1",
+  "last_biome_seen": "hanan",
+  "saved_at": 1773167735
 }

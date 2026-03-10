@@ -1,6 +1,6 @@
 {
   "version": "chakana_audio_v7",
-  "generated_at": 1773167503,
+  "generated_at": 1773167734,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
@@ -173,13 +173,13 @@
       "type": "stinger",
       "context": "boss_reveal",
       "variant": "a",
-      "seed": 472711221,
+      "seed": 704381196,
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\boss_reveal.wav",
-      "generation_date": 1773097940,
-      "version": "chakana_audio_v6",
+      "relative_path": "game/audio/generated/stingers/boss_reveal.wav",
+      "generation_date": 1773167700,
+      "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated",
-      "relative_path": "game/audio/generated/stingers/boss_reveal.wav"
+      "source": "generated"
     },
     "stinger_victory": {
       "track_id": "stinger_victory",
@@ -420,13 +420,13 @@
       "type": "ambient",
       "context": "temple_resonance",
       "variant": "a",
-      "seed": 1102579076,
+      "seed": 1219625246,
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\ambient\\temple_resonance.wav",
-      "generation_date": 1773106484,
-      "version": "chakana_audio_v6",
+      "relative_path": "game/audio/generated/ambient/temple_resonance.wav",
+      "generation_date": 1773167734,
+      "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated",
-      "relative_path": "game/audio/generated/ambient/temple_resonance.wav"
+      "source": "generated"
     },
     "ambient_archon_void_drones": {
       "track_id": "ambient_archon_void_drones",

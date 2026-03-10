@@ -86,6 +86,10 @@ def _narrative_pass(out_path: Path, seed: int, mode: str, prompt: str) -> dict:
     except Exception:
         return {"ok": False}
 
+    base_w, base_h = surf.get_size()
+    work_scale = 2
+    if base_w < 480 or base_h < 320:
+        surf = pygame.transform.smoothscale(surf, (base_w * work_scale, base_h * work_scale))
     w, h = surf.get_size()
     rng = random.Random(seed + 404)
     style = _set_style(prompt)
@@ -178,6 +182,8 @@ def _narrative_pass(out_path: Path, seed: int, mode: str, prompt: str) -> dict:
         surf.blit(glow, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
     try:
+        if (w, h) != (base_w, base_h):
+            surf = pygame.transform.smoothscale(surf, (base_w, base_h)).convert_alpha()
         pygame.image.save(surf, str(out_path))
     except Exception:
         return {"ok": False}
@@ -186,6 +192,8 @@ def _narrative_pass(out_path: Path, seed: int, mode: str, prompt: str) -> dict:
         "ok": True,
         "style": style,
         "subject_ratio": subject_ratio,
+        "work_resolution": f"{w}x{h}",
+        "output_resolution": f"{base_w}x{base_h}",
         "environment_ratio_range": "0.20-0.30",
         "energy_ratio_range": "0.10-0.20",
     }

@@ -1,11 +1,6 @@
 status=ok
-batch=set_showcase
-cards=6
+batch=legendary_core
+cards=1
 layer_standard=background_base,subject_character,focus_object,magic_effects,integration_depth_pass
 composition_rule=background+subject+object+effects+integration
-hip_harmony_guardian_15=hip_harmony_guardian_15.png
-hip_harmony_guardian_16=hip_harmony_guardian_16.png
-hip_oracle_of_fate_16=hip_oracle_of_fate_16.png
-arc_045=arc_045.png
-arc_048=arc_048.png
-arc_049=arc_049.png
+arc_058=arc_058.png

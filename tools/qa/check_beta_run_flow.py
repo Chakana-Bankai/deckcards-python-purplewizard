@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 
 from game.main import App
+from game.core.paths import project_root
 
 
 def _flush(app: App, steps: int = 8):
@@ -19,6 +20,67 @@ def _flush(app: App, steps: int = 8):
 def _screen(app: App) -> str:
     cur = app.sm.current
     return cur.__class__.__name__ if cur is not None else 'None'
+
+
+def _advance_scene_fusion(app: App, max_steps: int = 40):
+    for _ in range(max_steps):
+        cur = app.sm.current
+        if cur is None or cur.__class__.__name__ != 'SceneFusionScreen':
+            return
+        if hasattr(cur, 'update'):
+            cur.update(0.25)
+        app._flush_pending_screen_transition()
+        app._flush_pending_music_context()
+
+
+def _resolve_pack_screen(app: App):
+    cur = app.sm.current
+    if cur is None or cur.__class__.__name__ != 'PackOpeningScreen':
+        return
+    if not getattr(cur, 'cards', None):
+        cur.selected_pack = 0
+        cur._confirm()
+    else:
+        cur._confirm()
+    _flush(app, 8)
+
+
+def _resolve_event_screen(app: App):
+    cur = app.sm.current
+    if cur is None or cur.__class__.__name__ != 'EventScreen':
+        return
+    if getattr(cur, 'stage', '') == 'lore':
+        cur._go_to_choices()
+    if getattr(cur, 'stage', '') == 'choice':
+        cur._confirm_choice_index(0)
+    _flush(app, 8)
+
+
+def _drain_pack_if_needed(app: App):
+    loops = 0
+    while loops < 4:
+        loops += 1
+        _advance_scene_fusion(app)
+        _flush(app, 6)
+        if _screen(app) == 'PackOpeningScreen':
+            _resolve_pack_screen(app)
+            continue
+        break
+
+
+def _enter_and_resolve(app: App, action):
+    action()
+    _flush(app, 6)
+    _advance_scene_fusion(app)
+    _flush(app, 6)
+    _drain_pack_if_needed(app)
+    if _screen(app) == 'PackOpeningScreen':
+        _resolve_pack_screen(app)
+    if _screen(app) == 'EventScreen':
+        _resolve_event_screen(app)
+    _advance_scene_fusion(app)
+    _flush(app, 6)
+    _drain_pack_if_needed(app)
 
 
 def _first_node(app: App, kinds: set[str]) -> dict | None:
@@ -53,41 +115,34 @@ def run() -> dict:
     results = {}
     results['boot'] = _screen(app)
 
-    app.goto_shop()
-    _flush(app, 8)
+    _enter_and_resolve(app, app.goto_shop)
     results['shop_entry'] = _screen(app)
 
-    app.goto_map()
-    _flush(app, 8)
+    _enter_and_resolve(app, app.goto_map)
     results['map_after_shop'] = _screen(app)
 
-    app.goto_pack_opening({'pack_category': 'base_pack'}, source='reward')
-    _flush(app, 8)
+    _enter_and_resolve(app, lambda: app.goto_pack_opening({'pack_category': 'base_pack'}, source='reward'))
     results['pack_entry'] = _screen(app)
 
-    app.goto_map()
-    _flush(app, 8)
+    _enter_and_resolve(app, app.goto_map)
     results['map_after_pack'] = _screen(app)
 
-    app.goto_event()
-    _flush(app, 8)
+    _enter_and_resolve(app, app.goto_event)
     results['event_entry'] = _screen(app)
-    if _screen(app) == 'EventScreen':
-        try:
-            app.sm.current._confirm_choice_index(0)
-        except Exception as exc:
-            results['event_choice_error'] = str(exc)
-    _flush(app, 8)
+
+    _enter_and_resolve(app, app.goto_map)
     results['map_after_event'] = _screen(app)
 
     combat1 = _first_node(app, {'combat', 'challenge', 'elite'})
     _force_available(combat1)
     if combat1:
         app.select_map_node(combat1)
-        _flush(app, 12)
+        _flush(app, 6)
+        _advance_scene_fusion(app)
+        _flush(app, 8)
     results['combat_1_entry'] = _screen(app)
 
-    app.goto_map()
+    _enter_and_resolve(app, app.goto_map)
     if combat1:
         app.current_node_id = combat1.get('id')
         app._complete_current_node()
@@ -100,10 +155,12 @@ def run() -> dict:
     _force_available(combat2)
     if combat2:
         app.select_map_node(combat2)
-        _flush(app, 12)
+        _flush(app, 6)
+        _advance_scene_fusion(app)
+        _flush(app, 8)
     results['combat_2_entry'] = _screen(app)
 
-    app.goto_map()
+    _enter_and_resolve(app, app.goto_map)
     if combat2:
         app.current_node_id = combat2.get('id')
         app._complete_current_node()
@@ -114,13 +171,15 @@ def run() -> dict:
     _force_available(boss)
     if boss:
         app.select_map_node(boss)
-        _flush(app, 12)
+        _flush(app, 6)
+        _advance_scene_fusion(app)
+        _flush(app, 8)
     results['boss_entry'] = _screen(app)
 
-    ok = all(results.get(k) in {'MapScreen', 'ShopScreen', 'PackOpeningScreen', 'EventScreen', 'CombatScreen', 'SceneFusionScreen'} for k in results)
+    ok = all(results.get(k) in {'MapScreen', 'ShopScreen', 'CombatScreen'} for k in results)
     payload = {'overall': 'PASS' if ok else 'WARNING', 'results': results}
 
-    out = Path('reports/validation/beta_run_flow_report.txt')
+    out = project_root() / 'reports' / 'validation' / 'beta_run_flow_report.txt'
     out.parent.mkdir(parents=True, exist_ok=True)
     lines = ['CHAKANA BETA RUN FLOW REPORT', '=' * 32, f"overall={payload['overall']}"]
     for key, value in results.items():
