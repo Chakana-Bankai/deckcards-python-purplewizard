@@ -1,0 +1,14 @@
+{
+  "title": "Chakana Symbols",
+  "targets": [
+    "cruz escalonada",
+    "sellos",
+    "nodos",
+    "emblemas de set"
+  ],
+  "prompts": [
+    "Chakana central tallada en oro, limpia, legible y enmarcada por piedra ceremonial",
+    "Emblema de orden con cruz escalonada, runas contenidas en el borde y foco libre al centro",
+    "Sello de armonia flotante con geometria secundaria en las esquinas del marco"
+  ]
+}

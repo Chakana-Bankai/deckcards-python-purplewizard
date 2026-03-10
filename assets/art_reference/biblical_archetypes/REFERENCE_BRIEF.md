@@ -1,0 +1,16 @@
+# Biblical Archetypes
+
+## Objetivo
+Dar referencias tematicas y compositivas al motor de arte por capas.
+
+## Objetivos visuales
+- tronos
+- heraldos
+- vigilantes
+- caida
+- revelacion
+
+## Prompts de referencia
+- Heraldo de revelacion sosteniendo un sello luminoso frente a un cielo dividido
+- Trono oscuro arconte con corona rota y presencia vigilante opresiva
+- Entidad de juicio suspendida entre columnas y fuego sagrado
