@@ -1,0 +1,5 @@
+status=ok
+active_pipeline=tools/assets/regenerate_premium_card_batch.py -> game/content/card_art_generator.py -> game/art/gen_card_art_advanced.py -> game/art/gen_card_art32.py
+runtime_generation=blocked_for_heavy_regen
+legacy_support=tools/regen_assets.py exists but not recommended for premium card art direction
+reference_library=assets/art_reference is now connected through PromptBuilder reference_cues

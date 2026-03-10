@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pygame
 
-from game.content.card_art_generator import CardArtGenerator, export_prompts
+from game.content.card_art_generator import CardArtGenerator, PromptBuilder, export_prompts
 from game.core.paths import data_dir, project_root
 
 
@@ -88,19 +88,22 @@ def main() -> int:
     chosen = [by_id[cid] for cid in target_ids if cid in by_id]
     export_prompts(all_cards)
     gen = CardArtGenerator()
+    pb = PromptBuilder()
     written = []
     for card in chosen:
         cid = str(card.get("id"))
+        entry = pb.build_entry(card)
         res = gen.ensure_art(
             cid,
             list(card.get("tags", []) or []),
             str(card.get("rarity", "common")),
             mode="force_regen",
-            family=str(card.get("role", "") or ""),
+            family=str(entry.get("family", card.get("role", "") or "")),
             symbol=str(card.get("symbol", "") or ""),
-            prompt=(str(card.get("effect_text", "") or "") + " " + str(card.get("lore_text", "") or "")).strip(),
+            prompt=str(entry.get("prompt_text", "") or ""),
         )
-        written.append(f"{cid}={Path(str(res.get('path'))).name}")
+        ref = ','.join(list(entry.get('reference_cues', []) or [])[:3])
+        written.append(f"{cid}={Path(str(res.get('path'))).name}|refs={ref}")
 
     out = project_root() / "reports" / "validation" / "premium_card_batch_report.txt"
     out.parent.mkdir(parents=True, exist_ok=True)

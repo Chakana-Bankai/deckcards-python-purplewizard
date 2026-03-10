@@ -1,35 +1,8 @@
 status=ok
 batch=legendary_core
-cards=30
+cards=3
 layer_standard=background_base,subject_character,focus_object,magic_effects,integration_depth_pass
 composition_rule=background+subject+object+effects+integration
-arc_031=arc_031.png
-eco_de_sabiduria=eco_de_sabiduria.png
-hip_harmony_guardian_02=hip_harmony_guardian_02.png
-hip_harmony_guardian_20=hip_harmony_guardian_20.png
-hip_harmony_guardian_17=hip_harmony_guardian_17.png
-of_lore_21=of_lore_21.png
-arc_023=arc_023.png
-arc_043=arc_043.png
-arc_003=arc_003.png
-hip_cosmic_warrior_10=hip_cosmic_warrior_10.png
-arc_015=arc_015.png
-arc_059=arc_059.png
-invocacion_astral=invocacion_astral.png
-hip_harmony_guardian_07=hip_harmony_guardian_07.png
-arc_055=arc_055.png
-hg_lore_27=hg_lore_27.png
-arc_047=arc_047.png
-arc_027=arc_027.png
-ritual_de_la_trama=ritual_de_la_trama.png
-hg_lore_07=hg_lore_07.png
-hip_oracle_of_fate_10=hip_oracle_of_fate_10.png
-piedra_ritual=piedra_ritual.png
-hip_cosmic_warrior_07=hip_cosmic_warrior_07.png
-hip_oracle_of_fate_07=hip_oracle_of_fate_07.png
-of_lore_26=of_lore_26.png
-cw_lore_02=cw_lore_02.png
-of_lore_16=of_lore_16.png
-escudo_de_luz=escudo_de_luz.png
-hip_oracle_of_fate_15=hip_oracle_of_fate_15.png
-cw_lore_10=cw_lore_10.png
+hip_cosmic_warrior_20=hip_cosmic_warrior_20.png|refs=auroras 01,cielos rituales 01,cielos rituales 02
+arc_060=arc_060.png|refs=caida revelacion 01,coronas 01,heraldos 01
+cw_lore_10=cw_lore_10.png|refs=arbol sagrado gaia 01,arbol sagrado gaia 02,cóndor 01
