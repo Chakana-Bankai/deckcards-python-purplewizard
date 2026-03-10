@@ -1,0 +1,4 @@
+status=pass
+ticket=event_upgrade_card_support_plus_codex_arconte_validation
+changes=main.py,event.py,tools/assets/regenerate_audio_outside_runtime.py
+notes=upgrade_random_card supported; arconte codex validated with 60 cards and sprite load; audio regen available outside runtime

@@ -58,6 +58,8 @@ class EventScreen:
                 bits.append(f"+{amt} ruptura")
             elif et == "reduce_rupture":
                 bits.append(f"-{amt} ruptura")
+            elif et == "upgrade_random_card":
+                bits.append("mejora ritual")
             else:
                 bits.append(et.replace("_", " "))
         return " | ".join(bits) if bits else "Resultado variable."

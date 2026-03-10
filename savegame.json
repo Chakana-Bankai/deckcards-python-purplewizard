@@ -20,41 +20,11 @@
     "seal_active": false
   },
   "deck": [
-    "filo_astral",
-    "garra_espiritual",
-    "pulso_cosmico",
-    "vinculo_de_energia",
     "cw_lore_03",
     "cw_lore_09",
-    "cw_lore_10",
-    "cw_lore_14",
-    "cw_lore_18",
-    "cw_lore_23",
-    "eco_de_sabiduria",
-    "mantra_del_umbral",
-    "embate_del_jaguar",
-    "estallido_arcano",
-    "filo_en_cadena",
-    "cw_lore_02",
-    "cw_lore_04",
-    "cw_lore_08",
-    "cw_lore_29",
-    "chakana_de_luz"
+    "cw_lore_08"
   ],
-  "sideboard": [
-    "lectura_del_destino",
-    "hg_lore_06",
-    "of_lore_17",
-    "of_lore_26",
-    "hg_lore_06",
-    "eco_de_sabiduria",
-    "espiritu_guardian",
-    "estallido_arcano",
-    "cw_lore_18",
-    "mantra_del_umbral",
-    "eco_de_sabiduria",
-    "of_lore_21"
-  ],
+  "sideboard": [],
   "map": [
     [
       {
@@ -279,7 +249,7 @@
   ],
   "biome_index": 2,
   "biome": "hanan",
-  "xp": 26,
+  "xp": 38,
   "level": 2,
   "combats_won": 1,
   "tutorial_combats_won": 1,
@@ -332,5 +302,5 @@
   "event_flags": {},
   "current_node_id": "3_2",
   "last_biome_seen": "kaypacha",
-  "saved_at": 1773163532
+  "saved_at": 1773164337
 }

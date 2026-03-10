@@ -1119,9 +1119,70 @@ class App:
             return 'base'
         cdef = self.card_defs.get(cid, {}) if isinstance(self.card_defs, dict) else {}
         set_name = str((cdef or {}).get('set', '') or '').strip().lower()
+        if ('arconte' in set_name) or ('archon' in set_name) or cid.startswith('arc_'):
+            return 'arconte'
         if ('hiperboria' in set_name) or ('hiperborea' in set_name) or cid.startswith('hip_'):
             return 'hiperboria'
         return 'base'
+
+    def _upgrade_random_run_card(self, amount: int = 1) -> int:
+        if not isinstance(self.run_state, dict):
+            return 0
+        catalog_rows = list(self._reward_card_pool() or [])
+        if not catalog_rows:
+            return 0
+        by_id = {str(row.get('id')): row for row in catalog_rows if isinstance(row, dict) and row.get('id')}
+        rarity_step = {'common': 'uncommon', 'uncommon': 'rare', 'rare': 'legendary'}
+        upgraded = 0
+        for _ in range(max(1, int(amount or 0))):
+            choices = []
+            for zone_name in ('deck', 'sideboard'):
+                zone = list(self.run_state.get(zone_name, []) or [])
+                for idx, cid in enumerate(zone):
+                    card = by_id.get(str(cid))
+                    if not isinstance(card, dict):
+                        continue
+                    rarity = str(card.get('rarity', 'common') or 'common').lower()
+                    target_rarity = rarity_step.get(rarity)
+                    if not target_rarity:
+                        continue
+                    choices.append((zone_name, idx, str(cid), card, target_rarity))
+            if not choices:
+                break
+            zone_name, idx, cid, card, target_rarity = self.rng.choice(choices)
+            archetype = str(card.get('archetype', '') or '')
+            source_set = self._detect_card_set(cid)
+            preferred = [
+                str(row.get('id'))
+                for row in catalog_rows
+                if isinstance(row, dict)
+                and row.get('id')
+                and str(row.get('id')) != cid
+                and str(row.get('archetype', '') or '') == archetype
+                and str(row.get('rarity', '') or '').lower() == target_rarity
+                and self._detect_card_set(str(row.get('id'))) == source_set
+            ]
+            fallback = [
+                str(row.get('id'))
+                for row in catalog_rows
+                if isinstance(row, dict)
+                and row.get('id')
+                and str(row.get('id')) != cid
+                and str(row.get('archetype', '') or '') == archetype
+                and str(row.get('rarity', '') or '').lower() == target_rarity
+            ]
+            pool = preferred or fallback
+            if not pool:
+                continue
+            replacement = self.rng.choice(pool)
+            current_zone = list(self.run_state.get(zone_name, []) or [])
+            if not (0 <= idx < len(current_zone)):
+                continue
+            current_zone[idx] = replacement
+            self.run_state[zone_name] = current_zone
+            upgraded += 1
+            print(f"[events] upgrade_random_card zone={zone_name} from={cid} to={replacement}")
+        return upgraded
 
     def _queue_set_discovery(self, set_id: str):
         if not isinstance(self.run_state, dict):
@@ -2106,6 +2167,13 @@ class App:
                 pool = [c.get("id") for c in self.cards_data if c.get("rarity") == rarity and c.get("id")]
                 if pool:
                     self.apply_run_rewards(cards=[self.rng.choice(pool)], source="event_gain_card_random")
+            elif effect_type == "upgrade_random_card":
+                upgraded = self._upgrade_random_run_card(int(effect.get("amount", 1) or 1))
+                if upgraded <= 0:
+                    bonus_xp = max(1, int(effect.get("amount", 1) or 1) * 3)
+                    total_xp += bonus_xp
+                    self.apply_run_rewards(xp=bonus_xp, source="event_upgrade_card_fallback")
+                    print(f"[events] upgrade_random_card fallback xp=+{bonus_xp}")
             elif effect_type == "remove_card_from_deck" and self.run_state["deck"]:
                 self.run_state["deck"].pop(0)
             elif effect_type == "gain_relic":
