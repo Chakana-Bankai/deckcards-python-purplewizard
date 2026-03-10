@@ -60,17 +60,25 @@ def _extract_field(prompt: str, key: str, stop_tokens: tuple[str, ...]) -> str:
 
 def _semantic_from_prompt(prompt: str) -> dict:
     p = str(prompt or "")
-    pal = _extract_field(p, "palette ", ("lighting", "sacred geometry", "motif", "effect signature", "energy pattern"))
-    motif = _extract_field(p, "motif ", ("(", "effect signature", "energy pattern", "lore tokens"))
-    symbol = _extract_field(p, "sacred geometry ", ("motif", "effect signature", "energy pattern"))
+    pal = _extract_field(p, "palette ", ("lighting", "sacred geometry", "motif", "subject", "object", "environment", "effects", "effect signature", "energy pattern"))
+    motif = _extract_field(p, "motif ", ("(", "subject", "object", "environment", "effects", "effect signature", "energy pattern", "lore tokens"))
+    symbol = _extract_field(p, "sacred geometry ", ("motif", "subject", "object", "environment", "effects", "effect signature", "energy pattern"))
+    subject = _extract_field(p, "subject ", ("object", "environment", "effects", "effect signature", "energy pattern", "lore tokens"))
+    obj = _extract_field(p, "object ", ("environment", "effects", "effect signature", "energy pattern", "lore tokens"))
+    environment = _extract_field(p, "environment ", ("effects", "effect signature", "energy pattern", "lore tokens"))
+    effects = _extract_field(p, "effects ", ("energy pattern", "lore tokens"))
     energy = _extract_field(p, "energy pattern ", ("lore tokens",))
     lore_tokens = _extract_field(p, "lore tokens ", ())
-    rarity = _extract_field(p, "rarity ", ("sacred geometry", "motif", "effect signature", "energy pattern", "lore tokens"))
+    rarity = _extract_field(p, "rarity ", ("sacred geometry", "motif", "subject", "object", "environment", "effects", "effect signature", "energy pattern", "lore tokens"))
     role = _extract_field(p, "role ", ("palette", "lighting", "rarity", "sacred geometry"))
     return {
         "palette": pal.lower(),
         "motif": motif.lower(),
         "symbol": symbol.lower(),
+        "subject": subject.lower(),
+        "object": obj.lower(),
+        "environment": environment.lower(),
+        "effects_desc": effects.lower(),
         "energy": energy.lower(),
         "lore_tokens": lore_tokens.lower(),
         "rarity": rarity.lower(),
@@ -106,6 +114,46 @@ def _add_dither(surface: pygame.Surface, rng: random.Random):
             c = surface.get_at((x, y))
             delta = rng.randint(-10, 10)
             surface.set_at((x, y), (max(0, min(255, c.r + delta)), max(0, min(255, c.g + delta)), max(0, min(255, c.b + delta)), c.a))
+
+def _draw_scene_background(surface: pygame.Surface, semantic: dict, rng: random.Random, pal):
+    w, h = surface.get_size()
+    top, mid, low, acc = pal
+    env = str(semantic.get("environment", "") or "")
+    motif = str(semantic.get("motif", "") or "")
+
+    horizon = int(h * 0.62)
+    pygame.draw.rect(surface, (*low, 46), (0, horizon, w, h - horizon))
+
+    if any(k in env for k in ("sea", "mar", "frozen sea")):
+        for y in range(horizon, h, 3):
+            pygame.draw.line(surface, (*acc, 34), (0, y), (w, y), 1)
+    elif any(k in env for k in ("jungle", "forest", "selva")):
+        for _ in range(12):
+            x = rng.randint(0, w - 6)
+            th = rng.randint(h // 8, h // 4)
+            pygame.draw.rect(surface, (*low, 70), (x, horizon - th, 3, th))
+            pygame.draw.circle(surface, (*mid, 54), (x + 2, horizon - th), rng.randint(4, 8))
+    elif any(k in env for k in ("sky city", "temple", "sanctuary", "ruins", "architecture")) or any(k in motif for k in ("temple", "civilization", "polar")):
+        for _ in range(6):
+            bw = rng.randint(12, 26)
+            bh = rng.randint(14, 34)
+            bx = rng.randint(0, w - bw)
+            by = horizon - bh - rng.randint(0, 10)
+            pygame.draw.rect(surface, (*mid, 56), (bx, by, bw, bh), border_radius=2)
+    else:
+        points = []
+        x = 0
+        while x < w:
+            points.append((x, horizon - rng.randint(6, 20)))
+            x += rng.randint(10, 20)
+        points.append((w, horizon))
+        points.extend([(w, h), (0, h)])
+        pygame.draw.polygon(surface, (*mid, 60), points)
+
+    if any(k in env for k in ("gaia", "tree", "arbol")):
+        trunk_x = w // 2
+        pygame.draw.rect(surface, (*low, 110), (trunk_x - 3, horizon - 26, 6, 26))
+        pygame.draw.circle(surface, (*mid, 78), (trunk_x, horizon - 34), 16)
 
 
 def _draw_rosette(surface: pygame.Surface, rng: random.Random, color):
@@ -479,6 +527,7 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
         # Layer 1: background
         _draw_gradient(low, pal)
         _add_dither(low, rng)
+        _draw_scene_background(low, semantic, rng, pal)
 
         # Layer 2: geometry
         variant_pool = [0, 1, 2, 3]
@@ -502,14 +551,15 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
         rot = (sem_hash + attempt) % len(variant_pool)
         variant_pool = variant_pool[rot:] + variant_pool[:rot]
         chosen_variant = variant_pool[(seed + attempt + sem_hash) % len(variant_pool)]
-        _draw_geometry(low, chosen_variant, rng, _soften_color(pal[3], 0.88))
-        _draw_geometry(low, (chosen_variant + 2) % 4, rng, _soften_color(pal[2], 0.88))
-        _draw_geometry(low, (chosen_variant + 1) % 4, rng, _soften_color(_mix(pal[2], pal[3], 0.5), 0.86))
+        _draw_geometry(low, chosen_variant, rng, _soften_color(pal[3], 0.78))
+        if any(k in motif for k in ("ritual", "chakana", "seal", "sigil")):
+            _draw_geometry(low, 3, rng, _soften_color(_mix(pal[2], pal[3], 0.5), 0.72))
 
         # Layer 3: symbol
         _draw_silhouette(low, ctype, pal[2])
         _draw_glyph(low, _glyph_for_theme(ctype, motif_group, seed + sem_hash + attempt), pal[2])
-        _draw_symbol_overlay(low, semantic.get("symbol", ""), _soften_color(pal[3], 0.9))
+        if any(k in motif for k in ("ritual", "chakana", "seal", "sigil")):
+            _draw_symbol_overlay(low, semantic.get("symbol", ""), _soften_color(pal[3], 0.76))
 
         # Layer 4: motif
         _draw_motif_layer(low, motif_group, pal[2], rng)
