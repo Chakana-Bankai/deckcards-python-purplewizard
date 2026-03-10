@@ -1,0 +1,7 @@
+CHAKANA COMBAT ENTRY STABILITY REPORT
+status=PASS
+fix=deferred_combat_music_context
+notes=Combat entry no longer switches music in the same stack frame as CombatScreen construction.
+smoke_1=game\.venv\Scripts\python.exe -m py_compile game/main.py => PASS
+smoke_2=inline same-venv combat transition to CombatScreen => PASS
+smoke_3=full game run with same-venv reached combat and stayed alive past combat entry => PASS

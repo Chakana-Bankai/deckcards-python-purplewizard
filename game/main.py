@@ -1683,12 +1683,14 @@ class App:
 
         def _enter_combat():
             self.sm.set(CombatScreen(self, combat_state, is_boss=is_boss))
+            print(f"[boot] combat screen active boss={int(bool(is_boss))}")
             if is_boss:
                 self.play_stinger("stinger_boss_phase")
-                self.music.play_for(self.get_bgm_track("boss"))
+                biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
+                self._queue_music_context(self.get_bgm_track("boss"), fallback=self.get_bgm_track("map", biome_track), reason="boss_enter")
             else:
                 biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
-                self.music.play_for(self.get_bgm_track("combat", biome_track))
+                self._queue_music_context(self.get_bgm_track("combat", biome_track), fallback=self.get_bgm_track("map", biome_track), reason="combat_enter")
 
         if is_boss:
             self.trigger_oracle("boss_reveal")
@@ -2330,6 +2332,31 @@ class App:
         self._restart_requested = True
         self._restart_reason = reason
 
+    def _queue_music_context(self, key: str, *, fallback: str | None = None, reason: str = ""):
+        self._pending_music_context = str(key or "").strip() or None
+        self._pending_music_fallback = str(fallback or "").strip() or None
+        self._pending_music_reason = str(reason or "").strip() or "deferred"
+
+    def _flush_pending_music_context(self):
+        key = getattr(self, "_pending_music_context", None)
+        if not key:
+            return
+        fallback = getattr(self, "_pending_music_fallback", None)
+        reason = getattr(self, "_pending_music_reason", "deferred")
+        self._pending_music_context = None
+        self._pending_music_fallback = None
+        self._pending_music_reason = ""
+        try:
+            self.music.play_for(key)
+        except Exception as exc:
+            print(f"[Audio] deferred_context error key={key} reason={reason} err={exc}")
+            if fallback and fallback != key:
+                try:
+                    self.music.play_for(fallback)
+                    print(f"[Audio] deferred_context fallback={fallback} reason={reason}")
+                except Exception as fallback_exc:
+                    print(f"[Audio] deferred_context fallback_error key={fallback} reason={reason} err={fallback_exc}")
+
     def _soft_restart(self):
         self._loading_step("Reset aplicado. Regenerando Trama...", 0.02)
         try:
@@ -2390,6 +2417,7 @@ class App:
                 self._soft_restart()
                 continue
             self.music.tick()
+            self._flush_pending_music_context()
             if hasattr(self, "oracle_ui") and self.oracle_ui is not None:
                 self.oracle_ui.update(dt)
             self.sm.update(dt)
