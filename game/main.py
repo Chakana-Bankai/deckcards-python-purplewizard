@@ -1747,11 +1747,7 @@ class App:
             print(f"[boot] combat screen active boss={int(bool(is_boss))}")
             if is_boss:
                 self.play_stinger("stinger_boss_phase")
-                biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
-                self._queue_music_context(self.get_bgm_track("boss"), fallback=self.get_bgm_track("map", biome_track), reason="boss_enter")
-            else:
-                biome_track = self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha"
-                self._queue_music_context(self.get_bgm_track("combat", biome_track), fallback=self.get_bgm_track("map", biome_track), reason="combat_enter")
+            print('[Audio] combat_transition stability_mode=keep_current_track')
 
         if is_boss:
             self.trigger_oracle("boss_reveal")

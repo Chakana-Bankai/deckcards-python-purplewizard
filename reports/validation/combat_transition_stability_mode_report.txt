@@ -1,0 +1,3 @@
+status=pass
+mode=combat_keep_current_track
+notes=combat entry no longer requeues music during screen transition; intended for beta stability while audio replacement happens externally

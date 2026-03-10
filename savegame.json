@@ -9,10 +9,10 @@
     "hp": 60,
     "max_hp": 60,
     "block": 2,
-    "energy": 0,
+    "energy": 4,
     "rupture": 0,
     "statuses": {},
-    "harmony_current": 5,
+    "harmony_current": 0,
     "harmony_max": 10,
     "harmony_ready_threshold": 6,
     "harmony_ready": false,
@@ -69,7 +69,7 @@
           "1_0",
           "1_1"
         ],
-        "state": "cleared"
+        "state": "current"
       }
     ],
     [
@@ -278,8 +278,8 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 1,
-  "biome": "kaypacha",
+  "biome_index": 0,
+  "biome": "ukhu",
   "xp": 35,
   "level": 2,
   "combats_won": 2,
@@ -304,7 +304,8 @@
   "meta_director": {
     "recent_enemy_ids": [
       "larva_del_vacio",
-      "portador_de_polvo"
+      "portador_de_polvo",
+      "sabueso_sombrio"
     ],
     "recent_event_ids": [
       "apacheta_offer"
@@ -316,18 +317,20 @@
       "mystery_pack"
     ],
     "visual_direction_tags": [
-      "biome:kaypacha"
+      "biome:ukhu",
+      "mood:underworld"
     ],
     "audio_direction_tags": [
       "ctx:combat",
-      "biome:kaypacha"
+      "biome:ukhu",
+      "mood:dark"
     ]
   },
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
   "last_node_type": "combat",
   "levelup_pending": 0,
-  "current_node_id": "2_0",
+  "current_node_id": "0_0",
   "last_biome_seen": "kaypacha",
-  "saved_at": 1773164919
+  "saved_at": 1773165148
 }
