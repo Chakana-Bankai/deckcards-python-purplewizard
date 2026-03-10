@@ -69,7 +69,7 @@
           "1_0",
           "1_1"
         ],
-        "state": "current"
+        "state": "cleared"
       }
     ],
     [
@@ -97,7 +97,7 @@
           "2_1",
           "2_0"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "1_2",
@@ -123,7 +123,7 @@
           "2_3",
           "2_2"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -158,13 +158,13 @@
         "col": 2,
         "x": 804,
         "y": 588,
-        "type": "combat",
+        "type": "challenge",
         "biome": "kaypacha",
         "next": [
           "3_2",
           "3_3"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_3",
@@ -305,10 +305,13 @@
     "recent_enemy_ids": [
       "larva_del_vacio",
       "portador_de_polvo",
-      "sabueso_sombrio"
+      "sabueso_sombrio",
+      "acaro_de_tinta",
+      "acaro_de_tinta"
     ],
     "recent_event_ids": [
-      "apacheta_offer"
+      "apacheta_offer",
+      "chakana_crossroads"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
@@ -321,7 +324,7 @@
       "mood:underworld"
     ],
     "audio_direction_tags": [
-      "ctx:combat",
+      "ctx:map",
       "biome:ukhu",
       "mood:dark"
     ]
@@ -330,7 +333,7 @@
   "civilization": "base_world",
   "last_node_type": "combat",
   "levelup_pending": 0,
-  "current_node_id": "0_0",
-  "last_biome_seen": "kaypacha",
-  "saved_at": 1773165148
+  "current_node_id": "1_1",
+  "last_biome_seen": "ukhu",
+  "saved_at": 1773167503
 }

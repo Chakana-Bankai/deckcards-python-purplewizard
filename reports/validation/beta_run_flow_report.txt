@@ -1,0 +1,15 @@
+CHAKANA BETA RUN FLOW REPORT
+================================
+overall=WARNING
+boot=IntroScreen
+shop_entry=ShopScreen
+map_after_shop=SceneFusionScreen
+pack_entry=PackOpeningScreen
+map_after_pack=MapScreen
+event_entry=SceneFusionScreen
+map_after_event=EventScreen
+combat_1_entry=SceneFusionScreen
+map_after_combat_1=MapScreen
+combat_2_entry=SceneFusionScreen
+map_after_combat_2=MapScreen
+boss_entry=SceneFusionScreen
