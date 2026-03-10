@@ -105,7 +105,7 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
             th = rng.randint(h // 5, h // 3)
             pygame.draw.rect(surface, (top[0], top[1], top[2]), (x, horizon - th, 8, th))
             pygame.draw.circle(surface, (mid[0], mid[1], mid[2]), (x + 4, horizon - th), rng.randint(16, 28))
-    elif any(k in env for k in ('temple', 'sanctuary', 'ruins', 'city', 'architecture', 'throne')):
+    elif any(k in env for k in ('temple', 'sanctuary', 'ruins', 'city', 'architecture', 'throne', 'citadel', 'observatory')):
         far = pygame.Surface((w, h), pygame.SRCALPHA)
         for _ in range(5):
             bw = rng.randint(w // 10, w // 6)
@@ -143,7 +143,7 @@ def _apply_contrast(surface: pygame.Surface):
     pygame.draw.rect(shade, (0, 0, 0, 24), shade.get_rect(), 0, border_radius=0)
     surface.blit(shade, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
     light = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
-    pygame.draw.ellipse(light, (255, 244, 224, 26), (int(surface.get_width() * 0.14), int(surface.get_height() * 0.08), int(surface.get_width() * 0.44), int(surface.get_height() * 0.26)))
+    pygame.draw.polygon(light, (255, 244, 224, 16), [(0, 0), (int(surface.get_width() * 0.32), 0), (int(surface.get_width() * 0.18), int(surface.get_height() * 0.22)), (0, int(surface.get_height() * 0.28))])
     surface.blit(light, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
 
@@ -161,6 +161,12 @@ def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
     _apply_contrast(work)
     low = pygame.transform.scale(work, (160, 160))
     final = pygame.transform.scale(low, (320, 220)).convert_alpha()
+    sharpen = pygame.Surface((320, 220), pygame.SRCALPHA)
+    for _ in range(28):
+        x = rng.randint(0, 319)
+        y = rng.randint(0, 219)
+        pygame.draw.circle(sharpen, (255, 255, 255, 5), (x, y), 1)
+    final.blit(sharpen, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     pygame.image.save(final, str(out_path))
     return {

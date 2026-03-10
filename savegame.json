@@ -6,7 +6,7 @@
   ],
   "relic_slots_max": 8,
   "player": {
-    "hp": 49,
+    "hp": 46,
     "max_hp": 60,
     "block": 0,
     "energy": 4,
@@ -64,10 +64,19 @@
     "hg_lore_11",
     "filo_astral",
     "portal_de_la_chakana",
+    "filo_en_cadena",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana",
+    "portal_de_la_chakana",
     "cw_lore_09",
     "hg_lore_11",
     "filo_astral",
     "portal_de_la_chakana",
+    "vision",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
     "portal_de_la_chakana"
   ],
   "map": [
@@ -294,7 +303,7 @@
   ],
   "biome_index": 2,
   "biome": "hanan",
-  "xp": 3,
+  "xp": 15,
   "level": 3,
   "combats_won": 1,
   "tutorial_combats_won": 1,
@@ -324,11 +333,11 @@
       "runa_errante"
     ],
     "recent_event_ids": [
-      "chakana_crossroads",
-      "apacheta_offer",
       "serpent_shed",
       "ayni_pact",
-      "puma_trial"
+      "puma_trial",
+      "condor_vision",
+      "ayni_pact"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
@@ -353,5 +362,5 @@
   "levelup_pending": 2,
   "current_node_id": "4_1",
   "last_biome_seen": "hanan",
-  "saved_at": 1773185166
+  "saved_at": 1773185733
 }

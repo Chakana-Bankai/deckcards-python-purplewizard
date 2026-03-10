@@ -157,30 +157,45 @@ class PromptBuilder:
         environment = env_cycle[sum(ord(ch) for ch in cid) % len(env_cycle)]
 
         if family == "attack":
-            subject = "warrior, beast or ritual attacker in clear combat pose"
-            obj_cycle = ["weapon blade", "spear relic", "solar axe", "astral claw focus"]
+            subject = "armed attacker in clear combat pose with readable silhouette"
+            obj_cycle = ["weapon blade", "spear relic", "solar axe", "astral claw focus", "ritual sword"]
         elif family == "defense":
             subject = "guardian, sentinel or shield bearer in anchored stance"
-            obj_cycle = ["shield seal", "stone ward", "defensive relic", "barrier totem"]
+            obj_cycle = ["shield seal", "stone ward", "defensive relic", "barrier totem", "tower shield"]
         elif family == "ritual":
             subject = "ritual caster or ceremonial conduit channeling power"
-            obj_cycle = ["altar focus", "seal tablet", "sacred catalyst", "ritual brazier"]
+            obj_cycle = ["altar focus", "seal tablet", "sacred catalyst", "ritual brazier", "chakana altar"]
         elif family == "control":
             subject = "oracle, seer or mind-weaver reading the flow"
-            obj_cycle = ["eye relic", "codex shard", "divination instrument", "thread compass"]
+            obj_cycle = ["eye relic", "codex shard", "divination instrument", "thread compass", "vision tablet"]
         else:
             subject = "mystic conduit or spiritual avatar holding the field"
-            obj_cycle = ["chakana relic", "energy knot", "sacred prism", "ether anchor"]
+            obj_cycle = ["chakana relic", "energy knot", "sacred prism", "ether anchor", "ceremonial seal"]
         obj = obj_cycle[(sum(ord(ch) for ch in cid[::-1]) + len(role)) % len(obj_cycle)]
 
         if arch == "oracle_of_fate":
-            subject = "oracular figure with intense gaze reading the weave"
+            subject = "oracular figure with intense gaze reading the weave, standing before a divination totem"
         elif arch == "harmony_guardian":
-            subject = "guardian figure holding balance and warding force"
+            subject = "guardian figure holding balance and warding force with shielded posture"
         elif arch == "cosmic_warrior":
-            subject = "cosmic warrior driving forward with decisive motion"
+            subject = "cosmic warrior driving forward with decisive motion and visible weapon silhouette"
         elif "archon" in arch or cid.startswith("arc_"):
-            subject = "archon entity or corrupted servant dominating the scene"
+            subject = "archon entity or corrupted servant dominating the scene from a malign throne or monolith"
+
+        if set_id in {"hiperboria", "hiperborea"}:
+            if family == "attack":
+                subject = "hyperborean champion advancing from a polar citadel with heroic silhouette"
+            elif family == "defense":
+                subject = "hyperborean guardian holding the line before crystalline walls"
+            elif family == "control":
+                subject = "hyperborean oracle reading frozen stars above an ancient observatory"
+        elif set_id in {"arconte", "archon"} or cid.startswith("arc_"):
+            if family == "attack":
+                subject = "corrupted warlord or void beast lunging from a throne-realm"
+            elif family == "ritual":
+                subject = "archon hierophant channeling a dark decree over a profane altar"
+            elif family == "control":
+                subject = "void seer shaping dread symbols around a malign monument"
 
         effects = {
             "impacto_ofensivo": "focused offensive cuts, impact sparks, directional slash traces and controlled embers",
@@ -214,11 +229,11 @@ class PromptBuilder:
         set_id = str(card.get('set', '') or '').lower()
         arch = str(card.get('archetype', '') or '').lower()
         if set_id in {'hiperboria', 'hiperborea'}:
-            categories = ['fantasy_landscapes', 'ancient_architecture', 'chakana_symbols']
+            categories = ['fantasy_landscapes', 'ancient_architecture', 'characters_subjects', 'weapons_relics', 'chakana_symbols']
         elif set_id in {'arconte', 'archon'} or arch == 'archon_war' or str(cid).lower().startswith('arc_'):
-            categories = ['biblical_archetypes', 'sacred_geometry', 'ancient_architecture', 'fantasy_landscapes']
+            categories = ['biblical_archetypes', 'characters_subjects', 'weapons_relics', 'sacred_geometry', 'ancient_architecture', 'fantasy_landscapes']
         else:
-            categories = ['andean_mythology', 'chakana_symbols', 'fantasy_landscapes', 'ancient_architecture']
+            categories = ['andean_mythology', 'characters_subjects', 'weapons_relics', 'chakana_symbols', 'fantasy_landscapes', 'ancient_architecture']
         ref_cues = self.refs.cues_for(categories)
         ref_text = ', '.join(ref_cues[:4]) if ref_cues else 'no external cues'
         prompt = (

@@ -99,6 +99,23 @@ def _draw_oracle_totem(surface: pygame.Surface, rect: pygame.Rect, color, accent
     pygame.draw.rect(surface, accent, (rect.centerx - rect.w // 4, rect.bottom - rect.h // 5, rect.w // 2, rect.h // 10), border_radius=4)
 
 
+def _draw_weapon_bearer(surface: pygame.Surface, rect: pygame.Rect, color, accent):
+    _draw_humanoid(surface, rect, color, accent, crown=False)
+    cx = rect.centerx
+    top = rect.y + rect.h // 8
+    torso_y = top + rect.h // 5
+    _blocky_line(surface, accent, (cx + rect.w // 12, torso_y + rect.h // 8), (cx + rect.w // 3, rect.y + rect.h // 3), 5)
+    pygame.draw.circle(surface, accent, (cx + rect.w // 3, rect.y + rect.h // 3), 4)
+
+
+def _draw_archon_throne(surface: pygame.Surface, rect: pygame.Rect, color, accent):
+    throne = pygame.Rect(rect.x + rect.w // 5, rect.y + rect.h // 3, rect.w * 3 // 5, rect.h // 2)
+    pygame.draw.rect(surface, color, throne, border_radius=6)
+    pygame.draw.rect(surface, accent, (throne.x + throne.w // 3, throne.y - rect.h // 7, throne.w // 3, rect.h // 7), border_radius=4)
+    pygame.draw.rect(surface, accent, (throne.x + throne.w // 6, throne.bottom - rect.h // 8, throne.w * 2 // 3, rect.h // 8), border_radius=4)
+    _draw_humanoid(surface, pygame.Rect(rect.x + rect.w // 4, rect.y + rect.h // 8, rect.w // 2, rect.h * 3 // 4), color, accent, crown=True)
+
+
 def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, rng: random.Random):
     subject = ' '.join([
         str(semantic.get('subject', '') or ''),
@@ -115,11 +132,13 @@ def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, r
         _draw_tree(layer, rect, main, accent)
     elif any(k in subject for k in ('castle', 'temple', 'sanctuary', 'ruins', 'throne', 'city')):
         _draw_castle(layer, rect, main, accent)
-    elif any(k in subject for k in ('archon', 'arconte')):
-        _draw_humanoid(layer, rect, main, accent, crown=True)
+    elif any(k in subject for k in ('archon', 'arconte', 'throne-realm')):
+        _draw_archon_throne(layer, rect, main, accent)
     elif any(k in subject for k in ('oracle', 'visionary', 'seer')):
         _draw_oracle_totem(layer, rect, main, accent)
-    elif any(k in subject for k in ('guardian', 'warrior', 'mage', 'figure', 'herald')):
+    elif any(k in subject for k in ('guardian', 'warrior', 'champion')):
+        _draw_weapon_bearer(layer, rect, main, accent)
+    elif any(k in subject for k in ('mage', 'figure', 'herald')):
         _draw_humanoid(layer, rect, main, accent, crown=False)
     elif any(k in subject for k in ('beast', 'puma', 'wolf', 'larva', 'sabueso')):
         _draw_beast(layer, rect, main, accent)
@@ -150,7 +169,7 @@ def draw_focus_object(surface: pygame.Surface, semantic: dict, palette, rng: ran
         pygame.draw.rect(layer, color, base)
         peaks = [(base.left, base.top), (base.left + base.w // 4, base.top - 18), (base.centerx, base.top - 6), (base.right - base.w // 4, base.top - 18), (base.right, base.top)]
         pygame.draw.lines(layer, glow, False, peaks, 3)
-    elif any(k in obj for k in ('altar', 'brazier', 'relic', 'prism', 'anchor')):
+    elif any(k in obj for k in ('altar', 'brazier', 'relic', 'prism', 'anchor', 'seal')):
         pygame.draw.rect(layer, color, rect.inflate(-20, -20), border_radius=8)
         pygame.draw.rect(layer, glow, (rect.centerx - 10, rect.top + 8, 20, rect.h - 24), 0, border_radius=4)
     else:
