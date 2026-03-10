@@ -1,5 +1,5 @@
 {
-  "gold": 108,
+  "gold": 138,
   "relics": [
     "violet_seal",
     "chakana_thread"
@@ -21,7 +21,6 @@
     "seal_active": false
   },
   "deck": [
-    "filo_astral",
     "garra_espiritual",
     "pulso_cosmico",
     "vinculo_de_energia",
@@ -47,6 +46,10 @@
     "hg_lore_06",
     "of_lore_17",
     "of_lore_26",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana",
     "cw_lore_09",
     "hg_lore_11",
     "filo_astral",
@@ -192,7 +195,7 @@
           "4_0",
           "4_1"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "3_1",
@@ -204,7 +207,7 @@
         "next": [
           "4_0"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "3_2",
@@ -243,7 +246,7 @@
         "next": [
           "5_0"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "4_1",
@@ -255,7 +258,7 @@
         "next": [
           "5_0"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -278,9 +281,9 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 1,
-  "biome": "kaypacha",
-  "xp": 22,
+  "biome_index": 2,
+  "biome": "hanan",
+  "xp": 28,
   "level": 2,
   "combats_won": 1,
   "tutorial_combats_won": 1,
@@ -303,35 +306,39 @@
   },
   "meta_director": {
     "recent_enemy_ids": [
-      "sabueso_sombrio",
-      "larva_del_vacio",
       "acaro_de_tinta",
       "monolito_fracturado",
-      "vigia_del_kaypacha"
+      "vigia_del_kaypacha",
+      "ave_de_ceniza",
+      "espiritu_condor_menor"
     ],
     "recent_event_ids": [
       "chakana_crossroads",
-      "apacheta_offer"
+      "apacheta_offer",
+      "serpent_shed"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
       "base_pack",
       "base_pack",
+      "base_pack",
       "base_pack"
     ],
     "visual_direction_tags": [
-      "biome:kaypacha"
+      "biome:hanan",
+      "mood:ascendant"
     ],
     "audio_direction_tags": [
       "ctx:map",
-      "biome:kaypacha"
+      "biome:hanan",
+      "mood:ethereal"
     ]
   },
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
   "last_node_type": "combat",
   "levelup_pending": 1,
-  "current_node_id": "2_2",
-  "last_biome_seen": "kaypacha",
-  "saved_at": 1773183142
+  "current_node_id": "3_1",
+  "last_biome_seen": "hanan",
+  "saved_at": 1773184043
 }

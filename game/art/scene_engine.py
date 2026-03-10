@@ -43,15 +43,15 @@ def semantic_from_prompt(prompt: str) -> dict:
 
 def _palette_from_refs(choices):
     if not choices:
-        return ((26, 20, 36), (72, 64, 92), (132, 124, 156), (222, 190, 118))
+        return ((20, 16, 28), (72, 68, 96), (148, 138, 166), (232, 204, 132))
     cols = [c.avg_color for c in choices]
     r = sum(c[0] for c in cols) // len(cols)
     g = sum(c[1] for c in cols) // len(cols)
     b = sum(c[2] for c in cols) // len(cols)
-    top = (max(8, r // 4), max(8, g // 4), max(8, b // 4))
-    mid = (max(16, (r + 40) // 2), max(16, (g + 40) // 2), max(16, (b + 40) // 2))
-    low = (min(255, r), min(255, g), min(255, b))
-    accent = (min(255, r + 60), min(255, g + 40), min(255, b + 20))
+    top = (max(8, r // 5), max(8, g // 5), max(8, b // 5))
+    mid = (max(18, int(r * 0.55)), max(18, int(g * 0.55)), max(18, int(b * 0.55)))
+    low = (min(255, int(r * 0.92)), min(255, int(g * 0.92)), min(255, int(b * 0.92)))
+    accent = (min(255, r + 70), min(255, g + 50), min(255, b + 26))
     return (top, mid, low, accent)
 
 
@@ -78,32 +78,39 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
     env = str(semantic.get('environment', '') or '').lower()
     for y in range(h):
         t = y / max(1, h - 1)
-        if t < 0.6:
-            q = t / 0.6
+        if t < 0.58:
+            q = t / 0.58
             col = (int(top[0] * (1 - q) + mid[0] * q), int(top[1] * (1 - q) + mid[1] * q), int(top[2] * (1 - q) + mid[2] * q))
         else:
-            q = (t - 0.6) / 0.4
+            q = (t - 0.58) / 0.42
             col = (int(mid[0] * (1 - q) + low[0] * q), int(mid[1] * (1 - q) + low[1] * q), int(mid[2] * (1 - q) + low[2] * q))
         pygame.draw.line(surface, col, (0, y), (w, y))
-    horizon = int(h * 0.66)
-    pygame.draw.rect(surface, (low[0] // 2, low[1] // 2, low[2] // 2), (0, horizon, w, h - horizon))
+    horizon = int(h * 0.68)
+    ground = (max(8, low[0] // 2), max(8, low[1] // 2), max(8, low[2] // 2))
+    pygame.draw.rect(surface, ground, (0, horizon, w, h - horizon))
     if any(k in env for k in ('sea', 'mar', 'ocean', 'helado')):
-        for y in range(horizon, h, 6):
-            pygame.draw.line(surface, (*acc, 100), (0, y), (w, y), 2)
+        for y in range(horizon, h, 8):
+            pygame.draw.line(surface, (*acc, 120), (0, y), (w, y), 2)
     elif any(k in env for k in ('jungle', 'forest', 'selva')):
-        for _ in range(10):
+        for _ in range(7):
             x = rng.randint(0, w - 1)
-            th = rng.randint(h // 6, h // 3)
-            pygame.draw.rect(surface, (top[0], top[1], top[2]), (x, horizon - th, 6, th))
-            pygame.draw.circle(surface, (mid[0], mid[1], mid[2]), (x + 3, horizon - th), rng.randint(10, 18))
+            th = rng.randint(h // 5, h // 3)
+            pygame.draw.rect(surface, (top[0], top[1], top[2]), (x, horizon - th, 8, th))
+            pygame.draw.circle(surface, (mid[0], mid[1], mid[2]), (x + 4, horizon - th), rng.randint(16, 28))
     else:
         points = []
         x = 0
         while x < w:
-            points.append((x, horizon - rng.randint(20, 70)))
-            x += rng.randint(30, 60)
+            points.append((x, horizon - rng.randint(28, 86)))
+            x += rng.randint(40, 74)
         points += [(w, horizon), (w, h), (0, h)]
         pygame.draw.polygon(surface, (mid[0], mid[1], mid[2]), points)
+
+
+def _apply_contrast(surface: pygame.Surface):
+    shade = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
+    pygame.draw.rect(shade, (0, 0, 0, 24), shade.get_rect(), 0, border_radius=0)
+    surface.blit(shade, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
 
 
 def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> dict:
@@ -112,19 +119,20 @@ def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
     sampler = ReferenceSampler()
     refs = sampler.pick(_categories_for_prompt(prompt), _keywords_from_semantic(semantic), seed)
     palette = _palette_from_refs(refs)
-    work = pygame.Surface((512, 512), pygame.SRCALPHA, 32)
+    work = pygame.Surface((768, 768), pygame.SRCALPHA, 32)
     _draw_background(work, semantic, palette, rng)
     draw_subject(work, semantic, refs, palette, rng)
     draw_focus_object(work, semantic, palette, rng)
     draw_fx(work, semantic, palette, rng)
-    low = pygame.transform.smoothscale(work, (160, 160))
+    _apply_contrast(work)
+    low = pygame.transform.scale(work, (160, 160))
     final = pygame.transform.scale(low, (320, 220)).convert_alpha()
     out_path.parent.mkdir(parents=True, exist_ok=True)
     pygame.image.save(final, str(out_path))
     return {
         'card_id': card_id,
         'path': str(out_path),
-        'generator_used': 'scene_engine_v1',
+        'generator_used': 'scene_engine_v2',
         'references_used': [r.path.name for r in refs[:4]],
         'palette_seeded': [r.avg_color for r in refs[:3]],
         'semantic_subject': str(semantic.get('subject', '') or ''),
