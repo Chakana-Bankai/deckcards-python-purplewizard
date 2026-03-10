@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import traceback
 import shutil
@@ -23,7 +23,7 @@ from game.core.bootstrap_assets import ensure_placeholder_assets
 from game.core.localization import LocalizationManager
 from game.core.lore_service import LoreService
 from game.lore.lore_engine import LoreEngine
-from game.core.paths import data_dir, assets_dir
+from game.core.paths import data_dir, assets_dir, project_root
 from game.core.rng import SeededRNG
 from game.core.safe_io import atomic_write_json, atomic_write_json_if_changed, load_json
 from game.core.settings_store import load_settings, save_settings
@@ -2273,55 +2273,40 @@ class App:
         except Exception:
             pass
 
+    def _write_runtime_regen_report(self, name: str, lines: list[str]):
+        out = project_root() / "reports" / "validation" / name
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        return out
+
     def regenerate_art_missing(self):
-        self.user_settings["force_regen_art"] = False
-        self.user_settings["update_manifests"] = True
-        self.ensure_assets(progress_cb=self._loading_step)
-        self.user_settings["update_manifests"] = False
-        self.asset_generation_active = False
         self.assets._cache.clear()
+        self.visual_engine._surface_cache.clear()
+        report = self._write_runtime_regen_report(
+            "runtime_art_regen_blocked_report.txt",
+            [
+                "status=blocked",
+                "mode=runtime_freeze",
+                "reason=art regeneration must run outside the game",
+                "suggested_command=python -m tools.assets.regenerate_premium_card_batch",
+            ],
+        )
+        print(f"[runtime_freeze] art_regen_blocked report={report}")
 
     def regenerate_art_all(self):
-        self.user_settings["force_regen_art"] = True
-        self.user_settings["update_manifests"] = True
-        self.ensure_assets(progress_cb=self._loading_step)
-        self.user_settings["update_manifests"] = False
-        self.asset_generation_active = False
-        self.assets._cache.clear()
+        self.regenerate_art_missing()
 
     def regenerate_music(self):
-        try:
-            pygame.mixer.music.stop()
-            if hasattr(pygame.mixer.music, "unload"):
-                pygame.mixer.music.unload()
-        except Exception:
-            pass
-        try:
-            pygame.mixer.stop()
-            pygame.mixer.quit()
-        except Exception:
-            pass
-        self.user_settings["force_regen_music"] = True
-        self.user_settings["update_manifests"] = True
-        self.audio_pipeline.ensure_music_assets(self.user_settings, progress_cb=self._loading_step)
-        self.visual_engine.ensure_core(force=bool(self.user_settings.get("force_regen_art", False)))
-        self.user_settings["force_regen_music"] = False
-        self.user_settings["update_manifests"] = False
-        try:
-            pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
-        except Exception:
-            pass
-        self.music = MusicManager()
-        self.sfx = SFXManager()
-        if hasattr(self.sfx, "engine") and hasattr(self.sfx.engine, "set_master_volume"):
-            self.sfx.engine.set_master_volume(self.user_settings.get("master_volume", 1.0))
-        self.sfx.set_volume(self.user_settings.get("sfx_volume", 0.7))
-        self.sfx.set_stinger_volume(self.user_settings.get("stinger_volume", 0.8))
-        if hasattr(self.sfx.engine, "set_ambient_volume"):
-            self.sfx.engine.set_ambient_volume(self.user_settings.get("ambient_volume", 0.5))
-        self.music.set_volume(self.user_settings.get("music_volume", 0.5))
-        self.music.set_muted(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False)))
-        self.music.play_for(self.get_bgm_track("menu"))
+        report = self._write_runtime_regen_report(
+            "runtime_audio_regen_blocked_report.txt",
+            [
+                "status=blocked",
+                "mode=runtime_freeze",
+                "reason=audio regeneration must run outside the game",
+                "suggested_command=python -m tools.assets.build_curated_context_audio --contexts menu map_kay shop combat combat_boss",
+            ],
+        )
+        print(f"[runtime_freeze] audio_regen_blocked report={report}")
 
     def regenerate_card_art_with_cleanup(self):
         manifest_path = data_dir() / "art_manifest.json"

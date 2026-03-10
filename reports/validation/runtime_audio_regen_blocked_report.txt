@@ -1,0 +1,4 @@
+status=blocked
+mode=runtime_freeze
+reason=audio regeneration must run outside the game
+suggested_command=python -m tools.assets.build_curated_context_audio --contexts menu map_kay shop combat combat_boss

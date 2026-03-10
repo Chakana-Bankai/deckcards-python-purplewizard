@@ -1,0 +1,4 @@
+status=blocked
+mode=runtime_freeze
+reason=art regeneration must run outside the game
+suggested_command=python -m tools.assets.regenerate_premium_card_batch

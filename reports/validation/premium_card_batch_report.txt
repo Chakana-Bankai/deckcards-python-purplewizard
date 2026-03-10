@@ -1,0 +1,5 @@
+status=ok
+cards=3
+arc_058=arc_058.png
+arc_059=arc_059.png
+arc_060=arc_060.png

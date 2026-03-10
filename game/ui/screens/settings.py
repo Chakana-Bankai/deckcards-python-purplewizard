@@ -192,18 +192,10 @@ class SettingsScreen:
         self.active_preview = None
 
     def _regen_audio_item(self, item: dict):
-        eng = self._audio_engine()
-        if eng is None:
-            return
-        if item.get("kind") == "music":
-            ctx = str(item.get("id", "menu"))
-            var = str(item.get("variant", "a"))
-            path = eng._ensure_bgm_variant(ctx, var, force=True)
-            print(f"[options][audio] regenerated context={ctx} variant={var} file={path}")
-        else:
-            sid = str(item.get("id", "victory"))
-            path = eng._ensure_stinger(sid, force=True)
-            print(f"[options][audio] regenerated stinger={sid} file={path}")
+        kind = str(item.get("kind", "music"))
+        target = str(item.get("id", "menu"))
+        self.progress = "Audio bloqueado en runtime. Usa tools/assets/build_curated_context_audio.py"
+        print(f"[options][audio] runtime_regen_blocked kind={kind} target={target}")
 
     def _debug_action(self, action: str):
         eng = self._audio_engine()
@@ -223,11 +215,9 @@ class SettingsScreen:
                 self.progress = "Cache visual limpiada"
                 print("[options][debug] clear_visual_cache=ok")
             elif action == "rebuild_manifests":
-                self.app.user_settings["update_manifests"] = True
-                self.app.audio_pipeline.ensure_music_assets(self.app.user_settings)
-                self.app.user_settings["update_manifests"] = False
-                self.progress = "Manifests reconstruidos"
-                print("[options][debug] rebuild_manifests=ok")
+                self.app.audio_pipeline.ensure_music_assets({})
+                self.progress = "Manifests sincronizados (sin regen)"
+                print("[options][debug] rebuild_manifests=ok mode=manifest_only")
             elif action == "print_active_asset_report":
                 if eng is not None:
                     print(f"[options][debug] audio_state {eng.debug_state()}")

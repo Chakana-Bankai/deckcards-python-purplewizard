@@ -1,19 +1,19 @@
 {
   "version": "chakana_audio_v7",
-  "generated_at": 1773165148,
+  "generated_at": 1773166268,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
       "type": "bgm",
       "context": "menu",
       "variant": "a",
-      "seed": 1895217128,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\menu_a.wav",
-      "relative_path": "game/audio/generated/bgm/menu_a.wav",
-      "generation_date": 1773157677,
+      "seed": 570593556,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\menu_a.wav",
+      "relative_path": "game/assets/curated/audio/bgm/menu_a.wav",
+      "generation_date": 1773166037,
       "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated"
+      "source": "curated"
     },
     "menu_b": {
       "track_id": "menu_b",

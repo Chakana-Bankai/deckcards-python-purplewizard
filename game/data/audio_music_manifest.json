@@ -7,10 +7,10 @@
       "type": "bgm",
       "context": "menu",
       "variant": "a",
-      "source": "generated",
+      "source": "curated",
       "state": "valid",
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\menu_a.wav",
-      "relative_path": "game/audio/generated/bgm/menu_a.wav"
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\menu_a.wav",
+      "relative_path": "game/assets/curated/audio/bgm/menu_a.wav"
     },
     "menu_b": {
       "track_id": "menu_b",
