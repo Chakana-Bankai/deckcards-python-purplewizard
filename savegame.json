@@ -8,10 +8,10 @@
     "hp": 60,
     "max_hp": 60,
     "block": 0,
-    "energy": 1,
+    "energy": 4,
     "rupture": 0,
     "statuses": {},
-    "harmony_current": 2,
+    "harmony_current": 0,
     "harmony_max": 10,
     "harmony_ready_threshold": 6,
     "harmony_ready": false,
@@ -45,7 +45,11 @@
     "lectura_del_destino",
     "hg_lore_06",
     "of_lore_17",
-    "of_lore_26"
+    "of_lore_26",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana"
   ],
   "map": [
     [
@@ -88,7 +92,7 @@
           "2_1",
           "2_0"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "1_2",
@@ -101,7 +105,7 @@
           "2_2",
           "2_3"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "1_3",
@@ -129,7 +133,7 @@
           "3_0",
           "3_1"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_1",
@@ -142,7 +146,7 @@
           "3_1",
           "3_0"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_2",
@@ -155,7 +159,7 @@
           "3_2",
           "3_3"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_3",
@@ -168,7 +172,7 @@
           "3_3",
           "3_2"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -271,7 +275,7 @@
   ],
   "biome_index": 0,
   "biome": "ukhu",
-  "xp": 10,
+  "xp": 16,
   "level": 2,
   "combats_won": 1,
   "tutorial_combats_won": 1,
@@ -294,11 +298,16 @@
   },
   "meta_director": {
     "recent_enemy_ids": [
-      "sabueso_sombrio"
+      "sabueso_sombrio",
+      "larva_del_vacio",
+      "acaro_de_tinta"
     ],
-    "recent_event_ids": [],
+    "recent_event_ids": [
+      "chakana_crossroads"
+    ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
+      "base_pack",
       "base_pack"
     ],
     "visual_direction_tags": [
@@ -313,9 +322,9 @@
   },
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
-  "last_node_type": "combat",
+  "last_node_type": "challenge",
   "levelup_pending": 1,
-  "current_node_id": "0_0",
+  "current_node_id": "1_2",
   "last_biome_seen": "ukhu",
-  "saved_at": 1773176861
+  "saved_at": 1773177085
 }

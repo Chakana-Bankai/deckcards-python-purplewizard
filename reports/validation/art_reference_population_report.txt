@@ -1,0 +1,4 @@
+status=ok
+art_reference=populated_with_reference_briefs_and_manifests
+categories=6
+note=internet_images_not_fetched_in_this_environment; structure_prepared_for_external_curated_ingest
