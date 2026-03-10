@@ -1,0 +1,7 @@
+SHOP + PACK TRANSITION STABILITY REPORT
+status=PASS
+fix=deferred_shop_and_pack_music_context
+notes=Shop and pack screen transitions no longer switch music in the same stack frame as screen construction.
+smoke_1=game\.venv\Scripts\python.exe -m py_compile game/main.py => PASS
+smoke_2=same-venv goto_shop() + update/render loop => PASS
+smoke_3=same-venv goto_pack_opening(source=reward) + update/render loop => PASS

@@ -1,6 +1,6 @@
 {
   "version": "chakana_audio_v7",
-  "generated_at": 1773160107,
+  "generated_at": 1773161392,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
@@ -202,13 +202,13 @@
       "type": "bgm",
       "context": "shop",
       "variant": "b",
-      "seed": 1263215984,
+      "seed": 1541204746,
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\shop_b.wav",
-      "generation_date": 1773097904,
-      "version": "chakana_audio_v6",
+      "relative_path": "game/audio/generated/bgm/shop_b.wav",
+      "generation_date": 1773160670,
+      "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated",
-      "relative_path": "game/audio/generated/bgm/shop_b.wav"
+      "source": "generated"
     },
     "victory_a": {
       "track_id": "victory_a",
@@ -566,13 +566,13 @@
       "type": "ambient",
       "context": "shop_ambience",
       "variant": "a",
-      "seed": 1519570074,
+      "seed": 2059851004,
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\ambient\\shop_ambience.wav",
-      "generation_date": 1773106488,
-      "version": "chakana_audio_v6",
+      "relative_path": "game/audio/generated/ambient/shop_ambience.wav",
+      "generation_date": 1773160671,
+      "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated",
-      "relative_path": "game/audio/generated/ambient/shop_ambience.wav"
+      "source": "generated"
     },
     "ambient_codex_ambience": {
       "track_id": "ambient_codex_ambience",

@@ -1748,13 +1748,18 @@ class App:
     def goto_pack_opening(self, reward_data=None, source: str = "reward"):
         self.sm.set(PackOpeningScreen(self, reward_data=reward_data, source=source))
         self.play_stinger("stinger_reward")
-        self.music.play_for(self.get_bgm_track("reward"))
+        fallback = self.get_bgm_track("map", self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha")
+        self._queue_music_context(self.get_bgm_track("reward"), fallback=fallback, reason=f"pack_opening:{source}")
 
     def goto_shop(self):
         reward_cards = self._reward_card_pool()
         pool = [c for c in reward_cards if c.get("rarity") in {"common", "uncommon"}] or reward_cards
-        self.sm.set(ShopScreen(self, self.rng.choice(pool) or DEFAULT_CARDS[0]))
-        self.music.play_for(self.get_bgm_track("shop"))
+        offer = self.rng.choice(pool) or DEFAULT_CARDS[0]
+        def _enter_shop():
+            self.sm.set(ShopScreen(self, offer))
+            print('[boot] shop screen active')
+            print('[Audio] shop_transition stability_mode=keep_current_track')
+        self._queue_screen_transition(_enter_shop, reason='shop_enter')
 
     def goto_event(self):
         biome = self._normalize_biome_id((self.run_state or {}).get("biome"))
@@ -2337,6 +2342,23 @@ class App:
         self._pending_music_fallback = str(fallback or "").strip() or None
         self._pending_music_reason = str(reason or "").strip() or "deferred"
 
+    def _queue_screen_transition(self, fn, *, reason: str = ""):
+        self._pending_screen_transition = fn
+        self._pending_screen_transition_reason = str(reason or "").strip() or "deferred"
+
+    def _flush_pending_screen_transition(self):
+        fn = getattr(self, '_pending_screen_transition', None)
+        if fn is None:
+            return
+        reason = getattr(self, '_pending_screen_transition_reason', 'deferred')
+        self._pending_screen_transition = None
+        self._pending_screen_transition_reason = ''
+        try:
+            fn()
+        except Exception as exc:
+            print(f"[ui] deferred_transition error reason={reason} err={exc}")
+            raise
+
     def _flush_pending_music_context(self):
         key = getattr(self, "_pending_music_context", None)
         if not key:
@@ -2417,6 +2439,7 @@ class App:
                 self._soft_restart()
                 continue
             self.music.tick()
+            self._flush_pending_screen_transition()
             self._flush_pending_music_context()
             if hasattr(self, "oracle_ui") and self.oracle_ui is not None:
                 self.oracle_ui.update(dt)

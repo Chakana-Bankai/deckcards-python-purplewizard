@@ -427,7 +427,11 @@ class ShopScreen:
         face_box = pygame.Rect(self.merchant_rect.x + 18, self.merchant_rect.y + 56, 140, 110)
         pygame.draw.rect(s, UI_THEME["panel_2"], face_box, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], face_box, 1, border_radius=10)
-        face = self.app.assets.sprite("guides", "arcane_hacker", (100, 100), fallback=(70, 52, 102))
+        try:
+            face = self.app.assets.sprite("guides", "arcane_hacker", (100, 100), fallback=(70, 52, 102))
+        except Exception:
+            face = pygame.Surface((100, 100), pygame.SRCALPHA)
+            face.fill((70, 52, 102, 255))
         s.blit(face, face.get_rect(center=face_box.center).topleft)
         s.blit(self.app.tiny_font.render("Comerciante del Umbral", True, UI_THEME["muted"]), (face_box.right + 16, face_box.y + 12))
         s.blit(self.app.tiny_font.render("Intercambio ritual en calma", True, UI_THEME["muted"]), (face_box.right + 16, face_box.y + 38))

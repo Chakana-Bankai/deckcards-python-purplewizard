@@ -1,0 +1,9 @@
+SHOP MAP ENTRY HOTFIX REPORT
+status=PASS
+fixes=deferred_shop_screen_transition,safe_merchant_portrait
+smoke_1=game\.venv\Scripts\python.exe -m py_compile game/main.py game/ui/screens/shop.py => PASS
+smoke_2=same-venv goto_shop with deferred transition => PASS
+smoke_3=shop render with guarded merchant portrait => PASS
+smoke_4=MapScreen active -> goto_shop deferred transition => PASS
+smoke_5=MapScreen -> goto_shop -> flush_pending_screen_transition => PASS
+smoke_6=second shop entry from map keeps current track for stability => PASS
