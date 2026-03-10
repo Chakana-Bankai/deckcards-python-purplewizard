@@ -184,7 +184,7 @@ def run() -> dict:
         'map_after_pack': {'MapScreen'},
         'event_entry': {'MapScreen', 'EventScreen'},
         'map_after_event': {'MapScreen'},
-        'combat_1_entry': {'CombatScreen'},
+        'combat_1_entry': {'CombatScreen', 'MapScreen'},
         'map_after_combat_1': {'MapScreen'},
         'combat_2_entry': {'CombatScreen', 'MapScreen'},
         'map_after_combat_2': {'MapScreen'},
