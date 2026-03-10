@@ -1,6 +1,6 @@
 {
   "version": "portrait_v7",
-  "updated_at": 1773162070,
+  "updated_at": 1773162522,
   "items": {
     "chakana:132x132": {
       "role": "chakana",
@@ -675,7 +675,7 @@
         100
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\guide__arcane_hacker__portrait_portrait_100x100.png",
-      "generated_at": 1773161747,
+      "generated_at": 1773162522,
       "version": "portrait_v7",
       "source": "placeholder",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\guides\\angel.png"

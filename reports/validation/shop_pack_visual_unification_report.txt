@@ -1,0 +1,18 @@
+Shop pack visual unification hotfix
+=================================
+
+Fecha: 2026-03-10
+
+Cambios:
+- ShopScreen ahora muestra una portada ritual del sobre destacado, alineada con PackOpeningScreen.
+- Se mantuvo la compra, tabs y transicion diferida existentes.
+- No se cambio la economia ni la logica de rewards.
+
+Comandos:
+- game\\.venv\\Scripts\\python.exe -m py_compile game/ui/screens/shop.py game/ui/screens/pack_opening.py game/main.py -> PASS
+- render directo de ShopScreen en tab packs -> PASS
+- shop -> buy_pack -> PackOpeningScreen con oro forzado -> PASS
+
+Warnings:
+- La portada del shop todavia es UI generativa interna, no asset curado final por set.
+- El siguiente paso natural es conectar portada artistica dedicada por set si queremos calidad premium final.
