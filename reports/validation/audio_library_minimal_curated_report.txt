@@ -1,0 +1,11 @@
+status=ok
+mode=minimal_curated_library
+active=menu_a source=menu_a.wav
+active=map_ukhu_a source=map_ukhu_a.wav
+active=map_kay_a source=map_kay_a.wav
+active=map_hanan_a source=map_hanan_a.wav
+active=shop_a source=shop_a.wav
+active=combat_a source=combat_a.wav
+active=combat_boss_a source=combat_boss_a.wav
+active=victory_a source=victory_a.wav
+active=defeat_a source=defeat_a.wav

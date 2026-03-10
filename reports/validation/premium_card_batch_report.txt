@@ -1,5 +1,11 @@
 status=ok
-cards=3
-arc_058=arc_058.png
-arc_059=arc_059.png
-arc_060=arc_060.png
+batch=set_showcase
+cards=6
+layer_standard=background_base,subject_character,focus_object,magic_effects,integration_depth_pass
+composition_rule=background+subject+object+effects+integration
+hip_harmony_guardian_15=hip_harmony_guardian_15.png
+hip_harmony_guardian_16=hip_harmony_guardian_16.png
+hip_oracle_of_fate_16=hip_oracle_of_fate_16.png
+arc_045=arc_045.png
+arc_048=arc_048.png
+arc_049=arc_049.png

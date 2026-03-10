@@ -23,6 +23,36 @@ DEFAULT_BATCH = [
     "arc_060",
 ]
 
+BATCH_PRESETS = {
+    "legendary_core": [
+        "chakana_de_luz",
+        "fusion_espiritual",
+        "ritual_de_la_trama",
+        "hip_cosmic_warrior_20",
+        "hip_harmony_guardian_20",
+        "hip_oracle_of_fate_20",
+        "arc_058",
+        "arc_059",
+        "arc_060",
+    ],
+    "set_showcase": [
+        "hip_harmony_guardian_15",
+        "hip_harmony_guardian_16",
+        "hip_oracle_of_fate_16",
+        "arc_045",
+        "arc_048",
+        "arc_049",
+    ],
+}
+
+LAYER_STANDARD = [
+    "background_base",
+    "subject_character",
+    "focus_object",
+    "magic_effects",
+    "integration_depth_pass",
+]
+
 
 def _load_cards() -> list[dict]:
     cards = []
@@ -35,16 +65,18 @@ def _load_cards() -> list[dict]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Regenera un lote premium de cartas fuera del runtime.")
-    parser.add_argument("--ids", nargs="*", default=DEFAULT_BATCH)
+    parser.add_argument("--ids", nargs="*", default=None)
+    parser.add_argument("--batch", choices=sorted(BATCH_PRESETS.keys()), default="legendary_core")
     args = parser.parse_args()
 
     os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
     pygame.init()
     pygame.display.set_mode((1, 1), pygame.HIDDEN)
 
+    target_ids = list(args.ids or BATCH_PRESETS.get(args.batch, DEFAULT_BATCH))
     all_cards = _load_cards()
     by_id = {str(c.get("id")): c for c in all_cards}
-    chosen = [by_id[cid] for cid in args.ids if cid in by_id]
+    chosen = [by_id[cid] for cid in target_ids if cid in by_id]
     export_prompts(all_cards)
     gen = CardArtGenerator()
     written = []
@@ -63,7 +95,15 @@ def main() -> int:
 
     out = project_root() / "reports" / "validation" / "premium_card_batch_report.txt"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text("\n".join(["status=ok", f"cards={len(written)}", *written]) + "\n", encoding="utf-8")
+    report_lines = [
+        "status=ok",
+        f"batch={args.batch}",
+        f"cards={len(written)}",
+        "layer_standard=" + ",".join(LAYER_STANDARD),
+        "composition_rule=background+subject+object+effects+integration",
+        *written,
+    ]
+    out.write_text("\n".join(report_lines) + "\n", encoding="utf-8")
     print(f"[premium_cards] report={out}")
     return 0
 
