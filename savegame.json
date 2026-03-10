@@ -1,41 +1,321 @@
 {
-  "sideboard": [
-    "cw_lore_09",
-    "hg_lore_11",
-    "filo_astral",
-    "portal_de_la_chakana"
+  "gold": 128,
+  "relics": [
+    "violet_seal"
   ],
-  "discovered_sets": [
-    "base"
-  ],
-  "meta_director": {
-    "recent_enemy_ids": [],
-    "recent_event_ids": [
-      "chakana_crossroads"
-    ],
-    "recent_shop_card_ids": [],
-    "recent_pack_ids": [],
-    "visual_direction_tags": [
-      "biome:kaypacha"
-    ],
-    "audio_direction_tags": [
-      "ctx:map",
-      "biome:kaypacha"
-    ]
-  },
+  "relic_slots_max": 8,
   "player": {
     "hp": 60,
     "max_hp": 60,
+    "block": 0,
+    "energy": 1,
     "rupture": 0,
-    "statuses": {}
+    "statuses": {},
+    "harmony_current": 2,
+    "harmony_max": 10,
+    "harmony_ready_threshold": 6,
+    "harmony_ready": false,
+    "harmony_seal_used": false,
+    "seal_ready": false,
+    "seal_active": false
   },
-  "deck": [],
-  "gold": 0,
-  "xp": 6,
-  "level": 1,
-  "levelup_pending": 0,
-  "relics": [],
-  "current_node_id": null,
-  "last_biome_seen": "kaypacha",
-  "saved_at": 1773176399
+  "deck": [
+    "filo_astral",
+    "garra_espiritual",
+    "pulso_cosmico",
+    "vinculo_de_energia",
+    "cw_lore_03",
+    "cw_lore_09",
+    "cw_lore_10",
+    "cw_lore_14",
+    "cw_lore_18",
+    "cw_lore_23",
+    "eco_de_sabiduria",
+    "mantra_del_umbral",
+    "embate_del_jaguar",
+    "estallido_arcano",
+    "filo_en_cadena",
+    "cw_lore_02",
+    "cw_lore_04",
+    "cw_lore_08",
+    "cw_lore_29",
+    "chakana_de_luz"
+  ],
+  "sideboard": [
+    "lectura_del_destino",
+    "hg_lore_06",
+    "of_lore_17",
+    "of_lore_26"
+  ],
+  "map": [
+    [
+      {
+        "id": "0_0",
+        "col": 0,
+        "x": 180,
+        "y": 540,
+        "type": "combat",
+        "biome": "ukhu",
+        "next": [
+          "1_0",
+          "1_1"
+        ],
+        "state": "cleared"
+      }
+    ],
+    [
+      {
+        "id": "1_0",
+        "col": 1,
+        "x": 492,
+        "y": 396,
+        "type": "event",
+        "biome": "ukhu",
+        "next": [
+          "2_0",
+          "2_1"
+        ],
+        "state": "available"
+      },
+      {
+        "id": "1_1",
+        "col": 1,
+        "x": 492,
+        "y": 492,
+        "type": "combat",
+        "biome": "ukhu",
+        "next": [
+          "2_1",
+          "2_0"
+        ],
+        "state": "available"
+      },
+      {
+        "id": "1_2",
+        "col": 1,
+        "x": 492,
+        "y": 588,
+        "type": "challenge",
+        "biome": "ukhu",
+        "next": [
+          "2_2",
+          "2_3"
+        ],
+        "state": "available"
+      },
+      {
+        "id": "1_3",
+        "col": 1,
+        "x": 492,
+        "y": 684,
+        "type": "sanctuary",
+        "biome": "ukhu",
+        "next": [
+          "2_3",
+          "2_2"
+        ],
+        "state": "available"
+      }
+    ],
+    [
+      {
+        "id": "2_0",
+        "col": 2,
+        "x": 804,
+        "y": 396,
+        "type": "combat",
+        "biome": "kaypacha",
+        "next": [
+          "3_0",
+          "3_1"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "2_1",
+        "col": 2,
+        "x": 804,
+        "y": 492,
+        "type": "shop",
+        "biome": "kaypacha",
+        "next": [
+          "3_1",
+          "3_0"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "2_2",
+        "col": 2,
+        "x": 804,
+        "y": 588,
+        "type": "combat",
+        "biome": "kaypacha",
+        "next": [
+          "3_2",
+          "3_3"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "2_3",
+        "col": 2,
+        "x": 804,
+        "y": 684,
+        "type": "event",
+        "biome": "kaypacha",
+        "next": [
+          "3_3",
+          "3_2"
+        ],
+        "state": "locked"
+      }
+    ],
+    [
+      {
+        "id": "3_0",
+        "col": 3,
+        "x": 1116,
+        "y": 396,
+        "type": "challenge",
+        "biome": "hanan",
+        "next": [
+          "4_0",
+          "4_1"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "3_1",
+        "col": 3,
+        "x": 1116,
+        "y": 492,
+        "type": "combat",
+        "biome": "hanan",
+        "next": [
+          "4_0"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "3_2",
+        "col": 3,
+        "x": 1116,
+        "y": 588,
+        "type": "relic",
+        "biome": "hanan",
+        "next": [
+          "4_1"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "3_3",
+        "col": 3,
+        "x": 1116,
+        "y": 684,
+        "type": "combat",
+        "biome": "hanan",
+        "next": [
+          "4_1",
+          "4_0"
+        ],
+        "state": "locked"
+      }
+    ],
+    [
+      {
+        "id": "4_0",
+        "col": 4,
+        "x": 1428,
+        "y": 480,
+        "type": "combat",
+        "biome": "hanan",
+        "next": [
+          "5_0"
+        ],
+        "state": "locked"
+      },
+      {
+        "id": "4_1",
+        "col": 4,
+        "x": 1428,
+        "y": 600,
+        "type": "elite",
+        "biome": "hanan",
+        "next": [
+          "5_0"
+        ],
+        "state": "locked"
+      }
+    ],
+    [
+      {
+        "id": "5_0",
+        "col": 5,
+        "x": 1740,
+        "y": 540,
+        "type": "boss",
+        "biome": "fractura_chakana",
+        "next": [],
+        "state": "locked"
+      }
+    ]
+  ],
+  "map_columns": 6,
+  "biome_progression": [
+    "ukhu",
+    "kaypacha",
+    "hanan",
+    "fractura_chakana"
+  ],
+  "biome_index": 0,
+  "biome": "ukhu",
+  "xp": 10,
+  "level": 2,
+  "combats_won": 1,
+  "tutorial_combats_won": 1,
+  "allow_defeat_continue": true,
+  "settings": {
+    "turn_timer_enabled": true,
+    "turn_timer_seconds": 20,
+    "music_muted": false
+  },
+  "discovered_sets": [
+    "base"
+  ],
+  "hiperboria_unlocked": false,
+  "tutorial": {
+    "active": false,
+    "completed": false,
+    "step_id": "",
+    "step_index": 0,
+    "step_total": 7
+  },
+  "meta_director": {
+    "recent_enemy_ids": [
+      "sabueso_sombrio"
+    ],
+    "recent_event_ids": [],
+    "recent_shop_card_ids": [],
+    "recent_pack_ids": [
+      "base_pack"
+    ],
+    "visual_direction_tags": [
+      "biome:ukhu",
+      "mood:underworld"
+    ],
+    "audio_direction_tags": [
+      "ctx:map",
+      "biome:ukhu",
+      "mood:dark"
+    ]
+  },
+  "hiperboria_unlock_target": 3,
+  "civilization": "base_world",
+  "last_node_type": "combat",
+  "levelup_pending": 1,
+  "current_node_id": "0_0",
+  "last_biome_seen": "ukhu",
+  "saved_at": 1773176861
 }
