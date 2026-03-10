@@ -211,6 +211,26 @@
       "state": "valid",
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_c.wav",
       "relative_path": "game/audio/generated/bgm/combat_c.wav"
+    },
+    "combat_boss_c": {
+      "track_id": "combat_boss_c",
+      "type": "bgm",
+      "context": "combat_boss",
+      "variant": "c",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_boss_c.wav",
+      "relative_path": "game/audio/generated/bgm/combat_boss_c.wav"
+    },
+    "shop_c": {
+      "track_id": "shop_c",
+      "type": "bgm",
+      "context": "shop",
+      "variant": "c",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\shop_c.wav",
+      "relative_path": "game/audio/generated/bgm/shop_c.wav"
     }
   }
 }
