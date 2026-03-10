@@ -1,0 +1,7 @@
+status=ok
+scope=all_cards_force_regen
+total_card_ids=180
+covered_card_art=180
+missing_card_art=0
+layer_standard=background_base,subject_character,focus_object,magic_effects,integration_depth_pass
+work_resolution=supersampled_x2_when_needed

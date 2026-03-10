@@ -8,26 +8,44 @@ from game.core.paths import curated_audio_dir, project_root
 
 
 CURATED_PROFILES = {
-    "menu": ContextSpec("orchestral hopeful mystic", ("a",), 142.0, 0.05, 0.58, 0.10),
-    "map_kay": ContextSpec("pilgrimage exploration warm", ("a",), 132.0, 0.08, 0.52, 0.20),
-    "shop": ContextSpec("ritual sanctuary intimate", ("a",), 118.0, 0.05, 0.48, 0.12),
-    "combat": ContextSpec("tactical orchestral pulse", ("a",), 126.0, 0.15, 0.56, 0.58),
-    "combat_boss": ContextSpec("epic archon ceremonial", ("a",), 154.0, 0.22, 0.62, 0.90),
+    "menu": ContextSpec("joyful mystic adventure overture chrono ritual", ("a",), 154.0, 0.05, 0.62, 0.10),
+    "map_kay": ContextSpec("pilgrimage exploration warm sacred travel", ("a",), 132.0, 0.08, 0.52, 0.20),
+    "shop": ContextSpec("ritual sanctuary intimate ceremonial mystery", ("a",), 118.0, 0.05, 0.50, 0.14),
+    "combat": ContextSpec("chaotic tactical orchestral pulse ritual drums", ("a",), 132.0, 0.17, 0.58, 0.70),
+    "combat_boss": ContextSpec("epic archon ceremonial orchestral dark climax", ("a",), 166.0, 0.24, 0.64, 0.94),
 }
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Construye soundtrack curado por contexto fuera del runtime.")
-    parser.add_argument("--contexts", nargs="*", default=list(CURATED_PROFILES.keys()))
+    parser.add_argument("--contexts", nargs="*", default=[*list(CURATED_PROFILES.keys()), "studio_intro"])
     args = parser.parse_args()
 
     engine = get_audio_engine()
-    target_contexts = [c for c in args.contexts if c in CURATED_PROFILES]
+    target_contexts = [c for c in args.contexts if c in CURATED_PROFILES or c == "studio_intro"]
     curated_root = curated_audio_dir() / "bgm"
     curated_root.mkdir(parents=True, exist_ok=True)
+    studio_root = curated_audio_dir() / "studio"
+    studio_root.mkdir(parents=True, exist_ok=True)
     report_lines = ["status=ok"]
 
     for ctx in target_contexts:
+        if ctx == "studio_intro":
+            generated = engine._ensure_stinger("studio_intro", force=True)
+            curated_path = studio_root / "studio_intro.wav"
+            shutil.copy2(generated, curated_path)
+            engine._register_item(
+                "stinger_studio_intro",
+                item_type="stinger",
+                context="studio_intro",
+                variant="a",
+                seed=engine._stable_seed("curated:studio_intro:a"),
+                file_path=curated_path,
+                source="curated",
+            )
+            report_lines.append(f"studio_intro={curated_path.name}")
+            continue
+
         spec = CURATED_PROFILES[ctx]
         engine.context_specs[ctx] = spec
         for variant in spec.variants:

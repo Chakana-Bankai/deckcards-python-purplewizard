@@ -1,4 +1,4 @@
-import pygame
+﻿import pygame
 
 from game.combat.card import CardDef, CardInstance
 from game.systems.reward_system import PACK_ECONOMY
@@ -208,7 +208,10 @@ class PackOpeningScreen:
                 if hasattr(self.app, "_queue_set_discovery") and hasattr(self.app, "_detect_card_set"):
                     self.app._queue_set_discovery(self.app._detect_card_set(card.definition.id))
 
-        self.app.consume_levelup_pending()
+        if self.source == "levelup_pending":
+            self.app.consume_levelup_pending()
+        else:
+            self.app.goto_map()
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
@@ -334,3 +337,4 @@ class PackOpeningScreen:
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.back_rect, 2, border_radius=10)
         back_lbl = "Cancelar" if self.cards else "Volver"
         s.blit(self.app.font.render(back_lbl, True, UI_THEME["text"]), (self.back_rect.x + 72, self.back_rect.y + 16))
+

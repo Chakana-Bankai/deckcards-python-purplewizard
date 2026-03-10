@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import traceback
 import shutil
@@ -1672,7 +1672,9 @@ class App:
         )
     def goto_map(self):
         self._migrate_legacy_shop_nodes()
-        if self.run_state and self.run_state.get("levelup_pending", 0) > 0:
+        current_name = self.sm.current.__class__.__name__ if getattr(self, "sm", None) and getattr(self.sm, "current", None) else ""
+        allow_pending_pack_redirect = current_name in {"RewardScreen", "EndScreen"}
+        if self.run_state and self.run_state.get("levelup_pending", 0) > 0 and allow_pending_pack_redirect:
             self.goto_pack_opening(source="levelup_pending")
             self.music.play_for("chest")
             return
@@ -2181,6 +2183,14 @@ class App:
                 pool = [r.get("id") for r in self.relics_data if r.get("rarity") == rarity and r.get("id")]
                 if pool:
                     self.apply_run_rewards(relics=[self.rng.choice(pool)], source="event_gain_relic_random")
+            elif effect_type == "gain_status_player":
+                status_key = str(effect.get("status", "") or "").strip().lower()
+                stacks = max(1, int(effect.get("stacks", effect.get("amount", 1)) or 1))
+                if status_key:
+                    statuses = player.get("statuses", {}) if isinstance(player.get("statuses", {}), dict) else {}
+                    statuses[status_key] = int(statuses.get(status_key, 0) or 0) + stacks
+                    player["statuses"] = statuses
+                    print(f"[events] player_status gain status={status_key} stacks=+{stacks}")
 
             elif apply_event_state_flags(self.run_state, effect):
                 print(f"[events] state_flag applied type={effect_type}")
@@ -2542,6 +2552,7 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
+
 
 
 

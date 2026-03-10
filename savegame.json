@@ -6,7 +6,7 @@
   ],
   "relic_slots_max": 8,
   "player": {
-    "hp": 54,
+    "hp": 40,
     "max_hp": 60,
     "block": 2,
     "energy": 4,
@@ -61,7 +61,25 @@
     "pulso_cosmico",
     "observacion_sagrada",
     "guardia_terrenal",
-    "of_lore_21"
+    "of_lore_21",
+    "filo_en_cadena",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana",
+    "portal_de_la_chakana",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana",
+    "vision",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana"
   ],
   "map": [
     [
@@ -236,7 +254,7 @@
           "4_1",
           "4_0"
         ],
-        "state": "available"
+        "state": "cleared"
       }
     ],
     [
@@ -250,7 +268,7 @@
         "next": [
           "5_0"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "4_1",
@@ -262,7 +280,7 @@
         "next": [
           "5_0"
         ],
-        "state": "available"
+        "state": "cleared"
       }
     ],
     [
@@ -274,7 +292,7 @@
         "type": "boss",
         "biome": "fractura_chakana",
         "next": [],
-        "state": "locked"
+        "state": "available"
       }
     ]
   ],
@@ -287,7 +305,7 @@
   ],
   "biome_index": 2,
   "biome": "hanan",
-  "xp": 10,
+  "xp": 37,
   "level": 3,
   "combats_won": 2,
   "tutorial_combats_won": 2,
@@ -310,22 +328,23 @@
   },
   "meta_director": {
     "recent_enemy_ids": [
-      "acaro_de_tinta",
-      "larva_del_vacio",
-      "monolito_fracturado",
       "ave_de_ceniza",
-      "espiritu_condor_menor"
+      "espiritu_condor_menor",
+      "mascara_risuena",
+      "portador_de_silencio",
+      "runa_errante"
     ],
     "recent_event_ids": [
-      "apacheta_offer",
-      "chakana_crossroads",
-      "serpent_shed",
+      "ayni_pact",
+      "puma_trial",
+      "condor_vision",
+      "ayni_pact",
       "ayni_pact"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
       "base_pack",
-      "mystery_pack",
+      "base_pack",
       "base_pack",
       "base_pack"
     ],
@@ -341,9 +360,10 @@
   },
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
-  "last_node_type": "combat",
+  "last_node_type": "challenge",
   "levelup_pending": 0,
-  "current_node_id": "3_1",
+  "current_node_id": "4_1",
   "last_biome_seen": "hanan",
-  "saved_at": 1773167735
+  "saved_at": 1773170015,
+  "event_flags": {}
 }

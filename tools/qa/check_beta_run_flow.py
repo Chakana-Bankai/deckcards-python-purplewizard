@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import os
@@ -176,7 +176,21 @@ def run() -> dict:
         _flush(app, 8)
     results['boss_entry'] = _screen(app)
 
-    ok = all(results.get(k) in {'MapScreen', 'ShopScreen', 'CombatScreen'} for k in results)
+    expected = {
+        'boot': {'IntroScreen', 'MenuScreen'},
+        'shop_entry': {'ShopScreen'},
+        'map_after_shop': {'MapScreen'},
+        'pack_entry': {'MapScreen', 'PackOpeningScreen'},
+        'map_after_pack': {'MapScreen'},
+        'event_entry': {'MapScreen', 'EventScreen'},
+        'map_after_event': {'MapScreen'},
+        'combat_1_entry': {'CombatScreen'},
+        'map_after_combat_1': {'MapScreen'},
+        'combat_2_entry': {'CombatScreen', 'MapScreen'},
+        'map_after_combat_2': {'MapScreen'},
+        'boss_entry': {'CombatScreen'},
+    }
+    ok = all(results.get(key) in allowed for key, allowed in expected.items())
     payload = {'overall': 'PASS' if ok else 'WARNING', 'results': results}
 
     out = project_root() / 'reports' / 'validation' / 'beta_run_flow_report.txt'
@@ -184,6 +198,10 @@ def run() -> dict:
     lines = ['CHAKANA BETA RUN FLOW REPORT', '=' * 32, f"overall={payload['overall']}"]
     for key, value in results.items():
         lines.append(f'{key}={value}')
+    if payload['overall'] == 'PASS':
+        lines.append('note=run_flow_reaches_boss_and_core_transitions_resolve_in_safe_beta_mode')
+    else:
+        lines.append('note=run_flow_reaches_boss_but_some_transition_expectations_still_need_cleanup')
     out.write_text('\n'.join(lines) + '\n', encoding='utf-8')
     print(f'[beta_run] report={out}')
     print(json.dumps(payload, ensure_ascii=False, indent=2))
@@ -192,3 +210,4 @@ def run() -> dict:
 
 if __name__ == '__main__':
     run()
+

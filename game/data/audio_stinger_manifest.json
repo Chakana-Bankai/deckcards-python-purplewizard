@@ -107,10 +107,10 @@
       "type": "stinger",
       "context": "studio_intro",
       "variant": "a",
-      "source": "generated",
+      "source": "curated",
       "state": "valid",
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\studio\\studio_intro.wav",
-      "relative_path": "game/audio/generated/studio/studio_intro.wav"
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\studio\\studio_intro.wav",
+      "relative_path": "game/assets/curated/audio/studio/studio_intro.wav"
     }
   }
 }

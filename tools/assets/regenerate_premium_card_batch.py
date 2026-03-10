@@ -43,6 +43,14 @@ BATCH_PRESETS = {
         "arc_048",
         "arc_049",
     ],
+    "legendary_hyperborea_archonte": [
+        "hip_cosmic_warrior_20",
+        "hip_harmony_guardian_20",
+        "hip_oracle_of_fate_20",
+        "arc_058",
+        "arc_059",
+        "arc_060",
+    ],
 }
 
 LAYER_STANDARD = [
@@ -67,14 +75,15 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Regenera un lote premium de cartas fuera del runtime.")
     parser.add_argument("--ids", nargs="*", default=None)
     parser.add_argument("--batch", choices=sorted(BATCH_PRESETS.keys()), default="legendary_core")
+    parser.add_argument("--all", action="store_true", help="Regenera todas las cartas del pool cargado.")
     args = parser.parse_args()
 
     os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
     pygame.init()
     pygame.display.set_mode((1, 1), pygame.HIDDEN)
 
-    target_ids = list(args.ids or BATCH_PRESETS.get(args.batch, DEFAULT_BATCH))
     all_cards = _load_cards()
+    target_ids = [str(c.get("id")) for c in all_cards] if args.all else list(args.ids or BATCH_PRESETS.get(args.batch, DEFAULT_BATCH))
     by_id = {str(c.get("id")): c for c in all_cards}
     chosen = [by_id[cid] for cid in target_ids if cid in by_id]
     export_prompts(all_cards)
@@ -97,7 +106,7 @@ def main() -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     report_lines = [
         "status=ok",
-        f"batch={args.batch}",
+        f"batch={'all_cards' if args.all else args.batch}",
         f"cards={len(written)}",
         "layer_standard=" + ",".join(LAYER_STANDARD),
         "composition_rule=background+subject+object+effects+integration",
