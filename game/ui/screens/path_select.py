@@ -265,7 +265,7 @@ class PathSelectScreen:
         art = self.app.assets.sprite("cards", card.get("id", legendary_id), (thumb.w - 10, thumb.h - 10), fallback=(96, 72, 124))
         s.blit(art, art.get_rect(center=thumb.center).topleft)
 
-        title = self.app.loc.t(card.get("name_key", legendary_id))
+        title = self.app.display_card_name(card) if hasattr(self.app, "display_card_name") else self.app.loc.t(card.get("name_key", legendary_id))
         text = self.app.loc.t(card.get("text_key", ""))
         cost = int(card.get("cost", 0) or 0)
         rarity = str(card.get("rarity", "legendary")).title()

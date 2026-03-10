@@ -155,13 +155,52 @@ class CodexScreen:
         return table.get(int(value), str(value))
 
     def _display_text(self, value: str) -> str:
-        return self.app.loc.t(str(value or ""))
+        text = self.app.loc.t(str(value or ""))
+        return (
+            text.replace("corrupci?n", "corrupci?n")
+            .replace("Hiperb?rea", "Hiperb?rea")
+            .replace("Vacio", "Vac?o")
+            .replace("Oraculo", "Or?culo")
+        )
 
     def _display_card_name(self, card: dict, fallback: str = "") -> str:
         raw = str(card.get("name_key") or card.get("name") or fallback or card.get("id") or "").strip()
-        if (str(card.get("set", "")).lower() == "arconte" or str(card.get("id", "")).lower().startswith("arc_")) and raw.lower().startswith("arcano del vacio"):
-            suffix = raw.split()[-1]
-            raw = f"Arcano del Vac\u00edo {self._to_roman(int(suffix))}" if suffix.isdigit() else raw.replace("Vacio", "Vac\u00edo")
+        cid = str(card.get("id", "")).lower()
+        set_id = str(card.get("set", "")).lower()
+        raw_lower = raw.lower()
+        if set_id == "arconte" or cid.startswith("arc_"):
+            generic_arc = raw_lower.startswith("arcano del vacio") or raw_lower in {"", cid}
+            if generic_arc:
+                titles = [
+                    "Mandato del Vac?o",
+                    "Liturgia Quebrada",
+                    "Corona Marchita",
+                    "Sello Profano",
+                    "Visi?n del Umbral Negro",
+                    "Trono de la Grieta Roja",
+                ]
+                digits = "".join(ch for ch in cid if ch.isdigit())
+                idx = int(digits or "1")
+                raw = f"{titles[(idx - 1) % len(titles)]} {self._to_roman(idx)}"
+        elif set_id in {"hiperboria", "hiperborea"} or cid.startswith("hip_"):
+            generic_hip = (
+                raw_lower.startswith("guerrero astral de hiperb")
+                or raw_lower.startswith("guardian de hiperb")
+                or raw_lower.startswith("oraculo de hiperb")
+                or raw_lower in {"", cid}
+            )
+            if generic_hip:
+                titles = [
+                    "Corona Boreal",
+                    "Runa Helada",
+                    "Cr?nica Polar",
+                    "Estrella del Norte",
+                    "Umbral de Belicena",
+                    "Memoria del Hielo Solar",
+                ]
+                digits = "".join(ch for ch in cid if ch.isdigit())
+                idx = int(digits or "1")
+                raw = f"{titles[(idx - 1) % len(titles)]} {self._to_roman(idx)}"
         return self._display_text(raw)
 
     def _codex_cards(self) -> list[dict]:
@@ -204,6 +243,17 @@ class CodexScreen:
             full.setdefault("text_key", str(c.get("gameplay_text", "")))
             full.setdefault("archetype", str(c.get("archetype", "")))
             full.setdefault("lore_text", str(c.get("lore_text", "")))
+            lore = str(full.get("lore_text", "") or "").strip()
+            if (str(full.get("set", "")).lower() in {"arconte", "hiperboria", "hiperborea"} or str(full.get("id", "")).lower().startswith(("arc_", "hip_"))) and lore.lower() in {
+                "la chakana sostiene el balance cosmico ante los arcontes y el eco de hiperborea.",
+                "los arcontes tuercen la chakana para romper el balance cosmico y profanar hiperborea.",
+                "",
+            }:
+                name_hint = self._display_card_name(full, str(c.get("name", cid)))
+                if str(full.get("id", "")).lower().startswith("arc_") or str(full.get("set", "")).lower() == "arconte":
+                    full["lore_text"] = f"{name_hint} respira corrupci?n ritual en la grieta de la Trama."
+                else:
+                    full["lore_text"] = f"{name_hint} conserva una memoria helada de Hiperb?rea."
             full.setdefault("artwork", str(full.get("id", cid)))
             if str(full.get("id", "")).lower().startswith("hip_"):
                 full.setdefault("set", "hiperboria")

@@ -8,11 +8,11 @@ from game.core.paths import curated_audio_dir, project_root
 
 
 CURATED_PROFILES = {
-    "menu": ContextSpec("runic jrpg overture heroic melodic warm mystic chrono trigger final fantasy adventure", ("a",), 168.0, 0.05, 0.68, 0.12),
+    "menu": ContextSpec("heroic melodic jrpg overture runic warm mystic chrono trigger final fantasy adventure layered pads bright bass noble bells", ("a",), 196.0, 0.05, 0.72, 0.12),
     "map_kay": ContextSpec("pilgrimage exploration warm sacred travel", ("a",), 132.0, 0.08, 0.52, 0.20),
-    "shop": ContextSpec("ceremonial sanctuary intimate mystical market soft bells pads sacred merchant ritual", ("a",), 124.0, 0.05, 0.56, 0.14),
-    "combat": ContextSpec("chaotic tactical orchestral battle tribal drums rune brass aggressive layered action jrpg", ("a",), 146.0, 0.20, 0.60, 0.78),
-    "combat_boss": ContextSpec("epic archon boss orchestral dark ceremonial climax choir war drums final boss jrpg", ("a",), 182.0, 0.26, 0.66, 0.96),
+    "shop": ContextSpec("ceremonial sanctuary intimate mystical market soft bells warm pads hand percussion sacred merchant ritual gentle melody", ("a",), 148.0, 0.05, 0.60, 0.14),
+    "combat": ContextSpec("chaotic tactical orchestral battle tribal drums rune brass aggressive layered action jrpg sharp ostinato heavy low toms darker pulse", ("a",), 170.0, 0.20, 0.64, 0.82),
+    "combat_boss": ContextSpec("epic archon boss orchestral dark ceremonial climax choir war drums final boss jrpg massive low choir brass tension long tail", ("a",), 212.0, 0.26, 0.70, 0.98),
 }
 
 

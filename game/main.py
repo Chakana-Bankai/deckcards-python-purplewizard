@@ -604,6 +604,69 @@ class App:
                     cand["taxonomy"] = miss
         return cards
 
+    def _fallback_card_display_name(self, row: dict) -> str:
+        card_id = str(row.get("id", "") or "")
+        set_id = self._detect_card_set(card_id)
+        archetype = str(row.get("archetype", "") or "").strip().lower()
+        role = str(row.get("role", infer_card_role(row)) or "").strip().lower()
+        rarity = str(row.get("rarity", "common") or "common").strip().lower()
+
+        role_name = {
+            "attack": ["Filo", "Lanza", "Embate", "Corte"],
+            "defense": ["Muralla", "Velo", "Escudo", "Resguardo"],
+            "control": ["Oraculo", "Trama", "Vision", "Mandato"],
+            "ritual": ["Sello", "Rito", "Conjuro", "Invocacion"],
+            "combo": ["Eco", "Secuencia", "Cadena", "Resonancia"],
+            "energy": ["Pulso", "Canal", "Apertura", "Ascenso"],
+        }.get(role, ["Signo", "Pulso", "Llamado", "Ecos"])
+
+        if set_id == "hiperboria":
+            nouns = {
+                "cosmic_warrior": ["de Belicena", "del Hielo Solar", "de la Corona Polar", "del Trono Boreal"],
+                "harmony_guardian": ["del Santuario Blanco", "de la Estrella Boreal", "de la Runa Helada", "del Velo de Nieve"],
+                "oracle_of_fate": ["de Nimrod", "de la Cronica Polar", "del Norte Interior", "de la Cupula Helada"],
+            }.get(archetype, ["de Hiperborea", "del Norte Antiguo", "del Hielo Ritual", "de la Aurora Blanca"])
+        elif set_id == "arconte":
+            nouns = {
+                "attack": ["del Vacio", "de la Grieta Roja", "del Umbral Negro", "de la Corona Quebrada"],
+                "control": ["del Mandato Sombrio", "de la Voluntad Rota", "del Ojo Impuro", "de la Liturgia Rota"],
+                "ritual": ["de la Profanacion", "del Sello Corrupto", "del Rito Torcido", "de la Trama Rota"],
+            }.get(role, ["del Vacio", "del Trono Marchito", "del Eco Profano", "de la Noche Ritual"])
+        else:
+            nouns = ["del Umbral", "de la Chakana", "del Camino", "del Horizonte Ritual"]
+
+        seed = sum((i + 1) * ord(ch) for i, ch in enumerate(card_id))
+        left = role_name[seed % len(role_name)]
+        right = nouns[(seed // 3) % len(nouns)]
+
+        if rarity == "legendary":
+            return f"{left} Supremo {right}"
+        if rarity == "rare":
+            return f"{left} Mayor {right}"
+        return f"{left} {right}"
+
+    def display_card_name(self, row_or_id) -> str:
+        if isinstance(row_or_id, dict):
+            row = dict(row_or_id)
+        else:
+            cid = str(row_or_id or "")
+            row = dict((self.card_defs or {}).get(cid, {})) if hasattr(self, 'card_defs') else {}
+            row.setdefault("id", cid)
+            row.setdefault("name_key", cid)
+        card_id = str(row.get("id", "") or "")
+        raw_name = str(row.get("name_es", row.get("name_key", row.get("name", card_id))) or "").strip()
+        low_name = raw_name.lower()
+        if self._detect_card_set(card_id) in {"hiperboria", "arconte"}:
+            if low_name in {"", card_id.lower(), f"card_{card_id.lower()}_name"} or low_name.startswith(("guerrero astral de hiperb", "guardian de hiperb", "oraculo de hiperb", "arcano del vacio")):
+                raw_name = self._fallback_card_display_name(row)
+        text = self.loc.t(raw_name) if hasattr(self, 'loc') else raw_name
+        return (
+            text.replace("corrupci?n", "corrupci?n")
+            .replace("Hiperb?rea", "Hiperb?rea")
+            .replace("Vacio", "Vac?o")
+            .replace("Oraculo", "Or?culo")
+        )
+
     def _fallback_card_lore(self, row: dict) -> str:
         card_id = str(row.get("id", "carta")).strip().lower()
         set_id = str(row.get("set", row.get("strategy", {}).get("set", "base")) or "base").strip().lower()
@@ -704,9 +767,20 @@ class App:
         if not str(row.get("order", "")).strip():
             row["order"] = "Chakana"
 
+        card_id = str(row.get("id", "") or "")
+        raw_name = str(row.get("name_es", row.get("name_key", row.get("name", ""))) or "").strip()
+        generic_names = {"", card_id.lower(), f"card_{card_id.lower()}_name"}
+        low_name = raw_name.lower()
+        if (set_id := self._detect_card_set(card_id)) in {"hiperboria", "arconte"}:
+            if low_name in generic_names or low_name.startswith("guerrero astral de hiperb") or low_name.startswith("guardian de hiperb") or low_name.startswith("oraculo de hiperb") or low_name.startswith("arcano del vacio"):
+                visible_name = self._fallback_card_display_name(row)
+                row["name_es"] = visible_name
+                row["name_key"] = visible_name
+
         lore_text = str(row.get("lore_text", "") or "").strip()
         generic_lore = {
             "la chakana sostiene el balance cosmico ante los arcontes y el eco de hiperborea.",
+            "los arcontes tuercen la chakana para romper el balance cosmico y profanar hiperborea.",
             "sin lore ritual.",
             "",
         }
@@ -2552,6 +2626,7 @@ if __name__ == "__main__":
             except Exception:
                 pass
         raise
+
 
 
 

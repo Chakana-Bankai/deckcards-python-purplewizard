@@ -85,7 +85,7 @@ class CardDetailPanel:
         max_w = rect.w - 30
         effects = [e for e in payload.get("effects", []) if isinstance(e, dict)]
 
-        card_name = self.app.loc.t(payload["name_key"])
+        card_name = self.app.display_card_name(payload) if hasattr(self.app, "display_card_name") else self.app.loc.t(payload["name_key"])
         for ln in self._wrap_clamp(self.app.small_font, card_name, max_w, 1):
             surface.blit(self.app.small_font.render(ln, True, UI_THEME["text"]), (tx, y))
             y += 24

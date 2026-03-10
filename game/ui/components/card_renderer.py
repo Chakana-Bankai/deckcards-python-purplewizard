@@ -448,7 +448,7 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
         pygame.draw.rect(surface, (250, 226, 156), art_frame.inflate(6, 6), 1, border_radius=11)
 
     if app is not None:
-        card_name = app.loc.t(payload.get("name_key", payload.get("id", "Carta")))
+        card_name = app.display_card_name(payload) if hasattr(app, "display_card_name") else app.loc.t(payload.get("name_key", payload.get("id", "Carta")))
     else:
         card_name = payload.get("id", "Carta")
 

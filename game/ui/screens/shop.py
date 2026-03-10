@@ -142,7 +142,8 @@ class ShopScreen:
             self.app._queue_set_discovery(self.app._detect_card_set(card.get('id', '')))
         if hasattr(getattr(self.app, "meta_director", None), "remember"):
             self.app.meta_director.remember(self.app.run_state, "recent_shop_card_ids", str(card.get("id", "")), cap=5)
-        self.msg = f"{tag}: {self.app.loc.t(card.get('name_key', card['id']))}"
+        card_name = self.app.display_card_name(card) if hasattr(self.app, "display_card_name") else self.app.loc.t(card.get('name_key', card['id']))
+        self.msg = f"{tag}: {card_name}"
 
     def _buy_artifact(self):
         if self.app.run_state["gold"] < self.artifact_price:
@@ -314,7 +315,7 @@ class ShopScreen:
         s.blit(self.app.small_font.render(title, True, UI_THEME["gold"]), (rect.x + 14, rect.y + 12))
         draw_icon_with_value(s, "gold", int(price), UI_THEME["gold"], self.app.small_font, rect.x + 14, rect.y + 42, size=1)
 
-        name = self.app.loc.t(card.get("name_key", card.get("id", "carta")))
+        name = self.app.display_card_name(card) if hasattr(self.app, "display_card_name") else self.app.loc.t(card.get("name_key", card.get("id", "carta")))
         s.blit(self.app.tiny_font.render(name[:26], True, UI_THEME["muted"]), (rect.x + 14, rect.y + 70))
         role = infer_card_role(card).replace("_", " ").title()
         rarity = str(card.get("rarity", "common")).title()
@@ -373,7 +374,7 @@ class ShopScreen:
             card = hover_data["card"]
             card_rect = art_slot.inflate(-8, -8)
             self.preview_card.render(s, card_rect, card, app=self.app, render_context="shop_view")
-            name = self.app.loc.t(card.get("name_key", card.get("id", "Carta")))
+            name = self.app.display_card_name(card) if hasattr(self.app, "display_card_name") else self.app.loc.t(card.get("name_key", card.get("id", "Carta")))
             role = infer_card_role(card).replace("_", " ").title()
             effect = self.app.loc.t(card.get("text_key", ""))
             s.blit(self.app.small_font.render(name[:30], True, UI_THEME["text"]), (frame.x + 12, text_y))
