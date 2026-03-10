@@ -1,4 +1,4 @@
 status=pass
-ticket=event_upgrade_card_support_plus_codex_arconte_validation
-changes=main.py,event.py,tools/assets/regenerate_audio_outside_runtime.py
-notes=upgrade_random_card supported; arconte codex validated with 60 cards and sprite load; audio regen available outside runtime
+ticket=external_audio_safe_mode_plus_codex_archons_visual
+changes=tools/assets/regenerate_audio_outside_runtime.py,game/ui/screens/codex.py,game/main.py,game/ui/screens/event.py
+notes=audio external tool default=manifest_only; archons section now renders portrait gallery; upgrade_random_card supported safely

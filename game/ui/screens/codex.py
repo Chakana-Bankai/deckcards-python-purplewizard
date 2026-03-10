@@ -36,6 +36,7 @@ class CodexScreen:
         self.hiperboria_set_cards = self._load_hiperboria_set_cards()
         self.arconte_set_cards = self._load_arconte_set_cards()
         self.lore_set_relics = self._load_lore_set_relics()
+        self.archon_profiles = self._load_archon_profiles()
         self.active_section_id = self.sections[0].get("id", "lore") if self.sections else "lore"
         self.gallery_index = 0
         self.card_set_tab = "all"
@@ -112,6 +113,26 @@ class CodexScreen:
         except Exception:
             return {}
         return {}
+
+    def _load_archon_profiles(self) -> list[dict]:
+        candidates = [data_dir() / 'archons_1_0.json', data_dir() / 'enemies' / 'bosses_3.json']
+        for path in candidates:
+            try:
+                payload = json.loads(path.read_text(encoding='utf-8-sig'))
+            except Exception:
+                continue
+            items = payload if isinstance(payload, list) else payload.get('archons', []) if isinstance(payload, dict) else []
+            out = []
+            for row in items:
+                if not isinstance(row, dict):
+                    continue
+                rid = str(row.get('id') or row.get('enemy_proxy_id') or '').strip()
+                if not rid:
+                    continue
+                out.append(dict(row))
+            if out:
+                return out
+        return []
 
     def _build_section_buttons(self):
         self.section_buttons = []
@@ -398,6 +419,50 @@ class CodexScreen:
         draw_set_emblem(s, emblem_rect, normalize_set_id(current))
         s.blit(self.app.tiny_font.render(str(current.get("archetype", "")).replace("_", " "), True, UI_THEME["muted"]), (gallery.x + 16, gallery.bottom - 48))
 
+    def _draw_archons_gallery(self, s: pygame.Surface):
+        gallery = self._draw_gallery_shell(s, top_offset=86)
+        archons = list(self.archon_profiles or [])
+        if not archons:
+            s.blit(self.app.font.render("Sin arcontes cargados.", True, UI_THEME["muted"]), (self.right_panel.x + 20, self.right_panel.y + 90))
+            return
+
+        title = self.app.big_font.render("Arcontes Activos", True, UI_THEME["gold"])
+        s.blit(title, title.get_rect(center=(gallery.centerx, gallery.y + 36)).topleft)
+        subtitle = self.app.small_font.render("Presencias mayores del Vacio y la corrupcion ritual.", True, UI_THEME["muted"])
+        s.blit(subtitle, subtitle.get_rect(center=(gallery.centerx, gallery.y + 70)).topleft)
+
+        card_w, card_h = 286, 280
+        gap = 26
+        total_w = card_w * min(4, len(archons)) + gap * max(0, min(4, len(archons)) - 1)
+        start_x = gallery.centerx - total_w // 2
+        y = gallery.y + 126
+        for i, archon in enumerate(archons[:4]):
+            rr = pygame.Rect(start_x + i * (card_w + gap), y, card_w, card_h)
+            pygame.draw.rect(s, UI_THEME["panel"], rr, border_radius=16)
+            pygame.draw.rect(s, UI_THEME["gold"], rr, 2, border_radius=16)
+            rid = str(archon.get('enemy_proxy_id') or archon.get('id') or '')
+            art_slot = pygame.Rect(rr.x + 16, rr.y + 18, rr.w - 32, 154)
+            pygame.draw.rect(s, UI_THEME["panel_2"], art_slot, border_radius=10)
+            pygame.draw.rect(s, UI_THEME["accent_violet"], art_slot, 1, border_radius=10)
+            art = self.app.assets.sprite('avatar', f'enemy__{rid}__portrait', (art_slot.w, art_slot.h), fallback=(82, 62, 116))
+            s.blit(art, art.get_rect(center=art_slot.center).topleft)
+            name = self._display_text(archon.get('name_es') or archon.get('name_key') or rid)
+            line1 = self.app.small_font.render(clamp_single_line(self.app.small_font, name, rr.w - 24), True, UI_THEME['text'])
+            s.blit(line1, line1.get_rect(center=(rr.centerx, art_slot.bottom + 26)).topleft)
+            lore = str(archon.get('lore_text') or archon.get('title') or 'Entidad mayor de la Trama quebrada.')
+            lines = wrap_lines(self.app.tiny_font, lore, rr.w - 28, 3)
+            ly = art_slot.bottom + 52
+            for line in lines:
+                surf = self.app.tiny_font.render(line, True, UI_THEME['muted'])
+                s.blit(surf, surf.get_rect(center=(rr.centerx, ly)).topleft)
+                ly += 18
+
+        fy = gallery.bottom - 82
+        for tip in self._dynamic_hints_for_section('archons')[:3]:
+            surf = self.app.tiny_font.render(clamp_single_line(self.app.tiny_font, tip, gallery.w - 60), True, UI_THEME['gold'])
+            s.blit(surf, surf.get_rect(center=(gallery.centerx, fy)).topleft)
+            fy += 18
+
     def _draw_relics_gallery(self, s: pygame.Surface):
         relics = self._codex_relics()
         if not relics:
@@ -636,6 +701,8 @@ class CodexScreen:
                 txt = UILabel.clamp(hint, self.app.tiny_font, self.right_panel.w - 40)
                 s.blit(self.app.tiny_font.render(txt, True, UI_THEME["muted"]), (self.right_panel.x + 20, y))
                 y += 20
+        elif active_id == "archons":
+            self._draw_archons_gallery(s)
         else:
             self._draw_canon_text_panel(s, active_id, title)
 

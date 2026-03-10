@@ -13,18 +13,31 @@ def main() -> int:
     args = parser.parse_args()
 
     engine = get_audio_engine()
-    manifest = engine.ensure_core_assets(force=bool(args.force))
+    if args.force:
+        manifest = engine.ensure_core_assets(force=True)
+        mode = "force_regen"
+    else:
+        try:
+            engine._prune_manifest()
+            engine._save_manifest()
+        except Exception:
+            pass
+        manifest = dict(getattr(engine, '_manifest', {}) or {})
+        mode = "manifest_only"
+
     out = project_root() / "reports" / "validation" / "external_audio_regen_report.txt"
     out.parent.mkdir(parents=True, exist_ok=True)
     lines = [
         "status=ok",
+        f"mode={mode}",
         f"force={int(bool(args.force))}",
         f"tracks={len((manifest or {}).get('tracks', {}))}",
         f"contexts={len((manifest or {}).get('contexts', {}))}",
     ]
     out.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"[audio_regen] report={out}")
+    print(f"[audio_regen] mode={mode} report={out}")
     print(json.dumps({
+        "mode": mode,
         "tracks": len((manifest or {}).get('tracks', {})),
         "contexts": len((manifest or {}).get('contexts', {})),
     }))

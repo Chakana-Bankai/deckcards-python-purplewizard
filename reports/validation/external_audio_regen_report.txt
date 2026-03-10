@@ -1,0 +1,5 @@
+status=ok
+mode=manifest_only
+force=0
+tracks=0
+contexts=0

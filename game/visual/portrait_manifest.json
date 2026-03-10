@@ -1,6 +1,6 @@
 {
   "version": "portrait_v7",
-  "updated_at": 1773163513,
+  "updated_at": 1773164719,
   "items": {
     "chakana:132x132": {
       "role": "chakana",
@@ -233,7 +233,7 @@
         84
       ],
       "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\chakana_mage_concept_84x84.png",
-      "generated_at": 1773163489,
+      "generated_at": 1773164719,
       "version": "portrait_v7",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\chakana_mage_master_concept.png"
@@ -1056,6 +1056,58 @@
       "version": "portrait_v7",
       "source": "official_master",
       "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\enemy_demons_master_portrait.png"
+    },
+    "enemy__guardian_de_la_grieta__portrait:portrait:254x154": {
+      "role": "enemy__guardian_de_la_grieta__portrait",
+      "style": "portrait",
+      "size": [
+        254,
+        154
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__guardian_de_la_grieta__portrait_portrait_254x154.png",
+      "generated_at": 1773164719,
+      "version": "portrait_v7",
+      "source": "official_master",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_portrait.png"
+    },
+    "enemy__oraculo_del_vacio__portrait:portrait:254x154": {
+      "role": "enemy__oraculo_del_vacio__portrait",
+      "style": "portrait",
+      "size": [
+        254,
+        154
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__oraculo_del_vacio__portrait_portrait_254x154.png",
+      "generated_at": 1773164719,
+      "version": "portrait_v7",
+      "source": "official_master",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_portrait.png"
+    },
+    "enemy__senor_de_la_chakana_rota__portrait:portrait:254x154": {
+      "role": "enemy__senor_de_la_chakana_rota__portrait",
+      "style": "portrait",
+      "size": [
+        254,
+        154
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__senor_de_la_chakana_rota__portrait_portrait_254x154.png",
+      "generated_at": 1773164719,
+      "version": "portrait_v7",
+      "source": "official_master",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_portrait.png"
+    },
+    "enemy__arconte_supremo__portrait:portrait:254x154": {
+      "role": "enemy__arconte_supremo__portrait",
+      "style": "portrait",
+      "size": [
+        254,
+        154
+      ],
+      "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\portraits\\enemy__arconte_supremo__portrait_portrait_254x154.png",
+      "generated_at": 1773164719,
+      "version": "portrait_v7",
+      "source": "official_master",
+      "source_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\avatars\\archon_master_portrait.png"
     }
   }
 }
