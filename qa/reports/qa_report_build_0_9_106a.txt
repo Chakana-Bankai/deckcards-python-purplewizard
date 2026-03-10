@@ -14,9 +14,9 @@ CHAKANA : PURPLE WIZARD - QA REPORT
 - path selection distribution guard: PASS (all archetypes 12/7/1)
 
 3) Archetype Viability
-- cosmic_warrior: PASS dmg=49.8 turns=3.38 win_rate=1.0
-- harmony_guardian: PASS dmg=53.3 turns=9.88 win_rate=1.0
-- oracle_of_fate: PASS dmg=46.3 turns=12.0 win_rate=1.0
+- cosmic_warrior: PASS dmg=49.8 turns=3.25 win_rate=1.0
+- harmony_guardian: PASS dmg=50.2 turns=9.5 win_rate=0.5
+- oracle_of_fate: PASS dmg=48.5 turns=11.75 win_rate=1.0
 
 4) Asset Validation (Effective)
 - art_failures_total_effective: 0

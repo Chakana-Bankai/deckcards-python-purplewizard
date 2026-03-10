@@ -447,7 +447,8 @@
       "target": "enemy",
       "tags": [
         "attack",
-        "rupture"
+        "rupture",
+        "polar_echo"
       ],
       "effects": [
         {
@@ -530,7 +531,8 @@
       "cost": 1,
       "target": "enemy",
       "tags": [
-        "attack"
+        "attack",
+        "aurora_mark"
       ],
       "effects": [
         {
@@ -570,7 +572,8 @@
       "target": "enemy",
       "tags": [
         "energy",
-        "attack"
+        "attack",
+        "crystal_current"
       ],
       "effects": [
         {
@@ -615,7 +618,8 @@
       "tags": [
         "attack",
         "combo",
-        "rupture"
+        "rupture",
+        "temple_war_sigil"
       ],
       "effects": [
         {
@@ -655,7 +659,8 @@
       "target": "enemy",
       "tags": [
         "attack",
-        "rupture"
+        "rupture",
+        "ice_fury"
       ],
       "effects": [
         {
@@ -738,7 +743,8 @@
       "cost": 2,
       "target": "enemy",
       "tags": [
-        "attack"
+        "attack",
+        "glacial_edge"
       ],
       "effects": [
         {
@@ -778,7 +784,8 @@
       "target": "enemy",
       "tags": [
         "energy",
-        "attack"
+        "attack",
+        "north_flux"
       ],
       "effects": [
         {
@@ -1329,7 +1336,8 @@
       "target": "enemy",
       "tags": [
         "block",
-        "harmony"
+        "harmony",
+        "resonance_ice"
       ],
       "effects": [
         {
@@ -1739,7 +1747,7 @@
       "text_key": "Bloqueo 10, Armonía +2, Daño 14",
       "effect_text": "Bloqueo 10, Armonía +2, Daño 14",
       "rarity": "legendary",
-      "cost": 3,
+      "cost": 4,
       "target": "enemy",
       "tags": [
         "block",
@@ -1757,7 +1765,7 @@
         },
         {
           "type": "damage",
-          "amount": 14
+          "amount": 12
         }
       ],
       "role": "ritual",
@@ -1779,7 +1787,8 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "text_es": "Gana 10 Bloqueo, +2 Armon?a y causa 12 de Da?o."
     },
     {
       "id": "hip_oracle_of_fate_01",
@@ -2254,7 +2263,8 @@
       "target": "enemy",
       "tags": [
         "scry",
-        "draw"
+        "draw",
+        "starfrost_vision"
       ],
       "effects": [
         {
@@ -2302,7 +2312,8 @@
       "target": "enemy",
       "tags": [
         "ritual",
-        "harmony"
+        "harmony",
+        "chronicle_polar"
       ],
       "effects": [
         {

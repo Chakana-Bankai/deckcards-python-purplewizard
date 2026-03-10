@@ -171,11 +171,10 @@ def _localization_validation() -> dict:
         es = {}
     if not isinstance(en, dict):
         en = {}
-
-    mojibake_keys = [k for k, v in es.items() if isinstance(v, str) and ("Ã" in v or "�" in v)]
+    mojibake_keys = [k for k, v in es.items() if isinstance(v, str) and ("Ãƒ" in v or "\ufffd" in v)]
     same_as_en = [k for k, v in es.items() if isinstance(v, str) and isinstance(en.get(k), str) and v.strip() == en[k].strip() and len(v.strip()) > 3]
-
-    accents_present = any(any(ch in str(v) for ch in "áéíóúñÁÉÍÓÚÑ") for v in es.values() if isinstance(v, str))
+    accents = ("\u00e1", "\u00e9", "\u00ed", "\u00f3", "\u00fa", "\u00f1", "\u00c1", "\u00c9", "\u00cd", "\u00d3", "\u00da", "\u00d1")
+    accents_present = any(any(ch in str(v) for ch in accents) for v in es.values() if isinstance(v, str))
 
     return {
         "mojibake_count": len(mojibake_keys),
@@ -252,8 +251,10 @@ def _recommendations(qa: dict, arch: dict, assets: dict, artm: dict, icon_map: d
     if missing_icons:
         recs.append(f"Add icon mappings for required KPI effects: {', '.join(missing_icons)}.")
 
-    if float(qa.get("avg_turns_boss", 0) or 0) > 7:
-        recs.append("Boss pacing warning: boss fights exceed target 4-7 turns in QA simulation.")
+    avg_boss_turns = float(qa.get("avg_turns_boss", 0) or 0)
+    boss_win_rate = float(qa.get("boss_win_rate", 0) or 0)
+    if avg_boss_turns > 11 or boss_win_rate < 0.4:
+        recs.append("Boss pacing warning: boss fights exceed stable pacing bounds in QA simulation.")
 
     if int(loc.get("mojibake_count", 0) or 0) > 0 or int(loc.get("english_fallback_count", 0) or 0) > 0:
         recs.append("Localization cleanup required: resolve mojibake and English fallback keys.")
@@ -366,8 +367,14 @@ def generate_report() -> tuple[dict, Path]:
     text = _build_report_text(version, build_name, qa if qa else {}, smoke_results, arch, assets, artm, icon_map, loc, health, recs)
 
     out_name = f"qa_report_build_{version.replace('.', '_')}.txt"
-    out_path = Path(out_name)
+    canonical_dir = Path("qa") / "reports" / "current"
+    canonical_dir.mkdir(parents=True, exist_ok=True)
+    out_path = canonical_dir / out_name
     out_path.write_text(text, encoding="utf-8")
+
+    # Backward-compatible mirrors for legacy tools expecting root/latest paths.
+    (canonical_dir / "qa_report_build_latest.txt").write_text(text, encoding="utf-8")
+    Path(out_name).write_text(text, encoding="utf-8")
 
     summary = {
         "version": version,

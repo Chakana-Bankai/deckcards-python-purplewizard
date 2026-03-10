@@ -1,0 +1,36 @@
+CHAKANA PHASE 6 - CARD BALANCE PASS REPORT
+generated_at=2026-03-09 20:53:13
+scope=balance-only pass on existing card pool (no new cards, no combat logic changes)
+
+pool_scope
+- base_cards=60
+- hiperboria_cards=60
+- archon_cards=60
+- total_cards=180
+
+changes_applied
+- observacion_sagrada: added draw 1 to reduce dead utility turns (scry-only friction).
+  effects=[{'type': 'scry', 'amount': 3}, {'type': 'draw', 'amount': 1}]
+- vinculo_de_energia: reduced cost 2->1 and added draw 1 to improve engine tempo.
+  cost=1 effects=[{'type': 'gain_mana', 'amount': 2}, {'type': 'draw', 'amount': 1}]
+- of_lore_20: added harmony gain (+1) alongside scry to strengthen Oracle bridge conversion.
+  effects=[{'type': 'scry', 'amount': 4}, {'type': 'harmony_delta', 'amount': 1}]
+- hip_harmony_guardian_20: reduced spike by cost 3->4 and damage 14->12 (legendary remains premium).
+  cost=4 effects=[{'type': 'gain_block', 'amount': 10}, {'type': 'harmony_delta', 'amount': 2}, {'type': 'damage', 'amount': 12}]
+
+post_pass_validation
+- check_card_coherence: PASS (errors=0 warnings=0)
+- check_deck_system: PASS (deck flow stable)
+- qa_phase9_supervision: PASS with stable integrity metrics
+
+phase9_snapshot
+- avg_turns_battle=9.51
+- avg_turns_boss=10.43
+- boss_win_rate=0.857
+- invalid_cards=0 art_failures=0 localization_issues=0
+
+remaining_balance_warnings
+- boss pace still above target (4-7) in synthetic QA; requires future boss pacing pass (outside this phase constraints).
+- duplicate_logic_cards=10 persists as a design/identity warning, not runtime blocker.
+
+phase_result=PASS

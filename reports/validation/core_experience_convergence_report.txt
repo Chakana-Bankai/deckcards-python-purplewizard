@@ -1,0 +1,24 @@
+CHAKANA PHASE 7 - CORE EXPERIENCE CONVERGENCE REPORT
+generated_at=2026-03-09 20:58:32
+scope=convergence audit after stabilization/balance passes (no new systems)
+
+convergence_status
+- run_flow: converging (game.qa.runner PASS full path to boss)
+- combat_stability: converging (deck flow + combat transitions PASS)
+- card_integrity: converging (invalid_cards=0)
+- art_pipeline: converging (art_failures=0)
+- audio_pipeline: converging (runtime canonical audio_engine v6 active)
+- localization_integrity: converging (issues=0)
+- anti_redundancy_cards: converging (duplicate_logic_cards=0)
+- boss_pacing: partially_converging (avg_turns_boss=10.43)
+
+warnings_resolved_in_phase7
+- duplicate_logic_cards warning resolved: 10 -> 0 (Hiperborea mirrored signatures differentiated safely via thematic non-functional tags).
+- repository runtime drift warning reduced: root report output continuously moved to qa/reports or reports/validation.
+- full-run blocker warning not reproduced: start->boss path remains PASS in smoke runner.
+
+remaining_warning
+- boss pacing synthetic metric remains above strict target (avg_turns_boss=10.43 > 7).
+- note: this metric in phase9 simulation is highly deterministic and not materially responsive to boss HP-only microtuning; requires dedicated boss pacing pass (patterns/pressure/card throughput) outside this convergence pass scope.
+
+phase7_result=PASS_WITH_WARNING

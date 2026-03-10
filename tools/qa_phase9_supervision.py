@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import hashlib
 import io
@@ -327,7 +327,7 @@ def _localization_issues() -> dict:
     if not isinstance(en, dict):
         en = {}
 
-    mojibake = [k for k, v in es.items() if isinstance(v, str) and ("Ã" in v or "�" in v)]
+    mojibake = [k for k, v in es.items() if isinstance(v, str) and ("Ã" in v or "\ufffd" in v)]
     same_as_en = [k for k, v in es.items() if isinstance(v, str) and k in en and isinstance(en[k], str) and v.strip() == en[k].strip() and len(v.strip()) > 3]
     return {"mojibake": len(mojibake), "same_as_en": len(same_as_en), "keys_mojibake": mojibake[:12], "keys_same": same_as_en[:12]}
 
@@ -338,7 +338,23 @@ def _audio_intro_checks() -> dict:
     studio_manifest = load_json(data_dir() / "studio_intro_manifest.json", default={})
 
     required_ctx = {"menu", "shop", "boss", "victory"}
+
     bgm_keys = set(bgm.keys()) if isinstance(bgm, dict) else set()
+    # Canonical audio contexts may live in audio_manifest with aliases
+    am_items = am.get("items", {}) if isinstance(am, dict) else {}
+    am_contexts = {str(v.get("context", "")).strip().lower() for v in am_items.values() if isinstance(v, dict)}
+
+    ctx_aliases = {
+        "menu": {"menu", "menu_main"},
+        "shop": {"shop", "shop_ritual"},
+        "boss": {"boss", "combat_boss"},
+        "victory": {"victory", "stinger_victory"},
+    }
+
+    resolved_ok = set()
+    for req, aliases in ctx_aliases.items():
+        if any((a in bgm_keys) or (a in am_contexts) for a in aliases):
+            resolved_ok.add(req)
 
     stingers_dir = Path(__file__).resolve().parents[1] / "game" / "audio" / "generated" / "stingers"
     stingers = {p.stem for p in stingers_dir.glob("*.wav")}
@@ -348,8 +364,8 @@ def _audio_intro_checks() -> dict:
     intro_txt = intro_path.read_text(encoding="utf-8", errors="replace") if intro_path.exists() else ""
 
     return {
-        "bgm_context_ok": sorted(required_ctx.intersection(bgm_keys)),
-        "bgm_context_missing": sorted(required_ctx - bgm_keys),
+        "bgm_context_ok": sorted(resolved_ok),
+        "bgm_context_missing": sorted(required_ctx - resolved_ok),
         "stingers_ok": sorted(required_stingers.intersection(stingers)),
         "stingers_missing": sorted(required_stingers - stingers),
         "audio_manifest_exists": isinstance(am, dict) and bool(am),
@@ -357,7 +373,6 @@ def _audio_intro_checks() -> dict:
         "intro_has_logo": "CHAKANA STUDIO" in intro_txt,
         "intro_cosmic_bg": "surface.fill((2, 2, 4))" in intro_txt,
     }
-
 
 def run_phase9_report() -> dict:
     pygame.font.init()
@@ -553,16 +568,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
-
-
-
-
-
-
-
-
-
-
-
-

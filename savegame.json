@@ -1,5 +1,5 @@
 {
-  "gold": 409,
+  "gold": 120,
   "relics": [
     "violet_seal"
   ],
@@ -8,7 +8,7 @@
     "hp": 60,
     "max_hp": 60,
     "block": 0,
-    "energy": 4,
+    "energy": 3,
     "rupture": 0,
     "statuses": {},
     "harmony_current": 0,
@@ -31,15 +31,10 @@
     "strike",
     "defend",
     "strike",
-    "defend",
     "strike",
-    "defend",
     "strike",
-    "defend",
     "strike",
-    "defend",
-    "strike",
-    "defend"
+    "strike"
   ],
   "sideboard": [],
   "map": [
@@ -83,20 +78,20 @@
           "2_1",
           "2_0"
         ],
-        "state": "cleared"
+        "state": "available"
       },
       {
         "id": "1_2",
         "col": 1,
         "x": 492,
         "y": 588,
-        "type": "combat",
+        "type": "challenge",
         "biome": "ukhu",
         "next": [
           "2_2",
           "2_3"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "1_3",
@@ -109,7 +104,7 @@
           "2_3",
           "2_2"
         ],
-        "state": "available"
+        "state": "locked"
       }
     ],
     [
@@ -124,7 +119,7 @@
           "3_0",
           "3_1"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "2_1",
@@ -137,20 +132,20 @@
           "3_1",
           "3_0"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "2_2",
         "col": 2,
         "x": 804,
         "y": 588,
-        "type": "challenge",
+        "type": "combat",
         "biome": "kaypacha",
         "next": [
           "3_2",
           "3_3"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "2_3",
@@ -178,7 +173,7 @@
           "4_0",
           "4_1"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "3_1",
@@ -190,7 +185,7 @@
         "next": [
           "4_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "3_2",
@@ -202,7 +197,7 @@
         "next": [
           "4_1"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "3_3",
@@ -215,7 +210,7 @@
           "4_1",
           "4_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       }
     ],
     [
@@ -229,7 +224,7 @@
         "next": [
           "5_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "4_1",
@@ -241,7 +236,7 @@
         "next": [
           "5_0"
         ],
-        "state": "available"
+        "state": "locked"
       }
     ],
     [
@@ -253,7 +248,7 @@
         "type": "boss",
         "biome": "fractura_chakana",
         "next": [],
-        "state": "available"
+        "state": "locked"
       }
     ]
   ],
@@ -264,12 +259,12 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 2,
-  "biome": "hanan",
-  "xp": 48,
-  "level": 5,
-  "combats_won": 8,
-  "tutorial_combats_won": 8,
+  "biome_index": 1,
+  "biome": "kaypacha",
+  "xp": 21,
+  "level": 1,
+  "combats_won": 1,
+  "tutorial_combats_won": 1,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
@@ -277,10 +272,9 @@
     "music_muted": false
   },
   "discovered_sets": [
-    "base",
-    "hiperboria"
+    "base"
   ],
-  "hiperboria_unlocked": true,
+  "hiperboria_unlocked": false,
   "tutorial": {
     "active": false,
     "completed": false,
@@ -290,34 +284,24 @@
   },
   "meta_director": {
     "recent_enemy_ids": [
-      "rata_obsidiana",
-      "ave_de_ceniza",
-      "neblina_consciente",
-      "espiritu_condor_menor",
-      "oraculo_menor"
+      "dummy"
     ],
     "recent_event_ids": [],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
-      "mystery_pack",
-      "base_pack",
-      "mystery_pack",
-      "hiperborea_pack"
+      "base_pack"
     ],
     "visual_direction_tags": [
-      "biome:hanan",
-      "mood:ascendant"
+      "biome:kaypacha"
     ],
     "audio_direction_tags": [
-      "ctx:combat",
-      "biome:hanan",
-      "mood:ethereal"
+      "ctx:event",
+      "biome:kaypacha"
     ]
   },
   "hiperboria_unlock_target": 3,
   "last_node_type": "combat",
-  "levelup_pending": 4,
-  "current_node_id": "4_0",
+  "current_node_id": "0_0",
   "last_biome_seen": "ukhu",
-  "saved_at": 1773100206
+  "saved_at": 1773100679
 }

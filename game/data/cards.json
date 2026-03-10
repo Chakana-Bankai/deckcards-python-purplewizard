@@ -703,7 +703,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Invocación Astral",
     "name_key": "Invocación Astral",
-    "rarity": "common",
+    "rarity": "uncommon",
     "role": "ritual",
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
@@ -858,8 +858,12 @@
     "effect_text": "Prever 3",
     "effects": [
       {
-        "amount": 3,
-        "type": "scry"
+        "type": "scry",
+        "amount": 3
+      },
+      {
+        "type": "draw",
+        "amount": 1
       }
     ],
     "family": "norte",
@@ -885,7 +889,8 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Prever 3"
+    "text_key": "Prever 3",
+    "text_es": "Escruta 3. Roba 1."
   },
   {
     "archetype": "oracle_of_fate",
@@ -918,7 +923,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Piedra Ritual",
     "name_key": "Piedra Ritual",
-    "rarity": "uncommon",
+    "rarity": "rare",
     "role": "ritual",
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
@@ -1169,7 +1174,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Ritual de la Trama",
     "name_key": "Ritual de la Trama",
-    "rarity": "legendary",
+    "rarity": "rare",
     "role": "ritual",
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
@@ -1283,13 +1288,17 @@
     "archetype": "cosmic_warrior",
     "artwork": "vinculo_de_energia",
     "author": "Chakana Studio",
-    "cost": 2,
+    "cost": 1,
     "direction": "OESTE",
     "effect_text": "Energia +2",
     "effects": [
       {
-        "amount": 2,
-        "type": "gain_mana"
+        "type": "gain_mana",
+        "amount": 2
+      },
+      {
+        "type": "draw",
+        "amount": 1
       }
     ],
     "family": "oeste",
@@ -1315,7 +1324,8 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Energia +2"
+    "text_key": "Energia +2",
+    "text_es": "Gana 2 Energ?a. Roba 1."
   },
   {
     "archetype": "oracle_of_fate",
@@ -1348,7 +1358,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Visión del Cóndor",
     "name_key": "Visión del Cóndor",
-    "rarity": "common",
+    "rarity": "uncommon",
     "role": "control",
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
@@ -1452,7 +1462,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Chakana de Luz Nova",
     "name_key": "Chakana de Luz Nova",
-    "rarity": "uncommon",
+    "rarity": "legendary",
     "role": "combo",
     "strategy": {
       "best_use": "Encadenar efectos para turnos de alto valor.",
@@ -1547,7 +1557,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Embate del Jaguar Nova",
     "name_key": "Embate del Jaguar Nova",
-    "rarity": "uncommon",
+    "rarity": "rare",
     "role": "attack",
     "strategy": {
       "best_use": "Cerrar combates cortos con presion constante.",
@@ -1765,7 +1775,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Filo Astral Nova",
     "name_key": "Filo Astral Nova",
-    "rarity": "common",
+    "rarity": "uncommon",
     "role": "attack",
     "strategy": {
       "best_use": "Cerrar combates cortos con presion constante.",
@@ -1895,7 +1905,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Fragmento Celeste Nova",
     "name_key": "Fragmento Celeste Nova",
-    "rarity": "common",
+    "rarity": "uncommon",
     "role": "control",
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
@@ -1945,7 +1955,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Fusión Espiritual Nova",
     "name_key": "Fusión Espiritual Nova",
-    "rarity": "uncommon",
+    "rarity": "rare",
     "role": "defense",
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
@@ -2072,7 +2082,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Invocación Astral Nova",
     "name_key": "Invocación Astral Nova",
-    "rarity": "common",
+    "rarity": "uncommon",
     "role": "ritual",
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
@@ -2226,8 +2236,12 @@
     "effect_text": "Prever 4",
     "effects": [
       {
-        "amount": 4,
-        "type": "scry"
+        "type": "scry",
+        "amount": 4
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 1
       }
     ],
     "family": "norte",
@@ -2253,7 +2267,8 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Prever 4"
+    "text_key": "Prever 4",
+    "text_es": "Escruta 4. Gana 1 Armon?a."
   },
   {
     "archetype": "oracle_of_fate",
@@ -2286,7 +2301,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Piedra Ritual Nova",
     "name_key": "Piedra Ritual Nova",
-    "rarity": "uncommon",
+    "rarity": "rare",
     "role": "ritual",
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
@@ -2431,7 +2446,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Resistencia Ancestral Nova",
     "name_key": "Resistencia Ancestral Nova",
-    "rarity": "uncommon",
+    "rarity": "rare",
     "role": "defense",
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
@@ -2537,7 +2552,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Ritual de la Trama Nova",
     "name_key": "Ritual de la Trama Nova",
-    "rarity": "uncommon",
+    "rarity": "rare",
     "role": "ritual",
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
@@ -2714,7 +2729,7 @@
     "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
     "name": "Visión del Cóndor Nova",
     "name_key": "Visión del Cóndor Nova",
-    "rarity": "common",
+    "rarity": "uncommon",
     "role": "control",
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",

@@ -311,8 +311,10 @@ def icon_for_effect(effect_type: str) -> str:
     key = str(effect_type or "").strip().lower()
     mapping = {
         "damage": "damage",
+        "damage_plus_rupture": "damage",
         "block": "block",
         "gain_block": "block",
+        "double_block_cap": "block",
         "energy": "energy",
         "gain_mana": "energy",
         "gain_mana_next_turn": "energy",
@@ -323,6 +325,7 @@ def icon_for_effect(effect_type: str) -> str:
         "break": "rupture",
         "scry": "scry",
         "draw": "draw",
+        "draw_if_direction_played": "draw",
         "ritual": "ritual",
         "ritual_trama": "ritual",
         "consume_harmony": "seal",
@@ -341,5 +344,3 @@ def icon_for_effect(effect_type: str) -> str:
         "level": "level",
     }
     return mapping.get(key, "unknown")
-
-

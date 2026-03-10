@@ -2,7 +2,7 @@
   {
     "id": "guardian_de_la_grieta",
     "name_es": "Arconte del Vac?o",
-    "hp": 190,
+    "hp": 90,
     "phases": [
       0.7,
       0.35
@@ -91,7 +91,7 @@
   {
     "id": "oraculo_del_vacio",
     "name_es": "Arconte del Ritual",
-    "hp": 210,
+    "hp": 110,
     "phases": [
       0.7,
       0.35
@@ -182,7 +182,7 @@
   {
     "id": "senor_de_la_chakana_rota",
     "name_es": "Arconte Celestial",
-    "hp": 260,
+    "hp": 140,
     "phases": [
       0.75,
       0.5,
@@ -286,7 +286,7 @@
   {
     "id": "arconte_supremo",
     "name_es": "Arconte Supremo",
-    "hp": 320,
+    "hp": 170,
     "phases": [
       0.8,
       0.55,
