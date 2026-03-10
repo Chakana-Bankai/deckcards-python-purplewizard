@@ -84,6 +84,64 @@ class PromptBuilder:
         tone = str(motif.get("tone", "mystic_order"))
         return primary, shape, f"{symbol}:{tone}"
 
+    def composition_blueprint(self, card: dict) -> dict:
+        arch = str(card.get("archetype", "") or "").lower()
+        family = self.family_for(card)
+        role = str(card.get("role", "") or family).lower()
+        rarity = str(card.get("rarity", "common") or "common").lower()
+        motif = str(card.get("motif", "") or "").lower()
+        effect_sig = self.effect_signature(card)
+
+        if "hip_" in str(card.get("id", "")).lower() or "hiperborea" in str(card.get("set", "")).lower() or "hiperboria" in str(card.get("set", "")).lower():
+            environment = "ancient polar temple background with crystalline architecture and distant aurora"
+        elif "archon" in arch or "archon" in motif or "void" in motif:
+            environment = "corrupted void sanctuary background with broken geometry and oppressive depth"
+        else:
+            environment = "mystic chakana sanctuary background with layered sacred stone and cosmic horizon"
+
+        if family == "attack":
+            subject = "warrior, beast or ritual attacker in clear combat pose"
+            obj = "weapon, blade, spear or striking focus relic"
+        elif family == "defense":
+            subject = "guardian, sentinel or shield bearer in anchored stance"
+            obj = "shield seal, stone ward or defensive relic focus"
+        elif family == "ritual":
+            subject = "ritual caster or ceremonial conduit channeling power"
+            obj = "altar focus, seal tablet or sacred catalyst"
+        elif family == "control":
+            subject = "oracle, seer or mind-weaver reading the flow"
+            obj = "eye relic, codex shard or divination instrument"
+        else:
+            subject = "mystic conduit or spiritual avatar holding the field"
+            obj = "chakana relic, energy knot or spiritual focus"
+
+        if arch == "oracle_of_fate":
+            subject = "oracular figure with intense gaze reading the weave"
+        elif arch == "harmony_guardian":
+            subject = "guardian figure holding balance and warding force"
+        elif arch == "cosmic_warrior":
+            subject = "cosmic warrior driving forward with decisive motion"
+        elif "archon" in arch:
+            subject = "archon entity or corrupted servant dominating the scene"
+
+        effects = {
+            "impacto_ofensivo": "burst arcs, impact trails, sparks and offensive energy cuts",
+            "barrera_ritual": "stable rings, ward sigils, shield glow and defensive pulse lines",
+            "vision_oracular": "spiral streams, eye light, foresight glyphs and cognitive echoes",
+            "flujo_mental": "draw currents, ribbon streams, memory wisps and lucid particles",
+            "resonancia_armonica": "harmonic halos, resonance bands, golden pulse chords and balanced light",
+            "trazo_mistico": "arc traces, luminous dust, subtle sigils and ether drift",
+        }.get(effect_sig, "arc traces, luminous dust, subtle sigils and ether drift")
+
+        if rarity == "legendary":
+            effects += ", premium ceremonial glow and expanded focal aura"
+        return {
+            "subject": subject,
+            "object": obj,
+            "environment": environment,
+            "effects": effects,
+        }
+
     def build_entry(self, card: dict) -> dict:
         cid = card.get("id", "unknown")
         ctype = self.family_for(card)
@@ -92,17 +150,20 @@ class PromptBuilder:
         role = str(card.get("role", "") or "control").lower()
         rarity = str(card.get("rarity", "common") or "common").lower()
         effect_sig = self.effect_signature(card)
+        blueprint = self.composition_blueprint(card)
         prompt = (
             f"chakana card::{cid}::{ctype} high density pixel fantasy, layered depth, "
             f"silhouette discipline, role {role}, rarity {rarity}, palette {palette}, lighting {lighting}, "
             f"sacred geometry {symbols}, symbolic overlays aligned to motif, motif {primary} ({shape}), "
-            f"effect signature {effect_sig}, energy pattern {energy}, lore tokens {lore_tokens}, "
+            f"subject {blueprint['subject']}, object {blueprint['object']}, environment {blueprint['environment']}, "
+            f"effect signature {effect_sig}, effects {blueprint['effects']}, energy pattern {energy}, lore tokens {lore_tokens}, "
             f"crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character"
         )
         return {
             "id": cid,
             "card_type": ctype,
             "family": ctype,
+            "composition": blueprint,
             "prompt_text": prompt,
         }
 
@@ -208,6 +269,7 @@ def _prompt_payload(cards: list[dict], seed: int = 12345) -> dict:
         out["cards"][cid] = {
             "prompt": entry.get("prompt_text", ""),
             "style": entry.get("card_type", "spirit"),
+            "composition": dict(entry.get("composition", {})),
             "updated_at": "1970-01-01T00:00:00Z",
         }
     return out

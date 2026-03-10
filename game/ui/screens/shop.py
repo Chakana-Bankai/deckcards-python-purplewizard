@@ -6,6 +6,7 @@ from game.ui.theme import UI_THEME
 from game.ui.system.brand import ChakanaBrand
 from game.ui.system.icons_atlas import draw_icon_with_value
 from game.ui.system.layout import anchor_bottom_center, anchor_top_right, build_three_column_layout, inset, safe_area
+from game.ui.system.pack_covers import draw_pack_cover
 
 
 class ShopScreen:
@@ -301,47 +302,6 @@ class ShopScreen:
         }
         return captions.get(self.active_tab, "Intercambio ritual en calma.")
 
-    def _pack_palette(self, pack_id: str):
-        pid = str(pack_id or "").lower().strip()
-        if pid == "hiperborea_pack":
-            return {"bg": (22, 42, 62), "mid": (84, 142, 186), "accent": (168, 230, 244), "ink": (232, 248, 255)}
-        if pid == "mystery_pack":
-            return {"bg": (36, 18, 52), "mid": (110, 64, 152), "accent": (214, 148, 244), "ink": (248, 236, 255)}
-        return {"bg": (34, 24, 56), "mid": (122, 84, 158), "accent": (236, 208, 118), "ink": (248, 240, 220)}
-
-    def _draw_pack_cover(self, s, rect: pygame.Rect, pack_id: str, title: str):
-        pal = self._pack_palette(pack_id)
-        cover = pygame.Surface(rect.size, pygame.SRCALPHA)
-        pygame.draw.rect(cover, pal["bg"], cover.get_rect(), border_radius=18)
-        for i in range(rect.h):
-            fade = min(168, 28 + i // 4)
-            color = (
-                min(255, pal["mid"][0] + i // 16),
-                min(255, pal["mid"][1] + i // 20),
-                min(255, pal["mid"][2] + i // 22),
-                fade,
-            )
-            pygame.draw.line(cover, color, (0, i), (rect.w, i))
-        s.blit(cover, rect.topleft)
-        pygame.draw.rect(s, pal["accent"], rect, 2, border_radius=18)
-
-        art_rect = rect.inflate(-34, -118)
-        center = art_rect.center
-        pygame.draw.circle(s, pal["accent"], center, min(art_rect.w, art_rect.h) // 3, 2)
-        pygame.draw.circle(s, pal["mid"], center, min(art_rect.w, art_rect.h) // 5)
-        pygame.draw.line(s, pal["ink"], (center[0], art_rect.y + 16), (center[0], art_rect.bottom - 16), 2)
-        pygame.draw.line(s, pal["ink"], (art_rect.x + 16, center[1]), (art_rect.right - 16, center[1]), 2)
-        pygame.draw.line(s, pal["ink"], (art_rect.x + 34, art_rect.y + 34), (art_rect.right - 34, art_rect.bottom - 34), 2)
-        pygame.draw.line(s, pal["ink"], (art_rect.right - 34, art_rect.y + 34), (art_rect.x + 34, art_rect.bottom - 34), 2)
-
-        title_band = pygame.Rect(rect.x + 18, rect.bottom - 84, rect.w - 36, 54)
-        pygame.draw.rect(s, (10, 10, 18), title_band, border_radius=12)
-        pygame.draw.rect(s, pal["accent"], title_band, 1, border_radius=12)
-        name = self.app.small_font.render(title, True, pal["ink"])
-        s.blit(name, name.get_rect(center=(title_band.centerx, title_band.y + 18)))
-        price = self.app.tiny_font.render(f"{self.pack_price} oro", True, pal["accent"])
-        s.blit(price, price.get_rect(center=(title_band.centerx, title_band.y + 38)))
-
     def _draw_inactive_overlay(self, s, rect):
         veil = pygame.Surface((rect.w, rect.h), pygame.SRCALPHA)
         veil.fill((10, 12, 20, 146))
@@ -527,7 +487,7 @@ class ShopScreen:
         pygame.draw.rect(s, UI_THEME["accent_violet"], pack_focus, 1, border_radius=16)
         s.blit(self.app.tiny_font.render("Sobre ritual destacado", True, UI_THEME["gold"]), (pack_focus.x + 12, pack_focus.y + 8))
         cover_rect = pygame.Rect(pack_focus.x + 24, pack_focus.y + 34, pack_focus.w - 48, 168)
-        self._draw_pack_cover(s, cover_rect, self.pack_offer, self._pack_label(self.pack_offer))
+        draw_pack_cover(s, cover_rect, self.app, self.pack_offer, self._pack_label(self.pack_offer), price_text=f"{self.pack_price} oro")
         pygame.draw.rect(s, UI_THEME["violet"], self.buy_pack_btn, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.buy_pack_btn, 2, border_radius=10)
         ptxt = self.app.tiny_font.render("ABRIR / COMPRAR SOBRE", True, UI_THEME["text"])

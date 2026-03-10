@@ -65,7 +65,8 @@ def _enrich_prompt(prompt: str, mode: str) -> str:
 
     composition = (
         " narrative composition rules: subject 50-60 percent frame, environment 20-30 percent, energy action 10-20 percent. "
-        "Always show subject + visible action + readable environment context."
+        "Always show subject + visible action + readable environment context. "
+        "Every artwork must include one clear subject, one readable object or relic focus, one environment background layer, and one coherent set of energy/effect traces."
     )
 
     return (p + tier + _style_tokens(style) + composition + " keep pixel clarity full hd no blur no stretch.").strip()
@@ -110,6 +111,17 @@ def _narrative_pass(out_path: Path, seed: int, mode: str, prompt: str) -> dict:
         bx = rng.randint(0, max(0, w - bw - 1))
         by = h - bh - rng.randint(0, max(2, h // 16))
         pygame.draw.rect(env, (*p_deep, 44), pygame.Rect(bx, by, bw, bh), border_radius=2)
+    if style == "hiperborea":
+        for i in range(4):
+            tw = max(20, w // 7)
+            th = max(18, h // 5)
+            bx = int(w * (0.10 + i * 0.2))
+            by = int(h * 0.50) - (i % 2) * 12
+            pygame.draw.rect(env, (*p_main, 34), pygame.Rect(bx, by, tw, th), border_radius=4)
+            pygame.draw.rect(env, (*p_accent, 46), pygame.Rect(bx + tw // 4, by - 18, tw // 2, 18), border_radius=3)
+        for i in range(6):
+            ay = int(h * (0.10 + i * 0.05))
+            pygame.draw.arc(env, (*p_accent, 40), pygame.Rect(-20, ay, w + 40, max(32, h // 5)), 0.2, 2.9, 1)
 
     surf.blit(env, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
@@ -121,6 +133,8 @@ def _narrative_pass(out_path: Path, seed: int, mode: str, prompt: str) -> dict:
 
     focus = pygame.Surface((w, h), pygame.SRCALPHA)
     pygame.draw.ellipse(focus, (*p_main, 28), subject_rect)
+    if style == "hiperborea":
+        pygame.draw.ellipse(focus, (*p_accent, 24), subject_rect.inflate(-subject_rect.w // 5, -subject_rect.h // 6))
     surf.blit(focus, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
     vignette = pygame.Surface((w, h), pygame.SRCALPHA)

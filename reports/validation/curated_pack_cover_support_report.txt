@@ -1,0 +1,22 @@
+Curated pack cover support hotfix
+================================
+
+Fecha: 2026-03-10
+
+Cambios:
+- Se agrego game/ui/system/pack_covers.py como helper reutilizable para portadas de pack.
+- ShopScreen y PackOpeningScreen ahora usan el mismo sistema de portada ritual por set.
+- Se crearon covers curados locales en game/assets/curated/ui/packs/:
+  - base_pack.png
+  - hiperborea_pack.png
+  - mystery_pack.png
+- Si faltan assets, el helper cae a render procedural seguro sin romper runtime.
+
+Comandos:
+- game\\.venv\\Scripts\\python.exe -m py_compile game/ui/system/pack_covers.py game/ui/screens/pack_opening.py game/ui/screens/shop.py game/main.py -> PASS
+- render de PackOpeningScreen con covers presentes -> PASS
+- render de ShopScreen packs con cover reutilizable -> PASS
+
+Warnings:
+- Las portadas actuales ya son assets curados locales, pero aun no son arte final ilustrado studio-grade.
+- El siguiente salto visual fuerte sigue siendo arte premium de cartas y covers finales por set si luego hacemos un pase de ilustracion mayor.

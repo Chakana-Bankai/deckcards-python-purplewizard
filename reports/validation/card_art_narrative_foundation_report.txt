@@ -1,0 +1,28 @@
+Card art narrative composition foundation
+=======================================
+
+Fecha: 2026-03-10
+
+Cambios:
+- PromptBuilder ahora genera blueprint narrativo por carta con:
+  - subject
+  - object
+  - environment
+  - effects
+- El prompt exportado incorpora esas cuatro capas para empujar mejor la composicion del arte.
+- El style guide canonico del Creative Director ahora usa la composicion:
+  subject / object / environment / effects.
+- gen_card_art_advanced refuerza la regla de composicion en el enrich del prompt.
+
+Alcance:
+- No se regenero masivamente el pool actual.
+- No se toco combate ni runtime de boot.
+- La mejora queda aplicada a futuros exports y regeneraciones controladas.
+
+Comandos:
+- game\\.venv\\Scripts\\python.exe -m py_compile game/content/card_art_generator.py game/art/gen_card_art_advanced.py engine/creative_direction/style_guide.py -> PASS
+- PromptBuilder build_entry sample -> PASS
+- export_prompts(cards) smoke -> PASS
+
+Resultado esperado:
+- Cada futura pieza de arte tendera a describirse y generarse con un sujeto claro, un objeto focal, un fondo legible y efectos coherentes, en vez de puro ruido simbolico.

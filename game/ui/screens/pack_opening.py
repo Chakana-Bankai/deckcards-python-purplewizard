@@ -5,6 +5,7 @@ from game.systems.reward_system import PACK_ECONOMY
 from game.ui.components.card_preview_panel import CardPreviewPanel
 from game.ui.components.card_renderer import render_card_small
 from game.ui.theme import UI_THEME
+from game.ui.system.pack_covers import draw_pack_cover
 
 
 class PackOpeningScreen:
@@ -252,58 +253,6 @@ class PackOpeningScreen:
     def update(self, dt):
         _ = dt
 
-    def _pack_palette(self, pdef):
-        pid = str(pdef.get("id", "base_pack")).lower()
-        if pid == "hiperborea_pack":
-            return {"bg": (22, 42, 62), "mid": (84, 142, 186), "accent": (168, 230, 244), "ink": (232, 248, 255)}
-        if pid == "mystery_pack":
-            return {"bg": (36, 18, 52), "mid": (110, 64, 152), "accent": (214, 148, 244), "ink": (248, 236, 255)}
-        return {"bg": (34, 24, 56), "mid": (122, 84, 158), "accent": (236, 208, 118), "ink": (248, 240, 220)}
-
-    def _render_pack_cover(self, s, rect, pdef, selected, hovered):
-        pal = self._pack_palette(pdef)
-        glow = pygame.Surface((rect.w + 24, rect.h + 24), pygame.SRCALPHA)
-        if selected or hovered:
-            pygame.draw.rect(glow, (*pal["accent"], 54), glow.get_rect(), border_radius=30)
-            s.blit(glow, (rect.x - 12, rect.y - 12))
-
-        cover = pygame.Surface(rect.size, pygame.SRCALPHA)
-        pygame.draw.rect(cover, pal["bg"], cover.get_rect(), border_radius=26)
-        for i in range(rect.h):
-            fade = min(168, 28 + i // 5)
-            color = (
-                min(255, pal["mid"][0] + i // 18),
-                min(255, pal["mid"][1] + i // 22),
-                min(255, pal["mid"][2] + i // 24),
-                fade,
-            )
-            pygame.draw.line(cover, color, (0, i), (rect.w, i))
-        s.blit(cover, rect.topleft)
-
-        pygame.draw.rect(s, pal["accent"] if selected else UI_THEME["gold"], rect, 4 if selected else 2, border_radius=26)
-
-        art_rect = pygame.Rect(rect.x + 26, rect.y + 40, rect.w - 52, rect.h - 158)
-        center = art_rect.center
-        pygame.draw.circle(s, pal["accent"], center, min(art_rect.w, art_rect.h) // 3, 2)
-        pygame.draw.circle(s, pal["mid"], center, min(art_rect.w, art_rect.h) // 5)
-        pygame.draw.line(s, pal["ink"], (center[0], art_rect.y + 18), (center[0], art_rect.bottom - 18), 2)
-        pygame.draw.line(s, pal["ink"], (art_rect.x + 18, center[1]), (art_rect.right - 18, center[1]), 2)
-        pygame.draw.line(s, pal["ink"], (art_rect.x + 44, art_rect.y + 44), (art_rect.right - 44, art_rect.bottom - 44), 2)
-        pygame.draw.line(s, pal["ink"], (art_rect.right - 44, art_rect.y + 44), (art_rect.x + 44, art_rect.bottom - 44), 2)
-        for radius in (36, 70, 102):
-            pygame.draw.circle(s, pal["accent"], center, radius, 1)
-
-        title_band = pygame.Rect(rect.x + 20, rect.bottom - 96, rect.w - 40, 64)
-        pygame.draw.rect(s, (10, 10, 18), title_band, border_radius=14)
-        pygame.draw.rect(s, pal["accent"], title_band, 1, border_radius=14)
-        title = self.app.small_font.render(pdef["title"], True, pal["ink"])
-        subtitle = self.app.tiny_font.render(pdef["subtitle"], True, pal["accent"])
-        s.blit(title, title.get_rect(center=(title_band.centerx, title_band.y + 21)))
-        s.blit(subtitle, subtitle.get_rect(center=(title_band.centerx, title_band.y + 45)))
-        if selected:
-            marker = self.app.tiny_font.render("Pulso elegido", True, UI_THEME["gold"])
-            s.blit(marker, marker.get_rect(center=(rect.centerx, rect.y + 18)))
-
     def _render_pack_preview(self, s):
         rect = pygame.Rect(1290, 168, 560, 720)
         pygame.draw.rect(s, UI_THEME["panel_2"], rect, border_radius=14)
@@ -349,7 +298,7 @@ class PackOpeningScreen:
             pdef = self.pack_defs[i]
             hovered = rect.collidepoint(mouse)
             selected = self.selected_pack == i
-            self._render_pack_cover(s, rect, pdef, selected, hovered)
+            draw_pack_cover(s, rect, self.app, pdef["id"], pdef["title"], selected=selected, hovered=hovered)
 
         if self.cards:
             for i, card in enumerate(self.cards):

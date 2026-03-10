@@ -1,0 +1,38 @@
+Premium card subset regen pass
+=============================
+
+Fecha: 2026-03-10
+
+Cambios:
+- Se reparo card_prompts.json para volver al pool completo de 180 cartas.
+- Se agrego blueprint narrativo al prompt system: subject / object / environment / effects.
+- Se regenero un subset premium controlado de 15 cartas:
+  - 9 legendarias (base + hiperborea + arconte)
+  - 6 raras visibles (hiperborea + arconte)
+- Se aplico un ajuste fino adicional al pase narrativo de Hiperborea.
+
+Subset regenerado:
+- chakana_de_luz
+- fusion_espiritual
+- ritual_de_la_trama
+- hip_cosmic_warrior_20
+- hip_harmony_guardian_20
+- hip_oracle_of_fate_20
+- arc_058
+- arc_059
+- arc_060
+- hip_harmony_guardian_15
+- hip_harmony_guardian_16
+- hip_harmony_guardian_17
+- arc_045
+- arc_048
+- arc_049
+
+Lectura del resultado:
+- Arconte y legendarias base subieron bien visualmente.
+- Hiperborea ya quedo regenerado con la nueva base compositiva, pero su score sigue bajo en el checker actual; requiere un pase dedicado de estilo/score mas que otro regen inmediato.
+
+Smokes:
+- py_compile de card_art_generator + gen_card_art_advanced + style_guide -> PASS
+- export completo de prompts (180) -> PASS
+- carga real de sprites premium desde app.assets.sprite(...) -> PASS

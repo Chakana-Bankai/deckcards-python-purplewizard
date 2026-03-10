@@ -1,6 +1,6 @@
 {
   "version": "chakana_audio_v7",
-  "generated_at": 1773162535,
+  "generated_at": 1773163518,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
@@ -527,13 +527,13 @@
       "type": "ambient",
       "context": "gaia_mountain_wind",
       "variant": "a",
-      "seed": 294827389,
+      "seed": 1937724384,
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\ambient\\gaia_mountain_wind.wav",
-      "generation_date": 1773106482,
-      "version": "chakana_audio_v6",
+      "relative_path": "game/audio/generated/ambient/gaia_mountain_wind.wav",
+      "generation_date": 1773163518,
+      "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated",
-      "relative_path": "game/audio/generated/ambient/gaia_mountain_wind.wav"
+      "source": "generated"
     },
     "ambient_temple_resonance": {
       "track_id": "ambient_temple_resonance",
