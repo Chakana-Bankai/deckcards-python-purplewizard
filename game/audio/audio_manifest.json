@@ -1,16 +1,16 @@
 {
   "version": "chakana_audio_v7",
-  "generated_at": 1773170238,
+  "generated_at": 1773170834,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
       "type": "bgm",
       "context": "menu",
       "variant": "a",
-      "seed": 530727413,
+      "seed": 247043640,
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\menu_a.wav",
       "relative_path": "game/assets/curated/audio/bgm/menu_a.wav",
-      "generation_date": 1773169870,
+      "generation_date": 1773170668,
       "version": "chakana_audio_v7",
       "state": "valid",
       "source": "curated",
@@ -91,13 +91,14 @@
       "type": "bgm",
       "context": "combat_boss",
       "variant": "a",
-      "seed": 760011555,
+      "seed": 594156067,
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\combat_boss_a.wav",
       "relative_path": "game/assets/curated/audio/bgm/combat_boss_a.wav",
-      "generation_date": 1773170006,
+      "generation_date": 1773170823,
       "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "curated"
+      "source": "curated",
+      "active_runtime": true
     },
     "shop_a": {
       "track_id": "shop_a",

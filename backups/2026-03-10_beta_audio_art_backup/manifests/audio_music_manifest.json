@@ -1,0 +1,106 @@
+{
+  "version": "chakana_audio_v7",
+  "source": "game/data/audio_manifest.json",
+  "items": {
+    "menu_a": {
+      "track_id": "menu_a",
+      "type": "bgm",
+      "context": "menu",
+      "variant": "a",
+      "source": "curated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\menu_a.wav",
+      "relative_path": "game/assets/curated/audio/bgm/menu_a.wav"
+    },
+    "map_ukhu_a": {
+      "track_id": "map_ukhu_a",
+      "type": "bgm",
+      "context": "map_ukhu",
+      "variant": "a",
+      "source": "curated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\map_ukhu_a.wav",
+      "relative_path": "game/assets/curated/audio/bgm/map_ukhu_a.wav"
+    },
+    "map_kay_a": {
+      "track_id": "map_kay_a",
+      "type": "bgm",
+      "context": "map_kay",
+      "variant": "a",
+      "source": "curated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\map_kay_a.wav",
+      "relative_path": "game/assets/curated/audio/bgm/map_kay_a.wav"
+    },
+    "map_hanan_a": {
+      "track_id": "map_hanan_a",
+      "type": "bgm",
+      "context": "map_hanan",
+      "variant": "a",
+      "source": "curated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\map_hanan_a.wav",
+      "relative_path": "game/assets/curated/audio/bgm/map_hanan_a.wav"
+    },
+    "combat_a": {
+      "track_id": "combat_a",
+      "type": "bgm",
+      "context": "combat",
+      "variant": "a",
+      "source": "curated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\combat_a.wav",
+      "relative_path": "game/assets/curated/audio/bgm/combat_a.wav"
+    },
+    "combat_elite_a": {
+      "track_id": "combat_elite_a",
+      "type": "bgm",
+      "context": "combat_elite",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_elite_a.wav",
+      "relative_path": "game/audio/generated/bgm/combat_elite_a.wav"
+    },
+    "combat_boss_a": {
+      "track_id": "combat_boss_a",
+      "type": "bgm",
+      "context": "combat_boss",
+      "variant": "a",
+      "source": "curated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\combat_boss_a.wav",
+      "relative_path": "game/assets/curated/audio/bgm/combat_boss_a.wav"
+    },
+    "shop_a": {
+      "track_id": "shop_a",
+      "type": "bgm",
+      "context": "shop",
+      "variant": "a",
+      "source": "curated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\shop_a.wav",
+      "relative_path": "game/assets/curated/audio/bgm/shop_a.wav"
+    },
+    "victory_a": {
+      "track_id": "victory_a",
+      "type": "bgm",
+      "context": "victory",
+      "variant": "a",
+      "source": "curated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\victory_a.wav",
+      "relative_path": "game/assets/curated/audio/bgm/victory_a.wav"
+    },
+    "defeat_a": {
+      "track_id": "defeat_a",
+      "type": "bgm",
+      "context": "defeat",
+      "variant": "a",
+      "source": "curated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\defeat_a.wav",
+      "relative_path": "game/assets/curated/audio/bgm/defeat_a.wav"
+    }
+  }
+}
