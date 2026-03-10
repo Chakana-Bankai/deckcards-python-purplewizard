@@ -1,8 +1,7 @@
 import pygame
 
-from game.systems.reward_system import build_reward_guide
 from game.ui.anim import TypewriterBanner
-from game.ui.system.modals import ChoiceModal, LoreModal
+from game.ui.system.modals import LoreModal
 
 
 class EventScreen:
@@ -18,13 +17,13 @@ class EventScreen:
         self.moraleja = defaults[0] if defaults else "Moraleja: cada decision pesa."
         self.msg = ""
         self.guide_names = {"angel": "Oraculo Solar", "shaman": "Amauta de Ceniza", "demon": "Custodio del Vacio", "arcane_hacker": "Arquitecto del Umbral"}
-        self._resolved_guide_reward = None
         self.event_type = str(event.get("event_type") or "lore")
         self.event_tags = [str(t) for t in list(event.get("tags", []) or []) if t]
-
         self.stage = "lore"
         self.lore_modal = LoreModal()
-        self.choice_modal = ChoiceModal()
+        self.selected_index = None
+        self.hover_index = None
+        self.choice_rects = []
         self._setup_modals()
 
     def _setup_modals(self):
@@ -32,11 +31,6 @@ class EventScreen:
         self.lore_modal.cancel_label = "Volver"
         self.lore_modal.on_confirm = self._go_to_choices
         self.lore_modal.on_cancel = self._cancel_event
-
-        self.choice_modal.confirm_label = "Elegir"
-        self.choice_modal.cancel_label = "Volver"
-        self.choice_modal.on_confirm = self._confirm_choice
-        self.choice_modal.on_cancel = self._cancel_event
 
     def _choice_outcome(self, choice: dict) -> str:
         effects = [e for e in list(choice.get("effects", [])) if isinstance(e, dict)]
@@ -48,14 +42,22 @@ class EventScreen:
             amt = int(ef.get("amount", 0) or 0)
             if et == "gain_gold":
                 bits.append(f"+{amt} oro")
+            elif et == "lose_gold":
+                bits.append(f"-{amt} oro")
             elif et == "gain_harmony_perm":
                 bits.append(f"+{amt} armonia maxima")
-            elif et == "heal_percent":
+            elif et == "heal_percent" or et == "heal":
                 bits.append("curacion")
-            elif et == "gain_cards":
-                bits.append("nuevas cartas")
-            elif et == "lose_random_deck_card":
-                bits.append("pierdes 1 carta del mazo")
+            elif et == "gain_cards" or et == "gain_card" or et == "gain_card_random":
+                bits.append("cartas")
+            elif et == "gain_relic" or et == "gain_relic_random":
+                bits.append("reliquia")
+            elif et == "lose_random_deck_card" or et == "remove_card_from_deck":
+                bits.append("purga")
+            elif et == "gain_rupture":
+                bits.append(f"+{amt} ruptura")
+            elif et == "reduce_rupture":
+                bits.append(f"-{amt} ruptura")
             else:
                 bits.append(et.replace("_", " "))
         return " | ".join(bits) if bits else "Resultado variable."
@@ -88,17 +90,12 @@ class EventScreen:
     def _cancel_event(self):
         self.app.goto_map()
 
-    def _confirm_choice(self):
-        idx = self.choice_modal.selected_index
-        if idx is None:
+    def _confirm_choice_index(self, idx: int):
+        choices = list(self.event.get("choices", [])[:3])
+        if not (0 <= idx < len(choices)):
             return
-        ch = self.event.get("choices", [])[:3][idx]
+        ch = choices[idx]
         effects = ch.get("effects", [])
-        if str(self.event.get("id", "")) in {"chakana_crossroads", "condor_vision"}:
-            if self._resolved_guide_reward is None:
-                self._resolved_guide_reward = build_reward_guide(str(self.event.get("id", "guide")), self.app.rng, self.app.cards_data, self.app.run_state or {})
-            self.app.goto_reward(mode="guide_choice", guide_reward=self._resolved_guide_reward)
-            return
         self.app.apply_event_effects(effects)
         self.msg = self.app.loc.t(ch.get("text_key", "event_continue"))
         self.app._complete_current_node()
@@ -115,17 +112,16 @@ class EventScreen:
         self.lore_modal.portrait_group = "guides"
         self.lore_modal.portrait_id = self.guide_type
 
-    def _sync_choice_modal(self):
-        self.choice_modal.open = self.stage == "choice"
-        self.choice_modal.title = "Tres caminos"
-        self.choice_modal.message = "Selecciona una opcion para continuar. Cada senda altera la Trama."
-        self.choice_modal.choices = [
-            {
-                "title": self.app.loc.t(ch.get("text_key", "event_continue")),
-                "subtitle": f"{self._choice_outcome(ch)} | {self._choice_lore(i)}",
-            }
-            for i, ch in enumerate(self.event.get("choices", [])[:3])
-        ]
+    def _layout_choices(self, surface):
+        panel = pygame.Rect(260, 220, 1400, 620)
+        count = max(1, min(3, len(self.event.get("choices", [])[:3])))
+        gap = 18
+        item_h = max(132, min(176, (panel.h - (count - 1) * gap) // count))
+        rects = []
+        for i in range(count):
+            rects.append(pygame.Rect(panel.x + 24, panel.y + 80 + i * (item_h + gap), panel.w - 48, item_h))
+        self.choice_rects = rects
+        return panel, rects
 
     def handle_event(self, event):
         mapped_pos = self.app.renderer.map_mouse(getattr(event, "pos", pygame.mouse.get_pos()))
@@ -134,12 +130,29 @@ class EventScreen:
             return
 
         self._sync_lore_modal()
-        self._sync_choice_modal()
 
         if self.stage == "lore":
             self.lore_modal.handle_event(event, mapped_pos, surface)
             return
-        self.choice_modal.handle_event(event, mapped_pos, surface)
+
+        _panel, rects = self._layout_choices(surface)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            self.app.goto_map()
+            return
+        if event.type == pygame.MOUSEMOTION:
+            self.hover_index = None
+            for i, rr in enumerate(rects):
+                if rr.collidepoint(mapped_pos):
+                    self.hover_index = i
+                    break
+            return
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            for i, rr in enumerate(rects):
+                if rr.collidepoint(mapped_pos):
+                    self.selected_index = i
+                    self.app.sfx.play("ui_click")
+                    self._confirm_choice_index(i)
+                    return
 
     def update(self, dt):
         self.t += dt
@@ -162,12 +175,31 @@ class EventScreen:
         s.blit(art, art.get_rect(center=(badge.right - 56, badge.centery)).topleft)
 
         self._sync_lore_modal()
-        self._sync_choice_modal()
 
         if self.stage == "lore":
             self.lore_modal.render(s, self.app)
         else:
-            self.choice_modal.render(s, self.app.big_font, self.app.small_font)
+            panel, rects = self._layout_choices(s)
+            pygame.draw.rect(s, (18, 16, 30), panel, border_radius=18)
+            pygame.draw.rect(s, (164, 132, 232), panel, 2, border_radius=18)
+            s.blit(self.app.big_font.render("Tres visiones", True, (238, 226, 186)), (panel.x + 24, panel.y + 18))
+            s.blit(self.app.small_font.render("Elige una senda. El efecto se aplicara de inmediato.", True, (214, 208, 236)), (panel.x + 24, panel.y + 48))
+            choices = list(self.event.get("choices", [])[:3])
+            for i, rr in enumerate(rects):
+                ch = choices[i] if i < len(choices) else {}
+                hovered = i == self.hover_index
+                selected = i == self.selected_index
+                fill = (40, 34, 60) if hovered else (28, 24, 44)
+                border = (236, 212, 148) if selected or hovered else (118, 102, 156)
+                pygame.draw.rect(s, fill, rr, border_radius=14)
+                pygame.draw.rect(s, border, rr, 2, border_radius=14)
+                text = self.app.loc.t(ch.get("text_key", "event_continue"))
+                outcome = self._choice_outcome(ch)
+                lore = self._choice_lore(i)
+                s.blit(self.app.small_font.render(text[:48], True, (236, 226, 240)), (rr.x + 16, rr.y + 14))
+                s.blit(self.app.tiny_font.render(outcome[:88], True, (214, 208, 236)), (rr.x + 16, rr.y + 48))
+                s.blit(self.app.tiny_font.render(lore[:88], True, (186, 216, 236)), (rr.x + 16, rr.y + 76))
+                s.blit(self.app.tiny_font.render('Click para aceptar el destino', True, (236, 212, 148)), (rr.x + 16, rr.bottom - 26))
 
         if self.msg:
             s.blit(self.app.small_font.render(self.msg, True, (180, 240, 200)), (100, 1000))

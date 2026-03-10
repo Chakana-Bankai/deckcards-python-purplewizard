@@ -1,0 +1,6 @@
+EVENT TRANSITION STABILITY REPORT
+status=PASS
+fix=deferred_event_screen_transition_keep_current_track
+smoke_1=game\.venv\Scripts\python.exe -m py_compile game/main.py => PASS
+smoke_2=same-venv sanctuary -> SceneFusionScreen -> EventScreen => PASS
+smoke_3=event no longer switches to shop music on enter => PASS

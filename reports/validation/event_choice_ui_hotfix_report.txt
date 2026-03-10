@@ -1,0 +1,7 @@
+EVENT CHOICE UI HOTFIX REPORT
+status=PASS
+fix=removed_legacy_choice_modal_from_event_screen
+smoke_1=game\.venv\Scripts\python.exe -m py_compile game/ui/screens/event.py game/main.py => PASS
+smoke_2=sanctuary -> EventScreen still loads => PASS
+smoke_3=event choice click applies effects and returns to map => PASS
+smoke_4=direct event choice confirmation applies effects and returns to map => PASS

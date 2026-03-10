@@ -1,0 +1,6 @@
+PACK OPENING TRANSITION STABILITY REPORT
+status=PASS
+fix=deferred_pack_opening_screen_transition_keep_current_track
+smoke_1=game\.venv\Scripts\python.exe -m py_compile game/main.py => PASS
+smoke_2=same-venv goto_pack_opening reward => PASS
+smoke_3=pack opening no longer constructs in hot stack frame => PASS

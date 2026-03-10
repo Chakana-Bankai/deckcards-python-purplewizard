@@ -1,0 +1,19 @@
+Pack opening UI hotfix
+=====================
+
+Fecha: 2026-03-10
+
+Cambios:
+- Se rediseño PackOpeningScreen con 3 sobres verticales lado a lado.
+- Se reemplazaron los rectangulos horizontales con portadas rituales por set.
+- Se mantuvo intacta la logica de seleccion y apertura de packs.
+- El flujo de estabilidad conserva la pista actual al entrar a pack opening.
+
+Smokes:
+- py_compile game/ui/screens/pack_opening.py game/main.py -> PASS
+- Instancia directa de PackOpeningScreen + render 1920x1080 -> PASS
+- goto_pack_opening(source=reward) + flush transition -> PASS
+
+Warnings:
+- La tienda todavia no reutiliza la misma portada grande del pack en su CTA.
+- Falta conectar arte curado dedicado de portada por set si luego queremos reemplazar la portada procedural UI actual.

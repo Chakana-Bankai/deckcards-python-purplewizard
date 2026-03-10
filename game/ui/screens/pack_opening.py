@@ -14,7 +14,11 @@ class PackOpeningScreen:
         self.source = str(source or "reward")
 
         self.msg = "Elige 1 de 3 sobres rituales"
-        self.packs = [pygame.Rect(96, 160 + i * 242, 420, 220) for i in range(3)]
+        self.packs = [
+            pygame.Rect(96, 198, 350, 562),
+            pygame.Rect(486, 198, 350, 562),
+            pygame.Rect(876, 198, 350, 562),
+        ]
         self.pack_defs = [
             {
                 "id": "base_pack",
@@ -57,8 +61,8 @@ class PackOpeningScreen:
         self.cards = []
         self.selected_card = None
         self.hover_card = None
-        self.confirm_rect = pygame.Rect(760, 980, 320, 56)
-        self.back_rect = pygame.Rect(420, 980, 280, 56)
+        self.confirm_rect = pygame.Rect(1290, 962, 280, 58)
+        self.back_rect = pygame.Rect(982, 962, 250, 58)
         self.preview = CardPreviewPanel(app=app)
         self.legendary_pick_mode = False
 
@@ -243,19 +247,71 @@ class PackOpeningScreen:
                         return
 
     def _grid_rect(self, i):
-        return pygame.Rect(78 + i * 236, 520, 220, 300)
+        return pygame.Rect(86 + i * 214, 582, 196, 270)
 
     def update(self, dt):
         _ = dt
 
+    def _pack_palette(self, pdef):
+        pid = str(pdef.get("id", "base_pack")).lower()
+        if pid == "hiperborea_pack":
+            return {"bg": (22, 42, 62), "mid": (84, 142, 186), "accent": (168, 230, 244), "ink": (232, 248, 255)}
+        if pid == "mystery_pack":
+            return {"bg": (36, 18, 52), "mid": (110, 64, 152), "accent": (214, 148, 244), "ink": (248, 236, 255)}
+        return {"bg": (34, 24, 56), "mid": (122, 84, 158), "accent": (236, 208, 118), "ink": (248, 240, 220)}
+
+    def _render_pack_cover(self, s, rect, pdef, selected, hovered):
+        pal = self._pack_palette(pdef)
+        glow = pygame.Surface((rect.w + 24, rect.h + 24), pygame.SRCALPHA)
+        if selected or hovered:
+            pygame.draw.rect(glow, (*pal["accent"], 54), glow.get_rect(), border_radius=30)
+            s.blit(glow, (rect.x - 12, rect.y - 12))
+
+        cover = pygame.Surface(rect.size, pygame.SRCALPHA)
+        pygame.draw.rect(cover, pal["bg"], cover.get_rect(), border_radius=26)
+        for i in range(rect.h):
+            fade = min(168, 28 + i // 5)
+            color = (
+                min(255, pal["mid"][0] + i // 18),
+                min(255, pal["mid"][1] + i // 22),
+                min(255, pal["mid"][2] + i // 24),
+                fade,
+            )
+            pygame.draw.line(cover, color, (0, i), (rect.w, i))
+        s.blit(cover, rect.topleft)
+
+        pygame.draw.rect(s, pal["accent"] if selected else UI_THEME["gold"], rect, 4 if selected else 2, border_radius=26)
+
+        art_rect = pygame.Rect(rect.x + 26, rect.y + 40, rect.w - 52, rect.h - 158)
+        center = art_rect.center
+        pygame.draw.circle(s, pal["accent"], center, min(art_rect.w, art_rect.h) // 3, 2)
+        pygame.draw.circle(s, pal["mid"], center, min(art_rect.w, art_rect.h) // 5)
+        pygame.draw.line(s, pal["ink"], (center[0], art_rect.y + 18), (center[0], art_rect.bottom - 18), 2)
+        pygame.draw.line(s, pal["ink"], (art_rect.x + 18, center[1]), (art_rect.right - 18, center[1]), 2)
+        pygame.draw.line(s, pal["ink"], (art_rect.x + 44, art_rect.y + 44), (art_rect.right - 44, art_rect.bottom - 44), 2)
+        pygame.draw.line(s, pal["ink"], (art_rect.right - 44, art_rect.y + 44), (art_rect.x + 44, art_rect.bottom - 44), 2)
+        for radius in (36, 70, 102):
+            pygame.draw.circle(s, pal["accent"], center, radius, 1)
+
+        title_band = pygame.Rect(rect.x + 20, rect.bottom - 96, rect.w - 40, 64)
+        pygame.draw.rect(s, (10, 10, 18), title_band, border_radius=14)
+        pygame.draw.rect(s, pal["accent"], title_band, 1, border_radius=14)
+        title = self.app.small_font.render(pdef["title"], True, pal["ink"])
+        subtitle = self.app.tiny_font.render(pdef["subtitle"], True, pal["accent"])
+        s.blit(title, title.get_rect(center=(title_band.centerx, title_band.y + 21)))
+        s.blit(subtitle, subtitle.get_rect(center=(title_band.centerx, title_band.y + 45)))
+        if selected:
+            marker = self.app.tiny_font.render("Pulso elegido", True, UI_THEME["gold"])
+            s.blit(marker, marker.get_rect(center=(rect.centerx, rect.y + 18)))
+
     def _render_pack_preview(self, s):
-        rect = pygame.Rect(1288, 160, 580, 520)
+        rect = pygame.Rect(1290, 168, 560, 720)
         pygame.draw.rect(s, UI_THEME["panel_2"], rect, border_radius=14)
         pygame.draw.rect(s, UI_THEME["accent_violet"], rect, 2, border_radius=14)
-        s.blit(self.app.small_font.render("Preview de sobre", True, UI_THEME["gold"]), (rect.x + 14, rect.y + 12))
+        s.blit(self.app.small_font.render("Lectura del sobre", True, UI_THEME["gold"]), (rect.x + 14, rect.y + 12))
 
         if self.selected_pack is None:
-            s.blit(self.app.tiny_font.render("Selecciona un sobre para leer su pulso.", True, UI_THEME["muted"]), (rect.x + 14, rect.y + 48))
+            s.blit(self.app.tiny_font.render("Selecciona una portada para abrir el pack.", True, UI_THEME["muted"]), (rect.x + 14, rect.y + 48))
             s.blit(self.app.tiny_font.render("Origen: consistencia | Hiperborea: identidad | Velo: sorpresa.", True, UI_THEME["muted"]), (rect.x + 14, rect.y + 72))
             if self.source == "reward":
                 s.blit(self.app.tiny_font.render("Recompensa ritual: elige tu sobre antes de abrirlo.", True, UI_THEME["gold"]), (rect.x + 14, rect.y + 102))
@@ -272,13 +328,11 @@ class PackOpeningScreen:
         y += 24
         s.blit(self.app.tiny_font.render(pdef["flavor"], True, UI_THEME["text"]), (rect.x + 14, y))
         y += 30
-
         pack_meta = PACK_ECONOMY.get(pdef["id"], {})
         ev = pack_meta.get("expected_value", {}) if isinstance(pack_meta, dict) else {}
         ev_text = f"EV: {ev.get('cards_total', 3)} cartas | foco {ev.get('rarity_focus', 'mixto')}"
         s.blit(self.app.tiny_font.render(ev_text, True, UI_THEME["text"]), (rect.x + 14, y))
         y += 24
-
         rule = "Regla: 3 comunes + 1 rara."
         if self.cards and len(self.cards) >= 5:
             rule = "Regla activa: bonus legendaria (10%)."
@@ -286,8 +340,8 @@ class PackOpeningScreen:
 
     def render(self, s):
         s.fill(UI_THEME["bg"])
-        s.blit(self.app.big_font.render("Botin / Sobres", True, UI_THEME["gold"]), (760, 42))
-        s.blit(self.app.font.render(self.msg, True, UI_THEME["text"]), (520, 102))
+        s.blit(self.app.big_font.render("Botin / Sobres", True, UI_THEME["gold"]), (748, 42))
+        s.blit(self.app.font.render(self.msg, True, UI_THEME["text"]), (460, 102))
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.hover_card = None
 
@@ -295,22 +349,7 @@ class PackOpeningScreen:
             pdef = self.pack_defs[i]
             hovered = rect.collidepoint(mouse)
             selected = self.selected_pack == i
-            col = UI_THEME["panel_2"] if (hovered or selected) else UI_THEME["panel"]
-            pygame.draw.rect(s, col, rect, border_radius=16)
-            border_col = pdef["color"] if selected else UI_THEME["gold"]
-            bw = 4 if selected else 2
-            pygame.draw.rect(s, border_col, rect, bw, border_radius=16)
-            if selected:
-                glow = pygame.Surface((rect.w + 18, rect.h + 18), pygame.SRCALPHA)
-                pygame.draw.rect(glow, (*pdef["color"], 66), glow.get_rect(), border_radius=20)
-                s.blit(glow, (rect.x - 9, rect.y - 9))
-
-            s.blit(self.app.big_font.render(pdef["title"], True, UI_THEME["text"]), (rect.x + 38, rect.y + 28))
-            s.blit(self.app.small_font.render(pdef["subtitle"], True, pdef["color"]), (rect.x + 38, rect.y + 78))
-            s.blit(self.app.tiny_font.render(pdef["desc"], True, UI_THEME["muted"]), (rect.x + 38, rect.y + 116))
-            s.blit(self.app.tiny_font.render(pdef["flavor"], True, UI_THEME["text"]), (rect.x + 38, rect.y + 140))
-            if selected:
-                s.blit(self.app.tiny_font.render("Seleccionado", True, UI_THEME["gold"]), (rect.x + 38, rect.y + 184))
+            self._render_pack_cover(s, rect, pdef, selected, hovered)
 
         if self.cards:
             for i, card in enumerate(self.cards):
@@ -334,18 +373,15 @@ class PackOpeningScreen:
                 )
 
         self._render_pack_preview(s)
-        self.preview.render(s, pygame.Rect(1288, 700, 580, 250), self.selected_card or self.hover_card, app=self.app)
+        self.preview.render(s, pygame.Rect(1290, 780, 560, 150), self.selected_card or self.hover_card, app=self.app)
 
         enabled = self._confirm_enabled()
         pygame.draw.rect(s, UI_THEME["violet"] if enabled else (82, 78, 104), self.confirm_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.confirm_rect, 2, border_radius=10)
-        if not self.cards:
-            label = "Abrir sobre" if self.selected_pack is not None else "Selecciona un sobre"
-        else:
-            label = "Tomar pack"
-        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.confirm_rect.x + 72, self.confirm_rect.y + 16))
+        label = "Abrir sobre" if not self.cards and self.selected_pack is not None else ("Selecciona un sobre" if not self.cards else "Tomar pack")
+        s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.confirm_rect.x + 48, self.confirm_rect.y + 16))
 
         pygame.draw.rect(s, UI_THEME["panel_2"], self.back_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["accent_violet"], self.back_rect, 2, border_radius=10)
         back_lbl = "Cancelar" if self.cards else "Volver"
-        s.blit(self.app.font.render(back_lbl, True, UI_THEME["text"]), (self.back_rect.x + 88, self.back_rect.y + 16))
+        s.blit(self.app.font.render(back_lbl, True, UI_THEME["text"]), (self.back_rect.x + 72, self.back_rect.y + 16))

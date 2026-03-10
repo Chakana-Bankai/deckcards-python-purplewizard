@@ -1746,10 +1746,13 @@ class App:
         self.goto_pack_opening(reward_data=reward_data, source="reward")
 
     def goto_pack_opening(self, reward_data=None, source: str = "reward"):
-        self.sm.set(PackOpeningScreen(self, reward_data=reward_data, source=source))
+        payload = dict(reward_data or {}) if isinstance(reward_data, dict) else reward_data
+        def _enter_pack_opening():
+            self.sm.set(PackOpeningScreen(self, reward_data=payload, source=source))
+            print('[boot] pack opening screen active')
+            print('[Audio] pack_transition stability_mode=keep_current_track')
+        self._queue_screen_transition(_enter_pack_opening, reason=f'pack_opening:{source}')
         self.play_stinger("stinger_reward")
-        fallback = self.get_bgm_track("map", self.run_state.get("biome", "kaypacha") if self.run_state else "kaypacha")
-        self._queue_music_context(self.get_bgm_track("reward"), fallback=fallback, reason=f"pack_opening:{source}")
 
     def goto_shop(self):
         reward_cards = self._reward_card_pool()
@@ -1783,8 +1786,11 @@ class App:
         self.trigger_oracle("event_node", payload=enriched)
 
         def _enter_event():
-            self.sm.set(EventScreen(self, enriched))
-            self.music.play_for(self.get_bgm_track("events"))
+            def _apply_event_screen():
+                self.sm.set(EventScreen(self, enriched))
+                print('[boot] event screen active')
+                print('[Audio] event_transition stability_mode=keep_current_track')
+            self._queue_screen_transition(_apply_event_screen, reason='event_enter')
 
         self._show_hologram_transition(
             title=str(enriched.get("lore_line") or self.loc.t("event_title")),
