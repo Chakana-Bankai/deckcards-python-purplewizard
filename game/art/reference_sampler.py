@@ -22,10 +22,16 @@ class ReferenceSampler:
         self.root = Path(root or art_reference_dir())
 
     def _files_for(self, category: str) -> list[Path]:
-        folder = self.root / str(category or '').strip()
-        if not folder.exists():
-            return []
-        return sorted([p for p in folder.iterdir() if p.is_file() and p.suffix.lower() in {'.png', '.jpg', '.jpeg', '.webp'}])
+        cat = str(category or '').strip()
+        aliases = {
+            'characters_subjects': ['characters_subjects', 'characters_subjets'],
+        }
+        candidates = aliases.get(cat, [cat])
+        for name in candidates:
+            folder = self.root / name
+            if folder.exists():
+                return sorted([p for p in folder.iterdir() if p.is_file() and p.suffix.lower() in {'.png', '.jpg', '.jpeg', '.webp'}])
+        return []
 
     def _score(self, path: Path, keywords: list[str]) -> int:
         stem = path.stem.lower()

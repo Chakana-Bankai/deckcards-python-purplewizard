@@ -1,6 +1,6 @@
 status=ok
 samples=3
 pipeline=frame_engine+scene_engine+reference_sampler+silhouette_builder+fx_layer
-cw_lore_10|art=cw_lore_10_art.png|frame=cw_lore_10_frame.png|refs=piedra_ritual_01.png,textiles_andinos_01.jpg,chakana_limpia_01.png,cielos_rituales_02.jpg
-hip_cosmic_warrior_20|art=hip_cosmic_warrior_20_art.png|frame=hip_cosmic_warrior_20_frame.png|refs=templos_escalonados_01.jpg,puentes_antiguos_01.jpg,arquitectura_andina_01.png,montañas_sagradas_01.png
-arc_060|art=arc_060_art.png|frame=arc_060_frame.png|refs=coronas_01.png,sellos_01.png,arquitectura_andina_01.png,arquitectura_atlante_02.png
+cw_lore_10|art=cw_lore_10_art.png|frame=cw_lore_10_frame.png|refs=piedra_ritual_01.png,textiles_andinos_01.jpg,cielos_rituales_02.jpg,chakana_limpia_01.png
+hip_cosmic_warrior_20|art=hip_cosmic_warrior_20_art.png|frame=hip_cosmic_warrior_20_frame.png|refs=coronas_01.png,templos_escalonados_01.jpg,puentes_antiguos_01.jpg,arquitectura_andina_01.png
+arc_060|art=arc_060_art.png|frame=arc_060_frame.png|refs=guardian_01.png,puma_01.png,codice_01.png,templos_escalonados_01.jpg
