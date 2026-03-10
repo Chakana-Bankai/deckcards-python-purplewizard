@@ -1,17 +1,18 @@
 {
-  "gold": 46,
+  "gold": 54,
   "relics": [
-    "violet_seal"
+    "violet_seal",
+    "puma_pulse"
   ],
   "relic_slots_max": 8,
   "player": {
-    "hp": 54,
+    "hp": 60,
     "max_hp": 60,
-    "block": 0,
-    "energy": 2,
-    "rupture": 1,
+    "block": 2,
+    "energy": 0,
+    "rupture": 0,
     "statuses": {},
-    "harmony_current": 3,
+    "harmony_current": 5,
     "harmony_max": 10,
     "harmony_ready_threshold": 6,
     "harmony_ready": false,
@@ -20,11 +21,41 @@
     "seal_active": false
   },
   "deck": [
+    "filo_astral",
+    "garra_espiritual",
+    "pulso_cosmico",
+    "vinculo_de_energia",
     "cw_lore_03",
     "cw_lore_09",
-    "cw_lore_08"
+    "cw_lore_10",
+    "cw_lore_14",
+    "cw_lore_18",
+    "cw_lore_23",
+    "eco_de_sabiduria",
+    "mantra_del_umbral",
+    "embate_del_jaguar",
+    "estallido_arcano",
+    "filo_en_cadena",
+    "cw_lore_02",
+    "cw_lore_04",
+    "cw_lore_08",
+    "cw_lore_29",
+    "chakana_de_luz"
   ],
-  "sideboard": [],
+  "sideboard": [
+    "hg_lore_15",
+    "hg_lore_05",
+    "of_lore_28",
+    "cw_lore_02",
+    "espiritu_guardian",
+    "of_lore_28",
+    "of_lore_30",
+    "filo_en_cadena",
+    "hg_lore_15",
+    "observacion_sagrada",
+    "firmeza_del_cuerpo",
+    "hg_lore_24"
+  ],
   "map": [
     [
       {
@@ -92,7 +123,7 @@
           "2_3",
           "2_2"
         ],
-        "state": "cleared"
+        "state": "locked"
       }
     ],
     [
@@ -107,7 +138,7 @@
           "3_0",
           "3_1"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "2_1",
@@ -133,7 +164,7 @@
           "3_2",
           "3_3"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "2_3",
@@ -146,7 +177,7 @@
           "3_3",
           "3_2"
         ],
-        "state": "cleared"
+        "state": "locked"
       }
     ],
     [
@@ -185,14 +216,14 @@
         "next": [
           "4_1"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "3_3",
         "col": 3,
         "x": 1116,
         "y": 684,
-        "type": "combat",
+        "type": "challenge",
         "biome": "hanan",
         "next": [
           "4_1",
@@ -224,7 +255,7 @@
         "next": [
           "5_0"
         ],
-        "state": "available"
+        "state": "locked"
       }
     ],
     [
@@ -247,12 +278,12 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 2,
-  "biome": "hanan",
-  "xp": 38,
+  "biome_index": 1,
+  "biome": "kaypacha",
+  "xp": 35,
   "level": 2,
-  "combats_won": 1,
-  "tutorial_combats_won": 1,
+  "combats_won": 2,
+  "tutorial_combats_won": 2,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
@@ -272,35 +303,31 @@
   },
   "meta_director": {
     "recent_enemy_ids": [
-      "sabueso_sombrio"
+      "larva_del_vacio",
+      "portador_de_polvo"
     ],
     "recent_event_ids": [
-      "serpent_shed",
-      "apacheta_offer",
-      "ayni_pact"
+      "apacheta_offer"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
-      "base_pack",
+      "mystery_pack",
       "hiperborea_pack",
-      "hiperborea_pack"
+      "mystery_pack"
     ],
     "visual_direction_tags": [
-      "biome:hanan",
-      "mood:ascendant"
+      "biome:kaypacha"
     ],
     "audio_direction_tags": [
-      "ctx:relic",
-      "biome:hanan",
-      "mood:ethereal"
+      "ctx:combat",
+      "biome:kaypacha"
     ]
   },
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
   "last_node_type": "combat",
   "levelup_pending": 0,
-  "event_flags": {},
-  "current_node_id": "3_2",
+  "current_node_id": "2_0",
   "last_biome_seen": "kaypacha",
-  "saved_at": 1773164337
+  "saved_at": 1773164919
 }
