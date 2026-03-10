@@ -56,6 +56,8 @@ def _draw_castle(surface: pygame.Surface, rect: pygame.Rect, color, accent):
         pygame.draw.rect(surface, color, tower)
         for notch in range(3):
             pygame.draw.rect(surface, accent, (tower.x + notch * (tw // 3), tower.y, max(2, tw // 5), rect.h // 12))
+    gate = pygame.Rect(base.centerx - rect.w // 10, base.bottom - rect.h // 4, rect.w // 5, rect.h // 4)
+    pygame.draw.rect(surface, accent, gate, border_radius=3)
 
 
 def _draw_humanoid(surface: pygame.Surface, rect: pygame.Rect, color, accent, crown: bool = False):
@@ -73,6 +75,8 @@ def _draw_humanoid(surface: pygame.Surface, rect: pygame.Rect, color, accent, cr
     if crown:
         points = [(cx - rect.w // 10, top + rect.h // 18), (cx - rect.w // 18, top - 2), (cx, top + rect.h // 20), (cx + rect.w // 18, top - 2), (cx + rect.w // 10, top + rect.h // 18)]
         pygame.draw.lines(surface, accent, False, points, 3)
+    else:
+        pygame.draw.rect(surface, accent, (cx - rect.w // 14, torso.y + rect.h // 8, rect.w // 7, rect.h // 7), border_radius=3)
 
 
 def _draw_beast(surface: pygame.Surface, rect: pygame.Rect, color, accent):
@@ -86,6 +90,15 @@ def _draw_beast(surface: pygame.Surface, rect: pygame.Rect, color, accent):
     _blocky_line(surface, color, (body.x, body.y + rect.h // 10), (rect.x + rect.w // 12, rect.y + rect.h // 5), 3)
 
 
+def _draw_oracle_totem(surface: pygame.Surface, rect: pygame.Rect, color, accent):
+    spine = pygame.Rect(rect.centerx - rect.w // 12, rect.y + rect.h // 8, rect.w // 6, rect.h * 3 // 4)
+    pygame.draw.rect(surface, color, spine, border_radius=6)
+    pygame.draw.circle(surface, accent, (rect.centerx, rect.y + rect.h // 4), rect.w // 8)
+    pygame.draw.circle(surface, color, (rect.centerx, rect.y + rect.h // 4), rect.w // 12)
+    pygame.draw.rect(surface, accent, (rect.centerx - rect.w // 5, rect.centery, rect.w * 2 // 5, rect.h // 10), border_radius=4)
+    pygame.draw.rect(surface, accent, (rect.centerx - rect.w // 4, rect.bottom - rect.h // 5, rect.w // 2, rect.h // 10), border_radius=4)
+
+
 def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, rng: random.Random):
     subject = ' '.join([
         str(semantic.get('subject', '') or ''),
@@ -94,7 +107,7 @@ def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, r
     ]).lower()
     main = palette[2]
     accent = palette[3]
-    rect = pygame.Rect(int(surface.get_width() * 0.18), int(surface.get_height() * 0.12), int(surface.get_width() * 0.64), int(surface.get_height() * 0.62))
+    rect = pygame.Rect(int(surface.get_width() * 0.16), int(surface.get_height() * 0.1), int(surface.get_width() * 0.68), int(surface.get_height() * 0.64))
     layer = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
     if any(k in subject for k in ('condor', 'bird', 'ave')):
         _draw_condor(layer, rect, main, accent)
@@ -104,7 +117,9 @@ def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, r
         _draw_castle(layer, rect, main, accent)
     elif any(k in subject for k in ('archon', 'arconte')):
         _draw_humanoid(layer, rect, main, accent, crown=True)
-    elif any(k in subject for k in ('guardian', 'warrior', 'oracle', 'mage', 'figure', 'herald')):
+    elif any(k in subject for k in ('oracle', 'visionary', 'seer')):
+        _draw_oracle_totem(layer, rect, main, accent)
+    elif any(k in subject for k in ('guardian', 'warrior', 'mage', 'figure', 'herald')):
         _draw_humanoid(layer, rect, main, accent, crown=False)
     elif any(k in subject for k in ('beast', 'puma', 'wolf', 'larva', 'sabueso')):
         _draw_beast(layer, rect, main, accent)
@@ -118,7 +133,7 @@ def draw_focus_object(surface: pygame.Surface, semantic: dict, palette, rng: ran
     obj = str(semantic.get('object', '') or '').lower()
     color = palette[1]
     glow = palette[3]
-    rect = pygame.Rect(int(surface.get_width() * 0.34), int(surface.get_height() * 0.56), int(surface.get_width() * 0.32), int(surface.get_height() * 0.22))
+    rect = pygame.Rect(int(surface.get_width() * 0.33), int(surface.get_height() * 0.58), int(surface.get_width() * 0.34), int(surface.get_height() * 0.2))
     layer = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
     if any(k in obj for k in ('sword', 'blade', 'axe', 'spear', 'weapon')):
         _blocky_line(layer, color, (rect.left + 18, rect.bottom - 8), (rect.right - 12, rect.top + 8), 8)

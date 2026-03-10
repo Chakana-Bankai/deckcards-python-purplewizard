@@ -12,17 +12,28 @@ def draw_fx(surface: pygame.Surface, semantic: dict, palette, rng: random.Random
     ]).lower()
     color = palette[3]
     w, h = surface.get_size()
-    n_arcs = 3 if 'subtle' in desc else 5
-    n_sparks = 12 if 'subtle' in desc else 20
-    for _ in range(n_arcs):
-        cx = rng.randint(int(w * 0.22), int(w * 0.78))
-        cy = rng.randint(int(h * 0.18), int(h * 0.78))
-        rw = rng.randint(max(32, w // 8), max(54, w // 4))
-        rh = rng.randint(max(22, h // 10), max(42, h // 5))
-        start = rng.uniform(0.1, 3.14)
-        end = start + rng.uniform(0.8, 2.1)
-        pygame.draw.arc(surface, (*color, 120), pygame.Rect(cx - rw // 2, cy - rh // 2, rw, rh), start, end, 2)
+    subtle = 'subtle' in desc or 'calm' in desc or 'ward' in desc
+    n_streaks = 2 if subtle else 4
+    n_orbs = 3 if subtle else 5
+    n_sparks = 10 if subtle else 16
+    focus_band_y = int(h * 0.58)
+    focus_band_h = int(h * 0.24)
+
+    for _ in range(n_streaks):
+        x1 = rng.randint(int(w * 0.18), int(w * 0.42))
+        y1 = rng.randint(focus_band_y, focus_band_y + focus_band_h)
+        x2 = x1 + rng.randint(int(w * 0.16), int(w * 0.28))
+        y2 = y1 - rng.randint(4, int(h * 0.1))
+        pygame.draw.line(surface, (*color, 118), (x1, y1), (x2, y2), rng.randint(2, 4))
+
+    for _ in range(n_orbs):
+        cx = rng.randint(int(w * 0.28), int(w * 0.72))
+        cy = rng.randint(int(h * 0.28), int(h * 0.68))
+        radius = rng.randint(max(4, w // 42), max(8, w // 26))
+        pygame.draw.circle(surface, (*color, 78), (cx, cy), radius)
+        pygame.draw.circle(surface, (*color, 128), (cx, cy), max(2, radius // 2))
+
     for _ in range(n_sparks):
-        sx = rng.randint(int(w * 0.15), int(w * 0.85))
-        sy = rng.randint(int(h * 0.12), int(h * 0.84))
-        pygame.draw.circle(surface, (*color, rng.randint(70, 140)), (sx, sy), rng.randint(1, 3))
+        sx = rng.randint(int(w * 0.12), int(w * 0.88))
+        sy = rng.randint(int(h * 0.1), int(h * 0.86))
+        pygame.draw.circle(surface, (*color, rng.randint(72, 132)), (sx, sy), rng.randint(1, 2))

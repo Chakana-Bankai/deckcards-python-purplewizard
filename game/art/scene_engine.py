@@ -85,9 +85,17 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
             q = (t - 0.58) / 0.42
             col = (int(mid[0] * (1 - q) + low[0] * q), int(mid[1] * (1 - q) + low[1] * q), int(mid[2] * (1 - q) + low[2] * q))
         pygame.draw.line(surface, col, (0, y), (w, y))
-    horizon = int(h * 0.68)
+    horizon = int(h * 0.66)
     ground = (max(8, low[0] // 2), max(8, low[1] // 2), max(8, low[2] // 2))
     pygame.draw.rect(surface, ground, (0, horizon, w, h - horizon))
+    mist = pygame.Surface((w, h), pygame.SRCALPHA)
+    for _ in range(4):
+        mw = rng.randint(w // 4, w // 2)
+        mh = rng.randint(h // 10, h // 6)
+        mx = rng.randint(-40, w - mw + 40)
+        my = rng.randint(horizon - h // 8, horizon + h // 10)
+        pygame.draw.ellipse(mist, (255, 255, 255, 18), (mx, my, mw, mh))
+    surface.blit(mist, (0, 0))
     if any(k in env for k in ('sea', 'mar', 'ocean', 'helado')):
         for y in range(horizon, h, 8):
             pygame.draw.line(surface, (*acc, 120), (0, y), (w, y), 2)
@@ -98,13 +106,28 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
             pygame.draw.rect(surface, (top[0], top[1], top[2]), (x, horizon - th, 8, th))
             pygame.draw.circle(surface, (mid[0], mid[1], mid[2]), (x + 4, horizon - th), rng.randint(16, 28))
     elif any(k in env for k in ('temple', 'sanctuary', 'ruins', 'city', 'architecture', 'throne')):
-        for i in range(5):
+        far = pygame.Surface((w, h), pygame.SRCALPHA)
+        for _ in range(5):
             bw = rng.randint(w // 10, w // 6)
             bh = rng.randint(h // 7, h // 4)
             bx = rng.randint(0, max(0, w - bw - 1))
             by = horizon - bh - rng.randint(0, 22)
-            pygame.draw.rect(surface, (mid[0], mid[1], mid[2]), (bx, by, bw, bh), border_radius=3)
-            pygame.draw.rect(surface, (acc[0], acc[1], acc[2]), (bx + bw // 4, by - 10, bw // 2, 10), border_radius=2)
+            pygame.draw.rect(far, (mid[0], mid[1], mid[2], 180), (bx, by, bw, bh), border_radius=3)
+            pygame.draw.rect(far, (acc[0], acc[1], acc[2], 190), (bx + bw // 4, by - 10, bw // 2, 10), border_radius=2)
+        surface.blit(far, (0, 0))
+        mid_layer = pygame.Surface((w, h), pygame.SRCALPHA)
+        keep = pygame.Rect(int(w * 0.3), int(h * 0.22), int(w * 0.4), int(h * 0.48))
+        for _ in range(4):
+            bw = rng.randint(w // 8, w // 5)
+            bh = rng.randint(h // 6, h // 3)
+            bx = rng.randint(0, max(0, w - bw - 1))
+            by = horizon - bh - rng.randint(0, 10)
+            rect = pygame.Rect(bx, by, bw, bh)
+            if rect.colliderect(keep):
+                continue
+            pygame.draw.rect(mid_layer, (low[0], low[1], low[2], 230), rect, border_radius=4)
+            pygame.draw.rect(mid_layer, (acc[0], acc[1], acc[2], 220), (bx + bw // 4, by - 14, bw // 2, 14), border_radius=2)
+        surface.blit(mid_layer, (0, 0))
     else:
         points = []
         x = 0
@@ -119,6 +142,9 @@ def _apply_contrast(surface: pygame.Surface):
     shade = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
     pygame.draw.rect(shade, (0, 0, 0, 24), shade.get_rect(), 0, border_radius=0)
     surface.blit(shade, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
+    light = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
+    pygame.draw.ellipse(light, (255, 244, 224, 26), (int(surface.get_width() * 0.14), int(surface.get_height() * 0.08), int(surface.get_width() * 0.44), int(surface.get_height() * 0.26)))
+    surface.blit(light, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
 
 def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> dict:
