@@ -13,26 +13,26 @@
     "statuses": {}
   },
   "deck": [
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "strike"
+    "filo_astral",
+    "garra_espiritual",
+    "pulso_cosmico",
+    "vinculo_de_energia",
+    "cw_lore_03",
+    "cw_lore_09",
+    "cw_lore_10",
+    "cw_lore_14",
+    "cw_lore_18",
+    "cw_lore_23",
+    "eco_de_sabiduria",
+    "mantra_del_umbral",
+    "embate_del_jaguar",
+    "estallido_arcano",
+    "filo_en_cadena",
+    "cw_lore_02",
+    "cw_lore_04",
+    "cw_lore_08",
+    "cw_lore_29",
+    "chakana_de_luz"
   ],
   "sideboard": [],
   "map": [
@@ -291,5 +291,5 @@
   "hiperboria_unlock_target": 3,
   "current_node_id": null,
   "last_biome_seen": "ukhu",
-  "saved_at": 1773155489
+  "saved_at": 1773159006
 }

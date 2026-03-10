@@ -54,16 +54,16 @@ class AudioEngine:
 
         # Compact context set: fewer tracks, clearer identity.
         self.context_specs: dict[str, ContextSpec] = {
-            "menu": ContextSpec("mystical calm", ("a", "b", "c"), 132.0, 0.07, 0.38, 0.15),
+            "menu": ContextSpec("mystical calm", ("a", "b"), 116.0, 0.07, 0.38, 0.15),
             "map_ukhu": ContextSpec("exploration ambient", ("a", "b"), 108.0, 0.10, 0.34, 0.21),
             "map_kay": ContextSpec("exploration ambient", ("a", "b"), 108.0, 0.11, 0.40, 0.25),
             "map_hanan": ContextSpec("exploration ambient", ("a", "b"), 110.0, 0.12, 0.48, 0.31),
             "combat": ContextSpec("tense pulse", ("a", "b", "c"), 108.0, 0.18, 0.52, 0.60),
-            "combat_elite": ContextSpec("strong percussion", ("a", "b", "c"), 116.0, 0.22, 0.56, 0.72),
+            "combat_elite": ContextSpec("strong percussion", ("a", "b"), 92.0, 0.22, 0.56, 0.72),
             "combat_boss": ContextSpec("ceremonial epic", ("a", "b", "c"), 128.0, 0.27, 0.60, 0.88),
             "shop": ContextSpec("calm ritual", ("a", "b", "c"), 104.0, 0.07, 0.44, 0.20),
-            "victory": ContextSpec("uplift", ("a", "b", "c"), 42.0, 0.14, 0.60, 0.20),
-            "defeat": ContextSpec("falling echo", ("a", "b", "c"), 44.0, 0.08, 0.26, 0.40),
+            "victory": ContextSpec("uplift", ("a", "b"), 32.0, 0.14, 0.60, 0.20),
+            "defeat": ContextSpec("falling echo", ("a", "b"), 34.0, 0.08, 0.26, 0.40),
         }
         self.context_alias = {
             "map_kaypacha": "map_kay",

@@ -231,16 +231,6 @@
       "state": "valid",
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\shop_c.wav",
       "relative_path": "game/audio/generated/bgm/shop_c.wav"
-    },
-    "menu_c": {
-      "track_id": "menu_c",
-      "type": "bgm",
-      "context": "menu",
-      "variant": "c",
-      "source": "generated",
-      "state": "valid",
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\menu_c.wav",
-      "relative_path": "game/audio/generated/bgm/menu_c.wav"
     }
   }
 }

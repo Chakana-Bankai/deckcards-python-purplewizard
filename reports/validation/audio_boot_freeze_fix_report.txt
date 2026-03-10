@@ -1,0 +1,18 @@
+Audio boot freeze fix
+=====================
+
+Fecha: 2026-03-10
+
+Problema
+- El juego quedaba pegado en "Cargando musica" durante boot.
+- La causa principal era que `AudioPipeline.ensure_music_assets()` llamaba a `ensure_core_assets()` completo incluso en boot normal.
+- Ademas, se habian habilitado variantes premium `c` en contextos que no estaban realmente pregenerados, arriesgando generacion pesada en momentos no controlados.
+
+Fix aplicado
+- Boot audio ahora es lazy por defecto.
+- La regeneracion completa de audio solo ocurre con `force_regen_music` o mantenimiento explicito.
+- Se estabilizaron contextos premium para no intentar variantes `c` en menu/combat_elite/victory/defeat durante juego normal.
+
+Resultado esperado
+- El boot ya no debe quedar congelado en carga de musica.
+- El menu puede entrar usando tracks existentes y generar solo lo necesario al reproducir contexto.
