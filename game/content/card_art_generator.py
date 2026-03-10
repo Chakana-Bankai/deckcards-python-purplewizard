@@ -10,12 +10,54 @@ from engine.creative_direction import CreativeArtDirector
 from game.art.gen_art32 import seed_from_id
 from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
 from game.art.gen_card_art_advanced import generate
-from game.core.paths import assets_dir, data_dir
+from game.core.paths import assets_dir, art_reference_dir, data_dir
 from game.core.safe_io import atomic_write_json_if_changed, load_json
 from game.visual.generators.lore_motifs import MOTIF_LIBRARY, motifs_for_archetype
 
 
+
+
+class ArtReferenceLibrary:
+    def __init__(self):
+        self.root = art_reference_dir()
+        self.index = self._load_index()
+
+    def _load_index(self) -> dict:
+        path = self.root / 'reference_index.json'
+        try:
+            return json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
+        except Exception:
+            return {}
+
+    def _category_files(self, category: str) -> list[str]:
+        folder = self.root / str(category or '').strip()
+        if not folder.exists():
+            return []
+        names = []
+        for p in folder.iterdir():
+            if p.is_file() and p.suffix.lower() in {'.png', '.jpg', '.jpeg', '.webp'}:
+                names.append(p.stem.replace('_', ' '))
+        return sorted(names)
+
+    def cues_for(self, categories: list[str]) -> list[str]:
+        out = []
+        seen = set()
+        for cat in categories:
+            for name in self._category_files(cat):
+                low = name.lower()
+                if low in seen:
+                    continue
+                seen.add(low)
+                out.append(name)
+                if len(out) >= 6:
+                    return out
+        return out
+
+
 class PromptBuilder:
+    def __init__(self):
+        self.refs = ArtReferenceLibrary()
+
     def family_for(self, card: dict) -> str:
         tags = {str(t).lower() for t in (card.get("tags", []) or [])}
         role = str(card.get("role", "")).lower()
@@ -169,19 +211,30 @@ class PromptBuilder:
         rarity = str(card.get("rarity", "common") or "common").lower()
         effect_sig = self.effect_signature(card)
         blueprint = self.composition_blueprint(card)
+        set_id = str(card.get('set', '') or '').lower()
+        arch = str(card.get('archetype', '') or '').lower()
+        if set_id in {'hiperboria', 'hiperborea'}:
+            categories = ['fantasy_landscapes', 'ancient_architecture', 'chakana_symbols']
+        elif set_id in {'arconte', 'archon'} or arch == 'archon_war' or str(cid).lower().startswith('arc_'):
+            categories = ['biblical_archetypes', 'sacred_geometry', 'ancient_architecture', 'fantasy_landscapes']
+        else:
+            categories = ['andean_mythology', 'chakana_symbols', 'fantasy_landscapes', 'ancient_architecture']
+        ref_cues = self.refs.cues_for(categories)
+        ref_text = ', '.join(ref_cues[:4]) if ref_cues else 'no external cues'
         prompt = (
             f"chakana card::{cid}::{ctype} high density pixel fantasy, layered depth, "
             f"silhouette discipline, role {role}, rarity {rarity}, palette {palette}, lighting {lighting}, "
             f"sacred geometry {symbols}, symbolic overlays aligned to motif, motif {primary} ({shape}), "
             f"subject {blueprint['subject']}, object {blueprint['object']}, environment {blueprint['environment']}, "
             f"effect signature {effect_sig}, effects {blueprint['effects']}, energy pattern {energy}, lore tokens {lore_tokens}, "
-            f"crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character"
+            f"reference cues {ref_text}, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character"
         )
         return {
             "id": cid,
             "card_type": ctype,
             "family": ctype,
             "composition": blueprint,
+            "reference_cues": ref_cues,
             "prompt_text": prompt,
         }
 
