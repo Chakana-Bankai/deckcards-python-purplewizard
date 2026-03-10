@@ -1,0 +1,55 @@
+CHAKANA AUDIO ENGINE - PHASE 5 REPORT
+stinger_system_report.txt
+
+Scope
+- Implement proper stinger system behavior over active music without breaking state playback.
+- Add safe ducking support and runtime controls.
+
+Implemented
+1) Stingers over music (non-destructive)
+- Kept dedicated stinger channel playback.
+- Stingers now trigger with explicit duck profile while preserving current music state/context.
+
+2) Ducking integration
+- Added ducking state in AudioEngine:
+  - _duck_music_amount
+  - _duck_music_until_ms
+  - _duck_restore_music_volume
+- Added helper methods:
+  - _apply_music_duck(amount, duration_ms)
+  - _update_ducking()
+- tick() now restores music volume automatically when duck window ends.
+
+3) Mixer architecture hooks used
+- Integrated AudioBusManager and DuckingController into runtime layer.
+- Music/SFX/Stinger volume updates now register in bus manager.
+
+4) Stinger volume control
+- Added set_stinger_volume() in AudioEngine.
+- Added set_stinger_volume() in SFXManager wrapper.
+- Main app now loads stinger volume from user settings at initialization and reload path.
+- Settings screen now applies stinger slider to runtime, including sfx_mute toggle behavior.
+
+5) Stinger profiles
+- Added per-stinger duck profiles (amount + duration), e.g.:
+  - boss_reveal stronger duck
+  - victory/defeat medium duck
+  - minor stingers shorter/lighter duck
+
+Safety / Compatibility
+- No manifest schema break.
+- Existing play_stinger calls remain valid.
+- No replacement of current BGM/stinger files required.
+
+Smoke checks
+- py_compile (audio_engine, sfx_manager, settings, main): PASS
+- Audio engine instantiation + stinger volume API: PASS
+- SFX manager stinger setter path: PASS
+- doctor baseline: PASS
+
+Known warnings
+- Headless checks may not initialize pygame mixer, so audible stinger playback is not verifiable in those checks.
+- Full ducking perceptual validation must be done in in-game runtime with mixer active.
+
+Recommendation (Phase 6)
+- Add ambient/soundscape layer with dedicated bus and context mapping (map/shop/codex/void), reusing the same ducking + bus model.

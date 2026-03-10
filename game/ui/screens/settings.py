@@ -120,9 +120,16 @@ class SettingsScreen:
             self.app.music.set_muted(muted)
         elif key == "sfx_muted":
             muted = bool(self.app.user_settings.get("sfx_muted", False))
-            mv = self._slider_value("master_volume", 1.0)
-            sv = 0.0 if muted else self._slider_value("sfx_volume", 0.7) * mv
+            has_master = hasattr(self.app.sfx, "engine") and hasattr(self.app.sfx.engine, "set_master_volume")
+            if has_master:
+                sv = 0.0 if muted else self._slider_value("sfx_volume", 0.7)
+                stv = 0.0 if muted else self._slider_value("stinger_volume", 0.8)
+            else:
+                mv = self._slider_value("master_volume", 1.0)
+                sv = 0.0 if muted else self._slider_value("sfx_volume", 0.7) * mv
+                stv = 0.0 if muted else self._slider_value("stinger_volume", 0.8) * mv
             self.app.sfx.set_volume(sv)
+            self.app.sfx.set_stinger_volume(stv)
 
     def _cycle(self, key: str, values: list[str]):
         if key == "language":
@@ -269,16 +276,31 @@ class SettingsScreen:
                     self._set_slider(pos[0], rect, action["key"], action.get("min", 0.0), action.get("max", 1.0))
                     if action["key"] == "master_volume":
                         mv = self._slider_value("master_volume", 1.0)
-                        self.app.music.set_volume(self._slider_value("music_volume", 0.5) * mv)
-                        sfx_val = self._slider_value("sfx_volume", 0.7) * mv
-                        self.app.sfx.set_volume(0.0 if self.app.user_settings.get("sfx_muted", False) else sfx_val)
+                        has_master = hasattr(self.app.sfx, "engine") and hasattr(self.app.sfx.engine, "set_master_volume")
+                        if has_master:
+                            self.app.sfx.engine.set_master_volume(mv)
+                            self.app.music.set_volume(self._slider_value("music_volume", 0.5))
+                            sfx_val = self._slider_value("sfx_volume", 0.7)
+                            self.app.sfx.set_volume(0.0 if self.app.user_settings.get("sfx_muted", False) else sfx_val)
+                            st_val = self._slider_value("stinger_volume", 0.8)
+                            self.app.sfx.set_stinger_volume(0.0 if self.app.user_settings.get("sfx_muted", False) else st_val)
+                        else:
+                            self.app.music.set_volume(self._slider_value("music_volume", 0.5) * mv)
+                            sfx_val = self._slider_value("sfx_volume", 0.7) * mv
+                            self.app.sfx.set_volume(0.0 if self.app.user_settings.get("sfx_muted", False) else sfx_val)
                     elif action["key"] == "music_volume":
                         mv = self._slider_value("master_volume", 1.0)
-                        self.app.music.set_volume(self._slider_value("music_volume", 0.5) * mv)
+                        has_master = hasattr(self.app.sfx, "engine") and hasattr(self.app.sfx.engine, "set_master_volume")
+                        mv_eff = 1.0 if has_master else mv
+                        self.app.music.set_volume(self._slider_value("music_volume", 0.5) * mv_eff)
                     elif action["key"] in {"sfx_volume", "stinger_volume"}:
                         mv = self._slider_value("master_volume", 1.0)
-                        sfx_val = self._slider_value("sfx_volume", 0.7) * mv
+                        has_master = hasattr(self.app.sfx, "engine") and hasattr(self.app.sfx.engine, "set_master_volume")
+                        mv_eff = 1.0 if has_master else mv
+                        sfx_val = self._slider_value("sfx_volume", 0.7) * mv_eff
                         self.app.sfx.set_volume(0.0 if self.app.user_settings.get("sfx_muted", False) else sfx_val)
+                        st_val = self._slider_value("stinger_volume", 0.8) * mv_eff
+                        self.app.sfx.set_stinger_volume(0.0 if self.app.user_settings.get("sfx_muted", False) else st_val)
                     return
                 if kind == "debug":
                     self._debug_action(action["action"])

@@ -126,7 +126,12 @@ class App:
         self.assets = AssetManager()
         self.sfx = SFXManager()
         self.music = MusicManager()
+        if hasattr(self.sfx, "engine") and hasattr(self.sfx.engine, "set_master_volume"):
+            self.sfx.engine.set_master_volume(self.user_settings.get("master_volume", 1.0))
         self.sfx.set_volume(self.user_settings.get("sfx_volume", 0.7))
+        self.sfx.set_stinger_volume(self.user_settings.get("stinger_volume", 0.8))
+        if hasattr(self.sfx.engine, "set_ambient_volume"):
+            self.sfx.engine.set_ambient_volume(self.user_settings.get("ambient_volume", 0.5))
         self.music.set_volume(self.user_settings.get("music_volume", 0.5))
         self.music.set_muted(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False)))
         self.typography = ChakanaTypography()
@@ -2191,7 +2196,12 @@ class App:
             pass
         self.music = MusicManager()
         self.sfx = SFXManager()
+        if hasattr(self.sfx, "engine") and hasattr(self.sfx.engine, "set_master_volume"):
+            self.sfx.engine.set_master_volume(self.user_settings.get("master_volume", 1.0))
         self.sfx.set_volume(self.user_settings.get("sfx_volume", 0.7))
+        self.sfx.set_stinger_volume(self.user_settings.get("stinger_volume", 0.8))
+        if hasattr(self.sfx.engine, "set_ambient_volume"):
+            self.sfx.engine.set_ambient_volume(self.user_settings.get("ambient_volume", 0.5))
         self.music.set_volume(self.user_settings.get("music_volume", 0.5))
         self.music.set_muted(self.user_settings.get("music_muted", self.user_settings.get("music_mute", False)))
         self.music.play_for(self.get_bgm_track("menu"))

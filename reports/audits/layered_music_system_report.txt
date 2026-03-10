@@ -1,0 +1,62 @@
+CHAKANA AUDIO ENGINE - PHASE 4 REPORT
+layered_music_system_report.txt
+
+Scope
+- Implement layered music support in architecture and runtime path.
+- Preserve current single-track playback behavior as fallback.
+
+Implemented
+1) Layer controller integration in runtime
+- File: game/audio/audio_engine.py
+- Integrated MusicLayerController.
+- Added runtime fields:
+  - _layer_mode (single/layered)
+  - _music_intensity
+  - _current_layers
+  - current_layer
+
+2) Layer mode and intensity APIs
+- set_layer_mode(mode): accepts single/layered aliases.
+- set_music_intensity(value): clamps 0..1 and updates active layers.
+- layer_state(): returns current activation map for pad/bass/melody/percussion/fx.
+
+3) State-aware intensity defaults
+- Added _default_intensity_for_state(state):
+  menu/map/combat/boss/shop/reward/dialogue/defeat/victory.
+- play_context now updates intensity from target state.
+
+4) Layer playback resolution with safe fallback
+- Added bgm_layers generation root: game/audio/generated/bgm_layers.
+- Added resolver _resolve_layer_playback(ctx, variant, fallback_path):
+  search order:
+  - generated layers: game/audio/generated/bgm_layers/<ctx>/<layer>_<variant>.wav
+  - generated layers: game/audio/generated/bgm_layers/<ctx>/<layer>.wav
+  - curated layers: game/assets/curated/audio/bgm_layers/<ctx>/<layer>_<variant>.wav
+  - curated layers: game/assets/curated/audio/bgm_layers/<ctx>/<layer>.wav
+- If no layered file exists, playback uses previous full track path unchanged.
+
+5) Runtime observability
+- play_context log now includes selected layer.
+- debug_state includes:
+  - mode
+  - intensity
+  - active layers bitmap
+  - selected layer
+
+Safety / Compatibility
+- No manifest schema changes required.
+- No deletion or replacement of current BGM files.
+- Single-track mode remains default.
+- Existing callers (MusicManager.play_for / play_context) remain compatible.
+
+Smoke checks
+- py_compile: PASS
+- engine instantiation + layer API state reads: PASS
+- doctor baseline: PASS (no runtime break introduced)
+
+Known warnings
+- Layered stems are optional and currently sparse/non-existent, so most contexts fallback to full track.
+- mixer init may be absent in headless checks; runtime game initializes mixer as before.
+
+Recommendation (Phase 5)
+- Implement stinger system integration on top of current channels with explicit ducking hooks and manifest normalization.

@@ -1,6 +1,6 @@
 {
   "version": "visual_v2",
-  "generated_at": 1773100139,
+  "generated_at": 1773113500,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -393,7 +393,7 @@
     "emblems:cosmic_warrior:64x64:": {
       "asset_id": "cosmic_warrior",
       "category": "emblems",
-      "seed": 1129966720,
+      "seed": 1571641669,
       "palette": {
         "deep_purple": [
           28,
@@ -425,12 +425,14 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\emblems\\cosmic_warrior_64x64.png"
       ],
       "context": "",
-      "version": "visual_v1",
-      "generated_at": 1772953099,
+      "version": "visual_v2",
+      "generated_at": 1773106496,
       "size": [
         64,
         64
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "icons:damage:14x14:": {
       "asset_id": "damage",
@@ -519,7 +521,7 @@
     "emblems:harmony_guardian:64x64:": {
       "asset_id": "harmony_guardian",
       "category": "emblems",
-      "seed": 494972977,
+      "seed": 2026266855,
       "palette": {
         "deep_purple": [
           28,
@@ -551,17 +553,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\emblems\\harmony_guardian_64x64.png"
       ],
       "context": "",
-      "version": "visual_v1",
-      "generated_at": 1772953099,
+      "version": "visual_v2",
+      "generated_at": 1773106496,
       "size": [
         64,
         64
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "emblems:oracle_of_fate:64x64:": {
       "asset_id": "oracle_of_fate",
       "category": "emblems",
-      "seed": 498826440,
+      "seed": 1134604420,
       "palette": {
         "deep_purple": [
           28,
@@ -593,12 +597,14 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\emblems\\oracle_of_fate_64x64.png"
       ],
       "context": "",
-      "version": "visual_v1",
-      "generated_at": 1772953099,
+      "version": "visual_v2",
+      "generated_at": 1773106496,
       "size": [
         64,
         64
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "icons:harmony:14x14:": {
       "asset_id": "harmony",
@@ -2241,7 +2247,7 @@
     "relics:condor_feather:128x128:rare": {
       "asset_id": "condor_feather",
       "category": "relics",
-      "seed": 323463183,
+      "seed": 678600366,
       "palette": {
         "deep_purple": [
           28,
@@ -2273,12 +2279,14 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\condor_feather_128x128_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772981625,
+      "version": "visual_v2",
+      "generated_at": 1773108889,
       "size": [
         128,
         128
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:condor_feather:160x160:rare": {
       "asset_id": "condor_feather",
@@ -2367,7 +2375,7 @@
     "relics:andean_knot:128x128:rare": {
       "asset_id": "andean_knot",
       "category": "relics",
-      "seed": 266645309,
+      "seed": 1606887883,
       "palette": {
         "deep_purple": [
           28,
@@ -2399,12 +2407,14 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\andean_knot_128x128_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772981793,
+      "version": "visual_v2",
+      "generated_at": 1773109931,
       "size": [
         128,
         128
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:andean_knot:160x160:rare": {
       "asset_id": "andean_knot",
@@ -2493,7 +2503,7 @@
     "relics:chakana_thread:192x192:rare": {
       "asset_id": "chakana_thread",
       "category": "relics",
-      "seed": 654747655,
+      "seed": 1014424984,
       "palette": {
         "deep_purple": [
           28,
@@ -2525,17 +2535,21 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\chakana_thread_192x192_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772985365,
+      "version": "visual_v2",
+      "generated_at": 1773107604,
       "size": [
         192,
         192
+      ],
+      "state": "valid",
+      "lore_tags": [
+        "chakana"
       ]
     },
     "relics:violet_seal:192x192:rare": {
       "asset_id": "violet_seal",
       "category": "relics",
-      "seed": 1624806971,
+      "seed": 1089681348,
       "palette": {
         "deep_purple": [
           28,
@@ -2567,17 +2581,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\violet_seal_192x192_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772985365,
+      "version": "visual_v2",
+      "generated_at": 1773107604,
       "size": [
         192,
         192
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:condor_feather:192x192:rare": {
       "asset_id": "condor_feather",
       "category": "relics",
-      "seed": 1356522628,
+      "seed": 678600366,
       "palette": {
         "deep_purple": [
           28,
@@ -2609,17 +2625,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\condor_feather_192x192_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772985367,
+      "version": "visual_v2",
+      "generated_at": 1773107606,
       "size": [
         192,
         192
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:puma_pulse:192x192:rare": {
       "asset_id": "puma_pulse",
       "category": "relics",
-      "seed": 691952646,
+      "seed": 1510596143,
       "palette": {
         "deep_purple": [
           28,
@@ -2651,17 +2669,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\puma_pulse_192x192_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772985367,
+      "version": "visual_v2",
+      "generated_at": 1773107606,
       "size": [
         192,
         192
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:serpent_scale:192x192:rare": {
       "asset_id": "serpent_scale",
       "category": "relics",
-      "seed": 483488379,
+      "seed": 881736408,
       "palette": {
         "deep_purple": [
           28,
@@ -2693,17 +2713,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\serpent_scale_192x192_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772985368,
+      "version": "visual_v2",
+      "generated_at": 1773107606,
       "size": [
         192,
         192
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:andean_knot:192x192:rare": {
       "asset_id": "andean_knot",
       "category": "relics",
-      "seed": 386416496,
+      "seed": 1606887883,
       "palette": {
         "deep_purple": [
           28,
@@ -2735,17 +2757,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\andean_knot_192x192_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772985368,
+      "version": "visual_v2",
+      "generated_at": 1773107606,
       "size": [
         192,
         192
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:solar_tumi:192x192:rare": {
       "asset_id": "solar_tumi",
       "category": "relics",
-      "seed": 1606831847,
+      "seed": 547177188,
       "palette": {
         "deep_purple": [
           28,
@@ -2777,17 +2801,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\solar_tumi_192x192_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772985368,
+      "version": "visual_v2",
+      "generated_at": 1773107606,
       "size": [
         192,
         192
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:oracle_lens:192x192:rare": {
       "asset_id": "oracle_lens",
       "category": "relics",
-      "seed": 2098199091,
+      "seed": 1530800043,
       "palette": {
         "deep_purple": [
           28,
@@ -2819,17 +2845,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\oracle_lens_192x192_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772985368,
+      "version": "visual_v2",
+      "generated_at": 1773107607,
       "size": [
         192,
         192
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:void_mirror:192x192:rare": {
       "asset_id": "void_mirror",
       "category": "relics",
-      "seed": 1377024166,
+      "seed": 176838893,
       "palette": {
         "deep_purple": [
           28,
@@ -2861,17 +2889,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\void_mirror_192x192_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772985368,
+      "version": "visual_v2",
+      "generated_at": 1773107607,
       "size": [
         192,
         192
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:archon_fragment:192x192:rare": {
       "asset_id": "archon_fragment",
       "category": "relics",
-      "seed": 491331076,
+      "seed": 534448441,
       "palette": {
         "deep_purple": [
           28,
@@ -2903,17 +2933,21 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\archon_fragment_192x192_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772985369,
+      "version": "visual_v2",
+      "generated_at": 1773107607,
       "size": [
         192,
         192
+      ],
+      "state": "valid",
+      "lore_tags": [
+        "archons"
       ]
     },
     "relics:crown_of_hanan:192x192:rare": {
       "asset_id": "crown_of_hanan",
       "category": "relics",
-      "seed": 1606423901,
+      "seed": 1951835244,
       "palette": {
         "deep_purple": [
           28,
@@ -2945,17 +2979,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\crown_of_hanan_192x192_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772985369,
+      "version": "visual_v2",
+      "generated_at": 1773107607,
       "size": [
         192,
         192
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:seal_of_seven_paths:192x192:rare": {
       "asset_id": "seal_of_seven_paths",
       "category": "relics",
-      "seed": 340167905,
+      "seed": 1717780117,
       "palette": {
         "deep_purple": [
           28,
@@ -2987,17 +3023,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\seal_of_seven_paths_192x192_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772985369,
+      "version": "visual_v2",
+      "generated_at": 1773107607,
       "size": [
         192,
         192
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:violet_seal:18x18:rare": {
       "asset_id": "violet_seal",
       "category": "relics",
-      "seed": 1377633296,
+      "seed": 1530391206,
       "palette": {
         "deep_purple": [
           28,
@@ -3029,17 +3067,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\violet_seal_18x18_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772986863,
+      "version": "visual_v2",
+      "generated_at": 1773106499,
       "size": [
         18,
         18
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:violet_seal:16x16:rare": {
       "asset_id": "violet_seal",
       "category": "relics",
-      "seed": 1377633296,
+      "seed": 1089681348,
       "palette": {
         "deep_purple": [
           28,
@@ -3071,17 +3111,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\violet_seal_16x16_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772986890,
+      "version": "visual_v2",
+      "generated_at": 1773107534,
       "size": [
         16,
         16
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:crown_of_hanan:128x128:rare": {
       "asset_id": "crown_of_hanan",
       "category": "relics",
-      "seed": 1171568293,
+      "seed": 1951835244,
       "palette": {
         "deep_purple": [
           28,
@@ -3113,12 +3155,14 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\crown_of_hanan_128x128_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772987065,
+      "version": "visual_v2",
+      "generated_at": 1773107574,
       "size": [
         128,
         128
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:crown_of_hanan:160x160:rare": {
       "asset_id": "crown_of_hanan",
@@ -3249,7 +3293,7 @@
     "relics:andean_knot:176x176:rare": {
       "asset_id": "andean_knot",
       "category": "relics",
-      "seed": 883433608,
+      "seed": 1606887883,
       "palette": {
         "deep_purple": [
           28,
@@ -3281,17 +3325,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\andean_knot_176x176_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772987503,
+      "version": "visual_v2",
+      "generated_at": 1773109931,
       "size": [
         176,
         176
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:solar_tumi:128x128:rare": {
       "asset_id": "solar_tumi",
       "category": "relics",
-      "seed": 2040553964,
+      "seed": 547177188,
       "palette": {
         "deep_purple": [
           28,
@@ -3323,17 +3369,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\solar_tumi_128x128_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772987679,
+      "version": "visual_v2",
+      "generated_at": 1773109033,
       "size": [
         128,
         128
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:solar_tumi:176x176:rare": {
       "asset_id": "solar_tumi",
       "category": "relics",
-      "seed": 2040553964,
+      "seed": 547177188,
       "palette": {
         "deep_purple": [
           28,
@@ -3365,12 +3413,14 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\solar_tumi_176x176_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772987681,
+      "version": "visual_v2",
+      "generated_at": 1773109035,
       "size": [
         176,
         176
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:solar_tumi:18x18:rare": {
       "asset_id": "solar_tumi",
@@ -3459,7 +3509,7 @@
     "relics:void_mirror:128x128:rare": {
       "asset_id": "void_mirror",
       "category": "relics",
-      "seed": 1294200955,
+      "seed": 176838893,
       "palette": {
         "deep_purple": [
           28,
@@ -3491,17 +3541,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\void_mirror_128x128_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772987839,
+      "version": "visual_v2",
+      "generated_at": 1773107782,
       "size": [
         128,
         128
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:void_mirror:176x176:rare": {
       "asset_id": "void_mirror",
       "category": "relics",
-      "seed": 1294200955,
+      "seed": 176838893,
       "palette": {
         "deep_purple": [
           28,
@@ -3533,17 +3585,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\void_mirror_176x176_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772987839,
+      "version": "visual_v2",
+      "generated_at": 1773107783,
       "size": [
         176,
         176
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:void_mirror:18x18:rare": {
       "asset_id": "void_mirror",
       "category": "relics",
-      "seed": 1294200955,
+      "seed": 176838893,
       "palette": {
         "deep_purple": [
           28,
@@ -3575,17 +3629,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\void_mirror_18x18_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772987842,
+      "version": "visual_v2",
+      "generated_at": 1773107802,
       "size": [
         18,
         18
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:void_mirror:16x16:rare": {
       "asset_id": "void_mirror",
       "category": "relics",
-      "seed": 1294200955,
+      "seed": 176838893,
       "palette": {
         "deep_purple": [
           28,
@@ -3617,12 +3673,14 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\void_mirror_16x16_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772987937,
+      "version": "visual_v2",
+      "generated_at": 1773107836,
       "size": [
         16,
         16
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "avatar:archon_oracle:192x192:archon_oracle": {
       "asset_id": "archon_oracle",
@@ -3719,7 +3777,7 @@
     "relics:archon_fragment:128x128:rare": {
       "asset_id": "archon_fragment",
       "category": "relics",
-      "seed": 477175662,
+      "seed": 534448441,
       "palette": {
         "deep_purple": [
           28,
@@ -3752,7 +3810,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773002204,
+      "generated_at": 1773107742,
       "size": [
         128,
         128
@@ -3765,7 +3823,7 @@
     "relics:archon_fragment:176x176:rare": {
       "asset_id": "archon_fragment",
       "category": "relics",
-      "seed": 477175662,
+      "seed": 534448441,
       "palette": {
         "deep_purple": [
           28,
@@ -3798,7 +3856,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773002205,
+      "generated_at": 1773107742,
       "size": [
         176,
         176
@@ -3811,7 +3869,7 @@
     "relics:puma_pulse:18x18:rare": {
       "asset_id": "puma_pulse",
       "category": "relics",
-      "seed": 1855328998,
+      "seed": 1510596143,
       "palette": {
         "deep_purple": [
           28,
@@ -3844,7 +3902,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040042,
+      "generated_at": 1773113022,
       "size": [
         18,
         18
@@ -3855,7 +3913,7 @@
     "relics:serpent_scale:128x128:rare": {
       "asset_id": "serpent_scale",
       "category": "relics",
-      "seed": 1669400327,
+      "seed": 881736408,
       "palette": {
         "deep_purple": [
           28,
@@ -3888,7 +3946,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040078,
+      "generated_at": 1773109934,
       "size": [
         128,
         128
@@ -3899,7 +3957,7 @@
     "relics:serpent_scale:176x176:rare": {
       "asset_id": "serpent_scale",
       "category": "relics",
-      "seed": 1669400327,
+      "seed": 881736408,
       "palette": {
         "deep_purple": [
           28,
@@ -3932,7 +3990,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040090,
+      "generated_at": 1773109936,
       "size": [
         176,
         176
@@ -3943,7 +4001,7 @@
     "relics:violet_seal:176x176:rare": {
       "asset_id": "violet_seal",
       "category": "relics",
-      "seed": 371328948,
+      "seed": 1089681348,
       "palette": {
         "deep_purple": [
           28,
@@ -3976,7 +4034,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040093,
+      "generated_at": 1773107877,
       "size": [
         176,
         176
@@ -3987,7 +4045,7 @@
     "relics:puma_pulse:16x16:rare": {
       "asset_id": "puma_pulse",
       "category": "relics",
-      "seed": 1855328998,
+      "seed": 1510596143,
       "palette": {
         "deep_purple": [
           28,
@@ -4020,7 +4078,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040565,
+      "generated_at": 1773113027,
       "size": [
         16,
         16
@@ -4031,7 +4089,7 @@
     "relics:archon_fragment:18x18:rare": {
       "asset_id": "archon_fragment",
       "category": "relics",
-      "seed": 1773282312,
+      "seed": 534448441,
       "palette": {
         "deep_purple": [
           28,
@@ -4064,7 +4122,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040601,
+      "generated_at": 1773107892,
       "size": [
         18,
         18
@@ -4077,7 +4135,7 @@
     "relics:archon_fragment:16x16:rare": {
       "asset_id": "archon_fragment",
       "category": "relics",
-      "seed": 1773282312,
+      "seed": 534448441,
       "palette": {
         "deep_purple": [
           28,
@@ -4110,7 +4168,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040608,
+      "generated_at": 1773107899,
       "size": [
         16,
         16
@@ -4123,7 +4181,7 @@
     "relics:serpent_scale:18x18:rare": {
       "asset_id": "serpent_scale",
       "category": "relics",
-      "seed": 1669400327,
+      "seed": 881736408,
       "palette": {
         "deep_purple": [
           28,
@@ -4156,7 +4214,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040887,
+      "generated_at": 1773109938,
       "size": [
         18,
         18
@@ -4167,7 +4225,7 @@
     "relics:crown_of_hanan:176x176:rare": {
       "asset_id": "crown_of_hanan",
       "category": "relics",
-      "seed": 72907646,
+      "seed": 1951835244,
       "palette": {
         "deep_purple": [
           28,
@@ -4200,7 +4258,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040894,
+      "generated_at": 1773107575,
       "size": [
         176,
         176
@@ -4211,7 +4269,7 @@
     "relics:seal_of_seven_paths:128x128:rare": {
       "asset_id": "seal_of_seven_paths",
       "category": "relics",
-      "seed": 671143825,
+      "seed": 1717780117,
       "palette": {
         "deep_purple": [
           28,
@@ -4244,7 +4302,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040896,
+      "generated_at": 1773108213,
       "size": [
         128,
         128
@@ -4255,7 +4313,7 @@
     "relics:seal_of_seven_paths:176x176:rare": {
       "asset_id": "seal_of_seven_paths",
       "category": "relics",
-      "seed": 671143825,
+      "seed": 1717780117,
       "palette": {
         "deep_purple": [
           28,
@@ -4288,7 +4346,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040897,
+      "generated_at": 1773108213,
       "size": [
         176,
         176
@@ -4299,7 +4357,7 @@
     "relics:seal_of_seven_paths:18x18:rare": {
       "asset_id": "seal_of_seven_paths",
       "category": "relics",
-      "seed": 671143825,
+      "seed": 1717780117,
       "palette": {
         "deep_purple": [
           28,
@@ -4332,7 +4390,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040899,
+      "generated_at": 1773108912,
       "size": [
         18,
         18
@@ -4387,7 +4445,7 @@
     "relics:seal_of_seven_paths:16x16:rare": {
       "asset_id": "seal_of_seven_paths",
       "category": "relics",
-      "seed": 671143825,
+      "seed": 1717780117,
       "palette": {
         "deep_purple": [
           28,
@@ -4420,7 +4478,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040907,
+      "generated_at": 1773108930,
       "size": [
         16,
         16
@@ -4431,7 +4489,7 @@
     "relics:serpent_scale:16x16:rare": {
       "asset_id": "serpent_scale",
       "category": "relics",
-      "seed": 1669400327,
+      "seed": 881736408,
       "palette": {
         "deep_purple": [
           28,
@@ -4464,7 +4522,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773040907,
+      "generated_at": 1773111964,
       "size": [
         16,
         16
@@ -4475,7 +4533,7 @@
     "relics:puma_pulse:128x128:rare": {
       "asset_id": "puma_pulse",
       "category": "relics",
-      "seed": 1855328998,
+      "seed": 1510596143,
       "palette": {
         "deep_purple": [
           28,
@@ -4508,7 +4566,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773041025,
+      "generated_at": 1773113016,
       "size": [
         128,
         128
@@ -4519,7 +4577,7 @@
     "relics:puma_pulse:176x176:rare": {
       "asset_id": "puma_pulse",
       "category": "relics",
-      "seed": 1855328998,
+      "seed": 1510596143,
       "palette": {
         "deep_purple": [
           28,
@@ -4552,7 +4610,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773041025,
+      "generated_at": 1773113018,
       "size": [
         176,
         176
@@ -4873,7 +4931,7 @@
     "relics:condor_feather:176x176:rare": {
       "asset_id": "condor_feather",
       "category": "relics",
-      "seed": 1772748561,
+      "seed": 678600366,
       "palette": {
         "deep_purple": [
           28,
@@ -4906,7 +4964,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773048322,
+      "generated_at": 1773108891,
       "size": [
         176,
         176
@@ -4917,7 +4975,7 @@
     "relics:condor_feather:18x18:rare": {
       "asset_id": "condor_feather",
       "category": "relics",
-      "seed": 1772748561,
+      "seed": 678600366,
       "palette": {
         "deep_purple": [
           28,
@@ -4950,7 +5008,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773048327,
+      "generated_at": 1773108894,
       "size": [
         18,
         18
@@ -4961,7 +5019,7 @@
     "relics:condor_feather:16x16:rare": {
       "asset_id": "condor_feather",
       "category": "relics",
-      "seed": 1772748561,
+      "seed": 678600366,
       "palette": {
         "deep_purple": [
           28,
@@ -4994,7 +5052,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773048351,
+      "generated_at": 1773108930,
       "size": [
         16,
         16
@@ -5361,7 +5419,7 @@
     "relics:chakana_thread:18x18:rare": {
       "asset_id": "chakana_thread",
       "category": "relics",
-      "seed": 667361750,
+      "seed": 1014424984,
       "palette": {
         "deep_purple": [
           28,
@@ -5394,7 +5452,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773083036,
+      "generated_at": 1773112741,
       "size": [
         18,
         18
@@ -5407,7 +5465,7 @@
     "relics:chakana_thread:16x16:rare": {
       "asset_id": "chakana_thread",
       "category": "relics",
-      "seed": 667361750,
+      "seed": 1014424984,
       "palette": {
         "deep_purple": [
           28,
@@ -5440,7 +5498,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773083039,
+      "generated_at": 1773112746,
       "size": [
         16,
         16
@@ -5629,7 +5687,7 @@
     "overlays:celestial:514x76:": {
       "asset_id": "celestial",
       "category": "overlays",
-      "seed": 981334446,
+      "seed": 261144405,
       "palette": {
         "deep_purple": [
           28,
@@ -5662,7 +5720,667 @@
       ],
       "context": "",
       "version": "visual_v2",
-      "generated_at": 1773088449,
+      "generated_at": 1773107534,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_sabueso_sombrio:514x76:enemy_sabueso_sombrio": {
+      "asset_id": "enemy_sabueso_sombrio",
+      "category": "avatar",
+      "seed": 2109605146,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_sabueso_sombrio_514x76_enemy_sabueso_sombrio.png"
+      ],
+      "context": "enemy_sabueso_sombrio",
+      "version": "visual_v2",
+      "generated_at": 1773107534,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_larva_del_vacio:514x76:enemy_larva_del_vacio": {
+      "asset_id": "enemy_larva_del_vacio",
+      "category": "avatar",
+      "seed": 85660928,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_larva_del_vacio_514x76_enemy_larva_del_vacio.png"
+      ],
+      "context": "enemy_larva_del_vacio",
+      "version": "visual_v2",
+      "generated_at": 1773107661,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_acaro_de_tinta:514x76:enemy_acaro_de_tinta": {
+      "asset_id": "enemy_acaro_de_tinta",
+      "category": "avatar",
+      "seed": 1338805948,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_acaro_de_tinta_514x76_enemy_acaro_de_tinta.png"
+      ],
+      "context": "enemy_acaro_de_tinta",
+      "version": "visual_v2",
+      "generated_at": 1773107692,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_portador_de_polvo:514x76:enemy_portador_de_polvo": {
+      "asset_id": "enemy_portador_de_polvo",
+      "category": "avatar",
+      "seed": 1259409191,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_portador_de_polvo_514x76_enemy_portador_de_polvo.png"
+      ],
+      "context": "enemy_portador_de_polvo",
+      "version": "visual_v2",
+      "generated_at": 1773107836,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_guardia_de_raiz:514x76:enemy_guardia_de_raiz": {
+      "asset_id": "enemy_guardia_de_raiz",
+      "category": "avatar",
+      "seed": 2094782593,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_guardia_de_raiz_514x76_enemy_guardia_de_raiz.png"
+      ],
+      "context": "enemy_guardia_de_raiz",
+      "version": "visual_v2",
+      "generated_at": 1773107899,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_espiritu_condor_menor:514x76:enemy_espiritu_condor_menor": {
+      "asset_id": "enemy_espiritu_condor_menor",
+      "category": "avatar",
+      "seed": 1961597007,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_espiritu_condor_menor_514x76_enemy_espiritu_condor_menor.png"
+      ],
+      "context": "enemy_espiritu_condor_menor",
+      "version": "visual_v2",
+      "generated_at": 1773107941,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_neblina_consciente:514x76:enemy_neblina_consciente": {
+      "asset_id": "enemy_neblina_consciente",
+      "category": "avatar",
+      "seed": 38029524,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_neblina_consciente_514x76_enemy_neblina_consciente.png"
+      ],
+      "context": "enemy_neblina_consciente",
+      "version": "visual_v2",
+      "generated_at": 1773107989,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_runa_errante:514x76:enemy_runa_errante": {
+      "asset_id": "enemy_runa_errante",
+      "category": "avatar",
+      "seed": 25698965,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_runa_errante_514x76_enemy_runa_errante.png"
+      ],
+      "context": "enemy_runa_errante",
+      "version": "visual_v2",
+      "generated_at": 1773108388,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_portador_de_silencio:514x76:enemy_portador_de_silencio": {
+      "asset_id": "enemy_portador_de_silencio",
+      "category": "avatar",
+      "seed": 439711287,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_portador_de_silencio_514x76_enemy_portador_de_silencio.png"
+      ],
+      "context": "enemy_portador_de_silencio",
+      "version": "visual_v2",
+      "generated_at": 1773108930,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_oraculo_menor:514x76:enemy_oraculo_menor": {
+      "asset_id": "enemy_oraculo_menor",
+      "category": "avatar",
+      "seed": 1866680214,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_oraculo_menor_514x76_enemy_oraculo_menor.png"
+      ],
+      "context": "enemy_oraculo_menor",
+      "version": "visual_v2",
+      "generated_at": 1773109050,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_arconte_supremo:514x76:enemy_arconte_supremo": {
+      "asset_id": "enemy_arconte_supremo",
+      "category": "avatar",
+      "seed": 439447912,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_arconte_supremo_514x76_enemy_arconte_supremo.png"
+      ],
+      "context": "enemy_arconte_supremo",
+      "version": "visual_v2",
+      "generated_at": 1773111964,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_rata_obsidiana:514x76:enemy_rata_obsidiana": {
+      "asset_id": "enemy_rata_obsidiana",
+      "category": "avatar",
+      "seed": 2064894778,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_rata_obsidiana_514x76_enemy_rata_obsidiana.png"
+      ],
+      "context": "enemy_rata_obsidiana",
+      "version": "visual_v2",
+      "generated_at": 1773112826,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_monolito_fracturado:514x76:enemy_monolito_fracturado": {
+      "asset_id": "enemy_monolito_fracturado",
+      "category": "avatar",
+      "seed": 892955083,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_monolito_fracturado_514x76_enemy_monolito_fracturado.png"
+      ],
+      "context": "enemy_monolito_fracturado",
+      "version": "visual_v2",
+      "generated_at": 1773112945,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_mascara_risuena:514x76:enemy_mascara_risuena": {
+      "asset_id": "enemy_mascara_risuena",
+      "category": "avatar",
+      "seed": 1267248022,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_mascara_risuena_514x76_enemy_mascara_risuena.png"
+      ],
+      "context": "enemy_mascara_risuena",
+      "version": "visual_v2",
+      "generated_at": 1773113027,
+      "size": [
+        514,
+        76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "avatar:enemy_vidente_caido:514x76:enemy_vidente_caido": {
+      "asset_id": "enemy_vidente_caido",
+      "category": "avatar",
+      "seed": 159589496,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\avatar\\enemy_vidente_caido_514x76_enemy_vidente_caido.png"
+      ],
+      "context": "enemy_vidente_caido",
+      "version": "visual_v2",
+      "generated_at": 1773113500,
       "size": [
         514,
         76

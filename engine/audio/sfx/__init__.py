@@ -1,0 +1,1 @@
+"""SFX architecture placeholder package."""

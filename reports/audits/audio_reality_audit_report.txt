@@ -1,0 +1,45 @@
+CHAKANA AUDIO REALITY AUDIT - PHASE 1
+date=2026-03-09T21:44:10
+
+1) ACTIVE RUNTIME OWNERSHIP
+- Runtime audio owner: game/audio/audio_engine.py (MusicManager/SFXManager wrappers)
+- Main entrypoints: game/main.py -> MusicManager.play_for / SFXManager.play
+- Primary generated runtime root: game/audio/generated/{bgm,sfx,stingers,studio}
+
+2) FILE INVENTORY (WAV COUNTS)
+- game/audio/generated: 40
+- game/assets/music: 0
+- game/assets/sfx: 13
+- assets (root): 5
+
+3) MANIFEST REALITY
+- game/data/bgm_manifest.json items: 13 (absolute paths: 13)
+- game/audio/audio_manifest.json items: 40 by_type={'bgm': 20, 'stinger': 11, 'sfx': 9}
+- bgm_manifest missing files: 0
+- audio_manifest missing files: 0
+
+4) DUPLICATION / LEGACY FINDINGS
+- Legacy/secondary SFX bank still present at game/assets/sfx/*.wav (13 files).
+- Legacy root assets archive still includes old music snapshots in assets/_archive (expected archival).
+- game/assets/music has 0 wav (already effectively deprecated).
+- Potential dual-source behavior: game/ui/render.py loads fallback aliases from game/assets/sfx while core runtime SFX comes from AudioEngine generated bank.
+
+5) PLACEHOLDER / QUALITY RISK FINDINGS
+- Current architecture is generated-first with limited curated track separation per context.
+- No explicit ambient manifest/system in active runtime path (ambient behavior currently folded into generated contexts).
+- BGM manifest uses machine-absolute paths; this harms portability across machines/clones.
+
+6) WHAT IS ACTIVELY LOADED TODAY
+- BGM contexts resolved through AudioEngine + bgm_manifest (menu/map/combat/boss/shop/reward/victory/defeat/event).
+- Stingers resolved through AudioEngine registry + generated stinger files.
+- SFX resolved by AudioEngine; some UI fallback aliases still map to game/assets/sfx.
+
+7) MISSING / OBSOLETE / ACTIONABLE FLAGS
+- WARNING: portability risk due to absolute paths in manifests.
+- WARNING: duplicate SFX source roots (generated + legacy asset bank).
+- PASS: core runtime currently centralized around game/audio/audio_engine.py and game/audio/generated.
+
+8) PHASE 2 RECOMMENDATION
+- Create target engine/audio architecture with explicit modules for state, layers, transitions, stingers, ambient, mixer, manifests.
+- Keep compatibility wrappers (MusicManager/SFXManager) while routing toward canonical engine/audio package.
+- Normalize manifests to workspace-relative paths before migration.

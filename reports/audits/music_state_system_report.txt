@@ -1,0 +1,63 @@
+CHAKANA AUDIO ENGINE - PHASE 3 REPORT
+music_state_system_report.txt
+
+Scope
+- Implemented music state system integration without replacing current runtime playback pipeline.
+- Preserved compatibility with game/audio/audio_engine.py and MusicManager wrappers.
+
+Implemented
+1) Canonical music states
+- menu
+- map
+- combat
+- boss
+- shop
+- reward
+- dialogue
+- defeat
+- victory
+
+2) State machine hard-validation
+- File: engine/audio/music/music_state_machine.py
+- Added strict validation in transition() to reject unsupported states early.
+
+3) Runtime integration in AudioEngine
+- File: game/audio/audio_engine.py
+- Added:
+  - MusicStateMachine + TransitionManager imports
+  - self._music_state_machine
+  - self._transition_manager
+  - self.current_state
+  - self.state_context_defaults
+- Added context->state resolver:
+  - _state_from_context(context)
+- Added API for state-based playback:
+  - play_state(state, context_override=None)
+- Updated play_context(context):
+  - resolves target state
+  - computes transition policy
+  - avoids restarting identical context when already playing
+  - updates current_state after successful transition
+  - logs state/context/variant/file
+
+4) Backward compatibility
+- Existing calls to play_context(...) remain valid.
+- MusicManager.play_for(...) does not need changes.
+
+Safety
+- No manifest schema changes.
+- No track deletion or path migration.
+- No replacement of mixer runtime.
+
+Smoke checks
+- py_compile on modified modules: PASS
+- AudioEngine import/instantiation: PASS
+- doctor baseline: PASS (no runtime-break introduced by this phase)
+
+Known warnings
+- bgm manifest still uses absolute paths (portability debt; phase 8+ candidate).
+- No true musical boundary synchronization yet; current transitions are fade-policy based.
+
+Recommendation (Phase 4)
+- Implement layered music controller wiring (single-track fallback + optional layers by intensity)
+  while keeping current generated BGM files as baseline.

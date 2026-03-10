@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 import math
@@ -12,6 +12,11 @@ from random import Random
 import pygame
 
 from engine.creative_direction import CreativeMusicDirector
+from engine.audio.music.music_state_machine import MusicStateMachine, TransitionRequest
+from engine.audio.music.music_transition_manager import MusicTransitionManager
+from engine.audio.music.music_layer_controller import MusicLayerController
+from engine.audio.mixer.audio_bus_manager import AudioBusManager
+from engine.audio.mixer.ducking_controller import DuckingController
 from game.core.paths import assets_dir
 
 
@@ -108,6 +113,13 @@ class AudioEngine:
             "seal_activate": 0.28,
             "relic_pick": 0.20,
         }
+        self.ambient_defs = {
+            "gaia_mountain_wind": 42.0,
+            "temple_resonance": 36.0,
+            "archon_void_drones": 34.0,
+            "shop_ambience": 30.0,
+            "codex_ambience": 32.0,
+        }
 
         self._manifest = self._load_manifest()
         self._last_variant_by_context: dict[str, str] = {}
@@ -116,19 +128,49 @@ class AudioEngine:
         self._logged_once: set[str] = set()
         self._music_volume = 0.5
         self._sfx_volume = 0.7
+        self._stinger_volume = 0.8
+        self._ambient_volume = 0.5
         self._muted = False
+        self._bus_manager = AudioBusManager()
+        self._ducking_controller = DuckingController()
+        self._duck_music_until_ms = 0
+        self._duck_restore_music_volume = self._music_volume
+        self._duck_music_amount = 0.0
         self._stinger_channel = None
         self._ui_sfx_channel = None
         self._impact_channel = None
+        self._ambient_channel = None
         self.current_context = "-"
         self.current_variant = "-"
         self.current_path = "-"
+        self.current_ambient = "-"
         self.status = "stopped"
         self._init_channels()
         self._creative_music_director = CreativeMusicDirector()
+        self._music_state_machine = MusicStateMachine(initial="menu")
+        self._transition_manager = MusicTransitionManager()
+        self._layer_controller = MusicLayerController()
+        self._layer_mode = "single"
+        self._music_intensity = 0.25
+        self._current_layers = self._layer_controller.set_intensity(self._music_intensity)
+        self.current_state = "menu"
+        self.current_layer = "full"
+        self.state_context_defaults = {
+            "menu": "menu",
+            "map": "map_kay",
+            "combat": "combat",
+            "boss": "combat_boss",
+            "shop": "shop",
+            "reward": "victory",
+            "dialogue": "shop",
+            "defeat": "defeat",
+            "victory": "victory",
+        }
 
     def _ensure_dirs(self):
-        for d in (self.generated_root, self.bgm_dir, self.sfx_dir, self.stingers_dir, self.studio_dir):
+        self.bgm_layers_dir = self.generated_root / "bgm_layers"
+        self.ambient_dir = self.generated_root / "ambient"
+        for d in (self.generated_root, self.bgm_dir, self.bgm_layers_dir, self.ambient_dir, self.sfx_dir, self.stingers_dir, self.studio_dir):
             d.mkdir(parents=True, exist_ok=True)
 
     def _init_channels(self):
@@ -139,10 +181,12 @@ class AudioEngine:
             self._stinger_channel = pygame.mixer.Channel(1)
             self._ui_sfx_channel = pygame.mixer.Channel(2)
             self._impact_channel = pygame.mixer.Channel(3)
+            self._ambient_channel = pygame.mixer.Channel(4)
         except Exception:
             self._stinger_channel = None
             self._ui_sfx_channel = None
             self._impact_channel = None
+            self._ambient_channel = None
 
     def _log_once(self, key: str, text: str):
         if key in self._logged_once:
@@ -330,6 +374,33 @@ class AudioEngine:
             samples.append(int(max(-1.0, min(1.0, x * env * 0.82)) * 32767))
         return samples
 
+    def _ambient_samples(self, name: str, seconds: float) -> array:
+        base = {
+            "gaia_mountain_wind": (68.0, 0.18, 0.10),
+            "temple_resonance": (96.0, 0.22, 0.16),
+            "archon_void_drones": (52.0, 0.26, 0.20),
+            "shop_ambience": (88.0, 0.14, 0.08),
+            "codex_ambience": (80.0, 0.16, 0.10),
+        }.get(name, (72.0, 0.16, 0.10))
+        f0, depth, shimmer = base
+        total = max(1, int(seconds * self.SAMPLE_RATE))
+        out = array("h")
+        prev = 0.0
+        for i in range(total):
+            t = i / self.SAMPLE_RATE
+            sweep = f0 + 8.0 * math.sin(2 * math.pi * 0.03 * t)
+            drone = 0.45 * math.sin(2 * math.pi * sweep * t)
+            low = 0.20 * math.sin(2 * math.pi * (f0 * 0.5) * t + 0.4)
+            airy = 0.12 * math.sin(2 * math.pi * (f0 * 1.9) * t + 0.22 * math.sin(t * 0.2))
+            noise = depth * math.sin(2 * math.pi * (18.0 + 6.0 * math.sin(t * 0.12)) * t)
+            sparkle = shimmer * math.sin(2 * math.pi * (f0 * 2.6) * t + 0.7)
+            x = drone + low + airy + noise + sparkle
+            x = 0.90 * x + 0.10 * prev
+            prev = x
+            env = min(1.0, t / 1.6) * max(0.0, min(1.0, (seconds - t) / 1.8))
+            out.append(int(max(-1.0, min(1.0, x * env * 0.72)) * 32767))
+        return out
+
     def _curated_item_path(self, item_id: str, expected_type: str) -> Path | None:
         root = self.curated_audio_root
         if expected_type == "bgm":
@@ -353,6 +424,10 @@ class AudioEngine:
             nm = item_id.replace("sfx_", "", 1)
             p = root / "sfx" / f"{nm}.wav"
             return p if p.exists() else None
+        if expected_type == "ambient":
+            nm = item_id.replace("ambient_", "", 1)
+            p = root / "ambient" / f"{nm}.wav"
+            return p if p.exists() else None
         return None
 
     def _source_from_path(self, path: Path) -> str:
@@ -369,6 +444,9 @@ class AudioEngine:
         if expected_type == "sfx":
             name = item_id.replace("sfx_", "", 1)
             return self.sfx_dir / f"{name}.wav"
+        if expected_type == "ambient":
+            name = item_id.replace("ambient_", "", 1)
+            return self.ambient_dir / f"{name}.wav"
         return self.generated_root / f"{item_id}.wav"
 
     def _item_ok(self, item_id: str, expected_type: str) -> Path | None:
@@ -459,6 +537,22 @@ class AudioEngine:
         print(f"[Audio] generated: {item_id}")
         return path
 
+    def _ensure_ambient(self, name: str, force: bool = False) -> Path:
+        item_id = f"ambient_{name}"
+        cached = None if force else self._item_ok(item_id, "ambient")
+        if cached is not None:
+            if item_id not in self._manifest.get("items", {}):
+                seed = self._stable_seed(item_id)
+                self._register_item(item_id, item_type="ambient", context=name, variant="a", seed=seed, file_path=cached, source=self._source_from_path(cached))
+            return cached
+        seconds = float(self.ambient_defs.get(name, 32.0))
+        seed = self._stable_seed(item_id)
+        path = self.ambient_dir / f"{name}.wav"
+        self._write_wave(path, self._ambient_samples(name, seconds))
+        self._register_item(item_id, item_type="ambient", context=name, variant="a", seed=seed, file_path=path, source="generated")
+        print(f"[Audio] generated: {item_id}")
+        return path
+
     def _prune_manifest(self):
         items = self._manifest.get("items", {})
         if not isinstance(items, dict) or not items:
@@ -471,6 +565,8 @@ class AudioEngine:
             valid_ids.add(f"stinger_{name}")
         for name in self.sfx_defs:
             valid_ids.add(f"sfx_{name}")
+        for name in self.ambient_defs:
+            valid_ids.add(f"ambient_{name}")
 
         changed = False
         for item_id in list(items.keys()):
@@ -491,24 +587,66 @@ class AudioEngine:
             self._ensure_stinger(name, force=force)
         for name in self.sfx_defs:
             self._ensure_sfx(name, force=force)
+        for name in self.ambient_defs:
+            self._ensure_ambient(name, force=force)
         return self._manifest
+
+    def _effective_bus_gain(self, bus: str) -> float:
+        b = str(bus or "master").lower()
+        master = self._bus_manager.get_level("master", 1.0)
+        level = self._bus_manager.get_level(b, 1.0)
+        duck = self._ducking_controller.get_amount(b)
+        return max(0.0, min(1.0, master * level * (1.0 - duck)))
+
+    def _refresh_bus_gains(self):
+        try:
+            pygame.mixer.music.set_volume(0.0 if self._muted else self._effective_bus_gain("music"))
+            if self._ambient_channel is not None:
+                self._ambient_channel.set_volume(0.0 if self._muted else self._effective_bus_gain("ambient"))
+        except Exception:
+            pass
+
+    def set_master_volume(self, value: float):
+        self._bus_manager.set_level("master", max(0.0, min(1.0, float(value))))
+        self._refresh_bus_gains()
+
+    def set_bus_volume(self, bus: str, value: float):
+        self._bus_manager.set_level(str(bus or ""), max(0.0, min(1.0, float(value))))
+        self._refresh_bus_gains()
+
+    def apply_volume_profile(self, profile_name: str):
+        from engine.audio.mixer.volume_profiles import VOLUME_PROFILES
+
+        key = str(profile_name or "default")
+        prof = VOLUME_PROFILES.get(key, VOLUME_PROFILES.get("default", {}))
+        self._bus_manager.apply_profile(prof)
+        self._music_volume = self._bus_manager.get_level("music", self._music_volume)
+        self._sfx_volume = self._bus_manager.get_level("sfx", self._sfx_volume)
+        self._stinger_volume = self._bus_manager.get_level("stingers", self._stinger_volume)
+        self._ambient_volume = self._bus_manager.get_level("ambient", self._ambient_volume)
+        self._refresh_bus_gains()
 
     def set_music_volume(self, value: float):
         self._music_volume = max(0.0, min(1.0, float(value)))
-        try:
-            pygame.mixer.music.set_volume(0.0 if self._muted else self._music_volume)
-        except Exception:
-            pass
+        self._bus_manager.set_level("music", self._music_volume)
+        self._refresh_bus_gains()
 
     def set_sfx_volume(self, value: float):
         self._sfx_volume = max(0.0, min(1.0, float(value)))
+        self._bus_manager.set_level("sfx", self._sfx_volume)
+
+    def set_stinger_volume(self, value: float):
+        self._stinger_volume = max(0.0, min(1.0, float(value)))
+        self._bus_manager.set_level("stingers", self._stinger_volume)
+
+    def set_ambient_volume(self, value: float):
+        self._ambient_volume = max(0.0, min(1.0, float(value)))
+        self._bus_manager.set_level("ambient", self._ambient_volume)
+        self._refresh_bus_gains()
 
     def set_muted(self, muted: bool):
         self._muted = bool(muted)
-        try:
-            pygame.mixer.music.set_volume(0.0 if self._muted else self._music_volume)
-        except Exception:
-            pass
+        self._refresh_bus_gains()
 
     def _normalize_context(self, context: str) -> str:
         key = str(context or "menu").lower()
@@ -525,22 +663,228 @@ class AudioEngine:
         self._last_variant_by_context[context] = choice
         return choice
 
+    def _state_from_context(self, context: str) -> str:
+        ctx = str(context or "menu").lower()
+        if ctx.startswith("map"):
+            return "map"
+        if ctx.startswith("combat_boss") or ctx == "boss":
+            return "boss"
+        if ctx.startswith("combat"):
+            return "combat"
+        if ctx.startswith("shop"):
+            return "shop"
+        if ctx.startswith("victory"):
+            return "victory"
+        if ctx.startswith("defeat"):
+            return "defeat"
+        if ctx.startswith("reward"):
+            return "reward"
+        if ctx.startswith("dialogue") or ctx.startswith("event") or ctx.startswith("lore"):
+            return "dialogue"
+        return "menu"
+
+    def play_state(self, state: str, context_override: str | None = None):
+        target_state = str(state or "menu").lower()
+        target_context = str(context_override or self.state_context_defaults.get(target_state, "menu"))
+        self.play_context(target_context)
+
+    def set_layer_mode(self, mode: str) -> str:
+        mm = str(mode or "single").lower()
+        self._layer_mode = "layered" if mm in {"layered", "layers", "multi"} else "single"
+        return self._layer_mode
+
+    def set_music_intensity(self, value: float):
+        self._music_intensity = max(0.0, min(1.0, float(value)))
+        self._current_layers = self._layer_controller.set_intensity(self._music_intensity)
+        return self._current_layers
+
+    def layer_state(self) -> dict[str, bool]:
+        ls = self._current_layers
+        return {
+            "pad": bool(ls.pad),
+            "bass": bool(ls.bass),
+            "melody": bool(ls.melody),
+            "percussion": bool(ls.percussion),
+            "fx": bool(ls.fx),
+        }
+
+    def _default_intensity_for_state(self, state: str) -> float:
+        table = {
+            "menu": 0.22,
+            "map": 0.32,
+            "combat": 0.62,
+            "boss": 0.86,
+            "shop": 0.26,
+            "reward": 0.42,
+            "dialogue": 0.20,
+            "defeat": 0.18,
+            "victory": 0.46,
+        }
+        return float(table.get(str(state or "menu"), 0.30))
+
+    def _resolve_layer_playback(self, ctx: str, variant: str, fallback_path: Path):
+        if self._layer_mode != "layered":
+            self.current_layer = "full"
+            return fallback_path
+
+        active = self.layer_state()
+        preferred = []
+        if active.get("melody"):
+            preferred.append("melody")
+        if active.get("percussion"):
+            preferred.append("percussion")
+        if active.get("fx"):
+            preferred.append("fx")
+        preferred.extend(["pad", "bass", "full"])
+
+        for layer in preferred:
+            candidates = [
+                self.bgm_layers_dir / ctx / f"{layer}_{variant}.wav",
+                self.bgm_layers_dir / ctx / f"{layer}.wav",
+                self.curated_audio_root / "bgm_layers" / ctx / f"{layer}_{variant}.wav",
+                self.curated_audio_root / "bgm_layers" / ctx / f"{layer}.wav",
+            ]
+            for cand in candidates:
+                if cand.exists():
+                    self.current_layer = layer
+                    return cand
+
+        self.current_layer = "full"
+        return fallback_path
+
+    def _ambient_from_music_context(self, ctx: str) -> str | None:
+        key = str(ctx or "").lower()
+        if key.startswith("map_ukhu"):
+            return "archon_void_drones"
+        if key.startswith("map_hanan"):
+            return "temple_resonance"
+        if key.startswith("map"):
+            return "gaia_mountain_wind"
+        if key.startswith("shop"):
+            return "shop_ambience"
+        if key.startswith("menu") or key.startswith("event") or key.startswith("lore"):
+            return "codex_ambience"
+        return None
+
+    def play_ambient(self, context_name: str | None):
+        if not context_name:
+            self.stop_ambient()
+            return
+        nm = str(context_name).lower()
+        if nm not in self.ambient_defs:
+            self._log_once(f"missing_ambient:{nm}", f"[Audio] ambient missing: {nm}")
+            return
+        path = self._ensure_ambient(nm, force=False)
+        snd = self._cached_sound(path)
+        if snd is None:
+            return
+        snd.set_volume(0.0 if self._muted else self._effective_bus_gain("ambient"))
+        try:
+            if self._ambient_channel is not None:
+                if self.current_ambient == nm and self._ambient_channel.get_busy():
+                    return
+                self._ambient_channel.play(snd, loops=-1)
+            else:
+                snd.play(loops=-1)
+            self.current_ambient = nm
+            print(f"[Audio] ambient: {nm} file:{path.name}")
+        except Exception as exc:
+            self._log_once(f"ambient_error:{nm}", f"[Audio] ambient error: {nm} err={exc}")
+
+    def stop_ambient(self):
+        try:
+            if self._ambient_channel is not None:
+                self._ambient_channel.stop()
+        except Exception:
+            pass
+        self.current_ambient = "-"
+
+    def begin_dialogue_duck(self, amount: float = 0.35):
+        amt = max(0.0, min(0.90, float(amount)))
+        self._ducking_controller.apply("music", amt, source="dialogue")
+        self._ducking_controller.apply("ambient", min(0.85, amt + 0.15), source="dialogue")
+        self._refresh_bus_gains()
+
+    def end_dialogue_duck(self):
+        self._ducking_controller.clear("music", source="dialogue")
+        self._ducking_controller.clear("ambient", source="dialogue")
+        self._refresh_bus_gains()
+
+    def mixer_snapshot(self) -> dict:
+        return {
+            "buses": self._bus_manager.snapshot(),
+            "ducking": self._ducking_controller.snapshot(),
+            "muted": bool(self._muted),
+        }
+
     def play_context(self, context: str):
         ctx = self._normalize_context(context)
+        target_state = self._state_from_context(ctx)
+        transition = self._transition_manager.resolve(self.current_state, target_state)
+        self.set_music_intensity(self._default_intensity_for_state(target_state))
+
+        # Avoid restarting the same music context if it's already playing.
+        try:
+            if self.current_context == ctx and pygame.mixer.music.get_busy():
+                self.current_state = self._music_state_machine.transition(
+                    TransitionRequest(
+                        target=target_state,
+                        fade_out_ms=int(transition.get("fade_out_ms", 0) or 0),
+                        fade_in_ms=int(transition.get("fade_in_ms", 0) or 0),
+                    )
+                )
+                self.status = "playing"
+                return
+        except Exception:
+            pass
+
         var = self._choose_variant(ctx)
         path = self._ensure_bgm_variant(ctx, var, force=False)
+        path = self._resolve_layer_playback(ctx, var, path)
+        fade_ms = int(transition.get("fade_in_ms", 450) or 450)
         try:
             pygame.mixer.music.load(str(path))
-            pygame.mixer.music.set_volume(0.0 if self._muted else self._music_volume)
-            pygame.mixer.music.play(-1, fade_ms=450)
+            pygame.mixer.music.set_volume(0.0 if self._muted else self._effective_bus_gain("music"))
+            pygame.mixer.music.play(-1, fade_ms=max(0, fade_ms))
             self.current_context = ctx
             self.current_variant = var
             self.current_path = path.name
+            self.current_state = self._music_state_machine.transition(
+                TransitionRequest(
+                    target=target_state,
+                    fade_out_ms=int(transition.get("fade_out_ms", 0) or 0),
+                    fade_in_ms=max(0, fade_ms),
+                )
+            )
             self.status = "playing"
-            print(f"[Audio] context: {ctx} variant:{var} file:{path.name}")
+            self.play_ambient(self._ambient_from_music_context(ctx))
+            print(f"[Audio] state:{self.current_state} context:{ctx} variant:{var} layer:{self.current_layer} file:{path.name}")
         except Exception as exc:
             self.status = f"error:{exc}"
             print(f"[Audio] context error: {ctx} err={exc}")
+
+    def _apply_music_duck(self, amount: float, duration_ms: int):
+        now = pygame.time.get_ticks()
+        amt = max(0.0, min(0.95, float(amount)))
+        dur = max(0, int(duration_ms))
+        self._duck_music_amount = max(self._duck_music_amount, amt)
+        self._duck_restore_music_volume = self._music_volume
+        self._duck_music_until_ms = max(self._duck_music_until_ms, now + dur)
+        self._ducking_controller.apply("music", self._duck_music_amount, source="stinger")
+        self._ducking_controller.apply("ambient", min(0.90, self._duck_music_amount + 0.10), source="stinger")
+        self._refresh_bus_gains()
+
+    def _update_ducking(self):
+        if self._duck_music_until_ms <= 0:
+            return
+        now = pygame.time.get_ticks()
+        if now < self._duck_music_until_ms:
+            return
+        self._duck_music_until_ms = 0
+        self._duck_music_amount = 0.0
+        self._ducking_controller.clear("music", source="stinger")
+        self._ducking_controller.clear("ambient", source="stinger")
+        self._refresh_bus_gains()
 
     def _cached_sound(self, path: Path) -> pygame.mixer.Sound | None:
         key = str(path)
@@ -570,12 +914,30 @@ class AudioEngine:
         snd = self._cached_sound(path)
         if snd is None:
             return
-        snd.set_volume(0.0 if self._muted else self._sfx_volume)
+
+        duck_profile = {
+            "boss_reveal": (0.45, 1800),
+            "defeat": (0.38, 1600),
+            "victory": (0.34, 1400),
+            "studio_intro": (0.28, 1200),
+            "elite_encounter": (0.30, 1200),
+            "relic_gain": (0.24, 900),
+            "pack_open": (0.24, 900),
+            "level_up": (0.22, 800),
+            "harmony_ready": (0.20, 700),
+            "seal_ready": (0.20, 700),
+            "combat_start": (0.22, 800),
+        }
+        duck_amount, duck_ms = duck_profile.get(nm, (0.20, 700))
+        self._apply_music_duck(duck_amount, duck_ms)
+
+        stinger_gain = self._effective_bus_gain("stingers")
+        snd.set_volume(0.0 if self._muted else stinger_gain)
         if self._stinger_channel is not None:
             self._stinger_channel.play(snd)
         else:
             snd.play()
-        print(f"[Audio] stinger: {nm} file:{path.name}")
+        print(f"[Audio] stinger: {nm} file:{path.name} duck={duck_amount:.2f}/{duck_ms}ms")
 
     def play_sfx(self, name: str):
         nm = str(name or "").lower()
@@ -615,7 +977,7 @@ class AudioEngine:
         snd = self._cached_sound(path)
         if snd is None:
             return
-        snd.set_volume(0.0 if self._muted else self._sfx_volume)
+        snd.set_volume(0.0 if self._muted else self._effective_bus_gain("sfx"))
         if nm in {"damage_hit", "card_play", "card_invalid", "seal_activate"} and self._impact_channel is not None:
             self._impact_channel.play(snd)
         elif self._ui_sfx_channel is not None:
@@ -627,21 +989,24 @@ class AudioEngine:
         self.play_stinger("studio_intro")
 
     def tick(self):
+        self._update_ducking()
         if self.status.startswith("error"):
             return
         try:
             self.status = "playing" if pygame.mixer.music.get_busy() else "idle"
         except Exception:
             self.status = "idle"
-
     def debug_state(self) -> str:
         self.tick()
+        ls = self.layer_state()
+        mx = self.mixer_snapshot()
         return (
-            f"context={self.current_context} variant={self.current_variant} "
-            f"path={self.current_path} status={self.status} "
-            f"music_vol={self._music_volume:.2f} sfx_vol={self._sfx_volume:.2f} muted={self._muted}"
+            f"state={self.current_state} context={self.current_context} variant={self.current_variant} layer={self.current_layer} ambient={self.current_ambient} "
+            f"path={self.current_path} status={self.status} mode={self._layer_mode} intensity={self._music_intensity:.2f} "
+            f"layers=pad:{int(ls['pad'])},bass:{int(ls['bass'])},melody:{int(ls['melody'])},percussion:{int(ls['percussion'])},fx:{int(ls['fx'])} "
+            f"music_vol={self._music_volume:.2f} sfx_vol={self._sfx_volume:.2f} stinger_vol={self._stinger_volume:.2f} ambient_vol={self._ambient_volume:.2f} "
+            f"duck={self._duck_music_amount:.2f} buses={mx['buses']} ducking={mx['ducking']} muted={self._muted}"
         )
-
 
 _ENGINE: AudioEngine | None = None
 
@@ -651,6 +1016,17 @@ def get_audio_engine() -> AudioEngine:
     if _ENGINE is None:
         _ENGINE = AudioEngine()
     return _ENGINE
+
+
+
+
+
+
+
+
+
+
+
 
 
 

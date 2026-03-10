@@ -80,6 +80,7 @@ class HolographicOracleUI:
         return lines[:max_lines]
 
     def render(self, surface: pygame.Surface, app):
+        phase = getattr(self, "phase", 0)
         alpha = self._alpha()
         if alpha <= 0:
             return

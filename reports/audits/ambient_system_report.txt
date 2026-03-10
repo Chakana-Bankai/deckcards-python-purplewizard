@@ -1,0 +1,56 @@
+CHAKANA AUDIO ENGINE - PHASE 6 REPORT
+ambient_system_report.txt
+
+Scope
+- Implement ambient/soundscape support that coexists with current music/stinger runtime.
+- Keep migration safe and non-destructive.
+
+Implemented
+1) Ambient context model
+- Added ambient definitions in AudioEngine for required contexts:
+  - gaia_mountain_wind
+  - temple_resonance
+  - archon_void_drones
+  - shop_ambience
+  - codex_ambience
+
+2) Ambient generation + caching
+- Added generated root: game/audio/generated/ambient
+- Added procedural generator: _ambient_samples(name, seconds)
+- Added ensure path: _ensure_ambient(name, force=False)
+- Added manifest registration with type="ambient"
+
+3) Ambient playback runtime
+- Added dedicated ambient channel (Channel 4) when mixer is available.
+- Added methods:
+  - play_ambient(context_name)
+  - stop_ambient()
+  - _ambient_from_music_context(ctx)
+- Ambient now auto-syncs from music context during play_context(...).
+
+4) Mixer/bus integration
+- Added ambient volume field and bus registration:
+  - _ambient_volume
+  - set_ambient_volume(value)
+- set_muted(...) now mutes/restores ambient channel consistently.
+
+5) Main app initialization integration
+- main.py now applies ambient volume from settings (default 0.5) at boot and audio-regeneration reinit path.
+
+Safety / Compatibility
+- Current music and stinger playback paths are preserved.
+- No destructive file operations.
+- Ambient files are generated lazily/on-demand and can be curated later.
+
+Smoke checks
+- py_compile (audio_engine, main, sfx_manager): PASS
+- ambient context mapping + ensure ambient file generation: PASS
+- doctor baseline: PASS
+
+Known warnings
+- Headless checks may not initialize mixer channels; audible coexistence must be validated in full game runtime.
+- Ambient slider is not yet exposed in Options UI (architecture supports it, UI hook optional next pass).
+
+Recommendation (Phase 7)
+- Implement explicit mixer bus policy and ducking profiles across all buses (music/sfx/stingers/ambient/ui/dialogue)
+  and expose ambient volume control in settings if desired.

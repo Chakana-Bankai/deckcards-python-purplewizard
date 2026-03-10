@@ -1,0 +1,73 @@
+CHAKANA AUDIO ENGINE - PHASE 7 REPORT
+audio_mixer_architecture_report.txt
+
+Scope
+- Consolidate runtime mixer architecture with explicit buses and ducking policies.
+- Keep existing playback stable while upgrading control model.
+
+Implemented
+1) Bus architecture in runtime
+- Core buses active in AudioEngine:
+  - master
+  - music
+  - sfx
+  - stingers
+  - ambient
+  - ui
+  - dialogue
+- Added effective gain resolver per bus:
+  - _effective_bus_gain(bus) = master * bus_level * (1 - duck)
+
+2) Mixer control API
+- New runtime methods:
+  - set_master_volume(value)
+  - set_bus_volume(bus, value)
+  - apply_volume_profile(profile_name)
+  - mixer_snapshot()
+- Existing methods now route through bus model:
+  - set_music_volume
+  - set_sfx_volume
+  - set_stinger_volume
+  - set_ambient_volume
+
+3) Ducking architecture
+- Upgraded DuckingController to per-source ducking:
+  - apply(target_bus, amount, source)
+  - clear(target_bus, source)
+  - get_amount(target_bus)
+  - snapshot()
+- Stinger ducking now applies to:
+  - music (source=stinger)
+  - ambient (source=stinger)
+- Added dialogue duck hooks:
+  - begin_dialogue_duck(amount)
+  - end_dialogue_duck()
+
+4) Runtime playback integration
+- music playback volume uses effective bus gain (not raw volume only).
+- ambient playback volume uses effective bus gain.
+- sfx playback volume uses effective sfx bus gain.
+- stinger playback volume uses effective stinger bus gain.
+
+5) Settings/main integration safeguards
+- Settings slider logic updated to avoid double master attenuation when master bus exists.
+- Main boot/reinit now applies master bus level (if available) before per-channel sliders.
+- Legacy fallback behavior remains when master bus API is absent.
+
+6) Asset generation safety
+- No destructive audio deletion.
+- No manifest schema break.
+- Ambient/stinger/music generation remains lazy/compatible.
+
+Smoke checks
+- py_compile (audio_engine, settings, main, mixer modules): PASS
+- mixer snapshot + dialogue duck begin/end: PASS
+- doctor baseline: PASS
+
+Known warnings
+- Full perceptual mix validation still requires in-game runtime listening (headless checks validate architecture/state only).
+- UI and dialogue buses are currently policy-ready; direct channel-specific playback for those buses can be expanded later.
+
+Phase 8 recommendation
+- Normalize manifest policy for bus/context ownership and migrate absolute file paths toward relative workspace paths,
+  preserving compatibility wrappers.
