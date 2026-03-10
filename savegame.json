@@ -6,7 +6,7 @@
   ],
   "relic_slots_max": 8,
   "player": {
-    "hp": 60,
+    "hp": 54,
     "max_hp": 60,
     "block": 0,
     "energy": 4,
@@ -46,6 +46,10 @@
     "hg_lore_06",
     "of_lore_17",
     "of_lore_26",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana",
     "cw_lore_09",
     "hg_lore_11",
     "filo_astral",
@@ -232,7 +236,7 @@
           "4_1",
           "4_0"
         ],
-        "state": "available"
+        "state": "cleared"
       }
     ],
     [
@@ -246,7 +250,7 @@
         "next": [
           "5_0"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "4_1",
@@ -270,7 +274,7 @@
         "type": "boss",
         "biome": "fractura_chakana",
         "next": [],
-        "state": "locked"
+        "state": "available"
       }
     ]
   ],
@@ -283,7 +287,7 @@
   ],
   "biome_index": 2,
   "biome": "hanan",
-  "xp": 28,
+  "xp": 37,
   "level": 2,
   "combats_won": 1,
   "tutorial_combats_won": 1,
@@ -306,16 +310,17 @@
   },
   "meta_director": {
     "recent_enemy_ids": [
-      "acaro_de_tinta",
-      "monolito_fracturado",
       "vigia_del_kaypacha",
       "ave_de_ceniza",
-      "espiritu_condor_menor"
+      "espiritu_condor_menor",
+      "mascara_risuena",
+      "portador_de_silencio"
     ],
     "recent_event_ids": [
       "chakana_crossroads",
       "apacheta_offer",
-      "serpent_shed"
+      "serpent_shed",
+      "ayni_pact"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
@@ -338,7 +343,7 @@
   "civilization": "base_world",
   "last_node_type": "combat",
   "levelup_pending": 1,
-  "current_node_id": "3_1",
+  "current_node_id": "4_0",
   "last_biome_seen": "hanan",
-  "saved_at": 1773184043
+  "saved_at": 1773184565
 }

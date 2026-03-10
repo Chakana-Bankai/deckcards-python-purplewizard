@@ -97,6 +97,14 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
             th = rng.randint(h // 5, h // 3)
             pygame.draw.rect(surface, (top[0], top[1], top[2]), (x, horizon - th, 8, th))
             pygame.draw.circle(surface, (mid[0], mid[1], mid[2]), (x + 4, horizon - th), rng.randint(16, 28))
+    elif any(k in env for k in ('temple', 'sanctuary', 'ruins', 'city', 'architecture', 'throne')):
+        for i in range(5):
+            bw = rng.randint(w // 10, w // 6)
+            bh = rng.randint(h // 7, h // 4)
+            bx = rng.randint(0, max(0, w - bw - 1))
+            by = horizon - bh - rng.randint(0, 22)
+            pygame.draw.rect(surface, (mid[0], mid[1], mid[2]), (bx, by, bw, bh), border_radius=3)
+            pygame.draw.rect(surface, (acc[0], acc[1], acc[2]), (bx + bw // 4, by - 10, bw // 2, 10), border_radius=2)
     else:
         points = []
         x = 0

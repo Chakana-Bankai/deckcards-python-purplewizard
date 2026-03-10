@@ -1,0 +1,10 @@
+status=ok
+ticket=scene_engine_iteration_and_pass_cleanup
+active_pass_files_removed_from_runtime=180_archived_plus_future_staging_redirect
+active_pass_files_remaining=0
+archive_dir=game/assets/sprites/cards/_archive_passes
+staging_dir=reports/validation/art_candidate_staging
+scene_engine=upgraded_to_v2
+changes=stronger_silhouette, stronger_focus_object, higher_internal_canvas, reduced_soft_blur, active_candidate_files_redirected_outside_runtime
+regenerated_active_cards=cw_lore_10,hip_cosmic_warrior_20,arc_060
+beta_run=PASS

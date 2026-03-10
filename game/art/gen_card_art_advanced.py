@@ -82,6 +82,42 @@ def _palette_for_style(style: str) -> tuple[tuple[int, int, int], tuple[int, int
         return (58, 38, 84), (198, 54, 92), (36, 26, 48)
     return (112, 74, 168), (214, 182, 96), (42, 28, 64)
 
+def _scene_finish_pass(out_path: Path, seed: int, prompt: str) -> dict:
+    try:
+        surf = pygame.image.load(str(out_path)).convert_alpha()
+    except Exception:
+        return {'ok': False}
+
+    w, h = surf.get_size()
+    rng = random.Random(seed + 909)
+    style = _set_style(prompt)
+    p_main, p_accent, p_deep = _palette_for_style(style)
+
+    grade = pygame.Surface((w, h), pygame.SRCALPHA)
+    for y in range(h):
+        a = int(10 + 14 * (1.0 - y / max(1, h - 1)))
+        pygame.draw.line(grade, (*p_deep, a), (0, y), (w, y), 1)
+    surf.blit(grade, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
+
+    # subtle edge vignette only; no giant ellipses or intrusive geometry over the subject.
+    vignette = pygame.Surface((w, h), pygame.SRCALPHA)
+    pygame.draw.rect(vignette, (0, 0, 0, 22), pygame.Rect(0, 0, w, h), 3, border_radius=10)
+    pygame.draw.rect(vignette, (0, 0, 0, 14), pygame.Rect(3, 3, w - 6, h - 6), 2, border_radius=8)
+    surf.blit(vignette, (0, 0))
+
+    spark_n = 8 if style != 'archon' else 5
+    for _ in range(spark_n):
+        sx = rng.randint(int(w * 0.08), int(w * 0.92))
+        sy = rng.randint(int(h * 0.08), int(h * 0.82))
+        pygame.draw.circle(surf, (*p_accent, 120), (sx, sy), 1)
+
+    try:
+        pygame.image.save(surf, str(out_path))
+    except Exception:
+        return {'ok': False}
+
+    return {'ok': True, 'style': style, 'finish': 'scene_light'}
+
 
 def _narrative_pass(out_path: Path, seed: int, mode: str, prompt: str) -> dict:
     try:
@@ -214,7 +250,10 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
 
     try:
         result = generate_scene_art(card_id, enriched_prompt, seed + seed_bump, out_path)
-        comp = _narrative_pass(out_path, seed + seed_bump, mode, enriched_prompt)
+        if str(result.get('generator_used', '')).startswith('scene_engine'):
+            comp = _scene_finish_pass(out_path, seed + seed_bump, enriched_prompt)
+        else:
+            comp = _narrative_pass(out_path, seed + seed_bump, mode, enriched_prompt)
         if isinstance(result, dict):
             result = dict(result)
             result.setdefault("generator_used", GEN_CARD_ART_ADVANCED_VERSION)
@@ -236,7 +275,10 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
         }
     except Exception:
         fallback = gen_card_art32.generate(card_id, card_type, prompt, seed + 137, out_path)
-        comp = _narrative_pass(out_path, seed + 137, mode, prompt)
+        if isinstance(fallback, dict) and str(fallback.get('generator_used', '')).startswith('scene_engine'):
+            comp = _scene_finish_pass(out_path, seed + 137, prompt)
+        else:
+            comp = _narrative_pass(out_path, seed + 137, mode, prompt)
         if isinstance(fallback, dict):
             fallback = dict(fallback)
             fallback.setdefault("generator_used", f"fallback::{GEN_CARD_ART_ADVANCED_VERSION}")

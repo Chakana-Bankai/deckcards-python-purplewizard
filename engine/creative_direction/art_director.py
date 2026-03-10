@@ -2,6 +2,8 @@
 
 import shutil
 from pathlib import Path
+
+from game.core.paths import project_root
 from typing import Callable
 
 from .quality_evaluator import QualityEvaluator
@@ -18,7 +20,9 @@ class CreativeArtDirector:
         self.evaluator = QualityEvaluator()
 
     def _candidate_path(self, out_path: Path, label: str) -> Path:
-        return out_path.with_name(f"{out_path.stem}__{label}{out_path.suffix}")
+        stage_dir = project_root() / 'reports' / 'validation' / 'art_candidate_staging' / out_path.parent.name
+        stage_dir.mkdir(parents=True, exist_ok=True)
+        return stage_dir / f"{out_path.stem}__{label}{out_path.suffix}"
 
     def evolve(
         self,
