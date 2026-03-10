@@ -1,6 +1,6 @@
 {
   "version": "visual_v2",
-  "generated_at": 1773116785,
+  "generated_at": 1773153380,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -5379,7 +5379,7 @@
     "relics:oracle_lens:128x128:rare": {
       "asset_id": "oracle_lens",
       "category": "relics",
-      "seed": 1361567402,
+      "seed": 646352732,
       "palette": {
         "deep_purple": [
           28,
@@ -5412,7 +5412,7 @@
       ],
       "context": "rare",
       "version": "visual_v2",
-      "generated_at": 1773083025,
+      "generated_at": 1773153319,
       "size": [
         128,
         128
@@ -6432,6 +6432,138 @@
       "size": [
         514,
         76
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:oracle_lens:176x176:rare": {
+      "asset_id": "oracle_lens",
+      "category": "relics",
+      "seed": 646352732,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\oracle_lens_176x176_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773153324,
+      "size": [
+        176,
+        176
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:oracle_lens:18x18:rare": {
+      "asset_id": "oracle_lens",
+      "category": "relics",
+      "seed": 646352732,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\oracle_lens_18x18_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773153328,
+      "size": [
+        18,
+        18
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:oracle_lens:16x16:rare": {
+      "asset_id": "oracle_lens",
+      "category": "relics",
+      "seed": 646352732,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\oracle_lens_16x16_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773153380,
+      "size": [
+        16,
+        16
       ],
       "state": "valid",
       "lore_tags": []
