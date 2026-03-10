@@ -1,0 +1,42 @@
+CHAKANA DOCUMENTATION CANON NESTING PASS
+======================================
+
+scope=documentation_only
+goal=nest canonical manual, systems, lore and direction docs under docs/canon
+
+created_folders=
+- docs/canon/manual
+- docs/canon/systems
+- docs/canon/lore
+- docs/canon/direction
+- docs/canon/reference
+
+moved_documents=
+- docs/canon/manual/CHAKANA_MANUAL_1_0.md
+- docs/canon/manual/CHAKANA_MASTER_GAME_BIBLE_1_0.md
+- docs/canon/reference/GAME_SYSTEMS_REFERENCE.md
+- docs/canon/lore/LORE_ATLAS.md
+- docs/canon/lore/BESTIARY.md
+- docs/canon/lore/RELICS.md
+- docs/canon/direction/ART_DIRECTION.md
+- docs/canon/direction/ART_STYLE_GUIDE.md
+- docs/canon/direction/MUSIC_DIRECTION.md
+- docs/canon/systems/CHAKANA_GAMEPLAY_SYSTEM_1_0.md
+- docs/canon/systems/CHAKANA_COMBAT_SYSTEM_1_0.md
+- docs/canon/systems/CHAKANA_CARD_SYSTEM_1_0.md
+- docs/canon/systems/CHAKANA_ENEMY_SYSTEM_1_0.md
+- docs/canon/systems/CHAKANA_RELIC_SYSTEM_1_0.md
+- docs/canon/systems/CHAKANA_META_ENGINE_DESIGN_1_0.md
+
+new_documents=
+- docs/canon/README.md
+- docs/canon/systems/CHAKANA_AUDIO_SYSTEM_1_0.md
+- docs/systems/README.md
+
+reference_updates=
+- docs/README.md
+- docs/canon/reference/GAME_SYSTEMS_REFERENCE.md
+- docs/systems/system_reference.md
+- tools/maintenance/chakana_project_audit_consolidation.py
+
+result=canonical docs are now grouped by manual, systems, lore, direction and reference

@@ -679,14 +679,14 @@ docs/archive/system_knot_audit_report.txt	.txt	active support	legacy candidate	5
 docs/archive/visual_direction_audit.txt	.txt	active support	legacy candidate	894
 docs/archive/visual_pipeline_upgrade_report.txt	.txt	active support	legacy candidate	1372
 docs/archive/world_naming_conventions.txt	.txt	active support	legacy candidate	896
-docs/canon/ART_DIRECTION.md	.md	active support	active support	226
-docs/canon/ART_STYLE_GUIDE.md	.md	active support	active support	1381
-docs/canon/BESTIARY.md	.md	active support	active support	289
-docs/canon/CHAKANA_MANUAL_1_0.md	.md	active support	active support	372
-docs/canon/GAME_SYSTEMS_REFERENCE.md	.md	active support	active support	422
-docs/canon/LORE_ATLAS.md	.md	active support	active support	197
-docs/canon/MUSIC_DIRECTION.md	.md	active support	active support	117
-docs/canon/RELICS.md	.md	active support	active support	110
+docs/canon/direction/ART_DIRECTION.md	.md	active support	active support	226
+docs/canon/direction/ART_STYLE_GUIDE.md	.md	active support	active support	1381
+docs/canon/lore/BESTIARY.md	.md	active support	active support	289
+docs/canon/manual/CHAKANA_MANUAL_1_0.md	.md	active support	active support	372
+docs/canon/reference/GAME_SYSTEMS_REFERENCE.md	.md	active support	active support	422
+docs/canon/lore/LORE_ATLAS.md	.md	active support	active support	197
+docs/canon/direction/MUSIC_DIRECTION.md	.md	active support	active support	117
+docs/canon/lore/RELICS.md	.md	active support	active support	110
 docs/design/Art_Direction.md	.md	active support	active support	1099
 docs/design/SYSTEM_CLEANUP_LOCK.md	.md	active support	active support	1502
 docs/design/UI_AUDIT_REPORT.md	.md	active support	active support	7415
@@ -698,13 +698,13 @@ docs/lore/Lore_Canon.md	.md	active support	active support	1316
 docs/lore/avatar_curated_checklist.md	.md	active support	active support	2234
 docs/lore/carta_sagrada_diseno.md	.md	active support	active support	717
 docs/lore/lore_biblia_chakana.md	.md	active support	active support	735
-docs/systems/CHAKANA_CARD_SYSTEM_1_0.md	.md	active support	active support	802
-docs/systems/CHAKANA_COMBAT_SYSTEM_1_0.md	.md	active support	active support	693
-docs/systems/CHAKANA_ENEMY_SYSTEM_1_0.md	.md	active support	active support	885
-docs/systems/CHAKANA_GAMEPLAY_SYSTEM_1_0.md	.md	active support	active support	1252
-docs/systems/CHAKANA_MASTER_GAME_BIBLE_1_0.md	.md	active support	active support	545
-docs/systems/CHAKANA_META_ENGINE_DESIGN_1_0.md	.md	active support	active support	866
-docs/systems/CHAKANA_RELIC_SYSTEM_1_0.md	.md	active support	active support	727
+docs/canon/systems/CHAKANA_CARD_SYSTEM_1_0.md	.md	active support	active support	802
+docs/canon/systems/CHAKANA_COMBAT_SYSTEM_1_0.md	.md	active support	active support	693
+docs/canon/systems/CHAKANA_ENEMY_SYSTEM_1_0.md	.md	active support	active support	885
+docs/canon/systems/CHAKANA_GAMEPLAY_SYSTEM_1_0.md	.md	active support	active support	1252
+docs/canon/manual/CHAKANA_MASTER_GAME_BIBLE_1_0.md	.md	active support	active support	545
+docs/canon/systems/CHAKANA_META_ENGINE_DESIGN_1_0.md	.md	active support	active support	866
+docs/canon/systems/CHAKANA_RELIC_SYSTEM_1_0.md	.md	active support	active support	727
 docs_cleanup_report.txt	.txt	report/log	duplicate/overlapping	9270
 document_audit_report.txt	.txt	report/log	duplicate/overlapping	4153
 documentation_reorganization_report.txt	.txt	report/log	duplicate/overlapping	972

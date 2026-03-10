@@ -9,13 +9,13 @@ Applied moves:
 - Superseded docs moved to docs/archive (no hard delete).
 
 Priority (active docs):
-- P1 docs/systems/CHAKANA_GAMEPLAY_SYSTEM_1_0.md
-- P1 docs/systems/CHAKANA_COMBAT_SYSTEM_1_0.md
-- P1 docs/systems/CHAKANA_CARD_SYSTEM_1_0.md
-- P1 docs/systems/CHAKANA_ENEMY_SYSTEM_1_0.md
-- P1 docs/systems/CHAKANA_RELIC_SYSTEM_1_0.md
-- P1 docs/systems/CHAKANA_META_ENGINE_DESIGN_1_0.md
-- P1 docs/systems/CHAKANA_MASTER_GAME_BIBLE_1_0.md
+- P1 docs/canon/systems/CHAKANA_GAMEPLAY_SYSTEM_1_0.md
+- P1 docs/canon/systems/CHAKANA_COMBAT_SYSTEM_1_0.md
+- P1 docs/canon/systems/CHAKANA_CARD_SYSTEM_1_0.md
+- P1 docs/canon/systems/CHAKANA_ENEMY_SYSTEM_1_0.md
+- P1 docs/canon/systems/CHAKANA_RELIC_SYSTEM_1_0.md
+- P1 docs/canon/systems/CHAKANA_META_ENGINE_DESIGN_1_0.md
+- P1 docs/canon/manual/CHAKANA_MASTER_GAME_BIBLE_1_0.md
 - P1 docs/engine/CHAKANA_ENGINE_EXTRACTION_PLAN.md
 - P1 docs/engine/PURPLE_WIZARD_CONTENT_BOUNDARY.md
 - P1 docs/design/game_design_document.md

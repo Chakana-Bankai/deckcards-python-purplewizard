@@ -106,12 +106,12 @@ Each track must include melody, harmony, rhythm.
     systems = """# GAME SYSTEMS REFERENCE
 
 Canonical references:
-- combat_system -> docs/systems/CHAKANA_COMBAT_SYSTEM_1_0.md
-- card_system -> docs/systems/CHAKANA_CARD_SYSTEM_1_0.md
-- enemy_system -> docs/systems/CHAKANA_ENEMY_SYSTEM_1_0.md
-- gameplay_system -> docs/systems/CHAKANA_GAMEPLAY_SYSTEM_1_0.md
-- relic_system -> docs/systems/CHAKANA_RELIC_SYSTEM_1_0.md
-- meta_engine -> docs/systems/CHAKANA_META_ENGINE_DESIGN_1_0.md
+- combat_system -> docs/canon/systems/CHAKANA_COMBAT_SYSTEM_1_0.md
+- card_system -> docs/canon/systems/CHAKANA_CARD_SYSTEM_1_0.md
+- enemy_system -> docs/canon/systems/CHAKANA_ENEMY_SYSTEM_1_0.md
+- gameplay_system -> docs/canon/systems/CHAKANA_GAMEPLAY_SYSTEM_1_0.md
+- relic_system -> docs/canon/systems/CHAKANA_RELIC_SYSTEM_1_0.md
+- meta_engine -> docs/canon/systems/CHAKANA_META_ENGINE_DESIGN_1_0.md
 """
 
     files = {
@@ -175,14 +175,14 @@ def phase2_docs_cleanup() -> dict:
 
 def phase3_system_alignment() -> dict:
     checks = {
-        "combat": ROOT / "docs/systems/CHAKANA_COMBAT_SYSTEM_1_0.md",
-        "cards": ROOT / "docs/systems/CHAKANA_CARD_SYSTEM_1_0.md",
-        "enemy decks": ROOT / "docs/systems/CHAKANA_ENEMY_SYSTEM_1_0.md",
+        "combat": ROOT / "docs/canon/systems/CHAKANA_COMBAT_SYSTEM_1_0.md",
+        "cards": ROOT / "docs/canon/systems/CHAKANA_CARD_SYSTEM_1_0.md",
+        "enemy decks": ROOT / "docs/canon/systems/CHAKANA_ENEMY_SYSTEM_1_0.md",
         "shop": ROOT / "docs/design/game_design_document.md",
-        "codex": ROOT / "docs/canon/GAME_SYSTEMS_REFERENCE.md",
+        "codex": ROOT / "docs/canon/reference/GAME_SYSTEMS_REFERENCE.md",
         "avatar": ROOT / "docs/lore/avatar_curated_checklist.md",
-        "art generation": ROOT / "docs/canon/ART_DIRECTION.md",
-        "music generation": ROOT / "docs/canon/MUSIC_DIRECTION.md",
+        "art generation": ROOT / "docs/canon/direction/ART_DIRECTION.md",
+        "music generation": ROOT / "docs/canon/direction/MUSIC_DIRECTION.md",
         "map": ROOT / "docs/design/game_design_document.md",
     }
 

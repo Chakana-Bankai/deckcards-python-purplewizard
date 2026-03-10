@@ -1,0 +1,18 @@
+CHAKANA RUN STABILITY FOLLOW-UP
+=============================
+
+checks=
+- tools.qa.qa_phase1_gameplay_blockers => PASS
+- tools.qa.check_deck_system => PASS
+- tools.qa.check_combat_content_lock => PASS (1 warning)
+- retry_with_negative_hp => PASS
+- copy_last_played_chain => PASS
+
+notes=
+- retry restores the run into CombatScreen and recovers HP from invalid negative value
+- overflow-to-discard and reshuffle remain stable under current deck audit
+- copy_last_played no longer reproduces the historical recursion crash in the exercised path
+- current combat content lock warning is balance-facing, not runtime-breaking
+
+remaining_warning=
+- combat_content_lock :: block_window:legendary:avg=3.50 expected~8-12
