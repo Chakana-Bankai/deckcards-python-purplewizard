@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 import re
@@ -413,7 +413,7 @@ def phase10_repository_structure() -> dict:
 def phase11_full_validation() -> dict:
     # Lightweight smoke aggregation from existing reports.
     checks = {
-        "deck_flow": "PASS" if "checked=60 errors=0" in _read(ROOT / "qa_report_build_0_9_106a.txt") or "deck flow test: PASS" in _read(ROOT / "qa_report_build_0_9_106a.txt") else "WARNING",
+        "deck_flow": "PASS" if "checked=60 errors=0" in _read(ROOT / "qa/reports/current/qa_report_build_0_9_106a.txt") or "deck flow test: PASS" in _read(ROOT / "qa/reports/current/qa_report_build_0_9_106a.txt") else "WARNING",
         "enemy_deck_logic": "PASS" if "status=PASS" in _read(ROOT / "qa/reports/current/combat_system_upgrade_report.txt") else "WARNING",
         "shop_purchases": "WARNING",
         "codex_access": "PASS" if (ROOT / "codex_validation_report.txt").exists() else "WARNING",

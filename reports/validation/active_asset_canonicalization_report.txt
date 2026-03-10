@@ -1,0 +1,47 @@
+CHAKANA ACTIVE ASSET CANONICALIZATION REPORT (PHASE 4)
+
+generated_at=2026-03-09T21:23:48
+scope=canonicalize active ownership and loaders/manifests (safe, non-destructive)
+
+[phase4_actions_applied]
+- tools/regen_assets.py now writes to game/assets (canonical runtime path).
+- tools/reset_autogen.ps1 now targets game/assets generated folders (canonical).
+- no runtime loader path changed in game code; runtime already resolves through game/core/paths.assets_dir().
+
+[manifest_path_classification_counts]
+- game/audio/audio_manifest.json
+  - canonical_game_audio: 40
+- game/data/art_manifest.json
+  - legacy_root_assets: 60
+- game/data/bgm_manifest.json
+  - canonical_game_audio: 13
+
+[manifest_scan_status]
+- game/data/art_manifest.json: status=ok scanned_path_fields=60
+- game/data/art_manifest_cards.json: status=ok scanned_path_fields=0
+- game/data/art_manifest_enemies.json: status=unreadable scanned_path_fields=
+- game/data/art_manifest_guides.json: status=unreadable scanned_path_fields=
+- game/data/art_manifest_avatar.json: status=unreadable scanned_path_fields=
+- game/data/biome_manifest.json: status=unreadable scanned_path_fields=
+- game/data/bgm_manifest.json: status=ok scanned_path_fields=13
+- game/audio/audio_manifest.json: status=ok scanned_path_fields=40
+
+[runtime_target_presence]
+- cards_dir: exists=True files=241
+- biomes_dir: exists=True files=28
+- avatars_curated_dir: exists=True files=8
+- music_dir: exists=True files=1
+- sfx_dir: exists=True files=14
+
+[legacy_target_presence]
+- legacy_cards_dir: exists=True files=120
+- legacy_music_dir: exists=True files=6
+
+[canonical_decision]
+- canonical_active_runtime_root = game/assets
+- top_level_assets_root = legacy_support_or_archive (non-runtime)
+- migration_strategy = keep runtime stable; phase5 archives duplicate legacy assets after explicit move list
+
+[status]
+result=PASS_WITH_WARNING
+warning=legacy duplicate tree under assets/ still present and should be archived in next phase

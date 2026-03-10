@@ -1,16 +1,31 @@
-ROOT CLEANUP REPORT
-generated_at: 2026-03-09 17:49:27
+CHAKANA ROOT CLEANUP REPORT (PHASE 3)
 
-Result:
-- Root report clutter reduced to cleanup/meta outputs only.
-- QA versioned outputs removed from root and normalized under qa/reports/current|archive.
-- Runtime/config files left in place (safe).
+generated_at=2026-03-09T21:20:40
+phase_scope=root_cleanup_only
 
-Remaining root txt reports (intentional):
-- documentation_reorganization_report.txt
-- qa_reorganization_report.txt
-- tools_reorganization_report.txt
-- root_cleanup_report.txt
-- migration_notes.txt
-- project_docs_qa_tools_cleanup_report.txt
+[actions_applied]
+- removed root loose file: qa_report_build_0_9_106a.txt
+- updated tools/qa_report_generator.py to stop writing root mirror output
+- kept canonical qa outputs under qa/reports/current/
+- updated tools/maintenance/chakana_manual_canon_consolidation_pass.py to read canonical qa report path
 
+[compatibility_notes]
+- qa/reports/current/qa_report_build_latest.txt remains as stable pointer
+- no runtime asset path changed in this phase
+- AGENTS.md intentionally kept at root as control/instructions file
+
+[root_files_after_cleanup]
+- .gitattributes
+- .gitignore
+- .gitkeep
+- .regen_flag
+- AGENTS.md
+- README.md
+- requirements.txt
+- reset_generated.ps1
+- run.ps1
+- savegame.json
+
+[status]
+result=PASS_WITH_WARNING
+warning=asset duplication cleanup pending for next phases (assets vs game/assets)

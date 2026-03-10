@@ -1,0 +1,30 @@
+CHAKANA COMPATIBILITY LAYER REPORT (PHASE 7)
+
+generated_at=2026-03-09T21:30:33
+scope=safe compatibility bridge after root/assets canonicalization
+
+[compatibility_actions_applied]
+- tools/maintenance/creative_director_pass.py updated to prefer game/assets and fallback to legacy assets/ only if needed.
+- tools/reset_autogen.ps1 includes canonical game/assets targets plus legacy assets targets for transition compatibility.
+- qa report generation stays canonical in qa/reports/current with stable latest pointer.
+- manifest references for card art already normalized to game/assets (phase 6).
+
+[active_compatibility_policies]
+- policy_1: runtime canonical assets root = game/assets
+- policy_2: legacy root assets allowed only as tooling fallback during transition
+- policy_3: archived assets under assets/_archive are non-runtime
+- policy_4: qa canonical output lives under qa/reports/current
+
+[checks]
+- qa_report_output: PASS (canonical latest QA pointer in qa/reports/current)
+- legacy_root_qa_report_removed: PASS (root mirror report removed)
+- runtime_assets_canonical_root: PASS (runtime resolves assets via game/core/paths.assets_dir() -> game/assets)
+- legacy_archive_exists: PASS (legacy duplicate assets archived instead of deleted)
+- art_manifest_canonical_paths: PASS (manifest normalized to game/assets paths in phase 6)
+
+[remaining_warnings]
+- high git churn expected from phase5 archive move log (non-destructive archive).
+- full loader hardening for every maintenance script can be done in a later dedicated pass.
+
+[status]
+result=PASS_WITH_WARNING

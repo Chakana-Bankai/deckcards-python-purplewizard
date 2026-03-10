@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "game" / "data"
-ASSETS = ROOT / "assets"
+ASSETS = ROOT / "game" / "assets"
 
 
 def _load_cards() -> list[dict]:

@@ -1,0 +1,146 @@
+CHAKANA LEGACY ASSET ARCHIVE REPORT (PHASE 5)
+
+generated_at=2026-03-09T21:26:07
+archive_root=assets/_archive/phase5_legacy_assets/20260309_212607
+strategy=non_destructive_move_to_archive
+
+[summary]
+- moved_total=125
+- moved_legacy_card_png=120
+- moved_legacy_music_wav=5
+
+[move_log]
+- legacy_duplicate_card_png: assets/sprites/cards/campo_protector.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/campo_protector.png
+- legacy_duplicate_card_png: assets/sprites/cards/campo_protector__pass2_2.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/campo_protector__pass2_2.png
+- legacy_duplicate_card_png: assets/sprites/cards/chakana_de_luz.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/chakana_de_luz.png
+- legacy_duplicate_card_png: assets/sprites/cards/chakana_de_luz__pass2_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/chakana_de_luz__pass2_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_02.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_02.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_02__pass1_2.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_02__pass1_2.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_03.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_03.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_03__pass2_2.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_03__pass2_2.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_04.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_04.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_04__pass1_5.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_04__pass1_5.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_08.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_08.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_08__pass2_2.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_08__pass2_2.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_09.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_09.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_09__pass1_3.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_09__pass1_3.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_10.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_10.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_10__pass1_0.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_10__pass1_0.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_14.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_14.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_14__pass1_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_14__pass1_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_18.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_18.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_18__pass1_3.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_18__pass1_3.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_23.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_23.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_23__pass1_0.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_23__pass1_0.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_29.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_29.png
+- legacy_duplicate_card_png: assets/sprites/cards/cw_lore_29__pass1_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_29__pass1_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/eco_de_sabiduria.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/eco_de_sabiduria.png
+- legacy_duplicate_card_png: assets/sprites/cards/eco_de_sabiduria__pass1_2.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/eco_de_sabiduria__pass1_2.png
+- legacy_duplicate_card_png: assets/sprites/cards/embate_del_jaguar.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/embate_del_jaguar.png
+- legacy_duplicate_card_png: assets/sprites/cards/embate_del_jaguar__pass1_3.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/embate_del_jaguar__pass1_3.png
+- legacy_duplicate_card_png: assets/sprites/cards/escudo_de_luz.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/escudo_de_luz.png
+- legacy_duplicate_card_png: assets/sprites/cards/escudo_de_luz__pass1_5.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/escudo_de_luz__pass1_5.png
+- legacy_duplicate_card_png: assets/sprites/cards/escudo_del_chaman.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/escudo_del_chaman.png
+- legacy_duplicate_card_png: assets/sprites/cards/escudo_del_chaman__pass2_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/escudo_del_chaman__pass2_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/espiritu_guardian.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/espiritu_guardian.png
+- legacy_duplicate_card_png: assets/sprites/cards/espiritu_guardian__pass1_5.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/espiritu_guardian__pass1_5.png
+- legacy_duplicate_card_png: assets/sprites/cards/estallido_arcano.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/estallido_arcano.png
+- legacy_duplicate_card_png: assets/sprites/cards/estallido_arcano__pass1_4.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/estallido_arcano__pass1_4.png
+- legacy_duplicate_card_png: assets/sprites/cards/filo_astral.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/filo_astral.png
+- legacy_duplicate_card_png: assets/sprites/cards/filo_astral__pass1_5.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/filo_astral__pass1_5.png
+- legacy_duplicate_card_png: assets/sprites/cards/filo_en_cadena.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/filo_en_cadena.png
+- legacy_duplicate_card_png: assets/sprites/cards/filo_en_cadena__pass1_4.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/filo_en_cadena__pass1_4.png
+- legacy_duplicate_card_png: assets/sprites/cards/firmeza_del_cuerpo.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/firmeza_del_cuerpo.png
+- legacy_duplicate_card_png: assets/sprites/cards/firmeza_del_cuerpo__pass2_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/firmeza_del_cuerpo__pass2_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/fragmento_celeste.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/fragmento_celeste.png
+- legacy_duplicate_card_png: assets/sprites/cards/fragmento_celeste__pass2_3.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/fragmento_celeste__pass2_3.png
+- legacy_duplicate_card_png: assets/sprites/cards/fusion_espiritual.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/fusion_espiritual.png
+- legacy_duplicate_card_png: assets/sprites/cards/fusion_espiritual__pass1_4.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/fusion_espiritual__pass1_4.png
+- legacy_duplicate_card_png: assets/sprites/cards/garra_espiritual.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/garra_espiritual.png
+- legacy_duplicate_card_png: assets/sprites/cards/garra_espiritual__pass1_3.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/garra_espiritual__pass1_3.png
+- legacy_duplicate_card_png: assets/sprites/cards/guardia_terrenal.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/guardia_terrenal.png
+- legacy_duplicate_card_png: assets/sprites/cards/guardia_terrenal__pass1_2.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/guardia_terrenal__pass1_2.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_01.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_01.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_01__pass1_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_01__pass1_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_05.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_05.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_05__pass2_3.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_05__pass2_3.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_06.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_06.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_06__pass1_0.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_06__pass1_0.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_07.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_07.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_07__pass1_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_07__pass1_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_11.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_11.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_11__pass1_0.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_11__pass1_0.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_13.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_13.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_13__pass1_4.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_13__pass1_4.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_15.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_15.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_15__pass1_0.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_15__pass1_0.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_19.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_19.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_19__pass2_3.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_19__pass2_3.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_24.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_24.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_24__pass2_3.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_24__pass2_3.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_27.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_27.png
+- legacy_duplicate_card_png: assets/sprites/cards/hg_lore_27__pass2_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_27__pass2_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/invocacion_astral.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/invocacion_astral.png
+- legacy_duplicate_card_png: assets/sprites/cards/invocacion_astral__pass1_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/invocacion_astral__pass1_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/lectura_del_destino.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/lectura_del_destino.png
+- legacy_duplicate_card_png: assets/sprites/cards/lectura_del_destino__pass1_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/lectura_del_destino__pass1_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/mantra_del_umbral.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/mantra_del_umbral.png
+- legacy_duplicate_card_png: assets/sprites/cards/mantra_del_umbral__pass2_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/mantra_del_umbral__pass2_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/muralla_de_piedra.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/muralla_de_piedra.png
+- legacy_duplicate_card_png: assets/sprites/cards/muralla_de_piedra__pass1_4.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/muralla_de_piedra__pass1_4.png
+- legacy_duplicate_card_png: assets/sprites/cards/observacion_sagrada.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/observacion_sagrada.png
+- legacy_duplicate_card_png: assets/sprites/cards/observacion_sagrada__pass2_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/observacion_sagrada__pass2_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_12.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_12.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_12__pass2_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_12__pass2_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_16.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_16.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_16__pass2_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_16__pass2_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_17.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_17.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_17__pass1_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_17__pass1_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_20.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_20.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_20__pass1_5.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_20__pass1_5.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_21.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_21.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_21__pass1_0.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_21__pass1_0.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_22.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_22.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_22__pass1_4.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_22__pass1_4.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_25.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_25.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_25__pass2_2.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_25__pass2_2.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_26.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_26.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_26__pass2_1.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_26__pass2_1.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_28.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_28.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_28__pass1_4.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_28__pass1_4.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_30.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_30.png
+- legacy_duplicate_card_png: assets/sprites/cards/of_lore_30__pass1_0.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_30__pass1_0.png
+- legacy_duplicate_card_png: assets/sprites/cards/piedra_ritual.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/piedra_ritual.png
+- legacy_duplicate_card_png: assets/sprites/cards/piedra_ritual__pass2_2.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/piedra_ritual__pass2_2.png
+- legacy_duplicate_card_png: assets/sprites/cards/portal_de_la_chakana.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/portal_de_la_chakana.png
+- legacy_duplicate_card_png: assets/sprites/cards/portal_de_la_chakana__pass2_3.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/portal_de_la_chakana__pass2_3.png
+- legacy_duplicate_card_png: assets/sprites/cards/pulso_cosmico.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/pulso_cosmico.png
+- legacy_duplicate_card_png: assets/sprites/cards/pulso_cosmico__pass1_3.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/pulso_cosmico__pass1_3.png
+- legacy_duplicate_card_png: assets/sprites/cards/resistencia_ancestral.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/resistencia_ancestral.png
+- legacy_duplicate_card_png: assets/sprites/cards/resistencia_ancestral__pass2_2.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/resistencia_ancestral__pass2_2.png
+- legacy_duplicate_card_png: assets/sprites/cards/revelacion_astral.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/revelacion_astral.png
+- legacy_duplicate_card_png: assets/sprites/cards/revelacion_astral__pass1_2.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/revelacion_astral__pass1_2.png
+- legacy_duplicate_card_png: assets/sprites/cards/ritual_de_la_trama.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/ritual_de_la_trama.png
+- legacy_duplicate_card_png: assets/sprites/cards/ritual_de_la_trama__pass1_4.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/ritual_de_la_trama__pass1_4.png
+- legacy_duplicate_card_png: assets/sprites/cards/sello_protector.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/sello_protector.png
+- legacy_duplicate_card_png: assets/sprites/cards/sello_protector__pass1_2.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/sello_protector__pass1_2.png
+- legacy_duplicate_card_png: assets/sprites/cards/silencio_interior.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/silencio_interior.png
+- legacy_duplicate_card_png: assets/sprites/cards/silencio_interior__pass1_3.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/silencio_interior__pass1_3.png
+- legacy_duplicate_card_png: assets/sprites/cards/vinculo_de_energia.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/vinculo_de_energia.png
+- legacy_duplicate_card_png: assets/sprites/cards/vinculo_de_energia__pass2_2.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/vinculo_de_energia__pass2_2.png
+- legacy_duplicate_card_png: assets/sprites/cards/vision_del_condor.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/vision_del_condor.png
+- legacy_duplicate_card_png: assets/sprites/cards/vision_del_condor__pass1_4.png -> assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/vision_del_condor__pass1_4.png
+- legacy_root_music_wav: assets/music/boss.wav -> assets/_archive/phase5_legacy_assets/20260309_212607/music/boss.wav
+- legacy_root_music_wav: assets/music/combat_kaypacha.wav -> assets/_archive/phase5_legacy_assets/20260309_212607/music/combat_kaypacha.wav
+- legacy_root_music_wav: assets/music/event.wav -> assets/_archive/phase5_legacy_assets/20260309_212607/music/event.wav
+- legacy_root_music_wav: assets/music/map_kaypacha.wav -> assets/_archive/phase5_legacy_assets/20260309_212607/music/map_kaypacha.wav
+- legacy_root_music_wav: assets/music/menu.wav -> assets/_archive/phase5_legacy_assets/20260309_212607/music/menu.wav
+
+[post_checks]
+- assets/sprites/cards/png_remaining=0
+- assets/music/wav_remaining=0
+- game/assets/sprites/cards/png_remaining=240
+
+[status]
+result=PASS_WITH_WARNING
+warning=legacy tree archived; manifest normalization still needed in next phase (art_manifest.json paths).

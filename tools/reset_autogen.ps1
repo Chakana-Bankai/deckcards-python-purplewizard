@@ -1,18 +1,18 @@
 # tools/reset_autogen.ps1
-# Reset nuclear: borra TODO lo autogenerado (arte, música, manifests, prompts cache, caches de python)
-# Ejecutar desde la raíz del repo.
+# Reset nuclear: borra TODO lo autogenerado (arte, mÃƒÂºsica, manifests, prompts cache, caches de python)
+# Ejecutar desde la raÃƒÂ­z del repo.
 
 $ErrorActionPreference = "SilentlyContinue"
 
 Write-Host "== RESET AUTOGEN: starting =="
 
-# Carpetas típicas de autogenerados (ajusta si tu repo usa otras)
+# Carpetas tÃƒÂ­picas de autogenerados (ajusta si tu repo usa otras)
 $paths = @(
-  "assets\sprites\cards",
-  "assets\sprites\enemies",
-  "assets\sprites\biomes",
-  "assets\music",
-  "assets\sfx\generated",
+  "game\assets\sprites\cards",
+  "game\assets\sprites\enemies",
+  "game\assets\sprites\biomes",
+  "game\assets\music",
+  "game\assets\sfx\generated",`r`n  # Legacy compatibility (older root asset tree)`r`n  "assets\sprites\cards",`r`n  "assets\sprites\enemies",`r`n  "assets\sprites\biomes",`r`n  "assets\music",`r`n  "assets\sfx\generated",
   "game\data\generated",
   "game\generated",
   "game\data\card_prompts.json",

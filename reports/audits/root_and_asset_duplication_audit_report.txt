@@ -1,0 +1,635 @@
+CHAKANA ROOT + ASSET DUPLICATION AUDIT (PHASE 1)
+
+generated_at=2026-03-09T21:14:28
+total_repo_files=4921
+focus_files=863
+asset_files_scanned=579
+
+[classification_totals]
+- active_but_wrong_location: 132
+- active_support: 84
+- archive_candidate: 116
+- canonical_active: 420
+- report/log: 51
+- unknown: 60
+
+[root_clutter_candidates]
+- AGENTS.md
+- qa_report_build_0_9_106a.txt
+
+[top_root_files]
+- .gitattributes (372 bytes)
+- .gitignore (322 bytes)
+- .gitkeep (0 bytes)
+- .regen_flag (19 bytes)
+- AGENTS.md (2190 bytes)
+- qa_report_build_0_9_106a.txt (1557 bytes)
+- README.md (1610 bytes)
+- requirements.txt (15 bytes)
+- reset_generated.ps1 (418 bytes)
+- run.ps1 (81 bytes)
+- savegame.json (5707 bytes)
+
+[duplicate_assets_same_content_top]
+- group size=4 file=campo_protector.png
+  - assets/sprites/cards/campo_protector.png
+  - assets/sprites/cards/campo_protector__pass2_2.png
+  - game/assets/sprites/cards/campo_protector.png
+  - game/assets/sprites/cards/campo_protector__pass2_2.png
+- group size=4 file=chakana_de_luz.png
+  - assets/sprites/cards/chakana_de_luz.png
+  - assets/sprites/cards/chakana_de_luz__pass2_1.png
+  - game/assets/sprites/cards/chakana_de_luz.png
+  - game/assets/sprites/cards/chakana_de_luz__pass2_1.png
+- group size=4 file=cw_lore_02.png
+  - assets/sprites/cards/cw_lore_02.png
+  - assets/sprites/cards/cw_lore_02__pass1_2.png
+  - game/assets/sprites/cards/cw_lore_02.png
+  - game/assets/sprites/cards/cw_lore_02__pass1_2.png
+- group size=4 file=cw_lore_03.png
+  - assets/sprites/cards/cw_lore_03.png
+  - assets/sprites/cards/cw_lore_03__pass2_2.png
+  - game/assets/sprites/cards/cw_lore_03.png
+  - game/assets/sprites/cards/cw_lore_03__pass2_2.png
+- group size=4 file=cw_lore_04.png
+  - assets/sprites/cards/cw_lore_04.png
+  - assets/sprites/cards/cw_lore_04__pass1_5.png
+  - game/assets/sprites/cards/cw_lore_04.png
+  - game/assets/sprites/cards/cw_lore_04__pass1_5.png
+- group size=4 file=cw_lore_08.png
+  - assets/sprites/cards/cw_lore_08.png
+  - assets/sprites/cards/cw_lore_08__pass2_2.png
+  - game/assets/sprites/cards/cw_lore_08.png
+  - game/assets/sprites/cards/cw_lore_08__pass2_2.png
+- group size=4 file=cw_lore_09.png
+  - assets/sprites/cards/cw_lore_09.png
+  - assets/sprites/cards/cw_lore_09__pass1_3.png
+  - game/assets/sprites/cards/cw_lore_09.png
+  - game/assets/sprites/cards/cw_lore_09__pass1_3.png
+- group size=4 file=cw_lore_10.png
+  - assets/sprites/cards/cw_lore_10.png
+  - assets/sprites/cards/cw_lore_10__pass1_0.png
+  - game/assets/sprites/cards/cw_lore_10.png
+  - game/assets/sprites/cards/cw_lore_10__pass1_0.png
+- group size=4 file=cw_lore_14.png
+  - assets/sprites/cards/cw_lore_14.png
+  - assets/sprites/cards/cw_lore_14__pass1_1.png
+  - game/assets/sprites/cards/cw_lore_14.png
+  - game/assets/sprites/cards/cw_lore_14__pass1_1.png
+- group size=4 file=cw_lore_18.png
+  - assets/sprites/cards/cw_lore_18.png
+  - assets/sprites/cards/cw_lore_18__pass1_3.png
+  - game/assets/sprites/cards/cw_lore_18.png
+  - game/assets/sprites/cards/cw_lore_18__pass1_3.png
+- group size=4 file=cw_lore_23.png
+  - assets/sprites/cards/cw_lore_23.png
+  - assets/sprites/cards/cw_lore_23__pass1_0.png
+  - game/assets/sprites/cards/cw_lore_23.png
+  - game/assets/sprites/cards/cw_lore_23__pass1_0.png
+- group size=4 file=cw_lore_29.png
+  - assets/sprites/cards/cw_lore_29.png
+  - assets/sprites/cards/cw_lore_29__pass1_1.png
+  - game/assets/sprites/cards/cw_lore_29.png
+  - game/assets/sprites/cards/cw_lore_29__pass1_1.png
+- group size=4 file=eco_de_sabiduria.png
+  - assets/sprites/cards/eco_de_sabiduria.png
+  - assets/sprites/cards/eco_de_sabiduria__pass1_2.png
+  - game/assets/sprites/cards/eco_de_sabiduria.png
+  - game/assets/sprites/cards/eco_de_sabiduria__pass1_2.png
+- group size=4 file=embate_del_jaguar.png
+  - assets/sprites/cards/embate_del_jaguar.png
+  - assets/sprites/cards/embate_del_jaguar__pass1_3.png
+  - game/assets/sprites/cards/embate_del_jaguar.png
+  - game/assets/sprites/cards/embate_del_jaguar__pass1_3.png
+- group size=4 file=escudo_de_luz.png
+  - assets/sprites/cards/escudo_de_luz.png
+  - assets/sprites/cards/escudo_de_luz__pass1_5.png
+  - game/assets/sprites/cards/escudo_de_luz.png
+  - game/assets/sprites/cards/escudo_de_luz__pass1_5.png
+- group size=4 file=escudo_del_chaman.png
+  - assets/sprites/cards/escudo_del_chaman.png
+  - assets/sprites/cards/escudo_del_chaman__pass2_1.png
+  - game/assets/sprites/cards/escudo_del_chaman.png
+  - game/assets/sprites/cards/escudo_del_chaman__pass2_1.png
+- group size=4 file=espiritu_guardian.png
+  - assets/sprites/cards/espiritu_guardian.png
+  - assets/sprites/cards/espiritu_guardian__pass1_5.png
+  - game/assets/sprites/cards/espiritu_guardian.png
+  - game/assets/sprites/cards/espiritu_guardian__pass1_5.png
+- group size=4 file=estallido_arcano.png
+  - assets/sprites/cards/estallido_arcano.png
+  - assets/sprites/cards/estallido_arcano__pass1_4.png
+  - game/assets/sprites/cards/estallido_arcano.png
+  - game/assets/sprites/cards/estallido_arcano__pass1_4.png
+- group size=4 file=filo_astral.png
+  - assets/sprites/cards/filo_astral.png
+  - assets/sprites/cards/filo_astral__pass1_5.png
+  - game/assets/sprites/cards/filo_astral.png
+  - game/assets/sprites/cards/filo_astral__pass1_5.png
+- group size=4 file=filo_en_cadena.png
+  - assets/sprites/cards/filo_en_cadena.png
+  - assets/sprites/cards/filo_en_cadena__pass1_4.png
+  - game/assets/sprites/cards/filo_en_cadena.png
+  - game/assets/sprites/cards/filo_en_cadena__pass1_4.png
+- group size=4 file=firmeza_del_cuerpo.png
+  - assets/sprites/cards/firmeza_del_cuerpo.png
+  - assets/sprites/cards/firmeza_del_cuerpo__pass2_1.png
+  - game/assets/sprites/cards/firmeza_del_cuerpo.png
+  - game/assets/sprites/cards/firmeza_del_cuerpo__pass2_1.png
+- group size=4 file=fragmento_celeste.png
+  - assets/sprites/cards/fragmento_celeste.png
+  - assets/sprites/cards/fragmento_celeste__pass2_3.png
+  - game/assets/sprites/cards/fragmento_celeste.png
+  - game/assets/sprites/cards/fragmento_celeste__pass2_3.png
+- group size=4 file=fusion_espiritual.png
+  - assets/sprites/cards/fusion_espiritual.png
+  - assets/sprites/cards/fusion_espiritual__pass1_4.png
+  - game/assets/sprites/cards/fusion_espiritual.png
+  - game/assets/sprites/cards/fusion_espiritual__pass1_4.png
+- group size=4 file=garra_espiritual.png
+  - assets/sprites/cards/garra_espiritual.png
+  - assets/sprites/cards/garra_espiritual__pass1_3.png
+  - game/assets/sprites/cards/garra_espiritual.png
+  - game/assets/sprites/cards/garra_espiritual__pass1_3.png
+- group size=4 file=guardia_terrenal.png
+  - assets/sprites/cards/guardia_terrenal.png
+  - assets/sprites/cards/guardia_terrenal__pass1_2.png
+  - game/assets/sprites/cards/guardia_terrenal.png
+  - game/assets/sprites/cards/guardia_terrenal__pass1_2.png
+- group size=4 file=hg_lore_01.png
+  - assets/sprites/cards/hg_lore_01.png
+  - assets/sprites/cards/hg_lore_01__pass1_1.png
+  - game/assets/sprites/cards/hg_lore_01.png
+  - game/assets/sprites/cards/hg_lore_01__pass1_1.png
+- group size=4 file=hg_lore_05.png
+  - assets/sprites/cards/hg_lore_05.png
+  - assets/sprites/cards/hg_lore_05__pass2_3.png
+  - game/assets/sprites/cards/hg_lore_05.png
+  - game/assets/sprites/cards/hg_lore_05__pass2_3.png
+- group size=4 file=hg_lore_06.png
+  - assets/sprites/cards/hg_lore_06.png
+  - assets/sprites/cards/hg_lore_06__pass1_0.png
+  - game/assets/sprites/cards/hg_lore_06.png
+  - game/assets/sprites/cards/hg_lore_06__pass1_0.png
+- group size=4 file=hg_lore_07.png
+  - assets/sprites/cards/hg_lore_07.png
+  - assets/sprites/cards/hg_lore_07__pass1_1.png
+  - game/assets/sprites/cards/hg_lore_07.png
+  - game/assets/sprites/cards/hg_lore_07__pass1_1.png
+- group size=4 file=hg_lore_11.png
+  - assets/sprites/cards/hg_lore_11.png
+  - assets/sprites/cards/hg_lore_11__pass1_0.png
+  - game/assets/sprites/cards/hg_lore_11.png
+  - game/assets/sprites/cards/hg_lore_11__pass1_0.png
+- group size=4 file=hg_lore_13.png
+  - assets/sprites/cards/hg_lore_13.png
+  - assets/sprites/cards/hg_lore_13__pass1_4.png
+  - game/assets/sprites/cards/hg_lore_13.png
+  - game/assets/sprites/cards/hg_lore_13__pass1_4.png
+- group size=4 file=hg_lore_15.png
+  - assets/sprites/cards/hg_lore_15.png
+  - assets/sprites/cards/hg_lore_15__pass1_0.png
+  - game/assets/sprites/cards/hg_lore_15.png
+  - game/assets/sprites/cards/hg_lore_15__pass1_0.png
+- group size=4 file=hg_lore_19.png
+  - assets/sprites/cards/hg_lore_19.png
+  - assets/sprites/cards/hg_lore_19__pass2_3.png
+  - game/assets/sprites/cards/hg_lore_19.png
+  - game/assets/sprites/cards/hg_lore_19__pass2_3.png
+- group size=4 file=hg_lore_24.png
+  - assets/sprites/cards/hg_lore_24.png
+  - assets/sprites/cards/hg_lore_24__pass2_3.png
+  - game/assets/sprites/cards/hg_lore_24.png
+  - game/assets/sprites/cards/hg_lore_24__pass2_3.png
+- group size=4 file=hg_lore_27.png
+  - assets/sprites/cards/hg_lore_27.png
+  - assets/sprites/cards/hg_lore_27__pass2_1.png
+  - game/assets/sprites/cards/hg_lore_27.png
+  - game/assets/sprites/cards/hg_lore_27__pass2_1.png
+- group size=4 file=invocacion_astral.png
+  - assets/sprites/cards/invocacion_astral.png
+  - assets/sprites/cards/invocacion_astral__pass1_1.png
+  - game/assets/sprites/cards/invocacion_astral.png
+  - game/assets/sprites/cards/invocacion_astral__pass1_1.png
+- group size=4 file=lectura_del_destino.png
+  - assets/sprites/cards/lectura_del_destino.png
+  - assets/sprites/cards/lectura_del_destino__pass1_1.png
+  - game/assets/sprites/cards/lectura_del_destino.png
+  - game/assets/sprites/cards/lectura_del_destino__pass1_1.png
+- group size=4 file=mantra_del_umbral.png
+  - assets/sprites/cards/mantra_del_umbral.png
+  - assets/sprites/cards/mantra_del_umbral__pass2_1.png
+  - game/assets/sprites/cards/mantra_del_umbral.png
+  - game/assets/sprites/cards/mantra_del_umbral__pass2_1.png
+- group size=4 file=muralla_de_piedra.png
+  - assets/sprites/cards/muralla_de_piedra.png
+  - assets/sprites/cards/muralla_de_piedra__pass1_4.png
+  - game/assets/sprites/cards/muralla_de_piedra.png
+  - game/assets/sprites/cards/muralla_de_piedra__pass1_4.png
+- group size=4 file=observacion_sagrada.png
+  - assets/sprites/cards/observacion_sagrada.png
+  - assets/sprites/cards/observacion_sagrada__pass2_1.png
+  - game/assets/sprites/cards/observacion_sagrada.png
+  - game/assets/sprites/cards/observacion_sagrada__pass2_1.png
+
+[duplicate_assets_same_name_top]
+- name=bg.png occurrences=21
+  - game/assets/.cache/biomes/caverna_umbral/bg.png
+  - game/assets/.cache/biomes/forest/bg.png
+  - game/assets/.cache/biomes/fractura_chakana/bg.png
+  - game/assets/.cache/biomes/hanan/bg.png
+  - game/assets/.cache/biomes/hanan_pacha/bg.png
+  - game/assets/.cache/biomes/hiperborea/bg.png
+  - game/assets/.cache/biomes/kay_pacha/bg.png
+  - game/assets/.cache/biomes/kaypacha/bg.png
+- name=fg.png occurrences=21
+  - game/assets/.cache/biomes/caverna_umbral/fg.png
+  - game/assets/.cache/biomes/forest/fg.png
+  - game/assets/.cache/biomes/fractura_chakana/fg.png
+  - game/assets/.cache/biomes/hanan/fg.png
+  - game/assets/.cache/biomes/hanan_pacha/fg.png
+  - game/assets/.cache/biomes/hiperborea/fg.png
+  - game/assets/.cache/biomes/kay_pacha/fg.png
+  - game/assets/.cache/biomes/kaypacha/fg.png
+- name=mg.png occurrences=21
+  - game/assets/.cache/biomes/caverna_umbral/mg.png
+  - game/assets/.cache/biomes/forest/mg.png
+  - game/assets/.cache/biomes/fractura_chakana/mg.png
+  - game/assets/.cache/biomes/hanan/mg.png
+  - game/assets/.cache/biomes/hanan_pacha/mg.png
+  - game/assets/.cache/biomes/hiperborea/mg.png
+  - game/assets/.cache/biomes/kay_pacha/mg.png
+  - game/assets/.cache/biomes/kaypacha/mg.png
+- name=campo_protector.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/campo_protector.png
+  - assets/sprites/cards/campo_protector.png
+  - game/assets/sprites/cards/campo_protector.png
+- name=chakana_de_luz.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/chakana_de_luz.png
+  - assets/sprites/cards/chakana_de_luz.png
+  - game/assets/sprites/cards/chakana_de_luz.png
+- name=cw_lore_02.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/cw_lore_02.png
+  - assets/sprites/cards/cw_lore_02.png
+  - game/assets/sprites/cards/cw_lore_02.png
+- name=cw_lore_03.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/cw_lore_03.png
+  - assets/sprites/cards/cw_lore_03.png
+  - game/assets/sprites/cards/cw_lore_03.png
+- name=cw_lore_04.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/cw_lore_04.png
+  - assets/sprites/cards/cw_lore_04.png
+  - game/assets/sprites/cards/cw_lore_04.png
+- name=cw_lore_08.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/cw_lore_08.png
+  - assets/sprites/cards/cw_lore_08.png
+  - game/assets/sprites/cards/cw_lore_08.png
+- name=cw_lore_09.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/cw_lore_09.png
+  - assets/sprites/cards/cw_lore_09.png
+  - game/assets/sprites/cards/cw_lore_09.png
+- name=cw_lore_10.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/cw_lore_10.png
+  - assets/sprites/cards/cw_lore_10.png
+  - game/assets/sprites/cards/cw_lore_10.png
+- name=cw_lore_14.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/cw_lore_14.png
+  - assets/sprites/cards/cw_lore_14.png
+  - game/assets/sprites/cards/cw_lore_14.png
+- name=cw_lore_18.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/cw_lore_18.png
+  - assets/sprites/cards/cw_lore_18.png
+  - game/assets/sprites/cards/cw_lore_18.png
+- name=cw_lore_23.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/cw_lore_23.png
+  - assets/sprites/cards/cw_lore_23.png
+  - game/assets/sprites/cards/cw_lore_23.png
+- name=cw_lore_29.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/cw_lore_29.png
+  - assets/sprites/cards/cw_lore_29.png
+  - game/assets/sprites/cards/cw_lore_29.png
+- name=eco_de_sabiduria.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/eco_de_sabiduria.png
+  - assets/sprites/cards/eco_de_sabiduria.png
+  - game/assets/sprites/cards/eco_de_sabiduria.png
+- name=embate_del_jaguar.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/embate_del_jaguar.png
+  - assets/sprites/cards/embate_del_jaguar.png
+  - game/assets/sprites/cards/embate_del_jaguar.png
+- name=escudo_de_luz.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/escudo_de_luz.png
+  - assets/sprites/cards/escudo_de_luz.png
+  - game/assets/sprites/cards/escudo_de_luz.png
+- name=escudo_del_chaman.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/escudo_del_chaman.png
+  - assets/sprites/cards/escudo_del_chaman.png
+  - game/assets/sprites/cards/escudo_del_chaman.png
+- name=espiritu_guardian.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/espiritu_guardian.png
+  - assets/sprites/cards/espiritu_guardian.png
+  - game/assets/sprites/cards/espiritu_guardian.png
+- name=estallido_arcano.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/estallido_arcano.png
+  - assets/sprites/cards/estallido_arcano.png
+  - game/assets/sprites/cards/estallido_arcano.png
+- name=filo_astral.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/filo_astral.png
+  - assets/sprites/cards/filo_astral.png
+  - game/assets/sprites/cards/filo_astral.png
+- name=filo_en_cadena.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/filo_en_cadena.png
+  - assets/sprites/cards/filo_en_cadena.png
+  - game/assets/sprites/cards/filo_en_cadena.png
+- name=firmeza_del_cuerpo.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/firmeza_del_cuerpo.png
+  - assets/sprites/cards/firmeza_del_cuerpo.png
+  - game/assets/sprites/cards/firmeza_del_cuerpo.png
+- name=fragmento_celeste.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/fragmento_celeste.png
+  - assets/sprites/cards/fragmento_celeste.png
+  - game/assets/sprites/cards/fragmento_celeste.png
+- name=fusion_espiritual.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/fusion_espiritual.png
+  - assets/sprites/cards/fusion_espiritual.png
+  - game/assets/sprites/cards/fusion_espiritual.png
+- name=garra_espiritual.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/garra_espiritual.png
+  - assets/sprites/cards/garra_espiritual.png
+  - game/assets/sprites/cards/garra_espiritual.png
+- name=guardia_terrenal.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/guardia_terrenal.png
+  - assets/sprites/cards/guardia_terrenal.png
+  - game/assets/sprites/cards/guardia_terrenal.png
+- name=hg_lore_01.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/hg_lore_01.png
+  - assets/sprites/cards/hg_lore_01.png
+  - game/assets/sprites/cards/hg_lore_01.png
+- name=hg_lore_05.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/hg_lore_05.png
+  - assets/sprites/cards/hg_lore_05.png
+  - game/assets/sprites/cards/hg_lore_05.png
+- name=hg_lore_06.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/hg_lore_06.png
+  - assets/sprites/cards/hg_lore_06.png
+  - game/assets/sprites/cards/hg_lore_06.png
+- name=hg_lore_07.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/hg_lore_07.png
+  - assets/sprites/cards/hg_lore_07.png
+  - game/assets/sprites/cards/hg_lore_07.png
+- name=hg_lore_11.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/hg_lore_11.png
+  - assets/sprites/cards/hg_lore_11.png
+  - game/assets/sprites/cards/hg_lore_11.png
+- name=hg_lore_13.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/hg_lore_13.png
+  - assets/sprites/cards/hg_lore_13.png
+  - game/assets/sprites/cards/hg_lore_13.png
+- name=hg_lore_15.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/hg_lore_15.png
+  - assets/sprites/cards/hg_lore_15.png
+  - game/assets/sprites/cards/hg_lore_15.png
+- name=hg_lore_19.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/hg_lore_19.png
+  - assets/sprites/cards/hg_lore_19.png
+  - game/assets/sprites/cards/hg_lore_19.png
+- name=hg_lore_24.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/hg_lore_24.png
+  - assets/sprites/cards/hg_lore_24.png
+  - game/assets/sprites/cards/hg_lore_24.png
+- name=hg_lore_27.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/hg_lore_27.png
+  - assets/sprites/cards/hg_lore_27.png
+  - game/assets/sprites/cards/hg_lore_27.png
+- name=invocacion_astral.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/invocacion_astral.png
+  - assets/sprites/cards/invocacion_astral.png
+  - game/assets/sprites/cards/invocacion_astral.png
+- name=lectura_del_destino.png occurrences=3
+  - assets/archive/creative_master_upgrade/20260309_192235/lectura_del_destino.png
+  - assets/sprites/cards/lectura_del_destino.png
+  - game/assets/sprites/cards/lectura_del_destino.png
+
+[duplicate_manifests_by_name]
+- none
+
+[sample_classified_entries]
+- .gitattributes | (noext) | unknown | 372
+- .gitignore | (noext) | unknown | 322
+- .gitkeep | (noext) | unknown | 0
+- .regen_flag | (noext) | unknown | 19
+- AGENTS.md | .md | archive_candidate | 2190
+- README.md | .md | archive_candidate | 1610
+- assets/archive/creative_master_upgrade/20260309_192235/campo_protector.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/chakana_de_luz.png | .png | archive_candidate | 18599
+- assets/archive/creative_master_upgrade/20260309_192235/cw_lore_02.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/cw_lore_03.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/cw_lore_04.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/cw_lore_08.png | .png | archive_candidate | 18597
+- assets/archive/creative_master_upgrade/20260309_192235/cw_lore_09.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/cw_lore_10.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/cw_lore_14.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/cw_lore_18.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/cw_lore_23.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/cw_lore_29.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/eco_de_sabiduria.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/embate_del_jaguar.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/escudo_de_luz.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/escudo_del_chaman.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/espiritu_guardian.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/estallido_arcano.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/filo_astral.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/filo_en_cadena.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/firmeza_del_cuerpo.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/fragmento_celeste.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/fusion_espiritual.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/garra_espiritual.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/guardia_terrenal.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/hg_lore_01.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/hg_lore_05.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/hg_lore_06.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/hg_lore_07.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/hg_lore_11.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/hg_lore_13.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/hg_lore_15.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/hg_lore_19.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/hg_lore_24.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/hg_lore_27.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/invocacion_astral.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/lectura_del_destino.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/mantra_del_umbral.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/muralla_de_piedra.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/observacion_sagrada.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/of_lore_12.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/of_lore_16.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/of_lore_17.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/of_lore_20.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/of_lore_21.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/of_lore_22.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/of_lore_25.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/of_lore_26.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/of_lore_28.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/of_lore_30.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/piedra_ritual.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/portal_de_la_chakana.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/pulso_cosmico.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/resistencia_ancestral.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/revelacion_astral.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/ritual_de_la_trama.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/sello_protector.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/silencio_interior.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/vinculo_de_energia.png | .png | archive_candidate | 18601
+- assets/archive/creative_master_upgrade/20260309_192235/vision_del_condor.png | .png | archive_candidate | 18601
+- assets/art_reference/README.md | .md | active_but_wrong_location | 318
+- assets/avatars/README.md | .md | active_but_wrong_location | 61
+- assets/biomes/README.md | .md | active_but_wrong_location | 60
+- assets/cards/README.md | .md | active_but_wrong_location | 59
+- assets/enemies/README.md | .md | active_but_wrong_location | 61
+- assets/music/README.md | .md | active_but_wrong_location | 59
+- assets/music/boss.wav | .wav | active_but_wrong_location | 88244
+- assets/music/combat_kaypacha.wav | .wav | active_but_wrong_location | 88244
+- assets/music/event.wav | .wav | active_but_wrong_location | 88244
+- assets/music/map_kaypacha.wav | .wav | active_but_wrong_location | 88244
+- assets/music/menu.wav | .wav | active_but_wrong_location | 88244
+- assets/relics/README.md | .md | active_but_wrong_location | 60
+- assets/sprites/cards/campo_protector.png | .png | active_but_wrong_location | 44291
+- assets/sprites/cards/campo_protector__pass2_2.png | .png | active_but_wrong_location | 44291
+- assets/sprites/cards/chakana_de_luz.png | .png | active_but_wrong_location | 39947
+- assets/sprites/cards/chakana_de_luz__pass2_1.png | .png | active_but_wrong_location | 39947
+- assets/sprites/cards/cw_lore_02.png | .png | active_but_wrong_location | 39521
+- assets/sprites/cards/cw_lore_02__pass1_2.png | .png | active_but_wrong_location | 39521
+- assets/sprites/cards/cw_lore_03.png | .png | active_but_wrong_location | 42769
+- assets/sprites/cards/cw_lore_03__pass2_2.png | .png | active_but_wrong_location | 42769
+- assets/sprites/cards/cw_lore_04.png | .png | active_but_wrong_location | 43991
+- assets/sprites/cards/cw_lore_04__pass1_5.png | .png | active_but_wrong_location | 43991
+- assets/sprites/cards/cw_lore_08.png | .png | active_but_wrong_location | 43350
+- assets/sprites/cards/cw_lore_08__pass2_2.png | .png | active_but_wrong_location | 43350
+- assets/sprites/cards/cw_lore_09.png | .png | active_but_wrong_location | 42638
+- assets/sprites/cards/cw_lore_09__pass1_3.png | .png | active_but_wrong_location | 42638
+- assets/sprites/cards/cw_lore_10.png | .png | active_but_wrong_location | 43329
+- assets/sprites/cards/cw_lore_10__pass1_0.png | .png | active_but_wrong_location | 43329
+- assets/sprites/cards/cw_lore_14.png | .png | active_but_wrong_location | 43255
+- assets/sprites/cards/cw_lore_14__pass1_1.png | .png | active_but_wrong_location | 43255
+- assets/sprites/cards/cw_lore_18.png | .png | active_but_wrong_location | 43668
+- assets/sprites/cards/cw_lore_18__pass1_3.png | .png | active_but_wrong_location | 43668
+- assets/sprites/cards/cw_lore_23.png | .png | active_but_wrong_location | 43298
+- assets/sprites/cards/cw_lore_23__pass1_0.png | .png | active_but_wrong_location | 43298
+- assets/sprites/cards/cw_lore_29.png | .png | active_but_wrong_location | 43273
+- assets/sprites/cards/cw_lore_29__pass1_1.png | .png | active_but_wrong_location | 43273
+- assets/sprites/cards/eco_de_sabiduria.png | .png | active_but_wrong_location | 43631
+- assets/sprites/cards/eco_de_sabiduria__pass1_2.png | .png | active_but_wrong_location | 43631
+- assets/sprites/cards/embate_del_jaguar.png | .png | active_but_wrong_location | 43345
+- assets/sprites/cards/embate_del_jaguar__pass1_3.png | .png | active_but_wrong_location | 43345
+- assets/sprites/cards/escudo_de_luz.png | .png | active_but_wrong_location | 43720
+- assets/sprites/cards/escudo_de_luz__pass1_5.png | .png | active_but_wrong_location | 43720
+- assets/sprites/cards/escudo_del_chaman.png | .png | active_but_wrong_location | 44217
+- assets/sprites/cards/escudo_del_chaman__pass2_1.png | .png | active_but_wrong_location | 44217
+- assets/sprites/cards/espiritu_guardian.png | .png | active_but_wrong_location | 43369
+- assets/sprites/cards/espiritu_guardian__pass1_5.png | .png | active_but_wrong_location | 43369
+- assets/sprites/cards/estallido_arcano.png | .png | active_but_wrong_location | 42587
+- assets/sprites/cards/estallido_arcano__pass1_4.png | .png | active_but_wrong_location | 42587
+- assets/sprites/cards/filo_astral.png | .png | active_but_wrong_location | 43516
+- assets/sprites/cards/filo_astral__pass1_5.png | .png | active_but_wrong_location | 43516
+- assets/sprites/cards/filo_en_cadena.png | .png | active_but_wrong_location | 42600
+- assets/sprites/cards/filo_en_cadena__pass1_4.png | .png | active_but_wrong_location | 42600
+- assets/sprites/cards/firmeza_del_cuerpo.png | .png | active_but_wrong_location | 43730
+- assets/sprites/cards/firmeza_del_cuerpo__pass2_1.png | .png | active_but_wrong_location | 43730
+- assets/sprites/cards/fragmento_celeste.png | .png | active_but_wrong_location | 47408
+- assets/sprites/cards/fragmento_celeste__pass2_3.png | .png | active_but_wrong_location | 47408
+- assets/sprites/cards/fusion_espiritual.png | .png | active_but_wrong_location | 40912
+- assets/sprites/cards/fusion_espiritual__pass1_4.png | .png | active_but_wrong_location | 40912
+- assets/sprites/cards/garra_espiritual.png | .png | active_but_wrong_location | 43536
+- assets/sprites/cards/garra_espiritual__pass1_3.png | .png | active_but_wrong_location | 43536
+- assets/sprites/cards/guardia_terrenal.png | .png | active_but_wrong_location | 42335
+- assets/sprites/cards/guardia_terrenal__pass1_2.png | .png | active_but_wrong_location | 42335
+- assets/sprites/cards/hg_lore_01.png | .png | active_but_wrong_location | 43179
+- assets/sprites/cards/hg_lore_01__pass1_1.png | .png | active_but_wrong_location | 43179
+- assets/sprites/cards/hg_lore_05.png | .png | active_but_wrong_location | 43052
+- assets/sprites/cards/hg_lore_05__pass2_3.png | .png | active_but_wrong_location | 43052
+- assets/sprites/cards/hg_lore_06.png | .png | active_but_wrong_location | 43251
+- assets/sprites/cards/hg_lore_06__pass1_0.png | .png | active_but_wrong_location | 43251
+- assets/sprites/cards/hg_lore_07.png | .png | active_but_wrong_location | 43210
+- assets/sprites/cards/hg_lore_07__pass1_1.png | .png | active_but_wrong_location | 43210
+- assets/sprites/cards/hg_lore_11.png | .png | active_but_wrong_location | 43875
+- assets/sprites/cards/hg_lore_11__pass1_0.png | .png | active_but_wrong_location | 43875
+- assets/sprites/cards/hg_lore_13.png | .png | active_but_wrong_location | 44293
+- assets/sprites/cards/hg_lore_13__pass1_4.png | .png | active_but_wrong_location | 44293
+- assets/sprites/cards/hg_lore_15.png | .png | active_but_wrong_location | 42464
+- assets/sprites/cards/hg_lore_15__pass1_0.png | .png | active_but_wrong_location | 42464
+- assets/sprites/cards/hg_lore_19.png | .png | active_but_wrong_location | 43796
+- assets/sprites/cards/hg_lore_19__pass2_3.png | .png | active_but_wrong_location | 43796
+- assets/sprites/cards/hg_lore_24.png | .png | active_but_wrong_location | 44529
+- assets/sprites/cards/hg_lore_24__pass2_3.png | .png | active_but_wrong_location | 44529
+- assets/sprites/cards/hg_lore_27.png | .png | active_but_wrong_location | 44107
+- assets/sprites/cards/hg_lore_27__pass2_1.png | .png | active_but_wrong_location | 44107
+- assets/sprites/cards/invocacion_astral.png | .png | active_but_wrong_location | 46992
+- assets/sprites/cards/invocacion_astral__pass1_1.png | .png | active_but_wrong_location | 46992
+- assets/sprites/cards/lectura_del_destino.png | .png | active_but_wrong_location | 48131
+- assets/sprites/cards/lectura_del_destino__pass1_1.png | .png | active_but_wrong_location | 48131
+- assets/sprites/cards/mantra_del_umbral.png | .png | active_but_wrong_location | 43310
+- assets/sprites/cards/mantra_del_umbral__pass2_1.png | .png | active_but_wrong_location | 43310
+- assets/sprites/cards/muralla_de_piedra.png | .png | active_but_wrong_location | 43379
+- assets/sprites/cards/muralla_de_piedra__pass1_4.png | .png | active_but_wrong_location | 43379
+- assets/sprites/cards/observacion_sagrada.png | .png | active_but_wrong_location | 46171
+- assets/sprites/cards/observacion_sagrada__pass2_1.png | .png | active_but_wrong_location | 46171
+- assets/sprites/cards/of_lore_12.png | .png | active_but_wrong_location | 43888
+- assets/sprites/cards/of_lore_12__pass2_1.png | .png | active_but_wrong_location | 43888
+- assets/sprites/cards/of_lore_16.png | .png | active_but_wrong_location | 46941
+- assets/sprites/cards/of_lore_16__pass2_1.png | .png | active_but_wrong_location | 46941
+- assets/sprites/cards/of_lore_17.png | .png | active_but_wrong_location | 47385
+- assets/sprites/cards/of_lore_17__pass1_1.png | .png | active_but_wrong_location | 47385
+- assets/sprites/cards/of_lore_20.png | .png | active_but_wrong_location | 46765
+- assets/sprites/cards/of_lore_20__pass1_5.png | .png | active_but_wrong_location | 46765
+- assets/sprites/cards/of_lore_21.png | .png | active_but_wrong_location | 47392
+- assets/sprites/cards/of_lore_21__pass1_0.png | .png | active_but_wrong_location | 47392
+- assets/sprites/cards/of_lore_22.png | .png | active_but_wrong_location | 46892
+- assets/sprites/cards/of_lore_22__pass1_4.png | .png | active_but_wrong_location | 46892
+- assets/sprites/cards/of_lore_25.png | .png | active_but_wrong_location | 46728
+- assets/sprites/cards/of_lore_25__pass2_2.png | .png | active_but_wrong_location | 46728
+- assets/sprites/cards/of_lore_26.png | .png | active_but_wrong_location | 47056
+- assets/sprites/cards/of_lore_26__pass2_1.png | .png | active_but_wrong_location | 47056
+- assets/sprites/cards/of_lore_28.png | .png | active_but_wrong_location | 46671
+- assets/sprites/cards/of_lore_28__pass1_4.png | .png | active_but_wrong_location | 46671
+- assets/sprites/cards/of_lore_30.png | .png | active_but_wrong_location | 47680
+- assets/sprites/cards/of_lore_30__pass1_0.png | .png | active_but_wrong_location | 47680
+- assets/sprites/cards/piedra_ritual.png | .png | active_but_wrong_location | 46607
+- assets/sprites/cards/piedra_ritual__pass2_2.png | .png | active_but_wrong_location | 46607
+- assets/sprites/cards/portal_de_la_chakana.png | .png | active_but_wrong_location | 47179
+- assets/sprites/cards/portal_de_la_chakana__pass2_3.png | .png | active_but_wrong_location | 47179
+- assets/sprites/cards/pulso_cosmico.png | .png | active_but_wrong_location | 42540
+- assets/sprites/cards/pulso_cosmico__pass1_3.png | .png | active_but_wrong_location | 42540
+- assets/sprites/cards/resistencia_ancestral.png | .png | active_but_wrong_location | 43410
+- assets/sprites/cards/resistencia_ancestral__pass2_2.png | .png | active_but_wrong_location | 43410
+- assets/sprites/cards/revelacion_astral.png | .png | active_but_wrong_location | 47066
+- assets/sprites/cards/revelacion_astral__pass1_2.png | .png | active_but_wrong_location | 47066
+- assets/sprites/cards/ritual_de_la_trama.png | .png | active_but_wrong_location | 46692
+- assets/sprites/cards/ritual_de_la_trama__pass1_4.png | .png | active_but_wrong_location | 46692
+- assets/sprites/cards/sello_protector.png | .png | active_but_wrong_location | 44220
+- assets/sprites/cards/sello_protector__pass1_2.png | .png | active_but_wrong_location | 44220
+- assets/sprites/cards/silencio_interior.png | .png | active_but_wrong_location | 48179
+- assets/sprites/cards/silencio_interior__pass1_3.png | .png | active_but_wrong_location | 48179
+- assets/sprites/cards/vinculo_de_energia.png | .png | active_but_wrong_location | 43216
+- assets/sprites/cards/vinculo_de_energia__pass2_2.png | .png | active_but_wrong_location | 43216
+- assets/sprites/cards/vision_del_condor.png | .png | active_but_wrong_location | 47954
+- assets/sprites/cards/vision_del_condor__pass1_4.png | .png | active_but_wrong_location | 47954
+- docs/QA_PHASE9_SUPERVISION_EXPANDED.md | .md | unknown | 3116
+- docs/README.md | .md | unknown | 545
+- docs/architecture/DEV_WORKFLOW.md | .md | unknown | 1347
+- docs/architecture/PROJECT_STRUCTURE_AUDIT.md | .md | unknown | 1278
+- docs/architecture/PROJECT_STRUCTURE_CLASSIFICATION.json | .json | unknown | 368531
+- docs/architecture/buenas_practicas.md | .md | unknown | 706
+- docs/architecture/codex_prompt_template.md | .md | unknown | 716
+- docs/architecture/documentation_classification_report.txt | .txt | unknown | 11806
+- docs/architecture/documentation_structure_audit.txt | .txt | unknown | 13572
+- docs/architecture/migration_notes.txt | .txt | unknown | 504
+- docs/architecture/non_destructive_cleanup_guided_report.txt | .txt | unknown | 1532
+- docs/architecture/target_structure_plan.txt | .txt | unknown | 1120
+- docs/archive/CONTENT_LOCK_1_0_REPORT.md | .md | archive_candidate | 587
+- docs/archive/QA_PHASE9_SUPERVISION_EXPANDED.md | .md | archive_candidate | 3081
+- docs/archive/active_asset_sanitization_report.txt | .txt | archive_candidate | 2562
+- docs/archive/active_runtime_asset_report.txt | .txt | archive_candidate | 1989
+- docs/archive/art_direction_document_root_legacy.md | .md | archive_candidate | 1378
+- docs/archive/asset_classification_report.txt | .txt | archive_candidate | 2653
+- docs/archive/asset_disk_audit_report.txt | .txt | archive_candidate | 1260
+- docs/archive/audio_runtime_mapping_report.txt | .txt | archive_candidate | 1523
+- docs/archive/card_set_emblem_system_report.txt | .txt | archive_candidate | 1608
+- docs/archive/chakana_game_professionalization_report.txt | .txt | archive_candidate | 1584

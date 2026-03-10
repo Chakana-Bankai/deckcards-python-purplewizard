@@ -1,243 +1,243 @@
 {
   "items": {
     "campo_protector": {
-      "path": "assets/sprites/cards/campo_protector.png",
+      "path": "game/assets/sprites/cards/campo_protector.png",
       "mode": "missing_only"
     },
     "chakana_de_luz": {
-      "path": "assets/sprites/cards/chakana_de_luz.png",
+      "path": "game/assets/sprites/cards/chakana_de_luz.png",
       "mode": "missing_only"
     },
     "cw_lore_02": {
-      "path": "assets/sprites/cards/cw_lore_02.png",
+      "path": "game/assets/sprites/cards/cw_lore_02.png",
       "mode": "missing_only"
     },
     "cw_lore_03": {
-      "path": "assets/sprites/cards/cw_lore_03.png",
+      "path": "game/assets/sprites/cards/cw_lore_03.png",
       "mode": "missing_only"
     },
     "cw_lore_04": {
-      "path": "assets/sprites/cards/cw_lore_04.png",
+      "path": "game/assets/sprites/cards/cw_lore_04.png",
       "mode": "missing_only"
     },
     "cw_lore_08": {
-      "path": "assets/sprites/cards/cw_lore_08.png",
+      "path": "game/assets/sprites/cards/cw_lore_08.png",
       "mode": "missing_only"
     },
     "cw_lore_09": {
-      "path": "assets/sprites/cards/cw_lore_09.png",
+      "path": "game/assets/sprites/cards/cw_lore_09.png",
       "mode": "missing_only"
     },
     "cw_lore_10": {
-      "path": "assets/sprites/cards/cw_lore_10.png",
+      "path": "game/assets/sprites/cards/cw_lore_10.png",
       "mode": "missing_only"
     },
     "cw_lore_14": {
-      "path": "assets/sprites/cards/cw_lore_14.png",
+      "path": "game/assets/sprites/cards/cw_lore_14.png",
       "mode": "missing_only"
     },
     "cw_lore_18": {
-      "path": "assets/sprites/cards/cw_lore_18.png",
+      "path": "game/assets/sprites/cards/cw_lore_18.png",
       "mode": "missing_only"
     },
     "cw_lore_23": {
-      "path": "assets/sprites/cards/cw_lore_23.png",
+      "path": "game/assets/sprites/cards/cw_lore_23.png",
       "mode": "missing_only"
     },
     "cw_lore_29": {
-      "path": "assets/sprites/cards/cw_lore_29.png",
+      "path": "game/assets/sprites/cards/cw_lore_29.png",
       "mode": "missing_only"
     },
     "eco_de_sabiduria": {
-      "path": "assets/sprites/cards/eco_de_sabiduria.png",
+      "path": "game/assets/sprites/cards/eco_de_sabiduria.png",
       "mode": "missing_only"
     },
     "embate_del_jaguar": {
-      "path": "assets/sprites/cards/embate_del_jaguar.png",
+      "path": "game/assets/sprites/cards/embate_del_jaguar.png",
       "mode": "missing_only"
     },
     "escudo_de_luz": {
-      "path": "assets/sprites/cards/escudo_de_luz.png",
+      "path": "game/assets/sprites/cards/escudo_de_luz.png",
       "mode": "missing_only"
     },
     "escudo_del_chaman": {
-      "path": "assets/sprites/cards/escudo_del_chaman.png",
+      "path": "game/assets/sprites/cards/escudo_del_chaman.png",
       "mode": "missing_only"
     },
     "espiritu_guardian": {
-      "path": "assets/sprites/cards/espiritu_guardian.png",
+      "path": "game/assets/sprites/cards/espiritu_guardian.png",
       "mode": "missing_only"
     },
     "estallido_arcano": {
-      "path": "assets/sprites/cards/estallido_arcano.png",
+      "path": "game/assets/sprites/cards/estallido_arcano.png",
       "mode": "missing_only"
     },
     "filo_astral": {
-      "path": "assets/sprites/cards/filo_astral.png",
+      "path": "game/assets/sprites/cards/filo_astral.png",
       "mode": "missing_only"
     },
     "filo_en_cadena": {
-      "path": "assets/sprites/cards/filo_en_cadena.png",
+      "path": "game/assets/sprites/cards/filo_en_cadena.png",
       "mode": "missing_only"
     },
     "firmeza_del_cuerpo": {
-      "path": "assets/sprites/cards/firmeza_del_cuerpo.png",
+      "path": "game/assets/sprites/cards/firmeza_del_cuerpo.png",
       "mode": "missing_only"
     },
     "fragmento_celeste": {
-      "path": "assets/sprites/cards/fragmento_celeste.png",
+      "path": "game/assets/sprites/cards/fragmento_celeste.png",
       "mode": "missing_only"
     },
     "fusion_espiritual": {
-      "path": "assets/sprites/cards/fusion_espiritual.png",
+      "path": "game/assets/sprites/cards/fusion_espiritual.png",
       "mode": "missing_only"
     },
     "garra_espiritual": {
-      "path": "assets/sprites/cards/garra_espiritual.png",
+      "path": "game/assets/sprites/cards/garra_espiritual.png",
       "mode": "missing_only"
     },
     "guardia_terrenal": {
-      "path": "assets/sprites/cards/guardia_terrenal.png",
+      "path": "game/assets/sprites/cards/guardia_terrenal.png",
       "mode": "missing_only"
     },
     "hg_lore_01": {
-      "path": "assets/sprites/cards/hg_lore_01.png",
+      "path": "game/assets/sprites/cards/hg_lore_01.png",
       "mode": "missing_only"
     },
     "hg_lore_05": {
-      "path": "assets/sprites/cards/hg_lore_05.png",
+      "path": "game/assets/sprites/cards/hg_lore_05.png",
       "mode": "missing_only"
     },
     "hg_lore_06": {
-      "path": "assets/sprites/cards/hg_lore_06.png",
+      "path": "game/assets/sprites/cards/hg_lore_06.png",
       "mode": "missing_only"
     },
     "hg_lore_07": {
-      "path": "assets/sprites/cards/hg_lore_07.png",
+      "path": "game/assets/sprites/cards/hg_lore_07.png",
       "mode": "missing_only"
     },
     "hg_lore_11": {
-      "path": "assets/sprites/cards/hg_lore_11.png",
+      "path": "game/assets/sprites/cards/hg_lore_11.png",
       "mode": "missing_only"
     },
     "hg_lore_13": {
-      "path": "assets/sprites/cards/hg_lore_13.png",
+      "path": "game/assets/sprites/cards/hg_lore_13.png",
       "mode": "missing_only"
     },
     "hg_lore_15": {
-      "path": "assets/sprites/cards/hg_lore_15.png",
+      "path": "game/assets/sprites/cards/hg_lore_15.png",
       "mode": "missing_only"
     },
     "hg_lore_19": {
-      "path": "assets/sprites/cards/hg_lore_19.png",
+      "path": "game/assets/sprites/cards/hg_lore_19.png",
       "mode": "missing_only"
     },
     "hg_lore_24": {
-      "path": "assets/sprites/cards/hg_lore_24.png",
+      "path": "game/assets/sprites/cards/hg_lore_24.png",
       "mode": "missing_only"
     },
     "hg_lore_27": {
-      "path": "assets/sprites/cards/hg_lore_27.png",
+      "path": "game/assets/sprites/cards/hg_lore_27.png",
       "mode": "missing_only"
     },
     "invocacion_astral": {
-      "path": "assets/sprites/cards/invocacion_astral.png",
+      "path": "game/assets/sprites/cards/invocacion_astral.png",
       "mode": "missing_only"
     },
     "lectura_del_destino": {
-      "path": "assets/sprites/cards/lectura_del_destino.png",
+      "path": "game/assets/sprites/cards/lectura_del_destino.png",
       "mode": "missing_only"
     },
     "mantra_del_umbral": {
-      "path": "assets/sprites/cards/mantra_del_umbral.png",
+      "path": "game/assets/sprites/cards/mantra_del_umbral.png",
       "mode": "missing_only"
     },
     "muralla_de_piedra": {
-      "path": "assets/sprites/cards/muralla_de_piedra.png",
+      "path": "game/assets/sprites/cards/muralla_de_piedra.png",
       "mode": "missing_only"
     },
     "observacion_sagrada": {
-      "path": "assets/sprites/cards/observacion_sagrada.png",
+      "path": "game/assets/sprites/cards/observacion_sagrada.png",
       "mode": "missing_only"
     },
     "of_lore_12": {
-      "path": "assets/sprites/cards/of_lore_12.png",
+      "path": "game/assets/sprites/cards/of_lore_12.png",
       "mode": "missing_only"
     },
     "of_lore_16": {
-      "path": "assets/sprites/cards/of_lore_16.png",
+      "path": "game/assets/sprites/cards/of_lore_16.png",
       "mode": "missing_only"
     },
     "of_lore_17": {
-      "path": "assets/sprites/cards/of_lore_17.png",
+      "path": "game/assets/sprites/cards/of_lore_17.png",
       "mode": "missing_only"
     },
     "of_lore_20": {
-      "path": "assets/sprites/cards/of_lore_20.png",
+      "path": "game/assets/sprites/cards/of_lore_20.png",
       "mode": "missing_only"
     },
     "of_lore_21": {
-      "path": "assets/sprites/cards/of_lore_21.png",
+      "path": "game/assets/sprites/cards/of_lore_21.png",
       "mode": "missing_only"
     },
     "of_lore_22": {
-      "path": "assets/sprites/cards/of_lore_22.png",
+      "path": "game/assets/sprites/cards/of_lore_22.png",
       "mode": "missing_only"
     },
     "of_lore_25": {
-      "path": "assets/sprites/cards/of_lore_25.png",
+      "path": "game/assets/sprites/cards/of_lore_25.png",
       "mode": "missing_only"
     },
     "of_lore_26": {
-      "path": "assets/sprites/cards/of_lore_26.png",
+      "path": "game/assets/sprites/cards/of_lore_26.png",
       "mode": "missing_only"
     },
     "of_lore_28": {
-      "path": "assets/sprites/cards/of_lore_28.png",
+      "path": "game/assets/sprites/cards/of_lore_28.png",
       "mode": "missing_only"
     },
     "of_lore_30": {
-      "path": "assets/sprites/cards/of_lore_30.png",
+      "path": "game/assets/sprites/cards/of_lore_30.png",
       "mode": "missing_only"
     },
     "piedra_ritual": {
-      "path": "assets/sprites/cards/piedra_ritual.png",
+      "path": "game/assets/sprites/cards/piedra_ritual.png",
       "mode": "missing_only"
     },
     "portal_de_la_chakana": {
-      "path": "assets/sprites/cards/portal_de_la_chakana.png",
+      "path": "game/assets/sprites/cards/portal_de_la_chakana.png",
       "mode": "missing_only"
     },
     "pulso_cosmico": {
-      "path": "assets/sprites/cards/pulso_cosmico.png",
+      "path": "game/assets/sprites/cards/pulso_cosmico.png",
       "mode": "missing_only"
     },
     "resistencia_ancestral": {
-      "path": "assets/sprites/cards/resistencia_ancestral.png",
+      "path": "game/assets/sprites/cards/resistencia_ancestral.png",
       "mode": "missing_only"
     },
     "revelacion_astral": {
-      "path": "assets/sprites/cards/revelacion_astral.png",
+      "path": "game/assets/sprites/cards/revelacion_astral.png",
       "mode": "missing_only"
     },
     "ritual_de_la_trama": {
-      "path": "assets/sprites/cards/ritual_de_la_trama.png",
+      "path": "game/assets/sprites/cards/ritual_de_la_trama.png",
       "mode": "missing_only"
     },
     "sello_protector": {
-      "path": "assets/sprites/cards/sello_protector.png",
+      "path": "game/assets/sprites/cards/sello_protector.png",
       "mode": "missing_only"
     },
     "silencio_interior": {
-      "path": "assets/sprites/cards/silencio_interior.png",
+      "path": "game/assets/sprites/cards/silencio_interior.png",
       "mode": "missing_only"
     },
     "vinculo_de_energia": {
-      "path": "assets/sprites/cards/vinculo_de_energia.png",
+      "path": "game/assets/sprites/cards/vinculo_de_energia.png",
       "mode": "missing_only"
     },
     "vision_del_condor": {
-      "path": "assets/sprites/cards/vision_del_condor.png",
+      "path": "game/assets/sprites/cards/vision_del_condor.png",
       "mode": "missing_only"
     }
   }

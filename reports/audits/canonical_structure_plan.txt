@@ -1,0 +1,94 @@
+CHAKANA CANONICAL STRUCTURE PLAN (PHASE 2)
+
+generated_at=2026-03-09T21:16:15
+scope=plan_only (no move, no delete)
+
+[target_root_structure]
+- engine/             # engine-candidate runtime modules
+- game/               # game-specific runtime, content wiring, screens
+- assets/             # canonical shared asset root (curated/generated/fallback/archive)
+- data/               # optional future extraction alias for content registries (phase later)
+- docs/               # canonical documentation
+- qa/                 # QA scripts + latest reports
+- tools/              # maintenance/build/qa helpers
+- reports/            # audits/cleanup/validation outputs
+- build/              # packaged outputs (future)
+
+[canonical_asset_ownership]
+- Runtime source of truth (current stable): game/assets/**
+- Shared top-level assets/** should become curated/archive workspace, not direct runtime source.
+- Priority policy: curated > generated > fallback > archive
+
+[canonical_assets_layout_target]
+- assets/curated/cards
+- assets/curated/avatars
+- assets/curated/portraits
+- assets/curated/holograms
+- assets/curated/biomes
+- assets/curated/relics
+- assets/curated/music
+- assets/curated/sfx
+- assets/generated/cards
+- assets/generated/avatars
+- assets/generated/biomes
+- assets/generated/music
+- assets/fallback/**
+- assets/_archive/**
+
+[docs_target_layout]
+- docs/canon
+- docs/systems
+- docs/design
+- docs/lore
+- docs/engine
+- docs/archive
+
+[qa_target_layout]
+- qa/scripts
+- qa/reports/current
+- qa/reports/archive
+- reports/qa (optional mirror for external summaries)
+
+[tools_target_layout]
+- tools/qa
+- tools/assets
+- tools/maintenance
+- tools/build
+- tools/archive
+
+[reports_target_layout]
+- reports/audits
+- reports/cleanup
+- reports/validation
+- reports/qa (optional future split)
+
+[current_to_target_mapping_plan]
+- game/assets/sprites/cards/** -> KEEP active (phase 4 canonicalization will mirror/migrate safely)
+- assets/sprites/cards/** -> MARK legacy_duplicate candidate unless explicitly curated
+- game/assets/curated/avatars/** -> KEEP canonical for runtime curated avatars
+- assets/avatars/** -> classify curated_support or archive_candidate per manifest references
+- game/assets/music + game/assets/sfx -> KEEP active runtime
+- assets/music/** -> classify generated/archive support, avoid runtime direct load
+- root/qa_report_build_*.txt -> move to qa/reports/current (keep compatibility mirror if needed)
+- root loose txt/md outputs -> move under reports/* or docs/archive
+
+[path_resolution_policy]
+- loaders must resolve in this order:
+  1) game/assets/curated
+  2) game/assets/sprites or canonical generated path
+  3) fallback path
+  4) never use assets/_archive for runtime
+
+[phase3_precheck]
+- before moving files, produce explicit move list (source -> target)
+- include rollback notes and compatibility shims for any script expecting old root paths
+- do not move save/load runtime files in this pass
+
+[risk_flags]
+- duplicated card png trees in assets/sprites/cards and game/assets/sprites/cards
+- root QA mirror file still present (qa_report_build_0_9_106a.txt)
+- mixed curated/generated ownership between top-level assets and game/assets
+
+[phase2_result]
+status=PASS_WITH_WARNING
+warning_reason=canonical plan defined, but execution requires phased relocation with compatibility layer

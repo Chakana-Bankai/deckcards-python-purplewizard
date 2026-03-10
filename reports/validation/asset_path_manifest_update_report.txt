@@ -1,0 +1,53 @@
+CHAKANA ASSET PATH / MANIFEST UPDATE REPORT (PHASE 6)
+
+generated_at=2026-03-09T21:27:47
+scope=manifest path normalization only (safe)
+
+[changes_applied]
+- manifest_updated: game/data/art_manifest.json
+- updated_entries: 60
+- kept_due_missing_target: 0
+- untouched_non_legacy_entries: 0
+
+[sample_updates]
+- campo_protector: assets/sprites/cards/campo_protector.png -> game/assets/sprites/cards/campo_protector.png
+- chakana_de_luz: assets/sprites/cards/chakana_de_luz.png -> game/assets/sprites/cards/chakana_de_luz.png
+- cw_lore_02: assets/sprites/cards/cw_lore_02.png -> game/assets/sprites/cards/cw_lore_02.png
+- cw_lore_03: assets/sprites/cards/cw_lore_03.png -> game/assets/sprites/cards/cw_lore_03.png
+- cw_lore_04: assets/sprites/cards/cw_lore_04.png -> game/assets/sprites/cards/cw_lore_04.png
+- cw_lore_08: assets/sprites/cards/cw_lore_08.png -> game/assets/sprites/cards/cw_lore_08.png
+- cw_lore_09: assets/sprites/cards/cw_lore_09.png -> game/assets/sprites/cards/cw_lore_09.png
+- cw_lore_10: assets/sprites/cards/cw_lore_10.png -> game/assets/sprites/cards/cw_lore_10.png
+- cw_lore_14: assets/sprites/cards/cw_lore_14.png -> game/assets/sprites/cards/cw_lore_14.png
+- cw_lore_18: assets/sprites/cards/cw_lore_18.png -> game/assets/sprites/cards/cw_lore_18.png
+- cw_lore_23: assets/sprites/cards/cw_lore_23.png -> game/assets/sprites/cards/cw_lore_23.png
+- cw_lore_29: assets/sprites/cards/cw_lore_29.png -> game/assets/sprites/cards/cw_lore_29.png
+- eco_de_sabiduria: assets/sprites/cards/eco_de_sabiduria.png -> game/assets/sprites/cards/eco_de_sabiduria.png
+- embate_del_jaguar: assets/sprites/cards/embate_del_jaguar.png -> game/assets/sprites/cards/embate_del_jaguar.png
+- escudo_de_luz: assets/sprites/cards/escudo_de_luz.png -> game/assets/sprites/cards/escudo_de_luz.png
+- escudo_del_chaman: assets/sprites/cards/escudo_del_chaman.png -> game/assets/sprites/cards/escudo_del_chaman.png
+- espiritu_guardian: assets/sprites/cards/espiritu_guardian.png -> game/assets/sprites/cards/espiritu_guardian.png
+- estallido_arcano: assets/sprites/cards/estallido_arcano.png -> game/assets/sprites/cards/estallido_arcano.png
+- filo_astral: assets/sprites/cards/filo_astral.png -> game/assets/sprites/cards/filo_astral.png
+- filo_en_cadena: assets/sprites/cards/filo_en_cadena.png -> game/assets/sprites/cards/filo_en_cadena.png
+- firmeza_del_cuerpo: assets/sprites/cards/firmeza_del_cuerpo.png -> game/assets/sprites/cards/firmeza_del_cuerpo.png
+- fragmento_celeste: assets/sprites/cards/fragmento_celeste.png -> game/assets/sprites/cards/fragmento_celeste.png
+- fusion_espiritual: assets/sprites/cards/fusion_espiritual.png -> game/assets/sprites/cards/fusion_espiritual.png
+- garra_espiritual: assets/sprites/cards/garra_espiritual.png -> game/assets/sprites/cards/garra_espiritual.png
+- guardia_terrenal: assets/sprites/cards/guardia_terrenal.png -> game/assets/sprites/cards/guardia_terrenal.png
+- hg_lore_01: assets/sprites/cards/hg_lore_01.png -> game/assets/sprites/cards/hg_lore_01.png
+- hg_lore_05: assets/sprites/cards/hg_lore_05.png -> game/assets/sprites/cards/hg_lore_05.png
+- hg_lore_06: assets/sprites/cards/hg_lore_06.png -> game/assets/sprites/cards/hg_lore_06.png
+- hg_lore_07: assets/sprites/cards/hg_lore_07.png -> game/assets/sprites/cards/hg_lore_07.png
+- hg_lore_11: assets/sprites/cards/hg_lore_11.png -> game/assets/sprites/cards/hg_lore_11.png
+
+[sample_kept_missing_target]
+- none
+
+[notes]
+- game/assets remains canonical runtime root via game/core/paths.assets_dir().
+- bgm/audio manifests were not rewritten in this phase to avoid audio runtime regressions.
+- legacy tree remains archived under assets/_archive; runtime unaffected.
+
+[status]
+result=PASS
