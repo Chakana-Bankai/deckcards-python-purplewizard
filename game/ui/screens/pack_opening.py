@@ -197,14 +197,19 @@ class PackOpeningScreen:
                 self._open_pack(self.selected_pack)
             return
 
+        run_state = self.app.run_state if isinstance(getattr(self.app, "run_state", None), dict) else {}
+        sideboard = run_state.get("sideboard") if isinstance(run_state.get("sideboard"), list) else []
+        run_state["sideboard"] = sideboard
+        self.app.run_state = run_state
+
         if self.legendary_pick_mode:
             chosen = self.selected_card or self.cards[0]
-            self.app.run_state["sideboard"].append(chosen.definition.id)
+            sideboard.append(chosen.definition.id)
             if hasattr(self.app, "_queue_set_discovery") and hasattr(self.app, "_detect_card_set"):
                 self.app._queue_set_discovery(self.app._detect_card_set(chosen.definition.id))
         else:
             for card in self.cards:
-                self.app.run_state["sideboard"].append(card.definition.id)
+                sideboard.append(card.definition.id)
                 if hasattr(self.app, "_queue_set_discovery") and hasattr(self.app, "_detect_card_set"):
                     self.app._queue_set_discovery(self.app._detect_card_set(card.definition.id))
 

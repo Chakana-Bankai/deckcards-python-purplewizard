@@ -1,6 +1,6 @@
 CHAKANA BETA RUN FLOW REPORT
 ================================
-overall=PASS
+overall=WARNING
 boot=IntroScreen
 shop_entry=ShopScreen
 map_after_shop=MapScreen
@@ -12,5 +12,5 @@ combat_1_entry=MapScreen
 map_after_combat_1=MapScreen
 combat_2_entry=MapScreen
 map_after_combat_2=MapScreen
-boss_entry=CombatScreen
-note=run_flow_reaches_boss_and_core_transitions_resolve_in_safe_beta_mode
+boss_entry=MapScreen
+note=run_flow_reaches_boss_but_some_transition_expectations_still_need_cleanup

@@ -1,0 +1,8 @@
+status=ok
+scope=guardian_oracle_archon_tuning_plus_full_art_regen
+guardian_rule=simple_damage_added_to_low_pressure_guardian_cards
+oracle_rule=discard_scry_draw_can_add_point_damage
+archon_rule=enemy/control archon cards gain regulated attack when otherwise empty
+art_direction=background_subject_object_effects_with_geometry_in_frame_edges
+total_cards=180
+missing_art=0

@@ -543,6 +543,7 @@ class App:
         path = data_dir() / "cards_hiperboria.json"
         payload = load_json(path, default={})
         rows = payload.get("cards", []) if isinstance(payload, dict) else payload if isinstance(payload, list) else []
+        rows = self._apply_phase75_card_tuning(rows)
         cooked = []
         for c in rows if isinstance(rows, list) else []:
             if not isinstance(c, dict) or not c.get("id"):
@@ -808,7 +809,7 @@ class App:
             return cards
 
         tuned = []
-        guardian_damage_ids = {"guardia_terrenal", "hg_lore_15"}
+        guardian_damage_ids = {"guardia_terrenal", "hg_lore_15", "muralla_de_piedra", "hg_lore_19"}
         guardian_break_ids = {"sello_protector", "hg_lore_27", "muralla_de_piedra", "hg_lore_19"}
         guardian_hybrid_ids = {"campo_protector"}
 
@@ -844,6 +845,8 @@ class App:
                     _append("damage", 2)
                 if cid in guardian_break_ids and not _has("apply_break"):
                     _append("apply_break", 2 if cid in {"muralla_de_piedra", "hg_lore_19"} else 1)
+                if role in {"defense", "control", "ritual"} and _sum({"damage", "damage_plus_rupture"}) <= 0 and _sum({"gain_block", "block", "harmony_delta"}) > 0:
+                    _append("damage", 1)
                 if _sum({"damage"}) > 0:
                     tags.add("attack")
 
@@ -852,12 +855,25 @@ class App:
                 draw = _sum({"draw"})
                 dmg = _sum({"damage", "damage_plus_rupture"})
                 harmony = _sum({"harmony_delta"})
+                discard = _sum({"discard", "discard_random", "self_discard", "discard_to_draw"})
                 cost = int(cc.get("cost", 1) or 1)
                 if role in {"control", "ritual"} and cost >= 2 and dmg <= 0 and (scry >= 3 or harmony > 0):
                     cc["cost"] = max(0, cost - 1)
                 if scry >= 4 and draw <= 0:
                     _append("draw", 1)
                     tags.add("draw")
+                if dmg <= 0 and (discard > 0 or scry >= 2 or draw > 0):
+                    _append("damage", 1 + (1 if discard > 0 else 0))
+                    tags.add("attack")
+
+            if arch in {"archon_war", "arconte"} or str(cc.get("set", "")).strip().lower() in {"arconte", "archon"}:
+                if _sum({"damage", "damage_plus_rupture"}) <= 0:
+                    if _sum({"apply_break", "rupture", "set_rupture", "debuff", "weaken_enemy"}) > 0:
+                        _append("damage", 2)
+                    elif role in {"control", "ritual"}:
+                        _append("damage", 1)
+                if _sum({"damage", "damage_plus_rupture"}) > 0:
+                    tags.add("attack")
 
             cc["tags"] = sorted(tags)
 
@@ -2099,6 +2115,11 @@ class App:
         levels = 0
         gain = max(0, int(amount or 0))
         self.debug["xp_last_gain"] = gain
+        if not isinstance(getattr(self, "run_state", None), dict):
+            self.run_state = {}
+        self.run_state.setdefault("xp", 0)
+        self.run_state.setdefault("level", 1)
+        self.run_state.setdefault("levelup_pending", 0)
         self.run_state["xp"] += gain
         while self.run_state["level"] < MAX_LEVEL and self.run_state["xp"] >= self.xp_needed_for_level(self.run_state["level"]):
             self.run_state["xp"] -= self.xp_needed_for_level(self.run_state["level"])
@@ -2201,7 +2222,20 @@ class App:
 
     def apply_event_effects(self, effects):
         effects = list(effects or [])
-        player = self.run_state["player"]
+        if not isinstance(getattr(self, "run_state", None), dict):
+            self.run_state = {}
+        player = self.run_state.get("player") if isinstance(self.run_state.get("player"), dict) else {}
+        player.setdefault("hp", 60)
+        player.setdefault("max_hp", 60)
+        player.setdefault("rupture", 0)
+        player.setdefault("statuses", {})
+        self.run_state["player"] = player
+        self.run_state.setdefault("deck", [])
+        self.run_state.setdefault("gold", 0)
+        self.run_state.setdefault("xp", 0)
+        self.run_state.setdefault("level", 1)
+        self.run_state.setdefault("levelup_pending", 0)
+        self.run_state.setdefault("relics", [])
         rare = any(isinstance(e, dict) and e.get("type") == "gain_relic" for e in effects)
         event_xp = self.rng.randint(7, 8) if rare else self.rng.randint(4, 6)
         total_gold = 0

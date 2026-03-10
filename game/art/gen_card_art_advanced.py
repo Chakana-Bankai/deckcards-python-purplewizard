@@ -64,9 +64,11 @@ def _enrich_prompt(prompt: str, mode: str) -> str:
         tier = " abstract procedural treatment with controlled geometry noise and clear value hierarchy."
 
     composition = (
-        " narrative composition rules: subject 50-60 percent frame, environment 20-30 percent, energy action 10-20 percent. "
+        " narrative composition rules: subject 40-50 percent frame, environment 25-35 percent, focus object 10-15 percent, energy action 8-15 percent. "
         "Always show subject + visible action + readable environment context. "
-        "Every artwork must include one clear subject, one readable object or relic focus, one environment background layer, and one coherent set of energy/effect traces."
+        "Every artwork must include one clear background, one clear subject, one readable object or relic focus, and one coherent set of energy/effect traces. "
+        "Keep sacred geometry mostly in frame borders, corners or distant architecture, never as a thin overlay hiding the focal subject. "
+        "Preserve open air around the focal subject and separate planes clearly like layered 2d/2.5d card art."
     )
 
     return (p + tier + _style_tokens(style) + composition + " keep pixel clarity full hd no blur no stretch.").strip()

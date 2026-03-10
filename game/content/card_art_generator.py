@@ -90,30 +90,46 @@ class PromptBuilder:
         role = str(card.get("role", "") or family).lower()
         rarity = str(card.get("rarity", "common") or "common").lower()
         motif = str(card.get("motif", "") or "").lower()
+        cid = str(card.get("id", "") or "").lower()
+        set_id = str(card.get("set", "") or "").lower()
         effect_sig = self.effect_signature(card)
 
-        if "hip_" in str(card.get("id", "")).lower() or "hiperborea" in str(card.get("set", "")).lower() or "hiperboria" in str(card.get("set", "")).lower():
-            environment = "ancient polar temple background with crystalline architecture and distant aurora"
-        elif "archon" in arch or "archon" in motif or "void" in motif:
-            environment = "corrupted void sanctuary background with broken geometry and oppressive depth"
+        if "hip_" in cid or set_id in {"hiperborea", "hiperboria"}:
+            env_cycle = [
+                "ancient polar temple background with crystalline towers, frozen sea and distant aurora",
+                "hyperborean sky city background with marble bridges, cold stars and floating runic gates",
+                "glacial sanctuary background with white stone, blue light wells and sacred snow plains",
+            ]
+        elif "archon" in arch or "arconte" in arch or "void" in motif or cid.startswith("arc_"):
+            env_cycle = [
+                "corrupted void sanctuary background with broken monoliths, abyss sky and red fissures",
+                "dark ritual wasteland background with obsidian ruins, ash wind and collapsing geometry",
+                "malign throne-realm background with black stone, crimson horizon and oppressive depth",
+            ]
         else:
-            environment = "mystic chakana sanctuary background with layered sacred stone and cosmic horizon"
+            env_cycle = [
+                "mystic chakana sanctuary background with layered sacred stone, open sky and cosmic horizon",
+                "gaia landscape background with sea or jungle depth, luminous mountain line and ritual ruins",
+                "astral ceremonial background with starfield depth, temple silhouettes and sacred earth platform",
+            ]
+        environment = env_cycle[sum(ord(ch) for ch in cid) % len(env_cycle)]
 
         if family == "attack":
             subject = "warrior, beast or ritual attacker in clear combat pose"
-            obj = "weapon, blade, spear or striking focus relic"
+            obj_cycle = ["weapon blade", "spear relic", "solar axe", "astral claw focus"]
         elif family == "defense":
             subject = "guardian, sentinel or shield bearer in anchored stance"
-            obj = "shield seal, stone ward or defensive relic focus"
+            obj_cycle = ["shield seal", "stone ward", "defensive relic", "barrier totem"]
         elif family == "ritual":
             subject = "ritual caster or ceremonial conduit channeling power"
-            obj = "altar focus, seal tablet or sacred catalyst"
+            obj_cycle = ["altar focus", "seal tablet", "sacred catalyst", "ritual brazier"]
         elif family == "control":
             subject = "oracle, seer or mind-weaver reading the flow"
-            obj = "eye relic, codex shard or divination instrument"
+            obj_cycle = ["eye relic", "codex shard", "divination instrument", "thread compass"]
         else:
             subject = "mystic conduit or spiritual avatar holding the field"
-            obj = "chakana relic, energy knot or spiritual focus"
+            obj_cycle = ["chakana relic", "energy knot", "sacred prism", "ether anchor"]
+        obj = obj_cycle[(sum(ord(ch) for ch in cid[::-1]) + len(role)) % len(obj_cycle)]
 
         if arch == "oracle_of_fate":
             subject = "oracular figure with intense gaze reading the weave"
@@ -121,20 +137,22 @@ class PromptBuilder:
             subject = "guardian figure holding balance and warding force"
         elif arch == "cosmic_warrior":
             subject = "cosmic warrior driving forward with decisive motion"
-        elif "archon" in arch:
+        elif "archon" in arch or cid.startswith("arc_"):
             subject = "archon entity or corrupted servant dominating the scene"
 
         effects = {
-            "impacto_ofensivo": "burst arcs, impact trails, sparks and offensive energy cuts",
-            "barrera_ritual": "stable rings, ward sigils, shield glow and defensive pulse lines",
-            "vision_oracular": "spiral streams, eye light, foresight glyphs and cognitive echoes",
-            "flujo_mental": "draw currents, ribbon streams, memory wisps and lucid particles",
+            "impacto_ofensivo": "focused offensive cuts, impact sparks, directional slash traces and controlled embers",
+            "barrera_ritual": "stable ward rings, shield halos, anchoring sigils and defensive pulse lines",
+            "vision_oracular": "foresight streams, eye light, prophetic threads and lucid echo particles",
+            "flujo_mental": "memory ribbons, card-flow wisps, mental arcs and soft glyph particles",
             "resonancia_armonica": "harmonic halos, resonance bands, golden pulse chords and balanced light",
-            "trazo_mistico": "arc traces, luminous dust, subtle sigils and ether drift",
-        }.get(effect_sig, "arc traces, luminous dust, subtle sigils and ether drift")
+            "trazo_mistico": "subtle luminous dust, ether drift, sparse sigils and clean magical traces",
+        }.get(effect_sig, "subtle luminous dust, ether drift, sparse sigils and clean magical traces")
 
         if rarity == "legendary":
-            effects += ", premium ceremonial glow and expanded focal aura"
+            effects += ", premium ceremonial glow, deep layered aura and stronger cinematic depth"
+        elif rarity == "rare":
+            effects += ", elevated focal glow and cleaner separation between planes"
         return {
             "subject": subject,
             "object": obj,

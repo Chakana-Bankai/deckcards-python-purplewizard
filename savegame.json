@@ -1,0 +1,19 @@
+{
+  "player": {
+    "hp": 60,
+    "max_hp": 60,
+    "rupture": 0,
+    "statuses": {
+      "focus": 2
+    }
+  },
+  "deck": [],
+  "gold": 12,
+  "xp": 6,
+  "level": 1,
+  "levelup_pending": 0,
+  "relics": [],
+  "current_node_id": null,
+  "last_biome_seen": null,
+  "saved_at": 1773175630
+}
