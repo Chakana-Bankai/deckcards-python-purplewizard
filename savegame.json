@@ -1,99 +1,40 @@
 {
-  "gold": 84,
+  "gold": 80,
   "relics": [
-    "violet_seal",
-    "puma_pulse",
-    "serpent_scale"
+    "violet_seal"
   ],
   "relic_slots_max": 8,
   "player": {
-    "hp": 23,
+    "hp": 60,
     "max_hp": 60,
-    "block": 3,
-    "energy": 4,
-    "rupture": 1,
-    "statuses": {
-      "focus": 2
-    },
-    "harmony_current": 0,
-    "harmony_max": 10,
-    "harmony_ready_threshold": 6,
-    "harmony_ready": false,
-    "harmony_seal_used": false,
-    "seal_ready": false,
-    "seal_active": false
+    "block": 0,
+    "energy": 3,
+    "rupture": 0,
+    "statuses": {}
   },
   "deck": [
-    "fragmento_celeste",
-    "invocacion_astral",
-    "observacion_sagrada",
-    "vision_del_condor",
-    "of_lore_12",
-    "of_lore_16",
-    "of_lore_17",
-    "of_lore_20",
-    "of_lore_30",
-    "portal_de_la_chakana",
-    "revelacion_astral",
-    "of_lore_21",
-    "of_lore_22",
-    "hip_oracle_of_fate_14",
-    "of_lore_26",
-    "piedra_ritual",
-    "ritual_de_la_trama",
-    "embate_del_jaguar",
-    "fusion_espiritual",
-    "filo_astral"
-  ],
-  "sideboard": [
-    "hg_lore_27",
+    "filo_astral",
+    "garra_espiritual",
+    "pulso_cosmico",
+    "vinculo_de_energia",
+    "cw_lore_03",
+    "cw_lore_09",
+    "cw_lore_10",
+    "cw_lore_14",
+    "cw_lore_18",
+    "cw_lore_23",
+    "eco_de_sabiduria",
     "mantra_del_umbral",
-    "silencio_interior",
-    "lectura_del_destino",
-    "espiritu_guardian",
-    "of_lore_28",
-    "hg_lore_07",
-    "hip_harmony_guardian_18",
-    "hip_cosmic_warrior_09",
-    "hip_cosmic_warrior_14",
-    "guardia_terrenal",
-    "hip_harmony_guardian_16",
-    "hip_cosmic_warrior_09",
-    "hip_cosmic_warrior_14",
-    "guardia_terrenal",
-    "hip_harmony_guardian_16",
-    "hip_cosmic_warrior_09",
-    "hip_cosmic_warrior_14",
-    "guardia_terrenal",
-    "hip_harmony_guardian_16",
-    "hip_oracle_of_fate_20",
-    "hip_cosmic_warrior_15",
-    "hip_cosmic_warrior_14",
-    "guardia_terrenal",
-    "hip_harmony_guardian_16",
-    "vision",
-    "hip_cosmic_warrior_09",
-    "hip_cosmic_warrior_14",
-    "guardia_terrenal",
-    "hip_harmony_guardian_16",
-    "hip_cosmic_warrior_09",
-    "hip_cosmic_warrior_14",
-    "guardia_terrenal",
-    "hip_harmony_guardian_16",
-    "hip_cosmic_warrior_09",
-    "hip_cosmic_warrior_14",
-    "guardia_terrenal",
-    "hip_harmony_guardian_16",
-    "hip_cosmic_warrior_09",
-    "hip_cosmic_warrior_14",
-    "guardia_terrenal",
-    "hip_harmony_guardian_16",
-    "hip_cosmic_warrior_09",
-    "hip_cosmic_warrior_14",
-    "guardia_terrenal",
-    "hip_harmony_guardian_16",
-    "portal_de_la_chakana"
+    "embate_del_jaguar",
+    "estallido_arcano",
+    "filo_en_cadena",
+    "cw_lore_02",
+    "cw_lore_04",
+    "cw_lore_08",
+    "cw_lore_29",
+    "chakana_de_luz"
   ],
+  "sideboard": [],
   "map": [
     [
       {
@@ -107,7 +48,7 @@
           "1_0",
           "1_1"
         ],
-        "state": "cleared"
+        "state": "available"
       }
     ],
     [
@@ -122,7 +63,7 @@
           "2_0",
           "2_1"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "1_1",
@@ -135,20 +76,20 @@
           "2_1",
           "2_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "1_2",
         "col": 1,
         "x": 492,
         "y": 588,
-        "type": "challenge",
+        "type": "combat",
         "biome": "ukhu",
         "next": [
           "2_2",
           "2_3"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "1_3",
@@ -176,7 +117,7 @@
           "3_0",
           "3_1"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "2_1",
@@ -189,7 +130,7 @@
           "3_1",
           "3_0"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "2_2",
@@ -202,7 +143,7 @@
           "3_2",
           "3_3"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "2_3",
@@ -215,7 +156,7 @@
           "3_3",
           "3_2"
         ],
-        "state": "available"
+        "state": "locked"
       }
     ],
     [
@@ -230,7 +171,7 @@
           "4_0",
           "4_1"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "3_1",
@@ -242,7 +183,7 @@
         "next": [
           "4_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "3_2",
@@ -254,20 +195,20 @@
         "next": [
           "4_1"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "3_3",
         "col": 3,
         "x": 1116,
         "y": 684,
-        "type": "challenge",
+        "type": "combat",
         "biome": "hanan",
         "next": [
           "4_1",
           "4_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       }
     ],
     [
@@ -281,7 +222,7 @@
         "next": [
           "5_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "4_1",
@@ -293,7 +234,7 @@
         "next": [
           "5_0"
         ],
-        "state": "cleared"
+        "state": "locked"
       }
     ],
     [
@@ -305,7 +246,7 @@
         "type": "boss",
         "biome": "fractura_chakana",
         "next": [],
-        "state": "available"
+        "state": "locked"
       }
     ]
   ],
@@ -316,12 +257,12 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 2,
-  "biome": "hanan",
-  "xp": 54,
-  "level": 4,
-  "combats_won": 3,
-  "tutorial_combats_won": 3,
+  "biome_index": 0,
+  "biome": "ukhu",
+  "xp": 0,
+  "level": 1,
+  "combats_won": 0,
+  "tutorial_combats_won": 0,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
@@ -329,10 +270,9 @@
     "music_muted": false
   },
   "discovered_sets": [
-    "base",
-    "hiperboria"
+    "base"
   ],
-  "hiperboria_unlocked": true,
+  "hiperboria_unlocked": false,
   "tutorial": {
     "active": false,
     "completed": false,
@@ -341,44 +281,23 @@
     "step_total": 7
   },
   "meta_director": {
-    "recent_enemy_ids": [
-      "ave_de_ceniza",
-      "espiritu_condor_menor",
-      "mascara_risuena",
-      "portador_de_silencio",
-      "runa_errante"
-    ],
-    "recent_event_ids": [
-      "ayni_pact",
-      "ayni_pact",
-      "ayni_pact",
-      "ayni_pact",
-      "puma_trial"
-    ],
+    "recent_enemy_ids": [],
+    "recent_event_ids": [],
     "recent_shop_card_ids": [],
-    "recent_pack_ids": [
-      "base_pack",
-      "base_pack",
-      "base_pack",
-      "base_pack"
-    ],
+    "recent_pack_ids": [],
     "visual_direction_tags": [
-      "biome:hanan",
-      "mood:ascendant"
+      "biome:ukhu",
+      "mood:underworld"
     ],
     "audio_direction_tags": [
       "ctx:map",
-      "biome:hanan",
-      "mood:ethereal"
+      "biome:ukhu",
+      "mood:dark"
     ]
   },
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
-  "last_node_type": "challenge",
-  "levelup_pending": 3,
-  "combat_invalid_reason": "",
-  "combat_invalid_until_ms": 0,
-  "current_node_id": "4_1",
-  "last_biome_seen": "hanan",
-  "saved_at": 1773244870
+  "current_node_id": null,
+  "last_biome_seen": "ukhu",
+  "saved_at": 1773247402
 }

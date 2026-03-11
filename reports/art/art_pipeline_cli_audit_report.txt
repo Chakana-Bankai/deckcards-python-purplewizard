@@ -1,8 +1,8 @@
 chakana_studio art audit
-generated=2026-03-11 13:01:09
+generated=2026-03-11 13:38:18
 
 mode=art_audit
-dry_run=True
+dry_run=False
 card_pngs=180
 
 reference_total=202

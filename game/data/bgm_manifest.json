@@ -3,16 +3,12 @@
   "source": "game/data/audio_manifest.json",
   "items": {
     "menu": {
-      "path": "game/audio/generated/bgm/menu_a.wav",
-      "mode": "audio_engine_manifest_v8",
-      "track_id": "menu_a",
-      "source": "generated"
+      "path": "game/assets/music/menu.wav",
+      "mode": "missing_only"
     },
     "map_kaypacha": {
-      "path": "game/audio/generated/bgm/map_kay_a.wav",
-      "mode": "audio_engine_manifest_v8",
-      "track_id": "map_kay_a",
-      "source": "generated"
+      "path": "game/assets/music/map_kaypacha.wav",
+      "mode": "missing_only"
     },
     "map_hanan": {
       "path": "game/audio/generated/bgm/map_hanan_a.wav",
@@ -27,10 +23,8 @@
       "source": "generated"
     },
     "combat_kaypacha": {
-      "path": "game/audio/generated/bgm/combat_a.wav",
-      "mode": "audio_engine_manifest_v8",
-      "track_id": "combat_a",
-      "source": "generated"
+      "path": "game/assets/music/combat_kaypacha.wav",
+      "mode": "missing_only"
     },
     "combat_ukhu": {
       "path": "game/audio/generated/bgm/combat_a.wav",
@@ -45,10 +39,8 @@
       "source": "generated"
     },
     "boss": {
-      "path": "game/audio/generated/bgm/combat_boss_a.wav",
-      "mode": "audio_engine_manifest_v8",
-      "track_id": "combat_boss_a",
-      "source": "generated"
+      "path": "game/assets/music/boss.wav",
+      "mode": "missing_only"
     },
     "shop": {
       "path": "game/audio/generated/bgm/shop_a.wav",
@@ -57,10 +49,8 @@
       "source": "generated"
     },
     "event": {
-      "path": "game/audio/generated/bgm/shop_a.wav",
-      "mode": "audio_engine_manifest_v8",
-      "track_id": "shop_a",
-      "source": "generated"
+      "path": "game/assets/music/event.wav",
+      "mode": "missing_only"
     },
     "reward": {
       "path": "game/audio/generated/bgm/victory_a.wav",
