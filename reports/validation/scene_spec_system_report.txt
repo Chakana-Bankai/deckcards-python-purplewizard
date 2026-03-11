@@ -1,0 +1,75 @@
+﻿status=PASS
+phase=PHASE 2 — SCENE SPEC SYSTEM
+report=scene_spec_system_report.txt
+report_path=reports/validation/scene_spec_system_report.txt
+
+summary=
+Se implementó un Scene Spec System explícito y reutilizable para el pipeline de arte nuevo. El sistema ya no depende solo de texto libre en el prompt: ahora cada carta puede transportar un scene_spec estructurado con scene_type, subject, subject_pose, secondary_object, environment, symbol, energy, palette, camera y mood, además de subject_kind/object_kind/environment_kind y referencias explícitas de sujeto, objeto y entorno.
+
+files_modified=
+- game/art/scene_spec.py
+- game/content/card_art_generator.py
+- game/art/scene_engine.py
+
+implementation=
+1. Nuevo módulo canónico: game/art/scene_spec.py
+   - SceneSpec dataclass
+   - SCENE_TYPE_PRESETS con ejemplos iniciales:
+     * mountain_guardian_scene
+     * hyperborea_temple_scene
+     * archon_void_scene
+     * ritual_duel_scene
+     * sacred_beast_scene
+   - helpers:
+     * default_scene_type(...)
+     * build_scene_spec(...)
+     * scene_spec_prompt_fragment(...)
+2. PromptBuilder ahora construye scene_spec real en build_entry(...)
+   - scene_type se deriva del subject/environment kind
+   - se define subject_pose, camera y mood según familia/arquetipo/set
+   - entry ahora devuelve:
+     * composition
+     * scene_spec
+     * reference_cues
+     * prompt_text
+3. export_prompts(...) ahora preserva scene_spec en game/data/card_prompts.json
+4. scene_engine.semantic_from_prompt(...) ahora reconoce los nuevos campos:
+   - scene_type
+   - subject_pose
+   - secondary_object
+   - camera
+   - mood
+
+examples_validated=
+- cw_lore_10
+  * scene_type=mountain_guardian_scene
+  * subject_pose=heroic raised weapon
+  * camera=hero close
+  * mood=heroic ritual
+- hip_cosmic_warrior_20
+  * scene_type=hyperborea_temple_scene
+  * subject_pose=heroic raised weapon
+  * camera=hero medium close
+  * mood=heroic polar
+- arc_060
+  * scene_type=archon_void_scene
+  * subject_pose=predatory lunge
+  * camera=ominous low angle
+  * mood=oppressive malign
+
+benefit=
+La fase 2 deja una fuente de verdad estructurada para el arte nuevo. Esto elimina parte de la ambigüedad actual y prepara al pipeline para la fase siguiente: biblioteca de siluetas y ensamblaje dirigido. También hace más trazable el arte en prompts, exporters y validación.
+
+recommendation_for_phase_3=
+Implementar la Silhouette Library sobre SceneSpec.
+La siguiente fase debe dejar categorías y plantillas claras para:
+- mage silhouettes
+- warrior silhouettes
+- archon silhouettes
+- guardian silhouettes
+- animal silhouettes
+- temple silhouettes
+- relic silhouettes
+- weapon silhouettes
+
+silhouette_builder.py debe migrar de primitivas genéricas a familias de siluetas legibles consumiendo subject_kind/object_kind desde scene_spec.

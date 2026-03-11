@@ -237,6 +237,54 @@ def _draw_archon_foreground(surface: pygame.Surface, rect: pygame.Rect, color, a
     pygame.draw.circle(surface, accent, (rect.centerx, rect.y + rect.h // 5), rect.w // 8, 4)
     pygame.draw.line(surface, color, (tablet.centerx, tablet.y + 8), (tablet.centerx, tablet.bottom - 8), 4)
 
+
+
+SUBJECT_SILHOUETTE_LIBRARY = {
+    'mage': ('oracle_totem',),
+    'warrior': ('weapon_bearer', 'warrior_foreground', 'hyperborean_foreground'),
+    'archon': ('archon_throne', 'archon_foreground', 'archon_beast'),
+    'guardian': ('guardian_bearer', 'weapon_bearer', 'warrior_foreground'),
+    'animal': ('condor', 'beast', 'tree'),
+    'temple': ('castle',),
+}
+
+OBJECT_SILHOUETTE_LIBRARY = {
+    'relic': ('codex', 'seal_tablet', 'altar', 'seal', 'crown'),
+    'weapon': ('weapon', 'greatsword', 'solar_axe'),
+    'shield': ('shield',),
+}
+
+SUBJECT_KIND_TO_TEMPLATE = {
+    'oracle_totem': 'mage',
+    'weapon_bearer': 'warrior',
+    'warrior_foreground': 'warrior',
+    'hyperborean_champion': 'warrior',
+    'hyperborean_foreground': 'warrior',
+    'guardian_bearer': 'guardian',
+    'archon_throne': 'archon',
+    'archon_foreground': 'archon',
+    'archon_beast': 'archon',
+}
+
+OBJECT_KIND_TO_TEMPLATE = {
+    'weapon': 'weapon',
+    'greatsword': 'weapon',
+    'solar_axe': 'weapon',
+    'codex': 'relic',
+    'altar': 'relic',
+    'seal': 'relic',
+    'seal_tablet': 'relic',
+    'crown': 'relic',
+    'shield': 'shield',
+}
+
+
+def silhouette_library_summary() -> dict[str, dict[str, tuple[str, ...]]]:
+    return {
+        'subject_categories': SUBJECT_SILHOUETTE_LIBRARY,
+        'object_categories': OBJECT_SILHOUETTE_LIBRARY,
+    }
+
 def _subject_variant(semantic: dict) -> str:
     return _ref_stem(semantic.get('subject_ref', ''))
 
@@ -254,6 +302,7 @@ def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, r
         str(semantic.get('environment', '') or ''),
         ' '.join(getattr(r, 'cue', '') for r in refs[:3]),
     ]).lower()
+    template_family = SUBJECT_KIND_TO_TEMPLATE.get(kind, '')
     main = palette[2]
     accent = palette[3]
     rect = pygame.Rect(int(surface.get_width() * 0.06), int(surface.get_height() * 0.00), int(surface.get_width() * 0.88), int(surface.get_height() * 0.82))
@@ -271,17 +320,17 @@ def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, r
         _draw_guardian_bearer(layer, rect, main, accent)
     elif kind == 'warrior_foreground':
         _draw_warrior_foreground(layer, rect, main, accent, variant=variant)
-    elif any(k in subject for k in ('condor', 'bird', 'ave')):
+    elif template_family == 'animal' or any(k in subject for k in ('condor', 'bird', 'ave')):
         _draw_condor(layer, rect, main, accent)
-    elif any(k in subject for k in ('tree', 'gaia', 'arbol')):
+    elif template_family == 'animal' or any(k in subject for k in ('tree', 'gaia', 'arbol')):
         _draw_tree(layer, rect, main, accent)
-    elif any(k in subject for k in ('castle', 'temple', 'sanctuary', 'ruins', 'throne', 'city')):
+    elif template_family == 'temple' or any(k in subject for k in ('castle', 'temple', 'sanctuary', 'ruins', 'throne', 'city')):
         _draw_castle(layer, rect, main, accent)
-    elif any(k in subject for k in ('archon', 'arconte', 'throne-realm')):
+    elif template_family == 'archon' or any(k in subject for k in ('archon', 'arconte', 'throne-realm')):
         _draw_archon_throne(layer, rect, main, accent)
-    elif any(k in subject for k in ('oracle', 'visionary', 'seer')):
+    elif template_family == 'mage' or any(k in subject for k in ('oracle', 'visionary', 'seer')):
         _draw_oracle_totem(layer, rect, main, accent)
-    elif any(k in subject for k in ('guardian', 'warrior', 'champion')):
+    elif template_family in {'guardian', 'warrior'} or any(k in subject for k in ('guardian', 'warrior', 'champion')):
         _draw_weapon_bearer(layer, rect, main, accent)
     elif any(k in subject for k in ('mage', 'figure', 'herald')):
         _draw_humanoid(layer, rect, main, accent, crown=False)
@@ -297,11 +346,12 @@ def draw_focus_object(surface: pygame.Surface, semantic: dict, palette, rng: ran
     kind = str(semantic.get('object_kind', '') or '').lower().replace(' ', '_')
     variant = _object_variant(semantic)
     obj = str(semantic.get('object', '') or '').lower()
+    template_family = OBJECT_KIND_TO_TEMPLATE.get(kind, '')
     color = palette[1]
     glow = palette[3]
     rect = pygame.Rect(int(surface.get_width() * 0.06), int(surface.get_height() * 0.26), int(surface.get_width() * 0.88), int(surface.get_height() * 0.60))
     layer = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
-    if kind in {'greatsword', 'solar_axe'} or any(k in obj for k in ('sword', 'blade', 'axe', 'spear', 'weapon')):
+    if template_family == 'weapon' or kind in {'greatsword', 'solar_axe'} or any(k in obj for k in ('sword', 'blade', 'axe', 'spear', 'weapon')):
         shaft_a = (rect.left + rect.w // 6, rect.bottom - rect.h // 7)
         shaft_b = (rect.right - rect.w // 5, rect.top + rect.h // 7)
         _blocky_line(layer, color, shaft_a, shaft_b, 26)

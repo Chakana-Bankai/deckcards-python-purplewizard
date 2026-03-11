@@ -159,6 +159,14 @@
     "cw_lore_09",
     "hg_lore_11",
     "filo_astral",
+    "portal_de_la_chakana",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
     "portal_de_la_chakana"
   ],
   "map": [
@@ -385,7 +393,7 @@
   ],
   "biome_index": 2,
   "biome": "hanan",
-  "xp": 37,
+  "xp": 55,
   "level": 5,
   "combats_won": 1,
   "tutorial_combats_won": 1,
@@ -415,9 +423,9 @@
       "runa_errante"
     ],
     "recent_event_ids": [
-      "ayni_pact",
-      "puma_trial",
       "condor_vision",
+      "ayni_pact",
+      "ayni_pact",
       "ayni_pact",
       "ayni_pact"
     ],
@@ -444,5 +452,5 @@
   "levelup_pending": 4,
   "current_node_id": "4_1",
   "last_biome_seen": "hanan",
-  "saved_at": 1773192297
+  "saved_at": 1773194929
 }

@@ -10,6 +10,7 @@ from engine.creative_direction import CreativeArtDirector
 from game.art.gen_art32 import seed_from_id
 from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
 from game.art.gen_card_art_advanced import generate
+from game.art.scene_spec import build_scene_spec, default_scene_type, scene_spec_prompt_fragment
 from game.core.paths import assets_dir, art_reference_dir, data_dir
 from game.core.safe_io import atomic_write_json_if_changed, load_json
 from game.visual.generators.lore_motifs import MOTIF_LIBRARY, motifs_for_archetype
@@ -316,6 +317,44 @@ class PromptBuilder:
             "effects": effects,
         }
 
+    def _subject_pose_for(self, card: dict, blueprint: dict) -> str:
+        arch = str(card.get("archetype", "") or "").lower()
+        family = self.family_for(card)
+        kind = str(blueprint.get("subject_kind", "") or "").lower()
+        if kind in {"warrior_foreground", "weapon_bearer", "hyperborean_foreground", "hyperborean_champion"}:
+            return "heroic raised weapon" if family == "attack" else "frontal guarding stance"
+        if kind in {"archon_foreground", "archon_throne", "archon_beast"}:
+            return "seated throne decree" if "throne" in kind else "predatory lunge"
+        if arch == "oracle_of_fate" or kind == "oracle_totem":
+            return "ritual reading stance"
+        return "frontal iconic pose"
+
+    def _camera_for(self, blueprint: dict) -> str:
+        env_kind = str(blueprint.get("environment_kind", "") or "").lower()
+        subj_kind = str(blueprint.get("subject_kind", "") or "").lower()
+        if "archon" in subj_kind or "throne" in env_kind:
+            return "ominous low angle"
+        if "hyperborean" in subj_kind or env_kind == "citadel":
+            return "hero medium close"
+        if subj_kind in {"warrior_foreground", "weapon_bearer", "guardian_bearer"}:
+            return "hero close"
+        return "medium close"
+
+    def _mood_for(self, card: dict, blueprint: dict) -> str:
+        set_id = str(card.get("set", "") or "").lower()
+        family = self.family_for(card)
+        if set_id in {"arconte", "archon"} or str(card.get("id", "")).lower().startswith("arc_"):
+            return "oppressive malign"
+        if set_id in {"hiperboria", "hiperborea"}:
+            return "ancient luminous" if family != "attack" else "heroic polar"
+        if family == "attack":
+            return "heroic ritual"
+        if family == "defense":
+            return "solemn vigilant"
+        if family == "control":
+            return "mystic contemplative"
+        return "ceremonial"
+
     def build_entry(self, card: dict) -> dict:
         cid = card.get("id", "unknown")
         ctype = self.family_for(card)
@@ -335,6 +374,24 @@ class PromptBuilder:
             categories = ['characters_subjects', 'weapons_relics', 'andean_mythology', 'chakana_symbols', 'fantasy_landscapes', 'ancient_architecture']
         ref_cues = self.refs.cues_for(categories)
         ref_text = ', '.join(ref_cues[:4]) if ref_cues else 'no external cues'
+        scene_spec = build_scene_spec(
+            scene_type=default_scene_type(blueprint['environment_kind'], blueprint['subject_kind']),
+            subject=blueprint['subject'],
+            subject_pose=self._subject_pose_for(card, blueprint),
+            secondary_object=blueprint['object'],
+            environment=blueprint['environment'],
+            symbol=symbols,
+            energy=energy,
+            palette=palette,
+            camera=self._camera_for(blueprint),
+            mood=self._mood_for(card, blueprint),
+            subject_kind=blueprint['subject_kind'],
+            object_kind=blueprint['object_kind'],
+            environment_kind=blueprint['environment_kind'],
+            subject_ref=blueprint['subject_ref'],
+            object_ref=blueprint['object_ref'],
+            environment_ref=blueprint['environment_ref'],
+        )
         prompt = (
             f"chakana card::{cid}::{ctype} high density pixel fantasy, layered depth, "
             f"silhouette discipline, role {role}, rarity {rarity}, palette {palette}, lighting {lighting}, "
@@ -342,6 +399,7 @@ class PromptBuilder:
             f"subject {blueprint['subject']}, object {blueprint['object']}, environment {blueprint['environment']}, "
             f"subject kind {blueprint['subject_kind']}, object kind {blueprint['object_kind']}, environment kind {blueprint['environment_kind']}, "
             f"subject ref {blueprint['subject_ref']}, object ref {blueprint['object_ref']}, environment ref {blueprint['environment_ref']}, "
+            f"{scene_spec_prompt_fragment(scene_spec)}, "
             f"effect signature {effect_sig}, effects {blueprint['effects']}, energy pattern {energy}, lore tokens {lore_tokens}, "
             f"reference cues {ref_text}, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character"
         )
@@ -350,6 +408,7 @@ class PromptBuilder:
             "card_type": ctype,
             "family": ctype,
             "composition": blueprint,
+            "scene_spec": scene_spec.to_dict(),
             "reference_cues": ref_cues,
             "prompt_text": prompt,
         }
@@ -457,6 +516,7 @@ def _prompt_payload(cards: list[dict], seed: int = 12345) -> dict:
             "prompt": entry.get("prompt_text", ""),
             "style": entry.get("card_type", "spirit"),
             "composition": dict(entry.get("composition", {})),
+            "scene_spec": dict(entry.get("scene_spec", {})),
             "updated_at": "1970-01-01T00:00:00Z",
         }
     return out

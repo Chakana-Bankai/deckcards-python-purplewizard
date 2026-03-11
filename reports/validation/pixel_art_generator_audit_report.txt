@@ -1,0 +1,118 @@
+﻿status=WARNING
+phase=PHASE 1 — AUDIT CURRENT ART GENERATION
+report=pixel_art_generator_audit_report.txt
+report_path=reports/validation/pixel_art_generator_audit_report.txt
+
+summary=
+El pipeline actual ya no es un solo generador caótico: hoy conviven un pipeline nuevo dirigido y varios generadores legacy. La mala calidad visible no viene de una sola pieza rota, sino de la combinación de (1) generadores viejos basados en círculos/líneas/geometría, (2) un constructor de siluetas todavía demasiado primitivo, y (3) una integración incompleta de referencias reales, que hoy informan el prompt pero todavía no construyen una silueta legible por sí mismas.
+
+active_pipeline=
+1. game/content/card_art_generator.py
+   - Construye el blueprint semántico actual.
+   - Ya define subject_kind, object_kind, environment_kind y refs explícitas.
+   - Clasificación: useful
+2. game/art/gen_card_art_advanced.py
+   - Orquesta el pipeline actual y decide cuándo usar scene_engine/frame_engine.
+   - Clasificación: useful
+3. game/art/scene_engine.py
+   - Ensambla escena en capas: background, environment, subject, object, fx, contraste.
+   - Clasificación: useful, pero aún insuficiente en legibilidad del primer plano.
+4. game/art/silhouette_builder.py
+   - Dibuja sujeto y objeto con primitivas hechas a mano.
+   - Clasificación: useful but too noisy / not readable enough
+5. game/art/fx_layer.py
+   - Añade FX. Ya fue reducido, pero sigue siendo una capa delicada.
+   - Clasificación: useful if constrained
+6. game/art/frame_engine.py
+   - Marco separado del arte interior.
+   - Clasificación: useful
+7. game/art/reference_sampler.py
+   - Muestrea referencias reales desde assets/art_reference.
+   - Clasificación: useful
+
+legacy_or_parallel_generators=
+1. game/art/gen_card_art32.py
+   - Genera rosettas, concéntricos, nodos de grilla, geometría ritual y ruido visual.
+   - Principal fuente histórica de output abstracto.
+   - Clasificación: replace / archive / too noisy
+2. game/art/gen_art32.py
+   - Sigue usando geometría sagrada, runas, glow y capas abstractas como lenguaje base.
+   - Impacta arte legacy de enemigos/otros outputs.
+   - Clasificación: replace / archive / too noisy
+3. game/content/enemy_art_generator.py
+   - Sigue apoyándose en gen_art32.
+   - Clasificación: replace
+4. game/art/gen_avatar_chakana.py
+   - Aún usa estrategias viejas de forma simple.
+   - Clasificación: replace later
+5. game/art/gen_guide_art32.py
+   - Generador guía legacy, mismo lenguaje visual problemático.
+   - Clasificación: replace later
+
+main_causes_of_bad_output=
+1. El motor legacy todavía existe y define el ADN visual viejo.
+   - Líneas, círculos, grids, rosettas y geometría ritual siguen presentes en código y en outputs heredados.
+2. La silueta del sujeto no nace de una masa visual fuerte.
+   - silhouette_builder todavía dibuja con primitivas geométricas simplificadas; el resultado parece bloque, mancha o tótem, no héroe/entidad clara.
+3. Las referencias reales ya existen, pero todavía informan más el prompt que la forma.
+   - El sampler ya lee assets/art_reference, pero no extrae ni reconstruye una silueta fuerte desde esas referencias.
+4. El fondo/arquitectura llegó antes a madurar que el primer plano.
+   - Hoy ya se entienden mejor escenas y zonas, pero sujeto y objeto siguen sin dominar.
+5. El preview confirmó el cuello de botella.
+   - reports/validation/layer_preview_report.txt muestra subject/object occupancy aún baja en casos críticos, especialmente Hiperbórea.
+6. Hay múltiples sistemas activos o semi-activos haciendo cosas parecidas.
+   - Eso frena consistencia visual y dificulta saber qué cambiar de verdad.
+
+where_random_noise_is_used=
+1. game/art/gen_card_art32.py
+   - _draw_rosette
+   - _draw_concentric
+   - _draw_grid_nodes
+   - _draw_geometry
+   - múltiples llamadas a pygame.draw.circle / ellipse / line
+2. game/art/gen_art32.py
+   - capas de geometría sagrada, runas y glow procedural
+3. game/art/fx_layer.py
+   - todavía añade chispas/orbes/trazos; ya está más controlado, pero sigue siendo una fuente potencial de ruido si se sobreusa
+4. game/art/silhouette_builder.py
+   - aunque mejoró, su sintaxis de dibujo sigue siendo demasiado geométrica para sujetos complejos
+
+useful_to_keep=
+- frame_engine.py
+- reference_sampler.py
+- card_art_generator.py como scene spec builder
+- scene_engine.py como ensamblador principal
+- fx_layer.py solo si sigue estrictamente limitado
+
+recommended_replace_or_archive=
+- gen_card_art32.py
+- gen_art32.py
+- enemy_art_generator.py (migrar a pipeline nuevo)
+- gen_avatar_chakana.py (adaptar luego al pipeline de portrait)
+- gen_guide_art32.py
+
+current_state_assessment=
+- runtime stability: PASS
+- art direction structure: WARNING
+- subject readability: FAIL relative to target
+- environment readability: PASS parcial
+- object readability: WARNING/FAIL según set
+- palette discipline: WARNING
+- legacy noise contamination: WARNING
+
+recommendation_for_phase_2=
+Implementar Scene Spec System como fuente única para el arte nuevo.
+No seguir iterando a ciegas el renderer general.
+La siguiente fase debe formalizar un spec estructurado por carta/avatar/biome con:
+- scene_type
+- subject
+- subject_pose
+- secondary_object
+- environment
+- symbol
+- energy
+- palette
+- camera
+- mood
+
+Luego scene_engine y silhouette_builder deben consumir ese spec, y los generadores legacy deben quedar explícitamente fuera del camino del nuevo arte.

@@ -1,0 +1,59 @@
+status=PASS
+phase=PHASE 3 - SILHOUETTE LIBRARY
+report=silhouette_library_report.txt
+report_path=reports/validation/silhouette_library_report.txt
+
+summary=
+Se implemento la libreria de siluetas sobre el Scene Spec System de la fase anterior. El pipeline nuevo ya no depende solo de primitivas ambiguas: ahora existe una clasificacion formal de familias de silueta para sujeto y objeto, y draw_subject/draw_focus_object consumen subject_kind y object_kind para enrutar el render a plantillas legibles.
+
+files_modified=
+- game/art/silhouette_builder.py
+
+implementation=
+1. Se agrego SUBJECT_SILHOUETTE_LIBRARY con categorias:
+   - mage -> oracle_totem
+   - warrior -> weapon_bearer, warrior_foreground, hyperborean_foreground
+   - archon -> archon_throne, archon_foreground, archon_beast
+   - guardian -> guardian_bearer, weapon_bearer, warrior_foreground
+   - animal -> condor, beast, tree
+   - temple -> castle
+2. Se agrego OBJECT_SILHOUETTE_LIBRARY con categorias:
+   - relic -> codex, seal_tablet, altar, seal, crown
+   - weapon -> weapon, greatsword, solar_axe
+   - shield -> shield
+3. Se agregaron los mapas:
+   - SUBJECT_KIND_TO_TEMPLATE
+   - OBJECT_KIND_TO_TEMPLATE
+4. draw_subject(...) ahora enruta por subject_kind/template_family y ya no cae siempre en el humanoide generico.
+5. draw_focus_object(...) ahora enruta por object_kind/template_family y distingue mejor weapon/relic/shield.
+6. Se agrego silhouette_library_summary() para trazabilidad y validacion.
+
+validation=
+- subject_categories: animal, archon, guardian, mage, temple, warrior
+- object_categories: relic, shield, weapon
+- regeneracion de anclas activas:
+  * cw_lore_10
+  * hip_cosmic_warrior_20
+  * arc_060
+- beta run flow: PASS
+
+benefit=
+La fase 3 deja una biblioteca de siluetas reutilizable y legible para el pipeline nuevo. Esto es la base necesaria para que la fase 4 pueda construir entornos reutilizables y para que el ensamblaje posterior deje de producir solo masas abstractas.
+
+recommendation_for_phase_4=
+Implementar Environment Library.
+La siguiente fase debe definir presets reutilizables para:
+- Gaia mountains
+- sacred forest
+- Hyperborea temple
+- Archon cathedral
+- void realm
+- ritual altar
+- astral plateau
+
+Cada preset debe fijar:
+- horizon line
+- sky treatment
+- ground treatment
+- lighting direction
+- atmospheric color
