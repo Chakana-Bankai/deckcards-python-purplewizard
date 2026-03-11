@@ -1,0 +1,45 @@
+﻿status=warning
+phase=1
+report=cli_art_automation_phase1_report.txt
+summary=El CLI maestro ya tiene `art-audit`, pero aun no expone generacion, regeneracion de faltantes, validacion ni promote de arte. La base reutilizable existe y esta bastante madura.
+
+files_inspected=
+- tools/chakana_studio.py
+- tools/lib/art_pipeline.py
+- tools/assets/regenerate_premium_card_batch.py
+- tools/assets/run_art_quality_validation.py
+- tools/assets/run_card_art_iteration_pass.py
+- data/manifests/card_manifest.json
+- data/manifests/art_manifest.json
+- game/content/card_art_generator.py
+- game/art/gen_card_art_advanced.py
+- game/art/scene_engine.py
+- game/art/art_quality_validation.py
+
+reusable_art_pipeline_pieces=
+- CLI command already present: art-audit in tools/chakana_studio.py
+- Light audit module already present: tools/lib/art_pipeline.py
+- Canonical card source already present: data/manifests/card_manifest.json
+- Canonical art manifest mirror already present: data/manifests/art_manifest.json
+- External full generation entrypoint already present: tools/assets/regenerate_premium_card_batch.py
+- External quality validation entrypoint already present: tools/assets/run_art_quality_validation.py
+- External iteration runner already present: tools/assets/run_card_art_iteration_pass.py
+- Scene/spec/reference pipeline already present under game/content and game/art
+- Quality evaluator already present: game/art/art_quality_validation.py
+
+missing_cli_commands=
+- art-generate --all
+- art-regenerate-missing
+- art-validate
+- art-promote
+
+key_findings=
+- art-audit exists but is too light: it counts pngs and reads art_reference manifest, but it does not inspect canonical card manifest entries one by one for missing art, broken sprite paths, or duplicates.
+- art-generate --all can be built safely as a CLI wrapper around tools/assets/regenerate_premium_card_batch.py using the canonical card manifest and current scene/spec/reference pipeline.
+- art-regenerate-missing can be built safely by diffing data/manifests/card_manifest.json against game/assets/sprites/cards/*.png and calling the same external generator only for missing ids.
+- art-validate can reuse tools/assets/run_art_quality_validation.py plus basic manifest/path checks from art_pipeline.py.
+- art-promote does not really exist yet. The project has staging/production folders prepared, but current card outputs still write directly to game/assets/sprites/cards. Promote will need a minimal wrapper strategy first, not a hard move.
+- there is no need to redesign the art engine for this pass. The missing work is CLI exposure and thin consolidation.
+
+recommendation_phase_2=
+Implement the missing CLI commands as thin wrappers in tools/lib/ around the existing external art tooling. Recommended order: 1) strengthen art-audit to compare card manifest vs real files, 2) add art-regenerate-missing, 3) add art-generate --all, 4) add art-validate, 5) scaffold art-promote as report-first if staging/production is not yet the active write path.
