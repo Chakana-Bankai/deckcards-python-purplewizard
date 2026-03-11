@@ -7,6 +7,7 @@ from pathlib import Path
 import pygame
 
 from game.core.paths import curated_avatars_dir, sprite_category_dir, visual_dir, visual_generated_category_dir
+from game.art.portrait_spec import resolve_portrait_spec
 from .visual_engine import get_visual_engine
 
 
@@ -330,52 +331,105 @@ class PortraitPipeline:
         out.blit(img, (w // 2 - tw // 2, h // 2 - th // 2))
         return out
 
+    def _fit_portrait_focus(self, source: pygame.Surface, size: tuple[int, int], role: str, style: str) -> pygame.Surface:
+        w, h = max(16, int(size[0])), max(16, int(size[1]))
+        sw, sh = source.get_size()
+        if sw <= 0 or sh <= 0:
+            return pygame.Surface((w, h), pygame.SRCALPHA)
+        spec = resolve_portrait_spec(role, style)
+        scale = max(w / sw, h / sh) * max(1.0, spec.crop_zoom)
+        tw, th = max(1, int(sw * scale)), max(1, int(sh * scale))
+        img = pygame.transform.scale(source, (tw, th))
+        out = pygame.Surface((w, h), pygame.SRCALPHA)
+        target_focus_y = int(h * spec.target_focus_y)
+        source_focus_y = int(th * spec.source_focus_y)
+        ox = w // 2 - tw // 2
+        oy = target_focus_y - source_focus_y
+        ox = max(w - tw, min(0, ox))
+        oy = max(h - th, min(0, oy))
+        out.blit(img, (ox, oy))
+        return out
+
+    def _apply_identity_marker(self, target: pygame.Surface, role: str, style: str):
+        w, h = target.get_size()
+        if w < 24 or h < 24:
+            return
+        spec = resolve_portrait_spec(role, style)
+        profile = self._role_profile(role)
+        marker = pygame.Surface((w, h), pygame.SRCALPHA)
+        cx = w // 2
+        cy = int(h * 0.82)
+        size = max(8, int(min(w, h) * spec.marker_scale))
+        accent = profile["edge"]
+        glow = profile["accent"]
+        if spec.marker_kind == "chakana_pendant":
+            pygame.draw.circle(marker, (*glow, 40), (cx, cy), size)
+            pygame.draw.line(marker, (*accent, 180), (cx - size, cy), (cx + size, cy), 2)
+            pygame.draw.line(marker, (*accent, 180), (cx, cy - size), (cx, cy + size), 2)
+            pygame.draw.rect(marker, (*accent, 180), pygame.Rect(cx - size // 2, cy - size // 2, size, size), 1)
+        elif spec.marker_kind == "archon_sigil":
+            pygame.draw.circle(marker, (*glow, 34), (cx, cy), size)
+            pygame.draw.circle(marker, (*accent, 180), (cx, cy), size, 2)
+            pygame.draw.line(marker, (*accent, 180), (cx - size, cy + size // 2), (cx, cy - size), 2)
+            pygame.draw.line(marker, (*accent, 180), (cx, cy - size), (cx + size, cy + size // 2), 2)
+        elif spec.marker_kind == "guide_halo":
+            pygame.draw.ellipse(marker, (*glow, 42), pygame.Rect(cx - size, cy - size // 2, size * 2, size))
+            pygame.draw.ellipse(marker, (*accent, 170), pygame.Rect(cx - size, cy - size // 2, size * 2, size), 1)
+        elif spec.marker_kind == "enemy_core":
+            pygame.draw.circle(marker, (*glow, 36), (cx, cy), size)
+            pygame.draw.circle(marker, (*accent, 170), (cx, cy), size // 2)
+        target.blit(marker, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
+
     def _stylize_portrait(self, source: pygame.Surface, role: str, size: tuple[int, int]) -> pygame.Surface:
         w, h = max(16, int(size[0])), max(16, int(size[1]))
-        fitted = self._fit_contain(source, (w, h))
+        spec = resolve_portrait_spec(role, "portrait")
+        fitted = self._fit_portrait_focus(source, (w, h), role, "portrait")
         profile = self._role_profile(role)
 
-        dw = max(24, w // 2)
-        dh = max(24, h // 2)
+        dw = max(24, w // max(2, spec.pixel_divisor))
+        dh = max(24, h // max(2, spec.pixel_divisor))
         pixel = pygame.transform.scale(fitted, (dw, dh))
         pixel = pygame.transform.scale(pixel, (w, h))
 
         vignette = pygame.Surface((w, h), pygame.SRCALPHA)
-        pygame.draw.rect(vignette, (0, 0, 0, 72), vignette.get_rect(), 5, border_radius=12)
+        pygame.draw.rect(vignette, (0, 0, 0, spec.vignette_alpha), vignette.get_rect(), 5, border_radius=12)
         pixel.blit(vignette, (0, 0))
 
         shade = pygame.Surface((w, h), pygame.SRCALPHA)
         tr, tg, tb, _ = profile["tint"]
-        shade.fill((int(tr * 0.45), int(tg * 0.35), int(tb * 0.35), 54))
+        shade.fill((int(tr * 0.38), int(tg * 0.30), int(tb * 0.30), spec.tint_alpha))
         pixel.blit(shade, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
         left = pygame.Surface((max(8, w // 10), h), pygame.SRCALPHA)
-        left.fill((*profile["accent"], 18))
+        left.fill((*profile["accent"], max(10, spec.tint_alpha // 2)))
         pixel.blit(left, (0, 0))
-        pygame.draw.rect(pixel, profile["edge"], pixel.get_rect(), 2, border_radius=8)
+        self._apply_identity_marker(pixel, role, "portrait")
+        pygame.draw.rect(pixel, (*profile["edge"], spec.border_alpha), pixel.get_rect(), 2, border_radius=8)
         return pixel
 
     def _to_holographic(self, source: pygame.Surface, role: str, size: tuple[int, int]) -> pygame.Surface:
         w, h = max(16, int(size[0])), max(16, int(size[1]))
+        spec = resolve_portrait_spec(role, "hologram")
         base = self._stylize_portrait(source, role, size)
         profile = self._role_profile(role)
 
         tint = pygame.Surface((w, h), pygame.SRCALPHA)
-        tint.fill(profile["tint"])
+        tr, tg, tb, _ = profile["tint"]
+        tint.fill((tr, tg, tb, spec.tint_alpha))
         base.blit(tint, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
         scan = pygame.Surface((w, h), pygame.SRCALPHA)
         line_col = profile["scanline"]
-        for y in range(1, h, 3):
-            pygame.draw.line(scan, (*line_col, 34), (2, y), (w - 3, y), 1)
+        for y in range(2, h, 5):
+            pygame.draw.line(scan, (*line_col, spec.scanline_alpha), (4, y), (w - 5, y), 1)
         base.blit(scan, (0, 0))
 
-        for y in range(6, h - 6, 13):
-            wobble = 1 if ((y // 13) % 2 == 0) else -1
+        for y in range(10, h - 10, 19):
+            wobble = 1 if ((y // 19) % 2 == 0) else -1
             band = base.subsurface(pygame.Rect(0, y, w, 1)).copy()
             base.blit(band, (wobble, y))
 
-        rx, bx = profile["rgb_shift"]
+        rx, bx = spec.rgb_shift
         if rx or bx:
             r = base.copy()
             b = base.copy()
@@ -386,12 +440,12 @@ class PortraitPipeline:
 
         noise = pygame.Surface((w, h), pygame.SRCALPHA)
         nr, ng, nb, na = profile["noise"]
-        for y in range(0, h, 7):
-            if (y // 7) % 2 == 0:
-                pygame.draw.line(noise, (nr, ng, nb, na), (4, y), (w - 4, y), 1)
+        for y in range(4, h, 11):
+            pygame.draw.line(noise, (nr, ng, nb, min(spec.noise_alpha, na)), (6, y), (w - 6, y), 1)
         base.blit(noise, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
-        pygame.draw.rect(base, profile["accent"], base.get_rect(), 1, border_radius=8)
+        self._apply_identity_marker(base, role, "hologram")
+        pygame.draw.rect(base, (*profile["accent"], spec.border_alpha), base.get_rect(), 1, border_radius=8)
         return base
 
     def _source_stamp(self, role: str, style: str) -> str:
@@ -413,7 +467,7 @@ class PortraitPipeline:
                 src = pygame.image.load(str(p))
                 if pygame.display.get_surface() is not None:
                     src = src.convert_alpha()
-                return self._fit_contain(src, size), tag, str(p)
+                return src, tag, str(p)
             except Exception:
                 continue
         return None, "missing", ""
@@ -439,9 +493,13 @@ class PortraitPipeline:
         direct, direct_tag, direct_path = self._load_source_by_style(role, style, size)
         if direct is not None:
             if direct_tag == "official_master":
-                return direct, direct_tag, direct_path
+                if style == "concept":
+                    return self._fit_portrait_focus(direct, size, role, "concept"), direct_tag, direct_path
+                if style == "portrait":
+                    return self._stylize_portrait(direct, role, size), direct_tag, direct_path
+                return self._to_holographic(direct, role, size), direct_tag, direct_path
             if style == "concept":
-                return direct, direct_tag, direct_path
+                return self._fit_portrait_focus(direct, size, role, "concept"), direct_tag, direct_path
             if style == "portrait":
                 return self._stylize_portrait(direct, role, size), direct_tag, direct_path
             return self._to_holographic(direct, role, size), direct_tag, direct_path
@@ -449,7 +507,7 @@ class PortraitPipeline:
         concept, concept_tag, concept_path = self._load_source_by_style(role, "concept", size)
         if concept is not None:
             if style == "concept":
-                return concept, concept_tag, concept_path
+                return self._fit_portrait_focus(concept, size, role, "concept"), concept_tag, concept_path
             if style == "portrait":
                 return self._stylize_portrait(concept, role, size), concept_tag, concept_path
             return self._to_holographic(concept, role, size), concept_tag, concept_path

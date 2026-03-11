@@ -1,0 +1,9 @@
+PHASE 9 - AVATAR / HOLOGRAM ADAPTATION
+status=PASS
+files=game/art/portrait_spec.py, game/visual/portrait_pipeline.py
+changes=portrait_spec_added,bust_composition_enabled,focus_crop_enabled,identity_markers_enabled,hologram_washout_reduced
+notes=portrait_pipeline now composes bust/upper-body portraits using role/style specs and applies subtler hologram overlays with preserved readability.
+smoke_1=py_compile game/art/portrait_spec.py game/visual/portrait_pipeline.py -> PASS
+smoke_2=portrait_pipeline get_portrait/get_hologram on chakana, archon, guide, boss enemy -> PASS
+smoke_3=python -m tools.qa.check_beta_run_flow -> PASS
+residual_risk=portrait sources with poor original framing can still need curated replacements, but runtime now crops and displays them more consistently.

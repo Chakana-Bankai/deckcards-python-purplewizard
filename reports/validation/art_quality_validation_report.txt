@@ -1,0 +1,7 @@
+status=PASS
+cards=3
+accepted=3
+criteria=silhouette+subject+environment+palette+noise+lore
+cw_lore_10|overall=0.8391|accepted=True|retries=0|scene=mountain_guardian_scene|env=gaia_mountains|palette=archon|refs=guardian_03.png,espada_02.png|occ_subject=0.2807|occ_object=0.0533|occ_fx=0.0002|silhouette=0.9926|subject=0.8675|environment=0.5047|palette_coherence=0.9898|noise=0.8573|lore=0.75
+hip_cosmic_warrior_20|overall=0.7727|accepted=True|retries=0|scene=hyperborea_temple_scene|env=hyperborea_temple|palette=hyperborea|refs=guardian_02.png,espada_03.png|occ_subject=0.284|occ_object=0.0298|occ_fx=0.0001|silhouette=0.906|subject=0.7064|environment=0.5447|palette_coherence=0.7958|noise=0.7051|lore=0.95
+arc_060|overall=0.6941|accepted=True|retries=0|scene=archon_void_scene|env=archon_cathedral|palette=archon|refs=arconte_04.png,sellos_03.png|occ_subject=0.3792|occ_object=0.2172|occ_fx=0.0002|silhouette=0.5257|subject=0.5603|environment=0.456|palette_coherence=0.9995|noise=0.8933|lore=0.95
