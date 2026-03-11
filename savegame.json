@@ -7,13 +7,13 @@
   ],
   "relic_slots_max": 8,
   "player": {
-    "hp": 28,
+    "hp": 23,
     "max_hp": 60,
     "block": 3,
     "energy": 4,
     "rupture": 1,
     "statuses": {
-      "focus": 1
+      "focus": 2
     },
     "harmony_current": 0,
     "harmony_max": 10,
@@ -87,7 +87,12 @@
     "hip_cosmic_warrior_09",
     "hip_cosmic_warrior_14",
     "guardia_terrenal",
-    "hip_harmony_guardian_16"
+    "hip_harmony_guardian_16",
+    "hip_cosmic_warrior_09",
+    "hip_cosmic_warrior_14",
+    "guardia_terrenal",
+    "hip_harmony_guardian_16",
+    "portal_de_la_chakana"
   ],
   "map": [
     [
@@ -313,7 +318,7 @@
   ],
   "biome_index": 2,
   "biome": "hanan",
-  "xp": 48,
+  "xp": 54,
   "level": 4,
   "combats_won": 3,
   "tutorial_combats_won": 3,
@@ -344,11 +349,11 @@
       "runa_errante"
     ],
     "recent_event_ids": [
-      "condor_vision",
       "ayni_pact",
       "ayni_pact",
       "ayni_pact",
-      "ayni_pact"
+      "ayni_pact",
+      "puma_trial"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
@@ -375,5 +380,5 @@
   "combat_invalid_until_ms": 0,
   "current_node_id": "4_1",
   "last_biome_seen": "hanan",
-  "saved_at": 1773243882
+  "saved_at": 1773244870
 }

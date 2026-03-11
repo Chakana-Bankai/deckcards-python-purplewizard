@@ -1,0 +1,83 @@
+{
+  "entities": [
+    {
+      "id": "chakana_purple_wizard",
+      "name_es": "Chakana, Purple Wizard",
+      "faction_id": "orden_chakana",
+      "entity_type": "hero",
+      "role": "protagonista, guardian de la Trama",
+      "description_es": "Mago ritual que recorre los planos para impedir la ruptura del equilibrio y restaurar la memoria sagrada del mundo.",
+      "identity_markers": [
+        "sombrero ritual",
+        "capa violeta",
+        "chakana dorada",
+        "aura cosmica"
+      ]
+    },
+    {
+      "id": "guardianes_chakana",
+      "name_es": "Guardianes Chakana",
+      "faction_id": "orden_chakana",
+      "entity_type": "ally_order",
+      "role": "protectores, custodios, guias marciales",
+      "description_es": "Custodios del orden ritual que sostienen la primera linea de defensa contra la corrupcion arconte.",
+      "identity_markers": [
+        "escudos rituales",
+        "bordes dorados",
+        "insignias chakana"
+      ]
+    },
+    {
+      "id": "oraculos_del_destino",
+      "name_es": "Oraculos del Destino",
+      "faction_id": "orden_chakana",
+      "entity_type": "ally_oracle",
+      "role": "vision, lectura de caminos, interpretacion de la Trama",
+      "description_es": "Interpretes del destino que convierten presagios, descartes y visiones en ventaja ritual.",
+      "identity_markers": [
+        "talismanes",
+        "codices",
+        "velos turquesa"
+      ]
+    },
+    {
+      "id": "arconte_del_vacio",
+      "name_es": "Arconte del Vacio",
+      "faction_id": "arcontes",
+      "entity_type": "boss_archon",
+      "role": "se?or del vacio, ruptura y negacion",
+      "description_es": "Entidad mayor que domina decretos de vacio y somete la materia espiritual con sellos profanos.",
+      "identity_markers": [
+        "trono oscuro",
+        "tabletas selladas",
+        "halo quebrado"
+      ]
+    },
+    {
+      "id": "arconte_carmesi",
+      "name_es": "Arconte Carmesi",
+      "faction_id": "arcontes",
+      "entity_type": "boss_archon",
+      "role": "guerra ritual, sacrificio, violencia ceremonial",
+      "description_es": "Arconte de asalto y sangre ritual que convierte cada golpe en liturgia de dominacion.",
+      "identity_markers": [
+        "carmesi profundo",
+        "armadura rota",
+        "cetro sangrante"
+      ]
+    },
+    {
+      "id": "arconte_chakana_invertida",
+      "name_es": "Arconte de la Chakana Invertida",
+      "faction_id": "arcontes",
+      "entity_type": "boss_archon",
+      "role": "blasfemia simbolica, corrupcion de lo sagrado",
+      "description_es": "Entidad que profana los simbolos de equilibrio y los convierte en instrumentos de opresion espiritual.",
+      "identity_markers": [
+        "chakana invertida",
+        "verde toxico",
+        "resplandor corrupto"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "allies": [
+    {
+      "id": "condor_hanan",
+      "name_es": "Condor de Hanan",
+      "faction_id": "orden_chakana",
+      "role": "mensajero solar"
+    },
+    {
+      "id": "guardian_puma",
+      "name_es": "Guardian Puma",
+      "faction_id": "orden_chakana",
+      "role": "defensor terrestre"
+    },
+    {
+      "id": "amaru_trama",
+      "name_es": "Amaru de la Trama",
+      "faction_id": "orden_chakana",
+      "role": "serpiente ritual del equilibrio"
+    },
+    {
+      "id": "espiritu_montana",
+      "name_es": "Espiritu de la Montana",
+      "faction_id": "orden_chakana",
+      "role": "custodio de Gaia"
+    },
+    {
+      "id": "custodio_chakana",
+      "name_es": "Custodio Chakana",
+      "faction_id": "orden_chakana",
+      "role": "vigia ceremonial"
+    }
+  ],
+  "enemies": [
+    {
+      "id": "sabueso_sombrio",
+      "name_es": "Sabueso Sombrio",
+      "faction_id": "arcontes",
+      "role": "rastreador corrupto"
+    },
+    {
+      "id": "parasito_vacio",
+      "name_es": "Parasito del Vacio",
+      "faction_id": "arcontes",
+      "role": "erosion de la Trama"
+    },
+    {
+      "id": "espectro_fracturado",
+      "name_es": "Espectro Fracturado",
+      "faction_id": "arcontes",
+      "role": "eco roto"
+    },
+    {
+      "id": "demonio_ruptura",
+      "name_es": "Demonio de la Ruptura",
+      "faction_id": "arcontes",
+      "role": "asalto maligno"
+    },
+    {
+      "id": "cultista_vacio",
+      "name_es": "Cultista del Vacio",
+      "faction_id": "arcontes",
+      "role": "adorador de decretos oscuros"
+    }
+  ],
+  "bosses": [
+    "arconte_del_vacio",
+    "arconte_carmesi",
+    "arconte_chakana_invertida"
+  ]
+}

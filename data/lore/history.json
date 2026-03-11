@@ -1,0 +1,40 @@
+{
+  "entries": [
+    {
+      "id": "era_del_equilibrio",
+      "title_es": "Era del Equilibrio",
+      "summary_es": "Tiempo en que la Trama se mantenia estable y las rutas entre planos permanecian custodiadas por la Orden Chakana y sus aliados.",
+      "related_factions": [
+        "orden_chakana",
+        "guias_angeles"
+      ]
+    },
+    {
+      "id": "memoria_hiperborea",
+      "title_es": "Memoria de Hiperborea",
+      "summary_es": "Recuerdo de una civilizacion polar luminosa que elevo templos, observatorios y tecnologias solares antes de su fractura historica.",
+      "related_factions": [
+        "hiperborea"
+      ]
+    },
+    {
+      "id": "irrupcion_arconte",
+      "title_es": "Irrupcion Arconte",
+      "summary_es": "Momento en que los Arcontes comenzaron a imponer decretos de vacio, corrompiendo simbolos y debilitando la Trama.",
+      "related_factions": [
+        "arcontes"
+      ]
+    },
+    {
+      "id": "mision_de_chakana",
+      "title_es": "Mision de Chakana",
+      "summary_es": "El Purple Wizard emprende el viaje para restablecer el equilibrio, reactivar memorias sagradas y enfrentar a los Arcontes en cada plano.",
+      "related_factions": [
+        "orden_chakana",
+        "hiperborea",
+        "arcontes",
+        "guias_angeles"
+      ]
+    }
+  ]
+}

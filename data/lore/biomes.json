@@ -1,0 +1,52 @@
+{
+  "biomes": [
+    {
+      "id": "kay_pacha",
+      "name_es": "Kay Pacha",
+      "plane_type": "mundo intermedio",
+      "description_es": "Plano de montanas sagradas, bosques rituales y senderos donde la humanidad, los guardianes y la historia visible todavia resisten.",
+      "atmosphere": "terrenal, ceremonial, andino",
+      "palette_hints": [
+        "ocre",
+        "violeta ritual",
+        "turquesa tenue"
+      ]
+    },
+    {
+      "id": "hanan_pacha",
+      "name_es": "Hanan Pacha",
+      "plane_type": "plano superior",
+      "description_es": "Region luminosa de vision, memoria y alturas espirituales donde la energia solar y la sabiduria ancestral convergen.",
+      "atmosphere": "luminoso, elevado, solar",
+      "palette_hints": [
+        "blanco",
+        "azul glacial",
+        "oro suave"
+      ]
+    },
+    {
+      "id": "ukhu_pacha",
+      "name_es": "Ukhu Pacha",
+      "plane_type": "plano inferior",
+      "description_es": "Profundidad sombr?a donde se agitan la corrupcion, los decretos del vacio y la presion de los Arcontes.",
+      "atmosphere": "opresivo, subterraneo, corrupto",
+      "palette_hints": [
+        "negro",
+        "crimson",
+        "verde toxico"
+      ]
+    },
+    {
+      "id": "umbral_fractura",
+      "name_es": "Umbral de la Fractura",
+      "plane_type": "frontera inestable",
+      "description_es": "Zona de ruptura entre planos donde la realidad vibra y la Trama se vuelve mas vulnerable a la distorsion.",
+      "atmosphere": "inestable, astral, ominoso",
+      "palette_hints": [
+        "gris ceniza",
+        "violeta oscuro",
+        "brillo espectral"
+      ]
+    }
+  ]
+}

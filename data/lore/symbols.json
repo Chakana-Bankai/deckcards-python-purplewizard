@@ -1,0 +1,37 @@
+{
+  "symbols": [
+    {
+      "id": "chakana",
+      "name_es": "Chakana",
+      "description_es": "Simbolo mayor del equilibrio entre planos, caminos y niveles del ser. Representa el centro y la orientacion ritual.",
+      "faction_ids": [
+        "orden_chakana",
+        "guias_angeles"
+      ]
+    },
+    {
+      "id": "chakana_invertida",
+      "name_es": "Chakana Invertida",
+      "description_es": "Profanacion del orden sagrado. Los Arcontes la usan como emblema de corrupcion y distorsion espiritual.",
+      "faction_ids": [
+        "arcontes"
+      ]
+    },
+    {
+      "id": "corona_polar",
+      "name_es": "Corona Polar",
+      "description_es": "Insignia de soberania luminosa y tecnologia ceremonial de Hiperborea.",
+      "faction_ids": [
+        "hiperborea"
+      ]
+    },
+    {
+      "id": "sello_profano",
+      "name_es": "Sello Profano",
+      "description_es": "Tableta o marca ritual con la que los Arcontes fijan sus decretos sobre la realidad.",
+      "faction_ids": [
+        "arcontes"
+      ]
+    }
+  ]
+}

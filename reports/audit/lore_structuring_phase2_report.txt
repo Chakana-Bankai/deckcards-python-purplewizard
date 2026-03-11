@@ -1,0 +1,23 @@
+status=PASS
+phase=2
+output_dir=data/lore
+files_created=7
+files:
+- data/lore/factions.json
+- data/lore/entities.json
+- data/lore/relics.json
+- data/lore/creatures.json
+- data/lore/biomes.json
+- data/lore/symbols.json
+- data/lore/history.json
+sources:
+- docs/canon/lore/LORE_ATLAS.md
+- docs/canon/lore/BESTIARY.md
+- docs/canon/lore/RELICS.md
+- docs/canon/manual/CHAKANA_MANUAL_1_0.md
+- docs/canon/manual/CHAKANA_MASTER_GAME_BIBLE_1_0.md
+- game/data/lore/biomes_lore.json
+notes:
+- existing runtime lore files under game/data/lore were preserved
+- new structured json is prepared for codex, art pipeline, lore tools and future engine extraction
+- some runtime lore files still contain legacy encoding issues and were not rewritten in this phase

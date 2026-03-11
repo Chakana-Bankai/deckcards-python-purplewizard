@@ -1,0 +1,97 @@
+{
+  "factions": [
+    {
+      "id": "orden_chakana",
+      "name_es": "Orden Chakana",
+      "tone": "misticismo cosmico, guardianes del equilibrio, disciplina ritual",
+      "description_es": "La Orden Chakana protege la Trama y mantiene el equilibrio entre los planos mediante rituales, guardianes y conocimiento sagrado.",
+      "naming_conventions": [
+        "sello",
+        "guardian",
+        "trama",
+        "luz",
+        "camino"
+      ],
+      "iconography": [
+        "chakana dorada",
+        "turquesa ritual",
+        "textiles andinos",
+        "halo solar"
+      ],
+      "planes": [
+        "kay_pacha",
+        "hanan_pacha",
+        "ukhu_pacha"
+      ]
+    },
+    {
+      "id": "hiperborea",
+      "name_es": "Hiperborea",
+      "tone": "civilizacion sagrada, solar, polar, tecnologica ceremonial",
+      "description_es": "Hiperborea es la memoria de una civilizacion luminosa que unio conocimiento ancestral, arquitectura ritual y ciencia solar antes de su caida.",
+      "naming_conventions": [
+        "corona",
+        "polar",
+        "solar",
+        "trono",
+        "secuencia"
+      ],
+      "iconography": [
+        "hielo blanco",
+        "plata",
+        "azul glacial",
+        "templos escalonados"
+      ],
+      "planes": [
+        "hanan_pacha",
+        "kay_pacha"
+      ]
+    },
+    {
+      "id": "arcontes",
+      "name_es": "Arcontes",
+      "tone": "opresivo, maligno, corrupto, liturgico oscuro",
+      "description_es": "Los Arcontes deforman la Trama con mandatos de vacio, corrupcion y dominio espiritual. Su lenguaje visual mezcla tronos, sellos profanos y arquitectura rota.",
+      "naming_conventions": [
+        "mandato",
+        "vacio",
+        "profano",
+        "carmesi",
+        "quebrado"
+      ],
+      "iconography": [
+        "crimson",
+        "negro",
+        "verde toxico",
+        "sellos profanos"
+      ],
+      "planes": [
+        "ukhu_pacha",
+        "umbral_fractura"
+      ]
+    },
+    {
+      "id": "guias_angeles",
+      "name_es": "Guias y Angeles",
+      "tone": "sereno, protector, revelador, compasivo",
+      "description_es": "Guias y angeles orientan a Chakana mediante hologramas, advertencias y revelaciones que preparan el camino entre planos.",
+      "naming_conventions": [
+        "guia",
+        "angel",
+        "voz",
+        "revelacion",
+        "custodia"
+      ],
+      "iconography": [
+        "halos tenues",
+        "blanco perla",
+        "oro suave",
+        "eco holografico"
+      ],
+      "planes": [
+        "hanan_pacha",
+        "kay_pacha"
+      ]
+    }
+  ]
+}

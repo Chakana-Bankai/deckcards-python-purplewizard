@@ -1,0 +1,35 @@
+{
+  "runtime_max_equipped": 8,
+  "families": [
+    {
+      "id": "passive",
+      "name_es": "Pasivas",
+      "description_es": "Reliquias que modifican el ritmo de la run de forma constante."
+    },
+    {
+      "id": "reactive",
+      "name_es": "Reactivas",
+      "description_es": "Reliquias que responden a disparadores de combate, da?o o estados."
+    },
+    {
+      "id": "combat",
+      "name_es": "Combate",
+      "description_es": "Reliquias enfocadas en energia, da?o, bloqueo y presion tactica."
+    },
+    {
+      "id": "economy",
+      "name_es": "Economia",
+      "description_es": "Reliquias ligadas a oro, tienda, sobres y progresion de run."
+    }
+  ],
+  "naming_patterns": [
+    "sello",
+    "pulso",
+    "corona",
+    "fragmento",
+    "relicario",
+    "custodia",
+    "eco",
+    "ancla"
+  ]
+}
