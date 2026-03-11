@@ -1,0 +1,7 @@
+status=ok
+phase=all
+ids=cw_lore_10,hip_cosmic_warrior_20,arc_060
+cw_lore_10|subject_kind=warrior_foreground|object_kind=greatsword|environment_kind=sanctuary|refs=guardian_03.png,espada_02.png,chakana_limpia_01.png,mago_01.png|asset=cw_lore_10.png
+hip_cosmic_warrior_20|subject_kind=hyperborean_foreground|object_kind=solar_axe|environment_kind=citadel|refs=guardian_02.png,espada_03.png,observatorios_01.png,arconte_01.png|asset=hip_cosmic_warrior_20.png
+arc_060|subject_kind=archon_foreground|object_kind=seal_tablet|environment_kind=throne_realm|refs=arconte_04.png,sellos_03.png,heraldos_01.jpg,arconte_01.png|asset=arc_060.png
+beta_run=PASS

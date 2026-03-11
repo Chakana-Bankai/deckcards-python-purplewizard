@@ -1011,12 +1011,12 @@
         "environment_ref": "heraldos_01.jpg",
         "object": "seal tablet of malign decree",
         "object_kind": "seal_tablet",
-        "object_ref": "sellos_01.png",
+        "object_ref": "sellos_03.png",
         "subject": "dark archon entity seated in a looming throne with vertical silhouette and raised decree hand",
         "subject_kind": "archon_foreground",
-        "subject_ref": "arconte_01.png"
+        "subject_ref": "arconte_04.png"
       },
-      "prompt": "chakana card::arc_060::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity legendary, palette violet-neutral, lighting balanced glow, sacred geometry chakana glyph, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), subject dark archon entity seated in a looming throne with vertical silhouette and raised decree hand, object seal tablet of malign decree, environment oppressive throne realm background with distant heraldic architecture and open void behind the archon, subject kind archon_foreground, object kind seal_tablet, environment kind throne_realm, subject ref arconte_01.png, object ref sellos_01.png, environment ref heraldos_01.jpg, effect signature barrera_ritual, effects stable ward rings, shield halos, anchoring sigils and defensive pulse lines, premium ceremonial glow, deep layered aura and stronger cinematic depth, energy pattern arc traces, lore tokens chakana,solar_knot:sacred_balance, reference cues arconte 01, arconte 02, arconte 04, condor 01, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "prompt": "chakana card::arc_060::defense high density pixel fantasy, layered depth, silhouette discipline, role defense, rarity legendary, palette violet-neutral, lighting balanced glow, sacred geometry chakana glyph, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), subject dark archon entity seated in a looming throne with vertical silhouette and raised decree hand, object seal tablet of malign decree, environment oppressive throne realm background with distant heraldic architecture and open void behind the archon, subject kind archon_foreground, object kind seal_tablet, environment kind throne_realm, subject ref arconte_04.png, object ref sellos_03.png, environment ref heraldos_01.jpg, effect signature barrera_ritual, effects stable ward rings, shield halos, anchoring sigils and defensive pulse lines, premium ceremonial glow, deep layered aura and stronger cinematic depth, energy pattern arc traces, lore tokens chakana,solar_knot:sacred_balance, reference cues arconte 01, arconte 02, arconte 04, condor 01, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "defense",
       "updated_at": "1970-01-01T00:00:00Z"
     },
@@ -1147,12 +1147,12 @@
         "environment_ref": "chakana_limpia_01.png",
         "object": "greatsword relic",
         "object_kind": "greatsword",
-        "object_ref": "espada_01.png",
+        "object_ref": "espada_02.png",
         "subject": "front facing warrior with broad shoulders and a large diagonal sword dominating the foreground",
         "subject_kind": "warrior_foreground",
-        "subject_ref": "guardian_01.png"
+        "subject_ref": "guardian_03.png"
       },
-      "prompt": "chakana card::cw_lore_10::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), subject front facing warrior with broad shoulders and a large diagonal sword dominating the foreground, object greatsword relic, environment chakana sanctuary background kept low behind the warrior with open air around the silhouette, subject kind warrior_foreground, object kind greatsword, environment kind sanctuary, subject ref guardian_01.png, object ref espada_01.png, environment ref chakana_limpia_01.png, effect signature impacto_ofensivo, effects focused offensive cuts, impact sparks, directional slash traces and controlled embers, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, reference cues arconte 01, arconte 02, arconte 04, condor 01, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "prompt": "chakana card::cw_lore_10::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity common, palette crimson-magenta, lighting hard rim light, sacred geometry blade sigils, symbolic overlays aligned to motif, motif chakana (stepped_cross,four_gate_frame), subject front facing warrior with broad shoulders and a large diagonal sword dominating the foreground, object greatsword relic, environment chakana sanctuary background kept low behind the warrior with open air around the silhouette, subject kind warrior_foreground, object kind greatsword, environment kind sanctuary, subject ref guardian_03.png, object ref espada_02.png, environment ref chakana_limpia_01.png, effect signature impacto_ofensivo, effects focused offensive cuts, impact sparks, directional slash traces and controlled embers, energy pattern burst arcs, lore tokens chakana,solar_knot:sacred_balance, reference cues arconte 01, arconte 02, arconte 04, condor 01, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },
@@ -1941,17 +1941,17 @@
     "hip_cosmic_warrior_20": {
       "composition": {
         "effects": "focused offensive cuts, impact sparks, directional slash traces and controlled embers, premium ceremonial glow, deep layered aura and stronger cinematic depth",
-        "environment": "polar citadel background pushed behind the champion with temple towers and cold open sky",
+        "environment": "polar citadel background pushed behind the champion with observatory towers and cold open sky",
         "environment_kind": "citadel",
-        "environment_ref": "templos_escalonados_01.jpg",
+        "environment_ref": "observatorios_01.png",
         "object": "solar axe relic",
         "object_kind": "solar_axe",
-        "object_ref": "espada_01.png",
+        "object_ref": "espada_03.png",
         "subject": "hyperborean champion standing close to camera with heroic stance and raised solar axe",
         "subject_kind": "hyperborean_foreground",
-        "subject_ref": "guardian_01.png"
+        "subject_ref": "guardian_02.png"
       },
-      "prompt": "chakana card::hip_cosmic_warrior_20::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity legendary, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), subject hyperborean champion standing close to camera with heroic stance and raised solar axe, object solar axe relic, environment polar citadel background pushed behind the champion with temple towers and cold open sky, subject kind hyperborean_foreground, object kind solar_axe, environment kind citadel, subject ref guardian_01.png, object ref espada_01.png, environment ref templos_escalonados_01.jpg, effect signature impacto_ofensivo, effects focused offensive cuts, impact sparks, directional slash traces and controlled embers, premium ceremonial glow, deep layered aura and stronger cinematic depth, energy pattern polar_strike_flux, lore tokens seal:mystic_order, reference cues arconte 01, arconte 02, arconte 04, condor 01, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
+      "prompt": "chakana card::hip_cosmic_warrior_20::attack high density pixel fantasy, layered depth, silhouette discipline, role combo, rarity legendary, palette marble-ice-gold, lighting soft frontal glow, sacred geometry chakana polar, symbolic overlays aligned to motif, motif ancient_guardians (chakana), subject hyperborean champion standing close to camera with heroic stance and raised solar axe, object solar axe relic, environment polar citadel background pushed behind the champion with observatory towers and cold open sky, subject kind hyperborean_foreground, object kind solar_axe, environment kind citadel, subject ref guardian_02.png, object ref espada_03.png, environment ref observatorios_01.png, effect signature impacto_ofensivo, effects focused offensive cuts, impact sparks, directional slash traces and controlled embers, premium ceremonial glow, deep layered aura and stronger cinematic depth, energy pattern polar_strike_flux, lore tokens seal:mystic_order, reference cues arconte 01, arconte 02, arconte 04, condor 01, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character",
       "style": "attack",
       "updated_at": "1970-01-01T00:00:00Z"
     },

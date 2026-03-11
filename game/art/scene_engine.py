@@ -6,7 +6,7 @@ import random
 import pygame
 
 from game.art.fx_layer import draw_fx
-from game.art.reference_sampler import ReferenceSampler
+from game.art.reference_sampler import ReferenceSampler, ReferenceChoice
 from game.art.silhouette_builder import draw_focus_object, draw_subject
 
 
@@ -47,6 +47,36 @@ def semantic_from_prompt(prompt: str) -> dict:
     }
 
 
+
+def _resolve_explicit_refs(sampler: ReferenceSampler, semantic: dict) -> list[ReferenceChoice]:
+    wanted: list[ReferenceChoice] = []
+    names = [
+        str(semantic.get('subject_ref', '') or '').strip(),
+        str(semantic.get('object_ref', '') or '').strip(),
+        str(semantic.get('environment_ref', '') or '').strip(),
+    ]
+    seen = set()
+    for category in (
+        'characters_subjects',
+        'weapons_relics',
+        'ancient_architecture',
+        'fantasy_landscapes',
+        'andean_mythology',
+        'biblical_archetypes',
+        'chakana_symbols',
+        'sacred_geometry',
+    ):
+        for p in sampler._files_for(category):
+            low = p.name.lower()
+            if low in seen:
+                continue
+            for target in names:
+                if target and low == target.lower():
+                    seen.add(low)
+                    wanted.append(ReferenceChoice(path=p, category=category, cue=p.stem.replace('_', ' '), avg_color=sampler._avg_color(p)))
+                    break
+    return wanted
+
 def _palette_from_refs(choices):
     if not choices:
         return ((20, 16, 28), (72, 68, 96), (148, 138, 166), (232, 204, 132))
@@ -59,6 +89,43 @@ def _palette_from_refs(choices):
     low = (min(255, int(r * 0.92)), min(255, int(g * 0.92)), min(255, int(b * 0.92)))
     accent = (min(255, r + 70), min(255, g + 50), min(255, b + 26))
     return (top, mid, low, accent)
+
+
+def _strong_foreground_palette(palette, subject_kind: str, object_kind: str):
+    top, mid, low, acc = palette
+    subject_kind = str(subject_kind or '').lower()
+    object_kind = str(object_kind or '').lower()
+    fg_main = (
+        max(18, int(top[0] * 1.35)),
+        max(18, int(top[1] * 1.35)),
+        max(18, int(top[2] * 1.35)),
+    )
+    fg_fill = (
+        max(32, int(mid[0] * 0.62)),
+        max(32, int(mid[1] * 0.62)),
+        max(32, int(mid[2] * 0.62)),
+    )
+    fg_accent = (
+        min(255, max(acc[0], low[0] + 60)),
+        min(255, max(acc[1], low[1] + 60)),
+        min(255, max(acc[2], low[2] + 50)),
+    )
+    if subject_kind in {'archon_foreground', 'archon_throne', 'archon_beast'}:
+        fg_fill = (34, 20, 34)
+        fg_accent = (238, 110, 158)
+    elif subject_kind in {'hyperborean_foreground', 'hyperborean_champion'}:
+        fg_fill = (62, 62, 92)
+        fg_accent = (240, 232, 162)
+    elif subject_kind in {'warrior_foreground', 'weapon_bearer'}:
+        fg_fill = (54, 48, 62)
+        fg_accent = (246, 222, 138)
+    if object_kind in {'greatsword', 'solar_axe', 'seal_tablet'}:
+        fg_accent = (
+            min(255, fg_accent[0] + 12),
+            min(255, fg_accent[1] + 12),
+            min(255, fg_accent[2] + 12),
+        )
+    return (fg_main, fg_fill, low, fg_accent)
 
 
 def _categories_for_prompt(prompt: str) -> list[str]:
@@ -158,8 +225,8 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
             pygame.draw.rect(far, (acc[0], acc[1], acc[2], 190), (bx + bw // 4, by - 10, bw // 2, 10), border_radius=2)
         surface.blit(far, (0, 0))
         mid_layer = pygame.Surface((w, h), pygame.SRCALPHA)
-        keep = pygame.Rect(int(w * 0.16), int(h * 0.08), int(w * 0.68), int(h * 0.72))
-        for _ in range(4):
+        keep = pygame.Rect(int(w * 0.12), int(h * 0.04), int(w * 0.76), int(h * 0.78))
+        for _ in range(2):
             bw = rng.randint(w // 8, w // 5)
             bh = rng.randint(h // 6, h // 3)
             bx = rng.randint(0, max(0, w - bw - 1))
@@ -178,6 +245,11 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
             x += rng.randint(40, 74)
         points += [(w, horizon), (w, h), (0, h)]
         pygame.draw.polygon(surface, (mid[0], mid[1], mid[2]), points)
+
+    veil = pygame.Surface((w, h), pygame.SRCALPHA)
+    pygame.draw.rect(veil, (0, 0, 0, 34), (0, 0, w, h))
+    pygame.draw.ellipse(veil, (255, 255, 255, 8), (int(w * 0.22), int(h * 0.16), int(w * 0.56), int(h * 0.46)))
+    surface.blit(veil, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
 
 
 def _apply_contrast(surface: pygame.Surface):
@@ -233,15 +305,27 @@ def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
     rng = random.Random(seed)
     semantic = semantic_from_prompt(prompt)
     sampler = ReferenceSampler()
-    refs = _prioritize_refs(sampler.pick(_categories_for_prompt(prompt), _keywords_from_semantic(semantic), seed), semantic)
+    explicit_refs = _resolve_explicit_refs(sampler, semantic)
+    sampled_refs = sampler.pick(_categories_for_prompt(prompt), _keywords_from_semantic(semantic), seed)
+    refs = []
+    seen = set()
+    for ref in explicit_refs + _prioritize_refs(sampled_refs, semantic):
+        key = str(ref.path).lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        refs.append(ref)
+        if len(refs) >= 6:
+            break
     palette = _palette_from_refs(refs)
     work = pygame.Surface((768, 768), pygame.SRCALPHA, 32)
     _draw_background(work, semantic, palette, rng)
     shadow = pygame.Surface(work.get_size(), pygame.SRCALPHA)
-    pygame.draw.ellipse(shadow, (0, 0, 0, 88), (int(work.get_width() * 0.10), int(work.get_height() * 0.58), int(work.get_width() * 0.80), int(work.get_height() * 0.24)))
+    pygame.draw.ellipse(shadow, (0, 0, 0, 110), (int(work.get_width() * 0.12), int(work.get_height() * 0.60), int(work.get_width() * 0.76), int(work.get_height() * 0.22)))
     work.blit(shadow, (0, 0))
-    draw_subject(work, semantic, refs, palette, rng)
-    draw_focus_object(work, semantic, palette, rng)
+    fg_palette = _strong_foreground_palette(palette, semantic.get('subject_kind', ''), semantic.get('object_kind', ''))
+    draw_subject(work, semantic, refs, fg_palette, rng)
+    draw_focus_object(work, semantic, fg_palette, rng)
     draw_fx(work, semantic, palette, rng)
     _apply_contrast(work)
     final = pygame.transform.smoothscale(work, (320, 220)).convert_alpha()

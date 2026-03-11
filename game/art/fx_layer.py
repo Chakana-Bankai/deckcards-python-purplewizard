@@ -13,9 +13,9 @@ def draw_fx(surface: pygame.Surface, semantic: dict, palette, rng: random.Random
     color = palette[3]
     w, h = surface.get_size()
     subtle = 'subtle' in desc or 'calm' in desc or 'ward' in desc
-    n_streaks = 2 if subtle else 4
-    n_orbs = 3 if subtle else 5
-    n_sparks = 10 if subtle else 16
+    n_streaks = 1 if subtle else 2
+    n_orbs = 1 if subtle else 2
+    n_sparks = 6 if subtle else 9
     focus_band_y = int(h * 0.58)
     focus_band_h = int(h * 0.24)
 

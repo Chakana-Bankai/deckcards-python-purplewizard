@@ -145,25 +145,30 @@ def _draw_archon_throne(surface: pygame.Surface, rect: pygame.Rect, color, accen
 
 
 def _draw_warrior_foreground(surface: pygame.Surface, rect: pygame.Rect, color, accent):
-    body = pygame.Rect(rect.centerx - rect.w // 6, rect.y + rect.h // 9, rect.w // 3, rect.h * 3 // 5)
-    pygame.draw.rect(surface, color, body, border_radius=8)
-    pygame.draw.circle(surface, color, (rect.centerx, rect.y + rect.h // 7), rect.w // 8)
-    pygame.draw.rect(surface, accent, (rect.centerx - rect.w // 8, rect.y + rect.h // 5, rect.w // 4, rect.h // 9), border_radius=4)
-    pygame.draw.polygon(surface, (*accent[:3], 220) if len(accent) == 4 else accent, [
-        (body.left, body.y + rect.h // 10),
+    body = pygame.Rect(rect.centerx - rect.w // 7, rect.y + rect.h // 8, rect.w // 3, rect.h * 11 // 18)
+    pygame.draw.rect(surface, color, body, border_radius=10)
+    pygame.draw.circle(surface, color, (rect.centerx, rect.y + rect.h // 7), rect.w // 9)
+    shoulder = pygame.Rect(rect.centerx - rect.w // 5, rect.y + rect.h // 5, rect.w * 2 // 5, rect.h // 10)
+    pygame.draw.rect(surface, accent, shoulder, border_radius=5)
+    cloak = [
+        (body.left + 4, body.y + rect.h // 10),
         (rect.centerx - rect.w // 3, rect.bottom - rect.h // 7),
         (rect.centerx + rect.w // 3, rect.bottom - rect.h // 7),
-        (body.right, body.y + rect.h // 10),
-    ])
-    _blocky_line(surface, color, (body.left + 8, body.y + rect.h // 6), (rect.centerx - rect.w // 3, rect.centery), 8)
-    _blocky_line(surface, color, (body.right - 8, body.y + rect.h // 6), (rect.centerx + rect.w // 5, rect.centery), 8)
-    _blocky_line(surface, color, (rect.centerx - rect.w // 14, body.bottom), (rect.centerx - rect.w // 8, rect.bottom - rect.h // 12), 8)
-    _blocky_line(surface, color, (rect.centerx + rect.w // 14, body.bottom), (rect.centerx + rect.w // 8, rect.bottom - rect.h // 12), 8)
-    _blocky_line(surface, accent, (rect.centerx - rect.w // 5, rect.bottom - rect.h // 5), (rect.centerx + rect.w // 3, rect.y + rect.h // 4), 16)
+        (body.right - 4, body.y + rect.h // 10),
+    ]
+    pygame.draw.polygon(surface, (*accent[:3], 210) if len(accent) == 4 else accent, cloak)
+    _blocky_line(surface, color, (body.left + 10, body.y + rect.h // 5), (rect.centerx - rect.w // 4, rect.centery), 10)
+    _blocky_line(surface, color, (body.right - 10, body.y + rect.h // 5), (rect.centerx + rect.w // 6, rect.centery), 10)
+    _blocky_line(surface, color, (rect.centerx - rect.w // 16, body.bottom), (rect.centerx - rect.w // 10, rect.bottom - rect.h // 14), 10)
+    _blocky_line(surface, color, (rect.centerx + rect.w // 16, body.bottom), (rect.centerx + rect.w // 10, rect.bottom - rect.h // 14), 10)
+    blade_start = (rect.centerx - rect.w // 5, rect.bottom - rect.h // 5)
+    blade_end = (rect.centerx + rect.w // 3, rect.y + rect.h // 5)
+    _blocky_line(surface, accent, blade_start, blade_end, 20)
+    _blocky_line(surface, color, (blade_start[0] + 10, blade_start[1] - 10), (blade_end[0] - 8, blade_end[1] + 8), 4)
     pygame.draw.polygon(surface, accent, [
-        (rect.centerx + rect.w // 3, rect.y + rect.h // 4 - 14),
-        (rect.centerx + rect.w // 3 + 12, rect.y + rect.h // 4 + 4),
-        (rect.centerx + rect.w // 3 - 12, rect.y + rect.h // 4 + 4),
+        (blade_end[0], blade_end[1] - 18),
+        (blade_end[0] + 16, blade_end[1] + 6),
+        (blade_end[0] - 16, blade_end[1] + 6),
     ])
 
 
@@ -171,33 +176,46 @@ def _draw_hyperborean_foreground(surface: pygame.Surface, rect: pygame.Rect, col
     _draw_warrior_foreground(surface, rect, color, accent)
     pygame.draw.rect(surface, accent, (rect.centerx - rect.w // 5, rect.y + rect.h // 5, rect.w * 2 // 5, rect.h // 10), border_radius=4)
     pygame.draw.rect(surface, accent, (rect.centerx - rect.w // 14, rect.y + rect.h // 9, rect.w // 7, rect.h // 11), border_radius=4)
-    _blocky_line(surface, accent, (rect.centerx + rect.w // 14, rect.bottom - rect.h // 5), (rect.centerx + rect.w // 3, rect.y + rect.h // 5), 14)
-    pygame.draw.line(surface, accent, (rect.centerx + rect.w // 3, rect.y + rect.h // 5), (rect.centerx + rect.w // 3 + 14, rect.y + rect.h // 5 - 14), 5)
-    pygame.draw.line(surface, accent, (rect.centerx + rect.w // 3, rect.y + rect.h // 5), (rect.centerx + rect.w // 3 + 14, rect.y + rect.h // 5 + 14), 5)
+    haft_start = (rect.centerx + rect.w // 18, rect.bottom - rect.h // 5)
+    haft_end = (rect.centerx + rect.w // 3, rect.y + rect.h // 5)
+    _blocky_line(surface, accent, haft_start, haft_end, 18)
+    pygame.draw.polygon(surface, accent, [
+        (haft_end[0], haft_end[1]),
+        (haft_end[0] + 28, haft_end[1] - 18),
+        (haft_end[0] + 18, haft_end[1] + 4),
+    ])
+    pygame.draw.polygon(surface, accent, [
+        (haft_end[0], haft_end[1]),
+        (haft_end[0] + 28, haft_end[1] + 18),
+        (haft_end[0] + 18, haft_end[1] - 4),
+    ])
 
 
 def _draw_archon_foreground(surface: pygame.Surface, rect: pygame.Rect, color, accent):
-    throne = pygame.Rect(rect.x + rect.w // 8, rect.y + rect.h // 3, rect.w * 3 // 4, rect.h // 2)
+    throne = pygame.Rect(rect.x + rect.w // 10, rect.y + rect.h // 3, rect.w * 4 // 5, rect.h // 2)
     pygame.draw.rect(surface, color, throne, border_radius=8)
     pygame.draw.rect(surface, accent, (throne.x + throne.w // 3, throne.y - rect.h // 8, throne.w // 3, rect.h // 8), border_radius=4)
-    body = pygame.Rect(rect.centerx - rect.w // 8, rect.y + rect.h // 7, rect.w // 4, rect.h * 3 // 5)
-    pygame.draw.rect(surface, color, body, border_radius=8)
-    pygame.draw.circle(surface, color, (rect.centerx, rect.y + rect.h // 6), rect.w // 9)
+    body = pygame.Rect(rect.centerx - rect.w // 9, rect.y + rect.h // 8, rect.w // 3, rect.h * 11 // 18)
+    pygame.draw.rect(surface, color, body, border_radius=10)
+    pygame.draw.circle(surface, color, (rect.centerx, rect.y + rect.h // 7), rect.w // 9)
     pygame.draw.polygon(surface, accent, [
-        (rect.centerx - rect.w // 10, rect.y + rect.h // 10),
-        (rect.centerx, rect.y + rect.h // 15),
-        (rect.centerx + rect.w // 10, rect.y + rect.h // 10),
+        (rect.centerx - rect.w // 11, rect.y + rect.h // 10),
+        (rect.centerx, rect.y + rect.h // 16),
+        (rect.centerx + rect.w // 11, rect.y + rect.h // 10),
     ])
-    pygame.draw.polygon(surface, (*accent[:3], 220) if len(accent) == 4 else accent, [
-        (body.left, body.y + rect.h // 10),
+    cloak = [
+        (body.left + 6, body.y + rect.h // 10),
         (rect.centerx - rect.w // 4, rect.bottom - rect.h // 7),
         (rect.centerx + rect.w // 4, rect.bottom - rect.h // 7),
-        (body.right, body.y + rect.h // 10),
-    ])
-    _blocky_line(surface, color, (body.left + 6, body.y + rect.h // 5), (rect.centerx - rect.w // 4, rect.centery), 8)
-    _blocky_line(surface, color, (body.right - 6, body.y + rect.h // 6), (rect.centerx + rect.w // 4, rect.y + rect.h // 3), 8)
-    pygame.draw.rect(surface, accent, (rect.centerx + rect.w // 8, rect.centery - rect.h // 10, rect.w // 4, rect.h // 3), border_radius=6)
+        (body.right - 6, body.y + rect.h // 10),
+    ]
+    pygame.draw.polygon(surface, (*accent[:3], 210) if len(accent) == 4 else accent, cloak)
+    _blocky_line(surface, color, (body.left + 8, body.y + rect.h // 5), (rect.centerx - rect.w // 4, rect.centery), 10)
+    _blocky_line(surface, color, (body.right - 8, body.y + rect.h // 6), (rect.centerx + rect.w // 4, rect.y + rect.h // 3), 10)
+    tablet = pygame.Rect(rect.centerx + rect.w // 10, rect.centery - rect.h // 12, rect.w // 4, rect.h // 3)
+    pygame.draw.rect(surface, accent, tablet, border_radius=6)
     pygame.draw.circle(surface, accent, (rect.centerx, rect.y + rect.h // 5), rect.w // 8, 4)
+    pygame.draw.line(surface, color, (tablet.centerx, tablet.y + 8), (tablet.centerx, tablet.bottom - 8), 4)
 
 
 def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, rng: random.Random):
