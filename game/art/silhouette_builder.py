@@ -299,30 +299,53 @@ def draw_focus_object(surface: pygame.Surface, semantic: dict, palette, rng: ran
     obj = str(semantic.get('object', '') or '').lower()
     color = palette[1]
     glow = palette[3]
-    rect = pygame.Rect(int(surface.get_width() * 0.18), int(surface.get_height() * 0.48), int(surface.get_width() * 0.64), int(surface.get_height() * 0.34))
+    rect = pygame.Rect(int(surface.get_width() * 0.06), int(surface.get_height() * 0.26), int(surface.get_width() * 0.88), int(surface.get_height() * 0.60))
     layer = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
     if kind in {'greatsword', 'solar_axe'} or any(k in obj for k in ('sword', 'blade', 'axe', 'spear', 'weapon')):
-        _blocky_line(layer, color, (rect.left + 16, rect.bottom - 6), (rect.right - 10, rect.top + 6), 10)
-        pygame.draw.line(layer, glow, (rect.centerx - 12, rect.centery + 14), (rect.centerx + 12, rect.centery + 14), 4)
-        pygame.draw.line(layer, glow, (rect.right - 14, rect.top + 10), (rect.right - 14, rect.top - 10), 3)
+        shaft_a = (rect.left + rect.w // 6, rect.bottom - rect.h // 7)
+        shaft_b = (rect.right - rect.w // 5, rect.top + rect.h // 7)
+        _blocky_line(layer, color, shaft_a, shaft_b, 26)
+        pygame.draw.line(layer, glow, (rect.centerx - rect.w // 10, rect.centery + rect.h // 10), (rect.centerx + rect.w // 10, rect.centery + rect.h // 10), 10)
+        pygame.draw.line(layer, glow, (shaft_b[0], shaft_b[1] + 6), (shaft_b[0], shaft_b[1] - rect.h // 10), 8)
         if kind == 'solar_axe' or variant == 'espada_03':
-            pygame.draw.line(layer, glow, (rect.right - 14, rect.top + 10), (rect.right + 8, rect.top + 4), 4)
-            pygame.draw.line(layer, glow, (rect.right - 14, rect.top + 10), (rect.right + 8, rect.top + 16), 4)
+            head = (shaft_b[0], shaft_b[1] + 6)
+            left_blade = [
+                (head[0], head[1]),
+                (head[0] + rect.w // 5, head[1] - rect.h // 10),
+                (head[0] + rect.w // 4, head[1] + rect.h // 24),
+                (head[0] + rect.w // 10, head[1] + rect.h // 7),
+            ]
+            right_blade = [
+                (head[0], head[1]),
+                (head[0] + rect.w // 5, head[1] + rect.h // 10),
+                (head[0] + rect.w // 4, head[1] - rect.h // 24),
+                (head[0] + rect.w // 10, head[1] - rect.h // 7),
+            ]
+            pygame.draw.polygon(layer, glow, left_blade)
+            pygame.draw.polygon(layer, glow, right_blade)
+            pygame.draw.circle(layer, glow, head, 12)
         if kind == 'greatsword' or variant == 'espada_02':
-            pygame.draw.line(layer, glow, (rect.left + 26, rect.bottom - 18), (rect.right - 24, rect.top + 18), 4)
-            pygame.draw.circle(layer, glow, (rect.left + 34, rect.bottom - 24), 8, 3)
+            blade_poly = [
+                (shaft_b[0], shaft_b[1] - rect.h // 10),
+                (shaft_b[0] + rect.w // 9, shaft_b[1] + rect.h // 18),
+                (shaft_a[0] + rect.w // 6, shaft_a[1] - rect.h // 8),
+                (shaft_a[0] - rect.w // 20, shaft_a[1] - rect.h // 4),
+            ]
+            pygame.draw.polygon(layer, glow, blade_poly)
+            pygame.draw.circle(layer, glow, (shaft_a[0] + rect.w // 24, shaft_a[1] - rect.h // 12), 22, 6)
+            pygame.draw.line(layer, glow, (shaft_a[0] + rect.w // 24, shaft_a[1] - rect.h // 18), (shaft_a[0] + rect.w // 24, shaft_a[1] + rect.h // 12), 6)
     elif kind == 'codex' or any(k in obj for k in ('codex', 'book', 'tablet')):
         pygame.draw.rect(layer, color, rect, border_radius=6)
         pygame.draw.rect(layer, glow, rect.inflate(-14, -14), 3, border_radius=4)
     elif kind == 'seal_tablet':
-        tab = rect.inflate(-18, -10)
+        tab = rect.inflate(-24, -14)
         pygame.draw.rect(layer, color, tab, border_radius=8)
         pygame.draw.rect(layer, glow, tab, 3, border_radius=8)
-        pygame.draw.circle(layer, glow, (tab.centerx, tab.y + tab.h // 4), max(8, tab.w // 8), 3)
-        pygame.draw.line(layer, glow, (tab.centerx, tab.y + tab.h // 4 + 10), (tab.centerx, tab.bottom - 12), 3)
+        pygame.draw.circle(layer, glow, (tab.centerx, tab.y + tab.h // 4), max(16, tab.w // 6), 4)
+        pygame.draw.line(layer, glow, (tab.centerx, tab.y + tab.h // 4 + 12), (tab.centerx, tab.bottom - 16), 5)
         if variant == 'sellos_03':
-            pygame.draw.circle(layer, glow, tab.center, max(10, tab.w // 7), 3)
-            pygame.draw.line(layer, glow, (tab.centerx - tab.w // 5, tab.centery), (tab.centerx + tab.w // 5, tab.centery), 3)
+            pygame.draw.circle(layer, glow, tab.center, max(18, tab.w // 5), 5)
+            pygame.draw.line(layer, glow, (tab.centerx - tab.w // 4, tab.centery), (tab.centerx + tab.w // 4, tab.centery), 5)
     elif kind == 'shield' or any(k in obj for k in ('shield', 'ward')):
         pts = [(rect.centerx, rect.top), (rect.right, rect.top + rect.h // 3), (rect.right - rect.w // 6, rect.bottom), (rect.left + rect.w // 6, rect.bottom), (rect.left, rect.top + rect.h // 3)]
         pygame.draw.polygon(layer, color, pts)

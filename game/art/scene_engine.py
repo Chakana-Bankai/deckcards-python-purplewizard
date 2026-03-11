@@ -310,14 +310,18 @@ def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
     sampled_refs = sampler.pick(_categories_for_prompt(prompt), _keywords_from_semantic(semantic), seed)
     refs = []
     seen = set()
-    for ref in explicit_refs + _prioritize_refs(sampled_refs, semantic):
+    source_refs = explicit_refs if explicit_refs else _prioritize_refs(sampled_refs, semantic)
+    max_refs = 3 if explicit_refs else 6
+    for ref in source_refs + ([] if explicit_refs else []):
         key = str(ref.path).lower()
         if key in seen:
             continue
         seen.add(key)
         refs.append(ref)
-        if len(refs) >= 6:
+        if len(refs) >= max_refs:
             break
+    if not explicit_refs:
+        refs = _prioritize_refs(refs, semantic)
     palette = _palette_from_refs(refs)
     work = pygame.Surface((768, 768), pygame.SRCALPHA, 32)
     _draw_background(work, semantic, palette, rng)

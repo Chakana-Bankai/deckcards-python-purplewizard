@@ -1,0 +1,6 @@
+status=ok
+mode=layer_preview
+ids=cw_lore_10,hip_cosmic_warrior_20,arc_060
+cw_lore_10|subject_kind=warrior_foreground|object_kind=greatsword|environment_kind=sanctuary|refs=guardian_03.png,espada_02.png,chakana_limpia_01.png|occ_subject=0.2818|occ_object=0.1064|occ_fx=0.0
+hip_cosmic_warrior_20|subject_kind=hyperborean_foreground|object_kind=solar_axe|environment_kind=citadel|refs=guardian_02.png,espada_03.png,observatorios_01.png|occ_subject=0.285|occ_object=0.049|occ_fx=0.0
+arc_060|subject_kind=archon_foreground|object_kind=seal_tablet|environment_kind=throne_realm|refs=arconte_04.png,sellos_03.png,heraldos_01.jpg|occ_subject=0.3783|occ_object=0.5287|occ_fx=0.0
