@@ -1,0 +1,21 @@
+phase: 7
+status: PASS
+summary: civilization palette system implemented and connected to scene backgrounds, foreground contrast and fx color bias.
+
+palettes:
+- chakana: primary=(112,78,156) secondary=(54,116,124) accent=(226,196,110) shadow=(24,18,34) glow=(244,224,152)
+- hyperborea: primary=(188,218,246) secondary=(114,146,188) accent=(244,244,252) shadow=(26,34,56) glow=(224,244,255)
+- archon: primary=(118,24,46) secondary=(42,178,104) accent=(210,78,102) shadow=(12,8,18) glow=(110,255,178)
+
+integration:
+- scene_engine now resolves civilization palette before background rendering
+- background uses palette shadow/primary/secondary/glow instead of uncontrolled reference averaging
+- foreground palette still strengthens subject/object on top of civilization palette
+- fx_layer keeps family logic and now inherits civilization-aware accent colors
+
+smokes:
+- py_compile: PASS
+- palette resolution smoke: PASS
+- preview_scene_layers: PASS
+- regenerate premium anchors: PASS
+- beta run flow: PASS

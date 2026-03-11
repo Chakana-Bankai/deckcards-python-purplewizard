@@ -63,7 +63,7 @@ def _compose_preview(prompt: str, seed: int) -> tuple[dict, dict[str, pygame.Sur
         if len(refs) >= max_refs:
             break
 
-    palette = _palette_from_refs(refs)
+    palette = _palette_from_refs(refs, semantic)
     work = pygame.Surface((768, 768), pygame.SRCALPHA, 32)
     background = pygame.Surface(work.get_size(), pygame.SRCALPHA, 32)
     _draw_background(background, semantic, palette, __import__('random').Random(seed))

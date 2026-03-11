@@ -7,6 +7,7 @@ import pygame
 
 from game.art.environment_library import resolve_environment_preset
 from game.art.fx_layer import draw_fx
+from game.art.palette_system import resolve_civilization_palette
 from game.art.reference_sampler import ReferenceSampler, ReferenceChoice
 from game.art.silhouette_builder import draw_focus_object, draw_subject
 
@@ -83,17 +84,31 @@ def _resolve_explicit_refs(sampler: ReferenceSampler, semantic: dict) -> list[Re
                     break
     return wanted
 
-def _palette_from_refs(choices):
-    if not choices:
-        return ((20, 16, 28), (72, 68, 96), (148, 138, 166), (232, 204, 132))
-    cols = [c.avg_color for c in choices]
-    r = sum(c[0] for c in cols) // len(cols)
-    g = sum(c[1] for c in cols) // len(cols)
-    b = sum(c[2] for c in cols) // len(cols)
-    top = (max(8, r // 5), max(8, g // 5), max(8, b // 5))
-    mid = (max(18, int(r * 0.55)), max(18, int(g * 0.55)), max(18, int(b * 0.55)))
-    low = (min(255, int(r * 0.92)), min(255, int(g * 0.92)), min(255, int(b * 0.92)))
-    accent = (min(255, r + 70), min(255, g + 50), min(255, b + 26))
+def _blend_color(a, b, weight: float):
+    return (
+        int(a[0] * (1.0 - weight) + b[0] * weight),
+        int(a[1] * (1.0 - weight) + b[1] * weight),
+        int(a[2] * (1.0 - weight) + b[2] * weight),
+    )
+
+
+def _palette_from_refs(choices, semantic):
+    civ = resolve_civilization_palette(semantic)
+    top = civ.shadow
+    mid = civ.primary
+    low = civ.secondary
+    accent = civ.glow
+    if choices:
+        cols = [c.avg_color for c in choices]
+        r = sum(c[0] for c in cols) // len(cols)
+        g = sum(c[1] for c in cols) // len(cols)
+        b = sum(c[2] for c in cols) // len(cols)
+        ref_mid = (max(18, int(r * 0.55)), max(18, int(g * 0.55)), max(18, int(b * 0.55)))
+        ref_low = (min(255, int(r * 0.92)), min(255, int(g * 0.92)), min(255, int(b * 0.92)))
+        ref_acc = (min(255, r + 60), min(255, g + 60), min(255, b + 50))
+        mid = _blend_color(mid, ref_mid, 0.28)
+        low = _blend_color(low, ref_low, 0.22)
+        accent = _blend_color(accent, ref_acc, 0.18)
     return (top, mid, low, accent)
 
 
@@ -316,52 +331,22 @@ def _prioritize_refs(refs, semantic: dict):
 
 
 def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> dict:
-    rng = random.Random(seed)
+    from game.art.assembly_pipeline import assemble_scene_art
     semantic = semantic_from_prompt(prompt)
-    sampler = ReferenceSampler()
-    explicit_refs = _resolve_explicit_refs(sampler, semantic)
-    sampled_refs = sampler.pick(_categories_for_prompt(prompt), _keywords_from_semantic(semantic), seed)
-    refs = []
-    seen = set()
-    source_refs = explicit_refs if explicit_refs else _prioritize_refs(sampled_refs, semantic)
-    max_refs = 3 if explicit_refs else 6
-    for ref in source_refs + ([] if explicit_refs else []):
-        key = str(ref.path).lower()
-        if key in seen:
-            continue
-        seen.add(key)
-        refs.append(ref)
-        if len(refs) >= max_refs:
-            break
-    if not explicit_refs:
-        refs = _prioritize_refs(refs, semantic)
-    palette = _palette_from_refs(refs)
-    work = pygame.Surface((768, 768), pygame.SRCALPHA, 32)
-    _draw_background(work, semantic, palette, rng)
-    shadow = pygame.Surface(work.get_size(), pygame.SRCALPHA)
-    pygame.draw.ellipse(shadow, (0, 0, 0, 132), (int(work.get_width() * 0.10), int(work.get_height() * 0.62), int(work.get_width() * 0.80), int(work.get_height() * 0.20)))
-    work.blit(shadow, (0, 0))
-    fg_palette = _strong_foreground_palette(palette, semantic.get('subject_kind', ''), semantic.get('object_kind', ''))
-    draw_subject(work, semantic, refs, fg_palette, rng)
-    draw_focus_object(work, semantic, fg_palette, rng)
-    draw_fx(work, semantic, palette, rng)
-    _apply_contrast(work)
-    final = pygame.transform.smoothscale(work, (320, 220)).convert_alpha()
-    sharpen = pygame.Surface((320, 220), pygame.SRCALPHA)
-    for _ in range(18):
-        x = rng.randint(0, 319)
-        y = rng.randint(0, 219)
-        pygame.draw.circle(sharpen, (255, 255, 255, 4), (x, y), 1)
-    final.blit(sharpen, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    pygame.image.save(final, str(out_path))
+    result = assemble_scene_art(card_id, prompt, seed, out_path)
     return {
         'card_id': card_id,
-        'path': str(out_path),
-        'generator_used': 'scene_engine_v2',
-        'references_used': [r.path.name for r in refs[:4]],
-        'palette_seeded': [r.avg_color for r in refs[:3]],
+        'path': result.path,
+        'generator_used': 'assembly_pipeline_v1',
+        'references_used': list(result.references_used),
+        'palette_seeded': [result.palette_id],
         'semantic_subject': str(semantic.get('subject', '') or ''),
         'semantic_object': str(semantic.get('object', '') or ''),
         'semantic_environment': str(semantic.get('environment', '') or ''),
+        'scene_type': result.scene_type,
+        'environment_preset': result.environment_preset,
+        'readability_ok': result.metrics.readability_ok,
+        'occ_subject': result.metrics.occ_subject,
+        'occ_object': result.metrics.occ_object,
+        'occ_fx': result.metrics.occ_fx,
     }

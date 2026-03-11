@@ -185,6 +185,14 @@
     "cw_lore_09",
     "hg_lore_11",
     "filo_en_cadena",
+    "portal_de_la_chakana",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
     "portal_de_la_chakana"
   ],
   "map": [
@@ -411,8 +419,8 @@
   ],
   "biome_index": 2,
   "biome": "hanan",
-  "xp": 82,
-  "level": 5,
+  "xp": 15,
+  "level": 6,
   "combats_won": 1,
   "tutorial_combats_won": 1,
   "allow_defeat_continue": true,
@@ -441,9 +449,9 @@
       "runa_errante"
     ],
     "recent_event_ids": [
-      "ayni_pact",
-      "puma_trial",
       "condor_vision",
+      "ayni_pact",
+      "ayni_pact",
       "ayni_pact",
       "ayni_pact"
     ],
@@ -467,8 +475,8 @@
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
   "last_node_type": "challenge",
-  "levelup_pending": 4,
+  "levelup_pending": 5,
   "current_node_id": "4_1",
   "last_biome_seen": "hanan",
-  "saved_at": 1773196010
+  "saved_at": 1773196804
 }

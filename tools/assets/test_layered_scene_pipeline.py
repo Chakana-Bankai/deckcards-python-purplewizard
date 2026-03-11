@@ -42,7 +42,9 @@ def main() -> int:
         frame_path = out_dir / f'{cid}_frame.png'
         result = generate_scene_art(cid, entry['prompt_text'], sum(ord(ch) for ch in cid), art_path)
         pygame.image.save(generate_frame_asset(), str(frame_path))
-        lines.append(f"{cid}|art={art_path.name}|frame={frame_path.name}|refs={','.join(result.get('references_used', []))}")
+        lines.append(
+            f"{cid}|art={art_path.name}|frame={frame_path.name}|scene={result.get('scene_type','')}|env={result.get('environment_preset','')}|palette={','.join(map(str, result.get('palette_seeded', [])))}|refs={','.join(result.get('references_used', []))}|occ_subject={result.get('occ_subject','')}|occ_object={result.get('occ_object','')}|occ_fx={result.get('occ_fx','')}|readability_ok={result.get('readability_ok','')}"
+        )
     report = project_root() / 'reports' / 'validation' / 'scene_pipeline_test_report.txt'
     report.write_text('\n'.join(lines) + '\n', encoding='utf-8')
     print(f'[scene_pipeline] report={report}')
