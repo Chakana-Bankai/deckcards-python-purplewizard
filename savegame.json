@@ -9,15 +9,15 @@
   "player": {
     "hp": 60,
     "max_hp": 60,
-    "block": 2,
-    "energy": 0,
-    "rupture": 0,
+    "block": 3,
+    "energy": 4,
+    "rupture": 1,
     "statuses": {},
-    "harmony_current": 5,
+    "harmony_current": 0,
     "harmony_max": 10,
     "harmony_ready_threshold": 6,
     "harmony_ready": false,
-    "harmony_seal_used": true,
+    "harmony_seal_used": false,
     "seal_ready": false,
     "seal_active": false
   },
@@ -51,7 +51,11 @@
     "espiritu_guardian",
     "of_lore_28",
     "hg_lore_07",
-    "hip_harmony_guardian_18"
+    "hip_harmony_guardian_18",
+    "hip_cosmic_warrior_09",
+    "hip_cosmic_warrior_14",
+    "guardia_terrenal",
+    "hip_harmony_guardian_16"
   ],
   "map": [
     [
@@ -135,7 +139,7 @@
           "3_0",
           "3_1"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "2_1",
@@ -161,7 +165,7 @@
           "3_2",
           "3_3"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "2_3",
@@ -189,7 +193,7 @@
           "4_0",
           "4_1"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "3_1",
@@ -201,7 +205,7 @@
         "next": [
           "4_0"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "3_2",
@@ -213,20 +217,20 @@
         "next": [
           "4_1"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "3_3",
         "col": 3,
         "x": 1116,
         "y": 684,
-        "type": "combat",
+        "type": "challenge",
         "biome": "hanan",
         "next": [
           "4_1",
           "4_0"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -275,10 +279,10 @@
     "hanan",
     "fractura_chakana"
   ],
-  "biome_index": 0,
-  "biome": "ukhu",
-  "xp": 52,
-  "level": 3,
+  "biome_index": 1,
+  "biome": "kaypacha",
+  "xp": 3,
+  "level": 4,
   "combats_won": 3,
   "tutorial_combats_won": 3,
   "allow_defeat_continue": true,
@@ -301,37 +305,38 @@
   },
   "meta_director": {
     "recent_enemy_ids": [
-      "larva_del_vacio",
       "sabueso_sombrio",
       "acaro_de_tinta",
-      "acaro_de_tinta"
+      "acaro_de_tinta",
+      "monolito_fracturado",
+      "vigia_del_kaypacha"
     ],
     "recent_event_ids": [
-      "serpent_shed"
+      "serpent_shed",
+      "chakana_crossroads"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
       "base_pack",
       "mystery_pack",
+      "base_pack",
       "base_pack"
     ],
     "visual_direction_tags": [
-      "biome:ukhu",
-      "mood:underworld"
+      "biome:kaypacha"
     ],
     "audio_direction_tags": [
       "ctx:map",
-      "biome:ukhu",
-      "mood:dark"
+      "biome:kaypacha"
     ]
   },
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
   "last_node_type": "combat",
-  "levelup_pending": 2,
+  "levelup_pending": 3,
   "combat_invalid_reason": "",
   "combat_invalid_until_ms": 0,
-  "current_node_id": "1_1",
-  "last_biome_seen": "ukhu",
-  "saved_at": 1773199782
+  "current_node_id": "2_2",
+  "last_biome_seen": "kaypacha",
+  "saved_at": 1773241081
 }

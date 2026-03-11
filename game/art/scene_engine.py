@@ -345,6 +345,7 @@ def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
         'semantic_environment': str(semantic.get('environment', '') or ''),
         'scene_type': result.scene_type,
         'environment_preset': result.environment_preset,
+        'pipeline_order': list(result.pipeline_order),
         'readability_ok': result.metrics.readability_ok,
         'occ_subject': result.metrics.occ_subject,
         'occ_object': result.metrics.occ_object,

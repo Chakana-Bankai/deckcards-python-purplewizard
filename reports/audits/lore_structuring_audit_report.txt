@@ -1,0 +1,44 @@
+CHAKANA LORE STRUCTURING AUDIT
+
+phase=1_audit_only
+docs_inspected=12
+
+[source_documents]
+- docs\canon\lore\LORE_ATLAS.md
+- docs\canon\lore\BESTIARY.md
+- docs\canon\lore\RELICS.md
+- docs\canon\manual\CHAKANA_MASTER_GAME_BIBLE_1_0.md
+- docs\canon\manual\CHAKANA_MANUAL_1_0.md
+- docs\lore\Lore_Canon.md
+- docs\lore\HIPERBORIA_SET.md
+- game\data\lore\world.txt
+- game\data\lore\chakana_lore.txt
+- game\data\lore\enemies.json
+- game\data\lore\events.json
+- game\data\lore\biomes_lore.json
+
+[proposed_target_structure]
+game/data/lore/factions.json
+game/data/lore/entities.json
+game/data/lore/relics.json
+game/data/lore/creatures.json
+game/data/lore/biomes.json
+game/data/lore/symbols.json
+game/data/lore/history.json
+
+[canonical_entities_detected]
+- factions: Orden Chakana, Hiperborea, Arcontes, Guias/Angeles
+- planes/biomes: Kay Pacha, Hanan Pacha, Ukhu Pacha, Fractura/Umbral
+- protagonist/entity: Chakana
+- enemy/lore entities: voidling, ink_mite, inverse_weaver and current enemy sets from enemies.json
+- relic domain: canonical relic names should merge docs/canon/lore/RELICS.md with runtime item data
+- symbols: Chakana, sacred geometry variants, archon sigils, hyperborean crystalline motifs
+
+[audit_findings]
+- Lore is split between markdown canon docs and ad-hoc runtime txt/json files.
+- Canon exists, but runtime-facing structured lore databases do not yet exist in the requested target shape.
+- Some runtime lore files still contain encoding issues (example: ca??do in enemies.json).
+- There is overlap between docs/canon/lore and docs/lore legacy canon summaries.
+
+[recommendation]
+- Phase 2 should extract entities into structured JSON while preserving markdown canon as editorial source.

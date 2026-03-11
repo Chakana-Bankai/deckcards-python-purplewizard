@@ -1,10 +1,11 @@
-status=pass
-phase=8
+status=ok
+phase=assembly_pipeline
 pipeline_order=scene_spec>environment_preset>silhouette>secondary_object>symbol>fx>palette>readability_validation
-module=game/art/assembly_pipeline.py
-runtime_delegate=game/art/scene_engine.py:generate_scene_art
-notes=assembly pipeline now composes layered surfaces and returns readability metrics before export
-samples:
-cw_lore_10|art=cw_lore_10_art.png|frame=cw_lore_10_frame.png|scene=mountain_guardian_scene|env=gaia_mountains|palette=archon|refs=guardian_03.png,espada_02.png|occ_subject=0.2807|occ_object=0.0533|occ_fx=0.0002|readability_ok=True
-hip_cosmic_warrior_20|art=hip_cosmic_warrior_20_art.png|frame=hip_cosmic_warrior_20_frame.png|scene=hyperborea_temple_scene|env=hyperborea_temple|palette=hyperborea|refs=guardian_02.png,espada_03.png|occ_subject=0.284|occ_object=0.0298|occ_fx=0.0001|readability_ok=False
-arc_060|art=arc_060_art.png|frame=arc_060_frame.png|scene=archon_void_scene|env=archon_cathedral|palette=archon|refs=arconte_04.png,sellos_03.png|occ_subject=0.3792|occ_object=0.2172|occ_fx=0.0002|readability_ok=True
+readability_thresholds=occ_subject>=0.20;occ_object>=0.035;occ_fx<=0.15
+samples=3
+sample_1=cw_lore_10|scene=mountain_guardian_scene|env=gaia_mountains|palette=archon|occ_subject=0.2807|occ_object=0.0533|occ_fx=0.0002|readability_ok=True
+sample_2=hip_cosmic_warrior_20|scene=hyperborea_temple_scene|env=hyperborea_temple|palette=hyperborea|occ_subject=0.284|occ_object=0.0298|occ_fx=0.0001|readability_ok=False
+sample_3=arc_060|scene=archon_void_scene|env=archon_cathedral|palette=archon|occ_subject=0.3792|occ_object=0.2172|occ_fx=0.0002|readability_ok=True
+beta_run=PASS
+beta_run_note=run_flow_reaches_boss_and_core_transitions_resolve_in_safe_beta_mode
+next_focus=phase_9_avatar_hologram_pipeline

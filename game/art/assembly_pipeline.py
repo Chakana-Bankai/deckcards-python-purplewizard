@@ -23,6 +23,17 @@ from game.art.scene_engine import (
 )
 from game.art.silhouette_builder import draw_focus_object, draw_subject
 
+PIPELINE_ORDER = [
+    'scene_spec',
+    'environment_preset',
+    'silhouette',
+    'secondary_object',
+    'symbol',
+    'fx',
+    'palette',
+    'readability_validation',
+]
+
 
 @dataclass(slots=True)
 class AssemblyMetrics:
@@ -36,6 +47,7 @@ class AssemblyMetrics:
 class AssemblyResult:
     card_id: str
     path: str
+    pipeline_order: list[str]
     scene_type: str
     environment_preset: str
     palette_id: str
@@ -79,6 +91,17 @@ def validate_readability(subject_layer: pygame.Surface, object_layer: pygame.Sur
     occ_fx = _occ_ratio(fx_layer)
     readability_ok = occ_subject >= 0.20 and occ_object >= 0.035 and occ_fx <= 0.15
     return AssemblyMetrics(occ_subject=occ_subject, occ_object=occ_object, occ_fx=occ_fx, readability_ok=readability_ok)
+
+
+def assembly_pipeline_summary() -> dict[str, object]:
+    return {
+        'pipeline_order': list(PIPELINE_ORDER),
+        'readability_thresholds': {
+            'occ_subject_min': 0.20,
+            'occ_object_min': 0.035,
+            'occ_fx_max': 0.15,
+        },
+    }
 
 
 def assemble_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> AssemblyResult:
@@ -134,6 +157,7 @@ def assemble_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
     return AssemblyResult(
         card_id=card_id,
         path=str(out_path),
+        pipeline_order=list(PIPELINE_ORDER),
         scene_type=str(semantic.get('scene_type', '') or ''),
         environment_preset=env_preset.preset_id,
         palette_id=civ.palette_id,

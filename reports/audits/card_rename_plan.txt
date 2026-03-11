@@ -1,0 +1,22 @@
+CHAKANA CARD RENAME PLAN
+
+phase=1_audit_only
+
+[canonical_target_format]
+SET_FACTION_TYPE_NUMBER
+
+[proposed_safe_strategy]
+1. Build canonical id registry JSON without touching runtime ids yet.
+2. Add alias layer mapping current_id -> canonical_id.
+3. Rename artwork files in staging or mirrored curated location first.
+4. Update manifests/tooling to understand both ids during migration.
+5. Only after full QA, consider replacing runtime-facing ids if truly needed.
+
+[risk_notes]
+- Direct renaming now would break saves, codex lookups, art references and legacy QA scripts.
+- Best immediate move is normalization registry, not runtime mutation.
+
+[example_mappings]
+- chakana_de_luz -> BASE_SOLAR_POWER_001
+- hip_cosmic_warrior_01 -> HYPER_SOLAR_ATK_001
+- arc_001 -> ARCH_ARCHON_CURSE_001

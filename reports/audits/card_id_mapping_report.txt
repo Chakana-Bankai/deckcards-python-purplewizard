@@ -1,0 +1,59 @@
+CHAKANA CARD ID MAPPING REPORT
+
+phase=1_audit_only
+total_cards=180
+
+[current_patterns]
+- archon_sequential=60
+- base_lore_series=30
+- base_named_slug=30
+- hip_sequential=60
+
+[sample_rows]
+- id=campo_protector | art=campo_protector | set=(none) | archetype=harmony_guardian | pattern=base_named_slug
+- id=chakana_de_luz | art=chakana_de_luz | set=(none) | archetype=cosmic_warrior | pattern=base_named_slug
+- id=eco_de_sabiduria | art=eco_de_sabiduria | set=(none) | archetype=cosmic_warrior | pattern=base_named_slug
+- id=embate_del_jaguar | art=embate_del_jaguar | set=(none) | archetype=cosmic_warrior | pattern=base_named_slug
+- id=escudo_de_luz | art=escudo_de_luz | set=(none) | archetype=harmony_guardian | pattern=base_named_slug
+- id=escudo_del_chaman | art=escudo_del_chaman | set=(none) | archetype=harmony_guardian | pattern=base_named_slug
+- id=espiritu_guardian | art=espiritu_guardian | set=(none) | archetype=harmony_guardian | pattern=base_named_slug
+- id=estallido_arcano | art=estallido_arcano | set=(none) | archetype=cosmic_warrior | pattern=base_named_slug
+- id=filo_astral | art=filo_astral | set=(none) | archetype=cosmic_warrior | pattern=base_named_slug
+- id=filo_en_cadena | art=filo_en_cadena | set=(none) | archetype=cosmic_warrior | pattern=base_named_slug
+- id=firmeza_del_cuerpo | art=firmeza_del_cuerpo | set=(none) | archetype=harmony_guardian | pattern=base_named_slug
+- id=fragmento_celeste | art=fragmento_celeste | set=(none) | archetype=oracle_of_fate | pattern=base_named_slug
+- id=fusion_espiritual | art=fusion_espiritual | set=(none) | archetype=harmony_guardian | pattern=base_named_slug
+- id=garra_espiritual | art=garra_espiritual | set=(none) | archetype=cosmic_warrior | pattern=base_named_slug
+- id=guardia_terrenal | art=guardia_terrenal | set=(none) | archetype=harmony_guardian | pattern=base_named_slug
+- id=invocacion_astral | art=invocacion_astral | set=(none) | archetype=oracle_of_fate | pattern=base_named_slug
+- id=lectura_del_destino | art=lectura_del_destino | set=(none) | archetype=oracle_of_fate | pattern=base_named_slug
+- id=mantra_del_umbral | art=mantra_del_umbral | set=(none) | archetype=cosmic_warrior | pattern=base_named_slug
+- id=muralla_de_piedra | art=muralla_de_piedra | set=(none) | archetype=harmony_guardian | pattern=base_named_slug
+- id=observacion_sagrada | art=observacion_sagrada | set=(none) | archetype=oracle_of_fate | pattern=base_named_slug
+- id=piedra_ritual | art=piedra_ritual | set=(none) | archetype=oracle_of_fate | pattern=base_named_slug
+- id=portal_de_la_chakana | art=portal_de_la_chakana | set=(none) | archetype=oracle_of_fate | pattern=base_named_slug
+- id=pulso_cosmico | art=pulso_cosmico | set=(none) | archetype=cosmic_warrior | pattern=base_named_slug
+- id=resistencia_ancestral | art=resistencia_ancestral | set=(none) | archetype=harmony_guardian | pattern=base_named_slug
+- id=revelacion_astral | art=revelacion_astral | set=(none) | archetype=oracle_of_fate | pattern=base_named_slug
+- id=ritual_de_la_trama | art=ritual_de_la_trama | set=(none) | archetype=oracle_of_fate | pattern=base_named_slug
+- id=sello_protector | art=sello_protector | set=(none) | archetype=harmony_guardian | pattern=base_named_slug
+- id=silencio_interior | art=silencio_interior | set=(none) | archetype=oracle_of_fate | pattern=base_named_slug
+- id=vinculo_de_energia | art=vinculo_de_energia | set=(none) | archetype=cosmic_warrior | pattern=base_named_slug
+- id=vision_del_condor | art=vision_del_condor | set=(none) | archetype=oracle_of_fate | pattern=base_named_slug
+- id=hg_lore_01 | art=hg_lore_01 | set=(none) | archetype=harmony_guardian | pattern=base_lore_series
+- id=cw_lore_02 | art=cw_lore_02 | set=(none) | archetype=cosmic_warrior | pattern=base_lore_series
+- id=cw_lore_03 | art=cw_lore_03 | set=(none) | archetype=cosmic_warrior | pattern=base_lore_series
+- id=cw_lore_04 | art=cw_lore_04 | set=(none) | archetype=cosmic_warrior | pattern=base_lore_series
+- id=hg_lore_05 | art=hg_lore_05 | set=(none) | archetype=harmony_guardian | pattern=base_lore_series
+- id=hg_lore_06 | art=hg_lore_06 | set=(none) | archetype=harmony_guardian | pattern=base_lore_series
+- id=hg_lore_07 | art=hg_lore_07 | set=(none) | archetype=harmony_guardian | pattern=base_lore_series
+- id=cw_lore_08 | art=cw_lore_08 | set=(none) | archetype=cosmic_warrior | pattern=base_lore_series
+- id=cw_lore_09 | art=cw_lore_09 | set=(none) | archetype=cosmic_warrior | pattern=base_lore_series
+- id=cw_lore_10 | art=cw_lore_10 | set=(none) | archetype=cosmic_warrior | pattern=base_lore_series
+
+[audit_findings]
+- Base set mixes readable slugs and lore-series ids.
+- Hiperborea uses consistent sequential ids but not canonical target format.
+- Archon uses short sequential ids (arc_001...) and artworks match those ids.
+- Artwork filenames are currently aligned with active ids, which reduces runtime risk but preserves inconsistent naming styles.
+- Normalization should be done through a mapping layer first, not direct blind renames.

@@ -1,0 +1,140 @@
+CHAKANA STUDIO MASTER TOOLS EXPANSION ? PHASE 1 AUDIT
+
+phase=1_audit_only
+python_tools_inspected=64
+
+[reusable_existing_tools_found]
+- tools/doctor.py
+- tools/qa_report_generator.py
+- tools/clean_autogen.py
+- tools/regen_assets.py
+- tools/assets/regenerate_premium_card_batch.py
+- tools/assets/build_curated_context_audio.py
+- tools/assets/run_art_quality_validation.py
+- tools/assets/run_card_art_iteration_pass.py
+- tools/qa/check_beta_run_flow.py
+- tools/maintenance/chakana_project_audit_consolidation.py
+
+[overlap_duplication_found]
+- duplicate_name=__init__.py
+  - tools\assets\__init__.py
+  - tools\maintenance\__init__.py
+  - tools\qa\__init__.py
+- duplicate_name=bootstrap_archon_curated_assets.py
+  - tools\bootstrap_archon_curated_assets.py
+  - tools\assets\bootstrap_archon_curated_assets.py
+- duplicate_name=build_chakana_master_from_reference.py
+  - tools\build_chakana_master_from_reference.py
+  - tools\assets\build_chakana_master_from_reference.py
+- duplicate_name=check_card_coherence.py
+  - tools\check_card_coherence.py
+  - tools\qa\check_card_coherence.py
+- duplicate_name=check_combat_content_lock.py
+  - tools\check_combat_content_lock.py
+  - tools\qa\check_combat_content_lock.py
+- duplicate_name=check_deck_system.py
+  - tools\check_deck_system.py
+  - tools\qa\check_deck_system.py
+- duplicate_name=curated_regen_cache_reset.py
+  - tools\curated_regen_cache_reset.py
+  - tools\assets\curated_regen_cache_reset.py
+- duplicate_name=final_gameplay_integration_fix.py
+  - tools\final_gameplay_integration_fix.py
+  - tools\maintenance\final_gameplay_integration_fix.py
+- duplicate_name=qa_phase1_gameplay_blockers.py
+  - tools\qa_phase1_gameplay_blockers.py
+  - tools\qa\qa_phase1_gameplay_blockers.py
+- duplicate_name=qa_phase2_pack_shop_integration.py
+  - tools\qa_phase2_pack_shop_integration.py
+  - tools\qa\qa_phase2_pack_shop_integration.py
+- duplicate_name=qa_phase3_hologram_dialogue.py
+  - tools\qa_phase3_hologram_dialogue.py
+  - tools\qa\qa_phase3_hologram_dialogue.py
+- duplicate_name=qa_phase3b_event_system.py
+  - tools\qa_phase3b_event_system.py
+  - tools\qa\qa_phase3b_event_system.py
+- duplicate_name=qa_phase4_asset_pipeline_audit.py
+  - tools\qa_phase4_asset_pipeline_audit.py
+  - tools\qa\qa_phase4_asset_pipeline_audit.py
+- duplicate_name=qa_phase5_visual_audio_upgrade.py
+  - tools\qa_phase5_visual_audio_upgrade.py
+  - tools\qa\qa_phase5_visual_audio_upgrade.py
+- duplicate_name=qa_phase6_combat_hud.py
+  - tools\qa_phase6_combat_hud.py
+  - tools\qa\qa_phase6_combat_hud.py
+- duplicate_name=qa_phase7_extended.py
+  - tools\qa_phase7_extended.py
+  - tools\qa\qa_phase7_extended.py
+- duplicate_name=qa_phase9_supervision.py
+  - tools\qa_phase9_supervision.py
+  - tools\qa\qa_phase9_supervision.py
+- duplicate_name=qa_pre_engine_audit.py
+  - tools\qa_pre_engine_audit.py
+  - tools\qa\qa_pre_engine_audit.py
+- duplicate_name=qa_visual_runtime_fullhd.py
+  - tools\qa_visual_runtime_fullhd.py
+  - tools\qa\qa_visual_runtime_fullhd.py
+- duplicate_name=qa_visual_system_normalization.py
+  - tools\qa_visual_system_normalization.py
+  - tools\qa\qa_visual_system_normalization.py
+
+[missing_tools_identified]
+- tools/chakana_studio.py
+- tools/project_audit.py
+- tools/project_sanitizer.py
+- tools/duplicate_detector.py
+- tools/engine_extractor.py
+- tools/card_generator.py
+- tools/id_registry.py
+- tools/set_manager.py
+- tools/balance_simulator.py
+- tools/lore_manager.py
+- tools/codex_builder.py
+- tools/art_pipeline.py
+- tools/scene_preview.py
+- tools/art_validator.py
+- tools/audio_pipeline.py
+- tools/audio_validator.py
+- tools/qa_smoke.py
+- tools/qa_runtime.py
+- tools/ui_audit.py
+- tools/ui_layout_validator.py
+- tools/ui_scaling_tester.py
+- tools/accessibility_audit.py
+
+[audit_findings]
+- There is already a de facto modular split: assets, qa, maintenance.
+- Root-level tools and namespaced tools overlap heavily (example: bootstrap_archon_curated_assets.py, build_chakana_master_from_reference.py, curated_regen_cache_reset.py, final_gameplay_integration_fix.py).
+- QA tooling exists but UI/UX-specific validators requested in this pass are missing.
+- Asset/art/audio tooling is strong enough to be wrapped under a master CLI instead of rewritten.
+- Doctor plus cleanup plus audit scripts already cover part of project/safety needs.
+
+[proposed_final_tools_architecture]
+tools/chakana_studio.py  # master CLI / command router
+tools/project_audit.py   # wraps doctor + project audits
+tools/project_sanitizer.py
+tools/duplicate_detector.py
+tools/engine_extractor.py
+tools/card_generator.py
+tools/id_registry.py
+tools/set_manager.py
+tools/balance_simulator.py
+tools/lore_manager.py
+tools/codex_builder.py
+tools/art_pipeline.py    # wraps regenerate_premium_card_batch/test_layered_scene_pipeline/run_art_quality_validation
+tools/scene_preview.py   # wraps preview_scene_layers
+tools/art_validator.py   # wraps run_art_quality_validation
+tools/audio_pipeline.py  # wraps build_curated_context_audio/activate_minimal_curated_audio_library
+tools/audio_validator.py
+tools/qa_smoke.py        # wraps check_beta_run_flow + key smoke checks
+tools/qa_runtime.py
+tools/ui_audit.py
+tools/ui_layout_validator.py
+tools/ui_scaling_tester.py
+tools/accessibility_audit.py
+
+[integration_strategy]
+- Do not rewrite working tools; wrap them.
+- Keep reports under reports/.
+- Move duplicated wrappers behind namespaced master commands.
+- Phase 2 should add the master router and the missing UI/accessibility modules first.
