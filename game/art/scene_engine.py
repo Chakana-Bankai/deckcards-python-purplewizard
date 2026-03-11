@@ -185,6 +185,7 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
     w, h = surface.get_size()
     top, mid, low, acc = palette
     env = str(semantic.get('environment', '') or '').lower()
+    env_ref = str(semantic.get('environment_ref', '') or '').lower()
     for y in range(h):
         t = y / max(1, h - 1)
         if t < 0.58:
@@ -216,7 +217,7 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
             pygame.draw.circle(surface, (mid[0], mid[1], mid[2]), (x + 4, horizon - th), rng.randint(16, 28))
     elif any(k in env for k in ('temple', 'sanctuary', 'ruins', 'city', 'architecture', 'throne', 'citadel', 'observatory')):
         far = pygame.Surface((w, h), pygame.SRCALPHA)
-        for _ in range(3):
+        for _ in range(2 if any(k in env_ref for k in ('observatorios','chakana_limpia','heraldos')) else 3):
             bw = rng.randint(w // 10, w // 6)
             bh = rng.randint(h // 7, h // 4)
             bx = rng.randint(0, max(0, w - bw - 1))
@@ -226,7 +227,7 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
         surface.blit(far, (0, 0))
         mid_layer = pygame.Surface((w, h), pygame.SRCALPHA)
         keep = pygame.Rect(int(w * 0.12), int(h * 0.04), int(w * 0.76), int(h * 0.78))
-        for _ in range(2):
+        for _ in range(1 if any(k in env_ref for k in ('observatorios','chakana_limpia','heraldos')) else 2):
             bw = rng.randint(w // 8, w // 5)
             bh = rng.randint(h // 6, h // 3)
             bx = rng.randint(0, max(0, w - bw - 1))
@@ -248,7 +249,7 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
 
     veil = pygame.Surface((w, h), pygame.SRCALPHA)
     pygame.draw.rect(veil, (0, 0, 0, 34), (0, 0, w, h))
-    pygame.draw.ellipse(veil, (255, 255, 255, 8), (int(w * 0.22), int(h * 0.16), int(w * 0.56), int(h * 0.46)))
+    pygame.draw.ellipse(veil, (255, 255, 255, 5), (int(w * 0.26), int(h * 0.18), int(w * 0.48), int(h * 0.40)))
     surface.blit(veil, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
 
 
@@ -321,7 +322,7 @@ def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
     work = pygame.Surface((768, 768), pygame.SRCALPHA, 32)
     _draw_background(work, semantic, palette, rng)
     shadow = pygame.Surface(work.get_size(), pygame.SRCALPHA)
-    pygame.draw.ellipse(shadow, (0, 0, 0, 110), (int(work.get_width() * 0.12), int(work.get_height() * 0.60), int(work.get_width() * 0.76), int(work.get_height() * 0.22)))
+    pygame.draw.ellipse(shadow, (0, 0, 0, 132), (int(work.get_width() * 0.10), int(work.get_height() * 0.62), int(work.get_width() * 0.80), int(work.get_height() * 0.20)))
     work.blit(shadow, (0, 0))
     fg_palette = _strong_foreground_palette(palette, semantic.get('subject_kind', ''), semantic.get('object_kind', ''))
     draw_subject(work, semantic, refs, fg_palette, rng)
