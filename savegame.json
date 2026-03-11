@@ -1,5 +1,5 @@
 {
-  "gold": 194,
+  "gold": 80,
   "relics": [
     "violet_seal"
   ],
@@ -8,16 +8,9 @@
     "hp": 60,
     "max_hp": 60,
     "block": 0,
-    "energy": 2,
+    "energy": 3,
     "rupture": 0,
-    "statuses": {},
-    "harmony_current": 3,
-    "harmony_max": 10,
-    "harmony_ready_threshold": 6,
-    "harmony_ready": false,
-    "harmony_seal_used": false,
-    "seal_ready": false,
-    "seal_active": false
+    "statuses": {}
   },
   "deck": [
     "filo_astral",
@@ -41,16 +34,7 @@
     "cw_lore_29",
     "chakana_de_luz"
   ],
-  "sideboard": [
-    "lectura_del_destino",
-    "fragmento_celeste",
-    "hg_lore_27",
-    "muralla_de_piedra",
-    "of_lore_20",
-    "filo_astral",
-    "vision_del_condor",
-    "hg_lore_24"
-  ],
+  "sideboard": [],
   "map": [
     [
       {
@@ -64,7 +48,7 @@
           "1_0",
           "1_1"
         ],
-        "state": "cleared"
+        "state": "available"
       }
     ],
     [
@@ -79,7 +63,7 @@
           "2_0",
           "2_1"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "1_1",
@@ -92,20 +76,20 @@
           "2_1",
           "2_0"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "1_2",
         "col": 1,
         "x": 492,
         "y": 588,
-        "type": "challenge",
+        "type": "combat",
         "biome": "ukhu",
         "next": [
           "2_2",
           "2_3"
         ],
-        "state": "cleared"
+        "state": "locked"
       },
       {
         "id": "1_3",
@@ -146,7 +130,7 @@
           "3_1",
           "3_0"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "2_2",
@@ -159,7 +143,7 @@
           "3_2",
           "3_3"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "2_3",
@@ -172,7 +156,7 @@
           "3_3",
           "3_2"
         ],
-        "state": "available"
+        "state": "locked"
       }
     ],
     [
@@ -181,7 +165,7 @@
         "col": 3,
         "x": 1116,
         "y": 396,
-        "type": "combat",
+        "type": "challenge",
         "biome": "hanan",
         "next": [
           "4_0",
@@ -275,10 +259,10 @@
   ],
   "biome_index": 0,
   "biome": "ukhu",
-  "xp": 15,
-  "level": 3,
-  "combats_won": 2,
-  "tutorial_combats_won": 2,
+  "xp": 0,
+  "level": 1,
+  "combats_won": 0,
+  "tutorial_combats_won": 0,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
@@ -297,31 +281,15 @@
     "step_total": 7
   },
   "meta_director": {
-    "recent_enemy_ids": [
-      "larva_del_vacio",
-      "sabueso_sombrio"
-    ],
+    "recent_enemy_ids": [],
     "recent_event_ids": [],
     "recent_shop_card_ids": [],
-    "recent_pack_ids": [
-      "hiperborea_pack",
-      "mystery_pack"
-    ],
-    "visual_direction_tags": [
-      "biome:ukhu",
-      "mood:underworld"
-    ],
-    "audio_direction_tags": [
-      "ctx:challenge",
-      "biome:ukhu",
-      "mood:dark"
-    ]
+    "recent_pack_ids": [],
+    "visual_direction_tags": [],
+    "audio_direction_tags": []
   },
   "hiperboria_unlock_target": 3,
-  "civilization": "base_world",
-  "last_node_type": "challenge",
-  "levelup_pending": 2,
-  "current_node_id": "1_2",
+  "current_node_id": null,
   "last_biome_seen": "ukhu",
-  "saved_at": 1773255141
+  "saved_at": 1773256981
 }
