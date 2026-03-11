@@ -1,0 +1,45 @@
+PHASE 5 - Secondary Object Library
+status=PASS
+
+summary:
+- created reusable secondary object library for card scene assembly
+- integrated object presets into draw_focus_object so object size/family now come from explicit preset data instead of inline guesses
+- validated presets for greatsword, solar_axe, seal_tablet, altar, codex, shield
+- regenerated anchor cards and preserved beta runtime stability
+
+files_modified:
+- game/art/secondary_object_library.py
+- game/art/silhouette_builder.py
+
+object_presets:
+- chakana_symbol
+- ritual_staff
+- spear
+- sword
+- orb
+- relic
+- altar
+- banner
+- crystal
+- greatsword
+- solar_axe
+- seal_tablet
+- codex
+- shield
+- crown
+
+rules_applied:
+- object supports scene readability
+- object uses preset frame_ratio as size driver
+- object family now explicit: symbol / weapon / focus / relic
+- object remains secondary support layer and no longer defaults to arbitrary thin marks
+
+smokes:
+1) py_compile PASS
+2) secondary_object_library_summary PASS preset_count=15
+3) anchor regeneration PASS
+4) beta_run_flow PASS overall=PASS boss_entry=CombatScreen
+
+notes:
+- this phase formalizes object selection and scale, but silhouette readability still depends on later phases for stronger foreground anatomy and palette discipline
+- no gameplay runtime logic changed

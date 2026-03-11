@@ -5,6 +5,7 @@ import random
 
 import pygame
 
+from game.art.environment_library import resolve_environment_preset
 from game.art.fx_layer import draw_fx
 from game.art.reference_sampler import ReferenceSampler, ReferenceChoice
 from game.art.silhouette_builder import draw_focus_object, draw_subject
@@ -191,36 +192,42 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
     top, mid, low, acc = palette
     env = str(semantic.get('environment', '') or '').lower()
     env_ref = str(semantic.get('environment_ref', '') or '').lower()
+    preset = resolve_environment_preset(semantic.get('scene_type', ''), semantic.get('environment_kind', ''), env)
     for y in range(h):
         t = y / max(1, h - 1)
-        if t < 0.58:
-            q = t / 0.58
+        split = max(0.45, min(0.72, float(preset.horizon_ratio) - 0.08))
+        if t < split:
+            q = t / max(0.001, split)
             col = (int(top[0] * (1 - q) + mid[0] * q), int(top[1] * (1 - q) + mid[1] * q), int(top[2] * (1 - q) + mid[2] * q))
         else:
-            q = (t - 0.58) / 0.42
+            q = (t - split) / max(0.001, 1.0 - split)
             col = (int(mid[0] * (1 - q) + low[0] * q), int(mid[1] * (1 - q) + low[1] * q), int(mid[2] * (1 - q) + low[2] * q))
         pygame.draw.line(surface, col, (0, y), (w, y))
-    horizon = int(h * 0.66)
+    horizon = int(h * preset.horizon_ratio)
     ground = (max(8, low[0] // 2), max(8, low[1] // 2), max(8, low[2] // 2))
     pygame.draw.rect(surface, ground, (0, horizon, w, h - horizon))
     mist = pygame.Surface((w, h), pygame.SRCALPHA)
+    mist_alpha = 24 if preset.atmospheric_color in {'silver_haze', 'sacred_haze'} else 18
     for _ in range(2):
         mw = rng.randint(w // 4, w // 2)
         mh = rng.randint(h // 10, h // 6)
         mx = rng.randint(-40, w - mw + 40)
         my = rng.randint(horizon - h // 8, horizon + h // 10)
-        pygame.draw.ellipse(mist, (255, 255, 255, 18), (mx, my, mw, mh))
+        pygame.draw.ellipse(mist, (255, 255, 255, mist_alpha), (mx, my, mw, mh))
     surface.blit(mist, (0, 0))
-    if any(k in env for k in ('sea', 'mar', 'ocean', 'helado')):
-        for y in range(horizon, h, 8):
+
+    preset_id = preset.preset_id
+    if preset.ground_treatment in {'plateau_lines', 'altar_platform', 'frozen_temple_steps'} or any(k in env for k in ('sea', 'mar', 'ocean', 'helado')):
+        step = 8 if preset.ground_treatment != 'altar_platform' else 10
+        for y in range(horizon, h, step):
             pygame.draw.line(surface, (*acc, 120), (0, y), (w, y), 2)
-    elif any(k in env for k in ('jungle', 'forest', 'selva')):
+    elif preset_id == 'sacred_forest' or any(k in env for k in ('jungle', 'forest', 'selva')):
         for _ in range(7):
             x = rng.randint(0, w - 1)
             th = rng.randint(h // 5, h // 3)
             pygame.draw.rect(surface, (top[0], top[1], top[2]), (x, horizon - th, 8, th))
             pygame.draw.circle(surface, (mid[0], mid[1], mid[2]), (x + 4, horizon - th), rng.randint(16, 28))
-    elif any(k in env for k in ('temple', 'sanctuary', 'ruins', 'city', 'architecture', 'throne', 'citadel', 'observatory')):
+    elif preset_id in {'hyperborea_temple', 'archon_cathedral', 'ritual_altar'} or any(k in env for k in ('temple', 'sanctuary', 'ruins', 'city', 'architecture', 'throne', 'citadel', 'observatory')):
         far = pygame.Surface((w, h), pygame.SRCALPHA)
         for _ in range(2 if any(k in env_ref for k in ('observatorios','chakana_limpia','heraldos')) else 3):
             bw = rng.randint(w // 10, w // 6)
@@ -253,7 +260,8 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
         pygame.draw.polygon(surface, (mid[0], mid[1], mid[2]), points)
 
     veil = pygame.Surface((w, h), pygame.SRCALPHA)
-    pygame.draw.rect(veil, (0, 0, 0, 34), (0, 0, w, h))
+    veil_alpha = 40 if preset.atmospheric_color in {'corruption_fog', 'void_smoke'} else 34
+    pygame.draw.rect(veil, (0, 0, 0, veil_alpha), (0, 0, w, h))
     pygame.draw.ellipse(veil, (255, 255, 255, 5), (int(w * 0.26), int(h * 0.18), int(w * 0.48), int(h * 0.40)))
     surface.blit(veil, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
 

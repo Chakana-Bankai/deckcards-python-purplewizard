@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import random
 import pygame
+from game.art.secondary_object_library import resolve_secondary_object
 
 
 def _ref_stem(value: str) -> str:
@@ -346,10 +347,19 @@ def draw_focus_object(surface: pygame.Surface, semantic: dict, palette, rng: ran
     kind = str(semantic.get('object_kind', '') or '').lower().replace(' ', '_')
     variant = _object_variant(semantic)
     obj = str(semantic.get('object', '') or '').lower()
-    template_family = OBJECT_KIND_TO_TEMPLATE.get(kind, '')
+    preset = resolve_secondary_object(kind, obj)
+    template_family = OBJECT_KIND_TO_TEMPLATE.get(kind, '') or preset.family
     color = palette[1]
     glow = palette[3]
-    rect = pygame.Rect(int(surface.get_width() * 0.06), int(surface.get_height() * 0.26), int(surface.get_width() * 0.88), int(surface.get_height() * 0.60))
+    ratio = max(0.15, min(0.30, float(preset.frame_ratio)))
+    rect_w = int(surface.get_width() * max(0.52, ratio * 2.4))
+    rect_h = int(surface.get_height() * max(0.24, ratio * 1.55))
+    rect = pygame.Rect(
+        int(surface.get_width() * 0.5 - rect_w * 0.48),
+        int(surface.get_height() * (0.56 - rect_h / max(1, surface.get_height()) * 0.35)),
+        rect_w,
+        rect_h,
+    )
     layer = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
     if template_family == 'weapon' or kind in {'greatsword', 'solar_axe'} or any(k in obj for k in ('sword', 'blade', 'axe', 'spear', 'weapon')):
         shaft_a = (rect.left + rect.w // 6, rect.bottom - rect.h // 7)
