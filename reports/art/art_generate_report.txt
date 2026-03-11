@@ -1,0 +1,7 @@
+chakana_studio art generate
+generated=2026-03-11 18:44:17
+
+mode=art_generate
+dry_run=True
+card_count=180
+action=python -m tools.assets.regenerate_premium_card_batch --all

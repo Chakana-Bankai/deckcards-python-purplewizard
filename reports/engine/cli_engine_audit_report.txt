@@ -1,16 +1,91 @@
 chakana_studio engine audit
-generated=2026-03-11 12:47:56
+generated=2026-03-11 17:44:46
 
 mode=engine_audit
 dry_run=True
 
-engine_candidate:
+[engine_candidate]
+- engine/audio
+- engine/creative_direction
+- engine/audio_system
+- engine/card_engine
+- engine/combat
+- engine/procedural_art
+- engine/rendering
+- engine/ui_framework
 - game/art
-- game/audio
-- game/visual
-- game/core
+- game/audio/audio_engine.py
+- game/visual/portrait_pipeline.py
+- game/visual/visual_engine.py
+- game/core/paths.py
+- tools/lib
 
-game_specific:
+[game_specific]
+- game/chakana_world
+- game/content
+- game/lore
+- game/enemies
+- game/relics
+- game/map
+- game/events
+- game/narrative
+- game/cards
+- game/ui/screens
 - game/data
 - docs/canon
 - assets/art_reference
+
+[generated_output]
+- game/audio/generated
+- game/visual/generated
+- assets/staging
+- reports/validation/scene_pipeline_samples
+- reports/validation/art_candidate_staging
+
+[reports]
+- reports/audit
+- reports/art
+- reports/cleanup
+- reports/engine
+- reports/master
+- reports/qa
+- reports/tools
+- reports/validation
+- reports/audits
+
+[archive]
+- assets/_archive
+- tools/archive
+- docs/archive
+- backups
+
+[legacy]
+- reports/audits
+- game/audio/audio_manifest.json
+- game/data/bgm_manifest.json
+- game/assets/tmp
+- tools/build_chakana_master_from_reference.py
+- tools/bootstrap_archon_curated_assets.py
+- tools/curated_regen_cache_reset.py
+- tools/check_card_coherence.py
+- tools/check_combat_content_lock.py
+- tools/check_deck_system.py
+- tools/final_gameplay_integration_fix.py
+
+[blocking_factors_for_extraction]
+- runtime still reads manifests directly from game/data and game/visual
+- ui screens still mix reusable rendering and game-specific world flow
+- legacy mirrors remain active for compatibility (audio_manifest/bgm_manifest)
+- lore and cards are not yet normalized into engine-agnostic registries
+- wrapper tools still coexist with chakana_studio.py and can confuse canonical entrypoint
+
+[recommended_extraction_sequence]
+- keep runtime stable and continue using mirrors
+- move manifest resolution behind a single adapter layer
+- export lore/card registries into structured data roots
+- separate reusable UI framework pieces from game/ui/screens
+- extract art/audio/rendering pipeline into engine runtime modules
+- leave Purple Wizard world content, lore and progression under game/
+
+[final_verdict]
+The repository is ready for incremental engine extraction, not for a hard split. The correct strategy remains mirror-first and adapter-first.

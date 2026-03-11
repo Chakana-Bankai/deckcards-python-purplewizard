@@ -41,6 +41,10 @@ COMMANDS = {
     'duplication-check': lambda dry_run: duplicate_detector.run(dry_run=dry_run),
     'manifest-audit': lambda dry_run: manifest_manager.run_audit(dry_run=dry_run),
     'art-audit': lambda dry_run: art_pipeline.run(dry_run=dry_run),
+    'art-generate': None,
+    'art-regenerate-missing': None,
+    'art-validate': lambda dry_run: art_pipeline.validate(dry_run=dry_run),
+    'art-promote': lambda dry_run: art_pipeline.promote(dry_run=dry_run),
     'audio-audit': lambda dry_run: audio_pipeline.run(dry_run=dry_run),
     'qa-smoke': lambda dry_run: qa_smoke.run(dry_run=dry_run),
     'cli-validate': lambda dry_run: cli_validation.run(dry_run=dry_run),
@@ -55,9 +59,19 @@ def main():
     parser = argparse.ArgumentParser(prog='chakana_studio', description='Chakana Studio Master CLI')
     parser.add_argument('command', choices=sorted(COMMANDS.keys()))
     parser.add_argument('--dry-run', action='store_true', dest='dry_run')
+    parser.add_argument('--all', action='store_true', dest='generate_all')
+    parser.add_argument('--force', action='store_true', dest='force')
     args = parser.parse_args()
     os.system('cls' if os.name == 'nt' else 'clear')
-    report = COMMANDS[args.command](args.dry_run)
+    if args.command == 'art-generate':
+        if args.generate_all:
+            report = art_pipeline.generate_all(dry_run=args.dry_run)
+        else:
+            report = art_pipeline.regenerate_missing(dry_run=args.dry_run, force=args.force)
+    elif args.command == 'art-regenerate-missing':
+        report = art_pipeline.regenerate_missing(dry_run=args.dry_run, force=args.force)
+    else:
+        report = COMMANDS[args.command](args.dry_run)
     print(f'[chakana_studio] report={report}')
 
 

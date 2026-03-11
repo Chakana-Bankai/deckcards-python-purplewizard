@@ -1,0 +1,10 @@
+chakana_studio art promote
+generated=2026-03-11 18:44:42
+
+mode=art_promote
+dry_run=True
+staging_exists=False
+production_exists=False
+staging_count=0
+production_count=0
+action=noop_no_staged_assets

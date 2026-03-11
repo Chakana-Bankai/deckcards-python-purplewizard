@@ -1,16 +1,12 @@
 chakana_studio art audit
-generated=2026-03-11 17:10:23
+generated=2026-03-11 18:44:10
 
 mode=art_audit
 dry_run=True
+card_manifest_exists=True
+art_manifest_exists=True
+card_count=180
 card_pngs=180
-
-reference_total=202
-reference_categories:
-- creatures: {'count': 24, 'groups': {'subjects/beasts': 15, 'silhouettes/creatures': 9}, 'sample_files': ['condor_01.png', 'condor_02.png', 'condor_03.png', 'condor_4.jpg', 'huemul_fantasy_01.png', 'huemul_fantasy_02.png', 'mythic_deer_01.png', 'mythic_deer_02.png']}
-- enemies: {'count': 23, 'groups': {'subjects/archons': 14, 'silhouettes/creatures': 9}, 'sample_files': ['arconte_01.png', 'arconte_02.png', 'arconte_03.png', 'arconte_04.png', 'arconte_05.png', 'arconte_06.png', 'arconte_07.png', 'arconte_08.png']}
-- environments: {'count': 22, 'groups': {'environments/mountains': 1, 'environments/forest': 1, 'environments/ruins': 4, 'environments/sea': 1, 'environments/sky': 5, 'environments/temples': 7, 'environments/void': 3}, 'sample_files': ['montañas_sagradas_01.png', 'selva_densa_01.jpg', 'altares_01.png', 'ciudades_ceremoniales_01.png', 'observatorios_01.png', 'ruinas_en_horizonte_01.png', 'mar_helado_01.jpg', 'cielos_01.png']}
-- palettes_mood: {'count': 9, 'groups': {'lighting/dark': 3, 'lighting/sunrise': 3, 'lighting/sunset': 3}, 'sample_files': ['dark_01.png', 'dark_02.png', 'dark_03.png', 'sunrise_01.png', 'sunrise_02.png', 'sunrise_03.png', 'sunset_01.png', 'sunset_02.png']}
-- subjects: {'count': 75, 'groups': {'subjects/solar_warriors': 10, 'subjects/guides': 12, 'subjects/archons': 14, 'subjects/beasts': 15, 'silhouettes/characters': 15, 'silhouettes/creatures': 9}, 'sample_files': ['guardian_01.png', 'guardian_02.png', 'guardian_03.png', 'guerrero_solar_01.png', 'guerrero_solar_02.png', 'guerrero_solar_03.png', 'guerrero_solar_04.png', 'guerrero_solar_05.png']}
-- symbols: {'count': 12, 'groups': {'symbols/chakana': 4, 'symbols/runes': 4, 'symbols/sacred_geometry': 4}, 'sample_files': ['chakana_limpia_01.png', 'cruces_escalonadas_01.png', 'dorada_petrea_ritual_01.png', 'emblemas_01.png', 'piedra_ritual_01.png', 'piedra_ritual_02.png', 'sellos_01.png', 'simbolos_solares_01.png']}
-- weapons: {'count': 37, 'groups': {'weapons': 6, 'weapons/relics': 8, 'weapons/spears': 3, 'weapons/staffs': 4, 'weapons/swords': 4, 'silhouettes/weapons': 12}, 'sample_files': ['codice_01.png', 'codice_02.png', 'codice_03.png', 'altar_01.png', 'altar_02.png', 'altar_03.png', 'coronas_01.png', 'coronas_02.png']}
+missing_count=0
+broken_manifest_entries=0
+duplicate_groups=0

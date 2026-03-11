@@ -1,0 +1,11 @@
+chakana_studio art validate
+generated=2026-03-11 18:44:29
+
+mode=art_validate
+dry_run=True
+card_count=180
+missing_count=0
+broken_manifest_entries=0
+dims_ok=0
+dims_bad=0
+quality_validation=skipped_dry_run

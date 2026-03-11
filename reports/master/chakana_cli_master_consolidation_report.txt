@@ -1,5 +1,5 @@
 chakana CLI master consolidation report
-generated=2026-03-11 13:01:09
+generated=2026-03-11 17:44:46
 
 mode=chakana_cli_master_consolidation
 dry_run=False
