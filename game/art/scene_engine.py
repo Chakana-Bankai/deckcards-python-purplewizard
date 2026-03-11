@@ -72,6 +72,36 @@ def _keywords_from_semantic(semantic: dict) -> list[str]:
     for key in ('subject', 'object', 'environment', 'motif', 'symbol', 'effects'):
         val = str(semantic.get(key, '') or '').replace(',', ' ')
         out.extend(val.split())
+    subject_kind = str(semantic.get('subject_kind', '') or '').lower().replace(' ', '_')
+    object_kind = str(semantic.get('object_kind', '') or '').lower().replace(' ', '_')
+    environment_kind = str(semantic.get('environment_kind', '') or '').lower().replace(' ', '_')
+
+    subject_aliases = {
+        'weapon_bearer': ['guardian_01', 'mago_01'],
+        'guardian_bearer': ['guardian_01'],
+        'oracle_totem': ['mago_01'],
+        'hyperborean_champion': ['guardian_01', 'mago_01'],
+        'archon_throne': ['arconte_01', 'heraldos_01'],
+        'archon_beast': ['arconte_01', 'puma_01'],
+    }
+    object_aliases = {
+        'weapon': ['espada_01'],
+        'codex': ['codice_01'],
+        'altar': ['altar_01'],
+        'seal': ['sellos_01'],
+        'crown': ['coronas_01'],
+        'shield': ['sellos_01'],
+    }
+    environment_aliases = {
+        'citadel': ['templos_escalonados_01', 'puentes_antiguos_01'],
+        'throne_realm': ['heraldos_01', 'presencia_sagrada_u_opresiva_01', 'puentes_antiguos_01'],
+        'gaia_sanctuary': ['condor_01', 'puma_01', 'textiles_andinos_01'],
+        'sanctuary': ['chakana_limpia_01', 'cruces_escalonadas_01'],
+    }
+
+    out.extend(subject_aliases.get(subject_kind, []))
+    out.extend(object_aliases.get(object_kind, []))
+    out.extend(environment_aliases.get(environment_kind, []))
     return [w for w in out if len(w) > 2][:16]
 
 
@@ -150,11 +180,39 @@ def _apply_contrast(surface: pygame.Surface):
     surface.blit(light, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
 
+def _prioritize_refs(refs, semantic: dict):
+    subject_kind = str(semantic.get('subject_kind', '') or '').lower().replace(' ', '_')
+    object_kind = str(semantic.get('object_kind', '') or '').lower().replace(' ', '_')
+    environment_kind = str(semantic.get('environment_kind', '') or '').lower().replace(' ', '_')
+    preferred = {
+        'weapon_bearer': ['guardian_01.png', 'mago_01.png'],
+        'guardian_bearer': ['guardian_01.png'],
+        'oracle_totem': ['mago_01.png'],
+        'hyperborean_champion': ['guardian_01.png', 'mago_01.png'],
+        'archon_throne': ['arconte_01.png', 'heraldos_01.jpg', 'heraldos_01.png'],
+        'archon_beast': ['arconte_01.png', 'puma_01.png'],
+        'weapon': ['espada_01.png'],
+        'codex': ['codice_01.png'],
+        'altar': ['altar_01.png'],
+        'seal': ['sellos_01.png'],
+        'crown': ['coronas_01.png'],
+        'citadel': ['templos_escalonados_01.jpg', 'templos_escalonados_01.png', 'puentes_antiguos_01.jpg', 'puentes_antiguos_01.png'],
+        'throne_realm': ['arconte_01.png', 'heraldos_01.jpg', 'heraldos_01.png'],
+        'gaia_sanctuary': ['condor_01.png', 'puma_01.png', 'textiles_andinos_01.jpg', 'textiles_andinos_01.png'],
+        'sanctuary': ['guardian_01.png', 'mago_01.png'],
+    }
+    wanted = preferred.get(subject_kind, []) + preferred.get(object_kind, []) + preferred.get(environment_kind, [])
+    wanted_set = {w.lower() for w in wanted}
+    if not wanted_set:
+        return refs
+    return sorted(refs, key=lambda r: (0 if r.path.name.lower() in wanted_set else 1, r.path.name.lower()))
+
+
 def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> dict:
     rng = random.Random(seed)
     semantic = semantic_from_prompt(prompt)
     sampler = ReferenceSampler()
-    refs = sampler.pick(_categories_for_prompt(prompt), _keywords_from_semantic(semantic), seed)
+    refs = _prioritize_refs(sampler.pick(_categories_for_prompt(prompt), _keywords_from_semantic(semantic), seed), semantic)
     palette = _palette_from_refs(refs)
     work = pygame.Surface((768, 768), pygame.SRCALPHA, 32)
     _draw_background(work, semantic, palette, rng)

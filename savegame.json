@@ -6,7 +6,7 @@
   ],
   "relic_slots_max": 8,
   "player": {
-    "hp": 26,
+    "hp": 20,
     "max_hp": 60,
     "block": 0,
     "energy": 4,
@@ -99,7 +99,11 @@
     "hg_lore_11",
     "filo_astral",
     "portal_de_la_chakana",
-    "vision"
+    "vision",
+    "cw_lore_09",
+    "hg_lore_11",
+    "filo_astral",
+    "portal_de_la_chakana"
   ],
   "map": [
     [
@@ -325,8 +329,8 @@
   ],
   "biome_index": 2,
   "biome": "hanan",
-  "xp": 54,
-  "level": 3,
+  "xp": 8,
+  "level": 4,
   "combats_won": 1,
   "tutorial_combats_won": 1,
   "allow_defeat_continue": true,
@@ -357,9 +361,9 @@
     "recent_event_ids": [
       "ayni_pact",
       "ayni_pact",
-      "ayni_pact",
       "puma_trial",
-      "condor_vision"
+      "condor_vision",
+      "ayni_pact"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
@@ -381,8 +385,8 @@
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
   "last_node_type": "challenge",
-  "levelup_pending": 2,
+  "levelup_pending": 3,
   "current_node_id": "4_1",
   "last_biome_seen": "hanan",
-  "saved_at": 1773187264
+  "saved_at": 1773187741
 }
