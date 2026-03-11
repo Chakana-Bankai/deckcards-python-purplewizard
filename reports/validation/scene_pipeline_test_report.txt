@@ -2,5 +2,5 @@ status=ok
 samples=3
 pipeline=frame_engine+scene_engine+reference_sampler+silhouette_builder+fx_layer
 cw_lore_10|art=cw_lore_10_art.png|frame=cw_lore_10_frame.png|refs=espada_01.png,guardian_01.png,mago_01.png,arconte_01.png
-hip_cosmic_warrior_20|art=hip_cosmic_warrior_20_art.png|frame=hip_cosmic_warrior_20_frame.png|refs=guardian_01.png,mago_01.png,arconte_01.png,condor_01.png
+hip_cosmic_warrior_20|art=hip_cosmic_warrior_20_art.png|frame=hip_cosmic_warrior_20_frame.png|refs=guardian_01.png,arconte_01.png,condor_01.png,mago_01.png
 arc_060|art=arc_060_art.png|frame=arc_060_frame.png|refs=arconte_01.png,sellos_01.png,condor_01.png,guardian_01.png

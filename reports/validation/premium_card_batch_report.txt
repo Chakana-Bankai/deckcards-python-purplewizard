@@ -3,6 +3,6 @@ batch=legendary_core
 cards=3
 layer_standard=background_base,subject_character,focus_object,magic_effects,integration_depth_pass
 composition_rule=background+subject+object+effects+integration
-cw_lore_10=cw_lore_10.png|refs=arconte 01,condor 01,guardian 01
-hip_cosmic_warrior_20=hip_cosmic_warrior_20.png|refs=arconte 01,condor 01,guardian 01
-arc_060=arc_060.png|refs=arconte 01,condor 01,guardian 01
+cw_lore_10=cw_lore_10.png|refs=arconte 01,arconte 02,arconte 04
+hip_cosmic_warrior_20=hip_cosmic_warrior_20.png|refs=arconte 01,arconte 02,arconte 04
+arc_060=arc_060.png|refs=arconte 01,arconte 02,arconte 04

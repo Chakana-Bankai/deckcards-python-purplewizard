@@ -104,9 +104,34 @@ def _draw_weapon_bearer(surface: pygame.Surface, rect: pygame.Rect, color, accen
     cx = rect.centerx
     top = rect.y + rect.h // 8
     torso_y = top + rect.h // 5
-    _blocky_line(surface, accent, (cx + rect.w // 16, torso_y + rect.h // 7), (cx + rect.w // 3, rect.y + rect.h // 3), 7)
-    _blocky_line(surface, accent, (cx + rect.w // 3, rect.y + rect.h // 3), (cx + rect.w // 3, rect.y + rect.h // 7), 4)
-    pygame.draw.circle(surface, accent, (cx + rect.w // 3, rect.y + rect.h // 7), 5)
+    _blocky_line(surface, accent, (cx - rect.w // 10, torso_y + rect.h // 6), (cx + rect.w // 3, rect.y + rect.h // 2), 10)
+    _blocky_line(surface, accent, (cx + rect.w // 3, rect.y + rect.h // 2), (cx + rect.w // 3, rect.y + rect.h // 8), 5)
+    pygame.draw.polygon(surface, accent, [
+        (cx + rect.w // 3, rect.y + rect.h // 8 - 10),
+        (cx + rect.w // 3 + 10, rect.y + rect.h // 8 + 2),
+        (cx + rect.w // 3 - 10, rect.y + rect.h // 8 + 2),
+    ])
+
+
+def _draw_hyperborean_champion(surface: pygame.Surface, rect: pygame.Rect, color, accent):
+    _draw_weapon_bearer(surface, rect, color, accent)
+    cx = rect.centerx
+    pygame.draw.rect(surface, accent, (cx - rect.w // 5, rect.y + rect.h // 4, rect.w * 2 // 5, rect.h // 10), border_radius=4)
+    pygame.draw.rect(surface, accent, (cx - rect.w // 12, rect.y + rect.h // 10, rect.w // 6, rect.h // 10), border_radius=4)
+
+
+def _draw_guardian_bearer(surface: pygame.Surface, rect: pygame.Rect, color, accent):
+    _draw_humanoid(surface, rect, color, accent, crown=False)
+    shield = pygame.Rect(rect.centerx + rect.w // 14, rect.centery - rect.h // 12, rect.w // 3, rect.h // 2)
+    pts = [
+        (shield.centerx, shield.top),
+        (shield.right, shield.top + shield.h // 3),
+        (shield.right - shield.w // 7, shield.bottom),
+        (shield.left + shield.w // 7, shield.bottom),
+        (shield.left, shield.top + shield.h // 3),
+    ]
+    pygame.draw.polygon(surface, accent, pts)
+    pygame.draw.polygon(surface, color, pts, 3)
 
 
 def _draw_archon_throne(surface: pygame.Surface, rect: pygame.Rect, color, accent):
@@ -119,6 +144,62 @@ def _draw_archon_throne(surface: pygame.Surface, rect: pygame.Rect, color, accen
     pygame.draw.rect(surface, accent, (rect.centerx - rect.w // 7, rect.centery + rect.h // 8, rect.w // 3, rect.h // 10), border_radius=5)
 
 
+def _draw_warrior_foreground(surface: pygame.Surface, rect: pygame.Rect, color, accent):
+    body = pygame.Rect(rect.centerx - rect.w // 6, rect.y + rect.h // 9, rect.w // 3, rect.h * 3 // 5)
+    pygame.draw.rect(surface, color, body, border_radius=8)
+    pygame.draw.circle(surface, color, (rect.centerx, rect.y + rect.h // 7), rect.w // 8)
+    pygame.draw.rect(surface, accent, (rect.centerx - rect.w // 8, rect.y + rect.h // 5, rect.w // 4, rect.h // 9), border_radius=4)
+    pygame.draw.polygon(surface, (*accent[:3], 220) if len(accent) == 4 else accent, [
+        (body.left, body.y + rect.h // 10),
+        (rect.centerx - rect.w // 3, rect.bottom - rect.h // 7),
+        (rect.centerx + rect.w // 3, rect.bottom - rect.h // 7),
+        (body.right, body.y + rect.h // 10),
+    ])
+    _blocky_line(surface, color, (body.left + 8, body.y + rect.h // 6), (rect.centerx - rect.w // 3, rect.centery), 8)
+    _blocky_line(surface, color, (body.right - 8, body.y + rect.h // 6), (rect.centerx + rect.w // 5, rect.centery), 8)
+    _blocky_line(surface, color, (rect.centerx - rect.w // 14, body.bottom), (rect.centerx - rect.w // 8, rect.bottom - rect.h // 12), 8)
+    _blocky_line(surface, color, (rect.centerx + rect.w // 14, body.bottom), (rect.centerx + rect.w // 8, rect.bottom - rect.h // 12), 8)
+    _blocky_line(surface, accent, (rect.centerx - rect.w // 5, rect.bottom - rect.h // 5), (rect.centerx + rect.w // 3, rect.y + rect.h // 4), 16)
+    pygame.draw.polygon(surface, accent, [
+        (rect.centerx + rect.w // 3, rect.y + rect.h // 4 - 14),
+        (rect.centerx + rect.w // 3 + 12, rect.y + rect.h // 4 + 4),
+        (rect.centerx + rect.w // 3 - 12, rect.y + rect.h // 4 + 4),
+    ])
+
+
+def _draw_hyperborean_foreground(surface: pygame.Surface, rect: pygame.Rect, color, accent):
+    _draw_warrior_foreground(surface, rect, color, accent)
+    pygame.draw.rect(surface, accent, (rect.centerx - rect.w // 5, rect.y + rect.h // 5, rect.w * 2 // 5, rect.h // 10), border_radius=4)
+    pygame.draw.rect(surface, accent, (rect.centerx - rect.w // 14, rect.y + rect.h // 9, rect.w // 7, rect.h // 11), border_radius=4)
+    _blocky_line(surface, accent, (rect.centerx + rect.w // 14, rect.bottom - rect.h // 5), (rect.centerx + rect.w // 3, rect.y + rect.h // 5), 14)
+    pygame.draw.line(surface, accent, (rect.centerx + rect.w // 3, rect.y + rect.h // 5), (rect.centerx + rect.w // 3 + 14, rect.y + rect.h // 5 - 14), 5)
+    pygame.draw.line(surface, accent, (rect.centerx + rect.w // 3, rect.y + rect.h // 5), (rect.centerx + rect.w // 3 + 14, rect.y + rect.h // 5 + 14), 5)
+
+
+def _draw_archon_foreground(surface: pygame.Surface, rect: pygame.Rect, color, accent):
+    throne = pygame.Rect(rect.x + rect.w // 8, rect.y + rect.h // 3, rect.w * 3 // 4, rect.h // 2)
+    pygame.draw.rect(surface, color, throne, border_radius=8)
+    pygame.draw.rect(surface, accent, (throne.x + throne.w // 3, throne.y - rect.h // 8, throne.w // 3, rect.h // 8), border_radius=4)
+    body = pygame.Rect(rect.centerx - rect.w // 8, rect.y + rect.h // 7, rect.w // 4, rect.h * 3 // 5)
+    pygame.draw.rect(surface, color, body, border_radius=8)
+    pygame.draw.circle(surface, color, (rect.centerx, rect.y + rect.h // 6), rect.w // 9)
+    pygame.draw.polygon(surface, accent, [
+        (rect.centerx - rect.w // 10, rect.y + rect.h // 10),
+        (rect.centerx, rect.y + rect.h // 15),
+        (rect.centerx + rect.w // 10, rect.y + rect.h // 10),
+    ])
+    pygame.draw.polygon(surface, (*accent[:3], 220) if len(accent) == 4 else accent, [
+        (body.left, body.y + rect.h // 10),
+        (rect.centerx - rect.w // 4, rect.bottom - rect.h // 7),
+        (rect.centerx + rect.w // 4, rect.bottom - rect.h // 7),
+        (body.right, body.y + rect.h // 10),
+    ])
+    _blocky_line(surface, color, (body.left + 6, body.y + rect.h // 5), (rect.centerx - rect.w // 4, rect.centery), 8)
+    _blocky_line(surface, color, (body.right - 6, body.y + rect.h // 6), (rect.centerx + rect.w // 4, rect.y + rect.h // 3), 8)
+    pygame.draw.rect(surface, accent, (rect.centerx + rect.w // 8, rect.centery - rect.h // 10, rect.w // 4, rect.h // 3), border_radius=6)
+    pygame.draw.circle(surface, accent, (rect.centerx, rect.y + rect.h // 5), rect.w // 8, 4)
+
+
 def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, rng: random.Random):
     kind = str(semantic.get('subject_kind', '') or '').lower().replace(' ', '_')
     subject = ' '.join([
@@ -128,19 +209,21 @@ def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, r
     ]).lower()
     main = palette[2]
     accent = palette[3]
-    rect = pygame.Rect(int(surface.get_width() * 0.1), int(surface.get_height() * 0.04), int(surface.get_width() * 0.8), int(surface.get_height() * 0.74))
+    rect = pygame.Rect(int(surface.get_width() * 0.06), int(surface.get_height() * 0.00), int(surface.get_width() * 0.88), int(surface.get_height() * 0.82))
     layer = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
     if kind == 'hyperborean_champion':
-        _draw_weapon_bearer(layer, rect, main, accent)
-        pygame.draw.rect(layer, accent, (rect.centerx - rect.w // 12, rect.y + rect.h // 8, rect.w // 6, rect.h // 10), border_radius=4)
+        _draw_hyperborean_champion(layer, rect, main, accent)
+    elif kind == 'hyperborean_foreground':
+        _draw_hyperborean_foreground(layer, rect, main, accent)
     elif kind == 'archon_beast':
         _draw_beast(layer, rect, main, accent)
         pygame.draw.circle(layer, accent, (rect.centerx + rect.w // 6, rect.centery - rect.h // 10), 8)
+    elif kind == 'archon_foreground':
+        _draw_archon_foreground(layer, rect, main, accent)
     elif kind == 'guardian_bearer':
-        _draw_humanoid(layer, rect, main, accent, crown=False)
-        shield = pygame.Rect(rect.centerx + rect.w // 10, rect.centery - rect.h // 14, rect.w // 4, rect.h // 3)
-        pts = [(shield.centerx, shield.top), (shield.right, shield.top + shield.h // 3), (shield.right - shield.w // 6, shield.bottom), (shield.left + shield.w // 6, shield.bottom), (shield.left, shield.top + shield.h // 3)]
-        pygame.draw.polygon(layer, accent, pts)
+        _draw_guardian_bearer(layer, rect, main, accent)
+    elif kind == 'warrior_foreground':
+        _draw_warrior_foreground(layer, rect, main, accent)
     elif any(k in subject for k in ('condor', 'bird', 'ave')):
         _draw_condor(layer, rect, main, accent)
     elif any(k in subject for k in ('tree', 'gaia', 'arbol')):
@@ -168,15 +251,24 @@ def draw_focus_object(surface: pygame.Surface, semantic: dict, palette, rng: ran
     obj = str(semantic.get('object', '') or '').lower()
     color = palette[1]
     glow = palette[3]
-    rect = pygame.Rect(int(surface.get_width() * 0.24), int(surface.get_height() * 0.54), int(surface.get_width() * 0.52), int(surface.get_height() * 0.28))
+    rect = pygame.Rect(int(surface.get_width() * 0.18), int(surface.get_height() * 0.48), int(surface.get_width() * 0.64), int(surface.get_height() * 0.34))
     layer = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
-    if kind == 'weapon' or any(k in obj for k in ('sword', 'blade', 'axe', 'spear', 'weapon')):
+    if kind in {'greatsword', 'solar_axe'} or any(k in obj for k in ('sword', 'blade', 'axe', 'spear', 'weapon')):
         _blocky_line(layer, color, (rect.left + 16, rect.bottom - 6), (rect.right - 10, rect.top + 6), 10)
         pygame.draw.line(layer, glow, (rect.centerx - 12, rect.centery + 14), (rect.centerx + 12, rect.centery + 14), 4)
         pygame.draw.line(layer, glow, (rect.right - 14, rect.top + 10), (rect.right - 14, rect.top - 10), 3)
+        if kind == 'solar_axe':
+            pygame.draw.line(layer, glow, (rect.right - 14, rect.top + 10), (rect.right + 8, rect.top + 4), 4)
+            pygame.draw.line(layer, glow, (rect.right - 14, rect.top + 10), (rect.right + 8, rect.top + 16), 4)
     elif kind == 'codex' or any(k in obj for k in ('codex', 'book', 'tablet')):
         pygame.draw.rect(layer, color, rect, border_radius=6)
         pygame.draw.rect(layer, glow, rect.inflate(-14, -14), 3, border_radius=4)
+    elif kind == 'seal_tablet':
+        tab = rect.inflate(-18, -10)
+        pygame.draw.rect(layer, color, tab, border_radius=8)
+        pygame.draw.rect(layer, glow, tab, 3, border_radius=8)
+        pygame.draw.circle(layer, glow, (tab.centerx, tab.y + tab.h // 4), max(8, tab.w // 8), 3)
+        pygame.draw.line(layer, glow, (tab.centerx, tab.y + tab.h // 4 + 10), (tab.centerx, tab.bottom - 12), 3)
     elif kind == 'shield' or any(k in obj for k in ('shield', 'ward')):
         pts = [(rect.centerx, rect.top), (rect.right, rect.top + rect.h // 3), (rect.right - rect.w // 6, rect.bottom), (rect.left + rect.w // 6, rect.bottom), (rect.left, rect.top + rect.h // 3)]
         pygame.draw.polygon(layer, color, pts)

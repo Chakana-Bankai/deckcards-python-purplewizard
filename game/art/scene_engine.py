@@ -31,12 +31,15 @@ def semantic_from_prompt(prompt: str) -> dict:
         'palette': _extract_field(p, 'palette ', ('lighting', 'sacred geometry', 'motif', 'subject', 'object', 'environment', 'effects', 'effect signature', 'energy pattern')),
         'motif': _extract_field(p, 'motif ', ('(', 'subject', 'object', 'environment', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
         'symbol': _extract_field(p, 'sacred geometry ', ('motif', 'subject', 'object', 'environment', 'effects', 'effect signature', 'energy pattern')),
-        'subject': _extract_field(p, 'subject ', ('object', 'environment', 'subject kind', 'object kind', 'environment kind', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
-        'object': _extract_field(p, 'object ', ('environment', 'subject kind', 'object kind', 'environment kind', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
-        'environment': _extract_field(p, 'environment ', ('subject kind', 'object kind', 'environment kind', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
-        'subject_kind': _extract_field(p, 'subject kind ', ('object kind', 'environment kind', 'effect signature', 'effects', 'energy pattern', 'lore tokens')),
-        'object_kind': _extract_field(p, 'object kind ', ('environment kind', 'effect signature', 'effects', 'energy pattern', 'lore tokens')),
-        'environment_kind': _extract_field(p, 'environment kind ', ('effect signature', 'effects', 'energy pattern', 'lore tokens')),
+        'subject': _extract_field(p, 'subject ', ('object', 'environment', 'subject kind', 'object kind', 'environment kind', 'subject ref', 'object ref', 'environment ref', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
+        'object': _extract_field(p, 'object ', ('environment', 'subject kind', 'object kind', 'environment kind', 'subject ref', 'object ref', 'environment ref', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
+        'environment': _extract_field(p, 'environment ', ('subject kind', 'object kind', 'environment kind', 'subject ref', 'object ref', 'environment ref', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
+        'subject_kind': _extract_field(p, 'subject kind ', ('object kind', 'environment kind', 'subject ref', 'object ref', 'environment ref', 'effect signature', 'effects', 'energy pattern', 'lore tokens')),
+        'object_kind': _extract_field(p, 'object kind ', ('environment kind', 'subject ref', 'object ref', 'environment ref', 'effect signature', 'effects', 'energy pattern', 'lore tokens')),
+        'environment_kind': _extract_field(p, 'environment kind ', ('subject ref', 'object ref', 'environment ref', 'effect signature', 'effects', 'energy pattern', 'lore tokens')),
+        'subject_ref': _extract_field(p, 'subject ref ', ('object ref', 'environment ref', 'effect signature', 'effects', 'energy pattern', 'lore tokens')),
+        'object_ref': _extract_field(p, 'object ref ', ('environment ref', 'effect signature', 'effects', 'energy pattern', 'lore tokens')),
+        'environment_ref': _extract_field(p, 'environment ref ', ('effect signature', 'effects', 'energy pattern', 'lore tokens')),
         'effects': _extract_field(p, 'effects ', ('energy pattern', 'lore tokens')),
         'effects_desc': _extract_field(p, 'effect signature ', ('effects', 'energy pattern', 'lore tokens')),
         'energy': _extract_field(p, 'energy pattern ', ('lore tokens',)),
@@ -78,17 +81,23 @@ def _keywords_from_semantic(semantic: dict) -> list[str]:
 
     subject_aliases = {
         'weapon_bearer': ['guardian_01', 'mago_01'],
+        'warrior_foreground': ['guardian_01', 'espada_01'],
         'guardian_bearer': ['guardian_01'],
         'oracle_totem': ['mago_01'],
         'hyperborean_champion': ['guardian_01', 'mago_01'],
+        'hyperborean_foreground': ['guardian_01', 'espada_01', 'templos_escalonados_01'],
         'archon_throne': ['arconte_01', 'heraldos_01'],
+        'archon_foreground': ['arconte_01', 'heraldos_01', 'sellos_01'],
         'archon_beast': ['arconte_01', 'puma_01'],
     }
     object_aliases = {
         'weapon': ['espada_01'],
+        'greatsword': ['espada_01'],
+        'solar_axe': ['espada_01'],
         'codex': ['codice_01'],
         'altar': ['altar_01'],
         'seal': ['sellos_01'],
+        'seal_tablet': ['sellos_01', 'altar_01'],
         'crown': ['coronas_01'],
         'shield': ['sellos_01'],
     }
@@ -122,7 +131,7 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
     ground = (max(8, low[0] // 2), max(8, low[1] // 2), max(8, low[2] // 2))
     pygame.draw.rect(surface, ground, (0, horizon, w, h - horizon))
     mist = pygame.Surface((w, h), pygame.SRCALPHA)
-    for _ in range(4):
+    for _ in range(2):
         mw = rng.randint(w // 4, w // 2)
         mh = rng.randint(h // 10, h // 6)
         mx = rng.randint(-40, w - mw + 40)
@@ -140,7 +149,7 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
             pygame.draw.circle(surface, (mid[0], mid[1], mid[2]), (x + 4, horizon - th), rng.randint(16, 28))
     elif any(k in env for k in ('temple', 'sanctuary', 'ruins', 'city', 'architecture', 'throne', 'citadel', 'observatory')):
         far = pygame.Surface((w, h), pygame.SRCALPHA)
-        for _ in range(5):
+        for _ in range(3):
             bw = rng.randint(w // 10, w // 6)
             bh = rng.randint(h // 7, h // 4)
             bx = rng.randint(0, max(0, w - bw - 1))
@@ -149,7 +158,7 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
             pygame.draw.rect(far, (acc[0], acc[1], acc[2], 190), (bx + bw // 4, by - 10, bw // 2, 10), border_radius=2)
         surface.blit(far, (0, 0))
         mid_layer = pygame.Surface((w, h), pygame.SRCALPHA)
-        keep = pygame.Rect(int(w * 0.22), int(h * 0.14), int(w * 0.56), int(h * 0.62))
+        keep = pygame.Rect(int(w * 0.16), int(h * 0.08), int(w * 0.68), int(h * 0.72))
         for _ in range(4):
             bw = rng.randint(w // 8, w // 5)
             bh = rng.randint(h // 6, h // 3)
@@ -186,15 +195,21 @@ def _prioritize_refs(refs, semantic: dict):
     environment_kind = str(semantic.get('environment_kind', '') or '').lower().replace(' ', '_')
     preferred = {
         'weapon_bearer': ['guardian_01.png', 'mago_01.png'],
+        'warrior_foreground': ['guardian_01.png', 'espada_01.png'],
         'guardian_bearer': ['guardian_01.png'],
         'oracle_totem': ['mago_01.png'],
         'hyperborean_champion': ['guardian_01.png', 'mago_01.png'],
+        'hyperborean_foreground': ['guardian_01.png', 'espada_01.png', 'templos_escalonados_01.jpg', 'templos_escalonados_01.png'],
         'archon_throne': ['arconte_01.png', 'heraldos_01.jpg', 'heraldos_01.png'],
+        'archon_foreground': ['arconte_01.png', 'sellos_01.png', 'heraldos_01.jpg', 'heraldos_01.png'],
         'archon_beast': ['arconte_01.png', 'puma_01.png'],
         'weapon': ['espada_01.png'],
+        'greatsword': ['espada_01.png'],
+        'solar_axe': ['espada_01.png'],
         'codex': ['codice_01.png'],
         'altar': ['altar_01.png'],
         'seal': ['sellos_01.png'],
+        'seal_tablet': ['sellos_01.png', 'altar_01.png'],
         'crown': ['coronas_01.png'],
         'citadel': ['templos_escalonados_01.jpg', 'templos_escalonados_01.png', 'puentes_antiguos_01.jpg', 'puentes_antiguos_01.png'],
         'throne_realm': ['arconte_01.png', 'heraldos_01.jpg', 'heraldos_01.png'],
@@ -202,10 +217,16 @@ def _prioritize_refs(refs, semantic: dict):
         'sanctuary': ['guardian_01.png', 'mago_01.png'],
     }
     wanted = preferred.get(subject_kind, []) + preferred.get(object_kind, []) + preferred.get(environment_kind, [])
+    explicit = [
+        str(semantic.get('subject_ref', '') or '').strip(),
+        str(semantic.get('object_ref', '') or '').strip(),
+        str(semantic.get('environment_ref', '') or '').strip(),
+    ]
+    explicit_set = {e.lower() for e in explicit if e}
     wanted_set = {w.lower() for w in wanted}
-    if not wanted_set:
+    if not wanted_set and not explicit_set:
         return refs
-    return sorted(refs, key=lambda r: (0 if r.path.name.lower() in wanted_set else 1, r.path.name.lower()))
+    return sorted(refs, key=lambda r: (0 if r.path.name.lower() in explicit_set else 1 if r.path.name.lower() in wanted_set else 2, r.path.name.lower()))
 
 
 def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> dict:
@@ -217,7 +238,7 @@ def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
     work = pygame.Surface((768, 768), pygame.SRCALPHA, 32)
     _draw_background(work, semantic, palette, rng)
     shadow = pygame.Surface(work.get_size(), pygame.SRCALPHA)
-    pygame.draw.ellipse(shadow, (0, 0, 0, 54), (int(work.get_width() * 0.18), int(work.get_height() * 0.58), int(work.get_width() * 0.64), int(work.get_height() * 0.2)))
+    pygame.draw.ellipse(shadow, (0, 0, 0, 88), (int(work.get_width() * 0.10), int(work.get_height() * 0.58), int(work.get_width() * 0.80), int(work.get_height() * 0.24)))
     work.blit(shadow, (0, 0))
     draw_subject(work, semantic, refs, palette, rng)
     draw_focus_object(work, semantic, palette, rng)

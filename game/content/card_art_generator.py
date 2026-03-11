@@ -159,52 +159,74 @@ class PromptBuilder:
         subject_kind = "humanoid"
         object_kind = "orb_focus"
         environment_kind = "sanctuary"
+        subject_ref = ""
+        object_ref = ""
+        environment_ref = ""
         if family == "attack":
             subject = "armed attacker in clear combat pose with readable silhouette"
             obj_cycle = ["weapon blade", "spear relic", "solar axe", "astral claw focus", "ritual sword"]
             subject_kind = "weapon_bearer"
             object_kind = "weapon"
+            subject_ref = "guardian_01.png"
+            object_ref = "espada_01.png"
         elif family == "defense":
             subject = "guardian, sentinel or shield bearer in anchored stance"
             obj_cycle = ["shield seal", "stone ward", "defensive relic", "barrier totem", "tower shield"]
             subject_kind = "guardian_bearer"
             object_kind = "shield"
+            subject_ref = "guardian_01.png"
+            object_ref = "sellos_01.png"
         elif family == "ritual":
             subject = "ritual caster or ceremonial conduit channeling power"
             obj_cycle = ["altar focus", "seal tablet", "sacred catalyst", "ritual brazier", "chakana altar"]
             subject_kind = "oracle_totem"
             object_kind = "altar"
+            subject_ref = "mago_01.png"
+            object_ref = "altar_01.png"
         elif family == "control":
             subject = "oracle, seer or mind-weaver reading the flow"
             obj_cycle = ["eye relic", "codex shard", "divination instrument", "thread compass", "vision tablet"]
             subject_kind = "oracle_totem"
             object_kind = "codex"
+            subject_ref = "mago_01.png"
+            object_ref = "codice_01.png"
         else:
             subject = "mystic conduit or spiritual avatar holding the field"
             obj_cycle = ["chakana relic", "energy knot", "sacred prism", "ether anchor", "ceremonial seal"]
             subject_kind = "humanoid"
             object_kind = "seal"
+            subject_ref = "mago_01.png"
+            object_ref = "sellos_01.png"
         obj = obj_cycle[(sum(ord(ch) for ch in cid[::-1]) + len(role)) % len(obj_cycle)]
 
         if arch == "oracle_of_fate":
             subject = "oracular figure with intense gaze reading the weave, standing before a divination totem"
             subject_kind = "oracle_totem"
             object_kind = "codex"
+            subject_ref = "mago_01.png"
+            object_ref = "codice_01.png"
         elif arch == "harmony_guardian":
             subject = "guardian figure holding balance and warding force with shielded posture"
             subject_kind = "guardian_bearer"
             object_kind = "shield"
+            subject_ref = "guardian_01.png"
+            object_ref = "sellos_01.png"
         elif arch == "cosmic_warrior":
             subject = "cosmic warrior driving forward with decisive motion and visible weapon silhouette"
             subject_kind = "weapon_bearer"
             object_kind = "weapon"
+            subject_ref = "guardian_01.png"
+            object_ref = "espada_01.png"
         elif "archon" in arch or cid.startswith("arc_"):
             subject = "archon entity or corrupted servant dominating the scene from a malign throne or monolith"
             subject_kind = "archon_throne"
             object_kind = "seal"
+            subject_ref = "arconte_01.png"
+            object_ref = "sellos_01.png"
 
         if set_id in {"hiperboria", "hiperborea"}:
             environment_kind = "citadel"
+            environment_ref = "templos_escalonados_01.jpg"
             if family == "attack":
                 subject = "hyperborean champion advancing from a polar citadel with heroic silhouette"
                 subject_kind = "hyperborean_champion"
@@ -219,6 +241,7 @@ class PromptBuilder:
                 object_kind = "codex"
         elif set_id in {"arconte", "archon"} or cid.startswith("arc_"):
             environment_kind = "throne_realm"
+            environment_ref = "heraldos_01.jpg"
             if family == "attack":
                 subject = "corrupted warlord or void beast lunging from a throne-realm"
                 subject_kind = "archon_beast"
@@ -233,6 +256,39 @@ class PromptBuilder:
                 object_kind = "codex"
         else:
             environment_kind = "gaia_sanctuary" if "gaia" in environment or "landscape" in environment else "sanctuary"
+            environment_ref = "chakana_limpia_01.png"
+
+        # Hero shots for iterative visual tests.
+        if cid == "cw_lore_10":
+            subject = "front facing warrior with broad shoulders and a large diagonal sword dominating the foreground"
+            subject_kind = "warrior_foreground"
+            subject_ref = "guardian_01.png"
+            obj = "greatsword relic"
+            object_kind = "greatsword"
+            object_ref = "espada_01.png"
+            environment = "chakana sanctuary background kept low behind the warrior with open air around the silhouette"
+            environment_kind = "sanctuary"
+            environment_ref = "chakana_limpia_01.png"
+        elif cid == "hip_cosmic_warrior_20":
+            subject = "hyperborean champion standing close to camera with heroic stance and raised solar axe"
+            subject_kind = "hyperborean_foreground"
+            subject_ref = "guardian_01.png"
+            obj = "solar axe relic"
+            object_kind = "solar_axe"
+            object_ref = "espada_01.png"
+            environment = "polar citadel background pushed behind the champion with temple towers and cold open sky"
+            environment_kind = "citadel"
+            environment_ref = "templos_escalonados_01.jpg"
+        elif cid == "arc_060":
+            subject = "dark archon entity seated in a looming throne with vertical silhouette and raised decree hand"
+            subject_kind = "archon_foreground"
+            subject_ref = "arconte_01.png"
+            obj = "seal tablet of malign decree"
+            object_kind = "seal_tablet"
+            object_ref = "sellos_01.png"
+            environment = "oppressive throne realm background with distant heraldic architecture and open void behind the archon"
+            environment_kind = "throne_realm"
+            environment_ref = "heraldos_01.jpg"
 
         effects = {
             "impacto_ofensivo": "focused offensive cuts, impact sparks, directional slash traces and controlled embers",
@@ -250,10 +306,13 @@ class PromptBuilder:
         return {
             "subject": subject,
             "subject_kind": subject_kind,
+            "subject_ref": subject_ref,
             "object": obj,
             "object_kind": object_kind,
+            "object_ref": object_ref,
             "environment": environment,
             "environment_kind": environment_kind,
+            "environment_ref": environment_ref,
             "effects": effects,
         }
 
@@ -282,6 +341,7 @@ class PromptBuilder:
             f"sacred geometry {symbols}, symbolic overlays aligned to motif, motif {primary} ({shape}), "
             f"subject {blueprint['subject']}, object {blueprint['object']}, environment {blueprint['environment']}, "
             f"subject kind {blueprint['subject_kind']}, object kind {blueprint['object_kind']}, environment kind {blueprint['environment_kind']}, "
+            f"subject ref {blueprint['subject_ref']}, object ref {blueprint['object_ref']}, environment ref {blueprint['environment_ref']}, "
             f"effect signature {effect_sig}, effects {blueprint['effects']}, energy pattern {energy}, lore tokens {lore_tokens}, "
             f"reference cues {ref_text}, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character"
         )
