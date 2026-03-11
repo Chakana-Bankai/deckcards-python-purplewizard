@@ -1,0 +1,286 @@
+{
+  "version": "chakana_audio_manifest_v1",
+  "generated_at": 1773242157,
+  "source_runtime_paths": [
+    "game/data/audio_manifest.json",
+    "game/data/audio_music_manifest.json",
+    "game/data/audio_stinger_manifest.json",
+    "game/data/audio_sfx_manifest.json",
+    "game/data/audio_ambient_manifest.json",
+    "game/data/bgm_manifest.json",
+    "game/audio/audio_manifest.json"
+  ],
+  "runtime_manifest": {
+    "version": "chakana_audio_v7",
+    "count": 35
+  },
+  "typed_manifests": {
+    "music": {
+      "count": 10,
+      "source": "game/data/audio_music_manifest.json"
+    },
+    "stinger": {
+      "count": 11,
+      "source": "game/data/audio_stinger_manifest.json"
+    },
+    "sfx": {
+      "count": 9,
+      "source": "game/data/audio_sfx_manifest.json"
+    },
+    "ambient": {
+      "count": 5,
+      "source": "game/data/audio_ambient_manifest.json"
+    }
+  },
+  "legacy_mirror": {
+    "path": "game/audio/audio_manifest.json",
+    "count": 35
+  },
+  "active_items": {
+    "menu_a": {
+      "context": "menu",
+      "type": "bgm",
+      "relative_path": "game/assets/curated/audio/bgm/menu_a.wav",
+      "source": "curated",
+      "active_runtime": true
+    },
+    "map_ukhu_a": {
+      "context": "map_ukhu",
+      "type": "bgm",
+      "relative_path": "game/assets/curated/audio/bgm/map_ukhu_a.wav",
+      "source": "curated",
+      "active_runtime": true
+    },
+    "map_kay_a": {
+      "context": "map_kay",
+      "type": "bgm",
+      "relative_path": "game/assets/curated/audio/bgm/map_kay_a.wav",
+      "source": "curated",
+      "active_runtime": true
+    },
+    "map_hanan_a": {
+      "context": "map_hanan",
+      "type": "bgm",
+      "relative_path": "game/assets/curated/audio/bgm/map_hanan_a.wav",
+      "source": "curated",
+      "active_runtime": true
+    },
+    "combat_a": {
+      "context": "combat",
+      "type": "bgm",
+      "relative_path": "game/assets/curated/audio/bgm/combat_a.wav",
+      "source": "curated",
+      "active_runtime": true
+    },
+    "combat_elite_a": {
+      "context": "combat_elite",
+      "type": "bgm",
+      "relative_path": "game/audio/generated/bgm/combat_elite_a.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "combat_boss_a": {
+      "context": "combat_boss",
+      "type": "bgm",
+      "relative_path": "game/assets/curated/audio/bgm/combat_boss_a.wav",
+      "source": "curated",
+      "active_runtime": true
+    },
+    "shop_a": {
+      "context": "shop",
+      "type": "bgm",
+      "relative_path": "game/assets/curated/audio/bgm/shop_a.wav",
+      "source": "curated",
+      "active_runtime": true
+    },
+    "victory_a": {
+      "context": "victory",
+      "type": "bgm",
+      "relative_path": "game/assets/curated/audio/bgm/victory_a.wav",
+      "source": "curated",
+      "active_runtime": true
+    },
+    "defeat_a": {
+      "context": "defeat",
+      "type": "bgm",
+      "relative_path": "game/assets/curated/audio/bgm/defeat_a.wav",
+      "source": "curated",
+      "active_runtime": true
+    },
+    "stinger_combat_start": {
+      "context": "combat_start",
+      "type": "stinger",
+      "relative_path": "game/audio/generated/stingers/combat_start.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "stinger_elite_encounter": {
+      "context": "elite_encounter",
+      "type": "stinger",
+      "relative_path": "game/audio/generated/stingers/elite_encounter.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "stinger_boss_reveal": {
+      "context": "boss_reveal",
+      "type": "stinger",
+      "relative_path": "game/audio/generated/stingers/boss_reveal.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "stinger_victory": {
+      "context": "victory",
+      "type": "stinger",
+      "relative_path": "game/audio/generated/stingers/victory.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "stinger_defeat": {
+      "context": "defeat",
+      "type": "stinger",
+      "relative_path": "game/audio/generated/stingers/defeat.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "stinger_level_up": {
+      "context": "level_up",
+      "type": "stinger",
+      "relative_path": "game/audio/generated/stingers/level_up.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "stinger_relic_gain": {
+      "context": "relic_gain",
+      "type": "stinger",
+      "relative_path": "game/audio/generated/stingers/relic_gain.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "stinger_pack_open": {
+      "context": "pack_open",
+      "type": "stinger",
+      "relative_path": "game/audio/generated/stingers/pack_open.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "stinger_seal_ready": {
+      "context": "seal_ready",
+      "type": "stinger",
+      "relative_path": "game/audio/generated/stingers/seal_ready.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "stinger_harmony_ready": {
+      "context": "harmony_ready",
+      "type": "stinger",
+      "relative_path": "game/audio/generated/stingers/harmony_ready.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "stinger_studio_intro": {
+      "context": "studio_intro",
+      "type": "stinger",
+      "relative_path": "game/assets/curated/audio/studio/studio_intro.wav",
+      "source": "curated",
+      "active_runtime": false
+    },
+    "sfx_card_play": {
+      "context": "card_play",
+      "type": "sfx",
+      "relative_path": "game/audio/generated/sfx/card_play.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "sfx_card_invalid": {
+      "context": "card_invalid",
+      "type": "sfx",
+      "relative_path": "game/audio/generated/sfx/card_invalid.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "sfx_button_click": {
+      "context": "button_click",
+      "type": "sfx",
+      "relative_path": "game/audio/generated/sfx/button_click.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "sfx_gold_gain": {
+      "context": "gold_gain",
+      "type": "sfx",
+      "relative_path": "game/audio/generated/sfx/gold_gain.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "sfx_xp_gain": {
+      "context": "xp_gain",
+      "type": "sfx",
+      "relative_path": "game/audio/generated/sfx/xp_gain.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "sfx_damage_hit": {
+      "context": "damage_hit",
+      "type": "sfx",
+      "relative_path": "game/audio/generated/sfx/damage_hit.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "sfx_heal": {
+      "context": "heal",
+      "type": "sfx",
+      "relative_path": "game/audio/generated/sfx/heal.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "sfx_seal_activate": {
+      "context": "seal_activate",
+      "type": "sfx",
+      "relative_path": "game/audio/generated/sfx/seal_activate.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "sfx_relic_pick": {
+      "context": "relic_pick",
+      "type": "sfx",
+      "relative_path": "game/audio/generated/sfx/relic_pick.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "ambient_gaia_mountain_wind": {
+      "context": "gaia_mountain_wind",
+      "type": "ambient",
+      "relative_path": "game/audio/generated/ambient/gaia_mountain_wind.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "ambient_temple_resonance": {
+      "context": "temple_resonance",
+      "type": "ambient",
+      "relative_path": "game/audio/generated/ambient/temple_resonance.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "ambient_archon_void_drones": {
+      "context": "archon_void_drones",
+      "type": "ambient",
+      "relative_path": "game/audio/generated/ambient/archon_void_drones.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "ambient_shop_ambience": {
+      "context": "shop_ambience",
+      "type": "ambient",
+      "relative_path": "game/audio/generated/ambient/shop_ambience.wav",
+      "source": "generated",
+      "active_runtime": false
+    },
+    "ambient_codex_ambience": {
+      "context": "codex_ambience",
+      "type": "ambient",
+      "relative_path": "game/audio/generated/ambient/codex_ambience.wav",
+      "source": "generated",
+      "active_runtime": false
+    }
+  }
+}

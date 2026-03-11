@@ -6,6 +6,7 @@ import random
 
 import pygame
 
+from game.art.art_reference_catalog import expand_categories, iter_category_entries
 from game.core.paths import art_reference_dir
 
 
@@ -22,21 +23,13 @@ class ReferenceSampler:
         self.root = Path(root or art_reference_dir())
 
     def _files_for(self, category: str) -> list[Path]:
-        cat = str(category or '').strip()
-        aliases = {
-            'characters_subjects': ['characters_subjects', 'characters_subjets'],
-        }
-        candidates = aliases.get(cat, [cat])
-        for name in candidates:
-            folder = self.root / name
-            if folder.exists():
-                return sorted([p for p in folder.iterdir() if p.is_file() and p.suffix.lower() in {'.png', '.jpg', '.jpeg', '.webp'}])
-        return []
+        entries = iter_category_entries(self.root, category)
+        return [entry.path for entry in entries]
 
-    def _score(self, path: Path, keywords: list[str]) -> int:
+    def _score(self, path: Path, keywords: list[str], category: str) -> int:
         stem = path.stem.lower()
+        subgroup = str(path.parent.relative_to(self.root)).replace('\\', '/').lower() if path.exists() else ''
         score = 0
-        cat = path.parent.name.lower()
         for kw in keywords:
             low = str(kw or '').strip().lower()
             if not low:
@@ -45,17 +38,17 @@ class ReferenceSampler:
                 score += 5
             else:
                 for token in low.replace('-', ' ').replace('_', ' ').split():
-                    if token and token in stem:
+                    if token and (token in stem or token in subgroup):
                         score += 2
-        if cat == 'characters_subjects':
+        if category == 'subjects':
             score += 10
-        elif cat == 'weapons_relics':
+        elif category == 'weapons':
             score += 7
-        elif cat == 'biblical_archetypes':
+        elif category == 'symbols':
             score += 4
-        elif cat == 'ancient_architecture':
-            score += 2
-        elif cat == 'fantasy_landscapes':
+        elif category == 'environments':
+            score += 3
+        elif category == 'palettes_mood':
             score += 1
         return score
 
@@ -87,12 +80,18 @@ class ReferenceSampler:
     def pick(self, categories: list[str], keywords: list[str], seed: int) -> list[ReferenceChoice]:
         rng = random.Random(seed)
         scored: list[tuple[int, float, Path, str]] = []
-        for category in categories:
+        for category in expand_categories(categories):
             for path in self._files_for(category):
-                score = self._score(path, keywords)
+                score = self._score(path, keywords, category)
                 scored.append((score, rng.random(), path, category))
         scored.sort(key=lambda row: (-row[0], row[1], row[2].name.lower()))
         out: list[ReferenceChoice] = []
-        for score, _tie, path, category in scored[:6]:
+        seen: set[Path] = set()
+        for score, _tie, path, category in scored:
+            if path in seen:
+                continue
+            seen.add(path)
             out.append(ReferenceChoice(path=path, category=category, cue=path.stem.replace('_', ' '), avg_color=self._avg_color(path)))
+            if len(out) >= 6:
+                break
         return out

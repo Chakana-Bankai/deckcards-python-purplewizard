@@ -1,0 +1,115 @@
+{
+  "generator_version": "recovered_v1",
+  "items": {
+    "guide__arcane_hacker__portrait:portrait:100x100": {
+      "id": "guide__arcane_hacker__portrait:portrait:100x100",
+      "path": "game/visual/generated/portraits/guide__arcane_hacker__portrait_portrait_100x100.png",
+      "size": [
+        100,
+        100
+      ],
+      "version": "portrait_v7",
+      "source": "placeholder"
+    },
+    "guide__angel__portrait:portrait:224x344": {
+      "id": "guide__angel__portrait:portrait:224x344",
+      "path": "game/visual/generated/portraits/guide__angel__portrait_portrait_224x344.png",
+      "size": [
+        224,
+        344
+      ],
+      "version": "portrait_v7",
+      "source": "placeholder"
+    },
+    "guide__arcane_hacker__portrait:portrait:88x88": {
+      "id": "guide__arcane_hacker__portrait:portrait:88x88",
+      "path": "game/visual/generated/portraits/guide__arcane_hacker__portrait_portrait_88x88.png",
+      "size": [
+        88,
+        88
+      ],
+      "version": "portrait_v7",
+      "source": "placeholder"
+    },
+    "guide__arcane_hacker__portrait:portrait:517x310": {
+      "id": "guide__arcane_hacker__portrait:portrait:517x310",
+      "path": "game/visual/generated/portraits/guide__arcane_hacker__portrait_portrait_517x310.png",
+      "size": [
+        517,
+        310
+      ],
+      "version": "portrait_v7",
+      "source": "placeholder"
+    },
+    "guide__demon__portrait:portrait:224x344": {
+      "id": "guide__demon__portrait:portrait:224x344",
+      "path": "game/visual/generated/portraits/guide__demon__portrait_portrait_224x344.png",
+      "size": [
+        224,
+        344
+      ],
+      "version": "portrait_v7",
+      "source": "placeholder"
+    },
+    "guide__shaman__portrait:portrait:88x88": {
+      "id": "guide__shaman__portrait:portrait:88x88",
+      "path": "game/visual/generated/portraits/guide__shaman__portrait_portrait_88x88.png",
+      "size": [
+        88,
+        88
+      ],
+      "version": "portrait_v7",
+      "source": "placeholder"
+    },
+    "guide__shaman__portrait:portrait:517x310": {
+      "id": "guide__shaman__portrait:portrait:517x310",
+      "path": "game/visual/generated/portraits/guide__shaman__portrait_portrait_517x310.png",
+      "size": [
+        517,
+        310
+      ],
+      "version": "portrait_v7",
+      "source": "placeholder"
+    },
+    "guide__shaman__portrait:portrait:224x344": {
+      "id": "guide__shaman__portrait:portrait:224x344",
+      "path": "game/visual/generated/portraits/guide__shaman__portrait_portrait_224x344.png",
+      "size": [
+        224,
+        344
+      ],
+      "version": "portrait_v7",
+      "source": "placeholder"
+    },
+    "guide__angel__portrait:portrait:180x220": {
+      "id": "guide__angel__portrait:portrait:180x220",
+      "path": "game/visual/generated/portraits/guide__angel__portrait_portrait_180x220.png",
+      "size": [
+        180,
+        220
+      ],
+      "version": "portrait_v7",
+      "source": "placeholder"
+    },
+    "angel": {
+      "id": "angel",
+      "path": "game/assets/sprites/guides/angel.png",
+      "source": "sprite_fallback"
+    },
+    "arcane_hacker": {
+      "id": "arcane_hacker",
+      "path": "game/assets/sprites/guides/arcane_hacker.png",
+      "source": "sprite_fallback"
+    },
+    "demon": {
+      "id": "demon",
+      "path": "game/assets/sprites/guides/demon.png",
+      "source": "sprite_fallback"
+    },
+    "shaman": {
+      "id": "shaman",
+      "path": "game/assets/sprites/guides/shaman.png",
+      "source": "sprite_fallback"
+    }
+  }
+}

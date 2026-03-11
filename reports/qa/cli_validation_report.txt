@@ -1,0 +1,15 @@
+chakana_studio cli validation
+generated=2026-03-11 12:44:42
+
+mode=cli_validation
+dry_run=True
+
+- manifest-audit: OK report=reports/tools/manifest_audit_report.txt
+- art-audit: OK report=reports/art/art_pipeline_cli_audit_report.txt
+- audio-audit: OK report=reports/tools/audio_audit_report.txt
+- ui-audit: OK report=reports/tools/ui_audit_report.txt
+- qa-smoke: OK report=reports/qa/cli_smoke_report.txt
+
+overall=PASS
+checks=manifest-audit,art-audit,audio-audit,ui-audit,qa-smoke
+note=lightweight CLI validation only; no heavy runtime or bulk content generation in this phase

@@ -1,0 +1,28 @@
+﻿chakana studio tools consolidation
+generated=2026-03-11 12:34:54
+
+preferred_entrypoint:
+- tools/chakana_studio.py
+
+duplicate_status:
+- audited root duplicates are already compatibility wrappers
+- no runtime-facing wrapper was archived in this phase to avoid breaking local workflows
+
+wrapper_pairs:
+- tools/build_chakana_master_from_reference.py => tools/assets/build_chakana_master_from_reference.py [compat_wrapper]
+- tools/bootstrap_archon_curated_assets.py => tools/assets/bootstrap_archon_curated_assets.py [compat_wrapper]
+- tools/curated_regen_cache_reset.py => tools/assets/curated_regen_cache_reset.py [compat_wrapper]
+- tools/check_card_coherence.py => tools/qa/check_card_coherence.py [compat_wrapper]
+- tools/check_combat_content_lock.py => tools/qa/check_combat_content_lock.py [compat_wrapper]
+- tools/check_deck_system.py => tools/qa/check_deck_system.py [compat_wrapper]
+- tools/final_gameplay_integration_fix.py => tools/maintenance/final_gameplay_integration_fix.py [compat_wrapper]
+
+actions:
+- created tools/README.md to mark chakana_studio.py as canonical entrypoint
+- created tools/archive/README.md to reserve archive policy
+- kept wrappers in place for backward compatibility
+
+recommended_next_actions:
+- move only true one-off scripts into tools/archive/ after reference audit
+- keep wrappers until docs and local habits are migrated to chakana_studio.py
+- consolidate new functionality under tools/lib/

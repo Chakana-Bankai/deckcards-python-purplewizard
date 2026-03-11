@@ -1,0 +1,31 @@
+chakana_studio ui audit
+generated=2026-03-11 12:44:41
+
+mode=ui_audit
+dry_run=True
+checks=text_clipping,overlap,bad_spacing,wrong_hierarchy,inconsistent_sizing,stretched_images,unreadable_labels
+
+screen_files:
+- game/ui/screens/__init__.py
+- game/ui/screens/codex.py
+- game/ui/screens/combat.py
+- game/ui/screens/deck.py
+- game/ui/screens/end.py
+- game/ui/screens/error.py
+- game/ui/screens/event.py
+- game/ui/screens/intro.py
+- game/ui/screens/loading.py
+- game/ui/screens/map.py
+- game/ui/screens/menu.py
+- game/ui/screens/pacha_transition.py
+- game/ui/screens/pack_opening.py
+- game/ui/screens/path_select.py
+- game/ui/screens/qa_results.py
+- game/ui/screens/reward.py
+- game/ui/screens/scene_fusion.py
+- game/ui/screens/settings.py
+- game/ui/screens/shop.py
+- game/ui/screens/studio_intro.py
+- game/ui/screens/tutorial.py
+
+note=static audit scaffold only; no runtime pixel diff in phase 5

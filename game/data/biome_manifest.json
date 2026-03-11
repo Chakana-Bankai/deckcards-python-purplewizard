@@ -1,0 +1,65 @@
+{
+  "caverna_umbral": {
+    "bg": "game/assets/sprites/biomes/caverna_umbral/bg.png",
+    "bg_exists": true,
+    "mg": "game/assets/sprites/biomes/caverna_umbral/mg.png",
+    "mg_exists": true,
+    "fg": "game/assets/sprites/biomes/caverna_umbral/fg.png",
+    "fg_exists": true,
+    "generator_version": "recovered_v1"
+  },
+  "forest": {
+    "bg": "game/assets/sprites/biomes/forest/bg.png",
+    "bg_exists": true,
+    "mg": "game/assets/sprites/biomes/forest/mg.png",
+    "mg_exists": true,
+    "fg": "game/assets/sprites/biomes/forest/fg.png",
+    "fg_exists": true,
+    "generator_version": "recovered_v1"
+  },
+  "kaypacha": {
+    "bg": "game/assets/sprites/biomes/kaypacha/bg.png",
+    "bg_exists": true,
+    "mg": "game/assets/sprites/biomes/kaypacha/mg.png",
+    "mg_exists": true,
+    "fg": "game/assets/sprites/biomes/kaypacha/fg.png",
+    "fg_exists": true,
+    "generator_version": "recovered_v1"
+  },
+  "pampa_astral": {
+    "bg": "game/assets/sprites/biomes/pampa_astral/bg.png",
+    "bg_exists": true,
+    "mg": "game/assets/sprites/biomes/pampa_astral/mg.png",
+    "mg_exists": true,
+    "fg": "game/assets/sprites/biomes/pampa_astral/fg.png",
+    "fg_exists": true,
+    "generator_version": "recovered_v1"
+  },
+  "ruinas_chakana": {
+    "bg": "game/assets/sprites/biomes/ruinas_chakana/bg.png",
+    "bg_exists": true,
+    "mg": "game/assets/sprites/biomes/ruinas_chakana/mg.png",
+    "mg_exists": true,
+    "fg": "game/assets/sprites/biomes/ruinas_chakana/fg.png",
+    "fg_exists": true,
+    "generator_version": "recovered_v1"
+  },
+  "templo_obsidiana": {
+    "bg": "game/assets/sprites/biomes/templo_obsidiana/bg.png",
+    "bg_exists": true,
+    "mg": "game/assets/sprites/biomes/templo_obsidiana/mg.png",
+    "mg_exists": true,
+    "fg": "game/assets/sprites/biomes/templo_obsidiana/fg.png",
+    "fg_exists": true,
+    "generator_version": "recovered_v1"
+  },
+  "umbral": {
+    "bg": "game/assets/sprites/biomes/umbral/bg.png",
+    "bg_exists": true,
+    "mg": "game/assets/sprites/biomes/umbral/mg.png",
+    "mg_exists": true,
+    "fg": "game/assets/sprites/biomes/umbral/fg.png",
+    "fg_exists": true,
+    "generator_version": "recovered_v1"
+  }
+}

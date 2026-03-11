@@ -1,0 +1,308 @@
+chakana_studio project sanitization
+generated=2026-03-11 12:39:46
+
+mode=project_sanitizer
+dry_run=True
+
+root_clutter_count=0
+root_clutter_candidates:
+
+duplicate_group_count=85
+duplicate_groups:
+- [tools] 20
+  - __init__.py: 4
+    - tools/assets/__init__.py
+    - tools/lib/__init__.py
+    - tools/maintenance/__init__.py
+    - tools/qa/__init__.py
+  - bootstrap_archon_curated_assets.py: 2
+    - tools/assets/bootstrap_archon_curated_assets.py
+    - tools/bootstrap_archon_curated_assets.py
+  - build_chakana_master_from_reference.py: 2
+    - tools/assets/build_chakana_master_from_reference.py
+    - tools/build_chakana_master_from_reference.py
+  - check_card_coherence.py: 2
+    - tools/check_card_coherence.py
+    - tools/qa/check_card_coherence.py
+  - check_combat_content_lock.py: 2
+    - tools/check_combat_content_lock.py
+    - tools/qa/check_combat_content_lock.py
+  - check_deck_system.py: 2
+    - tools/check_deck_system.py
+    - tools/qa/check_deck_system.py
+  - curated_regen_cache_reset.py: 2
+    - tools/assets/curated_regen_cache_reset.py
+    - tools/curated_regen_cache_reset.py
+  - final_gameplay_integration_fix.py: 2
+    - tools/final_gameplay_integration_fix.py
+    - tools/maintenance/final_gameplay_integration_fix.py
+  - qa_phase1_gameplay_blockers.py: 2
+    - tools/qa/qa_phase1_gameplay_blockers.py
+    - tools/qa_phase1_gameplay_blockers.py
+  - qa_phase2_pack_shop_integration.py: 2
+    - tools/qa/qa_phase2_pack_shop_integration.py
+    - tools/qa_phase2_pack_shop_integration.py
+  - qa_phase3_hologram_dialogue.py: 2
+    - tools/qa/qa_phase3_hologram_dialogue.py
+    - tools/qa_phase3_hologram_dialogue.py
+  - qa_phase3b_event_system.py: 2
+    - tools/qa/qa_phase3b_event_system.py
+    - tools/qa_phase3b_event_system.py
+  - qa_phase4_asset_pipeline_audit.py: 2
+    - tools/qa/qa_phase4_asset_pipeline_audit.py
+    - tools/qa_phase4_asset_pipeline_audit.py
+  - qa_phase5_visual_audio_upgrade.py: 2
+    - tools/qa/qa_phase5_visual_audio_upgrade.py
+    - tools/qa_phase5_visual_audio_upgrade.py
+  - qa_phase6_combat_hud.py: 2
+    - tools/qa/qa_phase6_combat_hud.py
+    - tools/qa_phase6_combat_hud.py
+  - qa_phase7_extended.py: 2
+    - tools/qa/qa_phase7_extended.py
+    - tools/qa_phase7_extended.py
+  - qa_phase9_supervision.py: 2
+    - tools/qa/qa_phase9_supervision.py
+    - tools/qa_phase9_supervision.py
+  - qa_pre_engine_audit.py: 2
+    - tools/qa/qa_pre_engine_audit.py
+    - tools/qa_pre_engine_audit.py
+  - qa_visual_runtime_fullhd.py: 2
+    - tools/qa/qa_visual_runtime_fullhd.py
+    - tools/qa_visual_runtime_fullhd.py
+  - qa_visual_system_normalization.py: 2
+    - tools/qa/qa_visual_system_normalization.py
+    - tools/qa_visual_system_normalization.py
+- [docs] 2
+  - QA_PHASE9_SUPERVISION_EXPANDED.md: 2
+    - docs/archive/QA_PHASE9_SUPERVISION_EXPANDED.md
+    - docs/QA_PHASE9_SUPERVISION_EXPANDED.md
+  - README.md: 3
+    - docs/canon/README.md
+    - docs/README.md
+    - docs/systems/README.md
+- [reports] 1
+  - canonical_structure_plan.txt: 2
+    - reports/audit/canonical_structure_plan.txt
+    - reports/audits/canonical_structure_plan.txt
+- [assets] 62
+  - campo_protector.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/campo_protector.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/campo_protector.png
+  - chakana_de_luz.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/chakana_de_luz.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/chakana_de_luz.png
+  - cw_lore_02.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/cw_lore_02.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_02.png
+  - cw_lore_03.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/cw_lore_03.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_03.png
+  - cw_lore_04.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/cw_lore_04.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_04.png
+  - cw_lore_08.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/cw_lore_08.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_08.png
+  - cw_lore_09.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/cw_lore_09.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_09.png
+  - cw_lore_10.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/cw_lore_10.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_10.png
+  - cw_lore_14.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/cw_lore_14.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_14.png
+  - cw_lore_18.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/cw_lore_18.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_18.png
+  - cw_lore_23.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/cw_lore_23.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_23.png
+  - cw_lore_29.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/cw_lore_29.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/cw_lore_29.png
+  - eco_de_sabiduria.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/eco_de_sabiduria.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/eco_de_sabiduria.png
+  - embate_del_jaguar.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/embate_del_jaguar.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/embate_del_jaguar.png
+  - escudo_de_luz.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/escudo_de_luz.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/escudo_de_luz.png
+  - escudo_del_chaman.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/escudo_del_chaman.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/escudo_del_chaman.png
+  - espiritu_guardian.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/espiritu_guardian.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/espiritu_guardian.png
+  - estallido_arcano.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/estallido_arcano.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/estallido_arcano.png
+  - filo_astral.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/filo_astral.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/filo_astral.png
+  - filo_en_cadena.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/filo_en_cadena.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/filo_en_cadena.png
+  - firmeza_del_cuerpo.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/firmeza_del_cuerpo.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/firmeza_del_cuerpo.png
+  - fragmento_celeste.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/fragmento_celeste.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/fragmento_celeste.png
+  - fusion_espiritual.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/fusion_espiritual.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/fusion_espiritual.png
+  - garra_espiritual.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/garra_espiritual.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/garra_espiritual.png
+  - geometria_antigua_01.png: 2
+    - assets/art_reference/environments/void/geometria_antigua_01.png
+    - assets/art_reference/symbols/sacred_geometry/geometria_antigua_01.png
+  - guardia_terrenal.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/guardia_terrenal.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/guardia_terrenal.png
+  - hg_lore_01.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/hg_lore_01.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_01.png
+  - hg_lore_05.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/hg_lore_05.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_05.png
+  - hg_lore_06.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/hg_lore_06.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_06.png
+  - hg_lore_07.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/hg_lore_07.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_07.png
+  - hg_lore_11.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/hg_lore_11.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_11.png
+  - hg_lore_13.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/hg_lore_13.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_13.png
+  - hg_lore_15.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/hg_lore_15.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_15.png
+  - hg_lore_19.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/hg_lore_19.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_19.png
+  - hg_lore_24.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/hg_lore_24.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_24.png
+  - hg_lore_27.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/hg_lore_27.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/hg_lore_27.png
+  - invocacion_astral.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/invocacion_astral.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/invocacion_astral.png
+  - lectura_del_destino.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/lectura_del_destino.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/lectura_del_destino.png
+  - mantra_del_umbral.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/mantra_del_umbral.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/mantra_del_umbral.png
+  - muralla_de_piedra.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/muralla_de_piedra.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/muralla_de_piedra.png
+  - observacion_sagrada.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/observacion_sagrada.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/observacion_sagrada.png
+  - of_lore_12.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/of_lore_12.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_12.png
+  - of_lore_16.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/of_lore_16.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_16.png
+  - of_lore_17.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/of_lore_17.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_17.png
+  - of_lore_20.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/of_lore_20.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_20.png
+  - of_lore_21.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/of_lore_21.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_21.png
+  - of_lore_22.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/of_lore_22.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_22.png
+  - of_lore_25.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/of_lore_25.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_25.png
+  - of_lore_26.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/of_lore_26.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_26.png
+  - of_lore_28.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/of_lore_28.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_28.png
+  - of_lore_30.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/of_lore_30.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/of_lore_30.png
+  - piedra_ritual.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/piedra_ritual.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/piedra_ritual.png
+  - portal_de_la_chakana.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/portal_de_la_chakana.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/portal_de_la_chakana.png
+  - pulso_cosmico.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/pulso_cosmico.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/pulso_cosmico.png
+  - resistencia_ancestral.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/resistencia_ancestral.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/resistencia_ancestral.png
+  - revelacion_astral.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/revelacion_astral.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/revelacion_astral.png
+  - ritual_de_la_trama.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/ritual_de_la_trama.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/ritual_de_la_trama.png
+  - sello_protector.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/sello_protector.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/sello_protector.png
+  - sellos_01.png: 2
+    - assets/art_reference/symbols/runes/sellos_01.png
+    - assets/art_reference/weapons/sellos_01.png
+  - silencio_interior.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/silencio_interior.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/silencio_interior.png
+  - vinculo_de_energia.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/vinculo_de_energia.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/vinculo_de_energia.png
+  - vision_del_condor.png: 2
+    - assets/_archive/creative_master_upgrade/20260309_192235/vision_del_condor.png
+    - assets/_archive/phase5_legacy_assets/20260309_212607/sprites/cards/vision_del_condor.png
+
+report_bucket_counts:
+- art: 1
+- audit: 3
+- audits: 54
+- cleanup: 12
+- engine: 1
+- master: 2
+- qa: 1
+- tools: 6
+- validation: 96
+
+manifest_problem_count=0
+manifest_problems:
+
+wrong_manifest_location_count=3
+wrong_manifest_locations:
+- backups/2026-03-10_beta_audio_art_backup/manifests/audio_manifest.json
+- backups/2026-03-10_beta_audio_art_backup/manifests/audio_music_manifest.json
+- backups/2026-03-10_beta_audio_art_backup/manifests/audio_stinger_manifest.json
+
+stale_report_candidate_count=0
+stale_report_candidates:
+
+wrong_location_candidate_count=2
+wrong_location_candidates:
+- game/assets/tmp
+- reports/audits (legacy overlap, prefer reports/audit)
+
+sanitization_policy:
+- report-first; no destructive move/delete in phase 7
+- prefer archive or wrapper over removal
+- prefer chakana_studio.py over direct root wrappers
+- prefer reports/audit over reports/audits for new audits
+- prefer data/manifests as canonical mirror layer while runtime still consumes game/data and game/visual

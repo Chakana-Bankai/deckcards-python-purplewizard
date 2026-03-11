@@ -1,0 +1,10 @@
+chakana_studio qa smoke
+generated=2026-03-11 12:44:42
+
+mode=qa_smoke
+dry_run=True
+
+- cmd=['C:\\Python314\\python.exe', '-m', 'tools.doctor'] rc=0 last=[doctor] done
+- cmd=['C:\\Python314\\python.exe', '-m', 'tools.qa.check_beta_run_flow'] rc=0 last=}
+
+overall=PASS

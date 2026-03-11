@@ -1,0 +1,43 @@
+CHAKANA ART REFERENCES INTEGRATION REPORT
+
+status=PASS
+canonical_root=assets/art_reference
+no_move_performed=True
+pipeline_ready=art_references>scene_specs>staging>validation>production
+manifest=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard\data\manifests\art_reference_manifest.json
+
+category_counts:
+- subjects: count=75 groups=6
+- enemies: count=23 groups=2
+- creatures: count=24 groups=2
+- weapons: count=37 groups=6
+- environments: count=22 groups=7
+- symbols: count=12 groups=3
+- palettes_mood: count=9 groups=3
+
+legacy_aliases_supported:
+- fantasy_landscapes -> environments
+- ancient_architecture -> environments
+- andean_mythology -> subjects, symbols
+- biblical_archetypes -> subjects, symbols
+- chakana_symbols -> symbols
+- sacred_geometry -> symbols
+- characters_subjects -> subjects
+- characters_subjets -> subjects
+- weapons_relics -> weapons
+- palette_mood -> palettes_mood
+
+sampler_examples:
+- subjects=guardian_01.png, guardian_02.png, guardian_03.png, solar_warrior_silhouettes_01.png, solar_warrior_silhouettes_03.png, solar_warrior_silhouettes_02.png
+- weapons=staff_01.png, magic_staff_03.png, sword_silhouettes_03.png, staff_02.png, staff_03.png, sword_silhouettes_01.png
+- environments=void_01.png, arquitectura_atlante_01.png, montañas_sagradas_01.png, puentes_antiguos_01.jpg, arquitectura_fantastica_01.png, arquitectura_andina_01.png
+
+prepared_directories:
+- assets/art_templates
+- assets/staging
+- assets/production
+
+notes:
+- assets/art_reference remains the canonical reference root because runtime and tooling already resolve it via game/core/paths.py
+- aliases in game/art/art_reference_catalog.py keep older conceptual category names working during the transition
+- no runtime loaders were redirected in this phase; this was a readiness and normalization pass only

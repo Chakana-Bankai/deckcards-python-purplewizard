@@ -1,0 +1,105 @@
+{
+  "generator_version": "recovered_v1",
+  "items": {
+    "enemy__enemy:portrait:280x360": {
+      "id": "enemy__enemy:portrait:280x360",
+      "path": "game/visual/generated/portraits/enemy__enemy_portrait_280x360.png",
+      "size": [
+        280,
+        360
+      ],
+      "version": "portrait_v6",
+      "source": "generated_or_cache"
+    },
+    "enemy__arconte_supremo__portrait:portrait:270x200": {
+      "id": "enemy__arconte_supremo__portrait:portrait:270x200",
+      "path": "game/visual/generated/portraits/enemy__arconte_supremo__portrait_portrait_270x200.png",
+      "size": [
+        270,
+        200
+      ],
+      "version": "portrait_v7",
+      "source": "official_master"
+    },
+    "enemy__guardia_de_raiz__portrait:portrait:270x200": {
+      "id": "enemy__guardia_de_raiz__portrait:portrait:270x200",
+      "path": "game/visual/generated/portraits/enemy__guardia_de_raiz__portrait_portrait_270x200.png",
+      "size": [
+        270,
+        200
+      ],
+      "version": "portrait_v7",
+      "source": "official_master"
+    },
+    "enemy__oraculo_menor__portrait:portrait:270x200": {
+      "id": "enemy__oraculo_menor__portrait:portrait:270x200",
+      "path": "game/visual/generated/portraits/enemy__oraculo_menor__portrait_portrait_270x200.png",
+      "size": [
+        270,
+        200
+      ],
+      "version": "portrait_v7",
+      "source": "official_master"
+    },
+    "enemy__sabueso_sombrio__portrait:portrait:270x200": {
+      "id": "enemy__sabueso_sombrio__portrait:portrait:270x200",
+      "path": "game/visual/generated/portraits/enemy__sabueso_sombrio__portrait_portrait_270x200.png",
+      "size": [
+        270,
+        200
+      ],
+      "version": "portrait_v7",
+      "source": "official_master"
+    },
+    "enemy__guardian_de_la_grieta__portrait:portrait:254x154": {
+      "id": "enemy__guardian_de_la_grieta__portrait:portrait:254x154",
+      "path": "game/visual/generated/portraits/enemy__guardian_de_la_grieta__portrait_portrait_254x154.png",
+      "size": [
+        254,
+        154
+      ],
+      "version": "portrait_v7",
+      "source": "official_master"
+    },
+    "enemy__oraculo_del_vacio__portrait:portrait:254x154": {
+      "id": "enemy__oraculo_del_vacio__portrait:portrait:254x154",
+      "path": "game/visual/generated/portraits/enemy__oraculo_del_vacio__portrait_portrait_254x154.png",
+      "size": [
+        254,
+        154
+      ],
+      "version": "portrait_v7",
+      "source": "official_master"
+    },
+    "enemy__senor_de_la_chakana_rota__portrait:portrait:254x154": {
+      "id": "enemy__senor_de_la_chakana_rota__portrait:portrait:254x154",
+      "path": "game/visual/generated/portraits/enemy__senor_de_la_chakana_rota__portrait_portrait_254x154.png",
+      "size": [
+        254,
+        154
+      ],
+      "version": "portrait_v7",
+      "source": "official_master"
+    },
+    "enemy__arconte_supremo__portrait:portrait:254x154": {
+      "id": "enemy__arconte_supremo__portrait:portrait:254x154",
+      "path": "game/visual/generated/portraits/enemy__arconte_supremo__portrait_portrait_254x154.png",
+      "size": [
+        254,
+        154
+      ],
+      "version": "portrait_v7",
+      "source": "official_master"
+    },
+    "enemy__arconte_supremo__portrait:portrait:220x260": {
+      "id": "enemy__arconte_supremo__portrait:portrait:220x260",
+      "path": "game/visual/generated/portraits/enemy__arconte_supremo__portrait_portrait_220x260.png",
+      "size": [
+        220,
+        260
+      ],
+      "version": "portrait_v7",
+      "source": "official_master"
+    }
+  }
+}

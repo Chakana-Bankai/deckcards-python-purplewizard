@@ -1,0 +1,151 @@
+﻿CHAKANA STUDIO MASTER CLI
+PHASE 2 - CANONICAL STRUCTURE PLAN
+
+status=PASS
+workspace=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard
+run_date=2026-03-11
+
+[goal]
+- Prepare a canonical, engine-ready structure without breaking the current runtime.
+- Use wrappers-first migration instead of move-first migration.
+- Keep active runtime roots stable while introducing future canonical roots.
+
+[prepared_directories]
+- data/
+- data/manifests/
+- data/lore/
+- assets/art_templates/
+- assets/staging/
+- assets/production/
+- build/
+- tools/lib/
+- tools/archive/
+- reports/audit/
+- reports/art/
+- reports/cleanup/
+- reports/engine/
+- reports/master/
+- reports/qa/
+- reports/tools/
+- reports/validation/ (existing active bucket preserved)
+
+[canonical_structure]
+root/
+  engine/
+  game/
+  assets/
+    art_reference/
+    art_templates/
+    staging/
+    production/
+    _archive/
+  data/
+    manifests/
+    lore/
+  docs/
+  qa/
+  tools/
+    chakana_studio.py
+    lib/
+    archive/
+  reports/
+    audit/
+    art/
+    cleanup/
+    engine/
+    master/
+    qa/
+    tools/
+    validation/
+  build/
+
+[canonical_runtime_policy]
+- Current runtime remains on game/data, game/assets, game/audio, game/visual.
+- New root-level data/manifests and data/lore are introduced as future canonical mirrors and migration targets.
+- assets/art_reference remains the canonical reference root for art iteration.
+- assets/_archive remains the canonical archive root.
+- No runtime loader should be switched to root-level data/ in this phase.
+
+[canonical_mapping_plan]
+- game/data/audio_manifest.json -> future mirror target data/manifests/audio_manifest.json
+- game/data/art_manifest.json -> future mirror target data/manifests/art_manifest.json
+- game/data/cards*.json -> future mirror target data/manifests/card_manifest.json or split manifests
+- game/data/codex*.json -> future mirror target data/manifests/codex_manifest.json
+- game/visual/portrait_manifest.json -> future mirror target data/manifests/portrait_manifest.json
+- game/visual/visual_manifest.json -> future mirror target data/manifests/visual_manifest.json
+- docs/canon/lore/* -> future structured export target data/lore/*.json
+
+[tools_cli_architecture]
+Preferred entrypoint:
+- tools/chakana_studio.py
+
+Preferred modules under tools/lib/:
+- project_audit.py
+- project_sanitizer.py
+- duplicate_detector.py
+- manifest_manager.py
+- card_generator.py
+- id_registry.py
+- set_manager.py
+- lore_manager.py
+- codex_builder.py
+- art_pipeline.py
+- art_validator.py
+- scene_preview.py
+- audio_pipeline.py
+- audio_validator.py
+- balance_simulator.py
+- qa_smoke.py
+- qa_runtime.py
+- ui_audit.py
+- ui_layout_validator.py
+- ui_scaling_tester.py
+- accessibility_audit.py
+- engine_extractor.py
+
+[wrapper_first_strategy]
+Phase sequence:
+1. Create canonical targets and wrappers.
+2. Rebuild/normalize manifests into data/manifests as mirrors.
+3. Keep game/data and game/visual manifests alive during migration.
+4. Add chakana_studio.py as preferred entrypoint.
+5. Archive duplicate tools only after wrapper coverage exists.
+
+[current_to_future_tools_mapping]
+- tools/doctor.py -> tools/lib/project_audit.py (wrapped, not removed)
+- tools/qa_report_generator.py -> tools/lib/qa_runtime.py or reports-build wrapper
+- tools/assets/build_curated_context_audio.py -> tools/lib/audio_pipeline.py
+- tools/assets/regenerate_audio_outside_runtime.py -> tools/lib/audio_pipeline.py
+- tools/assets/regenerate_premium_card_batch.py -> tools/lib/art_pipeline.py
+- tools/assets/preview_scene_layers.py -> tools/lib/scene_preview.py
+- tools/assets/run_art_quality_validation.py -> tools/lib/art_validator.py
+- tools/qa/check_beta_run_flow.py -> tools/lib/qa_smoke.py
+- tools/maintenance/chakana_project_audit_consolidation.py -> tools/lib/project_audit.py or engine_extractor.py support
+
+[duplication_handling_policy]
+- Do not remove duplicate tools in this phase.
+- Mark namespaced tools as preferred implementation roots:
+  - tools/assets/*
+  - tools/qa/*
+  - tools/maintenance/*
+- Treat overlapping root tools as wrapper candidates or archive candidates in later phases.
+
+[art_reference_policy]
+- Canonical root remains assets/art_reference.
+- Normalize expected categories under that root, not by renaming to assets/art_references.
+- Future pipeline path becomes:
+  assets/art_reference -> scene specs -> assets/staging -> validation -> assets/production -> manifests
+
+[reports_policy]
+- New reports should avoid root clutter and go to reports/<domain>/.
+- This pass uses reports/audit/, reports/art/, reports/tools/, reports/engine/, reports/master/, reports/qa/ as canonical buckets.
+
+[risks]
+- Switching runtime loaders to data/manifests too early would break current boot paths.
+- Moving assets/art_reference immediately would break current art tooling.
+- Removing duplicate tools before creating wrappers would break current user workflows.
+
+[recommendation_phase_3]
+- Rebuild and normalize manifests into data/manifests/ as mirrored canonical outputs.
+- Keep game/data/*.json and game/visual/*.json alive during the transition.
+- Start with audio/art/card/codex manifests only.

@@ -1,0 +1,16 @@
+chakana_studio engine audit
+generated=2026-03-11 12:47:56
+
+mode=engine_audit
+dry_run=True
+
+engine_candidate:
+- game/art
+- game/audio
+- game/visual
+- game/core
+
+game_specific:
+- game/data
+- docs/canon
+- assets/art_reference

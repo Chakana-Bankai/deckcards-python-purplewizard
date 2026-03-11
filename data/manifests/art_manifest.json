@@ -1,0 +1,1441 @@
+{
+  "version": "chakana_art_manifest_v1",
+  "generated_at": 1773242157,
+  "source_runtime_paths": [
+    "game/data/art_manifest.json",
+    "game/data/art_manifest_cards.json",
+    "game/data/art_manifest_starters.json",
+    "game/data/art_manifest_avatar.json",
+    "game/data/art_manifest_enemies.json",
+    "game/data/art_manifest_guides.json",
+    "game/data/biome_manifest.json",
+    "game/visual/portrait_manifest.json",
+    "game/visual/visual_manifest.json"
+  ],
+  "sections": {
+    "cards": {
+      "count": 180,
+      "manifest_items_count": 60,
+      "items": {
+        "campo_protector": {
+          "path": "game/assets/sprites/cards/campo_protector.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "campo_protector"
+        },
+        "chakana_de_luz": {
+          "path": "game/assets/sprites/cards/chakana_de_luz.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "chakana_de_luz"
+        },
+        "eco_de_sabiduria": {
+          "path": "game/assets/sprites/cards/eco_de_sabiduria.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "eco_de_sabiduria"
+        },
+        "embate_del_jaguar": {
+          "path": "game/assets/sprites/cards/embate_del_jaguar.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "embate_del_jaguar"
+        },
+        "escudo_de_luz": {
+          "path": "game/assets/sprites/cards/escudo_de_luz.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "escudo_de_luz"
+        },
+        "escudo_del_chaman": {
+          "path": "game/assets/sprites/cards/escudo_del_chaman.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "escudo_del_chaman"
+        },
+        "espiritu_guardian": {
+          "path": "game/assets/sprites/cards/espiritu_guardian.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "espiritu_guardian"
+        },
+        "estallido_arcano": {
+          "path": "game/assets/sprites/cards/estallido_arcano.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "estallido_arcano"
+        },
+        "filo_astral": {
+          "path": "game/assets/sprites/cards/filo_astral.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "filo_astral"
+        },
+        "filo_en_cadena": {
+          "path": "game/assets/sprites/cards/filo_en_cadena.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "filo_en_cadena"
+        },
+        "firmeza_del_cuerpo": {
+          "path": "game/assets/sprites/cards/firmeza_del_cuerpo.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "firmeza_del_cuerpo"
+        },
+        "fragmento_celeste": {
+          "path": "game/assets/sprites/cards/fragmento_celeste.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "fragmento_celeste"
+        },
+        "fusion_espiritual": {
+          "path": "game/assets/sprites/cards/fusion_espiritual.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "fusion_espiritual"
+        },
+        "garra_espiritual": {
+          "path": "game/assets/sprites/cards/garra_espiritual.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "garra_espiritual"
+        },
+        "guardia_terrenal": {
+          "path": "game/assets/sprites/cards/guardia_terrenal.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "guardia_terrenal"
+        },
+        "invocacion_astral": {
+          "path": "game/assets/sprites/cards/invocacion_astral.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "invocacion_astral"
+        },
+        "lectura_del_destino": {
+          "path": "game/assets/sprites/cards/lectura_del_destino.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "lectura_del_destino"
+        },
+        "mantra_del_umbral": {
+          "path": "game/assets/sprites/cards/mantra_del_umbral.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "mantra_del_umbral"
+        },
+        "muralla_de_piedra": {
+          "path": "game/assets/sprites/cards/muralla_de_piedra.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "muralla_de_piedra"
+        },
+        "observacion_sagrada": {
+          "path": "game/assets/sprites/cards/observacion_sagrada.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "observacion_sagrada"
+        },
+        "piedra_ritual": {
+          "path": "game/assets/sprites/cards/piedra_ritual.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "piedra_ritual"
+        },
+        "portal_de_la_chakana": {
+          "path": "game/assets/sprites/cards/portal_de_la_chakana.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "portal_de_la_chakana"
+        },
+        "pulso_cosmico": {
+          "path": "game/assets/sprites/cards/pulso_cosmico.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "pulso_cosmico"
+        },
+        "resistencia_ancestral": {
+          "path": "game/assets/sprites/cards/resistencia_ancestral.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "resistencia_ancestral"
+        },
+        "revelacion_astral": {
+          "path": "game/assets/sprites/cards/revelacion_astral.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "revelacion_astral"
+        },
+        "ritual_de_la_trama": {
+          "path": "game/assets/sprites/cards/ritual_de_la_trama.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "ritual_de_la_trama"
+        },
+        "sello_protector": {
+          "path": "game/assets/sprites/cards/sello_protector.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "sello_protector"
+        },
+        "silencio_interior": {
+          "path": "game/assets/sprites/cards/silencio_interior.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "silencio_interior"
+        },
+        "vinculo_de_energia": {
+          "path": "game/assets/sprites/cards/vinculo_de_energia.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "vinculo_de_energia"
+        },
+        "vision_del_condor": {
+          "path": "game/assets/sprites/cards/vision_del_condor.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "vision_del_condor"
+        },
+        "hg_lore_01": {
+          "path": "game/assets/sprites/cards/hg_lore_01.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "hg_lore_01"
+        },
+        "cw_lore_02": {
+          "path": "game/assets/sprites/cards/cw_lore_02.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "cw_lore_02"
+        },
+        "cw_lore_03": {
+          "path": "game/assets/sprites/cards/cw_lore_03.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "cw_lore_03"
+        },
+        "cw_lore_04": {
+          "path": "game/assets/sprites/cards/cw_lore_04.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "cw_lore_04"
+        },
+        "hg_lore_05": {
+          "path": "game/assets/sprites/cards/hg_lore_05.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "hg_lore_05"
+        },
+        "hg_lore_06": {
+          "path": "game/assets/sprites/cards/hg_lore_06.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "hg_lore_06"
+        },
+        "hg_lore_07": {
+          "path": "game/assets/sprites/cards/hg_lore_07.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "hg_lore_07"
+        },
+        "cw_lore_08": {
+          "path": "game/assets/sprites/cards/cw_lore_08.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "cw_lore_08"
+        },
+        "cw_lore_09": {
+          "path": "game/assets/sprites/cards/cw_lore_09.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "cw_lore_09"
+        },
+        "cw_lore_10": {
+          "path": "game/assets/sprites/cards/cw_lore_10.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "cw_lore_10"
+        },
+        "hg_lore_11": {
+          "path": "game/assets/sprites/cards/hg_lore_11.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "hg_lore_11"
+        },
+        "of_lore_12": {
+          "path": "game/assets/sprites/cards/of_lore_12.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "of_lore_12"
+        },
+        "hg_lore_13": {
+          "path": "game/assets/sprites/cards/hg_lore_13.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "hg_lore_13"
+        },
+        "cw_lore_14": {
+          "path": "game/assets/sprites/cards/cw_lore_14.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "cw_lore_14"
+        },
+        "hg_lore_15": {
+          "path": "game/assets/sprites/cards/hg_lore_15.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "hg_lore_15"
+        },
+        "of_lore_16": {
+          "path": "game/assets/sprites/cards/of_lore_16.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "of_lore_16"
+        },
+        "of_lore_17": {
+          "path": "game/assets/sprites/cards/of_lore_17.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "of_lore_17"
+        },
+        "cw_lore_18": {
+          "path": "game/assets/sprites/cards/cw_lore_18.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "cw_lore_18"
+        },
+        "hg_lore_19": {
+          "path": "game/assets/sprites/cards/hg_lore_19.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "hg_lore_19"
+        },
+        "of_lore_20": {
+          "path": "game/assets/sprites/cards/of_lore_20.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "of_lore_20"
+        },
+        "of_lore_21": {
+          "path": "game/assets/sprites/cards/of_lore_21.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "of_lore_21"
+        },
+        "of_lore_22": {
+          "path": "game/assets/sprites/cards/of_lore_22.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "of_lore_22"
+        },
+        "cw_lore_23": {
+          "path": "game/assets/sprites/cards/cw_lore_23.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "cw_lore_23"
+        },
+        "hg_lore_24": {
+          "path": "game/assets/sprites/cards/hg_lore_24.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "hg_lore_24"
+        },
+        "of_lore_25": {
+          "path": "game/assets/sprites/cards/of_lore_25.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "of_lore_25"
+        },
+        "of_lore_26": {
+          "path": "game/assets/sprites/cards/of_lore_26.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "of_lore_26"
+        },
+        "hg_lore_27": {
+          "path": "game/assets/sprites/cards/hg_lore_27.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "hg_lore_27"
+        },
+        "of_lore_28": {
+          "path": "game/assets/sprites/cards/of_lore_28.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "of_lore_28"
+        },
+        "cw_lore_29": {
+          "path": "game/assets/sprites/cards/cw_lore_29.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "cw_lore_29"
+        },
+        "of_lore_30": {
+          "path": "game/assets/sprites/cards/of_lore_30.png",
+          "exists": true,
+          "set": "base",
+          "artwork": "of_lore_30"
+        },
+        "hip_cosmic_warrior_01": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_01.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_01"
+        },
+        "hip_cosmic_warrior_02": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_02.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_02"
+        },
+        "hip_cosmic_warrior_03": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_03.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_03"
+        },
+        "hip_cosmic_warrior_04": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_04.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_04"
+        },
+        "hip_cosmic_warrior_05": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_05.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_05"
+        },
+        "hip_cosmic_warrior_06": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_06.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_06"
+        },
+        "hip_cosmic_warrior_07": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_07.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_07"
+        },
+        "hip_cosmic_warrior_08": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_08.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_08"
+        },
+        "hip_cosmic_warrior_09": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_09.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_09"
+        },
+        "hip_cosmic_warrior_10": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_10.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_10"
+        },
+        "hip_cosmic_warrior_11": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_11.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_11"
+        },
+        "hip_cosmic_warrior_12": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_12.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_12"
+        },
+        "hip_cosmic_warrior_13": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_13.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_13"
+        },
+        "hip_cosmic_warrior_14": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_14.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_14"
+        },
+        "hip_cosmic_warrior_15": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_15.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_15"
+        },
+        "hip_cosmic_warrior_16": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_16.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_16"
+        },
+        "hip_cosmic_warrior_17": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_17.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_17"
+        },
+        "hip_cosmic_warrior_18": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_18.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_18"
+        },
+        "hip_cosmic_warrior_19": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_19.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_19"
+        },
+        "hip_cosmic_warrior_20": {
+          "path": "game/assets/sprites/cards/hip_cosmic_warrior_20.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_cosmic_warrior_20"
+        },
+        "hip_harmony_guardian_01": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_01.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_01"
+        },
+        "hip_harmony_guardian_02": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_02.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_02"
+        },
+        "hip_harmony_guardian_03": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_03.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_03"
+        },
+        "hip_harmony_guardian_04": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_04.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_04"
+        },
+        "hip_harmony_guardian_05": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_05.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_05"
+        },
+        "hip_harmony_guardian_06": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_06.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_06"
+        },
+        "hip_harmony_guardian_07": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_07.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_07"
+        },
+        "hip_harmony_guardian_08": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_08.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_08"
+        },
+        "hip_harmony_guardian_09": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_09.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_09"
+        },
+        "hip_harmony_guardian_10": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_10.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_10"
+        },
+        "hip_harmony_guardian_11": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_11.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_11"
+        },
+        "hip_harmony_guardian_12": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_12.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_12"
+        },
+        "hip_harmony_guardian_13": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_13.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_13"
+        },
+        "hip_harmony_guardian_14": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_14.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_14"
+        },
+        "hip_harmony_guardian_15": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_15.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_15"
+        },
+        "hip_harmony_guardian_16": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_16.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_16"
+        },
+        "hip_harmony_guardian_17": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_17.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_17"
+        },
+        "hip_harmony_guardian_18": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_18.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_18"
+        },
+        "hip_harmony_guardian_19": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_19.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_19"
+        },
+        "hip_harmony_guardian_20": {
+          "path": "game/assets/sprites/cards/hip_harmony_guardian_20.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_harmony_guardian_20"
+        },
+        "hip_oracle_of_fate_01": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_01.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_01"
+        },
+        "hip_oracle_of_fate_02": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_02.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_02"
+        },
+        "hip_oracle_of_fate_03": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_03.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_03"
+        },
+        "hip_oracle_of_fate_04": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_04.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_04"
+        },
+        "hip_oracle_of_fate_05": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_05.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_05"
+        },
+        "hip_oracle_of_fate_06": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_06.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_06"
+        },
+        "hip_oracle_of_fate_07": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_07.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_07"
+        },
+        "hip_oracle_of_fate_08": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_08.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_08"
+        },
+        "hip_oracle_of_fate_09": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_09.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_09"
+        },
+        "hip_oracle_of_fate_10": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_10.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_10"
+        },
+        "hip_oracle_of_fate_11": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_11.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_11"
+        },
+        "hip_oracle_of_fate_12": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_12.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_12"
+        },
+        "hip_oracle_of_fate_13": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_13.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_13"
+        },
+        "hip_oracle_of_fate_14": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_14.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_14"
+        },
+        "hip_oracle_of_fate_15": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_15.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_15"
+        },
+        "hip_oracle_of_fate_16": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_16.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_16"
+        },
+        "hip_oracle_of_fate_17": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_17.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_17"
+        },
+        "hip_oracle_of_fate_18": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_18.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_18"
+        },
+        "hip_oracle_of_fate_19": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_19.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_19"
+        },
+        "hip_oracle_of_fate_20": {
+          "path": "game/assets/sprites/cards/hip_oracle_of_fate_20.png",
+          "exists": true,
+          "set": "hiperborea",
+          "artwork": "hip_oracle_of_fate_20"
+        },
+        "arc_001": {
+          "path": "game/assets/sprites/cards/arc_001.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_001"
+        },
+        "arc_002": {
+          "path": "game/assets/sprites/cards/arc_002.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_002"
+        },
+        "arc_003": {
+          "path": "game/assets/sprites/cards/arc_003.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_003"
+        },
+        "arc_004": {
+          "path": "game/assets/sprites/cards/arc_004.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_004"
+        },
+        "arc_005": {
+          "path": "game/assets/sprites/cards/arc_005.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_005"
+        },
+        "arc_006": {
+          "path": "game/assets/sprites/cards/arc_006.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_006"
+        },
+        "arc_007": {
+          "path": "game/assets/sprites/cards/arc_007.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_007"
+        },
+        "arc_008": {
+          "path": "game/assets/sprites/cards/arc_008.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_008"
+        },
+        "arc_009": {
+          "path": "game/assets/sprites/cards/arc_009.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_009"
+        },
+        "arc_010": {
+          "path": "game/assets/sprites/cards/arc_010.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_010"
+        },
+        "arc_011": {
+          "path": "game/assets/sprites/cards/arc_011.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_011"
+        },
+        "arc_012": {
+          "path": "game/assets/sprites/cards/arc_012.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_012"
+        },
+        "arc_013": {
+          "path": "game/assets/sprites/cards/arc_013.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_013"
+        },
+        "arc_014": {
+          "path": "game/assets/sprites/cards/arc_014.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_014"
+        },
+        "arc_015": {
+          "path": "game/assets/sprites/cards/arc_015.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_015"
+        },
+        "arc_016": {
+          "path": "game/assets/sprites/cards/arc_016.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_016"
+        },
+        "arc_017": {
+          "path": "game/assets/sprites/cards/arc_017.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_017"
+        },
+        "arc_018": {
+          "path": "game/assets/sprites/cards/arc_018.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_018"
+        },
+        "arc_019": {
+          "path": "game/assets/sprites/cards/arc_019.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_019"
+        },
+        "arc_020": {
+          "path": "game/assets/sprites/cards/arc_020.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_020"
+        },
+        "arc_021": {
+          "path": "game/assets/sprites/cards/arc_021.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_021"
+        },
+        "arc_022": {
+          "path": "game/assets/sprites/cards/arc_022.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_022"
+        },
+        "arc_023": {
+          "path": "game/assets/sprites/cards/arc_023.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_023"
+        },
+        "arc_024": {
+          "path": "game/assets/sprites/cards/arc_024.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_024"
+        },
+        "arc_025": {
+          "path": "game/assets/sprites/cards/arc_025.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_025"
+        },
+        "arc_026": {
+          "path": "game/assets/sprites/cards/arc_026.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_026"
+        },
+        "arc_027": {
+          "path": "game/assets/sprites/cards/arc_027.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_027"
+        },
+        "arc_028": {
+          "path": "game/assets/sprites/cards/arc_028.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_028"
+        },
+        "arc_029": {
+          "path": "game/assets/sprites/cards/arc_029.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_029"
+        },
+        "arc_030": {
+          "path": "game/assets/sprites/cards/arc_030.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_030"
+        },
+        "arc_031": {
+          "path": "game/assets/sprites/cards/arc_031.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_031"
+        },
+        "arc_032": {
+          "path": "game/assets/sprites/cards/arc_032.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_032"
+        },
+        "arc_033": {
+          "path": "game/assets/sprites/cards/arc_033.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_033"
+        },
+        "arc_034": {
+          "path": "game/assets/sprites/cards/arc_034.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_034"
+        },
+        "arc_035": {
+          "path": "game/assets/sprites/cards/arc_035.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_035"
+        },
+        "arc_036": {
+          "path": "game/assets/sprites/cards/arc_036.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_036"
+        },
+        "arc_037": {
+          "path": "game/assets/sprites/cards/arc_037.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_037"
+        },
+        "arc_038": {
+          "path": "game/assets/sprites/cards/arc_038.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_038"
+        },
+        "arc_039": {
+          "path": "game/assets/sprites/cards/arc_039.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_039"
+        },
+        "arc_040": {
+          "path": "game/assets/sprites/cards/arc_040.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_040"
+        },
+        "arc_041": {
+          "path": "game/assets/sprites/cards/arc_041.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_041"
+        },
+        "arc_042": {
+          "path": "game/assets/sprites/cards/arc_042.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_042"
+        },
+        "arc_043": {
+          "path": "game/assets/sprites/cards/arc_043.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_043"
+        },
+        "arc_044": {
+          "path": "game/assets/sprites/cards/arc_044.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_044"
+        },
+        "arc_045": {
+          "path": "game/assets/sprites/cards/arc_045.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_045"
+        },
+        "arc_046": {
+          "path": "game/assets/sprites/cards/arc_046.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_046"
+        },
+        "arc_047": {
+          "path": "game/assets/sprites/cards/arc_047.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_047"
+        },
+        "arc_048": {
+          "path": "game/assets/sprites/cards/arc_048.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_048"
+        },
+        "arc_049": {
+          "path": "game/assets/sprites/cards/arc_049.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_049"
+        },
+        "arc_050": {
+          "path": "game/assets/sprites/cards/arc_050.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_050"
+        },
+        "arc_051": {
+          "path": "game/assets/sprites/cards/arc_051.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_051"
+        },
+        "arc_052": {
+          "path": "game/assets/sprites/cards/arc_052.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_052"
+        },
+        "arc_053": {
+          "path": "game/assets/sprites/cards/arc_053.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_053"
+        },
+        "arc_054": {
+          "path": "game/assets/sprites/cards/arc_054.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_054"
+        },
+        "arc_055": {
+          "path": "game/assets/sprites/cards/arc_055.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_055"
+        },
+        "arc_056": {
+          "path": "game/assets/sprites/cards/arc_056.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_056"
+        },
+        "arc_057": {
+          "path": "game/assets/sprites/cards/arc_057.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_057"
+        },
+        "arc_058": {
+          "path": "game/assets/sprites/cards/arc_058.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_058"
+        },
+        "arc_059": {
+          "path": "game/assets/sprites/cards/arc_059.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_059"
+        },
+        "arc_060": {
+          "path": "game/assets/sprites/cards/arc_060.png",
+          "exists": true,
+          "set": "arconte",
+          "artwork": "arc_060"
+        }
+      }
+    },
+    "avatar": {
+      "generator_version": "recovered_v1",
+      "path": "game/assets/sprites/avatar/chakana.png",
+      "player_path": "game/assets/sprites/player/chakana_avatar.png",
+      "exists": true,
+      "source": "game/visual/portrait_manifest.json"
+    },
+    "enemies": {
+      "count": 10,
+      "items": {
+        "enemy__enemy:portrait:280x360": {
+          "id": "enemy__enemy:portrait:280x360",
+          "path": "game/visual/generated/portraits/enemy__enemy_portrait_280x360.png",
+          "size": [
+            280,
+            360
+          ],
+          "version": "portrait_v6",
+          "source": "generated_or_cache"
+        },
+        "enemy__arconte_supremo__portrait:portrait:270x200": {
+          "id": "enemy__arconte_supremo__portrait:portrait:270x200",
+          "path": "game/visual/generated/portraits/enemy__arconte_supremo__portrait_portrait_270x200.png",
+          "size": [
+            270,
+            200
+          ],
+          "version": "portrait_v7",
+          "source": "official_master"
+        },
+        "enemy__guardia_de_raiz__portrait:portrait:270x200": {
+          "id": "enemy__guardia_de_raiz__portrait:portrait:270x200",
+          "path": "game/visual/generated/portraits/enemy__guardia_de_raiz__portrait_portrait_270x200.png",
+          "size": [
+            270,
+            200
+          ],
+          "version": "portrait_v7",
+          "source": "official_master"
+        },
+        "enemy__oraculo_menor__portrait:portrait:270x200": {
+          "id": "enemy__oraculo_menor__portrait:portrait:270x200",
+          "path": "game/visual/generated/portraits/enemy__oraculo_menor__portrait_portrait_270x200.png",
+          "size": [
+            270,
+            200
+          ],
+          "version": "portrait_v7",
+          "source": "official_master"
+        },
+        "enemy__sabueso_sombrio__portrait:portrait:270x200": {
+          "id": "enemy__sabueso_sombrio__portrait:portrait:270x200",
+          "path": "game/visual/generated/portraits/enemy__sabueso_sombrio__portrait_portrait_270x200.png",
+          "size": [
+            270,
+            200
+          ],
+          "version": "portrait_v7",
+          "source": "official_master"
+        },
+        "enemy__guardian_de_la_grieta__portrait:portrait:254x154": {
+          "id": "enemy__guardian_de_la_grieta__portrait:portrait:254x154",
+          "path": "game/visual/generated/portraits/enemy__guardian_de_la_grieta__portrait_portrait_254x154.png",
+          "size": [
+            254,
+            154
+          ],
+          "version": "portrait_v7",
+          "source": "official_master"
+        },
+        "enemy__oraculo_del_vacio__portrait:portrait:254x154": {
+          "id": "enemy__oraculo_del_vacio__portrait:portrait:254x154",
+          "path": "game/visual/generated/portraits/enemy__oraculo_del_vacio__portrait_portrait_254x154.png",
+          "size": [
+            254,
+            154
+          ],
+          "version": "portrait_v7",
+          "source": "official_master"
+        },
+        "enemy__senor_de_la_chakana_rota__portrait:portrait:254x154": {
+          "id": "enemy__senor_de_la_chakana_rota__portrait:portrait:254x154",
+          "path": "game/visual/generated/portraits/enemy__senor_de_la_chakana_rota__portrait_portrait_254x154.png",
+          "size": [
+            254,
+            154
+          ],
+          "version": "portrait_v7",
+          "source": "official_master"
+        },
+        "enemy__arconte_supremo__portrait:portrait:254x154": {
+          "id": "enemy__arconte_supremo__portrait:portrait:254x154",
+          "path": "game/visual/generated/portraits/enemy__arconte_supremo__portrait_portrait_254x154.png",
+          "size": [
+            254,
+            154
+          ],
+          "version": "portrait_v7",
+          "source": "official_master"
+        },
+        "enemy__arconte_supremo__portrait:portrait:220x260": {
+          "id": "enemy__arconte_supremo__portrait:portrait:220x260",
+          "path": "game/visual/generated/portraits/enemy__arconte_supremo__portrait_portrait_220x260.png",
+          "size": [
+            220,
+            260
+          ],
+          "version": "portrait_v7",
+          "source": "official_master"
+        }
+      }
+    },
+    "guides": {
+      "count": 13,
+      "items": {
+        "guide__arcane_hacker__portrait:portrait:100x100": {
+          "id": "guide__arcane_hacker__portrait:portrait:100x100",
+          "path": "game/visual/generated/portraits/guide__arcane_hacker__portrait_portrait_100x100.png",
+          "size": [
+            100,
+            100
+          ],
+          "version": "portrait_v7",
+          "source": "placeholder"
+        },
+        "guide__angel__portrait:portrait:224x344": {
+          "id": "guide__angel__portrait:portrait:224x344",
+          "path": "game/visual/generated/portraits/guide__angel__portrait_portrait_224x344.png",
+          "size": [
+            224,
+            344
+          ],
+          "version": "portrait_v7",
+          "source": "placeholder"
+        },
+        "guide__arcane_hacker__portrait:portrait:88x88": {
+          "id": "guide__arcane_hacker__portrait:portrait:88x88",
+          "path": "game/visual/generated/portraits/guide__arcane_hacker__portrait_portrait_88x88.png",
+          "size": [
+            88,
+            88
+          ],
+          "version": "portrait_v7",
+          "source": "placeholder"
+        },
+        "guide__arcane_hacker__portrait:portrait:517x310": {
+          "id": "guide__arcane_hacker__portrait:portrait:517x310",
+          "path": "game/visual/generated/portraits/guide__arcane_hacker__portrait_portrait_517x310.png",
+          "size": [
+            517,
+            310
+          ],
+          "version": "portrait_v7",
+          "source": "placeholder"
+        },
+        "guide__demon__portrait:portrait:224x344": {
+          "id": "guide__demon__portrait:portrait:224x344",
+          "path": "game/visual/generated/portraits/guide__demon__portrait_portrait_224x344.png",
+          "size": [
+            224,
+            344
+          ],
+          "version": "portrait_v7",
+          "source": "placeholder"
+        },
+        "guide__shaman__portrait:portrait:88x88": {
+          "id": "guide__shaman__portrait:portrait:88x88",
+          "path": "game/visual/generated/portraits/guide__shaman__portrait_portrait_88x88.png",
+          "size": [
+            88,
+            88
+          ],
+          "version": "portrait_v7",
+          "source": "placeholder"
+        },
+        "guide__shaman__portrait:portrait:517x310": {
+          "id": "guide__shaman__portrait:portrait:517x310",
+          "path": "game/visual/generated/portraits/guide__shaman__portrait_portrait_517x310.png",
+          "size": [
+            517,
+            310
+          ],
+          "version": "portrait_v7",
+          "source": "placeholder"
+        },
+        "guide__shaman__portrait:portrait:224x344": {
+          "id": "guide__shaman__portrait:portrait:224x344",
+          "path": "game/visual/generated/portraits/guide__shaman__portrait_portrait_224x344.png",
+          "size": [
+            224,
+            344
+          ],
+          "version": "portrait_v7",
+          "source": "placeholder"
+        },
+        "guide__angel__portrait:portrait:180x220": {
+          "id": "guide__angel__portrait:portrait:180x220",
+          "path": "game/visual/generated/portraits/guide__angel__portrait_portrait_180x220.png",
+          "size": [
+            180,
+            220
+          ],
+          "version": "portrait_v7",
+          "source": "placeholder"
+        },
+        "angel": {
+          "id": "angel",
+          "path": "game/assets/sprites/guides/angel.png",
+          "source": "sprite_fallback"
+        },
+        "arcane_hacker": {
+          "id": "arcane_hacker",
+          "path": "game/assets/sprites/guides/arcane_hacker.png",
+          "source": "sprite_fallback"
+        },
+        "demon": {
+          "id": "demon",
+          "path": "game/assets/sprites/guides/demon.png",
+          "source": "sprite_fallback"
+        },
+        "shaman": {
+          "id": "shaman",
+          "path": "game/assets/sprites/guides/shaman.png",
+          "source": "sprite_fallback"
+        }
+      }
+    },
+    "biomes": {
+      "count": 7,
+      "items": {
+        "caverna_umbral": {
+          "bg": "game/assets/sprites/biomes/caverna_umbral/bg.png",
+          "bg_exists": true,
+          "mg": "game/assets/sprites/biomes/caverna_umbral/mg.png",
+          "mg_exists": true,
+          "fg": "game/assets/sprites/biomes/caverna_umbral/fg.png",
+          "fg_exists": true,
+          "generator_version": "recovered_v1"
+        },
+        "forest": {
+          "bg": "game/assets/sprites/biomes/forest/bg.png",
+          "bg_exists": true,
+          "mg": "game/assets/sprites/biomes/forest/mg.png",
+          "mg_exists": true,
+          "fg": "game/assets/sprites/biomes/forest/fg.png",
+          "fg_exists": true,
+          "generator_version": "recovered_v1"
+        },
+        "kaypacha": {
+          "bg": "game/assets/sprites/biomes/kaypacha/bg.png",
+          "bg_exists": true,
+          "mg": "game/assets/sprites/biomes/kaypacha/mg.png",
+          "mg_exists": true,
+          "fg": "game/assets/sprites/biomes/kaypacha/fg.png",
+          "fg_exists": true,
+          "generator_version": "recovered_v1"
+        },
+        "pampa_astral": {
+          "bg": "game/assets/sprites/biomes/pampa_astral/bg.png",
+          "bg_exists": true,
+          "mg": "game/assets/sprites/biomes/pampa_astral/mg.png",
+          "mg_exists": true,
+          "fg": "game/assets/sprites/biomes/pampa_astral/fg.png",
+          "fg_exists": true,
+          "generator_version": "recovered_v1"
+        },
+        "ruinas_chakana": {
+          "bg": "game/assets/sprites/biomes/ruinas_chakana/bg.png",
+          "bg_exists": true,
+          "mg": "game/assets/sprites/biomes/ruinas_chakana/mg.png",
+          "mg_exists": true,
+          "fg": "game/assets/sprites/biomes/ruinas_chakana/fg.png",
+          "fg_exists": true,
+          "generator_version": "recovered_v1"
+        },
+        "templo_obsidiana": {
+          "bg": "game/assets/sprites/biomes/templo_obsidiana/bg.png",
+          "bg_exists": true,
+          "mg": "game/assets/sprites/biomes/templo_obsidiana/mg.png",
+          "mg_exists": true,
+          "fg": "game/assets/sprites/biomes/templo_obsidiana/fg.png",
+          "fg_exists": true,
+          "generator_version": "recovered_v1"
+        },
+        "umbral": {
+          "bg": "game/assets/sprites/biomes/umbral/bg.png",
+          "bg_exists": true,
+          "mg": "game/assets/sprites/biomes/umbral/mg.png",
+          "mg_exists": true,
+          "fg": "game/assets/sprites/biomes/umbral/fg.png",
+          "fg_exists": true,
+          "generator_version": "recovered_v1"
+        }
+      }
+    },
+    "portraits": {
+      "count": 94,
+      "manifest_path": "game/visual/portrait_manifest.json"
+    },
+    "visual": {
+      "count": 155,
+      "manifest_path": "game/visual/visual_manifest.json"
+    },
+    "starters": {
+      "generator_version": "art32_v1",
+      "items": {
+        "starter:cosmic_warrior": {
+          "created_at": 1773061504,
+          "generator_version": "art32_v1",
+          "id": "starter:cosmic_warrior",
+          "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\starters\\cosmic_warrior.png",
+          "placeholder": false,
+          "seed": 3072416225
+        },
+        "starter:harmony_guardian": {
+          "created_at": 1773061504,
+          "generator_version": "art32_v1",
+          "id": "starter:harmony_guardian",
+          "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\starters\\harmony_guardian.png",
+          "placeholder": false,
+          "seed": 3779845072
+        },
+        "starter:oracle_of_fate": {
+          "created_at": 1773061504,
+          "generator_version": "art32_v1",
+          "id": "starter:oracle_of_fate",
+          "path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\sprites\\starters\\oracle_of_fate.png",
+          "placeholder": false,
+          "seed": 3262198346
+        }
+      }
+    }
+  },
+  "recovered_runtime_manifests": [
+    "game/data/art_manifest_avatar.json",
+    "game/data/art_manifest_enemies.json",
+    "game/data/art_manifest_guides.json",
+    "game/data/biome_manifest.json"
+  ]
+}

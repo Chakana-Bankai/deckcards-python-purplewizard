@@ -11,7 +11,8 @@ from game.art.gen_art32 import seed_from_id
 from game.art.gen_card_art32 import GEN_CARD_ART_VERSION
 from game.art.gen_card_art_advanced import generate
 from game.art.scene_spec import build_scene_spec, default_scene_type, scene_spec_prompt_fragment
-from game.core.paths import assets_dir, art_reference_dir, data_dir
+from game.art.art_reference_catalog import build_reference_manifest, expand_categories, iter_category_entries
+from game.core.paths import assets_dir, art_reference_dir, data_dir, project_root
 from game.core.safe_io import atomic_write_json_if_changed, load_json
 from game.visual.generators.lore_motifs import MOTIF_LIBRARY, motifs_for_archetype
 
@@ -31,19 +32,12 @@ class ArtReferenceLibrary:
             return {}
 
     def _category_files(self, category: str) -> list[str]:
-        folder = self.root / str(category or '').strip()
-        if not folder.exists():
-            return []
-        names = []
-        for p in folder.iterdir():
-            if p.is_file() and p.suffix.lower() in {'.png', '.jpg', '.jpeg', '.webp'}:
-                names.append(p.stem.replace('_', ' '))
-        return sorted(names)
+        return [entry.path.stem.replace('_', ' ') for entry in iter_category_entries(self.root, category)]
 
     def cues_for(self, categories: list[str]) -> list[str]:
         out = []
         seen = set()
-        for cat in categories:
+        for cat in expand_categories(categories):
             for name in self._category_files(cat):
                 low = name.lower()
                 if low in seen:

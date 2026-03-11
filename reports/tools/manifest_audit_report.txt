@@ -1,0 +1,34 @@
+chakana_studio manifest audit
+generated=2026-03-11 12:44:41
+
+mode=manifest_audit
+dry_run=True
+
+- game/data/art_manifest.json => OK
+- game/data/audio_manifest.json => OK
+- game/data/art_manifest_avatar.json => OK
+- game/data/art_manifest_enemies.json => OK
+- game/data/art_manifest_guides.json => OK
+- game/data/biome_manifest.json => OK
+- data/manifests/art_manifest.json => OK
+- data/manifests/audio_manifest.json => OK
+- data/manifests/card_manifest.json => OK
+- data/manifests/codex_manifest.json => OK
+- data/manifests/art_reference_manifest.json => OK
+
+duplicate_manifest_name_count=4
+duplicate_manifest_names:
+- art_manifest.json: 2
+  - data/manifests/art_manifest.json
+  - game/data/art_manifest.json
+- audio_manifest.json: 4
+  - backups/2026-03-10_beta_audio_art_backup/manifests/audio_manifest.json
+  - data/manifests/audio_manifest.json
+  - game/audio/audio_manifest.json
+  - game/data/audio_manifest.json
+- audio_music_manifest.json: 2
+  - backups/2026-03-10_beta_audio_art_backup/manifests/audio_music_manifest.json
+  - game/data/audio_music_manifest.json
+- audio_stinger_manifest.json: 2
+  - backups/2026-03-10_beta_audio_art_backup/manifests/audio_stinger_manifest.json
+  - game/data/audio_stinger_manifest.json

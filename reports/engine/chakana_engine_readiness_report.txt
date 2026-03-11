@@ -1,0 +1,125 @@
+CHAKANA STUDIO MASTER CLI
+PHASE 9 - ENGINE READINESS
+
+generated=2026-03-11
+status=PASS
+workspace=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard
+
+[goal]
+- Classify the current project into engine_candidate, game_specific, generated_output, reports, archive and legacy.
+- Prepare future Chakana Engine extraction without moving runtime-critical code yet.
+
+[engine_candidate]
+Strong candidates already separated or close to separation:
+- engine/audio/*
+- engine/creative_direction/*
+- engine/audio_system/README.md
+- engine/card_engine/README.md
+- engine/combat/README.md
+- engine/procedural_art/README.md
+- engine/rendering/README.md
+- engine/ui_framework/README.md
+- game/art/*
+- game/visual/portrait_pipeline.py
+- game/visual/visual_engine.py
+- game/audio/audio_engine.py
+- game/core/paths.py
+- tools/lib/*
+Reason:
+- These modules are orchestration, rendering, pipeline, manifests, composition, or reusable service logic.
+- They are either already namespaced under engine/ or can be extracted with limited lore coupling.
+
+[game_specific]
+Clear Purple Wizard or Chakana-world content/system coupling:
+- game/chakana_world/*
+- game/content/*
+- game/lore/*
+- game/enemies/*
+- game/relics/*
+- game/map/*
+- game/events/*
+- game/narrative/*
+- game/cards/*
+- game/ui/screens/*
+- game/data/cards*.json
+- game/data/lore/*
+- docs/canon/*
+Reason:
+- These encode factions, content, progression, names, reward rules, scenes, codex text, and world-specific UI behavior.
+
+[generated_output]
+Generated and reproducible outputs:
+- game/audio/generated/*
+- game/visual/generated/*
+- assets/staging/*
+- reports/validation/scene_pipeline_samples/*
+- reports/validation/art_candidate_staging/*
+- __pycache__/ directories
+Reason:
+- These are not primary source-of-truth assets and should not be hand-edited.
+
+[reports]
+Canonical report buckets:
+- reports/audit/*
+- reports/art/*
+- reports/cleanup/*
+- reports/engine/*
+- reports/master/*
+- reports/qa/*
+- reports/tools/*
+- reports/validation/*
+Warning:
+- reports/audits/* is a legacy overlapping bucket and should be phased out in favor of reports/audit/*.
+
+[archive]
+Canonical archive roots:
+- assets/_archive/*
+- tools/archive/*
+- backups/*
+Archive policy:
+- Preserve history, wrappers and experimental outputs here rather than deleting aggressively.
+
+[legacy]
+Known overlapping or legacy areas that still need future cleanup:
+- reports/audits/*
+- game/audio/audio_manifest.json (legacy mirror)
+- game/data/bgm_manifest.json (legacy compatibility mirror)
+- root wrapper tools that mirror namespaced implementations
+- game/assets/tmp (stale/temp candidate)
+Reason:
+- These still exist for compatibility or habit, but should not be the long-term canonical surface.
+
+[readiness_assessment]
+Current readiness by area:
+- audio_engine_architecture = READY_WITH_MIRRORS
+- art_pipeline_architecture = READY_WITH_ITERATION_NEEDED
+- manifests = READY_WITH_MIRRORS
+- tools_cli = READY
+- project_sanitization = READY_REPORT_FIRST
+- lore_structuring = PARTIAL
+- card_id_normalization = NOT_READY_FOR_DIRECT_MIGRATION
+
+[blocking_factors_for_extraction]
+Main blockers before a true engine split:
+- runtime still reads game/data and game/visual manifests directly
+- content and logic are still mixed in some game/* modules
+- UI screens blend reusable rendering logic with world-specific flow
+- some legacy mirrors remain active for compatibility
+- lore and cards are not yet normalized into engine-agnostic registries
+
+[recommended_extraction_sequence]
+1. Keep runtime stable and continue using mirrors.
+2. Move manifest resolution behind a single adapter layer.
+3. Export lore/card registries into structured data/ roots.
+4. Separate reusable UI framework pieces from game/ui/screens.
+5. Extract art/audio/rendering pipeline into engine/ runtime modules.
+6. Leave Purple Wizard content, lore and progression under game/.
+
+[canonical_next_actions]
+- Introduce a manifest adapter that prefers data/manifests but falls back to game/data.
+- Continue lore structuring into data/lore/*.json.
+- Introduce an id registry before any card-id migration.
+- Consolidate wrappers only after chakana_studio.py replaces direct old calls in docs/habits.
+
+[final_verdict]
+The repository is not yet extract-ready for a hard split, but it is now structurally classified and prepared for incremental engine extraction. The correct strategy is mirror-first and adapter-first, not move-first.

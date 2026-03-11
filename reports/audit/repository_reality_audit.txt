@@ -1,0 +1,128 @@
+﻿CHAKANA STUDIO MASTER CLI
+PHASE 1 - REPOSITORY REALITY AUDIT
+
+status=WARNING
+workspace=C:\Users\mxpri\PurpleWizard\deckcards-python-purplewizard
+run_date=2026-03-11
+
+[summary]
+- Repository root is already partially consolidated: docs/, reports/, assets/, tools/, game/, engine/, qa/ are present.
+- Runtime canonical data still lives under game/data, not under data/manifests or data/lore.
+- assets/art_reference is the active reference root; requested assets/art_references does not exist.
+- Canonical archive root is assets/_archive; several maintenance tools still reference legacy assets/archive.
+- Tooling duplication remains high between tools/, tools/assets/, tools/qa/ and tools/maintenance/.
+- Reports are already centralized under reports/, but report volume is high and there is stale validation/audit clutter.
+
+[root_folders]
+- .git
+- .vscode
+- assets
+- backups
+- docs
+- engine
+- game
+- qa
+- reports
+- tools
+- build root files present: AGENTS.md, run.ps1, savegame.json, requirements, pyproject, etc.
+
+[active_runtime_paths]
+- runtime_data=game/data
+- runtime_art_cards=game/assets/sprites/cards
+- runtime_art_curated=game/assets/curated
+- runtime_audio_curated=game/assets/curated/audio
+- runtime_audio_generated=game/audio/generated
+- runtime_visual_generated=game/visual/generated
+- runtime_visual_manifest=game/visual/visual_manifest.json
+- runtime_portrait_manifest=game/visual/portrait_manifest.json
+- runtime_audio_manifest=game/data/audio_manifest.json
+- runtime_art_manifest=game/data/art_manifest.json
+- support_reference=assets/art_reference
+- archive_root=assets/_archive
+
+[missing_or_broken_references]
+- MISSING data/manifests/ (target location requested by new pass does not exist yet)
+- MISSING assets/art_references/ (plural path requested by user; actual path is assets/art_reference/)
+- MISSING assets/archive/ (legacy path still referenced by maintenance tooling; canonical path is assets/_archive/)
+- MISSING game/data/art_manifest_avatar.json
+- MISSING game/data/art_manifest_enemies.json
+- MISSING game/data/art_manifest_guides.json
+- MISSING game/data/biome_manifest.json
+- game/assets/tmp exists unexpectedly after earlier cleanup expectations; likely stale temp/runtime folder candidate
+
+[manifest_inventory]
+- game/visual/visual_manifest.json
+- game/visual/portrait_manifest.json
+- game/data/studio_intro_manifest.json
+- game/data/prompt_manifest.json
+- game/data/art_manifest_starters.json
+- game/data/art_manifest_cards.json
+- game/data/art_manifest.json
+- game/data/audio_stinger_manifest.json
+- game/data/audio_sfx_manifest.json
+- game/data/audio_music_manifest.json
+- game/data/audio_manifest.json
+- game/data/audio_ambient_manifest.json
+- game/data/bgm_manifest.json
+- game/audio/audio_manifest.json (legacy mirror)
+
+[top_manifest_issues]
+- Manifest locations are split across game/data and game/visual; requested canonical data/manifests/ root is not in place yet.
+- audio manifest exists in two places: game/data/audio_manifest.json is canonical runtime source; game/audio/audio_manifest.json remains as legacy compatibility mirror.
+- art manifest family is partially normalized: art_manifest.json and art_manifest_cards.json exist, but art_manifest_avatar/enemies/guides are referenced by tools and docs yet missing on disk.
+- prompt_manifest.json and art_manifest_cards.json are placeholder-sized files (57 bytes), indicating weak/partial normalization and likely redundant manifest variants.
+- bgm_manifest.json is still present as compatibility mirror even though audio engine already exports typed manifests (music/stinger/sfx/ambient).
+
+[active_runtime_vs_legacy]
+- Active audio runtime uses game/data/audio_manifest.json + typed manifests under game/data/.
+- Active portrait pipeline uses game/visual/portrait_manifest.json and game/assets/curated/avatars.
+- Active visual support uses assets/art_reference and assets/_archive.
+- Legacy paths still referenced in scripts/docs include assets/archive, game/assets/music, game/assets/sfx, game/assets/avatars, and game/audio/audio_manifest.json.
+
+[tooling_duplication]
+- tools/bootstrap_archon_curated_assets.py overlaps tools/assets/bootstrap_archon_curated_assets.py
+- tools/build_chakana_master_from_reference.py overlaps tools/assets/build_chakana_master_from_reference.py
+- tools/curated_regen_cache_reset.py overlaps tools/assets/curated_regen_cache_reset.py
+- tools/check_card_coherence.py overlaps tools/qa/check_card_coherence.py
+- tools/check_combat_content_lock.py overlaps tools/qa/check_combat_content_lock.py
+- tools/check_deck_system.py overlaps tools/qa/check_deck_system.py
+- tools/final_gameplay_integration_fix.py overlaps tools/maintenance/final_gameplay_integration_fix.py
+- multiple qa_phase*.py files exist both at tools root and under tools/qa
+
+[reusable_existing_tools]
+- tools/doctor.py
+- tools/clean_autogen.py
+- tools/regen_assets.py
+- tools/qa_report_generator.py
+- tools/assets/build_curated_context_audio.py
+- tools/assets/regenerate_audio_outside_runtime.py
+- tools/assets/regenerate_premium_card_batch.py
+- tools/assets/preview_scene_layers.py
+- tools/assets/run_art_quality_validation.py
+- tools/assets/run_card_art_iteration_pass.py
+- tools/qa/check_beta_run_flow.py
+- tools/maintenance/chakana_project_audit_consolidation.py
+
+[art_reference_state]
+- assets/art_reference is populated and already reorganized into useful categories:
+  - environments/{forest,mountains,ruins,sea,sky,temples,void}
+  - lighting/{dark,sunrise,sunset}
+  - palettes/{archon,hyperborea,solar}
+  - silhouettes/{characters,creatures,poses,weapons}
+  - subjects/{archons,beasts,guides,solar_warriors}
+  - symbols/{chakana,runes,sacred_geometry}
+  - weapons/
+- This is a usable base for Phase 4 integration, but naming differs from the requested future root and should be normalized carefully instead of moved blindly.
+
+[top_risks]
+- Blindly moving manifests into data/manifests/ will break runtime loaders that currently expect game/data/*.json and game/visual/*.json.
+- Blindly removing duplicate tools will break existing command habits and internal wrappers.
+- Some maintenance scripts still point at assets/archive and legacy audio paths; consolidating without shims will cause silent tooling regressions.
+- game/assets/tmp may contain ephemeral files still expected by a local user workflow; archive/inspect before removal.
+
+[recommendation_phase_2]
+- Prepare canonical structure as wrappers-first, not move-first.
+- Keep game/data and game/visual manifest locations alive temporarily; create future canonical data/manifests/ as managed mirrors later.
+- Adopt assets/art_reference as canonical reference root and document it instead of renaming immediately.
+- Create a single preferred CLI entrypoint under tools/chakana_studio.py that wraps existing reusable tools before archiving duplicates.
+- Add compatibility notes/shims for assets/_archive vs assets/archive and game/data/audio_manifest.json vs game/audio/audio_manifest.json.

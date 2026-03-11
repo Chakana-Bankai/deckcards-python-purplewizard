@@ -1,0 +1,103 @@
+{
+  "version": "chakana_codex_manifest_v1",
+  "generated_at": 1773242157,
+  "source_runtime_paths": [
+    "game/data/codex.json",
+    "game/data/codex_cards_hiperboria.json",
+    "game/data/codex_cards_arconte.json",
+    "game/data/codex_cards_lore_set1.json",
+    "game/data/codex_relics_lore_set1.json"
+  ],
+  "sections": [
+    {
+      "id": "lore",
+      "title": "Lore",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "systems",
+      "title": "Sistemas",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "rules",
+      "title": "Reglas",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "cards",
+      "title": "Cartas",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "enemies",
+      "title": "Enemigos",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "archons",
+      "title": "Arcontes",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "biomes",
+      "title": "Biomas",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "relics",
+      "title": "Reliquias",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "builds",
+      "title": "Builds",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "tips_help",
+      "title": "Tips / Ayuda",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "bestiary",
+      "title": "Bestiary",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "atlas",
+      "title": "Atlas",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "history",
+      "title": "History",
+      "title_key": null,
+      "entry_type": null
+    },
+    {
+      "id": "symbols",
+      "title": "Symbols",
+      "title_key": null,
+      "entry_type": null
+    }
+  ],
+  "datasets": {
+    "cards_hiperboria": 60,
+    "cards_arconte": 60,
+    "cards_lore_set1": 60,
+    "relics_lore_set1": 12
+  }
+}

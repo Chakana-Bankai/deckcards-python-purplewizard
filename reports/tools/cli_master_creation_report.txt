@@ -1,0 +1,44 @@
+﻿chakana studio master cli
+generated=2026-03-11
+
+entrypoint:
+- tools/chakana_studio.py
+
+commands:
+- project-audit
+- sanitize
+- duplication-check
+- manifest-audit
+- art-audit
+- audio-audit
+- qa-smoke
+- balance-sim
+- ui-audit
+- engine-audit
+- reports-build
+
+wrappers_created:
+- tools/lib/common.py
+- tools/lib/project_audit.py
+- tools/lib/project_sanitizer.py
+- tools/lib/duplicate_detector.py
+- tools/lib/manifest_manager.py
+- tools/lib/art_pipeline.py
+- tools/lib/audio_pipeline.py
+- tools/lib/qa_smoke.py
+- tools/lib/balance_simulator.py
+- tools/lib/ui_audit.py
+- tools/lib/engine_extractor.py
+- tools/lib/reports_build.py
+
+existing_tools_reused:
+- tools.doctor
+- tools.qa.check_beta_run_flow
+- reports/audit/*
+- data/manifests/*
+
+preferred_usage:
+- python tools/chakana_studio.py project-audit
+- python tools/chakana_studio.py manifest-audit
+- python tools/chakana_studio.py qa-smoke
+- python tools/chakana_studio.py reports-build

@@ -1,0 +1,13 @@
+phase=3
+status=ok
+created_runtime=game/data/art_manifest_avatar.json,game/data/art_manifest_enemies.json,game/data/art_manifest_guides.json,game/data/biome_manifest.json
+created_canonical=data/manifests/art_manifest.json,data/manifests/audio_manifest.json,data/manifests/card_manifest.json,data/manifests/codex_manifest.json
+cards_count=180
+audio_items=35
+portrait_items=94
+visual_items=155
+enemy_entries=10
+guide_entries=13
+biome_entries=7
+missing_refs=none
+notes=runtime manifests kept in place; canonical mirrors written under data/manifests

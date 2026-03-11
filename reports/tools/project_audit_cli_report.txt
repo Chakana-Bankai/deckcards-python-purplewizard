@@ -1,0 +1,16 @@
+chakana_studio project audit
+generated=2026-03-11 12:34:55
+
+mode=project_audit
+dry_run=False
+
+checkpoints:
+- reports/audit/repository_reality_audit.txt => OK
+- reports/audit/canonical_structure_plan.txt => OK
+- reports/audit/manifest_recovery_report.txt => OK
+- reports/art/art_references_integration_report.txt => OK
+
+canonical_runtime_roots:
+- game/data
+- game/assets/sprites/cards
+- assets/art_reference

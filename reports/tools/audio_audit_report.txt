@@ -1,0 +1,9 @@
+chakana_studio audio audit
+generated=2026-03-11 12:44:41
+
+mode=audio_audit
+dry_run=True
+
+- data/manifests/audio_manifest.json => OK keys=7
+- game/data/audio_manifest.json => OK keys=3
+- game/data/audio_music_manifest.json => OK keys=3

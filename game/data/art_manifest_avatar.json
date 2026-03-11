@@ -1,0 +1,7 @@
+{
+  "generator_version": "recovered_v1",
+  "path": "game/assets/sprites/avatar/chakana.png",
+  "player_path": "game/assets/sprites/player/chakana_avatar.png",
+  "exists": true,
+  "source": "game/visual/portrait_manifest.json"
+}
