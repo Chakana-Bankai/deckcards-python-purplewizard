@@ -114,11 +114,13 @@ def _draw_archon_throne(surface: pygame.Surface, rect: pygame.Rect, color, accen
     pygame.draw.rect(surface, color, throne, border_radius=6)
     pygame.draw.rect(surface, accent, (throne.x + throne.w // 3, throne.y - rect.h // 7, throne.w // 3, rect.h // 7), border_radius=4)
     pygame.draw.rect(surface, accent, (throne.x + throne.w // 6, throne.bottom - rect.h // 8, throne.w * 2 // 3, rect.h // 8), border_radius=4)
-    _draw_humanoid(surface, pygame.Rect(rect.x + rect.w // 5, rect.y + rect.h // 8, rect.w * 3 // 5, rect.h * 3 // 4), color, accent, crown=True)
-    pygame.draw.circle(surface, accent, (rect.centerx, rect.y + rect.h // 5), rect.w // 9, 3)
+    _draw_humanoid(surface, pygame.Rect(rect.x + rect.w // 6, rect.y + rect.h // 6, rect.w * 2 // 3, rect.h * 4 // 5), color, accent, crown=True)
+    pygame.draw.circle(surface, accent, (rect.centerx, rect.y + rect.h // 5), rect.w // 8, 4)
+    pygame.draw.rect(surface, accent, (rect.centerx - rect.w // 7, rect.centery + rect.h // 8, rect.w // 3, rect.h // 10), border_radius=5)
 
 
 def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, rng: random.Random):
+    kind = str(semantic.get('subject_kind', '') or '').lower().replace(' ', '_')
     subject = ' '.join([
         str(semantic.get('subject', '') or ''),
         str(semantic.get('environment', '') or ''),
@@ -126,9 +128,20 @@ def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, r
     ]).lower()
     main = palette[2]
     accent = palette[3]
-    rect = pygame.Rect(int(surface.get_width() * 0.14), int(surface.get_height() * 0.08), int(surface.get_width() * 0.72), int(surface.get_height() * 0.68))
+    rect = pygame.Rect(int(surface.get_width() * 0.1), int(surface.get_height() * 0.04), int(surface.get_width() * 0.8), int(surface.get_height() * 0.74))
     layer = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
-    if any(k in subject for k in ('condor', 'bird', 'ave')):
+    if kind == 'hyperborean_champion':
+        _draw_weapon_bearer(layer, rect, main, accent)
+        pygame.draw.rect(layer, accent, (rect.centerx - rect.w // 12, rect.y + rect.h // 8, rect.w // 6, rect.h // 10), border_radius=4)
+    elif kind == 'archon_beast':
+        _draw_beast(layer, rect, main, accent)
+        pygame.draw.circle(layer, accent, (rect.centerx + rect.w // 6, rect.centery - rect.h // 10), 8)
+    elif kind == 'guardian_bearer':
+        _draw_humanoid(layer, rect, main, accent, crown=False)
+        shield = pygame.Rect(rect.centerx + rect.w // 10, rect.centery - rect.h // 14, rect.w // 4, rect.h // 3)
+        pts = [(shield.centerx, shield.top), (shield.right, shield.top + shield.h // 3), (shield.right - shield.w // 6, shield.bottom), (shield.left + shield.w // 6, shield.bottom), (shield.left, shield.top + shield.h // 3)]
+        pygame.draw.polygon(layer, accent, pts)
+    elif any(k in subject for k in ('condor', 'bird', 'ave')):
         _draw_condor(layer, rect, main, accent)
     elif any(k in subject for k in ('tree', 'gaia', 'arbol')):
         _draw_tree(layer, rect, main, accent)
@@ -151,28 +164,29 @@ def draw_subject(surface: pygame.Surface, semantic: dict, refs: list, palette, r
 
 
 def draw_focus_object(surface: pygame.Surface, semantic: dict, palette, rng: random.Random):
+    kind = str(semantic.get('object_kind', '') or '').lower().replace(' ', '_')
     obj = str(semantic.get('object', '') or '').lower()
     color = palette[1]
     glow = palette[3]
-    rect = pygame.Rect(int(surface.get_width() * 0.29), int(surface.get_height() * 0.56), int(surface.get_width() * 0.42), int(surface.get_height() * 0.24))
+    rect = pygame.Rect(int(surface.get_width() * 0.24), int(surface.get_height() * 0.54), int(surface.get_width() * 0.52), int(surface.get_height() * 0.28))
     layer = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
-    if any(k in obj for k in ('sword', 'blade', 'axe', 'spear', 'weapon')):
+    if kind == 'weapon' or any(k in obj for k in ('sword', 'blade', 'axe', 'spear', 'weapon')):
         _blocky_line(layer, color, (rect.left + 16, rect.bottom - 6), (rect.right - 10, rect.top + 6), 10)
         pygame.draw.line(layer, glow, (rect.centerx - 12, rect.centery + 14), (rect.centerx + 12, rect.centery + 14), 4)
         pygame.draw.line(layer, glow, (rect.right - 14, rect.top + 10), (rect.right - 14, rect.top - 10), 3)
-    elif any(k in obj for k in ('codex', 'book', 'tablet')):
+    elif kind == 'codex' or any(k in obj for k in ('codex', 'book', 'tablet')):
         pygame.draw.rect(layer, color, rect, border_radius=6)
         pygame.draw.rect(layer, glow, rect.inflate(-14, -14), 3, border_radius=4)
-    elif any(k in obj for k in ('shield', 'ward')):
+    elif kind == 'shield' or any(k in obj for k in ('shield', 'ward')):
         pts = [(rect.centerx, rect.top), (rect.right, rect.top + rect.h // 3), (rect.right - rect.w // 6, rect.bottom), (rect.left + rect.w // 6, rect.bottom), (rect.left, rect.top + rect.h // 3)]
         pygame.draw.polygon(layer, color, pts)
         pygame.draw.polygon(layer, glow, pts, 3)
-    elif any(k in obj for k in ('crown', 'corona')):
+    elif kind == 'crown' or any(k in obj for k in ('crown', 'corona')):
         base = pygame.Rect(rect.left + 8, rect.centery, rect.w - 16, rect.h // 3)
         pygame.draw.rect(layer, color, base)
         peaks = [(base.left, base.top), (base.left + base.w // 4, base.top - 18), (base.centerx, base.top - 6), (base.right - base.w // 4, base.top - 18), (base.right, base.top)]
         pygame.draw.lines(layer, glow, False, peaks, 3)
-    elif any(k in obj for k in ('altar', 'brazier', 'relic', 'prism', 'anchor', 'seal')):
+    elif kind in {'altar', 'seal'} or any(k in obj for k in ('altar', 'brazier', 'relic', 'prism', 'anchor', 'seal')):
         pygame.draw.rect(layer, color, rect.inflate(-20, -20), border_radius=8)
         pygame.draw.rect(layer, glow, (rect.centerx - 10, rect.top + 8, 20, rect.h - 24), 0, border_radius=4)
     else:

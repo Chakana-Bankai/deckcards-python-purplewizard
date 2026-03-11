@@ -31,9 +31,12 @@ def semantic_from_prompt(prompt: str) -> dict:
         'palette': _extract_field(p, 'palette ', ('lighting', 'sacred geometry', 'motif', 'subject', 'object', 'environment', 'effects', 'effect signature', 'energy pattern')),
         'motif': _extract_field(p, 'motif ', ('(', 'subject', 'object', 'environment', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
         'symbol': _extract_field(p, 'sacred geometry ', ('motif', 'subject', 'object', 'environment', 'effects', 'effect signature', 'energy pattern')),
-        'subject': _extract_field(p, 'subject ', ('object', 'environment', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
-        'object': _extract_field(p, 'object ', ('environment', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
-        'environment': _extract_field(p, 'environment ', ('effects', 'effect signature', 'energy pattern', 'lore tokens')),
+        'subject': _extract_field(p, 'subject ', ('object', 'environment', 'subject kind', 'object kind', 'environment kind', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
+        'object': _extract_field(p, 'object ', ('environment', 'subject kind', 'object kind', 'environment kind', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
+        'environment': _extract_field(p, 'environment ', ('subject kind', 'object kind', 'environment kind', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
+        'subject_kind': _extract_field(p, 'subject kind ', ('object kind', 'environment kind', 'effect signature', 'effects', 'energy pattern', 'lore tokens')),
+        'object_kind': _extract_field(p, 'object kind ', ('environment kind', 'effect signature', 'effects', 'energy pattern', 'lore tokens')),
+        'environment_kind': _extract_field(p, 'environment kind ', ('effect signature', 'effects', 'energy pattern', 'lore tokens')),
         'effects': _extract_field(p, 'effects ', ('energy pattern', 'lore tokens')),
         'effects_desc': _extract_field(p, 'effect signature ', ('effects', 'energy pattern', 'lore tokens')),
         'energy': _extract_field(p, 'energy pattern ', ('lore tokens',)),
@@ -58,10 +61,10 @@ def _palette_from_refs(choices):
 def _categories_for_prompt(prompt: str) -> list[str]:
     low = str(prompt or '').lower()
     if 'hiperboria' in low or 'hiperborea' in low or 'hip_' in low:
-        return ['fantasy_landscapes', 'ancient_architecture', 'characters_subjects', 'weapons_relics']
+        return ['characters_subjects', 'weapons_relics', 'fantasy_landscapes', 'ancient_architecture']
     if 'archon' in low or 'arconte' in low or 'void' in low or 'arc_' in low:
-        return ['biblical_archetypes', 'characters_subjects', 'weapons_relics', 'ancient_architecture']
-    return ['andean_mythology', 'fantasy_landscapes', 'characters_subjects', 'weapons_relics', 'chakana_symbols']
+        return ['characters_subjects', 'weapons_relics', 'biblical_archetypes', 'ancient_architecture']
+    return ['characters_subjects', 'weapons_relics', 'andean_mythology', 'fantasy_landscapes', 'chakana_symbols']
 
 
 def _keywords_from_semantic(semantic: dict) -> list[str]:
@@ -116,7 +119,7 @@ def _draw_background(surface: pygame.Surface, semantic: dict, palette, rng: rand
             pygame.draw.rect(far, (acc[0], acc[1], acc[2], 190), (bx + bw // 4, by - 10, bw // 2, 10), border_radius=2)
         surface.blit(far, (0, 0))
         mid_layer = pygame.Surface((w, h), pygame.SRCALPHA)
-        keep = pygame.Rect(int(w * 0.3), int(h * 0.22), int(w * 0.4), int(h * 0.48))
+        keep = pygame.Rect(int(w * 0.22), int(h * 0.14), int(w * 0.56), int(h * 0.62))
         for _ in range(4):
             bw = rng.randint(w // 8, w // 5)
             bh = rng.randint(h // 6, h // 3)
@@ -156,7 +159,7 @@ def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
     work = pygame.Surface((768, 768), pygame.SRCALPHA, 32)
     _draw_background(work, semantic, palette, rng)
     shadow = pygame.Surface(work.get_size(), pygame.SRCALPHA)
-    pygame.draw.ellipse(shadow, (0, 0, 0, 46), (int(work.get_width() * 0.22), int(work.get_height() * 0.56), int(work.get_width() * 0.56), int(work.get_height() * 0.18)))
+    pygame.draw.ellipse(shadow, (0, 0, 0, 54), (int(work.get_width() * 0.18), int(work.get_height() * 0.58), int(work.get_width() * 0.64), int(work.get_height() * 0.2)))
     work.blit(shadow, (0, 0))
     draw_subject(work, semantic, refs, palette, rng)
     draw_focus_object(work, semantic, palette, rng)

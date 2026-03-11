@@ -156,46 +156,83 @@ class PromptBuilder:
             ]
         environment = env_cycle[sum(ord(ch) for ch in cid) % len(env_cycle)]
 
+        subject_kind = "humanoid"
+        object_kind = "orb_focus"
+        environment_kind = "sanctuary"
         if family == "attack":
             subject = "armed attacker in clear combat pose with readable silhouette"
             obj_cycle = ["weapon blade", "spear relic", "solar axe", "astral claw focus", "ritual sword"]
+            subject_kind = "weapon_bearer"
+            object_kind = "weapon"
         elif family == "defense":
             subject = "guardian, sentinel or shield bearer in anchored stance"
             obj_cycle = ["shield seal", "stone ward", "defensive relic", "barrier totem", "tower shield"]
+            subject_kind = "guardian_bearer"
+            object_kind = "shield"
         elif family == "ritual":
             subject = "ritual caster or ceremonial conduit channeling power"
             obj_cycle = ["altar focus", "seal tablet", "sacred catalyst", "ritual brazier", "chakana altar"]
+            subject_kind = "oracle_totem"
+            object_kind = "altar"
         elif family == "control":
             subject = "oracle, seer or mind-weaver reading the flow"
             obj_cycle = ["eye relic", "codex shard", "divination instrument", "thread compass", "vision tablet"]
+            subject_kind = "oracle_totem"
+            object_kind = "codex"
         else:
             subject = "mystic conduit or spiritual avatar holding the field"
             obj_cycle = ["chakana relic", "energy knot", "sacred prism", "ether anchor", "ceremonial seal"]
+            subject_kind = "humanoid"
+            object_kind = "seal"
         obj = obj_cycle[(sum(ord(ch) for ch in cid[::-1]) + len(role)) % len(obj_cycle)]
 
         if arch == "oracle_of_fate":
             subject = "oracular figure with intense gaze reading the weave, standing before a divination totem"
+            subject_kind = "oracle_totem"
+            object_kind = "codex"
         elif arch == "harmony_guardian":
             subject = "guardian figure holding balance and warding force with shielded posture"
+            subject_kind = "guardian_bearer"
+            object_kind = "shield"
         elif arch == "cosmic_warrior":
             subject = "cosmic warrior driving forward with decisive motion and visible weapon silhouette"
+            subject_kind = "weapon_bearer"
+            object_kind = "weapon"
         elif "archon" in arch or cid.startswith("arc_"):
             subject = "archon entity or corrupted servant dominating the scene from a malign throne or monolith"
+            subject_kind = "archon_throne"
+            object_kind = "seal"
 
         if set_id in {"hiperboria", "hiperborea"}:
+            environment_kind = "citadel"
             if family == "attack":
                 subject = "hyperborean champion advancing from a polar citadel with heroic silhouette"
+                subject_kind = "hyperborean_champion"
+                object_kind = "weapon"
             elif family == "defense":
                 subject = "hyperborean guardian holding the line before crystalline walls"
+                subject_kind = "guardian_bearer"
+                object_kind = "shield"
             elif family == "control":
                 subject = "hyperborean oracle reading frozen stars above an ancient observatory"
+                subject_kind = "oracle_totem"
+                object_kind = "codex"
         elif set_id in {"arconte", "archon"} or cid.startswith("arc_"):
+            environment_kind = "throne_realm"
             if family == "attack":
                 subject = "corrupted warlord or void beast lunging from a throne-realm"
+                subject_kind = "archon_beast"
+                object_kind = "weapon"
             elif family == "ritual":
                 subject = "archon hierophant channeling a dark decree over a profane altar"
+                subject_kind = "archon_throne"
+                object_kind = "seal"
             elif family == "control":
                 subject = "void seer shaping dread symbols around a malign monument"
+                subject_kind = "archon_throne"
+                object_kind = "codex"
+        else:
+            environment_kind = "gaia_sanctuary" if "gaia" in environment or "landscape" in environment else "sanctuary"
 
         effects = {
             "impacto_ofensivo": "focused offensive cuts, impact sparks, directional slash traces and controlled embers",
@@ -212,8 +249,11 @@ class PromptBuilder:
             effects += ", elevated focal glow and cleaner separation between planes"
         return {
             "subject": subject,
+            "subject_kind": subject_kind,
             "object": obj,
+            "object_kind": object_kind,
             "environment": environment,
+            "environment_kind": environment_kind,
             "effects": effects,
         }
 
@@ -229,11 +269,11 @@ class PromptBuilder:
         set_id = str(card.get('set', '') or '').lower()
         arch = str(card.get('archetype', '') or '').lower()
         if set_id in {'hiperboria', 'hiperborea'}:
-            categories = ['fantasy_landscapes', 'ancient_architecture', 'characters_subjects', 'weapons_relics', 'chakana_symbols']
+            categories = ['characters_subjects', 'weapons_relics', 'fantasy_landscapes', 'ancient_architecture', 'chakana_symbols']
         elif set_id in {'arconte', 'archon'} or arch == 'archon_war' or str(cid).lower().startswith('arc_'):
-            categories = ['biblical_archetypes', 'characters_subjects', 'weapons_relics', 'sacred_geometry', 'ancient_architecture', 'fantasy_landscapes']
+            categories = ['characters_subjects', 'biblical_archetypes', 'weapons_relics', 'sacred_geometry', 'ancient_architecture', 'fantasy_landscapes']
         else:
-            categories = ['andean_mythology', 'characters_subjects', 'weapons_relics', 'chakana_symbols', 'fantasy_landscapes', 'ancient_architecture']
+            categories = ['characters_subjects', 'weapons_relics', 'andean_mythology', 'chakana_symbols', 'fantasy_landscapes', 'ancient_architecture']
         ref_cues = self.refs.cues_for(categories)
         ref_text = ', '.join(ref_cues[:4]) if ref_cues else 'no external cues'
         prompt = (
@@ -241,6 +281,7 @@ class PromptBuilder:
             f"silhouette discipline, role {role}, rarity {rarity}, palette {palette}, lighting {lighting}, "
             f"sacred geometry {symbols}, symbolic overlays aligned to motif, motif {primary} ({shape}), "
             f"subject {blueprint['subject']}, object {blueprint['object']}, environment {blueprint['environment']}, "
+            f"subject kind {blueprint['subject_kind']}, object kind {blueprint['object_kind']}, environment kind {blueprint['environment_kind']}, "
             f"effect signature {effect_sig}, effects {blueprint['effects']}, energy pattern {energy}, lore tokens {lore_tokens}, "
             f"reference cues {ref_text}, crisp no blur, intentional composition, illustrative fantasy finish, painterly readability, strong focal character"
         )

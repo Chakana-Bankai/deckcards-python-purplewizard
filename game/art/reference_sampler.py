@@ -36,16 +36,27 @@ class ReferenceSampler:
     def _score(self, path: Path, keywords: list[str]) -> int:
         stem = path.stem.lower()
         score = 0
+        cat = path.parent.name.lower()
         for kw in keywords:
             low = str(kw or '').strip().lower()
             if not low:
                 continue
             if low in stem:
-                score += 4
+                score += 5
             else:
                 for token in low.replace('-', ' ').replace('_', ' ').split():
                     if token and token in stem:
-                        score += 1
+                        score += 2
+        if cat == 'characters_subjects':
+            score += 10
+        elif cat == 'weapons_relics':
+            score += 7
+        elif cat == 'biblical_archetypes':
+            score += 4
+        elif cat == 'ancient_architecture':
+            score += 2
+        elif cat == 'fantasy_landscapes':
+            score += 1
         return score
 
     def _avg_color(self, path: Path) -> tuple[int, int, int]:
