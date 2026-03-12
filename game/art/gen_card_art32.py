@@ -187,24 +187,7 @@ def _draw_grid_nodes(surface: pygame.Surface, rng: random.Random, color):
 
 
 def _draw_chakana_frame(surface: pygame.Surface, color):
-    w, h = surface.get_size()
-    r = pygame.Rect(10, 8, w - 20, h - 16)
-    step = 8
-    pts = [
-        (r.left + step, r.top),
-        (r.right - step, r.top),
-        (r.right - step, r.top + step),
-        (r.right, r.top + step),
-        (r.right, r.bottom - step),
-        (r.right - step, r.bottom - step),
-        (r.right - step, r.bottom),
-        (r.left + step, r.bottom),
-        (r.left + step, r.bottom - step),
-        (r.left, r.bottom - step),
-        (r.left, r.top + step),
-        (r.left + step, r.top + step),
-    ]
-    pygame.draw.lines(surface, (*color, 108), True, pts, 2)
+    return
 
 
 def _draw_geometry(surface: pygame.Surface, variant: int, rng: random.Random, color):
@@ -215,7 +198,7 @@ def _draw_geometry(surface: pygame.Surface, variant: int, rng: random.Random, co
     elif variant == 2:
         _draw_grid_nodes(surface, rng, color)
     else:
-        _draw_chakana_frame(surface, color)
+        _draw_rosette(surface, rng, color)
 
 
 def _draw_symbol_overlay(surface: pygame.Surface, symbol: str, color: tuple[int, int, int]):
@@ -573,11 +556,9 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
             _boost_legendary_saturation(low)
             pygame.draw.circle(low, (*pal[3], 96), (80, 56), 34, 2)
 
-        for c in [(6, 6), (154, 6), (6, 106), (154, 106)]:
-            pygame.draw.circle(low, pal[3], c, 4, 1)
-        vign = pygame.Surface((160, 112), pygame.SRCALPHA)
-        pygame.draw.rect(vign, (0, 0, 0, 96), vign.get_rect(), width=10)
-        low.blit(vign, (0, 0))
+        shade = pygame.Surface((160, 112), pygame.SRCALPHA)
+        shade.fill((0, 0, 0, 18))
+        low.blit(shade, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
 
         h = _hash16(low)
         if last_hash is None or abs(h - last_hash) > 100:

@@ -99,11 +99,11 @@ def _scene_finish_pass(out_path: Path, seed: int, prompt: str) -> dict:
         pygame.draw.line(grade, (*p_deep, a), (0, y), (w, y), 1)
     surf.blit(grade, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
-    # subtle edge vignette only; no giant ellipses or intrusive geometry over the subject.
-    vignette = pygame.Surface((w, h), pygame.SRCALPHA)
-    pygame.draw.rect(vignette, (0, 0, 0, 22), pygame.Rect(0, 0, w, h), 3, border_radius=10)
-    pygame.draw.rect(vignette, (0, 0, 0, 14), pygame.Rect(3, 3, w - 6, h - 6), 2, border_radius=8)
-    surf.blit(vignette, (0, 0))
+    tone = pygame.Surface((w, h), pygame.SRCALPHA)
+    for y in range(h):
+        alpha = int(8 + 10 * (y / max(1, h - 1)))
+        pygame.draw.line(tone, (0, 0, 0, alpha), (0, y), (w, y), 1)
+    surf.blit(tone, (0, 0))
 
     spark_n = 8 if style != 'archon' else 5
     for _ in range(spark_n):
@@ -181,9 +181,8 @@ def _narrative_pass(out_path: Path, seed: int, mode: str, prompt: str) -> dict:
     surf.blit(focus, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
     vignette = pygame.Surface((w, h), pygame.SRCALPHA)
-    for i in range(3):
-        pygame.draw.rect(vignette, (0, 0, 0, 16 + i * 7), pygame.Rect(i * 2, i * 2, w - i * 4, h - i * 4), 2, border_radius=10)
-    surf.blit(vignette, (0, 0))
+    pygame.draw.ellipse(vignette, (0, 0, 0, 28), (w // 10, h // 12, w * 4 // 5, h * 5 // 6))
+    surf.blit(vignette, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
 
     # Action/energy (10-20%): arcs, sparks, and directional energy.
     fx = pygame.Surface((w, h), pygame.SRCALPHA)

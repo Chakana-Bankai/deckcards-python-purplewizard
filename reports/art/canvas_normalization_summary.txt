@@ -1,0 +1,6 @@
+canvas_normalization_summary
+1. Pipeline changes: normalized the art canvas to a 1920x1080 output with a 480x270 composition base, a 70% safe art zone, subject anchor modes, and occupancy caps for subject/object layers.
+2. Washout fix: safe art sector clamping, centered subject sectors, and controlled object sectors prevented oversized subjects and props from overrunning the frame.
+3. Figure construction fix: subjects now build inside the safe art sector and expose center, lower_center, and golden_ratio anchors for more stable card composition.
+4. Metrics passed: ARCHON, SOLAR_WARRIOR, GUIDE_MAGE; thresholds checked include occupancy, contrast, visibility, FX occlusion, weapon attachment, silhouette integrity, and limb connection.
+5. Remaining refinement before scaling: fine-tune per-archetype anchor defaults and add explicit safe-zone overlays in debug mode when reviewing future cards.

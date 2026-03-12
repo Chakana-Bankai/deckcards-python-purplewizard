@@ -55,6 +55,13 @@ PIPELINE_ORDER = [
 
 SCENE_COMPOSITION_SIZE = (480, 270)
 SCENE_OUTPUT_SIZE = (1920, 1080)
+SAFE_ART_ZONE_RATIO = 0.70
+MAX_OCC_SUBJECT = 0.40
+MAX_OCC_OBJECT = 0.25
+TARGET_BACKGROUND_RATIO = 0.35
+SKY_ZONE_RATIO = 0.30
+SUBJECT_ZONE_RATIO = 0.40
+GROUND_ZONE_RATIO = 0.30
 
 REQUIRED_OCC_SUBJECT = 0.22
 REQUIRED_OCC_OBJECT = 0.06
@@ -220,13 +227,13 @@ def _blit_environment_reference(layer: pygame.Surface, ref_path: Path | None, pa
     tint.fill((mid[0], mid[1], mid[2], 42))
     framed.blit(tint, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
     shade = pygame.Surface((lw, lh), pygame.SRCALPHA)
-    pygame.draw.rect(shade, (0, 0, 0, 28), (0, int(lh * 0.55), lw, int(lh * 0.45)))
+    pygame.draw.rect(shade, (0, 0, 0, 44), (0, int(lh * 0.52), lw, int(lh * 0.48)))
     framed.blit(shade, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
     glow = pygame.Surface((lw, lh), pygame.SRCALPHA)
-    glow.fill((acc[0], acc[1], acc[2], 10))
+    glow.fill((acc[0], acc[1], acc[2], 6))
     framed.blit(glow, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
     floor = pygame.Surface((lw, lh), pygame.SRCALPHA)
-    pygame.draw.rect(floor, (low[0], low[1], low[2], 30), (0, int(lh * 0.70), lw, int(lh * 0.30)))
+    pygame.draw.rect(floor, (low[0], low[1], low[2], 22), (0, int(lh * 0.70), lw, int(lh * 0.30)))
     framed.blit(floor, (0, 0))
     layer.blit(framed, (0, 0))
     return True
@@ -234,14 +241,41 @@ def _blit_environment_reference(layer: pygame.Surface, ref_path: Path | None, pa
 
 def _build_scene_sectors(size: tuple[int, int]) -> dict[str, pygame.Rect]:
     w, h = size
+    sky_h = int(h * SKY_ZONE_RATIO)
+    subject_h = int(h * SUBJECT_ZONE_RATIO)
+    ground_h = h - sky_h - subject_h
+    safe_w = int(w * SAFE_ART_ZONE_RATIO)
+    safe_h = int(h * SAFE_ART_ZONE_RATIO)
+    safe_rect = pygame.Rect((w - safe_w) // 2, (h - safe_h) // 2, safe_w, safe_h)
+    sky_sector = pygame.Rect(0, 0, w, sky_h)
+    center_subject_zone = pygame.Rect(int(w * 0.25), sky_h, int(w * 0.50), subject_h)
+    ground_sector = pygame.Rect(0, sky_h + subject_h, w, ground_h)
+    subject_sector = center_subject_zone.clip(safe_rect)
+    object_sector = pygame.Rect(
+        int(center_subject_zone.left + center_subject_zone.width * 0.58),
+        int(center_subject_zone.top + center_subject_zone.height * 0.08),
+        int(center_subject_zone.width * 0.26),
+        int(center_subject_zone.height * 0.74),
+    ).clip(safe_rect)
+    symbol_sector = pygame.Rect(
+        int(center_subject_zone.left + center_subject_zone.width * 0.12),
+        max(0, int(sky_sector.bottom - center_subject_zone.height * 0.18)),
+        int(center_subject_zone.width * 0.68),
+        int(center_subject_zone.height * 0.26),
+    ).clip(pygame.Rect(0, 0, w, h))
+    fx_front_sector = subject_sector.inflate(-int(subject_sector.width * 0.18), -int(subject_sector.height * 0.22)).clip(safe_rect)
     return {
         'background_sector': pygame.Rect(0, 0, w, h),
         'environment_sector': pygame.Rect(0, 0, w, h),
-        'subject_sector': pygame.Rect(int(w * 0.28), int(h * 0.07), int(w * 0.44), int(h * 0.74)),
-        'object_sector': pygame.Rect(int(w * 0.48), int(h * 0.14), int(w * 0.28), int(h * 0.62)),
-        'symbol_sector': pygame.Rect(int(w * 0.22), int(h * 0.02), int(w * 0.56), int(h * 0.28)),
-        'fx_back_sector': pygame.Rect(int(w * 0.12), int(h * 0.06), int(w * 0.76), int(h * 0.70)),
-        'fx_front_sector': pygame.Rect(int(w * 0.28), int(h * 0.14), int(w * 0.44), int(h * 0.52)),
+        'safe_art_sector': safe_rect,
+        'sky_sector': sky_sector,
+        'subject_center_zone': center_subject_zone,
+        'ground_sector': ground_sector,
+        'subject_sector': subject_sector,
+        'object_sector': object_sector,
+        'symbol_sector': symbol_sector,
+        'fx_back_sector': safe_rect.inflate(int(safe_rect.width * 0.08), int(safe_rect.height * 0.06)).clip(pygame.Rect(0, 0, w, h)),
+        'fx_front_sector': fx_front_sector,
     }
 
 
@@ -303,9 +337,9 @@ def _draw_foreground_plane(surface: pygame.Surface, palette, rng: random.Random)
     low = palette[2]
     accent = palette[3]
     plane = pygame.Surface((w, h), pygame.SRCALPHA)
-    horizon = int(h * 0.72)
+    horizon = int(h * 0.70)
     pts = [(0, h), (0, horizon), (int(w * 0.18), int(h * 0.68)), (int(w * 0.40), int(h * 0.74)), (int(w * 0.62), int(h * 0.70)), (int(w * 0.84), int(h * 0.75)), (w, int(h * 0.70)), (w, h)]
-    pygame.draw.polygon(plane, (max(10, low[0] // 2), max(10, low[1] // 2), max(10, low[2] // 2), 172), pts)
+    pygame.draw.polygon(plane, (max(10, low[0] // 2), max(10, low[1] // 2), max(10, low[2] // 2), 138), pts)
     for _ in range(4):
         x = rng.randint(0, w - 1)
         y = rng.randint(horizon - h // 20, h - 1)
@@ -607,7 +641,9 @@ def validate_readability(subject_mask: pygame.Surface, object_mask: pygame.Surfa
     grammar_match_score = _grammar_match_score(subject_layout, occ_subject, occ_object, weapon_attached_ratio, silhouette_integrity)
     readability_ok = (
         occ_subject >= REQUIRED_OCC_SUBJECT
+        and occ_subject <= MAX_OCC_SUBJECT
         and occ_object >= REQUIRED_OCC_OBJECT
+        and occ_object <= MAX_OCC_OBJECT
         and contrast_score >= REQUIRED_CONTRAST
         and subject_visible_ratio >= REQUIRED_SUBJECT_VISIBLE
         and subject_occluded_by_fx_ratio <= REQUIRED_MAX_FX_OCCLUSION
@@ -647,9 +683,12 @@ def assembly_pipeline_summary() -> dict[str, object]:
         'output_resolution': list(SCENE_OUTPUT_SIZE),
         'layer_layout': _layer_layout_summary(),
         'readability_thresholds': {
+            'safe_art_zone_ratio': SAFE_ART_ZONE_RATIO,
             'occ_subject_min': REQUIRED_OCC_SUBJECT,
+            'occ_subject_max': MAX_OCC_SUBJECT,
             'occ_subject_preferred_range': list(PREFERRED_OCC_SUBJECT_RANGE),
             'occ_object_min': REQUIRED_OCC_OBJECT,
+            'occ_object_max': MAX_OCC_OBJECT,
             'occ_object_preferred_range': list(PREFERRED_OCC_OBJECT_RANGE),
             'contrast_score_min': REQUIRED_CONTRAST,
             'subject_visible_ratio_min': REQUIRED_SUBJECT_VISIBLE,
@@ -730,6 +769,16 @@ def _render_scene_variant(semantic: dict, refs: list[ReferenceChoice], palette, 
 
 def assemble_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> AssemblyResult:
     semantic = validate_scene_semantic(semantic_from_prompt(prompt))
+    semantic['safe_art_zone_ratio'] = SAFE_ART_ZONE_RATIO
+    semantic.setdefault('max_subject_occ', MAX_OCC_SUBJECT)
+    semantic.setdefault('max_object_occ', MAX_OCC_OBJECT)
+    pose_text = str(semantic.get('subject_pose', '') or '').lower()
+    if 'solar_warrior_attack' in pose_text or 'attack' in pose_text:
+        semantic.setdefault('subject_anchor_mode', 'lower_center')
+    elif 'guide_mage_calm' in pose_text or 'calm' in pose_text:
+        semantic.setdefault('subject_anchor_mode', 'golden_ratio')
+    else:
+        semantic.setdefault('subject_anchor_mode', 'center')
     sampler = ReferenceSampler()
     explicit_refs = _resolve_explicit_refs(sampler, semantic)
     sampled_refs = sampler.pick(_categories_for_prompt(prompt), _keywords_from_semantic(semantic), seed)

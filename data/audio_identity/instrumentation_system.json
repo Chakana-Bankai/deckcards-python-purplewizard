@@ -1,0 +1,134 @@
+{
+  "version": "audio_identity_phase3",
+  "status": "canonical_instrumentation_system",
+  "identity_dependencies": {
+    "audio_identity_doc": "docs/audio_identity.md",
+    "music_specs": "data/music_specs/music_direction_mvp.json"
+  },
+  "global_rules": {
+    "max_primary_layers": 4,
+    "required_roles_per_context": [
+      "pad",
+      "lead_or_motif",
+      "texture"
+    ],
+    "optional_roles": [
+      "percussion",
+      "low_support",
+      "accent",
+      "reveal_hit"
+    ],
+    "forbidden_defaults": [
+      "single_sine_drone_only",
+      "generic_edm_supersaw_lead",
+      "demo_piano_main_melody",
+      "full_orchestra_wall_default"
+    ]
+  },
+  "contexts": {
+    "studio_intro": {
+      "pad": "airy_choir",
+      "lead_or_motif": "breath_flute",
+      "texture": "stone_bell_shimmer",
+      "low_support": "soft_ritual_drone",
+      "percussion": "none_or_single_heartbeat",
+      "intent": "short ceremonial signature with immediate universe identity"
+    },
+    "main_menu": {
+      "pad": "airy_choir",
+      "lead_or_motif": "quena_like_flute",
+      "texture": "wind_ambience",
+      "low_support": "warm_drone_fifth",
+      "percussion": "distant_frame_drum_heartbeat",
+      "intent": "sacred spacious loop with memorable motif fragment"
+    },
+    "map": {
+      "pad": "open_choir_or_drone",
+      "lead_or_motif": "breath_flute_or_charango_phrase",
+      "texture": "regional_air_and_land_ambience",
+      "low_support": "tonic_fifth_drone",
+      "percussion": "light_hand_percussion",
+      "intent": "exploratory motion with regional biome variation",
+      "variants": {
+        "hanan": {
+          "texture_bias": "bright_air",
+          "lead_bias": "higher_register_flute"
+        },
+        "kay": {
+          "texture_bias": "grounded_wind",
+          "lead_bias": "mid_register_phrase"
+        },
+        "ukhu": {
+          "texture_bias": "deep_resonance",
+          "lead_bias": "lower_breath_tone"
+        }
+      }
+    },
+    "combat": {
+      "pad": "low_choir",
+      "lead_or_motif": "hybrid_brass_synth",
+      "texture": "ritual_energy_layer",
+      "low_support": "pulse_bass_drone",
+      "percussion": "tribal_drums_and_frame_drum",
+      "accent": "short_bell_or_horn_call",
+      "intent": "tactical pressure with rhythmic cells and melodic contour"
+    },
+    "boss": {
+      "pad": "deep_ritual_choir",
+      "lead_or_motif": "ritual_horn_or_broken_brass",
+      "texture": "void_resonance_or_cosmic_shimmer",
+      "low_support": "heavy_sub_drone",
+      "percussion": "slow_heavy_ceremonial_drums",
+      "accent": "fracture_bell_hits",
+      "intent": "mythic threat with slower, heavier inevitability"
+    },
+    "victory": {
+      "pad": "bright_choir",
+      "lead_or_motif": "ascending_flute_or_horn_phrase",
+      "texture": "light_bell_shimmer",
+      "low_support": "warm_resonant_base",
+      "percussion": "minimal_hand_hit",
+      "intent": "brief release and upward noble cadence"
+    },
+    "shop": {
+      "pad": "warm_soft_pad",
+      "lead_or_motif": "charango_like_pluck",
+      "texture": "small_bells_and_air",
+      "low_support": "gentle_drone",
+      "percussion": "soft_hand_tap",
+      "intent": "intimate ritual commerce and safe pause"
+    },
+    "pack_open": {
+      "pad": "short_air_swell",
+      "lead_or_motif": "glass_bell_rise",
+      "texture": "sparkle_noise_controlled",
+      "low_support": "brief_low_hit",
+      "reveal_hit": "ceremonial_transient",
+      "intent": "clean anticipation and reveal punctuation"
+    },
+    "rare_reveal": {
+      "pad": "bright_sacred_choir",
+      "lead_or_motif": "ascending_bell_flute_combo",
+      "texture": "metallic_sparkle",
+      "low_support": "controlled_low_pulse",
+      "reveal_hit": "compact_ritual_hit",
+      "intent": "rarity escalation with compact sacred brightness"
+    },
+    "legendary_reveal": {
+      "pad": "full_sacred_choir",
+      "lead_or_motif": "wide_horn_and_flute_statement",
+      "texture": "radiant_shimmer_field",
+      "low_support": "broad_low_impact",
+      "reveal_hit": "formal_mythic_cadence_hit",
+      "intent": "apex rarity with solemn cosmic confirmation"
+    },
+    "credits": {
+      "pad": "expansive_choir",
+      "lead_or_motif": "reflective_flute_motif",
+      "texture": "wide_air_texture",
+      "low_support": "soft_pulse_drone",
+      "percussion": "subdued_frame_drum",
+      "intent": "motif restatement and reflective closure"
+    }
+  }
+}

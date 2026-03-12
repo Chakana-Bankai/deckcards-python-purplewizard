@@ -167,7 +167,7 @@ def _render_subject_detail(target: pygame.Surface, skeleton: dict[str, object], 
 
 
 def _weapon_tip(origin, rect: pygame.Rect, weapon: dict[str, object], orientation: str):
-    length = rect.height * float(weapon.get('length', 0.80))
+    length = rect.height * min(0.60, float(weapon.get('length', 0.60)))
     if orientation == 'diagonal':
         return (origin[0] + length * 0.78, origin[1] - length * 0.52)
     if orientation == 'support':
@@ -308,6 +308,10 @@ def compose_character_subject(surface_size: tuple[int, int], semantic: dict, pal
             'grammar_layering_order': list(grammar.get('layering_order', [])),
             'grammar_silhouette_priorities': list(grammar.get('silhouette_priorities', [])),
             'grammar_ratios': dict(skeleton.get('grammar_ratios', {})),
+            'dominant_shape': str(template.get('dominant_shape', 'triangle')),
+            'subject_width_ratio': round(subject_rect.width / max(1, surface_size[0]), 4),
+            'subject_height_ratio': round(subject_rect.height / max(1, surface_size[1]), 4),
+            'weapon_length_ratio': round(min(0.60, float(weapon.get('length', 0.60))), 4),
             'silhouette_integrity': float(merge_metrics['silhouette_integrity']),
             'limb_connection_score': float(merge_metrics['limb_connection_score']),
             'frontal_block_score': float(merge_metrics.get('frontal_block_score', 1.0)),

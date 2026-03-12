@@ -1,0 +1,144 @@
+{
+  "version": "audio_identity_phase4",
+  "status": "canonical_chakana_motif",
+  "name": "chakana_main_motif",
+  "purpose": "Primary melodic identity shared across menu, map, combat, boss, and credits in context-specific transformations.",
+  "compatibility_note": "Built to remain compatible with the current runtime motif contour already present in game/audio/audio_engine.py.",
+  "scale_system": {
+    "family": "minor_pentatonic_plus_2_and_6",
+    "reference_mode": "1 b3 4 5 b7 + 2 + 6 color usage",
+    "root_policy": "context chooses root, motif keeps interval contour"
+  },
+  "core_motif": {
+    "interval_steps_semitones": [
+      0,
+      2,
+      4,
+      2,
+      5,
+      4,
+      2,
+      0
+    ],
+    "scale_degree_intent": [
+      "1",
+      "2",
+      "4",
+      "2",
+      "5",
+      "4",
+      "2",
+      "1"
+    ],
+    "contour": [
+      "start",
+      "rise",
+      "open",
+      "return",
+      "lift",
+      "fall",
+      "settle",
+      "resolve"
+    ],
+    "phrase_length_notes": 8,
+    "cadence_type": "ceremonial_return",
+    "repetition_rule": "repeat with one rhythmic or orchestration variation every 2 phrases"
+  },
+  "rhythm_profile": {
+    "default_note_value": "even_pulse",
+    "menu_step_seconds": 0.62,
+    "combat_step_seconds_range": [
+      0.34,
+      0.44
+    ],
+    "boss_step_seconds_range": [
+      0.42,
+      0.56
+    ],
+    "allowed_variations": [
+      "rest_in_note_4_or_8",
+      "elongate_final_note",
+      "double_pickup_to_note_5"
+    ]
+  },
+  "emotion_map": {
+    "0": "rooted ceremonial arrival",
+    "2": "sacred forward motion",
+    "4": "elevated opening gesture",
+    "5": "mythic lift and horizon expansion"
+  },
+  "context_transformations": {
+    "studio_intro": {
+      "register": "mid_high",
+      "tempo_feel": "free_to_slow",
+      "ornamentation": "bell_and_breath_pickup",
+      "usage": "single clear statement then short resolution"
+    },
+    "main_menu": {
+      "register": "mid",
+      "tempo_feel": "slow_even_pulse",
+      "ornamentation": "airy choir under flute lead",
+      "usage": "fragmented statement every 2 phrases"
+    },
+    "map": {
+      "register": "mid",
+      "tempo_feel": "walking_pulse",
+      "ornamentation": "regional flute or charango color",
+      "usage": "partial motif with regional variants",
+      "variants": {
+        "hanan": "brighter upper-register phrase",
+        "kay": "balanced central-register phrase",
+        "ukhu": "lower darker phrase with more drone support"
+      }
+    },
+    "combat": {
+      "register": "mid_low",
+      "tempo_feel": "driven_pulse",
+      "ornamentation": "short brass-synth calls doubled by percussion accents",
+      "usage": "compressed motif cell, usually notes 1-5 or 3-8 with rhythmic variation"
+    },
+    "boss": {
+      "register": "low_mid",
+      "tempo_feel": "heavy_ritual",
+      "ornamentation": "horn/choir unison with widened final cadence",
+      "usage": "slower expanded motif with held note 5 and darker return"
+    },
+    "victory": {
+      "register": "mid_high",
+      "tempo_feel": "brief_upward_release",
+      "ornamentation": "bright bell and choir lift",
+      "usage": "last 4 notes emphasized as ascending reward contour"
+    },
+    "credits": {
+      "register": "mid",
+      "tempo_feel": "reflective_breathing",
+      "ornamentation": "flute lead with choir cushion",
+      "usage": "full motif restated slowly and completely"
+    }
+  },
+  "instrument_bindings": {
+    "primary_leads": [
+      "breath_flute",
+      "quena_like_flute",
+      "ritual_horn_or_broken_brass",
+      "hybrid_brass_synth"
+    ],
+    "support": [
+      "airy_choir",
+      "deep_ritual_choir",
+      "warm_drone_fifth",
+      "pulse_bass_drone"
+    ],
+    "ritual_accents": [
+      "stone_bell_shimmer",
+      "light_bell_shimmer",
+      "fracture_bell_hits"
+    ]
+  },
+  "quality_rules": {
+    "must_remain_recognizable_after_transposition": true,
+    "must_support_fragmented_and_full_statement_forms": true,
+    "must_not_degrade_into_single_note_ostinato": true,
+    "must_be_traceable_in_menu_combat_boss_credits": true
+  }
+}

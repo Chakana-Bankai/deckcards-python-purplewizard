@@ -84,13 +84,29 @@ def _pose_from_semantic(semantic: dict, archetype: str) -> dict[str, object]:
 
 def _subject_box(size: tuple[int, int], template: dict[str, object], semantic: dict) -> pygame.Rect:
     width, height = size
+    safe_zone_ratio = float(semantic.get('safe_art_zone_ratio', 0.70) or 0.70)
+    safe_zone_ratio = _clamp(safe_zone_ratio, 0.55, 0.82)
+    safe_width = int(width * safe_zone_ratio)
+    safe_height = int(height * safe_zone_ratio)
+    safe_rect = pygame.Rect((width - safe_width) // 2, (height - safe_height) // 2, safe_width, safe_height)
+
     scale_boost = float(semantic.get('subject_scale_boost', 0.0) or 0.0)
-    width_ratio = _clamp(float(template.get('width_ratio', 0.62)) + scale_boost * 0.42, 0.56, 0.76)
-    height_ratio = _clamp(float(template.get('height_ratio', 0.68)) + scale_boost * 0.28, 0.64, 0.80)
+    width_ratio = _clamp(float(template.get('width_ratio', 0.32)) + scale_boost * 0.08, 0.24, 0.35)
+    height_ratio = _clamp(float(template.get('height_ratio', 0.42)) + scale_boost * 0.08, 0.32, 0.45)
     rect = pygame.Rect(0, 0, int(width * width_ratio), int(height * height_ratio))
+    rect.width = min(rect.width, int(safe_rect.width * 0.92))
+    rect.height = min(rect.height, int(safe_rect.height * 0.96))
+
+    anchor_mode = str(semantic.get('subject_anchor_mode', 'center') or 'center').lower()
     center_shift = float(semantic.get('subject_center_shift', 0.0) or 0.0)
-    rect.center = (int(width * (0.50 + center_shift)), int(height * 0.54))
-    rect.clamp_ip(pygame.Rect(0, 0, width, height))
+    anchor_x = int(safe_rect.centerx + safe_rect.width * 0.12 * center_shift)
+    anchor_map = {
+        'center': (anchor_x, int(safe_rect.centery)),
+        'lower_center': (anchor_x, int(safe_rect.top + safe_rect.height * 0.60)),
+        'golden_ratio': (anchor_x, int(safe_rect.top + safe_rect.height * 0.46)),
+    }
+    rect.center = anchor_map.get(anchor_mode, anchor_map['center'])
+    rect.clamp_ip(safe_rect)
     return rect
 
 
@@ -152,6 +168,9 @@ def build_figure_skeleton(size: tuple[int, int], semantic: dict) -> dict[str, ob
     skeleton['symbol_center_anchor'] = (rect.centerx, rect.top + rect.height * 0.08)
     skeleton['halo_anchor'] = (rect.centerx, rect.top + rect.height * 0.15)
     skeleton['fx_spawn_anchor'] = (rect.centerx, rect.top + rect.height * 0.24)
+    skeleton['center_anchor'] = rect.center
+    skeleton['lower_center_anchor'] = (rect.centerx, int(rect.top + rect.height * 0.68))
+    skeleton['golden_ratio_anchor'] = (rect.centerx, int(rect.top + rect.height * 0.38))
     if skeleton['weapon_orientation'] == 'diagonal':
         skeleton['weapon_origin_anchor'] = (skeleton['right_hand_anchor'][0] + rect.width * 0.03, skeleton['right_hand_anchor'][1] - rect.height * 0.01)
         tip = (skeleton['weapon_origin_anchor'][0] + rect.height * 0.58, skeleton['weapon_origin_anchor'][1] - rect.height * 0.36)

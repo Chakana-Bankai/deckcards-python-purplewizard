@@ -1,0 +1,39 @@
+{
+  "version": "chakana_shape_grammar_v2",
+  "canvas": {
+    "output_resolution": [
+      1920,
+      1080
+    ],
+    "composition_resolution": [
+      480,
+      270
+    ]
+  },
+  "classes": {
+    "solar_warrior": {
+      "dominant_shape": "triangle",
+      "silhouette_rule": "broad_shoulders_narrow_waist_stable_base",
+      "subject_width_max_ratio": 0.35,
+      "subject_height_max_ratio": 0.45,
+      "weapon_anchor": "right_hand_anchor",
+      "weapon_length_max_ratio": 0.6
+    },
+    "archon": {
+      "dominant_shape": "circle",
+      "silhouette_rule": "rounded_ritual_mass_with_vertical_core",
+      "subject_width_max_ratio": 0.35,
+      "subject_height_max_ratio": 0.45,
+      "weapon_anchor": "right_hand_anchor",
+      "weapon_length_max_ratio": 0.6
+    },
+    "guide_mage": {
+      "dominant_shape": "rectangle",
+      "silhouette_rule": "calm_columnar_body_with_support_prop",
+      "subject_width_max_ratio": 0.35,
+      "subject_height_max_ratio": 0.45,
+      "weapon_anchor": "left_hand_anchor",
+      "weapon_length_max_ratio": 0.6
+    }
+  }
+}

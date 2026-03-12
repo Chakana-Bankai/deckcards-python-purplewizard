@@ -11,6 +11,7 @@ from game.ui.theme import UI_THEME
 from game.ui.system.safety import clamp_single_line, wrap_lines, resolve_view_context
 from game.ui.system.ui_scale_system import ICON_CARD_SMALL, ICON_CARD_MEDIUM, ICON_CARD_KPI
 from game.ui.system.set_emblems import draw_set_emblem, normalize_set_id
+from game.render.frame_renderer import apply_frame_overlay, normalize_frame_rarity
 
 
 ROLE_COLORS = {
@@ -95,15 +96,7 @@ def _seed_from_id(card_id: str) -> int:
 
 
 def _card_tier(payload: dict) -> str:
-    tags = set(payload.get("tags", []) or [])
-    rarity = str(payload.get("rarity", "common")).lower()
-    if "ritual" in tags:
-        return "ritual"
-    if rarity in {"legendary", "epic"}:
-        return "legendary"
-    if rarity in {"rare", "uncommon"}:
-        return "rare"
-    return "normal"
+    return normalize_frame_rarity(str(payload.get("rarity", "common")))
 
 
 
@@ -140,12 +133,12 @@ def _fallback_card_art(app, size: tuple[int, int], tier: str, accent: tuple[int,
     w, h = max(24, int(size[0])), max(24, int(size[1]))
     surf = pygame.Surface((w, h), pygame.SRCALPHA)
     base_map = {
-        "normal": (90, 78, 60),
+        "common": (90, 78, 60),
         "rare": (86, 66, 124),
         "legendary": (118, 84, 36),
-        "ritual": (68, 46, 98),
+        "epic": (68, 46, 98),
     }
-    base = base_map.get(tier, (82, 60, 96))
+    base = base_map.get(tier, base_map["common"])
     for y in range(h):
         f = y / max(1, h - 1)
         row = (int(base[0] * (0.72 + 0.28 * f)), int(base[1] * (0.72 + 0.28 * f)), int(base[2] * (0.72 + 0.28 * f)))
@@ -153,7 +146,7 @@ def _fallback_card_art(app, size: tuple[int, int], tier: str, accent: tuple[int,
     pygame.draw.rect(surf, accent, surf.get_rect(), 1, border_radius=7)
     font = _font(app, "small_font")
     if font is not None:
-        glyph = "*" if tier in {"legendary", "ritual"} else "+"
+        glyph = "*" if tier in {"legendary", "epic"} else "+"
         txt = font.render(glyph, True, (232, 220, 170))
         surf.blit(txt, txt.get_rect(center=surf.get_rect().center))
     return surf
@@ -162,60 +155,33 @@ def _fallback_card_art(app, size: tuple[int, int], tier: str, accent: tuple[int,
 def _draw_card_background(surface, rect: pygame.Rect, payload: dict, tier: str, accent_color: tuple[int, int, int], is_hip: bool = False):
     rng = random.Random(_seed_from_id(payload.get("id", "card")))
     base_map = {
-        "normal": (70, 60, 48),
+        "common": (70, 60, 48),
         "rare": (62, 48, 92),
+        "epic": (66, 44, 96),
         "legendary": (96, 66, 30),
-        "ritual": (58, 38, 86),
     }
-    border_map = {
-        "normal": (166, 140, 102),
-        "rare": (186, 142, 244),
-        "legendary": (248, 212, 118),
-        "ritual": (210, 154, 255),
-    }
-    base = base_map.get(tier, base_map["normal"])
-    border = border_map.get(tier, border_map["normal"])
+    base = base_map.get(tier, base_map["common"])
 
     if is_hip:
         base_map = {
-            "normal": (220, 230, 238),
+            "common": (220, 230, 238),
             "rare": (198, 218, 236),
+            "epic": (208, 212, 240),
             "legendary": (232, 220, 184),
-            "ritual": (202, 220, 238),
         }
-        border_map = {
-            "normal": (148, 184, 220),
-            "rare": (132, 172, 214),
-            "legendary": (196, 164, 90),
-            "ritual": (164, 188, 220),
-        }
-        base = base_map.get(tier, base_map["normal"])
-        border = border_map.get(tier, border_map["normal"])
+        base = base_map.get(tier, base_map["common"])
 
     for y in range(rect.y, rect.bottom):
         f = (y - rect.y) / max(1, rect.h - 1)
         row = (int(base[0] * (0.86 + 0.18 * f)), int(base[1] * (0.86 + 0.18 * f)), int(base[2] * (0.86 + 0.18 * f)))
         pygame.draw.line(surface, row, (rect.x, y), (rect.right, y))
 
-    if tier == "normal":
-        for _ in range(max(20, rect.w * rect.h // 900)):
-            px = rng.randint(rect.x + 2, rect.right - 3)
-            py = rng.randint(rect.y + 2, rect.bottom - 3)
-            n = rng.randint(-10, 12)
-            col = (max(0, min(255, base[0] + n)), max(0, min(255, base[1] + n)), max(0, min(255, base[2] + n)))
-            surface.set_at((px, py), col)
-    elif tier == "rare":
-        aura = pygame.Surface((rect.w + 24, rect.h + 24), pygame.SRCALPHA)
-        pygame.draw.rect(aura, (*accent_color, 88), aura.get_rect(), border_radius=18)
-        surface.blit(aura, (rect.x - 12, rect.y - 12))
-    elif tier == "legendary":
-        glow = pygame.Surface((rect.w + 30, rect.h + 30), pygame.SRCALPHA)
-        pygame.draw.rect(glow, (246, 212, 128, 72), glow.get_rect(), border_radius=20)
-        surface.blit(glow, (rect.x - 15, rect.y - 15))
-
-    pygame.draw.rect(surface, border, rect, 3, border_radius=12)
-    if is_hip:
-        pygame.draw.rect(surface, (186, 214, 236), rect.inflate(10, 10), 1, border_radius=15)
+    for _ in range(max(20, rect.w * rect.h // 900)):
+        px = rng.randint(rect.x + 2, rect.right - 3)
+        py = rng.randint(rect.y + 2, rect.bottom - 3)
+        n = rng.randint(-10, 12)
+        col = (max(0, min(255, base[0] + n)), max(0, min(255, base[1] + n)), max(0, min(255, base[2] + n)))
+        surface.set_at((px, py), col)
 
 
 def _collect_kpis(summary: dict, payload: dict) -> list[tuple[str, int]]:
@@ -430,7 +396,6 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
 
     art_frame = sec["art"]
     pygame.draw.rect(surface, (24, 20, 30), art_frame, border_radius=9)
-    pygame.draw.rect(surface, accent_color, art_frame, 2, border_radius=9)
     art_inner = art_frame.inflate(-8, -8)
     pygame.draw.rect(surface, (12, 12, 16), art_inner, border_radius=7)
 
@@ -444,8 +409,7 @@ def _draw_core(surface, rect, card, theme, state, preset: str):
         art = _fallback_card_art(app, (art_inner.w, art_inner.h), tier, accent_color)
     surface.blit(art, art_inner.topleft)
 
-    if tier == "legendary":
-        pygame.draw.rect(surface, (250, 226, 156), art_frame.inflate(6, 6), 1, border_radius=11)
+    apply_frame_overlay(surface, art_frame, tier, accent=accent_color, set_is_hiperboria=is_hip)
 
     if app is not None:
         card_name = app.display_card_name(payload) if hasattr(app, "display_card_name") else app.loc.t(payload.get("name_key", payload.get("id", "Carta")))

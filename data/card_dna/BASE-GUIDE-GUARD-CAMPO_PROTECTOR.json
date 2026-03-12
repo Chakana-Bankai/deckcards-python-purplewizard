@@ -1,0 +1,13 @@
+{
+  "card_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
+  "entity_type": "HUMANOID",
+  "archetype": "GUIDE_MAGE",
+  "dominant_shape": "rectangle",
+  "secondary_shape": "support_robe",
+  "weapon_type": "staff",
+  "environment_type": "mountain_guardian_scene",
+  "pose_type": "support_vertical",
+  "symbol_type": "chakana",
+  "energy_type": "sacred_wind",
+  "palette_family": "gold_violet_turquoise"
+}

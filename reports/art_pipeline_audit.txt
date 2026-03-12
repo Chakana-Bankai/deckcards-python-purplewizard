@@ -1,0 +1,22 @@
+art_pipeline_audit
+subject_generation=
+  - game/art/figure_skeleton_builder.py: subject box, anchors, pose-driven skeleton
+  - game/art/body_volume_builder.py: body masses and silhouette primitives
+  - game/art/character_compositor.py: subject silhouette, detail, weapon layers
+weapon_generation=
+  - game/art/weapon_templates.py: base weapon length/thickness ratios
+  - game/art/weapon_pose_resolver.py: weapon lane, hand/grip/tip anchors
+  - game/art/character_compositor.py: weapon rendering and final attachment
+background_generation=
+  - game/art/scene_engine.py: semantic prompt parsing and background/environment selection
+  - game/art/assembly_pipeline.py: background/environment draw, scene sectors, readability control
+conflicts_found=
+  - subject scale was still allowed above the new sanitation target
+  - weapon templates could exceed the requested max relative length
+  - scene sectors were safe-zone based but not explicitly split into sky/subject/ground zones
+  - background/environment contrast remained strong enough to compete with smaller sanitized subjects
+sanitization_target=
+  - subject width <= 35% canvas
+  - subject height <= 45% canvas
+  - weapon length <= 60% subject height
+  - scene zones sky 30 / subject 40 / ground 30

@@ -1,0 +1,39 @@
+{
+  "template_id": "guide_mage_base",
+  "archetype": "guide_mage",
+  "head_size": {
+    "ratio_range": [
+      0.16,
+      0.18
+    ],
+    "shape": "soft_hooded_oval"
+  },
+  "torso_mass": {
+    "shape": "calm_column_split_robe",
+    "width_ratio": 0.74,
+    "height_ratio": 0.8
+  },
+  "arm_length": {
+    "ratio_range": [
+      0.3,
+      0.34
+    ],
+    "gesture": "support_focus_hold"
+  },
+  "weapon_anchor": {
+    "primary": "left_hand_anchor",
+    "secondary": "right_hand_anchor",
+    "default_weapon": "orb_staff"
+  },
+  "cape_or_ornament_areas": [
+    "hood_back",
+    "chest_sash",
+    "robe_split_left",
+    "robe_split_right"
+  ],
+  "silhouette_outline": {
+    "profile": "soft_vertical_open_chest",
+    "dominant_angles": "curved_ritual",
+    "negative_space": "support_hand_symbol_gap"
+  }
+}

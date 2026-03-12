@@ -7,10 +7,10 @@
       "type": "bgm",
       "context": "menu",
       "variant": "a",
-      "source": "curated",
+      "source": "generated",
       "state": "valid",
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\menu_a.wav",
-      "relative_path": "game/assets/curated/audio/bgm/menu_a.wav"
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\menu_a.wav",
+      "relative_path": "game/audio/generated/bgm/menu_a.wav"
     },
     "map_ukhu_a": {
       "track_id": "map_ukhu_a",
@@ -47,10 +47,10 @@
       "type": "bgm",
       "context": "combat",
       "variant": "a",
-      "source": "curated",
+      "source": "generated",
       "state": "valid",
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\combat_a.wav",
-      "relative_path": "game/assets/curated/audio/bgm/combat_a.wav"
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_a.wav",
+      "relative_path": "game/audio/generated/bgm/combat_a.wav"
     },
     "combat_elite_a": {
       "track_id": "combat_elite_a",
@@ -67,10 +67,10 @@
       "type": "bgm",
       "context": "combat_boss",
       "variant": "a",
-      "source": "curated",
+      "source": "generated",
       "state": "valid",
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\combat_boss_a.wav",
-      "relative_path": "game/assets/curated/audio/bgm/combat_boss_a.wav"
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_boss_a.wav",
+      "relative_path": "game/audio/generated/bgm/combat_boss_a.wav"
     },
     "shop_a": {
       "track_id": "shop_a",

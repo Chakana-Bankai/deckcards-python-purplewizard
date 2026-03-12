@@ -1,0 +1,39 @@
+{
+  "template_id": "solar_warrior_base",
+  "archetype": "solar_warrior",
+  "head_size": {
+    "ratio_range": [
+      0.16,
+      0.18
+    ],
+    "shape": "helmeted_oval"
+  },
+  "torso_mass": {
+    "shape": "heroic_triangle",
+    "width_ratio": 0.72,
+    "height_ratio": 0.74
+  },
+  "arm_length": {
+    "ratio_range": [
+      0.31,
+      0.35
+    ],
+    "gesture": "forward_attack_ready"
+  },
+  "weapon_anchor": {
+    "primary": "right_hand_anchor",
+    "secondary": "back_anchor",
+    "default_weapon": "spear"
+  },
+  "cape_or_ornament_areas": [
+    "shoulder_guard_left",
+    "shoulder_guard_right",
+    "waist_fauld",
+    "solar_back_standard"
+  ],
+  "silhouette_outline": {
+    "profile": "broad_shoulders_narrow_waist_stable_legs",
+    "dominant_angles": "angular",
+    "negative_space": "open_weapon_side"
+  }
+}

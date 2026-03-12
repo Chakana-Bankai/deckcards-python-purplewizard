@@ -1,0 +1,13 @@
+{
+  "card_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01",
+  "entity_type": "HUMANOID",
+  "archetype": "ARCHON",
+  "dominant_shape": "circle",
+  "secondary_shape": "vertical_cathedral",
+  "weapon_type": "staff",
+  "environment_type": "archon_void_scene",
+  "pose_type": "ritual_vertical",
+  "symbol_type": "chakana_glyph",
+  "energy_type": "void_sparks",
+  "palette_family": "violet_neutral"
+}

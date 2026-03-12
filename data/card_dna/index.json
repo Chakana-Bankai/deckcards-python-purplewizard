@@ -1,0 +1,24 @@
+{
+  "version": "card_dna_v1",
+  "status": "base_seed_entries",
+  "entry_count": 3,
+  "entries": [
+    "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01",
+    "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I"
+  ],
+  "required_fields": [
+    "card_id",
+    "entity_type",
+    "archetype",
+    "dominant_shape",
+    "secondary_shape",
+    "weapon_type",
+    "environment_type",
+    "pose_type",
+    "symbol_type",
+    "energy_type",
+    "palette_family"
+  ],
+  "derivation_policy": "load explicit DNA first, derive from card prompts if missing"
+}

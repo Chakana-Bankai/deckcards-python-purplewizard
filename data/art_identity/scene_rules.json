@@ -1,0 +1,171 @@
+{
+  "version": "art_identity_phase4",
+  "status": "canonical_scene_rules",
+  "canvas": {
+    "output_resolution": [
+      1920,
+      1080
+    ],
+    "composition_resolution": [
+      480,
+      270
+    ],
+    "aspect_ratio": "16:9",
+    "safe_art_zone_ratio": 0.7,
+    "safe_art_zone_px": {
+      "composition": [
+        336,
+        189
+      ],
+      "output": [
+        1344,
+        756
+      ]
+    }
+  },
+  "occupancy_rules": {
+    "subject_min": 0.22,
+    "subject_target_range": [
+      0.28,
+      0.38
+    ],
+    "subject_max": 0.4,
+    "object_min": 0.06,
+    "object_target_range": [
+      0.08,
+      0.14
+    ],
+    "object_max": 0.25,
+    "background_visual_influence": 0.35,
+    "subject_visible_ratio_min": 0.8,
+    "subject_occluded_by_fx_ratio_max": 0.15
+  },
+  "anchor_modes": {
+    "center": {
+      "description": "balanced centered subject",
+      "y_ratio_in_safe_zone": 0.5
+    },
+    "lower_center": {
+      "description": "heroic lower-center weight for attack poses",
+      "y_ratio_in_safe_zone": 0.6
+    },
+    "golden_ratio": {
+      "description": "calm ritual emphasis slightly above center",
+      "y_ratio_in_safe_zone": 0.46
+    }
+  },
+  "layer_order": [
+    "background",
+    "environment",
+    "symbol_behind_subject",
+    "fx_back",
+    "subject_core",
+    "subject_detail",
+    "object_weapon",
+    "fx_front",
+    "grade",
+    "frame_overlay"
+  ],
+  "scene_structure": {
+    "foreground": {
+      "role": "optional framing only",
+      "height_ratio_range": [
+        0.0,
+        0.12
+      ],
+      "interference_max": 0.08
+    },
+    "subject": {
+      "role": "primary narrative mass",
+      "sector_ratio": {
+        "x": 0.1,
+        "y": 0.02,
+        "w": 0.52,
+        "h": 0.84
+      },
+      "height_ratio_range": [
+        0.45,
+        0.6
+      ],
+      "horizontal_center_tolerance": 0.15,
+      "safe_zone_required": true
+    },
+    "object": {
+      "role": "secondary readable action key",
+      "sector_ratio": {
+        "x": 0.52,
+        "y": 0.1,
+        "w": 0.26,
+        "h": 0.64
+      },
+      "must_attach_to_subject": true,
+      "may_overlap_subject_core": false
+    },
+    "background": {
+      "role": "supportive world context",
+      "sector_ratio": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "dominance_limit": 0.35
+    },
+    "symbolic_layer": {
+      "role": "cosmology and sacred hierarchy",
+      "sector_ratio": {
+        "x": 0.14,
+        "y": 0.0,
+        "w": 0.54,
+        "h": 0.26
+      },
+      "must_stay_behind_subject": true,
+      "subject_overlap_max": 0.15
+    }
+  },
+  "camera_rules": {
+    "default": "medium_close",
+    "allowed": [
+      "medium_close",
+      "medium_full",
+      "heroic_low_angle",
+      "ritual_vertical"
+    ],
+    "prohibited": [
+      "extreme_wide_subject_loss",
+      "top_down_flattening"
+    ]
+  },
+  "environment_layering": {
+    "foreground": "minimal and only if it frames the subject",
+    "midground": "platform, ridge, temple floor, ruin step, sacred ground plane",
+    "background": "biome, sky, void, mountain, sea, ruin silhouette",
+    "lighting_rule": "must reinforce subject volume and keep figure-ground contrast above threshold"
+  },
+  "archetype_scene_bias": {
+    "solar_warrior": {
+      "anchor_mode": "lower_center",
+      "camera": "heroic_low_angle",
+      "object_bias": "diagonal_forward",
+      "environment": "mountain_or_citadel"
+    },
+    "archon": {
+      "anchor_mode": "center",
+      "camera": "ritual_vertical",
+      "object_bias": "vertical_support",
+      "environment": "void_or_observatory"
+    },
+    "guide_mage": {
+      "anchor_mode": "golden_ratio",
+      "camera": "medium_close",
+      "object_bias": "support_side",
+      "environment": "sanctuary_or_plateau"
+    }
+  },
+  "approval_rules": {
+    "subject_must_read_first": true,
+    "object_must_read_second": true,
+    "effect_layers_must_not_dominate_subject": true,
+    "final_art_must_be_frameless_before_card_render": true
+  }
+}

@@ -1,0 +1,34 @@
+shape_dna_summary
+
+1. what_now_defines_a_card_visually
+- A card is now defined by an explicit visual DNA layer: card_id, entity_type, archetype, dominant_shape, secondary_shape, weapon_type, environment_type, pose_type, symbol_type, energy_type and palette_family.
+- Archetype identity is further locked by shape grammar, character templates, scene rules and archetype evolution rules.
+- In practice the identity stack is now: base card DNA -> allowed slot mutations -> shape constraints -> evolved visual spec -> render pipeline.
+
+2. what_can_vary_safely
+- helmet_variant
+- shoulder_variant
+- cape_variant
+- weapon_variant
+- symbol_variant
+- stance_variant
+- aura_variant
+- environment_detail_variant
+- These variations are safe only when they remain inside the allowed slot lists for the archetype and pass the shape constraint gate.
+- The current system already supports meaningful controlled differences such as archon crown vs hooded cowl, sun spear vs ceremonial blade, and orb staff vs no-helmet guide silhouette.
+
+3. what_cannot_vary
+- dominant_shape cannot drift away from the archetype lock.
+- pose bias cannot break archetype identity.
+- subject scale cannot exceed valid shape grammar bounds.
+- weapon length cannot exceed the allowed range.
+- symbol coverage and halo size cannot overtake the subject.
+- forbidden slot values per archetype cannot be selected.
+- silhouette integrity cannot drop below the minimum threshold.
+
+4. production_readiness
+- The system is ready for controlled small-batch production tests.
+- It is not yet ready for wide production regeneration.
+- Reason: identity stability is already strong, but readability improvement is not yet guaranteed for every accepted variant.
+- Current state from test outputs: identity remained stable across all six generated variants, but readability improved only in part of them.
+- Best next step before scaling: connect evolved slot values more directly to render components so each accepted mutation affects silhouette, prop and costume in a more intentional visual way instead of mainly prompt-level guidance.

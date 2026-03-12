@@ -1,0 +1,8 @@
+{
+  "version": "art_identity_phase3",
+  "templates": [
+    "solar_warrior_base.json",
+    "archon_base.json",
+    "guide_mage_base.json"
+  ]
+}

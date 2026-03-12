@@ -42,5 +42,26 @@
   },
   "max_candidates_per_pass": 10,
   "staging_copy_mode": "review_queue",
-  "max_improvements_per_pass": 6
+  "max_improvements_per_pass": 6,
+  "instrumentation_system": "data/audio_identity/instrumentation_system.json",
+  "required_roles_per_context": [
+    "pad",
+    "lead_or_motif",
+    "texture"
+  ],
+  "identity_context_aliases": {
+    "menu": "main_menu",
+    "combat_boss": "boss",
+    "boss_reveal": "legendary_reveal",
+    "shop_enter": "shop"
+  },
+  "chakana_motif": "data/audio_identity/chakana_motif.json",
+  "motif_required_contexts": [
+    "studio_intro",
+    "menu",
+    "combat",
+    "boss",
+    "victory",
+    "credits"
+  ]
 }

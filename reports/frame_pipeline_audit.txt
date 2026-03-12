@@ -1,0 +1,100 @@
+﻿chakana frame pipeline audit
+
+scope_scanned:
+- game/art/*
+- game/render/*
+- game/cards/*
+- assets/art/*
+- runtime follow-up found in game/ui/components/card_renderer.py and game/visual/portrait_pipeline.py
+
+summary:
+- no game/render directory exists in this workspace; frame-related runtime logic is currently split across game/ui and game/visual
+- embedded frame drawing exists inside older art generation modules
+- overlay frame rendering exists in runtime card and portrait presentation systems
+- this creates a real risk of double-framing when art assets already contain decorative borders and runtime overlays add another border by rarity/style
+
+files_responsible:
+
+frame_rendering:
+- game/art/frame_engine.py
+  - generates standalone decorative frame assets with border, corner circles and top/bottom arc motifs
+- game/ui/components/card_renderer.py
+  - draws runtime card frame/background/border per tier using _draw_card_background
+- game/visual/portrait_pipeline.py
+  - draws runtime portrait/hologram borders using border_alpha from portrait specs
+
+rarity_frames:
+- game/ui/components/card_renderer.py
+  - tier mapping normal/rare/legendary/ritual
+  - rare adds aura rectangle around card area
+  - legendary adds outer glow/border treatment around art frame
+- game/art/gen_card_art32.py
+  - legendary path changes palette/saturation and can also draw decorative frame-like geometry into the art itself
+
+card_export:
+- tools/lib/art_pipeline.py
+  - audits and validates card png assets from game/assets/sprites/cards
+  - not a frame renderer itself, but it is a pipeline owner for produced card art files
+- game/art/scene_test_generator_v1.py and related scene_test_generator_v*.py
+  - export generated card-art test outputs
+
+a art_generation_with_embedded_frames_or_border_like_draws:
+- game/art/gen_card_art32.py
+  - _draw_chakana_frame() explicitly draws a decorative frame directly into generated art
+  - _draw_geometry() can select _draw_chakana_frame as part of the art composition
+- game/art/gen_card_art_advanced.py
+  - draws vignette border rectangles directly into art output
+- game/art/frame_engine.py
+  - dedicated frame generator that can be composed with scene output
+- game/art/gen_art32.py and game/art/gen_guide_art32.py
+  - contain border-like decorative rect logic in generated art primitives
+
+assets_art_notes:
+- assets/art/cards/* contains generated outputs and test renders, including temporary/debug-like files such as:
+  - assets/art/cards/test_scene_composition_v_final/_tmp_archon.png
+  - assets/art/cards/test_scene_composition_v_final/_tmp_guide_mage.png
+  - assets/art/cards/test_scene_composition_v_final/_tmp_solar_warrior.png
+- these are outputs, not frame systems, but they can preserve embedded borders from generation passes
+
+conflicts_detected:
+1. embedded frame vs runtime rarity overlay
+- game/art/gen_card_art32.py can bake a chakana frame into the art image itself
+- game/ui/components/card_renderer.py then draws another card border and rarity treatment around the art slot
+- result risk: double frame, muddy silhouette edge, compressed usable art area
+
+2. embedded vignette border vs runtime portrait border
+- game/art/gen_card_art_advanced.py adds border-like vignette rectangles into the exported art
+- game/visual/portrait_pipeline.py adds border_alpha driven outline again for portrait/hologram views
+- result risk: stacked borders and perceived blur/thickness at edges
+
+3. standalone frame asset path vs UI card renderer path
+- game/art/frame_engine.py can produce a decorative frame asset
+- game/ui/components/card_renderer.py independently renders its own frame system
+- result risk: two competing frame grammars if both are used in the same card presentation path
+
+4. rarity semantics split across systems
+- rarity-driven decoration exists in generation-time art logic and also in runtime renderer logic
+- result risk: legendary/rare identity can be over-applied or inconsistent depending on which asset path produced the image
+
+non_conflicts_or_lower_risk:
+- game/art/portrait_spec.py only defines border alpha/style parameters; conflict appears when paired with already framed source art, not by itself
+- costume/silhouette/detail passes in game/art primarily draw subject forms, not card frames
+
+recommended_unification_direction:
+- choose one canonical owner for card frames
+- recommended: keep rarity/card frame ownership in runtime renderer only
+- keep art generators responsible for subject/environment only, without baked outer frames
+- allow only subtle internal composition guides in art, never final outer border frames
+- treat frame_engine.py as optional tooling/debug asset generator unless explicitly consumed by runtime
+
+high_confidence_conflict_points:
+- game/art/gen_card_art32.py
+- game/art/gen_card_art_advanced.py
+- game/ui/components/card_renderer.py
+- game/visual/portrait_pipeline.py
+- game/art/frame_engine.py
+
+result:
+- embedded frames exist: yes
+- overlay frames exist: yes
+- active conflict risk: high

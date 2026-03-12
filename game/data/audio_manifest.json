@@ -1,20 +1,33 @@
 {
   "version": "chakana_audio_v7",
-  "generated_at": 1773332457,
+  "generated_at": 1773335439,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
       "type": "bgm",
       "context": "menu",
       "variant": "a",
-      "seed": 247043640,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\menu_a.wav",
-      "relative_path": "game/assets/curated/audio/bgm/menu_a.wav",
-      "generation_date": 1773170668,
+      "seed": 709531065,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\menu_a.wav",
+      "relative_path": "game/audio/generated/bgm/menu_a.wav",
+      "generation_date": 1773335237,
       "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "curated",
-      "active_runtime": true
+      "source": "generated",
+      "analysis": {
+        "duration_seconds": 118.0,
+        "sample_rate": 32000,
+        "channels": 1,
+        "peak_db": -0.9099,
+        "rms_db": -12.1825,
+        "tempo_bpm": 62.0339,
+        "onset_count": 122,
+        "loop_end_seconds": 23.975,
+        "monotony_score": 0.388,
+        "variation_score": 0.612,
+        "librosa_available": true,
+        "analysis_mode": "soundfile_numpy_guarded_librosa"
+      }
     },
     "map_ukhu_a": {
       "track_id": "map_ukhu_a",
@@ -63,14 +76,27 @@
       "type": "bgm",
       "context": "combat",
       "variant": "a",
-      "seed": 141771271,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\combat_a.wav",
-      "relative_path": "game/assets/curated/audio/bgm/combat_a.wav",
-      "generation_date": 1773168351,
+      "seed": 120888773,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_a.wav",
+      "relative_path": "game/audio/generated/bgm/combat_a.wav",
+      "generation_date": 1773335333,
       "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "curated",
-      "active_runtime": true
+      "source": "generated",
+      "analysis": {
+        "duration_seconds": 122.0,
+        "sample_rate": 32000,
+        "channels": 1,
+        "peak_db": -1.0094,
+        "rms_db": -12.1523,
+        "tempo_bpm": 65.9016,
+        "onset_count": 134,
+        "loop_end_seconds": 23.975,
+        "monotony_score": 0.3887,
+        "variation_score": 0.6113,
+        "librosa_available": true,
+        "analysis_mode": "soundfile_numpy_guarded_librosa"
+      }
     },
     "combat_elite_a": {
       "track_id": "combat_elite_a",
@@ -91,14 +117,27 @@
       "type": "bgm",
       "context": "combat_boss",
       "variant": "a",
-      "seed": 937255584,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\bgm\\combat_boss_a.wav",
-      "relative_path": "game/assets/curated/audio/bgm/combat_boss_a.wav",
-      "generation_date": 1773172400,
+      "seed": 1604524465,
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\bgm\\combat_boss_a.wav",
+      "relative_path": "game/audio/generated/bgm/combat_boss_a.wav",
+      "generation_date": 1773335439,
       "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "curated",
-      "active_runtime": true
+      "source": "generated",
+      "analysis": {
+        "duration_seconds": 132.0,
+        "sample_rate": 32000,
+        "channels": 1,
+        "peak_db": -0.0003,
+        "rms_db": -11.7001,
+        "tempo_bpm": 57.2727,
+        "onset_count": 126,
+        "loop_end_seconds": 23.975,
+        "monotony_score": 0.3329,
+        "variation_score": 0.6671,
+        "librosa_available": true,
+        "analysis_mode": "soundfile_numpy_guarded_librosa"
+      }
     },
     "shop_a": {
       "track_id": "shop_a",

@@ -1,0 +1,60 @@
+shape_dna_audit
+phase=1
+
+scope_inspected=
+- game/art/assembly_pipeline.py
+- game/art/character_compositor.py
+- game/art/figure_skeleton_builder.py
+- game/art/character_templates.py
+- game/art/shape_grammar_registry.py
+- data/art_identity/shape_grammar.json
+- data/art_identity/scene_rules.json
+- game/data/card_prompts.json
+- data/cards/card_id_mapping.json
+
+what_is_currently_fixed_per_card=
+- card_id is fixed upstream and passed into assemble_scene_art()
+- prompt/scene_spec in game/data/card_prompts.json fixes subject, object, environment, subject_kind, object_kind, environment_kind, subject_pose, symbol, palette and reference cues per card
+- canonical archetype identity is fixed through character_templates.py and shape_grammar_registry.py
+- composition resolution and output resolution are fixed in assembly_pipeline.py (480x270 -> 1920x1080)
+- safe art zone, occupancy caps, scene zoning and readability thresholds are fixed in assembly_pipeline.py
+
+what_currently_varies=
+- random seed affects scene/background/noise/fx and some composition retries
+- reference sampling and prioritization can vary when explicit refs are not forced
+- retry/stabilization path in assembly_pipeline can alter subject_scale_boost and object_scale_boost
+- weapon lane / pose rendering and glyph rendering vary from semantic object selection, not from a persisted DNA layer
+- some visual differences come from prompt tokens and semantic tags rather than a dedicated mutation system
+
+where_card_identity_is_defined=
+- primary per-card identity currently lives in game/data/card_prompts.json
+- runtime archetype identity lives in game/art/character_templates.py
+- humanoid grammar identity lives in game/art/shape_grammar_registry.py
+- canonical class grammar summary lives in data/art_identity/shape_grammar.json
+- composition and hierarchy identity live in data/art_identity/scene_rules.json and game/art/assembly_pipeline.py
+
+whether_card_dna_data_already_exists=
+- no explicit data/card_dna directory exists
+- no dedicated card DNA loader exists
+- no persistent slot-based visual variation model exists
+- current closest equivalent is implicit DNA spread across card_prompts.json scene_spec fields and template/archetype runtime mappings
+
+whether_shape_grammar_and_archetype_identity_are_already_represented_in_data=
+- yes, partially
+- dominant shape and hard silhouette rules exist in data/art_identity/shape_grammar.json
+- archetype template data exists in game/art/character_templates.py
+- humanoid grammar/subgrammar exists in game/art/shape_grammar_registry.py
+- scene bias and anchor behavior exist in data/art_identity/scene_rules.json
+- however, these are not yet unified into one per-card DNA object
+
+identity_model_gaps=
+- no per-card normalized visual DNA record with stable fields like dominant_shape, weapon_type, environment_type, pose_type, symbol_type, energy_type, palette_family
+- no controlled variation slots registry for helmet/shoulder/cape/weapon/symbol/stance/aura/environment detail
+- no constraint gate dedicated to rejecting identity-breaking mutations before render
+- no deterministic evolution layer on top of card identity and grammar
+
+recommended_phase_2_targets=
+- create data/card_dna as the canonical per-card visual DNA source
+- model one base DNA record per card with archetype, dominant_shape, weapon_type, environment_type, pose_type, symbol_type, energy_type and palette_family
+- keep legacy card prompt/spec data as source inputs, but normalize into explicit DNA entries
+- add a dna_loader in game/art to bridge card_id -> base DNA -> evolution system

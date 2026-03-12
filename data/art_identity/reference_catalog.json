@@ -1,0 +1,2116 @@
+{
+  "catalog_version": "identity_lock_phase1",
+  "status": "phase1_reference_audit_complete",
+  "audited_roots": {
+    "art_reference": "assets/art_reference",
+    "art_shapes": "assets/art_shapes",
+    "art_templates": "assets/art_templates"
+  },
+  "missing_roots": [
+    "assets/art_shapes"
+  ],
+  "notes": [
+    "The project currently uses assets/art_reference as the live reference bucket.",
+    "assets/art_shapes is not present yet and should be created in a later phase if shape libraries are formalized.",
+    "Review-status assets remain active but should be replaced by stronger references before mass generation."
+  ],
+  "category_summary": {
+    "biomes": {
+      "keep": 6,
+      "review": 41,
+      "quarantine": 9
+    },
+    "characters": {
+      "keep": 27,
+      "review": 34,
+      "quarantine": 5
+    },
+    "creatures": {
+      "keep": 1,
+      "review": 8,
+      "quarantine": 0
+    },
+    "ritual_artifacts": {
+      "keep": 7,
+      "review": 7,
+      "quarantine": 2
+    },
+    "symbols": {
+      "keep": 3,
+      "review": 0,
+      "quarantine": 1
+    },
+    "weapons": {
+      "keep": 7,
+      "review": 16,
+      "quarantine": 6
+    }
+  },
+  "totals": {
+    "audited_images": 180,
+    "kept": 51,
+    "review": 106,
+    "quarantined": 23
+  },
+  "entries": [
+    {
+      "source_path": "assets/art_reference/environments/forest/forest_01.png",
+      "active_path": "assets/art_reference/environments/forest/forest_01.png",
+      "category": "biomes",
+      "width": 725,
+      "height": 480,
+      "blur_score": 1661.89,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/forest/forest_02.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/environments/forest/forest_02.png",
+      "category": "biomes",
+      "width": 313,
+      "height": 410,
+      "blur_score": 4014.08,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/forest/forest_03.png",
+      "active_path": "assets/art_reference/environments/forest/forest_03.png",
+      "category": "biomes",
+      "width": 321,
+      "height": 482,
+      "blur_score": 3392.92,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/forest/forest_04.png",
+      "active_path": "assets/art_reference/environments/forest/forest_04.png",
+      "category": "biomes",
+      "width": 324,
+      "height": 491,
+      "blur_score": 2431.08,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/forest/forest_05.png",
+      "active_path": "assets/art_reference/environments/forest/forest_05.png",
+      "category": "biomes",
+      "width": 734,
+      "height": 476,
+      "blur_score": 627.43,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/forest/selva_densa_01.jpg",
+      "active_path": "assets/art_reference/environments/forest/selva_densa_01.jpg",
+      "category": "biomes",
+      "width": 1000,
+      "height": 667,
+      "blur_score": 4634.41,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/environments/mountains/montañas_01.png",
+      "active_path": "assets/art_reference/environments/mountains/montañas_01.png",
+      "category": "biomes",
+      "width": 323,
+      "height": 438,
+      "blur_score": 328.74,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/mountains/montañas_02.png",
+      "active_path": "assets/art_reference/environments/mountains/montañas_02.png",
+      "category": "biomes",
+      "width": 324,
+      "height": 471,
+      "blur_score": 428.22,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/mountains/montañas_03.png",
+      "active_path": "assets/art_reference/environments/mountains/montañas_03.png",
+      "category": "biomes",
+      "width": 1028,
+      "height": 484,
+      "blur_score": 1499.99,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/mountains/montañas_04.png",
+      "active_path": "assets/art_reference/environments/mountains/montañas_04.png",
+      "category": "biomes",
+      "width": 963,
+      "height": 483,
+      "blur_score": 1488.25,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/mountains/montañas_05.png",
+      "active_path": "assets/art_reference/environments/mountains/montañas_05.png",
+      "category": "biomes",
+      "width": 970,
+      "height": 451,
+      "blur_score": 1066.31,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/mountains/montañas_sagradas_01.png",
+      "active_path": "assets/art_reference/environments/mountains/montañas_sagradas_01.png",
+      "category": "biomes",
+      "width": 711,
+      "height": 422,
+      "blur_score": 506.81,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/ruins/altares_01.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/environments/ruins/altares_01.png",
+      "category": "biomes",
+      "width": 314,
+      "height": 436,
+      "blur_score": 1176.97,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/ruins/ciudades_ceremoniales_01.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/environments/ruins/ciudades_ceremoniales_01.png",
+      "category": "biomes",
+      "width": 295,
+      "height": 520,
+      "blur_score": 6316.22,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/ruins/observatorios_01.png",
+      "active_path": "assets/art_reference/environments/ruins/observatorios_01.png",
+      "category": "biomes",
+      "width": 873,
+      "height": 572,
+      "blur_score": 1430.66,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/environments/ruins/ruinas_01.png",
+      "active_path": "assets/art_reference/environments/ruins/ruinas_01.png",
+      "category": "biomes",
+      "width": 706,
+      "height": 440,
+      "blur_score": 414.88,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/ruins/ruinas_02.png",
+      "active_path": "assets/art_reference/environments/ruins/ruinas_02.png",
+      "category": "biomes",
+      "width": 710,
+      "height": 488,
+      "blur_score": 3539.03,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/ruins/ruinas_03.png",
+      "active_path": "assets/art_reference/environments/ruins/ruinas_03.png",
+      "category": "biomes",
+      "width": 695,
+      "height": 443,
+      "blur_score": 1338.2,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/ruins/ruinas_en_horizonte_01.png",
+      "active_path": "assets/art_reference/environments/ruins/ruinas_en_horizonte_01.png",
+      "category": "biomes",
+      "width": 689,
+      "height": 382,
+      "blur_score": 4106.42,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/sea/mar_helado_01.jpg",
+      "active_path": "assets/art_reference/environments/sea/mar_helado_01.jpg",
+      "category": "biomes",
+      "width": 1000,
+      "height": 666,
+      "blur_score": 1408.45,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/environments/sea/sea_01.png",
+      "active_path": "assets/art_reference/environments/sea/sea_01.png",
+      "category": "biomes",
+      "width": 380,
+      "height": 462,
+      "blur_score": 631.29,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/sea/sea_02.png",
+      "active_path": "assets/art_reference/environments/sea/sea_02.png",
+      "category": "biomes",
+      "width": 352,
+      "height": 487,
+      "blur_score": 803.46,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/sea/sea_03.png",
+      "active_path": "assets/art_reference/environments/sea/sea_03.png",
+      "category": "biomes",
+      "width": 1086,
+      "height": 487,
+      "blur_score": 1933.89,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/sea/sea_04.png",
+      "active_path": "assets/art_reference/environments/sea/sea_04.png",
+      "category": "biomes",
+      "width": 341,
+      "height": 393,
+      "blur_score": 913.49,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/sea/sea_05.png",
+      "active_path": "assets/art_reference/environments/sea/sea_05.png",
+      "category": "biomes",
+      "width": 364,
+      "height": 480,
+      "blur_score": 1051.43,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/sky/cielos_01.png",
+      "active_path": "assets/art_reference/environments/sky/cielos_01.png",
+      "category": "biomes",
+      "width": 733,
+      "height": 482,
+      "blur_score": 77.7,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/sky/cielos_02.png",
+      "active_path": "assets/art_reference/environments/sky/cielos_02.png",
+      "category": "biomes",
+      "width": 758,
+      "height": 483,
+      "blur_score": 100.13,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/sky/cielos_03.png",
+      "active_path": "assets/art_reference/environments/sky/cielos_03.png",
+      "category": "biomes",
+      "width": 732,
+      "height": 476,
+      "blur_score": 65.68,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/sky/cielos_rituales_01.jpg",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/environments/sky/cielos_rituales_01.jpg",
+      "category": "biomes",
+      "width": 5000,
+      "height": 4000,
+      "blur_score": 14.34,
+      "status": "quarantine",
+      "quality_flags": [
+        "blurred"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/sky/cielos_rituales_02.jpg",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/environments/sky/cielos_rituales_02.jpg",
+      "category": "biomes",
+      "width": 8641,
+      "height": 8641,
+      "blur_score": 9.34,
+      "status": "quarantine",
+      "quality_flags": [
+        "blurred"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/temples/arquitectura_andina_01.png",
+      "active_path": "assets/art_reference/environments/temples/arquitectura_andina_01.png",
+      "category": "biomes",
+      "width": 793,
+      "height": 558,
+      "blur_score": 430.35,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/environments/temples/arquitectura_atlante_01.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/environments/temples/arquitectura_atlante_01.png",
+      "category": "biomes",
+      "width": 311,
+      "height": 430,
+      "blur_score": 1724.99,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/temples/arquitectura_atlante_02.png",
+      "active_path": "assets/art_reference/environments/temples/arquitectura_atlante_02.png",
+      "category": "biomes",
+      "width": 513,
+      "height": 499,
+      "blur_score": 1942.55,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/temples/arquitectura_fantastica_01.png",
+      "active_path": "assets/art_reference/environments/temples/arquitectura_fantastica_01.png",
+      "category": "biomes",
+      "width": 810,
+      "height": 473,
+      "blur_score": 1069.65,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/temples/columnas_01.png",
+      "active_path": "assets/art_reference/environments/temples/columnas_01.png",
+      "category": "biomes",
+      "width": 331,
+      "height": 578,
+      "blur_score": 2622.0,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/temples/puentes_antiguos_01.jpg",
+      "active_path": "assets/art_reference/environments/temples/puentes_antiguos_01.jpg",
+      "category": "biomes",
+      "width": 1000,
+      "height": 667,
+      "blur_score": 741.15,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/environments/temples/templos_escalonados_01.jpg",
+      "active_path": "assets/art_reference/environments/temples/templos_escalonados_01.jpg",
+      "category": "biomes",
+      "width": 1000,
+      "height": 668,
+      "blur_score": 3940.58,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/environments/void/auroras_01.png",
+      "active_path": "assets/art_reference/environments/void/auroras_01.png",
+      "category": "biomes",
+      "width": 764,
+      "height": 377,
+      "blur_score": 423.84,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/void/geometria_antigua_01.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/environments/void/geometria_antigua_01.png",
+      "category": "biomes",
+      "width": 417,
+      "height": 315,
+      "blur_score": 204.52,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/void/void_01.png",
+      "active_path": "assets/art_reference/environments/void/void_01.png",
+      "category": "biomes",
+      "width": 334,
+      "height": 373,
+      "blur_score": 12581.85,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/void/void_02.png",
+      "active_path": "assets/art_reference/environments/void/void_02.png",
+      "category": "biomes",
+      "width": 863,
+      "height": 474,
+      "blur_score": 909.34,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/void/void_03.png",
+      "active_path": "assets/art_reference/environments/void/void_03.png",
+      "category": "biomes",
+      "width": 820,
+      "height": 483,
+      "blur_score": 666.68,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/environments/void/void_04.png",
+      "active_path": "assets/art_reference/environments/void/void_04.png",
+      "category": "biomes",
+      "width": 845,
+      "height": 473,
+      "blur_score": 787.71,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/lighting/dark/dark_01.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/lighting/dark/dark_01.png",
+      "category": "biomes",
+      "width": 702,
+      "height": 460,
+      "blur_score": 7.46,
+      "status": "quarantine",
+      "quality_flags": [
+        "below_512px",
+        "blurred"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/lighting/dark/dark_02.png",
+      "active_path": "assets/art_reference/lighting/dark/dark_02.png",
+      "category": "biomes",
+      "width": 465,
+      "height": 414,
+      "blur_score": 161.57,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/lighting/dark/dark_03.png",
+      "active_path": "assets/art_reference/lighting/dark/dark_03.png",
+      "category": "biomes",
+      "width": 323,
+      "height": 376,
+      "blur_score": 2205.88,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/lighting/sunrise/sunrise_01.png",
+      "active_path": "assets/art_reference/lighting/sunrise/sunrise_01.png",
+      "category": "biomes",
+      "width": 737,
+      "height": 473,
+      "blur_score": 769.78,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/lighting/sunrise/sunrise_02.png",
+      "active_path": "assets/art_reference/lighting/sunrise/sunrise_02.png",
+      "category": "biomes",
+      "width": 736,
+      "height": 473,
+      "blur_score": 93.34,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/lighting/sunrise/sunrise_03.png",
+      "active_path": "assets/art_reference/lighting/sunrise/sunrise_03.png",
+      "category": "biomes",
+      "width": 732,
+      "height": 426,
+      "blur_score": 39.21,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/lighting/sunset/sunset_01.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/lighting/sunset/sunset_01.png",
+      "category": "biomes",
+      "width": 251,
+      "height": 289,
+      "blur_score": 776.94,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/lighting/sunset/sunset_02.png",
+      "active_path": "assets/art_reference/lighting/sunset/sunset_02.png",
+      "category": "biomes",
+      "width": 487,
+      "height": 360,
+      "blur_score": 174.34,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/lighting/sunset/sunset_03.png",
+      "active_path": "assets/art_reference/lighting/sunset/sunset_03.png",
+      "category": "biomes",
+      "width": 732,
+      "height": 440,
+      "blur_score": 98.25,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/palettes/archon/paleta_arconte_01.png",
+      "active_path": "assets/art_reference/palettes/archon/paleta_arconte_01.png",
+      "category": "biomes",
+      "width": 743,
+      "height": 493,
+      "blur_score": 247.65,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/palettes/Gaia/paleta_gaia_01.png",
+      "active_path": "assets/art_reference/palettes/Gaia/paleta_gaia_01.png",
+      "category": "biomes",
+      "width": 540,
+      "height": 489,
+      "blur_score": 1047.85,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/palettes/hyperborea/paleta_hiperboria_01.png",
+      "active_path": "assets/art_reference/palettes/hyperborea/paleta_hiperboria_01.png",
+      "category": "biomes",
+      "width": 453,
+      "height": 486,
+      "blur_score": 743.46,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/palettes/solar/paleta_solar_01.png",
+      "active_path": "assets/art_reference/palettes/solar/paleta_solar_01.png",
+      "category": "biomes",
+      "width": 482,
+      "height": 487,
+      "blur_score": 261.38,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/caballero_silhouettes_01.png",
+      "active_path": "assets/art_reference/silhouettes/characters/caballero_silhouettes_01.png",
+      "category": "characters",
+      "width": 485,
+      "height": 596,
+      "blur_score": 3170.04,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/caballero_silhouettes_02.png",
+      "active_path": "assets/art_reference/silhouettes/characters/caballero_silhouettes_02.png",
+      "category": "characters",
+      "width": 449,
+      "height": 626,
+      "blur_score": 2977.51,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/caballero_silhouettes_03.png",
+      "active_path": "assets/art_reference/silhouettes/characters/caballero_silhouettes_03.png",
+      "category": "characters",
+      "width": 573,
+      "height": 618,
+      "blur_score": 2901.73,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/dark_ocult_silhouettes_01.png",
+      "active_path": "assets/art_reference/silhouettes/characters/dark_ocult_silhouettes_01.png",
+      "category": "characters",
+      "width": 551,
+      "height": 487,
+      "blur_score": 1066.52,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/dark_ocult_silhouettes_02.png",
+      "active_path": "assets/art_reference/silhouettes/characters/dark_ocult_silhouettes_02.png",
+      "category": "characters",
+      "width": 572,
+      "height": 574,
+      "blur_score": 376.36,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/dark_ocult_silhouettes_03.png",
+      "active_path": "assets/art_reference/silhouettes/characters/dark_ocult_silhouettes_03.png",
+      "category": "characters",
+      "width": 478,
+      "height": 562,
+      "blur_score": 1912.93,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/mago_silhouettes_01.png",
+      "active_path": "assets/art_reference/silhouettes/characters/mago_silhouettes_01.png",
+      "category": "characters",
+      "width": 587,
+      "height": 584,
+      "blur_score": 882.85,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/mago_silhouettes_02.png",
+      "active_path": "assets/art_reference/silhouettes/characters/mago_silhouettes_02.png",
+      "category": "characters",
+      "width": 360,
+      "height": 592,
+      "blur_score": 1413.21,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/mago_silhouettes_03.png",
+      "active_path": "assets/art_reference/silhouettes/characters/mago_silhouettes_03.png",
+      "category": "characters",
+      "width": 473,
+      "height": 529,
+      "blur_score": 1141.8,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/priest_silhouette_01.png",
+      "active_path": "assets/art_reference/silhouettes/characters/priest_silhouette_01.png",
+      "category": "characters",
+      "width": 504,
+      "height": 598,
+      "blur_score": 523.56,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/priest_silhouette_02.png",
+      "active_path": "assets/art_reference/silhouettes/characters/priest_silhouette_02.png",
+      "category": "characters",
+      "width": 462,
+      "height": 600,
+      "blur_score": 591.3,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/priest_silhouette_03.png",
+      "active_path": "assets/art_reference/silhouettes/characters/priest_silhouette_03.png",
+      "category": "characters",
+      "width": 590,
+      "height": 599,
+      "blur_score": 572.27,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/solar_warrior_silhouettes_01.png",
+      "active_path": "assets/art_reference/silhouettes/characters/solar_warrior_silhouettes_01.png",
+      "category": "characters",
+      "width": 575,
+      "height": 533,
+      "blur_score": 1418.78,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/solar_warrior_silhouettes_02.png",
+      "active_path": "assets/art_reference/silhouettes/characters/solar_warrior_silhouettes_02.png",
+      "category": "characters",
+      "width": 561,
+      "height": 516,
+      "blur_score": 814.29,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/characters/solar_warrior_silhouettes_03.png",
+      "active_path": "assets/art_reference/silhouettes/characters/solar_warrior_silhouettes_03.png",
+      "category": "characters",
+      "width": 620,
+      "height": 604,
+      "blur_score": 3093.41,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/creatures/demon_silhouettes_01.png",
+      "active_path": "assets/art_reference/silhouettes/creatures/demon_silhouettes_01.png",
+      "category": "creatures",
+      "width": 722,
+      "height": 444,
+      "blur_score": 1538.5,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/creatures/demon_silhouettes_02.png",
+      "active_path": "assets/art_reference/silhouettes/creatures/demon_silhouettes_02.png",
+      "category": "creatures",
+      "width": 478,
+      "height": 489,
+      "blur_score": 3286.01,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/creatures/demon_silhouettes_03.png",
+      "active_path": "assets/art_reference/silhouettes/creatures/demon_silhouettes_03.png",
+      "category": "creatures",
+      "width": 485,
+      "height": 489,
+      "blur_score": 2977.54,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/creatures/fantasay_deer_silhouettes_01.png",
+      "active_path": "assets/art_reference/silhouettes/creatures/fantasay_deer_silhouettes_01.png",
+      "category": "creatures",
+      "width": 520,
+      "height": 472,
+      "blur_score": 8861.8,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/creatures/fantasay_deer_silhouettes_02.png",
+      "active_path": "assets/art_reference/silhouettes/creatures/fantasay_deer_silhouettes_02.png",
+      "category": "creatures",
+      "width": 494,
+      "height": 486,
+      "blur_score": 427.96,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/creatures/fantasay_deer_silhouettes_03.png",
+      "active_path": "assets/art_reference/silhouettes/creatures/fantasay_deer_silhouettes_03.png",
+      "category": "creatures",
+      "width": 480,
+      "height": 438,
+      "blur_score": 573.55,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/creatures/mystical_silhouettes_01.png",
+      "active_path": "assets/art_reference/silhouettes/creatures/mystical_silhouettes_01.png",
+      "category": "creatures",
+      "width": 366,
+      "height": 567,
+      "blur_score": 3057.82,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/creatures/mystical_silhouettes_02.png",
+      "active_path": "assets/art_reference/silhouettes/creatures/mystical_silhouettes_02.png",
+      "category": "creatures",
+      "width": 550,
+      "height": 541,
+      "blur_score": 1262.86,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/creatures/mystical_silhouettes_03.png",
+      "active_path": "assets/art_reference/silhouettes/creatures/mystical_silhouettes_03.png",
+      "category": "creatures",
+      "width": 487,
+      "height": 478,
+      "blur_score": 2847.47,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/weapons/magic_staff_01.png",
+      "active_path": "assets/art_reference/silhouettes/weapons/magic_staff_01.png",
+      "category": "weapons",
+      "width": 348,
+      "height": 488,
+      "blur_score": 669.06,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/weapons/magic_staff_02.png",
+      "active_path": "assets/art_reference/silhouettes/weapons/magic_staff_02.png",
+      "category": "weapons",
+      "width": 428,
+      "height": 435,
+      "blur_score": 1873.51,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/weapons/magic_staff_03.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/silhouettes/weapons/magic_staff_03.png",
+      "category": "weapons",
+      "width": 306,
+      "height": 485,
+      "blur_score": 1841.44,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/weapons/ritual_blade_silhouettes_01.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/silhouettes/weapons/ritual_blade_silhouettes_01.png",
+      "category": "weapons",
+      "width": 147,
+      "height": 440,
+      "blur_score": 4419.5,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/weapons/ritual_blade_silhouettes_02.png",
+      "active_path": "assets/art_reference/silhouettes/weapons/ritual_blade_silhouettes_02.png",
+      "category": "weapons",
+      "width": 1048,
+      "height": 371,
+      "blur_score": 1190.97,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/weapons/ritual_blade_silhouettes_03.png",
+      "active_path": "assets/art_reference/silhouettes/weapons/ritual_blade_silhouettes_03.png",
+      "category": "weapons",
+      "width": 912,
+      "height": 359,
+      "blur_score": 1084.82,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/weapons/spear_silhouettes_01.png",
+      "active_path": "assets/art_reference/silhouettes/weapons/spear_silhouettes_01.png",
+      "category": "weapons",
+      "width": 372,
+      "height": 361,
+      "blur_score": 1066.06,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/weapons/spear_silhouettes_02.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/silhouettes/weapons/spear_silhouettes_02.png",
+      "category": "weapons",
+      "width": 408,
+      "height": 283,
+      "blur_score": 1128.27,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/weapons/spear_silhouettes_03.png",
+      "active_path": "assets/art_reference/silhouettes/weapons/spear_silhouettes_03.png",
+      "category": "weapons",
+      "width": 751,
+      "height": 447,
+      "blur_score": 391.83,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/weapons/sword_silhouettes_01.png",
+      "active_path": "assets/art_reference/silhouettes/weapons/sword_silhouettes_01.png",
+      "category": "weapons",
+      "width": 358,
+      "height": 392,
+      "blur_score": 597.68,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/weapons/sword_silhouettes_02.png",
+      "active_path": "assets/art_reference/silhouettes/weapons/sword_silhouettes_02.png",
+      "category": "weapons",
+      "width": 322,
+      "height": 406,
+      "blur_score": 344.38,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/silhouettes/weapons/sword_silhouettes_03.png",
+      "active_path": "assets/art_reference/silhouettes/weapons/sword_silhouettes_03.png",
+      "category": "weapons",
+      "width": 362,
+      "height": 328,
+      "blur_score": 1266.54,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_01.png",
+      "active_path": "assets/art_reference/subjects/archons/arconte_01.png",
+      "category": "characters",
+      "width": 375,
+      "height": 563,
+      "blur_score": 247.41,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_02.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/subjects/archons/arconte_02.png",
+      "category": "characters",
+      "width": 279,
+      "height": 380,
+      "blur_score": 643.29,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_03.png",
+      "active_path": "assets/art_reference/subjects/archons/arconte_03.png",
+      "category": "characters",
+      "width": 326,
+      "height": 498,
+      "blur_score": 419.31,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_04.png",
+      "active_path": "assets/art_reference/subjects/archons/arconte_04.png",
+      "category": "characters",
+      "width": 560,
+      "height": 500,
+      "blur_score": 5535.44,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_05.png",
+      "active_path": "assets/art_reference/subjects/archons/arconte_05.png",
+      "category": "characters",
+      "width": 445,
+      "height": 582,
+      "blur_score": 151.54,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_06.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/subjects/archons/arconte_06.png",
+      "category": "characters",
+      "width": 309,
+      "height": 511,
+      "blur_score": 267.94,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_07.png",
+      "active_path": "assets/art_reference/subjects/archons/arconte_07.png",
+      "category": "characters",
+      "width": 594,
+      "height": 563,
+      "blur_score": 2163.65,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_08.png",
+      "active_path": "assets/art_reference/subjects/archons/arconte_08.png",
+      "category": "characters",
+      "width": 487,
+      "height": 602,
+      "blur_score": 1021.71,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_09.png",
+      "active_path": "assets/art_reference/subjects/archons/arconte_09.png",
+      "category": "characters",
+      "width": 375,
+      "height": 530,
+      "blur_score": 1975.35,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_10.png",
+      "active_path": "assets/art_reference/subjects/archons/arconte_10.png",
+      "category": "characters",
+      "width": 388,
+      "height": 522,
+      "blur_score": 1139.47,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_11.png",
+      "active_path": "assets/art_reference/subjects/archons/arconte_11.png",
+      "category": "characters",
+      "width": 408,
+      "height": 576,
+      "blur_score": 18080.3,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_12.png",
+      "active_path": "assets/art_reference/subjects/archons/arconte_12.png",
+      "category": "characters",
+      "width": 390,
+      "height": 531,
+      "blur_score": 746.38,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_13.png",
+      "active_path": "assets/art_reference/subjects/archons/arconte_13.png",
+      "category": "characters",
+      "width": 674,
+      "height": 594,
+      "blur_score": 335.31,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/archons/arconte_14.png",
+      "active_path": "assets/art_reference/subjects/archons/arconte_14.png",
+      "category": "characters",
+      "width": 1002,
+      "height": 593,
+      "blur_score": 37.9,
+      "status": "review",
+      "quality_flags": [
+        "soft_focus"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/condor_01.png",
+      "active_path": "assets/art_reference/subjects/beasts/condor_01.png",
+      "category": "characters",
+      "width": 912,
+      "height": 608,
+      "blur_score": 107.06,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/condor_02.png",
+      "active_path": "assets/art_reference/subjects/beasts/condor_02.png",
+      "category": "characters",
+      "width": 622,
+      "height": 544,
+      "blur_score": 789.42,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/condor_03.png",
+      "active_path": "assets/art_reference/subjects/beasts/condor_03.png",
+      "category": "characters",
+      "width": 653,
+      "height": 356,
+      "blur_score": 1167.97,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/condor_4.jpg",
+      "active_path": "assets/art_reference/subjects/beasts/condor_4.jpg",
+      "category": "characters",
+      "width": 1000,
+      "height": 931,
+      "blur_score": 1009.82,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/huemul_fantasy_01.png",
+      "active_path": "assets/art_reference/subjects/beasts/huemul_fantasy_01.png",
+      "category": "characters",
+      "width": 325,
+      "height": 473,
+      "blur_score": 1189.58,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/huemul_fantasy_02.png",
+      "active_path": "assets/art_reference/subjects/beasts/huemul_fantasy_02.png",
+      "category": "characters",
+      "width": 961,
+      "height": 510,
+      "blur_score": 2514.06,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/mythic_deer_01.png",
+      "active_path": "assets/art_reference/subjects/beasts/mythic_deer_01.png",
+      "category": "characters",
+      "width": 865,
+      "height": 581,
+      "blur_score": 306.05,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/mythic_deer_02.png",
+      "active_path": "assets/art_reference/subjects/beasts/mythic_deer_02.png",
+      "category": "characters",
+      "width": 780,
+      "height": 552,
+      "blur_score": 541.12,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/puma_01.png",
+      "active_path": "assets/art_reference/subjects/beasts/puma_01.png",
+      "category": "characters",
+      "width": 845,
+      "height": 516,
+      "blur_score": 613.71,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/puma_02.png",
+      "active_path": "assets/art_reference/subjects/beasts/puma_02.png",
+      "category": "characters",
+      "width": 598,
+      "height": 438,
+      "blur_score": 1369.0,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/puma_03.png",
+      "active_path": "assets/art_reference/subjects/beasts/puma_03.png",
+      "category": "characters",
+      "width": 712,
+      "height": 482,
+      "blur_score": 690.97,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/sacred_beast_01.png",
+      "active_path": "assets/art_reference/subjects/beasts/sacred_beast_01.png",
+      "category": "characters",
+      "width": 814,
+      "height": 524,
+      "blur_score": 275.12,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/sacred_beast_02.png",
+      "active_path": "assets/art_reference/subjects/beasts/sacred_beast_02.png",
+      "category": "characters",
+      "width": 339,
+      "height": 556,
+      "blur_score": 890.5,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/sacred_beast_03.png",
+      "active_path": "assets/art_reference/subjects/beasts/sacred_beast_03.png",
+      "category": "characters",
+      "width": 447,
+      "height": 497,
+      "blur_score": 394.24,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/beasts/serpiente_01.png",
+      "active_path": "assets/art_reference/subjects/beasts/serpiente_01.png",
+      "category": "characters",
+      "width": 842,
+      "height": 526,
+      "blur_score": 193.43,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/guides/mago_01.png",
+      "active_path": "assets/art_reference/subjects/guides/mago_01.png",
+      "category": "characters",
+      "width": 1536,
+      "height": 1024,
+      "blur_score": 542.4,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/guides/mago_02.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/subjects/guides/mago_02.png",
+      "category": "characters",
+      "width": 229,
+      "height": 363,
+      "blur_score": 1202.43,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/guides/mago_03.png",
+      "active_path": "assets/art_reference/subjects/guides/mago_03.png",
+      "category": "characters",
+      "width": 397,
+      "height": 513,
+      "blur_score": 632.67,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/guides/mago_04.png",
+      "active_path": "assets/art_reference/subjects/guides/mago_04.png",
+      "category": "characters",
+      "width": 612,
+      "height": 584,
+      "blur_score": 662.29,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/guides/mago_05.png",
+      "active_path": "assets/art_reference/subjects/guides/mago_05.png",
+      "category": "characters",
+      "width": 576,
+      "height": 583,
+      "blur_score": 1031.49,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/guides/mago_06.png",
+      "active_path": "assets/art_reference/subjects/guides/mago_06.png",
+      "category": "characters",
+      "width": 403,
+      "height": 589,
+      "blur_score": 726.63,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/guides/mago_07.png",
+      "active_path": "assets/art_reference/subjects/guides/mago_07.png",
+      "category": "characters",
+      "width": 329,
+      "height": 585,
+      "blur_score": 881.02,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/guides/mago_08.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/subjects/guides/mago_08.png",
+      "category": "characters",
+      "width": 305,
+      "height": 522,
+      "blur_score": 1790.62,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/guides/mago_09.png",
+      "active_path": "assets/art_reference/subjects/guides/mago_09.png",
+      "category": "characters",
+      "width": 579,
+      "height": 592,
+      "blur_score": 2144.33,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/guides/mago_10.png",
+      "active_path": "assets/art_reference/subjects/guides/mago_10.png",
+      "category": "characters",
+      "width": 593,
+      "height": 558,
+      "blur_score": 715.44,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/guides/mago_11.png",
+      "active_path": "assets/art_reference/subjects/guides/mago_11.png",
+      "category": "characters",
+      "width": 388,
+      "height": 525,
+      "blur_score": 802.62,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/guides/mago_12.png",
+      "active_path": "assets/art_reference/subjects/guides/mago_12.png",
+      "category": "characters",
+      "width": 339,
+      "height": 475,
+      "blur_score": 2749.3,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/solar_warriors/guardian_01.png",
+      "active_path": "assets/art_reference/subjects/solar_warriors/guardian_01.png",
+      "category": "characters",
+      "width": 391,
+      "height": 549,
+      "blur_score": 2627.72,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/solar_warriors/guardian_02.png",
+      "active_path": "assets/art_reference/subjects/solar_warriors/guardian_02.png",
+      "category": "characters",
+      "width": 446,
+      "height": 348,
+      "blur_score": 346.9,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/solar_warriors/guardian_03.png",
+      "active_path": "assets/art_reference/subjects/solar_warriors/guardian_03.png",
+      "category": "characters",
+      "width": 415,
+      "height": 506,
+      "blur_score": 378.23,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_01.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/subjects/solar_warriors/guerrero_solar_01.png",
+      "category": "characters",
+      "width": 288,
+      "height": 497,
+      "blur_score": 996.63,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_02.png",
+      "active_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_02.png",
+      "category": "characters",
+      "width": 610,
+      "height": 591,
+      "blur_score": 723.26,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_03.png",
+      "active_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_03.png",
+      "category": "characters",
+      "width": 784,
+      "height": 588,
+      "blur_score": 277.56,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_04.png",
+      "active_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_04.png",
+      "category": "characters",
+      "width": 523,
+      "height": 540,
+      "blur_score": 423.09,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_05.png",
+      "active_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_05.png",
+      "category": "characters",
+      "width": 801,
+      "height": 529,
+      "blur_score": 658.72,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_06.png",
+      "active_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_06.png",
+      "category": "characters",
+      "width": 751,
+      "height": 598,
+      "blur_score": 580.33,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_07.png",
+      "active_path": "assets/art_reference/subjects/solar_warriors/guerrero_solar_07.png",
+      "category": "characters",
+      "width": 386,
+      "height": 516,
+      "blur_score": 238.09,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/symbols/chakana/chakana_limpia_01.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/symbols/chakana/chakana_limpia_01.png",
+      "category": "ritual_artifacts",
+      "width": 264,
+      "height": 258,
+      "blur_score": 176.17,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/symbols/chakana/cruces_escalonadas_01.png",
+      "active_path": "assets/art_reference/symbols/chakana/cruces_escalonadas_01.png",
+      "category": "ritual_artifacts",
+      "width": 330,
+      "height": 327,
+      "blur_score": 369.66,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/symbols/chakana/dorada_petrea_ritual_01.png",
+      "active_path": "assets/art_reference/symbols/chakana/dorada_petrea_ritual_01.png",
+      "category": "ritual_artifacts",
+      "width": 552,
+      "height": 506,
+      "blur_score": 2555.95,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/symbols/chakana/emblemas_01.png",
+      "active_path": "assets/art_reference/symbols/chakana/emblemas_01.png",
+      "category": "ritual_artifacts",
+      "width": 568,
+      "height": 479,
+      "blur_score": 2734.41,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/symbols/runes/piedra_ritual_01.png",
+      "active_path": "assets/art_reference/symbols/runes/piedra_ritual_01.png",
+      "category": "ritual_artifacts",
+      "width": 892,
+      "height": 406,
+      "blur_score": 397.89,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/symbols/runes/piedra_ritual_02.png",
+      "active_path": "assets/art_reference/symbols/runes/piedra_ritual_02.png",
+      "category": "ritual_artifacts",
+      "width": 806,
+      "height": 489,
+      "blur_score": 447.66,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/symbols/runes/sellos_01.png",
+      "active_path": "assets/art_reference/symbols/runes/sellos_01.png",
+      "category": "ritual_artifacts",
+      "width": 583,
+      "height": 567,
+      "blur_score": 3224.76,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/symbols/runes/simbolos_solares_01.png",
+      "active_path": "assets/art_reference/symbols/runes/simbolos_solares_01.png",
+      "category": "ritual_artifacts",
+      "width": 577,
+      "height": 568,
+      "blur_score": 3660.37,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/symbols/sacred_geometry/circulos_rituales_01.png",
+      "active_path": "assets/art_reference/symbols/sacred_geometry/circulos_rituales_01.png",
+      "category": "symbols",
+      "width": 588,
+      "height": 575,
+      "blur_score": 7361.38,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/symbols/sacred_geometry/ejes_01.png",
+      "active_path": "assets/art_reference/symbols/sacred_geometry/ejes_01.png",
+      "category": "symbols",
+      "width": 581,
+      "height": 547,
+      "blur_score": 17968.45,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/symbols/sacred_geometry/geometria_antigua_01.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/symbols/sacred_geometry/geometria_antigua_01.png",
+      "category": "symbols",
+      "width": 343,
+      "height": 310,
+      "blur_score": 15597.21,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/symbols/sacred_geometry/mandala_01.png",
+      "active_path": "assets/art_reference/symbols/sacred_geometry/mandala_01.png",
+      "category": "symbols",
+      "width": 585,
+      "height": 529,
+      "blur_score": 5524.24,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/codice_01.png",
+      "active_path": "assets/art_reference/weapons/codice_01.png",
+      "category": "weapons",
+      "width": 490,
+      "height": 514,
+      "blur_score": 409.55,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/weapons/codice_02.png",
+      "active_path": "assets/art_reference/weapons/codice_02.png",
+      "category": "weapons",
+      "width": 557,
+      "height": 487,
+      "blur_score": 1552.19,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/weapons/codice_03.png",
+      "active_path": "assets/art_reference/weapons/codice_03.png",
+      "category": "weapons",
+      "width": 748,
+      "height": 472,
+      "blur_score": 7311.67,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/weapons/relics/altar_01.png",
+      "active_path": "assets/art_reference/weapons/relics/altar_01.png",
+      "category": "ritual_artifacts",
+      "width": 578,
+      "height": 516,
+      "blur_score": 567.8,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/relics/altar_02.png",
+      "active_path": "assets/art_reference/weapons/relics/altar_02.png",
+      "category": "ritual_artifacts",
+      "width": 612,
+      "height": 459,
+      "blur_score": 1016.18,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/weapons/relics/altar_03.png",
+      "active_path": "assets/art_reference/weapons/relics/altar_03.png",
+      "category": "ritual_artifacts",
+      "width": 745,
+      "height": 546,
+      "blur_score": 1135.95,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/relics/coronas_01.png",
+      "active_path": "assets/art_reference/weapons/relics/coronas_01.png",
+      "category": "ritual_artifacts",
+      "width": 601,
+      "height": 572,
+      "blur_score": 1308.6,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/relics/coronas_02.png",
+      "active_path": "assets/art_reference/weapons/relics/coronas_02.png",
+      "category": "ritual_artifacts",
+      "width": 582,
+      "height": 506,
+      "blur_score": 702.47,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/weapons/relics/coronas_03.png",
+      "active_path": "assets/art_reference/weapons/relics/coronas_03.png",
+      "category": "ritual_artifacts",
+      "width": 552,
+      "height": 539,
+      "blur_score": 4258.63,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/relics/espeferas_magicas_relic_01.png",
+      "active_path": "assets/art_reference/weapons/relics/espeferas_magicas_relic_01.png",
+      "category": "ritual_artifacts",
+      "width": 996,
+      "height": 595,
+      "blur_score": 205.96,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/relics/solar_relic_01.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/weapons/relics/solar_relic_01.png",
+      "category": "ritual_artifacts",
+      "width": 306,
+      "height": 436,
+      "blur_score": 298.37,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/weapons/sellos_01.png",
+      "active_path": "assets/art_reference/weapons/sellos_01.png",
+      "category": "weapons",
+      "width": 1165,
+      "height": 585,
+      "blur_score": 624.83,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/sellos_02.png",
+      "active_path": "assets/art_reference/weapons/sellos_02.png",
+      "category": "weapons",
+      "width": 422,
+      "height": 370,
+      "blur_score": 5990.65,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/weapons/sellos_03.png",
+      "active_path": "assets/art_reference/weapons/sellos_03.png",
+      "category": "weapons",
+      "width": 521,
+      "height": 519,
+      "blur_score": 4411.92,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/spears/spear_01.png",
+      "active_path": "assets/art_reference/weapons/spears/spear_01.png",
+      "category": "weapons",
+      "width": 569,
+      "height": 548,
+      "blur_score": 1679.93,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/spears/spear_02.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/weapons/spears/spear_02.png",
+      "category": "weapons",
+      "width": 123,
+      "height": 566,
+      "blur_score": 802.77,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/weapons/spears/spear_03.png",
+      "active_path": "assets/art_reference/weapons/spears/spear_03.png",
+      "category": "weapons",
+      "width": 1002,
+      "height": 563,
+      "blur_score": 209.91,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/staffs/staff_01.png",
+      "active_path": "assets/art_reference/weapons/staffs/staff_01.png",
+      "category": "weapons",
+      "width": 739,
+      "height": 574,
+      "blur_score": 178.79,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/staffs/staff_02.png",
+      "active_path": "assets/art_reference/weapons/staffs/staff_02.png",
+      "category": "weapons",
+      "width": 932,
+      "height": 581,
+      "blur_score": 90.76,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/staffs/staff_03.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/weapons/staffs/staff_03.png",
+      "category": "weapons",
+      "width": 240,
+      "height": 599,
+      "blur_score": 1712.45,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/weapons/staffs/staff_04.png",
+      "active_path": "assets/art_reference/_quarantine/identity_lock_phase1/weapons/staffs/staff_04.png",
+      "category": "weapons",
+      "width": 180,
+      "height": 609,
+      "blur_score": 2158.42,
+      "status": "quarantine",
+      "quality_flags": [
+        "very_low_resolution"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/weapons/swords/espada_01.png",
+      "active_path": "assets/art_reference/weapons/swords/espada_01.png",
+      "category": "weapons",
+      "width": 601,
+      "height": 582,
+      "blur_score": 1588.94,
+      "status": "keep",
+      "quality_flags": []
+    },
+    {
+      "source_path": "assets/art_reference/weapons/swords/espada_02.png",
+      "active_path": "assets/art_reference/weapons/swords/espada_02.png",
+      "category": "weapons",
+      "width": 761,
+      "height": 475,
+      "blur_score": 229.2,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/weapons/swords/espada_03.png",
+      "active_path": "assets/art_reference/weapons/swords/espada_03.png",
+      "category": "weapons",
+      "width": 632,
+      "height": 369,
+      "blur_score": 3783.97,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    },
+    {
+      "source_path": "assets/art_reference/weapons/swords/espada_04.png",
+      "active_path": "assets/art_reference/weapons/swords/espada_04.png",
+      "category": "weapons",
+      "width": 333,
+      "height": 503,
+      "blur_score": 701.4,
+      "status": "review",
+      "quality_flags": [
+        "below_512px"
+      ]
+    }
+  ]
+}

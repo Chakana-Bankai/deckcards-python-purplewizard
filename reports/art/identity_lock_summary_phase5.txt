@@ -1,0 +1,6 @@
+identity_lock_summary_phase5
+1. Pipeline changes: applied the identity lock grammar with canonical shape language, scene composition rules, cleaned references, and archetype anchors over the stabilized 480x270 to 1920x1080 pipeline.
+2. Washout fix: the scene rules kept subject, object, symbolic layer, and environment in canonical roles with safe-zone control and occupancy caps.
+3. Figure construction fix: subjects now inherit the identity document, character templates, and scene rules so each archetype reads through silhouette, prop choice, palette family, and camera bias.
+4. Metrics passed: ARCHON, SOLAR_WARRIOR, GUIDE_MAGE; thresholds checked include occupancy, contrast, visibility, FX occlusion, weapon attachment, silhouette integrity, and limb connection.
+5. Remaining refinement before scaling: integrate scene_rules.json as a direct runtime source and deepen costume/prop detail without breaking silhouette clarity.

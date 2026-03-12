@@ -1,0 +1,77 @@
+shape_dna_test_report
+[ARCHON]
+card_id=ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01
+base_dna={'card_id': 'ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01', 'entity_type': 'HUMANOID', 'archetype': 'ARCHON', 'dominant_shape': 'circle', 'secondary_shape': 'vertical_cathedral', 'weapon_type': 'staff', 'environment_type': 'archon_void_scene', 'pose_type': 'ritual_vertical', 'symbol_type': 'chakana_glyph', 'energy_type': 'void_sparks', 'palette_family': 'violet_neutral'}
+variant_1_path=C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/assets/card_art/generated/test_shape_dna/archon_variant_1.png
+variant_1_seed=1101
+variant_1_chosen_slots={'weapon_variant': 'ritual_staff_head', 'helmet_variant': 'hooded_cowl', 'stance_variant': 'ritual_uplift', 'shoulder_variant': 'ritual_spike', 'cape_variant': 'split_ritual_robe', 'symbol_variant': 'corrupt_seal', 'aura_variant': 'corruption_smoke', 'environment_detail_variant': 'void_monolith'}
+variant_1_rejected_invalid=[]
+variant_1_final_accepted=True
+variant_1_final_overrides={'weapon_type': 'staff', 'weapon_length_ratio': 0.56, 'silhouette_integrity': 0.75, 'pose_type': 'ritual_vertical', 'subject_width_ratio': 0.24, 'subject_height_ratio': 0.32, 'symbol_type': 'corrupt_seal', 'symbol_coverage_ratio': 0.11, 'halo_size_ratio': 0.52}
+variant_1_silhouette_integrity=0.8381
+variant_1_subject_visible_ratio=0.9864
+variant_1_readability_improved=True
+variant_1_identity_stable=True
+
+variant_2_path=C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/assets/card_art/generated/test_shape_dna/archon_variant_2.png
+variant_2_seed=1107
+variant_2_chosen_slots={'weapon_variant': 'ritual_staff_head', 'helmet_variant': 'archon_crown', 'stance_variant': 'ritual_uplift', 'shoulder_variant': 'ritual_spike', 'cape_variant': 'split_ritual_robe', 'symbol_variant': 'corrupt_seal', 'aura_variant': 'corruption_smoke', 'environment_detail_variant': 'void_monolith'}
+variant_2_rejected_invalid=[]
+variant_2_final_accepted=True
+variant_2_final_overrides={'weapon_type': 'staff', 'weapon_length_ratio': 0.56, 'silhouette_integrity': 0.75, 'subject_height_ratio': 0.32, 'pose_type': 'ritual_vertical', 'subject_width_ratio': 0.24, 'symbol_type': 'corrupt_seal', 'symbol_coverage_ratio': 0.11, 'halo_size_ratio': 0.52}
+variant_2_silhouette_integrity=0.8381
+variant_2_subject_visible_ratio=0.9861
+variant_2_readability_improved=True
+variant_2_identity_stable=True
+
+
+[SOLAR_WARRIOR]
+card_id=HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I
+base_dna={'card_id': 'HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I', 'entity_type': 'HUMANOID', 'archetype': 'SOLAR_WARRIOR', 'dominant_shape': 'triangle', 'secondary_shape': 'heroic_armor', 'weapon_type': 'spear', 'environment_type': 'hyperborea_temple_scene', 'pose_type': 'attack_diagonal', 'symbol_type': 'solar_disc', 'energy_type': 'solar_light', 'palette_family': 'ice_blue_silver_white'}
+variant_1_path=C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/assets/card_art/generated/test_shape_dna/solar_warrior_variant_1.png
+variant_1_seed=2202
+variant_1_chosen_slots={'weapon_variant': 'sun_spear', 'helmet_variant': 'solar_crest', 'stance_variant': 'heroic_lunge', 'shoulder_variant': 'broad_plate', 'cape_variant': 'short_battle_cape', 'symbol_variant': 'solar_disc', 'aura_variant': 'solar_flare', 'environment_detail_variant': 'sun_banner'}
+variant_1_rejected_invalid=[]
+variant_1_final_accepted=True
+variant_1_final_overrides={'weapon_type': 'spear', 'weapon_length_ratio': 0.58, 'silhouette_integrity': 0.75, 'subject_height_ratio': 0.32, 'pose_type': 'attack_diagonal', 'subject_width_ratio': 0.24, 'symbol_type': 'solar_disc', 'symbol_coverage_ratio': 0.11, 'halo_size_ratio': 0.48}
+variant_1_silhouette_integrity=0.8422
+variant_1_subject_visible_ratio=0.8134
+variant_1_readability_improved=True
+variant_1_identity_stable=True
+
+variant_2_path=C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/assets/card_art/generated/test_shape_dna/solar_warrior_variant_2.png
+variant_2_seed=2203
+variant_2_chosen_slots={'weapon_variant': 'ceremonial_blade', 'helmet_variant': 'solar_crest', 'stance_variant': 'heroic_lunge', 'shoulder_variant': 'broad_plate', 'cape_variant': 'short_battle_cape', 'symbol_variant': 'solar_disc', 'aura_variant': 'solar_flare', 'environment_detail_variant': 'sun_banner'}
+variant_2_rejected_invalid=[]
+variant_2_final_accepted=True
+variant_2_final_overrides={'weapon_type': 'sword', 'weapon_length_ratio': 0.48, 'silhouette_integrity': 0.75, 'subject_height_ratio': 0.32, 'pose_type': 'attack_diagonal', 'subject_width_ratio': 0.24, 'symbol_type': 'solar_disc', 'symbol_coverage_ratio': 0.11, 'halo_size_ratio': 0.48}
+variant_2_silhouette_integrity=0.8431
+variant_2_subject_visible_ratio=0.7873
+variant_2_readability_improved=False
+variant_2_identity_stable=True
+
+
+[GUIDE_MAGE]
+card_id=BASE-GUIDE-GUARD-CAMPO_PROTECTOR
+base_dna={'card_id': 'BASE-GUIDE-GUARD-CAMPO_PROTECTOR', 'entity_type': 'HUMANOID', 'archetype': 'GUIDE_MAGE', 'dominant_shape': 'rectangle', 'secondary_shape': 'support_robe', 'weapon_type': 'staff', 'environment_type': 'mountain_guardian_scene', 'pose_type': 'support_vertical', 'symbol_type': 'chakana', 'energy_type': 'sacred_wind', 'palette_family': 'gold_violet_turquoise'}
+variant_1_path=C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/assets/card_art/generated/test_shape_dna/guide_mage_variant_1.png
+variant_1_seed=3303
+variant_1_chosen_slots={'weapon_variant': 'orb_staff', 'helmet_variant': 'hooded_cowl', 'stance_variant': 'calm_offset_support', 'shoulder_variant': 'soft_wrap', 'cape_variant': 'wide_support_robe', 'symbol_variant': 'chakana_gate', 'aura_variant': 'wisdom_glyphs', 'environment_detail_variant': 'temple_lanterns'}
+variant_1_rejected_invalid=[]
+variant_1_final_accepted=True
+variant_1_final_overrides={'weapon_type': 'orb', 'weapon_length_ratio': 0.36, 'silhouette_integrity': 0.75, 'pose_type': 'support_vertical', 'subject_width_ratio': 0.24, 'subject_height_ratio': 0.32, 'symbol_type': 'chakana_gate', 'symbol_coverage_ratio': 0.12, 'halo_size_ratio': 0.46}
+variant_1_silhouette_integrity=0.8893
+variant_1_subject_visible_ratio=0.9841
+variant_1_readability_improved=False
+variant_1_identity_stable=True
+
+variant_2_path=C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/assets/card_art/generated/test_shape_dna/guide_mage_variant_2.png
+variant_2_seed=3304
+variant_2_chosen_slots={'weapon_variant': 'orb_staff', 'helmet_variant': 'none', 'stance_variant': 'calm_offset_support', 'shoulder_variant': 'soft_wrap', 'cape_variant': 'wide_support_robe', 'symbol_variant': 'chakana_gate', 'aura_variant': 'wisdom_glyphs', 'environment_detail_variant': 'temple_lanterns'}
+variant_2_rejected_invalid=[]
+variant_2_final_accepted=True
+variant_2_final_overrides={'weapon_type': 'orb', 'weapon_length_ratio': 0.36, 'pose_type': 'support_vertical', 'silhouette_integrity': 0.75, 'subject_width_ratio': 0.24, 'subject_height_ratio': 0.32, 'symbol_type': 'chakana_gate', 'symbol_coverage_ratio': 0.12, 'halo_size_ratio': 0.46}
+variant_2_silhouette_integrity=0.8893
+variant_2_subject_visible_ratio=0.9842
+variant_2_readability_improved=False
+variant_2_identity_stable=True

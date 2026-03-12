@@ -1,0 +1,39 @@
+{
+  "template_id": "archon_base",
+  "archetype": "archon",
+  "head_size": {
+    "ratio_range": [
+      0.16,
+      0.17
+    ],
+    "shape": "narrow_masked_oval"
+  },
+  "torso_mass": {
+    "shape": "vertical_cathedral_core",
+    "width_ratio": 0.68,
+    "height_ratio": 0.72
+  },
+  "arm_length": {
+    "ratio_range": [
+      0.3,
+      0.34
+    ],
+    "gesture": "ritual_forward_hold"
+  },
+  "weapon_anchor": {
+    "primary": "right_hand_anchor",
+    "secondary": "symbol_center_anchor",
+    "default_weapon": "staff"
+  },
+  "cape_or_ornament_areas": [
+    "ritual_cloak_left",
+    "ritual_cloak_right",
+    "void_collar",
+    "sigil_back_plane"
+  ],
+  "silhouette_outline": {
+    "profile": "tall_vertical_split_cloak",
+    "dominant_angles": "severe_stepped",
+    "negative_space": "torso_staff_gap"
+  }
+}

@@ -1,0 +1,65 @@
+art_identity_lock_report
+phase=6
+status=pass
+
+scope
+- identity references audited and partially sanitized
+- visual language defined
+- character templates created
+- canonical scene rules defined
+- three identity test renders validated
+
+validation_targets
+- readability
+- contrast
+- subject occupancy
+- object visibility
+- silhouette clarity
+
+identity_sources
+- docs/art_identity.md
+- data/art_identity/reference_catalog.json
+- data/art_identity/scene_rules.json
+- assets/art_templates/characters/
+
+results
+[ARCHON]
+path=assets/test_identity/archon_identity_lock.png
+readability=pass
+contrast=1.0
+subject_occupancy=0.2419
+object_visibility=0.102
+silhouette_clarity=0.8703
+notes=Clear vertical severe silhouette, strong prop read, very stable subject visibility.
+
+[SOLAR_WARRIOR]
+path=assets/test_identity/solar_warrior_identity_lock.png
+readability=pass
+contrast=1.0
+subject_occupancy=0.2304
+object_visibility=0.0641
+silhouette_clarity=0.9014
+notes=Heroic body read is stable and silhouette is strong; FX occlusion remains near the upper limit and should be watched in future passes.
+
+[GUIDE_MAGE]
+path=assets/test_identity/guide_mage_identity_lock.png
+readability=pass
+contrast=1.0
+subject_occupancy=0.2276
+object_visibility=0.1
+silhouette_clarity=0.9156
+notes=Soft vertical silhouette reads clearly, support prop is visible, and symbolic hierarchy remains controlled.
+
+summary
+- readability_passed=3/3
+- contrast_passed=3/3
+- subject_occupancy_passed=3/3
+- object_visibility_passed=3/3
+- silhouette_clarity_passed=3/3
+- identity_lock_ready_for_next_iteration=true
+
+remaining_refinement
+- connect runtime scene assembly directly to data/art_identity/scene_rules.json
+- reduce Solar Warrior front FX pressure slightly to build more margin
+- deepen costume/material detail without changing silhouette hierarchy
+- replace review-status references over time before mass production

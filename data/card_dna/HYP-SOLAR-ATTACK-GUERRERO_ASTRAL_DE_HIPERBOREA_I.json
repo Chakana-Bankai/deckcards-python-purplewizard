@@ -1,0 +1,13 @@
+{
+  "card_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
+  "entity_type": "HUMANOID",
+  "archetype": "SOLAR_WARRIOR",
+  "dominant_shape": "triangle",
+  "secondary_shape": "heroic_armor",
+  "weapon_type": "spear",
+  "environment_type": "hyperborea_temple_scene",
+  "pose_type": "attack_diagonal",
+  "symbol_type": "solar_disc",
+  "energy_type": "solar_light",
+  "palette_family": "ice_blue_silver_white"
+}

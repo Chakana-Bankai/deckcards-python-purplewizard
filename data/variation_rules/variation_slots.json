@@ -1,0 +1,279 @@
+{
+  "version": "shape_dna_variation_slots_v1",
+  "status": "base_slot_registry",
+  "slots": {
+    "helmet_variant": {
+      "slot_id": "helmet_variant",
+      "description": "Head silhouette or crown variation that preserves archetype identity.",
+      "visual_priority": 0.92,
+      "options": [
+        {
+          "value": "none",
+          "archetype_compatibility": [
+            "GUIDE_MAGE"
+          ],
+          "min_scale_effect": -0.02,
+          "max_scale_effect": 0.0
+        },
+        {
+          "value": "solar_crest",
+          "archetype_compatibility": [
+            "SOLAR_WARRIOR"
+          ],
+          "min_scale_effect": 0.0,
+          "max_scale_effect": 0.03
+        },
+        {
+          "value": "archon_crown",
+          "archetype_compatibility": [
+            "ARCHON"
+          ],
+          "min_scale_effect": 0.0,
+          "max_scale_effect": 0.03
+        },
+        {
+          "value": "hooded_cowl",
+          "archetype_compatibility": [
+            "GUIDE_MAGE",
+            "ARCHON"
+          ],
+          "min_scale_effect": -0.01,
+          "max_scale_effect": 0.02
+        }
+      ]
+    },
+    "shoulder_variant": {
+      "slot_id": "shoulder_variant",
+      "description": "Shoulder silhouette massing and armor profile.",
+      "visual_priority": 0.88,
+      "options": [
+        {
+          "value": "broad_plate",
+          "archetype_compatibility": [
+            "SOLAR_WARRIOR"
+          ],
+          "min_scale_effect": 0.01,
+          "max_scale_effect": 0.04
+        },
+        {
+          "value": "ritual_spike",
+          "archetype_compatibility": [
+            "ARCHON"
+          ],
+          "min_scale_effect": 0.0,
+          "max_scale_effect": 0.03
+        },
+        {
+          "value": "soft_wrap",
+          "archetype_compatibility": [
+            "GUIDE_MAGE"
+          ],
+          "min_scale_effect": -0.02,
+          "max_scale_effect": 0.01
+        }
+      ]
+    },
+    "cape_variant": {
+      "slot_id": "cape_variant",
+      "description": "Back-plane cloth or robe silhouette breakup.",
+      "visual_priority": 0.84,
+      "options": [
+        {
+          "value": "short_battle_cape",
+          "archetype_compatibility": [
+            "SOLAR_WARRIOR"
+          ],
+          "min_scale_effect": -0.01,
+          "max_scale_effect": 0.03
+        },
+        {
+          "value": "split_ritual_robe",
+          "archetype_compatibility": [
+            "ARCHON"
+          ],
+          "min_scale_effect": 0.0,
+          "max_scale_effect": 0.04
+        },
+        {
+          "value": "wide_support_robe",
+          "archetype_compatibility": [
+            "GUIDE_MAGE"
+          ],
+          "min_scale_effect": 0.0,
+          "max_scale_effect": 0.05
+        }
+      ]
+    },
+    "weapon_variant": {
+      "slot_id": "weapon_variant",
+      "description": "Subtype variation of the primary readable prop.",
+      "visual_priority": 0.96,
+      "options": [
+        {
+          "value": "sun_spear",
+          "archetype_compatibility": [
+            "SOLAR_WARRIOR"
+          ],
+          "min_scale_effect": 0.0,
+          "max_scale_effect": 0.04
+        },
+        {
+          "value": "ceremonial_blade",
+          "archetype_compatibility": [
+            "SOLAR_WARRIOR"
+          ],
+          "min_scale_effect": -0.02,
+          "max_scale_effect": 0.02
+        },
+        {
+          "value": "ritual_staff_head",
+          "archetype_compatibility": [
+            "ARCHON"
+          ],
+          "min_scale_effect": -0.01,
+          "max_scale_effect": 0.03
+        },
+        {
+          "value": "orb_staff",
+          "archetype_compatibility": [
+            "GUIDE_MAGE"
+          ],
+          "min_scale_effect": -0.02,
+          "max_scale_effect": 0.02
+        },
+        {
+          "value": "book_focus",
+          "archetype_compatibility": [
+            "GUIDE_MAGE"
+          ],
+          "min_scale_effect": -0.03,
+          "max_scale_effect": 0.0
+        }
+      ]
+    },
+    "symbol_variant": {
+      "slot_id": "symbol_variant",
+      "description": "Secondary sacred or cosmic symbol family behind the subject.",
+      "visual_priority": 0.72,
+      "options": [
+        {
+          "value": "solar_disc",
+          "archetype_compatibility": [
+            "SOLAR_WARRIOR"
+          ],
+          "min_scale_effect": -0.01,
+          "max_scale_effect": 0.02
+        },
+        {
+          "value": "corrupt_seal",
+          "archetype_compatibility": [
+            "ARCHON"
+          ],
+          "min_scale_effect": -0.01,
+          "max_scale_effect": 0.02
+        },
+        {
+          "value": "chakana_gate",
+          "archetype_compatibility": [
+            "GUIDE_MAGE"
+          ],
+          "min_scale_effect": 0.0,
+          "max_scale_effect": 0.03
+        }
+      ]
+    },
+    "stance_variant": {
+      "slot_id": "stance_variant",
+      "description": "Pose family variant that must preserve archetype readability.",
+      "visual_priority": 0.9,
+      "options": [
+        {
+          "value": "heroic_lunge",
+          "archetype_compatibility": [
+            "SOLAR_WARRIOR"
+          ],
+          "min_scale_effect": 0.0,
+          "max_scale_effect": 0.03
+        },
+        {
+          "value": "ritual_uplift",
+          "archetype_compatibility": [
+            "ARCHON"
+          ],
+          "min_scale_effect": -0.01,
+          "max_scale_effect": 0.02
+        },
+        {
+          "value": "calm_offset_support",
+          "archetype_compatibility": [
+            "GUIDE_MAGE"
+          ],
+          "min_scale_effect": -0.02,
+          "max_scale_effect": 0.02
+        }
+      ]
+    },
+    "aura_variant": {
+      "slot_id": "aura_variant",
+      "description": "Controlled aura style that must not overtake the silhouette.",
+      "visual_priority": 0.58,
+      "options": [
+        {
+          "value": "solar_flare",
+          "archetype_compatibility": [
+            "SOLAR_WARRIOR"
+          ],
+          "min_scale_effect": 0.0,
+          "max_scale_effect": 0.02
+        },
+        {
+          "value": "corruption_smoke",
+          "archetype_compatibility": [
+            "ARCHON"
+          ],
+          "min_scale_effect": -0.01,
+          "max_scale_effect": 0.02
+        },
+        {
+          "value": "wisdom_glyphs",
+          "archetype_compatibility": [
+            "GUIDE_MAGE"
+          ],
+          "min_scale_effect": -0.01,
+          "max_scale_effect": 0.02
+        }
+      ]
+    },
+    "environment_detail_variant": {
+      "slot_id": "environment_detail_variant",
+      "description": "Background detail accents that support the card without stealing focus.",
+      "visual_priority": 0.46,
+      "options": [
+        {
+          "value": "sun_banner",
+          "archetype_compatibility": [
+            "SOLAR_WARRIOR"
+          ],
+          "min_scale_effect": -0.02,
+          "max_scale_effect": 0.01
+        },
+        {
+          "value": "void_monolith",
+          "archetype_compatibility": [
+            "ARCHON"
+          ],
+          "min_scale_effect": -0.02,
+          "max_scale_effect": 0.01
+        },
+        {
+          "value": "temple_lanterns",
+          "archetype_compatibility": [
+            "GUIDE_MAGE"
+          ],
+          "min_scale_effect": -0.02,
+          "max_scale_effect": 0.01
+        }
+      ]
+    }
+  }
+}
