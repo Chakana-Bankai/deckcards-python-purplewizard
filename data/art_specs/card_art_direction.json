@@ -1,0 +1,37 @@
+{
+  "version": "art_director_spec_v1",
+  "runtime_bucket": "game/assets/sprites/cards",
+  "staging_bucket": "assets/production/art/staging",
+  "approved_bucket": "assets/production/art/approved",
+  "archive_bucket": "assets/production/art/archive",
+  "score_weights": {
+    "readability": 0.3,
+    "silhouette_clarity": 0.25,
+    "palette_coherence": 0.2,
+    "lore_alignment": 0.15,
+    "technical_cleanliness": 0.1
+  },
+  "thresholds": {
+    "minimum_score_for_staging": 0.55,
+    "minimum_score_for_promotion": 0.78,
+    "blur_warning_threshold": 40.0,
+    "noise_warning_threshold": 0.18,
+    "minimum_score_for_review_queue": 0.9,
+    "palette_diversity_warning_floor": 18,
+    "border_warning_threshold": 0.62
+  },
+  "validation_targets": [
+    "subject_readability",
+    "silhouette_clarity",
+    "palette_coherence",
+    "lore_alignment"
+  ],
+  "archive_policy": {
+    "enabled": true,
+    "keep_runtime_history": true,
+    "suffix_pattern": "__director_pass"
+  },
+  "max_candidates_per_pass": 12,
+  "staging_copy_mode": "review_queue",
+  "max_improvements_per_pass": 6
+}

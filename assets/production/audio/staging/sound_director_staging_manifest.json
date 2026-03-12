@@ -1,0 +1,160 @@
+{
+  "version": "sound_director_staging_v1",
+  "dry_run": false,
+  "runtime_manifest": "game/data/audio_manifest.json",
+  "staging_bucket": "assets/production/audio/staging",
+  "candidate_count": 10,
+  "missing_required_contexts": [
+    "credits",
+    "legendary_reveal",
+    "rare_reveal",
+    "shop_enter"
+  ],
+  "candidates": [
+    {
+      "item_id": "stinger_combat_start",
+      "type": "stinger",
+      "context": "combat_start",
+      "source_path": "game/audio/generated/stingers/combat_start.wav",
+      "staging_path": "assets/production/audio/staging/stinger/combat_start__director_candidate.wav",
+      "score": 0.41,
+      "warnings": [
+        "legacy_version",
+        "missing_analysis",
+        "stinger_review_candidate"
+      ],
+      "analysis": {},
+      "action": "copy_to_staging"
+    },
+    {
+      "item_id": "stinger_elite_encounter",
+      "type": "stinger",
+      "context": "elite_encounter",
+      "source_path": "game/audio/generated/stingers/elite_encounter.wav",
+      "staging_path": "assets/production/audio/staging/stinger/elite_encounter__director_candidate.wav",
+      "score": 0.41,
+      "warnings": [
+        "legacy_version",
+        "missing_analysis",
+        "stinger_review_candidate"
+      ],
+      "analysis": {},
+      "action": "copy_to_staging"
+    },
+    {
+      "item_id": "stinger_harmony_ready",
+      "type": "stinger",
+      "context": "harmony_ready",
+      "source_path": "game/audio/generated/stingers/harmony_ready.wav",
+      "staging_path": "assets/production/audio/staging/stinger/harmony_ready__director_candidate.wav",
+      "score": 0.41,
+      "warnings": [
+        "legacy_version",
+        "missing_analysis",
+        "stinger_review_candidate"
+      ],
+      "analysis": {},
+      "action": "copy_to_staging"
+    },
+    {
+      "item_id": "stinger_level_up",
+      "type": "stinger",
+      "context": "level_up",
+      "source_path": "game/audio/generated/stingers/level_up.wav",
+      "staging_path": "assets/production/audio/staging/stinger/level_up__director_candidate.wav",
+      "score": 0.41,
+      "warnings": [
+        "legacy_version",
+        "missing_analysis",
+        "stinger_review_candidate"
+      ],
+      "analysis": {},
+      "action": "copy_to_staging"
+    },
+    {
+      "item_id": "stinger_pack_open",
+      "type": "stinger",
+      "context": "pack_open",
+      "source_path": "game/audio/generated/stingers/pack_open.wav",
+      "staging_path": "assets/production/audio/staging/stinger/pack_open__director_candidate.wav",
+      "score": 0.41,
+      "warnings": [
+        "legacy_version",
+        "missing_analysis",
+        "stinger_review_candidate"
+      ],
+      "analysis": {},
+      "action": "copy_to_staging"
+    },
+    {
+      "item_id": "combat_elite_a",
+      "type": "bgm",
+      "context": "combat_elite",
+      "source_path": "game/audio/generated/bgm/combat_elite_a.wav",
+      "staging_path": "assets/production/audio/staging/bgm/combat_elite_a__director_candidate.wav",
+      "score": 0.46,
+      "warnings": [
+        "legacy_version",
+        "missing_analysis"
+      ],
+      "analysis": {},
+      "action": "copy_to_staging"
+    },
+    {
+      "item_id": "defeat_a",
+      "type": "bgm",
+      "context": "defeat",
+      "source_path": "game/assets/curated/audio/bgm/defeat_a.wav",
+      "staging_path": "assets/production/audio/staging/bgm/defeat_a__director_candidate.wav",
+      "score": 0.52,
+      "warnings": [
+        "legacy_version",
+        "missing_analysis"
+      ],
+      "analysis": {},
+      "action": "copy_to_staging"
+    },
+    {
+      "item_id": "map_hanan_a",
+      "type": "bgm",
+      "context": "map_hanan",
+      "source_path": "game/assets/curated/audio/bgm/map_hanan_a.wav",
+      "staging_path": "assets/production/audio/staging/bgm/map_hanan_a__director_candidate.wav",
+      "score": 0.52,
+      "warnings": [
+        "legacy_version",
+        "missing_analysis"
+      ],
+      "analysis": {},
+      "action": "copy_to_staging"
+    },
+    {
+      "item_id": "stinger_boss_reveal",
+      "type": "stinger",
+      "context": "boss_reveal",
+      "source_path": "game/audio/generated/stingers/boss_reveal.wav",
+      "staging_path": "assets/production/audio/staging/stinger/boss_reveal__director_candidate.wav",
+      "score": 0.55,
+      "warnings": [
+        "missing_analysis",
+        "stinger_review_candidate"
+      ],
+      "analysis": {},
+      "action": "copy_to_staging"
+    },
+    {
+      "item_id": "stinger_defeat",
+      "type": "stinger",
+      "context": "defeat",
+      "source_path": "game/audio/generated/stingers/defeat.wav",
+      "staging_path": "assets/production/audio/staging/stinger/defeat__director_candidate.wav",
+      "score": 0.55,
+      "warnings": [
+        "missing_analysis",
+        "stinger_review_candidate"
+      ],
+      "analysis": {},
+      "action": "copy_to_staging"
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "version": "art_director_staging_v2",
+  "dry_run": false,
+  "runtime_bucket": "game/assets/sprites/cards",
+  "staging_bucket": "assets/production/art/staging",
+  "flagged_candidate_count": 0,
+  "review_queue_count": 180,
+  "candidate_count": 12,
+  "selection_mode": "review_queue",
+  "candidates": [
+    {
+      "asset_name": "arc_001.png",
+      "source_path": "game/assets/sprites/cards/arc_001.png",
+      "staging_path": "assets/production/art/staging/arc_001__director_candidate.png",
+      "score": 0.64,
+      "warnings": [
+        "low_filesize",
+        "frame_like_border"
+      ],
+      "metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 69097,
+        "blur_score": 185.8424,
+        "palette_diversity": 32,
+        "border_ratio": 0.8396
+      },
+      "action": "copy_to_staging"
+    },
+    {
+      "asset_name": "arc_002.png",
+      "source_path": "game/assets/sprites/cards/arc_002.png",
+      "staging_path": "assets/production/art/staging/arc_002__director_candidate.png",
+      "score": 0.64,
+      "warnings": [
+        "low_filesize",
+        "frame_like_border"
+      ],
+      "metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 52150,
+        "blur_score": 169.5973,
+        "palette_diversity": 32,
+        "border_ratio": 0.8287
+      },
+      "action": "copy_to_staging"
+    },
+    {
+      "asset_name": "arc_003.png",
+      "source_path": "game/assets/sprites/cards/arc_003.png",
+      "staging_path": "assets/production/art/staging/arc_003__director_candidate.png",
+      "score": 0.64,
+      "warnings": [
+        "low_filesize",
+        "frame_like_border"
+      ],
+      "metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 49770,
+        "blur_score": 157.086,
+        "palette_diversity": 32,
+        "border_ratio": 0.8385
+      },
+      "action": "copy_to_staging"
+    },
+    {
+      "asset_name": "arc_004.png",
+      "source_path": "game/assets/sprites/cards/arc_004.png",
+      "staging_path": "assets/production/art/staging/arc_004__director_candidate.png",
+      "score": 0.64,
+      "warnings": [
+        "low_filesize",
+        "frame_like_border"
+      ],
+      "metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 38958,
+        "blur_score": 104.5607,
+        "palette_diversity": 32,
+        "border_ratio": 0.8272
+      },
+      "action": "copy_to_staging"
+    },
+    {
+      "asset_name": "arc_005.png",
+      "source_path": "game/assets/sprites/cards/arc_005.png",
+      "staging_path": "assets/production/art/staging/arc_005__director_candidate.png",
+      "score": 0.64,
+      "warnings": [
+        "low_filesize",
+        "frame_like_border"
+      ],
+      "metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 66979,
+        "blur_score": 187.0974,
+        "palette_diversity": 32,
+        "border_ratio": 0.8393
+      },
+      "action": "copy_to_staging"
+    },
+    {
+      "asset_name": "arc_006.png",
+      "source_path": "game/assets/sprites/cards/arc_006.png",
+      "staging_path": "assets/production/art/staging/arc_006__director_candidate.png",
+      "score": 0.64,
+      "warnings": [
+        "low_filesize",
+        "frame_like_border"
+      ],
+      "metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 50490,
+        "blur_score": 142.8994,
+        "palette_diversity": 32,
+        "border_ratio": 0.8232
+      },
+      "action": "copy_to_staging"
+    },
+    {
+      "asset_name": "arc_007.png",
+      "source_path": "game/assets/sprites/cards/arc_007.png",
+      "staging_path": "assets/production/art/staging/arc_007__director_candidate.png",
+      "score": 0.64,
+      "warnings": [
+        "low_filesize",
+        "frame_like_border"
+      ],
+      "metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 49763,
+        "blur_score": 135.4718,
+        "palette_diversity": 32,
+        "border_ratio": 0.8418
+      },
+      "action": "copy_to_staging"
+    },
+    {
+      "asset_name": "arc_008.png",
+      "source_path": "game/assets/sprites/cards/arc_008.png",
+      "staging_path": "assets/production/art/staging/arc_008__director_candidate.png",
+      "score": 0.64,
+      "warnings": [
+        "low_filesize",
+        "frame_like_border"
+      ],
+      "metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 41676,
+        "blur_score": 99.1864,
+        "palette_diversity": 32,
+        "border_ratio": 0.8272
+      },
+      "action": "copy_to_staging"
+    },
+    {
+      "asset_name": "arc_009.png",
+      "source_path": "game/assets/sprites/cards/arc_009.png",
+      "staging_path": "assets/production/art/staging/arc_009__director_candidate.png",
+      "score": 0.64,
+      "warnings": [
+        "low_filesize",
+        "frame_like_border"
+      ],
+      "metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 38040,
+        "blur_score": 115.7753,
+        "palette_diversity": 32,
+        "border_ratio": 0.8355
+      },
+      "action": "copy_to_staging"
+    },
+    {
+      "asset_name": "arc_010.png",
+      "source_path": "game/assets/sprites/cards/arc_010.png",
+      "staging_path": "assets/production/art/staging/arc_010__director_candidate.png",
+      "score": 0.64,
+      "warnings": [
+        "low_filesize",
+        "frame_like_border"
+      ],
+      "metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 49798,
+        "blur_score": 149.7692,
+        "palette_diversity": 32,
+        "border_ratio": 0.8194
+      },
+      "action": "copy_to_staging"
+    },
+    {
+      "asset_name": "arc_011.png",
+      "source_path": "game/assets/sprites/cards/arc_011.png",
+      "staging_path": "assets/production/art/staging/arc_011__director_candidate.png",
+      "score": 0.64,
+      "warnings": [
+        "low_filesize",
+        "frame_like_border"
+      ],
+      "metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 50468,
+        "blur_score": 128.9513,
+        "palette_diversity": 32,
+        "border_ratio": 0.8441
+      },
+      "action": "copy_to_staging"
+    },
+    {
+      "asset_name": "arc_012.png",
+      "source_path": "game/assets/sprites/cards/arc_012.png",
+      "staging_path": "assets/production/art/staging/arc_012__director_candidate.png",
+      "score": 0.64,
+      "warnings": [
+        "low_filesize",
+        "frame_like_border"
+      ],
+      "metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 67169,
+        "blur_score": 188.827,
+        "palette_diversity": 32,
+        "border_ratio": 0.8271
+      },
+      "action": "copy_to_staging"
+    }
+  ]
+}

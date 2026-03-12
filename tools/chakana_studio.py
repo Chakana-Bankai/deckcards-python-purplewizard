@@ -19,6 +19,8 @@ if __package__ in (None, ''):
         engine_extractor,
         reports_build,
         tooling_stack,
+        art_director_pass,
+        sound_director_pass,
     )
 else:
     from tools.lib import (
@@ -35,6 +37,8 @@ else:
         engine_extractor,
         reports_build,
         tooling_stack,
+        art_director_pass,
+        sound_director_pass,
     )
 
 COMMANDS = {
@@ -54,6 +58,8 @@ COMMANDS = {
     'ui-audit': lambda dry_run: ui_audit.run(dry_run=dry_run),
     'engine-audit': lambda dry_run: engine_extractor.run(dry_run=dry_run),
     'reports-build': lambda dry_run: reports_build.run(dry_run=dry_run),
+    'art-director-pass': lambda dry_run: art_director_pass.run(dry_run=dry_run),
+    'sound-director-pass': lambda dry_run: sound_director_pass.run(dry_run=dry_run),
 }
 
 

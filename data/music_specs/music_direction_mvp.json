@@ -1,0 +1,46 @@
+{
+  "version": "sound_director_spec_v1",
+  "runtime_manifest": "game/data/audio_manifest.json",
+  "staging_bucket": "assets/production/audio/staging",
+  "approved_bucket": "assets/production/audio/approved",
+  "archive_bucket": "assets/production/audio/archive",
+  "required_mvp_contexts": [
+    "studio_intro",
+    "menu",
+    "map",
+    "combat",
+    "boss",
+    "victory",
+    "credits",
+    "shop_enter",
+    "rare_reveal",
+    "legendary_reveal"
+  ],
+  "score_weights": {
+    "loop_smoothness": 0.3,
+    "variation": 0.25,
+    "context_identity": 0.2,
+    "layering_strength": 0.15,
+    "technical_cleanliness": 0.1
+  },
+  "thresholds": {
+    "minimum_score_for_staging": 0.58,
+    "minimum_score_for_promotion": 0.8,
+    "monotony_warning_threshold": 0.65,
+    "variation_warning_floor": 0.28
+  },
+  "validation_targets": [
+    "tempo",
+    "loop_smoothness",
+    "variation",
+    "context_identity"
+  ],
+  "archive_policy": {
+    "enabled": true,
+    "keep_runtime_history": true,
+    "suffix_pattern": "__director_pass"
+  },
+  "max_candidates_per_pass": 10,
+  "staging_copy_mode": "review_queue",
+  "max_improvements_per_pass": 6
+}
