@@ -1,0 +1,93 @@
+PHASE 1 - SUBJECT GENERATION AUDIT
+
+Summary
+- assembly_pipeline_v1 already uses the requested layer order, but subject dominance is still weak because subject and object are built from sparse procedural geometry and validated with permissive thresholds.
+- Lore and tags affect palette, reference sampling and environment choice more than they affect pose, body language, weapon anchoring or scene identity.
+- The current system is still closer to symbolic flat composition than to directed stylized fantasy character construction.
+
+Files inspected
+- game/art/assembly_pipeline.py
+- game/art/silhouette_builder.py
+- game/art/scene_engine.py
+- game/art/fx_layer.py
+
+Files modified
+- reports/art/subject_generation_audit.txt
+
+Audit Findings
+
+1. How subject geometry is currently built
+- Layer order is declared in `game/art/assembly_pipeline.py:29` and executed in `assemble_scene_art()` in `game/art/assembly_pipeline.py`.
+- The subject silhouette is created first through `draw_subject_silhouette()` in `game/art/silhouette_builder.py:555`.
+- Subject bounds come from `_subject_rect()` in `game/art/silhouette_builder.py:524`.
+- The active silhouette helpers are:
+  - `generate_humanoid_silhouette()` at `game/art/silhouette_builder.py:459`
+  - `generate_archon_silhouette()` at `game/art/silhouette_builder.py:493`
+  - `generate_solar_warrior_silhouette()` at `game/art/silhouette_builder.py:511`
+- Character detail is then painted by `draw_subject()` in `game/art/silhouette_builder.py:631`.
+- Those subject builders still rely mostly on circles, rectangles, polygons and thick lines. The result is a readable symbol, but not yet a directed stylized character body.
+- Reference-guided subject and object overlays are disabled because `_blit_reference_subject()` and `_blit_reference_object()` both return `False`.
+
+2. Why subject occupancy is too low
+- `occ_subject` is measured from the silhouette layer only inside `validate_readability()` at `game/art/assembly_pipeline.py:319`, not from the combined silhouette + detail mass.
+- The silhouette templates leave a lot of empty space inside the subject frame, so the bounding box may be tall enough while alpha-filled area stays low.
+- `_subject_rect()` allocates a moderate subject frame, but the actual body often occupies much less than that frame because the shapes are thin or segmented.
+- Several variants still read like emblems or totems rather than dominant humanoid bodies, especially the mage and throne-oriented forms.
+- Validation no longer requires a real `occ_subject` minimum, even though `assembly_pipeline_summary()` still advertises one.
+
+3. Why object occupancy is too low
+- Objects are built in `draw_focus_object()` at `game/art/silhouette_builder.py:696`.
+- Object ratios are clamped tightly and then reduced again, so many objects end up visually present but too thin in occupied area.
+- Weapons are especially penalized because their long narrow shape produces low alpha occupancy.
+- Reference-guided object mass is currently disabled because `_blit_reference_object()` returns `False`.
+- The validation rule already compensates for this with a relaxed weapon threshold, which confirms the construction is underfilled.
+
+4. Why contrast is failing
+- `_contrast_score()` in `game/art/assembly_pipeline.py:105` uses average luma of the subject/object union against a nearby outer ring. It does not measure edge clarity or local silhouette separation.
+- `_strong_foreground_palette()` in `game/art/scene_engine.py:115` strengthens color mood, but it does not guarantee figure-ground separation.
+- `_blit_environment_reference()` applies a full-frame environment plate plus tint, glow, shade and veil, which supports mood but can still leave the subject close to the same value family as the background.
+- `_draw_subject_staging()` and `_draw_object_staging()` help a little, but they are too subtle to rescue weak body construction.
+- `_apply_contrast()` is a global post-pass, not a subject-aware separation pass.
+
+5. How lore and tags are currently interpreted
+- Prompt parsing happens in `semantic_from_prompt()` at `game/art/scene_engine.py:30`.
+- Tags currently influence:
+  - palette and civilization palette
+  - reference categories through `_categories_for_prompt()`
+  - keyword expansion through `_keywords_from_semantic()` at `game/art/scene_engine.py:161`
+  - preferred references through `_prioritize_refs()` at `game/art/scene_engine.py:293`
+  - environment preset selection
+  - foreground palette bias through `_strong_foreground_palette()`
+  - FX family through `draw_fx()` in `game/art/fx_layer.py`
+- Tags do not yet strongly control:
+  - body shape language
+  - stance and pose type
+  - dominant arm direction
+  - weapon anchor point
+  - symbol anchor point
+  - lighting direction by archetype
+  - aura behavior as part of body readability
+
+6. Missing rules for stylized humanoid readability
+- There is no modular body system for archetype-specific parts such as head, torso, cloak/armor mass, dominant arm, support arm, lower body stance, weapon anchor and symbol anchor.
+- There is no minimum filled-mass rule for the subject silhouette, only height and centering rules.
+- There is no archetype-specific pose library for archon, solar warrior and guide mage.
+- There is no explicit body-to-weapon anchoring rule to keep the object readable as part of the pose.
+- There is no local contrast rule that guarantees the head and torso separate from the immediate background.
+- There is no strong lore-to-shape mapping from tags like `ritual`, `attack`, `support`, `wisdom`, `corruption`, `mountain` or `chakana` into silhouette bias or pose logic.
+
+Warnings
+- `assembly_pipeline_summary()` reports `occ_subject_min: 0.20`, but `validate_readability()` does not enforce it.
+- The reference system is currently reduced mostly to palette seeding and selection hints because subject and object cutout blending are disabled.
+- The pipeline can satisfy centering and height while still failing character readability.
+- FX already uses a keepout zone, so the main blocker is under-constructed subject and object form, not overuse of FX.
+
+PASS / WARNING / FAIL
+- WARNING
+
+Recommended next phase
+- Phase 2 - Subject Dominance Rules
+- Priority:
+  1. restore honest subject and object thresholds
+  2. measure subject occupancy from full subject mass, not only silhouette layer
+  3. enlarge and densify subject and object construction before adding more style complexity

@@ -1,0 +1,59 @@
+PHASE 3 - STYLIZED CHARACTER CONSTRUCTION
+
+Summary
+- The subject builder now has modular stylized body construction instead of relying only on generic blocky procedural bodies.
+- Added archetype-specific body templates for archon, solar warrior and guide mage.
+- Each new archetype build includes structured parts: head shape, torso mass, cloak or armor mass, dominant arm, support arm, lower body stance, weapon anchor point and symbol anchor point.
+- The active subject routing now uses these archetype templates in both silhouette generation and detail generation.
+
+Files inspected
+- game/art/silhouette_builder.py
+
+Files modified
+- game/art/silhouette_builder.py
+- reports/art/stylized_character_construction_phase3.txt
+
+Implemented changes
+- Added `_build_humanoid_parts(...)` as a reusable structured part builder.
+- Added helper paint functions for stylized polygon-based anatomy:
+  - `_poly(...)`
+  - `_line(...)`
+  - `_paint_parts(...)`
+- Replaced primitive silhouette internals with modular silhouette generation for:
+  - `generate_humanoid_silhouette()`
+  - `generate_archon_silhouette()`
+  - `generate_solar_warrior_silhouette()`
+  - new `generate_guide_mage_silhouette()`
+- Added archetype-specific detail builders:
+  - `_draw_archon_character(...)`
+  - `_draw_solar_warrior_character(...)`
+  - `_draw_guide_mage_character(...)`
+- Updated `draw_subject_silhouette(...)` to route mage subjects through the new guide mage silhouette.
+- Updated `draw_subject(...)` so archon, warrior and mage families use the new stylized modular character construction instead of falling back to the older block-based variants.
+
+What improved structurally
+- Body mass is no longer just accidental overlap of circles and rectangles.
+- The silhouette now has more directed shape language per archetype:
+  - archon: vertical, ceremonial, throne-like and oppressive
+  - solar warrior: triangular, forward-driving, weapon-led
+  - guide mage: calm vertical robe mass with staff and symbol focus
+- Weapon and symbol anchors are now part of subject construction instead of being implied later.
+
+Warnings
+- This phase improves character construction, but it does not yet map lore and tags deeply into pose logic beyond archetype-level routing.
+- Some legacy functions still exist in the file for backward compatibility, but the main subject path now routes through the new modular builders.
+- Final metric success is still expected to depend on Phase 4 and Phase 5, because tag-to-shape behavior and contrast policy are not fully upgraded yet.
+
+Validation
+- `py_compile game/art/silhouette_builder.py` -> OK
+- function presence check with `rg` -> OK
+
+PASS / WARNING / FAIL
+- PASS
+
+Recommended next phase
+- Phase 4 - Tag / Lore To Shape Mapping
+- Priority:
+  1. map tags into pose, shape bias, weapon choice and symbol behavior
+  2. connect lore-driven stance logic to the new body templates
+  3. keep the Phase 2 thresholds active so tag-driven shapes must improve measurable readability

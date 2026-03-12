@@ -23,11 +23,11 @@ def _rand_point(rng: random.Random, rect: pygame.Rect):
     return (rng.randint(rect.left, rect.right), rng.randint(rect.top, rect.bottom))
 
 
-def draw_fx(surface: pygame.Surface, semantic: dict, palette, rng: random.Random):
+def draw_fx(surface: pygame.Surface, semantic: dict, palette, rng: random.Random, keepout: pygame.Rect | None = None):
     rule = resolve_fx_rule(semantic)
     color = _pick_color(rule, palette)
     w, h = surface.get_size()
-    keepout = pygame.Rect(int(w * 0.24), int(h * 0.18), int(w * 0.52), int(h * 0.54))
+    keepout = keepout or pygame.Rect(int(w * 0.24), int(h * 0.18), int(w * 0.52), int(h * 0.54))
     ring_rect = pygame.Rect(int(w * 0.12), int(h * 0.08), int(w * 0.76), int(h * 0.76))
 
     family = rule.family

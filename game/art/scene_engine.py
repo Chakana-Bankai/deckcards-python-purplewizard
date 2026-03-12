@@ -26,10 +26,127 @@ def _extract_field(prompt: str, key: str, stop_tokens: tuple[str, ...]) -> str:
             end = min(end, j)
     return tail[:end].strip(' ,:;.')
 
+def _semantic_tags(prompt: str, *values: str) -> list[str]:
+    tokens: list[str] = []
+    low = str(prompt or '').lower().replace(',', ' ').replace(':', ' ')
+    for value in values:
+        tokens.extend(str(value or '').lower().replace(',', ' ').split())
+    tokens.extend(low.split())
+    ordered: list[str] = []
+    seen: set[str] = set()
+    for token in tokens:
+        token = token.strip().replace('-', '_')
+        if len(token) < 3:
+            continue
+        if token in seen:
+            continue
+        seen.add(token)
+        ordered.append(token)
+    return ordered[:48]
+
+
+def _derive_shape_language(tags: list[str], subject_kind: str) -> str:
+    joined = set(tags)
+    if 'archon' in subject_kind or 'archon' in joined or 'arconte' in joined or 'corruption' in joined or 'void' in joined:
+        return 'vertical_oppressive'
+    if 'warrior' in subject_kind or 'attack' in joined or 'spear' in joined or 'blade' in joined or 'mountain' in joined:
+        return 'triangular_heroic'
+    if 'mage' in subject_kind or 'oracle' in subject_kind or 'wisdom' in joined or 'support' in joined or 'chakana' in joined:
+        return 'calm_vertical'
+    return 'balanced_fantasy'
+
+
+def _derive_pose_type(tags: list[str], subject_kind: str, object_kind: str) -> str:
+    joined = set(tags)
+    if 'ritual' in joined or 'corruption' in joined:
+        return 'ritual_invocation'
+    if 'attack' in joined or object_kind in {'greatsword', 'solar_axe'} or 'spear' in joined:
+        return 'attack_ready'
+    if 'support' in joined or 'wisdom' in joined or 'guide' in joined:
+        return 'calm_channeling'
+    if 'archon' in subject_kind:
+        return 'dominion_pose'
+    return 'heroic_guard'
+
+
+def _derive_symbol_choice(tags: list[str], base_symbol: str) -> str:
+    joined = set(tags)
+    if 'chakana' in joined:
+        return 'chakana_gate'
+    if 'solar' in joined or 'dawn' in joined:
+        return 'solar_disc'
+    if 'seal' in joined or 'sigil' in joined or 'ritual' in joined:
+        return 'ritual_seal'
+    if base_symbol:
+        return base_symbol.replace(' ', '_')
+    return 'none'
+
+
+def _derive_lighting_direction(tags: list[str], subject_kind: str) -> str:
+    joined = set(tags)
+    if 'solar' in joined or 'dawn' in joined or 'mountain' in joined:
+        return 'left_dawn'
+    if 'archon' in subject_kind or 'void' in joined or 'corruption' in joined:
+        return 'top_void'
+    if 'guide' in joined or 'wisdom' in joined or 'chakana' in joined:
+        return 'front_soft'
+    return 'left_soft'
+
+
+def _derive_aura_type(tags: list[str], effects: str) -> str:
+    joined = set(tags)
+    effects_low = str(effects or '').lower()
+    if 'corruption' in joined or 'void' in joined or 'smoke' in effects_low:
+        return 'corruption_aura'
+    if 'solar' in joined or 'dawn' in joined or 'light' in effects_low:
+        return 'solar_aura'
+    if 'chakana' in joined or 'wisdom' in joined or 'support' in joined:
+        return 'mystic_aura'
+    return 'none'
+
+
+def _derive_environment_choice(tags: list[str], base_environment: str, environment_kind: str) -> str:
+    joined = set(tags)
+    if environment_kind:
+        return environment_kind
+    if 'void' in joined or 'cathedral' in joined or 'corruption' in joined:
+        return 'archon_cathedral'
+    if 'mountain' in joined or 'citadel' in joined:
+        return 'citadel'
+    if 'temple' in joined or 'plateau' in joined or 'chakana' in joined:
+        return 'sanctuary'
+    return str(base_environment or '').replace(' ', '_')
+
+
+def _enrich_semantic(prompt: str, semantic: dict) -> dict:
+    enriched = dict(semantic)
+    tags = _semantic_tags(
+        prompt,
+        semantic.get('subject', ''),
+        semantic.get('object', ''),
+        semantic.get('environment', ''),
+        semantic.get('scene_type', ''),
+        semantic.get('subject_pose', ''),
+        semantic.get('effects', ''),
+        semantic.get('effects_desc', ''),
+        semantic.get('energy', ''),
+        semantic.get('symbol', ''),
+    )
+    enriched['tags'] = tags
+    enriched['shape_language'] = _derive_shape_language(tags, str(semantic.get('subject_kind', '') or '').lower())
+    enriched['pose_type'] = _derive_pose_type(tags, str(semantic.get('subject_kind', '') or '').lower(), str(semantic.get('object_kind', '') or '').lower())
+    enriched['symbol_choice'] = _derive_symbol_choice(tags, str(semantic.get('symbol', '') or '').lower())
+    enriched['lighting_direction'] = _derive_lighting_direction(tags, str(semantic.get('subject_kind', '') or '').lower())
+    enriched['aura_type'] = _derive_aura_type(tags, str(semantic.get('effects', '') or ''))
+    enriched['environment_choice'] = _derive_environment_choice(tags, semantic.get('environment', ''), str(semantic.get('environment_kind', '') or '').lower())
+    if not enriched.get('symbol') and enriched['symbol_choice'] != 'none':
+        enriched['symbol'] = enriched['symbol_choice'].replace('_', ' ')
+    return enriched
+
 
 def semantic_from_prompt(prompt: str) -> dict:
     p = str(prompt or '')
-    return {
+    semantic = {
         'palette': _extract_field(p, 'palette ', ('lighting', 'sacred geometry', 'motif', 'subject', 'object', 'environment', 'effects', 'effect signature', 'energy pattern')),
         'motif': _extract_field(p, 'motif ', ('(', 'subject', 'object', 'environment', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
         'symbol': _extract_field(p, 'sacred geometry ', ('motif', 'subject', 'object', 'environment', 'effects', 'effect signature', 'energy pattern')),
@@ -52,6 +169,7 @@ def semantic_from_prompt(prompt: str) -> dict:
         'energy': _extract_field(p, 'energy pattern ', ('lore tokens',)),
         'rarity': _extract_field(p, 'rarity ', ('sacred geometry', 'motif', 'subject', 'object', 'environment', 'effects', 'effect signature', 'energy pattern', 'lore tokens')),
     }
+    return _enrich_semantic(p, semantic)
 
 
 

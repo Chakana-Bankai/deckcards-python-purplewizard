@@ -250,7 +250,8 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
 
     try:
         result = generate_scene_art(card_id, enriched_prompt, seed + seed_bump, out_path)
-        if str(result.get('generator_used', '')).startswith('scene_engine'):
+        generator_name = str(result.get('generator_used', '') or '')
+        if generator_name.startswith('scene_engine') or generator_name.startswith('assembly_pipeline'):
             comp = _scene_finish_pass(out_path, seed + seed_bump, enriched_prompt)
         else:
             comp = _narrative_pass(out_path, seed + seed_bump, mode, enriched_prompt)
@@ -275,7 +276,8 @@ def generate(card_id: str, card_type: str, prompt: str, seed: int, out_path: Pat
         }
     except Exception:
         fallback = gen_card_art32.generate(card_id, card_type, prompt, seed + 137, out_path)
-        if isinstance(fallback, dict) and str(fallback.get('generator_used', '')).startswith('scene_engine'):
+        fallback_name = str(fallback.get('generator_used', '') or '') if isinstance(fallback, dict) else ''
+        if fallback_name.startswith('scene_engine') or fallback_name.startswith('assembly_pipeline'):
             comp = _scene_finish_pass(out_path, seed + 137, prompt)
         else:
             comp = _narrative_pass(out_path, seed + 137, mode, prompt)

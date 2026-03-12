@@ -1,0 +1,81 @@
+PHASE 4 - TAG / LORE TO SHAPE MAPPING
+
+Summary
+- Added a semantic interpretation layer so tags and lore now drive shape behavior, not only palette and reference selection.
+- The scene parser now derives visual directives from prompt tags: shape language, pose type, symbol choice, lighting direction, aura type and environment choice.
+- The subject builder now consumes those directives to modify body anchors, visual gesture, symbol placement and character-local lighting/aura treatment.
+
+Files inspected
+- game/art/scene_engine.py
+- game/art/silhouette_builder.py
+
+Files modified
+- game/art/scene_engine.py
+- game/art/silhouette_builder.py
+- reports/art/tag_lore_shape_mapping_phase4.txt
+
+Implemented changes
+- In `scene_engine.py`:
+  - added tag extraction and normalization through `_semantic_tags(...)`
+  - added semantic derivation helpers:
+    - `_derive_shape_language(...)`
+    - `_derive_pose_type(...)`
+    - `_derive_symbol_choice(...)`
+    - `_derive_lighting_direction(...)`
+    - `_derive_aura_type(...)`
+    - `_derive_environment_choice(...)`
+  - added `_enrich_semantic(...)`
+  - `semantic_from_prompt(...)` now returns enriched semantics instead of raw field extraction only
+- In `silhouette_builder.py`:
+  - added `_subject_directives(...)` to read the enriched semantics
+  - added `_shape_adjust(...)` so tags can shift weapon and symbol anchors and bias the character silhouette behavior
+  - added `_lighting_glaze(...)` to vary local subject lighting by semantic intent
+  - added `_draw_symbol_marker(...)` to map symbolic identity into body-adjacent markers
+  - added `_draw_aura_marker(...)` to vary aura behavior by lore tags
+  - updated archetype character builders to consume semantic directives
+
+Examples of new mapping behavior
+- ARCHON + ritual/corruption/void
+  - `shape_language -> vertical_oppressive`
+  - `pose_type -> ritual_invocation`
+  - `lighting_direction -> top_void`
+  - `aura_type -> corruption_aura`
+  - `symbol_choice -> ritual_seal` or chakana when present
+- SOLAR_WARRIOR + attack/spear/mountain/solar
+  - `shape_language -> triangular_heroic`
+  - `pose_type -> attack_ready`
+  - `lighting_direction -> left_dawn`
+  - `aura_type -> solar_aura`
+  - `symbol_choice -> solar_disc`
+- GUIDE_MAGE + wisdom/support/chakana
+  - `shape_language -> calm_vertical`
+  - `pose_type -> calm_channeling`
+  - `lighting_direction -> front_soft`
+  - `aura_type -> mystic_aura`
+  - `symbol_choice -> chakana_gate`
+
+What this phase improves
+- Tags now affect pose bias and body intent instead of only mood.
+- Symbol behavior is now tied to the character silhouette instead of being only a generic scene overlay.
+- Lighting and aura are now semantically attached to the subject.
+- Weapon and symbol anchor points can shift based on archetype and tag context.
+
+Warnings
+- This phase introduces meaningful semantic control, but it does not yet fully remap object generation and environment generation to the same level of lore-driven structure.
+- Silhouette generation still uses archetype base shapes; the strongest lore response currently happens in the character detail pass and anchor logic.
+- Final metric success still depends on Phase 5 because figure-ground contrast policy is only partially improved by local subject lighting.
+
+Validation
+- `py_compile game/art/scene_engine.py` -> OK
+- `py_compile game/art/silhouette_builder.py` -> OK
+- `rg` checks for new semantic and directive functions -> OK
+
+PASS / WARNING / FAIL
+- PASS
+
+Recommended next phase
+- Phase 5 - Contrast And Separation Rules
+- Priority:
+  1. enforce subject-vs-environment local contrast around head and torso
+  2. ensure object reads distinctly against subject torso or background
+  3. prevent symbols from becoming dominant unless explicitly required by card intent

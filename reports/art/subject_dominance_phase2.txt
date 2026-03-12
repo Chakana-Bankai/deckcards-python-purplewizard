@@ -1,0 +1,65 @@
+PHASE 2 - SUBJECT DOMINANCE RULES
+
+Summary
+- The pipeline now validates subject dominance with real thresholds instead of permissive placeholders.
+- Subject occupancy is now measured from full visible subject mass by merging silhouette and detail layers before validation.
+- Subject and object layout were both enlarged to push the generator toward stronger character-first scenes.
+- Subject staging now adds stronger non-FX figure-ground support behind the character to improve local separation.
+- Phase 2 improved the metrics materially, but it did not fully solve stylized character readability for all three archetypes.
+
+Files inspected
+- game/art/assembly_pipeline.py
+- game/art/silhouette_builder.py
+
+Files modified
+- game/art/assembly_pipeline.py
+- game/art/silhouette_builder.py
+- reports/art/subject_dominance_phase2.txt
+
+Implemented rules
+- Required thresholds are now explicit in the pipeline:
+  - occ_subject >= 0.22
+  - occ_object >= 0.06
+  - contrast_score >= 0.62
+- Preferred ranges are documented in the pipeline summary:
+  - occ_subject 0.28-0.38
+  - occ_object 0.08-0.14
+- Readability now uses merged subject mass instead of silhouette-only occupancy.
+- Figure centering and 40%-60% subject height constraints remain enforced.
+- FX limits remain in place and are not relaxed.
+
+Smoke results
+- ARCHON
+  - readability_ok: false
+  - occ_subject: 0.2122
+  - occ_object: 0.1033
+  - contrast_score: 0.4959
+  - focus_balance: 0.9235
+- SOLAR_WARRIOR
+  - readability_ok: false
+  - occ_subject: 0.1848
+  - occ_object: 0.0455
+  - contrast_score: 0.0901
+  - focus_balance: 0.9249
+- GUIDE_MAGE
+  - readability_ok: false
+  - occ_subject: 0.1942
+  - occ_object: 0.0091
+  - contrast_score: 0.2691
+  - focus_balance: 0.9212
+
+Warnings
+- The pipeline is now honest about failure: scenes that previously passed because of lax thresholds now fail correctly.
+- Phase 2 can increase size and staging, but it cannot fully fix character readability while the subject is still built from simplified geometric anatomy.
+- Object occupancy remains especially weak for thin weapons and staff-like props.
+- Contrast is still limited because palette and backdrop separation are stronger than body-shape readability itself.
+
+PASS / WARNING / FAIL
+- WARNING
+
+Recommended next phase
+- Phase 3 - Stylized Character Construction
+- Priority:
+  1. replace primitive body construction with modular archetype-specific body parts
+  2. give each archetype a stronger silhouette language and weapon anchor
+  3. keep Phase 2 thresholds unchanged so the new construction must satisfy them honestly
