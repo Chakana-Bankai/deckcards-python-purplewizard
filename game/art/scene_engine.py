@@ -340,6 +340,8 @@ def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
         'generator_used': 'assembly_pipeline_v1',
         'references_used': list(result.references_used),
         'palette_seeded': [result.palette_id],
+        'output_resolution': list(result.output_resolution),
+        'layer_layout': dict(result.layer_layout),
         'semantic_subject': str(semantic.get('subject', '') or ''),
         'semantic_object': str(semantic.get('object', '') or ''),
         'semantic_environment': str(semantic.get('environment', '') or ''),
@@ -350,4 +352,7 @@ def generate_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
         'occ_subject': result.metrics.occ_subject,
         'occ_object': result.metrics.occ_object,
         'occ_fx': result.metrics.occ_fx,
+        'contrast_score': result.metrics.contrast_score,
+        'focus_balance': result.metrics.focus_balance,
     }
+
