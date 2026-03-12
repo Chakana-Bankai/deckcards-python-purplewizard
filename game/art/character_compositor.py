@@ -13,6 +13,9 @@ from game.art.weapon_templates import resolve_weapon_template
 from game.art.weapon_pose_resolver import bind_weapon_pose
 from game.art.shape_language_profile import resolve_shape_language
 from game.art.material_tone_system import build_material_tones
+from game.art.object_glyph_grammar import resolve_object_glyph_grammar
+from game.art.finish_render_system import apply_prop_finish, apply_material_finish
+from game.art.surface_style_pass import apply_subject_surface_style, apply_weapon_surface_style
 
 
 def _clamp(value: float, low: float, high: float) -> float:
@@ -180,11 +183,12 @@ def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surf
     tip = skeleton.get('weapon_tip_anchor', _weapon_tip(origin, rect, weapon, skeleton['weapon_orientation']))
     skeleton['weapon_tip_anchor'] = tip
     family = str(weapon.get('family', 'staff'))
+    glyph = resolve_object_glyph_grammar(family)
     shaft = tones['wood'][:3] if family in {'staff', 'orb'} else tones['metal'][:3]
     bright = tones['glow'][:3] if family in {'staff', 'orb'} else tones['metal'][:3]
     dark = tones['shadow'][:3]
     width_scale = float(profile.get('weapon_thickness_scale', 1.0))
-    icon_scale = float(profile.get('icon_scale', 1.0))
+    icon_scale = float(profile.get('icon_scale', 1.0)) * float(glyph.get('head_scale', 1.0))
     width = max(4, int(rect.width * float(weapon.get('thickness', 0.11)) * width_scale))
 
     grip_width = max(3, width - 1)
@@ -199,18 +203,20 @@ def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surf
         shaft_tip = (shaft_mid[0], origin[1] - rect.height * 0.22)
         _capsule(back_target, origin, shaft_mid, max(4, width), (*shaft, 236))
         _capsule(back_target, shaft_mid, shaft_tip, max(5, width + 1), (*shaft, 255))
-        crown_radius = max(6, int(width * 0.95 * icon_scale))
+        crown_radius = max(7, int(width * 1.05 * icon_scale))
         ring_rect = pygame.Rect(int(shaft_tip[0] - crown_radius), int(shaft_tip[1] - crown_radius * 0.85), int(crown_radius * 2.0), int(crown_radius * 1.7))
         pygame.draw.ellipse(back_target, (*bright, 220), ring_rect, max(2, width // 3))
         pygame.draw.circle(back_target, (*bright, 240), _pt((shaft_tip[0], shaft_tip[1] - crown_radius * 0.10)), max(5, width))
         left_fin = [_pt((shaft_tip[0] - crown_radius * 1.35, shaft_tip[1] - crown_radius * 0.10)), _pt((shaft_tip[0] - crown_radius * 0.48, shaft_tip[1] - crown_radius * 0.72)), _pt((shaft_tip[0] - crown_radius * 0.30, shaft_tip[1] + crown_radius * 0.58))]
         right_fin = [_pt((shaft_tip[0] + crown_radius * 1.35, shaft_tip[1] - crown_radius * 0.10)), _pt((shaft_tip[0] + crown_radius * 0.48, shaft_tip[1] - crown_radius * 0.72)), _pt((shaft_tip[0] + crown_radius * 0.30, shaft_tip[1] + crown_radius * 0.58))]
-        outer_echo = pygame.Rect(int(shaft_tip[0] + crown_radius * 0.45), int(shaft_tip[1] - crown_radius * 0.55), int(crown_radius * 1.2), int(crown_radius * 0.7))
+        outer_echo = pygame.Rect(int(shaft_tip[0] + crown_radius * 0.35), int(shaft_tip[1] - crown_radius * 0.55), int(crown_radius * 1.8), int(crown_radius * 0.95))
         pygame.draw.polygon(back_target, (*bright, 210), left_fin)
         pygame.draw.polygon(back_target, (*bright, 210), right_fin)
         pygame.draw.ellipse(back_target, (*bright, 185), outer_echo)
-        banner = [_pt((shaft_mid[0] + width * 0.2, shaft_mid[1] - width * 0.2)), _pt((shaft_mid[0] + width * 1.2, shaft_mid[1] + width * 0.5)), _pt((shaft_mid[0] + width * 0.3, shaft_mid[1] + width * 1.3))]
+        banner = [_pt((shaft_mid[0] + width * 0.1, shaft_mid[1] - width * 0.4)), _pt((shaft_mid[0] + width * 2.1, shaft_mid[1] + width * 0.4)), _pt((shaft_mid[0] + width * 0.4, shaft_mid[1] + width * 1.9))]
+        side_plate = [_pt((shaft_mid[0] - width * 0.5, shaft_mid[1] - width * 1.4)), _pt((shaft_mid[0] + width * 2.3, shaft_mid[1] - width * 0.6)), _pt((shaft_mid[0] + width * 2.2, shaft_mid[1] + width * 0.7)), _pt((shaft_mid[0] - width * 0.3, shaft_mid[1] + width * 1.4))]
         pygame.draw.polygon(back_target, (*dark, 170), banner)
+        pygame.draw.polygon(back_target, (*bright, 150), side_plate)
         skeleton['weapon_tip_anchor'] = shaft_tip
     elif family == 'orb':
         lane_x = skeleton.get('weapon_lane_anchor', (rect.right, rect.centery))[0]
@@ -222,15 +228,19 @@ def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surf
         pygame.draw.arc(back_target, (*shaft, 230), pygame.Rect(int(orb_center[0] - width * 1.7), int(orb_center[1] - width * 1.35), int(width * 3.4), int(width * 3.0)), 0.2, 2.94, max(2, width // 3))
         _capsule(back_target, support_top, cradle_left, max(3, width - 2), (*shaft, 255))
         _capsule(back_target, support_top, cradle_right, max(3, width - 2), (*shaft, 255))
-        orb_radius = max(6, int(width * 1.0 * icon_scale))
+        orb_radius = max(8, int(width * 1.18 * icon_scale))
         pygame.draw.circle(back_target, (*bright, 245), _pt(orb_center), orb_radius)
         pygame.draw.circle(back_target, (*dark, 255), _pt(orb_center), orb_radius, 2)
-        halo_rect = pygame.Rect(int(orb_center[0] - width * 1.4), int(orb_center[1] - width * 1.2), int(width * 2.8), int(width * 2.4))
+        halo_rect = pygame.Rect(int(orb_center[0] - width * 1.9), int(orb_center[1] - width * 1.6), int(width * 3.8), int(width * 3.2))
         pygame.draw.ellipse(back_target, (*bright, 90), halo_rect, max(2, width // 3))
         tail = [_pt((support_top[0] - width * 0.4, support_top[1] + width * 0.5)), _pt((support_top[0] + width * 1.0, support_top[1] + width * 1.4)), _pt((support_top[0], support_top[1] + width * 2.0))]
-        outer_crescent = pygame.Rect(int(orb_center[0] + width * 1.3), int(orb_center[1] - width * 1.2), int(width * 2.6), int(width * 1.6))
+        outer_crescent = pygame.Rect(int(orb_center[0] + width * 0.9), int(orb_center[1] - width * 1.5), int(width * 3.2), int(width * 2.2))
         pygame.draw.polygon(back_target, (*dark, 165), tail)
+        sat_left = _pt((orb_center[0] - orb_radius * 1.7, orb_center[1] + orb_radius * 0.4))
+        sat_right = _pt((orb_center[0] + orb_radius * 2.0, orb_center[1] - orb_radius * 0.2))
         pygame.draw.arc(back_target, (*bright, 170), outer_crescent, 4.1, 1.9, max(2, width // 3))
+        pygame.draw.circle(back_target, (*bright, 160), sat_left, max(4, int(orb_radius * 0.45)))
+        pygame.draw.circle(back_target, (*bright, 150), sat_right, max(4, int(orb_radius * 0.36)))
         skeleton['weapon_tip_anchor'] = orb_center
     else:
         _capsule(back_target, origin, tip, width, (*shaft, 255))
@@ -271,6 +281,10 @@ def compose_character_subject(surface_size: tuple[int, int], semantic: dict, pal
     render_costume_detail_pass(subject_detail, skeleton, archetype, palette, tones, skeleton['shape_profile'])
     _attenuate_central_subject_detail(subject_detail, skeleton, archetype)
     _render_weapon_layers(weapon_back_layer, weapon_front_layer, skeleton, weapon, palette, tones)
+    apply_material_finish(subject_detail, skeleton, tones, archetype)
+    apply_subject_surface_style(subject_detail, skeleton, tones, archetype)
+    apply_prop_finish(weapon_back_layer, weapon_front_layer, str(weapon.get('family', 'staff')), tones, skeleton['rect'])
+    apply_weapon_surface_style(weapon_back_layer, weapon_front_layer, str(weapon.get('family', 'staff')), tones)
     _clear_weapon_from_subject_core(weapon_back_layer, weapon_front_layer, subject_mask, skeleton, str(weapon.get('family', 'staff')))
 
     subject_rect = subject_mask.get_bounding_rect(min_alpha=12)
@@ -280,6 +294,8 @@ def compose_character_subject(surface_size: tuple[int, int], semantic: dict, pal
     subject_core_rect = pygame.Rect(int(torso[0] - core_w / 2), int(torso[1] - core_h * 0.10), core_w, core_h).clip(pygame.Rect((0, 0), surface_size))
 
     layout = dict(skeleton)
+    grammar = skeleton.get('entity_grammar', {})
+    subgrammar = skeleton.get('subgrammar', {})
     layout.update(
         {
             'rect': subject_rect,
@@ -287,6 +303,11 @@ def compose_character_subject(surface_size: tuple[int, int], semantic: dict, pal
             'pose_family': str(skeleton['pose_id']).lower(),
             'template_id': str(template.get('template_id', 'solar_warrior_base')),
             'weapon_template_id': str(weapon.get('weapon_id', 'staff')),
+            'grammar_profile_id': str(grammar.get('entity_type', 'HUMANOID')),
+            'subgrammar_id': str(subgrammar.get('subgrammar_id', 'SOLAR_WARRIOR')),
+            'grammar_layering_order': list(grammar.get('layering_order', [])),
+            'grammar_silhouette_priorities': list(grammar.get('silhouette_priorities', [])),
+            'grammar_ratios': dict(skeleton.get('grammar_ratios', {})),
             'silhouette_integrity': float(merge_metrics['silhouette_integrity']),
             'limb_connection_score': float(merge_metrics['limb_connection_score']),
             'frontal_block_score': float(merge_metrics.get('frontal_block_score', 1.0)),
@@ -302,4 +323,8 @@ def compose_character_subject(surface_size: tuple[int, int], semantic: dict, pal
         'template': template,
         'weapon': weapon,
     }
+
+
+
+
 

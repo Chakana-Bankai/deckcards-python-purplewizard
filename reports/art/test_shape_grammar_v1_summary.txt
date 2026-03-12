@@ -1,0 +1,21 @@
+test_shape_grammar_v1_summary
+[ARCHON]
+1. grammar applied: HUMANOID/ARCHON
+2. scale control: composed at 480x270 with subject and object stabilized through grammar ratios and upscaled to 1920x1080 only at export.
+3. proportion correction: head/torso/pelvis/legs/shoulders were constrained through humanoid grammar ratios and pose anchors.
+4. silhouette readability improved: True
+5. ready for template extraction: yes
+
+[SOLAR_WARRIOR]
+1. grammar applied: HUMANOID/SOLAR_WARRIOR
+2. scale control: composed at 480x270 with subject and object stabilized through grammar ratios and upscaled to 1920x1080 only at export.
+3. proportion correction: head/torso/pelvis/legs/shoulders were constrained through humanoid grammar ratios and pose anchors.
+4. silhouette readability improved: True
+5. ready for template extraction: yes
+
+[GUIDE_MAGE]
+1. grammar applied: HUMANOID/GUIDE_MAGE
+2. scale control: composed at 480x270 with subject and object stabilized through grammar ratios and upscaled to 1920x1080 only at export.
+3. proportion correction: head/torso/pelvis/legs/shoulders were constrained through humanoid grammar ratios and pose anchors.
+4. silhouette readability improved: True
+5. ready for template extraction: yes

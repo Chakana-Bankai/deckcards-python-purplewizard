@@ -89,9 +89,9 @@ def merge_body_volumes(size: tuple[int, int], volumes: list[dict[str, object]], 
     bounds = smooth.get_bounding_rect(min_alpha=12)
     bbox_area = max(1, bounds.width * bounds.height)
     fill_ratio = mask.count() / bbox_area
-    silhouette_integrity = max(0.0, min(1.0, fill_ratio * (1.18 if archetype == 'archon' else 1.08)))
     limb_connection_score = max(0.0, min(1.0, _count_bridges(smooth) / 5.0))
     frontal_block_score = _frontal_block_score(smooth)
+    silhouette_integrity = max(0.0, min(1.0, 0.05 + fill_ratio * 0.30 + limb_connection_score * 0.25 + frontal_block_score * 0.45))
     return smooth, {
         'silhouette_integrity': round(silhouette_integrity, 4),
         'limb_connection_score': round(limb_connection_score, 4),

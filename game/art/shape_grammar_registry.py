@@ -1,0 +1,133 @@
+from __future__ import annotations
+
+ENTITY_SHAPE_GRAMMARS = {
+    'HUMANOID': {
+        'entity_type': 'HUMANOID',
+        'primary_shapes': ['head_oval', 'torso_mass', 'pelvis_mass', 'limb_capsules'],
+        'secondary_shapes': ['shoulder_caps', 'cloak_or_armor', 'sash', 'grip_bridge'],
+        'allowed_proportions': {
+            'head_ratio': (0.16, 0.18),
+            'torso_ratio': (0.30, 0.34),
+            'pelvis_ratio': (0.10, 0.14),
+            'leg_ratio': (0.34, 0.40),
+            'arm_ratio': (0.30, 0.36),
+            'shoulder_ratio': (1.7, 2.0),
+        },
+        'layering_order': ['skeleton', 'body_volumes', 'silhouette_merge', 'weapon', 'symbol', 'fx'],
+        'anchor_points': ['head_anchor', 'torso_anchor', 'pelvis_anchor', 'weapon_anchor', 'symbol_anchor'],
+        'silhouette_priorities': ['head_readability', 'torso_mass', 'leg_support', 'weapon_attachment'],
+        'allowed_variations': ['ritual', 'attack', 'calm', 'guard'],
+    },
+    'ANIMAL': {
+        'entity_type': 'ANIMAL',
+        'primary_shapes': ['head', 'neck', 'body', 'legs', 'tail'],
+        'secondary_shapes': ['mane', 'horns', 'saddle', 'markings'],
+        'allowed_proportions': {'head_ratio': (0.12, 0.20), 'body_ratio': (0.38, 0.58), 'leg_ratio': (0.24, 0.40)},
+        'layering_order': ['skeleton', 'body_volumes', 'silhouette_merge', 'markings', 'fx'],
+        'anchor_points': ['head_anchor', 'body_anchor', 'tail_anchor', 'back_anchor'],
+        'silhouette_priorities': ['head_profile', 'body_arc', 'leg_support'],
+        'allowed_variations': ['graze', 'leap', 'charge'],
+    },
+    'CREATURE': {
+        'entity_type': 'CREATURE',
+        'primary_shapes': ['body_core', 'head_module', 'limb_modules'],
+        'secondary_shapes': ['tail_or_horn_module', 'wings_optional', 'carapace'],
+        'allowed_proportions': {'core_ratio': (0.28, 0.52), 'head_ratio': (0.10, 0.22), 'limb_ratio': (0.18, 0.34)},
+        'layering_order': ['core', 'appendages', 'silhouette_merge', 'emissive_details', 'fx'],
+        'anchor_points': ['core_anchor', 'head_anchor', 'tail_anchor', 'wing_anchor'],
+        'silhouette_priorities': ['core_mass', 'appendage_identity', 'asymmetry'],
+        'allowed_variations': ['stalker', 'flying', 'ritual_beast'],
+    },
+    'OBJECT': {
+        'entity_type': 'OBJECT',
+        'primary_shapes': ['core_shape', 'secondary_shape'],
+        'secondary_shapes': ['detail_shapes', 'aura_optional'],
+        'allowed_proportions': {'core_ratio': (0.44, 0.78), 'detail_ratio': (0.08, 0.20)},
+        'layering_order': ['core', 'secondary', 'details', 'aura'],
+        'anchor_points': ['core_anchor', 'grip_anchor', 'tip_anchor'],
+        'silhouette_priorities': ['icon_readability', 'attachment', 'accent_shape'],
+        'allowed_variations': ['staff', 'orb', 'spear', 'blade'],
+    },
+    'STRUCTURE': {
+        'entity_type': 'STRUCTURE',
+        'primary_shapes': ['base', 'vertical_mass', 'roof_or_top'],
+        'secondary_shapes': ['decorative_supports', 'sacred_symbol_optional'],
+        'allowed_proportions': {'base_ratio': (0.24, 0.46), 'vertical_ratio': (0.30, 0.64)},
+        'layering_order': ['base', 'vertical_mass', 'roof', 'ornament', 'symbol'],
+        'anchor_points': ['base_anchor', 'center_anchor', 'top_anchor'],
+        'silhouette_priorities': ['major_mass', 'top_profile', 'support_rhythm'],
+        'allowed_variations': ['temple', 'citadel', 'tower'],
+    },
+    'LANDSCAPE': {
+        'entity_type': 'LANDSCAPE',
+        'primary_shapes': ['sky_layer', 'far_background', 'midground', 'foreground'],
+        'secondary_shapes': ['subject_slot_optional', 'sacred_marker_optional'],
+        'allowed_proportions': {'far_ratio': (0.16, 0.30), 'mid_ratio': (0.18, 0.34), 'foreground_ratio': (0.16, 0.30)},
+        'layering_order': ['sky', 'far', 'midground', 'foreground', 'subject_slot'],
+        'anchor_points': ['horizon_anchor', 'subject_slot_anchor'],
+        'silhouette_priorities': ['horizon_readability', 'depth_layers', 'subject_slot_clearance'],
+        'allowed_variations': ['void', 'mountain', 'plateau', 'cathedral'],
+    },
+}
+
+HUMANOID_SUBGRAMMARS = {
+    'archon': {
+        'entity_type': 'HUMANOID',
+        'subgrammar_id': 'ARCHON',
+        'head': 'narrow_oval',
+        'torso': 'split_cathedral',
+        'pelvis': 'compact_robe_base',
+        'arms': 'ritual_sleeves',
+        'legs': 'hidden_support',
+        'shoulders': 'sharp_ritual',
+        'cloak_or_armor': 'cathedral_cloak',
+        'weapon_anchor': 'right_hand_anchor',
+        'symbol_anchor': 'symbol_center_anchor',
+        'pose_family': 'ritual_vertical',
+        'silhouette_family': 'severe_vertical',
+        'scene_bias': 'void_cathedral',
+        'object_bias': 'staff',
+    },
+    'solar_warrior': {
+        'entity_type': 'HUMANOID',
+        'subgrammar_id': 'SOLAR_WARRIOR',
+        'head': 'heroic_oval',
+        'torso': 'heroic_triangle',
+        'pelvis': 'combat_pelvis',
+        'arms': 'attack_arms',
+        'legs': 'stable_stride',
+        'shoulders': 'broad_heroic',
+        'cloak_or_armor': 'solar_armor',
+        'weapon_anchor': 'right_hand_anchor',
+        'symbol_anchor': 'halo_anchor',
+        'pose_family': 'attack_diagonal',
+        'silhouette_family': 'triangle_attack',
+        'scene_bias': 'mountain_solar',
+        'object_bias': 'spear',
+    },
+    'guide_mage': {
+        'entity_type': 'HUMANOID',
+        'subgrammar_id': 'GUIDE_MAGE',
+        'head': 'soft_oval',
+        'torso': 'calm_column_split',
+        'pelvis': 'support_pelvis',
+        'arms': 'support_arms',
+        'legs': 'calm_support',
+        'shoulders': 'soft_slope',
+        'cloak_or_armor': 'sacred_robe',
+        'weapon_anchor': 'right_hand_anchor',
+        'symbol_anchor': 'symbol_center_anchor',
+        'pose_family': 'support_vertical',
+        'silhouette_family': 'soft_vertical',
+        'scene_bias': 'temple_plateau',
+        'object_bias': 'orb',
+    },
+}
+
+
+def resolve_entity_shape_grammar(entity_type: str) -> dict[str, object]:
+    return dict(ENTITY_SHAPE_GRAMMARS.get(str(entity_type).upper(), ENTITY_SHAPE_GRAMMARS['OBJECT']))
+
+
+def resolve_humanoid_subgrammar(archetype: str) -> dict[str, object]:
+    return dict(HUMANOID_SUBGRAMMARS.get(str(archetype), HUMANOID_SUBGRAMMARS['solar_warrior']))

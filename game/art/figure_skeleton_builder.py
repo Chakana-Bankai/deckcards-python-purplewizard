@@ -3,6 +3,7 @@ from __future__ import annotations
 import pygame
 
 from game.art.character_templates import resolve_character_template
+from game.art.shape_grammar_registry import resolve_entity_shape_grammar, resolve_humanoid_subgrammar
 
 POSE_PRESETS = {
     'ARCHON_RITUAL': {
@@ -58,22 +59,6 @@ POSE_PRESETS = {
     },
 }
 
-JOINT_KEYS = {
-    'HEAD': 'head_anchor',
-    'NECK': 'neck_anchor',
-    'LEFT_SHOULDER': 'left_shoulder_anchor',
-    'RIGHT_SHOULDER': 'right_shoulder_anchor',
-    'LEFT_ELBOW': 'left_elbow_anchor',
-    'RIGHT_ELBOW': 'right_elbow_anchor',
-    'LEFT_HAND': 'left_hand_anchor',
-    'RIGHT_HAND': 'right_hand_anchor',
-    'PELVIS': 'pelvis_anchor',
-    'LEFT_KNEE': 'left_knee_anchor',
-    'RIGHT_KNEE': 'right_knee_anchor',
-    'LEFT_FOOT': 'left_foot_anchor',
-    'RIGHT_FOOT': 'right_foot_anchor',
-}
-
 
 def _clamp(value: float, low: float, high: float) -> float:
     return max(low, min(high, value))
@@ -100,8 +85,8 @@ def _pose_from_semantic(semantic: dict, archetype: str) -> dict[str, object]:
 def _subject_box(size: tuple[int, int], template: dict[str, object], semantic: dict) -> pygame.Rect:
     width, height = size
     scale_boost = float(semantic.get('subject_scale_boost', 0.0) or 0.0)
-    width_ratio = _clamp(float(template.get('width_ratio', 0.62)) + scale_boost * 0.50, 0.56, 0.76)
-    height_ratio = _clamp(float(template.get('height_ratio', 0.68)) + scale_boost * 0.35, 0.60, 0.80)
+    width_ratio = _clamp(float(template.get('width_ratio', 0.62)) + scale_boost * 0.42, 0.56, 0.76)
+    height_ratio = _clamp(float(template.get('height_ratio', 0.68)) + scale_boost * 0.28, 0.64, 0.80)
     rect = pygame.Rect(0, 0, int(width * width_ratio), int(height * height_ratio))
     center_shift = float(semantic.get('subject_center_shift', 0.0) or 0.0)
     rect.center = (int(width * (0.50 + center_shift)), int(height * 0.54))
@@ -116,15 +101,29 @@ def _rel(rect: pygame.Rect, point: tuple[float, float]) -> tuple[float, float]:
 def build_figure_skeleton(size: tuple[int, int], semantic: dict) -> dict[str, object]:
     template = resolve_character_template(semantic)
     archetype = str(template.get('archetype', 'solar_warrior'))
+    entity_grammar = resolve_entity_shape_grammar('HUMANOID')
+    subgrammar = resolve_humanoid_subgrammar(archetype)
     pose = _pose_from_semantic(semantic, archetype)
     rect = _subject_box(size, template, semantic)
+    subject_height = rect.height
+    head_ratio = sum(entity_grammar['allowed_proportions']['head_ratio']) / 2.0
+    shoulder_ratio = sum(entity_grammar['allowed_proportions']['shoulder_ratio']) / 2.0
+    head_size = max(12, int(subject_height * head_ratio))
+    head_width = max(10, int(head_size * 0.74))
+    shoulder_span = max(head_width * 1.7, min(rect.width * 0.52, head_width * shoulder_ratio))
+
     skeleton = {
         'rect': rect,
         'archetype': archetype,
+        'entity_type': 'HUMANOID',
         'pose_id': str(pose['pose_id']),
         'weapon_orientation': str(pose['weapon_orientation']),
-        'head_size': max(12, int(rect.height * 0.12)),
+        'head_size': head_size,
+        'head_width': head_width,
+        'shoulder_span': shoulder_span,
         'template': template,
+        'entity_grammar': entity_grammar,
+        'subgrammar': subgrammar,
     }
     skeleton['head_anchor'] = _rel(rect, pose['head'])
     skeleton['neck_anchor'] = _rel(rect, pose['neck'])
@@ -150,7 +149,7 @@ def build_figure_skeleton(size: tuple[int, int], semantic: dict) -> dict[str, ob
     skeleton['foot_left_anchor'] = skeleton['left_foot_anchor']
     skeleton['foot_right_anchor'] = skeleton['right_foot_anchor']
     skeleton['back_anchor'] = (rect.centerx - rect.width * 0.10, rect.top + rect.height * 0.38)
-    skeleton['symbol_center_anchor'] = (rect.centerx, rect.top + rect.height * 0.07)
+    skeleton['symbol_center_anchor'] = (rect.centerx, rect.top + rect.height * 0.08)
     skeleton['halo_anchor'] = (rect.centerx, rect.top + rect.height * 0.15)
     skeleton['fx_spawn_anchor'] = (rect.centerx, rect.top + rect.height * 0.24)
     if skeleton['weapon_orientation'] == 'diagonal':
@@ -163,4 +162,12 @@ def build_figure_skeleton(size: tuple[int, int], semantic: dict) -> dict[str, ob
         skeleton['weapon_origin_anchor'] = (skeleton['right_hand_anchor'][0] + rect.width * 0.07, skeleton['right_hand_anchor'][1] - rect.height * 0.01)
         tip = (skeleton['weapon_origin_anchor'][0], skeleton['weapon_origin_anchor'][1] - rect.height * 0.38)
     skeleton['weapon_tip_anchor'] = tip
+    skeleton['grammar_ratios'] = {
+        'head_ratio': round(head_size / max(1, subject_height), 4),
+        'torso_ratio': round((skeleton['pelvis_anchor'][1] - skeleton['neck_anchor'][1]) / max(1, subject_height), 4),
+        'pelvis_ratio': round(head_size * 0.78 / max(1, subject_height), 4),
+        'leg_ratio': round((skeleton['left_foot_anchor'][1] - skeleton['pelvis_anchor'][1]) / max(1, subject_height), 4),
+        'arm_ratio': round((skeleton['right_hand_anchor'][1] - skeleton['right_shoulder_anchor'][1]) / max(1, subject_height), 4),
+        'shoulder_ratio': round(shoulder_span / max(1, head_width), 4),
+    }
     return skeleton

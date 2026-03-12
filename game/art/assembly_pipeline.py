@@ -24,20 +24,21 @@ from game.art.scene_engine import (
 )
 from game.art.art_reference_catalog import iter_category_entries
 from game.art.character_compositor import compose_character_subject
+from game.art.finish_render_system import apply_scene_finish
 from game.core.paths import art_reference_dir
 
 PIPELINE_ORDER = [
-    'background',
-    'environment',
-    'sector_layout',
-    'subject_mask',
-    'subject_detail',
-    'weapon_back_layer',
-    'object_mask',
-    'weapon_front_layer',
-    'symbol_layer',
-    'fx_back_layer',
-    'fx_front_layer',
+    'entity_type_detection',
+    'grammar_selection',
+    'skeleton_or_structure_points',
+    'body_or_shape_volumes',
+    'silhouette_merge',
+    'anchor_placement',
+    'object_integration',
+    'scene_placement',
+    'symbol_placement',
+    'fx_layers',
+    'final_grade',
     'readability_validation',
 ]
 
@@ -51,9 +52,10 @@ REQUIRED_SUBJECT_VISIBLE = 0.80
 REQUIRED_MAX_FX_OCCLUSION = 0.15
 REQUIRED_MIN_WEAPON_ATTACHED = 0.85
 REQUIRED_MAX_WHITE_CLIP = 0.05
-REQUIRED_MIN_SILHOUETTE_INTEGRITY = 0.56
+REQUIRED_MIN_SILHOUETTE_INTEGRITY = 0.75
 REQUIRED_MIN_LIMB_CONNECTION = 0.72
 REQUIRED_MIN_FRONTAL_BLOCK = 0.42
+REQUIRED_MIN_GRAMMAR_MATCH = 0.80
 PREFERRED_OCC_SUBJECT_RANGE = (0.28, 0.38)
 PREFERRED_OCC_OBJECT_RANGE = (0.08, 0.14)
 
@@ -94,6 +96,7 @@ class AssemblyMetrics:
     silhouette_integrity: float
     limb_connection_score: float
     frontal_block_score: float
+    grammar_match_score: float
 
 
 @dataclass(slots=True)
@@ -569,6 +572,29 @@ def _focus_balance(subject_mask: pygame.Surface, object_mask: pygame.Surface, si
     return round(score / 4.0, 4)
 
 
+
+def _grammar_match_score(subject_layout: dict[str, object], occ_subject: float, occ_object: float, weapon_attached_ratio: float, silhouette_integrity: float) -> float:
+    grammar_profile = str(subject_layout.get('grammar_profile_id', '') or '')
+    subgrammar_id = str(subject_layout.get('subgrammar_id', '') or '')
+    ratios = subject_layout.get('grammar_ratios', {})
+    checks = []
+    checks.append(1.0 if grammar_profile == 'HUMANOID' else 0.4)
+    checks.append(1.0 if subgrammar_id in {'ARCHON', 'SOLAR_WARRIOR', 'GUIDE_MAGE'} else 0.4)
+    def within(value: float, low: float, high: float) -> float:
+        if low <= value <= high:
+            return 1.0
+        dist = low - value if value < low else value - high
+        return max(0.0, 1.0 - dist * 6.0)
+    checks.append(within(float(ratios.get('head_ratio', 0.0)), 0.16, 0.18))
+    checks.append(within(float(ratios.get('torso_ratio', 0.0)), 0.30, 0.34))
+    checks.append(within(float(ratios.get('leg_ratio', 0.0)), 0.34, 0.40))
+    checks.append(within(float(ratios.get('arm_ratio', 0.0)), 0.30, 0.36))
+    checks.append(within(float(ratios.get('shoulder_ratio', 0.0)), 1.7, 2.0))
+    checks.append(max(0.0, min(1.0, occ_subject / 0.28)))
+    checks.append(max(0.0, min(1.0, occ_object / 0.06)))
+    checks.append(weapon_attached_ratio)
+    checks.append(silhouette_integrity)
+    return round(sum(checks) / max(1, len(checks)), 4)
 def validate_readability(subject_mask: pygame.Surface, object_mask: pygame.Surface, fx_mask: pygame.Surface, symbol_mask: pygame.Surface, final_surface: pygame.Surface, subject_layout: dict[str, object]) -> AssemblyMetrics:
     occ_subject = _occ_ratio(subject_mask, 12)
     occ_object = _occ_ratio(object_mask, 12)
@@ -583,6 +609,7 @@ def validate_readability(subject_mask: pygame.Surface, object_mask: pygame.Surfa
     silhouette_integrity = round(float(subject_layout.get('silhouette_integrity', 0.0)), 4)
     limb_connection_score = round(float(subject_layout.get('limb_connection_score', 0.0)), 4)
     frontal_block_score = round(float(subject_layout.get('frontal_block_score', 0.0)), 4)
+    grammar_match_score = _grammar_match_score(subject_layout, occ_subject, occ_object, weapon_attached_ratio, silhouette_integrity)
     readability_ok = (
         occ_subject >= REQUIRED_OCC_SUBJECT
         and occ_object >= REQUIRED_OCC_OBJECT
@@ -594,7 +621,7 @@ def validate_readability(subject_mask: pygame.Surface, object_mask: pygame.Surfa
         and silhouette_integrity >= REQUIRED_MIN_SILHOUETTE_INTEGRITY
         and limb_connection_score >= REQUIRED_MIN_LIMB_CONNECTION
         and frontal_block_score >= REQUIRED_MIN_FRONTAL_BLOCK
-        and focus_balance >= 0.70
+        and grammar_match_score >= REQUIRED_MIN_GRAMMAR_MATCH
     )
     return AssemblyMetrics(
         occ_subject=round(occ_subject, 4),
@@ -610,6 +637,7 @@ def validate_readability(subject_mask: pygame.Surface, object_mask: pygame.Surfa
         silhouette_integrity=silhouette_integrity,
         limb_connection_score=limb_connection_score,
         frontal_block_score=frontal_block_score,
+        grammar_match_score=grammar_match_score,
     )
 
 
@@ -636,6 +664,7 @@ def assembly_pipeline_summary() -> dict[str, object]:
             'silhouette_integrity_min': REQUIRED_MIN_SILHOUETTE_INTEGRITY,
             'limb_connection_score_min': REQUIRED_MIN_LIMB_CONNECTION,
             'frontal_block_score_min': REQUIRED_MIN_FRONTAL_BLOCK,
+            'grammar_match_score_min': REQUIRED_MIN_GRAMMAR_MATCH,
         },
     }
 
@@ -677,7 +706,7 @@ def _render_scene_variant(semantic: dict, refs: list[ReferenceChoice], palette, 
     fx_mask = _alpha_mask(_merge_layers(fx_back_source, fx_front_source), 20)
     symbol_mask = _alpha_mask(symbol_source, 20)
     subject_metric_mask = _dilate_mask(_alpha_mask(subject_body_source, 72), 16)
-    object_metric_mask = _dilate_mask(object_mask, 2)
+    object_metric_mask = _dilate_mask(object_mask, 8 if str(subject_layout.get('weapon_template_id', 'staff')) in {'staff', 'orb'} else 5)
     _clip_layer_alpha(symbol_source, 24)
     _clip_layer_alpha(fx_back_source, 28)
     _clip_layer_alpha(fx_front_source, 18)
@@ -696,6 +725,8 @@ def _render_scene_variant(semantic: dict, refs: list[ReferenceChoice], palette, 
     _enforce_figure_ground_separation(composite, subject_metric_mask, fg_palette)
     _enforce_object_separation(composite, object_metric_mask, subject_metric_mask, fg_palette)
     _apply_contrast(composite)
+    _compress_highlights(composite)
+    apply_scene_finish(composite, subject_layout['rect'], fg_palette)
     _compress_highlights(composite)
 
     metrics = validate_readability(subject_metric_mask, object_metric_mask, fx_mask, symbol_mask, composite, subject_layout)
@@ -725,11 +756,15 @@ def assemble_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
     civ = resolve_civilization_palette(semantic)
     palette = _palette_from_refs(refs, semantic)
     attempts: list[tuple[pygame.Surface, AssemblyMetrics]] = []
-    for retry_index in range(2):
+    for retry_index in range(3):
         attempt_semantic = dict(semantic)
         if retry_index == 1:
             attempt_semantic['subject_scale_boost'] = 0.06
             attempt_semantic['object_scale_boost'] = 0.05
+            attempt_semantic['subject_center_shift'] = 0.0
+        elif retry_index == 2:
+            attempt_semantic['subject_scale_boost'] = 0.08
+            attempt_semantic['object_scale_boost'] = 0.08
             attempt_semantic['subject_center_shift'] = 0.0
         fg_palette = _strong_foreground_palette(palette, attempt_semantic.get('subject_kind', ''), attempt_semantic.get('object_kind', ''))
         composed, metrics = _render_scene_variant(attempt_semantic, refs, palette, fg_palette, random.Random(seed + retry_index * 4099))
@@ -766,3 +801,6 @@ def assemble_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
         references_used=[r.path.name for r in refs[:4]],
         metrics=best_metrics,
     )
+
+
+
