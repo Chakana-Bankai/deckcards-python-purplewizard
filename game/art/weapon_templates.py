@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 WEAPON_TEMPLATES = {
-    "staff": {"weapon_id": "staff", "family": "staff", "length": 0.92, "thickness": 0.14},
-    "spear": {"weapon_id": "spear", "family": "spear", "length": 0.96, "thickness": 0.14},
-    "sword": {"weapon_id": "sword", "family": "sword", "length": 0.78, "thickness": 0.12},
-    "orb": {"weapon_id": "orb", "family": "orb", "length": 0.34, "thickness": 0.18},
+    "staff": {"weapon_id": "staff", "family": "staff", "length": 0.68, "thickness": 0.065},
+    "spear": {"weapon_id": "spear", "family": "spear", "length": 0.80, "thickness": 0.085},
+    "sword": {"weapon_id": "sword", "family": "sword", "length": 0.74, "thickness": 0.085},
+    "orb": {"weapon_id": "orb", "family": "orb", "length": 0.20, "thickness": 0.085},
 }
 
 

@@ -46,11 +46,11 @@ def draw_fx(
     family = rule.family
     soft_min = _clamp_alpha(rule.alpha_min, 0.28, 24)
     soft_max = _clamp_alpha(rule.alpha_max, 0.26, 30)
-    rim_alpha = min(18, soft_max)
+    rim_alpha = min(12, soft_max)
 
     if family == 'aura_glow':
         glow = pygame.Surface((w, h), pygame.SRCALPHA)
-        halo = pygame.Rect(0, 0, int(fx_sector.width * 0.48), int(fx_sector.height * 0.48))
+        halo = pygame.Rect(0, 0, int(fx_sector.width * 0.34), int(fx_sector.height * 0.34))
         halo.center = anchor
         halo.clamp_ip(fx_sector)
         pygame.draw.ellipse(glow, (*color, rim_alpha), halo, max(1, w // 220))

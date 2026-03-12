@@ -1,0 +1,31 @@
+scene_test_v_final_evaluation
+
+General verdict
+- The pipeline is now stable enough to separate environment, subject, object and FX.
+- The metrics are acceptable, but the visual result still shows incomplete figure definition.
+- The main failure is no longer pure washout; it is figure construction quality and layer discipline.
+
+What is working
+- Composition is solved at low resolution and then upscaled.
+- Subject/object/background separation is measurable and mostly stable.
+- Weapon attachment is reliable.
+- White clipping is controlled.
+- The retry loop is already limited to one extra pass.
+
+What is still failing visually
+- The character body still reads as a simplified monolithic mass instead of a stylized fantasy figure.
+- A tall frontal pale column is still visible in the three tests and weakens torso/head readability.
+- Internal shape language is too rectangular in chest and robe/armor zones.
+- Symbol and halo placement are improved, but the subject core still lacks enough intentional anatomy cues.
+- The pipeline passes metrics earlier than it passes visual readability.
+
+Per-card notes
+- ARCHON: the robe mass is readable, but the central pale overlay still flattens the ritual figure.
+- SOLAR_WARRIOR: weapon readability is strong, but front FX/overlay pressure pushes the subject close to the visibility threshold.
+- GUIDE_MAGE: the silhouette is calmer and cleaner, but internal form remains too block-like.
+
+Priority fixes before larger batches
+- Remove the tall frontal neutral overlay from the subject stack or move it to a controlled detail layer.
+- Replace torso rectangles with clearer chest, shoulder and pelvis masses.
+- Add secondary internal volumes for elbows, forearms and cloak breakups.
+- Gate readability on silhouette quality plus visual shape checkpoints, not only occupancy and contrast.

@@ -1,0 +1,6 @@
+scene_test_v_final_summary
+1. Pipeline changes: locked low-res composition at 480x270, added sectorized layout, figure skeleton builder, body volume builder, silhouette merger, dual FX back/front control, and final subject template composition.
+2. Washout fix: front/back FX split plus per-layer alpha clipping, highlight compression, subject keepout for FX, and figure-ground separation reinforcement prevented large pale overlays from dominating.
+3. Figure construction fix: subjects now build from archetype-driven skeleton joints -> stylized body volumes -> merged silhouette -> anchored weapon/object.
+4. Metrics passed: none; thresholds checked include occupancy, contrast, visibility, FX occlusion, weapon attachment, silhouette integrity, and limb connection.
+5. Remaining refinement before scaling: improve secondary prop variety, add more pose presets per archetype, and tune silhouette detailing for wider lore combinations.

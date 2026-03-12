@@ -32,23 +32,29 @@ PIPELINE_ORDER = [
     'sector_layout',
     'subject_mask',
     'subject_detail',
+    'weapon_back_layer',
     'object_mask',
+    'weapon_front_layer',
     'symbol_layer',
-    'fx_layer',
+    'fx_back_layer',
+    'fx_front_layer',
     'readability_validation',
 ]
 
 SCENE_COMPOSITION_SIZE = (480, 270)
 SCENE_OUTPUT_SIZE = (1920, 1080)
 
-REQUIRED_OCC_SUBJECT = 0.30
+REQUIRED_OCC_SUBJECT = 0.22
 REQUIRED_OCC_OBJECT = 0.06
 REQUIRED_CONTRAST = 0.62
 REQUIRED_SUBJECT_VISIBLE = 0.80
 REQUIRED_MAX_FX_OCCLUSION = 0.15
 REQUIRED_MIN_WEAPON_ATTACHED = 0.85
 REQUIRED_MAX_WHITE_CLIP = 0.05
-PREFERRED_OCC_SUBJECT_RANGE = (0.30, 0.42)
+REQUIRED_MIN_SILHOUETTE_INTEGRITY = 0.56
+REQUIRED_MIN_LIMB_CONNECTION = 0.72
+REQUIRED_MIN_FRONTAL_BLOCK = 0.42
+PREFERRED_OCC_SUBJECT_RANGE = (0.28, 0.38)
 PREFERRED_OCC_OBJECT_RANGE = (0.08, 0.14)
 
 
@@ -60,14 +66,16 @@ class LayerSpec:
 
 
 LAYER_SPECS = {
-    'background': LayerSpec('background', SCENE_COMPOSITION_SIZE, (0, 0, 480, 270)),
-    'environment': LayerSpec('environment', SCENE_COMPOSITION_SIZE, (0, 0, 480, 270)),
-    'subject_mask': LayerSpec('subject_mask', SCENE_COMPOSITION_SIZE, (0, 0, 480, 270)),
-    'subject_detail': LayerSpec('subject_detail', SCENE_COMPOSITION_SIZE, (0, 0, 480, 270)),
-    'object_mask': LayerSpec('object_mask', SCENE_COMPOSITION_SIZE, (0, 0, 480, 270)),
-    'object_detail': LayerSpec('object_detail', SCENE_COMPOSITION_SIZE, (0, 0, 480, 270)),
-    'symbol': LayerSpec('symbol', SCENE_COMPOSITION_SIZE, (0, 0, 480, 270)),
-    'fx': LayerSpec('fx', SCENE_COMPOSITION_SIZE, (0, 0, 480, 270)),
+    'background': LayerSpec('background', SCENE_COMPOSITION_SIZE, (0, 0, *SCENE_COMPOSITION_SIZE)),
+    'environment': LayerSpec('environment', SCENE_COMPOSITION_SIZE, (0, 0, *SCENE_COMPOSITION_SIZE)),
+    'subject_mask': LayerSpec('subject_mask', SCENE_COMPOSITION_SIZE, (0, 0, *SCENE_COMPOSITION_SIZE)),
+    'subject_detail': LayerSpec('subject_detail', SCENE_COMPOSITION_SIZE, (0, 0, *SCENE_COMPOSITION_SIZE)),
+    'weapon_back': LayerSpec('weapon_back', SCENE_COMPOSITION_SIZE, (0, 0, *SCENE_COMPOSITION_SIZE)),
+    'object_mask': LayerSpec('object_mask', SCENE_COMPOSITION_SIZE, (0, 0, *SCENE_COMPOSITION_SIZE)),
+    'weapon_front': LayerSpec('weapon_front', SCENE_COMPOSITION_SIZE, (0, 0, *SCENE_COMPOSITION_SIZE)),
+    'symbol': LayerSpec('symbol', SCENE_COMPOSITION_SIZE, (0, 0, *SCENE_COMPOSITION_SIZE)),
+    'fx_back': LayerSpec('fx_back', SCENE_COMPOSITION_SIZE, (0, 0, *SCENE_COMPOSITION_SIZE)),
+    'fx_front': LayerSpec('fx_front', SCENE_COMPOSITION_SIZE, (0, 0, *SCENE_COMPOSITION_SIZE)),
 }
 
 
@@ -83,6 +91,9 @@ class AssemblyMetrics:
     subject_visible_ratio: float
     subject_occluded_by_fx_ratio: float
     weapon_attached_ratio: float
+    silhouette_integrity: float
+    limb_connection_score: float
+    frontal_block_score: float
 
 
 @dataclass(slots=True)
@@ -214,7 +225,7 @@ def _blit_environment_reference(layer: pygame.Surface, ref_path: Path | None, pa
     glow.fill((acc[0], acc[1], acc[2], 10))
     framed.blit(glow, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
     floor = pygame.Surface((lw, lh), pygame.SRCALPHA)
-    pygame.draw.rect(floor, (low[0], low[1], low[2], 32), (0, int(lh * 0.70), lw, int(lh * 0.30)))
+    pygame.draw.rect(floor, (low[0], low[1], low[2], 30), (0, int(lh * 0.70), lw, int(lh * 0.30)))
     framed.blit(floor, (0, 0))
     layer.blit(framed, (0, 0))
     return True
@@ -224,11 +235,66 @@ def _build_scene_sectors(size: tuple[int, int]) -> dict[str, pygame.Rect]:
     w, h = size
     return {
         'background_sector': pygame.Rect(0, 0, w, h),
-        'subject_sector': pygame.Rect(int(w * 0.28), int(h * 0.08), int(w * 0.44), int(h * 0.72)),
-        'object_sector': pygame.Rect(int(w * 0.48), int(h * 0.18), int(w * 0.30), int(h * 0.56)),
-        'symbol_sector': pygame.Rect(int(w * 0.24), int(h * 0.02), int(w * 0.52), int(h * 0.28)),
-        'fx_sector': pygame.Rect(int(w * 0.18), int(h * 0.10), int(w * 0.64), int(h * 0.66)),
+        'environment_sector': pygame.Rect(0, 0, w, h),
+        'subject_sector': pygame.Rect(int(w * 0.28), int(h * 0.07), int(w * 0.44), int(h * 0.74)),
+        'object_sector': pygame.Rect(int(w * 0.48), int(h * 0.14), int(w * 0.28), int(h * 0.62)),
+        'symbol_sector': pygame.Rect(int(w * 0.22), int(h * 0.02), int(w * 0.56), int(h * 0.28)),
+        'fx_back_sector': pygame.Rect(int(w * 0.12), int(h * 0.06), int(w * 0.76), int(h * 0.70)),
+        'fx_front_sector': pygame.Rect(int(w * 0.28), int(h * 0.14), int(w * 0.44), int(h * 0.52)),
     }
+
+
+def _suppress_bright_rectangular_intrusions(layer: pygame.Surface, subject_layout: dict[str, object], sectors: dict[str, pygame.Rect]):
+    subject_rect = subject_layout['rect'].clip(layer.get_rect())
+    if subject_rect.width <= 0 or subject_rect.height <= 0:
+        return
+    corridor = pygame.Rect(
+        subject_rect.centerx,
+        max(0, int(subject_rect.top - subject_rect.height * 0.10)),
+        min(layer.get_width() - subject_rect.centerx, int(subject_rect.width * 0.82)),
+        int(subject_rect.height * 0.95),
+    ).clip(sectors['environment_sector'])
+    if corridor.width <= 0 or corridor.height <= 0:
+        return
+    for y in range(corridor.top, corridor.bottom):
+        for x in range(corridor.left, corridor.right):
+            c = layer.get_at((x, y))
+            luma = (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) / 255.0
+            chroma = (max(c.r, c.g, c.b) - min(c.r, c.g, c.b)) / 255.0
+            if luma < 0.56 or chroma > 0.18:
+                continue
+            dx = (x - corridor.left) / max(1.0, corridor.width)
+            dy = abs(y - subject_rect.centery) / max(1.0, corridor.height / 2.0)
+            if dx < 0.10 and dy > 0.75:
+                continue
+            fade = 0.32 if dx < 0.55 else 0.22
+            alpha_cap = 70 if dx < 0.55 else 46
+            layer.set_at((x, y), (int(c.r * fade), int(c.g * fade), int(c.b * fade), min(c.a, alpha_cap)))
+
+def _suppress_environment_intrusions(layer: pygame.Surface, subject_layout: dict[str, object], sectors: dict[str, pygame.Rect]):
+    subject_rect = subject_layout['rect'].clip(layer.get_rect())
+    if subject_rect.width <= 0 or subject_rect.height <= 0:
+        return
+    corridor = pygame.Rect(
+        int(subject_rect.centerx - max(16, subject_rect.width * 0.16)),
+        max(0, int(subject_rect.top - subject_rect.height * 0.16)),
+        int(max(32, subject_rect.width * 0.32)),
+        int(min(layer.get_height(), subject_rect.height * 1.18)),
+    ).clip(sectors['subject_sector'].inflate(subject_rect.width // 5, subject_rect.height // 8).clip(layer.get_rect()))
+    if corridor.width <= 0 or corridor.height <= 0:
+        return
+    for y in range(corridor.top, corridor.bottom):
+        for x in range(corridor.left, corridor.right):
+            c = layer.get_at((x, y))
+            if c.a <= 0:
+                continue
+            dx = abs(x - subject_rect.centerx) / max(1.0, corridor.width / 2.0)
+            dy = abs(y - subject_rect.centery) / max(1.0, corridor.height / 2.0)
+            center_weight = max(0.0, 1.0 - (dx * 0.75 + dy * 0.35))
+            luma = (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) / 255.0
+            alpha_cap = int(42 - center_weight * 18)
+            shade = 0.28 if luma > 0.40 else 0.40
+            layer.set_at((x, y), (int(c.r * shade), int(c.g * shade), int(c.b * shade), min(c.a, max(10, alpha_cap))))
 
 
 def _draw_foreground_plane(surface: pygame.Surface, palette, rng: random.Random):
@@ -237,23 +303,14 @@ def _draw_foreground_plane(surface: pygame.Surface, palette, rng: random.Random)
     accent = palette[3]
     plane = pygame.Surface((w, h), pygame.SRCALPHA)
     horizon = int(h * 0.72)
-    pts = [
-        (0, h),
-        (0, horizon),
-        (int(w * 0.18), int(h * 0.68)),
-        (int(w * 0.40), int(h * 0.74)),
-        (int(w * 0.62), int(h * 0.70)),
-        (int(w * 0.84), int(h * 0.75)),
-        (w, int(h * 0.70)),
-        (w, h),
-    ]
-    pygame.draw.polygon(plane, (max(10, low[0] // 2), max(10, low[1] // 2), max(10, low[2] // 2), 180), pts)
+    pts = [(0, h), (0, horizon), (int(w * 0.18), int(h * 0.68)), (int(w * 0.40), int(h * 0.74)), (int(w * 0.62), int(h * 0.70)), (int(w * 0.84), int(h * 0.75)), (w, int(h * 0.70)), (w, h)]
+    pygame.draw.polygon(plane, (max(10, low[0] // 2), max(10, low[1] // 2), max(10, low[2] // 2), 172), pts)
     for _ in range(4):
         x = rng.randint(0, w - 1)
         y = rng.randint(horizon - h // 20, h - 1)
         rw = rng.randint(w // 22, w // 12)
         rh = rng.randint(h // 22, h // 12)
-        pygame.draw.ellipse(plane, (accent[0], accent[1], accent[2], 14), (x - rw // 2, y - rh // 2, rw, rh))
+        pygame.draw.ellipse(plane, (accent[0], accent[1], accent[2], 12), (x - rw // 2, y - rh // 2, rw, rh))
     surface.blit(plane, (0, 0))
 
 
@@ -288,9 +345,7 @@ def _draw_symbol_layer(layer: pygame.Surface, semantic: dict, palette, subject_l
         pygame.draw.circle(symbol_surface, (accent[0], accent[1], accent[2], max_alpha), (cx, cy), r, line_w)
         for dx, dy in ((0, -r - 5), (r + 5, 0), (0, r + 5), (-r - 5, 0)):
             pygame.draw.line(symbol_surface, (accent[0], accent[1], accent[2], max_alpha - 6), (cx, cy), (cx + dx, cy + dy), line_w)
-    # Keep symbols behind subject core silhouette.
-    subject_core = subject_layout['subject_core_rect']
-    pygame.draw.rect(symbol_surface, (0, 0, 0, 0), subject_core)
+    pygame.draw.rect(symbol_surface, (0, 0, 0, 0), subject_layout['subject_core_rect'])
     layer.blit(symbol_surface, (0, 0))
 
 
@@ -349,20 +404,23 @@ def _enforce_figure_ground_separation(target: pygame.Surface, subject_mask: pyga
     subject_luma = _masked_luma(target, subject_mask, step=max(2, subject_box.width // 24))
     outer = subject_box.inflate(max(20, subject_box.width // 3), max(20, subject_box.height // 3)).clip(target.get_rect())
     background_luma = _sample_luma(target, outer, max(2, outer.width // 20))
-    delta = abs(subject_luma - background_luma)
-    if delta >= 0.25:
+    if abs(subject_luma - background_luma) >= 0.25:
         return
-    shade = pygame.Surface(target.get_size(), pygame.SRCALPHA)
-    halo = subject_box.inflate(max(24, subject_box.width // 2), max(20, subject_box.height // 3)).clip(target.get_rect())
-    shade.fill((0, 0, 0, 56))
-    pygame.draw.ellipse(shade, (0, 0, 0, 0), halo)
-    target.blit(shade, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
+    outer_mask = _dilate_mask(subject_mask, max(8, min(16, subject_box.width // 9)))
+    inner_mask = _dilate_mask(subject_mask, max(3, min(7, subject_box.width // 18)))
+    ring_rect = outer_mask.get_bounding_rect(min_alpha=12).clip(target.get_rect())
+    for y in range(ring_rect.top, ring_rect.bottom):
+        for x in range(ring_rect.left, ring_rect.right):
+            if outer_mask.get_at((x, y)).a <= 12 or inner_mask.get_at((x, y)).a > 12:
+                continue
+            c = target.get_at((x, y))
+            target.set_at((x, y), (int(c.r * 0.78), int(c.g * 0.78), int(c.b * 0.80), c.a))
     lift = pygame.Surface(target.get_size(), pygame.SRCALPHA)
     bounds = subject_mask.get_bounding_rect(min_alpha=12)
     for y in range(bounds.top, bounds.bottom):
         for x in range(bounds.left, bounds.right):
             if subject_mask.get_at((x, y)).a > 12:
-                lift.set_at((x, y), (palette[3][0], palette[3][1], palette[3][2], 34))
+                lift.set_at((x, y), (palette[3][0], palette[3][1], palette[3][2], 22))
     target.blit(lift, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
 
@@ -377,9 +435,29 @@ def _enforce_object_separation(target: pygame.Surface, object_mask: pygame.Surfa
     env_luma = _sample_luma(target, object_box.inflate(max(12, object_box.width // 3), max(12, object_box.height // 3)).clip(target.get_rect()), max(2, object_box.width // 12))
     if min(abs(object_luma - torso_luma), abs(object_luma - env_luma)) >= 0.35:
         return
-    layer = pygame.Surface(target.get_size(), pygame.SRCALPHA)
-    pygame.draw.rect(layer, (palette[3][0], palette[3][1], palette[3][2], 18), object_box.inflate(8, 8), border_radius=max(3, target.get_width() // 90))
-    target.blit(layer, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
+    glow_mask = _dilate_mask(object_mask, 3)
+    accent = palette[3]
+    for y in range(object_box.top - 6, object_box.bottom + 6):
+        if not (0 <= y < target.get_height()):
+            continue
+        for x in range(object_box.left - 6, object_box.right + 6):
+            if not (0 <= x < target.get_width()):
+                continue
+            outer = glow_mask.get_at((x, y)).a > 12
+            inner = object_mask.get_at((x, y)).a > 12
+            if not outer:
+                continue
+            if inner:
+                target.set_at((x, y), (min(255, accent[0]), min(255, accent[1]), min(255, accent[2]), 255))
+                continue
+            c = target.get_at((x, y))
+            boost = 0.22
+            target.set_at((x, y), (
+                min(255, int(c.r * (1.0 - boost) + accent[0] * boost)),
+                min(255, int(c.g * (1.0 - boost) + accent[1] * boost)),
+                min(255, int(c.b * (1.0 - boost) + accent[2] * boost)),
+                c.a,
+            ))
 
 
 def _clip_layer_alpha(surface: pygame.Surface, max_alpha: int):
@@ -436,7 +514,11 @@ def _overlap_ratio(a: pygame.Surface, b: pygame.Surface, cutoff_a: int = 12, cut
 
 
 def _weapon_attached_ratio(object_mask: pygame.Surface, subject_layout: dict[str, object]) -> float:
-    box = object_mask.get_bounding_rect(min_alpha=12)
+    grip_rect = subject_layout.get('weapon_grip_rect')
+    if isinstance(grip_rect, pygame.Rect) and grip_rect.width > 0 and grip_rect.height > 0:
+        box = grip_rect
+    else:
+        box = object_mask.get_bounding_rect(min_alpha=12)
     if box.width <= 0 or box.height <= 0:
         return 0.0
     anchors = [subject_layout['right_hand_anchor'], subject_layout['left_hand_anchor'], subject_layout['back_anchor']]
@@ -444,8 +526,7 @@ def _weapon_attached_ratio(object_mask: pygame.Surface, subject_layout: dict[str
     for ax, ay in anchors:
         nearest_x = min(max(ax, box.left), box.right)
         nearest_y = min(max(ay, box.top), box.bottom)
-        dist = ((nearest_x - ax) ** 2 + (nearest_y - ay) ** 2) ** 0.5
-        distances.append(dist)
+        distances.append(((nearest_x - ax) ** 2 + (nearest_y - ay) ** 2) ** 0.5)
     dist = min(distances)
     max_dist = max(6.0, subject_layout['rect'].height * 0.18)
     return round(max(0.0, 1.0 - (dist / max_dist)), 4)
@@ -481,9 +562,10 @@ def _focus_balance(subject_mask: pygame.Surface, object_mask: pygame.Surface, si
     if subj.width > 0 and subj.height > 0:
         score += max(0.0, 1.0 - abs((subj.centerx / max(1, w)) - 0.5) * 1.8)
         score += max(0.0, 1.0 - abs((subj.centery / max(1, h)) - 0.53) * 2.0)
+        subject_height_ratio = subj.height / max(1, h)
+        score += max(0.0, 1.0 - abs(subject_height_ratio - 0.53) * 2.5)
     if obj.width > 0 and obj.height > 0:
         score += max(0.0, 1.0 - abs((obj.centerx / max(1, w)) - 0.62) * 2.2)
-        score += max(0.0, 1.0 - abs((obj.centery / max(1, h)) - 0.56) * 2.0)
     return round(score / 4.0, 4)
 
 
@@ -498,6 +580,9 @@ def validate_readability(subject_mask: pygame.Surface, object_mask: pygame.Surfa
     subject_visible_ratio = round(max(0.0, 1.0 - subject_occluded_by_fx_ratio - min(0.10, subject_occluded_by_symbol_ratio)), 4)
     white_clip_ratio = _white_clip_ratio(final_surface)
     weapon_attached_ratio = _weapon_attached_ratio(object_mask, subject_layout)
+    silhouette_integrity = round(float(subject_layout.get('silhouette_integrity', 0.0)), 4)
+    limb_connection_score = round(float(subject_layout.get('limb_connection_score', 0.0)), 4)
+    frontal_block_score = round(float(subject_layout.get('frontal_block_score', 0.0)), 4)
     readability_ok = (
         occ_subject >= REQUIRED_OCC_SUBJECT
         and occ_object >= REQUIRED_OCC_OBJECT
@@ -506,6 +591,9 @@ def validate_readability(subject_mask: pygame.Surface, object_mask: pygame.Surfa
         and subject_occluded_by_fx_ratio <= REQUIRED_MAX_FX_OCCLUSION
         and weapon_attached_ratio >= REQUIRED_MIN_WEAPON_ATTACHED
         and white_clip_ratio <= REQUIRED_MAX_WHITE_CLIP
+        and silhouette_integrity >= REQUIRED_MIN_SILHOUETTE_INTEGRITY
+        and limb_connection_score >= REQUIRED_MIN_LIMB_CONNECTION
+        and frontal_block_score >= REQUIRED_MIN_FRONTAL_BLOCK
         and focus_balance >= 0.70
     )
     return AssemblyMetrics(
@@ -519,17 +607,14 @@ def validate_readability(subject_mask: pygame.Surface, object_mask: pygame.Surfa
         subject_visible_ratio=subject_visible_ratio,
         subject_occluded_by_fx_ratio=subject_occluded_by_fx_ratio,
         weapon_attached_ratio=weapon_attached_ratio,
+        silhouette_integrity=silhouette_integrity,
+        limb_connection_score=limb_connection_score,
+        frontal_block_score=frontal_block_score,
     )
 
 
 def _layer_layout_summary() -> dict[str, dict[str, object]]:
-    return {
-        key: {
-            'surface_size': list(spec.surface_size),
-            'dest_rect': list(spec.dest_rect),
-        }
-        for key, spec in LAYER_SPECS.items()
-    }
+    return {key: {'surface_size': list(spec.surface_size), 'dest_rect': list(spec.dest_rect)} for key, spec in LAYER_SPECS.items()}
 
 
 def assembly_pipeline_summary() -> dict[str, object]:
@@ -548,6 +633,9 @@ def assembly_pipeline_summary() -> dict[str, object]:
             'subject_occluded_by_fx_ratio_max': REQUIRED_MAX_FX_OCCLUSION,
             'weapon_attached_ratio_min': REQUIRED_MIN_WEAPON_ATTACHED,
             'white_clip_ratio_max': REQUIRED_MAX_WHITE_CLIP,
+            'silhouette_integrity_min': REQUIRED_MIN_SILHOUETTE_INTEGRITY,
+            'limb_connection_score_min': REQUIRED_MIN_LIMB_CONNECTION,
+            'frontal_block_score_min': REQUIRED_MIN_FRONTAL_BLOCK,
         },
     }
 
@@ -556,14 +644,15 @@ def _render_scene_variant(semantic: dict, refs: list[ReferenceChoice], palette, 
     comp_size = SCENE_COMPOSITION_SIZE
     sectors = _build_scene_sectors(comp_size)
     composite = pygame.Surface(comp_size, pygame.SRCALPHA, 32)
-
     background_source = pygame.Surface(comp_size, pygame.SRCALPHA)
     environment_source = pygame.Surface(comp_size, pygame.SRCALPHA)
     subject_mask_source = pygame.Surface(comp_size, pygame.SRCALPHA)
     subject_detail_source = pygame.Surface(comp_size, pygame.SRCALPHA)
-    object_source = pygame.Surface(comp_size, pygame.SRCALPHA)
+    weapon_back_source = pygame.Surface(comp_size, pygame.SRCALPHA)
+    weapon_front_source = pygame.Surface(comp_size, pygame.SRCALPHA)
     symbol_source = pygame.Surface(comp_size, pygame.SRCALPHA)
-    fx_source = pygame.Surface(comp_size, pygame.SRCALPHA)
+    fx_back_source = pygame.Surface(comp_size, pygame.SRCALPHA)
+    fx_front_source = pygame.Surface(comp_size, pygame.SRCALPHA)
 
     _draw_background(background_source, semantic, palette, rng)
     env_ref_path = _pick_environment_reference(semantic, refs)
@@ -571,37 +660,37 @@ def _render_scene_variant(semantic: dict, refs: list[ReferenceChoice], palette, 
     _draw_foreground_plane(environment_source, palette, rng)
 
     character = compose_character_subject(comp_size, semantic, fg_palette, rng)
+    _suppress_environment_intrusions(environment_source, character['layout'], sectors)
+    _suppress_bright_rectangular_intrusions(environment_source, character['layout'], sectors)
     subject_mask_source.blit(character['subject_mask'], (0, 0))
     subject_detail_source.blit(character['subject_detail'], (0, 0))
-    object_source.blit(character['object_layer'], (0, 0))
+    weapon_back_source.blit(character['weapon_back_layer'], (0, 0))
+    weapon_front_source.blit(character['weapon_front_layer'], (0, 0))
     subject_layout = character['layout']
     _draw_symbol_layer(symbol_source, semantic, fg_palette, subject_layout, sectors)
-    draw_fx(
-        fx_source,
-        semantic,
-        palette,
-        rng,
-        keepout=subject_layout['subject_core_rect'],
-        fx_sector=sectors['fx_sector'],
-        spawn_anchor=subject_layout['fx_spawn_anchor'],
-    )
+    draw_fx(fx_back_source, semantic, palette, rng, keepout=subject_layout['subject_core_rect'].inflate(18, 18), fx_sector=sectors['fx_back_sector'], spawn_anchor=subject_layout['halo_anchor'])
+    draw_fx(fx_front_source, semantic, palette, rng, keepout=subject_layout['subject_core_rect'].inflate(72, 56), fx_sector=sectors['fx_front_sector'], spawn_anchor=subject_layout['fx_spawn_anchor'])
 
     subject_body_source = _merge_layers(subject_mask_source, subject_detail_source)
+    object_source = _merge_layers(weapon_back_source, weapon_front_source)
     object_mask = _dilate_mask(_alpha_mask(object_source, 72), 2)
-    fx_mask = _alpha_mask(fx_source, 20)
+    fx_mask = _alpha_mask(_merge_layers(fx_back_source, fx_front_source), 20)
     symbol_mask = _alpha_mask(symbol_source, 20)
-    subject_metric_mask = _dilate_mask(_alpha_mask(subject_body_source, 72), 15)
+    subject_metric_mask = _dilate_mask(_alpha_mask(subject_body_source, 72), 16)
     object_metric_mask = _dilate_mask(object_mask, 2)
     _clip_layer_alpha(symbol_source, 24)
-    _clip_layer_alpha(fx_source, 32)
+    _clip_layer_alpha(fx_back_source, 28)
+    _clip_layer_alpha(fx_front_source, 18)
 
     composite.blit(background_source, (0, 0))
     composite.blit(environment_source, (0, 0))
     composite.blit(symbol_source, (0, 0))
+    composite.blit(fx_back_source, (0, 0))
+    composite.blit(weapon_back_source, (0, 0))
     composite.blit(subject_mask_source, (0, 0))
     composite.blit(subject_detail_source, (0, 0))
-    composite.blit(object_source, (0, 0))
-    composite.blit(fx_source, (0, 0))
+    composite.blit(weapon_front_source, (0, 0))
+    composite.blit(fx_front_source, (0, 0))
 
     _apply_subject_outline(composite, subject_metric_mask, (max(6, fg_palette[0][0] // 2), max(6, fg_palette[0][1] // 2), max(6, fg_palette[0][2] // 2), 255))
     _enforce_figure_ground_separation(composite, subject_metric_mask, fg_palette)
@@ -635,12 +724,11 @@ def assemble_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
 
     civ = resolve_civilization_palette(semantic)
     palette = _palette_from_refs(refs, semantic)
-
     attempts: list[tuple[pygame.Surface, AssemblyMetrics]] = []
     for retry_index in range(2):
         attempt_semantic = dict(semantic)
         if retry_index == 1:
-            attempt_semantic['subject_scale_boost'] = 0.07
+            attempt_semantic['subject_scale_boost'] = 0.06
             attempt_semantic['object_scale_boost'] = 0.05
             attempt_semantic['subject_center_shift'] = 0.0
         fg_palette = _strong_foreground_palette(palette, attempt_semantic.get('subject_kind', ''), attempt_semantic.get('object_kind', ''))
@@ -653,6 +741,8 @@ def assemble_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
         attempts,
         key=lambda item: (
             1 if item[1].readability_ok else 0,
+            item[1].silhouette_integrity,
+            item[1].limb_connection_score,
             item[1].subject_visible_ratio,
             -item[1].subject_occluded_by_fx_ratio,
             item[1].weapon_attached_ratio,
