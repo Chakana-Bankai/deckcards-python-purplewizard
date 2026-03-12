@@ -1,6 +1,6 @@
 {
   "version": "chakana_audio_v7",
-  "generated_at": 1773272244,
+  "generated_at": 1773327350,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
@@ -192,7 +192,21 @@
       "generation_date": 1773159746,
       "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated"
+      "source": "generated",
+      "analysis": {
+        "duration_seconds": 1.8,
+        "sample_rate": 32000,
+        "channels": 1,
+        "peak_db": -3.407,
+        "rms_db": -8.7134,
+        "tempo_bpm": 433.3333,
+        "onset_count": 13,
+        "loop_end_seconds": 1.725,
+        "monotony_score": 0.4882,
+        "variation_score": 0.5118,
+        "librosa_available": true,
+        "analysis_mode": "soundfile_numpy_guarded_librosa"
+      }
     },
     "stinger_defeat": {
       "track_id": "stinger_defeat",
@@ -426,7 +440,21 @@
       "generation_date": 1773167734,
       "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated"
+      "source": "generated",
+      "analysis": {
+        "duration_seconds": 36.0,
+        "sample_rate": 32000,
+        "channels": 1,
+        "peak_db": -1.7593,
+        "rms_db": -10.8643,
+        "tempo_bpm": 261.6667,
+        "onset_count": 157,
+        "loop_end_seconds": 23.975,
+        "monotony_score": 0.5951,
+        "variation_score": 0.4049,
+        "librosa_available": true,
+        "analysis_mode": "soundfile_numpy_guarded_librosa"
+      }
     },
     "ambient_archon_void_drones": {
       "track_id": "ambient_archon_void_drones",

@@ -6,6 +6,8 @@ import sys
 import time
 from pathlib import Path
 
+from tools.lib.tooling_stack import console, load_tool_env
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -30,23 +32,23 @@ def _fmt_age(ts: float | None) -> str:
 
 
 def _git_status_report() -> None:
-    print("[doctor] git:")
+    console.print('[doctor] git:')
     try:
         out = subprocess.check_output(["git", "status", "--short"], cwd=ROOT, text=True, stderr=subprocess.STDOUT)
         lines = [ln for ln in out.splitlines() if ln.strip()]
-        print(f"  tracked_changes={len(lines)}")
+        console.print(f'  tracked_changes={len(lines)}')
         if lines:
             for ln in lines[:12]:
-                print(f"  {ln}")
+                console.print(f'  {ln}')
             if len(lines) > 12:
-                print(f"  ... +{len(lines) - 12} more")
+                console.print(f'  ... +{len(lines) - 12} more')
     except Exception as exc:
-        print(f"  unavailable ({exc})")
-        print("  run manually: git status")
+        console.print(f'  unavailable ({exc})')
+        console.print('  run manually: git status')
 
 
 def _folder_checks() -> None:
-    print("[doctor] folders:")
+    console.print('[doctor] folders:')
     folders = [
         (ROOT / "assets" / "art_reference", "support_reference"),
         (ROOT / "assets" / "_archive", "archive_root"),
@@ -58,11 +60,11 @@ def _folder_checks() -> None:
     ]
     for p, label in folders:
         exists = p.exists()
-        print(f"  {label}: {p.relative_to(ROOT)} => {'OK' if exists else 'MISSING'}")
+        console.print(f"  {label}: {p.relative_to(ROOT)} => {'OK' if exists else 'MISSING'}")
 
 
 def _autogen_files_checks() -> None:
-    print("[doctor] autogen manifests:")
+    console.print('[doctor] autogen manifests:')
     files = [
         ROOT / "game" / "data" / "art_manifest.json",
         ROOT / "game" / "data" / "bgm_manifest.json",
@@ -74,20 +76,21 @@ def _autogen_files_checks() -> None:
         hint = ""
         if ts is not None and (time.time() - ts) < 3600:
             hint = " (recently updated; check autogen churn)"
-        print(f"  {p.relative_to(ROOT)}: {state}, mtime={_fmt_age(ts)}{hint}")
+        console.print(f"  {p.relative_to(ROOT)}: {state}, mtime={_fmt_age(ts)}{hint}")
 
 
 def main() -> int:
-    print("[doctor] Chakana Dev Workflow Report")
-    print(f"[doctor] python={sys.version.split()[0]} cwd={os.getcwd()}")
+    env = load_tool_env(ROOT)
+    console.print('[doctor] Chakana Dev Workflow Report')
+    console.print(f'[doctor] python={sys.version.split()[0]} cwd={os.getcwd()} env={env.chakana_env} reports_dir={env.reports_dir}')
     try:
         _git_status_report()
         _folder_checks()
         _autogen_files_checks()
-        print("[doctor] done")
+        console.print('[doctor] done')
         return 0
     except Exception as exc:
-        print(f"[doctor] WARNING unexpected error: {exc}")
+        console.print(f'[doctor] WARNING unexpected error: {exc}')
         return 0
 
 

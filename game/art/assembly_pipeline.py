@@ -6,7 +6,17 @@ from functools import lru_cache
 import random
 
 import pygame
+from rich.console import Console
 
+from game.art.art_stack_accel import (
+    blur_score_cv,
+    load_reference_with_pillow,
+    noise_overlay,
+    save_surface_with_pillow,
+    surface_alpha_array,
+    surface_luma_array,
+    surface_rgba_array,
+)
 from game.art.environment_library import resolve_environment_preset
 from game.art.fx_layer import draw_fx
 from game.art.palette_system import resolve_civilization_palette
@@ -25,6 +35,7 @@ from game.art.scene_engine import (
 from game.art.art_reference_catalog import iter_category_entries
 from game.art.character_compositor import compose_character_subject
 from game.art.finish_render_system import apply_scene_finish
+from game.art.scene_spec import validate_scene_semantic
 from game.core.paths import art_reference_dir
 
 PIPELINE_ORDER = [
@@ -58,6 +69,8 @@ REQUIRED_MIN_FRONTAL_BLOCK = 0.42
 REQUIRED_MIN_GRAMMAR_MATCH = 0.80
 PREFERRED_OCC_SUBJECT_RANGE = (0.28, 0.38)
 PREFERRED_OCC_OBJECT_RANGE = (0.08, 0.14)
+
+console = Console(stderr=True, highlight=False)
 
 
 @dataclass(slots=True)
@@ -115,43 +128,33 @@ class AssemblyResult:
 
 
 def _occ_ratio(layer: pygame.Surface, alpha_cutoff: int = 12) -> float:
-    w, h = layer.get_size()
-    count = 0
-    for y in range(h):
-        for x in range(w):
-            if layer.get_at((x, y)).a > alpha_cutoff:
-                count += 1
-    return round(count / max(1, w * h), 4)
+    alpha = surface_alpha_array(layer)
+    return round(float((alpha > alpha_cutoff).mean()), 4)
 
 
 def _sample_luma(surface: pygame.Surface, rect: pygame.Rect, step: int = 6) -> float:
     rect = rect.clip(surface.get_rect())
     if rect.width <= 0 or rect.height <= 0:
         return 0.0
-    total = 0.0
-    count = 0
-    for x in range(rect.left, rect.right, max(1, step)):
-        for y in range(rect.top, rect.bottom, max(1, step)):
-            c = surface.get_at((x, y))
-            total += (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) / 255.0
-            count += 1
-    return total / max(1, count)
+    luma = surface_luma_array(surface)
+    stride = max(1, step)
+    sample = luma[rect.top:rect.bottom:stride, rect.left:rect.right:stride]
+    if sample.size == 0:
+        return 0.0
+    return float(sample.mean())
 
 
 def _masked_luma(surface: pygame.Surface, mask_layer: pygame.Surface, step: int = 4) -> float:
     bounds = mask_layer.get_bounding_rect(min_alpha=12).clip(surface.get_rect())
     if bounds.width <= 0 or bounds.height <= 0:
         return 0.0
-    total = 0.0
-    count = 0
-    for x in range(bounds.left, bounds.right, max(1, step)):
-        for y in range(bounds.top, bounds.bottom, max(1, step)):
-            if mask_layer.get_at((x, y)).a <= 12:
-                continue
-            c = surface.get_at((x, y))
-            total += (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) / 255.0
-            count += 1
-    return total / max(1, count)
+    stride = max(1, step)
+    luma = surface_luma_array(surface)[bounds.top:bounds.bottom:stride, bounds.left:bounds.right:stride]
+    alpha = surface_alpha_array(mask_layer)[bounds.top:bounds.bottom:stride, bounds.left:bounds.right:stride]
+    masked = luma[alpha > 12]
+    if masked.size == 0:
+        return 0.0
+    return float(masked.mean())
 
 
 def _merge_layers(*layers: pygame.Surface) -> pygame.Surface:
@@ -203,18 +206,13 @@ def _blit_environment_reference(layer: pygame.Surface, ref_path: Path | None, pa
     if not ref_path:
         return False
     try:
-        src = pygame.image.load(str(ref_path)).convert()
+        if blur_score_cv(ref_path) < 35.0:
+            console.print(f"[yellow]art-ref warning[/yellow] skipped blurry environment ref: {ref_path.name}")
+            return False
+        framed = load_reference_with_pillow(ref_path, layer.get_size())
     except Exception:
         return False
-    sw, sh = src.get_size()
     lw, lh = layer.get_size()
-    if sw <= 4 or sh <= 4:
-        return False
-    scale = max(lw / max(1, sw), lh / max(1, sh))
-    scaled = pygame.transform.smoothscale(src, (max(1, int(sw * scale)), max(1, int(sh * scale)))).convert()
-    crop = pygame.Rect(max(0, (scaled.get_width() - lw) // 2), max(0, (scaled.get_height() - lh) // 2), lw, lh)
-    framed = pygame.Surface((lw, lh), pygame.SRCALPHA)
-    framed.blit(scaled, (0, 0), crop)
     mid = palette[1]
     low = palette[2]
     acc = palette[3]
@@ -315,6 +313,8 @@ def _draw_foreground_plane(surface: pygame.Surface, palette, rng: random.Random)
         rh = rng.randint(h // 22, h // 12)
         pygame.draw.ellipse(plane, (accent[0], accent[1], accent[2], 12), (x - rw // 2, y - rh // 2, rw, rh))
     surface.blit(plane, (0, 0))
+    grain = noise_overlay((w, h), accent, 18, scale=22.0, octaves=2, seed=rng.randint(0, 9999))
+    surface.blit(grain, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
 
 def _draw_symbol_layer(layer: pygame.Surface, semantic: dict, palette, subject_layout: dict[str, object], sectors: dict[str, pygame.Rect]):
@@ -492,18 +492,13 @@ def _compress_highlights(surface: pygame.Surface):
 
 
 def _white_clip_ratio(surface: pygame.Surface) -> float:
-    w, h = surface.get_size()
-    clipped = 0
-    total = 0
-    for y in range(h):
-        for x in range(w):
-            c = surface.get_at((x, y))
-            if c.a <= 12:
-                continue
-            total += 1
-            if c.r >= 245 and c.g >= 245 and c.b >= 245:
-                clipped += 1
-    return round(clipped / max(1, total), 4)
+    rgba = surface_rgba_array(surface)
+    alpha = rgba[:, :, 3] > 12
+    total = int(alpha.sum())
+    if total <= 0:
+        return 0.0
+    white = (rgba[:, :, 0] >= 245) & (rgba[:, :, 1] >= 245) & (rgba[:, :, 2] >= 245) & alpha
+    return round(float(white.sum()) / float(total), 4)
 
 
 def _overlap_ratio(a: pygame.Surface, b: pygame.Surface, cutoff_a: int = 12, cutoff_b: int = 12) -> float:
@@ -734,7 +729,7 @@ def _render_scene_variant(semantic: dict, refs: list[ReferenceChoice], palette, 
 
 
 def assemble_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> AssemblyResult:
-    semantic = semantic_from_prompt(prompt)
+    semantic = validate_scene_semantic(semantic_from_prompt(prompt))
     sampler = ReferenceSampler()
     explicit_refs = _resolve_explicit_refs(sampler, semantic)
     sampled_refs = sampler.pick(_categories_for_prompt(prompt), _keywords_from_semantic(semantic), seed)
@@ -786,7 +781,7 @@ def assemble_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
     )
     final = pygame.transform.smoothscale(best_surface, SCENE_OUTPUT_SIZE).convert_alpha()
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    pygame.image.save(final, str(out_path))
+    save_surface_with_pillow(final, out_path, SCENE_OUTPUT_SIZE)
     env_preset = resolve_environment_preset(semantic.get('scene_type', ''), semantic.get('environment_kind', ''), semantic.get('environment', ''))
     return AssemblyResult(
         card_id=card_id,

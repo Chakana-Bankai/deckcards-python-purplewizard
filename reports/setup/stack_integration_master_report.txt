@@ -1,0 +1,93 @@
+stack_integration_master_report
+
+date=2026-03-12
+status=PASS
+
+1. libraries_confirmed_installed
+- pillow=12.1.1
+- numpy=2.4.2
+- opencv-python=4.13.0.92
+- noise=1.2.2 (import surface reported as 1.2.1 during validation)
+- pytweening=1.2.0
+- soundfile=0.13.1
+- librosa=0.11.0
+- pydantic=2.12.5
+- python-dotenv=1.2.2
+- rich=14.3.3
+- networkx=3.6.1
+
+2. active_versions_and_notes
+- All target libraries were importable in the local Python 3.14 environment.
+- pip check returned no broken requirements in Phase 1.
+- librosa is available, but deeper onset/tempo runtime routines were left in guarded mode to preserve stability.
+
+3. files_modified
+- requirements.txt
+- requirements-dev.txt
+- reports/setup/dependency_audit_report.txt
+- reports/setup/dependency_normalization_report.txt
+- reports/setup/integration_map_report.txt
+- game/art/art_stack_accel.py
+- game/art/scene_spec.py
+- game/art/silhouette_merger.py
+- game/art/assembly_pipeline.py
+- game/art/scene_test_generator_v1.py
+- reports/art/art_pipeline_integration_report.txt
+- game/audio/audio_stack_tools.py
+- game/audio/audio_engine.py
+- reports/audio/audio_pipeline_integration_report.txt
+- tools/lib/tooling_stack.py
+- tools/chakana_studio.py
+- tools/doctor.py
+- reports/tools/tools_stack_integration_report.txt
+- tools/stack_validation_phase7.py
+- reports/setup/stack_validation_report.txt
+
+4. systems_now_using_new_stack
+- Art pipeline:
+  - Pillow for reference loading/cropping and export.
+  - numpy for occupancy, luma, white-clip and mask-related metrics.
+  - OpenCV for blur screening, silhouette cleanup and contour-derived signal.
+  - noise for procedural foreground/environment texture overlays.
+  - pydantic for scene semantic validation.
+  - rich for art smoke output in the generator runner.
+- Audio pipeline:
+  - soundfile for WAV write/read.
+  - pydantic for audio asset spec and audio analysis payloads.
+  - rich for runtime audio logs.
+  - librosa integrated in guarded availability mode via the analysis layer.
+- Tools/config:
+  - python-dotenv for local env loading.
+  - pydantic for tool CLI and env spec validation.
+  - rich for doctor/studio console reporting.
+
+5. systems_still_not_fully_benefiting
+- networkx has not been integrated into active runtime or tooling flows yet.
+- pytweening is still available but not explicitly wired into current art/audio/tooling runtime passes.
+- librosa is not yet used for deeper runtime music direction decisions because of stability concerns in this environment.
+- Several older tool scripts still use raw argparse + print rather than tooling_stack.
+- Some art helpers still use Python pixel loops where more numpy/cv migration is possible.
+
+6. validation_highlights
+- Art stack validation generated 3 controlled cards in assets/card_art/generated/stack_integration_test/.
+- All 3 card outputs passed readability validation:
+  - ARCHON: occ_subject=0.2659 occ_object=0.1041 readability_ok=True silhouette_integrity=0.8723
+  - SOLAR_WARRIOR: occ_subject=0.2704 occ_object=0.067 readability_ok=True silhouette_integrity=0.9091
+  - GUIDE_MAGE: occ_subject=0.2905 occ_object=0.0972 readability_ok=True silhouette_integrity=0.9081
+- Audio validation successfully analyzed:
+  - victory.wav
+  - temple_resonance.wav
+- Tooling/config validation successfully exercised:
+  - python -m tools.doctor
+  - python tools/chakana_studio.py project-audit --dry-run
+
+7. next_best_step_for_art_acceleration
+- Migrate the remaining alpha-mask and dilation/edit loops in game/art/assembly_pipeline.py to numpy/OpenCV operations.
+- Add a dedicated sanitized-reference precheck tool so blur/border/duplicate detection happens before runtime art assembly.
+- Introduce rich progress/reporting in more art entry points, not only the test runner.
+- Only after that, revisit guarded librosa-style deeper analysis for audio-driven art timing or rhythm-linked FX if still needed.
+
+8. overall_assessment
+- The installed stack is no longer passive; it is now actively integrated across art, audio, tooling and config.
+- The biggest real gain so far is faster iteration clarity and cleaner validation, more than raw render throughput.
+- The project is in a stable place to continue targeted acceleration without redesigning gameplay systems.

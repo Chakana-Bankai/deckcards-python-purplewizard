@@ -1,0 +1,61 @@
+art_pipeline_integration_report
+
+phase=4
+status=PASS
+
+summary
+- Integrated Pillow into the art pipeline for reference loading/cropping and final export.
+- Integrated numpy-backed surface metrics for occupancy, luma sampling and white clipping.
+- Integrated OpenCV for environment blur screening and silhouette mask cleanup/edge scoring.
+- Integrated noise for procedural foreground/environment grain overlays.
+- Integrated pydantic validation for scene semantic payloads before assembly.
+- Integrated rich logging/table output for the art test runner.
+
+files_modified
+- game/art/art_stack_accel.py
+- game/art/scene_spec.py
+- game/art/silhouette_merger.py
+- game/art/assembly_pipeline.py
+- game/art/scene_test_generator_v1.py
+
+integration_details
+- Pillow:
+  - game/art/art_stack_accel.py::load_reference_with_pillow
+  - game/art/art_stack_accel.py::save_surface_with_pillow
+  - game/art/assembly_pipeline.py uses Pillow-backed reference fitting and final PNG export.
+- numpy:
+  - game/art/art_stack_accel.py surface_rgba_array/surface_alpha_array/surface_luma_array
+  - game/art/assembly_pipeline.py uses numpy-backed occupancy, masked luma, sampled luma and white-clip metrics.
+- OpenCV:
+  - game/art/art_stack_accel.py::blur_score_cv
+  - game/art/art_stack_accel.py::cleanup_mask_with_cv
+  - game/art/art_stack_accel.py::contour_edge_score
+  - game/art/assembly_pipeline.py rejects very blurry environment references.
+  - game/art/silhouette_merger.py uses cv cleanup and contour signal in silhouette scoring.
+- noise:
+  - game/art/art_stack_accel.py::noise_overlay
+  - game/art/assembly_pipeline.py applies a low-alpha grain overlay in the foreground plane for more deterministic atmosphere texture.
+- pydantic:
+  - game/art/scene_spec.py SceneSpecModel + ArtSceneRuntimeModel
+  - game/art/assembly_pipeline.py validates semantic payloads with validate_scene_semantic before render attempts.
+- rich:
+  - game/art/scene_test_generator_v1.py prints a readable table summary for card generation smokes.
+
+validation
+- python -m py_compile game/art/art_stack_accel.py game/art/scene_spec.py game/art/silhouette_merger.py game/art/assembly_pipeline.py game/art/scene_test_generator_v1.py -> OK
+- python -m game.art.scene_test_generator_v1 -> OK
+
+smoke_metrics
+- ARCHON: occ_subject=0.2659 occ_object=0.1041 contrast_score=1.0 readability_ok=True silhouette_integrity=0.8723
+- SOLAR_WARRIOR: occ_subject=0.2704 occ_object=0.067 contrast_score=1.0 readability_ok=True silhouette_integrity=0.9091
+- GUIDE_MAGE: occ_subject=0.2905 occ_object=0.0972 contrast_score=1.0 readability_ok=True silhouette_integrity=0.9081
+
+stability_notes
+- Runtime behavior remains composition-first at 480x270 and export-only upscale to 1920x1080.
+- The refactor improves usability/debug clarity more than raw render throughput; Python pixel loops still exist in some alpha/editing helpers.
+- Blur rejection is conservative and only applied to environment references in this phase.
+
+remaining_gaps
+- Reference sanitation still lives outside runtime and should be addressed by a dedicated asset-clean phase if needed.
+- Rich logging is integrated in the test runner, not yet across all art entry points.
+- More numpy/cv migration is still possible in alpha clipping and dilation helpers.

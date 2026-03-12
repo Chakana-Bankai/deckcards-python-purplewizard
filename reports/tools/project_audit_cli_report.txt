@@ -1,8 +1,8 @@
 chakana_studio project audit
-generated=2026-03-11 12:34:55
+generated=2026-03-12 11:59:38
 
 mode=project_audit
-dry_run=False
+dry_run=True
 
 checkpoints:
 - reports/audit/repository_reality_audit.txt => OK

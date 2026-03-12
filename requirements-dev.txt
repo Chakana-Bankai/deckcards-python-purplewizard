@@ -1,0 +1,6 @@
+#
+# Dev-only dependencies
+#
+# Intentionally minimal for now.
+# Add local tooling, linting, profiling, or test-only packages here
+# once they diverge from runtime requirements.

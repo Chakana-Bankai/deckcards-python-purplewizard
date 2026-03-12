@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import pygame
 
+from game.art.art_stack_accel import cleanup_mask_with_cv, contour_edge_score
+
 
 def _pt(point):
     return (int(point[0]), int(point[1]))
@@ -29,12 +31,7 @@ def _smooth(surface: pygame.Surface) -> pygame.Surface:
     w, h = surface.get_size()
     up = pygame.transform.smoothscale(surface, (w * 2, h * 2)).convert_alpha()
     down = pygame.transform.smoothscale(up, (w, h)).convert_alpha()
-    out = pygame.Surface((w, h), pygame.SRCALPHA)
-    for y in range(h):
-        for x in range(w):
-            if down.get_at((x, y)).a >= 18:
-                out.set_at((x, y), (255, 255, 255, 255))
-    return out
+    return cleanup_mask_with_cv(down, threshold=18)
 
 
 def _count_bridges(mask_surface: pygame.Surface) -> int:
@@ -91,9 +88,12 @@ def merge_body_volumes(size: tuple[int, int], volumes: list[dict[str, object]], 
     fill_ratio = mask.count() / bbox_area
     limb_connection_score = max(0.0, min(1.0, _count_bridges(smooth) / 5.0))
     frontal_block_score = _frontal_block_score(smooth)
-    silhouette_integrity = max(0.0, min(1.0, 0.05 + fill_ratio * 0.30 + limb_connection_score * 0.25 + frontal_block_score * 0.45))
+    edge_score = contour_edge_score(smooth)
+    edge_bonus = max(0.0, min(0.18, edge_score / 40.0))
+    silhouette_integrity = max(0.0, min(1.0, 0.05 + fill_ratio * 0.28 + limb_connection_score * 0.24 + frontal_block_score * 0.35 + edge_bonus))
     return smooth, {
         'silhouette_integrity': round(silhouette_integrity, 4),
         'limb_connection_score': round(limb_connection_score, 4),
         'frontal_block_score': frontal_block_score,
+        'contour_edge_score': round(edge_score, 4),
     }

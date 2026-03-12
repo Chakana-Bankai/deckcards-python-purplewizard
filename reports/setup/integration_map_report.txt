@@ -1,0 +1,213 @@
+integration_map_report
+
+Phase: 3 - Project Integration Map
+Date: 2026-03-12
+
+Files inspected:
+- game/art/scene_spec.py
+- game/art/assembly_pipeline.py
+- game/audio/audio_engine.py
+- tools/chakana_studio.py
+- requirements.txt
+
+Current state summary:
+- The art pipeline is active and extensive under game/art/, but still relies heavily on pygame surfaces and Python loops for masks, metrics, composition and export.
+- The audio pipeline is active under game/audio/, but currently uses wave/array/math-driven generation and does not yet benefit from soundfile/librosa.
+- Tooling is centralized through tools/chakana_studio.py and related tool modules, but logging/output is still plain text.
+- The target libraries are installed and mostly not yet integrated explicitly into project runtime code.
+
+Explicit integration map by library:
+
+1. Pillow
+Primary use cases:
+- image composition
+- cropping
+- layer assembly
+- export
+Recommended integration points:
+- game/art/assembly_pipeline.py
+  Use Pillow Image/ImageChops/ImageOps for final layer composition, alpha-safe export, crop/resize, and optional clean premultiplied-alpha handoff from pygame surfaces.
+- game/art/reference_sampler.py / future asset sanitation tools
+  Use Pillow for image metadata, crop normalization, frame removal, and export of cleaned references.
+- tools/assets or future reference rebuild scripts
+  Use Pillow for deterministic batch normalization and report snapshots.
+Expected benefit:
+- cleaner export path, easier image normalization, more deterministic file output than hand-rolled surface loops.
+
+2. numpy
+Primary use cases:
+- image metrics
+- masks
+- occupancy / ratios
+- matrix operations
+Recommended integration points:
+- game/art/assembly_pipeline.py
+  Replace nested pixel loops in occ/overlap/luma/white clip metrics with numpy arrays extracted from surfaces.
+- game/art/silhouette_merger.py
+  Use numpy arrays for fill ratio, bridge counting helpers, and mask morphology preparation.
+- game/art/art_quality_validation.py
+  Accelerate quality metrics and make thresholds easier to debug.
+Expected benefit:
+- largest immediate usability/debug win in art metrics and mask calculations.
+
+3. opencv-python
+Primary use cases:
+- contour detection
+- blur detection
+- silhouette cleanup
+- edge analysis
+Recommended integration points:
+- game/art/silhouette_merger.py
+  Use cv2 contours + morphology for silhouette cleanup, seam removal, and edge regularization.
+- future reference sanitation / rebuild tools
+  Use cv2 Laplacian variance for blur detection and contour-based border/frame detection.
+- game/art/assembly_pipeline.py
+  Optional edge-map validation for figure-ground separation and prop clarity.
+Expected benefit:
+- stronger silhouette quality and reference quality gating.
+
+4. noise
+Primary use cases:
+- terrain/background procedural generation
+- clouds, fog, mountain massing
+Recommended integration points:
+- game/art/scene_engine.py
+- game/art/assembly_pipeline.py
+- game/art/environment_library.py
+  Use Perlin/Simplex noise to replace flat background bands with structured sky, mist, mountain silhouettes, fog falloff, and environment depth massing.
+Expected benefit:
+- less flat environment output and more coherent procedural scene variation.
+
+5. pytweening
+Primary use cases:
+- smooth transitions
+- hologram pulse
+- camera easing
+- UI motion easing
+Recommended integration points:
+- game/art/fx_layer.py
+  Shape FX alpha falloff and pulse timing with easing curves.
+- game/ui/components/holographic_oracle.py
+  Use easing for panel shimmer/hologram motion.
+- tools/chakana_studio.py or debug previews
+  Use easing for preview interpolation if live previews are added.
+Expected benefit:
+- cleaner visual timing and less linear robotic FX/UI motion.
+
+6. soundfile
+Primary use cases:
+- audio export/import
+- waveform handling
+Recommended integration points:
+- game/audio/audio_engine.py
+  Replace direct wave write/read for generated assets with soundfile for safer PCM export/import and easier format handling.
+- tools/audio pipeline utilities
+  Use soundfile for validation scripts and quick waveform inspections.
+Expected benefit:
+- safer audio I/O, easier multi-format support, fewer low-level file handling branches.
+
+7. librosa
+Primary use cases:
+- audio analysis
+- tempo / onset / rhythm analysis
+- soundtrack validation
+Recommended integration points:
+- game/audio/audio_engine.py (analysis helpers or companion module)
+  Analyze generated loops for tempo, onset density, and loop boundary consistency.
+- tools audio QA/report scripts
+  Generate per-track tempo/variation reports and monotony indicators.
+Expected benefit:
+- audio pipeline becomes measurable instead of ear-only/manual.
+
+8. pydantic
+Primary use cases:
+- card schemas
+- scene specs
+- art specs
+- lore schemas
+Recommended integration points:
+- game/art/scene_spec.py
+  Replace or wrap dataclass SceneSpec with a pydantic model for validation and defaults.
+- game/art/shape_grammar_registry.py / shape_language_profile.py / object glyph grammar
+  Validate grammar payloads and profile registries.
+- tools/chakana_studio.py
+  Validate command payloads/options passed into tool actions.
+- audio/music spec structures if introduced later.
+Expected benefit:
+- catches invalid content/config earlier and makes reports more trustworthy.
+
+9. python-dotenv
+Primary use cases:
+- environment config
+- local setup values
+Recommended integration points:
+- tools/chakana_studio.py
+  Load local env before command dispatch.
+- tools/doctor.py and build/regen utilities
+  Centralize local override paths, debug flags, optional asset roots, and cache behavior.
+- game startup only if strictly needed for local dev config, otherwise keep limited to tools.
+Expected benefit:
+- better local setup hygiene without root clutter.
+
+10. rich
+Primary use cases:
+- better logs
+- colored terminal reports
+- debugging clarity
+Recommended integration points:
+- tools/chakana_studio.py
+  Replace plain print output with rich console/status/progress/tables.
+- art generation runners under game/art/scene_test_generator_*.py or dedicated tools wrappers
+  Show progress, warnings and metric summaries clearly.
+- audio QA/report tools
+  Emit readable validation tables.
+Expected benefit:
+- major usability/debug improvement with low risk.
+
+11. networkx
+Primary use cases:
+- card relation graphs
+- lore relation graphs
+- map graph analysis if useful
+Recommended integration points:
+- tools/report builders or dedicated lore audit tools
+  Build graph reports from card/lore/manifests.
+- future game/data relation analysis scripts
+  Analyze archetype/tag/symbol/environment relationships.
+Expected benefit:
+- stronger content QA and relationship auditing, low direct runtime risk.
+
+Subsystem-first integration priority:
+
+Art pipeline first:
+- numpy in game/art/assembly_pipeline.py and game/art/art_quality_validation.py
+- cv2 in game/art/silhouette_merger.py and reference sanitation helpers
+- Pillow in asset normalization/export helpers and optionally final art assembly
+- noise in environment/background generation
+- pydantic for scene/grammar/profile validation
+- rich for generation/test/report runners
+
+Audio pipeline second:
+- soundfile + librosa in game/audio/audio_engine.py or companion analysis modules
+- pydantic for music spec validation
+- rich for readable audio reports
+
+Tools/config third:
+- python-dotenv + rich + pydantic in tools/chakana_studio.py and selected tools
+- networkx in reporting/lore audit tools
+
+Low-risk first refactor candidates:
+- game/art/assembly_pipeline.py -> numpy metrics + pydantic scene validation + rich summaries
+- game/art/silhouette_merger.py -> cv2 contour/morph cleanup
+- game/audio/audio_engine.py -> soundfile export path and librosa analysis helper
+- tools/chakana_studio.py -> dotenv load + rich console output
+
+Warnings / guardrails:
+- Avoid forcing pygame runtime surfaces to disappear; bridge numpy/Pillow/OpenCV around them incrementally.
+- pydantic v2 integration should be contained and staged; do not mass-convert schemas blindly.
+- librosa/numba stack is importable now, but should be introduced behind targeted helper modules to avoid startup slowdown.
+- networkx is most valuable in reports/tools first, not gameplay runtime.
+
+Recommended Phase 4 actions:
+- Refactor the art pipeline first around numpy, cv2, noise, pydantic and rich.
+- Keep changes concentrated in game/art/ plus reporting.

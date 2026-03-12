@@ -3,9 +3,13 @@ from __future__ import annotations
 import os
 
 import pygame
+from rich.console import Console
+from rich.table import Table
 
 from game.art.assembly_pipeline import assemble_scene_art
 from game.core.paths import project_root
+
+console = Console(highlight=False)
 
 SCENE_PROMPTS = {
     'ARCHON': (
@@ -85,11 +89,18 @@ def main() -> int:
 
     lines = ['test_shape_grammar_v1_metrics']
     results = []
+    table = Table(title='shape_grammar_v1')
+    table.add_column('card')
+    table.add_column('occ_subject')
+    table.add_column('occ_object')
+    table.add_column('contrast')
+    table.add_column('readability')
     for index, (label, prompt) in enumerate(SCENE_PROMPTS.items(), start=1):
         out_path = out_dir / f'{label.lower()}_shape_grammar_v1.png'
         result = assemble_scene_art(label.lower(), prompt, 16100 + index * 211, out_path)
         metrics = result.metrics
         results.append((label, result))
+        table.add_row(label, str(metrics.occ_subject), str(metrics.occ_object), str(metrics.contrast_score), str(metrics.readability_ok))
         lines.extend([
             f'[{label}]',
             f'path={out_path.as_posix()}',
@@ -123,9 +134,10 @@ def main() -> int:
             '',
         ])
     summary_path.write_text("\n".join(summary_lines).rstrip() + "\n", encoding='utf-8')
-    print(f'[test_shape_grammar_v1] out={out_dir}')
-    print(f'[test_shape_grammar_v1] report={report_path}')
-    print(f'[test_shape_grammar_v1] summary={summary_path}')
+    console.print(table)
+    console.print(f'[green][test_shape_grammar_v1][/green] out={out_dir}')
+    console.print(f'[green][test_shape_grammar_v1][/green] report={report_path}')
+    console.print(f'[green][test_shape_grammar_v1][/green] summary={summary_path}')
     return 0
 
 

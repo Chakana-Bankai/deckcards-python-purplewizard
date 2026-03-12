@@ -1,0 +1,47 @@
+tools_stack_integration_report
+
+phase=6
+status=PASS
+
+summary
+- Integrated python-dotenv into tooling through a shared local environment loader.
+- Integrated pydantic validation for CLI payloads and tool environment specs.
+- Integrated rich console output into tooling entry points for clearer local diagnostics.
+- Kept report outputs inside reports/ and introduced no new root-level clutter.
+
+files_modified
+- tools/lib/tooling_stack.py
+- tools/chakana_studio.py
+- tools/doctor.py
+
+integration_details
+- python-dotenv:
+  - tools/lib/tooling_stack.py::load_tool_env loads .env then .env.local.
+  - Current supported keys: CHAKANA_ENV, CHAKANA_REPORTS_DIR, CHAKANA_RICH.
+- pydantic:
+  - tools/lib/tooling_stack.py::ToolCliSpec validates chakana_studio command payloads.
+  - tools/lib/tooling_stack.py::ToolEnvSpec validates local environment/tool config.
+- rich:
+  - tools/lib/tooling_stack.py exports a shared console and report path renderer.
+  - tools/chakana_studio.py now prints env/report context with rich.
+  - tools/doctor.py now renders diagnostics with rich instead of plain print.
+
+validation
+- python -m py_compile tools/lib/tooling_stack.py tools/chakana_studio.py tools/doctor.py -> OK
+- python -m tools.doctor -> OK
+- python tools/chakana_studio.py project-audit --dry-run -> OK
+- direct tooling_stack model validation -> OK
+
+smoke_results
+- doctor: env=development reports_dir=reports rendered successfully with repo/folder/autogen checks.
+- chakana_studio dry run: project-audit completed and reported to reports/tools/project_audit_cli_report.txt.
+- tooling_stack validation: ToolEnvSpec and ToolCliSpec both parsed expected payloads.
+
+stability_notes
+- No gameplay/runtime systems were modified.
+- No new files were written outside reports/ beyond the shared tooling helper module.
+- Existing tool command behavior was preserved; the change is mostly config validation and output quality.
+
+warnings
+- Most secondary tool scripts still use argparse + print directly and can migrate to tooling_stack gradually.
+- CHAKANA_REPORTS_DIR is validated and surfaced, but existing report writers still resolve their own canonical report paths.

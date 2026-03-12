@@ -3,13 +3,13 @@ from __future__ import annotations
 import json
 import math
 import time
-import wave
 from array import array
 from dataclasses import dataclass
 from pathlib import Path
 from random import Random
 
 import pygame
+from rich.console import Console
 
 from engine.creative_direction import CreativeMusicDirector
 from engine.audio.music.music_state_machine import MusicStateMachine, TransitionRequest
@@ -17,6 +17,7 @@ from engine.audio.music.music_transition_manager import MusicTransitionManager
 from engine.audio.music.music_layer_controller import MusicLayerController
 from engine.audio.mixer.audio_bus_manager import AudioBusManager
 from engine.audio.mixer.ducking_controller import DuckingController
+from game.audio.audio_stack_tools import AudioAnalysisReport, analyze_audio_file, write_wav_soundfile
 from game.core.paths import audio_dir, audio_generated_dir, curated_audio_dir, data_dir
 
 
@@ -28,6 +29,9 @@ class ContextSpec:
     pulse: float
     brightness: float
     tension: float
+
+
+console = Console(stderr=True, highlight=False)
 
 
 class AudioEngine:
@@ -214,7 +218,7 @@ class AudioEngine:
         if key in self._logged_once:
             return
         self._logged_once.add(key)
-        print(text)
+        console.print(text)
 
     def _new_manifest_payload(self) -> dict:
         return {"version": self.VERSION, "generated_at": int(time.time()), "items": {}}
@@ -349,11 +353,14 @@ class AudioEngine:
         return abs(hash(f"{self.VERSION}:{key}")) % (2**31 - 1)
 
     def _write_wave(self, path: Path, samples: array):
-        with wave.open(str(path), "wb") as wf:
-            wf.setnchannels(1)
-            wf.setsampwidth(2)
-            wf.setframerate(self.SAMPLE_RATE)
-            wf.writeframes(samples.tobytes())
+        write_wav_soundfile(path, samples, self.SAMPLE_RATE, channels=1, subtype='PCM_16')
+
+    def _analyze_audio_asset(self, path: Path) -> AudioAnalysisReport | None:
+        try:
+            return analyze_audio_file(path)
+        except Exception as exc:
+            self._log_once(f'audio_analysis_error:{path.name}', f'[Audio] analysis error: {path.name} err={exc}')
+            return None
 
     def _triangle(self, phase: float) -> float:
         v = (phase / (2 * math.pi)) % 1.0
@@ -594,11 +601,17 @@ class AudioEngine:
             return None
         p = self._resolve_manifest_file_path(meta)
         if p.exists():
+            if not isinstance(meta.get("analysis"), dict) or not meta.get("analysis"):
+                analysis = self._analyze_audio_asset(p)
+                if analysis:
+                    meta["analysis"] = analysis.model_dump()
+                    self._save_manifest()
             return p
         return None
 
     def _register_item(self, item_id: str, *, item_type: str, context: str, variant: str, seed: int, file_path: Path, source: str = "generated"):
         items = self._manifest.setdefault("items", {})
+        analysis = self._analyze_audio_asset(file_path)
         items[item_id] = {
             "track_id": item_id,
             "type": item_type,
@@ -611,6 +624,7 @@ class AudioEngine:
             "version": self.VERSION,
             "state": "valid",
             "source": str(source or "generated"),
+            "analysis": analysis.model_dump() if analysis else {},
         }
         self._save_manifest()
 
@@ -635,7 +649,11 @@ class AudioEngine:
         )
         self._write_wave(path, best_samples)
         self._register_item(item_id, item_type="bgm", context=ctx, variant=variant, seed=int(meta.get("seed", seed)), file_path=path, source="generated")
-        print(f"[Audio] generated: {item_id}")
+        analysis = self._analyze_audio_asset(path)
+        if analysis:
+            console.print(f"[cyan][Audio][/cyan] generated: {item_id} tempo={analysis.tempo_bpm} onsets={analysis.onset_count} variation={analysis.variation_score}")
+        else:
+            console.print(f"[cyan][Audio][/cyan] generated: {item_id}")
         return path
 
     def _ensure_stinger(self, name: str, force: bool = False) -> Path:
@@ -651,7 +669,11 @@ class AudioEngine:
         path = (self.studio_dir if name == "studio_intro" else self.stingers_dir) / f"{name}.wav"
         self._write_wave(path, self._stinger_samples(name, seconds))
         self._register_item(item_id, item_type="stinger", context=name, variant="a", seed=seed, file_path=path, source="generated")
-        print(f"[Audio] generated: {item_id}")
+        analysis = self._analyze_audio_asset(path)
+        if analysis:
+            console.print(f"[cyan][Audio][/cyan] generated: {item_id} tempo={analysis.tempo_bpm} onsets={analysis.onset_count} variation={analysis.variation_score}")
+        else:
+            console.print(f"[cyan][Audio][/cyan] generated: {item_id}")
         return path
 
     def _ensure_sfx(self, name: str, force: bool = False) -> Path:
@@ -667,7 +689,11 @@ class AudioEngine:
         path = self.sfx_dir / f"{name}.wav"
         self._write_wave(path, self._sfx_samples(name, seconds))
         self._register_item(item_id, item_type="sfx", context=name, variant="a", seed=seed, file_path=path, source="generated")
-        print(f"[Audio] generated: {item_id}")
+        analysis = self._analyze_audio_asset(path)
+        if analysis:
+            console.print(f"[cyan][Audio][/cyan] generated: {item_id} tempo={analysis.tempo_bpm} onsets={analysis.onset_count} variation={analysis.variation_score}")
+        else:
+            console.print(f"[cyan][Audio][/cyan] generated: {item_id}")
         return path
 
     def _ensure_ambient(self, name: str, force: bool = False) -> Path:
@@ -683,7 +709,11 @@ class AudioEngine:
         path = self.ambient_dir / f"{name}.wav"
         self._write_wave(path, self._ambient_samples(name, seconds))
         self._register_item(item_id, item_type="ambient", context=name, variant="a", seed=seed, file_path=path, source="generated")
-        print(f"[Audio] generated: {item_id}")
+        analysis = self._analyze_audio_asset(path)
+        if analysis:
+            console.print(f"[cyan][Audio][/cyan] generated: {item_id} tempo={analysis.tempo_bpm} onsets={analysis.onset_count} variation={analysis.variation_score}")
+        else:
+            console.print(f"[cyan][Audio][/cyan] generated: {item_id}")
         return path
 
     def _prune_manifest(self):
@@ -953,7 +983,7 @@ class AudioEngine:
             else:
                 snd.play(loops=-1)
             self.current_ambient = nm
-            print(f"[Audio] ambient: {nm} file:{path.name}")
+            console.print(f"[cyan][Audio][/cyan] ambient: {nm} file:{path.name}")
         except Exception as exc:
             self._log_once(f"ambient_error:{nm}", f"[Audio] ambient error: {nm} err={exc}")
 
@@ -1025,10 +1055,10 @@ class AudioEngine:
             self._register_state_history(self.current_state)
             self.status = "playing"
             self.play_ambient(self._ambient_from_music_context(ctx))
-            print(f"[Audio] state:{self.current_state} context:{ctx} variant:{var} layer:{self.current_layer} file:{path.name}")
+            console.print(f"[cyan][Audio][/cyan] state:{self.current_state} context:{ctx} variant:{var} layer:{self.current_layer} file:{path.name}")
         except Exception as exc:
             self.status = f"error:{exc}"
-            print(f"[Audio] context error: {ctx} err={exc}")
+            console.print(f"[red][Audio][/red] context error: {ctx} err={exc}")
 
     def _apply_music_duck(self, amount: float, duration_ms: int):
         now = pygame.time.get_ticks()
@@ -1104,7 +1134,7 @@ class AudioEngine:
             self._stinger_channel.play(snd)
         else:
             snd.play()
-        print(f"[Audio] stinger: {nm} file:{path.name} duck={duck_amount:.2f}/{duck_ms}ms")
+        console.print(f"[cyan][Audio][/cyan] stinger: {nm} file:{path.name} duck={duck_amount:.2f}/{duck_ms}ms")
 
     def play_sfx(self, name: str):
         nm = str(name or "").lower()

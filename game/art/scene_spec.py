@@ -1,6 +1,8 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+
+from pydantic import BaseModel, ConfigDict, Field
 
 
 SCENE_TYPE_PRESETS: dict[str, dict[str, str]] = {
@@ -67,6 +69,48 @@ SCENE_TYPE_PRESETS: dict[str, dict[str, str]] = {
 }
 
 
+class SceneSpecModel(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
+
+    scene_type: str
+    subject: str
+    subject_pose: str
+    secondary_object: str
+    environment: str
+    symbol: str
+    energy: str
+    palette: str
+    camera: str
+    mood: str
+    subject_kind: str = ""
+    object_kind: str = ""
+    environment_kind: str = ""
+    subject_ref: str = ""
+    object_ref: str = ""
+    environment_ref: str = ""
+
+
+class ArtSceneRuntimeModel(BaseModel):
+    model_config = ConfigDict(extra='allow', str_strip_whitespace=True)
+
+    scene_type: str = Field(default='mountain_guardian_scene')
+    subject: str = Field(default='guardian sentinel')
+    subject_pose: str = Field(default='frontal guarding stance')
+    secondary_object: str = Field(default='ritual blade')
+    environment: str = Field(default='gaia mountain sanctuary')
+    symbol: str = Field(default='chakana')
+    energy: str = Field(default='sacred wind')
+    palette: str = Field(default='gold violet turquoise')
+    camera: str = Field(default='hero medium close')
+    mood: str = Field(default='solemn vigilant')
+    subject_kind: str = ""
+    object_kind: str = ""
+    environment_kind: str = ""
+    subject_ref: str = ""
+    object_ref: str = ""
+    environment_ref: str = ""
+
+
 @dataclass(slots=True)
 class SceneSpec:
     scene_type: str
@@ -88,6 +132,14 @@ class SceneSpec:
 
     def to_dict(self) -> dict[str, str]:
         return asdict(self)
+
+    def to_model(self) -> SceneSpecModel:
+        return SceneSpecModel(**self.to_dict())
+
+
+def validate_scene_semantic(payload: dict[str, object]) -> dict[str, object]:
+    model = ArtSceneRuntimeModel(**payload)
+    return model.model_dump()
 
 
 def default_scene_type(environment_kind: str, subject_kind: str) -> str:
@@ -123,7 +175,7 @@ def build_scene_spec(
     object_ref: str = "",
     environment_ref: str = "",
 ) -> SceneSpec:
-    return SceneSpec(
+    model = SceneSpecModel(
         scene_type=scene_type,
         subject=subject,
         subject_pose=subject_pose,
@@ -141,6 +193,7 @@ def build_scene_spec(
         object_ref=object_ref,
         environment_ref=environment_ref,
     )
+    return SceneSpec(**model.model_dump())
 
 
 def scene_spec_prompt_fragment(spec: SceneSpec) -> str:

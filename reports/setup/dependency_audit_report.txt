@@ -1,0 +1,56 @@
+dependency_audit_report
+
+Phase: 1 - Dependency Audit
+Date: 2026-03-12
+
+Files inspected:
+- requirements.txt
+- pyproject.toml (not present)
+- setup.cfg (not present)
+- setup.py (not present)
+- Pipfile (not present)
+- Pipfile.lock (not present)
+- poetry.lock (not present)
+
+Target library importability:
+- pillow / PIL: OK / 12.1.1
+- numpy: OK / 2.4.2
+- opencv-python / cv2: OK / 4.13.0.92
+- noise: OK / 1.2.2 (module reported 1.2.1)
+- pytweening: OK / 1.2.0
+- soundfile: OK / 0.13.1
+- librosa: OK / 0.11.0
+- pydantic: OK / 2.12.5
+- python-dotenv / dotenv: OK / 1.2.2
+- rich: OK / 14.3.3
+- networkx: OK / 3.6.1
+
+Current dependency source of truth:
+- requirements.txt only
+- no pyproject/poetry/pipenv metadata found
+
+Audit findings:
+- All target libraries are importable in the active environment.
+- All target libraries are already declared in requirements.txt.
+- No duplicate target dependency declarations were found in requirements.txt.
+- Version pinning is explicit and stable across the target library set.
+- The project includes a mixed runtime stack: Django + pygame + art/audio scientific packages.
+- noise shows a metadata/module version mismatch: distribution 1.2.2, imported module 1.2.1. This is a warning, not a blocker.
+- rich and python-dotenv do not expose a convenient __version__ attribute through the import surface, but distribution metadata resolves correctly.
+
+Compatibility assessment:
+- numpy 2.4.2 + opencv-python 4.13.0.92: compatible in this environment.
+- numpy 2.4.2 + librosa 0.11.0 + numba 0.64.0 + llvmlite 0.46.0: importable and usable together in this environment.
+- pillow 12.1.1 is recent and compatible with the current Python environment.
+- pydantic 2.12.5 is current-generation and should be integrated carefully if any older pydantic v1-style code exists.
+- python-dotenv 1.2.2, rich 14.3.3, networkx 3.6.1, soundfile 0.13.1 are recent enough for integration work.
+
+Potential issues / warnings:
+- No secondary requirements file exists yet for dev-only tooling.
+- requirements.txt currently mixes runtime, scientific, web, and tooling dependencies without subsystem grouping.
+- pip check should be treated as the compatibility gate for the installed environment.
+
+Recommended Phase 2 actions:
+- Normalize requirements.txt into grouped sections.
+- Optionally introduce requirements-dev.txt if tool-only dependencies need separation later.
+- Preserve explicit pins unless a specific compatibility issue is discovered.

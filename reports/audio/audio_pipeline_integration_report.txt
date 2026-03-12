@@ -1,0 +1,49 @@
+audio_pipeline_integration_report
+
+phase=5
+status=PASS
+
+summary
+- Integrated soundfile into the audio pipeline for safer WAV write/read handling.
+- Integrated pydantic audio schemas for asset specs and analysis payloads.
+- Integrated rich logging into the runtime audio engine for clearer generation/playback reporting.
+- Integrated guarded librosa availability into the analysis layer while keeping runtime-safe soundfile/numpy analysis active.
+- Added manifest backfill for audio analysis metadata on cached/generated assets.
+
+files_modified
+- game/audio/audio_stack_tools.py
+- game/audio/audio_engine.py
+
+integration_details
+- soundfile:
+  - game/audio/audio_stack_tools.py::write_wav_soundfile now writes PCM_16 wav assets.
+  - game/audio/audio_stack_tools.py::analyze_audio_file reads wav metadata and sample windows safely.
+  - game/audio/audio_engine.py::_write_wave now delegates to soundfile-backed writing.
+- librosa:
+  - game/audio/audio_stack_tools.py imports librosa in guarded mode and records librosa availability in analysis payloads.
+  - Runtime analysis uses a guarded fallback mode because deeper librosa onset/tempo routines stall in this local Python 3.14 environment.
+- pydantic:
+  - game/audio/audio_stack_tools.py::AudioAssetSpec validates audio write specs.
+  - game/audio/audio_stack_tools.py::AudioAnalysisReport validates exported analysis payloads.
+- rich:
+  - game/audio/audio_engine.py now uses rich console logging for generation, playback, ambient and error messages.
+
+validation
+- python -m py_compile game/audio/audio_stack_tools.py game/audio/audio_engine.py game/audio/music_manager.py game/audio/sfx_manager.py -> OK
+- direct analysis on game/audio/generated/stingers/victory.wav -> OK
+- direct analysis on game/audio/generated/ambient/temple_resonance.wav -> OK
+- engine manifest backfill for stinger_victory and ambient_temple_resonance -> OK
+
+smoke_results
+- stinger_victory: duration_seconds=1.8 sample_rate=32000 onset_count=13 tempo_bpm=433.3333 variation_score=0.5118
+- ambient_temple_resonance: duration_seconds=36.0 sample_rate=32000 onset_count=157 tempo_bpm=261.6667 variation_score=0.4049
+- runtime manifest entries now include analysis payloads with analysis_mode=soundfile_numpy_guarded_librosa
+
+stability_notes
+- Procedural synthesis logic was preserved; only IO, reporting and analysis layers were changed.
+- Cached/generated assets now receive analysis metadata without forcing full audio regeneration.
+- The guarded analysis path prioritizes runtime stability over advanced librosa feature extraction in this environment.
+
+warnings
+- librosa is integrated in guarded mode only; advanced onset/tempo routines were not enabled in runtime because they stalled during local validation on Python 3.14.
+- The reported tempo/onset values are useful comparative heuristics, not musicological ground truth.

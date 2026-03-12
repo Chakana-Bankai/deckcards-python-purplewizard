@@ -1,0 +1,53 @@
+dependency_normalization_report
+
+Phase: 2 - Dependency Normalization
+Date: 2026-03-12
+
+Files inspected:
+- requirements.txt
+- requirements-dev.txt
+
+Files modified:
+- requirements.txt
+- requirements-dev.txt
+
+Normalization actions:
+- Grouped runtime dependencies by subsystem.
+- Preserved explicit version pins.
+- Removed declaration ambiguity by keeping a single normalized runtime list.
+- Added a minimal requirements-dev.txt placeholder for future dev-only split.
+- Kept all target libraries in requirements.txt because they are runtime-relevant to the requested integrations.
+
+Sections added to requirements.txt:
+- Core runtime
+- Web / app framework
+- Config / validation / reporting
+- Art / image / procedural generation
+- Audio / signal analysis
+- Asset / file I/O / graph utilities
+- HTTP / external data helpers
+
+Target library status after normalization:
+- pillow: listed
+- numpy: listed
+- opencv-python: listed
+- noise: listed
+- pytweening: listed
+- soundfile: listed
+- librosa: listed
+- pydantic: listed
+- python-dotenv: listed
+- rich: listed
+- networkx: listed
+
+Warnings:
+- requirements-dev.txt is intentionally minimal; no packages were moved yet because no clearly dev-only dependencies were identified in this phase.
+- A future split may move reporting/lint/test tooling once those tools are explicitly introduced.
+- noise still carries the previously observed metadata/module version mismatch warning from Phase 1.
+
+Result:
+- requirements are now readable, grouped, and stable.
+- no runtime code was modified.
+
+Recommended Phase 3 actions:
+- map each target library to explicit integration points in art, audio, tools, and config.

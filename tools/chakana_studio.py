@@ -18,6 +18,7 @@ if __package__ in (None, ''):
         ui_audit,
         engine_extractor,
         reports_build,
+        tooling_stack,
     )
 else:
     from tools.lib import (
@@ -33,6 +34,7 @@ else:
         ui_audit,
         engine_extractor,
         reports_build,
+        tooling_stack,
     )
 
 COMMANDS = {
@@ -56,23 +58,32 @@ COMMANDS = {
 
 
 def main():
+    env = tooling_stack.load_tool_env()
     parser = argparse.ArgumentParser(prog='chakana_studio', description='Chakana Studio Master CLI')
     parser.add_argument('command', choices=sorted(COMMANDS.keys()))
     parser.add_argument('--dry-run', action='store_true', dest='dry_run')
     parser.add_argument('--all', action='store_true', dest='generate_all')
     parser.add_argument('--force', action='store_true', dest='force')
     args = parser.parse_args()
+    spec = tooling_stack.validate_cli_payload({
+        'command': args.command,
+        'dry_run': bool(args.dry_run),
+        'force': bool(args.force),
+        'generate_all': bool(args.generate_all),
+    })
     os.system('cls' if os.name == 'nt' else 'clear')
-    if args.command == 'art-generate':
-        if args.generate_all:
-            report = art_pipeline.generate_all(dry_run=args.dry_run)
+    if env.rich_enabled:
+        tooling_stack.console.print(f'[cyan][chakana_studio][/cyan] env={env.chakana_env} reports_dir={env.reports_dir}')
+    if spec.command == 'art-generate':
+        if spec.generate_all:
+            report = art_pipeline.generate_all(dry_run=spec.dry_run)
         else:
-            report = art_pipeline.regenerate_missing(dry_run=args.dry_run, force=args.force)
-    elif args.command == 'art-regenerate-missing':
-        report = art_pipeline.regenerate_missing(dry_run=args.dry_run, force=args.force)
+            report = art_pipeline.regenerate_missing(dry_run=spec.dry_run, force=spec.force)
+    elif spec.command == 'art-regenerate-missing':
+        report = art_pipeline.regenerate_missing(dry_run=spec.dry_run, force=spec.force)
     else:
-        report = COMMANDS[args.command](args.dry_run)
-    print(f'[chakana_studio] report={report}')
+        report = COMMANDS[spec.command](spec.dry_run)
+    tooling_stack.render_report_path('chakana_studio', Path(report))
 
 
 if __name__ == '__main__':
