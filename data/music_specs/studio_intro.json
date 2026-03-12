@@ -1,0 +1,19 @@
+{
+  "context": "studio_intro",
+  "emotion": "sacred awakening",
+  "tempo_bpm": 68,
+  "scale_mode": "minor_pentatonic_added_second",
+  "instrumentation": {
+    "pad": "airy_choir",
+    "harmony": "bell_chimes",
+    "melody": "quena_like_flute",
+    "bass": "sub_bass_drone",
+    "percussion": "soft_ceremonial_hits",
+    "ornament": "glass_sparkles"
+  },
+  "density": "low_to_mid",
+  "loop_length_seconds": 28,
+  "melody_role": "motif_introduction",
+  "percussion_role": "none_or_soft_hits",
+  "stinger_family": "studio"
+}

@@ -1,0 +1,19 @@
+{
+  "context": "rare_reveal",
+  "emotion": "sacred_discovery",
+  "tempo_bpm": 76,
+  "scale_mode": "lydian_tinted_pentatonic",
+  "instrumentation": {
+    "pad": "choir",
+    "harmony": "shimmer_pad",
+    "melody": "flute",
+    "bass": "soft_harmonic_bass",
+    "percussion": "minimal_hits",
+    "ornament": "bells"
+  },
+  "density": "mid",
+  "loop_length_seconds": 12,
+  "melody_role": "ascending_reveal",
+  "percussion_role": "minimal_hits",
+  "stinger_family": "reveal_rare"
+}

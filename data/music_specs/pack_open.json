@@ -1,0 +1,19 @@
+{
+  "context": "pack_open",
+  "emotion": "anticipation",
+  "tempo_bpm": 80,
+  "scale_mode": "minor_pentatonic_bright_lift",
+  "instrumentation": {
+    "pad": "shimmer_pad",
+    "harmony": "glass_plucks",
+    "melody": "bells",
+    "bass": "soft_bass",
+    "percussion": "light_ticks",
+    "ornament": "sparkle_noise"
+  },
+  "density": "mid",
+  "loop_length_seconds": 12,
+  "melody_role": "ascending_tease",
+  "percussion_role": "light_ticks",
+  "stinger_family": "pack"
+}

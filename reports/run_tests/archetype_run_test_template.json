@@ -1,0 +1,38 @@
+{
+  "version": "archetype_run_test_template_v1",
+  "suite_name": "archetype_run_balance_suite",
+  "run_parameters": {
+    "runs_per_archetype": 1000,
+    "difficulty_profile": "act_progression",
+    "seed_policy": "deterministic_seed_rotation",
+    "max_turns": 30
+  },
+  "per_run_metrics": {
+    "run_id": "string",
+    "archetype": "cosmic_warrior | harmony_guardian | oracle_of_fate",
+    "act_reached": "act1 | act2 | act3 | final_boss | victory",
+    "win": false,
+    "turn_count": 0,
+    "damage_taken_total": 0,
+    "healing_total": 0,
+    "cards_drawn_total": 0,
+    "cards_played_total": 0,
+    "dead_cards_seen": [],
+    "dominant_failure_reason": "damage_race | sustain_fail | draw_fail | scaling_fail | control_fail"
+  },
+  "per_archetype_summary": {
+    "win_rate": 0.0,
+    "average_turns": 0.0,
+    "average_damage_taken": 0.0,
+    "average_cards_played": 0.0,
+    "average_dead_cards": 0.0,
+    "top_overperformers": [],
+    "top_underperformers": []
+  },
+  "problem_card_detection": {
+    "dead_card_threshold_play_rate": 0.1,
+    "overperform_threshold_delta_vs_global": 0.08,
+    "underperform_threshold_delta_vs_global": -0.08,
+    "high_variance_threshold": 0.15
+  }
+}

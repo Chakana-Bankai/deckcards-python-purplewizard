@@ -1,0 +1,19 @@
+{
+  "context": "combat_normal",
+  "emotion": "ritual_pressure",
+  "tempo_bpm": 86,
+  "scale_mode": "minor_pentatonic_tritone_accent",
+  "instrumentation": {
+    "pad": "low_choir",
+    "harmony": "ritual_strings",
+    "melody": "hybrid_brass_synth",
+    "bass": "ritual_bass",
+    "percussion": "tribal_drums",
+    "ornament": "metal_hits"
+  },
+  "density": "mid",
+  "loop_length_seconds": 24,
+  "melody_role": "short_aggressive_cells",
+  "percussion_role": "main_driver",
+  "stinger_family": "combat"
+}

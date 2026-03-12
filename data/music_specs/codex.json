@@ -1,0 +1,19 @@
+{
+  "context": "codex",
+  "emotion": "scholarly_mysticism",
+  "tempo_bpm": 60,
+  "scale_mode": "minor_pentatonic_suspended_second",
+  "instrumentation": {
+    "pad": "soft_choir",
+    "harmony": "codex_ambience",
+    "melody": "flute",
+    "bass": "soft_harmonic_bass",
+    "percussion": "paper_ticks",
+    "ornament": "page_whispers"
+  },
+  "density": "low",
+  "loop_length_seconds": 18,
+  "melody_role": "curious_short_phrase",
+  "percussion_role": "paper_ticks",
+  "stinger_family": "codex"
+}

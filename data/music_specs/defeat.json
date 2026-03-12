@@ -1,0 +1,19 @@
+{
+  "context": "defeat",
+  "emotion": "solemn_collapse",
+  "tempo_bpm": 54,
+  "scale_mode": "dark_minor_pentatonic",
+  "instrumentation": {
+    "pad": "low_drone",
+    "harmony": "soft_choir",
+    "melody": "broken_bell",
+    "bass": "dark_sub",
+    "percussion": "none",
+    "ornament": "dust_noise"
+  },
+  "density": "low",
+  "loop_length_seconds": 16,
+  "melody_role": "falling_fragment",
+  "percussion_role": "none_or_sparse",
+  "stinger_family": "defeat"
+}

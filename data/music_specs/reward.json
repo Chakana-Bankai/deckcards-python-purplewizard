@@ -1,0 +1,19 @@
+{
+  "context": "reward",
+  "emotion": "gentle_uplift",
+  "tempo_bpm": 70,
+  "scale_mode": "minor_pentatonic_bright_second",
+  "instrumentation": {
+    "pad": "soft_choir",
+    "harmony": "chimes",
+    "melody": "flute",
+    "bass": "soft_harmonic_bass",
+    "percussion": "none",
+    "ornament": "light_sparkles"
+  },
+  "density": "low",
+  "loop_length_seconds": 16,
+  "melody_role": "resolution_phrase",
+  "percussion_role": "none",
+  "stinger_family": "reward"
+}

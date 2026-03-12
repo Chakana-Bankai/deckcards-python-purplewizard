@@ -1,0 +1,19 @@
+{
+  "context": "credits",
+  "emotion": "reflective_transcendence",
+  "tempo_bpm": 64,
+  "scale_mode": "minor_pentatonic_with_sixth",
+  "instrumentation": {
+    "pad": "choir",
+    "harmony": "bells",
+    "melody": "flute",
+    "bass": "soft_harmonic_bass",
+    "percussion": "soft_pulse",
+    "ornament": "glass_sparkles"
+  },
+  "density": "low_to_mid",
+  "loop_length_seconds": 24,
+  "melody_role": "full_motif_reprise",
+  "percussion_role": "soft_pulse",
+  "stinger_family": "credits"
+}

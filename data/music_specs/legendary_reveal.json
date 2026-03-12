@@ -1,0 +1,19 @@
+{
+  "context": "legendary_reveal",
+  "emotion": "mythic_revelation",
+  "tempo_bpm": 64,
+  "scale_mode": "phrygian_pentatonic_hybrid",
+  "instrumentation": {
+    "pad": "choir",
+    "harmony": "void_shimmer",
+    "melody": "ritual_horn",
+    "bass": "deep_bass",
+    "percussion": "ceremonial_hits",
+    "ornament": "deep_bells"
+  },
+  "density": "mid_to_high",
+  "loop_length_seconds": 14,
+  "melody_role": "large_declared_arc",
+  "percussion_role": "ceremonial_hits",
+  "stinger_family": "reveal_legendary"
+}

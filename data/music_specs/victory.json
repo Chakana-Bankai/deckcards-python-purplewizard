@@ -1,0 +1,19 @@
+{
+  "context": "victory",
+  "emotion": "earned_ascent",
+  "tempo_bpm": 78,
+  "scale_mode": "bright_minor_pentatonic",
+  "instrumentation": {
+    "pad": "choir",
+    "harmony": "bells",
+    "melody": "flute",
+    "bass": "soft_harmonic_bass",
+    "percussion": "light_drum",
+    "ornament": "light_sparkles"
+  },
+  "density": "mid",
+  "loop_length_seconds": 16,
+  "melody_role": "resolved_motif",
+  "percussion_role": "light_celebratory",
+  "stinger_family": "victory"
+}

@@ -1,0 +1,19 @@
+{
+  "context": "shop",
+  "emotion": "sanctuary_barter",
+  "tempo_bpm": 66,
+  "scale_mode": "minor_pentatonic_added_sixth",
+  "instrumentation": {
+    "pad": "soft_choir",
+    "harmony": "glass_bells",
+    "melody": "breath_flute",
+    "bass": "soft_harmonic_bass",
+    "percussion": "paper_perc",
+    "ornament": "shimmer_pad"
+  },
+  "density": "low",
+  "loop_length_seconds": 20,
+  "melody_role": "short_inviting_phrase",
+  "percussion_role": "minimal",
+  "stinger_family": "shop"
+}

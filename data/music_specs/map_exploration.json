@@ -1,0 +1,19 @@
+{
+  "context": "map_exploration",
+  "emotion": "pilgrimage_wonder",
+  "tempo_bpm": 72,
+  "scale_mode": "minor_pentatonic_added_second",
+  "instrumentation": {
+    "pad": "choir_pad",
+    "harmony": "stone_bells",
+    "melody": "breath_flute",
+    "bass": "walking_drum_bass",
+    "percussion": "shakers",
+    "ornament": "wind_whispers"
+  },
+  "density": "low_to_mid",
+  "loop_length_seconds": 24,
+  "melody_role": "wandering_phrase",
+  "percussion_role": "walking_pulse",
+  "stinger_family": "travel"
+}

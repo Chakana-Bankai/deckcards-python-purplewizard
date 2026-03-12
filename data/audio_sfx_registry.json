@@ -1,121 +1,226 @@
 {
-  "ui": {
+  "version": "audio_sfx_registry_v2",
+  "ui_sounds": {
     "hover": {
       "family": "ui_soft",
       "pitch": 392,
-      "duration": 0.08
+      "duration": 0.08,
+      "bus": "ui",
+      "priority": "low"
     },
     "select": {
       "family": "ui_soft",
       "pitch": 440,
-      "duration": 0.11
+      "duration": 0.11,
+      "bus": "ui",
+      "priority": "medium"
     },
     "confirm": {
       "family": "ui_confirm",
       "pitch": 523,
-      "duration": 0.16
+      "duration": 0.16,
+      "bus": "ui",
+      "priority": "high"
     },
     "cancel": {
       "family": "ui_cancel",
       "pitch": 220,
-      "duration": 0.14
+      "duration": 0.14,
+      "bus": "ui",
+      "priority": "high"
     },
     "invalid": {
       "family": "ui_cancel",
       "pitch": 180,
-      "duration": 0.12
+      "duration": 0.12,
+      "bus": "ui",
+      "priority": "high"
     },
     "menu_open": {
       "family": "ui_soft",
       "pitch": 330,
-      "duration": 0.13
+      "duration": 0.13,
+      "bus": "ui",
+      "priority": "medium"
     },
     "menu_close": {
       "family": "ui_soft",
       "pitch": 294,
-      "duration": 0.11
+      "duration": 0.11,
+      "bus": "ui",
+      "priority": "medium"
     },
     "codex_open": {
       "family": "codex",
       "pitch": 370,
-      "duration": 0.18
+      "duration": 0.18,
+      "bus": "ui",
+      "priority": "medium"
     },
     "codex_close": {
       "family": "codex",
       "pitch": 278,
-      "duration": 0.14
+      "duration": 0.14,
+      "bus": "ui",
+      "priority": "medium"
     }
   },
-  "gameplay": {
+  "gameplay_sounds": {
     "draw_card": {
       "family": "cardflow",
       "pitch": 410,
-      "duration": 0.12
+      "duration": 0.12,
+      "bus": "gameplay",
+      "priority": "medium"
     },
     "play_card": {
       "family": "cardflow",
       "pitch": 320,
-      "duration": 0.18
+      "duration": 0.18,
+      "bus": "gameplay",
+      "priority": "high"
     },
     "attack_light": {
       "family": "impact_light",
       "pitch": 160,
-      "duration": 0.16
+      "duration": 0.16,
+      "bus": "impact",
+      "priority": "high"
     },
     "attack_heavy": {
       "family": "impact_heavy",
       "pitch": 96,
-      "duration": 0.22
+      "duration": 0.22,
+      "bus": "impact",
+      "priority": "high"
     },
     "block": {
       "family": "guard",
       "pitch": 260,
-      "duration": 0.18
+      "duration": 0.18,
+      "bus": "gameplay",
+      "priority": "medium"
     },
     "heal": {
       "family": "restoration",
       "pitch": 280,
-      "duration": 0.2
+      "duration": 0.2,
+      "bus": "gameplay",
+      "priority": "medium"
     },
     "buff": {
       "family": "ascend",
       "pitch": 360,
-      "duration": 0.18
+      "duration": 0.18,
+      "bus": "gameplay",
+      "priority": "medium"
     },
     "debuff": {
       "family": "decay",
       "pitch": 190,
-      "duration": 0.18
+      "duration": 0.18,
+      "bus": "gameplay",
+      "priority": "medium"
     },
     "ritual": {
       "family": "ritual",
       "pitch": 210,
-      "duration": 0.26
+      "duration": 0.26,
+      "bus": "gameplay",
+      "priority": "high"
     },
     "seal_apply": {
       "family": "ritual",
       "pitch": 240,
-      "duration": 0.22
+      "duration": 0.22,
+      "bus": "gameplay",
+      "priority": "high"
     },
     "combo_trigger": {
       "family": "combo",
       "pitch": 480,
-      "duration": 0.16
+      "duration": 0.16,
+      "bus": "gameplay",
+      "priority": "high"
     },
     "harmony_gain": {
       "family": "ascend",
       "pitch": 430,
-      "duration": 0.16
+      "duration": 0.16,
+      "bus": "gameplay",
+      "priority": "medium"
     },
     "enemy_turn": {
       "family": "warning",
       "pitch": 140,
-      "duration": 0.16
+      "duration": 0.16,
+      "bus": "gameplay",
+      "priority": "medium"
     },
     "boss_phase": {
       "family": "boss_warning",
       "pitch": 120,
-      "duration": 0.28
+      "duration": 0.28,
+      "bus": "gameplay",
+      "priority": "high"
+    }
+  },
+  "meta_sounds": {
+    "reward": {
+      "family": "reward",
+      "pitch": 294,
+      "duration": 0.55,
+      "bus": "meta",
+      "priority": "high"
+    },
+    "pack_open": {
+      "family": "pack",
+      "pitch": 268,
+      "duration": 0.65,
+      "bus": "meta",
+      "priority": "high"
+    },
+    "rare_reveal": {
+      "family": "reveal_rare",
+      "pitch": 312,
+      "duration": 0.75,
+      "bus": "meta",
+      "priority": "high"
+    },
+    "legendary_reveal": {
+      "family": "reveal_legendary",
+      "pitch": 196,
+      "duration": 1.1,
+      "bus": "meta",
+      "priority": "high"
+    },
+    "victory": {
+      "family": "victory",
+      "pitch": 330,
+      "duration": 0.9,
+      "bus": "meta",
+      "priority": "high"
+    },
+    "defeat": {
+      "family": "defeat",
+      "pitch": 196,
+      "duration": 0.85,
+      "bus": "meta",
+      "priority": "high"
+    },
+    "ritual_trigger": {
+      "family": "ritual",
+      "pitch": 210,
+      "duration": 0.55,
+      "bus": "meta",
+      "priority": "high"
+    },
+    "boss_warning": {
+      "family": "boss_warning",
+      "pitch": 128,
+      "duration": 0.75,
+      "bus": "meta",
+      "priority": "high"
     }
   }
 }

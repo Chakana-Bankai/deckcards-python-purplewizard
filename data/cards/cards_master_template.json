@@ -1,0 +1,81 @@
+{
+  "version": "cards_master_template_v1",
+  "target_total_cards": 300,
+  "distribution": {
+    "cosmic_warrior": 75,
+    "harmony_guardian": 75,
+    "oracle_of_fate": 75,
+    "archon": 75
+  },
+  "required_fields": [
+    "id",
+    "name",
+    "faction",
+    "tier",
+    "rarity",
+    "type",
+    "cost",
+    "tags",
+    "effects",
+    "ai_role",
+    "art",
+    "lore",
+    "codex_entry",
+    "kpi"
+  ],
+  "card_template": {
+    "id": "SET-ARCHETYPE-TYPE-NAME",
+    "name": "Human Readable Card Name",
+    "faction": "cosmic_warrior | harmony_guardian | oracle_of_fate | archon",
+    "tier": "starter | act1 | act2 | act3 | boss | enemy_only",
+    "rarity": "common | rare | epic | legendary | enemy_only_singular",
+    "type": "attack | guard | skill | ritual | curse | summon | artifact",
+    "cost": 1,
+    "tags": [
+      "role_tag",
+      "mechanic_tag",
+      "lore_tag"
+    ],
+    "effects": [
+      {
+        "action_type": "damage | shield | heal | buff | debuff | summon | ritual",
+        "value": 0,
+        "scaling": "flat | per_harmony | per_seal | per_enemy | per_draw",
+        "target": "enemy | self | ally | all_enemies | random_enemy",
+        "timing": "on_play | on_draw | on_kill | on_turn_end | persistent"
+      }
+    ],
+    "ai_role": "attacker | tank | support | controller | summoner | artifact",
+    "art": {
+      "card_dna_id": "canonical_visual_id",
+      "archetype": "visual_archetype",
+      "weapon_type": "spear | staff | orb | blade | none",
+      "energy_type": "solar | harmony | fate | void | ritual",
+      "pose_type": "heroic | guarded | calm | ritual | predatory",
+      "palette_family": "palette_key",
+      "frame_rarity": "common | rare | epic | legendary"
+    },
+    "lore": {
+      "summary": "one paragraph summary",
+      "faction_identity": "canonical faction identity",
+      "source_plane": "kay | ukhu | hanan | void | sanctuary",
+      "tone": "heroic | sacred | ominous | contemplative"
+    },
+    "codex_entry": {
+      "summary": "short codex summary",
+      "effect_text": "player-facing effect text",
+      "tags": [
+        "codex_tag"
+      ],
+      "related_entries": [
+        "ENTRY_ID"
+      ]
+    },
+    "kpi": {
+      "expected_pick_rate": 0.0,
+      "expected_play_rate": 0.0,
+      "target_win_rate_delta": 0.0,
+      "dead_card_risk": "low | medium | high"
+    }
+  }
+}

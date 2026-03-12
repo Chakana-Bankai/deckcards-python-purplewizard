@@ -1,0 +1,19 @@
+{
+  "context": "main_menu",
+  "emotion": "mystic_invitation",
+  "tempo_bpm": 62,
+  "scale_mode": "minor_pentatonic_added_sixth",
+  "instrumentation": {
+    "pad": "airy_choir",
+    "harmony": "wind_ambience",
+    "melody": "quena_like_flute",
+    "bass": "soft_harmonic_bass",
+    "percussion": "soft_frame_drum",
+    "ornament": "glass_bells"
+  },
+  "density": "low",
+  "loop_length_seconds": 24,
+  "melody_role": "clear_sacred_motif",
+  "percussion_role": "sparse_pulse",
+  "stinger_family": "ui_soft"
+}

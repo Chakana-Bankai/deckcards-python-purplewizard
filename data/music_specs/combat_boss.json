@@ -1,0 +1,19 @@
+{
+  "context": "combat_boss",
+  "emotion": "mythic_threat",
+  "tempo_bpm": 58,
+  "scale_mode": "phrygian_pentatonic_hybrid",
+  "instrumentation": {
+    "pad": "deep_ritual_choir",
+    "harmony": "void_resonance",
+    "melody": "ritual_horn",
+    "bass": "war_bass",
+    "percussion": "war_drums",
+    "ornament": "cosmic_shimmer"
+  },
+  "density": "high",
+  "loop_length_seconds": 24,
+  "melody_role": "heavy_declared_motif",
+  "percussion_role": "phase_markers_and_pulse",
+  "stinger_family": "boss"
+}

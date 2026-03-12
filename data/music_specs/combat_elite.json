@@ -1,0 +1,19 @@
+{
+  "context": "combat_elite",
+  "emotion": "escalating_ceremony",
+  "tempo_bpm": 94,
+  "scale_mode": "minor_pentatonic_tritone_accent",
+  "instrumentation": {
+    "pad": "low_choir",
+    "harmony": "ritual_strings",
+    "melody": "hybrid_brass_synth",
+    "bass": "war_bass",
+    "percussion": "tribal_drums",
+    "ornament": "metal_hits"
+  },
+  "density": "mid_to_high",
+  "loop_length_seconds": 24,
+  "melody_role": "compressed_motif_fragments",
+  "percussion_role": "aggressive_driver",
+  "stinger_family": "combat_elite"
+}

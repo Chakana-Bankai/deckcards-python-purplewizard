@@ -1,0 +1,78 @@
+{
+  "version": "balance_targets_v1",
+  "energy_economy": {
+    "starting_energy": 3,
+    "target_average_cost_per_hand": 1.8,
+    "target_cards_played_per_turn": 2.2,
+    "draw_support_expected_bonus": 0.5
+  },
+  "expected_damage_by_cost": {
+    "1": {
+      "min": 4,
+      "max": 6
+    },
+    "2": {
+      "min": 7,
+      "max": 10
+    },
+    "3": {
+      "min": 10,
+      "max": 15
+    },
+    "4_plus": {
+      "profile": "finisher_ritual_elite"
+    }
+  },
+  "expected_block_by_cost": {
+    "1": {
+      "min": 5,
+      "max": 7
+    },
+    "2": {
+      "min": 8,
+      "max": 12
+    },
+    "3": {
+      "min": 10,
+      "max": 14
+    },
+    "4_plus": {
+      "profile": "stabilizer_ritual_elite"
+    }
+  },
+  "archetype_target_win_rates": {
+    "cosmic_warrior": {
+      "min": 0.48,
+      "target": 0.52,
+      "max": 0.56
+    },
+    "harmony_guardian": {
+      "min": 0.48,
+      "target": 0.52,
+      "max": 0.56
+    },
+    "oracle_of_fate": {
+      "min": 0.48,
+      "target": 0.52,
+      "max": 0.56
+    }
+  },
+  "enemy_act_progression_targets": {
+    "act1": {
+      "enemy_tier": "weak_medium",
+      "expected_player_damage_taken": 18
+    },
+    "act2": {
+      "enemy_tier": "medium_advanced",
+      "expected_player_damage_taken": 32
+    },
+    "act3": {
+      "enemy_tier": "advanced_elite",
+      "expected_player_damage_taken": 48
+    },
+    "final_boss": {
+      "enemy_tier": "boss",
+      "expected_player_damage_taken": 70
+    }
+  }
+}

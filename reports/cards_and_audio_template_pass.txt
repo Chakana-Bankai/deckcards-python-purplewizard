@@ -1,0 +1,21 @@
+cards_and_audio_template_pass
+
+[music_specs_templates]
+created=15 context templates in data/music_specs/
+purpose=canonical per-context source of truth for emotion, tempo, mode, instrumentation, density, loop length and stinger family
+
+[audio_sfx_registry_template]
+path=data/audio_sfx_registry.json
+purpose=canonical registry for ui_sounds, gameplay_sounds and meta_sounds
+
+[300_card_master_template]
+path=data/cards/cards_master_template.json
+purpose=fixed schema template for all 300 cards with gameplay, art, lore, codex and kpi blocks
+
+[run_test_template]
+path=reports/run_tests/archetype_run_test_template.json
+purpose=canonical reporting template for archetype run balance tests
+
+[balance_targets]
+path=data/cards/balance_targets.json
+purpose=fixed targets for economy, damage/block by cost, archetype win rates and enemy act scaling
