@@ -1,5 +1,5 @@
 {
-  "gold": 80,
+  "gold": 116,
   "relics": [
     "violet_seal"
   ],
@@ -10,31 +10,43 @@
     "block": 0,
     "energy": 3,
     "rupture": 0,
-    "statuses": {}
+    "statuses": {},
+    "harmony_current": 0,
+    "harmony_max": 10,
+    "harmony_ready_threshold": 6,
+    "harmony_ready": false,
+    "harmony_seal_used": false,
+    "seal_ready": false,
+    "seal_active": false
   },
   "deck": [
-    "filo_astral",
-    "garra_espiritual",
-    "pulso_cosmico",
-    "vinculo_de_energia",
-    "cw_lore_03",
-    "cw_lore_09",
-    "cw_lore_10",
-    "cw_lore_14",
-    "cw_lore_18",
-    "cw_lore_23",
-    "eco_de_sabiduria",
-    "mantra_del_umbral",
-    "embate_del_jaguar",
-    "estallido_arcano",
-    "filo_en_cadena",
-    "cw_lore_02",
-    "cw_lore_04",
-    "cw_lore_08",
-    "cw_lore_29",
-    "chakana_de_luz"
+    "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+    "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
+    "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
+    "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
+    "BASE-SOLAR-ATTACK-PULSO_COSMICO",
+    "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
+    "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
+    "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
+    "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
+    "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
+    "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
+    "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
+    "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
+    "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA",
+    "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
+    "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA",
+    "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA",
+    "BASE-SOLAR-SKILL-FILO_EN_CADENA",
+    "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
+    "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
   ],
-  "sideboard": [],
+  "sideboard": [
+    "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
+    "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+    "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA",
+    "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO"
+  ],
   "map": [
     [
       {
@@ -48,7 +60,7 @@
           "1_0",
           "1_1"
         ],
-        "state": "available"
+        "state": "cleared"
       }
     ],
     [
@@ -63,7 +75,7 @@
           "2_0",
           "2_1"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "1_1",
@@ -76,7 +88,7 @@
           "2_1",
           "2_0"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "1_2",
@@ -102,7 +114,7 @@
           "2_3",
           "2_2"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -259,10 +271,10 @@
   ],
   "biome_index": 0,
   "biome": "ukhu",
-  "xp": 0,
-  "level": 1,
-  "combats_won": 0,
-  "tutorial_combats_won": 0,
+  "xp": 5,
+  "level": 2,
+  "combats_won": 1,
+  "tutorial_combats_won": 1,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
@@ -281,15 +293,29 @@
     "step_total": 7
   },
   "meta_director": {
-    "recent_enemy_ids": [],
+    "recent_enemy_ids": [
+      "sabueso_sombrio"
+    ],
     "recent_event_ids": [],
     "recent_shop_card_ids": [],
-    "recent_pack_ids": [],
-    "visual_direction_tags": [],
-    "audio_direction_tags": []
+    "recent_pack_ids": [
+      "mystery_pack"
+    ],
+    "visual_direction_tags": [
+      "biome:ukhu",
+      "mood:underworld"
+    ],
+    "audio_direction_tags": [
+      "ctx:combat",
+      "biome:ukhu",
+      "mood:dark"
+    ]
   },
   "hiperboria_unlock_target": 3,
-  "current_node_id": null,
+  "civilization": "base_world",
+  "last_node_type": "combat",
+  "levelup_pending": 1,
+  "current_node_id": "0_0",
   "last_biome_seen": "ukhu",
-  "saved_at": 1773271614
+  "saved_at": 1773332460
 }
