@@ -1,7 +1,7 @@
 chakana_studio sound director pass
-generated=2026-03-12 12:29:28
+generated=2026-03-12 12:40:13
 
-phase=3
+phase=7
 status=PASS
 dry_run=False
 spec_exists=True
@@ -10,6 +10,7 @@ manifest_item_count=35
 curated_dir=game/assets/curated/audio
 generated_dir=game/audio/generated
 staging_dir=assets/production/audio/staging
+improved_dir=assets/production/audio/staging/improved
 approved_dir=assets/production/audio/approved
 archive_dir=assets/production/audio/archive
 staging_manifest=assets/production/audio/staging/sound_director_staging_manifest.json
@@ -18,24 +19,24 @@ version_counts={'chakana_audio_v7': 20, 'chakana_audio_v6': 15}
 missing_required_contexts=['credits', 'legendary_reveal', 'rare_reveal', 'shop_enter']
 flagged_audio_count=12
 staged_candidate_count=10
+improved_candidate_count=6
+promoted_candidate_count=6
 max_candidates_per_pass=10
-action=staging_queue_prepared
+max_improvements_per_pass=6
+action=promotion_applied
 
-staged_candidates:
-- stinger_combat_start: score=0.41 staging=assets/production/audio/staging/stinger/combat_start__director_candidate.wav warnings=legacy_version,missing_analysis,stinger_review_candidate
-- stinger_elite_encounter: score=0.41 staging=assets/production/audio/staging/stinger/elite_encounter__director_candidate.wav warnings=legacy_version,missing_analysis,stinger_review_candidate
-- stinger_harmony_ready: score=0.41 staging=assets/production/audio/staging/stinger/harmony_ready__director_candidate.wav warnings=legacy_version,missing_analysis,stinger_review_candidate
-- stinger_level_up: score=0.41 staging=assets/production/audio/staging/stinger/level_up__director_candidate.wav warnings=legacy_version,missing_analysis,stinger_review_candidate
-- stinger_pack_open: score=0.41 staging=assets/production/audio/staging/stinger/pack_open__director_candidate.wav warnings=legacy_version,missing_analysis,stinger_review_candidate
-- combat_elite_a: score=0.46 staging=assets/production/audio/staging/bgm/combat_elite_a__director_candidate.wav warnings=legacy_version,missing_analysis
-- defeat_a: score=0.52 staging=assets/production/audio/staging/bgm/defeat_a__director_candidate.wav warnings=legacy_version,missing_analysis
-- map_hanan_a: score=0.52 staging=assets/production/audio/staging/bgm/map_hanan_a__director_candidate.wav warnings=legacy_version,missing_analysis
-- stinger_boss_reveal: score=0.55 staging=assets/production/audio/staging/stinger/boss_reveal__director_candidate.wav warnings=missing_analysis,stinger_review_candidate
-- stinger_defeat: score=0.55 staging=assets/production/audio/staging/stinger/defeat__director_candidate.wav warnings=missing_analysis,stinger_review_candidate
+promoted_candidates:
+- stinger_combat_start: runtime=game/audio/generated/stingers/combat_start.wav approved=assets/production/audio/approved/stinger/stinger_combat_start__improved.wav archive=assets/production/audio/archive/stinger/combat_start__director_pass.wav promotion_score=0.98
+- stinger_elite_encounter: runtime=game/audio/generated/stingers/elite_encounter.wav approved=assets/production/audio/approved/stinger/stinger_elite_encounter__improved.wav archive=assets/production/audio/archive/stinger/elite_encounter__director_pass.wav promotion_score=0.98
+- stinger_harmony_ready: runtime=game/audio/generated/stingers/harmony_ready.wav approved=assets/production/audio/approved/stinger/stinger_harmony_ready__improved.wav archive=assets/production/audio/archive/stinger/harmony_ready__director_pass.wav promotion_score=0.98
+- stinger_level_up: runtime=game/audio/generated/stingers/level_up.wav approved=assets/production/audio/approved/stinger/stinger_level_up__improved.wav archive=assets/production/audio/archive/stinger/level_up__director_pass.wav promotion_score=0.98
+- stinger_pack_open: runtime=game/audio/generated/stingers/pack_open.wav approved=assets/production/audio/approved/stinger/stinger_pack_open__improved.wav archive=assets/production/audio/archive/stinger/pack_open__director_pass.wav promotion_score=0.98
+- combat_elite_a: runtime=game/audio/generated/bgm/combat_elite_a.wav approved=assets/production/audio/approved/bgm/combat_elite_a__improved.wav archive=assets/production/audio/archive/bgm/combat_elite_a__director_pass.wav promotion_score=0.98
 
 director_pass_capabilities:
 - reads music specs from data/music_specs/music_direction_mvp.json
 - audits runtime audio from game/data/audio_manifest.json
 - maps top flagged items into assets/production/audio/staging as a controlled review queue
-- writes a staging manifest for later regeneration/promotion phases
-- keeps promotion/archive non-destructive in this phase
+- generates improved audio candidates with safe normalization and fade cleanup
+- promotes improved candidates that meet the promotion threshold
+- archives replaced runtime audio safely before replacement

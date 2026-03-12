@@ -1,7 +1,7 @@
 chakana_studio art director pass
-generated=2026-03-12 12:31:41
+generated=2026-03-12 12:40:15
 
-phase=4
+phase=7
 status=PASS
 dry_run=False
 spec_exists=True
@@ -9,6 +9,7 @@ manifest_exists=True
 runtime_asset_count=180
 archived_pass_asset_count=180
 staging_dir=assets/production/art/staging
+improved_dir=assets/production/art/staging/improved
 approved_dir=assets/production/art/approved
 archive_dir=assets/production/art/archive
 staging_manifest=assets/production/art/staging/art_director_staging_manifest.json
@@ -16,28 +17,25 @@ manifest_item_count=60
 flagged_asset_count=0
 review_queue_count=180
 staged_candidate_count=12
+improved_candidate_count=6
+promoted_candidate_count=6
 max_candidates_per_pass=12
+max_improvements_per_pass=6
 selection_mode=review_queue
-action=staging_queue_refined
+action=promotion_applied
 
-staged_candidates:
-- arc_001.png: score=0.64 staging=assets/production/art/staging/arc_001__director_candidate.png warnings=low_filesize,frame_like_border palette=32 border=0.8396
-- arc_002.png: score=0.64 staging=assets/production/art/staging/arc_002__director_candidate.png warnings=low_filesize,frame_like_border palette=32 border=0.8287
-- arc_003.png: score=0.64 staging=assets/production/art/staging/arc_003__director_candidate.png warnings=low_filesize,frame_like_border palette=32 border=0.8385
-- arc_004.png: score=0.64 staging=assets/production/art/staging/arc_004__director_candidate.png warnings=low_filesize,frame_like_border palette=32 border=0.8272
-- arc_005.png: score=0.64 staging=assets/production/art/staging/arc_005__director_candidate.png warnings=low_filesize,frame_like_border palette=32 border=0.8393
-- arc_006.png: score=0.64 staging=assets/production/art/staging/arc_006__director_candidate.png warnings=low_filesize,frame_like_border palette=32 border=0.8232
-- arc_007.png: score=0.64 staging=assets/production/art/staging/arc_007__director_candidate.png warnings=low_filesize,frame_like_border palette=32 border=0.8418
-- arc_008.png: score=0.64 staging=assets/production/art/staging/arc_008__director_candidate.png warnings=low_filesize,frame_like_border palette=32 border=0.8272
-- arc_009.png: score=0.64 staging=assets/production/art/staging/arc_009__director_candidate.png warnings=low_filesize,frame_like_border palette=32 border=0.8355
-- arc_010.png: score=0.64 staging=assets/production/art/staging/arc_010__director_candidate.png warnings=low_filesize,frame_like_border palette=32 border=0.8194
-- arc_011.png: score=0.64 staging=assets/production/art/staging/arc_011__director_candidate.png warnings=low_filesize,frame_like_border palette=32 border=0.8441
-- arc_012.png: score=0.64 staging=assets/production/art/staging/arc_012__director_candidate.png warnings=low_filesize,frame_like_border palette=32 border=0.8271
+promoted_candidates:
+- arc_001.png: runtime=game/assets/sprites/cards/arc_001.png approved=assets/production/art/approved/arc_001__improved.png archive=assets/production/art/archive/arc_001__director_pass.png after=0.78
+- arc_002.png: runtime=game/assets/sprites/cards/arc_002.png approved=assets/production/art/approved/arc_002__improved.png archive=assets/production/art/archive/arc_002__director_pass.png after=0.78
+- arc_003.png: runtime=game/assets/sprites/cards/arc_003.png approved=assets/production/art/approved/arc_003__improved.png archive=assets/production/art/archive/arc_003__director_pass.png after=0.78
+- arc_004.png: runtime=game/assets/sprites/cards/arc_004.png approved=assets/production/art/approved/arc_004__improved.png archive=assets/production/art/archive/arc_004__director_pass.png after=0.78
+- arc_005.png: runtime=game/assets/sprites/cards/arc_005.png approved=assets/production/art/approved/arc_005__improved.png archive=assets/production/art/archive/arc_005__director_pass.png after=0.78
+- arc_006.png: runtime=game/assets/sprites/cards/arc_006.png approved=assets/production/art/approved/arc_006__improved.png archive=assets/production/art/archive/arc_006__director_pass.png after=0.78
 
 director_pass_capabilities:
 - reads art specs from data/art_specs/card_art_direction.json
 - audits runtime production art in game/assets/sprites/cards
-- scores assets using blur, file size, palette diversity and frame-like border heuristics
-- falls back to a review queue when no asset crosses the hard staging threshold
-- copies selected candidates into assets/production/art/staging with a staging manifest
-- keeps promotion/archive non-destructive in this phase
+- stages review candidates in assets/production/art/staging
+- generates improved art candidates with crop cleanup, autocontrast and sharpen pass
+- promotes improved candidates that meet the promotion threshold
+- archives replaced runtime art safely before replacement

@@ -1,11 +1,16 @@
 {
-  "version": "art_director_staging_v2",
+  "version": "art_director_staging_v4",
   "dry_run": false,
   "runtime_bucket": "game/assets/sprites/cards",
   "staging_bucket": "assets/production/art/staging",
+  "improved_bucket": "assets/production/art/staging/improved",
+  "approved_bucket": "assets/production/art/approved",
+  "archive_bucket": "assets/production/art/archive",
   "flagged_candidate_count": 0,
   "review_queue_count": 180,
   "candidate_count": 12,
+  "improved_candidate_count": 6,
+  "promoted_candidate_count": 6,
   "selection_mode": "review_queue",
   "candidates": [
     {
@@ -235,6 +240,238 @@
         "border_ratio": 0.8271
       },
       "action": "copy_to_staging"
+    }
+  ],
+  "improved_candidates": [
+    {
+      "asset_name": "arc_001.png",
+      "source_path": "game/assets/sprites/cards/arc_001.png",
+      "source_staging_path": "assets/production/art/staging/arc_001__director_candidate.png",
+      "improved_path": "assets/production/art/staging/improved/arc_001__improved.png",
+      "before_score": 0.64,
+      "after_score": 0.78,
+      "score_delta": 0.14,
+      "before_metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 69097,
+        "blur_score": 185.8424,
+        "palette_diversity": 32,
+        "border_ratio": 0.8396
+      },
+      "after_metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 103605,
+        "blur_score": 3865.2138,
+        "palette_diversity": 32,
+        "border_ratio": 0.6103
+      },
+      "after_warnings": [
+        "low_filesize"
+      ],
+      "action": "improved_candidate_generated"
+    },
+    {
+      "asset_name": "arc_002.png",
+      "source_path": "game/assets/sprites/cards/arc_002.png",
+      "source_staging_path": "assets/production/art/staging/arc_002__director_candidate.png",
+      "improved_path": "assets/production/art/staging/improved/arc_002__improved.png",
+      "before_score": 0.64,
+      "after_score": 0.78,
+      "score_delta": 0.14,
+      "before_metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 52150,
+        "blur_score": 169.5973,
+        "palette_diversity": 32,
+        "border_ratio": 0.8287
+      },
+      "after_metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 101130,
+        "blur_score": 3575.2188,
+        "palette_diversity": 32,
+        "border_ratio": 0.5694
+      },
+      "after_warnings": [
+        "low_filesize"
+      ],
+      "action": "improved_candidate_generated"
+    },
+    {
+      "asset_name": "arc_003.png",
+      "source_path": "game/assets/sprites/cards/arc_003.png",
+      "source_staging_path": "assets/production/art/staging/arc_003__director_candidate.png",
+      "improved_path": "assets/production/art/staging/improved/arc_003__improved.png",
+      "before_score": 0.64,
+      "after_score": 0.78,
+      "score_delta": 0.14,
+      "before_metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 49770,
+        "blur_score": 157.086,
+        "palette_diversity": 32,
+        "border_ratio": 0.8385
+      },
+      "after_metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 88216,
+        "blur_score": 3062.4395,
+        "palette_diversity": 32,
+        "border_ratio": 0.6025
+      },
+      "after_warnings": [
+        "low_filesize"
+      ],
+      "action": "improved_candidate_generated"
+    },
+    {
+      "asset_name": "arc_004.png",
+      "source_path": "game/assets/sprites/cards/arc_004.png",
+      "source_staging_path": "assets/production/art/staging/arc_004__director_candidate.png",
+      "improved_path": "assets/production/art/staging/improved/arc_004__improved.png",
+      "before_score": 0.64,
+      "after_score": 0.78,
+      "score_delta": 0.14,
+      "before_metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 38958,
+        "blur_score": 104.5607,
+        "palette_diversity": 32,
+        "border_ratio": 0.8272
+      },
+      "after_metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 83422,
+        "blur_score": 1964.2881,
+        "palette_diversity": 32,
+        "border_ratio": 0.5694
+      },
+      "after_warnings": [
+        "low_filesize"
+      ],
+      "action": "improved_candidate_generated"
+    },
+    {
+      "asset_name": "arc_005.png",
+      "source_path": "game/assets/sprites/cards/arc_005.png",
+      "source_staging_path": "assets/production/art/staging/arc_005__director_candidate.png",
+      "improved_path": "assets/production/art/staging/improved/arc_005__improved.png",
+      "before_score": 0.64,
+      "after_score": 0.78,
+      "score_delta": 0.14,
+      "before_metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 66979,
+        "blur_score": 187.0974,
+        "palette_diversity": 32,
+        "border_ratio": 0.8393
+      },
+      "after_metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 100936,
+        "blur_score": 3835.3738,
+        "palette_diversity": 32,
+        "border_ratio": 0.6061
+      },
+      "after_warnings": [
+        "low_filesize"
+      ],
+      "action": "improved_candidate_generated"
+    },
+    {
+      "asset_name": "arc_006.png",
+      "source_path": "game/assets/sprites/cards/arc_006.png",
+      "source_staging_path": "assets/production/art/staging/arc_006__director_candidate.png",
+      "improved_path": "assets/production/art/staging/improved/arc_006__improved.png",
+      "before_score": 0.64,
+      "after_score": 0.78,
+      "score_delta": 0.14,
+      "before_metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 50490,
+        "blur_score": 142.8994,
+        "palette_diversity": 32,
+        "border_ratio": 0.8232
+      },
+      "after_metrics": {
+        "width": 320,
+        "height": 220,
+        "file_size": 96477,
+        "blur_score": 3257.6511,
+        "palette_diversity": 32,
+        "border_ratio": 0.5583
+      },
+      "after_warnings": [
+        "low_filesize"
+      ],
+      "action": "improved_candidate_generated"
+    }
+  ],
+  "promoted_candidates": [
+    {
+      "asset_name": "arc_001.png",
+      "runtime_path": "game/assets/sprites/cards/arc_001.png",
+      "approved_path": "assets/production/art/approved/arc_001__improved.png",
+      "archive_path": "assets/production/art/archive/arc_001__director_pass.png",
+      "improved_path": "assets/production/art/staging/improved/arc_001__improved.png",
+      "after_score": 0.78,
+      "action": "promote_to_runtime"
+    },
+    {
+      "asset_name": "arc_002.png",
+      "runtime_path": "game/assets/sprites/cards/arc_002.png",
+      "approved_path": "assets/production/art/approved/arc_002__improved.png",
+      "archive_path": "assets/production/art/archive/arc_002__director_pass.png",
+      "improved_path": "assets/production/art/staging/improved/arc_002__improved.png",
+      "after_score": 0.78,
+      "action": "promote_to_runtime"
+    },
+    {
+      "asset_name": "arc_003.png",
+      "runtime_path": "game/assets/sprites/cards/arc_003.png",
+      "approved_path": "assets/production/art/approved/arc_003__improved.png",
+      "archive_path": "assets/production/art/archive/arc_003__director_pass.png",
+      "improved_path": "assets/production/art/staging/improved/arc_003__improved.png",
+      "after_score": 0.78,
+      "action": "promote_to_runtime"
+    },
+    {
+      "asset_name": "arc_004.png",
+      "runtime_path": "game/assets/sprites/cards/arc_004.png",
+      "approved_path": "assets/production/art/approved/arc_004__improved.png",
+      "archive_path": "assets/production/art/archive/arc_004__director_pass.png",
+      "improved_path": "assets/production/art/staging/improved/arc_004__improved.png",
+      "after_score": 0.78,
+      "action": "promote_to_runtime"
+    },
+    {
+      "asset_name": "arc_005.png",
+      "runtime_path": "game/assets/sprites/cards/arc_005.png",
+      "approved_path": "assets/production/art/approved/arc_005__improved.png",
+      "archive_path": "assets/production/art/archive/arc_005__director_pass.png",
+      "improved_path": "assets/production/art/staging/improved/arc_005__improved.png",
+      "after_score": 0.78,
+      "action": "promote_to_runtime"
+    },
+    {
+      "asset_name": "arc_006.png",
+      "runtime_path": "game/assets/sprites/cards/arc_006.png",
+      "approved_path": "assets/production/art/approved/arc_006__improved.png",
+      "archive_path": "assets/production/art/archive/arc_006__director_pass.png",
+      "improved_path": "assets/production/art/staging/improved/arc_006__improved.png",
+      "after_score": 0.78,
+      "action": "promote_to_runtime"
     }
   ]
 }
