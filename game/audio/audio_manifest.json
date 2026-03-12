@@ -1,6 +1,6 @@
 {
   "version": "chakana_audio_v7",
-  "generated_at": 1773341616,
+  "generated_at": 1773348803,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
@@ -272,7 +272,21 @@
       "generation_date": 1773173858,
       "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated"
+      "source": "generated",
+      "analysis": {
+        "duration_seconds": 1.8,
+        "sample_rate": 32000,
+        "channels": 1,
+        "peak_db": -3.407,
+        "rms_db": -8.7134,
+        "tempo_bpm": 300.0,
+        "onset_count": 9,
+        "loop_end_seconds": 1.725,
+        "monotony_score": 0.4834,
+        "variation_score": 0.5166,
+        "librosa_available": true,
+        "analysis_mode": "soundfile_numpy_guarded_librosa"
+      }
     },
     "stinger_level_up": {
       "track_id": "stinger_level_up",
@@ -338,7 +352,21 @@
       "generation_date": 1773173664,
       "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated"
+      "source": "generated",
+      "analysis": {
+        "duration_seconds": 1.2,
+        "sample_rate": 32000,
+        "channels": 1,
+        "peak_db": -3.407,
+        "rms_db": -8.8911,
+        "tempo_bpm": 350.0,
+        "onset_count": 7,
+        "loop_end_seconds": 1.125,
+        "monotony_score": 0.3865,
+        "variation_score": 0.6135,
+        "librosa_available": true,
+        "analysis_mode": "soundfile_numpy_guarded_librosa"
+      }
     },
     "stinger_harmony_ready": {
       "track_id": "stinger_harmony_ready",
@@ -390,7 +418,21 @@
       "generation_date": 1773159743,
       "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated"
+      "source": "generated",
+      "analysis": {
+        "duration_seconds": 0.15,
+        "sample_rate": 32000,
+        "channels": 1,
+        "peak_db": -3.2391,
+        "rms_db": -10.7776,
+        "tempo_bpm": 400.0,
+        "onset_count": 1,
+        "loop_end_seconds": 0.1125,
+        "monotony_score": 0.088,
+        "variation_score": 0.912,
+        "librosa_available": true,
+        "analysis_mode": "soundfile_numpy_guarded_librosa"
+      }
     },
     "sfx_button_click": {
       "track_id": "sfx_button_click",
@@ -508,7 +550,21 @@
       "generation_date": 1773163518,
       "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated"
+      "source": "generated",
+      "analysis": {
+        "duration_seconds": 42.0,
+        "sample_rate": 32000,
+        "channels": 1,
+        "peak_db": -2.5012,
+        "rms_db": -11.2998,
+        "tempo_bpm": 211.4286,
+        "onset_count": 148,
+        "loop_end_seconds": 23.975,
+        "monotony_score": 0.514,
+        "variation_score": 0.486,
+        "librosa_available": true,
+        "analysis_mode": "soundfile_numpy_guarded_librosa"
+      }
     },
     "ambient_temple_resonance": {
       "track_id": "ambient_temple_resonance",

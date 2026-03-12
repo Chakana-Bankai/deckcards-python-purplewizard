@@ -17,7 +17,9 @@ from game.art.object_glyph_grammar import resolve_object_glyph_grammar
 from game.art.finish_render_system import apply_prop_finish, apply_material_finish
 from game.art.surface_style_pass import apply_subject_surface_style, apply_weapon_surface_style
 from game.art.symbolic_crisp_pass import apply_subject_crisp_pass, apply_weapon_crisp_pass
+from game.art.heroic_warrior_pass import apply_heroic_warrior_reconstruction
 from game.art.symbolic_geometry import symbolic_prop_lane
+from game.art.visual_interpretation_pass import apply_subject_clarity, build_effect_presence, build_layered_halo, resolve_energy_color
 
 
 def _clamp(value: float, low: float, high: float) -> float:
@@ -80,7 +82,7 @@ def _blit_mask_tint(target: pygame.Surface, mask_surface: pygame.Surface, color,
 
 
 def _clear_weapon_from_subject_core(back_target: pygame.Surface, front_target: pygame.Surface, subject_mask: pygame.Surface, skeleton: dict[str, object], family: str):
-    if family not in {'staff', 'orb', 'spear'}:
+    if family not in {'staff', 'orb'}:
         return
     rect: pygame.Rect = skeleton['rect']
     core: pygame.Rect = skeleton.get('subject_core_rect', rect.inflate(-max(8, rect.width // 3), -max(8, rect.height // 3))).clip(subject_mask.get_rect())
@@ -177,7 +179,7 @@ def _weapon_tip(origin, rect: pygame.Rect, weapon: dict[str, object], orientatio
     return (origin[0], origin[1] - length)
 
 
-def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surface, skeleton: dict[str, object], weapon: dict[str, object], palette, tones):
+def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surface, skeleton: dict[str, object], weapon: dict[str, object], palette, tones, energy_color):
     rect: pygame.Rect = skeleton['rect']
     profile = skeleton.get('shape_profile', {})
     template = skeleton.get('template', {})
@@ -189,6 +191,7 @@ def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surf
     glyph = resolve_object_glyph_grammar(family)
     shaft = tones['wood'][:3] if family in {'staff', 'orb'} else tones['metal'][:3]
     bright = tones['glow'][:3] if family in {'staff', 'orb'} else tones['metal'][:3]
+    energy_tip_color = energy_color
     dark = tones['shadow'][:3]
     width_scale = float(profile.get('weapon_thickness_scale', 1.0))
     icon_scale = float(profile.get('icon_scale', 1.0)) * float(glyph.get('head_scale', 1.0))
@@ -199,6 +202,8 @@ def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surf
     grip_width = max(3, width - 1)
     _capsule(front_target, skeleton['right_hand_anchor'], bridge, max(2, grip_width - 1), (*shaft, 235))
     _capsule(front_target, bridge, origin, grip_width, (*shaft, 255))
+    guard_rect = pygame.Rect(int(origin[0] - width * 1.2), int(origin[1] - width * 0.7), int(width * 2.4), int(width * 1.3))
+    pygame.draw.rect(front_target, (*bright, 210), guard_rect, border_radius=max(2, width // 3))
     grip_rect = pygame.Rect(min(skeleton['right_hand_anchor'][0], origin[0]) - grip_width, min(skeleton['right_hand_anchor'][1], origin[1]) - grip_width, abs(skeleton['right_hand_anchor'][0] - origin[0]) + grip_width * 2, abs(skeleton['right_hand_anchor'][1] - origin[1]) + grip_width * 2)
     skeleton['weapon_grip_rect'] = grip_rect
 
@@ -223,6 +228,7 @@ def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surf
         side_plate = [_pt((shaft_mid[0] - width * 0.5, shaft_mid[1] - width * 1.4)), _pt((shaft_mid[0] + width * 2.3, shaft_mid[1] - width * 0.6)), _pt((shaft_mid[0] + width * 2.2, shaft_mid[1] + width * 0.7)), _pt((shaft_mid[0] - width * 0.3, shaft_mid[1] + width * 1.4))]
         pygame.draw.polygon(back_target, (*dark, 170), banner)
         pygame.draw.polygon(back_target, (*bright, 150), side_plate)
+        pygame.draw.circle(back_target, (*energy_tip_color, 196), _pt((shaft_tip[0], shaft_tip[1] - crown_radius * 0.10)), max(4, width // 2))
         skeleton['weapon_tip_anchor'] = shaft_tip
     elif family == 'orb':
         lane_anchor = skeleton.get('weapon_lane_anchor', (rect.right, rect.centery))
@@ -248,6 +254,7 @@ def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surf
         pygame.draw.arc(back_target, (*bright, 170), outer_crescent, 4.1, 1.9, max(2, width // 3))
         pygame.draw.circle(back_target, (*bright, 160), sat_left, max(4, int(orb_radius * 0.45)))
         pygame.draw.circle(back_target, (*bright, 150), sat_right, max(4, int(orb_radius * 0.36)))
+        pygame.draw.circle(back_target, (*energy_tip_color, 180), _pt(orb_center), max(4, orb_radius // 2))
         skeleton['weapon_tip_anchor'] = orb_center
     else:
         _capsule(back_target, origin, tip, width, (*shaft, 255))
@@ -256,10 +263,12 @@ def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surf
             wing = [_pt((tip[0] + width * 0.8, tip[1] + width * 0.4)), _pt((tip[0] + width * 3.0, tip[1] + width * 0.9)), _pt((tip[0] + width * 1.1, tip[1] + width * 1.9))]
             pygame.draw.polygon(back_target, (*bright, 250), head)
             pygame.draw.polygon(back_target, (*bright, 205), wing)
+            pygame.draw.circle(back_target, (*energy_tip_color, 196), _pt((tip[0], tip[1] + width * 2.0)), max(3, width // 2))
         elif family == 'sword':
             pygame.draw.line(back_target, (*bright, 255), _pt((origin[0] - width * 1.4, origin[1] - width)), _pt((origin[0] + width * 1.4, origin[1] - width)), max(2, width // 2))
             blade = [_pt((origin[0] - width * 0.4, origin[1])), _pt((origin[0] + width * 0.4, origin[1])), _pt((tip[0] + width * 0.18, tip[1] + width * 0.8)), _pt((tip[0] - width * 0.18, tip[1] + width * 0.8))]
             pygame.draw.polygon(back_target, (*bright, 244), blade)
+            pygame.draw.circle(back_target, (*energy_tip_color, 180), _pt((tip[0], tip[1] + width * 0.6)), max(3, width // 2))
 
 
 def compose_character_subject(surface_size: tuple[int, int], semantic: dict, palette, rng: random.Random) -> dict[str, object]:
@@ -287,13 +296,21 @@ def compose_character_subject(surface_size: tuple[int, int], semantic: dict, pal
     render_structure_pass(subject_detail, skeleton, archetype, palette, tones, skeleton['shape_profile'])
     render_costume_detail_pass(subject_detail, skeleton, archetype, palette, tones, skeleton['shape_profile'])
     _attenuate_central_subject_detail(subject_detail, skeleton, archetype)
-    _render_weapon_layers(weapon_back_layer, weapon_front_layer, skeleton, weapon, palette, tones)
-    apply_material_finish(subject_detail, skeleton, tones, archetype)
-    apply_subject_surface_style(subject_detail, skeleton, tones, archetype)
-    apply_prop_finish(weapon_back_layer, weapon_front_layer, str(weapon.get('family', 'staff')), tones, skeleton['rect'])
-    apply_weapon_surface_style(weapon_back_layer, weapon_front_layer, str(weapon.get('family', 'staff')), tones)
-    apply_subject_crisp_pass(subject_detail, skeleton, tones, archetype)
-    apply_weapon_crisp_pass(weapon_back_layer, weapon_front_layer, str(weapon.get('family', 'staff')), tones)
+    energy_color = resolve_energy_color(semantic, palette)
+    apply_subject_clarity(subject_mask, subject_detail, skeleton, semantic, palette, energy_color)
+    _render_weapon_layers(weapon_back_layer, weapon_front_layer, skeleton, weapon, palette, tones, energy_color)
+    symbolic_only = bool(semantic.get('use_symbolic_only', False))
+    if not symbolic_only:
+        apply_material_finish(subject_detail, skeleton, tones, archetype)
+        apply_subject_surface_style(subject_detail, skeleton, tones, archetype)
+        apply_prop_finish(weapon_back_layer, weapon_front_layer, str(weapon.get('family', 'staff')), tones, skeleton['rect'])
+        apply_weapon_surface_style(weapon_back_layer, weapon_front_layer, str(weapon.get('family', 'staff')), tones)
+        apply_subject_crisp_pass(subject_detail, skeleton, tones, archetype)
+        apply_weapon_crisp_pass(weapon_back_layer, weapon_front_layer, str(weapon.get('family', 'staff')), tones)
+        if archetype == 'solar_warrior':
+            apply_heroic_warrior_reconstruction(subject_mask, subject_detail, weapon_back_layer, weapon_front_layer, skeleton, tones)
+    halo_layers = build_layered_halo(surface_size, skeleton, semantic, palette, int(rect.width if (rect := skeleton['rect']) else 0))
+    effects_layers = build_effect_presence(surface_size, skeleton, semantic, energy_color, int(rect.width if (rect := skeleton['rect']) else 0))
     _clear_weapon_from_subject_core(weapon_back_layer, weapon_front_layer, subject_mask, skeleton, str(weapon.get('family', 'staff')))
 
     subject_rect = subject_mask.get_bounding_rect(min_alpha=12)
@@ -332,6 +349,12 @@ def compose_character_subject(surface_size: tuple[int, int], semantic: dict, pal
         'subject_detail': subject_detail,
         'weapon_back_layer': weapon_back_layer,
         'weapon_front_layer': weapon_front_layer,
+        'halo_core': halo_layers['halo_core'],
+        'halo_glow': halo_layers['halo_glow'],
+        'halo_noise': halo_layers['halo_noise'],
+        'energy_particles': effects_layers['energy_particles'],
+        'ambient_noise': effects_layers['ambient_noise'],
+        'light_beams': effects_layers['light_beams'],
         'layout': layout,
         'template': template,
         'weapon': weapon,

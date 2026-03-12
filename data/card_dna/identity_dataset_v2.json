@@ -1,0 +1,36 @@
+{
+  "count": 180,
+  "archetypes": {
+    "ARCHON": 60,
+    "GUIDE_MAGE": 80,
+    "SOLAR_WARRIOR": 40
+  },
+  "weapon_types": {
+    "staff": 148,
+    "sword": 22,
+    "spear": 10
+  },
+  "energy_types": {
+    "void_sparks": 1,
+    "arc_traces": 59,
+    "sacred_wind": 1,
+    "burst_arcs": 20,
+    "stable_rings": 19,
+    "spiral_streams": 20,
+    "solar_light": 1,
+    "polar_strike_flux": 19,
+    "guardian_resonance": 20,
+    "aurora_combo_flow": 20
+  },
+  "pose_types": {
+    "ritual_vertical": 1,
+    "seated_throne_decree": 44,
+    "predatory_lunge": 15,
+    "support_vertical": 1,
+    "heroic_raised_weapon": 33,
+    "frontal_guarding_stance": 6,
+    "frontal_iconic_pose": 39,
+    "ritual_reading_stance": 40,
+    "attack_diagonal": 1
+  }
+}

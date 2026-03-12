@@ -21,6 +21,7 @@ if __package__ in (None, ''):
         tooling_stack,
         art_director_pass,
         sound_director_pass,
+        balance_qa_1000,
     )
 else:
     from tools.lib import (
@@ -39,6 +40,7 @@ else:
         tooling_stack,
         art_director_pass,
         sound_director_pass,
+        balance_qa_1000,
     )
 
 COMMANDS = {
@@ -60,6 +62,7 @@ COMMANDS = {
     'reports-build': lambda dry_run: reports_build.run(dry_run=dry_run),
     'art-director-pass': lambda dry_run: art_director_pass.run(dry_run=dry_run),
     'sound-director-pass': lambda dry_run: sound_director_pass.run(dry_run=dry_run),
+    'balance-qa-1000': lambda dry_run: balance_qa_1000.run(dry_run=dry_run),
 }
 
 

@@ -1,0 +1,169 @@
+{
+  "version": "card_balance_overrides_v1",
+  "notes": [
+    "Patch de balance dirigido para reducir dominancia solar y reforzar control/tanque de archon y oracle.",
+    "Se aplica en build_card_dna_catalog.py para evitar churn manual en 180 cartas."
+  ],
+  "cards": {
+    "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ": {
+      "cost": 4,
+      "effects": [
+        {
+          "amount": 1,
+          "type": "harmony_delta"
+        },
+        {
+          "amount": 8,
+          "type": "damage"
+        },
+        {
+          "amount": 4,
+          "type": "gain_block"
+        },
+        {
+          "amount": 1,
+          "type": "gain_mana_next_turn"
+        },
+        {
+          "amount": 1,
+          "type": "exhaust_self"
+        }
+      ]
+    },
+    "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA": {
+      "cost": 4,
+      "effects": [
+        {
+          "amount": 1,
+          "type": "harmony_delta"
+        },
+        {
+          "amount": 9,
+          "type": "damage"
+        },
+        {
+          "amount": 4,
+          "type": "gain_block"
+        },
+        {
+          "amount": 1,
+          "type": "gain_mana_next_turn"
+        },
+        {
+          "amount": 1,
+          "type": "exhaust_self"
+        }
+      ]
+    },
+    "BASE-SOLAR-ATTACK-FILO_ASTRAL": {
+      "effects": [
+        {
+          "amount": 6,
+          "type": "damage"
+        }
+      ]
+    },
+    "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA": {
+      "effects": [
+        {
+          "amount": 7,
+          "type": "damage"
+        }
+      ]
+    },
+    "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40": {
+      "effects": [
+        {
+          "type": "block",
+          "amount": 8
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 2
+        }
+      ]
+    },
+    "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16": {
+      "effects": [
+        {
+          "type": "block",
+          "amount": 6
+        },
+        {
+          "type": "debuff",
+          "status": "weak",
+          "stacks": 1
+        }
+      ]
+    },
+    "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55": {
+      "cost": 1,
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 2
+        },
+        {
+          "type": "rupture",
+          "amount": 1
+        }
+      ]
+    },
+    "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50": {
+      "effects": [
+        {
+          "type": "debuff",
+          "status": "vulnerable",
+          "stacks": 2
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ]
+    },
+    "BASE-ORACLE-SKILL-SILENCIO_INTERIOR": {
+      "cost": 1,
+      "effects": [
+        {
+          "amount": 3,
+          "type": "weaken_enemy"
+        },
+        {
+          "amount": 2,
+          "type": "scry"
+        },
+        {
+          "amount": 1,
+          "type": "draw"
+        }
+      ]
+    },
+    "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA": {
+      "cost": 3,
+      "effects": [
+        {
+          "amount": 1,
+          "type": "harmony_delta"
+        },
+        {
+          "amount": 2,
+          "type": "consume_harmony"
+        },
+        {
+          "amount": 1,
+          "type": "ritual_trama"
+        },
+        {
+          "amount": 1,
+          "type": "draw"
+        },
+        {
+          "amount": 1,
+          "type": "exhaust_self"
+        }
+      ]
+    }
+  }
+}

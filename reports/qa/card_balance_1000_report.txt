@@ -1,0 +1,104 @@
+chakana_studio balance qa 1000
+generated=2026-03-12 17:47:05
+
+card_balance_1000_report
+dry_run=False
+simulations=1000
+unique_cards=180
+global_win_rate=0.7100
+avg_turns=8.15
+avg_enemy_damage_done=39.13
+avg_player_damage_taken=31.53
+boss_win_rate=0.8141
+min_card_appearances=86
+max_card_appearances=138
+median_card_appearances=111.5
+
+archetype_summary:
+- archon: cards=60 avg_win_rate=0.3002 avg_play_rate=1.333 avg_pressure=5.00
+- guide_mage: cards=80 avg_win_rate=0.9138 avg_play_rate=0.763 avg_pressure=5.02
+- solar_warrior: cards=40 avg_win_rate=1.0000 avg_play_rate=0.371 avg_pressure=2.10
+
+top_effect_presence:
+- buff: present=9915 played=6136
+- damage: present=9599 played=9605
+- debuff: present=7187 played=8898
+- shield: present=6604 played=7209
+- draw: present=6370 played=3963
+- ritual: present=5353 played=2690
+- heal: present=1202 played=802
+- summon: present=791 played=285
+
+overperformers:
+- BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA | visual=solar_warrior | deck=solar_warrior | Embate del Jaguar Nova | role=tank | win_rate=1.0000 | delta=+0.2900 | play_rate=0.790 | pressure=8.03
+- HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX | visual=solar_warrior | deck=solar_warrior | Guerrero Astral de Hiperbórea XX | role=attacker | win_rate=1.0000 | delta=+0.2900 | play_rate=0.764 | pressure=7.64
+- BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR | visual=solar_warrior | deck=solar_warrior | Embate del Jaguar | role=tank | win_rate=1.0000 | delta=+0.2900 | play_rate=0.750 | pressure=6.87
+- BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA | visual=solar_warrior | deck=solar_warrior | Filo Astral Nova | role=attacker | win_rate=1.0000 | delta=+0.2900 | play_rate=0.740 | pressure=5.18
+- BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA | visual=solar_warrior | deck=solar_warrior | Estallido Arcano Nova | role=controller | win_rate=1.0000 | delta=+0.2900 | play_rate=0.713 | pressure=4.95
+- BASE-SOLAR-ATTACK-FILO_ASTRAL | visual=solar_warrior | deck=solar_warrior | Filo Astral | role=attacker | win_rate=1.0000 | delta=+0.2900 | play_rate=0.743 | pressure=4.46
+- BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO | visual=solar_warrior | deck=solar_warrior | Estallido Arcano | role=controller | win_rate=1.0000 | delta=+0.2900 | play_rate=0.720 | pressure=4.29
+- BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA | visual=solar_warrior | deck=solar_warrior | Garra Espiritual Nova | role=attacker | win_rate=1.0000 | delta=+0.2900 | play_rate=0.700 | pressure=3.50
+- HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X | visual=solar_warrior | deck=solar_warrior | Guerrero Astral de Hiperbórea X | role=attacker | win_rate=1.0000 | delta=+0.2900 | play_rate=0.569 | pressure=3.41
+- HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III | visual=solar_warrior | deck=solar_warrior | Guerrero Astral de Hiperbórea III | role=attacker | win_rate=1.0000 | delta=+0.2900 | play_rate=0.582 | pressure=2.91
+- HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV | visual=solar_warrior | deck=solar_warrior | Guerrero Astral de Hiperbórea XV | role=attacker | win_rate=1.0000 | delta=+0.2900 | play_rate=0.558 | pressure=2.79
+- BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA | visual=solar_warrior | deck=solar_warrior | Filo en Cadena Nova | role=attacker | win_rate=1.0000 | delta=+0.2900 | play_rate=0.535 | pressure=2.67
+
+underperformers:
+- ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_10 | visual=archon | deck=archon | Arcano del Vacio 10 | role=controller | win_rate=0.2155 | delta=-0.4945 | play_rate=0.897 | pressure=1.39
+- ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39 | visual=archon | deck=archon | Arcano del Vacio 39 | role=summoner | win_rate=0.2203 | delta=-0.4897 | play_rate=0.000 | pressure=0.00
+- ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14 | visual=archon | deck=archon | Arcano del Vacio 14 | role=controller | win_rate=0.2279 | delta=-0.4821 | play_rate=0.993 | pressure=1.54
+- ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_42 | visual=archon | deck=archon | Arcano del Vacio 42 | role=controller | win_rate=0.2328 | delta=-0.4772 | play_rate=0.017 | pressure=0.03
+- ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_56 | visual=archon | deck=archon | Arcano del Vacio 56 | role=tank | win_rate=0.2358 | delta=-0.4742 | play_rate=1.732 | pressure=8.52
+- ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_44 | visual=archon | deck=archon | Arcano del Vacio 44 | role=tank | win_rate=0.2385 | delta=-0.4715 | play_rate=1.917 | pressure=9.43
+- ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_51 | visual=archon | deck=archon | Arcano del Vacio 51 | role=summoner | win_rate=0.2435 | delta=-0.4665 | play_rate=0.009 | pressure=0.01
+- ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54 | visual=archon | deck=archon | Arcano del Vacio 54 | role=controller | win_rate=0.2500 | delta=-0.4600 | play_rate=0.000 | pressure=0.00
+- ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50 | visual=archon | deck=archon | Arcano del Vacio 50 | role=controller | win_rate=0.2500 | delta=-0.4600 | play_rate=0.000 | pressure=0.00
+- ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07 | visual=archon | deck=archon | Arcano del Vacio 07 | role=summoner | win_rate=0.2500 | delta=-0.4600 | play_rate=0.903 | pressure=0.86
+- ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_20 | visual=archon | deck=archon | Arcano del Vacio 20 | role=tank | win_rate=0.2500 | delta=-0.4600 | play_rate=2.125 | pressure=7.39
+- ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_48 | visual=archon | deck=archon | Arcano del Vacio 48 | role=tank | win_rate=0.2500 | delta=-0.4600 | play_rate=1.758 | pressure=8.65
+
+low_use_cards:
+- ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39 | visual=archon | deck=archon | Arcano del Vacio 39 | role=summoner | play_rate=0.000 | action_types=buff,draw,ritual
+- ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59 | visual=archon | deck=archon | Arcano del Vacio 59 | role=summoner | play_rate=0.000 | action_types=buff,draw,ritual
+- ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54 | visual=archon | deck=archon | Arcano del Vacio 54 | role=controller | play_rate=0.000 | action_types=buff,debuff,draw
+- ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50 | visual=archon | deck=archon | Arcano del Vacio 50 | role=controller | play_rate=0.000 | action_types=buff,debuff,draw
+- HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II | visual=guide_mage | deck=guide_mage | Oráculo del Horizonte Boreal II | role=summoner | play_rate=0.000 | action_types=buff,draw,ritual,summon
+- BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA | visual=guide_mage | deck=guide_mage | Revelación Astral Nova | role=controller | play_rate=0.000 | action_types=buff,draw,ritual
+- BASE-ORACLE-SKILL-REVELACION_ASTRAL | visual=guide_mage | deck=guide_mage | Revelación Astral | role=controller | play_rate=0.000 | action_types=buff,draw,ritual
+- BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA | visual=guide_mage | deck=guide_mage | Ritual de la Trama Nova | role=summoner | play_rate=0.000 | action_types=ritual,summon
+- BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA | visual=guide_mage | deck=guide_mage | Silencio Interior Nova | role=controller | play_rate=0.000 | action_types=buff,debuff
+- BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA | visual=guide_mage | deck=guide_mage | Ritual de la Trama | role=summoner | play_rate=0.000 | action_types=buff,draw,ritual,summon
+- BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA | visual=guide_mage | deck=guide_mage | Portal de la Chakana | role=summoner | play_rate=0.000 | action_types=buff,debuff,draw,ritual
+- ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_43 | visual=archon | deck=archon | Arcano del Vacio 43 | role=summoner | play_rate=0.008 | action_types=buff,draw,ritual
+
+measurable_conclusion:
+- Cards with delta_vs_global >= +0.080 and pressure_score above median are candidates for nerf review.
+- Cards with delta_vs_global <= -0.080 and play_rate <= 0.120 are candidates for buff or redesign review.
+- Effects with high presence but low played count indicate dead-text or low-activation design.
+- First patch target should come from the intersection of overperformers/underperformers with stable appearance counts.
+
+sample_card_metrics:
+- ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55 | visual=archon | deck=archon | appear=138 | win_rate=0.2681 | play_rate=2.043 | pressure=3.88
+- ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14 | visual=archon | deck=archon | appear=136 | win_rate=0.2279 | play_rate=0.993 | pressure=1.54
+- ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_58 | visual=archon | deck=archon | appear=136 | win_rate=0.2941 | play_rate=0.875 | pressure=2.19
+- ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40 | visual=archon | deck=archon | appear=135 | win_rate=0.2667 | play_rate=1.881 | pressure=11.97
+- ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_17 | visual=archon | deck=archon | appear=133 | win_rate=0.3534 | play_rate=2.256 | pressure=9.02
+- ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50 | visual=archon | deck=archon | appear=132 | win_rate=0.2500 | play_rate=0.000 | pressure=0.00
+- HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII | visual=guide_mage | deck=guide_mage | appear=132 | win_rate=0.8712 | play_rate=1.212 | pressure=10.42
+- ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_15 | visual=archon | deck=archon | appear=131 | win_rate=0.3282 | play_rate=1.023 | pressure=0.97
+- ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_11 | visual=archon | deck=archon | appear=130 | win_rate=0.2769 | play_rate=0.915 | pressure=0.87
+- ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59 | visual=archon | deck=archon | appear=129 | win_rate=0.3333 | play_rate=0.000 | pressure=0.00
+- ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16 | visual=archon | deck=archon | appear=128 | win_rate=0.3125 | play_rate=2.094 | pressure=10.30
+- BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA | visual=guide_mage | deck=guide_mage | appear=128 | win_rate=0.8828 | play_rate=0.000 | pressure=0.00
+- ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_52 | visual=archon | deck=archon | appear=127 | win_rate=0.2835 | play_rate=1.976 | pressure=9.72
+- BASE-GUIDE-GUARD-GUARDIA_TERRENAL | visual=guide_mage | deck=guide_mage | appear=127 | win_rate=0.9291 | play_rate=1.047 | pressure=2.26
+- ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06 | visual=archon | deck=archon | appear=126 | win_rate=0.2937 | play_rate=0.794 | pressure=1.23
+- BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA | visual=guide_mage | deck=guide_mage | appear=126 | win_rate=0.9286 | play_rate=0.865 | pressure=3.11
+- BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA | visual=guide_mage | deck=guide_mage | appear=126 | win_rate=0.9127 | play_rate=1.302 | pressure=2.15
+- HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI | visual=guide_mage | deck=guide_mage | appear=126 | win_rate=0.8889 | play_rate=1.111 | pressure=9.56
+- ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01 | visual=archon | deck=archon | appear=125 | win_rate=0.4000 | play_rate=2.040 | pressure=8.16
+- ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_41 | visual=archon | deck=archon | appear=125 | win_rate=0.4000 | play_rate=1.952 | pressure=11.71
+- ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08 | visual=archon | deck=archon | appear=125 | win_rate=0.2800 | play_rate=1.896 | pressure=6.60
+- ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07 | visual=archon | deck=archon | appear=124 | win_rate=0.2500 | play_rate=0.903 | pressure=0.86
+- ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54 | visual=archon | deck=archon | appear=124 | win_rate=0.2500 | play_rate=0.000 | pressure=0.00
+- ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_09 | visual=archon | deck=archon | appear=123 | win_rate=0.3902 | play_rate=2.081 | pressure=8.32

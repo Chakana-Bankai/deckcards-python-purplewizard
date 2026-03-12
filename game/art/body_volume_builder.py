@@ -77,11 +77,11 @@ def build_body_volumes(skeleton: dict[str, object]) -> list[dict[str, object]]:
             {'kind': 'mid_bridge', 'shape': 'capsule', 'a': (torso[0], torso[1] + head_size * 0.18), 'b': (pelvis[0], pelvis[1] + head_size * 0.02), 'width': max(4, int(head_size * 0.30 * core_bridge))},
         ])
     else:
-        chest_left = [(sl[0] - head_size * 0.85, sl[1] + head_size * 0.04), (torso[0] - head_size * 0.28, torso[1] - head_size * 0.08), (torso[0] - head_size * 0.18, torso[1] + head_size * 0.88), (pelvis[0] - head_size * 0.65, pelvis[1] + head_size * 0.24)]
-        chest_right = [(torso[0] + head_size * 0.28, torso[1] - head_size * 0.08), (sr[0] + head_size * 0.95, sr[1] + head_size * 0.04), (pelvis[0] + head_size * 0.72, pelvis[1] + head_size * 0.24), (torso[0] + head_size * 0.18, torso[1] + head_size * 0.88)]
+        chest_left = [(sl[0] - head_size * 0.96, sl[1] + head_size * 0.02), (torso[0] - head_size * 0.22, torso[1] - head_size * 0.10), (torso[0] - head_size * 0.10, torso[1] + head_size * 0.72), (pelvis[0] - head_size * 0.54, pelvis[1] + head_size * 0.20)]
+        chest_right = [(torso[0] + head_size * 0.22, torso[1] - head_size * 0.10), (sr[0] + head_size * 1.02, sr[1] + head_size * 0.00), (pelvis[0] + head_size * 0.60, pelvis[1] + head_size * 0.20), (torso[0] + head_size * 0.10, torso[1] + head_size * 0.72)]
         chest_left = add_symbolic_shoulder_cut(chest_left, head_size * 0.12 * plane_break_strength, head_size * 0.05)
         chest_right = add_symbolic_shoulder_cut(chest_right, head_size * 0.12 * plane_break_strength, head_size * 0.05)
-        pelvis_poly = [(pelvis[0] - head_size * 0.86, pelvis[1] - head_size * 0.08), (pelvis[0] + head_size * 0.86, pelvis[1] - head_size * 0.08), (pelvis[0] + head_size * 0.66, pelvis[1] + head_size * 0.66), (pelvis[0] - head_size * 0.66, pelvis[1] + head_size * 0.66)]
+        pelvis_poly = [(pelvis[0] - head_size * 0.72, pelvis[1] - head_size * 0.08), (pelvis[0] + head_size * 0.72, pelvis[1] - head_size * 0.08), (pelvis[0] + head_size * 0.46, pelvis[1] + head_size * 0.58), (pelvis[0] - head_size * 0.46, pelvis[1] + head_size * 0.58)]
         outer_left = [(sl[0] - head_size * 1.00 * robe_spread, sl[1]), (torso[0] - head_size * 0.76, torso[1] + head_size * 0.32), (pelvis[0] - rect.width * 0.14, pelvis[1] + head_size * 0.88), (lft[0] - head_size * 0.34, lft[1]), (pelvis[0] - head_size * 0.34, pelvis[1] + head_size * 0.16)]
         outer_right = [(sr[0] + head_size * 1.05 * robe_spread, sr[1]), (torso[0] + head_size * 0.92, torso[1] + head_size * 0.32), (pelvis[0] + rect.width * 0.17, pelvis[1] + head_size * 0.92), (rft[0] + head_size * 0.38, rft[1]), (pelvis[0] + head_size * 0.38, pelvis[1] + head_size * 0.18)]
         outer_left = add_symbolic_robe_notch(outer_left, head_size * 0.14 * plane_break_strength)

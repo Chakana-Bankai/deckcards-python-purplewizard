@@ -21,9 +21,9 @@ OBJECT_GLYPH_GRAMMARS = {
     },
     'spear': {
         'glyph_id': 'spear_heroic_glyph',
-        'head_scale': 1.84,
-        'wing_scale': 1.28,
-        'plate_scale': 1.02,
+        'head_scale': 2.36,
+        'wing_scale': 1.82,
+        'plate_scale': 1.18,
         'satellite_scale': 0.0,
         'edge_hardness': 0.96,
     },

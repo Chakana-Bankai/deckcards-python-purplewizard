@@ -1,0 +1,27 @@
+{
+  "version": "chakana_geometric_ritual_domain_v1",
+  "archetype_shapes": {
+    "solar_warrior": "triangle",
+    "archon": "circle",
+    "guide_mage": "rectangle",
+    "beast_guardian": "diamond",
+    "void_monk": "spiral",
+    "construct": "square"
+  },
+  "composition_rules": {
+    "subject_ratio": 0.45,
+    "internal_elements_ratio": 0.3,
+    "background_ratio": 0.25,
+    "weapon_cannot_exceed_torso_size": true,
+    "energy_always_behind_subject": true,
+    "background_always_low_contrast": true,
+    "canvas_resolution": [
+      1920,
+      1080
+    ],
+    "composition_resolution": [
+      480,
+      270
+    ]
+  }
+}

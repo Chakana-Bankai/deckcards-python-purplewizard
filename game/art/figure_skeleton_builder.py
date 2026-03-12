@@ -28,12 +28,12 @@ POSE_PRESETS = {
         'weapon_orientation': 'diagonal',
         'head': (0.49, 0.11),
         'neck': (0.49, 0.18),
-        'left_shoulder': (0.36, 0.24),
-        'right_shoulder': (0.64, 0.22),
-        'left_elbow': (0.33, 0.42),
-        'right_elbow': (0.71, 0.38),
-        'left_hand': (0.31, 0.58),
-        'right_hand': (0.78, 0.34),
+        'left_shoulder': (0.34, 0.23),
+        'right_shoulder': (0.66, 0.21),
+        'left_elbow': (0.34, 0.40),
+        'right_elbow': (0.69, 0.34),
+        'left_hand': (0.33, 0.56),
+        'right_hand': (0.72, 0.32),
         'pelvis': (0.49, 0.58),
         'left_knee': (0.39, 0.78),
         'right_knee': (0.57, 0.76),
@@ -172,8 +172,8 @@ def build_figure_skeleton(size: tuple[int, int], semantic: dict) -> dict[str, ob
     skeleton['lower_center_anchor'] = (rect.centerx, int(rect.top + rect.height * 0.68))
     skeleton['golden_ratio_anchor'] = (rect.centerx, int(rect.top + rect.height * 0.38))
     if skeleton['weapon_orientation'] == 'diagonal':
-        skeleton['weapon_origin_anchor'] = (skeleton['right_hand_anchor'][0] + rect.width * 0.03, skeleton['right_hand_anchor'][1] - rect.height * 0.01)
-        tip = (skeleton['weapon_origin_anchor'][0] + rect.height * 0.58, skeleton['weapon_origin_anchor'][1] - rect.height * 0.36)
+        skeleton['weapon_origin_anchor'] = (skeleton['right_hand_anchor'][0] + rect.width * 0.01, skeleton['right_hand_anchor'][1] - rect.height * 0.01)
+        tip = (skeleton['weapon_origin_anchor'][0] + rect.height * 0.52, skeleton['weapon_origin_anchor'][1] - rect.height * 0.32)
     elif skeleton['weapon_orientation'] == 'support':
         skeleton['weapon_origin_anchor'] = (skeleton['right_hand_anchor'][0] + rect.width * 0.06, skeleton['right_hand_anchor'][1] - rect.height * 0.01)
         tip = (skeleton['weapon_origin_anchor'][0] + rect.width * 0.02, skeleton['weapon_origin_anchor'][1] - rect.height * 0.30)

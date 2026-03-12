@@ -4,7 +4,7 @@ from game.art.style_lock import symbolic_style_active
 
 WEAPON_TEMPLATES = {
     "staff": {"weapon_id": "staff", "family": "staff", "length": 0.52, "thickness": 0.076},
-    "spear": {"weapon_id": "spear", "family": "spear", "length": 0.56, "thickness": 0.086},
+    "spear": {"weapon_id": "spear", "family": "spear", "length": 0.60, "thickness": 0.104},
     "sword": {"weapon_id": "sword", "family": "sword", "length": 0.46, "thickness": 0.086},
     "orb": {"weapon_id": "orb", "family": "orb", "length": 0.20, "thickness": 0.104},
 }

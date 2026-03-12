@@ -59,8 +59,8 @@ def render_structure_pass(target: pygame.Surface, skeleton: dict[str, object], a
         pygame.draw.polygon(target, (*bright, 70), skirt_right)
         pygame.draw.rect(target, (*bright, 92), cuff, border_radius=max(4, int(rect.width // (38 - float(shape_profile.get('curve_bias', 0.5)) * 10))))
     else:
-        chest = [(sl[0] - rect.width // 18, sl[1] + rect.height // 32), (torso[0] - rect.width // 10, torso[1] + rect.height // 18), (torso[0] + rect.width // 8, torso[1] + rect.height // 20), (sr[0] + rect.width // 16, sr[1] + rect.height // 28), (torso[0] + rect.width // 12, torso[1] + rect.height // 4), (torso[0] - rect.width // 14, torso[1] + rect.height // 4)]
-        pelvis_plate = pygame.Rect(int(pelvis[0] - rect.width * 0.12), int(pelvis[1] - rect.height * 0.03), int(rect.width * 0.24), int(rect.height * 0.08))
+        chest = [(sl[0] - rect.width // 14, sl[1] + rect.height // 36), (torso[0] - rect.width // 8, torso[1] + rect.height // 16), (torso[0] + rect.width // 8, torso[1] + rect.height // 16), (sr[0] + rect.width // 14, sr[1] + rect.height // 24), (torso[0], torso[1] + rect.height // 4), (torso[0] - rect.width // 14, torso[1] + rect.height // 4)]
+        pelvis_plate = pygame.Rect(int(pelvis[0] - rect.width * 0.10), int(pelvis[1] - rect.height * 0.03), int(rect.width * 0.20), int(rect.height * 0.08))
         pygame.draw.polygon(target, (*plane, 76), chest)
         pygame.draw.rect(target, (*bright, 88), pelvis_plate, border_radius=max(3, int(rect.width // (32 - float(shape_profile.get('angularity', 0.5)) * 8))))
 

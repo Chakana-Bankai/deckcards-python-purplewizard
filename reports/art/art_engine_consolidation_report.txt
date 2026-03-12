@@ -1,0 +1,41 @@
+art_engine_consolidation_report
+canonical_modules={"shape_dna": "game.art.shape_dna", "silhouette_generator": "game.art.silhouette_generator", "symbol_overlay": "game.art.symbol_overlay", "scene_background": "game.art.scene_background", "frame_renderer": "game.render.frame_renderer", "identity_lock": "game.art.identity_lock", "geometric_ritual_engine": "game.art.geometric_ritual_engine"}
+legacy_modules={"old_scene_composers": ["game.art.gen_art32", "game.art.gen_card_art32", "game.art.gen_card_art_advanced", "game.art.scene_test_generator_v1", "game.art.scene_test_generator_v2", "game.art.scene_test_generator_v3", "game.art.scene_test_generator_v4", "game.art.scene_test_generator_v5", "game.art.scene_test_generator_v_final"], "legacy_frame_generators": ["game.art.frame_engine"], "redundant_overlay_engines": ["game.art.finish_render_system", "game.art.surface_style_pass", "game.art.symbolic_crisp_pass", "game.art.heroic_warrior_pass"], "experimental_art_systems": ["game.art.silhouette_builder", "game.art.silhouette_resolver", "game.art.scene_test_generator_symbolic_crisp", "game.art.scene_test_generator_solar_heroic"]}
+canonical_pipeline=card_dna -> silhouette -> pose -> weapon -> energy -> background -> frame -> identity_lock
+identity_dataset_count=180
+
+[SOLAR_WARRIOR]
+card_id=HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I
+path=C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/assets/test_identity_v2/solar_warrior_identity_v2.png
+archetype=SOLAR_WARRIOR
+weapon_type=spear
+energy_type=solar_light
+pose_type=attack_diagonal
+occ_subject=0.1167
+occ_object=0.0423
+silhouette_integrity=0.8687
+identity_lock_passed=True
+
+[ARCHON]
+card_id=ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01
+path=C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/assets/test_identity_v2/archon_identity_v2.png
+archetype=ARCHON
+weapon_type=staff
+energy_type=void_sparks
+pose_type=ritual_vertical
+occ_subject=0.1101
+occ_object=0.0419
+silhouette_integrity=0.7646
+identity_lock_passed=True
+
+[GUIDE_MAGE]
+card_id=BASE-GUIDE-GUARD-CAMPO_PROTECTOR
+path=C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/assets/test_identity_v2/guide_mage_identity_v2.png
+archetype=GUIDE_MAGE
+weapon_type=staff
+energy_type=sacred_wind
+pose_type=support_vertical
+occ_subject=0.1046
+occ_object=0.0344
+silhouette_integrity=0.7927
+identity_lock_passed=True

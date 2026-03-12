@@ -12,6 +12,7 @@ from game.systems.enemy_deck_system import resolve_enemy_deck
 from game.telemetry.logger import TelemetryLogger
 from game.services.deck_integrity import audit_and_repair_deck_piles
 from game.systems.gameplay_rules import DEFAULT_PLAYER_RULES, normalized_combat_deck
+from game.cards.card_dna_registry import load_combat_card_payloads
 
 
 DEFAULT_CARDS = [
@@ -70,6 +71,7 @@ class CombatState:
         self.player_combat_deck_size = int(self.balance.get("player_combat_deck_size", DEFAULT_PLAYER_RULES["player_combat_deck_size"]) or DEFAULT_PLAYER_RULES["player_combat_deck_size"])
         deck_ids = normalized_combat_deck(raw_deck_ids, first_id, self.player_combat_deck_size)
         self.draw_pile = [CardInstance(self.cards.get(card_id, self.cards[first_id])) for card_id in deck_ids]
+        self._prepare_draw_pile_for_opening()
         self.discard_pile = []
         self.hand = []
         self.exhaust_pile = []
@@ -99,6 +101,39 @@ class CombatState:
         self._deck_draw_log_budget = 8
         self._deck_in_flight = 0
         self.start_player_turn()
+
+    def _prepare_draw_pile_for_opening(self):
+        if len(self.draw_pile) <= 1:
+            return
+        best_order = list(self.draw_pile)
+        best_penalty = self._opening_hand_penalty(best_order)
+        attempts = 6
+        for _ in range(attempts):
+            self.rng.shuffle(self.draw_pile)
+            penalty = self._opening_hand_penalty(self.draw_pile)
+            if penalty < best_penalty:
+                best_penalty = penalty
+                best_order = list(self.draw_pile)
+                if penalty == 0:
+                    break
+        self.draw_pile = best_order
+
+    def _opening_hand_penalty(self, pile):
+        opening_hand = int(getattr(self, 'starting_hand', 5) or 5)
+        sample = list(pile[-opening_hand:]) if opening_hand > 0 else []
+        if not sample:
+            return 0
+        ids = [str(getattr(getattr(card, 'definition', None), 'id', '') or '') for card in sample]
+        families = [str(getattr(getattr(card, 'definition', None), 'family', '') or '') for card in sample]
+        roles = [str(getattr(getattr(card, 'definition', None), 'role', '') or '') for card in sample]
+        penalty = 0
+        id_penalties = [ids.count(cid) - 1 for cid in set(ids) if cid]
+        family_penalties = [families.count(fam) - 2 for fam in set(families) if fam]
+        role_penalties = [roles.count(role) - 2 for role in set(roles) if role]
+        penalty += max(id_penalties) if id_penalties else 0
+        penalty += max(family_penalties) if family_penalties else 0
+        penalty += max(role_penalties) if role_penalties else 0
+        return max(0, int(penalty))
 
     def _reset_combat_player_state(self):
         """Reset combat-only transient player state for a fresh encounter."""
@@ -132,7 +167,9 @@ class CombatState:
         self.player.pop("combat_banner", None)
 
     def _load_cards(self, cards_data=None):
-        raw = cards_data if cards_data else load_json(data_dir() / "cards.json", default=DEFAULT_CARDS)
+        raw = cards_data if cards_data is not None else load_combat_card_payloads()
+        if not isinstance(raw, list) or not raw:
+            raw = load_json(data_dir() / "cards.json", default=DEFAULT_CARDS)
         if not isinstance(raw, list):
             raw = DEFAULT_CARDS
         by_id = {}

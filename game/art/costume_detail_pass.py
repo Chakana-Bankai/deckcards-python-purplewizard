@@ -45,8 +45,8 @@ def render_costume_detail_pass(target: pygame.Surface, skeleton: dict[str, objec
         pygame.draw.rect(target, metal, sleeve, border_radius=max(4, rect.width // 34))
         pygame.draw.rect(target, trim, belt, border_radius=max(4, rect.width // 36))
     else:
-        breast = [(sl[0] - rect.width // 16, sl[1] + rect.height // 28), (torso[0] - rect.width // 11, torso[1] + rect.height // 16), (torso[0] + rect.width // 9, torso[1] + rect.height // 18), (sr[0] + rect.width // 16, sr[1] + rect.height // 24), (torso[0] + rect.width // 12, torso[1] + rect.height // 4), (torso[0] - rect.width // 14, torso[1] + rect.height // 4)]
-        fauld = pygame.Rect(int(pelvis[0] - rect.width * 0.16), int(pelvis[1] - rect.height * 0.02), int(rect.width * 0.32), int(rect.height * 0.08))
+        breast = [(sl[0] - rect.width // 14, sl[1] + rect.height // 26), (torso[0] - rect.width // 8, torso[1] + rect.height // 14), (torso[0] + rect.width // 8, torso[1] + rect.height // 14), (sr[0] + rect.width // 14, sr[1] + rect.height // 22), (torso[0], torso[1] + rect.height // 4), (torso[0] - rect.width // 16, torso[1] + rect.height // 4)]
+        fauld = pygame.Rect(int(pelvis[0] - rect.width * 0.14), int(pelvis[1] - rect.height * 0.01), int(rect.width * 0.28), int(rect.height * 0.08))
         buckle = pygame.Rect(int(pelvis[0] - rect.width * 0.05), int(pelvis[1]), int(rect.width * 0.10), int(rect.height * 0.05))
         pygame.draw.polygon(target, trim, breast)
         pygame.draw.rect(target, cloth, fauld, border_radius=max(4, rect.width // 32))
