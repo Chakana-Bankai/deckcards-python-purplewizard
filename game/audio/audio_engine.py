@@ -112,24 +112,43 @@ class AudioEngine:
             "combat_start": 1.25,
             "elite_encounter": 1.45,
             "boss_reveal": 2.2,
+            "reward": 0.55,
+            "pack_open": 0.65,
+            "rare_reveal": 0.75,
+            "legendary_reveal": 1.10,
             "victory": 1.8,
             "defeat": 1.8,
             "level_up": 1.3,
             "relic_gain": 1.5,
-            "pack_open": 1.5,
             "seal_ready": 1.2,
             "harmony_ready": 1.3,
+            "ritual_trigger": 0.55,
+            "boss_warning": 0.75,
             "studio_intro": 3.8,
         }
         self.sfx_defs = {
+            "hover": 0.08,
+            "select": 0.11,
+            "confirm": 0.16,
+            "cancel": 0.14,
+            "invalid": 0.12,
             "card_play": 0.22,
             "card_invalid": 0.15,
             "button_click": 0.11,
+            "draw_card": 0.12,
+            "play_card": 0.18,
+            "attack_light": 0.16,
+            "attack_heavy": 0.22,
+            "block": 0.18,
             "gold_gain": 0.16,
             "xp_gain": 0.16,
             "damage_hit": 0.18,
             "heal": 0.22,
+            "ritual": 0.26,
             "seal_activate": 0.28,
+            "combo_trigger": 0.16,
+            "harmony_gain": 0.16,
+            "boss_phase": 0.28,
             "relic_pick": 0.20,
         }
         self.ambient_defs = {
@@ -603,24 +622,21 @@ class AudioEngine:
         return self.generated_root / f"{item_id}.wav"
 
     def _item_ok(self, item_id: str, expected_type: str) -> Path | None:
+        items = self._manifest.get("items", {})
+        meta = items.get(item_id, {}) if isinstance(items, dict) else {}
+        if isinstance(meta, dict) and meta and meta.get("type") == expected_type:
+            p = self._resolve_manifest_file_path(meta)
+            if p.exists() and str(meta.get("state", "valid")) not in {"archived_legacy", "legacy_optional"}:
+                if not isinstance(meta.get("analysis"), dict) or not meta.get("analysis"):
+                    analysis = self._analyze_audio_asset(p)
+                    if analysis:
+                        meta["analysis"] = analysis.model_dump()
+                        self._save_manifest()
+                return p
+
         curated = self._curated_item_path(item_id, expected_type)
         if curated is not None:
             return curated
-
-        items = self._manifest.get("items", {})
-        meta = items.get(item_id, {}) if isinstance(items, dict) else {}
-        if not isinstance(meta, dict) or meta.get("type") != expected_type:
-            return None
-        if str(meta.get("version", "")) != self.VERSION:
-            return None
-        p = self._resolve_manifest_file_path(meta)
-        if p.exists():
-            if not isinstance(meta.get("analysis"), dict) or not meta.get("analysis"):
-                analysis = self._analyze_audio_asset(p)
-                if analysis:
-                    meta["analysis"] = analysis.model_dump()
-                    self._save_manifest()
-            return p
         return None
 
     def _register_item(self, item_id: str, *, item_type: str, context: str, variant: str, seed: int, file_path: Path, source: str = "generated"):
@@ -1114,8 +1130,10 @@ class AudioEngine:
         if nm.startswith("stinger_"):
             nm = nm.replace("stinger_", "", 1)
         stinger_alias = {
-            "reward": "relic_gain",
-            "boss_phase": "boss_reveal",
+            "reward": "reward",
+            "boss_phase": "boss_warning",
+            "rare": "rare_reveal",
+            "legendary": "legendary_reveal",
         }
         nm = stinger_alias.get(nm, nm)
         if nm not in self.stingers:
@@ -1161,6 +1179,12 @@ class AudioEngine:
             "chime": "xp_gain",
             "whisper": "seal_activate",
             "exhaust": "card_invalid",
+            "ui_confirm": "confirm",
+            "ui_cancel": "cancel",
+            "menu_confirm": "confirm",
+            "menu_cancel": "cancel",
+            "menu_hover": "hover",
+            "menu_select": "select",
         }
         nm = alias.get(nm, nm)
         if nm.startswith("stinger_"):

@@ -86,6 +86,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -152,6 +158,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -218,6 +230,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -284,6 +302,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -344,6 +368,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -404,6 +434,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -464,6 +500,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -524,6 +566,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -592,6 +640,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -660,6 +714,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -744,6 +804,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -828,6 +894,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -894,6 +966,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -964,6 +1042,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1029,6 +1113,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1094,6 +1184,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1166,6 +1262,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1238,6 +1340,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1302,6 +1410,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1366,6 +1480,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1432,6 +1552,12 @@
           "symbol": "",
           "motif": "resonance_01"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1498,6 +1624,12 @@
           "symbol": "",
           "motif": "resonance_02"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1564,6 +1696,12 @@
           "symbol": "",
           "motif": "resonance_03"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1630,6 +1768,12 @@
           "symbol": "",
           "motif": "resonance_04"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1704,6 +1848,12 @@
           "symbol": "",
           "motif": "resonance_05"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1778,6 +1928,12 @@
           "symbol": "",
           "motif": "resonance_06"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1846,6 +2002,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_13"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1912,6 +2074,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_14"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -1982,6 +2150,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_15"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2050,6 +2224,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_16"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2122,6 +2302,12 @@
           "symbol": "",
           "motif": "resonance_22"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2194,6 +2380,12 @@
           "symbol": "",
           "motif": "resonance_23"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2262,6 +2454,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras_resonance_26"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2328,6 +2526,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians_resonance_27"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2398,6 +2602,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians_resonance_28"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2470,6 +2680,12 @@
           "symbol": "",
           "motif": "resonance_33"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2542,6 +2758,12 @@
           "symbol": "",
           "motif": "resonance_34"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2614,6 +2836,12 @@
           "symbol": "",
           "motif": "resonance_07"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2690,6 +2918,12 @@
           "symbol": "",
           "motif": "resonance_08"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2761,6 +2995,12 @@
           "symbol": "",
           "motif": "resonance_09"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2839,6 +3079,12 @@
           "symbol": "",
           "motif": "resonance_10"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2917,6 +3163,12 @@
           "symbol": "",
           "motif": "resonance_11"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -2987,6 +3239,12 @@
           "symbol": "",
           "motif": "resonance_12"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3059,6 +3317,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_17"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3129,6 +3393,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_18"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3201,6 +3471,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_19"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3275,6 +3551,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_20"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3347,6 +3629,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_21"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3418,6 +3706,12 @@
           "symbol": "",
           "motif": "resonance_24"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3490,6 +3784,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_25"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3562,6 +3862,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras_resonance_29"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3634,6 +3940,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians_resonance_30"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3706,6 +4018,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians_resonance_31"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3780,6 +4098,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras_resonance_32"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3850,6 +4174,12 @@
           "symbol": "",
           "motif": "resonance_35"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3912,6 +4242,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -3972,6 +4308,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4034,6 +4376,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4094,6 +4442,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4158,6 +4512,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4220,6 +4580,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4284,6 +4650,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4346,6 +4718,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4412,6 +4790,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4478,6 +4862,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4544,6 +4934,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4608,6 +5004,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4674,6 +5076,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4738,6 +5146,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4804,6 +5218,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4872,6 +5292,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -4940,6 +5366,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5006,6 +5438,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5072,6 +5510,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5140,6 +5584,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5206,6 +5656,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5272,6 +5728,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5338,6 +5800,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5404,6 +5872,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5470,6 +5944,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5536,6 +6016,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5602,6 +6088,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5668,6 +6160,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5742,6 +6240,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5814,6 +6318,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5874,6 +6384,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5934,6 +6450,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -5994,6 +6516,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6054,6 +6582,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6126,6 +6660,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6198,6 +6738,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6266,6 +6812,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6326,6 +6878,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6392,6 +6950,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6458,6 +7022,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6524,6 +7094,12 @@
           "symbol": "",
           "motif": "resonance_01"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6590,6 +7166,12 @@
           "symbol": "",
           "motif": "resonance_02"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6662,6 +7244,12 @@
           "symbol": "",
           "motif": "resonance_03"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6734,6 +7322,12 @@
           "symbol": "",
           "motif": "resonance_04"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6806,6 +7400,12 @@
           "symbol": "",
           "motif": "resonance_05"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6878,6 +7478,12 @@
           "symbol": "",
           "motif": "resonance_06"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -6950,6 +7556,12 @@
           "symbol": "",
           "motif": "resonance_07"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7022,6 +7634,12 @@
           "symbol": "",
           "motif": "resonance_08"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7096,6 +7714,12 @@
           "symbol": "",
           "motif": "resonance_09"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7162,6 +7786,12 @@
           "symbol": "",
           "motif": "resonance_10"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7234,6 +7864,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_13"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7304,6 +7940,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_14"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7378,6 +8020,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_15"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7454,6 +8102,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_17"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7524,6 +8178,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_18"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7600,6 +8260,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_19"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7680,6 +8346,12 @@
           "symbol": "",
           "motif": "resonance_23"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7752,6 +8424,12 @@
           "symbol": "",
           "motif": "resonance_24"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7824,6 +8502,12 @@
           "symbol": "",
           "motif": "resonance_25"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7902,6 +8586,12 @@
           "symbol": "",
           "motif": "resonance_26"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -7968,6 +8658,12 @@
           "symbol": "",
           "motif": "resonance_27"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -8034,6 +8730,12 @@
           "symbol": "",
           "motif": "resonance_28"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -8112,6 +8814,12 @@
           "symbol": "",
           "motif": "resonance_29"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -8190,6 +8898,12 @@
           "symbol": "",
           "motif": "resonance_30"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -8262,6 +8976,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras_resonance_31"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -8332,6 +9052,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians_resonance_32"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -8408,6 +9134,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras_resonance_33"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -8480,6 +9212,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians_resonance_34"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -8550,6 +9288,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras_resonance_35"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -8626,6 +9370,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_20"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -8702,6 +9452,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_21"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -8774,6 +9530,12 @@
           "symbol": "",
           "motif": "resonance_11"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -8846,6 +9608,12 @@
           "symbol": "",
           "motif": "resonance_12"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -8922,6 +9690,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_16"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -8998,6 +9772,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_22"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -9064,6 +9844,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -9128,6 +9914,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -9198,6 +9990,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -9264,6 +10062,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -9328,6 +10132,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -9398,6 +10208,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -9466,6 +10282,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -9530,6 +10352,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -9600,6 +10428,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -9666,6 +10500,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -9730,6 +10570,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -9800,6 +10646,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -9870,6 +10722,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -9940,6 +10798,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -10010,6 +10874,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -10082,6 +10952,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -10152,6 +11028,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -10222,6 +11104,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -10292,6 +11180,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -10362,6 +11256,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -10434,6 +11334,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -10506,6 +11412,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -10578,6 +11490,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -10650,6 +11568,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -10722,6 +11646,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -10794,6 +11724,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -10872,6 +11808,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -10950,6 +11892,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -11016,6 +11964,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -11082,6 +12036,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -11142,6 +12102,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -11202,6 +12168,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -11266,6 +12238,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -11330,6 +12308,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -11402,6 +12386,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -11474,6 +12464,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -11540,6 +12536,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -11606,6 +12608,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -11678,6 +12686,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -11750,6 +12764,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -11826,6 +12846,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_09"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -11906,6 +12932,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_15"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -11984,6 +13016,12 @@
           "symbol": "",
           "motif": "resonance_19"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -12062,6 +13100,12 @@
           "symbol": "",
           "motif": "resonance_20"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -12138,6 +13182,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras_resonance_23"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -12216,6 +13266,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians_resonance_24"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -12294,6 +13350,12 @@
           "symbol": "",
           "motif": "resonance_27"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -12372,6 +13434,12 @@
           "symbol": "",
           "motif": "resonance_28"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -12450,6 +13518,12 @@
           "symbol": "",
           "motif": "resonance_29"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -12528,6 +13602,12 @@
           "symbol": "",
           "motif": "resonance_30"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -12594,6 +13674,12 @@
           "symbol": "",
           "motif": "resonance_01"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -12660,6 +13746,12 @@
           "symbol": "",
           "motif": "resonance_02"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -12732,6 +13824,12 @@
           "symbol": "",
           "motif": "resonance_03"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -12804,6 +13902,12 @@
           "symbol": "",
           "motif": "resonance_04"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -12874,6 +13978,12 @@
           "symbol": "",
           "motif": "resonance_05"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -12944,6 +14054,12 @@
           "symbol": "",
           "motif": "resonance_06"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13022,6 +14138,12 @@
           "symbol": "",
           "motif": "resonance_07"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13100,6 +14222,12 @@
           "symbol": "",
           "motif": "resonance_08"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13176,6 +14304,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_10"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13246,6 +14380,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_11"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13318,6 +14458,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_12"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13394,6 +14540,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_13"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13472,6 +14624,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_14"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13542,6 +14700,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals_resonance_16"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13614,6 +14778,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_17"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13690,6 +14860,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples_resonance_18"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13762,6 +14938,12 @@
           "symbol": "",
           "motif": "resonance_21"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13834,6 +15016,12 @@
           "symbol": "",
           "motif": "resonance_22"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13904,6 +15092,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians_resonance_25"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -13980,6 +15174,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras_resonance_26"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -14058,6 +15258,12 @@
           "symbol": "",
           "motif": "resonance_31"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -14136,6 +15342,12 @@
           "symbol": "",
           "motif": "resonance_32"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -14208,6 +15420,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians_resonance_33"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -14284,6 +15502,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras_resonance_34"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -14356,6 +15580,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras_resonance_35"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -14426,6 +15656,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -14496,6 +15732,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -14568,6 +15810,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -14642,6 +15890,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -14718,6 +15972,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -14788,6 +16048,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -14852,6 +16118,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -14918,6 +16190,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -14984,6 +16262,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15054,6 +16338,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15124,6 +16414,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15188,6 +16484,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15258,6 +16560,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15330,6 +16638,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15394,6 +16708,12 @@
           "symbol": "chakana_polar",
           "motif": "crystals"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15460,6 +16780,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15526,6 +16852,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15596,6 +16928,12 @@
           "symbol": "chakana_polar",
           "motif": "polar_temples"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15666,6 +17004,12 @@
           "symbol": "chakana_polar",
           "motif": "ancient_guardians"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15730,6 +17074,12 @@
           "symbol": "chakana_polar",
           "motif": "auroras"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15798,6 +17148,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15866,6 +17222,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -15934,6 +17296,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16002,6 +17370,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16070,6 +17444,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16138,6 +17518,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16206,6 +17592,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16274,6 +17666,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16342,6 +17740,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16410,6 +17814,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16478,6 +17888,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16546,6 +17962,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16614,6 +18036,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16682,6 +18110,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16750,6 +18184,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16819,6 +18259,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16888,6 +18334,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -16957,6 +18409,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17026,6 +18484,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17095,6 +18559,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17164,6 +18634,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17233,6 +18709,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17302,6 +18784,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17371,6 +18859,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17440,6 +18934,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17509,6 +19009,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17578,6 +19084,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17647,6 +19159,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17716,6 +19234,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17785,6 +19309,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -17853,6 +19383,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -17921,6 +19457,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -17989,6 +19531,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18057,6 +19605,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18125,6 +19679,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18193,6 +19753,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18261,6 +19827,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18329,6 +19901,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18397,6 +19975,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18465,6 +20049,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18533,6 +20123,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18601,6 +20197,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18669,6 +20271,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18737,6 +20345,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18805,6 +20419,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -18874,6 +20494,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -18943,6 +20569,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19012,6 +20644,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19081,6 +20719,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19150,6 +20794,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19219,6 +20869,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19288,6 +20944,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19357,6 +21019,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19426,6 +21094,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19495,6 +21169,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19564,6 +21244,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19633,6 +21319,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19702,6 +21394,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19771,6 +21469,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19840,6 +21544,12 @@
           "symbol": "",
           "motif": ""
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19914,6 +21624,12 @@
           "symbol": "",
           "motif": "resonance_01"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -19988,6 +21704,12 @@
           "symbol": "",
           "motif": "resonance_02"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -20062,6 +21784,12 @@
           "symbol": "",
           "motif": "resonance_03"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -20136,6 +21864,12 @@
           "symbol": "",
           "motif": "resonance_04"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -20210,6 +21944,12 @@
           "symbol": "",
           "motif": "resonance_05"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -20284,6 +22024,12 @@
           "symbol": "",
           "motif": "resonance_06"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.45,
+        "expected_play_rate": 0.58,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -20357,6 +22103,12 @@
           "symbol": "",
           "motif": "resonance_07"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -20430,6 +22182,12 @@
           "symbol": "",
           "motif": "resonance_08"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -20503,6 +22261,12 @@
           "symbol": "",
           "motif": "resonance_09"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -20576,6 +22340,12 @@
           "symbol": "",
           "motif": "resonance_10"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -20649,6 +22419,12 @@
           "symbol": "",
           "motif": "resonance_11"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -20722,6 +22498,12 @@
           "symbol": "",
           "motif": "resonance_12"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.36,
+        "expected_play_rate": 0.46,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "low"
       }
     },
     {
@@ -20796,6 +22578,12 @@
           "symbol": "",
           "motif": "resonance_13"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -20870,6 +22658,12 @@
           "symbol": "",
           "motif": "resonance_14"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     },
     {
@@ -20944,6 +22738,12 @@
           "symbol": "",
           "motif": "resonance_15"
         }
+      },
+      "kpi": {
+        "expected_pick_rate": 0.3,
+        "expected_play_rate": 0.34,
+        "target_win_rate_delta": 0.0,
+        "dead_card_risk": "medium"
       }
     }
   ]

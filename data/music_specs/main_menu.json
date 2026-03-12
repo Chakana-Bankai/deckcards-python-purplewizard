@@ -1,8 +1,25 @@
 {
-  "context": "main_menu",
-  "emotion": "mystic_invitation",
+  "emotion": "mystical_broad_inviting",
+  "emotional_profile": [
+    "mystical",
+    "broad",
+    "inviting"
+  ],
   "tempo_bpm": 62,
+  "target_bpm_range": [
+    60,
+    72
+  ],
   "scale_mode": "minor_pentatonic_added_sixth",
+  "harmonic_color": "warm_sacred_minor_with_open_fifths",
+  "instrumentation_palette": [
+    "airy_choir",
+    "quena_like_flute",
+    "wind_ambience",
+    "soft_harmonic_bass",
+    "soft_frame_drum",
+    "glass_bells"
+  ],
   "instrumentation": {
     "pad": "airy_choir",
     "harmony": "wind_ambience",
@@ -11,9 +28,13 @@
     "percussion": "soft_frame_drum",
     "ornament": "glass_bells"
   },
+  "target_density": "low",
   "density": "low",
   "loop_length_seconds": 24,
   "melody_role": "clear_sacred_motif",
   "percussion_role": "sparse_pulse",
-  "stinger_family": "ui_soft"
+  "melody_mandatory": true,
+  "percussion_mandatory": false,
+  "stinger_family": "ui_soft",
+  "stinger_family_exists": true
 }

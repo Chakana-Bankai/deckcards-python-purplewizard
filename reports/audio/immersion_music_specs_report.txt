@@ -1,0 +1,36 @@
+immersion_music_specs_report
+
+[summary]
+Music specs were corrected to avoid a universal dark low-BPM fallback and to force clearer context separation.
+
+[global_corrections]
+1. Every context now has an explicit target BPM range.
+2. Every context now has harmonic color, not only scale/mode.
+3. Melody is mandatory in all canonical contexts.
+4. Percussion is mandatory only where motion or tension requires it.
+5. Stinger family existence is explicit per context.
+6. The spec now prevents organ-like sustained-tone defaulting by requiring instrumentation palettes per role.
+
+[contexts_checked]
+studio_intro: bpm_range=[64, 76], density=low_to_mid, melody_mandatory=True, percussion_mandatory=False, harmonic_color=luminous_minor_with_ceremonial_lift
+main_menu: bpm_range=[60, 72], density=low, melody_mandatory=True, percussion_mandatory=False, harmonic_color=warm_sacred_minor_with_open_fifths
+map_exploration: bpm_range=[68, 82], density=low_to_mid, melody_mandatory=True, percussion_mandatory=True, harmonic_color=open_travel_minor_with_breath
+combat_normal: bpm_range=[82, 96], density=mid, melody_mandatory=True, percussion_mandatory=True, harmonic_color=ritual_dissonance_with_forward_drive
+combat_elite: bpm_range=[90, 104], density=mid_to_high, melody_mandatory=True, percussion_mandatory=True, harmonic_color=compressed_aggression_with_metallic_edge
+combat_boss: bpm_range=[56, 72], density=high, melody_mandatory=True, percussion_mandatory=True, harmonic_color=mythic_dark_with_open_low_end_not_monotone
+shop: bpm_range=[62, 76], density=low, melody_mandatory=True, percussion_mandatory=False, harmonic_color=warm_luminous_minor
+reward: bpm_range=[68, 82], density=low, melody_mandatory=True, percussion_mandatory=False, harmonic_color=bright_minor_resolution
+pack_open: bpm_range=[78, 92], density=mid, melody_mandatory=True, percussion_mandatory=True, harmonic_color=sparkling_minor_with_upward_pull
+rare_reveal: bpm_range=[72, 88], density=mid, melody_mandatory=True, percussion_mandatory=False, harmonic_color=airy_bright_sacred_color
+legendary_reveal: bpm_range=[62, 78], density=mid_to_high, melody_mandatory=True, percussion_mandatory=True, harmonic_color=grave_but_radiant_mythic_color
+victory: bpm_range=[74, 90], density=mid, melody_mandatory=True, percussion_mandatory=True, harmonic_color=radiant_resolved_minor
+defeat: bpm_range=[52, 66], density=low, melody_mandatory=True, percussion_mandatory=False, harmonic_color=dark_minor_with_clear_fall_not_static_drone
+codex: bpm_range=[58, 70], density=low, melody_mandatory=True, percussion_mandatory=False, harmonic_color=curious_minor_with_archival_air
+credits: bpm_range=[62, 76], density=low_to_mid, melody_mandatory=True, percussion_mandatory=False, harmonic_color=wide_reflective_minor_with_lift
+
+[healthy_default_guardrails]
+no universal gothic-only mood
+no organ as default lead
+no low-BPM everywhere
+no melody-optional menu/combat/codex contexts
+no reveal contexts without stinger family

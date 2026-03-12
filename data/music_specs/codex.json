@@ -1,8 +1,25 @@
 {
-  "context": "codex",
-  "emotion": "scholarly_mysticism",
+  "emotion": "subtle_intellectual_mystery",
+  "emotional_profile": [
+    "subtle",
+    "intellectual",
+    "mysterious"
+  ],
   "tempo_bpm": 60,
+  "target_bpm_range": [
+    58,
+    70
+  ],
   "scale_mode": "minor_pentatonic_suspended_second",
+  "harmonic_color": "curious_minor_with_archival_air",
+  "instrumentation_palette": [
+    "soft_choir",
+    "codex_ambience",
+    "flute",
+    "soft_harmonic_bass",
+    "paper_ticks",
+    "page_whispers"
+  ],
   "instrumentation": {
     "pad": "soft_choir",
     "harmony": "codex_ambience",
@@ -11,9 +28,13 @@
     "percussion": "paper_ticks",
     "ornament": "page_whispers"
   },
+  "target_density": "low",
   "density": "low",
   "loop_length_seconds": 18,
   "melody_role": "curious_short_phrase",
   "percussion_role": "paper_ticks",
-  "stinger_family": "codex"
+  "melody_mandatory": true,
+  "percussion_mandatory": false,
+  "stinger_family": "codex",
+  "stinger_family_exists": true
 }

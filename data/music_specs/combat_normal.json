@@ -1,8 +1,25 @@
 {
-  "context": "combat_normal",
-  "emotion": "ritual_pressure",
+  "emotion": "tension_with_movement",
+  "emotional_profile": [
+    "tense",
+    "moving",
+    "ritual"
+  ],
   "tempo_bpm": 86,
+  "target_bpm_range": [
+    82,
+    96
+  ],
   "scale_mode": "minor_pentatonic_tritone_accent",
+  "harmonic_color": "ritual_dissonance_with_forward_drive",
+  "instrumentation_palette": [
+    "low_choir",
+    "ritual_strings",
+    "hybrid_brass_synth",
+    "ritual_bass",
+    "tribal_drums",
+    "metal_hits"
+  ],
   "instrumentation": {
     "pad": "low_choir",
     "harmony": "ritual_strings",
@@ -11,9 +28,13 @@
     "percussion": "tribal_drums",
     "ornament": "metal_hits"
   },
+  "target_density": "mid",
   "density": "mid",
   "loop_length_seconds": 24,
   "melody_role": "short_aggressive_cells",
   "percussion_role": "main_driver",
-  "stinger_family": "combat"
+  "melody_mandatory": true,
+  "percussion_mandatory": true,
+  "stinger_family": "combat",
+  "stinger_family_exists": true
 }

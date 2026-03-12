@@ -1,8 +1,25 @@
 {
-  "context": "map_exploration",
-  "emotion": "pilgrimage_wonder",
+  "emotion": "contemplative_alive_exploration",
+  "emotional_profile": [
+    "contemplative",
+    "alive",
+    "exploratory"
+  ],
   "tempo_bpm": 72,
+  "target_bpm_range": [
+    68,
+    82
+  ],
   "scale_mode": "minor_pentatonic_added_second",
+  "harmonic_color": "open_travel_minor_with_breath",
+  "instrumentation_palette": [
+    "choir_pad",
+    "stone_bells",
+    "breath_flute",
+    "walking_drum_bass",
+    "shakers",
+    "wind_whispers"
+  ],
   "instrumentation": {
     "pad": "choir_pad",
     "harmony": "stone_bells",
@@ -11,9 +28,13 @@
     "percussion": "shakers",
     "ornament": "wind_whispers"
   },
+  "target_density": "low_to_mid",
   "density": "low_to_mid",
   "loop_length_seconds": 24,
   "melody_role": "wandering_phrase",
   "percussion_role": "walking_pulse",
-  "stinger_family": "travel"
+  "melody_mandatory": true,
+  "percussion_mandatory": true,
+  "stinger_family": "travel",
+  "stinger_family_exists": true
 }

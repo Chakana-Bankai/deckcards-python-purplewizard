@@ -1,0 +1,141 @@
+immersion_audio_audit
+
+[summary]
+The audio stack is no longer purely flat, but runtime is still split between legacy generated/curated tracks and the new richer MVP v2 outputs. Immersion is currently limited more by asset activation and context differentiation than by missing libraries.
+
+[current_runtime_system]
+engine=game/audio/audio_engine.py
+manifest=game/data/audio_manifest.json
+state_machine=engine/audio/music/music_state_machine.py
+new_mvp_candidate_pool=assets/audio/mvp_v2/
+legacy_runtime_pool=game/audio/generated + game/assets/curated/audio + game/data/audio_manifest.json
+
+[current_themes_active_or_routable]
+menu -> menu_a
+map -> map_kay_a (with aliases also hitting map_ukhu_a/map_hanan_a)
+combat -> combat_a
+boss -> combat_boss_a
+shop -> shop_a
+reward -> reward context exists in engine, but no dedicated runtime asset is active yet in manifest
+codex -> codex context exists in engine, but no dedicated runtime bgm item is active yet in manifest
+credits -> credits context exists in engine, but no dedicated runtime bgm item is active yet in manifest
+victory -> victory_a
+defeat -> defeat_a
+
+[current_ambient_tracks]
+gaia_mountain_wind
+temple_resonance
+archon_void_drones
+shop_ambience
+codex_ambience
+
+[current_stingers_active_or_defined]
+combat_start
+elite_encounter
+boss_reveal
+victory
+defeat
+level_up
+relic_gain
+pack_open
+seal_ready
+harmony_ready
+studio_intro
+
+[current_ui_gameplay_sounds_active]
+button_click
+card_play
+card_invalid
+gold_gain
+xp_gain
+damage_hit
+heal
+seal_activate
+relic_pick
+
+[new_audio_assets_already_generated_but_not_fully_integrated]
+studio_intro.wav
+main_menu.wav
+combat_normal.wav
+combat_boss.wav
+victory.wav
+pack_open.wav
+rare_reveal.wav
+legendary_reveal.wav
+ui_confirm.wav
+ui_cancel.wav
+draw_card.wav
+play_card.wav
+
+[tracks_too_slow_or_heavy]
+combat_boss_a -> low BPM identity is valid, but still leans too close to ceremonial dark sustain as default boss language.
+defeat_a -> current defeat lane remains very low-energy and old-style somber.
+map_ukhu_a -> ambience-heavy and closer to drone travel than alive exploration.
+shop_a -> intimate but still too static compared to the new luminous ritual target.
+
+[tracks_too_monochromatic_or_placeholder]
+menu_a -> better than older versions, but still long-form and not yet the preferred colorful canonical main_menu asset.
+combat_a -> carries movement, but remains too close to the old unified combat color instead of stronger contextual contrast.
+reward/victory overlap -> reward identity is still underdeveloped in runtime because reveal moments still collapse into victory-like behavior in asset coverage.
+legacy sfx set -> button_click/card_play/card_invalid are functional but still read as utility bleeps rather than a cohesive ritual UI language.
+
+[tracks_using_overly_dark_or_gothic_defaults]
+archon_void_drones and some older map/boss assets still pull the whole sound world toward dark ritual drone language.
+The old system still biases toward low choir + drone + sustained dark pad as a safe fallback.
+Credits and codex have corrected routing in code, but not yet corrected runtime asset replacement.
+
+[missing_melodic_identity]
+main_menu lacks a clearly promoted canonical melodic runtime theme.
+map_exploration lacks a dedicated alive exploratory identity in runtime.
+reward, codex and credits lack active distinct assets despite now having canonical specs.
+rare_reveal and legendary_reveal exist in MVP v2 but are not yet the live default reveal assets.
+
+[missing_contextual_differentiation]
+reward and reveal moments are still not fully separated from victory/shop era behavior in the active asset pool.
+map contexts are split, but aliases still collapse map_exploration to map_kay.
+combat_normal/combat_elite/combat_boss are not yet rebuilt under one corrected colorful runtime family.
+
+[missing_ui_sounds]
+hover
+select
+confirm
+cancel
+invalid
+menu_open
+menu_close
+codex_open
+codex_close
+
+[missing_or_incomplete_stingers]
+reward
+rare_reveal
+legendary_reveal
+ritual_trigger
+boss_warning
+ui_confirm
+ui_cancel
+draw_card
+play_card
+
+[monotony_sources]
+1. active runtime still loads old generated/curated pools while the richer v2 assets sit outside the manifest path.
+2. long BGM assets still keep redundant tails after the useful loop closure.
+3. multiple contexts have corrected specs but no promoted runtime replacements yet.
+4. SFX coverage is incomplete, so many actions still share generic tones.
+5. reveal/reward/codex/credits identity exists in data but not yet in active asset assignment.
+
+[replacement_priority]
+1. main_menu
+2. map_exploration
+3. combat_normal
+4. combat_elite
+5. combat_boss
+6. reward
+7. codex
+8. credits
+9. ui_confirm/ui_cancel
+10. draw_card/play_card
+11. rare_reveal/legendary_reveal
+
+[recommended_phase_2_focus]
+Refine music specs into explicit target BPM ranges, harmonic color rules, melody/percussion requirements and context separation rules, then rebuild only the canonical MVP set and promote it into runtime while archiving old generated outputs.

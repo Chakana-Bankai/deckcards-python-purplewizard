@@ -1,8 +1,25 @@
 {
-  "context": "combat_elite",
-  "emotion": "escalating_ceremony",
+  "emotion": "escalating_pressure",
+  "emotional_profile": [
+    "escalating",
+    "focused",
+    "dangerous"
+  ],
   "tempo_bpm": 94,
+  "target_bpm_range": [
+    90,
+    104
+  ],
   "scale_mode": "minor_pentatonic_tritone_accent",
+  "harmonic_color": "compressed_aggression_with_metallic_edge",
+  "instrumentation_palette": [
+    "low_choir",
+    "ritual_strings",
+    "hybrid_brass_synth",
+    "war_bass",
+    "tribal_drums",
+    "metal_hits"
+  ],
   "instrumentation": {
     "pad": "low_choir",
     "harmony": "ritual_strings",
@@ -11,9 +28,13 @@
     "percussion": "tribal_drums",
     "ornament": "metal_hits"
   },
+  "target_density": "mid_to_high",
   "density": "mid_to_high",
   "loop_length_seconds": 24,
   "melody_role": "compressed_motif_fragments",
   "percussion_role": "aggressive_driver",
-  "stinger_family": "combat_elite"
+  "melody_mandatory": true,
+  "percussion_mandatory": true,
+  "stinger_family": "combat_elite",
+  "stinger_family_exists": true
 }

@@ -13,7 +13,8 @@
     "ai_role",
     "art",
     "lore",
-    "codex_entry"
+    "codex_entry",
+    "kpi"
   ],
   "field_notes": {
     "faction": [

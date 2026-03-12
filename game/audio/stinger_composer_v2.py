@@ -19,6 +19,7 @@ STINGER_FAMILIES = {
     'boss_warning': (128.0, 170.0, 128.0),
     'draw_card': (360.0, 410.0),
     'play_card': (250.0, 330.0),
+    'studio_intro': (240.0, 320.0, 402.0, 494.0),
 }
 
 DURATIONS = {
@@ -34,6 +35,7 @@ DURATIONS = {
     'boss_warning': 0.75,
     'draw_card': 0.16,
     'play_card': 0.22,
+    'studio_intro': 1.20,
 }
 
 @dataclass(frozen=True)

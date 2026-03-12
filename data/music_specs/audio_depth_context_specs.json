@@ -1,240 +1,481 @@
 {
   "studio_intro": {
-    "emotion": "sacred awakening",
+    "emotion": "premium_sacred_identity",
+    "emotional_profile": [
+      "premium",
+      "sacred",
+      "brief",
+      "memorable"
+    ],
     "tempo_bpm": 68,
-    "scale_mode": "minor pentatonic with added second",
+    "target_bpm_range": [
+      64,
+      76
+    ],
+    "scale_mode": "minor_pentatonic_added_second",
+    "harmonic_color": "luminous_minor_with_ceremonial_lift",
     "instrumentation": [
       "airy_choir",
       "bell_chimes",
       "quena_like_flute",
-      "sub_bass_drone"
+      "sub_bass_drone",
+      "soft_ceremonial_hits",
+      "glass_sparkles"
     ],
     "density": "low_to_mid",
+    "target_density": "low_to_mid",
     "loop_length_seconds": 28,
     "melody_role": "motif_introduction",
     "percussion_role": "none_or_soft_hits",
-    "stinger_family": "studio"
+    "melody_mandatory": true,
+    "percussion_mandatory": false,
+    "stinger_family": "studio",
+    "stinger_family_exists": true
   },
   "main_menu": {
-    "emotion": "mystic invitation",
+    "emotion": "mystical_broad_inviting",
+    "emotional_profile": [
+      "mystical",
+      "broad",
+      "inviting"
+    ],
     "tempo_bpm": 62,
-    "scale_mode": "minor pentatonic with added sixth",
+    "target_bpm_range": [
+      60,
+      72
+    ],
+    "scale_mode": "minor_pentatonic_added_sixth",
+    "harmonic_color": "warm_sacred_minor_with_open_fifths",
     "instrumentation": [
       "airy_choir",
       "quena_like_flute",
       "wind_ambience",
-      "soft_frame_drum"
+      "soft_harmonic_bass",
+      "soft_frame_drum",
+      "glass_bells"
     ],
     "density": "low",
+    "target_density": "low",
     "loop_length_seconds": 24,
     "melody_role": "clear_sacred_motif",
     "percussion_role": "sparse_pulse",
-    "stinger_family": "ui_soft"
+    "melody_mandatory": true,
+    "percussion_mandatory": false,
+    "stinger_family": "ui_soft",
+    "stinger_family_exists": true
   },
   "map_exploration": {
-    "emotion": "pilgrimage wonder",
+    "emotion": "contemplative_alive_exploration",
+    "emotional_profile": [
+      "contemplative",
+      "alive",
+      "exploratory"
+    ],
     "tempo_bpm": 72,
-    "scale_mode": "minor pentatonic with added second",
+    "target_bpm_range": [
+      68,
+      82
+    ],
+    "scale_mode": "minor_pentatonic_added_second",
+    "harmonic_color": "open_travel_minor_with_breath",
     "instrumentation": [
       "choir_pad",
+      "stone_bells",
       "breath_flute",
+      "walking_drum_bass",
       "shakers",
-      "stone_bells"
+      "wind_whispers"
     ],
     "density": "low_to_mid",
+    "target_density": "low_to_mid",
     "loop_length_seconds": 24,
     "melody_role": "wandering_phrase",
     "percussion_role": "walking_pulse",
-    "stinger_family": "travel"
+    "melody_mandatory": true,
+    "percussion_mandatory": true,
+    "stinger_family": "travel",
+    "stinger_family_exists": true
   },
   "combat_normal": {
-    "emotion": "ritual pressure",
+    "emotion": "tension_with_movement",
+    "emotional_profile": [
+      "tense",
+      "moving",
+      "ritual"
+    ],
     "tempo_bpm": 86,
-    "scale_mode": "minor pentatonic with tritone accent",
+    "target_bpm_range": [
+      82,
+      96
+    ],
+    "scale_mode": "minor_pentatonic_tritone_accent",
+    "harmonic_color": "ritual_dissonance_with_forward_drive",
     "instrumentation": [
       "low_choir",
+      "ritual_strings",
       "hybrid_brass_synth",
+      "ritual_bass",
       "tribal_drums",
-      "ritual_bass"
+      "metal_hits"
     ],
     "density": "mid",
+    "target_density": "mid",
     "loop_length_seconds": 24,
     "melody_role": "short_aggressive_cells",
     "percussion_role": "main_driver",
-    "stinger_family": "combat"
+    "melody_mandatory": true,
+    "percussion_mandatory": true,
+    "stinger_family": "combat",
+    "stinger_family_exists": true
   },
   "combat_elite": {
-    "emotion": "escalating ceremony",
+    "emotion": "escalating_pressure",
+    "emotional_profile": [
+      "escalating",
+      "focused",
+      "dangerous"
+    ],
     "tempo_bpm": 94,
-    "scale_mode": "minor pentatonic with tritone accent",
+    "target_bpm_range": [
+      90,
+      104
+    ],
+    "scale_mode": "minor_pentatonic_tritone_accent",
+    "harmonic_color": "compressed_aggression_with_metallic_edge",
     "instrumentation": [
       "low_choir",
+      "ritual_strings",
       "hybrid_brass_synth",
+      "war_bass",
       "tribal_drums",
       "metal_hits"
     ],
     "density": "mid_to_high",
+    "target_density": "mid_to_high",
     "loop_length_seconds": 24,
     "melody_role": "compressed_motif_fragments",
     "percussion_role": "aggressive_driver",
-    "stinger_family": "combat_elite"
+    "melody_mandatory": true,
+    "percussion_mandatory": true,
+    "stinger_family": "combat_elite",
+    "stinger_family_exists": true
   },
   "combat_boss": {
-    "emotion": "mythic threat",
+    "emotion": "gravity_plus_urgency",
+    "emotional_profile": [
+      "grave",
+      "urgent",
+      "mythic"
+    ],
     "tempo_bpm": 58,
-    "scale_mode": "phrygian_like pentatonic hybrid",
+    "target_bpm_range": [
+      56,
+      72
+    ],
+    "scale_mode": "phrygian_pentatonic_hybrid",
+    "harmonic_color": "mythic_dark_with_open_low_end_not_monotone",
     "instrumentation": [
       "deep_ritual_choir",
+      "void_resonance",
       "ritual_horn",
+      "war_bass",
       "war_drums",
-      "void_resonance"
+      "cosmic_shimmer"
     ],
     "density": "high",
+    "target_density": "high",
     "loop_length_seconds": 24,
     "melody_role": "heavy_declared_motif",
     "percussion_role": "phase_markers_and_pulse",
-    "stinger_family": "boss"
+    "melody_mandatory": true,
+    "percussion_mandatory": true,
+    "stinger_family": "boss",
+    "stinger_family_exists": true
   },
   "shop": {
-    "emotion": "sanctuary barter",
+    "emotion": "ritual_luminous_relief",
+    "emotional_profile": [
+      "safe",
+      "ritual",
+      "luminous"
+    ],
     "tempo_bpm": 66,
-    "scale_mode": "minor pentatonic with added sixth",
+    "target_bpm_range": [
+      62,
+      76
+    ],
+    "scale_mode": "minor_pentatonic_added_sixth",
+    "harmonic_color": "warm_luminous_minor",
     "instrumentation": [
       "soft_choir",
       "glass_bells",
       "breath_flute",
-      "paper_perc"
+      "soft_harmonic_bass",
+      "paper_perc",
+      "shimmer_pad"
     ],
     "density": "low",
+    "target_density": "low",
     "loop_length_seconds": 20,
     "melody_role": "short_inviting_phrase",
     "percussion_role": "minimal",
-    "stinger_family": "shop"
+    "melody_mandatory": true,
+    "percussion_mandatory": false,
+    "stinger_family": "shop",
+    "stinger_family_exists": true
   },
   "reward": {
-    "emotion": "gentle uplift",
+    "emotion": "luminous_relief",
+    "emotional_profile": [
+      "rewarding",
+      "light",
+      "brief"
+    ],
     "tempo_bpm": 70,
-    "scale_mode": "minor pentatonic with bright second",
+    "target_bpm_range": [
+      68,
+      82
+    ],
+    "scale_mode": "minor_pentatonic_bright_second",
+    "harmonic_color": "bright_minor_resolution",
     "instrumentation": [
       "soft_choir",
       "chimes",
-      "flute"
+      "flute",
+      "soft_harmonic_bass",
+      "light_sparkles"
     ],
     "density": "low",
+    "target_density": "low",
     "loop_length_seconds": 16,
     "melody_role": "resolution_phrase",
     "percussion_role": "none",
-    "stinger_family": "reward"
+    "melody_mandatory": true,
+    "percussion_mandatory": false,
+    "stinger_family": "reward",
+    "stinger_family_exists": true
   },
   "pack_open": {
-    "emotion": "anticipation",
+    "emotion": "anticipation_with_color",
+    "emotional_profile": [
+      "anticipatory",
+      "bright",
+      "ritual"
+    ],
     "tempo_bpm": 80,
-    "scale_mode": "minor pentatonic with bright lift",
+    "target_bpm_range": [
+      78,
+      92
+    ],
+    "scale_mode": "minor_pentatonic_bright_lift",
+    "harmonic_color": "sparkling_minor_with_upward_pull",
     "instrumentation": [
+      "shimmer_pad",
       "glass_plucks",
       "bells",
       "soft_bass",
+      "light_ticks",
       "sparkle_noise"
     ],
     "density": "mid",
+    "target_density": "mid",
     "loop_length_seconds": 12,
     "melody_role": "ascending_tease",
     "percussion_role": "light_ticks",
-    "stinger_family": "pack"
+    "melody_mandatory": true,
+    "percussion_mandatory": true,
+    "stinger_family": "pack",
+    "stinger_family_exists": true
   },
   "rare_reveal": {
-    "emotion": "sacred discovery",
+    "emotion": "sacred_discovery",
+    "emotional_profile": [
+      "rare",
+      "sacred",
+      "clear"
+    ],
     "tempo_bpm": 76,
-    "scale_mode": "lydian_tinted pentatonic",
+    "target_bpm_range": [
+      72,
+      88
+    ],
+    "scale_mode": "lydian_tinted_pentatonic",
+    "harmonic_color": "airy_bright_sacred_color",
     "instrumentation": [
       "choir",
-      "bells",
+      "shimmer_pad",
       "flute",
-      "shimmer_pad"
+      "soft_harmonic_bass",
+      "minimal_hits",
+      "bells"
     ],
     "density": "mid",
+    "target_density": "mid",
     "loop_length_seconds": 12,
     "melody_role": "ascending_reveal",
     "percussion_role": "minimal_hits",
-    "stinger_family": "reveal_rare"
+    "melody_mandatory": true,
+    "percussion_mandatory": false,
+    "stinger_family": "reveal_rare",
+    "stinger_family_exists": true
   },
   "legendary_reveal": {
-    "emotion": "mythic revelation",
+    "emotion": "mythic_revelation",
+    "emotional_profile": [
+      "mythic",
+      "solemn",
+      "radiant"
+    ],
     "tempo_bpm": 64,
-    "scale_mode": "phrygian_pentatonic hybrid",
+    "target_bpm_range": [
+      62,
+      78
+    ],
+    "scale_mode": "phrygian_pentatonic_hybrid",
+    "harmonic_color": "grave_but_radiant_mythic_color",
     "instrumentation": [
       "choir",
+      "void_shimmer",
       "ritual_horn",
-      "deep_bells",
-      "void_shimmer"
+      "deep_bass",
+      "ceremonial_hits",
+      "deep_bells"
     ],
     "density": "mid_to_high",
+    "target_density": "mid_to_high",
     "loop_length_seconds": 14,
     "melody_role": "large_declared_arc",
     "percussion_role": "ceremonial_hits",
-    "stinger_family": "reveal_legendary"
+    "melody_mandatory": true,
+    "percussion_mandatory": true,
+    "stinger_family": "reveal_legendary",
+    "stinger_family_exists": true
   },
   "victory": {
-    "emotion": "earned ascent",
+    "emotion": "uplifting_brief_release",
+    "emotional_profile": [
+      "uplifting",
+      "brief",
+      "earned"
+    ],
     "tempo_bpm": 78,
-    "scale_mode": "bright minor pentatonic",
+    "target_bpm_range": [
+      74,
+      90
+    ],
+    "scale_mode": "bright_minor_pentatonic",
+    "harmonic_color": "radiant_resolved_minor",
     "instrumentation": [
       "choir",
-      "flute",
       "bells",
-      "light_drum"
+      "flute",
+      "soft_harmonic_bass",
+      "light_drum",
+      "light_sparkles"
     ],
     "density": "mid",
+    "target_density": "mid",
     "loop_length_seconds": 16,
     "melody_role": "resolved_motif",
     "percussion_role": "light_celebratory",
-    "stinger_family": "victory"
+    "melody_mandatory": true,
+    "percussion_mandatory": true,
+    "stinger_family": "victory",
+    "stinger_family_exists": true
   },
   "defeat": {
-    "emotion": "solemn collapse",
+    "emotion": "solemn_collapse_not_void_drone",
+    "emotional_profile": [
+      "solemn",
+      "fallen",
+      "clear"
+    ],
     "tempo_bpm": 54,
-    "scale_mode": "dark minor pentatonic",
+    "target_bpm_range": [
+      52,
+      66
+    ],
+    "scale_mode": "dark_minor_pentatonic",
+    "harmonic_color": "dark_minor_with_clear_fall_not_static_drone",
     "instrumentation": [
       "low_drone",
       "soft_choir",
-      "broken_bell"
+      "broken_bell",
+      "dark_sub",
+      "dust_noise"
     ],
     "density": "low",
+    "target_density": "low",
     "loop_length_seconds": 16,
     "melody_role": "falling_fragment",
     "percussion_role": "none_or_sparse",
-    "stinger_family": "defeat"
+    "melody_mandatory": true,
+    "percussion_mandatory": false,
+    "stinger_family": "defeat",
+    "stinger_family_exists": true
   },
   "codex": {
-    "emotion": "scholarly mysticism",
+    "emotion": "subtle_intellectual_mystery",
+    "emotional_profile": [
+      "subtle",
+      "intellectual",
+      "mysterious"
+    ],
     "tempo_bpm": 60,
-    "scale_mode": "minor pentatonic with suspended second",
+    "target_bpm_range": [
+      58,
+      70
+    ],
+    "scale_mode": "minor_pentatonic_suspended_second",
+    "harmonic_color": "curious_minor_with_archival_air",
     "instrumentation": [
-      "paper_perc",
       "soft_choir",
+      "codex_ambience",
       "flute",
-      "codex_ambience"
+      "soft_harmonic_bass",
+      "paper_ticks",
+      "page_whispers"
     ],
     "density": "low",
+    "target_density": "low",
     "loop_length_seconds": 18,
     "melody_role": "curious_short_phrase",
     "percussion_role": "paper_ticks",
-    "stinger_family": "codex"
+    "melody_mandatory": true,
+    "percussion_mandatory": false,
+    "stinger_family": "codex",
+    "stinger_family_exists": true
   },
   "credits": {
-    "emotion": "reflective transcendence",
+    "emotion": "reflective_transcendence",
+    "emotional_profile": [
+      "reflective",
+      "wide",
+      "grateful"
+    ],
     "tempo_bpm": 64,
-    "scale_mode": "minor pentatonic with sixth",
+    "target_bpm_range": [
+      62,
+      76
+    ],
+    "scale_mode": "minor_pentatonic_with_sixth",
+    "harmonic_color": "wide_reflective_minor_with_lift",
     "instrumentation": [
       "choir",
-      "flute",
       "bells",
-      "soft_harmonic_bass"
+      "flute",
+      "soft_harmonic_bass",
+      "soft_pulse",
+      "glass_sparkles"
     ],
     "density": "low_to_mid",
+    "target_density": "low_to_mid",
     "loop_length_seconds": 24,
     "melody_role": "full_motif_reprise",
     "percussion_role": "soft_pulse",
-    "stinger_family": "credits"
+    "melody_mandatory": true,
+    "percussion_mandatory": false,
+    "stinger_family": "credits",
+    "stinger_family_exists": true
   }
 }

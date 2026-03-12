@@ -1,8 +1,25 @@
 {
-  "context": "rare_reveal",
   "emotion": "sacred_discovery",
+  "emotional_profile": [
+    "rare",
+    "sacred",
+    "clear"
+  ],
   "tempo_bpm": 76,
+  "target_bpm_range": [
+    72,
+    88
+  ],
   "scale_mode": "lydian_tinted_pentatonic",
+  "harmonic_color": "airy_bright_sacred_color",
+  "instrumentation_palette": [
+    "choir",
+    "shimmer_pad",
+    "flute",
+    "soft_harmonic_bass",
+    "minimal_hits",
+    "bells"
+  ],
   "instrumentation": {
     "pad": "choir",
     "harmony": "shimmer_pad",
@@ -11,9 +28,13 @@
     "percussion": "minimal_hits",
     "ornament": "bells"
   },
+  "target_density": "mid",
   "density": "mid",
   "loop_length_seconds": 12,
   "melody_role": "ascending_reveal",
   "percussion_role": "minimal_hits",
-  "stinger_family": "reveal_rare"
+  "melody_mandatory": true,
+  "percussion_mandatory": false,
+  "stinger_family": "reveal_rare",
+  "stinger_family_exists": true
 }

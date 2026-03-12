@@ -55,7 +55,7 @@ def _semantic_from_dna(dna, prompt_hint: str = '') -> dict[str, object]:
     }
 
 
-def render_card_from_dna(card_id: str, out_path: Path, *, prompt_hint: str = '', rarity: str = 'common') -> dict[str, object]:
+def render_card_from_dna(card_id: str, out_path: Path, *, prompt_hint: str = '', rarity: str = 'common', apply_frame: bool = False) -> dict[str, object]:
     seed = abs(hash(card_id)) % 100000
     rng = random.Random(seed)
     dna = load_card_shape_dna(card_id)
@@ -86,8 +86,9 @@ def render_card_from_dna(card_id: str, out_path: Path, *, prompt_hint: str = '',
     comp.blit(subject['weapon_front_layer'], (0, 0))
 
     full = pygame.transform.smoothscale(comp, CANVAS_SIZE).convert_alpha()
-    frame_rect = pygame.Rect(36, 36, CANVAS_SIZE[0] - 72, CANVAS_SIZE[1] - 72)
-    apply_frame_overlay(full, frame_rect, rarity, accent=palette[3], set_is_hiperboria=card_id.startswith('HYP-'))
+    if apply_frame:
+        frame_rect = pygame.Rect(36, 36, CANVAS_SIZE[0] - 72, CANVAS_SIZE[1] - 72)
+        apply_frame_overlay(full, frame_rect, rarity, accent=palette[3], set_is_hiperboria=card_id.startswith('HYP-'))
     out_path.parent.mkdir(parents=True, exist_ok=True)
     pygame.image.save(full, out_path)
 
@@ -99,4 +100,5 @@ def render_card_from_dna(card_id: str, out_path: Path, *, prompt_hint: str = '',
         'dna': dna.model_dump(),
         'identity_lock': identity,
         'path': str(out_path),
+        'framed': bool(apply_frame),
     }

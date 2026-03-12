@@ -1,8 +1,25 @@
 {
-  "context": "combat_boss",
-  "emotion": "mythic_threat",
+  "emotion": "gravity_plus_urgency",
+  "emotional_profile": [
+    "grave",
+    "urgent",
+    "mythic"
+  ],
   "tempo_bpm": 58,
+  "target_bpm_range": [
+    56,
+    72
+  ],
   "scale_mode": "phrygian_pentatonic_hybrid",
+  "harmonic_color": "mythic_dark_with_open_low_end_not_monotone",
+  "instrumentation_palette": [
+    "deep_ritual_choir",
+    "void_resonance",
+    "ritual_horn",
+    "war_bass",
+    "war_drums",
+    "cosmic_shimmer"
+  ],
   "instrumentation": {
     "pad": "deep_ritual_choir",
     "harmony": "void_resonance",
@@ -11,9 +28,13 @@
     "percussion": "war_drums",
     "ornament": "cosmic_shimmer"
   },
+  "target_density": "high",
   "density": "high",
   "loop_length_seconds": 24,
   "melody_role": "heavy_declared_motif",
   "percussion_role": "phase_markers_and_pulse",
-  "stinger_family": "boss"
+  "melody_mandatory": true,
+  "percussion_mandatory": true,
+  "stinger_family": "boss",
+  "stinger_family_exists": true
 }

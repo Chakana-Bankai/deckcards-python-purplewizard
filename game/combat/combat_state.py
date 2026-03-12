@@ -12,6 +12,7 @@ from game.systems.enemy_deck_system import resolve_enemy_deck
 from game.telemetry.logger import TelemetryLogger
 from game.services.deck_integrity import audit_and_repair_deck_piles
 from game.systems.gameplay_rules import DEFAULT_PLAYER_RULES, normalized_combat_deck
+from game.cards.card_canon_registry import load_canon_combat_payloads
 from game.cards.card_dna_registry import load_combat_card_payloads
 
 
@@ -167,7 +168,9 @@ class CombatState:
         self.player.pop("combat_banner", None)
 
     def _load_cards(self, cards_data=None):
-        raw = cards_data if cards_data is not None else load_combat_card_payloads()
+        raw = cards_data if cards_data is not None else load_canon_combat_payloads()
+        if not isinstance(raw, list) or not raw:
+            raw = load_combat_card_payloads()
         if not isinstance(raw, list) or not raw:
             raw = load_json(data_dir() / "cards.json", default=DEFAULT_CARDS)
         if not isinstance(raw, list):

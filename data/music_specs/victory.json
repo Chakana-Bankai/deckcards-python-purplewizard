@@ -1,8 +1,25 @@
 {
-  "context": "victory",
-  "emotion": "earned_ascent",
+  "emotion": "uplifting_brief_release",
+  "emotional_profile": [
+    "uplifting",
+    "brief",
+    "earned"
+  ],
   "tempo_bpm": 78,
+  "target_bpm_range": [
+    74,
+    90
+  ],
   "scale_mode": "bright_minor_pentatonic",
+  "harmonic_color": "radiant_resolved_minor",
+  "instrumentation_palette": [
+    "choir",
+    "bells",
+    "flute",
+    "soft_harmonic_bass",
+    "light_drum",
+    "light_sparkles"
+  ],
   "instrumentation": {
     "pad": "choir",
     "harmony": "bells",
@@ -11,9 +28,13 @@
     "percussion": "light_drum",
     "ornament": "light_sparkles"
   },
+  "target_density": "mid",
   "density": "mid",
   "loop_length_seconds": 16,
   "melody_role": "resolved_motif",
   "percussion_role": "light_celebratory",
-  "stinger_family": "victory"
+  "melody_mandatory": true,
+  "percussion_mandatory": true,
+  "stinger_family": "victory",
+  "stinger_family_exists": true
 }

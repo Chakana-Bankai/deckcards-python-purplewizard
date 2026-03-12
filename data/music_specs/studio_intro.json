@@ -1,8 +1,26 @@
 {
-  "context": "studio_intro",
-  "emotion": "sacred awakening",
+  "emotion": "premium_sacred_identity",
+  "emotional_profile": [
+    "premium",
+    "sacred",
+    "brief",
+    "memorable"
+  ],
   "tempo_bpm": 68,
+  "target_bpm_range": [
+    64,
+    76
+  ],
   "scale_mode": "minor_pentatonic_added_second",
+  "harmonic_color": "luminous_minor_with_ceremonial_lift",
+  "instrumentation_palette": [
+    "airy_choir",
+    "bell_chimes",
+    "quena_like_flute",
+    "sub_bass_drone",
+    "soft_ceremonial_hits",
+    "glass_sparkles"
+  ],
   "instrumentation": {
     "pad": "airy_choir",
     "harmony": "bell_chimes",
@@ -11,9 +29,13 @@
     "percussion": "soft_ceremonial_hits",
     "ornament": "glass_sparkles"
   },
+  "target_density": "low_to_mid",
   "density": "low_to_mid",
   "loop_length_seconds": 28,
   "melody_role": "motif_introduction",
   "percussion_role": "none_or_soft_hits",
-  "stinger_family": "studio"
+  "melody_mandatory": true,
+  "percussion_mandatory": false,
+  "stinger_family": "studio",
+  "stinger_family_exists": true
 }

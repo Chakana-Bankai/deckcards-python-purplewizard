@@ -1,8 +1,25 @@
 {
-  "context": "shop",
-  "emotion": "sanctuary_barter",
+  "emotion": "ritual_luminous_relief",
+  "emotional_profile": [
+    "safe",
+    "ritual",
+    "luminous"
+  ],
   "tempo_bpm": 66,
+  "target_bpm_range": [
+    62,
+    76
+  ],
   "scale_mode": "minor_pentatonic_added_sixth",
+  "harmonic_color": "warm_luminous_minor",
+  "instrumentation_palette": [
+    "soft_choir",
+    "glass_bells",
+    "breath_flute",
+    "soft_harmonic_bass",
+    "paper_perc",
+    "shimmer_pad"
+  ],
   "instrumentation": {
     "pad": "soft_choir",
     "harmony": "glass_bells",
@@ -11,9 +28,13 @@
     "percussion": "paper_perc",
     "ornament": "shimmer_pad"
   },
+  "target_density": "low",
   "density": "low",
   "loop_length_seconds": 20,
   "melody_role": "short_inviting_phrase",
   "percussion_role": "minimal",
-  "stinger_family": "shop"
+  "melody_mandatory": true,
+  "percussion_mandatory": false,
+  "stinger_family": "shop",
+  "stinger_family_exists": true
 }

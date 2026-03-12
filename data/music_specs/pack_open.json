@@ -1,8 +1,25 @@
 {
-  "context": "pack_open",
-  "emotion": "anticipation",
+  "emotion": "anticipation_with_color",
+  "emotional_profile": [
+    "anticipatory",
+    "bright",
+    "ritual"
+  ],
   "tempo_bpm": 80,
+  "target_bpm_range": [
+    78,
+    92
+  ],
   "scale_mode": "minor_pentatonic_bright_lift",
+  "harmonic_color": "sparkling_minor_with_upward_pull",
+  "instrumentation_palette": [
+    "shimmer_pad",
+    "glass_plucks",
+    "bells",
+    "soft_bass",
+    "light_ticks",
+    "sparkle_noise"
+  ],
   "instrumentation": {
     "pad": "shimmer_pad",
     "harmony": "glass_plucks",
@@ -11,9 +28,13 @@
     "percussion": "light_ticks",
     "ornament": "sparkle_noise"
   },
+  "target_density": "mid",
   "density": "mid",
   "loop_length_seconds": 12,
   "melody_role": "ascending_tease",
   "percussion_role": "light_ticks",
-  "stinger_family": "pack"
+  "melody_mandatory": true,
+  "percussion_mandatory": true,
+  "stinger_family": "pack",
+  "stinger_family_exists": true
 }

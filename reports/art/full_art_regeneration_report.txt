@@ -1,0 +1,29 @@
+full_art_regeneration_report
+status=PASS
+catalog_count=300
+rendered_count=300
+identity_lock_pass_count=300
+identity_lock_fail_count=0
+archived_runtime_png_count=180
+archive_path=C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/assets/production/art/archive/immersion_rebuild_phase6/20260312_190810
+staging_path=C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/assets/production/art/staging/immersion_rebuild_phase6
+runtime_dir=C:/Users/mxpri/PurpleWizard/deckcards-python-purplewizard/game/assets/sprites/cards
+game_manifest_items=300
+aggregate_manifest_cards=300
+frameless_runtime_assets=True
+missing_art=0
+stale_runtime_refs=0
+
+sample_outputs:
+- BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR -> game/assets/sprites/cards/BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR.png identity_lock_passed=True
+- BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA -> game/assets/sprites/cards/BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA.png identity_lock_passed=True
+- BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO -> game/assets/sprites/cards/BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO.png identity_lock_passed=True
+- BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA -> game/assets/sprites/cards/BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA.png identity_lock_passed=True
+- BASE-SOLAR-ATTACK-FILO_ASTRAL -> game/assets/sprites/cards/BASE-SOLAR-ATTACK-FILO_ASTRAL.png identity_lock_passed=True
+- BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA -> game/assets/sprites/cards/BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA.png identity_lock_passed=True
+- BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL -> game/assets/sprites/cards/BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL.png identity_lock_passed=True
+- BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA -> game/assets/sprites/cards/BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA.png identity_lock_passed=True
+- BASE-SOLAR-ATTACK-PULSO_COSMICO -> game/assets/sprites/cards/BASE-SOLAR-ATTACK-PULSO_COSMICO.png identity_lock_passed=True
+- BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA -> game/assets/sprites/cards/BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA.png identity_lock_passed=True
+- BASE-SOLAR-SKILL-CHAKANA_DE_LUZ -> game/assets/sprites/cards/BASE-SOLAR-SKILL-CHAKANA_DE_LUZ.png identity_lock_passed=True
+- BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA -> game/assets/sprites/cards/BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA.png identity_lock_passed=True

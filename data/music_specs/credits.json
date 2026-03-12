@@ -1,8 +1,25 @@
 {
-  "context": "credits",
   "emotion": "reflective_transcendence",
+  "emotional_profile": [
+    "reflective",
+    "wide",
+    "grateful"
+  ],
   "tempo_bpm": 64,
+  "target_bpm_range": [
+    62,
+    76
+  ],
   "scale_mode": "minor_pentatonic_with_sixth",
+  "harmonic_color": "wide_reflective_minor_with_lift",
+  "instrumentation_palette": [
+    "choir",
+    "bells",
+    "flute",
+    "soft_harmonic_bass",
+    "soft_pulse",
+    "glass_sparkles"
+  ],
   "instrumentation": {
     "pad": "choir",
     "harmony": "bells",
@@ -11,9 +28,13 @@
     "percussion": "soft_pulse",
     "ornament": "glass_sparkles"
   },
+  "target_density": "low_to_mid",
   "density": "low_to_mid",
   "loop_length_seconds": 24,
   "melody_role": "full_motif_reprise",
   "percussion_role": "soft_pulse",
-  "stinger_family": "credits"
+  "melody_mandatory": true,
+  "percussion_mandatory": false,
+  "stinger_family": "credits",
+  "stinger_family_exists": true
 }

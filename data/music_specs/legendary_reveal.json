@@ -1,8 +1,25 @@
 {
-  "context": "legendary_reveal",
   "emotion": "mythic_revelation",
+  "emotional_profile": [
+    "mythic",
+    "solemn",
+    "radiant"
+  ],
   "tempo_bpm": 64,
+  "target_bpm_range": [
+    62,
+    78
+  ],
   "scale_mode": "phrygian_pentatonic_hybrid",
+  "harmonic_color": "grave_but_radiant_mythic_color",
+  "instrumentation_palette": [
+    "choir",
+    "void_shimmer",
+    "ritual_horn",
+    "deep_bass",
+    "ceremonial_hits",
+    "deep_bells"
+  ],
   "instrumentation": {
     "pad": "choir",
     "harmony": "void_shimmer",
@@ -11,9 +28,13 @@
     "percussion": "ceremonial_hits",
     "ornament": "deep_bells"
   },
+  "target_density": "mid_to_high",
   "density": "mid_to_high",
   "loop_length_seconds": 14,
   "melody_role": "large_declared_arc",
   "percussion_role": "ceremonial_hits",
-  "stinger_family": "reveal_legendary"
+  "melody_mandatory": true,
+  "percussion_mandatory": true,
+  "stinger_family": "reveal_legendary",
+  "stinger_family_exists": true
 }

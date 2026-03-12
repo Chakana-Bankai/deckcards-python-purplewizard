@@ -22,6 +22,8 @@ if __package__ in (None, ''):
         art_director_pass,
         sound_director_pass,
         balance_qa_1000,
+        archetype_run_balance,
+        art_full_regeneration,
     )
 else:
     from tools.lib import (
@@ -41,6 +43,8 @@ else:
         art_director_pass,
         sound_director_pass,
         balance_qa_1000,
+        archetype_run_balance,
+        art_full_regeneration,
     )
 
 COMMANDS = {
@@ -63,6 +67,8 @@ COMMANDS = {
     'art-director-pass': lambda dry_run: art_director_pass.run(dry_run=dry_run),
     'sound-director-pass': lambda dry_run: sound_director_pass.run(dry_run=dry_run),
     'balance-qa-1000': lambda dry_run: balance_qa_1000.run(dry_run=dry_run),
+    'archetype-run-balance': lambda dry_run: archetype_run_balance.run(dry_run=dry_run),
+    'art-full-regeneration': lambda dry_run: art_full_regeneration.run(dry_run=dry_run),
 }
 
 

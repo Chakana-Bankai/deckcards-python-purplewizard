@@ -1,8 +1,24 @@
 {
-  "context": "defeat",
-  "emotion": "solemn_collapse",
+  "emotion": "solemn_collapse_not_void_drone",
+  "emotional_profile": [
+    "solemn",
+    "fallen",
+    "clear"
+  ],
   "tempo_bpm": 54,
+  "target_bpm_range": [
+    52,
+    66
+  ],
   "scale_mode": "dark_minor_pentatonic",
+  "harmonic_color": "dark_minor_with_clear_fall_not_static_drone",
+  "instrumentation_palette": [
+    "low_drone",
+    "soft_choir",
+    "broken_bell",
+    "dark_sub",
+    "dust_noise"
+  ],
   "instrumentation": {
     "pad": "low_drone",
     "harmony": "soft_choir",
@@ -11,9 +27,13 @@
     "percussion": "none",
     "ornament": "dust_noise"
   },
+  "target_density": "low",
   "density": "low",
   "loop_length_seconds": 16,
   "melody_role": "falling_fragment",
   "percussion_role": "none_or_sparse",
-  "stinger_family": "defeat"
+  "melody_mandatory": true,
+  "percussion_mandatory": false,
+  "stinger_family": "defeat",
+  "stinger_family_exists": true
 }

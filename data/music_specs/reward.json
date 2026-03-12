@@ -1,8 +1,24 @@
 {
-  "context": "reward",
-  "emotion": "gentle_uplift",
+  "emotion": "luminous_relief",
+  "emotional_profile": [
+    "rewarding",
+    "light",
+    "brief"
+  ],
   "tempo_bpm": 70,
+  "target_bpm_range": [
+    68,
+    82
+  ],
   "scale_mode": "minor_pentatonic_bright_second",
+  "harmonic_color": "bright_minor_resolution",
+  "instrumentation_palette": [
+    "soft_choir",
+    "chimes",
+    "flute",
+    "soft_harmonic_bass",
+    "light_sparkles"
+  ],
   "instrumentation": {
     "pad": "soft_choir",
     "harmony": "chimes",
@@ -11,9 +27,13 @@
     "percussion": "none",
     "ornament": "light_sparkles"
   },
+  "target_density": "low",
   "density": "low",
   "loop_length_seconds": 16,
   "melody_role": "resolution_phrase",
   "percussion_role": "none",
-  "stinger_family": "reward"
+  "melody_mandatory": true,
+  "percussion_mandatory": false,
+  "stinger_family": "reward",
+  "stinger_family_exists": true
 }
