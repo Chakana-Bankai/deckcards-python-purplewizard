@@ -42,29 +42,38 @@ def _clear_strays(surface: pygame.Surface) -> pygame.Surface:
     return out
 
 
+def _dims(skeleton: dict[str, object]) -> tuple[pygame.Rect, int, int]:
+    rect: pygame.Rect = skeleton['rect']
+    unit_w = max(6, rect.width // 18)
+    unit_h = max(6, rect.height // 18)
+    return rect, unit_w, unit_h
+
+
 def _archon_body(layer: pygame.Surface, skeleton: dict[str, object], color):
+    rect, uw, uh = _dims(skeleton)
     head = skeleton['head_anchor']
     shoulders = (skeleton['shoulder_left_anchor'], skeleton['shoulder_right_anchor'])
     hips = skeleton['hip_anchor']
     feet = (skeleton['foot_left_anchor'], skeleton['foot_right_anchor'])
     robe = [
-        (shoulders[0][0] - 8, shoulders[0][1] + 2),
-        (head[0] - 10, head[1] + 4),
-        (shoulders[1][0] + 8, shoulders[1][1] + 2),
-        (hips[0] + 14, hips[1] + 18),
-        (feet[1][0] + 10, feet[1][1]),
-        (feet[0][0] - 10, feet[0][1]),
-        (hips[0] - 14, hips[1] + 18),
+        (shoulders[0][0] - uw * 2.2, shoulders[0][1] + uh * 0.4),
+        (head[0] - uw * 1.4, head[1] + uh * 0.5),
+        (shoulders[1][0] + uw * 2.2, shoulders[1][1] + uh * 0.4),
+        (hips[0] + uw * 2.8, hips[1] + uh * 2.3),
+        (feet[1][0] + uw * 1.8, feet[1][1]),
+        (feet[0][0] - uw * 1.8, feet[0][1]),
+        (hips[0] - uw * 2.8, hips[1] + uh * 2.3),
     ]
     _poly(layer, color, robe)
-    pygame.draw.ellipse(layer, color, pygame.Rect(int(head[0] - 9), int(head[1] - 11), 18, 22))
-    _capsule(layer, skeleton['shoulder_left_anchor'], skeleton['hand_left_anchor'], 10, color)
-    _capsule(layer, skeleton['shoulder_right_anchor'], skeleton['hand_right_anchor'], 10, color)
-    _capsule(layer, skeleton['hip_anchor'], skeleton['foot_left_anchor'], 12, color)
-    _capsule(layer, skeleton['hip_anchor'], skeleton['foot_right_anchor'], 12, color)
+    pygame.draw.ellipse(layer, color, pygame.Rect(int(head[0] - uw * 1.6), int(head[1] - uh * 2.0), int(uw * 3.2), int(uh * 3.8)))
+    _capsule(layer, skeleton['shoulder_left_anchor'], skeleton['hand_left_anchor'], uw * 2.0, color)
+    _capsule(layer, skeleton['shoulder_right_anchor'], skeleton['hand_right_anchor'], uw * 2.0, color)
+    _capsule(layer, skeleton['hip_anchor'], skeleton['foot_left_anchor'], uw * 2.2, color)
+    _capsule(layer, skeleton['hip_anchor'], skeleton['foot_right_anchor'], uw * 2.2, color)
 
 
 def _warrior_body(layer: pygame.Surface, skeleton: dict[str, object], color):
+    rect, uw, uh = _dims(skeleton)
     head = skeleton['head_anchor']
     torso = skeleton['torso_anchor']
     sl = skeleton['shoulder_left_anchor']
@@ -73,29 +82,30 @@ def _warrior_body(layer: pygame.Surface, skeleton: dict[str, object], color):
     fl = skeleton['foot_left_anchor']
     fr = skeleton['foot_right_anchor']
     chest = [
-        (sl[0] - 10, sl[1]),
-        (sr[0] + 10, sr[1]),
-        (torso[0] + 16, torso[1] + 18),
-        (hip[0] + 10, hip[1] + 10),
-        (hip[0] - 10, hip[1] + 10),
-        (torso[0] - 16, torso[1] + 18),
+        (sl[0] - uw * 2.2, sl[1] - uh * 0.2),
+        (sr[0] + uw * 2.2, sr[1] - uh * 0.2),
+        (torso[0] + uw * 3.0, torso[1] + uh * 2.4),
+        (hip[0] + uw * 2.4, hip[1] + uh * 1.3),
+        (hip[0] - uw * 2.4, hip[1] + uh * 1.3),
+        (torso[0] - uw * 3.0, torso[1] + uh * 2.4),
     ]
     _poly(layer, color, chest)
     hip_plate = [
-        (hip[0] - 18, hip[1] + 6),
-        (hip[0] + 18, hip[1] + 6),
-        (fr[0] - 6, fr[1] - 10),
-        (fl[0] + 6, fl[1] - 10),
+        (hip[0] - uw * 3.0, hip[1] + uh * 1.0),
+        (hip[0] + uw * 3.0, hip[1] + uh * 1.0),
+        (fr[0] - uw * 1.0, fr[1] - uh * 1.6),
+        (fl[0] + uw * 1.0, fl[1] - uh * 1.6),
     ]
     _poly(layer, color, hip_plate)
-    pygame.draw.ellipse(layer, color, pygame.Rect(int(head[0] - 12), int(head[1] - 12), 24, 24))
-    _capsule(layer, sl, skeleton['hand_left_anchor'], 12, color)
-    _capsule(layer, sr, skeleton['hand_right_anchor'], 13, color)
-    _capsule(layer, hip, fl, 13, color)
-    _capsule(layer, hip, fr, 13, color)
+    pygame.draw.ellipse(layer, color, pygame.Rect(int(head[0] - uw * 2.1), int(head[1] - uh * 2.1), int(uw * 4.2), int(uh * 4.2)))
+    _capsule(layer, sl, skeleton['hand_left_anchor'], uw * 2.4, color)
+    _capsule(layer, sr, skeleton['hand_right_anchor'], uw * 2.5, color)
+    _capsule(layer, hip, fl, uw * 2.6, color)
+    _capsule(layer, hip, fr, uw * 2.6, color)
 
 
 def _mage_body(layer: pygame.Surface, skeleton: dict[str, object], color):
+    rect, uw, uh = _dims(skeleton)
     head = skeleton['head_anchor']
     sl = skeleton['shoulder_left_anchor']
     sr = skeleton['shoulder_right_anchor']
@@ -103,20 +113,20 @@ def _mage_body(layer: pygame.Surface, skeleton: dict[str, object], color):
     fl = skeleton['foot_left_anchor']
     fr = skeleton['foot_right_anchor']
     robe = [
-        (sl[0] - 6, sl[1]),
-        (head[0], head[1] - 8),
-        (sr[0] + 6, sr[1]),
-        (hip[0] + 18, hip[1] + 12),
-        (fr[0] + 6, fr[1]),
-        (fl[0] - 6, fl[1]),
-        (hip[0] - 18, hip[1] + 12),
+        (sl[0] - uw * 1.6, sl[1]),
+        (head[0], head[1] - uh * 1.4),
+        (sr[0] + uw * 1.6, sr[1]),
+        (hip[0] + uw * 3.0, hip[1] + uh * 2.0),
+        (fr[0] + uw * 1.3, fr[1]),
+        (fl[0] - uw * 1.3, fl[1]),
+        (hip[0] - uw * 3.0, hip[1] + uh * 2.0),
     ]
     _poly(layer, color, robe)
-    pygame.draw.ellipse(layer, color, pygame.Rect(int(head[0] - 10), int(head[1] - 12), 20, 22))
-    _capsule(layer, sl, skeleton['hand_left_anchor'], 9, color)
-    _capsule(layer, sr, skeleton['hand_right_anchor'], 9, color)
-    _capsule(layer, hip, fl, 10, color)
-    _capsule(layer, hip, fr, 10, color)
+    pygame.draw.ellipse(layer, color, pygame.Rect(int(head[0] - uw * 1.8), int(head[1] - uh * 2.1), int(uw * 3.6), int(uh * 4.0)))
+    _capsule(layer, sl, skeleton['hand_left_anchor'], uw * 1.8, color)
+    _capsule(layer, sr, skeleton['hand_right_anchor'], uw * 1.8, color)
+    _capsule(layer, hip, fl, uw * 2.0, color)
+    _capsule(layer, hip, fr, uw * 2.0, color)
 
 
 def resolve_character_silhouette(size: tuple[int, int], skeleton: dict[str, object], archetype: str, color) -> pygame.Surface:
@@ -127,7 +137,6 @@ def resolve_character_silhouette(size: tuple[int, int], skeleton: dict[str, obje
         _mage_body(layer, skeleton, color)
     else:
         _warrior_body(layer, skeleton, color)
-    # Keep the hand/weapon bridge continuous without merging the whole weapon into subject mass.
-    _capsule(layer, skeleton['hand_right_anchor'], skeleton['weapon_origin_anchor'], max(4, int(skeleton['scale'] * 0.06)), color)
+    _capsule(layer, skeleton['hand_right_anchor'], skeleton['weapon_origin_anchor'], max(5, int(skeleton['scale'] * 0.08)), color)
     clean = _smooth_mask(layer)
     return _clear_strays(clean)

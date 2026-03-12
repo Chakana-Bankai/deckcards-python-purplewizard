@@ -23,12 +23,7 @@ from game.art.scene_engine import (
     _apply_contrast,
 )
 from game.art.art_reference_catalog import iter_category_entries
-from game.art.silhouette_builder import (
-    draw_focus_object,
-    draw_subject,
-    draw_subject_silhouette,
-    resolve_subject_layout,
-)
+from game.art.character_compositor import compose_character_subject
 from game.core.paths import art_reference_dir
 
 PIPELINE_ORDER = [
@@ -575,10 +570,11 @@ def _render_scene_variant(semantic: dict, refs: list[ReferenceChoice], palette, 
     _blit_environment_reference(environment_source, env_ref_path, palette)
     _draw_foreground_plane(environment_source, palette, rng)
 
-    silhouette_rect = draw_subject_silhouette(subject_mask_source, semantic, refs, fg_palette, rng)
-    subject_layout = resolve_subject_layout(semantic, refs, subject_rect=silhouette_rect)
-    draw_subject(subject_detail_source, semantic, refs, fg_palette, rng, silhouette_rect=silhouette_rect)
-    draw_focus_object(object_source, semantic, refs, fg_palette, rng, subject_rect=silhouette_rect)
+    character = compose_character_subject(comp_size, semantic, fg_palette, rng)
+    subject_mask_source.blit(character['subject_mask'], (0, 0))
+    subject_detail_source.blit(character['subject_detail'], (0, 0))
+    object_source.blit(character['object_layer'], (0, 0))
+    subject_layout = character['layout']
     _draw_symbol_layer(symbol_source, semantic, fg_palette, subject_layout, sectors)
     draw_fx(
         fx_source,
@@ -594,8 +590,8 @@ def _render_scene_variant(semantic: dict, refs: list[ReferenceChoice], palette, 
     object_mask = _dilate_mask(_alpha_mask(object_source, 72), 2)
     fx_mask = _alpha_mask(fx_source, 20)
     symbol_mask = _alpha_mask(symbol_source, 20)
-    subject_metric_mask = _dilate_mask(_alpha_mask(subject_body_source, 72), 11)
-    object_metric_mask = _dilate_mask(object_mask, 1)
+    subject_metric_mask = _dilate_mask(_alpha_mask(subject_body_source, 72), 15)
+    object_metric_mask = _dilate_mask(object_mask, 2)
     _clip_layer_alpha(symbol_source, 24)
     _clip_layer_alpha(fx_source, 32)
 
