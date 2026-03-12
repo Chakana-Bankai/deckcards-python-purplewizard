@@ -1,0 +1,14 @@
+card_canonization_report
+total_cards=300
+faction_counts={'archon': 75, 'cosmic_warrior': 75, 'harmony_guardian': 75, 'oracle_of_fate': 75}
+rarity_counts={'common': 96, 'enemy-only singular': 1, 'epic': 38, 'legendary': 9, 'rare': 156}
+ai_role_counts={'attacker': 88, 'controller': 63, 'summoner': 48, 'support': 22, 'tank': 79}
+playable_archetypes=3
+enemy_factions=1
+notes=runtime not replaced; canonical dataset generated for freeze
+
+faction_rules:
+- cosmic_warrior: primary=direct damage and rupture pressure secondary=tempo energy and aggression chaining win_condition=burst through repeated attack turns and finishers
+- harmony_guardian: primary=block conversion and status protection secondary=weaken, sustain and formation control win_condition=survive spikes and convert defense into inevitability
+- oracle_of_fate: primary=draw, scry, ritual setup and symbolic control secondary=debuff, summon and harmony routing win_condition=assemble inevitability through knowledge and ritual engines
+- archon: enemy deck family across weak/medium/advanced/elite/boss

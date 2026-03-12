@@ -1,0 +1,23 @@
+card_canon_integration_report
+status=partial_runtime_integration
+canonical_sources=
+- data/cards/card_canon_300.json
+- data/cards/enemy_deck_progression.json
+- data/cards/card_schema.json
+
+integrated_modules=
+- game/cards/card_canon_registry.py
+- game/systems/enemy_deck_system.py
+- game/ui/screens/codex.py
+
+runtime_behavior=
+- Codex now loads canonical 300-card payloads when available.
+- Enemy deck system now exposes canonical enemy progression helpers.
+- Legacy codex/card sources remain as fallback for safe compatibility.
+
+not_yet_switched=
+- Combat runtime still uses card_dna catalog as primary combat payload source.
+- Main content bootstrap still reads legacy card/enemy JSON sources in several paths.
+
+recommended_next_step=
+- Wire combat deck generation and enemy run setup to canonical card canon and enemy progression behind a feature flag.

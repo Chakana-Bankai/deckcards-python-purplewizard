@@ -1,0 +1,108 @@
+theme_builder_report
+builder=layered_theme_builder_v2
+layers=pad,harmony,melody,bass,percussion,ornament
+
+[studio_intro]
+density=low_to_mid
+tempo_bpm_spec=68
+melody_role=motif_introduction
+percussion_role=none_or_soft_hits
+layer_presence={'pad': 0.3, 'harmony': 0.18, 'melody': 0.2, 'bass': 0.14, 'percussion': 0.08, 'ornament': 0.08}
+
+[main_menu]
+density=low
+tempo_bpm_spec=62
+melody_role=clear_sacred_motif
+percussion_role=sparse_pulse
+layer_presence={'pad': 0.34, 'harmony': 0.18, 'melody': 0.2, 'bass': 0.12, 'percussion': 0.05, 'ornament': 0.07}
+
+[map_exploration]
+density=low_to_mid
+tempo_bpm_spec=72
+melody_role=wandering_phrase
+percussion_role=walking_pulse
+layer_presence={'pad': 0.3, 'harmony': 0.18, 'melody': 0.2, 'bass': 0.14, 'percussion': 0.08, 'ornament': 0.08}
+
+[combat_normal]
+density=mid
+tempo_bpm_spec=86
+melody_role=short_aggressive_cells
+percussion_role=main_driver
+layer_presence={'pad': 0.24, 'harmony': 0.18, 'melody': 0.22, 'bass': 0.16, 'percussion': 0.12, 'ornament': 0.08}
+
+[combat_elite]
+density=mid_to_high
+tempo_bpm_spec=94
+melody_role=compressed_motif_fragments
+percussion_role=aggressive_driver
+layer_presence={'pad': 0.2, 'harmony': 0.18, 'melody': 0.22, 'bass': 0.18, 'percussion': 0.16, 'ornament': 0.08}
+
+[combat_boss]
+density=high
+tempo_bpm_spec=58
+melody_role=heavy_declared_motif
+percussion_role=phase_markers_and_pulse
+layer_presence={'pad': 0.16, 'harmony': 0.18, 'melody': 0.22, 'bass': 0.18, 'percussion': 0.2, 'ornament': 0.08}
+
+[shop]
+density=low
+tempo_bpm_spec=66
+melody_role=short_inviting_phrase
+percussion_role=minimal
+layer_presence={'pad': 0.34, 'harmony': 0.18, 'melody': 0.2, 'bass': 0.12, 'percussion': 0.05, 'ornament': 0.07}
+
+[reward]
+density=low
+tempo_bpm_spec=70
+melody_role=resolution_phrase
+percussion_role=none
+layer_presence={'pad': 0.34, 'harmony': 0.18, 'melody': 0.2, 'bass': 0.12, 'percussion': 0.05, 'ornament': 0.07}
+
+[pack_open]
+density=mid
+tempo_bpm_spec=80
+melody_role=ascending_tease
+percussion_role=light_ticks
+layer_presence={'pad': 0.24, 'harmony': 0.18, 'melody': 0.22, 'bass': 0.16, 'percussion': 0.12, 'ornament': 0.08}
+
+[rare_reveal]
+density=mid
+tempo_bpm_spec=76
+melody_role=ascending_reveal
+percussion_role=minimal_hits
+layer_presence={'pad': 0.24, 'harmony': 0.18, 'melody': 0.22, 'bass': 0.16, 'percussion': 0.12, 'ornament': 0.08}
+
+[legendary_reveal]
+density=mid_to_high
+tempo_bpm_spec=64
+melody_role=large_declared_arc
+percussion_role=ceremonial_hits
+layer_presence={'pad': 0.2, 'harmony': 0.18, 'melody': 0.22, 'bass': 0.18, 'percussion': 0.16, 'ornament': 0.08}
+
+[victory]
+density=mid
+tempo_bpm_spec=78
+melody_role=resolved_motif
+percussion_role=light_celebratory
+layer_presence={'pad': 0.24, 'harmony': 0.18, 'melody': 0.22, 'bass': 0.16, 'percussion': 0.12, 'ornament': 0.08}
+
+[defeat]
+density=low
+tempo_bpm_spec=54
+melody_role=falling_fragment
+percussion_role=none_or_sparse
+layer_presence={'pad': 0.34, 'harmony': 0.18, 'melody': 0.2, 'bass': 0.12, 'percussion': 0.05, 'ornament': 0.07}
+
+[codex]
+density=low
+tempo_bpm_spec=60
+melody_role=curious_short_phrase
+percussion_role=paper_ticks
+layer_presence={'pad': 0.34, 'harmony': 0.18, 'melody': 0.2, 'bass': 0.12, 'percussion': 0.05, 'ornament': 0.07}
+
+[credits]
+density=low_to_mid
+tempo_bpm_spec=64
+melody_role=full_motif_reprise
+percussion_role=soft_pulse
+layer_presence={'pad': 0.3, 'harmony': 0.18, 'melody': 0.2, 'bass': 0.14, 'percussion': 0.08, 'ornament': 0.08}

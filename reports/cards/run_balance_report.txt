@@ -1,0 +1,19 @@
+run_balance_report
+cosmic_warrior:
+- cost=0 cards=2 damage_range=(12, 12) block_range=-
+- cost=1 cards=25 damage_range=(4, 6) block_range=-
+- cost=2 cards=35 damage_range=(7, 8) block_range=(8, 8)
+- cost=3 cards=13 damage_range=(10, 11) block_range=(10, 10)
+harmony_guardian:
+- cost=0 cards=2 damage_range=- block_range=(12, 12)
+- cost=1 cards=22 damage_range=(4, 6) block_range=(5, 7)
+- cost=2 cards=37 damage_range=(7, 9) block_range=(8, 9)
+- cost=3 cards=13 damage_range=(10, 10) block_range=(10, 10)
+- cost=4 cards=1 damage_range=(12, 12) block_range=(12, 12)
+oracle_of_fate:
+- cost=0 cards=2 damage_range=- block_range=-
+- cost=1 cards=18 damage_range=(4, 6) block_range=-
+- cost=2 cards=35 damage_range=(7, 7) block_range=(8, 8)
+- cost=3 cards=18 damage_range=(10, 10) block_range=(10, 10)
+- cost=4 cards=2 damage_range=- block_range=-
+playable_run_readiness=all_three_have_attack_block_engine_finisher_coverage

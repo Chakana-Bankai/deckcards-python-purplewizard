@@ -1,0 +1,59 @@
+{
+  "version": "card_schema_v1",
+  "required_fields": [
+    "id",
+    "name",
+    "faction",
+    "tier",
+    "rarity",
+    "type",
+    "cost",
+    "tags",
+    "effects",
+    "ai_role",
+    "art",
+    "lore",
+    "codex_entry"
+  ],
+  "field_notes": {
+    "faction": [
+      "cosmic_warrior",
+      "harmony_guardian",
+      "oracle_of_fate",
+      "archon"
+    ],
+    "tier": [
+      "starter",
+      "core",
+      "advanced",
+      "mythic",
+      "weak",
+      "medium",
+      "advanced",
+      "elite",
+      "boss"
+    ],
+    "rarity": [
+      "common",
+      "rare",
+      "epic",
+      "legendary",
+      "enemy-only singular"
+    ],
+    "type": [
+      "attack",
+      "guard",
+      "skill",
+      "ritual",
+      "curse"
+    ],
+    "ai_role": [
+      "attacker",
+      "tank",
+      "support",
+      "controller",
+      "summoner",
+      "artifact"
+    ]
+  }
+}

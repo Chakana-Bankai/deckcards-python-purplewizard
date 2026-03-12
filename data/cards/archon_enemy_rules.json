@@ -1,0 +1,81 @@
+{
+  "weak": {
+    "deck_size": 12,
+    "power_level": "entry pressure",
+    "signature_mechanics": [
+      "break",
+      "chip damage"
+    ],
+    "visual_art_language": {
+      "shape": "circle",
+      "palette": "obsidian-crimson-violet",
+      "weapon_bias": "staff/claw/relic",
+      "silhouette": "severe ritual"
+    },
+    "lore_tone": "probing corruption"
+  },
+  "medium": {
+    "deck_size": 16,
+    "power_level": "steady oppression",
+    "signature_mechanics": [
+      "break",
+      "weak",
+      "vulnerable"
+    ],
+    "visual_art_language": {
+      "shape": "circle",
+      "palette": "obsidian-crimson-violet",
+      "weapon_bias": "staff/claw/relic",
+      "silhouette": "severe ritual"
+    },
+    "lore_tone": "encroaching void liturgy"
+  },
+  "advanced": {
+    "deck_size": 20,
+    "power_level": "control and escalation",
+    "signature_mechanics": [
+      "rupture",
+      "debuff",
+      "draw denial"
+    ],
+    "visual_art_language": {
+      "shape": "circle",
+      "palette": "obsidian-crimson-violet",
+      "weapon_bias": "staff/claw/relic",
+      "silhouette": "severe ritual"
+    },
+    "lore_tone": "structured profanation"
+  },
+  "elite": {
+    "deck_size": 24,
+    "power_level": "spike turns and ritual pressure",
+    "signature_mechanics": [
+      "ritual",
+      "rupture",
+      "finisher spikes"
+    ],
+    "visual_art_language": {
+      "shape": "circle",
+      "palette": "obsidian-crimson-violet",
+      "weapon_bias": "staff/claw/relic",
+      "silhouette": "severe ritual"
+    },
+    "lore_tone": "cathedral-scale threat"
+  },
+  "boss": {
+    "deck_size": 28,
+    "power_level": "run-defining encounter",
+    "signature_mechanics": [
+      "multi-phase ritual",
+      "break dominance",
+      "elite finisher"
+    ],
+    "visual_art_language": {
+      "shape": "circle",
+      "palette": "obsidian-crimson-violet",
+      "weapon_bias": "staff/claw/relic",
+      "silhouette": "severe ritual"
+    },
+    "lore_tone": "cosmic desecration"
+  }
+}

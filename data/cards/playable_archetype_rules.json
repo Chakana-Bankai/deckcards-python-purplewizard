@@ -1,0 +1,143 @@
+{
+  "cosmic_warrior": {
+    "primary_mechanic": "direct damage and rupture pressure",
+    "secondary_mechanic": "tempo energy and aggression chaining",
+    "win_condition": "burst through repeated attack turns and finishers",
+    "effect_ranges_by_cost": {
+      "1": {
+        "damage": [
+          4,
+          6
+        ],
+        "block": [
+          5,
+          7
+        ]
+      },
+      "2": {
+        "damage": [
+          7,
+          10
+        ],
+        "block": [
+          8,
+          12
+        ]
+      },
+      "3": {
+        "damage": [
+          10,
+          15
+        ],
+        "block": [
+          10,
+          14
+        ]
+      },
+      "4+": {
+        "focus": "finisher / ritual / elite effects"
+      }
+    },
+    "visual_language": {
+      "shape": "triangle",
+      "palette": "gold-amber-ivory",
+      "weapon_bias": "spear/blade",
+      "silhouette": "heroic angular"
+    },
+    "lore_identity": "astral shock troops of Chakana, carriers of radiant offensive will"
+  },
+  "harmony_guardian": {
+    "primary_mechanic": "block conversion and status protection",
+    "secondary_mechanic": "weaken, sustain and formation control",
+    "win_condition": "survive spikes and convert defense into inevitability",
+    "effect_ranges_by_cost": {
+      "1": {
+        "damage": [
+          4,
+          5
+        ],
+        "block": [
+          5,
+          7
+        ]
+      },
+      "2": {
+        "damage": [
+          6,
+          8
+        ],
+        "block": [
+          8,
+          12
+        ]
+      },
+      "3": {
+        "damage": [
+          8,
+          11
+        ],
+        "block": [
+          10,
+          14
+        ]
+      },
+      "4+": {
+        "focus": "ward, sustain, elite defense rituals"
+      }
+    },
+    "visual_language": {
+      "shape": "diamond",
+      "palette": "jade-teal-stone",
+      "weapon_bias": "shield/staff",
+      "silhouette": "anchored defensive"
+    },
+    "lore_identity": "keepers of balance, stone, spirit and protective resonance"
+  },
+  "oracle_of_fate": {
+    "primary_mechanic": "draw, scry, ritual setup and symbolic control",
+    "secondary_mechanic": "debuff, summon and harmony routing",
+    "win_condition": "assemble inevitability through knowledge and ritual engines",
+    "effect_ranges_by_cost": {
+      "1": {
+        "damage": [
+          4,
+          5
+        ],
+        "block": [
+          5,
+          6
+        ]
+      },
+      "2": {
+        "damage": [
+          6,
+          8
+        ],
+        "block": [
+          7,
+          10
+        ]
+      },
+      "3": {
+        "damage": [
+          8,
+          12
+        ],
+        "block": [
+          9,
+          13
+        ]
+      },
+      "4+": {
+        "focus": "ritual, summon, elite setup effects"
+      }
+    },
+    "visual_language": {
+      "shape": "rectangle",
+      "palette": "violet-cyan-pearl",
+      "weapon_bias": "focus/book/staff",
+      "silhouette": "vertical symbolic"
+    },
+    "lore_identity": "interpreters of sacred pattern, divination and hidden cadence"
+  }
+}

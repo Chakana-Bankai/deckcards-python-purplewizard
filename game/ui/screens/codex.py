@@ -7,6 +7,7 @@ import pygame
 
 from game.core.paths import data_dir
 from game.ui.components.card_renderer import render_card_preview
+from game.cards.card_canon_registry import load_canon_codex_payloads
 from game.ui.theme import UI_THEME
 from game.ui.system.components import UIButton, UIPanel, UILabel
 from game.ui.system.safety import wrap_lines, clamp_single_line
@@ -37,6 +38,7 @@ class CodexScreen:
         self.arconte_set_cards = self._load_arconte_set_cards()
         self.lore_set_relics = self._load_lore_set_relics()
         self.archon_profiles = self._load_archon_profiles()
+        self.canon_cards = self._load_canon_cards()
         default_section = next((str(s.get("id", "")) for s in self.sections if str(s.get("id", "")) == "cards"), "")
         self.active_section_id = default_section or (self.sections[0].get("id", "lore") if self.sections else "lore")
         self.gallery_index = 0
@@ -135,6 +137,14 @@ class CodexScreen:
                 return out
         return []
 
+
+    def _load_canon_cards(self) -> list[dict]:
+        try:
+            cards = load_canon_codex_payloads()
+            return list(cards or [])
+        except Exception:
+            return []
+
     def _build_section_buttons(self):
         self.section_buttons = []
         y = self.left_panel.y + 16
@@ -205,18 +215,21 @@ class CodexScreen:
         return self._display_text(raw)
 
     def _codex_cards(self) -> list[dict]:
-        base_payload = self.lore_set_cards if isinstance(self.lore_set_cards, dict) else {}
-        base_items = base_payload.get("cards", []) if isinstance(base_payload.get("cards", []), list) else []
+        if self.canon_cards:
+            items = list(self.canon_cards)
+        else:
+            base_payload = self.lore_set_cards if isinstance(self.lore_set_cards, dict) else {}
+            base_items = base_payload.get("cards", []) if isinstance(base_payload.get("cards", []), list) else []
 
-        hip_payload = self.hiperboria_set_cards if isinstance(self.hiperboria_set_cards, dict) else {}
-        hip_items = hip_payload.get("cards", []) if isinstance(hip_payload.get("cards", []), list) else []
-        arc_payload = self.arconte_set_cards if isinstance(self.arconte_set_cards, dict) else {}
-        arc_items = arc_payload.get("cards", []) if isinstance(arc_payload.get("cards", []), list) else []
+            hip_payload = self.hiperboria_set_cards if isinstance(self.hiperboria_set_cards, dict) else {}
+            hip_items = hip_payload.get("cards", []) if isinstance(hip_payload.get("cards", []), list) else []
+            arc_payload = self.arconte_set_cards if isinstance(self.arconte_set_cards, dict) else {}
+            arc_items = arc_payload.get("cards", []) if isinstance(arc_payload.get("cards", []), list) else []
 
-        # Codex must expose expansion encyclopedia regardless of acquisition gating.
-        items = list(base_items)
-        items.extend(list(hip_items))
-        items.extend(list(arc_items))
+            # Codex must expose expansion encyclopedia regardless of acquisition gating.
+            items = list(base_items)
+            items.extend(list(hip_items))
+            items.extend(list(arc_items))
         if not items:
             return []
 
@@ -241,9 +254,9 @@ class CodexScreen:
             full.setdefault("id", cid)
             full.setdefault("name_key", str(c.get("name", cid)))
             full["name_key"] = self._display_card_name(full, str(c.get("name", cid)))
-            full.setdefault("text_key", str(c.get("gameplay_text", "")))
+            full.setdefault("text_key", str(c.get("gameplay_text", c.get("codex_summary", ""))))
             full.setdefault("archetype", str(c.get("archetype", "")))
-            full.setdefault("lore_text", str(c.get("lore_text", "")))
+            full.setdefault("lore_text", str(c.get("lore_text", c.get("codex_entry", {}).get("lore", ""))))
             lore = str(full.get("lore_text", "") or "").strip()
             if (str(full.get("set", "")).lower() in {"arconte", "hiperboria", "hiperborea"} or str(full.get("id", "")).lower().startswith(("arc_", "hip_"))) and lore.lower() in {
                 "la chakana sostiene el balance cosmico ante los arcontes y el eco de hiperborea.",

@@ -13,6 +13,8 @@ MusicState = Literal[
     "shop",
     "reward",
     "dialogue",
+    "codex",
+    "credits",
     "defeat",
     "victory",
 ]
@@ -38,6 +40,8 @@ class MusicStateMachine:
             "shop",
             "reward",
             "dialogue",
+            "codex",
+            "credits",
             "defeat",
             "victory",
         }:

@@ -1,0 +1,240 @@
+{
+  "studio_intro": {
+    "emotion": "sacred awakening",
+    "tempo_bpm": 68,
+    "scale_mode": "minor pentatonic with added second",
+    "instrumentation": [
+      "airy_choir",
+      "bell_chimes",
+      "quena_like_flute",
+      "sub_bass_drone"
+    ],
+    "density": "low_to_mid",
+    "loop_length_seconds": 28,
+    "melody_role": "motif_introduction",
+    "percussion_role": "none_or_soft_hits",
+    "stinger_family": "studio"
+  },
+  "main_menu": {
+    "emotion": "mystic invitation",
+    "tempo_bpm": 62,
+    "scale_mode": "minor pentatonic with added sixth",
+    "instrumentation": [
+      "airy_choir",
+      "quena_like_flute",
+      "wind_ambience",
+      "soft_frame_drum"
+    ],
+    "density": "low",
+    "loop_length_seconds": 24,
+    "melody_role": "clear_sacred_motif",
+    "percussion_role": "sparse_pulse",
+    "stinger_family": "ui_soft"
+  },
+  "map_exploration": {
+    "emotion": "pilgrimage wonder",
+    "tempo_bpm": 72,
+    "scale_mode": "minor pentatonic with added second",
+    "instrumentation": [
+      "choir_pad",
+      "breath_flute",
+      "shakers",
+      "stone_bells"
+    ],
+    "density": "low_to_mid",
+    "loop_length_seconds": 24,
+    "melody_role": "wandering_phrase",
+    "percussion_role": "walking_pulse",
+    "stinger_family": "travel"
+  },
+  "combat_normal": {
+    "emotion": "ritual pressure",
+    "tempo_bpm": 86,
+    "scale_mode": "minor pentatonic with tritone accent",
+    "instrumentation": [
+      "low_choir",
+      "hybrid_brass_synth",
+      "tribal_drums",
+      "ritual_bass"
+    ],
+    "density": "mid",
+    "loop_length_seconds": 24,
+    "melody_role": "short_aggressive_cells",
+    "percussion_role": "main_driver",
+    "stinger_family": "combat"
+  },
+  "combat_elite": {
+    "emotion": "escalating ceremony",
+    "tempo_bpm": 94,
+    "scale_mode": "minor pentatonic with tritone accent",
+    "instrumentation": [
+      "low_choir",
+      "hybrid_brass_synth",
+      "tribal_drums",
+      "metal_hits"
+    ],
+    "density": "mid_to_high",
+    "loop_length_seconds": 24,
+    "melody_role": "compressed_motif_fragments",
+    "percussion_role": "aggressive_driver",
+    "stinger_family": "combat_elite"
+  },
+  "combat_boss": {
+    "emotion": "mythic threat",
+    "tempo_bpm": 58,
+    "scale_mode": "phrygian_like pentatonic hybrid",
+    "instrumentation": [
+      "deep_ritual_choir",
+      "ritual_horn",
+      "war_drums",
+      "void_resonance"
+    ],
+    "density": "high",
+    "loop_length_seconds": 24,
+    "melody_role": "heavy_declared_motif",
+    "percussion_role": "phase_markers_and_pulse",
+    "stinger_family": "boss"
+  },
+  "shop": {
+    "emotion": "sanctuary barter",
+    "tempo_bpm": 66,
+    "scale_mode": "minor pentatonic with added sixth",
+    "instrumentation": [
+      "soft_choir",
+      "glass_bells",
+      "breath_flute",
+      "paper_perc"
+    ],
+    "density": "low",
+    "loop_length_seconds": 20,
+    "melody_role": "short_inviting_phrase",
+    "percussion_role": "minimal",
+    "stinger_family": "shop"
+  },
+  "reward": {
+    "emotion": "gentle uplift",
+    "tempo_bpm": 70,
+    "scale_mode": "minor pentatonic with bright second",
+    "instrumentation": [
+      "soft_choir",
+      "chimes",
+      "flute"
+    ],
+    "density": "low",
+    "loop_length_seconds": 16,
+    "melody_role": "resolution_phrase",
+    "percussion_role": "none",
+    "stinger_family": "reward"
+  },
+  "pack_open": {
+    "emotion": "anticipation",
+    "tempo_bpm": 80,
+    "scale_mode": "minor pentatonic with bright lift",
+    "instrumentation": [
+      "glass_plucks",
+      "bells",
+      "soft_bass",
+      "sparkle_noise"
+    ],
+    "density": "mid",
+    "loop_length_seconds": 12,
+    "melody_role": "ascending_tease",
+    "percussion_role": "light_ticks",
+    "stinger_family": "pack"
+  },
+  "rare_reveal": {
+    "emotion": "sacred discovery",
+    "tempo_bpm": 76,
+    "scale_mode": "lydian_tinted pentatonic",
+    "instrumentation": [
+      "choir",
+      "bells",
+      "flute",
+      "shimmer_pad"
+    ],
+    "density": "mid",
+    "loop_length_seconds": 12,
+    "melody_role": "ascending_reveal",
+    "percussion_role": "minimal_hits",
+    "stinger_family": "reveal_rare"
+  },
+  "legendary_reveal": {
+    "emotion": "mythic revelation",
+    "tempo_bpm": 64,
+    "scale_mode": "phrygian_pentatonic hybrid",
+    "instrumentation": [
+      "choir",
+      "ritual_horn",
+      "deep_bells",
+      "void_shimmer"
+    ],
+    "density": "mid_to_high",
+    "loop_length_seconds": 14,
+    "melody_role": "large_declared_arc",
+    "percussion_role": "ceremonial_hits",
+    "stinger_family": "reveal_legendary"
+  },
+  "victory": {
+    "emotion": "earned ascent",
+    "tempo_bpm": 78,
+    "scale_mode": "bright minor pentatonic",
+    "instrumentation": [
+      "choir",
+      "flute",
+      "bells",
+      "light_drum"
+    ],
+    "density": "mid",
+    "loop_length_seconds": 16,
+    "melody_role": "resolved_motif",
+    "percussion_role": "light_celebratory",
+    "stinger_family": "victory"
+  },
+  "defeat": {
+    "emotion": "solemn collapse",
+    "tempo_bpm": 54,
+    "scale_mode": "dark minor pentatonic",
+    "instrumentation": [
+      "low_drone",
+      "soft_choir",
+      "broken_bell"
+    ],
+    "density": "low",
+    "loop_length_seconds": 16,
+    "melody_role": "falling_fragment",
+    "percussion_role": "none_or_sparse",
+    "stinger_family": "defeat"
+  },
+  "codex": {
+    "emotion": "scholarly mysticism",
+    "tempo_bpm": 60,
+    "scale_mode": "minor pentatonic with suspended second",
+    "instrumentation": [
+      "paper_perc",
+      "soft_choir",
+      "flute",
+      "codex_ambience"
+    ],
+    "density": "low",
+    "loop_length_seconds": 18,
+    "melody_role": "curious_short_phrase",
+    "percussion_role": "paper_ticks",
+    "stinger_family": "codex"
+  },
+  "credits": {
+    "emotion": "reflective transcendence",
+    "tempo_bpm": 64,
+    "scale_mode": "minor pentatonic with sixth",
+    "instrumentation": [
+      "choir",
+      "flute",
+      "bells",
+      "soft_harmonic_bass"
+    ],
+    "density": "low_to_mid",
+    "loop_length_seconds": 24,
+    "melody_role": "full_motif_reprise",
+    "percussion_role": "soft_pulse",
+    "stinger_family": "credits"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "ui": {
+    "hover": {
+      "family": "ui_soft",
+      "pitch": 392,
+      "duration": 0.08
+    },
+    "select": {
+      "family": "ui_soft",
+      "pitch": 440,
+      "duration": 0.11
+    },
+    "confirm": {
+      "family": "ui_confirm",
+      "pitch": 523,
+      "duration": 0.16
+    },
+    "cancel": {
+      "family": "ui_cancel",
+      "pitch": 220,
+      "duration": 0.14
+    },
+    "invalid": {
+      "family": "ui_cancel",
+      "pitch": 180,
+      "duration": 0.12
+    },
+    "menu_open": {
+      "family": "ui_soft",
+      "pitch": 330,
+      "duration": 0.13
+    },
+    "menu_close": {
+      "family": "ui_soft",
+      "pitch": 294,
+      "duration": 0.11
+    },
+    "codex_open": {
+      "family": "codex",
+      "pitch": 370,
+      "duration": 0.18
+    },
+    "codex_close": {
+      "family": "codex",
+      "pitch": 278,
+      "duration": 0.14
+    }
+  },
+  "gameplay": {
+    "draw_card": {
+      "family": "cardflow",
+      "pitch": 410,
+      "duration": 0.12
+    },
+    "play_card": {
+      "family": "cardflow",
+      "pitch": 320,
+      "duration": 0.18
+    },
+    "attack_light": {
+      "family": "impact_light",
+      "pitch": 160,
+      "duration": 0.16
+    },
+    "attack_heavy": {
+      "family": "impact_heavy",
+      "pitch": 96,
+      "duration": 0.22
+    },
+    "block": {
+      "family": "guard",
+      "pitch": 260,
+      "duration": 0.18
+    },
+    "heal": {
+      "family": "restoration",
+      "pitch": 280,
+      "duration": 0.2
+    },
+    "buff": {
+      "family": "ascend",
+      "pitch": 360,
+      "duration": 0.18
+    },
+    "debuff": {
+      "family": "decay",
+      "pitch": 190,
+      "duration": 0.18
+    },
+    "ritual": {
+      "family": "ritual",
+      "pitch": 210,
+      "duration": 0.26
+    },
+    "seal_apply": {
+      "family": "ritual",
+      "pitch": 240,
+      "duration": 0.22
+    },
+    "combo_trigger": {
+      "family": "combo",
+      "pitch": 480,
+      "duration": 0.16
+    },
+    "harmony_gain": {
+      "family": "ascend",
+      "pitch": 430,
+      "duration": 0.16
+    },
+    "enemy_turn": {
+      "family": "warning",
+      "pitch": 140,
+      "duration": 0.16
+    },
+    "boss_phase": {
+      "family": "boss_warning",
+      "pitch": 120,
+      "duration": 0.28
+    }
+  }
+}

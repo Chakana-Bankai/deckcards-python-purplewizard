@@ -5,6 +5,7 @@ from typing import Any
 from game.core.paths import data_dir
 from game.core.safe_io import load_json
 from game.systems.enemy_intent_deck import build_enemy_intent_deck
+from game.cards.card_canon_registry import load_enemy_deck_progression as load_canonical_enemy_deck_progression
 
 
 ENEMY_DECK_ALIAS = {
@@ -105,3 +106,18 @@ def resolve_enemy_deck(enemy_row: dict[str, Any], all_decks: dict[str, list[dict
         return [dict(c) for c in decks[alias]]
 
     return _cards_from_intents(row)
+
+
+def load_enemy_deck_progression() -> dict[str, dict[str, list[str]]]:
+    try:
+        payload = load_canonical_enemy_deck_progression()
+        return payload if isinstance(payload, dict) else {}
+    except Exception:
+        return {}
+
+
+def resolve_enemy_progression_deck(stage: str, deck_name: str) -> list[str]:
+    progression = load_enemy_deck_progression()
+    stage_payload = progression.get(str(stage), {}) if isinstance(progression, dict) else {}
+    cards = stage_payload.get(str(deck_name), []) if isinstance(stage_payload, dict) else []
+    return [str(card_id) for card_id in list(cards or []) if str(card_id).strip()]

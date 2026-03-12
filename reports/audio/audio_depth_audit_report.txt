@@ -1,0 +1,78 @@
+audio_depth_audit_report
+
+[current_themes]
+menu=menu_a
+map=map_ukhu_a,map_kay_a,map_hanan_a
+combat=combat_a,combat_elite_a,combat_boss_a
+shop=shop_a
+ending=victory_a,defeat_a
+
+[current_ambient_tracks]
+gaia_mountain_wind
+temple_resonance
+archon_void_drones
+shop_ambience
+codex_ambience
+
+[current_stingers]
+combat_start
+elite_encounter
+boss_reveal
+victory
+defeat
+level_up
+relic_gain
+pack_open
+seal_ready
+harmony_ready
+studio_intro
+
+[current_ui_sounds]
+button_click
+card_play
+card_invalid
+gold_gain
+xp_gain
+damage_hit
+heal
+seal_activate
+relic_pick
+
+[current_event_state_routing]
+menu -> menu
+map -> map_kay
+combat -> combat
+boss -> combat_boss
+shop -> shop
+reward -> victory
+codex -> missing
+credits -> victory
+dialogue -> shop
+
+[missing_contexts]
+studio_intro
+main_menu
+map_exploration
+combat_normal
+reward
+pack_open
+rare_reveal
+legendary_reveal
+codex
+credits
+ui_confirm
+ui_cancel
+draw_card
+play_card
+
+[monotony_sources]
+1. context_specs are too few and rely on broad aliases that collapse identity.
+2. reward and codex do not have their own routed music contexts.
+3. credits reuses victory, flattening ending identity.
+4. long bgm files carry useful loop closure around 24s, then keep redundant tail.
+5. stingers are recognisable but still use small fixed phrases and limited families.
+6. ui/gameplay sfx table is incomplete, so many actions share the same sonic gesture.
+7. synthesis favours pad+bass+motif with low layer separation; percussion and ornament are underused.
+
+[recommendation]
+Introduce canonical context specs, a layered theme builder, context-specific stinger families, a complete UI/gameplay SFX registry, and explicit state routing for codex/credits/reward before wider soundtrack regeneration.
