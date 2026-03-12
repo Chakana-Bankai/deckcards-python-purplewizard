@@ -1,243 +1,243 @@
 {
   "items": {
-    "campo_protector": {
-      "path": "game/assets/sprites/cards/campo_protector.png",
+    "BASE-GUIDE-GUARD-CAMPO_PROTECTOR": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-CAMPO_PROTECTOR.png",
       "mode": "missing_only"
     },
-    "chakana_de_luz": {
-      "path": "game/assets/sprites/cards/chakana_de_luz.png",
+    "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-CHAKANA_DE_LUZ.png",
       "mode": "missing_only"
     },
-    "cw_lore_02": {
-      "path": "game/assets/sprites/cards/cw_lore_02.png",
+    "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA.png",
       "mode": "missing_only"
     },
-    "cw_lore_03": {
-      "path": "game/assets/sprites/cards/cw_lore_03.png",
+    "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA.png",
       "mode": "missing_only"
     },
-    "cw_lore_04": {
-      "path": "game/assets/sprites/cards/cw_lore_04.png",
+    "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA.png",
       "mode": "missing_only"
     },
-    "cw_lore_08": {
-      "path": "game/assets/sprites/cards/cw_lore_08.png",
+    "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA.png",
       "mode": "missing_only"
     },
-    "cw_lore_09": {
-      "path": "game/assets/sprites/cards/cw_lore_09.png",
+    "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA.png",
       "mode": "missing_only"
     },
-    "cw_lore_10": {
-      "path": "game/assets/sprites/cards/cw_lore_10.png",
+    "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA.png",
       "mode": "missing_only"
     },
-    "cw_lore_14": {
-      "path": "game/assets/sprites/cards/cw_lore_14.png",
+    "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA.png",
       "mode": "missing_only"
     },
-    "cw_lore_18": {
-      "path": "game/assets/sprites/cards/cw_lore_18.png",
+    "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA.png",
       "mode": "missing_only"
     },
-    "cw_lore_23": {
-      "path": "game/assets/sprites/cards/cw_lore_23.png",
+    "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA.png",
       "mode": "missing_only"
     },
-    "cw_lore_29": {
-      "path": "game/assets/sprites/cards/cw_lore_29.png",
+    "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA.png",
       "mode": "missing_only"
     },
-    "eco_de_sabiduria": {
-      "path": "game/assets/sprites/cards/eco_de_sabiduria.png",
+    "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-ECO_DE_SABIDURIA.png",
       "mode": "missing_only"
     },
-    "embate_del_jaguar": {
-      "path": "game/assets/sprites/cards/embate_del_jaguar.png",
+    "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR.png",
       "mode": "missing_only"
     },
-    "escudo_de_luz": {
-      "path": "game/assets/sprites/cards/escudo_de_luz.png",
+    "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESCUDO_DE_LUZ.png",
       "mode": "missing_only"
     },
-    "escudo_del_chaman": {
-      "path": "game/assets/sprites/cards/escudo_del_chaman.png",
+    "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN.png",
       "mode": "missing_only"
     },
-    "espiritu_guardian": {
-      "path": "game/assets/sprites/cards/espiritu_guardian.png",
+    "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN.png",
       "mode": "missing_only"
     },
-    "estallido_arcano": {
-      "path": "game/assets/sprites/cards/estallido_arcano.png",
+    "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO.png",
       "mode": "missing_only"
     },
-    "filo_astral": {
-      "path": "game/assets/sprites/cards/filo_astral.png",
+    "BASE-SOLAR-ATTACK-FILO_ASTRAL": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-FILO_ASTRAL.png",
       "mode": "missing_only"
     },
-    "filo_en_cadena": {
-      "path": "game/assets/sprites/cards/filo_en_cadena.png",
+    "BASE-SOLAR-SKILL-FILO_EN_CADENA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-FILO_EN_CADENA.png",
       "mode": "missing_only"
     },
-    "firmeza_del_cuerpo": {
-      "path": "game/assets/sprites/cards/firmeza_del_cuerpo.png",
+    "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO.png",
       "mode": "missing_only"
     },
-    "fragmento_celeste": {
-      "path": "game/assets/sprites/cards/fragmento_celeste.png",
+    "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-FRAGMENTO_CELESTE.png",
       "mode": "missing_only"
     },
-    "fusion_espiritual": {
-      "path": "game/assets/sprites/cards/fusion_espiritual.png",
+    "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FUSION_ESPIRITUAL.png",
       "mode": "missing_only"
     },
-    "garra_espiritual": {
-      "path": "game/assets/sprites/cards/garra_espiritual.png",
+    "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL.png",
       "mode": "missing_only"
     },
-    "guardia_terrenal": {
-      "path": "game/assets/sprites/cards/guardia_terrenal.png",
+    "BASE-GUIDE-GUARD-GUARDIA_TERRENAL": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-GUARDIA_TERRENAL.png",
       "mode": "missing_only"
     },
-    "hg_lore_01": {
-      "path": "game/assets/sprites/cards/hg_lore_01.png",
+    "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA.png",
       "mode": "missing_only"
     },
-    "hg_lore_05": {
-      "path": "game/assets/sprites/cards/hg_lore_05.png",
+    "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA.png",
       "mode": "missing_only"
     },
-    "hg_lore_06": {
-      "path": "game/assets/sprites/cards/hg_lore_06.png",
+    "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA.png",
       "mode": "missing_only"
     },
-    "hg_lore_07": {
-      "path": "game/assets/sprites/cards/hg_lore_07.png",
+    "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA.png",
       "mode": "missing_only"
     },
-    "hg_lore_11": {
-      "path": "game/assets/sprites/cards/hg_lore_11.png",
+    "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA.png",
       "mode": "missing_only"
     },
-    "hg_lore_13": {
-      "path": "game/assets/sprites/cards/hg_lore_13.png",
+    "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA.png",
       "mode": "missing_only"
     },
-    "hg_lore_15": {
-      "path": "game/assets/sprites/cards/hg_lore_15.png",
+    "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA.png",
       "mode": "missing_only"
     },
-    "hg_lore_19": {
-      "path": "game/assets/sprites/cards/hg_lore_19.png",
+    "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA.png",
       "mode": "missing_only"
     },
-    "hg_lore_24": {
-      "path": "game/assets/sprites/cards/hg_lore_24.png",
+    "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA.png",
       "mode": "missing_only"
     },
-    "hg_lore_27": {
-      "path": "game/assets/sprites/cards/hg_lore_27.png",
+    "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA.png",
       "mode": "missing_only"
     },
-    "invocacion_astral": {
-      "path": "game/assets/sprites/cards/invocacion_astral.png",
+    "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-INVOCACION_ASTRAL.png",
       "mode": "missing_only"
     },
-    "lectura_del_destino": {
-      "path": "game/assets/sprites/cards/lectura_del_destino.png",
+    "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO.png",
       "mode": "missing_only"
     },
-    "mantra_del_umbral": {
-      "path": "game/assets/sprites/cards/mantra_del_umbral.png",
+    "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL.png",
       "mode": "missing_only"
     },
-    "muralla_de_piedra": {
-      "path": "game/assets/sprites/cards/muralla_de_piedra.png",
+    "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA.png",
       "mode": "missing_only"
     },
-    "observacion_sagrada": {
-      "path": "game/assets/sprites/cards/observacion_sagrada.png",
+    "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-OBSERVACION_SAGRADA.png",
       "mode": "missing_only"
     },
-    "of_lore_12": {
-      "path": "game/assets/sprites/cards/of_lore_12.png",
+    "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA.png",
       "mode": "missing_only"
     },
-    "of_lore_16": {
-      "path": "game/assets/sprites/cards/of_lore_16.png",
+    "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA.png",
       "mode": "missing_only"
     },
-    "of_lore_17": {
-      "path": "game/assets/sprites/cards/of_lore_17.png",
+    "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA.png",
       "mode": "missing_only"
     },
-    "of_lore_20": {
-      "path": "game/assets/sprites/cards/of_lore_20.png",
+    "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA.png",
       "mode": "missing_only"
     },
-    "of_lore_21": {
-      "path": "game/assets/sprites/cards/of_lore_21.png",
+    "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA.png",
       "mode": "missing_only"
     },
-    "of_lore_22": {
-      "path": "game/assets/sprites/cards/of_lore_22.png",
+    "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA.png",
       "mode": "missing_only"
     },
-    "of_lore_25": {
-      "path": "game/assets/sprites/cards/of_lore_25.png",
+    "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA.png",
       "mode": "missing_only"
     },
-    "of_lore_26": {
-      "path": "game/assets/sprites/cards/of_lore_26.png",
+    "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA.png",
       "mode": "missing_only"
     },
-    "of_lore_28": {
-      "path": "game/assets/sprites/cards/of_lore_28.png",
+    "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA.png",
       "mode": "missing_only"
     },
-    "of_lore_30": {
-      "path": "game/assets/sprites/cards/of_lore_30.png",
+    "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA.png",
       "mode": "missing_only"
     },
-    "piedra_ritual": {
-      "path": "game/assets/sprites/cards/piedra_ritual.png",
+    "BASE-ORACLE-RITUAL-PIEDRA_RITUAL": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PIEDRA_RITUAL.png",
       "mode": "missing_only"
     },
-    "portal_de_la_chakana": {
-      "path": "game/assets/sprites/cards/portal_de_la_chakana.png",
+    "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA.png",
       "mode": "missing_only"
     },
-    "pulso_cosmico": {
-      "path": "game/assets/sprites/cards/pulso_cosmico.png",
+    "BASE-SOLAR-ATTACK-PULSO_COSMICO": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-PULSO_COSMICO.png",
       "mode": "missing_only"
     },
-    "resistencia_ancestral": {
-      "path": "game/assets/sprites/cards/resistencia_ancestral.png",
+    "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL.png",
       "mode": "missing_only"
     },
-    "revelacion_astral": {
-      "path": "game/assets/sprites/cards/revelacion_astral.png",
+    "BASE-ORACLE-SKILL-REVELACION_ASTRAL": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-REVELACION_ASTRAL.png",
       "mode": "missing_only"
     },
-    "ritual_de_la_trama": {
-      "path": "game/assets/sprites/cards/ritual_de_la_trama.png",
+    "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA.png",
       "mode": "missing_only"
     },
-    "sello_protector": {
-      "path": "game/assets/sprites/cards/sello_protector.png",
+    "BASE-GUIDE-GUARD-SELLO_PROTECTOR": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-SELLO_PROTECTOR.png",
       "mode": "missing_only"
     },
-    "silencio_interior": {
-      "path": "game/assets/sprites/cards/silencio_interior.png",
+    "BASE-ORACLE-SKILL-SILENCIO_INTERIOR": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-SILENCIO_INTERIOR.png",
       "mode": "missing_only"
     },
-    "vinculo_de_energia": {
-      "path": "game/assets/sprites/cards/vinculo_de_energia.png",
+    "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA.png",
       "mode": "missing_only"
     },
-    "vision_del_condor": {
-      "path": "game/assets/sprites/cards/vision_del_condor.png",
+    "BASE-ORACLE-SKILL-VISION_DEL_CONDOR": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-VISION_DEL_CONDOR.png",
       "mode": "missing_only"
     }
   }

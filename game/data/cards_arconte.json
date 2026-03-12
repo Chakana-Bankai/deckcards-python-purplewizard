@@ -2,7 +2,7 @@
   "set": "arconte",
   "cards": [
     {
-      "id": "arc_001",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01",
       "name_es": "Arcano del Vacio 01",
       "name_key": "card_arc_001_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -33,10 +33,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_001",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01",
+      "legacy_artwork": "arc_001",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01",
+      "name": "Arcano del Vacio 01"
     },
     {
-      "id": "arc_002",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02",
       "name_es": "Arcano del Vacio 02",
       "name_key": "card_arc_002_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -68,10 +73,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_002",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02",
+      "legacy_artwork": "arc_002",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02",
+      "name": "Arcano del Vacio 02"
     },
     {
-      "id": "arc_003",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03",
       "name_es": "Arcano del Vacio 03",
       "name_key": "card_arc_003_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -102,10 +112,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_003",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03",
+      "legacy_artwork": "arc_003",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03",
+      "name": "Arcano del Vacio 03"
     },
     {
-      "id": "arc_004",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04",
       "name_es": "Arcano del Vacio 04",
       "name_key": "card_arc_004_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -137,10 +152,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_004",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04",
+      "legacy_artwork": "arc_004",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04",
+      "name": "Arcano del Vacio 04"
     },
     {
-      "id": "arc_005",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05",
       "name_es": "Arcano del Vacio 05",
       "name_key": "card_arc_005_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -171,10 +191,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_005",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05",
+      "legacy_artwork": "arc_005",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05",
+      "name": "Arcano del Vacio 05"
     },
     {
-      "id": "arc_006",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06",
       "name_es": "Arcano del Vacio 06",
       "name_key": "card_arc_006_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -206,10 +231,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_006",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06",
+      "legacy_artwork": "arc_006",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06",
+      "name": "Arcano del Vacio 06"
     },
     {
-      "id": "arc_007",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07",
       "name_es": "Arcano del Vacio 07",
       "name_key": "card_arc_007_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -240,10 +270,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_007",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07",
+      "legacy_artwork": "arc_007",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07",
+      "name": "Arcano del Vacio 07"
     },
     {
-      "id": "arc_008",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08",
       "name_es": "Arcano del Vacio 08",
       "name_key": "card_arc_008_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -275,10 +310,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_008",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08",
+      "legacy_artwork": "arc_008",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08",
+      "name": "Arcano del Vacio 08"
     },
     {
-      "id": "arc_009",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_09",
       "name_es": "Arcano del Vacio 09",
       "name_key": "card_arc_009_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -309,10 +349,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_009",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_09",
+      "legacy_artwork": "arc_009",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_09",
+      "name": "Arcano del Vacio 09"
     },
     {
-      "id": "arc_010",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_10",
       "name_es": "Arcano del Vacio 10",
       "name_key": "card_arc_010_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -344,10 +389,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_010",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_10",
+      "legacy_artwork": "arc_010",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_10",
+      "name": "Arcano del Vacio 10"
     },
     {
-      "id": "arc_011",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_11",
       "name_es": "Arcano del Vacio 11",
       "name_key": "card_arc_011_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -378,10 +428,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_011",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_11",
+      "legacy_artwork": "arc_011",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_11",
+      "name": "Arcano del Vacio 11"
     },
     {
-      "id": "arc_012",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_12",
       "name_es": "Arcano del Vacio 12",
       "name_key": "card_arc_012_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -413,10 +468,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_012",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_12",
+      "legacy_artwork": "arc_012",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_12",
+      "name": "Arcano del Vacio 12"
     },
     {
-      "id": "arc_013",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_13",
       "name_es": "Arcano del Vacio 13",
       "name_key": "card_arc_013_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -447,10 +507,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_013",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_13",
+      "legacy_artwork": "arc_013",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_13",
+      "name": "Arcano del Vacio 13"
     },
     {
-      "id": "arc_014",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14",
       "name_es": "Arcano del Vacio 14",
       "name_key": "card_arc_014_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -482,10 +547,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_014",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14",
+      "legacy_artwork": "arc_014",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14",
+      "name": "Arcano del Vacio 14"
     },
     {
-      "id": "arc_015",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_15",
       "name_es": "Arcano del Vacio 15",
       "name_key": "card_arc_015_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -516,10 +586,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_015",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_15",
+      "legacy_artwork": "arc_015",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_15",
+      "name": "Arcano del Vacio 15"
     },
     {
-      "id": "arc_016",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16",
       "name_es": "Arcano del Vacio 16",
       "name_key": "card_arc_016_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -551,10 +626,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_016",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16",
+      "legacy_artwork": "arc_016",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16",
+      "name": "Arcano del Vacio 16"
     },
     {
-      "id": "arc_017",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_17",
       "name_es": "Arcano del Vacio 17",
       "name_key": "card_arc_017_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -585,10 +665,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_017",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_17",
+      "legacy_artwork": "arc_017",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_17",
+      "name": "Arcano del Vacio 17"
     },
     {
-      "id": "arc_018",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_18",
       "name_es": "Arcano del Vacio 18",
       "name_key": "card_arc_018_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -620,10 +705,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_018",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_18",
+      "legacy_artwork": "arc_018",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_18",
+      "name": "Arcano del Vacio 18"
     },
     {
-      "id": "arc_019",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_19",
       "name_es": "Arcano del Vacio 19",
       "name_key": "card_arc_019_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -654,10 +744,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_019",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_19",
+      "legacy_artwork": "arc_019",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_19",
+      "name": "Arcano del Vacio 19"
     },
     {
-      "id": "arc_020",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_20",
       "name_es": "Arcano del Vacio 20",
       "name_key": "card_arc_020_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -689,10 +784,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_020",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_20",
+      "legacy_artwork": "arc_020",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_20",
+      "name": "Arcano del Vacio 20"
     },
     {
-      "id": "arc_021",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_21",
       "name_es": "Arcano del Vacio 21",
       "name_key": "card_arc_021_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -723,10 +823,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_021",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_21",
+      "legacy_artwork": "arc_021",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_21",
+      "name": "Arcano del Vacio 21"
     },
     {
-      "id": "arc_022",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_22",
       "name_es": "Arcano del Vacio 22",
       "name_key": "card_arc_022_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -758,10 +863,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_022",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_22",
+      "legacy_artwork": "arc_022",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_22",
+      "name": "Arcano del Vacio 22"
     },
     {
-      "id": "arc_023",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_23",
       "name_es": "Arcano del Vacio 23",
       "name_key": "card_arc_023_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -792,10 +902,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_023",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_23",
+      "legacy_artwork": "arc_023",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_23",
+      "name": "Arcano del Vacio 23"
     },
     {
-      "id": "arc_024",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_24",
       "name_es": "Arcano del Vacio 24",
       "name_key": "card_arc_024_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -827,10 +942,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_024",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_24",
+      "legacy_artwork": "arc_024",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_24",
+      "name": "Arcano del Vacio 24"
     },
     {
-      "id": "arc_025",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_25",
       "name_es": "Arcano del Vacio 25",
       "name_key": "card_arc_025_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -861,10 +981,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_025",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_25",
+      "legacy_artwork": "arc_025",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_25",
+      "name": "Arcano del Vacio 25"
     },
     {
-      "id": "arc_026",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_26",
       "name_es": "Arcano del Vacio 26",
       "name_key": "card_arc_026_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -896,10 +1021,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_026",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_26",
+      "legacy_artwork": "arc_026",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_26",
+      "name": "Arcano del Vacio 26"
     },
     {
-      "id": "arc_027",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_27",
       "name_es": "Arcano del Vacio 27",
       "name_key": "card_arc_027_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -930,10 +1060,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_027",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_27",
+      "legacy_artwork": "arc_027",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_27",
+      "name": "Arcano del Vacio 27"
     },
     {
-      "id": "arc_028",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_28",
       "name_es": "Arcano del Vacio 28",
       "name_key": "card_arc_028_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -965,10 +1100,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_028",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_28",
+      "legacy_artwork": "arc_028",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_28",
+      "name": "Arcano del Vacio 28"
     },
     {
-      "id": "arc_029",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_29",
       "name_es": "Arcano del Vacio 29",
       "name_key": "card_arc_029_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -999,10 +1139,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_029",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_29",
+      "legacy_artwork": "arc_029",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_29",
+      "name": "Arcano del Vacio 29"
     },
     {
-      "id": "arc_030",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_30",
       "name_es": "Arcano del Vacio 30",
       "name_key": "card_arc_030_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1034,10 +1179,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_030",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_30",
+      "legacy_artwork": "arc_030",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_30",
+      "name": "Arcano del Vacio 30"
     },
     {
-      "id": "arc_031",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_31",
       "name_es": "Arcano del Vacio 31",
       "name_key": "card_arc_031_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1068,10 +1218,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_031",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_31",
+      "legacy_artwork": "arc_031",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_31",
+      "name": "Arcano del Vacio 31"
     },
     {
-      "id": "arc_032",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_32",
       "name_es": "Arcano del Vacio 32",
       "name_key": "card_arc_032_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1103,10 +1258,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_032",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_32",
+      "legacy_artwork": "arc_032",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_32",
+      "name": "Arcano del Vacio 32"
     },
     {
-      "id": "arc_033",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_33",
       "name_es": "Arcano del Vacio 33",
       "name_key": "card_arc_033_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1137,10 +1297,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_033",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_33",
+      "legacy_artwork": "arc_033",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_33",
+      "name": "Arcano del Vacio 33"
     },
     {
-      "id": "arc_034",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_34",
       "name_es": "Arcano del Vacio 34",
       "name_key": "card_arc_034_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1172,10 +1337,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_034",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_34",
+      "legacy_artwork": "arc_034",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_34",
+      "name": "Arcano del Vacio 34"
     },
     {
-      "id": "arc_035",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_35",
       "name_es": "Arcano del Vacio 35",
       "name_key": "card_arc_035_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1206,10 +1376,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "arc_035",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_35",
+      "legacy_artwork": "arc_035",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_35",
+      "name": "Arcano del Vacio 35"
     },
     {
-      "id": "arc_036",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_36",
       "name_es": "Arcano del Vacio 36",
       "name_key": "card_arc_036_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1241,10 +1416,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_036",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_36",
+      "legacy_artwork": "arc_036",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_36",
+      "name": "Arcano del Vacio 36"
     },
     {
-      "id": "arc_037",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_37",
       "name_es": "Arcano del Vacio 37",
       "name_key": "card_arc_037_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1275,10 +1455,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_037",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_37",
+      "legacy_artwork": "arc_037",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_37",
+      "name": "Arcano del Vacio 37"
     },
     {
-      "id": "arc_038",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_38",
       "name_es": "Arcano del Vacio 38",
       "name_key": "card_arc_038_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1310,10 +1495,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_038",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_38",
+      "legacy_artwork": "arc_038",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_38",
+      "name": "Arcano del Vacio 38"
     },
     {
-      "id": "arc_039",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39",
       "name_es": "Arcano del Vacio 39",
       "name_key": "card_arc_039_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1344,10 +1534,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_039",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39",
+      "legacy_artwork": "arc_039",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39",
+      "name": "Arcano del Vacio 39"
     },
     {
-      "id": "arc_040",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40",
       "name_es": "Arcano del Vacio 40",
       "name_key": "card_arc_040_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1379,10 +1574,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_040",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40",
+      "legacy_artwork": "arc_040",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40",
+      "name": "Arcano del Vacio 40"
     },
     {
-      "id": "arc_041",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_41",
       "name_es": "Arcano del Vacio 41",
       "name_key": "card_arc_041_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1413,10 +1613,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "arc_041",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_41",
+      "legacy_artwork": "arc_041",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_41",
+      "name": "Arcano del Vacio 41"
     },
     {
-      "id": "arc_042",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_42",
       "name_es": "Arcano del Vacio 42",
       "name_key": "card_arc_042_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1448,10 +1653,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_042",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_42",
+      "legacy_artwork": "arc_042",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_42",
+      "name": "Arcano del Vacio 42"
     },
     {
-      "id": "arc_043",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_43",
       "name_es": "Arcano del Vacio 43",
       "name_key": "card_arc_043_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1482,10 +1692,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_043",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_43",
+      "legacy_artwork": "arc_043",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_43",
+      "name": "Arcano del Vacio 43"
     },
     {
-      "id": "arc_044",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_44",
       "name_es": "Arcano del Vacio 44",
       "name_key": "card_arc_044_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1517,10 +1732,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "arc_044",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_44",
+      "legacy_artwork": "arc_044",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_44",
+      "name": "Arcano del Vacio 44"
     },
     {
-      "id": "arc_045",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_45",
       "name_es": "Arcano del Vacio 45",
       "name_key": "card_arc_045_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1551,10 +1771,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "arc_045",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_45",
+      "legacy_artwork": "arc_045",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_45",
+      "name": "Arcano del Vacio 45"
     },
     {
-      "id": "arc_046",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_46",
       "name_es": "Arcano del Vacio 46",
       "name_key": "card_arc_046_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1586,10 +1811,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_046",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_46",
+      "legacy_artwork": "arc_046",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_46",
+      "name": "Arcano del Vacio 46"
     },
     {
-      "id": "arc_047",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_47",
       "name_es": "Arcano del Vacio 47",
       "name_key": "card_arc_047_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1620,10 +1850,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_047",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_47",
+      "legacy_artwork": "arc_047",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_47",
+      "name": "Arcano del Vacio 47"
     },
     {
-      "id": "arc_048",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_48",
       "name_es": "Arcano del Vacio 48",
       "name_key": "card_arc_048_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1655,10 +1890,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "arc_048",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_48",
+      "legacy_artwork": "arc_048",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_48",
+      "name": "Arcano del Vacio 48"
     },
     {
-      "id": "arc_049",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_49",
       "name_es": "Arcano del Vacio 49",
       "name_key": "card_arc_049_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1689,10 +1929,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "arc_049",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_49",
+      "legacy_artwork": "arc_049",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_49",
+      "name": "Arcano del Vacio 49"
     },
     {
-      "id": "arc_050",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50",
       "name_es": "Arcano del Vacio 50",
       "name_key": "card_arc_050_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1724,10 +1969,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_050",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50",
+      "legacy_artwork": "arc_050",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50",
+      "name": "Arcano del Vacio 50"
     },
     {
-      "id": "arc_051",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_51",
       "name_es": "Arcano del Vacio 51",
       "name_key": "card_arc_051_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1758,10 +2008,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_051",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_51",
+      "legacy_artwork": "arc_051",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_51",
+      "name": "Arcano del Vacio 51"
     },
     {
-      "id": "arc_052",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_52",
       "name_es": "Arcano del Vacio 52",
       "name_key": "card_arc_052_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1793,10 +2048,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "arc_052",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_52",
+      "legacy_artwork": "arc_052",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_52",
+      "name": "Arcano del Vacio 52"
     },
     {
-      "id": "arc_053",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_53",
       "name_es": "Arcano del Vacio 53",
       "name_key": "card_arc_053_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1827,10 +2087,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "arc_053",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_53",
+      "legacy_artwork": "arc_053",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_53",
+      "name": "Arcano del Vacio 53"
     },
     {
-      "id": "arc_054",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54",
       "name_es": "Arcano del Vacio 54",
       "name_key": "card_arc_054_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1862,10 +2127,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_054",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54",
+      "legacy_artwork": "arc_054",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54",
+      "name": "Arcano del Vacio 54"
     },
     {
-      "id": "arc_055",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55",
       "name_es": "Arcano del Vacio 55",
       "name_key": "card_arc_055_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1896,10 +2166,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "arc_055",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55",
+      "legacy_artwork": "arc_055",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55",
+      "name": "Arcano del Vacio 55"
     },
     {
-      "id": "arc_056",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_56",
       "name_es": "Arcano del Vacio 56",
       "name_key": "card_arc_056_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1931,10 +2206,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "arc_056",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_56",
+      "legacy_artwork": "arc_056",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_56",
+      "name": "Arcano del Vacio 56"
     },
     {
-      "id": "arc_057",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_57",
       "name_es": "Arcano del Vacio 57",
       "name_key": "card_arc_057_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -1965,10 +2245,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "arc_057",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_57",
+      "legacy_artwork": "arc_057",
+      "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_57",
+      "name": "Arcano del Vacio 57"
     },
     {
-      "id": "arc_058",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_58",
       "name_es": "Arcano del Vacio 58",
       "name_key": "card_arc_058_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -2000,10 +2285,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "arc_058",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_58",
+      "legacy_artwork": "arc_058",
+      "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_58",
+      "name": "Arcano del Vacio 58"
     },
     {
-      "id": "arc_059",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59",
       "name_es": "Arcano del Vacio 59",
       "name_key": "card_arc_059_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -2034,10 +2324,15 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "arc_059",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59",
+      "legacy_artwork": "arc_059",
+      "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59",
+      "name": "Arcano del Vacio 59"
     },
     {
-      "id": "arc_060",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_60",
       "name_es": "Arcano del Vacio 60",
       "name_key": "card_arc_060_name",
       "text_es": "Controla el pulso del enemigo con corrupcion del vacio.",
@@ -2069,7 +2364,12 @@
       "set": "arconte",
       "author": "Chakana Studio",
       "order": "Arconte",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "arc_060",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_60",
+      "legacy_artwork": "arc_060",
+      "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_60",
+      "name": "Arcano del Vacio 60"
     }
   ]
 }

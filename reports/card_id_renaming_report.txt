@@ -1,0 +1,49 @@
+chakana card id renaming report
+
+phase=3
+status=PASS
+total_cards_mapped=180
+assets_renamed=180
+mapping_file=data/cards/card_id_mapping.json
+
+files_updated:
+- game/data/cards.json
+- game/data/cards_arconte.json
+- game/data/cards_hiperboria.json
+- game/data/cards/cards_60.json
+- game/data/codex_cards_arconte.json
+- game/data/codex_cards_hiperboria.json
+- game/data/codex_cards_lore_set1.json
+- data/manifests/card_manifest.json
+- data/manifests/art_manifest.json
+- game/data/art_manifest.json
+- game/data/card_prompts.json
+- game/data/enemy_decks.json
+- data/cards/card_id_mapping.json
+
+sample_renames:
+- campo_protector.png -> BASE-GUIDE-GUARD-CAMPO_PROTECTOR.png
+- chakana_de_luz.png -> BASE-SOLAR-SKILL-CHAKANA_DE_LUZ.png
+- eco_de_sabiduria.png -> BASE-SOLAR-SKILL-ECO_DE_SABIDURIA.png
+- embate_del_jaguar.png -> BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR.png
+- escudo_de_luz.png -> BASE-GUIDE-GUARD-ESCUDO_DE_LUZ.png
+- escudo_del_chaman.png -> BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN.png
+- espiritu_guardian.png -> BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN.png
+- estallido_arcano.png -> BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO.png
+- filo_astral.png -> BASE-SOLAR-ATTACK-FILO_ASTRAL.png
+- filo_en_cadena.png -> BASE-SOLAR-SKILL-FILO_EN_CADENA.png
+- firmeza_del_cuerpo.png -> BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO.png
+- fragmento_celeste.png -> BASE-ORACLE-SKILL-FRAGMENTO_CELESTE.png
+- fusion_espiritual.png -> BASE-GUIDE-GUARD-FUSION_ESPIRITUAL.png
+- garra_espiritual.png -> BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL.png
+- guardia_terrenal.png -> BASE-GUIDE-GUARD-GUARDIA_TERRENAL.png
+- invocacion_astral.png -> BASE-ORACLE-RITUAL-INVOCACION_ASTRAL.png
+- lectura_del_destino.png -> BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO.png
+- mantra_del_umbral.png -> BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL.png
+- muralla_de_piedra.png -> BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA.png
+- observacion_sagrada.png -> BASE-ORACLE-SKILL-OBSERVACION_SAGRADA.png
+
+notes:
+- canonical ids now use SET-ARCHETYPE-TYPE-NAME
+- legacy_id and legacy_artwork were preserved in card metadata for compatibility
+- manifests still need a clean rebuild in phase 4 to become the new source of truth

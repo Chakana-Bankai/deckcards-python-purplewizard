@@ -1,0 +1,77 @@
+chakana card id system design
+
+phase=2
+status=PASS
+
+goal:
+- define one canonical card identifier grammar for current and future sets
+- preserve compatibility with legacy ids and filenames during migration
+
+canonical_format:
+- SET-ARCHETYPE-TYPE-NAME
+- all segments uppercase
+- segment separator: hyphen (-)
+- internal word separator for NAME: underscore (_)
+
+canonical_segment_rules:
+- SET identifies release or origin bucket: BASE, HYP, ARC
+- ARCHETYPE identifies the visual/gameplay family: SOLAR, GUIDE, ORACLE, ARCHON
+- TYPE identifies gameplay role bucket: ATTACK, GUARD, SKILL, RITUAL, CURSE
+- NAME is a normalized stable slug derived from the card display name or canonical content name
+
+normalization_rules:
+- strip accents and diacritics
+- replace spaces and hyphens with underscores
+- collapse repeated underscores
+- keep only A-Z, 0-9, underscore and hyphen
+- never derive canonical ids from random numeric filenames alone if a semantic name exists
+
+set_code_mapping:
+- base -> BASE
+- hiperboria -> HYP
+- arconte -> ARC
+
+archetype_code_mapping:
+- cosmic_warrior -> SOLAR
+- harmony_guardian -> GUIDE
+- oracle_of_fate -> ORACLE
+- archon_war -> ARCHON
+
+type_code_mapping:
+- attack -> ATTACK
+- defense -> GUARD
+- control -> SKILL
+- combo -> SKILL
+- energy -> SKILL
+- ritual -> RITUAL
+- curse -> CURSE
+
+current_dataset_translation_strategy:
+- base set descriptive ids already contain semantic names; use them as NAME source after normalization
+- base lore variants (cw_lore_*, hg_lore_*, of_lore_*) need explicit canonical names derived from card display names, not from the lore prefix itself
+- hiperboria ids (hip_cosmic_warrior_01, etc.) must be translated from card name/content into canonical ids; numeric suffixes alone are not canonical ids
+- arconte ids (arc_001, etc.) must be translated from card display names or a new semantic naming table because arc_### is only a sequence code
+
+legacy_compatibility_rules:
+- every migrated card keeps legacy_id alongside canonical_id
+- asset manifests must map canonical_id -> runtime asset and canonical_id -> legacy asset name
+- lore/codex references should be upgraded to canonical_id but may preserve legacy_id as alias during transition
+- renaming phase must not delete legacy traceability
+
+examples_for_current_project:
+- campo_protector -> BASE-GUIDE-GUARD-CAMPO_PROTECTOR
+- chakana_de_luz -> BASE-SOLAR-SKILL-CHAKANA_DE_LUZ
+- ritual_de_la_trama -> BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA
+- hip_cosmic_warrior_01 -> HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I
+- hip_harmony_guardian_20 -> HYP-GUIDE-RITUAL-HIP_HG_20 requires semantic rename before final canonicalization
+- arc_001 -> ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01
+
+design_decisions:
+- canonical ids must be semantic and readable; raw counters are allowed only as suffix inside NAME when content already uses numbered titles
+- canonical ids must be stable across art, metadata, lore and codex
+- the same canonical id must drive filenames, manifest keys and future asset folders
+
+phase_3_prerequisites:
+- build a mapping table legacy_id -> canonical_id for all 180 cards
+- resolve arconte display-name source because current manifests lose visible names for many arc_* entries
+- resolve whether base lore variants are standalone cards or alternates before renaming production assets

@@ -1,0 +1,46 @@
+﻿chakana card id normalization report
+
+phase=5
+status=PASS
+manifest=data/cards/card_manifest.json
+mapping=data/cards/card_id_mapping.json
+legacy_manifest=data/manifests/card_manifest.json
+
+validation_summary:
+- total_cards=180
+- unique_ids=180
+- duplicate_ids=0
+- duplicate_legacy_ids=0
+- missing_sprites=0
+- missing_in_mapping=0
+- missing_in_manifest=0
+- null_legacy_ids=0
+- null_artwork=0
+- sets.base=60
+- sets.arconte=60
+- sets.hiperboria=60
+
+files_validated:
+- data/cards/card_manifest.json
+- data/cards/card_id_mapping.json
+- data/manifests/card_manifest.json
+- game/data/cards.json
+- game/data/cards_arconte.json
+- game/data/cards_hiperboria.json
+- game/assets/sprites/cards/*.png
+
+notes:
+- canonical source of truth now lives at data/cards/card_manifest.json
+- legacy compatibility preserved through legacy_id and legacy_artwork
+- runtime legacy manifest remains aligned with canonical ids after rebuild
+- sprite directory contains 180 png card assets plus .gitkeep
+
+sample_validations:
+- BASE-GUIDE-GUARD-CAMPO_PROTECTOR -> game/assets/sprites/cards/BASE-GUIDE-GUARD-CAMPO_PROTECTOR.png
+- ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01 -> game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01.png
+- HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I -> game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I.png
+
+result:
+- every card has unique id
+- every asset maps correctly
+- no missing files detected

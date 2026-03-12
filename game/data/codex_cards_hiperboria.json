@@ -21,7 +21,7 @@
   ],
   "cards": [
     {
-      "id": "hip_cosmic_warrior_01",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
       "name": "HIP-CW 01",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -33,10 +33,12 @@
         "rupture",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I"
     },
     {
-      "id": "hip_cosmic_warrior_02",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
       "name": "HIP-CW 02",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -48,10 +50,12 @@
         "combo",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II"
     },
     {
-      "id": "hip_cosmic_warrior_03",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
       "name": "HIP-CW 03",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -62,10 +66,12 @@
         "attack",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III"
     },
     {
-      "id": "hip_cosmic_warrior_04",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
       "name": "HIP-CW 04",
       "archetype": "cosmic_warrior",
       "role": "energy",
@@ -77,10 +83,12 @@
         "attack",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV"
     },
     {
-      "id": "hip_cosmic_warrior_05",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
       "name": "HIP-CW 05",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -93,10 +101,12 @@
         "rupture",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V"
     },
     {
-      "id": "hip_cosmic_warrior_06",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
       "name": "HIP-CW 06",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -108,10 +118,12 @@
         "rupture",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI"
     },
     {
-      "id": "hip_cosmic_warrior_07",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
       "name": "HIP-CW 07",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -123,10 +135,12 @@
         "combo",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII"
     },
     {
-      "id": "hip_cosmic_warrior_08",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
       "name": "HIP-CW 08",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -137,10 +151,12 @@
         "attack",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII"
     },
     {
-      "id": "hip_cosmic_warrior_09",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
       "name": "HIP-CW 09",
       "archetype": "cosmic_warrior",
       "role": "energy",
@@ -152,10 +168,12 @@
         "attack",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX"
     },
     {
-      "id": "hip_cosmic_warrior_10",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
       "name": "HIP-CW 10",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -168,10 +186,12 @@
         "rupture",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X"
     },
     {
-      "id": "hip_cosmic_warrior_11",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
       "name": "HIP-CW 11",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -183,10 +203,12 @@
         "rupture",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI"
     },
     {
-      "id": "hip_cosmic_warrior_12",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
       "name": "HIP-CW 12",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -198,10 +220,12 @@
         "combo",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII"
     },
     {
-      "id": "hip_cosmic_warrior_13",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
       "name": "HIP-CW 13",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -212,10 +236,12 @@
         "attack",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII"
     },
     {
-      "id": "hip_cosmic_warrior_14",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
       "name": "HIP-CW 14",
       "archetype": "cosmic_warrior",
       "role": "energy",
@@ -227,10 +253,12 @@
         "attack",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV"
     },
     {
-      "id": "hip_cosmic_warrior_15",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
       "name": "HIP-CW 15",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -243,10 +271,12 @@
         "rupture",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV"
     },
     {
-      "id": "hip_cosmic_warrior_16",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
       "name": "HIP-CW 16",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -258,10 +288,12 @@
         "rupture",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI"
     },
     {
-      "id": "hip_cosmic_warrior_17",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
       "name": "HIP-CW 17",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -273,10 +305,12 @@
         "combo",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII"
     },
     {
-      "id": "hip_cosmic_warrior_18",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
       "name": "HIP-CW 18",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -287,10 +321,12 @@
         "attack",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII"
     },
     {
-      "id": "hip_cosmic_warrior_19",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
       "name": "HIP-CW 19",
       "archetype": "cosmic_warrior",
       "role": "energy",
@@ -302,10 +338,12 @@
         "attack",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX"
     },
     {
-      "id": "hip_cosmic_warrior_20",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
       "name": "HIP-CW 20",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -318,10 +356,12 @@
         "rupture",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX"
     },
     {
-      "id": "hip_harmony_guardian_01",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
       "name": "HIP-HG 01",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -333,10 +373,12 @@
         "harmony",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I"
     },
     {
-      "id": "hip_harmony_guardian_02",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
       "name": "HIP-HG 02",
       "archetype": "harmony_guardian",
       "role": "ritual",
@@ -348,10 +390,12 @@
         "seal",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II"
     },
     {
-      "id": "hip_harmony_guardian_03",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
       "name": "HIP-HG 03",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -362,10 +406,12 @@
         "block",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III"
     },
     {
-      "id": "hip_harmony_guardian_04",
+      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
       "name": "HIP-HG 04",
       "archetype": "harmony_guardian",
       "role": "control",
@@ -377,10 +423,12 @@
         "scry",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
+      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV"
     },
     {
-      "id": "hip_harmony_guardian_05",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
       "name": "HIP-HG 05",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -392,10 +440,12 @@
         "support",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V"
     },
     {
-      "id": "hip_harmony_guardian_06",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
       "name": "HIP-HG 06",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -407,10 +457,12 @@
         "harmony",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI"
     },
     {
-      "id": "hip_harmony_guardian_07",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
       "name": "HIP-HG 07",
       "archetype": "harmony_guardian",
       "role": "ritual",
@@ -422,10 +474,12 @@
         "seal",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII"
     },
     {
-      "id": "hip_harmony_guardian_08",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
       "name": "HIP-HG 08",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -436,10 +490,12 @@
         "block",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII"
     },
     {
-      "id": "hip_harmony_guardian_09",
+      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
       "name": "HIP-HG 09",
       "archetype": "harmony_guardian",
       "role": "control",
@@ -451,10 +507,12 @@
         "scry",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
+      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX"
     },
     {
-      "id": "hip_harmony_guardian_10",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
       "name": "HIP-HG 10",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -466,10 +524,12 @@
         "support",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X"
     },
     {
-      "id": "hip_harmony_guardian_11",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
       "name": "HIP-HG 11",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -481,10 +541,12 @@
         "harmony",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI"
     },
     {
-      "id": "hip_harmony_guardian_12",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
       "name": "HIP-HG 12",
       "archetype": "harmony_guardian",
       "role": "ritual",
@@ -496,10 +558,12 @@
         "seal",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII"
     },
     {
-      "id": "hip_harmony_guardian_13",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
       "name": "HIP-HG 13",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -510,10 +574,12 @@
         "block",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII"
     },
     {
-      "id": "hip_harmony_guardian_14",
+      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
       "name": "HIP-HG 14",
       "archetype": "harmony_guardian",
       "role": "control",
@@ -525,10 +591,12 @@
         "scry",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
+      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV"
     },
     {
-      "id": "hip_harmony_guardian_15",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
       "name": "HIP-HG 15",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -540,10 +608,12 @@
         "support",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV"
     },
     {
-      "id": "hip_harmony_guardian_16",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
       "name": "HIP-HG 16",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -555,10 +625,12 @@
         "harmony",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI"
     },
     {
-      "id": "hip_harmony_guardian_17",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
       "name": "HIP-HG 17",
       "archetype": "harmony_guardian",
       "role": "ritual",
@@ -570,10 +642,12 @@
         "seal",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII"
     },
     {
-      "id": "hip_harmony_guardian_18",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
       "name": "HIP-HG 18",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -584,10 +658,12 @@
         "block",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII"
     },
     {
-      "id": "hip_harmony_guardian_19",
+      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
       "name": "HIP-HG 19",
       "archetype": "harmony_guardian",
       "role": "control",
@@ -599,10 +675,12 @@
         "scry",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
+      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX"
     },
     {
-      "id": "hip_harmony_guardian_20",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
       "name": "HIP-HG 20",
       "archetype": "harmony_guardian",
       "role": "ritual",
@@ -615,10 +693,12 @@
         "seal",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX"
     },
     {
-      "id": "hip_oracle_of_fate_01",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
       "name": "HIP-OF 01",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -630,10 +710,12 @@
         "draw",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I"
     },
     {
-      "id": "hip_oracle_of_fate_02",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
       "name": "HIP-OF 02",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -645,10 +727,12 @@
         "harmony",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
+      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II"
     },
     {
-      "id": "hip_oracle_of_fate_03",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
       "name": "HIP-OF 03",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -659,10 +743,12 @@
         "scry",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III"
     },
     {
-      "id": "hip_oracle_of_fate_04",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV",
       "name": "HIP-OF 04",
       "archetype": "oracle_of_fate",
       "role": "combo",
@@ -674,10 +760,12 @@
         "combo",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV"
     },
     {
-      "id": "hip_oracle_of_fate_05",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
       "name": "HIP-OF 05",
       "archetype": "oracle_of_fate",
       "role": "energy",
@@ -689,10 +777,12 @@
         "control",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V"
     },
     {
-      "id": "hip_oracle_of_fate_06",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI",
       "name": "HIP-OF 06",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -704,10 +794,12 @@
         "draw",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI"
     },
     {
-      "id": "hip_oracle_of_fate_07",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
       "name": "HIP-OF 07",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -719,10 +811,12 @@
         "harmony",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
+      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII"
     },
     {
-      "id": "hip_oracle_of_fate_08",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
       "name": "HIP-OF 08",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -733,10 +827,12 @@
         "scry",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII"
     },
     {
-      "id": "hip_oracle_of_fate_09",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX",
       "name": "HIP-OF 09",
       "archetype": "oracle_of_fate",
       "role": "combo",
@@ -748,10 +844,12 @@
         "combo",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX"
     },
     {
-      "id": "hip_oracle_of_fate_10",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
       "name": "HIP-OF 10",
       "archetype": "oracle_of_fate",
       "role": "energy",
@@ -763,10 +861,12 @@
         "control",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X"
     },
     {
-      "id": "hip_oracle_of_fate_11",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
       "name": "HIP-OF 11",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -778,10 +878,12 @@
         "draw",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI"
     },
     {
-      "id": "hip_oracle_of_fate_12",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
       "name": "HIP-OF 12",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -793,10 +895,12 @@
         "harmony",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
+      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII"
     },
     {
-      "id": "hip_oracle_of_fate_13",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
       "name": "HIP-OF 13",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -807,10 +911,12 @@
         "scry",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII"
     },
     {
-      "id": "hip_oracle_of_fate_14",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
       "name": "HIP-OF 14",
       "archetype": "oracle_of_fate",
       "role": "combo",
@@ -822,10 +928,12 @@
         "combo",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV"
     },
     {
-      "id": "hip_oracle_of_fate_15",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
       "name": "HIP-OF 15",
       "archetype": "oracle_of_fate",
       "role": "energy",
@@ -837,10 +945,12 @@
         "control",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV"
     },
     {
-      "id": "hip_oracle_of_fate_16",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
       "name": "HIP-OF 16",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -852,10 +962,12 @@
         "draw",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI"
     },
     {
-      "id": "hip_oracle_of_fate_17",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
       "name": "HIP-OF 17",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -867,10 +979,12 @@
         "harmony",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
+      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII"
     },
     {
-      "id": "hip_oracle_of_fate_18",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII",
       "name": "HIP-OF 18",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -881,10 +995,12 @@
         "scry",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII"
     },
     {
-      "id": "hip_oracle_of_fate_19",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX",
       "name": "HIP-OF 19",
       "archetype": "oracle_of_fate",
       "role": "combo",
@@ -896,10 +1012,12 @@
         "combo",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX"
     },
     {
-      "id": "hip_oracle_of_fate_20",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
       "name": "HIP-OF 20",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -912,7 +1030,9 @@
         "ritual",
         "hiperboria"
       ],
-      "set": "HIPERBORIA"
+      "set": "HIPERBORIA",
+      "legacy_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
+      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX"
     }
   ]
 }

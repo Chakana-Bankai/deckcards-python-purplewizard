@@ -1,0 +1,86 @@
+{
+  "version": "card_id_scheme_v1",
+  "canonical_format": "SET-ARCHETYPE-TYPE-NAME",
+  "separator": "-",
+  "name_separator": "_",
+  "id_case": "UPPERCASE",
+  "set_codes": {
+    "base": "BASE",
+    "hiperboria": "HYP",
+    "arconte": "ARC"
+  },
+  "archetype_codes": {
+    "cosmic_warrior": "SOLAR",
+    "harmony_guardian": "GUIDE",
+    "oracle_of_fate": "ORACLE",
+    "archon_war": "ARCHON"
+  },
+  "type_codes": {
+    "attack": "ATTACK",
+    "defense": "GUARD",
+    "control": "SKILL",
+    "combo": "SKILL",
+    "energy": "SKILL",
+    "ritual": "RITUAL",
+    "curse": "CURSE"
+  },
+  "normalization_rules": {
+    "strip_accents": true,
+    "replace_spaces_with": "_",
+    "replace_hyphens_with": "_",
+    "collapse_repeated_underscores": true,
+    "allowed_chars": "A-Z0-9_-",
+    "remove_articles_when_needed": false
+  },
+  "legacy_prefix_mapping": {
+    "arc_": {
+      "set": "ARC",
+      "archetype": "ARCHON"
+    },
+    "hip_cosmic_warrior_": {
+      "set": "HYP",
+      "archetype": "SOLAR"
+    },
+    "hip_harmony_guardian_": {
+      "set": "HYP",
+      "archetype": "GUIDE"
+    },
+    "hip_oracle_of_fate_": {
+      "set": "HYP",
+      "archetype": "ORACLE"
+    },
+    "cw_lore_": {
+      "set": "BASE",
+      "archetype": "SOLAR"
+    },
+    "hg_lore_": {
+      "set": "BASE",
+      "archetype": "GUIDE"
+    },
+    "of_lore_": {
+      "set": "BASE",
+      "archetype": "ORACLE"
+    }
+  },
+  "canonical_examples": [
+    "BASE-SOLAR-ATTACK-SOLAR_STRIKE",
+    "HYP-ARCHON-CURSE-SOUL_CHAIN",
+    "BASE-GUIDE-SKILL-HARMONY_CALL"
+  ],
+  "migration_policy": {
+    "keep_legacy_id": true,
+    "store_canonical_id": true,
+    "store_legacy_filename": true,
+    "manifest_must_map_both": true
+  },
+  "future_required_fields": [
+    "id",
+    "canonical_id",
+    "set",
+    "archetype",
+    "role",
+    "artwork",
+    "name",
+    "legacy_id"
+  ]
+}

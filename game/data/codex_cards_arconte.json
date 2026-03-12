@@ -4,7 +4,7 @@
   "total_cards": 60,
   "cards": [
     {
-      "id": "arc_001",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01",
       "name": "Arcano del Vacio 01",
       "set": "arconte",
       "archetype": "archon_war",
@@ -16,10 +16,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01"
     },
     {
-      "id": "arc_002",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02",
       "name": "Arcano del Vacio 02",
       "set": "arconte",
       "archetype": "archon_war",
@@ -31,10 +33,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02"
     },
     {
-      "id": "arc_003",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03",
       "name": "Arcano del Vacio 03",
       "set": "arconte",
       "archetype": "archon_war",
@@ -46,10 +50,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03"
     },
     {
-      "id": "arc_004",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04",
       "name": "Arcano del Vacio 04",
       "set": "arconte",
       "archetype": "archon_war",
@@ -61,10 +67,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04"
     },
     {
-      "id": "arc_005",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05",
       "name": "Arcano del Vacio 05",
       "set": "arconte",
       "archetype": "archon_war",
@@ -76,10 +84,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05"
     },
     {
-      "id": "arc_006",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06",
       "name": "Arcano del Vacio 06",
       "set": "arconte",
       "archetype": "archon_war",
@@ -91,10 +101,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06"
     },
     {
-      "id": "arc_007",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07",
       "name": "Arcano del Vacio 07",
       "set": "arconte",
       "archetype": "archon_war",
@@ -106,10 +118,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07"
     },
     {
-      "id": "arc_008",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08",
       "name": "Arcano del Vacio 08",
       "set": "arconte",
       "archetype": "archon_war",
@@ -121,10 +135,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08"
     },
     {
-      "id": "arc_009",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_09",
       "name": "Arcano del Vacio 09",
       "set": "arconte",
       "archetype": "archon_war",
@@ -136,10 +152,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_09",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_09"
     },
     {
-      "id": "arc_010",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_10",
       "name": "Arcano del Vacio 10",
       "set": "arconte",
       "archetype": "archon_war",
@@ -151,10 +169,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_10",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_10"
     },
     {
-      "id": "arc_011",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_11",
       "name": "Arcano del Vacio 11",
       "set": "arconte",
       "archetype": "archon_war",
@@ -166,10 +186,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_11",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_11"
     },
     {
-      "id": "arc_012",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_12",
       "name": "Arcano del Vacio 12",
       "set": "arconte",
       "archetype": "archon_war",
@@ -181,10 +203,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_12",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_12"
     },
     {
-      "id": "arc_013",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_13",
       "name": "Arcano del Vacio 13",
       "set": "arconte",
       "archetype": "archon_war",
@@ -196,10 +220,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_13",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_13"
     },
     {
-      "id": "arc_014",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14",
       "name": "Arcano del Vacio 14",
       "set": "arconte",
       "archetype": "archon_war",
@@ -211,10 +237,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14"
     },
     {
-      "id": "arc_015",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_15",
       "name": "Arcano del Vacio 15",
       "set": "arconte",
       "archetype": "archon_war",
@@ -226,10 +254,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_15",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_15"
     },
     {
-      "id": "arc_016",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16",
       "name": "Arcano del Vacio 16",
       "set": "arconte",
       "archetype": "archon_war",
@@ -241,10 +271,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16"
     },
     {
-      "id": "arc_017",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_17",
       "name": "Arcano del Vacio 17",
       "set": "arconte",
       "archetype": "archon_war",
@@ -256,10 +288,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_17",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_17"
     },
     {
-      "id": "arc_018",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_18",
       "name": "Arcano del Vacio 18",
       "set": "arconte",
       "archetype": "archon_war",
@@ -271,10 +305,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_18",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_18"
     },
     {
-      "id": "arc_019",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_19",
       "name": "Arcano del Vacio 19",
       "set": "arconte",
       "archetype": "archon_war",
@@ -286,10 +322,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_19",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_19"
     },
     {
-      "id": "arc_020",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_20",
       "name": "Arcano del Vacio 20",
       "set": "arconte",
       "archetype": "archon_war",
@@ -301,10 +339,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_20",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_20"
     },
     {
-      "id": "arc_021",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_21",
       "name": "Arcano del Vacio 21",
       "set": "arconte",
       "archetype": "archon_war",
@@ -316,10 +356,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_21",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_21"
     },
     {
-      "id": "arc_022",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_22",
       "name": "Arcano del Vacio 22",
       "set": "arconte",
       "archetype": "archon_war",
@@ -331,10 +373,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_22",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_22"
     },
     {
-      "id": "arc_023",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_23",
       "name": "Arcano del Vacio 23",
       "set": "arconte",
       "archetype": "archon_war",
@@ -346,10 +390,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_23",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_23"
     },
     {
-      "id": "arc_024",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_24",
       "name": "Arcano del Vacio 24",
       "set": "arconte",
       "archetype": "archon_war",
@@ -361,10 +407,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_24",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_24"
     },
     {
-      "id": "arc_025",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_25",
       "name": "Arcano del Vacio 25",
       "set": "arconte",
       "archetype": "archon_war",
@@ -376,10 +424,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_25",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_25"
     },
     {
-      "id": "arc_026",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_26",
       "name": "Arcano del Vacio 26",
       "set": "arconte",
       "archetype": "archon_war",
@@ -391,10 +441,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_26",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_26"
     },
     {
-      "id": "arc_027",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_27",
       "name": "Arcano del Vacio 27",
       "set": "arconte",
       "archetype": "archon_war",
@@ -406,10 +458,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_27",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_27"
     },
     {
-      "id": "arc_028",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_28",
       "name": "Arcano del Vacio 28",
       "set": "arconte",
       "archetype": "archon_war",
@@ -421,10 +475,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_28",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_28"
     },
     {
-      "id": "arc_029",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_29",
       "name": "Arcano del Vacio 29",
       "set": "arconte",
       "archetype": "archon_war",
@@ -436,10 +492,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_29",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_29"
     },
     {
-      "id": "arc_030",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_30",
       "name": "Arcano del Vacio 30",
       "set": "arconte",
       "archetype": "archon_war",
@@ -451,10 +509,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_30",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_30"
     },
     {
-      "id": "arc_031",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_31",
       "name": "Arcano del Vacio 31",
       "set": "arconte",
       "archetype": "archon_war",
@@ -466,10 +526,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_31",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_31"
     },
     {
-      "id": "arc_032",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_32",
       "name": "Arcano del Vacio 32",
       "set": "arconte",
       "archetype": "archon_war",
@@ -481,10 +543,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_32",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_32"
     },
     {
-      "id": "arc_033",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_33",
       "name": "Arcano del Vacio 33",
       "set": "arconte",
       "archetype": "archon_war",
@@ -496,10 +560,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_33",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_33"
     },
     {
-      "id": "arc_034",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_34",
       "name": "Arcano del Vacio 34",
       "set": "arconte",
       "archetype": "archon_war",
@@ -511,10 +577,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_34",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_34"
     },
     {
-      "id": "arc_035",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_35",
       "name": "Arcano del Vacio 35",
       "set": "arconte",
       "archetype": "archon_war",
@@ -526,10 +594,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_35",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_35"
     },
     {
-      "id": "arc_036",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_36",
       "name": "Arcano del Vacio 36",
       "set": "arconte",
       "archetype": "archon_war",
@@ -541,10 +611,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_36",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_36"
     },
     {
-      "id": "arc_037",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_37",
       "name": "Arcano del Vacio 37",
       "set": "arconte",
       "archetype": "archon_war",
@@ -556,10 +628,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_37",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_37"
     },
     {
-      "id": "arc_038",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_38",
       "name": "Arcano del Vacio 38",
       "set": "arconte",
       "archetype": "archon_war",
@@ -571,10 +645,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_38",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_38"
     },
     {
-      "id": "arc_039",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39",
       "name": "Arcano del Vacio 39",
       "set": "arconte",
       "archetype": "archon_war",
@@ -586,10 +662,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39"
     },
     {
-      "id": "arc_040",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40",
       "name": "Arcano del Vacio 40",
       "set": "arconte",
       "archetype": "archon_war",
@@ -601,10 +679,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40"
     },
     {
-      "id": "arc_041",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_41",
       "name": "Arcano del Vacio 41",
       "set": "arconte",
       "archetype": "archon_war",
@@ -616,10 +696,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_41",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_41"
     },
     {
-      "id": "arc_042",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_42",
       "name": "Arcano del Vacio 42",
       "set": "arconte",
       "archetype": "archon_war",
@@ -631,10 +713,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_42",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_42"
     },
     {
-      "id": "arc_043",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_43",
       "name": "Arcano del Vacio 43",
       "set": "arconte",
       "archetype": "archon_war",
@@ -646,10 +730,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_43",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_43"
     },
     {
-      "id": "arc_044",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_44",
       "name": "Arcano del Vacio 44",
       "set": "arconte",
       "archetype": "archon_war",
@@ -661,10 +747,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_44",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_44"
     },
     {
-      "id": "arc_045",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_45",
       "name": "Arcano del Vacio 45",
       "set": "arconte",
       "archetype": "archon_war",
@@ -676,10 +764,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_45",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_45"
     },
     {
-      "id": "arc_046",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_46",
       "name": "Arcano del Vacio 46",
       "set": "arconte",
       "archetype": "archon_war",
@@ -691,10 +781,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_46",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_46"
     },
     {
-      "id": "arc_047",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_47",
       "name": "Arcano del Vacio 47",
       "set": "arconte",
       "archetype": "archon_war",
@@ -706,10 +798,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_47",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_47"
     },
     {
-      "id": "arc_048",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_48",
       "name": "Arcano del Vacio 48",
       "set": "arconte",
       "archetype": "archon_war",
@@ -721,10 +815,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_48",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_48"
     },
     {
-      "id": "arc_049",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_49",
       "name": "Arcano del Vacio 49",
       "set": "arconte",
       "archetype": "archon_war",
@@ -736,10 +832,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_49",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_49"
     },
     {
-      "id": "arc_050",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50",
       "name": "Arcano del Vacio 50",
       "set": "arconte",
       "archetype": "archon_war",
@@ -751,10 +849,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50"
     },
     {
-      "id": "arc_051",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_51",
       "name": "Arcano del Vacio 51",
       "set": "arconte",
       "archetype": "archon_war",
@@ -766,10 +866,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_51",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_51"
     },
     {
-      "id": "arc_052",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_52",
       "name": "Arcano del Vacio 52",
       "set": "arconte",
       "archetype": "archon_war",
@@ -781,10 +883,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_52",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_52"
     },
     {
-      "id": "arc_053",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_53",
       "name": "Arcano del Vacio 53",
       "set": "arconte",
       "archetype": "archon_war",
@@ -796,10 +900,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_53",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_53"
     },
     {
-      "id": "arc_054",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54",
       "name": "Arcano del Vacio 54",
       "set": "arconte",
       "archetype": "archon_war",
@@ -811,10 +917,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54"
     },
     {
-      "id": "arc_055",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55",
       "name": "Arcano del Vacio 55",
       "set": "arconte",
       "archetype": "archon_war",
@@ -826,10 +934,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55"
     },
     {
-      "id": "arc_056",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_56",
       "name": "Arcano del Vacio 56",
       "set": "arconte",
       "archetype": "archon_war",
@@ -841,10 +951,12 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_56",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_56"
     },
     {
-      "id": "arc_057",
+      "id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_57",
       "name": "Arcano del Vacio 57",
       "set": "arconte",
       "archetype": "archon_war",
@@ -856,10 +968,12 @@
         "attack",
         "rupture",
         "void"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_57",
+      "canonical_id": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_57"
     },
     {
-      "id": "arc_058",
+      "id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_58",
       "name": "Arcano del Vacio 58",
       "set": "arconte",
       "archetype": "archon_war",
@@ -871,10 +985,12 @@
         "control",
         "void",
         "entropy"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_58",
+      "canonical_id": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_58"
     },
     {
-      "id": "arc_059",
+      "id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59",
       "name": "Arcano del Vacio 59",
       "set": "arconte",
       "archetype": "archon_war",
@@ -886,10 +1002,12 @@
         "ritual",
         "entropy",
         "control"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59",
+      "canonical_id": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59"
     },
     {
-      "id": "arc_060",
+      "id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_60",
       "name": "Arcano del Vacio 60",
       "set": "arconte",
       "archetype": "archon_war",
@@ -901,7 +1019,9 @@
         "block",
         "control",
         "corruption"
-      ]
+      ],
+      "legacy_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_60",
+      "canonical_id": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_60"
     }
   ]
 }

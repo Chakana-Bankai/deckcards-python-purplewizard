@@ -21,7 +21,7 @@
   ],
   "cards": [
     {
-      "id": "hip_cosmic_warrior_01",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
       "name": "Guerrero Astral de Hiperbórea I",
       "name_key": "Guerrero Astral de Hiperbórea I",
       "text_key": "Daño 4",
@@ -50,7 +50,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_01",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -58,10 +58,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_cosmic_warrior_01",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
+      "legacy_artwork": "hip_cosmic_warrior_01"
     },
     {
-      "id": "hip_cosmic_warrior_02",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
       "name": "Guerrero Astral de Hiperbórea II",
       "name_key": "Guerrero Astral de Hiperbórea II",
       "text_key": "Daño 4, Ruptura +1",
@@ -94,7 +97,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_02",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -102,10 +105,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_cosmic_warrior_02",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
+      "legacy_artwork": "hip_cosmic_warrior_02"
     },
     {
-      "id": "hip_cosmic_warrior_03",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
       "name": "Guerrero Astral de Hiperbórea III",
       "name_key": "Guerrero Astral de Hiperbórea III",
       "text_key": "Daño 5",
@@ -133,7 +139,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_03",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -141,10 +147,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_cosmic_warrior_03",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
+      "legacy_artwork": "hip_cosmic_warrior_03"
     },
     {
-      "id": "hip_cosmic_warrior_04",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
       "name": "Guerrero Astral de Hiperbórea IV",
       "name_key": "Guerrero Astral de Hiperbórea IV",
       "text_key": "Energía +1, Daño 3",
@@ -177,7 +186,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_04",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -185,10 +194,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_cosmic_warrior_04",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
+      "legacy_artwork": "hip_cosmic_warrior_04"
     },
     {
-      "id": "hip_cosmic_warrior_05",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
       "name": "Guerrero Astral de Hiperbórea V",
       "name_key": "Guerrero Astral de Hiperbórea V",
       "text_key": "Damage Plus Rupture",
@@ -218,7 +230,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_05",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -226,10 +238,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_cosmic_warrior_05",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
+      "legacy_artwork": "hip_cosmic_warrior_05"
     },
     {
-      "id": "hip_cosmic_warrior_06",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
       "name": "Guerrero Astral de Hiperbórea VI",
       "name_key": "Guerrero Astral de Hiperbórea VI",
       "text_key": "Daño 5",
@@ -258,7 +273,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_06",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -266,10 +281,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_cosmic_warrior_06",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
+      "legacy_artwork": "hip_cosmic_warrior_06"
     },
     {
-      "id": "hip_cosmic_warrior_07",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
       "name": "Guerrero Astral de Hiperbórea VII",
       "name_key": "Guerrero Astral de Hiperbórea VII",
       "text_key": "Daño 3, Ruptura +1",
@@ -302,7 +320,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_07",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -310,10 +328,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_cosmic_warrior_07",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
+      "legacy_artwork": "hip_cosmic_warrior_07"
     },
     {
-      "id": "hip_cosmic_warrior_08",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
       "name": "Guerrero Astral de Hiperbórea VIII",
       "name_key": "Guerrero Astral de Hiperbórea VIII",
       "text_key": "Daño 5",
@@ -341,7 +362,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_08",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -349,10 +370,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_cosmic_warrior_08",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
+      "legacy_artwork": "hip_cosmic_warrior_08"
     },
     {
-      "id": "hip_cosmic_warrior_09",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
       "name": "Guerrero Astral de Hiperbórea IX",
       "name_key": "Guerrero Astral de Hiperbórea IX",
       "text_key": "Energía +1, Daño 3",
@@ -385,7 +409,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_09",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -393,10 +417,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_cosmic_warrior_09",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
+      "legacy_artwork": "hip_cosmic_warrior_09"
     },
     {
-      "id": "hip_cosmic_warrior_10",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
       "name": "Guerrero Astral de Hiperbórea X",
       "name_key": "Guerrero Astral de Hiperbórea X",
       "text_key": "Damage Plus Rupture",
@@ -426,7 +453,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_10",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -434,10 +461,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "hip_cosmic_warrior_10",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
+      "legacy_artwork": "hip_cosmic_warrior_10"
     },
     {
-      "id": "hip_cosmic_warrior_11",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
       "name": "Guerrero Astral de Hiperbórea XI",
       "name_key": "Guerrero Astral de Hiperbórea XI",
       "text_key": "Daño 4",
@@ -467,7 +497,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_11",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -475,10 +505,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_cosmic_warrior_11",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
+      "legacy_artwork": "hip_cosmic_warrior_11"
     },
     {
-      "id": "hip_cosmic_warrior_12",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
       "name": "Guerrero Astral de Hiperbórea XII",
       "name_key": "Guerrero Astral de Hiperbórea XII",
       "text_key": "Daño 5, Ruptura +1",
@@ -511,7 +544,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_12",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -519,10 +552,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_cosmic_warrior_12",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
+      "legacy_artwork": "hip_cosmic_warrior_12"
     },
     {
-      "id": "hip_cosmic_warrior_13",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
       "name": "Guerrero Astral de Hiperbórea XIII",
       "name_key": "Guerrero Astral de Hiperbórea XIII",
       "text_key": "Daño 5",
@@ -551,7 +587,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_13",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -559,10 +595,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_cosmic_warrior_13",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
+      "legacy_artwork": "hip_cosmic_warrior_13"
     },
     {
-      "id": "hip_cosmic_warrior_14",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
       "name": "Guerrero Astral de Hiperbórea XIV",
       "name_key": "Guerrero Astral de Hiperbórea XIV",
       "text_key": "Energía +1, Daño 3",
@@ -596,7 +635,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_14",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -604,10 +643,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_cosmic_warrior_14",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
+      "legacy_artwork": "hip_cosmic_warrior_14"
     },
     {
-      "id": "hip_cosmic_warrior_15",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
       "name": "Guerrero Astral de Hiperbórea XV",
       "name_key": "Guerrero Astral de Hiperbórea XV",
       "text_key": "Damage Plus Rupture",
@@ -638,7 +680,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_15",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -646,10 +688,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "hip_cosmic_warrior_15",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
+      "legacy_artwork": "hip_cosmic_warrior_15"
     },
     {
-      "id": "hip_cosmic_warrior_16",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
       "name": "Guerrero Astral de Hiperbórea XVI",
       "name_key": "Guerrero Astral de Hiperbórea XVI",
       "text_key": "Daño 5",
@@ -679,7 +724,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_16",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -687,10 +732,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_cosmic_warrior_16",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
+      "legacy_artwork": "hip_cosmic_warrior_16"
     },
     {
-      "id": "hip_cosmic_warrior_17",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
       "name": "Guerrero Astral de Hiperbórea XVII",
       "name_key": "Guerrero Astral de Hiperbórea XVII",
       "text_key": "Daño 4, Ruptura +1",
@@ -723,7 +771,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_17",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -731,10 +779,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_cosmic_warrior_17",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
+      "legacy_artwork": "hip_cosmic_warrior_17"
     },
     {
-      "id": "hip_cosmic_warrior_18",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
       "name": "Guerrero Astral de Hiperbórea XVIII",
       "name_key": "Guerrero Astral de Hiperbórea XVIII",
       "text_key": "Daño 5",
@@ -763,7 +814,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_18",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -771,10 +822,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "hip_cosmic_warrior_18",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
+      "legacy_artwork": "hip_cosmic_warrior_18"
     },
     {
-      "id": "hip_cosmic_warrior_19",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
       "name": "Guerrero Astral de Hiperbórea XIX",
       "name_key": "Guerrero Astral de Hiperbórea XIX",
       "text_key": "Energía +1, Daño 3",
@@ -808,7 +862,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_19",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -816,10 +870,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_cosmic_warrior_19",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
+      "legacy_artwork": "hip_cosmic_warrior_19"
     },
     {
-      "id": "hip_cosmic_warrior_20",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
       "name": "Guerrero Astral de Hiperbórea XX",
       "name_key": "Guerrero Astral de Hiperbórea XX",
       "text_key": "Daño 10, Ruptura +2",
@@ -853,7 +910,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guerrero Hiperboreo"
       },
-      "artwork": "hip_cosmic_warrior_20",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "polar_strike_flux",
@@ -861,10 +918,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "hip_cosmic_warrior_20",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
+      "legacy_artwork": "hip_cosmic_warrior_20"
     },
     {
-      "id": "hip_harmony_guardian_01",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
       "name": "Guardián del Velo Polar I",
       "name_key": "Guardián del Velo Polar I",
       "text_key": "Bloqueo 4, Daño 5",
@@ -897,7 +957,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_01",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -905,10 +965,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_harmony_guardian_01",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
+      "legacy_artwork": "hip_harmony_guardian_01"
     },
     {
-      "id": "hip_harmony_guardian_02",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
       "name": "Guardián del Velo Polar II",
       "name_key": "Guardián del Velo Polar II",
       "text_key": "Armonía +1, Liberar Sello, Daño 8",
@@ -945,7 +1008,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_02",
+      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -953,10 +1016,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_harmony_guardian_02",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
+      "legacy_artwork": "hip_harmony_guardian_02"
     },
     {
-      "id": "hip_harmony_guardian_03",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
       "name": "Guardián del Velo Polar III",
       "name_key": "Guardián del Velo Polar III",
       "text_key": "Bloqueo 5, Daño 4",
@@ -988,7 +1054,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_03",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -996,10 +1062,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_harmony_guardian_03",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
+      "legacy_artwork": "hip_harmony_guardian_03"
     },
     {
-      "id": "hip_harmony_guardian_04",
+      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
       "name": "Guardián del Velo Polar IV",
       "name_key": "Guardián del Velo Polar IV",
       "text_key": "Bloqueo 3, Prever 1, Daño 5",
@@ -1036,7 +1105,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_04",
+      "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1044,10 +1113,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_harmony_guardian_04",
+      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
+      "legacy_artwork": "hip_harmony_guardian_04"
     },
     {
-      "id": "hip_harmony_guardian_05",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
       "name": "Guardián del Velo Polar V",
       "name_key": "Guardián del Velo Polar V",
       "text_key": "Bloqueo 4, Sanar 1, Daño 6",
@@ -1084,7 +1156,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_05",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1092,10 +1164,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_harmony_guardian_05",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
+      "legacy_artwork": "hip_harmony_guardian_05"
     },
     {
-      "id": "hip_harmony_guardian_06",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
       "name": "Guardián del Velo Polar VI",
       "name_key": "Guardián del Velo Polar VI",
       "text_key": "Bloqueo 5, Daño 5",
@@ -1128,7 +1203,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_06",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1136,10 +1211,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_harmony_guardian_06",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
+      "legacy_artwork": "hip_harmony_guardian_06"
     },
     {
-      "id": "hip_harmony_guardian_07",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
       "name": "Guardián del Velo Polar VII",
       "name_key": "Guardián del Velo Polar VII",
       "text_key": "Armonía +1, Liberar Sello, Daño 8",
@@ -1176,7 +1254,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_07",
+      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1184,10 +1262,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_harmony_guardian_07",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
+      "legacy_artwork": "hip_harmony_guardian_07"
     },
     {
-      "id": "hip_harmony_guardian_08",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
       "name": "Guardián del Velo Polar VIII",
       "name_key": "Guardián del Velo Polar VIII",
       "text_key": "Bloqueo 5, Daño 5",
@@ -1219,7 +1300,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_08",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1227,10 +1308,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_harmony_guardian_08",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
+      "legacy_artwork": "hip_harmony_guardian_08"
     },
     {
-      "id": "hip_harmony_guardian_09",
+      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
       "name": "Guardián del Velo Polar IX",
       "name_key": "Guardián del Velo Polar IX",
       "text_key": "Bloqueo 3, Prever 1, Daño 5",
@@ -1267,7 +1351,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_09",
+      "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1275,10 +1359,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_harmony_guardian_09",
+      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
+      "legacy_artwork": "hip_harmony_guardian_09"
     },
     {
-      "id": "hip_harmony_guardian_10",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
       "name": "Guardián del Velo Polar X",
       "name_key": "Guardián del Velo Polar X",
       "text_key": "Bloqueo 4, Sanar 1, Daño 6",
@@ -1315,7 +1402,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_10",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1323,10 +1410,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_harmony_guardian_10",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
+      "legacy_artwork": "hip_harmony_guardian_10"
     },
     {
-      "id": "hip_harmony_guardian_11",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
       "name": "Guardián del Velo Polar XI",
       "name_key": "Guardián del Velo Polar XI",
       "text_key": "Bloqueo 4, Daño 5",
@@ -1360,7 +1450,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_11",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1368,10 +1458,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_harmony_guardian_11",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
+      "legacy_artwork": "hip_harmony_guardian_11"
     },
     {
-      "id": "hip_harmony_guardian_12",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
       "name": "Guardián del Velo Polar XII",
       "name_key": "Guardián del Velo Polar XII",
       "text_key": "Armonía +1, Liberar Sello, Daño 9",
@@ -1408,7 +1501,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_12",
+      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1416,10 +1509,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_harmony_guardian_12",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
+      "legacy_artwork": "hip_harmony_guardian_12"
     },
     {
-      "id": "hip_harmony_guardian_13",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
       "name": "Guardián del Velo Polar XIII",
       "name_key": "Guardián del Velo Polar XIII",
       "text_key": "Bloqueo 5, Daño 6",
@@ -1451,7 +1547,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_13",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1459,10 +1555,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_harmony_guardian_13",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
+      "legacy_artwork": "hip_harmony_guardian_13"
     },
     {
-      "id": "hip_harmony_guardian_14",
+      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
       "name": "Guardián del Velo Polar XIV",
       "name_key": "Guardián del Velo Polar XIV",
       "text_key": "Bloqueo 3, Prever 1, Daño 6",
@@ -1499,7 +1598,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_14",
+      "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1507,10 +1606,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_harmony_guardian_14",
+      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
+      "legacy_artwork": "hip_harmony_guardian_14"
     },
     {
-      "id": "hip_harmony_guardian_15",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
       "name": "Guardián del Velo Polar XV",
       "name_key": "Guardián del Velo Polar XV",
       "text_key": "Bloqueo 4, Sanar 1, Daño 7",
@@ -1547,7 +1649,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_15",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1555,10 +1657,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "hip_harmony_guardian_15",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
+      "legacy_artwork": "hip_harmony_guardian_15"
     },
     {
-      "id": "hip_harmony_guardian_16",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
       "name": "Guardián del Velo Polar XVI",
       "name_key": "Guardián del Velo Polar XVI",
       "text_key": "Bloqueo 5, Daño 6",
@@ -1591,7 +1696,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_16",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1599,10 +1704,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "hip_harmony_guardian_16",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
+      "legacy_artwork": "hip_harmony_guardian_16"
     },
     {
-      "id": "hip_harmony_guardian_17",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
       "name": "Guardián del Velo Polar XVII",
       "name_key": "Guardián del Velo Polar XVII",
       "text_key": "Armonía +1, Liberar Sello, Daño 9",
@@ -1639,7 +1747,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_17",
+      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1647,10 +1755,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_harmony_guardian_17",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
+      "legacy_artwork": "hip_harmony_guardian_17"
     },
     {
-      "id": "hip_harmony_guardian_18",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
       "name": "Guardián del Velo Polar XVIII",
       "name_key": "Guardián del Velo Polar XVIII",
       "text_key": "Bloqueo 5, Daño 6",
@@ -1682,7 +1793,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_18",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1690,10 +1801,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "hip_harmony_guardian_18",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
+      "legacy_artwork": "hip_harmony_guardian_18"
     },
     {
-      "id": "hip_harmony_guardian_19",
+      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
       "name": "Guardián del Velo Polar XIX",
       "name_key": "Guardián del Velo Polar XIX",
       "text_key": "Bloqueo 3, Prever 1, Daño 6",
@@ -1730,7 +1844,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_19",
+      "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1738,10 +1852,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_harmony_guardian_19",
+      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
+      "legacy_artwork": "hip_harmony_guardian_19"
     },
     {
-      "id": "hip_harmony_guardian_20",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
       "name": "Guardián del Velo Polar XX",
       "name_key": "Guardián del Velo Polar XX",
       "text_key": "Bloqueo 10, Armonía +2, Daño 14",
@@ -1779,7 +1896,7 @@
         "set": "HIPERBOREA",
         "archetype": "Guardian Hiperboreo"
       },
-      "artwork": "hip_harmony_guardian_20",
+      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "guardian_resonance",
@@ -1788,10 +1905,13 @@
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
       "taxonomy": "payoff",
-      "text_es": "Gana 10 Bloqueo, +2 Armon?a y causa 12 de Da?o."
+      "text_es": "Gana 10 Bloqueo, +2 Armon?a y causa 12 de Da?o.",
+      "legacy_id": "hip_harmony_guardian_20",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
+      "legacy_artwork": "hip_harmony_guardian_20"
     },
     {
-      "id": "hip_oracle_of_fate_01",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
       "name": "Oráculo del Horizonte Boreal I",
       "name_key": "Oráculo del Horizonte Boreal I",
       "text_key": "Prever 2, Roba 1, Daño 4",
@@ -1828,7 +1948,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_01",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -1836,10 +1956,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_oracle_of_fate_01",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
+      "legacy_artwork": "hip_oracle_of_fate_01"
     },
     {
-      "id": "hip_oracle_of_fate_02",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
       "name": "Oráculo del Horizonte Boreal II",
       "name_key": "Oráculo del Horizonte Boreal II",
       "text_key": "Ritual +1, Armonía +1, Roba 1",
@@ -1876,7 +1999,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_02",
+      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -1884,10 +2007,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_oracle_of_fate_02",
+      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
+      "legacy_artwork": "hip_oracle_of_fate_02"
     },
     {
-      "id": "hip_oracle_of_fate_03",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
       "name": "Oráculo del Horizonte Boreal III",
       "name_key": "Oráculo del Horizonte Boreal III",
       "text_key": "Prever 3, Daño 3",
@@ -1919,7 +2045,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_03",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -1927,10 +2053,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_oracle_of_fate_03",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
+      "legacy_artwork": "hip_oracle_of_fate_03"
     },
     {
-      "id": "hip_oracle_of_fate_04",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV",
       "name": "Oráculo del Horizonte Boreal IV",
       "name_key": "Oráculo del Horizonte Boreal IV",
       "text_key": "Roba 2, Daño 5",
@@ -1963,7 +2092,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_04",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -1971,10 +2100,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_oracle_of_fate_04",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV",
+      "legacy_artwork": "hip_oracle_of_fate_04"
     },
     {
-      "id": "hip_oracle_of_fate_05",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
       "name": "Oráculo del Horizonte Boreal V",
       "name_key": "Oráculo del Horizonte Boreal V",
       "text_key": "Energía +1, Prever 1, Daño 4",
@@ -2011,7 +2143,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_05",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2019,10 +2151,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_oracle_of_fate_05",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
+      "legacy_artwork": "hip_oracle_of_fate_05"
     },
     {
-      "id": "hip_oracle_of_fate_06",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI",
       "name": "Oráculo del Horizonte Boreal VI",
       "name_key": "Oráculo del Horizonte Boreal VI",
       "text_key": "Prever 2, Roba 1, Daño 4",
@@ -2059,7 +2194,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_06",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2067,10 +2202,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_oracle_of_fate_06",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI",
+      "legacy_artwork": "hip_oracle_of_fate_06"
     },
     {
-      "id": "hip_oracle_of_fate_07",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
       "name": "Oráculo del Horizonte Boreal VII",
       "name_key": "Oráculo del Horizonte Boreal VII",
       "text_key": "Ritual +1, Armonía +1, Roba 1",
@@ -2107,7 +2245,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_07",
+      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2115,10 +2253,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_oracle_of_fate_07",
+      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
+      "legacy_artwork": "hip_oracle_of_fate_07"
     },
     {
-      "id": "hip_oracle_of_fate_08",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
       "name": "Oráculo del Horizonte Boreal VIII",
       "name_key": "Oráculo del Horizonte Boreal VIII",
       "text_key": "Prever 3, Daño 4",
@@ -2150,7 +2291,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_08",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2158,10 +2299,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_oracle_of_fate_08",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
+      "legacy_artwork": "hip_oracle_of_fate_08"
     },
     {
-      "id": "hip_oracle_of_fate_09",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX",
       "name": "Oráculo del Horizonte Boreal IX",
       "name_key": "Oráculo del Horizonte Boreal IX",
       "text_key": "Roba 2, Daño 5",
@@ -2194,7 +2338,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_09",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2202,10 +2346,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_oracle_of_fate_09",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX",
+      "legacy_artwork": "hip_oracle_of_fate_09"
     },
     {
-      "id": "hip_oracle_of_fate_10",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
       "name": "Oráculo del Horizonte Boreal X",
       "name_key": "Oráculo del Horizonte Boreal X",
       "text_key": "Energía +1, Prever 1, Daño 4",
@@ -2242,7 +2389,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_10",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2250,10 +2397,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_oracle_of_fate_10",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
+      "legacy_artwork": "hip_oracle_of_fate_10"
     },
     {
-      "id": "hip_oracle_of_fate_11",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
       "name": "Oráculo del Horizonte Boreal XI",
       "name_key": "Oráculo del Horizonte Boreal XI",
       "text_key": "Prever 2, Roba 1, Daño 4",
@@ -2291,7 +2441,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_11",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2299,10 +2449,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_oracle_of_fate_11",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
+      "legacy_artwork": "hip_oracle_of_fate_11"
     },
     {
-      "id": "hip_oracle_of_fate_12",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
       "name": "Oráculo del Horizonte Boreal XII",
       "name_key": "Oráculo del Horizonte Boreal XII",
       "text_key": "Ritual +1, Armonía +1, Roba 1",
@@ -2340,7 +2493,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_12",
+      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2348,10 +2501,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "engine"
+      "taxonomy": "engine",
+      "legacy_id": "hip_oracle_of_fate_12",
+      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
+      "legacy_artwork": "hip_oracle_of_fate_12"
     },
     {
-      "id": "hip_oracle_of_fate_13",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
       "name": "Oráculo del Horizonte Boreal XIII",
       "name_key": "Oráculo del Horizonte Boreal XIII",
       "text_key": "Prever 3, Daño 4",
@@ -2383,7 +2539,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_13",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2391,10 +2547,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_oracle_of_fate_13",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
+      "legacy_artwork": "hip_oracle_of_fate_13"
     },
     {
-      "id": "hip_oracle_of_fate_14",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
       "name": "Oráculo del Horizonte Boreal XIV",
       "name_key": "Oráculo del Horizonte Boreal XIV",
       "text_key": "Roba 2, Daño 6",
@@ -2427,7 +2586,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_14",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2435,10 +2594,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "hip_oracle_of_fate_14",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
+      "legacy_artwork": "hip_oracle_of_fate_14"
     },
     {
-      "id": "hip_oracle_of_fate_15",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
       "name": "Oráculo del Horizonte Boreal XV",
       "name_key": "Oráculo del Horizonte Boreal XV",
       "text_key": "Energía +1, Prever 1, Daño 5",
@@ -2475,7 +2637,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_15",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2483,10 +2645,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_oracle_of_fate_15",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
+      "legacy_artwork": "hip_oracle_of_fate_15"
     },
     {
-      "id": "hip_oracle_of_fate_16",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
       "name": "Oráculo del Horizonte Boreal XVI",
       "name_key": "Oráculo del Horizonte Boreal XVI",
       "text_key": "Prever 2, Roba 1, Daño 5",
@@ -2523,7 +2688,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_16",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2531,10 +2696,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "hip_oracle_of_fate_16",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
+      "legacy_artwork": "hip_oracle_of_fate_16"
     },
     {
-      "id": "hip_oracle_of_fate_17",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
       "name": "Oráculo del Horizonte Boreal XVII",
       "name_key": "Oráculo del Horizonte Boreal XVII",
       "text_key": "Ritual +1, Armonía +1, Roba 1",
@@ -2575,7 +2743,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_17",
+      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
       "motif": "crystals",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2583,10 +2751,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "hip_oracle_of_fate_17",
+      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
+      "legacy_artwork": "hip_oracle_of_fate_17"
     },
     {
-      "id": "hip_oracle_of_fate_18",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII",
       "name": "Oráculo del Horizonte Boreal XVIII",
       "name_key": "Oráculo del Horizonte Boreal XVIII",
       "text_key": "Prever 3, Daño 5",
@@ -2618,7 +2789,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_18",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII",
       "motif": "auroras",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2626,10 +2797,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_oracle_of_fate_18",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII",
+      "legacy_artwork": "hip_oracle_of_fate_18"
     },
     {
-      "id": "hip_oracle_of_fate_19",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX",
       "name": "Oráculo del Horizonte Boreal XIX",
       "name_key": "Oráculo del Horizonte Boreal XIX",
       "text_key": "Roba 2, Daño 6",
@@ -2662,7 +2836,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_19",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX",
       "motif": "polar_temples",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2670,10 +2844,13 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "bridge"
+      "taxonomy": "bridge",
+      "legacy_id": "hip_oracle_of_fate_19",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX",
+      "legacy_artwork": "hip_oracle_of_fate_19"
     },
     {
-      "id": "hip_oracle_of_fate_20",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
       "name": "Oráculo del Horizonte Boreal XX",
       "name_key": "Oráculo del Horizonte Boreal XX",
       "text_key": "Prever 4, Roba 2, Ritual +1",
@@ -2715,7 +2892,7 @@
         "set": "HIPERBOREA",
         "archetype": "Oraculo Hiperboreo"
       },
-      "artwork": "hip_oracle_of_fate_20",
+      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
       "motif": "ancient_guardians",
       "palette": "marble-ice-gold",
       "energy": "aurora_combo_flow",
@@ -2723,7 +2900,10 @@
       "kpi": {},
       "set": "HIPERBOREA",
       "set_emblem": "chakana_polar",
-      "taxonomy": "payoff"
+      "taxonomy": "payoff",
+      "legacy_id": "hip_oracle_of_fate_20",
+      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
+      "legacy_artwork": "hip_oracle_of_fate_20"
     }
   ]
 }

@@ -1,0 +1,175 @@
+chakana card id audit
+
+scope=phase_1_card_database_audit
+total_cards_scanned=180
+total_assets_scanned=180
+total_manifest_cards=180
+
+datasets:
+- game/data/cards.json: 60 cards
+- game/data/cards_arconte.json: 60 cards
+- game/data/cards_hiperboria.json: 60 cards
+
+findings:
+- duplicate_ids=0
+- missing_ids=0
+- missing_artwork_fields=60
+- duplicate_artwork_refs=0
+- duplicate_asset_filenames=0
+- artwork_without_sprite=0
+- unreferenced_sprite_assets=60
+- cards_missing_display_name=0
+- manifest_duplicate_ids=0
+- manifest_missing_sprite_refs=0
+- manifest_null_name_entries=60
+- codex_missing_card_ids=0
+- codex_unknown_card_ids=0
+
+asset_naming_patterns:
+- *_lore_*=30
+- arc_*=60
+- descriptive_slug=30
+- hip_*=60
+
+key_issues:
+- no duplicate card ids detected across the three main card datasets
+- sprite bucket mixes canonical card art with legacy/lore variants and alternate naming schemes, which makes filename-to-card mapping ambiguous
+- current sprite naming is inconsistent: numeric set ids (arc_*), verbose archetype ids (hip_*), lore ids (*_lore_*), and descriptive slugs coexist in the same production folder
+
+duplicate_ids_detail:
+- none
+
+missing_display_name_detail:
+- none
+
+unreferenced_sprite_assets_detail:
+- arc_001
+- arc_002
+- arc_003
+- arc_004
+- arc_005
+- arc_006
+- arc_007
+- arc_008
+- arc_009
+- arc_010
+- arc_011
+- arc_012
+- arc_013
+- arc_014
+- arc_015
+- arc_016
+- arc_017
+- arc_018
+- arc_019
+- arc_020
+- arc_021
+- arc_022
+- arc_023
+- arc_024
+- arc_025
+- arc_026
+- arc_027
+- arc_028
+- arc_029
+- arc_030
+- arc_031
+- arc_032
+- arc_033
+- arc_034
+- arc_035
+- arc_036
+- arc_037
+- arc_038
+- arc_039
+- arc_040
+- arc_041
+- arc_042
+- arc_043
+- arc_044
+- arc_045
+- arc_046
+- arc_047
+- arc_048
+- arc_049
+- arc_050
+- arc_051
+- arc_052
+- arc_053
+- arc_054
+- arc_055
+- arc_056
+- arc_057
+- arc_058
+- arc_059
+- arc_060
+
+codex_missing_card_ids_detail:
+- none
+
+manifest_null_name_entries_detail:
+- arc_001
+- arc_002
+- arc_003
+- arc_004
+- arc_005
+- arc_006
+- arc_007
+- arc_008
+- arc_009
+- arc_010
+- arc_011
+- arc_012
+- arc_013
+- arc_014
+- arc_015
+- arc_016
+- arc_017
+- arc_018
+- arc_019
+- arc_020
+- arc_021
+- arc_022
+- arc_023
+- arc_024
+- arc_025
+- arc_026
+- arc_027
+- arc_028
+- arc_029
+- arc_030
+- arc_031
+- arc_032
+- arc_033
+- arc_034
+- arc_035
+- arc_036
+- arc_037
+- arc_038
+- arc_039
+- arc_040
+- arc_041
+- arc_042
+- arc_043
+- arc_044
+- arc_045
+- arc_046
+- arc_047
+- arc_048
+- arc_049
+- arc_050
+- arc_051
+- arc_052
+- arc_053
+- arc_054
+- arc_055
+- arc_056
+- arc_057
+- arc_058
+- arc_059
+- arc_060
+
+assessment:
+- duplicate ID risk is currently low in the main datasets, but maintainability risk is high because filenames do not follow one canonical grammar
+- phase 2 should define a canonical ID scheme and explicit mapping rules for legacy prefixes: arc_, hip_, cw_lore_, hg_lore_, of_lore_, descriptive slugs
+- phase 3 will need a compatibility table because current lore/codex/manifests do not all expose the same human-readable name fields

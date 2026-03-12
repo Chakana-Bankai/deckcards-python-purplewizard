@@ -17,1085 +17,1085 @@
       "count": 180,
       "manifest_items_count": 60,
       "items": {
-        "campo_protector": {
-          "path": "game/assets/sprites/cards/campo_protector.png",
+        "BASE-GUIDE-GUARD-CAMPO_PROTECTOR": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-CAMPO_PROTECTOR.png",
           "exists": true,
           "set": "base",
-          "artwork": "campo_protector"
+          "artwork": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR"
         },
-        "chakana_de_luz": {
-          "path": "game/assets/sprites/cards/chakana_de_luz.png",
+        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-CHAKANA_DE_LUZ.png",
           "exists": true,
           "set": "base",
-          "artwork": "chakana_de_luz"
+          "artwork": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
         },
-        "eco_de_sabiduria": {
-          "path": "game/assets/sprites/cards/eco_de_sabiduria.png",
+        "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-ECO_DE_SABIDURIA.png",
           "exists": true,
           "set": "base",
-          "artwork": "eco_de_sabiduria"
+          "artwork": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA"
         },
-        "embate_del_jaguar": {
-          "path": "game/assets/sprites/cards/embate_del_jaguar.png",
+        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR.png",
           "exists": true,
           "set": "base",
-          "artwork": "embate_del_jaguar"
+          "artwork": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR"
         },
-        "escudo_de_luz": {
-          "path": "game/assets/sprites/cards/escudo_de_luz.png",
+        "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESCUDO_DE_LUZ.png",
           "exists": true,
           "set": "base",
-          "artwork": "escudo_de_luz"
+          "artwork": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ"
         },
-        "escudo_del_chaman": {
-          "path": "game/assets/sprites/cards/escudo_del_chaman.png",
+        "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN.png",
           "exists": true,
           "set": "base",
-          "artwork": "escudo_del_chaman"
+          "artwork": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN"
         },
-        "espiritu_guardian": {
-          "path": "game/assets/sprites/cards/espiritu_guardian.png",
+        "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN.png",
           "exists": true,
           "set": "base",
-          "artwork": "espiritu_guardian"
+          "artwork": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN"
         },
-        "estallido_arcano": {
-          "path": "game/assets/sprites/cards/estallido_arcano.png",
+        "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO.png",
           "exists": true,
           "set": "base",
-          "artwork": "estallido_arcano"
+          "artwork": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO"
         },
-        "filo_astral": {
-          "path": "game/assets/sprites/cards/filo_astral.png",
+        "BASE-SOLAR-ATTACK-FILO_ASTRAL": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-FILO_ASTRAL.png",
           "exists": true,
           "set": "base",
-          "artwork": "filo_astral"
+          "artwork": "BASE-SOLAR-ATTACK-FILO_ASTRAL"
         },
-        "filo_en_cadena": {
-          "path": "game/assets/sprites/cards/filo_en_cadena.png",
+        "BASE-SOLAR-SKILL-FILO_EN_CADENA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-FILO_EN_CADENA.png",
           "exists": true,
           "set": "base",
-          "artwork": "filo_en_cadena"
+          "artwork": "BASE-SOLAR-SKILL-FILO_EN_CADENA"
         },
-        "firmeza_del_cuerpo": {
-          "path": "game/assets/sprites/cards/firmeza_del_cuerpo.png",
+        "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO.png",
           "exists": true,
           "set": "base",
-          "artwork": "firmeza_del_cuerpo"
+          "artwork": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO"
         },
-        "fragmento_celeste": {
-          "path": "game/assets/sprites/cards/fragmento_celeste.png",
+        "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-FRAGMENTO_CELESTE.png",
           "exists": true,
           "set": "base",
-          "artwork": "fragmento_celeste"
+          "artwork": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE"
         },
-        "fusion_espiritual": {
-          "path": "game/assets/sprites/cards/fusion_espiritual.png",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FUSION_ESPIRITUAL.png",
           "exists": true,
           "set": "base",
-          "artwork": "fusion_espiritual"
+          "artwork": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
         },
-        "garra_espiritual": {
-          "path": "game/assets/sprites/cards/garra_espiritual.png",
+        "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL.png",
           "exists": true,
           "set": "base",
-          "artwork": "garra_espiritual"
+          "artwork": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL"
         },
-        "guardia_terrenal": {
-          "path": "game/assets/sprites/cards/guardia_terrenal.png",
+        "BASE-GUIDE-GUARD-GUARDIA_TERRENAL": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-GUARDIA_TERRENAL.png",
           "exists": true,
           "set": "base",
-          "artwork": "guardia_terrenal"
+          "artwork": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL"
         },
-        "invocacion_astral": {
-          "path": "game/assets/sprites/cards/invocacion_astral.png",
+        "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-INVOCACION_ASTRAL.png",
           "exists": true,
           "set": "base",
-          "artwork": "invocacion_astral"
+          "artwork": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL"
         },
-        "lectura_del_destino": {
-          "path": "game/assets/sprites/cards/lectura_del_destino.png",
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO.png",
           "exists": true,
           "set": "base",
-          "artwork": "lectura_del_destino"
+          "artwork": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO"
         },
-        "mantra_del_umbral": {
-          "path": "game/assets/sprites/cards/mantra_del_umbral.png",
+        "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL.png",
           "exists": true,
           "set": "base",
-          "artwork": "mantra_del_umbral"
+          "artwork": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL"
         },
-        "muralla_de_piedra": {
-          "path": "game/assets/sprites/cards/muralla_de_piedra.png",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA.png",
           "exists": true,
           "set": "base",
-          "artwork": "muralla_de_piedra"
+          "artwork": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA"
         },
-        "observacion_sagrada": {
-          "path": "game/assets/sprites/cards/observacion_sagrada.png",
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-OBSERVACION_SAGRADA.png",
           "exists": true,
           "set": "base",
-          "artwork": "observacion_sagrada"
+          "artwork": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA"
         },
-        "piedra_ritual": {
-          "path": "game/assets/sprites/cards/piedra_ritual.png",
+        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PIEDRA_RITUAL.png",
           "exists": true,
           "set": "base",
-          "artwork": "piedra_ritual"
+          "artwork": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL"
         },
-        "portal_de_la_chakana": {
-          "path": "game/assets/sprites/cards/portal_de_la_chakana.png",
+        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA.png",
           "exists": true,
           "set": "base",
-          "artwork": "portal_de_la_chakana"
+          "artwork": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA"
         },
-        "pulso_cosmico": {
-          "path": "game/assets/sprites/cards/pulso_cosmico.png",
+        "BASE-SOLAR-ATTACK-PULSO_COSMICO": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-PULSO_COSMICO.png",
           "exists": true,
           "set": "base",
-          "artwork": "pulso_cosmico"
+          "artwork": "BASE-SOLAR-ATTACK-PULSO_COSMICO"
         },
-        "resistencia_ancestral": {
-          "path": "game/assets/sprites/cards/resistencia_ancestral.png",
+        "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL.png",
           "exists": true,
           "set": "base",
-          "artwork": "resistencia_ancestral"
+          "artwork": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL"
         },
-        "revelacion_astral": {
-          "path": "game/assets/sprites/cards/revelacion_astral.png",
+        "BASE-ORACLE-SKILL-REVELACION_ASTRAL": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-REVELACION_ASTRAL.png",
           "exists": true,
           "set": "base",
-          "artwork": "revelacion_astral"
+          "artwork": "BASE-ORACLE-SKILL-REVELACION_ASTRAL"
         },
-        "ritual_de_la_trama": {
-          "path": "game/assets/sprites/cards/ritual_de_la_trama.png",
+        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA.png",
           "exists": true,
           "set": "base",
-          "artwork": "ritual_de_la_trama"
+          "artwork": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
         },
-        "sello_protector": {
-          "path": "game/assets/sprites/cards/sello_protector.png",
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-SELLO_PROTECTOR.png",
           "exists": true,
           "set": "base",
-          "artwork": "sello_protector"
+          "artwork": "BASE-GUIDE-GUARD-SELLO_PROTECTOR"
         },
-        "silencio_interior": {
-          "path": "game/assets/sprites/cards/silencio_interior.png",
+        "BASE-ORACLE-SKILL-SILENCIO_INTERIOR": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-SILENCIO_INTERIOR.png",
           "exists": true,
           "set": "base",
-          "artwork": "silencio_interior"
+          "artwork": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR"
         },
-        "vinculo_de_energia": {
-          "path": "game/assets/sprites/cards/vinculo_de_energia.png",
+        "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA.png",
           "exists": true,
           "set": "base",
-          "artwork": "vinculo_de_energia"
+          "artwork": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA"
         },
-        "vision_del_condor": {
-          "path": "game/assets/sprites/cards/vision_del_condor.png",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-VISION_DEL_CONDOR.png",
           "exists": true,
           "set": "base",
-          "artwork": "vision_del_condor"
+          "artwork": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
         },
-        "hg_lore_01": {
-          "path": "game/assets/sprites/cards/hg_lore_01.png",
+        "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "hg_lore_01"
+          "artwork": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA"
         },
-        "cw_lore_02": {
-          "path": "game/assets/sprites/cards/cw_lore_02.png",
+        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "cw_lore_02"
+          "artwork": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA"
         },
-        "cw_lore_03": {
-          "path": "game/assets/sprites/cards/cw_lore_03.png",
+        "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "cw_lore_03"
+          "artwork": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA"
         },
-        "cw_lore_04": {
-          "path": "game/assets/sprites/cards/cw_lore_04.png",
+        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "cw_lore_04"
+          "artwork": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA"
         },
-        "hg_lore_05": {
-          "path": "game/assets/sprites/cards/hg_lore_05.png",
+        "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "hg_lore_05"
+          "artwork": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA"
         },
-        "hg_lore_06": {
-          "path": "game/assets/sprites/cards/hg_lore_06.png",
+        "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "hg_lore_06"
+          "artwork": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA"
         },
-        "hg_lore_07": {
-          "path": "game/assets/sprites/cards/hg_lore_07.png",
+        "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "hg_lore_07"
+          "artwork": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA"
         },
-        "cw_lore_08": {
-          "path": "game/assets/sprites/cards/cw_lore_08.png",
+        "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "cw_lore_08"
+          "artwork": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA"
         },
-        "cw_lore_09": {
-          "path": "game/assets/sprites/cards/cw_lore_09.png",
+        "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "cw_lore_09"
+          "artwork": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA"
         },
-        "cw_lore_10": {
-          "path": "game/assets/sprites/cards/cw_lore_10.png",
+        "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "cw_lore_10"
+          "artwork": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA"
         },
-        "hg_lore_11": {
-          "path": "game/assets/sprites/cards/hg_lore_11.png",
+        "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "hg_lore_11"
+          "artwork": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA"
         },
-        "of_lore_12": {
-          "path": "game/assets/sprites/cards/of_lore_12.png",
+        "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "of_lore_12"
+          "artwork": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA"
         },
-        "hg_lore_13": {
-          "path": "game/assets/sprites/cards/hg_lore_13.png",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "hg_lore_13"
+          "artwork": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA"
         },
-        "cw_lore_14": {
-          "path": "game/assets/sprites/cards/cw_lore_14.png",
+        "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "cw_lore_14"
+          "artwork": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA"
         },
-        "hg_lore_15": {
-          "path": "game/assets/sprites/cards/hg_lore_15.png",
+        "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "hg_lore_15"
+          "artwork": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA"
         },
-        "of_lore_16": {
-          "path": "game/assets/sprites/cards/of_lore_16.png",
+        "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "of_lore_16"
+          "artwork": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA"
         },
-        "of_lore_17": {
-          "path": "game/assets/sprites/cards/of_lore_17.png",
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "of_lore_17"
+          "artwork": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA"
         },
-        "cw_lore_18": {
-          "path": "game/assets/sprites/cards/cw_lore_18.png",
+        "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "cw_lore_18"
+          "artwork": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA"
         },
-        "hg_lore_19": {
-          "path": "game/assets/sprites/cards/hg_lore_19.png",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "hg_lore_19"
+          "artwork": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA"
         },
-        "of_lore_20": {
-          "path": "game/assets/sprites/cards/of_lore_20.png",
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "of_lore_20"
+          "artwork": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA"
         },
-        "of_lore_21": {
-          "path": "game/assets/sprites/cards/of_lore_21.png",
+        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "of_lore_21"
+          "artwork": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA"
         },
-        "of_lore_22": {
-          "path": "game/assets/sprites/cards/of_lore_22.png",
+        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "of_lore_22"
+          "artwork": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA"
         },
-        "cw_lore_23": {
-          "path": "game/assets/sprites/cards/cw_lore_23.png",
+        "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "cw_lore_23"
+          "artwork": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA"
         },
-        "hg_lore_24": {
-          "path": "game/assets/sprites/cards/hg_lore_24.png",
+        "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "hg_lore_24"
+          "artwork": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA"
         },
-        "of_lore_25": {
-          "path": "game/assets/sprites/cards/of_lore_25.png",
+        "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "of_lore_25"
+          "artwork": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA"
         },
-        "of_lore_26": {
-          "path": "game/assets/sprites/cards/of_lore_26.png",
+        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "of_lore_26"
+          "artwork": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA"
         },
-        "hg_lore_27": {
-          "path": "game/assets/sprites/cards/hg_lore_27.png",
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "hg_lore_27"
+          "artwork": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA"
         },
-        "of_lore_28": {
-          "path": "game/assets/sprites/cards/of_lore_28.png",
+        "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "of_lore_28"
+          "artwork": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA"
         },
-        "cw_lore_29": {
-          "path": "game/assets/sprites/cards/cw_lore_29.png",
+        "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "cw_lore_29"
+          "artwork": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA"
         },
-        "of_lore_30": {
-          "path": "game/assets/sprites/cards/of_lore_30.png",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA": {
+          "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA.png",
           "exists": true,
           "set": "base",
-          "artwork": "of_lore_30"
+          "artwork": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA"
         },
-        "hip_cosmic_warrior_01": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_01.png",
+        "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_01"
+          "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I"
         },
-        "hip_cosmic_warrior_02": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_02.png",
+        "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_02"
+          "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II"
         },
-        "hip_cosmic_warrior_03": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_03.png",
+        "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_03"
+          "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III"
         },
-        "hip_cosmic_warrior_04": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_04.png",
+        "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_04"
+          "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV"
         },
-        "hip_cosmic_warrior_05": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_05.png",
+        "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_05"
+          "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V"
         },
-        "hip_cosmic_warrior_06": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_06.png",
+        "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_06"
+          "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI"
         },
-        "hip_cosmic_warrior_07": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_07.png",
+        "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_07"
+          "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII"
         },
-        "hip_cosmic_warrior_08": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_08.png",
+        "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_08"
+          "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII"
         },
-        "hip_cosmic_warrior_09": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_09.png",
+        "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_09"
+          "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX"
         },
-        "hip_cosmic_warrior_10": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_10.png",
+        "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_10"
+          "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X"
         },
-        "hip_cosmic_warrior_11": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_11.png",
+        "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_11"
+          "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI"
         },
-        "hip_cosmic_warrior_12": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_12.png",
+        "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_12"
+          "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII"
         },
-        "hip_cosmic_warrior_13": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_13.png",
+        "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_13"
+          "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII"
         },
-        "hip_cosmic_warrior_14": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_14.png",
+        "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_14"
+          "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV"
         },
-        "hip_cosmic_warrior_15": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_15.png",
+        "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_15"
+          "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV"
         },
-        "hip_cosmic_warrior_16": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_16.png",
+        "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_16"
+          "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI"
         },
-        "hip_cosmic_warrior_17": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_17.png",
+        "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_17"
+          "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII"
         },
-        "hip_cosmic_warrior_18": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_18.png",
+        "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_18"
+          "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII"
         },
-        "hip_cosmic_warrior_19": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_19.png",
+        "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_19"
+          "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX"
         },
-        "hip_cosmic_warrior_20": {
-          "path": "game/assets/sprites/cards/hip_cosmic_warrior_20.png",
+        "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX": {
+          "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_cosmic_warrior_20"
+          "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX"
         },
-        "hip_harmony_guardian_01": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_01.png",
+        "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_01"
+          "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I"
         },
-        "hip_harmony_guardian_02": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_02.png",
+        "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_02"
+          "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II"
         },
-        "hip_harmony_guardian_03": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_03.png",
+        "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_03"
+          "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III"
         },
-        "hip_harmony_guardian_04": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_04.png",
+        "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_04"
+          "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV"
         },
-        "hip_harmony_guardian_05": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_05.png",
+        "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_05"
+          "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V"
         },
-        "hip_harmony_guardian_06": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_06.png",
+        "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_06"
+          "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI"
         },
-        "hip_harmony_guardian_07": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_07.png",
+        "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_07"
+          "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII"
         },
-        "hip_harmony_guardian_08": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_08.png",
+        "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_08"
+          "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII"
         },
-        "hip_harmony_guardian_09": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_09.png",
+        "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_09"
+          "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX"
         },
-        "hip_harmony_guardian_10": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_10.png",
+        "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_10"
+          "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X"
         },
-        "hip_harmony_guardian_11": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_11.png",
+        "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_11"
+          "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI"
         },
-        "hip_harmony_guardian_12": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_12.png",
+        "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_12"
+          "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII"
         },
-        "hip_harmony_guardian_13": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_13.png",
+        "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_13"
+          "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII"
         },
-        "hip_harmony_guardian_14": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_14.png",
+        "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_14"
+          "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV"
         },
-        "hip_harmony_guardian_15": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_15.png",
+        "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_15"
+          "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV"
         },
-        "hip_harmony_guardian_16": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_16.png",
+        "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_16"
+          "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI"
         },
-        "hip_harmony_guardian_17": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_17.png",
+        "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_17"
+          "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII"
         },
-        "hip_harmony_guardian_18": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_18.png",
+        "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_18"
+          "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII"
         },
-        "hip_harmony_guardian_19": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_19.png",
+        "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_19"
+          "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX"
         },
-        "hip_harmony_guardian_20": {
-          "path": "game/assets/sprites/cards/hip_harmony_guardian_20.png",
+        "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX": {
+          "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_harmony_guardian_20"
+          "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX"
         },
-        "hip_oracle_of_fate_01": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_01.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_01"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I"
         },
-        "hip_oracle_of_fate_02": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_02.png",
+        "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_02"
+          "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II"
         },
-        "hip_oracle_of_fate_03": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_03.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_03"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III"
         },
-        "hip_oracle_of_fate_04": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_04.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_04"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV"
         },
-        "hip_oracle_of_fate_05": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_05.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_05"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V"
         },
-        "hip_oracle_of_fate_06": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_06.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_06"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI"
         },
-        "hip_oracle_of_fate_07": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_07.png",
+        "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_07"
+          "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII"
         },
-        "hip_oracle_of_fate_08": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_08.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_08"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII"
         },
-        "hip_oracle_of_fate_09": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_09.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_09"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX"
         },
-        "hip_oracle_of_fate_10": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_10.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_10"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X"
         },
-        "hip_oracle_of_fate_11": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_11.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_11"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI"
         },
-        "hip_oracle_of_fate_12": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_12.png",
+        "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_12"
+          "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII"
         },
-        "hip_oracle_of_fate_13": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_13.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_13"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII"
         },
-        "hip_oracle_of_fate_14": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_14.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_14"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV"
         },
-        "hip_oracle_of_fate_15": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_15.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_15"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV"
         },
-        "hip_oracle_of_fate_16": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_16.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_16"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI"
         },
-        "hip_oracle_of_fate_17": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_17.png",
+        "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_17"
+          "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII"
         },
-        "hip_oracle_of_fate_18": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_18.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_18"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII"
         },
-        "hip_oracle_of_fate_19": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_19.png",
+        "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_19"
+          "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX"
         },
-        "hip_oracle_of_fate_20": {
-          "path": "game/assets/sprites/cards/hip_oracle_of_fate_20.png",
+        "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX": {
+          "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX.png",
           "exists": true,
           "set": "hiperborea",
-          "artwork": "hip_oracle_of_fate_20"
+          "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX"
         },
-        "arc_001": {
-          "path": "game/assets/sprites/cards/arc_001.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_001"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01"
         },
-        "arc_002": {
-          "path": "game/assets/sprites/cards/arc_002.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_002"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02"
         },
-        "arc_003": {
-          "path": "game/assets/sprites/cards/arc_003.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_003"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03"
         },
-        "arc_004": {
-          "path": "game/assets/sprites/cards/arc_004.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_004"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04"
         },
-        "arc_005": {
-          "path": "game/assets/sprites/cards/arc_005.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_005"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05"
         },
-        "arc_006": {
-          "path": "game/assets/sprites/cards/arc_006.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_006"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06"
         },
-        "arc_007": {
-          "path": "game/assets/sprites/cards/arc_007.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_007"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07"
         },
-        "arc_008": {
-          "path": "game/assets/sprites/cards/arc_008.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_008"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08"
         },
-        "arc_009": {
-          "path": "game/assets/sprites/cards/arc_009.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_09": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_09.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_009"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_09"
         },
-        "arc_010": {
-          "path": "game/assets/sprites/cards/arc_010.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_10": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_10.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_010"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_10"
         },
-        "arc_011": {
-          "path": "game/assets/sprites/cards/arc_011.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_11": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_11.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_011"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_11"
         },
-        "arc_012": {
-          "path": "game/assets/sprites/cards/arc_012.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_12": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_12.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_012"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_12"
         },
-        "arc_013": {
-          "path": "game/assets/sprites/cards/arc_013.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_13": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_13.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_013"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_13"
         },
-        "arc_014": {
-          "path": "game/assets/sprites/cards/arc_014.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_014"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14"
         },
-        "arc_015": {
-          "path": "game/assets/sprites/cards/arc_015.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_15": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_15.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_015"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_15"
         },
-        "arc_016": {
-          "path": "game/assets/sprites/cards/arc_016.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_016"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16"
         },
-        "arc_017": {
-          "path": "game/assets/sprites/cards/arc_017.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_17": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_17.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_017"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_17"
         },
-        "arc_018": {
-          "path": "game/assets/sprites/cards/arc_018.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_18": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_18.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_018"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_18"
         },
-        "arc_019": {
-          "path": "game/assets/sprites/cards/arc_019.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_19": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_19.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_019"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_19"
         },
-        "arc_020": {
-          "path": "game/assets/sprites/cards/arc_020.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_20": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_20.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_020"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_20"
         },
-        "arc_021": {
-          "path": "game/assets/sprites/cards/arc_021.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_21": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_21.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_021"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_21"
         },
-        "arc_022": {
-          "path": "game/assets/sprites/cards/arc_022.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_22": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_22.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_022"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_22"
         },
-        "arc_023": {
-          "path": "game/assets/sprites/cards/arc_023.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_23": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_23.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_023"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_23"
         },
-        "arc_024": {
-          "path": "game/assets/sprites/cards/arc_024.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_24": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_24.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_024"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_24"
         },
-        "arc_025": {
-          "path": "game/assets/sprites/cards/arc_025.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_25": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_25.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_025"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_25"
         },
-        "arc_026": {
-          "path": "game/assets/sprites/cards/arc_026.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_26": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_26.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_026"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_26"
         },
-        "arc_027": {
-          "path": "game/assets/sprites/cards/arc_027.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_27": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_27.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_027"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_27"
         },
-        "arc_028": {
-          "path": "game/assets/sprites/cards/arc_028.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_28": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_28.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_028"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_28"
         },
-        "arc_029": {
-          "path": "game/assets/sprites/cards/arc_029.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_29": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_29.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_029"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_29"
         },
-        "arc_030": {
-          "path": "game/assets/sprites/cards/arc_030.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_30": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_30.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_030"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_30"
         },
-        "arc_031": {
-          "path": "game/assets/sprites/cards/arc_031.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_31": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_31.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_031"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_31"
         },
-        "arc_032": {
-          "path": "game/assets/sprites/cards/arc_032.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_32": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_32.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_032"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_32"
         },
-        "arc_033": {
-          "path": "game/assets/sprites/cards/arc_033.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_33": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_33.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_033"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_33"
         },
-        "arc_034": {
-          "path": "game/assets/sprites/cards/arc_034.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_34": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_34.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_034"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_34"
         },
-        "arc_035": {
-          "path": "game/assets/sprites/cards/arc_035.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_35": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_35.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_035"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_35"
         },
-        "arc_036": {
-          "path": "game/assets/sprites/cards/arc_036.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_36": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_36.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_036"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_36"
         },
-        "arc_037": {
-          "path": "game/assets/sprites/cards/arc_037.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_37": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_37.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_037"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_37"
         },
-        "arc_038": {
-          "path": "game/assets/sprites/cards/arc_038.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_38": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_38.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_038"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_38"
         },
-        "arc_039": {
-          "path": "game/assets/sprites/cards/arc_039.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_039"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39"
         },
-        "arc_040": {
-          "path": "game/assets/sprites/cards/arc_040.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_040"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40"
         },
-        "arc_041": {
-          "path": "game/assets/sprites/cards/arc_041.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_41": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_41.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_041"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_41"
         },
-        "arc_042": {
-          "path": "game/assets/sprites/cards/arc_042.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_42": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_42.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_042"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_42"
         },
-        "arc_043": {
-          "path": "game/assets/sprites/cards/arc_043.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_43": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_43.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_043"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_43"
         },
-        "arc_044": {
-          "path": "game/assets/sprites/cards/arc_044.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_44": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_44.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_044"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_44"
         },
-        "arc_045": {
-          "path": "game/assets/sprites/cards/arc_045.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_45": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_45.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_045"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_45"
         },
-        "arc_046": {
-          "path": "game/assets/sprites/cards/arc_046.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_46": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_46.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_046"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_46"
         },
-        "arc_047": {
-          "path": "game/assets/sprites/cards/arc_047.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_47": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_47.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_047"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_47"
         },
-        "arc_048": {
-          "path": "game/assets/sprites/cards/arc_048.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_48": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_48.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_048"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_48"
         },
-        "arc_049": {
-          "path": "game/assets/sprites/cards/arc_049.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_49": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_49.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_049"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_49"
         },
-        "arc_050": {
-          "path": "game/assets/sprites/cards/arc_050.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_050"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50"
         },
-        "arc_051": {
-          "path": "game/assets/sprites/cards/arc_051.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_51": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_51.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_051"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_51"
         },
-        "arc_052": {
-          "path": "game/assets/sprites/cards/arc_052.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_52": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_52.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_052"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_52"
         },
-        "arc_053": {
-          "path": "game/assets/sprites/cards/arc_053.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_53": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_53.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_053"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_53"
         },
-        "arc_054": {
-          "path": "game/assets/sprites/cards/arc_054.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_054"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54"
         },
-        "arc_055": {
-          "path": "game/assets/sprites/cards/arc_055.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_055"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55"
         },
-        "arc_056": {
-          "path": "game/assets/sprites/cards/arc_056.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_56": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_56.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_056"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_56"
         },
-        "arc_057": {
-          "path": "game/assets/sprites/cards/arc_057.png",
+        "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_57": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_57.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_057"
+          "artwork": "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_57"
         },
-        "arc_058": {
-          "path": "game/assets/sprites/cards/arc_058.png",
+        "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_58": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_58.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_058"
+          "artwork": "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_58"
         },
-        "arc_059": {
-          "path": "game/assets/sprites/cards/arc_059.png",
+        "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_059"
+          "artwork": "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59"
         },
-        "arc_060": {
-          "path": "game/assets/sprites/cards/arc_060.png",
+        "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_60": {
+          "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_60.png",
           "exists": true,
           "set": "arconte",
-          "artwork": "arc_060"
+          "artwork": "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_60"
         }
       }
     },

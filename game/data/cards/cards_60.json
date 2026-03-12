@@ -1,6 +1,6 @@
 [
   {
-    "id": "filo_astral",
+    "id": "BASE-SOLAR-ATTACK-FILO_ASTRAL",
     "name_es": "Filo Astral",
     "direction": "ESTE",
     "rarity": "common",
@@ -14,7 +14,11 @@
         "type": "damage",
         "amount": 6
       }
-    ]
+    ],
+    "legacy_id": "filo_astral",
+    "canonical_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+    "legacy_artwork": "filo_astral",
+    "artwork": "BASE-SOLAR-ATTACK-FILO_ASTRAL"
   },
   {
     "id": "lanza_del_amanecer",
@@ -77,7 +81,7 @@
     ]
   },
   {
-    "id": "estallido_arcano",
+    "id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
     "name_es": "Estallido Arcano",
     "direction": "ESTE",
     "rarity": "common",
@@ -96,7 +100,11 @@
         "type": "draw",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "estallido_arcano",
+    "canonical_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
+    "legacy_artwork": "estallido_arcano",
+    "artwork": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO"
   },
   {
     "id": "ruptura_del_umbral",
@@ -120,7 +128,7 @@
     ]
   },
   {
-    "id": "garra_espiritual",
+    "id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
     "name_es": "Garra Espiritual",
     "direction": "ESTE",
     "rarity": "common",
@@ -134,7 +142,11 @@
         "type": "damage",
         "amount": 3
       }
-    ]
+    ],
+    "legacy_id": "garra_espiritual",
+    "canonical_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
+    "legacy_artwork": "garra_espiritual",
+    "artwork": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL"
   },
   {
     "id": "tormenta_de_lanzas",
@@ -154,7 +166,7 @@
     ]
   },
   {
-    "id": "fragmento_celeste",
+    "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
     "name_es": "Fragmento Celeste",
     "direction": "ESTE",
     "rarity": "common",
@@ -173,10 +185,14 @@
         "type": "scry",
         "amount": 2
       }
-    ]
+    ],
+    "legacy_id": "fragmento_celeste",
+    "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
+    "legacy_artwork": "fragmento_celeste",
+    "artwork": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE"
   },
   {
-    "id": "embate_del_jaguar",
+    "id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
     "name_es": "Embate del Jaguar",
     "direction": "ESTE",
     "rarity": "uncommon",
@@ -195,7 +211,11 @@
         "type": "gain_block",
         "amount": 3
       }
-    ]
+    ],
+    "legacy_id": "embate_del_jaguar",
+    "canonical_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
+    "legacy_artwork": "embate_del_jaguar",
+    "artwork": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR"
   },
   {
     "id": "punal_de_luz",
@@ -285,7 +305,7 @@
     ]
   },
   {
-    "id": "filo_en_cadena",
+    "id": "BASE-SOLAR-SKILL-FILO_EN_CADENA",
     "name_es": "Filo en Cadena",
     "direction": "ESTE",
     "rarity": "uncommon",
@@ -304,10 +324,14 @@
         "direction": "ESTE",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "filo_en_cadena",
+    "canonical_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA",
+    "legacy_artwork": "filo_en_cadena",
+    "artwork": "BASE-SOLAR-SKILL-FILO_EN_CADENA"
   },
   {
-    "id": "sello_protector",
+    "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
     "name_es": "Sello Protector",
     "direction": "SUR",
     "rarity": "common",
@@ -321,10 +345,14 @@
         "type": "gain_block",
         "amount": 6
       }
-    ]
+    ],
+    "legacy_id": "sello_protector",
+    "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+    "legacy_artwork": "sello_protector",
+    "artwork": "BASE-GUIDE-GUARD-SELLO_PROTECTOR"
   },
   {
-    "id": "muralla_de_piedra",
+    "id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
     "name_es": "Muralla de Piedra",
     "direction": "SUR",
     "rarity": "common",
@@ -338,10 +366,14 @@
         "type": "gain_block",
         "amount": 10
       }
-    ]
+    ],
+    "legacy_id": "muralla_de_piedra",
+    "canonical_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+    "legacy_artwork": "muralla_de_piedra",
+    "artwork": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA"
   },
   {
-    "id": "escudo_de_luz",
+    "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
     "name_es": "Escudo de Luz",
     "direction": "SUR",
     "rarity": "common",
@@ -360,10 +392,14 @@
         "type": "heal",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "escudo_de_luz",
+    "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
+    "legacy_artwork": "escudo_de_luz",
+    "artwork": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ"
   },
   {
-    "id": "guardia_terrenal",
+    "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
     "name_es": "Guardia Terrenal",
     "direction": "SUR",
     "rarity": "common",
@@ -377,10 +413,14 @@
         "type": "gain_block",
         "amount": 3
       }
-    ]
+    ],
+    "legacy_id": "guardia_terrenal",
+    "canonical_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
+    "legacy_artwork": "guardia_terrenal",
+    "artwork": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL"
   },
   {
-    "id": "resistencia_ancestral",
+    "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
     "name_es": "Resistencia Ancestral",
     "direction": "SUR",
     "rarity": "uncommon",
@@ -399,7 +439,11 @@
         "type": "retain",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "resistencia_ancestral",
+    "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
+    "legacy_artwork": "resistencia_ancestral",
+    "artwork": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL"
   },
   {
     "id": "caparazon_kaypacha",
@@ -485,7 +529,7 @@
     ]
   },
   {
-    "id": "campo_protector",
+    "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
     "name_es": "Campo Protector",
     "direction": "SUR",
     "rarity": "uncommon",
@@ -504,7 +548,11 @@
         "type": "weaken_enemy",
         "amount": 2
       }
-    ]
+    ],
+    "legacy_id": "campo_protector",
+    "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
+    "legacy_artwork": "campo_protector",
+    "artwork": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR"
   },
   {
     "id": "guardia_solar",
@@ -529,7 +577,7 @@
     ]
   },
   {
-    "id": "escudo_del_chaman",
+    "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
     "name_es": "Escudo del Chamán",
     "direction": "SUR",
     "rarity": "common",
@@ -548,7 +596,11 @@
         "type": "scry",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "escudo_del_chaman",
+    "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
+    "legacy_artwork": "escudo_del_chaman",
+    "artwork": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN"
   },
   {
     "id": "barrera_sagrada",
@@ -573,7 +625,7 @@
     ]
   },
   {
-    "id": "firmeza_del_cuerpo",
+    "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
     "name_es": "Firmeza del Cuerpo",
     "direction": "SUR",
     "rarity": "common",
@@ -592,10 +644,14 @@
         "type": "gain_block",
         "amount": 2
       }
-    ]
+    ],
+    "legacy_id": "firmeza_del_cuerpo",
+    "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
+    "legacy_artwork": "firmeza_del_cuerpo",
+    "artwork": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO"
   },
   {
-    "id": "piedra_ritual",
+    "id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
     "name_es": "Piedra Ritual",
     "direction": "SUR",
     "rarity": "rare",
@@ -614,10 +670,14 @@
         "type": "apply_break",
         "amount": 3
       }
-    ]
+    ],
+    "legacy_id": "piedra_ritual",
+    "canonical_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
+    "legacy_artwork": "piedra_ritual",
+    "artwork": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL"
   },
   {
-    "id": "vision_del_condor",
+    "id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
     "name_es": "Visión del Cóndor",
     "direction": "NORTE",
     "rarity": "common",
@@ -636,7 +696,11 @@
         "type": "draw",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "vision_del_condor",
+    "canonical_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
+    "legacy_artwork": "vision_del_condor",
+    "artwork": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
   },
   {
     "id": "meditacion_profunda",
@@ -678,7 +742,7 @@
     ]
   },
   {
-    "id": "lectura_del_destino",
+    "id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
     "name_es": "Lectura del Destino",
     "direction": "NORTE",
     "rarity": "common",
@@ -692,10 +756,14 @@
         "type": "scry",
         "amount": 2
       }
-    ]
+    ],
+    "legacy_id": "lectura_del_destino",
+    "canonical_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+    "legacy_artwork": "lectura_del_destino",
+    "artwork": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO"
   },
   {
-    "id": "revelacion_astral",
+    "id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
     "name_es": "Revelación Astral",
     "direction": "NORTE",
     "rarity": "uncommon",
@@ -714,10 +782,14 @@
         "type": "draw",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "revelacion_astral",
+    "canonical_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
+    "legacy_artwork": "revelacion_astral",
+    "artwork": "BASE-ORACLE-SKILL-REVELACION_ASTRAL"
   },
   {
-    "id": "eco_de_sabiduria",
+    "id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
     "name_es": "Eco de Sabiduría",
     "direction": "NORTE",
     "rarity": "rare",
@@ -736,10 +808,14 @@
         "type": "exhaust_self",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "eco_de_sabiduria",
+    "canonical_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
+    "legacy_artwork": "eco_de_sabiduria",
+    "artwork": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA"
   },
   {
-    "id": "observacion_sagrada",
+    "id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
     "name_es": "Observación Sagrada",
     "direction": "NORTE",
     "rarity": "common",
@@ -753,7 +829,11 @@
         "type": "scry",
         "amount": 3
       }
-    ]
+    ],
+    "legacy_id": "observacion_sagrada",
+    "canonical_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+    "legacy_artwork": "observacion_sagrada",
+    "artwork": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA"
   },
   {
     "id": "calculo_del_cosmos",
@@ -852,7 +932,7 @@
     ]
   },
   {
-    "id": "silencio_interior",
+    "id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
     "name_es": "Silencio Interior",
     "direction": "NORTE",
     "rarity": "uncommon",
@@ -871,7 +951,11 @@
         "type": "scry",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "silencio_interior",
+    "canonical_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
+    "legacy_artwork": "silencio_interior",
+    "artwork": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR"
   },
   {
     "id": "ojo_interior",
@@ -917,7 +1001,7 @@
     ]
   },
   {
-    "id": "portal_de_la_chakana",
+    "id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
     "name_es": "Portal de la Chakana",
     "direction": "OESTE",
     "rarity": "uncommon",
@@ -936,10 +1020,14 @@
         "type": "draw",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "portal_de_la_chakana",
+    "canonical_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+    "legacy_artwork": "portal_de_la_chakana",
+    "artwork": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA"
   },
   {
-    "id": "invocacion_astral",
+    "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
     "name_es": "Invocación Astral",
     "direction": "OESTE",
     "rarity": "common",
@@ -958,10 +1046,14 @@
         "type": "gain_block",
         "amount": 3
       }
-    ]
+    ],
+    "legacy_id": "invocacion_astral",
+    "canonical_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
+    "legacy_artwork": "invocacion_astral",
+    "artwork": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL"
   },
   {
-    "id": "pulso_cosmico",
+    "id": "BASE-SOLAR-ATTACK-PULSO_COSMICO",
     "name_es": "Pulso Cósmico",
     "direction": "OESTE",
     "rarity": "common",
@@ -980,10 +1072,14 @@
         "type": "damage",
         "amount": 2
       }
-    ]
+    ],
+    "legacy_id": "pulso_cosmico",
+    "canonical_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO",
+    "legacy_artwork": "pulso_cosmico",
+    "artwork": "BASE-SOLAR-ATTACK-PULSO_COSMICO"
   },
   {
-    "id": "mantra_del_umbral",
+    "id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
     "name_es": "Mantra del Umbral",
     "direction": "OESTE",
     "rarity": "common",
@@ -1002,10 +1098,14 @@
         "type": "heal",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "mantra_del_umbral",
+    "canonical_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
+    "legacy_artwork": "mantra_del_umbral",
+    "artwork": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL"
   },
   {
-    "id": "vinculo_de_energia",
+    "id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
     "name_es": "Vínculo de Energía",
     "direction": "OESTE",
     "rarity": "uncommon",
@@ -1019,7 +1119,11 @@
         "type": "gain_mana",
         "amount": 2
       }
-    ]
+    ],
+    "legacy_id": "vinculo_de_energia",
+    "canonical_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
+    "legacy_artwork": "vinculo_de_energia",
+    "artwork": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA"
   },
   {
     "id": "circulo_de_invocacion",
@@ -1049,7 +1153,7 @@
     ]
   },
   {
-    "id": "fusion_espiritual",
+    "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
     "name_es": "Fusión Espiritual",
     "direction": "OESTE",
     "rarity": "rare",
@@ -1063,7 +1167,11 @@
         "type": "double_block_cap",
         "amount": 12
       }
-    ]
+    ],
+    "legacy_id": "fusion_espiritual",
+    "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
+    "legacy_artwork": "fusion_espiritual",
+    "artwork": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
   },
   {
     "id": "luz_del_hanan",
@@ -1110,7 +1218,7 @@
     ]
   },
   {
-    "id": "espiritu_guardian",
+    "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
     "name_es": "Espíritu Guardián",
     "direction": "OESTE",
     "rarity": "common",
@@ -1129,7 +1237,11 @@
         "type": "apply_break",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "espiritu_guardian",
+    "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
+    "legacy_artwork": "espiritu_guardian",
+    "artwork": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN"
   },
   {
     "id": "sello_de_los_tres_pachas",
@@ -1186,7 +1298,7 @@
     ]
   },
   {
-    "id": "ritual_de_la_trama",
+    "id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
     "name_es": "Ritual de la Trama",
     "direction": "OESTE",
     "rarity": "legendary",
@@ -1206,7 +1318,11 @@
         "type": "exhaust_self",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "ritual_de_la_trama",
+    "canonical_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
+    "legacy_artwork": "ritual_de_la_trama",
+    "artwork": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
   },
   {
     "id": "baston_del_umbral",
@@ -1230,7 +1346,7 @@
     ]
   },
   {
-    "id": "chakana_de_luz",
+    "id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
     "name_es": "Chakana de Luz",
     "direction": "OESTE",
     "rarity": "legendary",
@@ -1259,6 +1375,10 @@
         "type": "exhaust_self",
         "amount": 1
       }
-    ]
+    ],
+    "legacy_id": "chakana_de_luz",
+    "canonical_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
+    "legacy_artwork": "chakana_de_luz",
+    "artwork": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
   }
 ]

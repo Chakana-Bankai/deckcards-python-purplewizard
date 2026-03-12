@@ -21,7 +21,7 @@
   ],
   "cards": [
     {
-      "id": "campo_protector",
+      "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
       "name": "Campo Protector",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -31,10 +31,12 @@
       "tags": [
         "block",
         "debuff"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
+      "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR"
     },
     {
-      "id": "chakana_de_luz",
+      "id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
       "name": "Chakana de Luz",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -47,10 +49,12 @@
         "energy",
         "exhaust",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
+      "canonical_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
     },
     {
-      "id": "eco_de_sabiduria",
+      "id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
       "name": "Eco de Sabiduría",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -60,10 +64,12 @@
       "tags": [
         "copy",
         "exhaust"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
+      "canonical_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA"
     },
     {
-      "id": "embate_del_jaguar",
+      "id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
       "name": "Embate del Jaguar",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -73,10 +79,12 @@
       "tags": [
         "attack",
         "block"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
+      "canonical_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR"
     },
     {
-      "id": "escudo_de_luz",
+      "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
       "name": "Escudo de Luz",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -86,10 +94,12 @@
       "tags": [
         "block",
         "heal"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
+      "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ"
     },
     {
-      "id": "escudo_del_chaman",
+      "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
       "name": "Escudo del Chamán",
       "archetype": "harmony_guardian",
       "role": "control",
@@ -99,10 +109,12 @@
       "tags": [
         "block",
         "scry"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
+      "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN"
     },
     {
-      "id": "espiritu_guardian",
+      "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
       "name": "Espíritu Guardián",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -112,10 +124,12 @@
       "tags": [
         "block",
         "break"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
+      "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN"
     },
     {
-      "id": "estallido_arcano",
+      "id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
       "name": "Estallido Arcano",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -125,10 +139,12 @@
       "tags": [
         "attack",
         "draw"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
+      "canonical_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO"
     },
     {
-      "id": "filo_astral",
+      "id": "BASE-SOLAR-ATTACK-FILO_ASTRAL",
       "name": "Filo Astral",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -137,10 +153,12 @@
       "lore_text": "El filo escucha al cielo.",
       "tags": [
         "attack"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+      "canonical_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL"
     },
     {
-      "id": "filo_en_cadena",
+      "id": "BASE-SOLAR-SKILL-FILO_EN_CADENA",
       "name": "Filo en Cadena",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -149,10 +167,12 @@
       "lore_text": "Cada golpe abre una constelacion.",
       "tags": [
         "attack"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA",
+      "canonical_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA"
     },
     {
-      "id": "firmeza_del_cuerpo",
+      "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
       "name": "Firmeza del Cuerpo",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -162,10 +182,12 @@
       "tags": [
         "heal",
         "block"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
+      "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO"
     },
     {
-      "id": "fragmento_celeste",
+      "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
       "name": "Fragmento Celeste",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -175,10 +197,12 @@
       "tags": [
         "attack",
         "scry"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
+      "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE"
     },
     {
-      "id": "fusion_espiritual",
+      "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
       "name": "Fusión Espiritual",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -190,10 +214,12 @@
         "support",
         "harmony",
         "seal"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
+      "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
     },
     {
-      "id": "garra_espiritual",
+      "id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
       "name": "Garra Espiritual",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -202,10 +228,12 @@
       "lore_text": "Cada golpe abre una constelacion.",
       "tags": [
         "attack"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
+      "canonical_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL"
     },
     {
-      "id": "guardia_terrenal",
+      "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
       "name": "Guardia Terrenal",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -214,10 +242,12 @@
       "lore_text": "La piedra recuerda cada juramento.",
       "tags": [
         "block"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
+      "canonical_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL"
     },
     {
-      "id": "invocacion_astral",
+      "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
       "name": "Invocación Astral",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -228,10 +258,12 @@
         "heal",
         "block",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
+      "canonical_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL"
     },
     {
-      "id": "lectura_del_destino",
+      "id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
       "name": "Lectura del Destino",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -240,10 +272,12 @@
       "lore_text": "El oraculo lee los ecos del tiempo.",
       "tags": [
         "scry"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+      "canonical_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO"
     },
     {
-      "id": "mantra_del_umbral",
+      "id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
       "name": "Mantra del Umbral",
       "archetype": "cosmic_warrior",
       "role": "energy",
@@ -254,10 +288,12 @@
         "energy",
         "heal",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
+      "canonical_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL"
     },
     {
-      "id": "muralla_de_piedra",
+      "id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
       "name": "Muralla de Piedra",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -266,10 +302,12 @@
       "lore_text": "La piedra recuerda cada juramento.",
       "tags": [
         "block"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+      "canonical_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA"
     },
     {
-      "id": "observacion_sagrada",
+      "id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
       "name": "Observación Sagrada",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -278,10 +316,12 @@
       "lore_text": "El sello despierta entre susurros.",
       "tags": [
         "scry"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+      "canonical_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA"
     },
     {
-      "id": "piedra_ritual",
+      "id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
       "name": "Piedra Ritual",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -292,10 +332,12 @@
         "block",
         "break",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
+      "canonical_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL"
     },
     {
-      "id": "portal_de_la_chakana",
+      "id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
       "name": "Portal de la Chakana",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -306,10 +348,12 @@
         "break",
         "draw",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+      "canonical_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA"
     },
     {
-      "id": "pulso_cosmico",
+      "id": "BASE-SOLAR-ATTACK-PULSO_COSMICO",
       "name": "Pulso Cósmico",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -320,10 +364,12 @@
         "break",
         "attack",
         "rupture"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO",
+      "canonical_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO"
     },
     {
-      "id": "resistencia_ancestral",
+      "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
       "name": "Resistencia Ancestral",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -334,10 +380,12 @@
         "block",
         "retain",
         "harmony"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
+      "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL"
     },
     {
-      "id": "revelacion_astral",
+      "id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
       "name": "Revelación Astral",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -348,10 +396,12 @@
         "scry",
         "draw",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
+      "canonical_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL"
     },
     {
-      "id": "ritual_de_la_trama",
+      "id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
       "name": "Ritual de la Trama",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -363,10 +413,12 @@
         "heal",
         "exhaust",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
+      "canonical_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
     },
     {
-      "id": "sello_protector",
+      "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
       "name": "Sello Protector",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -377,10 +429,12 @@
         "block",
         "harmony",
         "seal"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+      "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR"
     },
     {
-      "id": "silencio_interior",
+      "id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
       "name": "Silencio Interior",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -390,10 +444,12 @@
       "tags": [
         "debuff",
         "scry"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
+      "canonical_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR"
     },
     {
-      "id": "vinculo_de_energia",
+      "id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
       "name": "Vínculo de Energía",
       "archetype": "cosmic_warrior",
       "role": "energy",
@@ -402,10 +458,12 @@
       "lore_text": "El filo escucha al cielo.",
       "tags": [
         "energy"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
+      "canonical_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA"
     },
     {
-      "id": "vision_del_condor",
+      "id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
       "name": "Visión del Cóndor",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -416,10 +474,12 @@
         "scry",
         "draw",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
+      "canonical_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
     },
     {
-      "id": "hg_lore_01",
+      "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
       "name": "Campo Protector Nova",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -429,10 +489,12 @@
       "tags": [
         "block",
         "debuff"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
+      "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA"
     },
     {
-      "id": "cw_lore_02",
+      "id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA",
       "name": "Chakana de Luz Nova",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -445,10 +507,12 @@
         "energy",
         "exhaust",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA",
+      "canonical_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA"
     },
     {
-      "id": "cw_lore_03",
+      "id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
       "name": "Eco de Sabiduría Nova",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -458,10 +522,12 @@
       "tags": [
         "copy",
         "exhaust"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
+      "canonical_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA"
     },
     {
-      "id": "cw_lore_04",
+      "id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA",
       "name": "Embate del Jaguar Nova",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -471,10 +537,12 @@
       "tags": [
         "attack",
         "block"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA",
+      "canonical_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA"
     },
     {
-      "id": "hg_lore_05",
+      "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
       "name": "Escudo de Luz Nova",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -484,10 +552,12 @@
       "tags": [
         "block",
         "heal"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
+      "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA"
     },
     {
-      "id": "hg_lore_06",
+      "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
       "name": "Escudo del Chamán Nova",
       "archetype": "harmony_guardian",
       "role": "control",
@@ -497,10 +567,12 @@
       "tags": [
         "block",
         "scry"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
+      "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA"
     },
     {
-      "id": "hg_lore_07",
+      "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
       "name": "Espíritu Guardián Nova",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -510,10 +582,12 @@
       "tags": [
         "block",
         "break"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
+      "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA"
     },
     {
-      "id": "cw_lore_08",
+      "id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA",
       "name": "Estallido Arcano Nova",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -523,10 +597,12 @@
       "tags": [
         "attack",
         "draw"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA",
+      "canonical_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA"
     },
     {
-      "id": "cw_lore_09",
+      "id": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
       "name": "Filo Astral Nova",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -535,10 +611,12 @@
       "lore_text": "Cada golpe abre una constelacion.",
       "tags": [
         "attack"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
+      "canonical_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA"
     },
     {
-      "id": "cw_lore_10",
+      "id": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
       "name": "Filo en Cadena Nova",
       "archetype": "cosmic_warrior",
       "role": "combo",
@@ -547,10 +625,12 @@
       "lore_text": "La voluntad traza el destino astral.",
       "tags": [
         "attack"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
+      "canonical_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA"
     },
     {
-      "id": "hg_lore_11",
+      "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
       "name": "Firmeza del Cuerpo Nova",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -560,10 +640,12 @@
       "tags": [
         "heal",
         "block"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
+      "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA"
     },
     {
-      "id": "of_lore_12",
+      "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
       "name": "Fragmento Celeste Nova",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -573,10 +655,12 @@
       "tags": [
         "attack",
         "scry"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
+      "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA"
     },
     {
-      "id": "hg_lore_13",
+      "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
       "name": "Fusión Espiritual Nova",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -587,10 +671,12 @@
         "block",
         "support",
         "harmony"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
+      "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA"
     },
     {
-      "id": "cw_lore_14",
+      "id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
       "name": "Garra Espiritual Nova",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -599,10 +685,12 @@
       "lore_text": "La voluntad traza el destino astral.",
       "tags": [
         "attack"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
+      "canonical_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA"
     },
     {
-      "id": "hg_lore_15",
+      "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
       "name": "Guardia Terrenal Nova",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -611,10 +699,12 @@
       "lore_text": "La calma sostiene el umbral.",
       "tags": [
         "block"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
+      "canonical_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA"
     },
     {
-      "id": "of_lore_16",
+      "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
       "name": "Invocación Astral Nova",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -625,10 +715,12 @@
         "heal",
         "block",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
+      "canonical_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA"
     },
     {
-      "id": "of_lore_17",
+      "id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
       "name": "Lectura del Destino Nova",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -637,10 +729,12 @@
       "lore_text": "Toda vision exige un precio ritual.",
       "tags": [
         "scry"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
+      "canonical_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA"
     },
     {
-      "id": "cw_lore_18",
+      "id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
       "name": "Mantra del Umbral Nova",
       "archetype": "cosmic_warrior",
       "role": "energy",
@@ -651,10 +745,12 @@
         "energy",
         "heal",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
+      "canonical_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA"
     },
     {
-      "id": "hg_lore_19",
+      "id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA",
       "name": "Muralla de Piedra Nova",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -663,10 +759,12 @@
       "lore_text": "La calma sostiene el umbral.",
       "tags": [
         "block"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA",
+      "canonical_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA"
     },
     {
-      "id": "of_lore_20",
+      "id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA",
       "name": "Observación Sagrada Nova",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -675,10 +773,12 @@
       "lore_text": "El oraculo lee los ecos del tiempo.",
       "tags": [
         "scry"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA",
+      "canonical_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA"
     },
     {
-      "id": "of_lore_21",
+      "id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA",
       "name": "Piedra Ritual Nova",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -689,10 +789,12 @@
         "block",
         "break",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA",
+      "canonical_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA"
     },
     {
-      "id": "of_lore_22",
+      "id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
       "name": "Portal de la Chakana Nova",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -703,10 +805,12 @@
         "break",
         "draw",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
+      "canonical_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA"
     },
     {
-      "id": "cw_lore_23",
+      "id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
       "name": "Pulso Cósmico Nova",
       "archetype": "cosmic_warrior",
       "role": "attack",
@@ -717,10 +821,12 @@
         "break",
         "attack",
         "rupture"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
+      "canonical_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA"
     },
     {
-      "id": "hg_lore_24",
+      "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
       "name": "Resistencia Ancestral Nova",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -731,10 +837,12 @@
         "block",
         "retain",
         "harmony"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
+      "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA"
     },
     {
-      "id": "of_lore_25",
+      "id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA",
       "name": "Revelación Astral Nova",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -745,10 +853,12 @@
         "scry",
         "draw",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA",
+      "canonical_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA"
     },
     {
-      "id": "of_lore_26",
+      "id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA",
       "name": "Ritual de la Trama Nova",
       "archetype": "oracle_of_fate",
       "role": "ritual",
@@ -760,10 +870,12 @@
         "heal",
         "exhaust",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA",
+      "canonical_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA"
     },
     {
-      "id": "hg_lore_27",
+      "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
       "name": "Sello Protector Nova",
       "archetype": "harmony_guardian",
       "role": "defense",
@@ -772,10 +884,12 @@
       "lore_text": "La calma sostiene el umbral.",
       "tags": [
         "block"
-      ]
+      ],
+      "legacy_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
+      "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA"
     },
     {
-      "id": "of_lore_28",
+      "id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA",
       "name": "Silencio Interior Nova",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -785,10 +899,12 @@
       "tags": [
         "debuff",
         "scry"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA",
+      "canonical_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA"
     },
     {
-      "id": "cw_lore_29",
+      "id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
       "name": "Vínculo de Energía Nova",
       "archetype": "cosmic_warrior",
       "role": "energy",
@@ -797,10 +913,12 @@
       "lore_text": "Cada golpe abre una constelacion.",
       "tags": [
         "energy"
-      ]
+      ],
+      "legacy_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
+      "canonical_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA"
     },
     {
-      "id": "of_lore_30",
+      "id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA",
       "name": "Visión del Cóndor Nova",
       "archetype": "oracle_of_fate",
       "role": "control",
@@ -811,7 +929,9 @@
         "scry",
         "draw",
         "ritual"
-      ]
+      ],
+      "legacy_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA",
+      "canonical_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA"
     }
   ]
 }

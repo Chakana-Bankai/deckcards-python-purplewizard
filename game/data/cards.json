@@ -1,7 +1,7 @@
 [
   {
     "archetype": "harmony_guardian",
-    "artwork": "campo_protector",
+    "artwork": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "SUR",
@@ -17,7 +17,7 @@
       }
     ],
     "family": "sur",
-    "id": "campo_protector",
+    "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
     "kpi": {
       "block": 6,
       "support": 2
@@ -30,9 +30,9 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -42,11 +42,14 @@
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Bloqueo 6, Debilita 2"
+    "text_key": "Bloqueo 6, Debilita 2",
+    "legacy_id": "campo_protector",
+    "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
+    "legacy_artwork": "campo_protector"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "chakana_de_luz",
+    "artwork": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
     "author": "Chakana Studio",
     "cost": 3,
     "direction": "OESTE",
@@ -74,7 +77,7 @@
       }
     ],
     "family": "oeste",
-    "id": "chakana_de_luz",
+    "id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
     "kpi": {
       "block": 5,
       "damage": 10,
@@ -89,8 +92,8 @@
     "strategy": {
       "best_use": "Encadenar efectos para turnos de alto valor.",
       "synergy_cards": [
-        "eco_de_sabiduria",
-        "filo_en_cadena"
+        "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
+        "BASE-SOLAR-SKILL-FILO_EN_CADENA"
       ],
       "weakness": "Depende del orden de mano y setup."
     },
@@ -103,11 +106,14 @@
     ],
     "target": "enemy",
     "taxonomy": "payoff",
-    "text_key": "Armonia +1, Dano 10, Bloqueo 5"
+    "text_key": "Armonia +1, Dano 10, Bloqueo 5",
+    "legacy_id": "chakana_de_luz",
+    "canonical_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
+    "legacy_artwork": "chakana_de_luz"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "eco_de_sabiduria",
+    "artwork": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "NORTE",
@@ -123,7 +129,7 @@
       }
     ],
     "family": "norte",
-    "id": "eco_de_sabiduria",
+    "id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
     "kpi": {
       "combo": 1
     },
@@ -135,8 +141,8 @@
     "strategy": {
       "best_use": "Encadenar efectos para turnos de alto valor.",
       "synergy_cards": [
-        "filo_en_cadena",
-        "chakana_de_luz"
+        "BASE-SOLAR-SKILL-FILO_EN_CADENA",
+        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
       ],
       "weakness": "Depende del orden de mano y setup."
     },
@@ -146,11 +152,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Copia la ultima carta jugada, Se agota"
+    "text_key": "Copia la ultima carta jugada, Se agota",
+    "legacy_id": "eco_de_sabiduria",
+    "canonical_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
+    "legacy_artwork": "eco_de_sabiduria"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "embate_del_jaguar",
+    "artwork": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "ESTE",
@@ -166,7 +175,7 @@
       }
     ],
     "family": "este",
-    "id": "embate_del_jaguar",
+    "id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
     "kpi": {
       "block": 3,
       "damage": 7
@@ -179,8 +188,8 @@
     "strategy": {
       "best_use": "Cerrar combates cortos con presion constante.",
       "synergy_cards": [
-        "filo_astral",
-        "pulso_cosmico"
+        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
       ],
       "weakness": "Sufre si no roba ritmo."
     },
@@ -190,11 +199,14 @@
     ],
     "target": "enemy",
     "taxonomy": "payoff",
-    "text_key": "Dano 7, Bloqueo 3"
+    "text_key": "Dano 7, Bloqueo 3",
+    "legacy_id": "embate_del_jaguar",
+    "canonical_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
+    "legacy_artwork": "embate_del_jaguar"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "escudo_de_luz",
+    "artwork": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "SUR",
@@ -210,7 +222,7 @@
       }
     ],
     "family": "sur",
-    "id": "escudo_de_luz",
+    "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
     "kpi": {
       "block": 4,
       "support": 1
@@ -223,9 +235,9 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -235,11 +247,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Bloqueo 4, Cura 1"
+    "text_key": "Bloqueo 4, Cura 1",
+    "legacy_id": "escudo_de_luz",
+    "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
+    "legacy_artwork": "escudo_de_luz"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "escudo_del_chaman",
+    "artwork": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "SUR",
@@ -255,7 +270,7 @@
       }
     ],
     "family": "sur",
-    "id": "escudo_del_chaman",
+    "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
     "kpi": {
       "block": 5,
       "scry": 1
@@ -268,9 +283,9 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "lectura_del_destino",
-        "observacion_sagrada",
-        "vision_del_condor"
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -280,11 +295,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Bloqueo 5, Prever 1"
+    "text_key": "Bloqueo 5, Prever 1",
+    "legacy_id": "escudo_del_chaman",
+    "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
+    "legacy_artwork": "escudo_del_chaman"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "espiritu_guardian",
+    "artwork": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "OESTE",
@@ -300,7 +318,7 @@
       }
     ],
     "family": "oeste",
-    "id": "espiritu_guardian",
+    "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
     "kpi": {
       "block": 4,
       "rupture": 1
@@ -313,9 +331,9 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -325,11 +343,14 @@
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Bloqueo 4, Ruptura 1"
+    "text_key": "Bloqueo 4, Ruptura 1",
+    "legacy_id": "espiritu_guardian",
+    "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
+    "legacy_artwork": "espiritu_guardian"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "estallido_arcano",
+    "artwork": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "ESTE",
@@ -345,7 +366,7 @@
       }
     ],
     "family": "este",
-    "id": "estallido_arcano",
+    "id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
     "kpi": {
       "damage": 5,
       "draw": 1
@@ -358,9 +379,9 @@
     "strategy": {
       "best_use": "Cerrar combates cortos con presion constante.",
       "synergy_cards": [
-        "filo_astral",
-        "embate_del_jaguar",
-        "pulso_cosmico"
+        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
+        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
       ],
       "weakness": "Sufre si no roba ritmo."
     },
@@ -370,11 +391,14 @@
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Dano 5, Roba 1"
+    "text_key": "Dano 5, Roba 1",
+    "legacy_id": "estallido_arcano",
+    "canonical_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
+    "legacy_artwork": "estallido_arcano"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "filo_astral",
+    "artwork": "BASE-SOLAR-ATTACK-FILO_ASTRAL",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "ESTE",
@@ -386,7 +410,7 @@
       }
     ],
     "family": "este",
-    "id": "filo_astral",
+    "id": "BASE-SOLAR-ATTACK-FILO_ASTRAL",
     "kpi": {
       "damage": 7
     },
@@ -398,8 +422,8 @@
     "strategy": {
       "best_use": "Cerrar combates cortos con presion constante.",
       "synergy_cards": [
-        "embate_del_jaguar",
-        "pulso_cosmico"
+        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
+        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
       ],
       "weakness": "Sufre si no roba ritmo."
     },
@@ -408,11 +432,14 @@
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Dano 7"
+    "text_key": "Dano 7",
+    "legacy_id": "filo_astral",
+    "canonical_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+    "legacy_artwork": "filo_astral"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "filo_en_cadena",
+    "artwork": "BASE-SOLAR-SKILL-FILO_EN_CADENA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "ESTE",
@@ -429,7 +456,7 @@
       }
     ],
     "family": "este",
-    "id": "filo_en_cadena",
+    "id": "BASE-SOLAR-SKILL-FILO_EN_CADENA",
     "kpi": {
       "damage": 4
     },
@@ -441,8 +468,8 @@
     "strategy": {
       "best_use": "Encadenar efectos para turnos de alto valor.",
       "synergy_cards": [
-        "eco_de_sabiduria",
-        "chakana_de_luz"
+        "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
+        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
       ],
       "weakness": "Depende del orden de mano y setup."
     },
@@ -451,11 +478,14 @@
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Dano 4"
+    "text_key": "Dano 4",
+    "legacy_id": "filo_en_cadena",
+    "canonical_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA",
+    "legacy_artwork": "filo_en_cadena"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "firmeza_del_cuerpo",
+    "artwork": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "SUR",
@@ -471,7 +501,7 @@
       }
     ],
     "family": "sur",
-    "id": "firmeza_del_cuerpo",
+    "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
     "kpi": {
       "block": 2,
       "support": 2
@@ -484,9 +514,9 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -496,11 +526,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Cura 2, Bloqueo 2"
+    "text_key": "Cura 2, Bloqueo 2",
+    "legacy_id": "firmeza_del_cuerpo",
+    "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
+    "legacy_artwork": "firmeza_del_cuerpo"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "fragmento_celeste",
+    "artwork": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "ESTE",
@@ -516,7 +549,7 @@
       }
     ],
     "family": "este",
-    "id": "fragmento_celeste",
+    "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
     "kpi": {
       "damage": 5,
       "scry": 2
@@ -529,9 +562,9 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "lectura_del_destino",
-        "observacion_sagrada",
-        "vision_del_condor"
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -541,11 +574,14 @@
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Dano 5, Prever 2"
+    "text_key": "Dano 5, Prever 2",
+    "legacy_id": "fragmento_celeste",
+    "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
+    "legacy_artwork": "fragmento_celeste"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "fusion_espiritual",
+    "artwork": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "OESTE",
@@ -565,7 +601,7 @@
       }
     ],
     "family": "oeste",
-    "id": "fusion_espiritual",
+    "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
     "kpi": {
       "block": 2,
       "harmony": 2,
@@ -579,8 +615,8 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -592,11 +628,14 @@
     ],
     "target": "self",
     "taxonomy": "payoff",
-    "text_key": "Limite de bloqueo +10"
+    "text_key": "Limite de bloqueo +10",
+    "legacy_id": "fusion_espiritual",
+    "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
+    "legacy_artwork": "fusion_espiritual"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "garra_espiritual",
+    "artwork": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
     "author": "Chakana Studio",
     "cost": 0,
     "direction": "ESTE",
@@ -608,7 +647,7 @@
       }
     ],
     "family": "este",
-    "id": "garra_espiritual",
+    "id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
     "kpi": {
       "damage": 4
     },
@@ -620,9 +659,9 @@
     "strategy": {
       "best_use": "Cerrar combates cortos con presion constante.",
       "synergy_cards": [
-        "filo_astral",
-        "embate_del_jaguar",
-        "pulso_cosmico"
+        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
+        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
       ],
       "weakness": "Sufre si no roba ritmo."
     },
@@ -631,11 +670,14 @@
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Dano 4"
+    "text_key": "Dano 4",
+    "legacy_id": "garra_espiritual",
+    "canonical_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
+    "legacy_artwork": "garra_espiritual"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "guardia_terrenal",
+    "artwork": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
     "author": "Chakana Studio",
     "cost": 0,
     "direction": "SUR",
@@ -647,7 +689,7 @@
       }
     ],
     "family": "sur",
-    "id": "guardia_terrenal",
+    "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
     "kpi": {
       "block": 3
     },
@@ -659,9 +701,9 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -670,11 +712,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Bloqueo 3"
+    "text_key": "Bloqueo 3",
+    "legacy_id": "guardia_terrenal",
+    "canonical_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
+    "legacy_artwork": "guardia_terrenal"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "invocacion_astral",
+    "artwork": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "OESTE",
@@ -694,7 +739,7 @@
       }
     ],
     "family": "oeste",
-    "id": "invocacion_astral",
+    "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
     "kpi": {
       "block": 3,
       "harmony": 1,
@@ -708,9 +753,9 @@
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
       "synergy_cards": [
-        "portal_de_la_chakana",
-        "piedra_ritual",
-        "ritual_de_la_trama"
+        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
+        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
       ],
       "weakness": "Puede quedarse corto si no llega al umbral."
     },
@@ -721,11 +766,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Armonia +1, Cura 3, Bloqueo 3"
+    "text_key": "Armonia +1, Cura 3, Bloqueo 3",
+    "legacy_id": "invocacion_astral",
+    "canonical_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
+    "legacy_artwork": "invocacion_astral"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "lectura_del_destino",
+    "artwork": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
     "author": "Chakana Studio",
     "cost": 0,
     "direction": "NORTE",
@@ -737,7 +785,7 @@
       }
     ],
     "family": "norte",
-    "id": "lectura_del_destino",
+    "id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
     "kpi": {
       "scry": 2
     },
@@ -749,8 +797,8 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "observacion_sagrada",
-        "vision_del_condor"
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -759,11 +807,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Prever 2"
+    "text_key": "Prever 2",
+    "legacy_id": "lectura_del_destino",
+    "canonical_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+    "legacy_artwork": "lectura_del_destino"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "mantra_del_umbral",
+    "artwork": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "OESTE",
@@ -783,7 +834,7 @@
       }
     ],
     "family": "oeste",
-    "id": "mantra_del_umbral",
+    "id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
     "kpi": {
       "energy": 1,
       "harmony": 1,
@@ -797,8 +848,8 @@
     "strategy": {
       "best_use": "Acelerar turnos clave y habilitar cadenas.",
       "synergy_cards": [
-        "vinculo_de_energia",
-        "chakana_de_luz"
+        "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
+        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
       ],
       "weakness": "Necesita cartas de impacto para capitalizar mana."
     },
@@ -809,11 +860,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Armonia +1, Energia +1, Cura 1"
+    "text_key": "Armonia +1, Energia +1, Cura 1",
+    "legacy_id": "mantra_del_umbral",
+    "canonical_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
+    "legacy_artwork": "mantra_del_umbral"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "muralla_de_piedra",
+    "artwork": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "SUR",
@@ -825,7 +879,7 @@
       }
     ],
     "family": "sur",
-    "id": "muralla_de_piedra",
+    "id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
     "kpi": {
       "block": 8
     },
@@ -837,8 +891,8 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -847,11 +901,14 @@
     ],
     "target": "self",
     "taxonomy": "bridge",
-    "text_key": "Bloqueo 8"
+    "text_key": "Bloqueo 8",
+    "legacy_id": "muralla_de_piedra",
+    "canonical_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+    "legacy_artwork": "muralla_de_piedra"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "observacion_sagrada",
+    "artwork": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "NORTE",
@@ -867,7 +924,7 @@
       }
     ],
     "family": "norte",
-    "id": "observacion_sagrada",
+    "id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
     "kpi": {
       "scry": 3
     },
@@ -879,8 +936,8 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "lectura_del_destino",
-        "vision_del_condor"
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -890,11 +947,14 @@
     "target": "self",
     "taxonomy": "engine",
     "text_es": "Escruta 3. Roba 1.",
-    "text_key": "Prever 3"
+    "text_key": "Prever 3",
+    "legacy_id": "observacion_sagrada",
+    "canonical_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+    "legacy_artwork": "observacion_sagrada"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "piedra_ritual",
+    "artwork": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "SUR",
@@ -914,7 +974,7 @@
       }
     ],
     "family": "sur",
-    "id": "piedra_ritual",
+    "id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
     "kpi": {
       "block": 6,
       "harmony": 1,
@@ -928,8 +988,8 @@
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
       "synergy_cards": [
-        "portal_de_la_chakana",
-        "ritual_de_la_trama"
+        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
       ],
       "weakness": "Puede quedarse corto si no llega al umbral."
     },
@@ -940,11 +1000,14 @@
     ],
     "target": "enemy",
     "taxonomy": "payoff",
-    "text_key": "Armonia +1, Bloqueo 6, Ruptura 3"
+    "text_key": "Armonia +1, Bloqueo 6, Ruptura 3",
+    "legacy_id": "piedra_ritual",
+    "canonical_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
+    "legacy_artwork": "piedra_ritual"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "portal_de_la_chakana",
+    "artwork": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "OESTE",
@@ -964,7 +1027,7 @@
       }
     ],
     "family": "oeste",
-    "id": "portal_de_la_chakana",
+    "id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
     "kpi": {
       "draw": 1,
       "harmony": 1,
@@ -978,8 +1041,8 @@
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
       "synergy_cards": [
-        "piedra_ritual",
-        "ritual_de_la_trama"
+        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
+        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
       ],
       "weakness": "Puede quedarse corto si no llega al umbral."
     },
@@ -990,11 +1053,14 @@
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Armonia +1, Ruptura 3, Roba 1"
+    "text_key": "Armonia +1, Ruptura 3, Roba 1",
+    "legacy_id": "portal_de_la_chakana",
+    "canonical_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+    "legacy_artwork": "portal_de_la_chakana"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "pulso_cosmico",
+    "artwork": "BASE-SOLAR-ATTACK-PULSO_COSMICO",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "OESTE",
@@ -1010,7 +1076,7 @@
       }
     ],
     "family": "oeste",
-    "id": "pulso_cosmico",
+    "id": "BASE-SOLAR-ATTACK-PULSO_COSMICO",
     "kpi": {
       "damage": 3,
       "rupture": 2
@@ -1023,8 +1089,8 @@
     "strategy": {
       "best_use": "Cerrar combates cortos con presion constante.",
       "synergy_cards": [
-        "filo_astral",
-        "embate_del_jaguar"
+        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR"
       ],
       "weakness": "Sufre si no roba ritmo."
     },
@@ -1035,11 +1101,14 @@
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Ruptura 2, Dano 3"
+    "text_key": "Ruptura 2, Dano 3",
+    "legacy_id": "pulso_cosmico",
+    "canonical_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO",
+    "legacy_artwork": "pulso_cosmico"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "resistencia_ancestral",
+    "artwork": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "SUR",
@@ -1059,7 +1128,7 @@
       }
     ],
     "family": "sur",
-    "id": "resistencia_ancestral",
+    "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
     "kpi": {
       "block": 7,
       "harmony": 1,
@@ -1073,9 +1142,9 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -1086,11 +1155,14 @@
     ],
     "target": "self",
     "taxonomy": "payoff",
-    "text_key": "Bloqueo 7, Retener"
+    "text_key": "Bloqueo 7, Retener",
+    "legacy_id": "resistencia_ancestral",
+    "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
+    "legacy_artwork": "resistencia_ancestral"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "revelacion_astral",
+    "artwork": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "NORTE",
@@ -1110,7 +1182,7 @@
       }
     ],
     "family": "norte",
-    "id": "revelacion_astral",
+    "id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
     "kpi": {
       "draw": 1,
       "harmony": 1,
@@ -1124,9 +1196,9 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "lectura_del_destino",
-        "observacion_sagrada",
-        "vision_del_condor"
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -1137,11 +1209,14 @@
     ],
     "target": "self",
     "taxonomy": "bridge",
-    "text_key": "Armonia +1, Prever 4, Roba 1"
+    "text_key": "Armonia +1, Prever 4, Roba 1",
+    "legacy_id": "revelacion_astral",
+    "canonical_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
+    "legacy_artwork": "revelacion_astral"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "ritual_de_la_trama",
+    "artwork": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
     "author": "Chakana Studio",
     "cost": 4,
     "direction": "OESTE",
@@ -1165,7 +1240,7 @@
       }
     ],
     "family": "oeste",
-    "id": "ritual_de_la_trama",
+    "id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
     "kpi": {
       "harmony": 1,
       "ritual": 1,
@@ -1179,8 +1254,8 @@
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
       "synergy_cards": [
-        "portal_de_la_chakana",
-        "piedra_ritual"
+        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL"
       ],
       "weakness": "Puede quedarse corto si no llega al umbral."
     },
@@ -1192,11 +1267,14 @@
     ],
     "target": "enemy",
     "taxonomy": "payoff",
-    "text_key": "Armonia +1, Sello 3, Ritual 1"
+    "text_key": "Armonia +1, Sello 3, Ritual 1",
+    "legacy_id": "ritual_de_la_trama",
+    "canonical_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
+    "legacy_artwork": "ritual_de_la_trama"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "sello_protector",
+    "artwork": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "SUR",
@@ -1212,7 +1290,7 @@
       }
     ],
     "family": "sur",
-    "id": "sello_protector",
+    "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
     "kpi": {
       "block": 5,
       "harmony": 1
@@ -1225,8 +1303,8 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -1237,11 +1315,14 @@
     ],
     "target": "self",
     "taxonomy": "bridge",
-    "text_key": "Bloqueo 5"
+    "text_key": "Bloqueo 5",
+    "legacy_id": "sello_protector",
+    "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+    "legacy_artwork": "sello_protector"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "silencio_interior",
+    "artwork": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "NORTE",
@@ -1257,7 +1338,7 @@
       }
     ],
     "family": "norte",
-    "id": "silencio_interior",
+    "id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
     "kpi": {
       "scry": 1,
       "support": 3
@@ -1270,9 +1351,9 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "lectura_del_destino",
-        "observacion_sagrada",
-        "vision_del_condor"
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -1282,11 +1363,14 @@
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Debilita 3, Prever 1"
+    "text_key": "Debilita 3, Prever 1",
+    "legacy_id": "silencio_interior",
+    "canonical_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
+    "legacy_artwork": "silencio_interior"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "vinculo_de_energia",
+    "artwork": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "OESTE",
@@ -1302,7 +1386,7 @@
       }
     ],
     "family": "oeste",
-    "id": "vinculo_de_energia",
+    "id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
     "kpi": {
       "energy": 2
     },
@@ -1314,8 +1398,8 @@
     "strategy": {
       "best_use": "Acelerar turnos clave y habilitar cadenas.",
       "synergy_cards": [
-        "mantra_del_umbral",
-        "chakana_de_luz"
+        "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
+        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
       ],
       "weakness": "Necesita cartas de impacto para capitalizar mana."
     },
@@ -1325,11 +1409,14 @@
     "target": "self",
     "taxonomy": "engine",
     "text_es": "Gana 2 Energ?a. Roba 1.",
-    "text_key": "Energia +2"
+    "text_key": "Energia +2",
+    "legacy_id": "vinculo_de_energia",
+    "canonical_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
+    "legacy_artwork": "vinculo_de_energia"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "vision_del_condor",
+    "artwork": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "NORTE",
@@ -1349,7 +1436,7 @@
       }
     ],
     "family": "norte",
-    "id": "vision_del_condor",
+    "id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
     "kpi": {
       "draw": 1,
       "harmony": 1,
@@ -1363,8 +1450,8 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "lectura_del_destino",
-        "observacion_sagrada"
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -1375,11 +1462,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Armonia +1, Prever 3, Roba 1"
+    "text_key": "Armonia +1, Prever 3, Roba 1",
+    "legacy_id": "vision_del_condor",
+    "canonical_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
+    "legacy_artwork": "vision_del_condor"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "hg_lore_01",
+    "artwork": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "SUR",
@@ -1395,7 +1485,7 @@
       }
     ],
     "family": "sur",
-    "id": "hg_lore_01",
+    "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
     "kpi": {
       "block": 7,
       "support": 2
@@ -1408,9 +1498,9 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -1420,11 +1510,14 @@
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Bloqueo 7, Debilita 2"
+    "text_key": "Bloqueo 7, Debilita 2",
+    "legacy_id": "hg_lore_01",
+    "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
+    "legacy_artwork": "hg_lore_01"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "cw_lore_02",
+    "artwork": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA",
     "author": "Chakana Studio",
     "cost": 3,
     "direction": "OESTE",
@@ -1452,7 +1545,7 @@
       }
     ],
     "family": "oeste",
-    "id": "cw_lore_02",
+    "id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA",
     "kpi": {
       "block": 5,
       "damage": 11,
@@ -1467,8 +1560,8 @@
     "strategy": {
       "best_use": "Encadenar efectos para turnos de alto valor.",
       "synergy_cards": [
-        "eco_de_sabiduria",
-        "filo_en_cadena"
+        "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
+        "BASE-SOLAR-SKILL-FILO_EN_CADENA"
       ],
       "weakness": "Depende del orden de mano y setup."
     },
@@ -1481,11 +1574,14 @@
     ],
     "target": "enemy",
     "taxonomy": "payoff",
-    "text_key": "Armonia +1, Dano 11, Bloqueo 5"
+    "text_key": "Armonia +1, Dano 11, Bloqueo 5",
+    "legacy_id": "cw_lore_02",
+    "canonical_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA",
+    "legacy_artwork": "cw_lore_02"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "cw_lore_03",
+    "artwork": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "NORTE",
@@ -1505,7 +1601,7 @@
       }
     ],
     "family": "norte",
-    "id": "cw_lore_03",
+    "id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
     "kpi": {
       "combo": 1,
       "damage": 1
@@ -1518,8 +1614,8 @@
     "strategy": {
       "best_use": "Encadenar efectos para turnos de alto valor.",
       "synergy_cards": [
-        "filo_en_cadena",
-        "chakana_de_luz"
+        "BASE-SOLAR-SKILL-FILO_EN_CADENA",
+        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
       ],
       "weakness": "Depende del orden de mano y setup."
     },
@@ -1529,11 +1625,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Copia la ultima carta jugada, Se agota, Dano 1"
+    "text_key": "Copia la ultima carta jugada, Se agota, Dano 1",
+    "legacy_id": "cw_lore_03",
+    "canonical_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
+    "legacy_artwork": "cw_lore_03"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "cw_lore_04",
+    "artwork": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "ESTE",
@@ -1549,7 +1648,7 @@
       }
     ],
     "family": "este",
-    "id": "cw_lore_04",
+    "id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA",
     "kpi": {
       "block": 3,
       "damage": 8
@@ -1562,8 +1661,8 @@
     "strategy": {
       "best_use": "Cerrar combates cortos con presion constante.",
       "synergy_cards": [
-        "filo_astral",
-        "pulso_cosmico"
+        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
       ],
       "weakness": "Sufre si no roba ritmo."
     },
@@ -1573,11 +1672,14 @@
     ],
     "target": "enemy",
     "taxonomy": "payoff",
-    "text_key": "Dano 8, Bloqueo 3"
+    "text_key": "Dano 8, Bloqueo 3",
+    "legacy_id": "cw_lore_04",
+    "canonical_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA",
+    "legacy_artwork": "cw_lore_04"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "hg_lore_05",
+    "artwork": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "SUR",
@@ -1593,7 +1695,7 @@
       }
     ],
     "family": "sur",
-    "id": "hg_lore_05",
+    "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
     "kpi": {
       "block": 5
     },
@@ -1605,9 +1707,9 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -1617,11 +1719,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Bloqueo 5"
+    "text_key": "Bloqueo 5",
+    "legacy_id": "hg_lore_05",
+    "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
+    "legacy_artwork": "hg_lore_05"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "hg_lore_06",
+    "artwork": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "SUR",
@@ -1637,7 +1742,7 @@
       }
     ],
     "family": "sur",
-    "id": "hg_lore_06",
+    "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
     "kpi": {
       "block": 6,
       "scry": 1
@@ -1650,9 +1755,9 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "lectura_del_destino",
-        "observacion_sagrada",
-        "vision_del_condor"
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -1662,11 +1767,14 @@
     ],
     "target": "self",
     "taxonomy": "bridge",
-    "text_key": "Bloqueo 6, Prever 1"
+    "text_key": "Bloqueo 6, Prever 1",
+    "legacy_id": "hg_lore_06",
+    "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
+    "legacy_artwork": "hg_lore_06"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "hg_lore_07",
+    "artwork": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "OESTE",
@@ -1682,7 +1790,7 @@
       }
     ],
     "family": "oeste",
-    "id": "hg_lore_07",
+    "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
     "kpi": {
       "block": 5,
       "rupture": 1
@@ -1695,9 +1803,9 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -1707,11 +1815,14 @@
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Bloqueo 5, Ruptura 1"
+    "text_key": "Bloqueo 5, Ruptura 1",
+    "legacy_id": "hg_lore_07",
+    "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
+    "legacy_artwork": "hg_lore_07"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "cw_lore_08",
+    "artwork": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "ESTE",
@@ -1727,7 +1838,7 @@
       }
     ],
     "family": "este",
-    "id": "cw_lore_08",
+    "id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA",
     "kpi": {
       "damage": 6,
       "draw": 1
@@ -1740,9 +1851,9 @@
     "strategy": {
       "best_use": "Cerrar combates cortos con presion constante.",
       "synergy_cards": [
-        "filo_astral",
-        "embate_del_jaguar",
-        "pulso_cosmico"
+        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
+        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
       ],
       "weakness": "Sufre si no roba ritmo."
     },
@@ -1752,11 +1863,14 @@
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Dano 6, Roba 1"
+    "text_key": "Dano 6, Roba 1",
+    "legacy_id": "cw_lore_08",
+    "canonical_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA",
+    "legacy_artwork": "cw_lore_08"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "cw_lore_09",
+    "artwork": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "ESTE",
@@ -1768,7 +1882,7 @@
       }
     ],
     "family": "este",
-    "id": "cw_lore_09",
+    "id": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
     "kpi": {
       "damage": 8
     },
@@ -1780,8 +1894,8 @@
     "strategy": {
       "best_use": "Cerrar combates cortos con presion constante.",
       "synergy_cards": [
-        "embate_del_jaguar",
-        "pulso_cosmico"
+        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
+        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
       ],
       "weakness": "Sufre si no roba ritmo."
     },
@@ -1790,11 +1904,14 @@
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Dano 8"
+    "text_key": "Dano 8",
+    "legacy_id": "cw_lore_09",
+    "canonical_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
+    "legacy_artwork": "cw_lore_09"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "cw_lore_10",
+    "artwork": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "ESTE",
@@ -1811,7 +1928,7 @@
       }
     ],
     "family": "este",
-    "id": "cw_lore_10",
+    "id": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
     "kpi": {
       "damage": 5
     },
@@ -1823,8 +1940,8 @@
     "strategy": {
       "best_use": "Encadenar efectos para turnos de alto valor.",
       "synergy_cards": [
-        "eco_de_sabiduria",
-        "chakana_de_luz"
+        "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
+        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
       ],
       "weakness": "Depende del orden de mano y setup."
     },
@@ -1833,11 +1950,14 @@
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Dano 5"
+    "text_key": "Dano 5",
+    "legacy_id": "cw_lore_10",
+    "canonical_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
+    "legacy_artwork": "cw_lore_10"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "hg_lore_11",
+    "artwork": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "SUR",
@@ -1853,7 +1973,7 @@
       }
     ],
     "family": "sur",
-    "id": "hg_lore_11",
+    "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
     "kpi": {
       "block": 3
     },
@@ -1865,9 +1985,9 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -1877,11 +1997,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Bloqueo 3"
+    "text_key": "Bloqueo 3",
+    "legacy_id": "hg_lore_11",
+    "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
+    "legacy_artwork": "hg_lore_11"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "of_lore_12",
+    "artwork": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "ESTE",
@@ -1897,7 +2020,7 @@
       }
     ],
     "family": "este",
-    "id": "of_lore_12",
+    "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
     "kpi": {
       "damage": 5,
       "scry": 3
@@ -1910,9 +2033,9 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "lectura_del_destino",
-        "observacion_sagrada",
-        "vision_del_condor"
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -1922,11 +2045,14 @@
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Dano 5, Prever 3"
+    "text_key": "Dano 5, Prever 3",
+    "legacy_id": "of_lore_12",
+    "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
+    "legacy_artwork": "of_lore_12"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "hg_lore_13",
+    "artwork": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "OESTE",
@@ -1946,7 +2072,7 @@
       }
     ],
     "family": "oeste",
-    "id": "hg_lore_13",
+    "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
     "kpi": {
       "block": 1,
       "harmony": 1,
@@ -1960,8 +2086,8 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -1972,11 +2098,14 @@
     ],
     "target": "self",
     "taxonomy": "payoff",
-    "text_key": "Limite de bloqueo +10, Bloqueo 1"
+    "text_key": "Limite de bloqueo +10, Bloqueo 1",
+    "legacy_id": "hg_lore_13",
+    "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
+    "legacy_artwork": "hg_lore_13"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "cw_lore_14",
+    "artwork": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
     "author": "Chakana Studio",
     "cost": 0,
     "direction": "ESTE",
@@ -1988,7 +2117,7 @@
       }
     ],
     "family": "este",
-    "id": "cw_lore_14",
+    "id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
     "kpi": {
       "damage": 5
     },
@@ -2000,9 +2129,9 @@
     "strategy": {
       "best_use": "Cerrar combates cortos con presion constante.",
       "synergy_cards": [
-        "filo_astral",
-        "embate_del_jaguar",
-        "pulso_cosmico"
+        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
+        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
       ],
       "weakness": "Sufre si no roba ritmo."
     },
@@ -2011,11 +2140,14 @@
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Dano 5"
+    "text_key": "Dano 5",
+    "legacy_id": "cw_lore_14",
+    "canonical_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
+    "legacy_artwork": "cw_lore_14"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "hg_lore_15",
+    "artwork": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
     "author": "Chakana Studio",
     "cost": 0,
     "direction": "SUR",
@@ -2027,7 +2159,7 @@
       }
     ],
     "family": "sur",
-    "id": "hg_lore_15",
+    "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
     "kpi": {
       "block": 4
     },
@@ -2039,9 +2171,9 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -2050,11 +2182,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Bloqueo 4"
+    "text_key": "Bloqueo 4",
+    "legacy_id": "hg_lore_15",
+    "canonical_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
+    "legacy_artwork": "hg_lore_15"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "of_lore_16",
+    "artwork": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "OESTE",
@@ -2074,7 +2209,7 @@
       }
     ],
     "family": "oeste",
-    "id": "of_lore_16",
+    "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
     "kpi": {
       "block": 3,
       "harmony": 2
@@ -2087,9 +2222,9 @@
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
       "synergy_cards": [
-        "portal_de_la_chakana",
-        "piedra_ritual",
-        "ritual_de_la_trama"
+        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
+        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
       ],
       "weakness": "Puede quedarse corto si no llega al umbral."
     },
@@ -2100,11 +2235,14 @@
     ],
     "target": "self",
     "taxonomy": "bridge",
-    "text_key": "Armonia +2, Bloqueo 3"
+    "text_key": "Armonia +2, Bloqueo 3",
+    "legacy_id": "of_lore_16",
+    "canonical_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
+    "legacy_artwork": "of_lore_16"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "of_lore_17",
+    "artwork": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
     "author": "Chakana Studio",
     "cost": 0,
     "direction": "NORTE",
@@ -2116,7 +2254,7 @@
       }
     ],
     "family": "norte",
-    "id": "of_lore_17",
+    "id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
     "kpi": {
       "scry": 3
     },
@@ -2128,8 +2266,8 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "observacion_sagrada",
-        "vision_del_condor"
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -2138,11 +2276,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Prever 3"
+    "text_key": "Prever 3",
+    "legacy_id": "of_lore_17",
+    "canonical_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
+    "legacy_artwork": "of_lore_17"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "cw_lore_18",
+    "artwork": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "OESTE",
@@ -2162,7 +2303,7 @@
       }
     ],
     "family": "oeste",
-    "id": "cw_lore_18",
+    "id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
     "kpi": {
       "energy": 1,
       "harmony": 2
@@ -2175,8 +2316,8 @@
     "strategy": {
       "best_use": "Acelerar turnos clave y habilitar cadenas.",
       "synergy_cards": [
-        "vinculo_de_energia",
-        "chakana_de_luz"
+        "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
+        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
       ],
       "weakness": "Necesita cartas de impacto para capitalizar mana."
     },
@@ -2187,11 +2328,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Armonia +2, Energia +1"
+    "text_key": "Armonia +2, Energia +1",
+    "legacy_id": "cw_lore_18",
+    "canonical_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
+    "legacy_artwork": "cw_lore_18"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "hg_lore_19",
+    "artwork": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "SUR",
@@ -2203,7 +2347,7 @@
       }
     ],
     "family": "sur",
-    "id": "hg_lore_19",
+    "id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA",
     "kpi": {
       "block": 9
     },
@@ -2215,8 +2359,8 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -2225,11 +2369,14 @@
     ],
     "target": "self",
     "taxonomy": "bridge",
-    "text_key": "Bloqueo 9"
+    "text_key": "Bloqueo 9",
+    "legacy_id": "hg_lore_19",
+    "canonical_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA",
+    "legacy_artwork": "hg_lore_19"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "of_lore_20",
+    "artwork": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "NORTE",
@@ -2245,7 +2392,7 @@
       }
     ],
     "family": "norte",
-    "id": "of_lore_20",
+    "id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA",
     "kpi": {
       "scry": 4
     },
@@ -2257,8 +2404,8 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "lectura_del_destino",
-        "vision_del_condor"
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -2268,11 +2415,14 @@
     "target": "self",
     "taxonomy": "engine",
     "text_es": "Escruta 4. Gana 1 Armon?a.",
-    "text_key": "Prever 4"
+    "text_key": "Prever 4",
+    "legacy_id": "of_lore_20",
+    "canonical_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA",
+    "legacy_artwork": "of_lore_20"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "of_lore_21",
+    "artwork": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "SUR",
@@ -2292,7 +2442,7 @@
       }
     ],
     "family": "sur",
-    "id": "of_lore_21",
+    "id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA",
     "kpi": {
       "block": 6,
       "harmony": 2,
@@ -2306,8 +2456,8 @@
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
       "synergy_cards": [
-        "portal_de_la_chakana",
-        "ritual_de_la_trama"
+        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
       ],
       "weakness": "Puede quedarse corto si no llega al umbral."
     },
@@ -2318,11 +2468,14 @@
     ],
     "target": "enemy",
     "taxonomy": "payoff",
-    "text_key": "Armonia +2, Bloqueo 6, Ruptura 3"
+    "text_key": "Armonia +2, Bloqueo 6, Ruptura 3",
+    "legacy_id": "of_lore_21",
+    "canonical_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA",
+    "legacy_artwork": "of_lore_21"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "of_lore_22",
+    "artwork": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "OESTE",
@@ -2342,7 +2495,7 @@
       }
     ],
     "family": "oeste",
-    "id": "of_lore_22",
+    "id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
     "kpi": {
       "draw": 2,
       "harmony": 1,
@@ -2356,8 +2509,8 @@
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
       "synergy_cards": [
-        "piedra_ritual",
-        "ritual_de_la_trama"
+        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
+        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
       ],
       "weakness": "Puede quedarse corto si no llega al umbral."
     },
@@ -2368,11 +2521,14 @@
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Armonia +1, Ruptura 3, Roba 2"
+    "text_key": "Armonia +1, Ruptura 3, Roba 2",
+    "legacy_id": "of_lore_22",
+    "canonical_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
+    "legacy_artwork": "of_lore_22"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "cw_lore_23",
+    "artwork": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "OESTE",
@@ -2388,7 +2544,7 @@
       }
     ],
     "family": "oeste",
-    "id": "cw_lore_23",
+    "id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
     "kpi": {
       "damage": 4,
       "rupture": 2
@@ -2401,8 +2557,8 @@
     "strategy": {
       "best_use": "Cerrar combates cortos con presion constante.",
       "synergy_cards": [
-        "filo_astral",
-        "embate_del_jaguar"
+        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR"
       ],
       "weakness": "Sufre si no roba ritmo."
     },
@@ -2413,11 +2569,14 @@
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Ruptura 2, Dano 4"
+    "text_key": "Ruptura 2, Dano 4",
+    "legacy_id": "cw_lore_23",
+    "canonical_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
+    "legacy_artwork": "cw_lore_23"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "hg_lore_24",
+    "artwork": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "SUR",
@@ -2437,7 +2596,7 @@
       }
     ],
     "family": "sur",
-    "id": "hg_lore_24",
+    "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
     "kpi": {
       "block": 8,
       "harmony": 1,
@@ -2451,9 +2610,9 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "sello_protector",
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -2464,11 +2623,14 @@
     ],
     "target": "self",
     "taxonomy": "payoff",
-    "text_key": "Bloqueo 8, Retener"
+    "text_key": "Bloqueo 8, Retener",
+    "legacy_id": "hg_lore_24",
+    "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
+    "legacy_artwork": "hg_lore_24"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "of_lore_25",
+    "artwork": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "NORTE",
@@ -2488,7 +2650,7 @@
       }
     ],
     "family": "norte",
-    "id": "of_lore_25",
+    "id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA",
     "kpi": {
       "draw": 1,
       "harmony": 1,
@@ -2502,9 +2664,9 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "lectura_del_destino",
-        "observacion_sagrada",
-        "vision_del_condor"
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -2515,11 +2677,14 @@
     ],
     "target": "self",
     "taxonomy": "bridge",
-    "text_key": "Armonia +1, Prever 5, Roba 1"
+    "text_key": "Armonia +1, Prever 5, Roba 1",
+    "legacy_id": "of_lore_25",
+    "canonical_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA",
+    "legacy_artwork": "of_lore_25"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "of_lore_26",
+    "artwork": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA",
     "author": "Chakana Studio",
     "cost": 4,
     "direction": "OESTE",
@@ -2543,7 +2708,7 @@
       }
     ],
     "family": "oeste",
-    "id": "of_lore_26",
+    "id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA",
     "kpi": {
       "harmony": 1,
       "ritual": 2,
@@ -2557,8 +2722,8 @@
     "strategy": {
       "best_use": "Escalar armonia y explotar umbrales de sello.",
       "synergy_cards": [
-        "portal_de_la_chakana",
-        "piedra_ritual"
+        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL"
       ],
       "weakness": "Puede quedarse corto si no llega al umbral."
     },
@@ -2570,11 +2735,14 @@
     ],
     "target": "enemy",
     "taxonomy": "payoff",
-    "text_key": "Armonia +1, Sello 3, Ritual 2"
+    "text_key": "Armonia +1, Sello 3, Ritual 2",
+    "legacy_id": "of_lore_26",
+    "canonical_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA",
+    "legacy_artwork": "of_lore_26"
   },
   {
     "archetype": "harmony_guardian",
-    "artwork": "hg_lore_27",
+    "artwork": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "SUR",
@@ -2586,7 +2754,7 @@
       }
     ],
     "family": "sur",
-    "id": "hg_lore_27",
+    "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
     "kpi": {
       "block": 6
     },
@@ -2598,8 +2766,8 @@
     "strategy": {
       "best_use": "Absorber dano y preparar contraataque.",
       "synergy_cards": [
-        "muralla_de_piedra",
-        "fusion_espiritual"
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
       ],
       "weakness": "Pierde tempo si no convierte defensa en valor."
     },
@@ -2608,11 +2776,14 @@
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Bloqueo 6"
+    "text_key": "Bloqueo 6",
+    "legacy_id": "hg_lore_27",
+    "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
+    "legacy_artwork": "hg_lore_27"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "of_lore_28",
+    "artwork": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "NORTE",
@@ -2628,7 +2799,7 @@
       }
     ],
     "family": "norte",
-    "id": "of_lore_28",
+    "id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA",
     "kpi": {
       "scry": 2,
       "support": 3
@@ -2641,9 +2812,9 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "lectura_del_destino",
-        "observacion_sagrada",
-        "vision_del_condor"
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -2653,11 +2824,14 @@
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Debilita 3, Prever 2"
+    "text_key": "Debilita 3, Prever 2",
+    "legacy_id": "of_lore_28",
+    "canonical_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA",
+    "legacy_artwork": "of_lore_28"
   },
   {
     "archetype": "cosmic_warrior",
-    "artwork": "cw_lore_29",
+    "artwork": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "OESTE",
@@ -2673,7 +2847,7 @@
       }
     ],
     "family": "oeste",
-    "id": "cw_lore_29",
+    "id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
     "kpi": {
       "damage": 1,
       "energy": 2
@@ -2686,8 +2860,8 @@
     "strategy": {
       "best_use": "Acelerar turnos clave y habilitar cadenas.",
       "synergy_cards": [
-        "mantra_del_umbral",
-        "chakana_de_luz"
+        "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
+        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
       ],
       "weakness": "Necesita cartas de impacto para capitalizar mana."
     },
@@ -2696,11 +2870,14 @@
     ],
     "target": "self",
     "taxonomy": "bridge",
-    "text_key": "Energia +2, Dano 1"
+    "text_key": "Energia +2, Dano 1",
+    "legacy_id": "cw_lore_29",
+    "canonical_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
+    "legacy_artwork": "cw_lore_29"
   },
   {
     "archetype": "oracle_of_fate",
-    "artwork": "of_lore_30",
+    "artwork": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "NORTE",
@@ -2720,7 +2897,7 @@
       }
     ],
     "family": "norte",
-    "id": "of_lore_30",
+    "id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA",
     "kpi": {
       "draw": 1,
       "harmony": 1,
@@ -2734,8 +2911,8 @@
     "strategy": {
       "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
       "synergy_cards": [
-        "lectura_del_destino",
-        "observacion_sagrada"
+        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA"
       ],
       "weakness": "Menor dano explosivo en turnos tempranos."
     },
@@ -2746,6 +2923,9 @@
     ],
     "target": "self",
     "taxonomy": "bridge",
-    "text_key": "Armonia +1, Prever 4, Roba 1"
+    "text_key": "Armonia +1, Prever 4, Roba 1",
+    "legacy_id": "of_lore_30",
+    "canonical_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA",
+    "legacy_artwork": "of_lore_30"
   }
 ]
