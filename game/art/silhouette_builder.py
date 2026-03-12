@@ -6,6 +6,7 @@ from pathlib import Path
 import pygame
 from game.art.art_reference_catalog import iter_category_entries
 from game.art.secondary_object_library import resolve_secondary_object
+from game.art.silhouette_resolver import resolve_character_silhouette
 from game.core.paths import art_reference_dir
 
 
@@ -51,12 +52,16 @@ def _subject_directives(semantic: dict) -> dict[str, str]:
     ).lower()
     if any(tok in pose_text for tok in ('attack', 'advance', 'strike', 'heroic')):
         pose_family = 'attack_pose'
+        pose_id = 'pose_attack'
     elif any(tok in pose_text for tok in ('guardian', 'guard', 'defense', 'ward')):
         pose_family = 'guardian_pose'
-    elif any(tok in pose_text for tok in ('ritual', 'channel', 'invocation', 'calm')):
+        pose_id = 'pose_guard'
+    elif any(tok in pose_text for tok in ('ritual', 'channel', 'invocation', 'calm', 'cast')):
         pose_family = 'ritual_pose'
+        pose_id = 'pose_cast'
     else:
-        pose_family = 'guardian_pose'
+        pose_family = 'idle_pose'
+        pose_id = 'pose_idle'
     if 'archon' in subject_kind:
         template_id = 'archon'
     elif any(tok in subject_kind for tok in ('warrior', 'guardian', 'hyperborean', 'weapon_bearer')):
@@ -69,6 +74,7 @@ def _subject_directives(semantic: dict) -> dict[str, str]:
         'shape_language': str(semantic.get('shape_language', '') or 'balanced_fantasy').lower(),
         'pose_type': str(semantic.get('pose_type', '') or 'heroic_guard').lower(),
         'pose_family': pose_family,
+        'pose_id': pose_id,
         'symbol_choice': str(semantic.get('symbol_choice', '') or 'none').lower(),
         'lighting_direction': str(semantic.get('lighting_direction', '') or 'left_soft').lower(),
         'aura_type': str(semantic.get('aura_type', '') or 'none').lower(),
@@ -109,10 +115,55 @@ def _shape_adjust(parts: dict[str, object], rect: pygame.Rect, directives: dict[
         right_hand_anchor = (cx + rect.w * 0.12, rect.y + rect.h * 0.52)
         left_hand_anchor = (cx - rect.w * 0.12, rect.y + rect.h * 0.48)
         back_anchor = (cx - rect.w * 0.08, rect.y + rect.h * 0.36)
-    parts['right_hand_anchor'] = right_hand_anchor
-    parts['left_hand_anchor'] = left_hand_anchor
+    head_anchor = (cx, rect.y + rect.h * 0.12)
+    torso_anchor = (cx, rect.y + rect.h * 0.36)
+    shoulder_left_anchor = (cx - rect.w * 0.16, rect.y + rect.h * 0.28)
+    shoulder_right_anchor = (cx + rect.w * 0.16, rect.y + rect.h * 0.28)
+    hip_anchor = (cx, rect.y + rect.h * 0.62)
+    hand_left_anchor = left_hand_anchor
+    hand_right_anchor = right_hand_anchor
+    foot_left_anchor = (cx - rect.w * 0.10, rect.bottom - rect.h * 0.02)
+    foot_right_anchor = (cx + rect.w * 0.10, rect.bottom - rect.h * 0.02)
+    if pose_family == 'attack_pose':
+        shoulder_right_anchor = (cx + rect.w * 0.18, rect.y + rect.h * 0.26)
+        hand_right_anchor = (cx + rect.w * 0.28, rect.y + rect.h * 0.42)
+        hand_left_anchor = (cx - rect.w * 0.14, rect.y + rect.h * 0.44)
+        foot_left_anchor = (cx - rect.w * 0.14, rect.bottom - rect.h * 0.02)
+        foot_right_anchor = (cx + rect.w * 0.06, rect.bottom - rect.h * 0.04)
+    elif pose_family == 'ritual_pose':
+        shoulder_left_anchor = (cx - rect.w * 0.14, rect.y + rect.h * 0.30)
+        shoulder_right_anchor = (cx + rect.w * 0.14, rect.y + rect.h * 0.30)
+        hand_left_anchor = (cx - rect.w * 0.10, rect.y + rect.h * 0.42)
+        hand_right_anchor = (cx + rect.w * 0.10, rect.y + rect.h * 0.42)
+        foot_left_anchor = (cx - rect.w * 0.06, rect.bottom - rect.h * 0.02)
+        foot_right_anchor = (cx + rect.w * 0.06, rect.bottom - rect.h * 0.02)
+    elif pose_family == 'guardian_pose':
+        shoulder_left_anchor = (cx - rect.w * 0.18, rect.y + rect.h * 0.30)
+        shoulder_right_anchor = (cx + rect.w * 0.14, rect.y + rect.h * 0.30)
+        hand_left_anchor = (cx - rect.w * 0.18, rect.y + rect.h * 0.48)
+        hand_right_anchor = (cx + rect.w * 0.12, rect.y + rect.h * 0.50)
+        foot_left_anchor = (cx - rect.w * 0.10, rect.bottom - rect.h * 0.02)
+        foot_right_anchor = (cx + rect.w * 0.10, rect.bottom - rect.h * 0.02)
+    parts['head_anchor'] = head_anchor
+    parts['torso_anchor'] = torso_anchor
+    parts['shoulder_left_anchor'] = shoulder_left_anchor
+    parts['shoulder_right_anchor'] = shoulder_right_anchor
+    parts['hip_anchor'] = hip_anchor
+    parts['hand_left_anchor'] = hand_left_anchor
+    parts['hand_right_anchor'] = hand_right_anchor
+    parts['foot_left_anchor'] = foot_left_anchor
+    parts['foot_right_anchor'] = foot_right_anchor
+    parts['right_hand_anchor'] = hand_right_anchor
+    parts['left_hand_anchor'] = hand_left_anchor
     parts['back_anchor'] = back_anchor
-    parts['weapon_anchor'] = right_hand_anchor
+    parts['weapon_origin_anchor'] = hand_right_anchor
+    parts['weapon_tip_anchor'] = (hand_right_anchor[0] + rect.w * (0.22 if pose_family == 'attack_pose' else 0.10), hand_right_anchor[1] - rect.h * (0.20 if pose_family == 'attack_pose' else 0.08))
+    parts['symbol_center_anchor'] = parts['symbol_anchor']
+    parts['halo_anchor'] = (cx, rect.y + rect.h * 0.18)
+    parts['fx_spawn_anchor'] = (cx, rect.y + rect.h * 0.44)
+    parts['weapon_anchor'] = hand_right_anchor
+    parts['pose_id'] = directives.get('pose_id', 'pose_idle')
+    parts['scale'] = rect.h
     return parts
 
 
@@ -121,16 +172,16 @@ def _lighting_glaze(surface: pygame.Surface, rect: pygame.Rect, directives: dict
     mode = directives.get('lighting_direction', 'left_soft')
     if mode == 'left_dawn':
         pts = [(rect.left - rect.w // 8, rect.top), (rect.centerx, rect.top), (rect.centerx - rect.w // 10, rect.bottom), (rect.left - rect.w // 10, rect.bottom)]
-        _poly(glaze, _rgba(accent, 42), pts)
+        _poly(glaze, _rgba(accent, 16), pts)
     elif mode == 'top_void':
         band = pygame.Rect(rect.centerx - rect.w // 6, rect.top - rect.h // 20, rect.w // 3, rect.h // 3)
-        pygame.draw.ellipse(glaze, _rgba(accent, 30), band)
+        pygame.draw.ellipse(glaze, _rgba(accent, 12), band)
     elif mode == 'front_soft':
         panel = rect.inflate(-rect.w // 5, -rect.h // 6)
-        pygame.draw.ellipse(glaze, _rgba(accent, 24), panel)
+        pygame.draw.ellipse(glaze, _rgba(accent, 10), panel)
     else:
         pts = [(rect.left, rect.top), (rect.centerx, rect.top), (rect.centerx - rect.w // 12, rect.bottom), (rect.left + rect.w // 10, rect.bottom)]
-        _poly(glaze, _rgba(accent, 26), pts)
+        _poly(glaze, _rgba(accent, 12), pts)
     surface.blit(glaze, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
 
@@ -159,11 +210,11 @@ def _draw_aura_marker(surface: pygame.Surface, rect: pygame.Rect, directives: di
     layer = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
     halo = rect.inflate(rect.w // 4, rect.h // 5)
     if aura == 'corruption_aura':
-        pygame.draw.ellipse(layer, _rgba((accent[0], max(0, accent[1] // 2), accent[2]), 18), halo, max(2, _scaled(surface, 5)))
+        pygame.draw.ellipse(layer, _rgba((accent[0], max(0, accent[1] // 2), accent[2]), 10), halo, max(1, _scaled(surface, 3)))
     elif aura == 'solar_aura':
-        pygame.draw.ellipse(layer, _rgba((min(255, accent[0] + 24), min(255, accent[1] + 18), accent[2]), 22), halo, max(2, _scaled(surface, 5)))
+        pygame.draw.ellipse(layer, _rgba((min(255, accent[0] + 24), min(255, accent[1] + 18), accent[2]), 12), halo, max(1, _scaled(surface, 3)))
     elif aura == 'mystic_aura':
-        pygame.draw.ellipse(layer, _rgba(accent, 18), halo.inflate(-rect.w // 10, -rect.h // 10), max(2, _scaled(surface, 4)))
+        pygame.draw.ellipse(layer, _rgba(accent, 10), halo.inflate(-rect.w // 10, -rect.h // 10), max(1, _scaled(surface, 3)))
     surface.blit(layer, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
 
 
@@ -338,19 +389,19 @@ def _draw_stage_shadow(surface: pygame.Surface, rect: pygame.Rect, alpha: int = 
 def _draw_subject_staging(surface: pygame.Surface, rect: pygame.Rect, accent, semantic: dict):
     scene = str(semantic.get('scene_type', '') or '').lower()
     env = str(semantic.get('environment', '') or '').lower()
-    halo = rect.inflate(rect.w // 5, rect.h // 6)
+    halo = rect.inflate(rect.w // 6, rect.h // 7)
     halo.y -= rect.h // 18
-    core = halo.inflate(-max(20, rect.w // 7), -max(18, rect.h // 8))
-    pygame.draw.ellipse(surface, (8, 6, 14, 64), halo)
-    pygame.draw.ellipse(surface, _rgba(accent, 14), core)
-    pygame.draw.ellipse(surface, _rgba(accent, 22), halo, max(2, _scaled(surface, 6)))
+    core = halo.inflate(-max(16, rect.w // 8), -max(14, rect.h // 9))
+    pygame.draw.ellipse(surface, (8, 6, 14, 26), halo)
+    pygame.draw.ellipse(surface, _rgba(accent, 8), core)
+    pygame.draw.ellipse(surface, _rgba(accent, 12), halo, max(1, _scaled(surface, 3)))
     if any(k in scene for k in ('ritual', 'duel', 'defense')):
-        band = pygame.Rect(rect.centerx - rect.w // 3, rect.bottom - rect.h // 10, rect.w * 2 // 3, max(_scaled(surface, 28), rect.h // 13))
-        pygame.draw.rect(surface, _rgba(accent, 34), band, border_radius=max(6, _scaled(surface, 12)))
+        band = pygame.Rect(rect.centerx - rect.w // 3, rect.bottom - rect.h // 10, rect.w * 2 // 3, max(_scaled(surface, 16), rect.h // 14))
+        pygame.draw.rect(surface, _rgba(accent, 12), band, border_radius=max(4, _scaled(surface, 8)))
     if any(k in env for k in ('throne', 'citadel', 'temple', 'sanctuary', 'altar')):
         backplate = pygame.Rect(rect.centerx - rect.w // 4, rect.y + rect.h // 7, rect.w // 2, rect.h * 3 // 5)
-        pygame.draw.rect(surface, (10, 8, 18, 84), backplate, border_radius=max(8, _scaled(surface, 14)))
-        pygame.draw.rect(surface, _rgba(accent, 24), backplate, max(2, _scaled(surface, 4)), border_radius=max(8, _scaled(surface, 14)))
+        pygame.draw.rect(surface, (10, 8, 18, 26), backplate, border_radius=max(6, _scaled(surface, 10)))
+        pygame.draw.rect(surface, _rgba(accent, 10), backplate, max(1, _scaled(surface, 2)), border_radius=max(6, _scaled(surface, 10)))
 
 
 def _draw_humanoid_details(surface: pygame.Surface, rect: pygame.Rect, color, accent):
@@ -365,10 +416,10 @@ def _draw_humanoid_details(surface: pygame.Surface, rect: pygame.Rect, color, ac
 
 def _draw_object_staging(surface: pygame.Surface, rect: pygame.Rect, glow, semantic: dict):
     band = pygame.Rect(rect.x - rect.w // 14, rect.centery - rect.h // 7, rect.w + rect.w // 7, rect.h // 3)
-    pygame.draw.ellipse(surface, _rgba(glow, 16), band)
+    pygame.draw.ellipse(surface, _rgba(glow, 10), band)
     if any(k in str(semantic.get('scene_type', '') or '').lower() for k in ('ritual', 'defense')):
-        base = pygame.Rect(rect.centerx - rect.w // 4, rect.bottom - rect.h // 12, rect.w // 2, max(_scaled(surface, 16), rect.h // 12))
-        pygame.draw.rect(surface, _rgba(glow, 28), base, border_radius=max(6, _scaled(surface, 10)))
+        base = pygame.Rect(rect.centerx - rect.w // 4, rect.bottom - rect.h // 12, rect.w // 2, max(_scaled(surface, 12), rect.h // 14))
+        pygame.draw.rect(surface, _rgba(glow, 10), base, border_radius=max(4, _scaled(surface, 8)))
 
 
 def _draw_condor(surface: pygame.Surface, rect: pygame.Rect, color, accent):
@@ -773,55 +824,24 @@ def _paint_parts(surface: pygame.Surface, parts: dict[str, object], color):
     pygame.draw.ellipse(surface, color, parts['head'])
 
 
-def generate_humanoid_silhouette(surface: pygame.Surface, rect: pygame.Rect, color):
-    parts = _build_humanoid_parts(rect, 'humanoid', _subject_directives({}))
-    _paint_parts(surface, parts, color)
+def generate_humanoid_silhouette(surface: pygame.Surface, rect: pygame.Rect, color, directives: dict[str, str]):
+    parts = _build_humanoid_parts(rect, 'solar_warrior', directives)
+    surface.blit(resolve_character_silhouette(surface.get_size(), parts, 'solar_warrior', color), (0, 0))
 
 
-def generate_archon_silhouette(surface: pygame.Surface, rect: pygame.Rect, color):
-    parts = _build_humanoid_parts(rect, 'archon', _subject_directives({}))
-    throne = [
-        (rect.x + rect.w * 0.12, rect.y + rect.h * 0.32),
-        (rect.x + rect.w * 0.22, rect.y + rect.h * 0.20),
-        (rect.x + rect.w * 0.28, rect.y + rect.h * 0.76),
-        (rect.x + rect.w * 0.16, rect.bottom - rect.h * 0.04),
-        (rect.x + rect.w * 0.84, rect.bottom - rect.h * 0.04),
-        (rect.x + rect.w * 0.72, rect.y + rect.h * 0.76),
-        (rect.x + rect.w * 0.78, rect.y + rect.h * 0.20),
-        (rect.x + rect.w * 0.88, rect.y + rect.h * 0.32),
-        (rect.x + rect.w * 0.74, rect.y + rect.h * 0.36),
-        (rect.x + rect.w * 0.66, rect.y + rect.h * 0.10),
-        (rect.centerx, rect.y + rect.h * 0.04),
-        (rect.x + rect.w * 0.34, rect.y + rect.h * 0.10),
-        (rect.x + rect.w * 0.26, rect.y + rect.h * 0.36),
-    ]
-    _poly(surface, color, throne)
-    _paint_parts(surface, parts, color)
+def generate_archon_silhouette(surface: pygame.Surface, rect: pygame.Rect, color, directives: dict[str, str]):
+    parts = _build_humanoid_parts(rect, 'archon', directives)
+    surface.blit(resolve_character_silhouette(surface.get_size(), parts, 'archon', color), (0, 0))
 
 
-def generate_solar_warrior_silhouette(surface: pygame.Surface, rect: pygame.Rect, color):
-    parts = _build_humanoid_parts(rect, 'solar_warrior', _subject_directives({}))
-    _paint_parts(surface, parts, color)
-    crest = [
-        (parts['cx'], rect.y + rect.h * 0.02),
-        (parts['cx'] + rect.w * 0.10, rect.y + rect.h * 0.12),
-        (parts['cx'], rect.y + rect.h * 0.10),
-        (parts['cx'] - rect.w * 0.10, rect.y + rect.h * 0.12),
-    ]
-    _poly(surface, color, crest)
+def generate_solar_warrior_silhouette(surface: pygame.Surface, rect: pygame.Rect, color, directives: dict[str, str]):
+    parts = _build_humanoid_parts(rect, 'solar_warrior', directives)
+    surface.blit(resolve_character_silhouette(surface.get_size(), parts, 'solar_warrior', color), (0, 0))
 
 
-def generate_guide_mage_silhouette(surface: pygame.Surface, rect: pygame.Rect, color):
-    parts = _build_humanoid_parts(rect, 'guide_mage', _subject_directives({}))
-    _paint_parts(surface, parts, color)
-    hood = [
-        (parts['cx'] - rect.w * 0.16, rect.y + rect.h * 0.18),
-        (parts['cx'], rect.y + rect.h * 0.04),
-        (parts['cx'] + rect.w * 0.16, rect.y + rect.h * 0.18),
-        (parts['cx'] + rect.w * 0.10, rect.y + rect.h * 0.28),
-        (parts['cx'] - rect.w * 0.10, rect.y + rect.h * 0.28),
-    ]
-    _poly(surface, color, hood)
+def generate_guide_mage_silhouette(surface: pygame.Surface, rect: pygame.Rect, color, directives: dict[str, str]):
+    parts = _build_humanoid_parts(rect, 'guide_mage', directives)
+    surface.blit(resolve_character_silhouette(surface.get_size(), parts, 'guide_mage', color), (0, 0))
 
 
 def _draw_archon_character(surface: pygame.Surface, rect: pygame.Rect, color, accent, directives: dict[str, str], variant: str = ''):
@@ -930,27 +950,27 @@ def _subject_rect(surface: pygame.Surface, semantic: dict, template_family: str,
     scene_type = str(semantic.get('scene_type', '') or '').lower()
     kind = str(semantic.get('subject_kind', '') or '').lower().replace(' ', '_')
     recovery = float(semantic.get('subject_scale_boost', 0.0) or 0.0)
-    width_ratio = 0.44 if 'close' in camera else 0.40
-    height_ratio = 0.56 if 'duel' in scene_type or 'ritual' in scene_type else 0.52
+    width_ratio = 0.56 if 'close' in camera else 0.52
+    height_ratio = 0.60 if 'duel' in scene_type or 'ritual' in scene_type else 0.58
     top_ratio = 0.14
     if kind in {'archon_foreground', 'archon_throne', 'archon_beast'} or template_family == 'archon':
-        width_ratio = 0.46
-        height_ratio = 0.58
+        width_ratio = 0.60
+        height_ratio = 0.60
         top_ratio = 0.10
     elif kind in {'warrior_foreground', 'hyperborean_champion', 'hyperborean_foreground', 'guardian_bearer', 'weapon_bearer'} or template_family in {'guardian', 'warrior'}:
-        width_ratio = 0.44
-        height_ratio = 0.58
+        width_ratio = 0.58
+        height_ratio = 0.60
         top_ratio = 0.10
     elif kind in {'oracle_totem'} or template_family == 'mage':
-        width_ratio = 0.40
-        height_ratio = 0.56
+        width_ratio = 0.56
+        height_ratio = 0.60
         top_ratio = 0.12
     if template_family == 'animal' or any(k in subject for k in ('condor', 'bird', 'ave', 'beast', 'puma', 'wolf')):
         width_ratio = 0.52
         height_ratio = 0.56
         top_ratio = 0.16
-    height_ratio = max(0.45, min(0.60, height_ratio + recovery))
-    width_ratio = min(0.52, width_ratio + recovery * 0.60)
+    height_ratio = max(0.50, min(0.60, height_ratio + recovery))
+    width_ratio = min(0.64, width_ratio + recovery * 0.60)
     width = int(surface.get_width() * width_ratio)
     height = int(surface.get_height() * height_ratio)
     shift = max(-0.15, min(0.15, float(semantic.get('subject_center_shift', 0.0) or 0.0)))
@@ -961,6 +981,7 @@ def _subject_rect(surface: pygame.Surface, semantic: dict, template_family: str,
 
 
 def draw_subject_silhouette(surface: pygame.Surface, semantic: dict, refs: list, palette, rng: random.Random) -> pygame.Rect:
+    directives = _subject_directives(semantic)
     kind = str(semantic.get('subject_kind', '') or '').lower().replace(' ', '_')
     subject = ' '.join([
         str(semantic.get('subject', '') or ''),
@@ -971,13 +992,13 @@ def draw_subject_silhouette(surface: pygame.Surface, semantic: dict, refs: list,
     rect = _subject_rect(surface, semantic, template_family, subject)
     silhouette_color = (28, 24, 34, 255)
     if kind in {'archon_foreground', 'archon_throne', 'archon_beast'} or template_family == 'archon':
-        generate_archon_silhouette(surface, rect, silhouette_color)
+        generate_archon_silhouette(surface, rect, silhouette_color, directives)
     elif kind in {'warrior_foreground', 'hyperborean_champion', 'hyperborean_foreground', 'guardian_bearer', 'weapon_bearer'} or template_family in {'guardian', 'warrior'}:
-        generate_solar_warrior_silhouette(surface, rect, silhouette_color)
+        generate_solar_warrior_silhouette(surface, rect, silhouette_color, directives)
     elif kind in {'oracle_totem'} or template_family == 'mage':
-        generate_guide_mage_silhouette(surface, rect, silhouette_color)
+        generate_guide_mage_silhouette(surface, rect, silhouette_color, directives)
     else:
-        generate_humanoid_silhouette(surface, rect, silhouette_color)
+        generate_humanoid_silhouette(surface, rect, silhouette_color, directives)
     _outline_mask(surface, (10, 8, 16, 255), max(2, _scaled(surface, 4)))
     return rect
 
@@ -1114,13 +1135,13 @@ def draw_focus_object(surface: pygame.Surface, semantic: dict, refs: list, palet
     template_family = OBJECT_KIND_TO_TEMPLATE.get(kind, '') or preset.family
     color = palette[1]
     glow = palette[3]
-    ratio = max(0.34, min(0.56, float(preset.frame_ratio) * 1.85))
+    ratio = max(0.40, min(0.64, float(preset.frame_ratio) * 2.05))
     ratio += max(0.0, min(0.14, float(semantic.get('object_scale_boost', 0.0) or 0.0)))
     rect_w = int(surface.get_width() * max(0.18, ratio * 1.04))
     rect_h = int(surface.get_height() * max(0.28, ratio * 1.12))
     if template_family == 'weapon' or kind in {'greatsword', 'solar_axe', 'ritual_staff', 'spear'} or any(k in obj for k in ('sword', 'blade', 'axe', 'spear', 'staff', 'weapon')):
-        rect_w = int(rect_w * 1.92)
-        rect_h = int(rect_h * 1.58)
+        rect_w = int(rect_w * 2.18)
+        rect_h = int(rect_h * 1.82)
     directives = _subject_directives(semantic)
     subject_box = subject_rect or _subject_rect(surface, semantic, SUBJECT_KIND_TO_TEMPLATE.get(str(semantic.get('subject_kind', '') or '').lower().replace(' ', '_'), ''), str(semantic.get('subject', '') or '').lower())
     subject_parts = _build_humanoid_parts(subject_box, directives.get('template_id', 'solar_warrior'), directives)
@@ -1223,3 +1244,23 @@ def draw_focus_object(surface: pygame.Surface, semantic: dict, refs: list, palet
         layer.blit(glow_pass, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
     _outline_mask(layer, (18, 14, 22, 255), max(2, _scaled(surface, 4)))
     surface.blit(layer, (0, 0))
+
+
+
+def resolve_subject_layout(semantic: dict, refs: list | None = None, subject_rect: pygame.Rect | None = None) -> dict[str, object]:
+    refs = refs or []
+    kind = str(semantic.get('subject_kind', '') or '').lower().replace(' ', '_')
+    subject = ' '.join([
+        str(semantic.get('subject', '') or ''),
+        str(semantic.get('environment', '') or ''),
+        ' '.join(getattr(r, 'cue', '') for r in refs[:3]),
+    ]).lower()
+    template_family = SUBJECT_KIND_TO_TEMPLATE.get(kind, '')
+    base_rect = subject_rect or _subject_rect(pygame.Surface((480, 270), pygame.SRCALPHA), semantic, template_family, subject)
+    directives = _subject_directives(semantic)
+    parts = _build_humanoid_parts(base_rect, directives.get('template_id', 'solar_warrior'), directives)
+    core = pygame.Rect(base_rect.x + base_rect.w // 4, base_rect.y + base_rect.h // 5, max(1, base_rect.w // 2), max(1, int(base_rect.h * 0.42)))
+    parts['rect'] = base_rect
+    parts['subject_core_rect'] = core
+    parts['pose_family'] = directives.get('pose_family', 'guardian_pose')
+    return parts
