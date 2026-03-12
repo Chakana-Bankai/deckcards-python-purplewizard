@@ -4,6 +4,7 @@ import random
 import pygame
 
 from game.art.fx_rules import resolve_fx_rule
+from game.art.style_lock import symbolic_style_active
 
 
 def _pick_color(rule, palette):
@@ -24,7 +25,10 @@ def _rand_point(rng: random.Random, rect: pygame.Rect):
 
 
 def _clamp_alpha(rule_alpha: int, scale: float = 1.0, hard_cap: int = 32) -> int:
-    return max(6, min(hard_cap, int(rule_alpha * scale)))
+    if symbolic_style_active():
+        hard_cap = min(hard_cap, 22)
+        scale *= 0.78
+    return max(4, min(hard_cap, int(rule_alpha * scale)))
 
 
 def draw_fx(

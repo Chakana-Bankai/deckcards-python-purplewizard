@@ -1,0 +1,16 @@
+CHAKANA - QA VISUAL RUNTIME FULLHD
+========================================
+overall=PASS
+
+Checks
+- PASS: hologram_transition: SceneFusionScreen rendered 1920x1080
+- PASS: map_screen: MapScreen rendered 1920x1080
+- PASS: codex_screen: CodexScreen rendered 1920x1080
+- PASS: combat_screen: CombatScreen rendered 1920x1080
+- PASS: audio_runtime: menu=>menu_a.wav exists=True | map_ukhu=>map_ukhu_a.wav exists=True | combat=>combat_a.wav exists=True | combat_boss=>combat_boss_a.wav exists=True | shop=>shop_a.wav exists=True | victory=>victory_a.wav exists=True | defeat=>defeat_a.wav exists=True
+
+Summary
+- pass=5
+- warning=0
+- fail=0
+

@@ -1,0 +1,127 @@
+CHAKANA STUDIO - PATCH 0 RUN CHECK
+Date: 2026-03-12
+Status: WARNING
+
+Goal
+- Verify that Patch 0 improved usability and clarity in a real local run.
+
+Overall Result
+- Patch 0 improved the core player-facing flow and removed the most important duplicate transition/dialogue paths.
+- Main loop flow, map progression, codex readability, hologram transitions, and retry/continue flow passed targeted runtime checks.
+- Two combat HUD clarity checks still fail.
+- One old shop/reward QA script still fails because of a cache/background write issue during codex background generation, which appears adjacent infrastructure debt rather than a direct Patch 0 UI regression.
+
+Checks Requested
+
+1. Menu readability
+- Result: PASS
+- Evidence:
+  - Manual runtime render of MenuScreen at 1920x1080 succeeded.
+  - Full-HD visual QA passed.
+  - Patch 0 label hierarchy remains visible with branded subtitle and cleaner top-level readability.
+
+2. Map flow
+- Result: PASS
+- Evidence:
+  - beta_run_flow passed shop -> map -> combat -> map -> boss progression.
+  - Full-HD visual QA rendered map successfully.
+  - Patch 0 map labels and side-panel hierarchy remain active.
+
+3. Combat HUD clarity
+- Result: WARNING
+- Evidence:
+  - combat_screen_runtime_render: PASS
+  - enemy_intent_block_status_compact_layout: PASS
+  - enemy_status_tokens_clipped: PASS
+  - harmony_seal_inside_harmony_core: PASS
+  - enemy_avatar_capped_to_28_percent: FAIL
+  - player_row3_min_height_guard: FAIL
+- Interpretation:
+  - The combat HUD is stable and clearer than before, but two layout constraints still need follow-up to fully close Patch 0 combat readability.
+
+4. Reward/shop continuity
+- Result: WARNING
+- Evidence:
+  - beta_run_flow passed shop entry, return to map, event entry, and combat continuation.
+  - shop -> pack opening routing remains on the canonical source path introduced in Patch 0.
+  - qa_phase2_pack_shop_integration failed because codex background generation tried to write cache output and the old QA path could not open:
+    - game/assets/.cache/biomes/ruinas_chakana/bg.png
+- Interpretation:
+  - The user-facing continuity is functionally improved, but one legacy QA path is still blocked by cache/background generation infrastructure.
+
+5. Codex readability
+- Result: PASS
+- Evidence:
+  - Manual runtime render of CodexScreen at 1920x1080 succeeded.
+  - Full-HD visual QA passed.
+  - Patch 0 default section and labels remained active:
+    - Codex Chakana
+    - Lectura activa
+
+6. Hologram transition sanity
+- Result: PASS
+- Evidence:
+  - main_uses_scene_fusion_screen: PASS
+  - main_has_hologram_transition_helper: PASS
+  - main_no_active_pacha_transition_call: PASS
+  - goto_map_runtime_transition_scene_fusion: PASS
+  - goto_combat_runtime_transition_scene_fusion: PASS
+  - goto_boss_runtime_transition_scene_fusion: PASS
+  - goto_end_runtime_transition_scene_fusion: PASS
+
+7. Retry / lose / continue flow
+- Result: PASS
+- Evidence:
+  - gameplay blocker QA passed retry flow.
+  - Retry report details:
+    - entered: true
+    - retried: true
+    - reached: true
+    - screen: CombatScreen
+    - has_combat: true
+
+Commands Executed
+- python -m tools.qa.check_beta_run_flow
+  - Result: PASS
+- python -m tools.qa.qa_phase6_combat_hud
+  - Result: FAIL with 2 remaining layout issues
+- python -m tools.qa.qa_phase2_pack_shop_integration
+  - Result: FAIL due cache/background write issue in codex background generation
+- python -m tools.qa.qa_phase3_hologram_dialogue
+  - Result: PASS
+- python -m tools.qa.qa_visual_runtime_fullhd
+  - Result: PASS
+- python -m tools.qa.qa_phase1_gameplay_blockers
+  - Result: PASS
+- manual runtime render smoke using App(), MenuScreen, CodexScreen, pygame.Surface(1920,1080)
+  - Result: PASS
+
+Smoke Tests
+- Smoke 1: Boot/shop/map/combat/boss progression
+  - Source: tools.qa.check_beta_run_flow
+  - Result: PASS
+- Smoke 2: Hologram transition routing through SceneFusion
+  - Source: tools.qa.qa_phase3_hologram_dialogue
+  - Result: PASS
+- Smoke 3: Retry flow reaches CombatScreen correctly
+  - Source: tools.qa.qa_phase1_gameplay_blockers
+  - Result: PASS
+- Smoke 4: MenuScreen and CodexScreen render at 1920x1080
+  - Source: manual runtime render
+  - Result: PASS
+
+Residual Issues
+- Combat HUD:
+  - enemy avatar cap still exceeds expected layout bound
+  - player row 3 minimum height guard still fails
+- Shop/reward QA:
+  - old integration script still breaks on codex background cache write path
+- Boot-path reporting:
+  - beta flow still reports IntroScreen as boot entry in that script path, while current branded startup/transition stack includes StudioIntroScreen and SceneFusion-based transitions
+
+Conclusion
+- Patch 0 is usable and materially clearer in real local run checks.
+- Current closure recommendation:
+  - Accept Patch 0 as functionally improved
+  - Open a small follow-up ticket for combat HUD final layout cleanup
+  - Open a separate infra/QA ticket for codex background cache path handling

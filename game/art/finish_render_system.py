@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import pygame
 
+from game.art.style_lock import symbolic_style_active
+
 
 def _clamp(value: float, low: float, high: float) -> float:
     return max(low, min(high, value))
@@ -102,5 +104,6 @@ def apply_scene_finish(surface: pygame.Surface, subject_rect: pygame.Rect, palet
     haze = pygame.Surface((w, h), pygame.SRCALPHA)
     band = pygame.Rect(0, int(h * 0.14), w, int(h * 0.32))
     tint = _mix(palette[1], palette[3], 0.18)
-    pygame.draw.rect(haze, (*tint, 14), band)
+    haze_alpha = 8 if symbolic_style_active() else 14
+    pygame.draw.rect(haze, (*tint, haze_alpha), band)
     surface.blit(haze, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)

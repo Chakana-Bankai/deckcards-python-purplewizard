@@ -1,0 +1,58 @@
+PATCH 0 TASK MATRIX
+Date: 2026-03-12
+
+Columns:
+- domain
+- severity
+- issue
+- real modules/files
+- duplicate_or_legacy_system
+- canonical Patch 0 task
+
+main menu | major | dual intro identity before menu | game/ui/screens/menu.py; game/ui/screens/intro.py; game/ui/screens/studio_intro.py | intro.py and studio_intro.py both active | select one canonical boot flow and demote the other to fallback-only
+main menu | medium | generic launcher-style button stack | game/ui/screens/menu.py | legacy app-shell menu behavior | author a dedicated main menu layout/content pass with current brand hierarchy
+
+map / nodes | blocker | map screen overloaded with graph + sidebars + top nav + lore + progress | game/ui/screens/map.py | monolithic map screen | split map into graph presenter, side panels, and top navigation modules
+map / nodes | major | node naming/type normalization lives in screen code | game/ui/screens/map.py | hardcoded node dictionaries and normalization | move node labels/lore/type normalization to data or shared registry
+map / nodes | major | top navigation duplicated inside map screen | game/ui/screens/map.py; game/ui/components/topbar.py | in-screen deck/shop/codex buttons | define canonical global/map navigation pattern and remove screen-local duplication
+map / nodes | medium | label inconsistency Archonte/Arconte and mixed lore/system naming | game/ui/screens/map.py | hardcoded text variants | normalize all node/stage/archon strings in one content source
+
+combat HUD | blocker | combat runtime screen owns too many systems | game/ui/screens/combat.py | monolithic combat screen | split combat UI orchestration into HUD, dialogue, action-state, and overlay subsystems
+combat HUD | major | dialogue stack duplicated | game/ui/screens/combat.py; game/ui/controllers/combat_dialogue_controller.py; game/ui/controllers/dialogue_router.py | controller plus router both active | keep DialogueRouter as canonical and retire/demote CombatDialogueController
+combat HUD | major | debug/QA overlays still embedded in runtime | game/ui/screens/combat.py | dialog_debug_overlay, qa_debug_overlay, art_debug_overlay, DEBUG_UI | remove debug overlays from normal runtime and gate them behind dev-only tooling
+combat HUD | medium | layout partially centralized, partially ad hoc | game/ui/layout/combat_layout.py; game/ui/screens/combat.py | build_combat_layout plus local rect derivations | complete migration to one combat layout contract
+
+rewards / pre-shop / shop | major | reward flow split across reward, pack opening, and shop | game/ui/screens/reward.py; game/ui/screens/pack_opening.py; game/ui/screens/shop.py | multi-entry reward economy path | define one canonical progression flow: reward -> pre-shop pack/reveal -> shop -> map
+rewards / pre-shop / shop | major | pack identity and pool logic duplicated | game/ui/screens/pack_opening.py; game/ui/screens/shop.py | both screens own pack logic | centralize pack definitions and acquisition rules
+rewards / pre-shop / shop | medium | modal-driven branching remains screen-local | game/ui/screens/reward.py; game/ui/system/modals.py | reward/choice/card flows assembled ad hoc | create one shared reward presenter with consistent confirm/cancel behavior
+rewards / pre-shop / shop | polish | mixed naming of reward packs and reveal copy | game/ui/screens/reward.py; game/ui/screens/pack_opening.py; game/ui/screens/shop.py | old/new pack naming | normalize pack naming and copy tone
+
+codex | major | codex screen performs data repair at render time | game/ui/screens/codex.py | runtime name rewriting and fallback naming | move codex naming/data cleanup upstream into content data
+codex | major | portrait fallback chain still active and placeholder-heavy | game/visual/portrait_pipeline.py; game/visual/portrait_manifest.json; game/ui/render.py | placeholder/master/generated cascade | reduce placeholder sources and define canonical portrait source policy
+codex | medium | codex is still one large multi-mode screen | game/ui/screens/codex.py | monolithic encyclopedia UI | split codex sections into dedicated presenters/components
+
+hologram dialogue | major | multiple voice surfaces coexist | game/ui/components/holographic_oracle.py; game/ui/controllers/dialogue_router.py; game/ui/controllers/combat_dialogue_controller.py; game/ui/anim.py | hologram overlay + typewriter banners + controller/router split | define one canonical dialogue surface hierarchy and one trigger arbiter
+hologram dialogue | medium | hologram styling hardcoded in component | game/ui/components/holographic_oracle.py | local scanline/glitch styling | move hologram visual rules into shared UI effect tokens/system
+
+transitions | blocker | two active transition systems solve the same problem | game/ui/screens/pacha_transition.py; game/ui/screens/scene_fusion.py | duplicate transition screens | choose one canonical transition renderer and convert the other into compatibility wrapper or remove it
+transitions | medium | transitions layer unified, implementation not unified | game/ui/system/layers.py; game/ui/screens/pacha_transition.py; game/ui/screens/scene_fusion.py | render order clean, screen family split | standardize all reveal/lore transitions on one API and one component set
+
+intro / studio / credits | major | intro funnel duplicated | game/ui/screens/intro.py; game/ui/screens/studio_intro.py | two onboarding screens | keep one branded intro path and archive or fallback-gate the other
+intro / studio / credits | major | audio identity contexts use placeholder aliasing | game/audio/audio_engine.py | credits->victory, dialogue->shop, reward->victory aliasing | give intro, dialogue, reward, and credits dedicated contexts
+intro / studio / credits | major | end and credits are merged into one runtime screen | game/ui/screens/end.py | victory/defeat/credits mixed in one screen | split credits presentation from end-of-run state or formalize phases cleanly
+intro / studio / credits | medium | studio intro still carries cache/generated/static fallback logic | game/ui/screens/studio_intro.py | multi-mode intro renderer | reduce to one production presentation path and one fallback only
+
+cross-cutting | blocker | runtime still depends on fallback-heavy visual asset resolution | game/ui/render.py; game/visual/portrait_pipeline.py | asset fallback stack still broad | define canonical asset priority and suppress placeholder fallback on production-facing screens
+cross-cutting | major | audio/state alias maps hide missing dedicated contexts | game/audio/audio_engine.py | compatibility alias table still active | replace aliasing shortcuts with explicit contexts for Patch 0 screens
+cross-cutting | medium | archived/legacy UI evidence remains near active systems | game/ui/_archive/legacy_layouts/20260309_213943/layouts/combat_layout.py | old layout snapshot still present | keep archive but document active canonical modules in Patch 0 notes
+cross-cutting | medium | QA wrappers mirror runtime domains and indicate fragile areas | tools/qa_phase6_combat_hud.py; tools/qa_phase3_hologram_dialogue.py; tools/qa_phase2_pack_shop_integration.py | dedicated phase QA wrappers | use them as validation entrypoints after each Patch 0 sub-ticket
+
+Patch 0 canonical implementation order
+1 | blocker | unify transitions | game/ui/screens/pacha_transition.py; game/ui/screens/scene_fusion.py | duplicate systems | make one transition system canonical
+2 | blocker | simplify map screen architecture | game/ui/screens/map.py | monolith | separate graph/nav/side panels/data
+3 | blocker | split combat HUD responsibilities and remove runtime debug overlays | game/ui/screens/combat.py; game/ui/layout/combat_layout.py | monolith plus debug state | create combat HUD contract and strip debug from runtime
+4 | major | unify combat dialogue routing | game/ui/controllers/dialogue_router.py; game/ui/controllers/combat_dialogue_controller.py; game/ui/components/holographic_oracle.py | duplicate dialogue systems | one arbiter, one primary presentation layer
+5 | major | normalize reward/pre-shop/shop progression | game/ui/screens/reward.py; game/ui/screens/pack_opening.py; game/ui/screens/shop.py | fragmented flow | one canonical economy progression path
+6 | major | reduce codex runtime repair logic and portrait placeholder dependence | game/ui/screens/codex.py; game/visual/portrait_pipeline.py | screen-side repair + placeholder fallback | move repair upstream, trim fallback chain
+7 | major | unify intro/studio/credits audiovisual identity | game/ui/screens/intro.py; game/ui/screens/studio_intro.py; game/ui/screens/end.py; game/audio/audio_engine.py | duplicated intro + aliased audio contexts | one branded presentation funnel and explicit audio contexts
+8 | medium | modernize main menu into final Patch 0 shell | game/ui/screens/menu.py | generic launcher shell | align menu with canonical UI hierarchy after upstream systems are unified

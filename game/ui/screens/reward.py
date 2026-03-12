@@ -26,12 +26,12 @@ class RewardScreen:
 
     def _setup_modals(self):
         self.card_modal.confirm_label = "Confirmar"
-        self.card_modal.cancel_label = "Volver"
+        self.card_modal.cancel_label = "Mapa"
         self.card_modal.on_confirm = self._modal_confirm_card
         self.card_modal.on_cancel = self._modal_cancel
 
         self.choice_modal.confirm_label = "Continuar"
-        self.choice_modal.cancel_label = "Volver"
+        self.choice_modal.cancel_label = "Mapa"
         self.choice_modal.on_confirm = self._modal_confirm_choice
         self.choice_modal.on_cancel = self._modal_cancel
 
@@ -48,8 +48,8 @@ class RewardScreen:
         lore = str(self.reward_data.get("pack_lore") or "")
 
         defaults = {
-            "normal_pack": {"title": "Pack Normal", "lore": "Mejora estable para el siguiente tramo.", "color": (128, 116, 168)},
-            "rare_choice_pack": {"title": "Eleccion Rara", "lore": "Opciones de alto impacto tactico.", "color": (112, 182, 220)},
+            "normal_pack": {"title": "Recompensa del Tramo", "lore": "Mejora estable antes del siguiente nodo.", "color": (128, 116, 168)},
+            "rare_choice_pack": {"title": "Eleccion Rara", "lore": "Opciones de alto impacto t?ctico.", "color": (112, 182, 220)},
             "legendary_reward": {"title": "Recompensa Legendaria", "lore": "Una opcion excepcional en la Trama.", "color": (228, 186, 88)},
             "ritual_reward_pack": {"title": "Pack Ritual", "lore": "Control y armonia para rutas complejas.", "color": (188, 132, 232)},
             "guide_choice": {"title": "Eleccion del Guia", "lore": "Elige una senda con costo y destino.", "color": (146, 204, 172)},

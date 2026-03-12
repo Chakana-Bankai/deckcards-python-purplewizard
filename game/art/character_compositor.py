@@ -16,6 +16,8 @@ from game.art.material_tone_system import build_material_tones
 from game.art.object_glyph_grammar import resolve_object_glyph_grammar
 from game.art.finish_render_system import apply_prop_finish, apply_material_finish
 from game.art.surface_style_pass import apply_subject_surface_style, apply_weapon_surface_style
+from game.art.symbolic_crisp_pass import apply_subject_crisp_pass, apply_weapon_crisp_pass
+from game.art.symbolic_geometry import symbolic_prop_lane
 
 
 def _clamp(value: float, low: float, high: float) -> float:
@@ -178,6 +180,7 @@ def _weapon_tip(origin, rect: pygame.Rect, weapon: dict[str, object], orientatio
 def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surface, skeleton: dict[str, object], weapon: dict[str, object], palette, tones):
     rect: pygame.Rect = skeleton['rect']
     profile = skeleton.get('shape_profile', {})
+    template = skeleton.get('template', {})
     origin = skeleton['weapon_origin_anchor']
     bridge = skeleton.get('weapon_bridge_anchor', ((origin[0] + skeleton['right_hand_anchor'][0]) / 2.0, (origin[1] + skeleton['right_hand_anchor'][1]) / 2.0))
     tip = skeleton.get('weapon_tip_anchor', _weapon_tip(origin, rect, weapon, skeleton['weapon_orientation']))
@@ -189,6 +192,8 @@ def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surf
     dark = tones['shadow'][:3]
     width_scale = float(profile.get('weapon_thickness_scale', 1.0))
     icon_scale = float(profile.get('icon_scale', 1.0)) * float(glyph.get('head_scale', 1.0))
+    binding = template.get('render_binding', {})
+    lane_mode = str(binding.get('prop_lane_mode', 'side_lane_short_grip'))
     width = max(4, int(rect.width * float(weapon.get('thickness', 0.11)) * width_scale))
 
     grip_width = max(3, width - 1)
@@ -198,8 +203,9 @@ def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surf
     skeleton['weapon_grip_rect'] = grip_rect
 
     if family == 'staff':
-        lane_x = skeleton.get('weapon_lane_anchor', (rect.right, rect.centery))[0]
-        shaft_mid = (lane_x, origin[1] - rect.height * 0.04)
+        lane_anchor = skeleton.get('weapon_lane_anchor', (rect.right, rect.centery))
+        bridge_lane, shaft_mid = symbolic_prop_lane(origin, lane_anchor, rect, lane_mode)
+        skeleton['weapon_bridge_anchor'] = bridge_lane
         shaft_tip = (shaft_mid[0], origin[1] - rect.height * 0.22)
         _capsule(back_target, origin, shaft_mid, max(4, width), (*shaft, 236))
         _capsule(back_target, shaft_mid, shaft_tip, max(5, width + 1), (*shaft, 255))
@@ -219,8 +225,9 @@ def _render_weapon_layers(back_target: pygame.Surface, front_target: pygame.Surf
         pygame.draw.polygon(back_target, (*bright, 150), side_plate)
         skeleton['weapon_tip_anchor'] = shaft_tip
     elif family == 'orb':
-        lane_x = skeleton.get('weapon_lane_anchor', (rect.right, rect.centery))[0]
-        support_top = (lane_x, origin[1] - rect.height * 0.04)
+        lane_anchor = skeleton.get('weapon_lane_anchor', (rect.right, rect.centery))
+        bridge_lane, support_top = symbolic_prop_lane(origin, lane_anchor, rect, lane_mode)
+        skeleton['weapon_bridge_anchor'] = bridge_lane
         orb_center = (support_top[0], support_top[1] - rect.height * 0.03)
         _capsule(back_target, origin, support_top, max(4, width - 1), (*dark, 244))
         cradle_left = (orb_center[0] - width * 1.2, orb_center[1] + width * 0.7)
@@ -285,6 +292,8 @@ def compose_character_subject(surface_size: tuple[int, int], semantic: dict, pal
     apply_subject_surface_style(subject_detail, skeleton, tones, archetype)
     apply_prop_finish(weapon_back_layer, weapon_front_layer, str(weapon.get('family', 'staff')), tones, skeleton['rect'])
     apply_weapon_surface_style(weapon_back_layer, weapon_front_layer, str(weapon.get('family', 'staff')), tones)
+    apply_subject_crisp_pass(subject_detail, skeleton, tones, archetype)
+    apply_weapon_crisp_pass(weapon_back_layer, weapon_front_layer, str(weapon.get('family', 'staff')), tones)
     _clear_weapon_from_subject_core(weapon_back_layer, weapon_front_layer, subject_mask, skeleton, str(weapon.get('family', 'staff')))
 
     subject_rect = subject_mask.get_bounding_rect(min_alpha=12)

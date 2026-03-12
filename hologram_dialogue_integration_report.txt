@@ -1,0 +1,17 @@
+CHAKANA PHASE 3 - HOLOGRAM DIALOGUE INTEGRATION REPORT
+============================================================
+overall=PASS
+
+Source checks
+- main_uses_scene_fusion_screen: PASS
+- main_has_hologram_transition_helper: PASS
+- main_no_active_pacha_transition_call: PASS
+- goto_map_uses_hologram_helper: PASS
+- goto_combat_uses_hologram_helper: PASS
+- goto_end_uses_hologram_helper: PASS
+
+Runtime checks
+- goto_map_runtime_transition_scene_fusion: PASS
+- goto_combat_runtime_transition_scene_fusion: PASS
+- goto_boss_runtime_transition_scene_fusion: PASS
+- goto_end_runtime_transition_scene_fusion: PASS

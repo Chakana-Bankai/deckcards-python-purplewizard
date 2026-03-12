@@ -1,0 +1,163 @@
+CHAKANA STUDIO - ART RESEARCH GATE
+Date: 2026-03-12
+Status: RECOMMEND_PLAYABLE_PLACEHOLDER_WITH_IDENTITY
+
+Goal
+- Decide whether the current art engine should be simplified or expanded after Patch 0.
+- Do not regenerate full art yet.
+
+Scope Reviewed
+- Current validated identity outputs
+- Shape DNA test outputs
+- Current composition/assembly pipeline
+- Current subject/weapon composition layer
+- Existing shape grammar and DNA evolution data
+
+Files Reviewed
+- reports/art_identity_lock_report.txt
+- reports/art/shape_dna_summary.txt
+- reports/art/shape_dna_test_report.txt
+- reports/art/art_pipeline_integration_report.txt
+- data/art_identity/shape_grammar.json
+- game/art/assembly_pipeline.py
+- game/art/character_compositor.py
+- game/art/dna_evolver.py
+- assets/test_identity_v2/archon_identity_v2.png
+- assets/test_identity_v2/solar_warrior_identity_v2.png
+- assets/test_identity_v2/guide_mage_identity_v2.png
+
+Executive Decision
+- The current engine should not be expanded into a more open-ended freeform renderer yet.
+- The current engine should be simplified at the visual target level and tightened at the system level around a playable placeholder with identity target.
+- Best near-term direction:
+  - simpler origami/symbolic style: YES
+  - stricter template-based generation: YES
+  - more geometry tooling: YES, but only targeted and not broad freeform modeling
+  - optional GPU acceleration later: MAYBE LATER, not a current priority
+  - target quality: playable placeholder with identity, not final art
+
+Core Finding
+- The engine now succeeds at composition discipline, identity locking, and readability metrics.
+- It does not yet succeed at richer illustrative detail or convincing material/prop definition.
+- Current outputs still read as flat symbolic masses with controlled silhouettes rather than fully articulated fantasy illustration.
+- Because of that, expanding complexity right now would likely amplify ambiguity, not quality.
+
+Review Of Current Outputs
+
+1. Identity lock outputs
+- Metrics are strong and stable across ARCHON, SOLAR_WARRIOR, and GUIDE_MAGE.
+- Readability, contrast, occupancy, and silhouette clarity pass.
+- The engine clearly preserves archetype identity.
+- Visual limitation: subjects still read as broad flat volumes with low internal articulation.
+
+2. Shape DNA outputs
+- Identity stability is strong.
+- Controlled variation works.
+- Readability improvement is not guaranteed for every accepted mutation.
+- This indicates the variation system is ahead of the render expression system.
+
+3. Visual read of current renders
+- ARCHON, SOLAR_WARRIOR, and GUIDE_MAGE still look more like symbolic cutout figures than production-ready card illustrations.
+- Weapons and symbols are readable in metrics but still visually soft or simplified.
+- Backgrounds are controlled well enough, but subject surface language remains shallow.
+- The engine currently expresses shape hierarchy better than material detail.
+
+Can The Current Engine Support The Intended Style With Simplification?
+- Yes, if the intended style is narrowed to:
+  - stylized symbolic fantasy
+  - origami-like planar masses
+  - ritual iconography
+  - limited material rendering
+  - strong silhouette-first cards
+- No, not yet, if the intended style is:
+  - painterly high-detail fantasy illustration
+  - anatomy-rich character art
+  - highly differentiated props/materials with deep rendering
+
+Best Style Match For The Current Engine
+- Recommended canonical style for near-term production:
+  - symbolic/origami-informed fantasy card art
+  - flat-to-semi-flat planes
+  - strong outline/silhouette hierarchy
+  - restrained color families
+  - controlled sacred geometry and icon props
+  - playable placeholder with identity as the approval target
+- This fits what the engine already does well.
+- It avoids forcing the system into detail depth it cannot yet support consistently.
+
+Decision On Each Requested Direction
+
+1. Simpler origami/symbolic style
+- Decision: RECOMMENDED NOW
+- Reason:
+  - Current outputs already trend in this direction.
+  - Shape grammar, silhouette locking, and scene zoning support it well.
+  - This path converts current limitations into a coherent visual language instead of treating them as failures.
+
+2. Stricter template-based generation
+- Decision: REQUIRED NOW
+- Reason:
+  - Character readability improves whenever template and identity constraints dominate.
+  - The weakest results happen when variation is accepted but render components do not translate slot changes strongly enough.
+  - Templates should remain the main driver for subject mass, pose, prop lane, and costume silhouette.
+
+3. More geometry tooling
+- Decision: REQUIRED IN A TARGETED WAY
+- Reason:
+  - The engine needs better local geometry tooling for:
+    - weapon glyph hard edges
+    - shoulder and cape cuts
+    - robe and armor plane breakups
+    - symbol placement masks
+    - hand/prop junction clarity
+  - The engine does not need a large freeform geometry system yet.
+  - The right move is small reusable shape primitives and stronger component assembly, not generalized unconstrained shape generation.
+
+4. Optional GPU acceleration later
+- Decision: DEFER
+- Reason:
+  - Current bottleneck is not raw compute first.
+  - The bottleneck is visual language expression and component integration.
+  - GPU acceleration may help later with experimentation or higher-throughput generation, but it will not solve flat shape language, weak prop rendering, or insufficient template specificity.
+
+Recommended Strategic Direction
+- Freeze the broad pipeline architecture already decided.
+- Simplify the art target into a canonical symbolic/origami style.
+- Expand only these systems next:
+  1. template-to-render binding
+  2. hard-edge prop glyph rendering
+  3. costume plane grammar
+  4. subject surface style with low-detail but intentional material planes
+  5. scene rules direct runtime loading from data definitions
+
+What Should Not Happen Next
+- Do not expand toward freeform humanoid generation from arbitrary geometry blobs.
+- Do not add more variation slots before current slots affect render clearly.
+- Do not push for GPU acceleration as a substitute for style coherence.
+- Do not start large-batch generation yet.
+
+Production Readiness Gate
+- Ready for:
+  - controlled identity tests
+  - template extraction
+  - small-batch experiments
+  - visual direction lock
+  - placeholder-grade runtime art with stable identity
+- Not ready for:
+  - wide card art regeneration
+  - final production art replacement across the full set
+  - highly detailed illustrative target style
+  - premium final art expectations
+
+Canonical Recommendation
+- Simplify the visual target.
+- Explicitly target playable placeholder with identity.
+- Enforce stricter template-based generation.
+- Add targeted geometry/component tooling.
+- Defer GPU acceleration until after the render expression layer is stronger.
+
+Conclusion
+- After Patch 0, the correct decision is not to make the art engine bigger.
+- The correct decision is to make it narrower, stricter, and more intentional.
+- If we lock the style to symbolic/origami fantasy and strengthen template-driven subject/prop construction, the current engine can support coherent playable placeholder production.
+- If we try to expand toward richer illustrative complexity right now, quality will likely become less stable, not more.

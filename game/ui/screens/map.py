@@ -11,11 +11,11 @@ from game.content.civilizations import civilization_for_progress, civilization_t
 
 class MapScreen:
     NODE_NAMES = {
-        "event": "Ritual",
-        "combat": "Sombra",
+        "event": "Evento",
+        "combat": "Combate",
         "challenge": "Prueba",
         "elite": "Elite",
-        "path": "Camino",
+        "path": "Ruta",
         "treasure": "Reliquia",
         "relic": "Reliquia",
         "shop": "Mercader",
@@ -24,15 +24,15 @@ class MapScreen:
     }
 
     NODE_SHORT = {
-        "combat": "Prueba",
+        "combat": "Combate",
         "challenge": "Prueba",
-        "event": "Susurro",
-        "path": "Camino",
+        "event": "Evento",
+        "path": "Ruta",
         "treasure": "Fragmento",
         "relic": "Reliquia",
         "shop": "Mercader",
         "sanctuary": "Santuario",
-        "boss": "Archonte",
+        "boss": "Arconte",
         "elite": "Elite",
     }
 
@@ -387,7 +387,7 @@ class MapScreen:
         topbar = pygame.Rect(viewport.x, 16, viewport.w, 98)
         chapter = f"Ritual de {stage_title}"
         subtitle = "Viaje sagrado por los Pachas"
-        self.topbar.render(s, self.app, topbar, "Mapa Ritual", chapter, subtitle, "")
+        self.topbar.render(s, self.app, topbar, "Mapa Ritual", chapter, subtitle, "Nodos y rutas")
         self._draw_top_buttons(s, topbar)
 
         left_rect, center_rect, right_rect = self._panel_rects()
@@ -456,14 +456,14 @@ class MapScreen:
 
         y += 84
         path_text = ", ".join([str(x) for x in blessings[-2:]]) if blessings else "Sin bendicion activa"
-        s.blit(pixel_label_font.render("Camino activo", True, UI_THEME["gold"]), (left_rect.x + 16, y + 4))
+        s.blit(pixel_label_font.render("Ruta seleccionada", True, UI_THEME["gold"]), (left_rect.x + 16, y + 4))
         for i, line in enumerate(self._wrap_lines(self.app.tiny_font, path_text, left_rect.w - 28, 2)):
             s.blit(self.app.tiny_font.render(line, True, UI_THEME["muted"]), (left_rect.x + 16, y + 24 + i * 16))
 
         lore_box = pygame.Rect(left_rect.x + 14, left_rect.bottom - 108, left_rect.w - 28, 92)
         pygame.draw.rect(s, UI_THEME["panel_2"], lore_box, border_radius=10)
         pygame.draw.rect(s, UI_THEME["accent_violet"], lore_box, 1, border_radius=10)
-        s.blit(pixel_label_font.render("Cronica del viaje", True, UI_THEME["gold"]), (lore_box.x + 8, lore_box.y + 8))
+        s.blit(pixel_label_font.render("Estado del tramo", True, UI_THEME["gold"]), (lore_box.x + 8, lore_box.y + 8))
         lore_lines = self._wrap_lines(self.app.small_font, stage_thought, lore_box.w - 14, 2)
         for i, line in enumerate(lore_lines):
             s.blit(self.app.small_font.render(line, True, UI_THEME["muted"]), (lore_box.x + 8, lore_box.y + 30 + i * 22))
@@ -569,7 +569,7 @@ class MapScreen:
 
         # Right panel: archon anticipation.
         archon_id, archon_name, archon_line = self._archon_data()
-        s.blit(modal_title_font.render("Presagio del Arconte", True, UI_THEME["gold"]), (right_rect.x + 14, right_rect.y + 14))
+        s.blit(modal_title_font.render("Lectura del Arconte", True, UI_THEME["gold"]), (right_rect.x + 14, right_rect.y + 14))
         archon_rect = pygame.Rect(right_rect.x + 24, right_rect.y + 46, right_rect.w - 48, 220)
         pygame.draw.rect(s, UI_THEME["panel_2"], archon_rect, border_radius=12)
         pygame.draw.rect(s, UI_THEME["accent_violet"], archon_rect, 1, border_radius=12)
@@ -586,7 +586,7 @@ class MapScreen:
         progress_box = pygame.Rect(right_rect.x + 14, right_rect.bottom - 118, right_rect.w - 28, 102)
         pygame.draw.rect(s, UI_THEME["panel_2"], progress_box, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], progress_box, 1, border_radius=10)
-        s.blit(pixel_label_font.render("Frente ritual", True, UI_THEME["gold"]), (progress_box.x + 8, progress_box.y + 8))
+        s.blit(pixel_label_font.render("Lectura del frente", True, UI_THEME["gold"]), (progress_box.x + 8, progress_box.y + 8))
         civ_indicator = civilization_title(str(run.get("civilization") or "base_world"))
         biome_label = self.app.display_biome_name(self.selected_biome) if hasattr(self.app, "display_biome_name") else self.app.loc.t(str(self.selected_biome).replace("_", " ").title())
         progress_txt = f"Pacha: {biome_label}   Arconte: {archon_name}   Civilización: {civ_indicator}"
@@ -610,7 +610,7 @@ class MapScreen:
             s.blit(title_txt, (lore_rect.x + 12, lore_rect.y + 14))
             s.blit(lore_txt, (lore_rect.x + 22 + title_txt.get_width(), lore_rect.y + 12))
         else:
-            title_txt = self.app.tiny_font.render("Ruta viva", True, UI_THEME["gold"])
+            title_txt = self.app.tiny_font.render("Lectura activa", True, UI_THEME["gold"])
             flavor = self._fit_text(self.app.small_font, self.MAP_HINTS[self.lore_idx % max(1, len(self.MAP_HINTS))], lore_rect.w - title_txt.get_width() - 28)
             lore_txt = self.app.small_font.render(flavor, True, UI_THEME["muted"])
             s.blit(title_txt, (lore_rect.x + 12, lore_rect.y + 14))

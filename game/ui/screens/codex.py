@@ -37,7 +37,8 @@ class CodexScreen:
         self.arconte_set_cards = self._load_arconte_set_cards()
         self.lore_set_relics = self._load_lore_set_relics()
         self.archon_profiles = self._load_archon_profiles()
-        self.active_section_id = self.sections[0].get("id", "lore") if self.sections else "lore"
+        default_section = next((str(s.get("id", "")) for s in self.sections if str(s.get("id", "")) == "cards"), "")
+        self.active_section_id = default_section or (self.sections[0].get("id", "lore") if self.sections else "lore")
         self.gallery_index = 0
         self.card_set_tab = "all"
         self.card_rarity_tab = "all"
@@ -662,8 +663,8 @@ class CodexScreen:
         codex_header_font = reg.get("codex_header", self.app.big_font)
         pixel_label_font = reg.get("special_pixel_label", self.app.tiny_font)
 
-        UIPanel(self.left_panel, variant="panel", title="Codex").draw(s, modal_title_font)
-        UIPanel(self.right_panel, variant="alt", title="Contenido").draw(s, modal_title_font)
+        UIPanel(self.left_panel, variant="panel", title="Codex Chakana").draw(s, modal_title_font)
+        UIPanel(self.right_panel, variant="alt", title="Lectura activa").draw(s, modal_title_font)
 
         portrait = self.app.assets.sprite("avatar", "chakana_mage_concept", (84, 84), fallback=(86, 56, 132))
         s.blit(portrait, (self.left_panel.x + self.left_panel.w - 106, self.left_panel.y + 10))
@@ -756,8 +757,10 @@ class CodexScreen:
         else:
             self._draw_canon_text_panel(s, active_id, title)
 
+        footer_hint = self.app.tiny_font.render("ESC menu  |  Click secci?n  |  Flechas o rueda para galer?a", True, UI_THEME["muted"])
+        s.blit(footer_hint, (self.right_panel.x + 20, self.right_panel.bottom - 34))
         UIButton(self.back_btn, "Volver", role="default", premium=False).draw(s, self.app.font, hovered=self.back_btn.collidepoint(mouse))
-        UIButton(self.tutorial_btn, "Iniciar Tutorial Guiado", role="end_turn", premium=True).draw(s, self.app.font, hovered=self.tutorial_btn.collidepoint(mouse))
+        UIButton(self.tutorial_btn, "Tutorial Guiado", role="end_turn", premium=True).draw(s, self.app.font, hovered=self.tutorial_btn.collidepoint(mouse))
 
 
 

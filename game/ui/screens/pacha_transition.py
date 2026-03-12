@@ -1,55 +1,36 @@
-import pygame
+from __future__ import annotations
 
-from game.ui.theme import UI_THEME
+from game.ui.screens.scene_fusion import SceneFusionScreen
 
 
 class PachaTransitionScreen:
+    """Compatibility wrapper that routes legacy transition calls through SceneFusionScreen."""
+
     def __init__(self, app, title, next_fn, lore_line="Era una vez... la Trama susurro un cambio.", hint="Pulsa cualquier tecla", min_seconds=0.9, auto_seconds=6.0):
-        self.app = app
-        self.title = str(title or "Transicion")
-        self.next_fn = next_fn
-        self.lore_line = str(lore_line)
-        self.hint = str(hint)
-        self.min_seconds = float(min_seconds)
-        self.auto_seconds = float(auto_seconds)
-        self.t = 0.0
-        self.ready = False
+        self._scene = SceneFusionScreen(
+            app,
+            title=str(title or "Transicion"),
+            dialogue=str(lore_line or "La Trama cambia de forma."),
+            lore_line=str(hint or "Pulsa cualquier tecla"),
+            next_fn=next_fn,
+            background="Ruinas Chakana",
+            biome_layer=None,
+            portrait_key="chakana_mage_portrait",
+            portrait_group="avatar",
+            speaker_label="CHAKANA",
+            set_label="TRANSICION RITUAL",
+            min_seconds=float(min_seconds),
+            auto_seconds=float(auto_seconds),
+        )
 
     def on_enter(self):
-        self.t = 0.0
-        self.ready = False
-
-    def _go_next(self):
-        if self.ready:
-            self.next_fn()
+        self._scene.on_enter()
 
     def handle_event(self, event):
-        if event.type == pygame.KEYDOWN or (event.type == pygame.MOUSEBUTTONDOWN and event.button == 1):
-            self.ready = self.t >= self.min_seconds
-            self._go_next()
+        self._scene.handle_event(event)
 
     def update(self, dt):
-        self.t += dt
-        self.ready = self.t >= self.min_seconds
-        if self.t >= self.auto_seconds:
-            self.next_fn()
+        self._scene.update(dt)
 
     def render(self, s):
-        s.fill((10, 8, 18))
-        w, h = s.get_size()
-        panel = pygame.Rect(w // 2 - 520, h // 2 - 220, 1040, 440)
-        pygame.draw.rect(s, UI_THEME["panel"], panel, border_radius=18)
-        pygame.draw.rect(s, UI_THEME["accent_violet"], panel, 2, border_radius=18)
-
-        cx, cy = panel.x + 120, panel.y + 130
-        pygame.draw.circle(s, UI_THEME["gold"], (cx, cy), 58, 2)
-        pygame.draw.line(s, UI_THEME["gold"], (cx - 58, cy), (cx + 58, cy), 2)
-        pygame.draw.line(s, UI_THEME["gold"], (cx, cy - 58), (cx, cy + 58), 2)
-        pygame.draw.rect(s, UI_THEME["gold"], pygame.Rect(cx - 14, cy - 14, 28, 28), 2)
-        avatar = self.app.assets.sprite("avatar", "chakana_mage_portrait", (110, 110), fallback=(86, 56, 132))
-        s.blit(avatar, (panel.x + 70, panel.y + 210))
-
-        s.blit(self.app.big_font.render(self.title, True, UI_THEME["gold"]), (panel.x + 240, panel.y + 70))
-        s.blit(self.app.font.render(f"Era una vez... {self.lore_line}", True, UI_THEME["text"]), (panel.x + 240, panel.y + 156))
-        s.blit(self.app.small_font.render(self.hint, True, UI_THEME["muted"]), (panel.x + 240, panel.y + 202))
-        s.blit(self.app.small_font.render("Pulsa cualquier tecla", True, UI_THEME["good"] if self.ready else UI_THEME["muted"]), (panel.x + 240, panel.y + 312))
+        self._scene.render(s)

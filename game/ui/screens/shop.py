@@ -43,7 +43,7 @@ class ShopScreen:
 
         self.msg = ""
         self.hint = "El comerciante conoce caminos olvidados."
-        self.tab_hint = "Cartas y sobres rituales del tramo actual."
+        self.tab_hint = "Cartas, reliquias y sobres del tramo actual."
 
         self.cheap_price = 35
         self.rare_price = 85
@@ -169,7 +169,7 @@ class ShopScreen:
             self.msg = "No tienes oro suficiente"
             return
         self.app.run_state["gold"] -= self.pack_price
-        self.msg = f"Sobre adquirido: {self._pack_label(self.pack_offer)}"
+        self.msg = f"Sobre ritual preparado: {self._pack_label(self.pack_offer)}"
         reward_data = {
             "type": "choose1of3",
             "pack_category": str(self.pack_offer),
@@ -177,9 +177,9 @@ class ShopScreen:
             "pack_lore": "Un legado sellado por el mercader del umbral.",
         }
         if hasattr(self.app, "goto_pack_opening"):
-            self.app.goto_pack_opening(reward_data=reward_data, source="shop")
+            self.app.goto_pack_opening(reward_data=reward_data, source="shop_pack")
         else:
-            self.app.sm.set(__import__("game.ui.screens.pack_opening", fromlist=["PackOpeningScreen"]).PackOpeningScreen(self.app, reward_data=reward_data, source="shop"))
+            self.app.sm.set(__import__("game.ui.screens.pack_opening", fromlist=["PackOpeningScreen"]).PackOpeningScreen(self.app, reward_data=reward_data, source="shop_pack"))
     def _duplicate_inventory_rows(self):
         run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
         cards = list(run.get("deck", []) or []) + list(run.get("sideboard", []) or [])
@@ -297,9 +297,9 @@ class ShopScreen:
 
     def _tab_caption(self):
         captions = {
-            "packs": "Cartas y sobres rituales del tramo actual.",
+            "packs": "Cartas y sobres del tramo actual, con una oferta destacada.",
             "relics": "Reliquias singulares para alterar el destino.",
-            "sell": "Convierte duplicadas en oro sin ruido visual.",
+            "sell": "Convierte duplicadas en oro y limpia el mazo activo.",
         }
         return captions.get(self.active_tab, "Intercambio ritual en calma.")
 
@@ -411,12 +411,12 @@ class ShopScreen:
         s.blit(self.app.big_font.render("Comerciante del Umbral", True, UI_THEME["text"]), (self.merchant_rect.x + 18, self.merchant_rect.y + 10))
         s.blit(self.app.tiny_font.render("Intercambio ritual y reliquias del viaje", True, UI_THEME["muted"]), (self.merchant_rect.x + 20, self.merchant_rect.y + 46))
         s.blit(self.app.tiny_font.render(self._set_hint, True, UI_THEME["gold"]), (self.merchant_rect.x + 20, self.merchant_rect.y + 66))
-        s.blit(self.app.tiny_font.render("Categorias: Cartas / Reliquias / Sobres", True, UI_THEME["muted"]), (self.merchant_rect.x + 20, self.merchant_rect.y + 86))
+        s.blit(self.app.tiny_font.render("Categorias: Cartas, reliquias y limpieza de duplicadas", True, UI_THEME["muted"]), (self.merchant_rect.x + 20, self.merchant_rect.y + 86))
         for tid, tr in self.tab_rects.items():
             on = (tid == self.active_tab)
             pygame.draw.rect(s, UI_THEME["panel_2"], tr, border_radius=8)
             pygame.draw.rect(s, UI_THEME["gold"] if on else UI_THEME["accent_violet"], tr, 2 if on else 1, border_radius=8)
-            lbl = {"packs": "Packs", "relics": "Reliquias", "sell": "Vender"}.get(tid, tid)
+            lbl = {"packs": "Cartas", "relics": "Reliquias", "sell": "Duplicadas"}.get(tid, tid)
             s.blit(self.app.tiny_font.render(lbl, True, UI_THEME["gold"] if on else UI_THEME["muted"]), (tr.x + 10, tr.y + 9))
         run = self.app.run_state if isinstance(self.app.run_state, dict) else {}
         gold_value = int(run.get("gold", 0) or 0)
@@ -486,7 +486,7 @@ class ShopScreen:
         pack_focus = pygame.Rect(self.buy_pack_btn.x - 42, self.buy_pack_btn.y - 208, self.buy_pack_btn.w + 84, 248)
         pygame.draw.rect(s, UI_THEME["panel_2"], pack_focus, border_radius=16)
         pygame.draw.rect(s, UI_THEME["accent_violet"], pack_focus, 1, border_radius=16)
-        s.blit(self.app.tiny_font.render("Sobre ritual destacado", True, UI_THEME["gold"]), (pack_focus.x + 12, pack_focus.y + 8))
+        s.blit(self.app.tiny_font.render("Sobre destacado del tramo", True, UI_THEME["gold"]), (pack_focus.x + 12, pack_focus.y + 8))
         cover_rect = pygame.Rect(pack_focus.x + 24, pack_focus.y + 34, pack_focus.w - 48, 168)
         draw_pack_cover(s, cover_rect, self.app, self.pack_offer, self._pack_label(self.pack_offer), price_text=f"{self.pack_price} oro")
         pygame.draw.rect(s, UI_THEME["violet"], self.buy_pack_btn, border_radius=10)

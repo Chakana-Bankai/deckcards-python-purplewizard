@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from game.art.style_lock import symbolic_style_active
+
 SHAPE_LANGUAGE_PROFILES = {
     'archon': {
         'profile_id': 'archon_cathedral',
@@ -10,13 +12,15 @@ SHAPE_LANGUAGE_PROFILES = {
         'robe_spread': 1.02,
         'head_roundness': 0.86,
         'weapon_mass_bias': 0.82,
-        'detail_density': 0.58,
-        'torso_split': 0.78,
-        'core_bridge': 1.20,
-        'lane_offset': 0.08,
-        'weapon_length_scale': 0.84,
-        'weapon_thickness_scale': 0.88,
-        'icon_scale': 0.82,
+        'detail_density': 0.46,
+        'torso_split': 0.84,
+        'core_bridge': 1.24,
+        'lane_offset': 0.07,
+        'weapon_length_scale': 0.80,
+        'weapon_thickness_scale': 0.98,
+        'icon_scale': 0.96,
+        'plane_break_strength': 0.92,
+        'surface_simplification': 0.88,
     },
     'solar_warrior': {
         'profile_id': 'solar_heroic',
@@ -27,13 +31,15 @@ SHAPE_LANGUAGE_PROFILES = {
         'robe_spread': 0.90,
         'head_roundness': 0.92,
         'weapon_mass_bias': 0.94,
-        'detail_density': 0.54,
-        'torso_split': 0.92,
-        'core_bridge': 1.10,
-        'lane_offset': 0.09,
-        'weapon_length_scale': 0.92,
-        'weapon_thickness_scale': 0.94,
-        'icon_scale': 0.92,
+        'detail_density': 0.44,
+        'torso_split': 0.94,
+        'core_bridge': 1.14,
+        'lane_offset': 0.08,
+        'weapon_length_scale': 0.88,
+        'weapon_thickness_scale': 0.96,
+        'icon_scale': 0.94,
+        'plane_break_strength': 0.90,
+        'surface_simplification': 0.82,
     },
     'guide_mage': {
         'profile_id': 'guide_sacred_soft',
@@ -44,16 +50,22 @@ SHAPE_LANGUAGE_PROFILES = {
         'robe_spread': 1.06,
         'head_roundness': 1.04,
         'weapon_mass_bias': 0.80,
-        'detail_density': 0.62,
-        'torso_split': 0.82,
-        'core_bridge': 1.24,
-        'lane_offset': 0.07,
-        'weapon_length_scale': 0.80,
-        'weapon_thickness_scale': 0.86,
-        'icon_scale': 0.78,
+        'detail_density': 0.48,
+        'torso_split': 0.84,
+        'core_bridge': 1.28,
+        'lane_offset': 0.06,
+        'weapon_length_scale': 0.78,
+        'weapon_thickness_scale': 0.96,
+        'icon_scale': 0.92,
+        'plane_break_strength': 0.86,
+        'surface_simplification': 0.90,
     },
 }
 
 
 def resolve_shape_language(archetype: str) -> dict[str, float | str]:
-    return dict(SHAPE_LANGUAGE_PROFILES.get(str(archetype), SHAPE_LANGUAGE_PROFILES['solar_warrior']))
+    profile = dict(SHAPE_LANGUAGE_PROFILES.get(str(archetype), SHAPE_LANGUAGE_PROFILES['solar_warrior']))
+    profile['style_lock_active'] = symbolic_style_active()
+    if symbolic_style_active():
+        profile['detail_density'] = round(float(profile['detail_density']) * 0.9, 4)
+    return profile

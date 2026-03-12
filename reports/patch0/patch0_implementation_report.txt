@@ -1,0 +1,78 @@
+CHAKANA STUDIO - PATCH 0 IMPLEMENTATION REPORT
+Date: 2026-03-12
+Ticket: Patch 0 implementation
+Goal: UI/UX/gameplay clarity without touching full art generation or soundtrack production.
+
+Scope implemented
+- combat HUD clarity
+- map/node readability
+- shop/reward flow
+- codex structure
+- hologram/transitions
+- menu/intro polish
+
+Files modified
+- game/ui/screens/combat.py
+- game/ui/screens/map.py
+- game/ui/screens/reward.py
+- game/ui/screens/shop.py
+- game/ui/screens/pack_opening.py
+- game/ui/screens/codex.py
+- game/ui/screens/pacha_transition.py
+- game/ui/screens/intro.py
+- game/ui/screens/menu.py
+
+Implementation summary
+
+1. Combat HUD clarity
+- Removed the legacy runtime dependency on CombatDialogueController from game/ui/screens/combat.py.
+- Kept DialogueRouter as the canonical combat dialogue trigger path.
+- Disabled always-on debug framing by setting DEBUG_UI = False.
+- Gated F2/F3/F4/F6 debug toggles and debug overlays behind user setting dev_debug_ui.
+- Result: combat runtime no longer exposes supervision overlays by default and no longer instantiates the redundant dialogue controller.
+
+2. Map / node readability
+- Updated map node naming for clearer player-facing labels in game/ui/screens/map.py.
+- Normalized key panel headings:
+  - Camino activo -> Ruta seleccionada
+  - Cronica del viaje -> Estado del tramo
+  - Presagio del Arconte -> Lectura del Arconte
+  - Frente ritual -> Lectura del frente
+- Changed the top quick-access label from Tienda to Mercader for stronger in-world readability.
+- Added right-side topbar status text Nodos y rutas to better frame the screen role.
+
+3. Shop / reward flow
+- Reward modal cancel labels now say Mapa instead of Volver for clearer destination feedback in game/ui/screens/reward.py.
+- Shop pack purchase now uses canonical source shop_pack in game/ui/screens/shop.py.
+- Pack opening recognizes shop_pack as a forced auto-open source in game/ui/screens/pack_opening.py.
+- Shop copy was clarified to better separate cards, relics, and duplicate cleanup.
+- Pack opening title and CTA language were normalized:
+  - Botin / Sobres -> Sobres rituales
+  - Tomar pack -> Tomar lote
+
+4. Codex structure
+- Codex now defaults to cards section when available, instead of opening arbitrarily on the first section.
+- Panel titles were clarified:
+  - Codex -> Codex Chakana
+  - Contenido -> Lectura activa
+- Added footer usage hint for navigation and simplified tutorial CTA label to Tutorial Guiado.
+
+5. Hologram / transitions
+- PachaTransitionScreen was converted into a compatibility wrapper over SceneFusionScreen.
+- Result: legacy callers can still use PachaTransitionScreen, but runtime presentation now resolves through the canonical transition system instead of maintaining two separate implementations.
+
+6. Menu / intro polish
+- Menu title now includes a subtitle line: Ritual deckbuilder en la grieta Chakana.
+- Intro screen was redrawn with a cleaner panel hierarchy to visually align better with the current branded funnel.
+
+Canonical system decisions reinforced
+- Combat dialogue: DialogueRouter
+- Lore/reveal transitions: SceneFusionScreen via wrapper compatibility
+- Shop pack entry source: shop_pack
+- Codex landing section: cards
+
+Out of scope by design
+- No full art generation changes
+- No soundtrack production or music regeneration
+- No gameplay rules redesign
+- No asset regeneration

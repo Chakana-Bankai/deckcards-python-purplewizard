@@ -15,7 +15,6 @@ from game.ui.components.card_renderer import render_card_large, render_card_medi
 from game.ui.components.mana_orbs import ManaOrbsWidget
 from game.ui.components.modal_card_picker import ModalCardPicker
 from game.ui.controllers.card_interaction import CardInteractionController
-from game.ui.controllers.combat_dialogue_controller import CombatDialogueController
 from game.ui.controllers.dialogue_router import DialogueRouter
 from game.ui.layout.combat_layout import build_combat_layout
 from game.ui.theme import UI_THEME
@@ -27,7 +26,7 @@ from game.ui.components.topbar import CombatTopBar
 from game.telemetry.logger import TelemetryLogger
 
 
-DEBUG_UI = True
+DEBUG_UI = False
 
 
 def wrap_text(font, text, width, max_lines=None):
@@ -74,6 +73,7 @@ class CombatScreen:
         self.dialog_debug_overlay = False
         self.qa_debug_overlay = False
         self.art_debug_overlay = False
+        self.debug_shortcuts_enabled = bool(self.app.user_settings.get("dev_debug_ui", False))
         self.last_trigger = "combat_start"
         self.hover_anim = {}
         self._combat_triggers = ["combat_start", "player_turn_start", "enemy_turn_start", "enemy_big_attack", "player_low_hp", "enemy_low_hp", "victory"]
@@ -94,7 +94,6 @@ class CombatScreen:
         self._invalid_state_since_ms = 0
         self._cost_pulse_until = {}
         self.telemetry = TelemetryLogger("INFO")
-        self.dialogue_ctrl = CombatDialogueController(self.app.lore_engine, self._set_dialogue_lines)
         self.dialog_router = DialogueRouter(self.app.lore_engine, cooldown_ms=850, action_gap=2)
         self._dialogue_action_idx = 0
         self.last_enemy_line = ""
@@ -828,18 +827,17 @@ class CombatScreen:
                 self.ctrl.clear_selection("pause_open")
             self.pause_confirm_target = None
             return
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_F2:
+        if self.debug_shortcuts_enabled and event.type == pygame.KEYDOWN and event.key == pygame.K_F2:
             self.dialog_debug_overlay = not self.dialog_debug_overlay
             return
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
+        if self.debug_shortcuts_enabled and event.type == pygame.KEYDOWN and event.key == pygame.K_F3:
             self.qa_debug_overlay = not self.qa_debug_overlay
             return
-            return
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_F4:
+        if self.debug_shortcuts_enabled and event.type == pygame.KEYDOWN and event.key == pygame.K_F4:
             idx = (self._combat_triggers.index(self.last_trigger) + 1) % len(self._combat_triggers) if self.last_trigger in self._combat_triggers else 0
             self._trigger_dialog(self._combat_triggers[idx])
             return
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_F6:
+        if self.debug_shortcuts_enabled and event.type == pygame.KEYDOWN and event.key == pygame.K_F6:
             self.art_debug_overlay = not self.art_debug_overlay
             return
 
@@ -1599,11 +1597,11 @@ class CombatScreen:
 
         self._render_tutorial_overlay(s)
 
-        if DEBUG_UI:
+        if DEBUG_UI and self.debug_shortcuts_enabled:
             pygame.draw.rect(s, UI_THEME["gold"], self.layout.voices_panel, 2)
             pygame.draw.rect(s, UI_THEME["gold"], self.layout.card_detail, 2)
 
-        if self.dialog_debug_overlay:
+        if self.debug_shortcuts_enabled and self.dialog_debug_overlay:
             d = pygame.Rect(self.layout.topbar_rect.x + 10, self.layout.topbar_rect.bottom + 10, 620, 150)
             pygame.draw.rect(s, (0, 0, 0), d, border_radius=8)
             pygame.draw.rect(s, UI_THEME["gold"], d, 2, border_radius=8)
@@ -1614,7 +1612,7 @@ class CombatScreen:
             s.blit(self.app.tiny_font.render(f"enemy_id: {enemy_id}  trigger: {self.last_trigger}", True, UI_THEME["text"]), (d.x + 12, d.y + 40))
             s.blit(self.app.tiny_font.render(f"enemy_len={len(self.dialog_enemy.current)} chakana_len={len(self.dialog_hero.current)}", True, UI_THEME["text"]), (d.x + 12, d.y + 66))
 
-        if self.qa_debug_overlay:
+        if self.debug_shortcuts_enabled and self.qa_debug_overlay:
             d = pygame.Rect(self.layout.topbar_rect.x + 10, self.layout.topbar_rect.bottom + 10, 680, 170)
             pygame.draw.rect(s, (8, 8, 12), d, border_radius=8)
             pygame.draw.rect(s, UI_THEME["accent_violet"], d, 2, border_radius=8)
@@ -1639,7 +1637,7 @@ class CombatScreen:
                 s.blit(self.app.tiny_font.render(line, True, UI_THEME["text"]), (d.x + 12, yy))
                 yy += 28
 
-        if self.art_debug_overlay:
+        if self.debug_shortcuts_enabled and self.art_debug_overlay:
             idx = self.hover_card_index if self.hover_card_index is not None else self.ctrl.selected_index
             card = hand[idx] if idx is not None and idx < len(hand) else None
             info = self._art_debug_info(card)

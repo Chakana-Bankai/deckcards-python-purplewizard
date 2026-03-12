@@ -26,7 +26,6 @@ class IntroScreen:
 
     def update(self, dt):
         self.t += dt
-        # Narrative cadence: one short beat at a time.
         self.idx = min(len(self.lines) - 1, int(self.t // 2.8))
         if self.t >= self.duration:
             self.next_fn()
@@ -34,19 +33,21 @@ class IntroScreen:
     def render(self, s):
         self.app.bg_gen.render_parallax(s, "Ruinas Chakana", 909, pygame.time.get_ticks() * 0.02, particles_on=self.app.user_settings.get("fx_particles", True))
         veil = pygame.Surface(s.get_size(), pygame.SRCALPHA)
-        veil.fill((10, 8, 20, 190))
+        veil.fill((10, 8, 20, 176))
         s.blit(veil, (0, 0))
 
-        panel = pygame.Rect(300, 220, 1320, 450)
-        pygame.draw.rect(s, UI_THEME["panel"], panel, border_radius=16)
-        pygame.draw.rect(s, UI_THEME["gold"], panel, 2, border_radius=16)
+        panel = pygame.Rect(260, 190, 1400, 500)
+        pygame.draw.rect(s, UI_THEME["panel"], panel, border_radius=18)
+        pygame.draw.rect(s, UI_THEME["accent_violet"], panel, 2, border_radius=18)
 
         title = self.app.big_font.render("CHAKANA : PURPLE WIZARD", True, UI_THEME["gold"])
-        s.blit(title, title.get_rect(center=(panel.centerx, panel.y + 82)))
+        subtitle = self.app.small_font.render("Pr?logo ritual", True, UI_THEME["muted"])
+        s.blit(title, title.get_rect(center=(panel.centerx, panel.y + 88)))
+        s.blit(subtitle, subtitle.get_rect(center=(panel.centerx, panel.y + 136)))
 
         line = self.lines[self.idx]
         body = self.app.font.render(line, True, UI_THEME["text"])
-        s.blit(body, body.get_rect(center=(panel.centerx, panel.centery)))
+        s.blit(body, body.get_rect(center=(panel.centerx, panel.centery + 10)))
 
         hint = self.app.small_font.render("Pulsa para continuar", True, UI_THEME["muted"])
-        s.blit(hint, hint.get_rect(center=(panel.centerx, panel.bottom - 64)))
+        s.blit(hint, hint.get_rect(center=(panel.centerx, panel.bottom - 62)))

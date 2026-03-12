@@ -1,6 +1,6 @@
 {
   "version": "chakana_audio_v7",
-  "generated_at": 1773335439,
+  "generated_at": 1773341616,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
@@ -218,7 +218,21 @@
       "generation_date": 1773167700,
       "version": "chakana_audio_v7",
       "state": "valid",
-      "source": "generated"
+      "source": "generated",
+      "analysis": {
+        "duration_seconds": 2.2,
+        "sample_rate": 32000,
+        "channels": 1,
+        "peak_db": -3.407,
+        "rms_db": -8.6542,
+        "tempo_bpm": 327.2727,
+        "onset_count": 12,
+        "loop_end_seconds": 2.125,
+        "monotony_score": 0.5281,
+        "variation_score": 0.4719,
+        "librosa_available": true,
+        "analysis_mode": "soundfile_numpy_guarded_librosa"
+      }
     },
     "stinger_victory": {
       "track_id": "stinger_victory",

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from game.art.style_lock import symbolic_style_active
+
 CHARACTER_TEMPLATES = {
     "archon_base": {
         "template_id": "archon_base",
@@ -7,6 +9,12 @@ CHARACTER_TEMPLATES = {
         "width_ratio": 0.34,
         "height_ratio": 0.44,
         "dominant_shape": "circle",
+        "style_family": "symbolic_origami",
+        "render_binding": {
+            "prop_lane_mode": "side_lane_short_grip",
+            "costume_plane_mode": "cathedral_split_planes",
+            "surface_mode": "matte_cloth_low_detail",
+        },
         "head_scale": (0.08, 0.13),
         "head_size": {"ratio_range": (0.16, 0.17), "shape": "narrow_masked_oval"},
         "torso_mass": {"shape": "vertical_cathedral_core", "width_ratio": 0.68, "height_ratio": 0.72},
@@ -27,6 +35,12 @@ CHARACTER_TEMPLATES = {
         "width_ratio": 0.35,
         "height_ratio": 0.45,
         "dominant_shape": "triangle",
+        "style_family": "symbolic_origami",
+        "render_binding": {
+            "prop_lane_mode": "forward_diagonal_short_grip",
+            "costume_plane_mode": "heroic_plate_planes",
+            "surface_mode": "metal_cloth_low_detail",
+        },
         "head_scale": (0.10, 0.14),
         "head_size": {"ratio_range": (0.16, 0.18), "shape": "helmeted_oval"},
         "torso_mass": {"shape": "heroic_triangle", "width_ratio": 0.72, "height_ratio": 0.74},
@@ -47,6 +61,12 @@ CHARACTER_TEMPLATES = {
         "width_ratio": 0.33,
         "height_ratio": 0.43,
         "dominant_shape": "rectangle",
+        "style_family": "symbolic_origami",
+        "render_binding": {
+            "prop_lane_mode": "support_side_short_grip",
+            "costume_plane_mode": "soft_robe_planes",
+            "surface_mode": "soft_cloth_low_detail",
+        },
         "head_scale": (0.10, 0.14),
         "head_size": {"ratio_range": (0.16, 0.18), "shape": "soft_hooded_oval"},
         "torso_mass": {"shape": "calm_column_split_robe", "width_ratio": 0.74, "height_ratio": 0.80},
@@ -68,7 +88,10 @@ def resolve_character_template(semantic: dict) -> dict[str, object]:
     subject_kind = str(semantic.get("subject_kind", "") or "").lower()
     subject = str(semantic.get("subject", "") or "").lower()
     if "archon" in subject_kind or "archon" in subject or "arconte" in subject:
-        return dict(CHARACTER_TEMPLATES["archon_base"])
-    if any(tok in subject_kind for tok in ("oracle", "mage", "guide")) or any(tok in subject for tok in ("oracle", "mage", "guide")):
-        return dict(CHARACTER_TEMPLATES["guide_mage_base"])
-    return dict(CHARACTER_TEMPLATES["solar_warrior_base"])
+        template = dict(CHARACTER_TEMPLATES["archon_base"])
+    elif any(tok in subject_kind for tok in ("oracle", "mage", "guide")) or any(tok in subject for tok in ("oracle", "mage", "guide")):
+        template = dict(CHARACTER_TEMPLATES["guide_mage_base"])
+    else:
+        template = dict(CHARACTER_TEMPLATES["solar_warrior_base"])
+    template["style_lock_active"] = symbolic_style_active()
+    return template

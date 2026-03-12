@@ -1,0 +1,28 @@
+CHAKANA STUDIO - ART RESEARCH GATE PATCH
+Date: 2026-03-12
+
+Implemented decisions from art_research_gate_report:
+- style target locked to symbolic/origami playable placeholder with identity
+- template-driven subject binding strengthened
+- targeted geometry helpers added for props, shoulders, robes and plane cuts
+- weapon templates tightened for symbolic prop glyph readability
+- GPU acceleration intentionally deferred
+
+Files added
+- data/art_identity/art_style_lock.json
+- game/art/style_lock.py
+- game/art/symbolic_geometry.py
+
+Files updated
+- game/art/character_templates.py
+- game/art/shape_language_profile.py
+- game/art/object_glyph_grammar.py
+- game/art/body_volume_builder.py
+- game/art/weapon_templates.py
+- game/art/character_compositor.py
+
+Intent
+- Narrow the visual target before scaling production.
+- Keep silhouette-first symbolic fantasy as the canonical near-term style.
+- Target playable placeholder with identity rather than final art.
+- Improve template -> render binding without expanding the engine into freeform complexity.

@@ -111,6 +111,7 @@ class MenuScreen:
 
     def _draw_title(self, surface: pygame.Surface, rect: pygame.Rect):
         title_text = "CHAKANA : PURPLE WIZARD"
+        subtitle_text = "Ritual deckbuilder en la grieta Chakana"
         palette = self.app.typography.palette
 
         # Subtle cyan-violet glow layers below title glyphs.
@@ -122,7 +123,9 @@ class MenuScreen:
             surface.blit(glow_surf, glow_surf.get_rect(center=(rect.centerx + dx, rect.centery + dy + 2)))
 
         title = self.title_font.render(title_text, True, palette.title_primary)
-        surface.blit(title, title.get_rect(center=(rect.centerx, rect.centery + 2)))
+        surface.blit(title, title.get_rect(center=(rect.centerx, rect.centery - 4)))
+        subtitle = self.meta_font.render(subtitle_text, True, palette.muted)
+        surface.blit(subtitle, subtitle.get_rect(center=(rect.centerx, rect.bottom - 18)))
 
     def render(self, surface):
         self.app.bg_gen.render_parallax(surface, "Ruinas Chakana", 2026, pygame.time.get_ticks() * 0.02, particles_on=self.app.user_settings.get("fx_particles", True))

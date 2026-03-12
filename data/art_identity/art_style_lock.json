@@ -1,0 +1,36 @@
+{
+  "version": "chakana_art_style_lock_v1",
+  "style_mode": "symbolic_origami",
+  "status": "active",
+  "description": "Locks the near-term art target to playable placeholder with identity: readable subject, understandable card role, correct faction color, correct frame compatibility, and clean composition without aiming at premium final illustration.",
+  "principles": {
+    "silhouette_first": true,
+    "template_driven_subjects": true,
+    "freeform_geometry_disabled": true,
+    "hard_edge_props_required": true,
+    "material_rendering_level": "low_to_mid",
+    "scene_detail_subordinate_to_subject": true,
+    "premium_illustration_not_required": true,
+    "card_role_readability_required": true,
+    "faction_color_readability_required": true,
+    "frame_compatibility_required": true,
+    "clean_composition_required": true
+  },
+  "component_priorities": [
+    "subject_legibility",
+    "card_role_readability",
+    "faction_palette_clarity",
+    "frame_compatibility",
+    "template_binding",
+    "silhouette_hierarchy",
+    "prop_glyph_clarity",
+    "background_support_only"
+  ],
+  "deferred_capabilities": [
+    "premium_final_illustration",
+    "gpu_acceleration",
+    "high_detail_painterly_rendering",
+    "freeform_humanoid_generation"
+  ],
+  "target_quality": "playable_placeholder_with_identity"
+}

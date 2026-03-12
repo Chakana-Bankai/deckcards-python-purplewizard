@@ -3,6 +3,18 @@
 ## Purpose
 This document defines the canonical visual grammar of the Chakana universe before any large-scale art generation. The goal is to keep the game readable, mythic, and internally coherent across cards, portraits, props, scenes, and effects.
 
+## Current Production Target
+The current target is not final premium illustration.
+The current target is playable placeholder with identity.
+That means every approved card image must provide:
+- readable subject
+- understandable card role or prop silhouette
+- correct faction color family
+- correct frame compatibility
+- clean composition
+
+It does not need to provide full illustrative richness yet.
+
 ## Identity Pillars
 - Legibility first: the player must identify subject, object, rarity frame, and action intent at a glance.
 - Andean sacred fantasy: stepped geometry, ritual stone, solar glyphs, void sigils, mountain massing, and ceremonial silhouettes.
@@ -148,6 +160,11 @@ Each image should use:
 - Sea: broad horizon, reflective planes, wind direction, cold or mystic tide.
 - Ruins/temples: vertical markers, stairs, columns, altars, observatories.
 - Void: sparse but high-contrast, symbolic geometry, aurora-like fracture light.
+
+## Approval Target For Current Phase
+- Approve art as playable placeholder with identity, not as final art.
+- Prioritize legibility, faction read, prop read, and frame compatibility over surface richness.
+- Reject any render that is visually ambitious but unclear at card scale.
 
 ## Non-negotiable Production Rules
 - Art generation must be frameless.

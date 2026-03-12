@@ -84,7 +84,7 @@ class PackOpeningScreen:
     def on_enter(self):
         self.app.rng.shuffle(self.pack_defs)
         forced_id = self._pack_alias.get(self.forced_pack_id, self.forced_pack_id)
-        auto_open_forced = self.source in {"shop", "levelup_pending", "boss_reward", "direct_pack"}
+        auto_open_forced = self.source in {"shop", "shop_pack", "levelup_pending", "boss_reward", "direct_pack"}
         if forced_id and auto_open_forced:
             idx = next((i for i, x in enumerate(self.pack_defs) if str(x.get("id", "")).lower() == forced_id), None)
             if idx is not None:
@@ -297,7 +297,7 @@ class PackOpeningScreen:
 
     def render(self, s):
         s.fill(UI_THEME["bg"])
-        s.blit(self.app.big_font.render("Botin / Sobres", True, UI_THEME["gold"]), (748, 42))
+        s.blit(self.app.big_font.render("Sobres rituales", True, UI_THEME["gold"]), (748, 42))
         s.blit(self.app.font.render(self.msg, True, UI_THEME["text"]), (460, 102))
         mouse = self.app.renderer.map_mouse(pygame.mouse.get_pos())
         self.hover_card = None
@@ -335,7 +335,7 @@ class PackOpeningScreen:
         enabled = self._confirm_enabled()
         pygame.draw.rect(s, UI_THEME["violet"] if enabled else (82, 78, 104), self.confirm_rect, border_radius=10)
         pygame.draw.rect(s, UI_THEME["gold"], self.confirm_rect, 2, border_radius=10)
-        label = "Abrir sobre" if not self.cards and self.selected_pack is not None else ("Selecciona un sobre" if not self.cards else "Tomar pack")
+        label = "Abrir sobre" if not self.cards and self.selected_pack is not None else ("Selecciona un sobre" if not self.cards else "Tomar lote")
         s.blit(self.app.font.render(label, True, UI_THEME["text"]), (self.confirm_rect.x + 48, self.confirm_rect.y + 16))
 
         pygame.draw.rect(s, UI_THEME["panel_2"], self.back_rect, border_radius=10)

@@ -35,6 +35,7 @@ from game.art.scene_engine import (
 from game.art.art_reference_catalog import iter_category_entries
 from game.art.character_compositor import compose_character_subject
 from game.art.finish_render_system import apply_scene_finish
+from game.art.symbolic_crisp_pass import apply_scene_crisp_pass
 from game.art.scene_spec import validate_scene_semantic
 from game.core.paths import art_reference_dir
 
@@ -761,6 +762,7 @@ def _render_scene_variant(semantic: dict, refs: list[ReferenceChoice], palette, 
     _apply_contrast(composite)
     _compress_highlights(composite)
     apply_scene_finish(composite, subject_layout['rect'], fg_palette)
+    apply_scene_crisp_pass(composite, subject_layout['rect'])
     _compress_highlights(composite)
 
     metrics = validate_readability(subject_metric_mask, object_metric_mask, fx_mask, symbol_mask, composite, subject_layout)

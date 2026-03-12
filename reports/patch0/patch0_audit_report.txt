@@ -1,0 +1,290 @@
+CHAKANA STUDIO - PATCH 0 AUDIT
+Date: 2026-03-12
+Scope: main menu, map/nodes, combat HUD, rewards/pre-shop/shop, codex, hologram dialogue, transitions, intro/studio/credits
+Method: targeted audit of active runtime screens, shared UI systems, dialogue/audio routing, and known QA wrappers. No full-repo scan.
+
+Executive Summary
+- The current runtime stack is concentrated under game/ui/screens plus shared systems in game/ui/system, game/ui/components, game/ui/layout, game/visual, and game/audio.
+- The project no longer looks like a single old UI; it looks like a newer runtime layer with several fallback, alias, and legacy compatibility paths still active.
+- Patch 0 should focus on system unification and readability, not new content production.
+- The highest-risk problems are duplicated presentation paths, fallback-heavy asset/audio routing, and legacy labels/flows still visible in user-facing screens.
+
+Severity Scale
+- blocker: breaks flow consistency, causes conflicting systems, or risks wrong content/context presentation
+- major: strong UX quality issue, duplicated implementation, or layout/system debt that spreads defects
+- medium: visible inconsistency or maintainability issue with limited runtime damage
+- polish: copy/style cleanup, visual refinement, or non-blocking consistency work
+
+Domain Audit
+
+1. Main Menu
+Primary files
+- game/ui/screens/menu.py
+- game/ui/screens/intro.py
+- game/ui/screens/studio_intro.py
+- game/ui/system/brand.py
+- game/ui/system/typography.py
+
+Mapped issues
+- major: menu.py mixes current premium title treatment with old generic menu button flow. The screen is stable, but it still behaves like a generic launcher rather than a fully authored front door for the current identity.
+- medium: intro.py is a separate static narrative intro with a heavy opaque panel, while studio_intro.py is a more authored branded intro. This creates two different intro identities in the same stack.
+- medium: menu button stack still exposes generic labels/flow ordering inherited from older app navigation instead of a fully intentional game-first presentation.
+- polish: version line and title treatment are consistent technically, but the screen still relies on broad centered-column utility layout rather than a dedicated menu layout system.
+
+Duplicated or old systems still active
+- intro.py and studio_intro.py both act as top-of-funnel presentation layers.
+- studio_intro.py still keeps explicit fallback modes, cache/generation logic, and static fallback rendering.
+
+Legacy UI layers / labels / transitions
+- intro.py panelized text presentation reads as older placeholder narrative UI compared with studio_intro.py.
+- menu text keys still reflect a generic app shell: continue, back, settings, codex, exit.
+
+Severity
+- overall: major
+
+2. Map / Nodes
+Primary files
+- game/ui/screens/map.py
+- game/ui/components/topbar.py
+- game/ui/system/layout.py
+- game/ui/system/icons_atlas.py
+
+Mapped issues
+- blocker: map.py is carrying too many responsibilities at once: topbar, progression summary, relic strip, lore text, map graph, node rendering, archon forecast, biome panel, and top navigation buttons. This is the central Patch 0 UI hotspot.
+- major: node type normalization and naming are partly duplicated inside map.py with special-case logic for guide/path/relic/shop/boss, which makes node identity fragile.
+- major: map top navigation duplicates cross-screen routing in-screen with deck/shop/codex buttons instead of using a canonical top navigation model.
+- medium: labels mix lore-facing naming and systems-facing naming: Ritual, Sombra, Prueba, Elite, Mercader, Santuario, Archonte/Arconte inconsistency.
+- medium: multiple side panels and title blocks compete visually with the graph itself; the screen is carrying too much informational surface.
+- polish: typo/inconsistency risk in node strings and stage naming remains high because text is hardcoded in the screen.
+
+Duplicated or old systems still active
+- topbar rendering is centralized in MapTopBar, but map.py still owns several custom header/button strips outside that shared component.
+- node lore, node labels, stage titles, branch lanes, and archon profile text are embedded in map.py instead of being fully data-driven.
+
+Legacy UI layers / labels / transitions
+- left/right sidebars and center graph produce an older dashboard-like layout rather than a single strong map read.
+- deck/shop/codex top buttons behave like legacy global tabs.
+
+Severity
+- overall: blocker
+
+3. Combat HUD
+Primary files
+- game/ui/screens/combat.py
+- game/ui/layout/combat_layout.py
+- game/ui/components/topbar.py
+- game/ui/system/layers.py
+- game/ui/system/modals.py
+
+Mapped issues
+- blocker: combat.py is overloaded. It owns encounter UI state, dialogue, telemetry, action FSM, tutorial targets, timers, overlays, art manifest access, and render/layout orchestration. Patch 0 should treat it as a consolidation target.
+- major: combat screen keeps multiple debug toggles in runtime state: dialog_debug_overlay, qa_debug_overlay, art_debug_overlay. These are clear signs of a still-exposed supervision/debug layer.
+- major: two dialogue systems remain active in the same screen: CombatDialogueController and DialogueRouter. Router appears to be the real priority gate, while controller remains as a legacy/simple trigger adapter.
+- major: topbar, voices panel, hand area, actions panel, player HUD, harmony core, and card detail are cleaner than before, but the screen still composes too many behavior layers directly in one file.
+- medium: combat_layout.py gives a canonical geometry, but combat.py continues to own additional ad hoc layout-derived rect state like end_turn_rect and harmony_seal_rect.
+- medium: DEBUG_UI is still hardcoded True in combat.py.
+
+Duplicated or old systems still active
+- CombatDialogueController versus DialogueRouter
+- ad hoc rect management versus build_combat_layout()
+- QA/debug overlays still embedded in runtime combat screen
+
+Legacy UI layers / labels / transitions
+- action state labels such as BLOQUEADO, ACCION INVALIDA, FIN DEL RITUAL, EJECUTAR suggest multiple generations of UX states layered together.
+- combat start and voice banners still rely on older TypewriterBanner flow alongside newer routed dialogue.
+
+Severity
+- overall: blocker
+
+4. Rewards / Pre-Shop / Shop
+Primary files
+- game/ui/screens/reward.py
+- game/ui/screens/shop.py
+- game/ui/screens/pack_opening.py
+- game/ui/system/modals.py
+
+Mapped issues
+- major: reward.py, shop.py, and pack_opening.py form one user-facing reward economy sequence, but each screen still owns its own interaction model, preview model, and confirmation flow.
+- major: pre-shop flow is effectively split across reward and pack_opening/shop routing rather than existing as one canonical progression layer.
+- major: shop.py contains economy logic, pool selection, sell logic, offer generation, layout, preview, and tab behavior in one screen.
+- medium: reward.py runs both card modal and choice modal logic in the screen, which is maintainable but keeps flow branching localized rather than modeled as one shared reward presentation system.
+- medium: pack_opening.py still behaves partly like a reward screen and partly like a shop-like pack selector; that ambiguity is a Patch 0 cleanup target.
+- polish: labels and category naming vary across reward/shop/pack flows: Pack Normal, Eleccion Rara, Pack Ritual, Botin / Sobres, Sobre del Velo, etc.
+
+Duplicated or old systems still active
+- reward.py and pack_opening.py both present reward selection flows
+- shop.py and pack_opening.py both own pack identity/pool logic
+- modal framework exists centrally, but each screen still custom-drives a lot of state logic
+
+Legacy UI layers / labels / transitions
+- pack alias mapping in pack_opening.py indicates older reward category naming is still being normalized at runtime
+- reward, levelup_pending, boss_reward, and direct_pack source values suggest layered old/new entry paths
+
+Severity
+- overall: major
+
+5. Codex
+Primary files
+- game/ui/screens/codex.py
+- game/visual/portrait_pipeline.py
+- game/visual/portrait_manifest.json
+
+Mapped issues
+- major: codex.py is too large and acts as a data-normalization layer, gallery renderer, and set browser all at once.
+- major: codex uses runtime name rewriting for Arconte/Hiperboria entries when data is generic. That means lore presentation still depends on screen-side repair logic.
+- major: portrait_pipeline.py still contains many placeholder fallback paths for concept/portrait/hologram resolution. Codex depends on that family of fallbacks for visual stability.
+- medium: codex section model is cleaner than older encyclopedia screens, but set/archetype/rarity filtering and dynamic hints are still screen-owned rather than modularized.
+- medium: codex remains a high-density screen where systems, lore, cards, enemies, archons, biomes, relics, and builds coexist with different display rules.
+
+Duplicated or old systems still active
+- codex runtime repairs content naming instead of relying fully on normalized data
+- portrait_pipeline placeholder fallback chain remains active behind codex/avatar usage
+
+Legacy UI layers / labels / transitions
+- codex carries explicit display-text patching for encoding/name issues
+- placeholder portrait sources are still active in portrait_manifest/pipeline
+
+Severity
+- overall: major
+
+6. Hologram Dialogue
+Primary files
+- game/ui/components/holographic_oracle.py
+- game/ui/controllers/combat_dialogue_controller.py
+- game/ui/controllers/dialogue_router.py
+- game/ui/anim.py
+
+Mapped issues
+- major: HolographicOracleUI is fairly contained, but the broader dialogue stack remains split between routed dialogue and older trigger-based banner/dialogue flows.
+- major: DialogueRouter is the real priority/cooldown arbiter; CombatDialogueController is a simpler compatibility trigger layer. This duplication should be flattened in Patch 0.
+- medium: HolographicOracleUI still owns detailed scanline/glitch styling directly instead of consuming a single hologram design system.
+- medium: combat still uses TypewriterBanner channels alongside routed dialogue and holographic overlays, which means multiple narrative voice surfaces can coexist.
+
+Duplicated or old systems still active
+- DialogueRouter
+- CombatDialogueController
+- TypewriterBanner-based voice channels
+- HolographicOracleUI
+
+Legacy UI layers / labels / transitions
+- CHAKANA / ARCONTE speaker labels and trigger uppercase chips are component-era artifacts rather than a shared dialogue token system
+- interference/glitch treatment is hardcoded per overlay
+
+Severity
+- overall: major
+
+7. Transitions
+Primary files
+- game/ui/screens/pacha_transition.py
+- game/ui/screens/scene_fusion.py
+- game/ui/system/layers.py
+
+Mapped issues
+- blocker: there are at least two active transition presentation systems for lore/reveal beats: PachaTransitionScreen and SceneFusionScreen.
+- major: both screens cover the same problem space with different visual language and different asset usage.
+- medium: transitions layer ordering is centralized in layers.py, but the transition family itself is not unified.
+- medium: pacha_transition.py is simple and stable, but reads like an older static transition card; scene_fusion.py is richer and closer to current identity.
+
+Duplicated or old systems still active
+- PachaTransitionScreen
+- SceneFusionScreen
+
+Legacy UI layers / labels / transitions
+- pacha_transition.py is a legacy transition candidate
+- scene_fusion.py is likely the canonical successor for authored transition moments
+
+Severity
+- overall: blocker
+
+8. Intro / Studio / Credits
+Primary files
+- game/ui/screens/intro.py
+- game/ui/screens/studio_intro.py
+- game/ui/screens/end.py
+- game/audio/audio_engine.py
+
+Mapped issues
+- major: intro.py and studio_intro.py overlap in onboarding role, while end.py contains both victory/defeat end state and credits presentation.
+- major: audio_engine.py still resolves credits to victory and dialogue to shop via aliases. This is a clear context-identity shortcut still active in runtime.
+- major: end.py combines defeat state, victory lore sequence, and credits scroller in one screen. That is stable enough for now, but structurally it mixes end-of-run concerns.
+- medium: studio_intro.py still contains cached/generated/fallback branding logic in a single screen instead of consuming one finalized studio presentation asset/state machine.
+- polish: intro/credits language is authored but not yet clearly unified into one production-grade funnel.
+
+Duplicated or old systems still active
+- intro.py versus studio_intro.py
+- credits context aliased to victory in audio_engine.py
+- dialogue context aliased to shop in audio_engine.py
+
+Legacy UI layers / labels / transitions
+- static intro panel in intro.py
+- credits embedded as a branch inside end.py rather than a dedicated presentation path
+- audio context aliasing indicates older placeholder routing still active
+
+Severity
+- overall: major
+
+Cross-Cutting Duplicated / Legacy Systems
+- dialogue presentation:
+  - game/ui/controllers/combat_dialogue_controller.py
+  - game/ui/controllers/dialogue_router.py
+  - game/ui/anim.py TypewriterBanner usage in combat and end
+- transition presentation:
+  - game/ui/screens/pacha_transition.py
+  - game/ui/screens/scene_fusion.py
+- intro/presentation funnel:
+  - game/ui/screens/intro.py
+  - game/ui/screens/studio_intro.py
+- visual fallback chain:
+  - game/ui/render.py AssetManager sprite() fallback
+  - game/visual/portrait_pipeline.py placeholder/master/generated cascade
+- audio context aliasing / compatibility:
+  - game/audio/audio_engine.py
+- archived legacy UI evidence:
+  - game/ui/_archive/legacy_layouts/20260309_213943/layouts/combat_layout.py
+- QA wrapper entrypoints still present as top-level tools:
+  - tools/qa_phase6_combat_hud.py
+  - tools/qa_phase3_hologram_dialogue.py
+  - tools/qa_phase2_pack_shop_integration.py
+
+Patch 0 Canonical Priorities
+1. Unify transitions
+- choose one canonical transition screen
+- retire or adapt the other as a wrapper only
+
+2. Unify combat dialogue stack
+- keep DialogueRouter as canonical trigger arbiter
+- demote CombatDialogueController to adapter or remove it
+- reduce simultaneous voice surfaces
+
+3. Split combat screen responsibilities
+- move debug/QA overlay state out of combat runtime
+- isolate action FSM, dialogue, and layout ownership
+
+4. Simplify map screen
+- separate graph render, node metadata, top navigation, and side panels
+- remove hardcoded naming inconsistencies
+
+5. Normalize reward/shop/pack flow
+- define one canonical pre-shop reward progression
+- reduce duplicated pack identity logic
+
+6. Remove placeholder routing in presentation/audio contexts
+- credits should not alias to victory
+- dialogue should not alias to shop
+- intro funnel should have one canonical branded path
+
+7. Reduce codex screen repair logic
+- move naming/data normalization upstream
+- reduce dependence on placeholder portrait fallback chain
+
+Recommended Patch 0 Screen Order
+- wave 1 blockers:
+  - map / nodes
+  - combat HUD
+  - transitions
+- wave 2 majors:
+  - rewards / pre-shop / shop
+  - codex
+  - intro / studio / credits
+  - hologram dialogue
+  - main menu

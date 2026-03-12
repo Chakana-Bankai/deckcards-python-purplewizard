@@ -1,0 +1,75 @@
+CHAKANA STUDIO - PATCH 0 VALIDATION REPORT
+Date: 2026-03-12
+Ticket: Patch 0 implementation validation
+
+Commands executed
+1. python -m py_compile game/ui/screens/combat.py game/ui/screens/map.py game/ui/screens/reward.py game/ui/screens/shop.py game/ui/screens/pack_opening.py game/ui/screens/codex.py game/ui/screens/intro.py game/ui/screens/pacha_transition.py game/ui/screens/scene_fusion.py game/ui/screens/menu.py
+- result: OK
+
+2. python -m tools.doctor
+- result: OK
+- notes: reports tracked changes in the expected UI screen files only, plus reports/patch0 outputs.
+
+3. rg -n 'CombatDialogueController|debug_shortcuts_enabled|DEBUG_UI = False|TRANSICION RITUAL|Ruta seleccionada|Estado del tramo|Lectura del Arconte|Lectura del frente|Codex Chakana|Lectura activa' game/ui -S
+- result: OK
+- notes: confirmed new Patch 0 labels and debug gating are present.
+
+4. Get-Content game/ui/screens/shop.py | Select-Object -Skip 166 -First 18
+- result: OK
+- notes: confirmed canonical source shop_pack is now used when entering pack opening from shop.
+
+5. rg -n 'IntroScreen\(|StudioIntroScreen\(|SceneFusionScreen\(' game/main.py -S
+- result: OK
+- notes: main flow still boots through StudioIntroScreen and uses SceneFusionScreen directly for authored transitions.
+
+6. git status --short game/ui/screens/combat.py game/ui/screens/map.py game/ui/screens/reward.py game/ui/screens/shop.py game/ui/screens/pack_opening.py game/ui/screens/codex.py game/ui/screens/intro.py game/ui/screens/pacha_transition.py game/ui/screens/menu.py
+- result: OK
+- notes: modified files match intended Patch 0 scope.
+
+Smoke tests
+1. Combat HUD canonicalization
+- file: game/ui/screens/combat.py
+- check: CombatDialogueController is no longer instantiated in the combat screen.
+- check: DEBUG_UI is now False.
+- check: F2/F3/F4/F6 debug overlays require dev_debug_ui.
+- outcome: PASS
+
+2. Transition unification
+- file: game/ui/screens/pacha_transition.py
+- check: PachaTransitionScreen now wraps SceneFusionScreen instead of maintaining a second custom render path.
+- outcome: PASS
+
+3. Map readability language pass
+- file: game/ui/screens/map.py
+- check: Ruta seleccionada, Estado del tramo, Lectura del Arconte, Lectura del frente are present.
+- outcome: PASS
+
+4. Shop/reward canonical source path
+- files: game/ui/screens/shop.py, game/ui/screens/pack_opening.py
+- check: shop pack handoff uses source="shop_pack".
+- check: pack opening accepts shop_pack in auto_open_forced.
+- outcome: PASS
+
+5. Codex structure pass
+- file: game/ui/screens/codex.py
+- check: left panel title Codex Chakana present.
+- check: right panel title Lectura activa present.
+- check: tutorial CTA renamed to Tutorial Guiado.
+- outcome: PASS
+
+6. Menu/intro polish
+- files: game/ui/screens/menu.py, game/ui/screens/intro.py
+- check: menu subtitle present.
+- check: intro screen compiles and uses new cleaner presentation layout.
+- outcome: PASS
+
+Residual risks
+- Map screen is still monolithic even after label/clarity cleanup; architecture split remains a next-ticket task.
+- Combat screen still owns many systems, although the redundant dialogue path and default debug exposure were reduced.
+- Codex still performs screen-side content repair and still depends on portrait fallback chains.
+- Audio context aliasing in game/audio/audio_engine.py remains unchanged in this patch to preserve runtime stability.
+
+Overall
+- Patch 0 implementation validation: PASS
+- Runtime stability preserved at compile/smoke level.
+- No art generation or soundtrack production was triggered.
