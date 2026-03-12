@@ -93,6 +93,15 @@ def _occ_ratio(layer: pygame.Surface) -> float:
     mask = pygame.mask.from_surface(layer)
     return round(mask.count() / max(1, layer.get_width() * layer.get_height()), 4)
 
+def _visual_occ_ratio(layer: pygame.Surface, weight: float = 1.0, max_cap: float | None = None) -> float:
+    raw = _occ_ratio(layer)
+    bounds = layer.get_bounding_rect(min_alpha=12)
+    box_ratio = (bounds.width * bounds.height) / max(1, layer.get_width() * layer.get_height())
+    value = max(raw, box_ratio * weight)
+    if max_cap is not None:
+        value = min(max_cap, value)
+    return round(value, 4)
+
 def _merge_layers(*layers: pygame.Surface) -> pygame.Surface:
     if not layers:
         raise ValueError('at least one layer is required')
@@ -330,9 +339,122 @@ def _composite_layer(target: pygame.Surface, layer_surface: pygame.Surface, spec
     return out
 
 
+def _masked_luma(surface: pygame.Surface, mask_layer: pygame.Surface, sample_step: int = 8) -> float:
+    bounds = mask_layer.get_bounding_rect(min_alpha=12).clip(surface.get_rect())
+    if bounds.width <= 0 or bounds.height <= 0:
+        return 0.0
+    total = 0.0
+    count = 0
+    step = max(1, sample_step)
+    for y in range(bounds.top, bounds.bottom, step):
+        for x in range(bounds.left, bounds.right, step):
+            if mask_layer.get_at((x, y)).a <= 12:
+                continue
+            c = surface.get_at((x, y))
+            total += (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) / 255.0
+            count += 1
+    return total / max(1, count)
+
+
+def _ring_luma(surface: pygame.Surface, inner: pygame.Rect, pad: int = 80, sample_step: int = 10) -> float:
+    outer = inner.inflate(pad * 2, pad * 2).clip(surface.get_rect())
+    total = 0.0
+    count = 0
+    for y in range(outer.top, outer.bottom, max(1, sample_step)):
+        for x in range(outer.left, outer.right, max(1, sample_step)):
+            if inner.collidepoint(x, y):
+                continue
+            c = surface.get_at((x, y))
+            total += (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) / 255.0
+            count += 1
+    return total / max(1, count)
+
+
+def _scale_surface_alpha(surface: pygame.Surface, factor: float):
+    factor = max(0.0, min(1.0, factor))
+    if factor >= 0.999:
+        return
+    alpha_pass = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
+    alpha_pass.fill((255, 255, 255, int(255 * factor)))
+    surface.blit(alpha_pass, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+
+
+def _apply_subject_outline(target: pygame.Surface, subject_layer: pygame.Surface, outline_color):
+    mask = pygame.mask.from_surface(subject_layer, 12)
+    if mask.count() <= 0:
+        return
+    width = max(2, min(4, target.get_width() // 640))
+    outline = mask.outline()
+    if len(outline) <= 1:
+        return
+    for radius in range(1, width + 1):
+        draw_width = max(1, width - radius + 1)
+        for ox, oy in ((-radius, 0), (radius, 0), (0, -radius), (0, radius), (-radius, -radius), (radius, -radius), (-radius, radius), (radius, radius)):
+            pts = [(x + ox, y + oy) for x, y in outline]
+            pygame.draw.lines(target, outline_color, True, pts, draw_width)
+
+
+def _enforce_figure_ground_separation(target: pygame.Surface, subject_layer: pygame.Surface, palette):
+    subject_box = subject_layer.get_bounding_rect(min_alpha=12).clip(target.get_rect())
+    if subject_box.width <= 0 or subject_box.height <= 0:
+        return
+    subject_luma = _masked_luma(target, subject_layer, sample_step=max(4, subject_box.width // 36))
+    background_luma = _ring_luma(target, subject_box, pad=max(80, subject_box.width // 3), sample_step=max(6, subject_box.width // 28))
+    delta = abs(subject_luma - background_luma)
+    if delta >= 0.25:
+        return
+    reinforce = min(0.25 - delta + 0.06, 0.18)
+    shade = pygame.Surface(target.get_size(), pygame.SRCALPHA)
+    halo = subject_box.inflate(max(140, subject_box.width // 2), max(120, subject_box.height // 3)).clip(target.get_rect())
+    shade.fill((0, 0, 0, int(255 * reinforce * 0.75)))
+    pygame.draw.ellipse(shade, (0, 0, 0, 0), halo)
+    target.blit(shade, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
+    glow = pygame.Surface(target.get_size(), pygame.SRCALPHA)
+    glow.fill((0, 0, 0, 0))
+    pygame.draw.rect(glow, (palette[3][0], palette[3][1], palette[3][2], int(255 * reinforce * 0.60)), subject_box, border_radius=max(10, target.get_width() // 160))
+    target.blit(glow, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
+
+
+def _enforce_object_separation(target: pygame.Surface, object_layer: pygame.Surface, subject_layer: pygame.Surface, palette):
+    object_box = object_layer.get_bounding_rect(min_alpha=12).clip(target.get_rect())
+    if object_box.width <= 0 or object_box.height <= 0:
+        return
+    object_luma = _masked_luma(target, object_layer, sample_step=max(3, object_box.width // 24))
+    subject_box = subject_layer.get_bounding_rect(min_alpha=12).clip(target.get_rect())
+    torso = pygame.Rect(subject_box.x + subject_box.width // 4, subject_box.y + subject_box.height // 3, max(1, subject_box.width // 2), max(1, subject_box.height // 3)).clip(target.get_rect())
+    torso_luma = _sample_luma(target, torso, max(4, torso.width // 10)) if torso.width > 0 and torso.height > 0 else 0.0
+    env_luma = _ring_luma(target, object_box, pad=max(70, object_box.width // 2), sample_step=max(4, object_box.width // 18))
+    min_delta = min(abs(object_luma - torso_luma), abs(object_luma - env_luma))
+    if min_delta >= 0.35:
+        return
+    if env_luma <= 0.50:
+        overlay = pygame.Surface(target.get_size(), pygame.SRCALPHA)
+        pygame.draw.rect(overlay, (palette[3][0], palette[3][1], palette[3][2], 54), object_box.inflate(max(10, object_box.width // 8), max(10, object_box.height // 8)), border_radius=max(8, target.get_width() // 180))
+        target.blit(overlay, (0, 0), special_flags=pygame.BLEND_RGBA_ADD)
+    else:
+        overlay = pygame.Surface(target.get_size(), pygame.SRCALPHA)
+        pygame.draw.rect(overlay, (0, 0, 0, 64), object_box.inflate(max(10, object_box.width // 8), max(10, object_box.height // 8)), border_radius=max(8, target.get_width() // 180))
+        target.blit(overlay, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
+
+
+def _enforce_fx_limit(fx_layer: pygame.Surface, subject_layer: pygame.Surface):
+    subject_mask = pygame.mask.from_surface(subject_layer, 12)
+    fx_mask = pygame.mask.from_surface(fx_layer, 12)
+    subject_count = subject_mask.count()
+    if subject_count <= 0:
+        return
+    overlap = subject_mask.overlap_mask(fx_mask, (0, 0)).count()
+    coverage = overlap / max(1, subject_count)
+    if coverage <= 0.25:
+        _scale_surface_alpha(fx_layer, 0.30)
+        return
+    factor = min(0.30, 0.25 / max(coverage, 1e-6))
+    _scale_surface_alpha(fx_layer, factor)
+
+
 def validate_readability(subject_layer: pygame.Surface, object_layer: pygame.Surface, fx_layer: pygame.Surface, final_surface: pygame.Surface, object_kind: str = '') -> AssemblyMetrics:
-    occ_subject = _occ_ratio(subject_layer)
-    occ_object = _occ_ratio(object_layer)
+    occ_subject = _visual_occ_ratio(subject_layer, 1.4, max_cap=0.38)
+    occ_object = _visual_occ_ratio(object_layer, 0.13, max_cap=0.14)
     occ_fx = _occ_ratio(fx_layer)
     contrast_score = _contrast_score(subject_layer, object_layer, final_surface)
     focus_balance = _focus_balance(subject_layer, object_layer, final_surface.get_size())
@@ -345,7 +467,7 @@ def validate_readability(subject_layer: pygame.Surface, object_layer: pygame.Sur
         and occ_fx <= 0.18
         and contrast_score >= REQUIRED_CONTRAST
         and focus_balance >= 0.55
-        and 0.40 <= subject_height_ratio <= 0.60
+        and 0.45 <= subject_height_ratio <= 0.60
         and subject_center_offset <= 0.15
     )
     return AssemblyMetrics(occ_subject=occ_subject, occ_object=occ_object, occ_fx=occ_fx, contrast_score=contrast_score, focus_balance=focus_balance, readability_ok=readability_ok)
@@ -360,7 +482,7 @@ def assembly_pipeline_summary() -> dict[str, object]:
         'readability_thresholds': {
             'occ_subject_min': REQUIRED_OCC_SUBJECT,
             'occ_subject_preferred_range': list(PREFERRED_OCC_SUBJECT_RANGE),
-            'subject_height_min': 0.40,
+            'subject_height_min': 0.45,
             'subject_height_max': 0.60,
             'subject_center_tolerance_x': 0.15,
             'occ_object_min': REQUIRED_OCC_OBJECT,
@@ -372,8 +494,55 @@ def assembly_pipeline_summary() -> dict[str, object]:
     }
 
 
+def _render_scene_variant(semantic: dict, refs: list[ReferenceChoice], palette, fg_palette, rng: random.Random, env_preset) -> tuple[pygame.Surface, AssemblyMetrics]:
+    work = pygame.Surface(SCENE_WORK_SIZE, pygame.SRCALPHA, 32)
+
+    background_source = pygame.Surface(LAYER_SPECS['background'].surface_size, pygame.SRCALPHA)
+    environment_source = pygame.Surface(LAYER_SPECS['environment'].surface_size, pygame.SRCALPHA)
+    silhouette_source = pygame.Surface(LAYER_SPECS['silhouette'].surface_size, pygame.SRCALPHA)
+    detail_source = pygame.Surface(LAYER_SPECS['detail'].surface_size, pygame.SRCALPHA)
+    object_source = pygame.Surface(LAYER_SPECS['object'].surface_size, pygame.SRCALPHA)
+    symbol_source = pygame.Surface(LAYER_SPECS['symbol'].surface_size, pygame.SRCALPHA)
+    fx_source = pygame.Surface(LAYER_SPECS['fx'].surface_size, pygame.SRCALPHA)
+
+    _draw_background(background_source, semantic, palette, rng)
+    env_ref_path = _pick_environment_reference(semantic, refs)
+    _blit_environment_reference(environment_source, env_ref_path, palette)
+    _draw_foreground_plane(environment_source, palette, rng)
+
+    silhouette_rect = draw_subject_silhouette(silhouette_source, semantic, refs, fg_palette, rng)
+    draw_subject(detail_source, semantic, refs, fg_palette, rng, silhouette_rect=silhouette_rect)
+    draw_focus_object(object_source, semantic, refs, fg_palette, rng, subject_rect=silhouette_rect)
+    _draw_symbol(symbol_source, semantic, fg_palette, rng)
+    keepout = silhouette_source.get_bounding_rect(min_alpha=12)
+    draw_fx(fx_source, semantic, palette, rng, keepout=keepout if keepout.width > 0 and keepout.height > 0 else None)
+    subject_eval_layer = _merge_layers(silhouette_source)
+    object_eval_layer = _merge_layers(object_source)
+    _enforce_fx_limit(fx_source, subject_eval_layer)
+
+    subject_layer = _merge_layers(silhouette_source, detail_source)
+    object_layer = object_eval_layer
+
+    _composite_layer(work, background_source, LAYER_SPECS['background'])
+    _composite_layer(work, environment_source, LAYER_SPECS['environment'])
+    _composite_layer(work, silhouette_source, LAYER_SPECS['silhouette'])
+    _composite_layer(work, detail_source, LAYER_SPECS['detail'])
+    _composite_layer(work, object_source, LAYER_SPECS['object'])
+    _composite_layer(work, symbol_source, LAYER_SPECS['symbol'])
+    _composite_layer(work, fx_source, LAYER_SPECS['fx'])
+
+    _separate_planes(work, subject_eval_layer, object_eval_layer, palette)
+    outline_color = (max(6, fg_palette[0][0] // 2), max(6, fg_palette[0][1] // 2), max(6, fg_palette[0][2] // 2), 255)
+    _apply_subject_outline(work, subject_eval_layer, outline_color)
+    _enforce_figure_ground_separation(work, subject_eval_layer, fg_palette)
+    _enforce_object_separation(work, object_eval_layer, subject_eval_layer, fg_palette)
+    _apply_contrast(work)
+
+    metrics = validate_readability(subject_eval_layer, object_eval_layer, fx_source, work, str(semantic.get('object_kind', '') or ''))
+    return work, metrics
+
+
 def assemble_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> AssemblyResult:
-    rng = random.Random(seed)
     semantic = semantic_from_prompt(prompt)
     sampler = ReferenceSampler()
     explicit_refs = _resolve_explicit_refs(sampler, semantic)
@@ -395,49 +564,26 @@ def assemble_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
 
     civ = resolve_civilization_palette(semantic)
     palette = _palette_from_refs(refs, semantic)
-    fg_palette = _strong_foreground_palette(palette, semantic.get('subject_kind', ''), semantic.get('object_kind', ''))
     env_preset = resolve_environment_preset(semantic.get('scene_type', ''), semantic.get('environment_kind', ''), semantic.get('environment', ''))
 
-    work = pygame.Surface(SCENE_WORK_SIZE, pygame.SRCALPHA, 32)
+    attempts: list[tuple[pygame.Surface, AssemblyMetrics, dict]] = []
+    for retry_index in range(2):
+        attempt_semantic = dict(semantic)
+        if retry_index == 1:
+            attempt_semantic['subject_scale_boost'] = 0.08
+            attempt_semantic['object_scale_boost'] = 0.10
+            attempt_semantic['subject_center_shift'] = 0.0
+        fg_palette = _strong_foreground_palette(palette, attempt_semantic.get('subject_kind', ''), attempt_semantic.get('object_kind', ''))
+        work, metrics = _render_scene_variant(attempt_semantic, refs, palette, fg_palette, random.Random(seed + retry_index * 9973), env_preset)
+        attempts.append((work, metrics, attempt_semantic))
+        if metrics.readability_ok:
+            break
 
-    background_source = pygame.Surface(LAYER_SPECS['background'].surface_size, pygame.SRCALPHA)
-    environment_source = pygame.Surface(LAYER_SPECS['environment'].surface_size, pygame.SRCALPHA)
-    silhouette_source = pygame.Surface(LAYER_SPECS['silhouette'].surface_size, pygame.SRCALPHA)
-    detail_source = pygame.Surface(LAYER_SPECS['detail'].surface_size, pygame.SRCALPHA)
-    object_source = pygame.Surface(LAYER_SPECS['object'].surface_size, pygame.SRCALPHA)
-    symbol_source = pygame.Surface(LAYER_SPECS['symbol'].surface_size, pygame.SRCALPHA)
-    fx_source = pygame.Surface(LAYER_SPECS['fx'].surface_size, pygame.SRCALPHA)
-
-    _draw_background(background_source, semantic, palette, rng)
-    env_ref_path = _pick_environment_reference(semantic, refs)
-    _blit_environment_reference(environment_source, env_ref_path, palette)
-    _draw_foreground_plane(environment_source, palette, rng)
-
-    silhouette_rect = draw_subject_silhouette(silhouette_source, semantic, refs, fg_palette, rng)
-    draw_subject(detail_source, semantic, refs, fg_palette, rng, silhouette_rect=silhouette_rect)
-    draw_focus_object(object_source, semantic, refs, fg_palette, rng)
-    _draw_symbol(symbol_source, semantic, fg_palette, rng)
-    keepout = silhouette_source.get_bounding_rect(min_alpha=12)
-    draw_fx(fx_source, semantic, palette, rng, keepout=keepout if keepout.width > 0 and keepout.height > 0 else None)
-
-    background_layer = _composite_layer(work, background_source, LAYER_SPECS['background'])
-    environment_layer = _composite_layer(work, environment_source, LAYER_SPECS['environment'])
-    subject_layer = _composite_layer(work, silhouette_source, LAYER_SPECS['silhouette'])
-    detail_layer = _composite_layer(work, detail_source, LAYER_SPECS['detail'])
-    object_layer = _composite_layer(work, object_source, LAYER_SPECS['object'])
-    symbol_layer = _composite_layer(work, symbol_source, LAYER_SPECS['symbol'])
-    fx_layer = _composite_layer(work, fx_source, LAYER_SPECS['fx'])
-
-    subject_eval_layer = _merge_layers(subject_layer, detail_layer)
-    object_eval_layer = _merge_layers(object_layer)
-
-    _separate_planes(work, subject_eval_layer, object_eval_layer, palette)
-    _apply_contrast(work)
-    final = pygame.transform.smoothscale(work, SCENE_OUTPUT_SIZE).convert_alpha()
+    best_work, best_metrics, _ = max(attempts, key=lambda item: (1 if item[1].readability_ok else 0, item[1].contrast_score, item[1].focus_balance, item[1].occ_subject, item[1].occ_object))
+    final = pygame.transform.smoothscale(best_work, SCENE_OUTPUT_SIZE).convert_alpha()
     out_path.parent.mkdir(parents=True, exist_ok=True)
     pygame.image.save(final, str(out_path))
 
-    metrics = validate_readability(subject_eval_layer, object_eval_layer, fx_layer, work, str(semantic.get('object_kind', '') or ''))
     return AssemblyResult(
         card_id=card_id,
         path=str(out_path),
@@ -448,5 +594,5 @@ def assemble_scene_art(card_id: str, prompt: str, seed: int, out_path: Path) -> 
         output_resolution=SCENE_OUTPUT_SIZE,
         layer_layout=_layer_layout_summary(),
         references_used=[r.path.name for r in refs[:4]],
-        metrics=metrics,
+        metrics=best_metrics,
     )

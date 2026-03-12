@@ -33,6 +33,9 @@ SECONDARY_OBJECT_PRESETS: dict[str, SecondaryObjectPreset] = {
 
 OBJECT_KIND_TO_PRESET_ID: dict[str, str] = {
     "weapon": "sword",
+    "spear": "spear",
+    "staff": "ritual_staff",
+    "ritual_staff": "ritual_staff",
     "greatsword": "greatsword",
     "solar_axe": "solar_axe",
     "codex": "codex",
@@ -41,6 +44,7 @@ OBJECT_KIND_TO_PRESET_ID: dict[str, str] = {
     "seal_tablet": "seal_tablet",
     "crown": "crown",
     "shield": "shield",
+    "orb": "orb",
     "orb_focus": "orb",
 }
 
