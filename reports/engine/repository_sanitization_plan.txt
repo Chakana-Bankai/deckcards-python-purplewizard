@@ -1,0 +1,273 @@
+CHAKANA ENGINE CONSOLIDATION AND BETA FOUNDATION PASS
+PHASE 3 — REPOSITORY SANITIZATION PLAN
+
+summary
+- The repository already contains most of the target structure, but responsibilities are split between runtime folders, authoring/spec folders, tooling wrappers, reports, and historical execution passes.
+- The sanitization strategy should be non-destructive and staged.
+- The correct approach is to clarify ownership first, then merge overlapping locations, then archive historical surfaces.
+- No risky mass moves are recommended yet for runtime-critical folders.
+
+target_structure
+- `game/`
+- `art/`
+- `data/`
+- `tools/`
+- `assets/`
+- `docs/`
+- `archive/`
+
+current_state_overview
+- `game/` = runtime source of truth
+- `data/` = authoring specs, manifests, identity locks, schemas, balance targets
+- `assets/` = authoring/reference/staging/archive asset domain
+- `game/assets/` = runtime assets used by the game
+- `tools/` = operational scripts, master CLI, QA wrappers, maintenance passes
+- `docs/` = design, canon, engine, archive, lore, architecture
+- `backups/` = one-off backup storage
+- `reports/` = execution outputs and validation artifacts
+- `engine/` = future extraction / infrastructural engine boundary, not runtime source of truth today
+- `qa/` = non-canonical / effectively empty surface
+
+canonical_ownership_plan
+
+[game]
+keep as runtime core
+- retain as the canonical runtime source
+- keep combat, cards, lore, services, UI, runtime content loading, and runtime support systems here
+
+subfolders expected to remain active in beta:
+- `game/combat`
+- `game/cards`
+- `game/lore`
+- `game/services`
+- `game/ui`
+- `game/render`
+- `game/systems`
+- `game/content`
+- `game/data`
+- `game/assets`
+- `game/audio`
+- `game/relics`
+- `game/enemies`
+- `game/events`
+
+subfolders to review later for consolidation:
+- `game/chakana_world`
+- `game/map`
+- `game/narrative`
+- `game/telemetry`
+- `game/visual`
+
+special warnings:
+- `game/.venv` should not remain inside canonical runtime structure
+- `game/__pycache__` and nested cache folders should be treated as non-source noise
+
+[art]
+target role
+- top-level home for non-runtime art systems, art specs, references, staging, and production-side visual generation logic
+
+current reality
+- art code currently lives mostly in `game/art`
+- authoring/reference visual material currently lives under root `assets/`
+
+sanitization plan
+- do not move `game/art` yet
+- define `game/art` as active runtime/procedural art implementation for now
+- plan a later extraction path where:
+  - runtime-integrated art code stays callable from `game/`
+  - reusable art engine modules can be mirrored or promoted under future top-level `art/`
+
+immediate action
+- none in this phase
+- document `game/art` as canonical until a safe extraction phase exists
+
+[data]
+target role
+- top-level authoring/specification/source data domain
+
+current split
+- root `data/` = art/audio identity, schemas, manifests, variation rules, balance targets
+- `game/data/` = runtime payloads used by the game
+
+sanitization plan
+- keep both for now, but formalize ownership:
+  - `data/` = source design/spec/config domain
+  - `game/data/` = compiled/runtime-consumable domain
+
+later merge rule
+- anything consumed directly by runtime should end under `game/data/`
+- anything acting as authoring input, schema, identity lock, or spec should end under `data/`
+
+[tools]
+target role
+- canonical operational tooling and CLI surface
+
+current split
+- `tools/chakana_studio.py` = master CLI
+- `tools/lib/*` = canonical tool implementations
+- `tools/assets/*` = specialized asset tooling
+- `tools/qa/*` = QA wrappers and beta checks
+- root `tools/*.py` = mixed wrappers, builders, historical commands
+- `tools/maintenance/*` = historical consolidation/professionalization passes
+- `tools/archive/*` = partial archival location already exists
+
+sanitization plan
+- keep `tools/chakana_studio.py` as master CLI
+- keep `tools/lib/*` as canonical implementation layer
+- keep `tools/assets/*` and `tools/qa/*` as canonical subdomains
+- later fold duplicate root scripts into CLI-compatible wrappers only
+- move obsolete execution passes from `tools/maintenance/*` toward top-level `archive/`
+
+[assets]
+target role
+- top-level source/reference/staging asset domain
+
+current split
+- root `assets/` = reference assets, templates, production/staging, archive materials
+- `game/assets/` = runtime assets actually consumed by the game
+
+sanitization plan
+- preserve split intentionally
+- formalize:
+  - `assets/` = source/reference/production-side assets
+  - `game/assets/` = runtime delivery assets
+
+later cleanups
+- consolidate naming around:
+  - `assets/art_reference`
+  - `assets/art_templates`
+  - `assets/production`
+  - `assets/staging`
+  - `assets/_archive`
+
+[docs]
+target role
+- canonical documentation domain
+
+current state
+- already close to target
+- contains `architecture`, `archive`, `canon`, `design`, `engine`, `lore`, `systems`
+
+sanitization plan
+- keep as-is for now
+- later clarify documentation tiers:
+  - `docs/engine` = active engine definition
+  - `docs/design` = gameplay/design authority
+  - `docs/lore` = lore documentation
+  - `docs/archive` = historical notes and superseded reports
+
+[archive]
+target role
+- single top-level home for deprecated, historical, superseded, and legacy but preserved material
+
+current state
+- does not exist yet as a root directory
+- archival material is currently scattered across:
+  - `backups/`
+  - `docs/archive/`
+  - `tools/archive/`
+  - `game/assets/sprites/cards/_archive_passes/`
+  - historical phase scripts in `tools/maintenance/` and `tools/qa_phase*.py`
+
+sanitization plan
+- create a real root `archive/` in a later safe phase
+- move only clearly historical or already superseded materials there
+- do not move active reports or active docs into archive automatically
+
+proposed_mapping
+
+keep in place now
+- `game/*` runtime modules
+- `game/data/*` runtime payloads
+- `game/assets/*` runtime assets
+- `tools/chakana_studio.py`
+- `tools/lib/*`
+- `tools/assets/*`
+- `tools/qa/*`
+- `docs/*`
+- `data/*`
+- `assets/*`
+
+merge/clarify later
+- root `tools/*.py` wrappers -> `tools/chakana_studio.py` command surface
+- duplicate validator wrappers -> `tools/qa/` or `tools/lib/`
+- duplicate audio/art operational wrappers -> `tools/assets/`
+- balance/report helpers -> canonical CLI commands over `tools/lib/`
+
+move to archive later
+- `tools/maintenance/*`
+- `tools/qa_phase*.py`
+- exploratory art scene generators
+- historical backup snapshots in `backups/`
+- isolated archived asset pass outputs
+
+drop or remove from canonical structure later
+- top-level `qa/`
+- `game/.venv`
+- scattered cache folders and pycache folders from source tree
+
+risk_assessment
+
+low-risk future moves
+- archive root creation
+- moving historical phase reports/scripts into archive
+- consolidating wrapper scripts behind master CLI
+- removing top-level `qa/` once confirmed unused
+
+medium-risk future moves
+- reorganizing root `tools/*.py` into cleaner subfolders
+- consolidating authoring/spec docs and references
+- normalizing report folders
+
+high-risk moves to avoid in sanitization-first pass
+- moving `game/art` out of runtime without adapter layer
+- moving `game/data` payloads into root `data/`
+- moving `game/assets` runtime assets into root `assets/`
+- merging root `engine/` with `game/` prematurely
+- restructuring runtime screen/service imports without an import compatibility plan
+
+recommended_execution_order_for_future_phase
+1. declare folder ownerships in READMEs
+2. create top-level `archive/`
+3. archive clearly historical scripts and backup snapshots
+4. consolidate wrapper scripts into the master CLI
+5. isolate or remove `game/.venv` from canonical source tree
+6. only then consider deeper extraction or folder moves
+
+phase_output_format
+- summary: completed
+- files inspected: completed
+- files modified: this report only
+- warnings: included below
+- status: PASS WITH WARNING
+- recommended next phase: Phase 4 — Tool and Engine Fusion
+
+files_inspected
+- root folder layout
+- `game/` subfolder layout
+- `data/` subfolder layout
+- `tools/` subfolder layout
+- `docs/` subfolder layout
+- `assets/` subfolder layout
+- `game/assets/` subfolder layout
+- `game/data/` subfolder layout
+- `engine/` subfolder layout
+- `tools/archive/`
+- `backups/`
+- `build/`
+- `reports/`
+
+files_modified
+- `reports/engine/repository_sanitization_plan.txt`
+
+warnings
+- WARNING: runtime and authoring domains are split intentionally, but not documented clearly enough yet.
+- WARNING: `engine/` and `game/` should not be merged casually; one is future-facing, one is current runtime.
+- WARNING: `backups/`, `docs/archive/`, `tools/archive/`, and `_archive_passes` indicate archival intent but remain structurally fragmented.
+- WARNING: `game/.venv` inside the source tree is a structural contaminant and should not survive into the consolidated foundation.
+
+status
+- PASS WITH WARNING
+
+recommended_next_phase
+- Phase 4 — Tool and Engine Fusion

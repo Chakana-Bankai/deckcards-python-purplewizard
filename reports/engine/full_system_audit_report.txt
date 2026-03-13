@@ -1,0 +1,188 @@
+CHAKANA ENGINE CONSOLIDATION AND BETA FOUNDATION PASS
+PHASE 1 — FULL SYSTEM AUDIT
+
+summary
+- Runtime beta foundation is already centered around combat, cards, lore, UI screens, and content services under `game/`.
+- A canonical terminal entrypoint already exists in `tools/chakana_studio.py`, but many legacy root scripts and phased QA scripts still overlap with `tools/lib/` and `tools/qa/`.
+- Art/audio/QA tooling is extensive and useful, but currently fragmented across canonical pipeline modules, wrappers, and historical execution passes.
+- Repository contains clear consolidation opportunities without blind deletion.
+
+systems_audited
+
+[combat]
+- CORE: `game/combat/actions.py`, `game/combat/card.py`, `game/combat/combat_engine.py`, `game/combat/combat_state.py`, `game/combat/effects.py`, `game/combat/enemy.py`, `game/combat/intents.py`, `game/combat/play_validation.py`, `game/combat/statuses.py`
+  reason: primary runtime domain for beta and clear canonical engine layer.
+- CORE: `game/services/combat_content_validator.py`, `game/services/content_lock_validator.py`
+  reason: canonical validation path for combat/card/lore coherence.
+- CORE: `game/systems/enemy_deck_system.py`, `game/systems/gameplay_rules.py`
+  reason: directly supports combat runs and encounter behavior.
+- MERGE: `tools/check_combat_content_lock.py`, `tools/qa/check_combat_content_lock.py`
+  reason: duplicate entrypoints over same validation concern; keep behavior, unify under master CLI.
+- MERGE: `tools/check_stack.py`, `tools/stack_validation_phase7.py`
+  reason: combat validation helpers with overlapping scope.
+
+[cards]
+- CORE: `game/cards/card_canon_registry.py`
+  reason: canonical runtime card catalog and codex/combat payload bridge.
+- MERGE: `game/cards/card_dna_registry.py`
+  reason: useful metadata layer but secondary to canonical runtime card catalog.
+- CORE: `game/data/cards.json`, `game/data/cards_hiperboria.json`, `game/data/cards_arconte.json`
+  reason: active card content for beta.
+- CORE: `game/services/card_coherence.py`, `game/services/deck_integrity.py`
+  reason: direct support for playable card/deck correctness.
+- CORE: `tools/rebuild_card_sets.py`
+  reason: active source-of-truth generator for current card pool.
+- MERGE: `tools/build_card_canonization.py`, `tools/build_card_dna_catalog.py`, `tools/rebuild_card_manifest.py`
+  reason: useful maintenance/build helpers but overlapping around catalog/build outputs.
+- MERGE: `tools/check_card_coherence.py`, `tools/qa/check_card_coherence.py`
+  reason: duplicate validation wrappers.
+
+[lore]
+- CORE: `game/lore/lore_engine.py`
+  reason: canonical lore/dialogue loader for combat and map narration.
+- CORE: `game/core/lore_service.py`
+  reason: runtime lore loading bridge referenced by `game/main.py`.
+- CORE: `game/data/lore/*`, `game/data/codex*.json`
+  reason: active beta lore and codex payloads.
+- MERGE: `docs/design/*lore*`, `game/data/design/lore_bible.txt`
+  reason: useful source material but not runtime canonical.
+- WARNING: no dedicated standalone lore validator surfaced as first-class CLI command yet.
+
+[map]
+- CORE: `game/ui/screens/map.py`, `game/systems/meta_director.py`, `game/systems/event_system.py`
+  reason: map flow exists as runtime support for runs.
+- MERGE: `game/chakana_world/README.md`, `game/map/README.md`
+  reason: structure placeholders for future extraction, not active implementation.
+- WARNING: map domain is runtime-relevant but code is distributed across UI + systems instead of a clearly consolidated map module.
+
+[shop]
+- CORE: `game/ui/screens/shop.py`, `game/systems/reward_system.py`, `game/relics/*`
+  reason: secondary beta support system tied to rewards/progression.
+- MERGE: phase QA scripts touching pack/shop integration.
+  reason: useful coverage, but not canonical runtime layer.
+
+[codex]
+- CORE: `game/ui/screens/codex.py`, `game/data/codex*.json`
+  reason: direct beta support for card/lore visibility.
+- MERGE: `game/cards/card_canon_registry.py` codex payload functions
+  reason: should remain but eventually clarified as canonical codex data provider.
+
+[art]
+- CORE: `game/art/assembly_pipeline.py`, `game/art/character_compositor.py`, `game/art/scene_engine.py`, `game/art/gen_card_art_advanced.py`, `game/content/card_art_generator.py`
+  reason: canonical current card-art generation stack.
+- CORE: `game/ui/components/card_renderer.py`, `game/render/frame_renderer.py`
+  reason: canonical in-game art representation path.
+- MERGE: `game/art/gen_card_art32.py`, `game/art/geometric_ritual_engine.py`
+  reason: still useful as fallback/compatibility layers, but no longer the preferred beta-facing generator.
+- MERGE: `tools/assets/regenerate_premium_card_batch.py`, `tools/assets/preview_scene_layers.py`, `tools/assets/run_art_quality_validation.py`, `tools/assets/test_layered_scene_pipeline.py`
+  reason: strong support tooling around canonical art stack.
+- ARCHIVE: `game/art/scene_test_generator_*.py`
+  reason: historical exploration variants; not canonical runtime or canonical batch tooling.
+- ARCHIVE: `game/assets/sprites/cards/_archive_passes/*`
+  reason: already archival by nature; preserve outside active beta flow.
+
+[audio]
+- CORE: `game/services/audio_pipeline.py`, `game/audio/generated/*`, `game/assets/curated/audio/*`
+  reason: contextual audio is secondary beta support and already integrated.
+- CORE: `tools/assets/build_curated_context_audio.py`
+  reason: direct useful generation path for contextual audio.
+- MERGE: `tools/regen_assets.py`, `tools/assets/regenerate_audio_outside_runtime.py`, `tools/assets/activate_minimal_curated_audio_library.py`
+  reason: overlapping operational helpers around generated/curated audio.
+
+[qa]
+- CORE: `game/qa/content_validator.py`, `game/services/content_lock_validator.py`
+  reason: canonical content/beta safety checks.
+- CORE: `tools/qa/check_beta_run_flow.py`
+  reason: directly aligned with beta-readiness.
+- MERGE: `tools/lib/qa_smoke.py`, `tools/lib/balance_simulator.py`, `tools/lib/balance_qa_1000.py`, `tools/lib/archetype_run_balance.py`
+  reason: useful beta support but should be surfaced through one canonical QA interface.
+- ARCHIVE: phased root QA scripts in `tools/qa_phase*.py` and mirrored `tools/qa/qa_phase*.py`
+  reason: valuable history, but too phase-specific and overlapping for canonical beta operations.
+- DROP: top-level `qa/` directory
+  reason: currently empty/non-operational and adds conceptual noise.
+
+[cli]
+- CORE: `tools/chakana_studio.py`
+  reason: existing master CLI and strongest consolidation anchor.
+- CORE: `tools/lib/*`
+  reason: operational command implementations behind the master CLI.
+- MERGE: root `tools/*.py` wrappers that duplicate `tools/lib/*` or `tools/qa/*`
+  reason: preserve behavior now, plan later fold/archive.
+- ARCHIVE: `tools/maintenance/*`
+  reason: high-value historical/consolidation passes, but not canonical beta CLI surface.
+
+[generators]
+- CORE: card set generator `tools/rebuild_card_sets.py`
+- CORE: art generator path `game/content/card_art_generator.py` -> `game/art/gen_card_art_advanced.py` -> `game/art/assembly_pipeline.py`
+- CORE: curated audio generator `tools/assets/build_curated_context_audio.py`
+- MERGE: `tools/build_card_canonization.py`, `tools/build_card_dna_catalog.py`, `game/art/full_art_regeneration.py`
+- ARCHIVE: one-off experimental scene generator variants under `game/art/scene_test_generator_*`
+
+[validators]
+- CORE: `game/qa/content_validator.py`
+- CORE: `game/services/card_coherence.py`
+- CORE: `game/services/combat_content_validator.py`
+- CORE: `game/services/content_lock_validator.py`
+- MERGE: wrapper validators in `tools/` and `tools/qa/`
+
+[simulations]
+- CORE: `tools/qa/check_beta_run_flow.py`
+- MERGE: `tools/lib/balance_simulator.py`, `tools/lib/balance_qa_1000.py`, `tools/lib/archetype_run_balance.py`
+- ARCHIVE: scattered phase-specific QA pass scripts once canonical beta checks absorb them
+
+cross_cutting_findings
+- `tools/chakana_studio.py` is the best existing canonical CLI anchor.
+- Runtime canonical center of gravity is `game/main.py` + `game/combat/*` + `game/cards/*` + `game/lore/*` + `game/services/*`.
+- The repo already follows the future beta priorities conceptually, but the tooling surface is noisier than the runtime.
+- `game/.venv/` exists inside the runtime tree and pollutes discovery/audit scans; this should not remain part of canonical engine layout.
+- `game/map/` and `game/chakana_world/` are structurally underdefined compared with combat/cards/lore.
+
+files_inspected
+- `game/main.py`
+- `game/combat/actions.py`
+- `game/combat/combat_engine.py`
+- `game/combat/combat_state.py`
+- `game/cards/card_canon_registry.py`
+- `game/lore/lore_engine.py`
+- `game/ui/screens/codex.py`
+- `game/ui/screens/combat.py`
+- `game/ui/screens/map.py`
+- `game/ui/screens/shop.py`
+- `game/services/card_coherence.py`
+- `game/services/combat_content_validator.py`
+- `game/services/content_lock_validator.py`
+- `game/services/content_service.py`
+- `game/content/card_art_generator.py`
+- `game/art/assembly_pipeline.py`
+- `game/art/gen_card_art_advanced.py`
+- `game/art/character_compositor.py`
+- `game/render/frame_renderer.py`
+- `game/ui/components/card_renderer.py`
+- `tools/chakana_studio.py`
+- `tools/README.md`
+- `tools/lib/*`
+- `tools/assets/*`
+- `tools/qa/*`
+- `tools/maintenance/*`
+- `data/art_identity/art_style_lock.json`
+- `game/data/cards*.json`
+- `game/data/codex*.json`
+- `game/data/lore/*`
+- `docs/art_identity.md`
+- `docs/card_render_pipeline.md`
+
+files_modified
+- `reports/engine/full_system_audit_report.txt`
+
+warnings
+- WARNING: QA and validator wrappers are duplicated between `tools/` and `tools/qa/`.
+- WARNING: many phase-specific scripts are still present and will confuse future contributors unless clearly archived.
+- WARNING: top-level `qa/` directory appears non-canonical and should not survive into the future foundation.
+- WARNING: `game/.venv/` inside the project tree is a structural contaminant for audits and extraction work.
+- WARNING: map/shop support exists, but only combat/cards/lore show a clearly canonical engine shape today.
+
+status
+- PASS WITH WARNING
+
+recommended_next_phase
+- Phase 2 — Canonical Core Definition

@@ -1,18 +1,17 @@
 {
-  "gold": 129,
+  "gold": 109,
   "relics": [
-    "violet_seal"
+    "violet_seal",
+    "chakana_thread"
   ],
   "relic_slots_max": 8,
   "player": {
     "hp": 62,
     "max_hp": 62,
-    "block": 8,
-    "energy": 0,
+    "block": 0,
+    "energy": 4,
     "rupture": 0,
-    "statuses": {
-      "discount_next_attack": 1
-    },
+    "statuses": {},
     "harmony_current": 0,
     "harmony_max": 10,
     "harmony_ready_threshold": 6,
@@ -46,7 +45,11 @@
     "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
     "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
     "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
-    "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA"
+    "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
+    "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
+    "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
+    "BASE-SOLAR-ATTACK-PULSO_COSMICO",
+    "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA"
   ],
   "map": [
     [
@@ -89,7 +92,7 @@
           "2_1",
           "2_0"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "1_2",
@@ -102,7 +105,7 @@
           "2_2",
           "2_3"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "1_3",
@@ -156,7 +159,7 @@
           "3_2",
           "3_3"
         ],
-        "state": "locked"
+        "state": "available"
       },
       {
         "id": "2_3",
@@ -169,7 +172,7 @@
           "3_3",
           "3_2"
         ],
-        "state": "locked"
+        "state": "available"
       }
     ],
     [
@@ -272,7 +275,7 @@
   ],
   "biome_index": 0,
   "biome": "ukhu",
-  "xp": 7,
+  "xp": 13,
   "level": 2,
   "combats_won": 1,
   "tutorial_combats_won": 1,
@@ -295,14 +298,18 @@
   },
   "meta_director": {
     "recent_enemy_ids": [
-      "sabueso_sombrio"
+      "sabueso_sombrio",
+      "acaro_de_tinta",
+      "larva_del_vacio"
     ],
     "recent_event_ids": [
-      "chakana_crossroads"
+      "chakana_crossroads",
+      "apacheta_offer"
     ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
-      "hiperborea_pack"
+      "hiperborea_pack",
+      "base_pack"
     ],
     "visual_direction_tags": [
       "biome:ukhu",
@@ -316,9 +323,9 @@
   },
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
-  "last_node_type": "combat",
+  "last_node_type": "challenge",
   "levelup_pending": 1,
-  "current_node_id": "1_0",
+  "current_node_id": "1_2",
   "last_biome_seen": "ukhu",
-  "saved_at": 1773367455
+  "saved_at": 1773406812
 }

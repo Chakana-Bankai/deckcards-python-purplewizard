@@ -1,10 +1,13 @@
 chakana_studio qa smoke
-generated=2026-03-11 13:01:10
+generated=2026-03-13 10:00:13
 
 mode=qa_smoke
-dry_run=True
+dry_run=False
 
-- cmd=['C:\\Python314\\python.exe', '-m', 'tools.doctor'] rc=0 last=[doctor] done
-- cmd=['C:\\Python314\\python.exe', '-m', 'tools.qa.check_beta_run_flow'] rc=0 last=}
+- check=doctor cmd=['C:\\Python314\\python.exe', '-m', 'tools.doctor'] rc=0 status=PASS last= done
+- check=card-coherence cmd=['C:\\Python314\\python.exe', '-m', 'tools.qa.check_card_coherence'] rc=0 status=PASS last=[card_coherence] checked=60 errors=0 warnings=0
+- check=combat-content-lock cmd=['C:\\Python314\\python.exe', '-m', 'tools.qa.check_combat_content_lock'] rc=0 status=PASS last=[combat_content_lock] status=OK cards=60 relics=12 issues=0 warnings=0
+- check=deck-system cmd=['C:\\Python314\\python.exe', '-m', 'tools.qa.check_deck_system'] rc=0 status=PASS last=[deck_audit] result=ongoing turns=9 draw=7 hand=9 discard=8 exhaust=0 total=24 expected=24 issues=0
+- check=beta-run-flow cmd=['C:\\Python314\\python.exe', '-m', 'tools.qa.check_beta_run_flow'] rc=0 status=PASS last=}
 
 overall=PASS

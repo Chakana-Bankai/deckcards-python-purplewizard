@@ -1,0 +1,168 @@
+CHAKANA ENGINE CONSOLIDATION AND BETA FOUNDATION PASS
+PHASE 4 — TOOL AND ENGINE FUSION
+
+summary
+- The repository contains many overlapping tool surfaces, but the safest immediate fusion target is not the runtime engine itself.
+- The best consolidation strategy at this phase is to fuse duplicated operational surfaces behind canonical implementations while preserving compatibility wrappers.
+- A concrete fusion was applied to canonical QA smoke execution so beta validation now runs against a unified core validation suite instead of a minimal ad hoc pair of checks.
+
+fusion_scope
+- art generators
+- card validators
+- lore validators
+- combat tests
+- QA tools
+- simulations
+- audio generators
+
+applied_fusions
+
+[qa tools]
+- FUSED: canonical smoke validation now routes through a single reusable suite in `tools/lib/core_validation.py`
+  fused sources:
+  - doctor
+  - card coherence
+  - combat content lock
+  - deck system audit
+  - beta run flow
+  result:
+  - `tools/lib/qa_smoke.py` now uses one canonical suite instead of hardcoding only two spot checks
+  benefit:
+  - stronger beta-oriented smoke validation
+  - reusable internal foundation for future master CLI commands
+  files:
+  - `tools/lib/core_validation.py`
+  - `tools/lib/qa_smoke.py`
+
+already_fused_or_pre-fused surfaces
+
+[card validators]
+- root wrappers already delegate to canonical implementations:
+  - `tools/check_card_coherence.py` -> `tools/qa/check_card_coherence.py`
+  - `tools/check_combat_content_lock.py` -> `tools/qa/check_combat_content_lock.py`
+  - `tools/check_deck_system.py` -> `tools/qa/check_deck_system.py`
+  decision:
+  - treat `tools/qa/*` as canonical implementation surface
+  - keep root wrappers for compatibility until archive phase
+
+[qa phases]
+- partially fused but structurally inconsistent:
+  - `tools/qa_phase1_gameplay_blockers.py` is a root wrapper into `tools/qa/qa_phase1_gameplay_blockers.py`
+  - `tools/qa/qa_phase9_supervision.py` is the inverse wrapper back into root `tools/qa_phase9_supervision.py`
+  decision:
+  - canonicalize future implementation location under `tools/qa/`
+  - keep current wrappers for compatibility
+  - defer physical inversion to avoid risky churn before CLI consolidation
+
+[art generators]
+- canonical generation path identified:
+  - `game/content/card_art_generator.py`
+  - `game/art/gen_card_art_advanced.py`
+  - `game/art/assembly_pipeline.py`
+- supporting tool surface identified:
+  - `tools/assets/regenerate_premium_card_batch.py`
+  - `tools/assets/preview_scene_layers.py`
+  - `tools/assets/run_art_quality_validation.py`
+  - `tools/assets/test_layered_scene_pipeline.py`
+- fallback/legacy retained:
+  - `game/art/gen_card_art32.py`
+  - `game/art/geometric_ritual_engine.py`
+  decision:
+  - no risky code move yet
+  - canonical engine path is clear enough for Phase 5 CLI exposure
+
+[audio generators]
+- canonical generation path identified:
+  - contextual audio build: `tools/assets/build_curated_context_audio.py`
+  - runtime/outside-runtime audio refresh: `tools/assets/regenerate_audio_outside_runtime.py`
+  - operational audit surface: `tools/lib/audio_pipeline.py`
+- overlap still present:
+  - `tools/regen_assets.py` also touches audio manifests/output
+  decision:
+  - do not collapse yet in Phase 4
+  - expose canonical audio commands through master CLI in Phase 5
+
+[simulations and balance]
+- overlapping but useful simulation surfaces found:
+  - `tools/lib/balance_simulator.py`
+  - `tools/lib/balance_qa_1000.py`
+  - `tools/lib/archetype_run_balance.py`
+  - `tools/qa_phase9_supervision.py`
+- decision:
+  - keep all active for now
+  - canonical simulation family should eventually hang off one CLI namespace
+  - no archive move yet because beta balancing still benefits from all of them
+
+deferred_fusions
+
+[lore validators]
+- no first-class standalone lore validator currently surfaced as a canonical tool
+- action deferred:
+  - define lore validation surface during CLI consolidation rather than inventing a parallel script here
+
+[historical phase scripts]
+- phase scripts remain numerous and overlapping
+- not fused now because:
+  - they are useful for historical traceability
+  - Phase 5 should decide what survives on the CLI
+  - later archive move should happen deliberately, not blind
+
+canonical_tooling_after_phase_4
+- master CLI anchor:
+  - `tools/chakana_studio.py`
+- canonical implementation layer:
+  - `tools/lib/*`
+- canonical QA implementation layer:
+  - `tools/qa/*`
+- canonical art operational layer:
+  - `tools/assets/*`
+- compatibility wrappers:
+  - selected root `tools/*.py`
+
+archive_candidates_after_fusion
+- `tools/maintenance/*`
+- root phase scripts once CLI consolidation covers their surviving functions
+- inverse-wrapper inconsistencies like `tools/qa/qa_phase9_supervision.py` after canonical implementation location is normalized
+
+files_inspected
+- `tools/chakana_studio.py`
+- `tools/lib/art_pipeline.py`
+- `tools/lib/audio_pipeline.py`
+- `tools/lib/qa_smoke.py`
+- `tools/lib/balance_simulator.py`
+- `tools/lib/reports_build.py`
+- `tools/check_card_coherence.py`
+- `tools/qa/check_card_coherence.py`
+- `tools/check_combat_content_lock.py`
+- `tools/qa/check_combat_content_lock.py`
+- `tools/check_deck_system.py`
+- `tools/qa/check_deck_system.py`
+- `tools/qa_phase1_gameplay_blockers.py`
+- `tools/qa/qa_phase1_gameplay_blockers.py`
+- `tools/qa_phase9_supervision.py`
+- `tools/qa/qa_phase9_supervision.py`
+- `tools/regen_assets.py`
+- `tools/assets/regenerate_audio_outside_runtime.py`
+- `tools/assets/build_curated_context_audio.py`
+- `tools/archive/README.md`
+
+files_modified
+- `tools/lib/core_validation.py`
+- `tools/lib/qa_smoke.py`
+- `reports/engine/tool_engine_fusion_report.txt`
+
+warnings
+- WARNING: wrapper direction is still inconsistent across some phase scripts.
+- WARNING: audio generation still has overlapping operational surfaces.
+- WARNING: simulations are still fragmented across multiple useful tools and should not be archived prematurely.
+- WARNING: lore validation remains a gap in the canonical tool surface.
+
+validation
+- `python tools/chakana_studio.py qa-smoke --dry-run` -> PASS
+- `python tools/chakana_studio.py qa-smoke` -> PASS
+
+status
+- PASS WITH WARNING
+
+recommended_next_phase
+- Phase 5 — Master CLI Consolidation
