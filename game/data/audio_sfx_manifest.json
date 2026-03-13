@@ -91,6 +91,146 @@
       "state": "valid",
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\relic_pick.wav",
       "relative_path": "game/audio/generated/sfx/relic_pick.wav"
+    },
+    "sfx_hover": {
+      "track_id": "sfx_hover",
+      "type": "sfx",
+      "context": "hover",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\hover.wav",
+      "relative_path": "game/audio/generated/sfx/hover.wav"
+    },
+    "sfx_select": {
+      "track_id": "sfx_select",
+      "type": "sfx",
+      "context": "select",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\select.wav",
+      "relative_path": "game/audio/generated/sfx/select.wav"
+    },
+    "sfx_confirm": {
+      "track_id": "sfx_confirm",
+      "type": "sfx",
+      "context": "confirm",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\confirm.wav",
+      "relative_path": "game/audio/generated/sfx/confirm.wav"
+    },
+    "sfx_cancel": {
+      "track_id": "sfx_cancel",
+      "type": "sfx",
+      "context": "cancel",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\cancel.wav",
+      "relative_path": "game/audio/generated/sfx/cancel.wav"
+    },
+    "sfx_invalid": {
+      "track_id": "sfx_invalid",
+      "type": "sfx",
+      "context": "invalid",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\invalid.wav",
+      "relative_path": "game/audio/generated/sfx/invalid.wav"
+    },
+    "sfx_draw_card": {
+      "track_id": "sfx_draw_card",
+      "type": "sfx",
+      "context": "draw_card",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\draw_card.wav",
+      "relative_path": "game/audio/generated/sfx/draw_card.wav"
+    },
+    "sfx_play_card": {
+      "track_id": "sfx_play_card",
+      "type": "sfx",
+      "context": "play_card",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\play_card.wav",
+      "relative_path": "game/audio/generated/sfx/play_card.wav"
+    },
+    "sfx_attack_light": {
+      "track_id": "sfx_attack_light",
+      "type": "sfx",
+      "context": "attack_light",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\attack_light.wav",
+      "relative_path": "game/audio/generated/sfx/attack_light.wav"
+    },
+    "sfx_attack_heavy": {
+      "track_id": "sfx_attack_heavy",
+      "type": "sfx",
+      "context": "attack_heavy",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\attack_heavy.wav",
+      "relative_path": "game/audio/generated/sfx/attack_heavy.wav"
+    },
+    "sfx_block": {
+      "track_id": "sfx_block",
+      "type": "sfx",
+      "context": "block",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\block.wav",
+      "relative_path": "game/audio/generated/sfx/block.wav"
+    },
+    "sfx_ritual": {
+      "track_id": "sfx_ritual",
+      "type": "sfx",
+      "context": "ritual",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\ritual.wav",
+      "relative_path": "game/audio/generated/sfx/ritual.wav"
+    },
+    "sfx_combo_trigger": {
+      "track_id": "sfx_combo_trigger",
+      "type": "sfx",
+      "context": "combo_trigger",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\combo_trigger.wav",
+      "relative_path": "game/audio/generated/sfx/combo_trigger.wav"
+    },
+    "sfx_harmony_gain": {
+      "track_id": "sfx_harmony_gain",
+      "type": "sfx",
+      "context": "harmony_gain",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\harmony_gain.wav",
+      "relative_path": "game/audio/generated/sfx/harmony_gain.wav"
+    },
+    "sfx_boss_phase": {
+      "track_id": "sfx_boss_phase",
+      "type": "sfx",
+      "context": "boss_phase",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\sfx\\boss_phase.wav",
+      "relative_path": "game/audio/generated/sfx/boss_phase.wav"
     }
   }
 }

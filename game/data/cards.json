@@ -1,161 +1,126 @@
 [
   {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 6, Debilita 2",
-    "effects": [
-      {
-        "amount": 6,
-        "type": "gain_block"
-      },
-      {
-        "amount": 2,
-        "type": "weaken_enemy"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
-    "kpi": {
-      "block": 6,
-      "support": 2
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Campo Protector",
-    "name_key": "Campo Protector",
-    "rarity": "uncommon",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block",
-      "debuff"
-    ],
-    "target": "enemy",
-    "taxonomy": "bridge",
-    "text_key": "Bloqueo 6, Debilita 2",
-    "legacy_id": "campo_protector",
-    "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
-    "legacy_artwork": "campo_protector"
-  },
-  {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
     "author": "Chakana Studio",
     "cost": 3,
-    "direction": "OESTE",
-    "effect_text": "Armonia +1, Dano 10, Bloqueo 5",
+    "direction": "ESTE",
+    "effect_text": "Armonía +1, Daño 10, Bloqueo 5, Energía sig. turno +1",
     "effects": [
       {
-        "amount": 1,
-        "type": "harmony_delta"
+        "type": "harmony_delta",
+        "amount": 1
       },
       {
-        "amount": 10,
-        "type": "damage"
+        "type": "damage",
+        "amount": 10
       },
       {
-        "amount": 5,
-        "type": "gain_block"
+        "type": "gain_block",
+        "amount": 5
       },
       {
-        "amount": 1,
-        "type": "gain_mana_next_turn"
+        "type": "gain_mana_next_turn",
+        "amount": 1
       },
       {
-        "amount": 1,
-        "type": "exhaust_self"
+        "type": "exhaust_self",
+        "amount": 1
       }
     ],
-    "family": "oeste",
+    "family": "creature",
     "id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
     "kpi": {
-      "block": 5,
+      "harmony": 1,
       "damage": 10,
-      "energy": 1,
-      "harmony": 1
+      "block": 5,
+      "energy": 1
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Chakana de Luz",
-    "name_key": "Chakana de Luz",
+    "lore_text": "Jaguar del Umbral Solar: Las bestias del Hanan aprenden a pelear sin romper el pulso de la Chakana.",
+    "name": "Jaguar del Umbral Solar",
+    "name_es": "Jaguar del Umbral Solar",
+    "name_key": "Jaguar del Umbral Solar",
     "rarity": "legendary",
     "role": "combo",
     "strategy": {
-      "best_use": "Encadenar efectos para turnos de alto valor.",
-      "synergy_cards": [
-        "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
-        "BASE-SOLAR-SKILL-FILO_EN_CADENA"
-      ],
-      "weakness": "Depende del orden de mano y setup."
+      "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+      "synergy_cards": [],
+      "weakness": "Depende del orden de mano y castiga manos pasivas."
     },
     "tags": [
       "attack",
       "block",
+      "combo",
+      "creature",
       "energy",
-      "exhaust",
       "ritual"
     ],
     "target": "enemy",
     "taxonomy": "payoff",
-    "text_key": "Armonia +1, Dano 10, Bloqueo 5",
+    "text_es": "Armonía +1, Daño 10, Bloqueo 5, Energía sig. turno +1",
+    "text_key": "Armonía +1, Daño 10, Bloqueo 5, Energía sig. turno +1",
     "legacy_id": "chakana_de_luz",
     "canonical_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
-    "legacy_artwork": "chakana_de_luz"
+    "legacy_artwork": "chakana_de_luz",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
     "author": "Chakana Studio",
     "cost": 1,
-    "direction": "NORTE",
-    "effect_text": "Copia la ultima carta jugada, Se agota",
+    "direction": "ESTE",
+    "effect_text": "Daño 3, Daño 4 si hay Ruptura",
     "effects": [
       {
-        "amount": 1,
-        "type": "copy_last_played"
+        "type": "damage",
+        "amount": 3
       },
       {
-        "amount": 1,
-        "type": "exhaust_self"
+        "type": "damage_if_enemy_break",
+        "amount": 4
       }
     ],
-    "family": "norte",
+    "family": "creature",
     "id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
     "kpi": {
-      "combo": 1
+      "damage": 3
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Eco de Sabiduría",
-    "name_key": "Eco de Sabiduría",
+    "lore_text": "Condor de las Brasas Altas: Las bestias del Hanan aprenden a pelear sin romper el pulso de la Chakana.",
+    "name": "Condor de las Brasas Altas",
+    "name_es": "Condor de las Brasas Altas",
+    "name_key": "Condor de las Brasas Altas",
     "rarity": "common",
     "role": "combo",
     "strategy": {
-      "best_use": "Encadenar efectos para turnos de alto valor.",
-      "synergy_cards": [
-        "BASE-SOLAR-SKILL-FILO_EN_CADENA",
-        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
-      ],
-      "weakness": "Depende del orden de mano y setup."
+      "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+      "synergy_cards": [],
+      "weakness": "Depende del orden de mano y castiga manos pasivas."
     },
     "tags": [
-      "copy",
-      "exhaust"
+      "attack",
+      "combo",
+      "creature",
+      "rupture"
     ],
     "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Copia la ultima carta jugada, Se agota",
+    "taxonomy": "bridge",
+    "text_es": "Daño 3, Daño 4 si hay Ruptura",
+    "text_key": "Daño 3, Daño 4 si hay Ruptura",
     "legacy_id": "eco_de_sabiduria",
     "canonical_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
-    "legacy_artwork": "eco_de_sabiduria"
+    "legacy_artwork": "eco_de_sabiduria",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
@@ -163,190 +128,52 @@
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "ESTE",
-    "effect_text": "Dano 7, Bloqueo 3",
+    "effect_text": "Daño 5, Bloqueo 2",
     "effects": [
       {
-        "amount": 7,
-        "type": "damage"
+        "type": "damage",
+        "amount": 5
       },
       {
-        "amount": 3,
-        "type": "gain_block"
+        "type": "gain_block",
+        "amount": 2
       }
     ],
-    "family": "este",
+    "family": "creature",
     "id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
     "kpi": {
-      "block": 3,
-      "damage": 7
+      "damage": 5,
+      "block": 2
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Embate del Jaguar",
-    "name_key": "Embate del Jaguar",
+    "lore_text": "Puma de la Lluvia Roja: Las bestias del Hanan aprenden a pelear sin romper el pulso de la Chakana.",
+    "name": "Puma de la Lluvia Roja",
+    "name_es": "Puma de la Lluvia Roja",
+    "name_key": "Puma de la Lluvia Roja",
     "rarity": "uncommon",
     "role": "attack",
     "strategy": {
-      "best_use": "Cerrar combates cortos con presion constante.",
-      "synergy_cards": [
-        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
-        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
-      ],
-      "weakness": "Sufre si no roba ritmo."
+      "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+      "synergy_cards": [],
+      "weakness": "Pierde valor si la run no capitaliza ruptura."
     },
     "tags": [
       "attack",
-      "block"
+      "block",
+      "creature"
     ],
     "target": "enemy",
-    "taxonomy": "payoff",
-    "text_key": "Dano 7, Bloqueo 3",
+    "taxonomy": "bridge",
+    "text_es": "Daño 5, Bloqueo 2",
+    "text_key": "Daño 5, Bloqueo 2",
     "legacy_id": "embate_del_jaguar",
     "canonical_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
-    "legacy_artwork": "embate_del_jaguar"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 4, Cura 1",
-    "effects": [
-      {
-        "amount": 4,
-        "type": "gain_block"
-      },
-      {
-        "amount": 1,
-        "type": "heal"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
-    "kpi": {
-      "block": 4,
-      "support": 1
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Escudo de Luz",
-    "name_key": "Escudo de Luz",
-    "rarity": "common",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block",
-      "heal"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Bloqueo 4, Cura 1",
-    "legacy_id": "escudo_de_luz",
-    "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
-    "legacy_artwork": "escudo_de_luz"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 5, Prever 1",
-    "effects": [
-      {
-        "amount": 5,
-        "type": "gain_block"
-      },
-      {
-        "amount": 1,
-        "type": "scry"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
-    "kpi": {
-      "block": 5,
-      "scry": 1
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Escudo del Chamán",
-    "name_key": "Escudo del Chamán",
-    "rarity": "common",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "tags": [
-      "block",
-      "scry"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Bloqueo 5, Prever 1",
-    "legacy_id": "escudo_del_chaman",
-    "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
-    "legacy_artwork": "escudo_del_chaman"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "OESTE",
-    "effect_text": "Bloqueo 4, Ruptura 1",
-    "effects": [
-      {
-        "amount": 4,
-        "type": "gain_block"
-      },
-      {
-        "amount": 1,
-        "type": "apply_break"
-      }
-    ],
-    "family": "oeste",
-    "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
-    "kpi": {
-      "block": 4,
-      "rupture": 1
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Espíritu Guardián",
-    "name_key": "Espíritu Guardián",
-    "rarity": "common",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block",
-      "break"
-    ],
-    "target": "enemy",
-    "taxonomy": "engine",
-    "text_key": "Bloqueo 4, Ruptura 1",
-    "legacy_id": "espiritu_guardian",
-    "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
-    "legacy_artwork": "espiritu_guardian"
+    "legacy_artwork": "embate_del_jaguar",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
@@ -354,47 +181,51 @@
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "ESTE",
-    "effect_text": "Dano 5, Roba 1",
+    "effect_text": "Daño 4, Roba 1 al matar",
     "effects": [
       {
-        "amount": 5,
-        "type": "damage"
+        "type": "damage",
+        "amount": 4
       },
       {
-        "amount": 1,
-        "type": "draw"
+        "type": "draw_on_kill",
+        "amount": 1
       }
     ],
-    "family": "este",
+    "family": "creature",
     "id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
     "kpi": {
-      "damage": 5,
-      "draw": 1
+      "damage": 4
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Estallido Arcano",
-    "name_key": "Estallido Arcano",
+    "lore_text": "Serpiente del Arco Helico: Las bestias del Hanan aprenden a pelear sin romper el pulso de la Chakana.",
+    "name": "Serpiente del Arco Helico",
+    "name_es": "Serpiente del Arco Helico",
+    "name_key": "Serpiente del Arco Helico",
     "rarity": "uncommon",
     "role": "attack",
     "strategy": {
-      "best_use": "Cerrar combates cortos con presion constante.",
-      "synergy_cards": [
-        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
-        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
-        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
-      ],
-      "weakness": "Sufre si no roba ritmo."
+      "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+      "synergy_cards": [],
+      "weakness": "Pierde valor si la run no capitaliza ruptura."
     },
     "tags": [
       "attack",
+      "creature",
       "draw"
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Dano 5, Roba 1",
+    "text_es": "Daño 4, Roba 1 al matar",
+    "text_key": "Daño 4, Roba 1 al matar",
     "legacy_id": "estallido_arcano",
     "canonical_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
-    "legacy_artwork": "estallido_arcano"
+    "legacy_artwork": "estallido_arcano",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
@@ -402,1118 +233,314 @@
     "author": "Chakana Studio",
     "cost": 1,
     "direction": "ESTE",
-    "effect_text": "Dano 7",
+    "effect_text": "Daño 4, Próx. ataque cuesta -1",
     "effects": [
       {
-        "amount": 7,
-        "type": "damage"
+        "type": "damage",
+        "amount": 4
+      },
+      {
+        "type": "discount_next_attack",
+        "amount": 1
       }
     ],
-    "family": "este",
+    "family": "creature",
     "id": "BASE-SOLAR-ATTACK-FILO_ASTRAL",
     "kpi": {
-      "damage": 7
+      "damage": 4
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Filo Astral",
-    "name_key": "Filo Astral",
+    "lore_text": "Venado del Filo Dorado: Las bestias del Hanan aprenden a pelear sin romper el pulso de la Chakana.",
+    "name": "Venado del Filo Dorado",
+    "name_es": "Venado del Filo Dorado",
+    "name_key": "Venado del Filo Dorado",
     "rarity": "common",
     "role": "attack",
     "strategy": {
-      "best_use": "Cerrar combates cortos con presion constante.",
-      "synergy_cards": [
-        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
-        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
-      ],
-      "weakness": "Sufre si no roba ritmo."
+      "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+      "synergy_cards": [],
+      "weakness": "Pierde valor si la run no capitaliza ruptura."
     },
     "tags": [
-      "attack"
+      "attack",
+      "creature",
+      "tempo"
     ],
     "target": "enemy",
-    "taxonomy": "bridge",
-    "text_key": "Dano 7",
+    "taxonomy": "engine",
+    "text_es": "Daño 4, Próx. ataque cuesta -1",
+    "text_key": "Daño 4, Próx. ataque cuesta -1",
     "legacy_id": "filo_astral",
     "canonical_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL",
-    "legacy_artwork": "filo_astral"
+    "legacy_artwork": "filo_astral",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-SKILL-FILO_EN_CADENA",
     "author": "Chakana Studio",
     "cost": 1,
-    "direction": "ESTE",
-    "effect_text": "Dano 4",
+    "direction": "SUR",
+    "effect_text": "Copia la última carta, Se agota",
     "effects": [
       {
-        "amount": 4,
-        "type": "damage"
+        "type": "copy_last_played",
+        "amount": 1
       },
       {
-        "amount": 1,
-        "direction": "ESTE",
-        "type": "draw_if_direction_played"
+        "type": "exhaust_self",
+        "amount": 1
       }
     ],
-    "family": "este",
+    "family": "subject",
     "id": "BASE-SOLAR-SKILL-FILO_EN_CADENA",
-    "kpi": {
-      "damage": 4
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Filo en Cadena",
-    "name_key": "Filo en Cadena",
+    "kpi": {},
+    "lore_text": "Duelista de los Dos Cielos: Los sujetos del set solar convierten disciplina en agresion calculada.",
+    "name": "Duelista de los Dos Cielos",
+    "name_es": "Duelista de los Dos Cielos",
+    "name_key": "Duelista de los Dos Cielos",
     "rarity": "uncommon",
     "role": "combo",
     "strategy": {
-      "best_use": "Encadenar efectos para turnos de alto valor.",
-      "synergy_cards": [
-        "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
-        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
-      ],
-      "weakness": "Depende del orden de mano y setup."
+      "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+      "synergy_cards": [],
+      "weakness": "Depende del orden de mano y castiga manos pasivas."
     },
     "tags": [
-      "attack"
+      "combo",
+      "copy",
+      "exhaust",
+      "subject"
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Dano 4",
+    "text_es": "Copia la última carta, Se agota",
+    "text_key": "Copia la última carta, Se agota",
     "legacy_id": "filo_en_cadena",
     "canonical_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA",
-    "legacy_artwork": "filo_en_cadena"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "SUR",
-    "effect_text": "Cura 2, Bloqueo 2",
-    "effects": [
-      {
-        "amount": 2,
-        "type": "heal"
-      },
-      {
-        "amount": 2,
-        "type": "gain_block"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
-    "kpi": {
-      "block": 2,
-      "support": 2
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Firmeza del Cuerpo",
-    "name_key": "Firmeza del Cuerpo",
-    "rarity": "common",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "heal",
-      "block"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Cura 2, Bloqueo 2",
-    "legacy_id": "firmeza_del_cuerpo",
-    "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
-    "legacy_artwork": "firmeza_del_cuerpo"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "ESTE",
-    "effect_text": "Dano 5, Prever 2",
-    "effects": [
-      {
-        "amount": 5,
-        "type": "damage"
-      },
-      {
-        "amount": 2,
-        "type": "scry"
-      }
-    ],
-    "family": "este",
-    "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
-    "kpi": {
-      "damage": 5,
-      "scry": 2
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Fragmento Celeste",
-    "name_key": "Fragmento Celeste",
-    "rarity": "common",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "tags": [
-      "attack",
-      "scry"
-    ],
-    "target": "enemy",
-    "taxonomy": "engine",
-    "text_key": "Dano 5, Prever 2",
-    "legacy_id": "fragmento_celeste",
-    "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
-    "legacy_artwork": "fragmento_celeste"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "OESTE",
-    "effect_text": "Limite de bloqueo +10, Armonia +2, Bloqueo 2",
-    "effects": [
-      {
-        "amount": 10,
-        "type": "double_block_cap"
-      },
-      {
-        "amount": 2,
-        "type": "harmony_delta"
-      },
-      {
-        "amount": 2,
-        "type": "gain_block"
-      }
-    ],
-    "family": "oeste",
-    "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
-    "kpi": {
-      "block": 2,
-      "harmony": 2,
-      "support": 10
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Fusión Espiritual",
-    "name_key": "Fusión Espiritual",
-    "rarity": "legendary",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block",
-      "support",
-      "harmony",
-      "seal"
-    ],
-    "target": "self",
-    "taxonomy": "payoff",
-    "text_key": "Limite de bloqueo +10",
-    "legacy_id": "fusion_espiritual",
-    "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
-    "legacy_artwork": "fusion_espiritual"
+    "legacy_artwork": "filo_en_cadena",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
     "author": "Chakana Studio",
-    "cost": 0,
-    "direction": "ESTE",
-    "effect_text": "Dano 4",
+    "cost": 1,
+    "direction": "SUR",
+    "effect_text": "Daño 6",
     "effects": [
       {
-        "amount": 4,
-        "type": "damage"
+        "type": "damage",
+        "amount": 6
       }
     ],
-    "family": "este",
+    "family": "subject",
     "id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
     "kpi": {
-      "damage": 4
+      "damage": 6
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Garra Espiritual",
-    "name_key": "Garra Espiritual",
+    "lore_text": "Lancero del Hanan Vivo: Los sujetos del set solar convierten disciplina en agresion calculada.",
+    "name": "Lancero del Hanan Vivo",
+    "name_es": "Lancero del Hanan Vivo",
+    "name_key": "Lancero del Hanan Vivo",
     "rarity": "common",
     "role": "attack",
     "strategy": {
-      "best_use": "Cerrar combates cortos con presion constante.",
-      "synergy_cards": [
-        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
-        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
-        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
-      ],
-      "weakness": "Sufre si no roba ritmo."
+      "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+      "synergy_cards": [],
+      "weakness": "Pierde valor si la run no capitaliza ruptura."
     },
     "tags": [
-      "attack"
+      "attack",
+      "subject"
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Dano 4",
+    "text_es": "Daño 6",
+    "text_key": "Daño 6",
     "legacy_id": "garra_espiritual",
     "canonical_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
-    "legacy_artwork": "garra_espiritual"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
-    "author": "Chakana Studio",
-    "cost": 0,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 3",
-    "effects": [
-      {
-        "amount": 3,
-        "type": "gain_block"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
-    "kpi": {
-      "block": 3
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Guardia Terrenal",
-    "name_key": "Guardia Terrenal",
-    "rarity": "common",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Bloqueo 3",
-    "legacy_id": "guardia_terrenal",
-    "canonical_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
-    "legacy_artwork": "guardia_terrenal"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "OESTE",
-    "effect_text": "Armonia +1, Cura 3, Bloqueo 3",
-    "effects": [
-      {
-        "amount": 1,
-        "type": "harmony_delta"
-      },
-      {
-        "amount": 3,
-        "type": "heal"
-      },
-      {
-        "amount": 3,
-        "type": "gain_block"
-      }
-    ],
-    "family": "oeste",
-    "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
-    "kpi": {
-      "block": 3,
-      "harmony": 1,
-      "support": 3
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Invocación Astral",
-    "name_key": "Invocación Astral",
-    "rarity": "common",
-    "role": "ritual",
-    "strategy": {
-      "best_use": "Escalar armonia y explotar umbrales de sello.",
-      "synergy_cards": [
-        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
-        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
-        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
-      ],
-      "weakness": "Puede quedarse corto si no llega al umbral."
-    },
-    "tags": [
-      "heal",
-      "block",
-      "ritual"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Armonia +1, Cura 3, Bloqueo 3",
-    "legacy_id": "invocacion_astral",
-    "canonical_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
-    "legacy_artwork": "invocacion_astral"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-    "author": "Chakana Studio",
-    "cost": 0,
-    "direction": "NORTE",
-    "effect_text": "Prever 2",
-    "effects": [
-      {
-        "amount": 2,
-        "type": "scry"
-      }
-    ],
-    "family": "norte",
-    "id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-    "kpi": {
-      "scry": 2
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Lectura del Destino",
-    "name_key": "Lectura del Destino",
-    "rarity": "common",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "tags": [
-      "scry"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Prever 2",
-    "legacy_id": "lectura_del_destino",
-    "canonical_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-    "legacy_artwork": "lectura_del_destino"
+    "legacy_artwork": "garra_espiritual",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
     "author": "Chakana Studio",
     "cost": 1,
-    "direction": "OESTE",
-    "effect_text": "Armonia +1, Energia +1, Cura 1",
+    "direction": "SUR",
+    "effect_text": "Energía +1, Daño 3, Ruptura +1",
     "effects": [
       {
-        "amount": 1,
-        "type": "harmony_delta"
+        "type": "gain_mana",
+        "amount": 1
       },
       {
-        "amount": 1,
-        "type": "gain_mana"
+        "type": "damage",
+        "amount": 3
       },
       {
-        "amount": 1,
-        "type": "heal"
+        "type": "apply_break",
+        "amount": 1
       }
     ],
-    "family": "oeste",
+    "family": "subject",
     "id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
     "kpi": {
       "energy": 1,
-      "harmony": 1,
-      "support": 1
+      "damage": 3,
+      "rupture": 1
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Mantra del Umbral",
-    "name_key": "Mantra del Umbral",
+    "lore_text": "Centinela del Disco Solar: Los sujetos del set solar convierten disciplina en agresion calculada.",
+    "name": "Centinela del Disco Solar",
+    "name_es": "Centinela del Disco Solar",
+    "name_key": "Centinela del Disco Solar",
     "rarity": "common",
     "role": "energy",
     "strategy": {
-      "best_use": "Acelerar turnos clave y habilitar cadenas.",
-      "synergy_cards": [
-        "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
-        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
-      ],
-      "weakness": "Necesita cartas de impacto para capitalizar mana."
+      "best_use": "Acelerar el siguiente turno para sostener presion.",
+      "synergy_cards": [],
+      "weakness": "No renta si no hay payoff en mano."
     },
     "tags": [
+      "attack",
       "energy",
-      "heal",
-      "ritual"
+      "rupture",
+      "subject"
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Armonia +1, Energia +1, Cura 1",
+    "text_es": "Energía +1, Daño 3, Ruptura +1",
+    "text_key": "Energía +1, Daño 3, Ruptura +1",
     "legacy_id": "mantra_del_umbral",
     "canonical_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
-    "legacy_artwork": "mantra_del_umbral"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 8",
-    "effects": [
-      {
-        "amount": 8,
-        "type": "gain_block"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-    "kpi": {
-      "block": 8
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Muralla de Piedra",
-    "name_key": "Muralla de Piedra",
-    "rarity": "uncommon",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block"
-    ],
-    "target": "self",
-    "taxonomy": "bridge",
-    "text_key": "Bloqueo 8",
-    "legacy_id": "muralla_de_piedra",
-    "canonical_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-    "legacy_artwork": "muralla_de_piedra"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "NORTE",
-    "effect_text": "Prever 3",
-    "effects": [
-      {
-        "amount": 3,
-        "type": "scry"
-      },
-      {
-        "amount": 1,
-        "type": "draw"
-      }
-    ],
-    "family": "norte",
-    "id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-    "kpi": {
-      "scry": 3
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Observación Sagrada",
-    "name_key": "Observación Sagrada",
-    "rarity": "common",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "tags": [
-      "scry"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_es": "Escruta 3. Roba 1.",
-    "text_key": "Prever 3",
-    "legacy_id": "observacion_sagrada",
-    "canonical_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-    "legacy_artwork": "observacion_sagrada"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "SUR",
-    "effect_text": "Armonia +1, Bloqueo 6, Ruptura 3",
-    "effects": [
-      {
-        "amount": 1,
-        "type": "harmony_delta"
-      },
-      {
-        "amount": 6,
-        "type": "gain_block"
-      },
-      {
-        "amount": 3,
-        "type": "apply_break"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
-    "kpi": {
-      "block": 6,
-      "harmony": 1,
-      "rupture": 3
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Piedra Ritual",
-    "name_key": "Piedra Ritual",
-    "rarity": "uncommon",
-    "role": "ritual",
-    "strategy": {
-      "best_use": "Escalar armonia y explotar umbrales de sello.",
-      "synergy_cards": [
-        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
-        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
-      ],
-      "weakness": "Puede quedarse corto si no llega al umbral."
-    },
-    "tags": [
-      "block",
-      "break",
-      "ritual"
-    ],
-    "target": "enemy",
-    "taxonomy": "payoff",
-    "text_key": "Armonia +1, Bloqueo 6, Ruptura 3",
-    "legacy_id": "piedra_ritual",
-    "canonical_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
-    "legacy_artwork": "piedra_ritual"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "OESTE",
-    "effect_text": "Armonia +1, Ruptura 3, Roba 1",
-    "effects": [
-      {
-        "amount": 1,
-        "type": "harmony_delta"
-      },
-      {
-        "amount": 3,
-        "type": "apply_break"
-      },
-      {
-        "amount": 1,
-        "type": "draw"
-      }
-    ],
-    "family": "oeste",
-    "id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
-    "kpi": {
-      "draw": 1,
-      "harmony": 1,
-      "rupture": 3
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Portal de la Chakana",
-    "name_key": "Portal de la Chakana",
-    "rarity": "uncommon",
-    "role": "ritual",
-    "strategy": {
-      "best_use": "Escalar armonia y explotar umbrales de sello.",
-      "synergy_cards": [
-        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
-        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
-      ],
-      "weakness": "Puede quedarse corto si no llega al umbral."
-    },
-    "tags": [
-      "break",
-      "draw",
-      "ritual"
-    ],
-    "target": "enemy",
-    "taxonomy": "bridge",
-    "text_key": "Armonia +1, Ruptura 3, Roba 1",
-    "legacy_id": "portal_de_la_chakana",
-    "canonical_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
-    "legacy_artwork": "portal_de_la_chakana"
+    "legacy_artwork": "mantra_del_umbral",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-ATTACK-PULSO_COSMICO",
     "author": "Chakana Studio",
     "cost": 1,
-    "direction": "OESTE",
-    "effect_text": "Ruptura 2, Dano 3",
+    "direction": "SUR",
+    "effect_text": "Daño 5, Bloqueo 2",
     "effects": [
       {
-        "amount": 2,
-        "type": "apply_break"
+        "type": "damage",
+        "amount": 5
       },
       {
-        "amount": 3,
-        "type": "damage"
+        "type": "gain_block",
+        "amount": 2
       }
     ],
-    "family": "oeste",
+    "family": "subject",
     "id": "BASE-SOLAR-ATTACK-PULSO_COSMICO",
     "kpi": {
-      "damage": 3,
-      "rupture": 2
+      "damage": 5,
+      "block": 2
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Pulso Cósmico",
-    "name_key": "Pulso Cósmico",
+    "lore_text": "Peregrino de la Chispa Firme: Los sujetos del set solar convierten disciplina en agresion calculada.",
+    "name": "Peregrino de la Chispa Firme",
+    "name_es": "Peregrino de la Chispa Firme",
+    "name_key": "Peregrino de la Chispa Firme",
     "rarity": "common",
     "role": "attack",
     "strategy": {
-      "best_use": "Cerrar combates cortos con presion constante.",
-      "synergy_cards": [
-        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
-        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR"
-      ],
-      "weakness": "Sufre si no roba ritmo."
+      "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+      "synergy_cards": [],
+      "weakness": "Pierde valor si la run no capitaliza ruptura."
     },
     "tags": [
-      "break",
       "attack",
-      "rupture"
+      "block",
+      "subject"
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Ruptura 2, Dano 3",
+    "text_es": "Daño 5, Bloqueo 2",
+    "text_key": "Daño 5, Bloqueo 2",
     "legacy_id": "pulso_cosmico",
     "canonical_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO",
-    "legacy_artwork": "pulso_cosmico"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 7, Retener, Armonia +1",
-    "effects": [
-      {
-        "amount": 7,
-        "type": "gain_block"
-      },
-      {
-        "amount": 1,
-        "type": "retain"
-      },
-      {
-        "amount": 1,
-        "type": "harmony_delta"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
-    "kpi": {
-      "block": 7,
-      "harmony": 1,
-      "support": 1
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Resistencia Ancestral",
-    "name_key": "Resistencia Ancestral",
-    "rarity": "uncommon",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block",
-      "retain",
-      "harmony"
-    ],
-    "target": "self",
-    "taxonomy": "payoff",
-    "text_key": "Bloqueo 7, Retener",
-    "legacy_id": "resistencia_ancestral",
-    "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
-    "legacy_artwork": "resistencia_ancestral"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "NORTE",
-    "effect_text": "Armonia +1, Prever 4, Roba 1",
-    "effects": [
-      {
-        "amount": 1,
-        "type": "harmony_delta"
-      },
-      {
-        "amount": 4,
-        "type": "scry"
-      },
-      {
-        "amount": 1,
-        "type": "draw"
-      }
-    ],
-    "family": "norte",
-    "id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
-    "kpi": {
-      "draw": 1,
-      "harmony": 1,
-      "scry": 4
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Revelación Astral",
-    "name_key": "Revelación Astral",
-    "rarity": "uncommon",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "tags": [
-      "scry",
-      "draw",
-      "ritual"
-    ],
-    "target": "self",
-    "taxonomy": "bridge",
-    "text_key": "Armonia +1, Prever 4, Roba 1",
-    "legacy_id": "revelacion_astral",
-    "canonical_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
-    "legacy_artwork": "revelacion_astral"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
-    "author": "Chakana Studio",
-    "cost": 4,
-    "direction": "OESTE",
-    "effect_text": "Armonia +1, Sello 3, Ritual 1",
-    "effects": [
-      {
-        "amount": 1,
-        "type": "harmony_delta"
-      },
-      {
-        "amount": 3,
-        "type": "consume_harmony"
-      },
-      {
-        "amount": 1,
-        "type": "ritual_trama"
-      },
-      {
-        "amount": 1,
-        "type": "exhaust_self"
-      }
-    ],
-    "family": "oeste",
-    "id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
-    "kpi": {
-      "harmony": 1,
-      "ritual": 1,
-      "seal": 3
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Ritual de la Trama",
-    "name_key": "Ritual de la Trama",
-    "rarity": "legendary",
-    "role": "ritual",
-    "strategy": {
-      "best_use": "Escalar armonia y explotar umbrales de sello.",
-      "synergy_cards": [
-        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
-        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL"
-      ],
-      "weakness": "Puede quedarse corto si no llega al umbral."
-    },
-    "tags": [
-      "attack",
-      "heal",
-      "exhaust",
-      "ritual"
-    ],
-    "target": "enemy",
-    "taxonomy": "payoff",
-    "text_key": "Armonia +1, Sello 3, Ritual 1",
-    "legacy_id": "ritual_de_la_trama",
-    "canonical_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
-    "legacy_artwork": "ritual_de_la_trama"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 5, Armonia +1",
-    "effects": [
-      {
-        "amount": 5,
-        "type": "gain_block"
-      },
-      {
-        "amount": 1,
-        "type": "harmony_delta"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-    "kpi": {
-      "block": 5,
-      "harmony": 1
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Sello Protector",
-    "name_key": "Sello Protector",
-    "rarity": "common",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block",
-      "harmony",
-      "seal"
-    ],
-    "target": "self",
-    "taxonomy": "bridge",
-    "text_key": "Bloqueo 5",
-    "legacy_id": "sello_protector",
-    "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-    "legacy_artwork": "sello_protector"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "NORTE",
-    "effect_text": "Debilita 3, Prever 1",
-    "effects": [
-      {
-        "amount": 3,
-        "type": "weaken_enemy"
-      },
-      {
-        "amount": 1,
-        "type": "scry"
-      }
-    ],
-    "family": "norte",
-    "id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
-    "kpi": {
-      "scry": 1,
-      "support": 3
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Silencio Interior",
-    "name_key": "Silencio Interior",
-    "rarity": "common",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "tags": [
-      "debuff",
-      "scry"
-    ],
-    "target": "enemy",
-    "taxonomy": "engine",
-    "text_key": "Debilita 3, Prever 1",
-    "legacy_id": "silencio_interior",
-    "canonical_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
-    "legacy_artwork": "silencio_interior"
+    "legacy_artwork": "pulso_cosmico",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
     "author": "Chakana Studio",
     "cost": 1,
-    "direction": "OESTE",
-    "effect_text": "Energia +2",
+    "direction": "SUR",
+    "effect_text": "Energía sig. turno +1, Daño 4",
     "effects": [
       {
-        "amount": 2,
-        "type": "gain_mana"
+        "type": "gain_mana_next_turn",
+        "amount": 1
       },
       {
-        "amount": 1,
-        "type": "draw"
+        "type": "damage",
+        "amount": 4
       }
     ],
-    "family": "oeste",
+    "family": "subject",
     "id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
     "kpi": {
-      "energy": 2
+      "energy": 1,
+      "damage": 4
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Vínculo de Energía",
-    "name_key": "Vínculo de Energía",
+    "lore_text": "Forjadora del Cenit Carmesi: Los sujetos del set solar convierten disciplina en agresion calculada.",
+    "name": "Forjadora del Cenit Carmesi",
+    "name_es": "Forjadora del Cenit Carmesi",
+    "name_key": "Forjadora del Cenit Carmesi",
     "rarity": "common",
     "role": "energy",
     "strategy": {
-      "best_use": "Acelerar turnos clave y habilitar cadenas.",
-      "synergy_cards": [
-        "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
-        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
-      ],
-      "weakness": "Necesita cartas de impacto para capitalizar mana."
+      "best_use": "Acelerar el siguiente turno para sostener presion.",
+      "synergy_cards": [],
+      "weakness": "No renta si no hay payoff en mano."
     },
     "tags": [
-      "energy"
+      "attack",
+      "energy",
+      "subject"
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_es": "Gana 2 Energ?a. Roba 1.",
-    "text_key": "Energia +2",
+    "text_es": "Energía sig. turno +1, Daño 4",
+    "text_key": "Energía sig. turno +1, Daño 4",
     "legacy_id": "vinculo_de_energia",
     "canonical_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
-    "legacy_artwork": "vinculo_de_energia"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "NORTE",
-    "effect_text": "Armonia +1, Prever 3, Roba 1",
-    "effects": [
-      {
-        "amount": 1,
-        "type": "harmony_delta"
-      },
-      {
-        "amount": 3,
-        "type": "scry"
-      },
-      {
-        "amount": 1,
-        "type": "draw"
-      }
-    ],
-    "family": "norte",
-    "id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
-    "kpi": {
-      "draw": 1,
-      "harmony": 1,
-      "scry": 3
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Visión del Cóndor",
-    "name_key": "Visión del Cóndor",
-    "rarity": "common",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "tags": [
-      "scry",
-      "draw",
-      "ritual"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Armonia +1, Prever 3, Roba 1",
-    "legacy_id": "vision_del_condor",
-    "canonical_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
-    "legacy_artwork": "vision_del_condor"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 7, Debilita 2",
-    "effects": [
-      {
-        "amount": 7,
-        "type": "gain_block"
-      },
-      {
-        "amount": 2,
-        "type": "weaken_enemy"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
-    "kpi": {
-      "block": 7,
-      "support": 2
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Campo Protector Nova",
-    "name_key": "Campo Protector Nova",
-    "rarity": "uncommon",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block",
-      "debuff"
-    ],
-    "target": "enemy",
-    "taxonomy": "bridge",
-    "text_key": "Bloqueo 7, Debilita 2",
-    "legacy_id": "hg_lore_01",
-    "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
-    "legacy_artwork": "hg_lore_01"
+    "legacy_artwork": "vinculo_de_energia",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
@@ -1521,904 +548,2425 @@
     "author": "Chakana Studio",
     "cost": 3,
     "direction": "OESTE",
-    "effect_text": "Armonia +1, Dano 11, Bloqueo 5",
+    "effect_text": "Copia la última carta, Se agota",
     "effects": [
       {
-        "amount": 1,
-        "type": "harmony_delta"
+        "type": "copy_last_played",
+        "amount": 1
       },
       {
-        "amount": 11,
-        "type": "damage"
-      },
-      {
-        "amount": 5,
-        "type": "gain_block"
-      },
-      {
-        "amount": 1,
-        "type": "gain_mana_next_turn"
-      },
-      {
-        "amount": 1,
-        "type": "exhaust_self"
+        "type": "exhaust_self",
+        "amount": 1
       }
     ],
-    "family": "oeste",
+    "family": "object",
     "id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA",
-    "kpi": {
-      "block": 5,
-      "damage": 11,
-      "energy": 1,
-      "harmony": 1
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Chakana de Luz Nova",
-    "name_key": "Chakana de Luz Nova",
+    "kpi": {},
+    "lore_text": "Lanza del Cenit: Las armas y talismanes del set solar recompensan presion y ruptura.",
+    "name": "Lanza del Cenit",
+    "name_es": "Lanza del Cenit",
+    "name_key": "Lanza del Cenit",
     "rarity": "uncommon",
     "role": "combo",
     "strategy": {
-      "best_use": "Encadenar efectos para turnos de alto valor.",
-      "synergy_cards": [
-        "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
-        "BASE-SOLAR-SKILL-FILO_EN_CADENA"
-      ],
-      "weakness": "Depende del orden de mano y setup."
+      "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+      "synergy_cards": [],
+      "weakness": "Depende del orden de mano y castiga manos pasivas."
     },
     "tags": [
-      "attack",
-      "block",
-      "energy",
+      "combo",
+      "copy",
       "exhaust",
-      "ritual"
+      "object"
     ],
     "target": "enemy",
-    "taxonomy": "payoff",
-    "text_key": "Armonia +1, Dano 11, Bloqueo 5",
+    "taxonomy": "bridge",
+    "text_es": "Copia la última carta, Se agota",
+    "text_key": "Copia la última carta, Se agota",
     "legacy_id": "cw_lore_02",
     "canonical_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA",
-    "legacy_artwork": "cw_lore_02"
+    "legacy_artwork": "cw_lore_02",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
-    "direction": "NORTE",
-    "effect_text": "Copia la ultima carta jugada, Se agota, Dano 1",
+    "direction": "OESTE",
+    "effect_text": "Daño 3, Daño 4 si hay Ruptura",
     "effects": [
       {
-        "amount": 1,
-        "type": "copy_last_played"
+        "type": "damage",
+        "amount": 3
       },
       {
-        "amount": 1,
-        "type": "exhaust_self"
-      },
-      {
-        "amount": 1,
-        "type": "damage"
+        "type": "damage_if_enemy_break",
+        "amount": 4
       }
     ],
-    "family": "norte",
+    "family": "object",
     "id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
     "kpi": {
-      "combo": 1,
-      "damage": 1
+      "damage": 3
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Eco de Sabiduría Nova",
-    "name_key": "Eco de Sabiduría Nova",
+    "lore_text": "Mandoble de Estrella Hueca: Las armas y talismanes del set solar recompensan presion y ruptura.",
+    "name": "Mandoble de Estrella Hueca",
+    "name_es": "Mandoble de Estrella Hueca",
+    "name_key": "Mandoble de Estrella Hueca",
     "rarity": "common",
     "role": "combo",
     "strategy": {
-      "best_use": "Encadenar efectos para turnos de alto valor.",
-      "synergy_cards": [
-        "BASE-SOLAR-SKILL-FILO_EN_CADENA",
-        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
-      ],
-      "weakness": "Depende del orden de mano y setup."
+      "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+      "synergy_cards": [],
+      "weakness": "Depende del orden de mano y castiga manos pasivas."
     },
     "tags": [
-      "copy",
-      "exhaust"
+      "attack",
+      "combo",
+      "object",
+      "rupture"
     ],
     "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Copia la ultima carta jugada, Se agota, Dano 1",
+    "taxonomy": "bridge",
+    "text_es": "Daño 3, Daño 4 si hay Ruptura",
+    "text_key": "Daño 3, Daño 4 si hay Ruptura",
     "legacy_id": "cw_lore_03",
     "canonical_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
-    "legacy_artwork": "cw_lore_03"
+    "legacy_artwork": "cw_lore_03",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
-    "direction": "ESTE",
-    "effect_text": "Dano 8, Bloqueo 3",
+    "direction": "OESTE",
+    "effect_text": "Daño 6",
     "effects": [
       {
-        "amount": 8,
-        "type": "damage"
-      },
-      {
-        "amount": 3,
-        "type": "gain_block"
+        "type": "damage",
+        "amount": 6
       }
     ],
-    "family": "este",
+    "family": "object",
     "id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA",
     "kpi": {
-      "block": 3,
-      "damage": 8
+      "damage": 6
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Embate del Jaguar Nova",
-    "name_key": "Embate del Jaguar Nova",
+    "lore_text": "Broquel de Meteorito: Las armas y talismanes del set solar recompensan presion y ruptura.",
+    "name": "Broquel de Meteorito",
+    "name_es": "Broquel de Meteorito",
+    "name_key": "Broquel de Meteorito",
     "rarity": "uncommon",
     "role": "attack",
     "strategy": {
-      "best_use": "Cerrar combates cortos con presion constante.",
-      "synergy_cards": [
-        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
-        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
-      ],
-      "weakness": "Sufre si no roba ritmo."
+      "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+      "synergy_cards": [],
+      "weakness": "Pierde valor si la run no capitaliza ruptura."
     },
     "tags": [
       "attack",
-      "block"
+      "object"
     ],
     "target": "enemy",
-    "taxonomy": "payoff",
-    "text_key": "Dano 8, Bloqueo 3",
+    "taxonomy": "bridge",
+    "text_es": "Daño 6",
+    "text_key": "Daño 6",
     "legacy_id": "cw_lore_04",
     "canonical_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA",
-    "legacy_artwork": "cw_lore_04"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 5",
-    "effects": [
-      {
-        "amount": 5,
-        "type": "gain_block"
-      },
-      {
-        "amount": 1,
-        "type": "heal"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
-    "kpi": {
-      "block": 5
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Escudo de Luz Nova",
-    "name_key": "Escudo de Luz Nova",
-    "rarity": "common",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block",
-      "heal"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Bloqueo 5",
-    "legacy_id": "hg_lore_05",
-    "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
-    "legacy_artwork": "hg_lore_05"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 6, Prever 1",
-    "effects": [
-      {
-        "amount": 6,
-        "type": "gain_block"
-      },
-      {
-        "amount": 1,
-        "type": "scry"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
-    "kpi": {
-      "block": 6,
-      "scry": 1
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Escudo del Chamán Nova",
-    "name_key": "Escudo del Chamán Nova",
-    "rarity": "common",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "tags": [
-      "block",
-      "scry"
-    ],
-    "target": "self",
-    "taxonomy": "bridge",
-    "text_key": "Bloqueo 6, Prever 1",
-    "legacy_id": "hg_lore_06",
-    "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
-    "legacy_artwork": "hg_lore_06"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "OESTE",
-    "effect_text": "Bloqueo 5, Ruptura 1",
-    "effects": [
-      {
-        "amount": 5,
-        "type": "gain_block"
-      },
-      {
-        "amount": 1,
-        "type": "apply_break"
-      }
-    ],
-    "family": "oeste",
-    "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
-    "kpi": {
-      "block": 5,
-      "rupture": 1
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Espíritu Guardián Nova",
-    "name_key": "Espíritu Guardián Nova",
-    "rarity": "common",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block",
-      "break"
-    ],
-    "target": "enemy",
-    "taxonomy": "engine",
-    "text_key": "Bloqueo 5, Ruptura 1",
-    "legacy_id": "hg_lore_07",
-    "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
-    "legacy_artwork": "hg_lore_07"
+    "legacy_artwork": "cw_lore_04",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
-    "direction": "ESTE",
-    "effect_text": "Dano 6, Roba 1",
+    "direction": "OESTE",
+    "effect_text": "Daño 4, Ruptura +1",
     "effects": [
       {
-        "amount": 6,
-        "type": "damage"
+        "type": "damage",
+        "amount": 4
       },
       {
-        "amount": 1,
-        "type": "draw"
+        "type": "apply_break",
+        "amount": 1
       }
     ],
-    "family": "este",
+    "family": "object",
     "id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA",
     "kpi": {
-      "damage": 6,
-      "draw": 1
+      "damage": 4,
+      "rupture": 1
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Estallido Arcano Nova",
-    "name_key": "Estallido Arcano Nova",
+    "lore_text": "Espuelas del Relampago Quieto: Las armas y talismanes del set solar recompensan presion y ruptura.",
+    "name": "Espuelas del Relampago Quieto",
+    "name_es": "Espuelas del Relampago Quieto",
+    "name_key": "Espuelas del Relampago Quieto",
     "rarity": "uncommon",
     "role": "attack",
     "strategy": {
-      "best_use": "Cerrar combates cortos con presion constante.",
-      "synergy_cards": [
-        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
-        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
-        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
-      ],
-      "weakness": "Sufre si no roba ritmo."
+      "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+      "synergy_cards": [],
+      "weakness": "Pierde valor si la run no capitaliza ruptura."
     },
     "tags": [
       "attack",
-      "draw"
+      "object",
+      "rupture"
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Dano 6, Roba 1",
+    "text_es": "Daño 4, Ruptura +1",
+    "text_key": "Daño 4, Ruptura +1",
     "legacy_id": "cw_lore_08",
     "canonical_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA",
-    "legacy_artwork": "cw_lore_08"
+    "legacy_artwork": "cw_lore_08",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
-    "direction": "ESTE",
-    "effect_text": "Dano 8",
+    "direction": "OESTE",
+    "effect_text": "Daño 5, Bloqueo 2",
     "effects": [
       {
-        "amount": 8,
-        "type": "damage"
+        "type": "damage",
+        "amount": 5
+      },
+      {
+        "type": "gain_block",
+        "amount": 2
       }
     ],
-    "family": "este",
+    "family": "object",
     "id": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
     "kpi": {
-      "damage": 8
+      "damage": 5,
+      "block": 2
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Filo Astral Nova",
-    "name_key": "Filo Astral Nova",
+    "lore_text": "Estandarte del Sol Partido: Las armas y talismanes del set solar recompensan presion y ruptura.",
+    "name": "Estandarte del Sol Partido",
+    "name_es": "Estandarte del Sol Partido",
+    "name_key": "Estandarte del Sol Partido",
     "rarity": "common",
     "role": "attack",
     "strategy": {
-      "best_use": "Cerrar combates cortos con presion constante.",
-      "synergy_cards": [
-        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
-        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
-      ],
-      "weakness": "Sufre si no roba ritmo."
+      "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+      "synergy_cards": [],
+      "weakness": "Pierde valor si la run no capitaliza ruptura."
     },
     "tags": [
-      "attack"
+      "attack",
+      "block",
+      "object"
     ],
     "target": "enemy",
-    "taxonomy": "bridge",
-    "text_key": "Dano 8",
+    "taxonomy": "engine",
+    "text_es": "Daño 5, Bloqueo 2",
+    "text_key": "Daño 5, Bloqueo 2",
     "legacy_id": "cw_lore_09",
     "canonical_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
-    "legacy_artwork": "cw_lore_09"
+    "legacy_artwork": "cw_lore_09",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
-    "direction": "ESTE",
-    "effect_text": "Dano 5",
+    "direction": "NORTE",
+    "effect_text": "Copia la última carta, Se agota",
     "effects": [
       {
-        "amount": 5,
-        "type": "damage"
+        "type": "copy_last_played",
+        "amount": 1
       },
       {
-        "amount": 1,
-        "direction": "ESTE",
-        "type": "draw_if_direction_played"
+        "type": "exhaust_self",
+        "amount": 1
       }
     ],
-    "family": "este",
+    "family": "place",
     "id": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
-    "kpi": {
-      "damage": 5
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Filo en Cadena Nova",
-    "name_key": "Filo en Cadena Nova",
+    "kpi": {},
+    "lore_text": "Terraza del Eclipse: Los lugares del set solar empujan tempo, cierre y posicion tactica.",
+    "name": "Terraza del Eclipse",
+    "name_es": "Terraza del Eclipse",
+    "name_key": "Terraza del Eclipse",
     "rarity": "common",
     "role": "combo",
     "strategy": {
-      "best_use": "Encadenar efectos para turnos de alto valor.",
-      "synergy_cards": [
-        "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
-        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
-      ],
-      "weakness": "Depende del orden de mano y setup."
+      "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+      "synergy_cards": [],
+      "weakness": "Depende del orden de mano y castiga manos pasivas."
     },
     "tags": [
-      "attack"
+      "combo",
+      "copy",
+      "exhaust",
+      "place"
     ],
     "target": "enemy",
-    "taxonomy": "engine",
-    "text_key": "Dano 5",
+    "taxonomy": "bridge",
+    "text_es": "Copia la última carta, Se agota",
+    "text_key": "Copia la última carta, Se agota",
     "legacy_id": "cw_lore_10",
     "canonical_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
-    "legacy_artwork": "cw_lore_10"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 3",
-    "effects": [
-      {
-        "amount": 2,
-        "type": "heal"
-      },
-      {
-        "amount": 3,
-        "type": "gain_block"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
-    "kpi": {
-      "block": 3
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Firmeza del Cuerpo Nova",
-    "name_key": "Firmeza del Cuerpo Nova",
-    "rarity": "common",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "heal",
-      "block"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Bloqueo 3",
-    "legacy_id": "hg_lore_11",
-    "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
-    "legacy_artwork": "hg_lore_11"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "ESTE",
-    "effect_text": "Dano 5, Prever 3",
-    "effects": [
-      {
-        "amount": 5,
-        "type": "damage"
-      },
-      {
-        "amount": 3,
-        "type": "scry"
-      }
-    ],
-    "family": "este",
-    "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
-    "kpi": {
-      "damage": 5,
-      "scry": 3
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Fragmento Celeste Nova",
-    "name_key": "Fragmento Celeste Nova",
-    "rarity": "common",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "tags": [
-      "attack",
-      "scry"
-    ],
-    "target": "enemy",
-    "taxonomy": "engine",
-    "text_key": "Dano 5, Prever 3",
-    "legacy_id": "of_lore_12",
-    "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
-    "legacy_artwork": "of_lore_12"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "OESTE",
-    "effect_text": "Limite de bloqueo +10, Bloqueo 1, Armonia +1",
-    "effects": [
-      {
-        "amount": 10,
-        "type": "double_block_cap"
-      },
-      {
-        "amount": 1,
-        "type": "gain_block"
-      },
-      {
-        "amount": 1,
-        "type": "harmony_delta"
-      }
-    ],
-    "family": "oeste",
-    "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
-    "kpi": {
-      "block": 1,
-      "harmony": 1,
-      "support": 10
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Fusión Espiritual Nova",
-    "name_key": "Fusión Espiritual Nova",
-    "rarity": "uncommon",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block",
-      "support",
-      "harmony"
-    ],
-    "target": "self",
-    "taxonomy": "payoff",
-    "text_key": "Limite de bloqueo +10, Bloqueo 1",
-    "legacy_id": "hg_lore_13",
-    "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
-    "legacy_artwork": "hg_lore_13"
+    "legacy_artwork": "cw_lore_10",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
     "author": "Chakana Studio",
-    "cost": 0,
-    "direction": "ESTE",
-    "effect_text": "Dano 5",
+    "cost": 1,
+    "direction": "NORTE",
+    "effect_text": "Daño 4, Próx. ataque cuesta -1",
     "effects": [
       {
-        "amount": 5,
-        "type": "damage"
+        "type": "damage",
+        "amount": 4
+      },
+      {
+        "type": "discount_next_attack",
+        "amount": 1
       }
     ],
-    "family": "este",
+    "family": "place",
     "id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
     "kpi": {
-      "damage": 5
+      "damage": 4
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Garra Espiritual Nova",
-    "name_key": "Garra Espiritual Nova",
+    "lore_text": "Puente del Cobre Celeste: Los lugares del set solar empujan tempo, cierre y posicion tactica.",
+    "name": "Puente del Cobre Celeste",
+    "name_es": "Puente del Cobre Celeste",
+    "name_key": "Puente del Cobre Celeste",
     "rarity": "common",
     "role": "attack",
     "strategy": {
-      "best_use": "Cerrar combates cortos con presion constante.",
-      "synergy_cards": [
-        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
-        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
-        "BASE-SOLAR-ATTACK-PULSO_COSMICO"
-      ],
-      "weakness": "Sufre si no roba ritmo."
+      "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+      "synergy_cards": [],
+      "weakness": "Pierde valor si la run no capitaliza ruptura."
     },
     "tags": [
-      "attack"
+      "attack",
+      "place",
+      "tempo"
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Dano 5",
+    "text_es": "Daño 4, Próx. ataque cuesta -1",
+    "text_key": "Daño 4, Próx. ataque cuesta -1",
     "legacy_id": "cw_lore_14",
     "canonical_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
-    "legacy_artwork": "cw_lore_14"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
-    "author": "Chakana Studio",
-    "cost": 0,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 4",
-    "effects": [
-      {
-        "amount": 4,
-        "type": "gain_block"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
-    "kpi": {
-      "block": 4
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Guardia Terrenal Nova",
-    "name_key": "Guardia Terrenal Nova",
-    "rarity": "common",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Bloqueo 4",
-    "legacy_id": "hg_lore_15",
-    "canonical_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
-    "legacy_artwork": "hg_lore_15"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "OESTE",
-    "effect_text": "Armonia +2, Bloqueo 3",
-    "effects": [
-      {
-        "amount": 2,
-        "type": "harmony_delta"
-      },
-      {
-        "amount": 3,
-        "type": "heal"
-      },
-      {
-        "amount": 3,
-        "type": "gain_block"
-      }
-    ],
-    "family": "oeste",
-    "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
-    "kpi": {
-      "block": 3,
-      "harmony": 2
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Invocación Astral Nova",
-    "name_key": "Invocación Astral Nova",
-    "rarity": "common",
-    "role": "ritual",
-    "strategy": {
-      "best_use": "Escalar armonia y explotar umbrales de sello.",
-      "synergy_cards": [
-        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
-        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
-        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
-      ],
-      "weakness": "Puede quedarse corto si no llega al umbral."
-    },
-    "tags": [
-      "heal",
-      "block",
-      "ritual"
-    ],
-    "target": "self",
-    "taxonomy": "bridge",
-    "text_key": "Armonia +2, Bloqueo 3",
-    "legacy_id": "of_lore_16",
-    "canonical_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
-    "legacy_artwork": "of_lore_16"
-  },
-  {
-    "archetype": "oracle_of_fate",
-    "artwork": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
-    "author": "Chakana Studio",
-    "cost": 0,
-    "direction": "NORTE",
-    "effect_text": "Prever 3",
-    "effects": [
-      {
-        "amount": 3,
-        "type": "scry"
-      }
-    ],
-    "family": "norte",
-    "id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
-    "kpi": {
-      "scry": 3
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Lectura del Destino Nova",
-    "name_key": "Lectura del Destino Nova",
-    "rarity": "common",
-    "role": "control",
-    "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
-    },
-    "tags": [
-      "scry"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Prever 3",
-    "legacy_id": "of_lore_17",
-    "canonical_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
-    "legacy_artwork": "of_lore_17"
+    "legacy_artwork": "cw_lore_14",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "cosmic_warrior",
     "artwork": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
-    "direction": "OESTE",
-    "effect_text": "Armonia +2, Energia +1",
+    "direction": "NORTE",
+    "effect_text": "Energía +1 si el enemigo ataca, Daño 5",
     "effects": [
       {
-        "amount": 2,
-        "type": "harmony_delta"
+        "type": "gain_mana_if_enemy_attack_intent",
+        "amount": 1
       },
       {
-        "amount": 1,
-        "type": "gain_mana"
-      },
-      {
-        "amount": 1,
-        "type": "heal"
+        "type": "damage",
+        "amount": 5
       }
     ],
-    "family": "oeste",
+    "family": "place",
     "id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
     "kpi": {
       "energy": 1,
-      "harmony": 2
+      "damage": 5
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Mantra del Umbral Nova",
-    "name_key": "Mantra del Umbral Nova",
+    "lore_text": "Arena de las Siete Chispas: Los lugares del set solar empujan tempo, cierre y posicion tactica.",
+    "name": "Arena de las Siete Chispas",
+    "name_es": "Arena de las Siete Chispas",
+    "name_key": "Arena de las Siete Chispas",
     "rarity": "common",
     "role": "energy",
     "strategy": {
-      "best_use": "Acelerar turnos clave y habilitar cadenas.",
-      "synergy_cards": [
-        "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
-        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
-      ],
-      "weakness": "Necesita cartas de impacto para capitalizar mana."
+      "best_use": "Acelerar el siguiente turno para sostener presion.",
+      "synergy_cards": [],
+      "weakness": "No renta si no hay payoff en mano."
     },
     "tags": [
+      "attack",
       "energy",
-      "heal",
-      "ritual"
+      "place",
+      "tempo"
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_key": "Armonia +2, Energia +1",
+    "text_es": "Energía +1 si el enemigo ataca, Daño 5",
+    "text_key": "Energía +1 si el enemigo ataca, Daño 5",
     "legacy_id": "cw_lore_18",
     "canonical_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
-    "legacy_artwork": "cw_lore_18"
+    "legacy_artwork": "cw_lore_18",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "cosmic_warrior",
+    "artwork": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "NORTE",
+    "effect_text": "Daño 6",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 6
+      }
+    ],
+    "family": "place",
+    "id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
+    "kpi": {
+      "damage": 6
+    },
+    "lore_text": "Foso del Sol Guardado: Los lugares del set solar empujan tempo, cierre y posicion tactica.",
+    "name": "Foso del Sol Guardado",
+    "name_es": "Foso del Sol Guardado",
+    "name_key": "Foso del Sol Guardado",
+    "rarity": "common",
+    "role": "attack",
+    "strategy": {
+      "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+      "synergy_cards": [],
+      "weakness": "Pierde valor si la run no capitaliza ruptura."
+    },
+    "tags": [
+      "attack",
+      "place"
+    ],
+    "target": "enemy",
+    "taxonomy": "engine",
+    "text_es": "Daño 6",
+    "text_key": "Daño 6",
+    "legacy_id": "cw_lore_23",
+    "canonical_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
+    "legacy_artwork": "cw_lore_23",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "cosmic_warrior",
+    "artwork": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "NORTE",
+    "effect_text": "Energía +1, Daño 3, Ruptura +1",
+    "effects": [
+      {
+        "type": "gain_mana",
+        "amount": 1
+      },
+      {
+        "type": "damage",
+        "amount": 3
+      },
+      {
+        "type": "apply_break",
+        "amount": 1
+      }
+    ],
+    "family": "place",
+    "id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
+    "kpi": {
+      "energy": 1,
+      "damage": 3,
+      "rupture": 1
+    },
+    "lore_text": "Muralla del Trueno Alto: Los lugares del set solar empujan tempo, cierre y posicion tactica.",
+    "name": "Muralla del Trueno Alto",
+    "name_es": "Muralla del Trueno Alto",
+    "name_key": "Muralla del Trueno Alto",
+    "rarity": "uncommon",
+    "role": "energy",
+    "strategy": {
+      "best_use": "Acelerar el siguiente turno para sostener presion.",
+      "synergy_cards": [],
+      "weakness": "No renta si no hay payoff en mano."
+    },
+    "tags": [
+      "attack",
+      "energy",
+      "place",
+      "rupture"
+    ],
+    "target": "self",
+    "taxonomy": "bridge",
+    "text_es": "Energía +1, Daño 3, Ruptura +1",
+    "text_key": "Energía +1, Daño 3, Ruptura +1",
+    "legacy_id": "cw_lore_29",
+    "canonical_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
+    "legacy_artwork": "cw_lore_29",
+    "motif": "solar_beasts",
+    "palette": "crimson-magenta",
+    "energy": "burst_arcs",
+    "symbol": "blade_sigil",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "SUR",
+    "effect_text": "Bloqueo 6, Armonía +1",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 6
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      }
+    ],
+    "family": "creature",
+    "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
+    "kpi": {
+      "block": 6,
+      "harmony": 1
+    },
+    "lore_text": "Condor del Velo Sereno: Las criaturas guardianas sostienen el turno para que la run respire.",
+    "name": "Condor del Velo Sereno",
+    "name_es": "Condor del Velo Sereno",
+    "name_key": "Condor del Velo Sereno",
+    "rarity": "uncommon",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "block",
+      "creature",
+      "defense",
+      "harmony"
+    ],
+    "target": "enemy",
+    "taxonomy": "bridge",
+    "text_es": "Bloqueo 6, Armonía +1",
+    "text_key": "Bloqueo 6, Armonía +1",
+    "legacy_id": "campo_protector",
+    "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
+    "legacy_artwork": "campo_protector",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "SUR",
+    "effect_text": "Bloqueo 5, Cura 2",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 5
+      },
+      {
+        "type": "heal",
+        "amount": 2
+      }
+    ],
+    "family": "creature",
+    "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
+    "kpi": {
+      "block": 5,
+      "support": 2
+    },
+    "lore_text": "Llama del Patio Quieto: Las criaturas guardianas sostienen el turno para que la run respire.",
+    "name": "Llama del Patio Quieto",
+    "name_es": "Llama del Patio Quieto",
+    "name_key": "Llama del Patio Quieto",
+    "rarity": "common",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "block",
+      "creature",
+      "defense",
+      "heal"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Bloqueo 5, Cura 2",
+    "text_key": "Bloqueo 5, Cura 2",
+    "legacy_id": "escudo_de_luz",
+    "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
+    "legacy_artwork": "escudo_de_luz",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "SUR",
+    "effect_text": "Bloqueo 3, Ruptura +1, Armonía +1",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 3
+      },
+      {
+        "type": "apply_break",
+        "amount": 1
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      }
+    ],
+    "family": "creature",
+    "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
+    "kpi": {
+      "block": 3,
+      "rupture": 1,
+      "harmony": 1
+    },
+    "lore_text": "Vicuna del Canto Claro: Las criaturas guardianas sostienen el turno para que la run respire.",
+    "name": "Vicuna del Canto Claro",
+    "name_es": "Vicuna del Canto Claro",
+    "name_key": "Vicuna del Canto Claro",
+    "rarity": "common",
+    "role": "control",
+    "strategy": {
+      "best_use": "Preparar armonia, lectura y bloqueos con timing.",
+      "synergy_cards": [],
+      "weakness": "Pierde ritmo ante manos sin payoff."
+    },
+    "tags": [
+      "block",
+      "control",
+      "creature",
+      "harmony",
+      "rupture"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Bloqueo 3, Ruptura +1, Armonía +1",
+    "text_key": "Bloqueo 3, Ruptura +1, Armonía +1",
+    "legacy_id": "escudo_del_chaman",
+    "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
+    "legacy_artwork": "escudo_del_chaman",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "SUR",
+    "effect_text": "Bloqueo 4, Daño 2",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 4
+      },
+      {
+        "type": "damage",
+        "amount": 2
+      }
+    ],
+    "family": "creature",
+    "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
+    "kpi": {
+      "block": 4,
+      "damage": 2
+    },
+    "lore_text": "Puma del Resguardo Dorado: Las criaturas guardianas sostienen el turno para que la run respire.",
+    "name": "Puma del Resguardo Dorado",
+    "name_es": "Puma del Resguardo Dorado",
+    "name_key": "Puma del Resguardo Dorado",
+    "rarity": "common",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "attack",
+      "block",
+      "creature",
+      "defense"
+    ],
+    "target": "enemy",
+    "taxonomy": "engine",
+    "text_es": "Bloqueo 4, Daño 2",
+    "text_key": "Bloqueo 4, Daño 2",
+    "legacy_id": "espiritu_guardian",
+    "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
+    "legacy_artwork": "espiritu_guardian",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "SUR",
+    "effect_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+    "effects": [
+      {
+        "type": "gain_block_if_no_direction",
+        "amount": 6
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      }
+    ],
+    "family": "creature",
+    "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
+    "kpi": {
+      "harmony": 1
+    },
+    "lore_text": "Colibri de la Guardia Baja: Las criaturas guardianas sostienen el turno para que la run respire.",
+    "name": "Colibri de la Guardia Baja",
+    "name_es": "Colibri de la Guardia Baja",
+    "name_key": "Colibri de la Guardia Baja",
+    "rarity": "common",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "block",
+      "creature",
+      "defense",
+      "harmony",
+      "tempo"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+    "text_key": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+    "legacy_id": "firmeza_del_cuerpo",
+    "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
+    "legacy_artwork": "firmeza_del_cuerpo",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "OESTE",
+    "effect_text": "Bloqueo 10, Cura 4, Armonía +2, Consume Armonía 2",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 10
+      },
+      {
+        "type": "heal",
+        "amount": 4
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 2
+      },
+      {
+        "type": "consume_harmony",
+        "amount": 2
+      },
+      {
+        "type": "damage",
+        "amount": 6
+      }
+    ],
+    "family": "subject",
+    "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
+    "kpi": {
+      "block": 10,
+      "support": 4,
+      "harmony": 2,
+      "seal": 2,
+      "damage": 6
+    },
+    "lore_text": "Custodio del Patio de Piedra: Los sujetos del Kay convierten defensa en tempo y contraataque.",
+    "name": "Custodio del Patio de Piedra",
+    "name_es": "Custodio del Patio de Piedra",
+    "name_key": "Custodio del Patio de Piedra",
+    "rarity": "legendary",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "attack",
+      "block",
+      "defense",
+      "harmony",
+      "heal",
+      "ritual",
+      "seal",
+      "subject"
+    ],
+    "target": "self",
+    "taxonomy": "payoff",
+    "text_es": "Bloqueo 10, Cura 4, Armonía +2, Consume Armonía 2",
+    "text_key": "Bloqueo 10, Cura 4, Armonía +2, Consume Armonía 2",
+    "legacy_id": "fusion_espiritual",
+    "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
+    "legacy_artwork": "fusion_espiritual",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "OESTE",
+    "effect_text": "Bloqueo 5, Cura 2",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 5
+      },
+      {
+        "type": "heal",
+        "amount": 2
+      }
+    ],
+    "family": "subject",
+    "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
+    "kpi": {
+      "block": 5,
+      "support": 2
+    },
+    "lore_text": "Sanadora de los Tres Pulsos: Los sujetos del Kay convierten defensa en tempo y contraataque.",
+    "name": "Sanadora de los Tres Pulsos",
+    "name_es": "Sanadora de los Tres Pulsos",
+    "name_key": "Sanadora de los Tres Pulsos",
+    "rarity": "common",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "block",
+      "defense",
+      "heal",
+      "subject"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Bloqueo 5, Cura 2",
+    "text_key": "Bloqueo 5, Cura 2",
+    "legacy_id": "guardia_terrenal",
+    "canonical_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
+    "legacy_artwork": "guardia_terrenal",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "OESTE",
+    "effect_text": "Bloqueo 4, Debilita 1",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 4
+      },
+      {
+        "type": "weaken_enemy",
+        "amount": 1
+      }
+    ],
+    "family": "subject",
+    "id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+    "kpi": {
+      "block": 4,
+      "support": 1
+    },
+    "lore_text": "Cantor del Kay Vivo: Los sujetos del Kay convierten defensa en tempo y contraataque.",
+    "name": "Cantor del Kay Vivo",
+    "name_es": "Cantor del Kay Vivo",
+    "name_key": "Cantor del Kay Vivo",
+    "rarity": "uncommon",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "block",
+      "debuff",
+      "defense",
+      "subject"
+    ],
+    "target": "self",
+    "taxonomy": "bridge",
+    "text_es": "Bloqueo 4, Debilita 1",
+    "text_key": "Bloqueo 4, Debilita 1",
+    "legacy_id": "muralla_de_piedra",
+    "canonical_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+    "legacy_artwork": "muralla_de_piedra",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "OESTE",
+    "effect_text": "Bloqueo 4, Daño 2",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 4
+      },
+      {
+        "type": "damage",
+        "amount": 2
+      }
+    ],
+    "family": "subject",
+    "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
+    "kpi": {
+      "block": 4,
+      "damage": 2
+    },
+    "lore_text": "Veladora del Umbral Manso: Los sujetos del Kay convierten defensa en tempo y contraataque.",
+    "name": "Veladora del Umbral Manso",
+    "name_es": "Veladora del Umbral Manso",
+    "name_key": "Veladora del Umbral Manso",
+    "rarity": "uncommon",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "attack",
+      "block",
+      "defense",
+      "subject"
+    ],
+    "target": "self",
+    "taxonomy": "bridge",
+    "text_es": "Bloqueo 4, Daño 2",
+    "text_key": "Bloqueo 4, Daño 2",
+    "legacy_id": "resistencia_ancestral",
+    "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
+    "legacy_artwork": "resistencia_ancestral",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "OESTE",
+    "effect_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+    "effects": [
+      {
+        "type": "gain_block_if_no_direction",
+        "amount": 6
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      }
+    ],
+    "family": "subject",
+    "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+    "kpi": {
+      "harmony": 1
+    },
+    "lore_text": "Portador de la Campana Clara: Los sujetos del Kay convierten defensa en tempo y contraataque.",
+    "name": "Portador de la Campana Clara",
+    "name_es": "Portador de la Campana Clara",
+    "name_key": "Portador de la Campana Clara",
+    "rarity": "common",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "block",
+      "defense",
+      "harmony",
+      "subject",
+      "tempo"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+    "text_key": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+    "legacy_id": "sello_protector",
+    "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+    "legacy_artwork": "sello_protector",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "ESTE",
+    "effect_text": "Bloqueo 6, Armonía +1",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 6
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      }
+    ],
+    "family": "object",
+    "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
+    "kpi": {
+      "block": 6,
+      "harmony": 1
+    },
+    "lore_text": "Sello del Rio Paciente: Los objetos guardianes son sellos, mantos y herramientas de permanencia.",
+    "name": "Sello del Rio Paciente",
+    "name_es": "Sello del Rio Paciente",
+    "name_key": "Sello del Rio Paciente",
+    "rarity": "uncommon",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "block",
+      "defense",
+      "harmony",
+      "object"
+    ],
+    "target": "enemy",
+    "taxonomy": "bridge",
+    "text_es": "Bloqueo 6, Armonía +1",
+    "text_key": "Bloqueo 6, Armonía +1",
+    "legacy_id": "hg_lore_01",
+    "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
+    "legacy_artwork": "hg_lore_01",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "ESTE",
+    "effect_text": "Bloqueo 5, Cura 2",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 5
+      },
+      {
+        "type": "heal",
+        "amount": 2
+      }
+    ],
+    "family": "object",
+    "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
+    "kpi": {
+      "block": 5,
+      "support": 2
+    },
+    "lore_text": "Manto de la Columna Viva: Los objetos guardianes son sellos, mantos y herramientas de permanencia.",
+    "name": "Manto de la Columna Viva",
+    "name_es": "Manto de la Columna Viva",
+    "name_key": "Manto de la Columna Viva",
+    "rarity": "common",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "block",
+      "defense",
+      "heal",
+      "object"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Bloqueo 5, Cura 2",
+    "text_key": "Bloqueo 5, Cura 2",
+    "legacy_id": "hg_lore_05",
+    "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
+    "legacy_artwork": "hg_lore_05",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "ESTE",
+    "effect_text": "Bloqueo 4, Prever 2",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 4
+      },
+      {
+        "type": "scry",
+        "amount": 2
+      }
+    ],
+    "family": "object",
+    "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
+    "kpi": {
+      "block": 4,
+      "scry": 2
+    },
+    "lore_text": "Bastion de Sal Ritual: Los objetos guardianes son sellos, mantos y herramientas de permanencia.",
+    "name": "Bastion de Sal Ritual",
+    "name_es": "Bastion de Sal Ritual",
+    "name_key": "Bastion de Sal Ritual",
+    "rarity": "common",
+    "role": "control",
+    "strategy": {
+      "best_use": "Preparar armonia, lectura y bloqueos con timing.",
+      "synergy_cards": [],
+      "weakness": "Pierde ritmo ante manos sin payoff."
+    },
+    "tags": [
+      "block",
+      "control",
+      "object",
+      "scry"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Bloqueo 4, Prever 2",
+    "text_key": "Bloqueo 4, Prever 2",
+    "legacy_id": "hg_lore_06",
+    "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
+    "legacy_artwork": "hg_lore_06",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "ESTE",
+    "effect_text": "Bloqueo 4, Daño 2",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 4
+      },
+      {
+        "type": "damage",
+        "amount": 2
+      }
+    ],
+    "family": "object",
+    "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
+    "kpi": {
+      "block": 4,
+      "damage": 2
+    },
+    "lore_text": "Rosario del Aire Terso: Los objetos guardianes son sellos, mantos y herramientas de permanencia.",
+    "name": "Rosario del Aire Terso",
+    "name_es": "Rosario del Aire Terso",
+    "name_key": "Rosario del Aire Terso",
+    "rarity": "common",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "attack",
+      "block",
+      "defense",
+      "object"
+    ],
+    "target": "enemy",
+    "taxonomy": "engine",
+    "text_es": "Bloqueo 4, Daño 2",
+    "text_key": "Bloqueo 4, Daño 2",
+    "legacy_id": "hg_lore_07",
+    "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
+    "legacy_artwork": "hg_lore_07",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "ESTE",
+    "effect_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+    "effects": [
+      {
+        "type": "gain_block_if_no_direction",
+        "amount": 6
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      }
+    ],
+    "family": "object",
+    "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
+    "kpi": {
+      "harmony": 1
+    },
+    "lore_text": "Brazal de la Huella Serena: Los objetos guardianes son sellos, mantos y herramientas de permanencia.",
+    "name": "Brazal de la Huella Serena",
+    "name_es": "Brazal de la Huella Serena",
+    "name_key": "Brazal de la Huella Serena",
+    "rarity": "common",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "block",
+      "defense",
+      "harmony",
+      "object",
+      "tempo"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+    "text_key": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+    "legacy_id": "hg_lore_11",
+    "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
+    "legacy_artwork": "hg_lore_11",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "NORTE",
+    "effect_text": "Bloqueo 6, Armonía +1",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 6
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      }
+    ],
+    "family": "place",
+    "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
+    "kpi": {
+      "block": 6,
+      "harmony": 1
+    },
+    "lore_text": "Atrio del Segundo Respiro: Los lugares guardianes ofrecen valor estable y ventanas de recuperacion.",
+    "name": "Atrio del Segundo Respiro",
+    "name_es": "Atrio del Segundo Respiro",
+    "name_key": "Atrio del Segundo Respiro",
+    "rarity": "uncommon",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "block",
+      "defense",
+      "harmony",
+      "place"
+    ],
+    "target": "self",
+    "taxonomy": "bridge",
+    "text_es": "Bloqueo 6, Armonía +1",
+    "text_key": "Bloqueo 6, Armonía +1",
+    "legacy_id": "hg_lore_13",
+    "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
+    "legacy_artwork": "hg_lore_13",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "NORTE",
+    "effect_text": "Bloqueo 5, Cura 2",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 5
+      },
+      {
+        "type": "heal",
+        "amount": 2
+      }
+    ],
+    "family": "place",
+    "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
+    "kpi": {
+      "block": 5,
+      "support": 2
+    },
+    "lore_text": "Camino de la Piedra Tibia: Los lugares guardianes ofrecen valor estable y ventanas de recuperacion.",
+    "name": "Camino de la Piedra Tibia",
+    "name_es": "Camino de la Piedra Tibia",
+    "name_key": "Camino de la Piedra Tibia",
+    "rarity": "common",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "block",
+      "defense",
+      "heal",
+      "place"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Bloqueo 5, Cura 2",
+    "text_key": "Bloqueo 5, Cura 2",
+    "legacy_id": "hg_lore_15",
+    "canonical_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
+    "legacy_artwork": "hg_lore_15",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "harmony_guardian",
     "artwork": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 9",
+    "direction": "NORTE",
+    "effect_text": "Bloqueo 4, Debilita 1",
     "effects": [
       {
-        "amount": 9,
-        "type": "gain_block"
+        "type": "gain_block",
+        "amount": 4
+      },
+      {
+        "type": "weaken_enemy",
+        "amount": 1
       }
     ],
-    "family": "sur",
+    "family": "place",
     "id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA",
     "kpi": {
-      "block": 9
+      "block": 4,
+      "support": 1
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Muralla de Piedra Nova",
-    "name_key": "Muralla de Piedra Nova",
+    "lore_text": "Huerto del Eco Quieto: Los lugares guardianes ofrecen valor estable y ventanas de recuperacion.",
+    "name": "Huerto del Eco Quieto",
+    "name_es": "Huerto del Eco Quieto",
+    "name_key": "Huerto del Eco Quieto",
     "rarity": "uncommon",
     "role": "defense",
     "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
     },
     "tags": [
-      "block"
+      "block",
+      "debuff",
+      "defense",
+      "place"
     ],
     "target": "self",
     "taxonomy": "bridge",
-    "text_key": "Bloqueo 9",
+    "text_es": "Bloqueo 4, Debilita 1",
+    "text_key": "Bloqueo 4, Debilita 1",
     "legacy_id": "hg_lore_19",
     "canonical_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA",
-    "legacy_artwork": "hg_lore_19"
+    "legacy_artwork": "hg_lore_19",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "NORTE",
+    "effect_text": "Bloqueo 4, Daño 2",
+    "effects": [
+      {
+        "type": "gain_block",
+        "amount": 4
+      },
+      {
+        "type": "damage",
+        "amount": 2
+      }
+    ],
+    "family": "place",
+    "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
+    "kpi": {
+      "block": 4,
+      "damage": 2
+    },
+    "lore_text": "Plaza del Juramento Calmo: Los lugares guardianes ofrecen valor estable y ventanas de recuperacion.",
+    "name": "Plaza del Juramento Calmo",
+    "name_es": "Plaza del Juramento Calmo",
+    "name_key": "Plaza del Juramento Calmo",
+    "rarity": "uncommon",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "attack",
+      "block",
+      "defense",
+      "place"
+    ],
+    "target": "self",
+    "taxonomy": "bridge",
+    "text_es": "Bloqueo 4, Daño 2",
+    "text_key": "Bloqueo 4, Daño 2",
+    "legacy_id": "hg_lore_24",
+    "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
+    "legacy_artwork": "hg_lore_24",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "harmony_guardian",
+    "artwork": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "NORTE",
+    "effect_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+    "effects": [
+      {
+        "type": "gain_block_if_no_direction",
+        "amount": 6
+      },
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      }
+    ],
+    "family": "place",
+    "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
+    "kpi": {
+      "harmony": 1
+    },
+    "lore_text": "Santuario del Vaso Lento: Los lugares guardianes ofrecen valor estable y ventanas de recuperacion.",
+    "name": "Santuario del Vaso Lento",
+    "name_es": "Santuario del Vaso Lento",
+    "name_key": "Santuario del Vaso Lento",
+    "rarity": "common",
+    "role": "defense",
+    "strategy": {
+      "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+      "synergy_cards": [],
+      "weakness": "Sufre si solo bloquea y nunca convierte."
+    },
+    "tags": [
+      "block",
+      "defense",
+      "harmony",
+      "place",
+      "tempo"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+    "text_key": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+    "legacy_id": "hg_lore_27",
+    "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
+    "legacy_artwork": "hg_lore_27",
+    "motif": "sacred_forms",
+    "palette": "teal-gold",
+    "energy": "stable_rings",
+    "symbol": "shield_mandala",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "NORTE",
+    "effect_text": "Prever 2, Roba 1",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 2
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "creature",
+    "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
+    "kpi": {
+      "scry": 2,
+      "draw": 1
+    },
+    "lore_text": "Lechuza del Pozo Claro: Las criaturas del Ukhu abren informacion antes que daño bruto.",
+    "name": "Lechuza del Pozo Claro",
+    "name_es": "Lechuza del Pozo Claro",
+    "name_key": "Lechuza del Pozo Claro",
+    "rarity": "common",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+      "synergy_cards": [],
+      "weakness": "Pierde impacto si no encuentra payoff."
+    },
+    "tags": [
+      "control",
+      "creature",
+      "draw",
+      "scry"
+    ],
+    "target": "enemy",
+    "taxonomy": "engine",
+    "text_es": "Prever 2, Roba 1",
+    "text_key": "Prever 2, Roba 1",
+    "legacy_id": "fragmento_celeste",
+    "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
+    "legacy_artwork": "fragmento_celeste",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "NORTE",
+    "effect_text": "Armonía +2, Consume Armonía 2, Roba 1",
+    "effects": [
+      {
+        "type": "harmony_delta",
+        "amount": 2
+      },
+      {
+        "type": "consume_harmony",
+        "amount": 2
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "creature",
+    "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
+    "kpi": {
+      "harmony": 2,
+      "seal": 2,
+      "draw": 1
+    },
+    "lore_text": "Zorro del Eclipse Quieto: Las criaturas del Ukhu abren informacion antes que daño bruto.",
+    "name": "Zorro del Eclipse Quieto",
+    "name_es": "Zorro del Eclipse Quieto",
+    "name_key": "Zorro del Eclipse Quieto",
+    "rarity": "common",
+    "role": "ritual",
+    "strategy": {
+      "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+      "synergy_cards": [],
+      "weakness": "La run castiga rituales vacios."
+    },
+    "tags": [
+      "creature",
+      "draw",
+      "harmony",
+      "ritual",
+      "seal"
+    ],
+    "target": "self",
+    "taxonomy": "bridge",
+    "text_es": "Armonía +2, Consume Armonía 2, Roba 1",
+    "text_key": "Armonía +2, Consume Armonía 2, Roba 1",
+    "legacy_id": "invocacion_astral",
+    "canonical_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
+    "legacy_artwork": "invocacion_astral",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "NORTE",
+    "effect_text": "Prever 2, Energía sig. turno +1",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 2
+      },
+      {
+        "type": "gain_mana_next_turn",
+        "amount": 1
+      }
+    ],
+    "family": "creature",
+    "id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+    "kpi": {
+      "scry": 2,
+      "energy": 1
+    },
+    "lore_text": "Taruca del Eco Lunar: Las criaturas del Ukhu abren informacion antes que daño bruto.",
+    "name": "Taruca del Eco Lunar",
+    "name_es": "Taruca del Eco Lunar",
+    "name_key": "Taruca del Eco Lunar",
+    "rarity": "common",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+      "synergy_cards": [],
+      "weakness": "Pierde impacto si no encuentra payoff."
+    },
+    "tags": [
+      "control",
+      "creature",
+      "energy",
+      "scry"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Prever 2, Energía sig. turno +1",
+    "text_key": "Prever 2, Energía sig. turno +1",
+    "legacy_id": "lectura_del_destino",
+    "canonical_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+    "legacy_artwork": "lectura_del_destino",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "NORTE",
+    "effect_text": "Prever 1, Roba 1, Ruptura +1",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 1
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      },
+      {
+        "type": "apply_break",
+        "amount": 1
+      }
+    ],
+    "family": "creature",
+    "id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+    "kpi": {
+      "scry": 1,
+      "draw": 1,
+      "rupture": 1
+    },
+    "lore_text": "Serpiente del Sueno Doble: Las criaturas del Ukhu abren informacion antes que daño bruto.",
+    "name": "Serpiente del Sueno Doble",
+    "name_es": "Serpiente del Sueno Doble",
+    "name_key": "Serpiente del Sueno Doble",
+    "rarity": "common",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+      "synergy_cards": [],
+      "weakness": "Pierde impacto si no encuentra payoff."
+    },
+    "tags": [
+      "control",
+      "creature",
+      "draw",
+      "rupture",
+      "scry"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Prever 1, Roba 1, Ruptura +1",
+    "text_key": "Prever 1, Roba 1, Ruptura +1",
+    "legacy_id": "observacion_sagrada",
+    "canonical_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+    "legacy_artwork": "observacion_sagrada",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "NORTE",
+    "effect_text": "Armonía +1, Consume Armonía 1, Roba 1, Prever 2",
+    "effects": [
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      },
+      {
+        "type": "consume_harmony",
+        "amount": 1
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      },
+      {
+        "type": "scry",
+        "amount": 2
+      }
+    ],
+    "family": "creature",
+    "id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
+    "kpi": {
+      "harmony": 1,
+      "seal": 1,
+      "draw": 1,
+      "scry": 2
+    },
+    "lore_text": "Mariposa del Umbral Violeta: Las criaturas del Ukhu abren informacion antes que daño bruto.",
+    "name": "Mariposa del Umbral Violeta",
+    "name_es": "Mariposa del Umbral Violeta",
+    "name_key": "Mariposa del Umbral Violeta",
+    "rarity": "uncommon",
+    "role": "ritual",
+    "strategy": {
+      "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+      "synergy_cards": [],
+      "weakness": "La run castiga rituales vacios."
+    },
+    "tags": [
+      "creature",
+      "draw",
+      "harmony",
+      "ritual",
+      "scry",
+      "seal"
+    ],
+    "target": "enemy",
+    "taxonomy": "bridge",
+    "text_es": "Armonía +1, Consume Armonía 1, Roba 1, Prever 2",
+    "text_key": "Armonía +1, Consume Armonía 1, Roba 1, Prever 2",
+    "legacy_id": "piedra_ritual",
+    "canonical_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
+    "legacy_artwork": "piedra_ritual",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "OESTE",
+    "effect_text": "Armonía +1, Ritual de la Trama, Prever 2",
+    "effects": [
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      },
+      {
+        "type": "ritual_trama",
+        "amount": 1
+      },
+      {
+        "type": "scry",
+        "amount": 2
+      }
+    ],
+    "family": "subject",
+    "id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+    "kpi": {
+      "harmony": 1,
+      "ritual": 1,
+      "scry": 2
+    },
+    "lore_text": "Vidente del Cuenco Negro: Los sujetos del oraculo convierten lectura en control tangible.",
+    "name": "Vidente del Cuenco Negro",
+    "name_es": "Vidente del Cuenco Negro",
+    "name_key": "Vidente del Cuenco Negro",
+    "rarity": "uncommon",
+    "role": "ritual",
+    "strategy": {
+      "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+      "synergy_cards": [],
+      "weakness": "La run castiga rituales vacios."
+    },
+    "tags": [
+      "harmony",
+      "ritual",
+      "scry",
+      "subject"
+    ],
+    "target": "enemy",
+    "taxonomy": "bridge",
+    "text_es": "Armonía +1, Ritual de la Trama, Prever 2",
+    "text_key": "Armonía +1, Ritual de la Trama, Prever 2",
+    "legacy_id": "portal_de_la_chakana",
+    "canonical_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+    "legacy_artwork": "portal_de_la_chakana",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "OESTE",
+    "effect_text": "Prever 2, Energía sig. turno +1",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 2
+      },
+      {
+        "type": "gain_mana_next_turn",
+        "amount": 1
+      }
+    ],
+    "family": "subject",
+    "id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
+    "kpi": {
+      "scry": 2,
+      "energy": 1
+    },
+    "lore_text": "Cronista del Pulso Naciente: Los sujetos del oraculo convierten lectura en control tangible.",
+    "name": "Cronista del Pulso Naciente",
+    "name_es": "Cronista del Pulso Naciente",
+    "name_key": "Cronista del Pulso Naciente",
+    "rarity": "uncommon",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+      "synergy_cards": [],
+      "weakness": "Pierde impacto si no encuentra payoff."
+    },
+    "tags": [
+      "control",
+      "energy",
+      "scry",
+      "subject"
+    ],
+    "target": "self",
+    "taxonomy": "bridge",
+    "text_es": "Prever 2, Energía sig. turno +1",
+    "text_key": "Prever 2, Energía sig. turno +1",
+    "legacy_id": "revelacion_astral",
+    "canonical_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
+    "legacy_artwork": "revelacion_astral",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
+    "author": "Chakana Studio",
+    "cost": 4,
+    "direction": "OESTE",
+    "effect_text": "Armonía +2, Consume Armonía 2, Ritual de la Trama, Prever 3",
+    "effects": [
+      {
+        "type": "harmony_delta",
+        "amount": 2
+      },
+      {
+        "type": "consume_harmony",
+        "amount": 2
+      },
+      {
+        "type": "ritual_trama",
+        "amount": 1
+      },
+      {
+        "type": "scry",
+        "amount": 3
+      }
+    ],
+    "family": "subject",
+    "id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
+    "kpi": {
+      "harmony": 2,
+      "seal": 2,
+      "ritual": 1,
+      "scry": 3
+    },
+    "lore_text": "Cartografa del Eco Profundo: Los sujetos del oraculo convierten lectura en control tangible.",
+    "name": "Cartografa del Eco Profundo",
+    "name_es": "Cartografa del Eco Profundo",
+    "name_key": "Cartografa del Eco Profundo",
+    "rarity": "legendary",
+    "role": "ritual",
+    "strategy": {
+      "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+      "synergy_cards": [],
+      "weakness": "La run castiga rituales vacios."
+    },
+    "tags": [
+      "harmony",
+      "ritual",
+      "scry",
+      "seal",
+      "subject"
+    ],
+    "target": "enemy",
+    "taxonomy": "payoff",
+    "text_es": "Armonía +2, Consume Armonía 2, Ritual de la Trama, Prever 3",
+    "text_key": "Armonía +2, Consume Armonía 2, Ritual de la Trama, Prever 3",
+    "legacy_id": "ritual_de_la_trama",
+    "canonical_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
+    "legacy_artwork": "ritual_de_la_trama",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "OESTE",
+    "effect_text": "Prever 2, Roba 1",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 2
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "subject",
+    "id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
+    "kpi": {
+      "scry": 2,
+      "draw": 1
+    },
+    "lore_text": "Adivino de la Tercera Puerta: Los sujetos del oraculo convierten lectura en control tangible.",
+    "name": "Adivino de la Tercera Puerta",
+    "name_es": "Adivino de la Tercera Puerta",
+    "name_key": "Adivino de la Tercera Puerta",
+    "rarity": "common",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+      "synergy_cards": [],
+      "weakness": "Pierde impacto si no encuentra payoff."
+    },
+    "tags": [
+      "control",
+      "draw",
+      "scry",
+      "subject"
+    ],
+    "target": "enemy",
+    "taxonomy": "engine",
+    "text_es": "Prever 2, Roba 1",
+    "text_key": "Prever 2, Roba 1",
+    "legacy_id": "silencio_interior",
+    "canonical_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
+    "legacy_artwork": "silencio_interior",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "OESTE",
+    "effect_text": "Prever 3, Daño 2",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 3
+      },
+      {
+        "type": "damage",
+        "amount": 2
+      }
+    ],
+    "family": "subject",
+    "id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
+    "kpi": {
+      "scry": 3,
+      "damage": 2
+    },
+    "lore_text": "Custodia del Hilo Interno: Los sujetos del oraculo convierten lectura en control tangible.",
+    "name": "Custodia del Hilo Interno",
+    "name_es": "Custodia del Hilo Interno",
+    "name_key": "Custodia del Hilo Interno",
+    "rarity": "common",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+      "synergy_cards": [],
+      "weakness": "Pierde impacto si no encuentra payoff."
+    },
+    "tags": [
+      "attack",
+      "control",
+      "scry",
+      "subject"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Prever 3, Daño 2",
+    "text_key": "Prever 3, Daño 2",
+    "legacy_id": "vision_del_condor",
+    "canonical_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
+    "legacy_artwork": "vision_del_condor",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "SUR",
+    "effect_text": "Prever 2, Energía sig. turno +1",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 2
+      },
+      {
+        "type": "gain_mana_next_turn",
+        "amount": 1
+      }
+    ],
+    "family": "object",
+    "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
+    "kpi": {
+      "scry": 2,
+      "energy": 1
+    },
+    "lore_text": "Astrolabio del Velo Bajo: Los objetos del destino ajustan robo, prever y energia futura.",
+    "name": "Astrolabio del Velo Bajo",
+    "name_es": "Astrolabio del Velo Bajo",
+    "name_key": "Astrolabio del Velo Bajo",
+    "rarity": "common",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+      "synergy_cards": [],
+      "weakness": "Pierde impacto si no encuentra payoff."
+    },
+    "tags": [
+      "control",
+      "energy",
+      "object",
+      "scry"
+    ],
+    "target": "enemy",
+    "taxonomy": "engine",
+    "text_es": "Prever 2, Energía sig. turno +1",
+    "text_key": "Prever 2, Energía sig. turno +1",
+    "legacy_id": "of_lore_12",
+    "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
+    "legacy_artwork": "of_lore_12",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
+    "author": "Chakana Studio",
+    "cost": 2,
+    "direction": "SUR",
+    "effect_text": "Armonía +1, Ritual de la Trama, Prever 2",
+    "effects": [
+      {
+        "type": "harmony_delta",
+        "amount": 1
+      },
+      {
+        "type": "ritual_trama",
+        "amount": 1
+      },
+      {
+        "type": "scry",
+        "amount": 2
+      }
+    ],
+    "family": "object",
+    "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
+    "kpi": {
+      "harmony": 1,
+      "ritual": 1,
+      "scry": 2
+    },
+    "lore_text": "Tabla de las Tres Sombras: Los objetos del destino ajustan robo, prever y energia futura.",
+    "name": "Tabla de las Tres Sombras",
+    "name_es": "Tabla de las Tres Sombras",
+    "name_key": "Tabla de las Tres Sombras",
+    "rarity": "common",
+    "role": "ritual",
+    "strategy": {
+      "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+      "synergy_cards": [],
+      "weakness": "La run castiga rituales vacios."
+    },
+    "tags": [
+      "harmony",
+      "object",
+      "ritual",
+      "scry"
+    ],
+    "target": "self",
+    "taxonomy": "bridge",
+    "text_es": "Armonía +1, Ritual de la Trama, Prever 2",
+    "text_key": "Armonía +1, Ritual de la Trama, Prever 2",
+    "legacy_id": "of_lore_16",
+    "canonical_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
+    "legacy_artwork": "of_lore_16",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
+  },
+  {
+    "archetype": "oracle_of_fate",
+    "artwork": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
+    "author": "Chakana Studio",
+    "cost": 1,
+    "direction": "SUR",
+    "effect_text": "Prever 2, Roba 1",
+    "effects": [
+      {
+        "type": "scry",
+        "amount": 2
+      },
+      {
+        "type": "draw",
+        "amount": 1
+      }
+    ],
+    "family": "object",
+    "id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
+    "kpi": {
+      "scry": 2,
+      "draw": 1
+    },
+    "lore_text": "Espejo del Condor Inverso: Los objetos del destino ajustan robo, prever y energia futura.",
+    "name": "Espejo del Condor Inverso",
+    "name_es": "Espejo del Condor Inverso",
+    "name_key": "Espejo del Condor Inverso",
+    "rarity": "common",
+    "role": "control",
+    "strategy": {
+      "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+      "synergy_cards": [],
+      "weakness": "Pierde impacto si no encuentra payoff."
+    },
+    "tags": [
+      "control",
+      "draw",
+      "object",
+      "scry"
+    ],
+    "target": "self",
+    "taxonomy": "engine",
+    "text_es": "Prever 2, Roba 1",
+    "text_key": "Prever 2, Roba 1",
+    "legacy_id": "of_lore_17",
+    "canonical_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
+    "legacy_artwork": "of_lore_17",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "oracle_of_fate",
     "artwork": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
-    "direction": "NORTE",
-    "effect_text": "Prever 4",
+    "direction": "SUR",
+    "effect_text": "Prever 3, Daño 2",
     "effects": [
       {
-        "amount": 4,
-        "type": "scry"
+        "type": "scry",
+        "amount": 3
       },
       {
-        "amount": 1,
-        "type": "harmony_delta"
+        "type": "damage",
+        "amount": 2
       }
     ],
-    "family": "norte",
+    "family": "object",
     "id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA",
     "kpi": {
-      "scry": 4
+      "scry": 3,
+      "damage": 2
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Observación Sagrada Nova",
-    "name_key": "Observación Sagrada Nova",
+    "lore_text": "Lampara de Ceniza Azul: Los objetos del destino ajustan robo, prever y energia futura.",
+    "name": "Lampara de Ceniza Azul",
+    "name_es": "Lampara de Ceniza Azul",
+    "name_key": "Lampara de Ceniza Azul",
     "rarity": "common",
     "role": "control",
     "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
+      "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+      "synergy_cards": [],
+      "weakness": "Pierde impacto si no encuentra payoff."
     },
     "tags": [
+      "attack",
+      "control",
+      "object",
       "scry"
     ],
     "target": "self",
     "taxonomy": "engine",
-    "text_es": "Escruta 4. Gana 1 Armon?a.",
-    "text_key": "Prever 4",
+    "text_es": "Prever 3, Daño 2",
+    "text_key": "Prever 3, Daño 2",
     "legacy_id": "of_lore_20",
     "canonical_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA",
-    "legacy_artwork": "of_lore_20"
+    "legacy_artwork": "of_lore_20",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "oracle_of_fate",
@@ -2426,506 +2974,343 @@
     "author": "Chakana Studio",
     "cost": 2,
     "direction": "SUR",
-    "effect_text": "Armonia +2, Bloqueo 6, Ruptura 3",
+    "effect_text": "Armonía +1, Ritual de la Trama, Roba 1",
     "effects": [
       {
-        "amount": 2,
-        "type": "harmony_delta"
+        "type": "harmony_delta",
+        "amount": 1
       },
       {
-        "amount": 6,
-        "type": "gain_block"
+        "type": "ritual_trama",
+        "amount": 1
       },
       {
-        "amount": 3,
-        "type": "apply_break"
+        "type": "draw",
+        "amount": 1
       }
     ],
-    "family": "sur",
+    "family": "object",
     "id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA",
     "kpi": {
-      "block": 6,
-      "harmony": 2,
-      "rupture": 3
+      "harmony": 1,
+      "ritual": 1,
+      "draw": 1
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Piedra Ritual Nova",
-    "name_key": "Piedra Ritual Nova",
+    "lore_text": "Cuenco del Calculo Ritual: Los objetos del destino ajustan robo, prever y energia futura.",
+    "name": "Cuenco del Calculo Ritual",
+    "name_es": "Cuenco del Calculo Ritual",
+    "name_key": "Cuenco del Calculo Ritual",
     "rarity": "uncommon",
     "role": "ritual",
     "strategy": {
-      "best_use": "Escalar armonia y explotar umbrales de sello.",
-      "synergy_cards": [
-        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
-        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
-      ],
-      "weakness": "Puede quedarse corto si no llega al umbral."
+      "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+      "synergy_cards": [],
+      "weakness": "La run castiga rituales vacios."
     },
     "tags": [
-      "block",
-      "break",
+      "draw",
+      "harmony",
+      "object",
       "ritual"
     ],
     "target": "enemy",
-    "taxonomy": "payoff",
-    "text_key": "Armonia +2, Bloqueo 6, Ruptura 3",
+    "taxonomy": "bridge",
+    "text_es": "Armonía +1, Ritual de la Trama, Roba 1",
+    "text_key": "Armonía +1, Ritual de la Trama, Roba 1",
     "legacy_id": "of_lore_21",
     "canonical_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA",
-    "legacy_artwork": "of_lore_21"
+    "legacy_artwork": "of_lore_21",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "oracle_of_fate",
     "artwork": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
-    "direction": "OESTE",
-    "effect_text": "Armonia +1, Ruptura 3, Roba 2",
+    "direction": "ESTE",
+    "effect_text": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
     "effects": [
       {
-        "amount": 1,
-        "type": "harmony_delta"
+        "type": "harmony_delta",
+        "amount": 1
       },
       {
-        "amount": 3,
-        "type": "apply_break"
+        "type": "consume_harmony",
+        "amount": 1
       },
       {
-        "amount": 2,
-        "type": "draw"
+        "type": "ritual_trama",
+        "amount": 1
       }
     ],
-    "family": "oeste",
+    "family": "place",
     "id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
     "kpi": {
-      "draw": 2,
       "harmony": 1,
-      "rupture": 3
+      "seal": 1,
+      "ritual": 1
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Portal de la Chakana Nova",
-    "name_key": "Portal de la Chakana Nova",
+    "lore_text": "Observatorio del Pozo Inmoto: Los lugares del set oracular recompensan secuencias distintas en cada run.",
+    "name": "Observatorio del Pozo Inmoto",
+    "name_es": "Observatorio del Pozo Inmoto",
+    "name_key": "Observatorio del Pozo Inmoto",
     "rarity": "uncommon",
     "role": "ritual",
     "strategy": {
-      "best_use": "Escalar armonia y explotar umbrales de sello.",
-      "synergy_cards": [
-        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
-        "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
-      ],
-      "weakness": "Puede quedarse corto si no llega al umbral."
+      "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+      "synergy_cards": [],
+      "weakness": "La run castiga rituales vacios."
     },
     "tags": [
-      "break",
-      "draw",
-      "ritual"
+      "harmony",
+      "place",
+      "ritual",
+      "seal"
     ],
     "target": "enemy",
     "taxonomy": "bridge",
-    "text_key": "Armonia +1, Ruptura 3, Roba 2",
+    "text_es": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
+    "text_key": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
     "legacy_id": "of_lore_22",
     "canonical_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
-    "legacy_artwork": "of_lore_22"
-  },
-  {
-    "archetype": "cosmic_warrior",
-    "artwork": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "OESTE",
-    "effect_text": "Ruptura 2, Dano 4",
-    "effects": [
-      {
-        "amount": 2,
-        "type": "apply_break"
-      },
-      {
-        "amount": 4,
-        "type": "damage"
-      }
-    ],
-    "family": "oeste",
-    "id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
-    "kpi": {
-      "damage": 4,
-      "rupture": 2
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Pulso Cósmico Nova",
-    "name_key": "Pulso Cósmico Nova",
-    "rarity": "common",
-    "role": "attack",
-    "strategy": {
-      "best_use": "Cerrar combates cortos con presion constante.",
-      "synergy_cards": [
-        "BASE-SOLAR-ATTACK-FILO_ASTRAL",
-        "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR"
-      ],
-      "weakness": "Sufre si no roba ritmo."
-    },
-    "tags": [
-      "break",
-      "attack",
-      "rupture"
-    ],
-    "target": "enemy",
-    "taxonomy": "engine",
-    "text_key": "Ruptura 2, Dano 4",
-    "legacy_id": "cw_lore_23",
-    "canonical_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
-    "legacy_artwork": "cw_lore_23"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 8, Retener, Armonia +1",
-    "effects": [
-      {
-        "amount": 8,
-        "type": "gain_block"
-      },
-      {
-        "amount": 1,
-        "type": "retain"
-      },
-      {
-        "amount": 1,
-        "type": "harmony_delta"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
-    "kpi": {
-      "block": 8,
-      "harmony": 1,
-      "support": 1
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Resistencia Ancestral Nova",
-    "name_key": "Resistencia Ancestral Nova",
-    "rarity": "uncommon",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block",
-      "retain",
-      "harmony"
-    ],
-    "target": "self",
-    "taxonomy": "payoff",
-    "text_key": "Bloqueo 8, Retener",
-    "legacy_id": "hg_lore_24",
-    "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
-    "legacy_artwork": "hg_lore_24"
+    "legacy_artwork": "of_lore_22",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "oracle_of_fate",
     "artwork": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
-    "direction": "NORTE",
-    "effect_text": "Armonia +1, Prever 5, Roba 1",
+    "direction": "ESTE",
+    "effect_text": "Prever 2, Roba 1",
     "effects": [
       {
-        "amount": 1,
-        "type": "harmony_delta"
+        "type": "scry",
+        "amount": 2
       },
       {
-        "amount": 5,
-        "type": "scry"
-      },
-      {
-        "amount": 1,
-        "type": "draw"
+        "type": "draw",
+        "amount": 1
       }
     ],
-    "family": "norte",
+    "family": "place",
     "id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA",
     "kpi": {
-      "draw": 1,
-      "harmony": 1,
-      "scry": 5
+      "scry": 2,
+      "draw": 1
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Revelación Astral Nova",
-    "name_key": "Revelación Astral Nova",
+    "lore_text": "Cupula del Eco Tardio: Los lugares del set oracular recompensan secuencias distintas en cada run.",
+    "name": "Cupula del Eco Tardio",
+    "name_es": "Cupula del Eco Tardio",
+    "name_key": "Cupula del Eco Tardio",
     "rarity": "uncommon",
     "role": "control",
     "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
+      "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+      "synergy_cards": [],
+      "weakness": "Pierde impacto si no encuentra payoff."
     },
     "tags": [
-      "scry",
+      "control",
       "draw",
-      "ritual"
+      "place",
+      "scry"
     ],
     "target": "self",
     "taxonomy": "bridge",
-    "text_key": "Armonia +1, Prever 5, Roba 1",
+    "text_es": "Prever 2, Roba 1",
+    "text_key": "Prever 2, Roba 1",
     "legacy_id": "of_lore_25",
     "canonical_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA",
-    "legacy_artwork": "of_lore_25"
+    "legacy_artwork": "of_lore_25",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "oracle_of_fate",
     "artwork": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA",
     "author": "Chakana Studio",
     "cost": 4,
-    "direction": "OESTE",
-    "effect_text": "Armonia +1, Sello 3, Ritual 2",
+    "direction": "ESTE",
+    "effect_text": "Armonía +1, Ritual de la Trama, Prever 2",
     "effects": [
       {
-        "amount": 1,
-        "type": "harmony_delta"
+        "type": "harmony_delta",
+        "amount": 1
       },
       {
-        "amount": 3,
-        "type": "consume_harmony"
+        "type": "ritual_trama",
+        "amount": 1
       },
       {
-        "amount": 2,
-        "type": "ritual_trama"
-      },
-      {
-        "amount": 1,
-        "type": "exhaust_self"
+        "type": "scry",
+        "amount": 2
       }
     ],
-    "family": "oeste",
+    "family": "place",
     "id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA",
     "kpi": {
       "harmony": 1,
-      "ritual": 2,
-      "seal": 3
+      "ritual": 1,
+      "scry": 2
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Ritual de la Trama Nova",
-    "name_key": "Ritual de la Trama Nova",
+    "lore_text": "Biblioteca del Umbral Vivo: Los lugares del set oracular recompensan secuencias distintas en cada run.",
+    "name": "Biblioteca del Umbral Vivo",
+    "name_es": "Biblioteca del Umbral Vivo",
+    "name_key": "Biblioteca del Umbral Vivo",
     "rarity": "uncommon",
     "role": "ritual",
     "strategy": {
-      "best_use": "Escalar armonia y explotar umbrales de sello.",
-      "synergy_cards": [
-        "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
-        "BASE-ORACLE-RITUAL-PIEDRA_RITUAL"
-      ],
-      "weakness": "Puede quedarse corto si no llega al umbral."
+      "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+      "synergy_cards": [],
+      "weakness": "La run castiga rituales vacios."
     },
     "tags": [
-      "attack",
-      "heal",
-      "exhaust",
-      "ritual"
+      "harmony",
+      "place",
+      "ritual",
+      "scry"
     ],
     "target": "enemy",
-    "taxonomy": "payoff",
-    "text_key": "Armonia +1, Sello 3, Ritual 2",
+    "taxonomy": "bridge",
+    "text_es": "Armonía +1, Ritual de la Trama, Prever 2",
+    "text_key": "Armonía +1, Ritual de la Trama, Prever 2",
     "legacy_id": "of_lore_26",
     "canonical_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA",
-    "legacy_artwork": "of_lore_26"
-  },
-  {
-    "archetype": "harmony_guardian",
-    "artwork": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
-    "author": "Chakana Studio",
-    "cost": 1,
-    "direction": "SUR",
-    "effect_text": "Bloqueo 6",
-    "effects": [
-      {
-        "amount": 6,
-        "type": "gain_block"
-      }
-    ],
-    "family": "sur",
-    "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
-    "kpi": {
-      "block": 6
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Sello Protector Nova",
-    "name_key": "Sello Protector Nova",
-    "rarity": "common",
-    "role": "defense",
-    "strategy": {
-      "best_use": "Absorber dano y preparar contraataque.",
-      "synergy_cards": [
-        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-      ],
-      "weakness": "Pierde tempo si no convierte defensa en valor."
-    },
-    "tags": [
-      "block"
-    ],
-    "target": "self",
-    "taxonomy": "engine",
-    "text_key": "Bloqueo 6",
-    "legacy_id": "hg_lore_27",
-    "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
-    "legacy_artwork": "hg_lore_27"
+    "legacy_artwork": "of_lore_26",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "oracle_of_fate",
     "artwork": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA",
     "author": "Chakana Studio",
     "cost": 2,
-    "direction": "NORTE",
-    "effect_text": "Debilita 3, Prever 2",
+    "direction": "ESTE",
+    "effect_text": "Prever 2, Energía sig. turno +1",
     "effects": [
       {
-        "amount": 3,
-        "type": "weaken_enemy"
+        "type": "scry",
+        "amount": 2
       },
       {
-        "amount": 2,
-        "type": "scry"
+        "type": "gain_mana_next_turn",
+        "amount": 1
       }
     ],
-    "family": "norte",
+    "family": "place",
     "id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA",
     "kpi": {
       "scry": 2,
-      "support": 3
+      "energy": 1
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Silencio Interior Nova",
-    "name_key": "Silencio Interior Nova",
+    "lore_text": "Patio de la Noche Geometrica: Los lugares del set oracular recompensan secuencias distintas en cada run.",
+    "name": "Patio de la Noche Geometrica",
+    "name_es": "Patio de la Noche Geometrica",
+    "name_key": "Patio de la Noche Geometrica",
     "rarity": "common",
     "role": "control",
     "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-        "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
+      "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+      "synergy_cards": [],
+      "weakness": "Pierde impacto si no encuentra payoff."
     },
     "tags": [
-      "debuff",
+      "control",
+      "energy",
+      "place",
       "scry"
     ],
     "target": "enemy",
     "taxonomy": "engine",
-    "text_key": "Debilita 3, Prever 2",
+    "text_es": "Prever 2, Energía sig. turno +1",
+    "text_key": "Prever 2, Energía sig. turno +1",
     "legacy_id": "of_lore_28",
     "canonical_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA",
-    "legacy_artwork": "of_lore_28"
-  },
-  {
-    "archetype": "cosmic_warrior",
-    "artwork": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
-    "author": "Chakana Studio",
-    "cost": 2,
-    "direction": "OESTE",
-    "effect_text": "Energia +2, Dano 1",
-    "effects": [
-      {
-        "amount": 2,
-        "type": "gain_mana"
-      },
-      {
-        "amount": 1,
-        "type": "damage"
-      }
-    ],
-    "family": "oeste",
-    "id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
-    "kpi": {
-      "damage": 1,
-      "energy": 2
-    },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Vínculo de Energía Nova",
-    "name_key": "Vínculo de Energía Nova",
-    "rarity": "uncommon",
-    "role": "energy",
-    "strategy": {
-      "best_use": "Acelerar turnos clave y habilitar cadenas.",
-      "synergy_cards": [
-        "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
-        "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
-      ],
-      "weakness": "Necesita cartas de impacto para capitalizar mana."
-    },
-    "tags": [
-      "energy"
-    ],
-    "target": "self",
-    "taxonomy": "bridge",
-    "text_key": "Energia +2, Dano 1",
-    "legacy_id": "cw_lore_29",
-    "canonical_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
-    "legacy_artwork": "cw_lore_29"
+    "legacy_artwork": "of_lore_28",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
   },
   {
     "archetype": "oracle_of_fate",
     "artwork": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA",
     "author": "Chakana Studio",
     "cost": 1,
-    "direction": "NORTE",
-    "effect_text": "Armonia +1, Prever 4, Roba 1",
+    "direction": "ESTE",
+    "effect_text": "Prever 1, Roba 1, Ruptura +1",
     "effects": [
       {
-        "amount": 1,
-        "type": "harmony_delta"
+        "type": "scry",
+        "amount": 1
       },
       {
-        "amount": 4,
-        "type": "scry"
+        "type": "draw",
+        "amount": 1
       },
       {
-        "amount": 1,
-        "type": "draw"
+        "type": "apply_break",
+        "amount": 1
       }
     ],
-    "family": "norte",
+    "family": "place",
     "id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA",
     "kpi": {
+      "scry": 1,
       "draw": 1,
-      "harmony": 1,
-      "scry": 4
+      "rupture": 1
     },
-    "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-    "name": "Visión del Cóndor Nova",
-    "name_key": "Visión del Cóndor Nova",
+    "lore_text": "Puente del Destino Quieto: Los lugares del set oracular recompensan secuencias distintas en cada run.",
+    "name": "Puente del Destino Quieto",
+    "name_es": "Puente del Destino Quieto",
+    "name_key": "Puente del Destino Quieto",
     "rarity": "common",
     "role": "control",
     "strategy": {
-      "best_use": "Manipular flujo con scry/debuff y elegir ventanas.",
-      "synergy_cards": [
-        "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-        "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA"
-      ],
-      "weakness": "Menor dano explosivo en turnos tempranos."
+      "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+      "synergy_cards": [],
+      "weakness": "Pierde impacto si no encuentra payoff."
     },
     "tags": [
-      "scry",
+      "control",
       "draw",
-      "ritual"
+      "place",
+      "rupture",
+      "scry"
     ],
     "target": "self",
-    "taxonomy": "bridge",
-    "text_key": "Armonia +1, Prever 4, Roba 1",
+    "taxonomy": "engine",
+    "text_es": "Prever 1, Roba 1, Ruptura +1",
+    "text_key": "Prever 1, Roba 1, Ruptura +1",
     "legacy_id": "of_lore_30",
     "canonical_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA",
-    "legacy_artwork": "of_lore_30"
+    "legacy_artwork": "of_lore_30",
+    "motif": "cosmic_geometry",
+    "palette": "indigo-cyan",
+    "energy": "spiral_streams",
+    "symbol": "astral_eye",
+    "order": "Chakana",
+    "set": "base"
   }
 ]

@@ -5,7 +5,7 @@
   "draw_per_turn": 5,
   "hand_limit": 10,
   "hand_max": 10,
-  "player_combat_deck_size": 30,
+  "player_combat_deck_size": 24,
   "ui_cooldown_ms": 200,
   "fatigue_enabled": true,
   "fatigue_start": 1,

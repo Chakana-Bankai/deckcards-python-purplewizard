@@ -1,6 +1,6 @@
 {
-  "version": "chakana_audio_depth_v2",
-  "generated_at": 1773350000,
+  "version": "chakana_audio_v7",
+  "generated_at": 1773360598,
   "items": {
     "menu_a": {
       "track_id": "menu_a",
@@ -466,12 +466,12 @@
       "type": "stinger",
       "context": "seal_ready",
       "variant": "a",
-      "seed": 148829056,
+      "seed": 437188563,
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\seal_ready.wav",
       "relative_path": "game/audio/generated/stingers/seal_ready.wav",
-      "generation_date": 1773173664,
+      "generation_date": 1773360133,
       "version": "chakana_audio_v7",
-      "state": "legacy_optional",
+      "state": "valid",
       "source": "generated",
       "analysis": {
         "duration_seconds": 1.2,
@@ -486,8 +486,7 @@
         "variation_score": 0.6135,
         "librosa_available": true,
         "analysis_mode": "soundfile_numpy_guarded_librosa"
-      },
-      "active_runtime": false
+      }
     },
     "stinger_harmony_ready": {
       "track_id": "stinger_harmony_ready",
@@ -808,34 +807,6 @@
         "loop_end_seconds": 23.975,
         "monotony_score": 0.5746,
         "variation_score": 0.4254,
-        "librosa_available": true,
-        "analysis_mode": "soundfile_numpy_guarded_librosa"
-      }
-    },
-    "studio_intro": {
-      "track_id": "studio_intro",
-      "type": "bgm",
-      "context": "studio_intro",
-      "variant": "a",
-      "seed": 76420141,
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\studio\\studio_intro.wav",
-      "relative_path": "game/audio/generated/studio/studio_intro.wav",
-      "generation_date": 1773350000,
-      "version": "chakana_audio_depth_v2",
-      "state": "valid",
-      "source": "generated",
-      "active_runtime": true,
-      "analysis": {
-        "duration_seconds": 28.0,
-        "sample_rate": 32000,
-        "channels": 1,
-        "peak_db": -4.444,
-        "rms_db": -15.0729,
-        "tempo_bpm": 332.1429,
-        "onset_count": 155,
-        "loop_end_seconds": 23.975,
-        "monotony_score": 0.6463,
-        "variation_score": 0.3537,
         "librosa_available": true,
         "analysis_mode": "soundfile_numpy_guarded_librosa"
       }

@@ -58,7 +58,7 @@
       "context": "level_up",
       "variant": "a",
       "source": "generated",
-      "state": "valid",
+      "state": "legacy_optional",
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\level_up.wav",
       "relative_path": "game/audio/generated/stingers/level_up.wav"
     },
@@ -68,7 +68,7 @@
       "context": "relic_gain",
       "variant": "a",
       "source": "generated",
-      "state": "valid",
+      "state": "legacy_optional",
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\relic_gain.wav",
       "relative_path": "game/audio/generated/stingers/relic_gain.wav"
     },
@@ -98,7 +98,7 @@
       "context": "harmony_ready",
       "variant": "a",
       "source": "generated",
-      "state": "valid",
+      "state": "legacy_optional",
       "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\harmony_ready.wav",
       "relative_path": "game/audio/generated/stingers/harmony_ready.wav"
     },
@@ -107,10 +107,60 @@
       "type": "stinger",
       "context": "studio_intro",
       "variant": "a",
-      "source": "curated",
+      "source": "generated",
       "state": "valid",
-      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\assets\\curated\\audio\\studio\\studio_intro.wav",
-      "relative_path": "game/assets/curated/audio/studio/studio_intro.wav"
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\studio\\studio_intro.wav",
+      "relative_path": "game/audio/generated/studio/studio_intro.wav"
+    },
+    "stinger_rare_reveal": {
+      "track_id": "stinger_rare_reveal",
+      "type": "stinger",
+      "context": "rare_reveal",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\rare_reveal.wav",
+      "relative_path": "game/audio/generated/stingers/rare_reveal.wav"
+    },
+    "stinger_legendary_reveal": {
+      "track_id": "stinger_legendary_reveal",
+      "type": "stinger",
+      "context": "legendary_reveal",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\legendary_reveal.wav",
+      "relative_path": "game/audio/generated/stingers/legendary_reveal.wav"
+    },
+    "stinger_reward": {
+      "track_id": "stinger_reward",
+      "type": "stinger",
+      "context": "reward",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\reward.wav",
+      "relative_path": "game/audio/generated/stingers/reward.wav"
+    },
+    "stinger_ritual_trigger": {
+      "track_id": "stinger_ritual_trigger",
+      "type": "stinger",
+      "context": "ritual_trigger",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\ritual_trigger.wav",
+      "relative_path": "game/audio/generated/stingers/ritual_trigger.wav"
+    },
+    "stinger_boss_warning": {
+      "track_id": "stinger_boss_warning",
+      "type": "stinger",
+      "context": "boss_warning",
+      "variant": "a",
+      "source": "generated",
+      "state": "valid",
+      "file_path": "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\audio\\generated\\stingers\\boss_warning.wav",
+      "relative_path": "game/audio/generated/stingers/boss_warning.wav"
     }
   }
 }

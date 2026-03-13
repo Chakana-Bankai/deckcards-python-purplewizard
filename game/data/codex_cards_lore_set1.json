@@ -21,916 +21,1086 @@
   ],
   "cards": [
     {
-      "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
-      "name": "Campo Protector",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "uncommon",
-      "gameplay_text": "Bloqueo 6, Debilita 2",
-      "lore_text": "La guardia nace del silencio.",
-      "tags": [
-        "block",
-        "debuff"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
-      "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR"
-    },
-    {
       "id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
-      "name": "Chakana de Luz",
+      "name": "Jaguar del Umbral Solar",
       "archetype": "cosmic_warrior",
       "role": "combo",
       "rarity": "legendary",
-      "gameplay_text": "Armonia +1, Dano 10, Bloqueo 5",
-      "lore_text": "Cada golpe abre una constelacion.",
+      "gameplay_text": "Armonía +1, Daño 10, Bloqueo 5, Energía sig. turno +1",
+      "lore_text": "Jaguar del Umbral Solar: Las bestias del Hanan aprenden a pelear sin romper el pulso de la Chakana.",
       "tags": [
         "attack",
         "block",
+        "combo",
+        "creature",
         "energy",
-        "exhaust",
         "ritual"
       ],
-      "legacy_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
+      "set": "base",
+      "legacy_id": "chakana_de_luz",
       "canonical_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ"
     },
     {
       "id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
-      "name": "Eco de Sabiduría",
+      "name": "Condor de las Brasas Altas",
       "archetype": "cosmic_warrior",
       "role": "combo",
       "rarity": "common",
-      "gameplay_text": "Copia la ultima carta jugada, Se agota",
-      "lore_text": "La voluntad traza el destino astral.",
+      "gameplay_text": "Daño 3, Daño 4 si hay Ruptura",
+      "lore_text": "Condor de las Brasas Altas: Las bestias del Hanan aprenden a pelear sin romper el pulso de la Chakana.",
       "tags": [
-        "copy",
-        "exhaust"
+        "attack",
+        "combo",
+        "creature",
+        "rupture"
       ],
-      "legacy_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
+      "set": "base",
+      "legacy_id": "eco_de_sabiduria",
       "canonical_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA"
     },
     {
       "id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
-      "name": "Embate del Jaguar",
+      "name": "Puma de la Lluvia Roja",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "uncommon",
-      "gameplay_text": "Dano 7, Bloqueo 3",
-      "lore_text": "La chispa violeta rompe el vacio.",
+      "gameplay_text": "Daño 5, Bloqueo 2",
+      "lore_text": "Puma de la Lluvia Roja: Las bestias del Hanan aprenden a pelear sin romper el pulso de la Chakana.",
       "tags": [
         "attack",
-        "block"
+        "block",
+        "creature"
       ],
-      "legacy_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
+      "set": "base",
+      "legacy_id": "embate_del_jaguar",
       "canonical_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR"
     },
     {
-      "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
-      "name": "Escudo de Luz",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "Bloqueo 4, Cura 1",
-      "lore_text": "La guardia nace del silencio.",
-      "tags": [
-        "block",
-        "heal"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
-      "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ"
-    },
-    {
-      "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
-      "name": "Escudo del Chamán",
-      "archetype": "harmony_guardian",
-      "role": "control",
-      "rarity": "common",
-      "gameplay_text": "Bloqueo 5, Prever 1",
-      "lore_text": "Toda defensa es un ritual de equilibrio.",
-      "tags": [
-        "block",
-        "scry"
-      ],
-      "legacy_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
-      "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN"
-    },
-    {
-      "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
-      "name": "Espíritu Guardián",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "Bloqueo 4, Ruptura 1",
-      "lore_text": "La piedra recuerda cada juramento.",
-      "tags": [
-        "block",
-        "break"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
-      "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN"
-    },
-    {
       "id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
-      "name": "Estallido Arcano",
+      "name": "Serpiente del Arco Helico",
       "archetype": "cosmic_warrior",
       "role": "attack",
-      "rarity": "common",
-      "gameplay_text": "Dano 5, Roba 1",
-      "lore_text": "La chispa violeta rompe el vacio.",
+      "rarity": "uncommon",
+      "gameplay_text": "Daño 4, Roba 1 al matar",
+      "lore_text": "Serpiente del Arco Helico: Las bestias del Hanan aprenden a pelear sin romper el pulso de la Chakana.",
       "tags": [
         "attack",
+        "creature",
         "draw"
       ],
-      "legacy_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
+      "set": "base",
+      "legacy_id": "estallido_arcano",
       "canonical_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO"
     },
     {
       "id": "BASE-SOLAR-ATTACK-FILO_ASTRAL",
-      "name": "Filo Astral",
+      "name": "Venado del Filo Dorado",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "common",
-      "gameplay_text": "Dano 7",
-      "lore_text": "El filo escucha al cielo.",
+      "gameplay_text": "Daño 4, Próx. ataque cuesta -1",
+      "lore_text": "Venado del Filo Dorado: Las bestias del Hanan aprenden a pelear sin romper el pulso de la Chakana.",
       "tags": [
-        "attack"
+        "attack",
+        "creature",
+        "tempo"
       ],
-      "legacy_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+      "set": "base",
+      "legacy_id": "filo_astral",
       "canonical_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL"
     },
     {
       "id": "BASE-SOLAR-SKILL-FILO_EN_CADENA",
-      "name": "Filo en Cadena",
+      "name": "Duelista de los Dos Cielos",
       "archetype": "cosmic_warrior",
       "role": "combo",
       "rarity": "uncommon",
-      "gameplay_text": "Dano 4",
-      "lore_text": "Cada golpe abre una constelacion.",
+      "gameplay_text": "Copia la última carta, Se agota",
+      "lore_text": "Duelista de los Dos Cielos: Los sujetos del set solar convierten disciplina en agresion calculada.",
       "tags": [
-        "attack"
+        "combo",
+        "copy",
+        "exhaust",
+        "subject"
       ],
-      "legacy_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA",
+      "set": "base",
+      "legacy_id": "filo_en_cadena",
       "canonical_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA"
     },
     {
-      "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
-      "name": "Firmeza del Cuerpo",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "Cura 2, Bloqueo 2",
-      "lore_text": "La piedra recuerda cada juramento.",
-      "tags": [
-        "heal",
-        "block"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
-      "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO"
-    },
-    {
-      "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
-      "name": "Fragmento Celeste",
-      "archetype": "oracle_of_fate",
-      "role": "control",
-      "rarity": "common",
-      "gameplay_text": "Dano 5, Prever 2",
-      "lore_text": "El sello despierta entre susurros.",
-      "tags": [
-        "attack",
-        "scry"
-      ],
-      "legacy_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
-      "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE"
-    },
-    {
-      "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
-      "name": "Fusión Espiritual",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "legendary",
-      "gameplay_text": "Limite de bloqueo +10, Armonia +2, Bloqueo 2",
-      "lore_text": "La guardia nace del silencio.",
-      "tags": [
-        "block",
-        "support",
-        "harmony",
-        "seal"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
-      "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
-    },
-    {
       "id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
-      "name": "Garra Espiritual",
+      "name": "Lancero del Hanan Vivo",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "common",
-      "gameplay_text": "Dano 4",
-      "lore_text": "Cada golpe abre una constelacion.",
+      "gameplay_text": "Daño 6",
+      "lore_text": "Lancero del Hanan Vivo: Los sujetos del set solar convierten disciplina en agresion calculada.",
       "tags": [
-        "attack"
+        "attack",
+        "subject"
       ],
-      "legacy_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
+      "set": "base",
+      "legacy_id": "garra_espiritual",
       "canonical_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL"
     },
     {
-      "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
-      "name": "Guardia Terrenal",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "Bloqueo 3",
-      "lore_text": "La piedra recuerda cada juramento.",
-      "tags": [
-        "block"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
-      "canonical_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL"
-    },
-    {
-      "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
-      "name": "Invocación Astral",
-      "archetype": "oracle_of_fate",
-      "role": "ritual",
-      "rarity": "common",
-      "gameplay_text": "Armonia +1, Cura 3, Bloqueo 3",
-      "lore_text": "El sello despierta entre susurros.",
-      "tags": [
-        "heal",
-        "block",
-        "ritual"
-      ],
-      "legacy_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
-      "canonical_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL"
-    },
-    {
-      "id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-      "name": "Lectura del Destino",
-      "archetype": "oracle_of_fate",
-      "role": "control",
-      "rarity": "common",
-      "gameplay_text": "Prever 2",
-      "lore_text": "El oraculo lee los ecos del tiempo.",
-      "tags": [
-        "scry"
-      ],
-      "legacy_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
-      "canonical_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO"
-    },
-    {
       "id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
-      "name": "Mantra del Umbral",
+      "name": "Centinela del Disco Solar",
       "archetype": "cosmic_warrior",
       "role": "energy",
       "rarity": "common",
-      "gameplay_text": "Armonia +1, Energia +1, Cura 1",
-      "lore_text": "Cada golpe abre una constelacion.",
+      "gameplay_text": "Energía +1, Daño 3, Ruptura +1",
+      "lore_text": "Centinela del Disco Solar: Los sujetos del set solar convierten disciplina en agresion calculada.",
       "tags": [
+        "attack",
         "energy",
-        "heal",
-        "ritual"
+        "rupture",
+        "subject"
       ],
-      "legacy_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
+      "set": "base",
+      "legacy_id": "mantra_del_umbral",
       "canonical_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL"
     },
     {
-      "id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-      "name": "Muralla de Piedra",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "uncommon",
-      "gameplay_text": "Bloqueo 8",
-      "lore_text": "La piedra recuerda cada juramento.",
-      "tags": [
-        "block"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
-      "canonical_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA"
-    },
-    {
-      "id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-      "name": "Observación Sagrada",
-      "archetype": "oracle_of_fate",
-      "role": "control",
-      "rarity": "common",
-      "gameplay_text": "Prever 3",
-      "lore_text": "El sello despierta entre susurros.",
-      "tags": [
-        "scry"
-      ],
-      "legacy_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
-      "canonical_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA"
-    },
-    {
-      "id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
-      "name": "Piedra Ritual",
-      "archetype": "oracle_of_fate",
-      "role": "ritual",
-      "rarity": "uncommon",
-      "gameplay_text": "Armonia +1, Bloqueo 6, Ruptura 3",
-      "lore_text": "El oraculo lee los ecos del tiempo.",
-      "tags": [
-        "block",
-        "break",
-        "ritual"
-      ],
-      "legacy_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
-      "canonical_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL"
-    },
-    {
-      "id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
-      "name": "Portal de la Chakana",
-      "archetype": "oracle_of_fate",
-      "role": "ritual",
-      "rarity": "uncommon",
-      "gameplay_text": "Armonia +1, Ruptura 3, Roba 1",
-      "lore_text": "Toda vision exige un precio ritual.",
-      "tags": [
-        "break",
-        "draw",
-        "ritual"
-      ],
-      "legacy_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
-      "canonical_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA"
-    },
-    {
       "id": "BASE-SOLAR-ATTACK-PULSO_COSMICO",
-      "name": "Pulso Cósmico",
+      "name": "Peregrino de la Chispa Firme",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "common",
-      "gameplay_text": "Ruptura 2, Dano 3",
-      "lore_text": "La voluntad traza el destino astral.",
+      "gameplay_text": "Daño 5, Bloqueo 2",
+      "lore_text": "Peregrino de la Chispa Firme: Los sujetos del set solar convierten disciplina en agresion calculada.",
       "tags": [
-        "break",
         "attack",
-        "rupture"
+        "block",
+        "subject"
       ],
-      "legacy_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO",
+      "set": "base",
+      "legacy_id": "pulso_cosmico",
       "canonical_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO"
     },
     {
-      "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
-      "name": "Resistencia Ancestral",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "uncommon",
-      "gameplay_text": "Bloqueo 7, Retener, Armonia +1",
-      "lore_text": "La calma sostiene el umbral.",
-      "tags": [
-        "block",
-        "retain",
-        "harmony"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
-      "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL"
-    },
-    {
-      "id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
-      "name": "Revelación Astral",
-      "archetype": "oracle_of_fate",
-      "role": "control",
-      "rarity": "uncommon",
-      "gameplay_text": "Armonia +1, Prever 4, Roba 1",
-      "lore_text": "El oraculo lee los ecos del tiempo.",
-      "tags": [
-        "scry",
-        "draw",
-        "ritual"
-      ],
-      "legacy_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
-      "canonical_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL"
-    },
-    {
-      "id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
-      "name": "Ritual de la Trama",
-      "archetype": "oracle_of_fate",
-      "role": "ritual",
-      "rarity": "legendary",
-      "gameplay_text": "Armonia +1, Sello 3, Ritual 1",
-      "lore_text": "Toda vision exige un precio ritual.",
-      "tags": [
-        "attack",
-        "heal",
-        "exhaust",
-        "ritual"
-      ],
-      "legacy_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
-      "canonical_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
-    },
-    {
-      "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-      "name": "Sello Protector",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "Bloqueo 5, Armonia +1",
-      "lore_text": "La piedra recuerda cada juramento.",
-      "tags": [
-        "block",
-        "harmony",
-        "seal"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
-      "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR"
-    },
-    {
-      "id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
-      "name": "Silencio Interior",
-      "archetype": "oracle_of_fate",
-      "role": "control",
-      "rarity": "common",
-      "gameplay_text": "Debilita 3, Prever 1",
-      "lore_text": "El sello despierta entre susurros.",
-      "tags": [
-        "debuff",
-        "scry"
-      ],
-      "legacy_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
-      "canonical_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR"
-    },
-    {
       "id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
-      "name": "Vínculo de Energía",
+      "name": "Forjadora del Cenit Carmesi",
       "archetype": "cosmic_warrior",
       "role": "energy",
-      "rarity": "uncommon",
-      "gameplay_text": "Energia +2",
-      "lore_text": "El filo escucha al cielo.",
+      "rarity": "common",
+      "gameplay_text": "Energía sig. turno +1, Daño 4",
+      "lore_text": "Forjadora del Cenit Carmesi: Los sujetos del set solar convierten disciplina en agresion calculada.",
       "tags": [
-        "energy"
+        "attack",
+        "energy",
+        "subject"
       ],
-      "legacy_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
+      "set": "base",
+      "legacy_id": "vinculo_de_energia",
       "canonical_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA"
     },
     {
-      "id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
-      "name": "Visión del Cóndor",
-      "archetype": "oracle_of_fate",
-      "role": "control",
-      "rarity": "common",
-      "gameplay_text": "Armonia +1, Prever 3, Roba 1",
-      "lore_text": "Toda vision exige un precio ritual.",
-      "tags": [
-        "scry",
-        "draw",
-        "ritual"
-      ],
-      "legacy_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
-      "canonical_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
-    },
-    {
-      "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
-      "name": "Campo Protector Nova",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "uncommon",
-      "gameplay_text": "Bloqueo 7, Debilita 2",
-      "lore_text": "Toda defensa es un ritual de equilibrio.",
-      "tags": [
-        "block",
-        "debuff"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
-      "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA"
-    },
-    {
       "id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA",
-      "name": "Chakana de Luz Nova",
+      "name": "Lanza del Cenit",
       "archetype": "cosmic_warrior",
       "role": "combo",
       "rarity": "uncommon",
-      "gameplay_text": "Armonia +1, Dano 11, Bloqueo 5",
-      "lore_text": "La voluntad traza el destino astral.",
+      "gameplay_text": "Copia la última carta, Se agota",
+      "lore_text": "Lanza del Cenit: Las armas y talismanes del set solar recompensan presion y ruptura.",
       "tags": [
-        "attack",
-        "block",
-        "energy",
+        "combo",
+        "copy",
         "exhaust",
-        "ritual"
+        "object"
       ],
-      "legacy_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA",
+      "set": "base",
+      "legacy_id": "cw_lore_02",
       "canonical_id": "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA"
     },
     {
       "id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
-      "name": "Eco de Sabiduría Nova",
+      "name": "Mandoble de Estrella Hueca",
       "archetype": "cosmic_warrior",
       "role": "combo",
-      "rarity": "uncommon",
-      "gameplay_text": "Copia la ultima carta jugada, Se agota, Dano 1",
-      "lore_text": "La chispa violeta rompe el vacio.",
+      "rarity": "common",
+      "gameplay_text": "Daño 3, Daño 4 si hay Ruptura",
+      "lore_text": "Mandoble de Estrella Hueca: Las armas y talismanes del set solar recompensan presion y ruptura.",
       "tags": [
-        "copy",
-        "exhaust"
+        "attack",
+        "combo",
+        "object",
+        "rupture"
       ],
-      "legacy_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
+      "set": "base",
+      "legacy_id": "cw_lore_03",
       "canonical_id": "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA"
     },
     {
       "id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA",
-      "name": "Embate del Jaguar Nova",
+      "name": "Broquel de Meteorito",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "uncommon",
-      "gameplay_text": "Dano 8, Bloqueo 3",
-      "lore_text": "El filo escucha al cielo.",
+      "gameplay_text": "Daño 6",
+      "lore_text": "Broquel de Meteorito: Las armas y talismanes del set solar recompensan presion y ruptura.",
       "tags": [
         "attack",
-        "block"
+        "object"
       ],
-      "legacy_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA",
+      "set": "base",
+      "legacy_id": "cw_lore_04",
       "canonical_id": "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA"
     },
     {
-      "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
-      "name": "Escudo de Luz Nova",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "Bloqueo 5",
-      "lore_text": "Toda defensa es un ritual de equilibrio.",
-      "tags": [
-        "block",
-        "heal"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
-      "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA"
-    },
-    {
-      "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
-      "name": "Escudo del Chamán Nova",
-      "archetype": "harmony_guardian",
-      "role": "control",
-      "rarity": "common",
-      "gameplay_text": "Bloqueo 6, Prever 1",
-      "lore_text": "La piedra recuerda cada juramento.",
-      "tags": [
-        "block",
-        "scry"
-      ],
-      "legacy_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
-      "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA"
-    },
-    {
-      "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
-      "name": "Espíritu Guardián Nova",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "Bloqueo 5, Ruptura 1",
-      "lore_text": "La calma sostiene el umbral.",
-      "tags": [
-        "block",
-        "break"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
-      "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA"
-    },
-    {
       "id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA",
-      "name": "Estallido Arcano Nova",
+      "name": "Espuelas del Relampago Quieto",
       "archetype": "cosmic_warrior",
       "role": "attack",
-      "rarity": "common",
-      "gameplay_text": "Dano 6, Roba 1",
-      "lore_text": "El filo escucha al cielo.",
+      "rarity": "uncommon",
+      "gameplay_text": "Daño 4, Ruptura +1",
+      "lore_text": "Espuelas del Relampago Quieto: Las armas y talismanes del set solar recompensan presion y ruptura.",
       "tags": [
         "attack",
-        "draw"
+        "object",
+        "rupture"
       ],
-      "legacy_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA",
+      "set": "base",
+      "legacy_id": "cw_lore_08",
       "canonical_id": "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA"
     },
     {
       "id": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
-      "name": "Filo Astral Nova",
+      "name": "Estandarte del Sol Partido",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "common",
-      "gameplay_text": "Dano 8",
-      "lore_text": "Cada golpe abre una constelacion.",
+      "gameplay_text": "Daño 5, Bloqueo 2",
+      "lore_text": "Estandarte del Sol Partido: Las armas y talismanes del set solar recompensan presion y ruptura.",
       "tags": [
-        "attack"
+        "attack",
+        "block",
+        "object"
       ],
-      "legacy_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
+      "set": "base",
+      "legacy_id": "cw_lore_09",
       "canonical_id": "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA"
     },
     {
       "id": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
-      "name": "Filo en Cadena Nova",
+      "name": "Terraza del Eclipse",
       "archetype": "cosmic_warrior",
       "role": "combo",
       "rarity": "common",
-      "gameplay_text": "Dano 5",
-      "lore_text": "La voluntad traza el destino astral.",
+      "gameplay_text": "Copia la última carta, Se agota",
+      "lore_text": "Terraza del Eclipse: Los lugares del set solar empujan tempo, cierre y posicion tactica.",
       "tags": [
-        "attack"
+        "combo",
+        "copy",
+        "exhaust",
+        "place"
       ],
-      "legacy_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
+      "set": "base",
+      "legacy_id": "cw_lore_10",
       "canonical_id": "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA"
     },
     {
-      "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
-      "name": "Firmeza del Cuerpo Nova",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "Bloqueo 3",
-      "lore_text": "La calma sostiene el umbral.",
-      "tags": [
-        "heal",
-        "block"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
-      "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA"
-    },
-    {
-      "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
-      "name": "Fragmento Celeste Nova",
-      "archetype": "oracle_of_fate",
-      "role": "control",
-      "rarity": "common",
-      "gameplay_text": "Dano 5, Prever 3",
-      "lore_text": "El oraculo lee los ecos del tiempo.",
-      "tags": [
-        "attack",
-        "scry"
-      ],
-      "legacy_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
-      "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA"
-    },
-    {
-      "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
-      "name": "Fusión Espiritual Nova",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "uncommon",
-      "gameplay_text": "Limite de bloqueo +10, Bloqueo 1, Armonia +1",
-      "lore_text": "Toda defensa es un ritual de equilibrio.",
-      "tags": [
-        "block",
-        "support",
-        "harmony"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
-      "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA"
-    },
-    {
       "id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
-      "name": "Garra Espiritual Nova",
+      "name": "Puente del Cobre Celeste",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "common",
-      "gameplay_text": "Dano 5",
-      "lore_text": "La voluntad traza el destino astral.",
+      "gameplay_text": "Daño 4, Próx. ataque cuesta -1",
+      "lore_text": "Puente del Cobre Celeste: Los lugares del set solar empujan tempo, cierre y posicion tactica.",
       "tags": [
-        "attack"
+        "attack",
+        "place",
+        "tempo"
       ],
-      "legacy_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
+      "set": "base",
+      "legacy_id": "cw_lore_14",
       "canonical_id": "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA"
     },
     {
-      "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
-      "name": "Guardia Terrenal Nova",
+      "id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
+      "name": "Arena de las Siete Chispas",
+      "archetype": "cosmic_warrior",
+      "role": "energy",
+      "rarity": "common",
+      "gameplay_text": "Energía +1 si el enemigo ataca, Daño 5",
+      "lore_text": "Arena de las Siete Chispas: Los lugares del set solar empujan tempo, cierre y posicion tactica.",
+      "tags": [
+        "attack",
+        "energy",
+        "place",
+        "tempo"
+      ],
+      "set": "base",
+      "legacy_id": "cw_lore_18",
+      "canonical_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA"
+    },
+    {
+      "id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
+      "name": "Foso del Sol Guardado",
+      "archetype": "cosmic_warrior",
+      "role": "attack",
+      "rarity": "common",
+      "gameplay_text": "Daño 6",
+      "lore_text": "Foso del Sol Guardado: Los lugares del set solar empujan tempo, cierre y posicion tactica.",
+      "tags": [
+        "attack",
+        "place"
+      ],
+      "set": "base",
+      "legacy_id": "cw_lore_23",
+      "canonical_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA"
+    },
+    {
+      "id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
+      "name": "Muralla del Trueno Alto",
+      "archetype": "cosmic_warrior",
+      "role": "energy",
+      "rarity": "uncommon",
+      "gameplay_text": "Energía +1, Daño 3, Ruptura +1",
+      "lore_text": "Muralla del Trueno Alto: Los lugares del set solar empujan tempo, cierre y posicion tactica.",
+      "tags": [
+        "attack",
+        "energy",
+        "place",
+        "rupture"
+      ],
+      "set": "base",
+      "legacy_id": "cw_lore_29",
+      "canonical_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR",
+      "name": "Condor del Velo Sereno",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 6, Armonía +1",
+      "lore_text": "Condor del Velo Sereno: Las criaturas guardianas sostienen el turno para que la run respire.",
+      "tags": [
+        "block",
+        "creature",
+        "defense",
+        "harmony"
+      ],
+      "set": "base",
+      "legacy_id": "campo_protector",
+      "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ",
+      "name": "Llama del Patio Quieto",
       "archetype": "harmony_guardian",
       "role": "defense",
       "rarity": "common",
-      "gameplay_text": "Bloqueo 4",
-      "lore_text": "La calma sostiene el umbral.",
+      "gameplay_text": "Bloqueo 5, Cura 2",
+      "lore_text": "Llama del Patio Quieto: Las criaturas guardianas sostienen el turno para que la run respire.",
       "tags": [
-        "block"
+        "block",
+        "creature",
+        "defense",
+        "heal"
       ],
-      "legacy_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
+      "set": "base",
+      "legacy_id": "escudo_de_luz",
+      "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ"
+    },
+    {
+      "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN",
+      "name": "Vicuna del Canto Claro",
+      "archetype": "harmony_guardian",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "lore_text": "Vicuna del Canto Claro: Las criaturas guardianas sostienen el turno para que la run respire.",
+      "tags": [
+        "block",
+        "control",
+        "creature",
+        "harmony",
+        "rupture"
+      ],
+      "set": "base",
+      "legacy_id": "escudo_del_chaman",
+      "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN",
+      "name": "Puma del Resguardo Dorado",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 4, Daño 2",
+      "lore_text": "Puma del Resguardo Dorado: Las criaturas guardianas sostienen el turno para que la run respire.",
+      "tags": [
+        "attack",
+        "block",
+        "creature",
+        "defense"
+      ],
+      "set": "base",
+      "legacy_id": "espiritu_guardian",
+      "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO",
+      "name": "Colibri de la Guardia Baja",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "lore_text": "Colibri de la Guardia Baja: Las criaturas guardianas sostienen el turno para que la run respire.",
+      "tags": [
+        "block",
+        "creature",
+        "defense",
+        "harmony",
+        "tempo"
+      ],
+      "set": "base",
+      "legacy_id": "firmeza_del_cuerpo",
+      "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL",
+      "name": "Custodio del Patio de Piedra",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "legendary",
+      "gameplay_text": "Bloqueo 10, Cura 4, Armonía +2, Consume Armonía 2",
+      "lore_text": "Custodio del Patio de Piedra: Los sujetos del Kay convierten defensa en tempo y contraataque.",
+      "tags": [
+        "attack",
+        "block",
+        "defense",
+        "harmony",
+        "heal",
+        "ritual",
+        "seal",
+        "subject"
+      ],
+      "set": "base",
+      "legacy_id": "fusion_espiritual",
+      "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
+      "name": "Sanadora de los Tres Pulsos",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 5, Cura 2",
+      "lore_text": "Sanadora de los Tres Pulsos: Los sujetos del Kay convierten defensa en tempo y contraataque.",
+      "tags": [
+        "block",
+        "defense",
+        "heal",
+        "subject"
+      ],
+      "set": "base",
+      "legacy_id": "guardia_terrenal",
+      "canonical_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA",
+      "name": "Cantor del Kay Vivo",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 4, Debilita 1",
+      "lore_text": "Cantor del Kay Vivo: Los sujetos del Kay convierten defensa en tempo y contraataque.",
+      "tags": [
+        "block",
+        "debuff",
+        "defense",
+        "subject"
+      ],
+      "set": "base",
+      "legacy_id": "muralla_de_piedra",
+      "canonical_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL",
+      "name": "Veladora del Umbral Manso",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 4, Daño 2",
+      "lore_text": "Veladora del Umbral Manso: Los sujetos del Kay convierten defensa en tempo y contraataque.",
+      "tags": [
+        "attack",
+        "block",
+        "defense",
+        "subject"
+      ],
+      "set": "base",
+      "legacy_id": "resistencia_ancestral",
+      "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR",
+      "name": "Portador de la Campana Clara",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "lore_text": "Portador de la Campana Clara: Los sujetos del Kay convierten defensa en tempo y contraataque.",
+      "tags": [
+        "block",
+        "defense",
+        "harmony",
+        "subject",
+        "tempo"
+      ],
+      "set": "base",
+      "legacy_id": "sello_protector",
+      "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA",
+      "name": "Sello del Rio Paciente",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 6, Armonía +1",
+      "lore_text": "Sello del Rio Paciente: Los objetos guardianes son sellos, mantos y herramientas de permanencia.",
+      "tags": [
+        "block",
+        "defense",
+        "harmony",
+        "object"
+      ],
+      "set": "base",
+      "legacy_id": "hg_lore_01",
+      "canonical_id": "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
+      "name": "Manto de la Columna Viva",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 5, Cura 2",
+      "lore_text": "Manto de la Columna Viva: Los objetos guardianes son sellos, mantos y herramientas de permanencia.",
+      "tags": [
+        "block",
+        "defense",
+        "heal",
+        "object"
+      ],
+      "set": "base",
+      "legacy_id": "hg_lore_05",
+      "canonical_id": "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA"
+    },
+    {
+      "id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA",
+      "name": "Bastion de Sal Ritual",
+      "archetype": "harmony_guardian",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 4, Prever 2",
+      "lore_text": "Bastion de Sal Ritual: Los objetos guardianes son sellos, mantos y herramientas de permanencia.",
+      "tags": [
+        "block",
+        "control",
+        "object",
+        "scry"
+      ],
+      "set": "base",
+      "legacy_id": "hg_lore_06",
+      "canonical_id": "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
+      "name": "Rosario del Aire Terso",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 4, Daño 2",
+      "lore_text": "Rosario del Aire Terso: Los objetos guardianes son sellos, mantos y herramientas de permanencia.",
+      "tags": [
+        "attack",
+        "block",
+        "defense",
+        "object"
+      ],
+      "set": "base",
+      "legacy_id": "hg_lore_07",
+      "canonical_id": "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA",
+      "name": "Brazal de la Huella Serena",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "lore_text": "Brazal de la Huella Serena: Los objetos guardianes son sellos, mantos y herramientas de permanencia.",
+      "tags": [
+        "block",
+        "defense",
+        "harmony",
+        "object",
+        "tempo"
+      ],
+      "set": "base",
+      "legacy_id": "hg_lore_11",
+      "canonical_id": "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
+      "name": "Atrio del Segundo Respiro",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 6, Armonía +1",
+      "lore_text": "Atrio del Segundo Respiro: Los lugares guardianes ofrecen valor estable y ventanas de recuperacion.",
+      "tags": [
+        "block",
+        "defense",
+        "harmony",
+        "place"
+      ],
+      "set": "base",
+      "legacy_id": "hg_lore_13",
+      "canonical_id": "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA",
+      "name": "Camino de la Piedra Tibia",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 5, Cura 2",
+      "lore_text": "Camino de la Piedra Tibia: Los lugares guardianes ofrecen valor estable y ventanas de recuperacion.",
+      "tags": [
+        "block",
+        "defense",
+        "heal",
+        "place"
+      ],
+      "set": "base",
+      "legacy_id": "hg_lore_15",
       "canonical_id": "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA"
     },
     {
-      "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
-      "name": "Invocación Astral Nova",
+      "id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA",
+      "name": "Huerto del Eco Quieto",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 4, Debilita 1",
+      "lore_text": "Huerto del Eco Quieto: Los lugares guardianes ofrecen valor estable y ventanas de recuperacion.",
+      "tags": [
+        "block",
+        "debuff",
+        "defense",
+        "place"
+      ],
+      "set": "base",
+      "legacy_id": "hg_lore_19",
+      "canonical_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
+      "name": "Plaza del Juramento Calmo",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 4, Daño 2",
+      "lore_text": "Plaza del Juramento Calmo: Los lugares guardianes ofrecen valor estable y ventanas de recuperacion.",
+      "tags": [
+        "attack",
+        "block",
+        "defense",
+        "place"
+      ],
+      "set": "base",
+      "legacy_id": "hg_lore_24",
+      "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA"
+    },
+    {
+      "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
+      "name": "Santuario del Vaso Lento",
+      "archetype": "harmony_guardian",
+      "role": "defense",
+      "rarity": "common",
+      "gameplay_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "lore_text": "Santuario del Vaso Lento: Los lugares guardianes ofrecen valor estable y ventanas de recuperacion.",
+      "tags": [
+        "block",
+        "defense",
+        "harmony",
+        "place",
+        "tempo"
+      ],
+      "set": "base",
+      "legacy_id": "hg_lore_27",
+      "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA"
+    },
+    {
+      "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE",
+      "name": "Lechuza del Pozo Claro",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Prever 2, Roba 1",
+      "lore_text": "Lechuza del Pozo Claro: Las criaturas del Ukhu abren informacion antes que daño bruto.",
+      "tags": [
+        "control",
+        "creature",
+        "draw",
+        "scry"
+      ],
+      "set": "base",
+      "legacy_id": "fragmento_celeste",
+      "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE"
+    },
+    {
+      "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL",
+      "name": "Zorro del Eclipse Quieto",
       "archetype": "oracle_of_fate",
       "role": "ritual",
       "rarity": "common",
-      "gameplay_text": "Armonia +2, Bloqueo 3",
-      "lore_text": "El oraculo lee los ecos del tiempo.",
+      "gameplay_text": "Armonía +2, Consume Armonía 2, Roba 1",
+      "lore_text": "Zorro del Eclipse Quieto: Las criaturas del Ukhu abren informacion antes que daño bruto.",
       "tags": [
-        "heal",
-        "block",
-        "ritual"
+        "creature",
+        "draw",
+        "harmony",
+        "ritual",
+        "seal"
       ],
-      "legacy_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
+      "set": "base",
+      "legacy_id": "invocacion_astral",
+      "canonical_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL"
+    },
+    {
+      "id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO",
+      "name": "Taruca del Eco Lunar",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Prever 2, Energía sig. turno +1",
+      "lore_text": "Taruca del Eco Lunar: Las criaturas del Ukhu abren informacion antes que daño bruto.",
+      "tags": [
+        "control",
+        "creature",
+        "energy",
+        "scry"
+      ],
+      "set": "base",
+      "legacy_id": "lectura_del_destino",
+      "canonical_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO"
+    },
+    {
+      "id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+      "name": "Serpiente del Sueno Doble",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Prever 1, Roba 1, Ruptura +1",
+      "lore_text": "Serpiente del Sueno Doble: Las criaturas del Ukhu abren informacion antes que daño bruto.",
+      "tags": [
+        "control",
+        "creature",
+        "draw",
+        "rupture",
+        "scry"
+      ],
+      "set": "base",
+      "legacy_id": "observacion_sagrada",
+      "canonical_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA"
+    },
+    {
+      "id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
+      "name": "Mariposa del Umbral Violeta",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "uncommon",
+      "gameplay_text": "Armonía +1, Consume Armonía 1, Roba 1, Prever 2",
+      "lore_text": "Mariposa del Umbral Violeta: Las criaturas del Ukhu abren informacion antes que daño bruto.",
+      "tags": [
+        "creature",
+        "draw",
+        "harmony",
+        "ritual",
+        "scry",
+        "seal"
+      ],
+      "set": "base",
+      "legacy_id": "piedra_ritual",
+      "canonical_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL"
+    },
+    {
+      "id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA",
+      "name": "Vidente del Cuenco Negro",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "uncommon",
+      "gameplay_text": "Armonía +1, Ritual de la Trama, Prever 2",
+      "lore_text": "Vidente del Cuenco Negro: Los sujetos del oraculo convierten lectura en control tangible.",
+      "tags": [
+        "harmony",
+        "ritual",
+        "scry",
+        "subject"
+      ],
+      "set": "base",
+      "legacy_id": "portal_de_la_chakana",
+      "canonical_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA"
+    },
+    {
+      "id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL",
+      "name": "Cronista del Pulso Naciente",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "uncommon",
+      "gameplay_text": "Prever 2, Energía sig. turno +1",
+      "lore_text": "Cronista del Pulso Naciente: Los sujetos del oraculo convierten lectura en control tangible.",
+      "tags": [
+        "control",
+        "energy",
+        "scry",
+        "subject"
+      ],
+      "set": "base",
+      "legacy_id": "revelacion_astral",
+      "canonical_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL"
+    },
+    {
+      "id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA",
+      "name": "Cartografa del Eco Profundo",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "legendary",
+      "gameplay_text": "Armonía +2, Consume Armonía 2, Ritual de la Trama, Prever 3",
+      "lore_text": "Cartografa del Eco Profundo: Los sujetos del oraculo convierten lectura en control tangible.",
+      "tags": [
+        "harmony",
+        "ritual",
+        "scry",
+        "seal",
+        "subject"
+      ],
+      "set": "base",
+      "legacy_id": "ritual_de_la_trama",
+      "canonical_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA"
+    },
+    {
+      "id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR",
+      "name": "Adivino de la Tercera Puerta",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Prever 2, Roba 1",
+      "lore_text": "Adivino de la Tercera Puerta: Los sujetos del oraculo convierten lectura en control tangible.",
+      "tags": [
+        "control",
+        "draw",
+        "scry",
+        "subject"
+      ],
+      "set": "base",
+      "legacy_id": "silencio_interior",
+      "canonical_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR"
+    },
+    {
+      "id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR",
+      "name": "Custodia del Hilo Interno",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Prever 3, Daño 2",
+      "lore_text": "Custodia del Hilo Interno: Los sujetos del oraculo convierten lectura en control tangible.",
+      "tags": [
+        "attack",
+        "control",
+        "scry",
+        "subject"
+      ],
+      "set": "base",
+      "legacy_id": "vision_del_condor",
+      "canonical_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR"
+    },
+    {
+      "id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA",
+      "name": "Astrolabio del Velo Bajo",
+      "archetype": "oracle_of_fate",
+      "role": "control",
+      "rarity": "common",
+      "gameplay_text": "Prever 2, Energía sig. turno +1",
+      "lore_text": "Astrolabio del Velo Bajo: Los objetos del destino ajustan robo, prever y energia futura.",
+      "tags": [
+        "control",
+        "energy",
+        "object",
+        "scry"
+      ],
+      "set": "base",
+      "legacy_id": "of_lore_12",
+      "canonical_id": "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA"
+    },
+    {
+      "id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA",
+      "name": "Tabla de las Tres Sombras",
+      "archetype": "oracle_of_fate",
+      "role": "ritual",
+      "rarity": "common",
+      "gameplay_text": "Armonía +1, Ritual de la Trama, Prever 2",
+      "lore_text": "Tabla de las Tres Sombras: Los objetos del destino ajustan robo, prever y energia futura.",
+      "tags": [
+        "harmony",
+        "object",
+        "ritual",
+        "scry"
+      ],
+      "set": "base",
+      "legacy_id": "of_lore_16",
       "canonical_id": "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA"
     },
     {
       "id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
-      "name": "Lectura del Destino Nova",
+      "name": "Espejo del Condor Inverso",
       "archetype": "oracle_of_fate",
       "role": "control",
       "rarity": "common",
-      "gameplay_text": "Prever 3",
-      "lore_text": "Toda vision exige un precio ritual.",
+      "gameplay_text": "Prever 2, Roba 1",
+      "lore_text": "Espejo del Condor Inverso: Los objetos del destino ajustan robo, prever y energia futura.",
       "tags": [
+        "control",
+        "draw",
+        "object",
         "scry"
       ],
-      "legacy_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
+      "set": "base",
+      "legacy_id": "of_lore_17",
       "canonical_id": "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA"
     },
     {
-      "id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
-      "name": "Mantra del Umbral Nova",
-      "archetype": "cosmic_warrior",
-      "role": "energy",
-      "rarity": "common",
-      "gameplay_text": "Armonia +2, Energia +1",
-      "lore_text": "La voluntad traza el destino astral.",
-      "tags": [
-        "energy",
-        "heal",
-        "ritual"
-      ],
-      "legacy_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
-      "canonical_id": "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA"
-    },
-    {
-      "id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA",
-      "name": "Muralla de Piedra Nova",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "uncommon",
-      "gameplay_text": "Bloqueo 9",
-      "lore_text": "La calma sostiene el umbral.",
-      "tags": [
-        "block"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA",
-      "canonical_id": "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA"
-    },
-    {
       "id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA",
-      "name": "Observación Sagrada Nova",
+      "name": "Lampara de Ceniza Azul",
       "archetype": "oracle_of_fate",
       "role": "control",
       "rarity": "common",
-      "gameplay_text": "Prever 4",
-      "lore_text": "El oraculo lee los ecos del tiempo.",
+      "gameplay_text": "Prever 3, Daño 2",
+      "lore_text": "Lampara de Ceniza Azul: Los objetos del destino ajustan robo, prever y energia futura.",
       "tags": [
+        "attack",
+        "control",
+        "object",
         "scry"
       ],
-      "legacy_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA",
+      "set": "base",
+      "legacy_id": "of_lore_20",
       "canonical_id": "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA"
     },
     {
       "id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA",
-      "name": "Piedra Ritual Nova",
+      "name": "Cuenco del Calculo Ritual",
       "archetype": "oracle_of_fate",
       "role": "ritual",
       "rarity": "uncommon",
-      "gameplay_text": "Armonia +2, Bloqueo 6, Ruptura 3",
-      "lore_text": "Toda vision exige un precio ritual.",
+      "gameplay_text": "Armonía +1, Ritual de la Trama, Roba 1",
+      "lore_text": "Cuenco del Calculo Ritual: Los objetos del destino ajustan robo, prever y energia futura.",
       "tags": [
-        "block",
-        "break",
+        "draw",
+        "harmony",
+        "object",
         "ritual"
       ],
-      "legacy_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA",
+      "set": "base",
+      "legacy_id": "of_lore_21",
       "canonical_id": "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA"
     },
     {
       "id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
-      "name": "Portal de la Chakana Nova",
+      "name": "Observatorio del Pozo Inmoto",
       "archetype": "oracle_of_fate",
       "role": "ritual",
       "rarity": "uncommon",
-      "gameplay_text": "Armonia +1, Ruptura 3, Roba 2",
-      "lore_text": "La trama responde al ojo atento.",
+      "gameplay_text": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
+      "lore_text": "Observatorio del Pozo Inmoto: Los lugares del set oracular recompensan secuencias distintas en cada run.",
       "tags": [
-        "break",
-        "draw",
-        "ritual"
+        "harmony",
+        "place",
+        "ritual",
+        "seal"
       ],
-      "legacy_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
+      "set": "base",
+      "legacy_id": "of_lore_22",
       "canonical_id": "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA"
     },
     {
-      "id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
-      "name": "Pulso Cósmico Nova",
-      "archetype": "cosmic_warrior",
-      "role": "attack",
-      "rarity": "common",
-      "gameplay_text": "Ruptura 2, Dano 4",
-      "lore_text": "La chispa violeta rompe el vacio.",
-      "tags": [
-        "break",
-        "attack",
-        "rupture"
-      ],
-      "legacy_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
-      "canonical_id": "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA"
-    },
-    {
-      "id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
-      "name": "Resistencia Ancestral Nova",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "uncommon",
-      "gameplay_text": "Bloqueo 8, Retener, Armonia +1",
-      "lore_text": "La guardia nace del silencio.",
-      "tags": [
-        "block",
-        "retain",
-        "harmony"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA",
-      "canonical_id": "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA"
-    },
-    {
       "id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA",
-      "name": "Revelación Astral Nova",
+      "name": "Cupula del Eco Tardio",
       "archetype": "oracle_of_fate",
       "role": "control",
       "rarity": "uncommon",
-      "gameplay_text": "Armonia +1, Prever 5, Roba 1",
-      "lore_text": "Toda vision exige un precio ritual.",
+      "gameplay_text": "Prever 2, Roba 1",
+      "lore_text": "Cupula del Eco Tardio: Los lugares del set oracular recompensan secuencias distintas en cada run.",
       "tags": [
-        "scry",
+        "control",
         "draw",
-        "ritual"
+        "place",
+        "scry"
       ],
-      "legacy_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA",
+      "set": "base",
+      "legacy_id": "of_lore_25",
       "canonical_id": "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA"
     },
     {
       "id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA",
-      "name": "Ritual de la Trama Nova",
+      "name": "Biblioteca del Umbral Vivo",
       "archetype": "oracle_of_fate",
       "role": "ritual",
       "rarity": "uncommon",
-      "gameplay_text": "Armonia +1, Sello 3, Ritual 2",
-      "lore_text": "La trama responde al ojo atento.",
+      "gameplay_text": "Armonía +1, Ritual de la Trama, Prever 2",
+      "lore_text": "Biblioteca del Umbral Vivo: Los lugares del set oracular recompensan secuencias distintas en cada run.",
       "tags": [
-        "attack",
-        "heal",
-        "exhaust",
-        "ritual"
+        "harmony",
+        "place",
+        "ritual",
+        "scry"
       ],
-      "legacy_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA",
+      "set": "base",
+      "legacy_id": "of_lore_26",
       "canonical_id": "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA"
     },
     {
-      "id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
-      "name": "Sello Protector Nova",
-      "archetype": "harmony_guardian",
-      "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "Bloqueo 6",
-      "lore_text": "La calma sostiene el umbral.",
-      "tags": [
-        "block"
-      ],
-      "legacy_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA",
-      "canonical_id": "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA"
-    },
-    {
       "id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA",
-      "name": "Silencio Interior Nova",
+      "name": "Patio de la Noche Geometrica",
       "archetype": "oracle_of_fate",
       "role": "control",
       "rarity": "common",
-      "gameplay_text": "Debilita 3, Prever 2",
-      "lore_text": "El oraculo lee los ecos del tiempo.",
+      "gameplay_text": "Prever 2, Energía sig. turno +1",
+      "lore_text": "Patio de la Noche Geometrica: Los lugares del set oracular recompensan secuencias distintas en cada run.",
       "tags": [
-        "debuff",
+        "control",
+        "energy",
+        "place",
         "scry"
       ],
-      "legacy_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA",
+      "set": "base",
+      "legacy_id": "of_lore_28",
       "canonical_id": "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA"
     },
     {
-      "id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
-      "name": "Vínculo de Energía Nova",
-      "archetype": "cosmic_warrior",
-      "role": "energy",
-      "rarity": "uncommon",
-      "gameplay_text": "Energia +2, Dano 1",
-      "lore_text": "Cada golpe abre una constelacion.",
-      "tags": [
-        "energy"
-      ],
-      "legacy_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
-      "canonical_id": "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA"
-    },
-    {
       "id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA",
-      "name": "Visión del Cóndor Nova",
+      "name": "Puente del Destino Quieto",
       "archetype": "oracle_of_fate",
       "role": "control",
       "rarity": "common",
-      "gameplay_text": "Armonia +1, Prever 4, Roba 1",
-      "lore_text": "La trama responde al ojo atento.",
+      "gameplay_text": "Prever 1, Roba 1, Ruptura +1",
+      "lore_text": "Puente del Destino Quieto: Los lugares del set oracular recompensan secuencias distintas en cada run.",
       "tags": [
-        "scry",
+        "control",
         "draw",
-        "ritual"
+        "place",
+        "rupture",
+        "scry"
       ],
-      "legacy_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA",
+      "set": "base",
+      "legacy_id": "of_lore_30",
       "canonical_id": "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA"
     }
   ]

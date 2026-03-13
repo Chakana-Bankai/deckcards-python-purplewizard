@@ -1,6 +1,6 @@
 {
   "set_id": "hiperboria",
-  "set_name": "HIPERBORIA",
+  "set_name": "HIPERBOREA",
   "total_cards": 60,
   "archetypes": [
     {
@@ -22,1016 +22,1090 @@
   "cards": [
     {
       "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
-      "name": "HIP-CW 01",
+      "name": "Halcon del Septimo Sol",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "common",
-      "gameplay_text": "damage 4",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "gameplay_text": "Daño 5, Bloqueo 2",
+      "lore_text": "Halcon del Septimo Sol: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
       "tags": [
         "attack",
-        "rupture",
-        "hiperboria"
+        "block",
+        "creature"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_01",
       "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I"
     },
     {
       "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
-      "name": "HIP-CW 02",
+      "name": "Llama de Guerra Celeste",
       "archetype": "cosmic_warrior",
       "role": "combo",
       "rarity": "common",
-      "gameplay_text": "damage 4, apply_break 1",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "gameplay_text": "Daño 3, Daño 4 si hay Ruptura",
+      "lore_text": "Llama de Guerra Celeste: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
       "tags": [
         "attack",
         "combo",
-        "hiperboria"
+        "creature",
+        "rupture"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_02",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II"
     },
     {
       "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
-      "name": "HIP-CW 03",
+      "name": "Toro de Meteorito Vivo",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "common",
-      "gameplay_text": "damage 5",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "gameplay_text": "Daño 4, Próx. ataque cuesta -1",
+      "lore_text": "Toro de Meteorito Vivo: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
       "tags": [
         "attack",
-        "hiperboria"
+        "creature",
+        "tempo"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_03",
       "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III"
     },
     {
       "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
-      "name": "HIP-CW 04",
+      "name": "Zorro del Alba Cortante",
       "archetype": "cosmic_warrior",
       "role": "energy",
       "rarity": "common",
-      "gameplay_text": "gain_mana 1, damage 3",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "gameplay_text": "Energía +1 si el enemigo ataca, Daño 5",
+      "lore_text": "Zorro del Alba Cortante: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
       "tags": [
-        "energy",
         "attack",
-        "hiperboria"
+        "creature",
+        "energy",
+        "tempo"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_04",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV"
     },
     {
       "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
-      "name": "HIP-CW 05",
+      "name": "Leon del Cielo Roto",
       "archetype": "cosmic_warrior",
       "role": "combo",
       "rarity": "common",
-      "gameplay_text": "damage_plus_rupture 5",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "gameplay_text": "Retener, Daño 5",
+      "lore_text": "Leon del Cielo Roto: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
       "tags": [
         "attack",
         "combo",
-        "rupture",
-        "hiperboria"
+        "creature",
+        "retain"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_05",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V"
     },
     {
       "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
-      "name": "HIP-CW 06",
+      "name": "Guarda del Horizonte Rojo",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "common",
-      "gameplay_text": "damage 5",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "gameplay_text": "Daño 4, Ruptura +1",
+      "lore_text": "Guarda del Horizonte Rojo: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
       "tags": [
         "attack",
         "rupture",
-        "hiperboria"
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_06",
       "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI"
     },
     {
       "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
-      "name": "HIP-CW 07",
+      "name": "Navegante de Cometas",
       "archetype": "cosmic_warrior",
       "role": "combo",
       "rarity": "common",
-      "gameplay_text": "damage 3, apply_break 1",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "gameplay_text": "Daño 3, Daño 4 si hay Ruptura",
+      "lore_text": "Navegante de Cometas: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
       "tags": [
         "attack",
         "combo",
-        "hiperboria"
+        "rupture",
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_07",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII"
     },
     {
       "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
-      "name": "HIP-CW 08",
+      "name": "Capitan del Pulso Boreal",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "common",
-      "gameplay_text": "damage 5",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "gameplay_text": "Daño 4, Roba 1 al matar",
+      "lore_text": "Capitan del Pulso Boreal: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
       "tags": [
         "attack",
-        "hiperboria"
+        "draw",
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_08",
       "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII"
     },
     {
       "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
-      "name": "HIP-CW 09",
+      "name": "Portadora de la Corona de Fuego",
       "archetype": "cosmic_warrior",
       "role": "energy",
       "rarity": "common",
-      "gameplay_text": "gain_mana 1, damage 3",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "gameplay_text": "Energía +1, Daño 3, Ruptura +1",
+      "lore_text": "Portadora de la Corona de Fuego: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
       "tags": [
-        "energy",
         "attack",
-        "hiperboria"
+        "energy",
+        "rupture",
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_09",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX"
     },
     {
       "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
-      "name": "HIP-CW 10",
+      "name": "Maestro de la Fractura Serena",
       "archetype": "cosmic_warrior",
       "role": "combo",
-      "rarity": "common",
-      "gameplay_text": "damage_plus_rupture 6",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "rarity": "uncommon",
+      "gameplay_text": "Retener, Daño 5",
+      "lore_text": "Maestro de la Fractura Serena: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
       "tags": [
         "attack",
         "combo",
-        "rupture",
-        "hiperboria"
+        "retain",
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_10",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X"
     },
     {
       "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
-      "name": "HIP-CW 11",
+      "name": "Cinturon de Runa Roja",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "common",
-      "gameplay_text": "damage 4",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "gameplay_text": "Daño 6",
+      "lore_text": "Cinturon de Runa Roja: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
       "tags": [
         "attack",
-        "rupture",
-        "hiperboria"
+        "object"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_11",
       "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI"
     },
     {
       "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
-      "name": "HIP-CW 12",
+      "name": "Tambor del Impacto Astral",
       "archetype": "cosmic_warrior",
       "role": "combo",
       "rarity": "common",
-      "gameplay_text": "damage 5, apply_break 1",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "gameplay_text": "Daño 3, Daño 4 si hay Ruptura",
+      "lore_text": "Tambor del Impacto Astral: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
       "tags": [
         "attack",
         "combo",
-        "hiperboria"
+        "object",
+        "rupture"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_12",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII"
     },
     {
       "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
-      "name": "HIP-CW 13",
+      "name": "Arnes del Jaguar Solar",
       "archetype": "cosmic_warrior",
       "role": "attack",
-      "rarity": "uncommon",
-      "gameplay_text": "damage 5",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "rarity": "common",
+      "gameplay_text": "Daño 5, Bloqueo 2",
+      "lore_text": "Arnes del Jaguar Solar: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
       "tags": [
         "attack",
-        "hiperboria"
+        "block",
+        "object"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_13",
       "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII"
     },
     {
       "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
-      "name": "HIP-CW 14",
+      "name": "Casco de Obsidiana Viva",
       "archetype": "cosmic_warrior",
       "role": "energy",
-      "rarity": "uncommon",
-      "gameplay_text": "gain_mana 1, damage 3",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "rarity": "common",
+      "gameplay_text": "Energía sig. turno +1, Daño 4",
+      "lore_text": "Casco de Obsidiana Viva: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
       "tags": [
-        "energy",
         "attack",
-        "hiperboria"
+        "energy",
+        "object"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_14",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV"
     },
     {
       "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
-      "name": "HIP-CW 15",
+      "name": "Brasa del Condor Antiguo",
       "archetype": "cosmic_warrior",
       "role": "combo",
       "rarity": "uncommon",
-      "gameplay_text": "damage_plus_rupture 5",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "gameplay_text": "Retener, Daño 5",
+      "lore_text": "Brasa del Condor Antiguo: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
       "tags": [
         "attack",
         "combo",
-        "rupture",
-        "hiperboria"
+        "object",
+        "retain"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_15",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV"
     },
     {
       "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
-      "name": "HIP-CW 16",
+      "name": "Camino del Primer Relampago",
       "archetype": "cosmic_warrior",
       "role": "attack",
-      "rarity": "uncommon",
-      "gameplay_text": "damage 5",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "rarity": "common",
+      "gameplay_text": "Daño 7",
+      "lore_text": "Camino del Primer Relampago: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
       "tags": [
         "attack",
-        "rupture",
-        "hiperboria"
+        "place"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_16",
       "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI"
     },
     {
       "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
-      "name": "HIP-CW 17",
+      "name": "Mirador del Jaguar Espejo",
       "archetype": "cosmic_warrior",
       "role": "combo",
-      "rarity": "uncommon",
-      "gameplay_text": "damage 4, apply_break 1",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "rarity": "common",
+      "gameplay_text": "Daño 3, Daño 4 si hay Ruptura",
+      "lore_text": "Mirador del Jaguar Espejo: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
       "tags": [
         "attack",
         "combo",
-        "hiperboria"
+        "place",
+        "rupture"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_17",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII"
     },
     {
       "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
-      "name": "HIP-CW 18",
+      "name": "Plaza de la Aurora Belica",
       "archetype": "cosmic_warrior",
       "role": "attack",
       "rarity": "uncommon",
-      "gameplay_text": "damage 5",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "gameplay_text": "Daño 4, Ruptura +1",
+      "lore_text": "Plaza de la Aurora Belica: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
       "tags": [
         "attack",
-        "hiperboria"
+        "place",
+        "rupture"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_18",
       "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII"
     },
     {
       "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
-      "name": "HIP-CW 19",
+      "name": "Santuario del Filo Resonante",
       "archetype": "cosmic_warrior",
       "role": "energy",
-      "rarity": "uncommon",
-      "gameplay_text": "gain_mana 1, damage 3",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "rarity": "common",
+      "gameplay_text": "Energía +1 si el enemigo ataca, Daño 5",
+      "lore_text": "Santuario del Filo Resonante: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
       "tags": [
-        "energy",
         "attack",
-        "hiperboria"
+        "energy",
+        "place",
+        "tempo"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_19",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX"
     },
     {
       "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
-      "name": "HIP-CW 20",
+      "name": "Forja del Ultimo Cometa",
       "archetype": "cosmic_warrior",
       "role": "combo",
       "rarity": "legendary",
-      "gameplay_text": "damage 10, apply_break 2",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "gameplay_text": "Energía +1, Daño 6 +2 por Ruptura, Roba 1 si hay Ruptura",
+      "lore_text": "Forja del Ultimo Cometa: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
       "tags": [
         "attack",
         "combo",
-        "rupture",
-        "hiperboria"
+        "energy",
+        "hiperboria",
+        "place",
+        "rupture"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
+      "set": "hiperboria",
+      "legacy_id": "hip_cosmic_warrior_20",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX"
     },
     {
       "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
-      "name": "HIP-HG 01",
+      "name": "Venado del Manto Boreal",
       "archetype": "harmony_guardian",
       "role": "defense",
       "rarity": "common",
-      "gameplay_text": "gain_block 4",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "gameplay_text": "Bloqueo 6, Armonía +1",
+      "lore_text": "Venado del Manto Boreal: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
       "tags": [
         "block",
-        "harmony",
-        "hiperboria"
+        "creature",
+        "defense",
+        "harmony"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_01",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I"
     },
     {
       "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
-      "name": "HIP-HG 02",
+      "name": "Oso del Alba Blanca",
       "archetype": "harmony_guardian",
       "role": "ritual",
-      "rarity": "common",
-      "gameplay_text": "harmony_delta 1, consume_harmony 1",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 7, Consume Armonía 2, Cura 3",
+      "lore_text": "Oso del Alba Blanca: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
       "tags": [
+        "block",
+        "creature",
+        "heal",
         "ritual",
-        "seal",
-        "hiperboria"
+        "seal"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_02",
       "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II"
     },
     {
       "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
-      "name": "HIP-HG 03",
+      "name": "Serpiente del Hielo Manso",
       "archetype": "harmony_guardian",
       "role": "defense",
       "rarity": "common",
-      "gameplay_text": "gain_block 5",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "gameplay_text": "Bloqueo 4, Debilita 1",
+      "lore_text": "Serpiente del Hielo Manso: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
       "tags": [
         "block",
-        "hiperboria"
+        "creature",
+        "debuff",
+        "defense"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_03",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III"
     },
     {
       "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
-      "name": "HIP-HG 04",
+      "name": "Zorzal del Faro Niveo",
       "archetype": "harmony_guardian",
       "role": "control",
-      "rarity": "common",
-      "gameplay_text": "gain_block 3, scry 1",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "lore_text": "Zorzal del Faro Niveo: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
       "tags": [
         "block",
-        "scry",
-        "hiperboria"
+        "control",
+        "creature",
+        "harmony",
+        "rupture"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_04",
       "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV"
     },
     {
       "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
-      "name": "HIP-HG 05",
+      "name": "Alpaca del Circulo Polar",
       "archetype": "harmony_guardian",
       "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "gain_block 4, heal 1",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "lore_text": "Alpaca del Circulo Polar: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
       "tags": [
         "block",
-        "support",
-        "hiperboria"
+        "creature",
+        "defense",
+        "harmony",
+        "tempo"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_05",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V"
     },
     {
       "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
-      "name": "HIP-HG 06",
+      "name": "Priora del Santuario Blanco",
       "archetype": "harmony_guardian",
       "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "gain_block 5",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 6, Armonía +1",
+      "lore_text": "Priora del Santuario Blanco: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
       "tags": [
         "block",
+        "defense",
         "harmony",
-        "hiperboria"
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_06",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI"
     },
     {
       "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
-      "name": "HIP-HG 07",
+      "name": "Centinela de la Aurora Quieta",
       "archetype": "harmony_guardian",
       "role": "ritual",
-      "rarity": "common",
-      "gameplay_text": "harmony_delta 1, consume_harmony 1",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 5, Consume Armonía 2, Debilita 2",
+      "lore_text": "Centinela de la Aurora Quieta: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
       "tags": [
+        "block",
+        "debuff",
         "ritual",
         "seal",
-        "hiperboria"
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_07",
       "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII"
     },
     {
       "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
-      "name": "HIP-HG 08",
+      "name": "Tejedora del Nudo Frio",
       "archetype": "harmony_guardian",
       "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "gain_block 5",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 4, Debilita 1",
+      "lore_text": "Tejedora del Nudo Frio: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
       "tags": [
         "block",
-        "hiperboria"
+        "debuff",
+        "defense",
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_08",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII"
     },
     {
       "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
-      "name": "HIP-HG 09",
+      "name": "Guarda del Velo Niveo",
       "archetype": "harmony_guardian",
       "role": "control",
       "rarity": "common",
-      "gameplay_text": "gain_block 3, scry 1",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "gameplay_text": "Bloqueo 5, Roba 1",
+      "lore_text": "Guarda del Velo Niveo: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
       "tags": [
         "block",
-        "scry",
-        "hiperboria"
+        "control",
+        "draw",
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_09",
       "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX"
     },
     {
       "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
-      "name": "HIP-HG 10",
+      "name": "Oficiante de la Runa Serena",
       "archetype": "harmony_guardian",
       "role": "defense",
-      "rarity": "common",
-      "gameplay_text": "gain_block 4, heal 1",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "lore_text": "Oficiante de la Runa Serena: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
       "tags": [
         "block",
-        "support",
-        "hiperboria"
+        "defense",
+        "harmony",
+        "subject",
+        "tempo"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_10",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X"
     },
     {
       "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
-      "name": "HIP-HG 11",
+      "name": "Campana de la Escarcha Pura",
       "archetype": "harmony_guardian",
       "role": "defense",
       "rarity": "common",
-      "gameplay_text": "gain_block 4",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "gameplay_text": "Bloqueo 6, Armonía +1",
+      "lore_text": "Campana de la Escarcha Pura: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
       "tags": [
         "block",
+        "defense",
         "harmony",
-        "hiperboria"
+        "object"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_11",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI"
     },
     {
       "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
-      "name": "HIP-HG 12",
+      "name": "Escudo del Ancla Boreal",
       "archetype": "harmony_guardian",
       "role": "ritual",
-      "rarity": "common",
-      "gameplay_text": "harmony_delta 1, consume_harmony 1",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "rarity": "uncommon",
+      "gameplay_text": "Bloqueo 6, Consume Armonía 1, Daño 4",
+      "lore_text": "Escudo del Ancla Boreal: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
       "tags": [
+        "attack",
+        "block",
+        "object",
         "ritual",
-        "seal",
-        "hiperboria"
+        "seal"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_12",
       "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII"
     },
     {
       "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
-      "name": "HIP-HG 13",
+      "name": "Maza del Hielo Paciente",
       "archetype": "harmony_guardian",
       "role": "defense",
       "rarity": "uncommon",
-      "gameplay_text": "gain_block 5",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "gameplay_text": "Bloqueo 4, Debilita 1",
+      "lore_text": "Maza del Hielo Paciente: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
       "tags": [
         "block",
-        "hiperboria"
+        "debuff",
+        "defense",
+        "object"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_13",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII"
     },
     {
       "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
-      "name": "HIP-HG 14",
+      "name": "Anillo de Nieve Ritual",
       "archetype": "harmony_guardian",
       "role": "control",
       "rarity": "uncommon",
-      "gameplay_text": "gain_block 3, scry 1",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "gameplay_text": "Bloqueo 4, Prever 2",
+      "lore_text": "Anillo de Nieve Ritual: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
       "tags": [
         "block",
-        "scry",
-        "hiperboria"
+        "control",
+        "object",
+        "scry"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_14",
       "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV"
     },
     {
       "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
-      "name": "HIP-HG 15",
+      "name": "Lazo del Santuario Polar",
       "archetype": "harmony_guardian",
       "role": "defense",
       "rarity": "uncommon",
-      "gameplay_text": "gain_block 4, heal 1",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "gameplay_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "lore_text": "Lazo del Santuario Polar: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
       "tags": [
         "block",
-        "support",
-        "hiperboria"
+        "defense",
+        "harmony",
+        "object",
+        "tempo"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_15",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV"
     },
     {
       "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
-      "name": "HIP-HG 16",
+      "name": "Claustro de la Estrella Blanca",
       "archetype": "harmony_guardian",
       "role": "defense",
       "rarity": "uncommon",
-      "gameplay_text": "gain_block 5",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "gameplay_text": "Bloqueo 6, Armonía +1",
+      "lore_text": "Claustro de la Estrella Blanca: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
       "tags": [
         "block",
+        "defense",
         "harmony",
-        "hiperboria"
+        "place"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_16",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI"
     },
     {
       "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
-      "name": "HIP-HG 17",
+      "name": "Puerta del Humo Frio",
       "archetype": "harmony_guardian",
       "role": "ritual",
       "rarity": "uncommon",
-      "gameplay_text": "harmony_delta 1, consume_harmony 1",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "gameplay_text": "Bloqueo 7, Consume Armonía 2, Cura 3",
+      "lore_text": "Puerta del Humo Frio: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
       "tags": [
+        "block",
+        "heal",
+        "place",
         "ritual",
-        "seal",
-        "hiperboria"
+        "seal"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_17",
       "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII"
     },
     {
       "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
-      "name": "HIP-HG 18",
+      "name": "Refugio de la Aurora Tersa",
       "archetype": "harmony_guardian",
       "role": "defense",
       "rarity": "uncommon",
-      "gameplay_text": "gain_block 5",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "gameplay_text": "Bloqueo 4, Debilita 1",
+      "lore_text": "Refugio de la Aurora Tersa: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
       "tags": [
         "block",
-        "hiperboria"
+        "debuff",
+        "defense",
+        "place"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_18",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII"
     },
     {
       "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
-      "name": "HIP-HG 19",
+      "name": "Jardin de las Nieves Lentas",
       "archetype": "harmony_guardian",
       "role": "control",
       "rarity": "uncommon",
-      "gameplay_text": "gain_block 3, scry 1",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "gameplay_text": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "lore_text": "Jardin de las Nieves Lentas: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
       "tags": [
         "block",
-        "scry",
-        "hiperboria"
+        "control",
+        "harmony",
+        "place",
+        "rupture"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_19",
       "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX"
     },
     {
       "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
-      "name": "HIP-HG 20",
+      "name": "Muralla del Silencio Boreal",
       "archetype": "harmony_guardian",
       "role": "ritual",
       "rarity": "legendary",
-      "gameplay_text": "gain_block 10, harmony_delta 2",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "gameplay_text": "Bloqueo 11, Consume Armonía 2, Cura 5, Debilita 2",
+      "lore_text": "Muralla del Silencio Boreal: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
       "tags": [
         "block",
-        "harmony",
-        "seal",
-        "hiperboria"
+        "debuff",
+        "heal",
+        "hiperboria",
+        "place",
+        "ritual",
+        "seal"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
+      "set": "hiperboria",
+      "legacy_id": "hip_harmony_guardian_20",
       "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
-      "name": "HIP-OF 01",
+      "name": "Cuervo del Hielo Interior",
       "archetype": "oracle_of_fate",
       "role": "control",
       "rarity": "common",
-      "gameplay_text": "scry 2, draw 1",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "gameplay_text": "Prever 2, Roba 1",
+      "lore_text": "Cuervo del Hielo Interior: El norte interior vuelve la lectura mas afilada y menos ornamental.",
       "tags": [
-        "scry",
+        "control",
+        "creature",
         "draw",
-        "hiperboria"
+        "scry"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_01",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I"
     },
     {
       "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
-      "name": "HIP-OF 02",
+      "name": "Liebre del Horizonte Niveo",
       "archetype": "oracle_of_fate",
       "role": "ritual",
       "rarity": "common",
-      "gameplay_text": "ritual_trama 1, harmony_delta 1",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "gameplay_text": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
+      "lore_text": "Liebre del Horizonte Niveo: El norte interior vuelve la lectura mas afilada y menos ornamental.",
       "tags": [
-        "ritual",
+        "creature",
         "harmony",
-        "hiperboria"
+        "ritual",
+        "seal"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_02",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
-      "name": "HIP-OF 03",
+      "name": "Lechuza de la Aurora Sumergida",
       "archetype": "oracle_of_fate",
       "role": "control",
       "rarity": "common",
-      "gameplay_text": "scry 3",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "gameplay_text": "Prever 2, Energía sig. turno +1",
+      "lore_text": "Lechuza de la Aurora Sumergida: El norte interior vuelve la lectura mas afilada y menos ornamental.",
       "tags": [
-        "scry",
-        "hiperboria"
+        "control",
+        "creature",
+        "energy",
+        "scry"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_03",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV",
-      "name": "HIP-OF 04",
+      "name": "Pez del Lago Astral",
       "archetype": "oracle_of_fate",
       "role": "combo",
-      "rarity": "common",
-      "gameplay_text": "draw 2",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "rarity": "uncommon",
+      "gameplay_text": "Retener, Roba 1, Daño 2",
+      "lore_text": "Pez del Lago Astral: El norte interior vuelve la lectura mas afilada y menos ornamental.",
       "tags": [
-        "draw",
+        "attack",
         "combo",
-        "hiperboria"
+        "creature",
+        "draw",
+        "retain"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_04",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
-      "name": "HIP-OF 05",
+      "name": "Lobo del Velo Boreal",
       "archetype": "oracle_of_fate",
       "role": "energy",
       "rarity": "common",
-      "gameplay_text": "gain_mana_next_turn 1, scry 1",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "gameplay_text": "Energía sig. turno +1, Prever 2",
+      "lore_text": "Lobo del Velo Boreal: El norte interior vuelve la lectura mas afilada y menos ornamental.",
       "tags": [
+        "creature",
         "energy",
-        "control",
-        "hiperboria"
+        "scry"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_05",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI",
-      "name": "HIP-OF 06",
+      "name": "Oraculo de la Cupula Helada",
       "archetype": "oracle_of_fate",
       "role": "control",
-      "rarity": "common",
-      "gameplay_text": "scry 2, draw 1",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "rarity": "uncommon",
+      "gameplay_text": "Prever 3, Daño 2",
+      "lore_text": "Oraculo de la Cupula Helada: Los videntes boreales empujan rituales que ya cierran partidas.",
       "tags": [
+        "attack",
+        "control",
         "scry",
-        "draw",
-        "hiperboria"
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_06",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI"
     },
     {
       "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
-      "name": "HIP-OF 07",
+      "name": "Cronista de Nimrod",
       "archetype": "oracle_of_fate",
       "role": "ritual",
       "rarity": "common",
-      "gameplay_text": "ritual_trama 1, harmony_delta 1",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "gameplay_text": "Armonía +1, Ritual de la Trama, Prever 2",
+      "lore_text": "Cronista de Nimrod: Los videntes boreales empujan rituales que ya cierran partidas.",
       "tags": [
-        "ritual",
         "harmony",
-        "hiperboria"
+        "ritual",
+        "scry",
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_07",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
-      "name": "HIP-OF 08",
+      "name": "Interprete del Norte Interior",
       "archetype": "oracle_of_fate",
       "role": "control",
       "rarity": "common",
-      "gameplay_text": "scry 3",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "gameplay_text": "Prever 1, Roba 1, Ruptura +1",
+      "lore_text": "Interprete del Norte Interior: Los videntes boreales empujan rituales que ya cierran partidas.",
       "tags": [
+        "control",
+        "draw",
+        "rupture",
         "scry",
-        "hiperboria"
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_08",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX",
-      "name": "HIP-OF 09",
+      "name": "Tejedor del Segundo Horizonte",
       "archetype": "oracle_of_fate",
       "role": "combo",
       "rarity": "common",
-      "gameplay_text": "draw 2",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "gameplay_text": "Prever 2",
+      "lore_text": "Tejedor del Segundo Horizonte: Los videntes boreales empujan rituales que ya cierran partidas.",
       "tags": [
-        "draw",
         "combo",
-        "hiperboria"
+        "draw",
+        "scry",
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_09",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
-      "name": "HIP-OF 10",
+      "name": "Portadora del Mapa Blanco",
       "archetype": "oracle_of_fate",
       "role": "energy",
       "rarity": "common",
-      "gameplay_text": "gain_mana_next_turn 1, scry 1",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "gameplay_text": "Energía sig. turno +1, Daño 2, Prever 1",
+      "lore_text": "Portadora del Mapa Blanco: Los videntes boreales empujan rituales que ya cierran partidas.",
       "tags": [
+        "attack",
         "energy",
-        "control",
-        "hiperboria"
+        "scry",
+        "subject"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_10",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
-      "name": "HIP-OF 11",
+      "name": "Astrolabio de la Estrella Polar",
       "archetype": "oracle_of_fate",
       "role": "control",
       "rarity": "common",
-      "gameplay_text": "scry 2, draw 1",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "gameplay_text": "Prever 2, Energía sig. turno +1",
+      "lore_text": "Astrolabio de la Estrella Polar: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
       "tags": [
-        "scry",
-        "draw",
-        "hiperboria"
+        "control",
+        "energy",
+        "object",
+        "scry"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_11",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI"
     },
     {
       "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
-      "name": "HIP-OF 12",
+      "name": "Baston del Eco Frio",
       "archetype": "oracle_of_fate",
       "role": "ritual",
       "rarity": "common",
-      "gameplay_text": "ritual_trama 1, harmony_delta 1",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "gameplay_text": "Armonía +2, Consume Armonía 2, Roba 1",
+      "lore_text": "Baston del Eco Frio: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
       "tags": [
-        "ritual",
+        "draw",
         "harmony",
-        "hiperboria"
+        "object",
+        "ritual",
+        "seal"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_12",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
-      "name": "HIP-OF 13",
+      "name": "Reloj de Escarcha Ritual",
       "archetype": "oracle_of_fate",
       "role": "control",
       "rarity": "uncommon",
-      "gameplay_text": "scry 3",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "gameplay_text": "Prever 2, Roba 1",
+      "lore_text": "Reloj de Escarcha Ritual: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
       "tags": [
-        "scry",
-        "hiperboria"
+        "control",
+        "draw",
+        "object",
+        "scry"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_13",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
-      "name": "HIP-OF 14",
+      "name": "Carta del Trono Boreal",
       "archetype": "oracle_of_fate",
       "role": "combo",
       "rarity": "uncommon",
-      "gameplay_text": "draw 2",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "gameplay_text": "Duplica la siguiente carta, Prever 1",
+      "lore_text": "Carta del Trono Boreal: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
       "tags": [
-        "draw",
         "combo",
-        "hiperboria"
+        "copy",
+        "object",
+        "scry"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_14",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
-      "name": "HIP-OF 15",
+      "name": "Ojo de la Cupula Blanca",
       "archetype": "oracle_of_fate",
       "role": "energy",
       "rarity": "uncommon",
-      "gameplay_text": "gain_mana_next_turn 1, scry 1",
-      "lore_text": "Nimrod mira desde la cuspide, exigiendo voluntad absoluta.",
+      "gameplay_text": "Energía +1, Roba 1",
+      "lore_text": "Ojo de la Cupula Blanca: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
       "tags": [
+        "draw",
         "energy",
-        "control",
-        "hiperboria"
+        "object"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_15",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
-      "name": "HIP-OF 16",
+      "name": "Galeria del Horizonte Boreal",
       "archetype": "oracle_of_fate",
       "role": "control",
       "rarity": "uncommon",
-      "gameplay_text": "scry 2, draw 1",
-      "lore_text": "La estrella polar inclina el destino del conjuro.",
+      "gameplay_text": "Prever 1, Roba 1, Ruptura +1",
+      "lore_text": "Galeria del Horizonte Boreal: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
       "tags": [
-        "scry",
+        "control",
         "draw",
-        "hiperboria"
+        "place",
+        "rupture",
+        "scry"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_16",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI"
     },
     {
       "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
-      "name": "HIP-OF 17",
+      "name": "Sala de la Nieve Pensante",
       "archetype": "oracle_of_fate",
       "role": "ritual",
       "rarity": "uncommon",
-      "gameplay_text": "ritual_trama 1, harmony_delta 1",
-      "lore_text": "La runa helada convierte duda en forma.",
+      "gameplay_text": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
+      "lore_text": "Sala de la Nieve Pensante: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
       "tags": [
-        "ritual",
         "harmony",
-        "hiperboria"
+        "place",
+        "ritual",
+        "seal"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_17",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII",
-      "name": "HIP-OF 18",
+      "name": "Terraza del Astro Invertido",
       "archetype": "oracle_of_fate",
       "role": "control",
       "rarity": "uncommon",
-      "gameplay_text": "scry 3",
-      "lore_text": "Todo sello hiperboreo pide precio y templanza.",
+      "gameplay_text": "Prever 3, Daño 2",
+      "lore_text": "Terraza del Astro Invertido: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
       "tags": [
-        "scry",
-        "hiperboria"
+        "attack",
+        "control",
+        "place",
+        "scry"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_18",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII"
     },
     {
       "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX",
-      "name": "HIP-OF 19",
+      "name": "Pozo de la Memoria Blanca",
       "archetype": "oracle_of_fate",
       "role": "combo",
       "rarity": "uncommon",
-      "gameplay_text": "draw 2",
-      "lore_text": "Bajo Hiperboria, la nieve recuerda juramentos olvidados.",
+      "gameplay_text": "Retener, Roba 1, Daño 2",
+      "lore_text": "Pozo de la Memoria Blanca: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
       "tags": [
-        "draw",
+        "attack",
         "combo",
-        "hiperboria"
+        "draw",
+        "place",
+        "retain"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_19",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX"
     },
     {
       "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
-      "name": "HIP-OF 20",
+      "name": "Mirador del Tiempo Frio",
       "archetype": "oracle_of_fate",
       "role": "ritual",
       "rarity": "legendary",
-      "gameplay_text": "scry 4, draw 2, ritual_trama 1",
-      "lore_text": "La cronica de Belicena susurra una disciplina interior.",
+      "gameplay_text": "Armonía +2, Consume Armonía 2, Ritual de la Trama, Roba 2",
+      "lore_text": "Mirador del Tiempo Frio: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
       "tags": [
-        "scry",
         "draw",
+        "harmony",
+        "hiperboria",
+        "place",
         "ritual",
-        "hiperboria"
+        "seal"
       ],
-      "set": "HIPERBORIA",
-      "legacy_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
+      "set": "hiperboria",
+      "legacy_id": "hip_oracle_of_fate_20",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX"
     }
   ]

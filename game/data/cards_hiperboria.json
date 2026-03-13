@@ -21,1707 +21,2257 @@
   ],
   "cards": [
     {
-      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
-      "name": "Guerrero Astral de Hiperbórea I",
-      "name_key": "Guerrero Astral de Hiperbórea I",
-      "text_key": "Daño 4",
-      "effect_text": "Daño 4",
-      "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "rupture"
-      ],
-      "effects": [
-        {
-          "type": "damage",
-          "amount": 4
-        }
-      ],
-      "role": "attack",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
       "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
       "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_cosmic_warrior_01",
-      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
-      "legacy_artwork": "hip_cosmic_warrior_01"
-    },
-    {
-      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
-      "name": "Guerrero Astral de Hiperbórea II",
-      "name_key": "Guerrero Astral de Hiperbórea II",
-      "text_key": "Daño 4, Ruptura +1",
-      "effect_text": "Daño 4, Ruptura +1",
-      "rarity": "common",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "combo"
-      ],
-      "effects": [
-        {
-          "type": "damage",
-          "amount": 4
-        },
-        {
-          "type": "apply_break",
-          "amount": 1
-        }
-      ],
-      "role": "combo",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_cosmic_warrior_02",
-      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
-      "legacy_artwork": "hip_cosmic_warrior_02"
-    },
-    {
-      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
-      "name": "Guerrero Astral de Hiperbórea III",
-      "name_key": "Guerrero Astral de Hiperbórea III",
-      "text_key": "Daño 5",
-      "effect_text": "Daño 5",
-      "rarity": "common",
+      "author": "Chakana Studio",
       "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "attack"
-      ],
-      "effects": [
-        {
-          "type": "damage",
-          "amount": 5
-        }
-      ],
-      "role": "attack",
-      "family": "cosmic_warrior",
       "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_cosmic_warrior_03",
-      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
-      "legacy_artwork": "hip_cosmic_warrior_03"
-    },
-    {
-      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
-      "name": "Guerrero Astral de Hiperbórea IV",
-      "name_key": "Guerrero Astral de Hiperbórea IV",
-      "text_key": "Energía +1, Daño 3",
-      "effect_text": "Energía +1, Daño 3",
-      "rarity": "common",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "energy",
-        "attack"
-      ],
-      "effects": [
-        {
-          "type": "gain_mana",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 3
-        }
-      ],
-      "role": "energy",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_cosmic_warrior_04",
-      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
-      "legacy_artwork": "hip_cosmic_warrior_04"
-    },
-    {
-      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
-      "name": "Guerrero Astral de Hiperbórea V",
-      "name_key": "Guerrero Astral de Hiperbórea V",
-      "text_key": "Damage Plus Rupture",
-      "effect_text": "Damage Plus Rupture",
-      "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "combo",
-        "rupture"
-      ],
-      "effects": [
-        {
-          "type": "damage_plus_rupture",
-          "amount": 5
-        }
-      ],
-      "role": "combo",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_cosmic_warrior_05",
-      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
-      "legacy_artwork": "hip_cosmic_warrior_05"
-    },
-    {
-      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
-      "name": "Guerrero Astral de Hiperbórea VI",
-      "name_key": "Guerrero Astral de Hiperbórea VI",
-      "text_key": "Daño 5",
-      "effect_text": "Daño 5",
-      "rarity": "common",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "rupture"
-      ],
-      "effects": [
-        {
-          "type": "damage",
-          "amount": 5
-        }
-      ],
-      "role": "attack",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_cosmic_warrior_06",
-      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
-      "legacy_artwork": "hip_cosmic_warrior_06"
-    },
-    {
-      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
-      "name": "Guerrero Astral de Hiperbórea VII",
-      "name_key": "Guerrero Astral de Hiperbórea VII",
-      "text_key": "Daño 3, Ruptura +1",
-      "effect_text": "Daño 3, Ruptura +1",
-      "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "combo"
-      ],
-      "effects": [
-        {
-          "type": "damage",
-          "amount": 3
-        },
-        {
-          "type": "apply_break",
-          "amount": 1
-        }
-      ],
-      "role": "combo",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_cosmic_warrior_07",
-      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
-      "legacy_artwork": "hip_cosmic_warrior_07"
-    },
-    {
-      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
-      "name": "Guerrero Astral de Hiperbórea VIII",
-      "name_key": "Guerrero Astral de Hiperbórea VIII",
-      "text_key": "Daño 5",
-      "effect_text": "Daño 5",
-      "rarity": "common",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "attack"
-      ],
-      "effects": [
-        {
-          "type": "damage",
-          "amount": 5
-        }
-      ],
-      "role": "attack",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_cosmic_warrior_08",
-      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
-      "legacy_artwork": "hip_cosmic_warrior_08"
-    },
-    {
-      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
-      "name": "Guerrero Astral de Hiperbórea IX",
-      "name_key": "Guerrero Astral de Hiperbórea IX",
-      "text_key": "Energía +1, Daño 3",
-      "effect_text": "Energía +1, Daño 3",
-      "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "energy",
-        "attack"
-      ],
-      "effects": [
-        {
-          "type": "gain_mana",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 3
-        }
-      ],
-      "role": "energy",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_cosmic_warrior_09",
-      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
-      "legacy_artwork": "hip_cosmic_warrior_09"
-    },
-    {
-      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
-      "name": "Guerrero Astral de Hiperbórea X",
-      "name_key": "Guerrero Astral de Hiperbórea X",
-      "text_key": "Damage Plus Rupture",
-      "effect_text": "Damage Plus Rupture",
-      "rarity": "uncommon",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "combo",
-        "rupture"
-      ],
-      "effects": [
-        {
-          "type": "damage_plus_rupture",
-          "amount": 6
-        }
-      ],
-      "role": "combo",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "payoff",
-      "legacy_id": "hip_cosmic_warrior_10",
-      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
-      "legacy_artwork": "hip_cosmic_warrior_10"
-    },
-    {
-      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
-      "name": "Guerrero Astral de Hiperbórea XI",
-      "name_key": "Guerrero Astral de Hiperbórea XI",
-      "text_key": "Daño 4",
-      "effect_text": "Daño 4",
-      "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "rupture",
-        "polar_echo"
-      ],
-      "effects": [
-        {
-          "type": "damage",
-          "amount": 4
-        }
-      ],
-      "role": "attack",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_cosmic_warrior_11",
-      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
-      "legacy_artwork": "hip_cosmic_warrior_11"
-    },
-    {
-      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
-      "name": "Guerrero Astral de Hiperbórea XII",
-      "name_key": "Guerrero Astral de Hiperbórea XII",
-      "text_key": "Daño 5, Ruptura +1",
-      "effect_text": "Daño 5, Ruptura +1",
-      "rarity": "common",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "combo"
-      ],
+      "effect_text": "Daño 5, Bloqueo 2",
       "effects": [
         {
           "type": "damage",
           "amount": 5
         },
         {
-          "type": "apply_break",
-          "amount": 1
-        }
-      ],
-      "role": "combo",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_cosmic_warrior_12",
-      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
-      "legacy_artwork": "hip_cosmic_warrior_12"
-    },
-    {
-      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
-      "name": "Guerrero Astral de Hiperbórea XIII",
-      "name_key": "Guerrero Astral de Hiperbórea XIII",
-      "text_key": "Daño 5",
-      "effect_text": "Daño 5",
-      "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "aurora_mark"
-      ],
-      "effects": [
-        {
-          "type": "damage",
-          "amount": 5
-        }
-      ],
-      "role": "attack",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_cosmic_warrior_13",
-      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
-      "legacy_artwork": "hip_cosmic_warrior_13"
-    },
-    {
-      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
-      "name": "Guerrero Astral de Hiperbórea XIV",
-      "name_key": "Guerrero Astral de Hiperbórea XIV",
-      "text_key": "Energía +1, Daño 3",
-      "effect_text": "Energía +1, Daño 3",
-      "rarity": "common",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "energy",
-        "attack",
-        "crystal_current"
-      ],
-      "effects": [
-        {
-          "type": "gain_mana",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 3
-        }
-      ],
-      "role": "energy",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_cosmic_warrior_14",
-      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
-      "legacy_artwork": "hip_cosmic_warrior_14"
-    },
-    {
-      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
-      "name": "Guerrero Astral de Hiperbórea XV",
-      "name_key": "Guerrero Astral de Hiperbórea XV",
-      "text_key": "Damage Plus Rupture",
-      "effect_text": "Damage Plus Rupture",
-      "rarity": "uncommon",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "combo",
-        "rupture",
-        "temple_war_sigil"
-      ],
-      "effects": [
-        {
-          "type": "damage_plus_rupture",
-          "amount": 5
-        }
-      ],
-      "role": "combo",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "payoff",
-      "legacy_id": "hip_cosmic_warrior_15",
-      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
-      "legacy_artwork": "hip_cosmic_warrior_15"
-    },
-    {
-      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
-      "name": "Guerrero Astral de Hiperbórea XVI",
-      "name_key": "Guerrero Astral de Hiperbórea XVI",
-      "text_key": "Daño 5",
-      "effect_text": "Daño 5",
-      "rarity": "common",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "rupture",
-        "ice_fury"
-      ],
-      "effects": [
-        {
-          "type": "damage",
-          "amount": 5
-        }
-      ],
-      "role": "attack",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_cosmic_warrior_16",
-      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
-      "legacy_artwork": "hip_cosmic_warrior_16"
-    },
-    {
-      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
-      "name": "Guerrero Astral de Hiperbórea XVII",
-      "name_key": "Guerrero Astral de Hiperbórea XVII",
-      "text_key": "Daño 4, Ruptura +1",
-      "effect_text": "Daño 4, Ruptura +1",
-      "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "combo"
-      ],
-      "effects": [
-        {
-          "type": "damage",
-          "amount": 4
-        },
-        {
-          "type": "apply_break",
-          "amount": 1
-        }
-      ],
-      "role": "combo",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_cosmic_warrior_17",
-      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
-      "legacy_artwork": "hip_cosmic_warrior_17"
-    },
-    {
-      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
-      "name": "Guerrero Astral de Hiperbórea XVIII",
-      "name_key": "Guerrero Astral de Hiperbórea XVIII",
-      "text_key": "Daño 5",
-      "effect_text": "Daño 5",
-      "rarity": "uncommon",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "glacial_edge"
-      ],
-      "effects": [
-        {
-          "type": "damage",
-          "amount": 5
-        }
-      ],
-      "role": "attack",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "payoff",
-      "legacy_id": "hip_cosmic_warrior_18",
-      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
-      "legacy_artwork": "hip_cosmic_warrior_18"
-    },
-    {
-      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
-      "name": "Guerrero Astral de Hiperbórea XIX",
-      "name_key": "Guerrero Astral de Hiperbórea XIX",
-      "text_key": "Energía +1, Daño 3",
-      "effect_text": "Energía +1, Daño 3",
-      "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "energy",
-        "attack",
-        "north_flux"
-      ],
-      "effects": [
-        {
-          "type": "gain_mana",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 3
-        }
-      ],
-      "role": "energy",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
-      "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_cosmic_warrior_19",
-      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
-      "legacy_artwork": "hip_cosmic_warrior_19"
-    },
-    {
-      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
-      "name": "Guerrero Astral de Hiperbórea XX",
-      "name_key": "Guerrero Astral de Hiperbórea XX",
-      "text_key": "Daño 10, Ruptura +2",
-      "effect_text": "Daño 10, Ruptura +2",
-      "rarity": "legendary",
-      "cost": 3,
-      "target": "enemy",
-      "tags": [
-        "attack",
-        "combo",
-        "rupture"
-      ],
-      "effects": [
-        {
-          "type": "damage",
-          "amount": 10
-        },
-        {
-          "type": "apply_break",
+          "type": "gain_block",
           "amount": 2
         }
       ],
-      "role": "combo",
-      "family": "cosmic_warrior",
-      "direction": "ESTE",
+      "family": "creature",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
+      "kpi": {
+        "damage": 5,
+        "block": 2
+      },
+      "lore_text": "Halcon del Septimo Sol: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
+      "name": "Halcon del Septimo Sol",
+      "name_es": "Halcon del Septimo Sol",
+      "name_key": "Halcon del Septimo Sol",
+      "rarity": "common",
+      "role": "attack",
+      "strategy": {
+        "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+        "synergy_cards": [],
+        "weakness": "Pierde valor si la run no capitaliza ruptura."
+      },
+      "tags": [
+        "attack",
+        "block",
+        "creature"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Daño 5, Bloqueo 2",
+      "text_key": "Daño 5, Bloqueo 2",
+      "legacy_id": "hip_cosmic_warrior_01",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
+      "legacy_artwork": "hip_cosmic_warrior_01",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
       "archetype": "cosmic_warrior",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guerrero Hiperboreo"
-      },
-      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "polar_strike_flux",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "payoff",
-      "legacy_id": "hip_cosmic_warrior_20",
-      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
-      "legacy_artwork": "hip_cosmic_warrior_20"
-    },
-    {
-      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
-      "name": "Guardián del Velo Polar I",
-      "name_key": "Guardián del Velo Polar I",
-      "text_key": "Bloqueo 4, Daño 5",
-      "effect_text": "Bloqueo 4, Daño 5",
-      "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "block",
-        "harmony"
-      ],
-      "effects": [
-        {
-          "type": "gain_block",
-          "amount": 4
-        },
-        {
-          "type": "damage",
-          "amount": 5
-        }
-      ],
-      "role": "defense",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
-      },
-      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_harmony_guardian_01",
-      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
-      "legacy_artwork": "hip_harmony_guardian_01"
-    },
-    {
-      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
-      "name": "Guardián del Velo Polar II",
-      "name_key": "Guardián del Velo Polar II",
-      "text_key": "Armonía +1, Liberar Sello, Daño 8",
-      "effect_text": "Armonía +1, Liberar Sello, Daño 8",
-      "rarity": "uncommon",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
+      "author": "Chakana Studio",
       "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "ritual",
-        "seal"
-      ],
+      "direction": "ESTE",
+      "effect_text": "Daño 3, Daño 4 si hay Ruptura",
       "effects": [
-        {
-          "type": "harmony_delta",
-          "amount": 1
-        },
-        {
-          "type": "consume_harmony",
-          "amount": 1
-        },
         {
           "type": "damage",
-          "amount": 8
-        }
-      ],
-      "role": "ritual",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
-      },
-      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_harmony_guardian_02",
-      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
-      "legacy_artwork": "hip_harmony_guardian_02"
-    },
-    {
-      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
-      "name": "Guardián del Velo Polar III",
-      "name_key": "Guardián del Velo Polar III",
-      "text_key": "Bloqueo 5, Daño 4",
-      "effect_text": "Bloqueo 5, Daño 4",
-      "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "block"
-      ],
-      "effects": [
-        {
-          "type": "gain_block",
-          "amount": 5
-        },
-        {
-          "type": "damage",
-          "amount": 4
-        }
-      ],
-      "role": "defense",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
-      },
-      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_harmony_guardian_03",
-      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
-      "legacy_artwork": "hip_harmony_guardian_03"
-    },
-    {
-      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
-      "name": "Guardián del Velo Polar IV",
-      "name_key": "Guardián del Velo Polar IV",
-      "text_key": "Bloqueo 3, Prever 1, Daño 5",
-      "effect_text": "Bloqueo 3, Prever 1, Daño 5",
-      "rarity": "uncommon",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "block",
-        "scry"
-      ],
-      "effects": [
-        {
-          "type": "gain_block",
           "amount": 3
         },
         {
-          "type": "scry",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 5
+          "type": "damage_if_enemy_break",
+          "amount": 4
         }
       ],
-      "role": "control",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
+      "family": "creature",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
+      "kpi": {
+        "damage": 3
       },
-      "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_harmony_guardian_04",
-      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
-      "legacy_artwork": "hip_harmony_guardian_04"
+      "lore_text": "Llama de Guerra Celeste: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
+      "name": "Llama de Guerra Celeste",
+      "name_es": "Llama de Guerra Celeste",
+      "name_key": "Llama de Guerra Celeste",
+      "rarity": "common",
+      "role": "combo",
+      "strategy": {
+        "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+        "synergy_cards": [],
+        "weakness": "Depende del orden de mano y castiga manos pasivas."
+      },
+      "tags": [
+        "attack",
+        "combo",
+        "creature",
+        "rupture"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Daño 3, Daño 4 si hay Ruptura",
+      "text_key": "Daño 3, Daño 4 si hay Ruptura",
+      "legacy_id": "hip_cosmic_warrior_02",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
+      "legacy_artwork": "hip_cosmic_warrior_02",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
-      "name": "Guardián del Velo Polar V",
-      "name_key": "Guardián del Velo Polar V",
-      "text_key": "Bloqueo 4, Sanar 1, Daño 6",
-      "effect_text": "Bloqueo 4, Sanar 1, Daño 6",
-      "rarity": "uncommon",
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
+      "author": "Chakana Studio",
       "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "block",
-        "support"
-      ],
+      "direction": "ESTE",
+      "effect_text": "Daño 4, Próx. ataque cuesta -1",
       "effects": [
         {
-          "type": "gain_block",
+          "type": "damage",
           "amount": 4
         },
         {
-          "type": "heal",
+          "type": "discount_next_attack",
           "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 6
         }
       ],
-      "role": "defense",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
+      "family": "creature",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
+      "kpi": {
+        "damage": 4
       },
-      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_harmony_guardian_05",
-      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
-      "legacy_artwork": "hip_harmony_guardian_05"
-    },
-    {
-      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
-      "name": "Guardián del Velo Polar VI",
-      "name_key": "Guardián del Velo Polar VI",
-      "text_key": "Bloqueo 5, Daño 5",
-      "effect_text": "Bloqueo 5, Daño 5",
-      "rarity": "uncommon",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "block",
-        "harmony"
-      ],
-      "effects": [
-        {
-          "type": "gain_block",
-          "amount": 5
-        },
-        {
-          "type": "damage",
-          "amount": 5
-        }
-      ],
-      "role": "defense",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
-      },
-      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_harmony_guardian_06",
-      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
-      "legacy_artwork": "hip_harmony_guardian_06"
-    },
-    {
-      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
-      "name": "Guardián del Velo Polar VII",
-      "name_key": "Guardián del Velo Polar VII",
-      "text_key": "Armonía +1, Liberar Sello, Daño 8",
-      "effect_text": "Armonía +1, Liberar Sello, Daño 8",
-      "rarity": "uncommon",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "ritual",
-        "seal"
-      ],
-      "effects": [
-        {
-          "type": "harmony_delta",
-          "amount": 1
-        },
-        {
-          "type": "consume_harmony",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 8
-        }
-      ],
-      "role": "ritual",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
-      },
-      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_harmony_guardian_07",
-      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
-      "legacy_artwork": "hip_harmony_guardian_07"
-    },
-    {
-      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
-      "name": "Guardián del Velo Polar VIII",
-      "name_key": "Guardián del Velo Polar VIII",
-      "text_key": "Bloqueo 5, Daño 5",
-      "effect_text": "Bloqueo 5, Daño 5",
-      "rarity": "uncommon",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "block"
-      ],
-      "effects": [
-        {
-          "type": "gain_block",
-          "amount": 5
-        },
-        {
-          "type": "damage",
-          "amount": 5
-        }
-      ],
-      "role": "defense",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
-      },
-      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_harmony_guardian_08",
-      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
-      "legacy_artwork": "hip_harmony_guardian_08"
-    },
-    {
-      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
-      "name": "Guardián del Velo Polar IX",
-      "name_key": "Guardián del Velo Polar IX",
-      "text_key": "Bloqueo 3, Prever 1, Daño 5",
-      "effect_text": "Bloqueo 3, Prever 1, Daño 5",
+      "lore_text": "Toro de Meteorito Vivo: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
+      "name": "Toro de Meteorito Vivo",
+      "name_es": "Toro de Meteorito Vivo",
+      "name_key": "Toro de Meteorito Vivo",
       "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
+      "role": "attack",
+      "strategy": {
+        "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+        "synergy_cards": [],
+        "weakness": "Pierde valor si la run no capitaliza ruptura."
+      },
       "tags": [
-        "block",
-        "scry"
+        "attack",
+        "creature",
+        "tempo"
       ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Daño 4, Próx. ataque cuesta -1",
+      "text_key": "Daño 4, Próx. ataque cuesta -1",
+      "legacy_id": "hip_cosmic_warrior_03",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
+      "legacy_artwork": "hip_cosmic_warrior_03",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "ESTE",
+      "effect_text": "Energía +1 si el enemigo ataca, Daño 5",
       "effects": [
         {
-          "type": "gain_block",
+          "type": "gain_mana_if_enemy_attack_intent",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "family": "creature",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
+      "kpi": {
+        "energy": 1,
+        "damage": 5
+      },
+      "lore_text": "Zorro del Alba Cortante: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
+      "name": "Zorro del Alba Cortante",
+      "name_es": "Zorro del Alba Cortante",
+      "name_key": "Zorro del Alba Cortante",
+      "rarity": "common",
+      "role": "energy",
+      "strategy": {
+        "best_use": "Acelerar el siguiente turno para sostener presion.",
+        "synergy_cards": [],
+        "weakness": "No renta si no hay payoff en mano."
+      },
+      "tags": [
+        "attack",
+        "creature",
+        "energy",
+        "tempo"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Energía +1 si el enemigo ataca, Daño 5",
+      "text_key": "Energía +1 si el enemigo ataca, Daño 5",
+      "legacy_id": "hip_cosmic_warrior_04",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
+      "legacy_artwork": "hip_cosmic_warrior_04",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "ESTE",
+      "effect_text": "Retener, Daño 5",
+      "effects": [
+        {
+          "type": "retain",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "family": "creature",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
+      "kpi": {
+        "damage": 5
+      },
+      "lore_text": "Leon del Cielo Roto: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
+      "name": "Leon del Cielo Roto",
+      "name_es": "Leon del Cielo Roto",
+      "name_key": "Leon del Cielo Roto",
+      "rarity": "common",
+      "role": "combo",
+      "strategy": {
+        "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+        "synergy_cards": [],
+        "weakness": "Depende del orden de mano y castiga manos pasivas."
+      },
+      "tags": [
+        "attack",
+        "combo",
+        "creature",
+        "retain"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Retener, Daño 5",
+      "text_key": "Retener, Daño 5",
+      "legacy_id": "hip_cosmic_warrior_05",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
+      "legacy_artwork": "hip_cosmic_warrior_05",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "SUR",
+      "effect_text": "Daño 4, Ruptura +1",
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "family": "subject",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
+      "kpi": {
+        "damage": 4,
+        "rupture": 1
+      },
+      "lore_text": "Guarda del Horizonte Rojo: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
+      "name": "Guarda del Horizonte Rojo",
+      "name_es": "Guarda del Horizonte Rojo",
+      "name_key": "Guarda del Horizonte Rojo",
+      "rarity": "common",
+      "role": "attack",
+      "strategy": {
+        "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+        "synergy_cards": [],
+        "weakness": "Pierde valor si la run no capitaliza ruptura."
+      },
+      "tags": [
+        "attack",
+        "rupture",
+        "subject"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Daño 4, Ruptura +1",
+      "text_key": "Daño 4, Ruptura +1",
+      "legacy_id": "hip_cosmic_warrior_06",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
+      "legacy_artwork": "hip_cosmic_warrior_06",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "SUR",
+      "effect_text": "Daño 3, Daño 4 si hay Ruptura",
+      "effects": [
+        {
+          "type": "damage",
           "amount": 3
         },
         {
-          "type": "scry",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 5
-        }
-      ],
-      "role": "control",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
-      },
-      "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_harmony_guardian_09",
-      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
-      "legacy_artwork": "hip_harmony_guardian_09"
-    },
-    {
-      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
-      "name": "Guardián del Velo Polar X",
-      "name_key": "Guardián del Velo Polar X",
-      "text_key": "Bloqueo 4, Sanar 1, Daño 6",
-      "effect_text": "Bloqueo 4, Sanar 1, Daño 6",
-      "rarity": "uncommon",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "block",
-        "support"
-      ],
-      "effects": [
-        {
-          "type": "gain_block",
+          "type": "damage_if_enemy_break",
           "amount": 4
-        },
-        {
-          "type": "heal",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 6
         }
       ],
-      "role": "defense",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
+      "family": "subject",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
+      "kpi": {
+        "damage": 3
       },
-      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_harmony_guardian_10",
-      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
-      "legacy_artwork": "hip_harmony_guardian_10"
-    },
-    {
-      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
-      "name": "Guardián del Velo Polar XI",
-      "name_key": "Guardián del Velo Polar XI",
-      "text_key": "Bloqueo 4, Daño 5",
-      "effect_text": "Bloqueo 4, Daño 5",
+      "lore_text": "Navegante de Cometas: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
+      "name": "Navegante de Cometas",
+      "name_es": "Navegante de Cometas",
+      "name_key": "Navegante de Cometas",
       "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
+      "role": "combo",
+      "strategy": {
+        "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+        "synergy_cards": [],
+        "weakness": "Depende del orden de mano y castiga manos pasivas."
+      },
       "tags": [
-        "block",
-        "harmony",
-        "resonance_ice"
+        "attack",
+        "combo",
+        "rupture",
+        "subject"
       ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Daño 3, Daño 4 si hay Ruptura",
+      "text_key": "Daño 3, Daño 4 si hay Ruptura",
+      "legacy_id": "hip_cosmic_warrior_07",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
+      "legacy_artwork": "hip_cosmic_warrior_07",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "SUR",
+      "effect_text": "Daño 4, Roba 1 al matar",
       "effects": [
         {
-          "type": "gain_block",
+          "type": "damage",
           "amount": 4
         },
         {
-          "type": "damage",
-          "amount": 5
+          "type": "draw_on_kill",
+          "amount": 1
         }
       ],
-      "role": "defense",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
+      "family": "subject",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
+      "kpi": {
+        "damage": 4
       },
-      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
+      "lore_text": "Capitan del Pulso Boreal: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
+      "name": "Capitan del Pulso Boreal",
+      "name_es": "Capitan del Pulso Boreal",
+      "name_key": "Capitan del Pulso Boreal",
+      "rarity": "common",
+      "role": "attack",
+      "strategy": {
+        "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+        "synergy_cards": [],
+        "weakness": "Pierde valor si la run no capitaliza ruptura."
+      },
+      "tags": [
+        "attack",
+        "draw",
+        "subject"
+      ],
+      "target": "enemy",
       "taxonomy": "engine",
-      "legacy_id": "hip_harmony_guardian_11",
-      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
-      "legacy_artwork": "hip_harmony_guardian_11"
-    },
-    {
-      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
-      "name": "Guardián del Velo Polar XII",
-      "name_key": "Guardián del Velo Polar XII",
-      "text_key": "Armonía +1, Liberar Sello, Daño 9",
-      "effect_text": "Armonía +1, Liberar Sello, Daño 9",
-      "rarity": "uncommon",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "ritual",
-        "seal"
-      ],
-      "effects": [
-        {
-          "type": "harmony_delta",
-          "amount": 1
-        },
-        {
-          "type": "consume_harmony",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 9
-        }
-      ],
-      "role": "ritual",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
+      "text_es": "Daño 4, Roba 1 al matar",
+      "text_key": "Daño 4, Roba 1 al matar",
+      "legacy_id": "hip_cosmic_warrior_08",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
+      "legacy_artwork": "hip_cosmic_warrior_08",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
       "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
-      },
-      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_harmony_guardian_12",
-      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
-      "legacy_artwork": "hip_harmony_guardian_12"
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
-      "name": "Guardián del Velo Polar XIII",
-      "name_key": "Guardián del Velo Polar XIII",
-      "text_key": "Bloqueo 5, Daño 6",
-      "effect_text": "Bloqueo 5, Daño 6",
-      "rarity": "uncommon",
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
+      "author": "Chakana Studio",
       "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "block"
-      ],
+      "direction": "SUR",
+      "effect_text": "Energía +1, Daño 3, Ruptura +1",
       "effects": [
         {
-          "type": "gain_block",
-          "amount": 5
+          "type": "gain_mana",
+          "amount": 1
         },
         {
           "type": "damage",
-          "amount": 6
-        }
-      ],
-      "role": "defense",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
-      },
-      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_harmony_guardian_13",
-      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
-      "legacy_artwork": "hip_harmony_guardian_13"
-    },
-    {
-      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
-      "name": "Guardián del Velo Polar XIV",
-      "name_key": "Guardián del Velo Polar XIV",
-      "text_key": "Bloqueo 3, Prever 1, Daño 6",
-      "effect_text": "Bloqueo 3, Prever 1, Daño 6",
-      "rarity": "uncommon",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "block",
-        "scry"
-      ],
-      "effects": [
-        {
-          "type": "gain_block",
           "amount": 3
         },
         {
-          "type": "scry",
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "family": "subject",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
+      "kpi": {
+        "energy": 1,
+        "damage": 3,
+        "rupture": 1
+      },
+      "lore_text": "Portadora de la Corona de Fuego: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
+      "name": "Portadora de la Corona de Fuego",
+      "name_es": "Portadora de la Corona de Fuego",
+      "name_key": "Portadora de la Corona de Fuego",
+      "rarity": "common",
+      "role": "energy",
+      "strategy": {
+        "best_use": "Acelerar el siguiente turno para sostener presion.",
+        "synergy_cards": [],
+        "weakness": "No renta si no hay payoff en mano."
+      },
+      "tags": [
+        "attack",
+        "energy",
+        "rupture",
+        "subject"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Energía +1, Daño 3, Ruptura +1",
+      "text_key": "Energía +1, Daño 3, Ruptura +1",
+      "legacy_id": "hip_cosmic_warrior_09",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX",
+      "legacy_artwork": "hip_cosmic_warrior_09",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "SUR",
+      "effect_text": "Retener, Daño 5",
+      "effects": [
+        {
+          "type": "retain",
           "amount": 1
         },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "family": "subject",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
+      "kpi": {
+        "damage": 5
+      },
+      "lore_text": "Maestro de la Fractura Serena: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
+      "name": "Maestro de la Fractura Serena",
+      "name_es": "Maestro de la Fractura Serena",
+      "name_key": "Maestro de la Fractura Serena",
+      "rarity": "uncommon",
+      "role": "combo",
+      "strategy": {
+        "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+        "synergy_cards": [],
+        "weakness": "Depende del orden de mano y castiga manos pasivas."
+      },
+      "tags": [
+        "attack",
+        "combo",
+        "retain",
+        "subject"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Retener, Daño 5",
+      "text_key": "Retener, Daño 5",
+      "legacy_id": "hip_cosmic_warrior_10",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X",
+      "legacy_artwork": "hip_cosmic_warrior_10",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "OESTE",
+      "effect_text": "Daño 6",
+      "effects": [
         {
           "type": "damage",
           "amount": 6
         }
       ],
-      "role": "control",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
+      "family": "object",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
+      "kpi": {
+        "damage": 6
       },
-      "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_harmony_guardian_14",
-      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
-      "legacy_artwork": "hip_harmony_guardian_14"
+      "lore_text": "Cinturon de Runa Roja: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
+      "name": "Cinturon de Runa Roja",
+      "name_es": "Cinturon de Runa Roja",
+      "name_key": "Cinturon de Runa Roja",
+      "rarity": "common",
+      "role": "attack",
+      "strategy": {
+        "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+        "synergy_cards": [],
+        "weakness": "Pierde valor si la run no capitaliza ruptura."
+      },
+      "tags": [
+        "attack",
+        "object"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Daño 6",
+      "text_key": "Daño 6",
+      "legacy_id": "hip_cosmic_warrior_11",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
+      "legacy_artwork": "hip_cosmic_warrior_11",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
-      "name": "Guardián del Velo Polar XV",
-      "name_key": "Guardián del Velo Polar XV",
-      "text_key": "Bloqueo 4, Sanar 1, Daño 7",
-      "effect_text": "Bloqueo 4, Sanar 1, Daño 7",
-      "rarity": "rare",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "block",
-        "support"
-      ],
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "OESTE",
+      "effect_text": "Daño 3, Daño 4 si hay Ruptura",
       "effects": [
         {
-          "type": "gain_block",
-          "amount": 4
+          "type": "damage",
+          "amount": 3
         },
         {
-          "type": "heal",
+          "type": "damage_if_enemy_break",
+          "amount": 4
+        }
+      ],
+      "family": "object",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
+      "kpi": {
+        "damage": 3
+      },
+      "lore_text": "Tambor del Impacto Astral: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
+      "name": "Tambor del Impacto Astral",
+      "name_es": "Tambor del Impacto Astral",
+      "name_key": "Tambor del Impacto Astral",
+      "rarity": "common",
+      "role": "combo",
+      "strategy": {
+        "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+        "synergy_cards": [],
+        "weakness": "Depende del orden de mano y castiga manos pasivas."
+      },
+      "tags": [
+        "attack",
+        "combo",
+        "object",
+        "rupture"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Daño 3, Daño 4 si hay Ruptura",
+      "text_key": "Daño 3, Daño 4 si hay Ruptura",
+      "legacy_id": "hip_cosmic_warrior_12",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
+      "legacy_artwork": "hip_cosmic_warrior_12",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "OESTE",
+      "effect_text": "Daño 5, Bloqueo 2",
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 5
+        },
+        {
+          "type": "gain_block",
+          "amount": 2
+        }
+      ],
+      "family": "object",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
+      "kpi": {
+        "damage": 5,
+        "block": 2
+      },
+      "lore_text": "Arnes del Jaguar Solar: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
+      "name": "Arnes del Jaguar Solar",
+      "name_es": "Arnes del Jaguar Solar",
+      "name_key": "Arnes del Jaguar Solar",
+      "rarity": "common",
+      "role": "attack",
+      "strategy": {
+        "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+        "synergy_cards": [],
+        "weakness": "Pierde valor si la run no capitaliza ruptura."
+      },
+      "tags": [
+        "attack",
+        "block",
+        "object"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Daño 5, Bloqueo 2",
+      "text_key": "Daño 5, Bloqueo 2",
+      "legacy_id": "hip_cosmic_warrior_13",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
+      "legacy_artwork": "hip_cosmic_warrior_13",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "OESTE",
+      "effect_text": "Energía sig. turno +1, Daño 4",
+      "effects": [
+        {
+          "type": "gain_mana_next_turn",
           "amount": 1
         },
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "family": "object",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
+      "kpi": {
+        "energy": 1,
+        "damage": 4
+      },
+      "lore_text": "Casco de Obsidiana Viva: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
+      "name": "Casco de Obsidiana Viva",
+      "name_es": "Casco de Obsidiana Viva",
+      "name_key": "Casco de Obsidiana Viva",
+      "rarity": "common",
+      "role": "energy",
+      "strategy": {
+        "best_use": "Acelerar el siguiente turno para sostener presion.",
+        "synergy_cards": [],
+        "weakness": "No renta si no hay payoff en mano."
+      },
+      "tags": [
+        "attack",
+        "energy",
+        "object"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Energía sig. turno +1, Daño 4",
+      "text_key": "Energía sig. turno +1, Daño 4",
+      "legacy_id": "hip_cosmic_warrior_14",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
+      "legacy_artwork": "hip_cosmic_warrior_14",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "OESTE",
+      "effect_text": "Retener, Daño 5",
+      "effects": [
+        {
+          "type": "retain",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "family": "object",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
+      "kpi": {
+        "damage": 5
+      },
+      "lore_text": "Brasa del Condor Antiguo: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
+      "name": "Brasa del Condor Antiguo",
+      "name_es": "Brasa del Condor Antiguo",
+      "name_key": "Brasa del Condor Antiguo",
+      "rarity": "uncommon",
+      "role": "combo",
+      "strategy": {
+        "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+        "synergy_cards": [],
+        "weakness": "Depende del orden de mano y castiga manos pasivas."
+      },
+      "tags": [
+        "attack",
+        "combo",
+        "object",
+        "retain"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Retener, Daño 5",
+      "text_key": "Retener, Daño 5",
+      "legacy_id": "hip_cosmic_warrior_15",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV",
+      "legacy_artwork": "hip_cosmic_warrior_15",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "NORTE",
+      "effect_text": "Daño 7",
+      "effects": [
         {
           "type": "damage",
           "amount": 7
         }
       ],
-      "role": "defense",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
+      "family": "place",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
+      "kpi": {
+        "damage": 7
       },
-      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "payoff",
-      "legacy_id": "hip_harmony_guardian_15",
-      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
-      "legacy_artwork": "hip_harmony_guardian_15"
+      "lore_text": "Camino del Primer Relampago: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
+      "name": "Camino del Primer Relampago",
+      "name_es": "Camino del Primer Relampago",
+      "name_key": "Camino del Primer Relampago",
+      "rarity": "common",
+      "role": "attack",
+      "strategy": {
+        "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+        "synergy_cards": [],
+        "weakness": "Pierde valor si la run no capitaliza ruptura."
+      },
+      "tags": [
+        "attack",
+        "place"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Daño 7",
+      "text_key": "Daño 7",
+      "legacy_id": "hip_cosmic_warrior_16",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
+      "legacy_artwork": "hip_cosmic_warrior_16",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
-      "name": "Guardián del Velo Polar XVI",
-      "name_key": "Guardián del Velo Polar XVI",
-      "text_key": "Bloqueo 5, Daño 6",
-      "effect_text": "Bloqueo 5, Daño 6",
-      "rarity": "rare",
-      "cost": 2,
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "NORTE",
+      "effect_text": "Daño 3, Daño 4 si hay Ruptura",
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 3
+        },
+        {
+          "type": "damage_if_enemy_break",
+          "amount": 4
+        }
+      ],
+      "family": "place",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
+      "kpi": {
+        "damage": 3
+      },
+      "lore_text": "Mirador del Jaguar Espejo: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
+      "name": "Mirador del Jaguar Espejo",
+      "name_es": "Mirador del Jaguar Espejo",
+      "name_key": "Mirador del Jaguar Espejo",
+      "rarity": "common",
+      "role": "combo",
+      "strategy": {
+        "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+        "synergy_cards": [],
+        "weakness": "Depende del orden de mano y castiga manos pasivas."
+      },
+      "tags": [
+        "attack",
+        "combo",
+        "place",
+        "rupture"
+      ],
       "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Daño 3, Daño 4 si hay Ruptura",
+      "text_key": "Daño 3, Daño 4 si hay Ruptura",
+      "legacy_id": "hip_cosmic_warrior_17",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
+      "legacy_artwork": "hip_cosmic_warrior_17",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "NORTE",
+      "effect_text": "Daño 4, Ruptura +1",
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 4
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        }
+      ],
+      "family": "place",
+      "id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
+      "kpi": {
+        "damage": 4,
+        "rupture": 1
+      },
+      "lore_text": "Plaza de la Aurora Belica: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
+      "name": "Plaza de la Aurora Belica",
+      "name_es": "Plaza de la Aurora Belica",
+      "name_key": "Plaza de la Aurora Belica",
+      "rarity": "uncommon",
+      "role": "attack",
+      "strategy": {
+        "best_use": "Abrir defensa enemiga y cerrar antes del reshuffle.",
+        "synergy_cards": [],
+        "weakness": "Pierde valor si la run no capitaliza ruptura."
+      },
+      "tags": [
+        "attack",
+        "place",
+        "rupture"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Daño 4, Ruptura +1",
+      "text_key": "Daño 4, Ruptura +1",
+      "legacy_id": "hip_cosmic_warrior_18",
+      "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII",
+      "legacy_artwork": "hip_cosmic_warrior_18",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "NORTE",
+      "effect_text": "Energía +1 si el enemigo ataca, Daño 5",
+      "effects": [
+        {
+          "type": "gain_mana_if_enemy_attack_intent",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 5
+        }
+      ],
+      "family": "place",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
+      "kpi": {
+        "energy": 1,
+        "damage": 5
+      },
+      "lore_text": "Santuario del Filo Resonante: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
+      "name": "Santuario del Filo Resonante",
+      "name_es": "Santuario del Filo Resonante",
+      "name_key": "Santuario del Filo Resonante",
+      "rarity": "common",
+      "role": "energy",
+      "strategy": {
+        "best_use": "Acelerar el siguiente turno para sostener presion.",
+        "synergy_cards": [],
+        "weakness": "No renta si no hay payoff en mano."
+      },
+      "tags": [
+        "attack",
+        "energy",
+        "place",
+        "tempo"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Energía +1 si el enemigo ataca, Daño 5",
+      "text_key": "Energía +1 si el enemigo ataca, Daño 5",
+      "legacy_id": "hip_cosmic_warrior_19",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
+      "legacy_artwork": "hip_cosmic_warrior_19",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "cosmic_warrior",
+      "artwork": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
+      "author": "Chakana Studio",
+      "cost": 3,
+      "direction": "NORTE",
+      "effect_text": "Energía +1, Daño 6 +2 por Ruptura, Roba 1 si hay Ruptura",
+      "effects": [
+        {
+          "type": "gain_mana",
+          "amount": 1
+        },
+        {
+          "type": "damage_plus_rupture",
+          "amount": 8,
+          "base": 6,
+          "per_rupture": 2
+        },
+        {
+          "type": "draw_if_enemy_break",
+          "amount": 1
+        }
+      ],
+      "family": "place",
+      "id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
+      "kpi": {
+        "energy": 1,
+        "damage": 8
+      },
+      "lore_text": "Forja del Ultimo Cometa: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
+      "name": "Forja del Ultimo Cometa",
+      "name_es": "Forja del Ultimo Cometa",
+      "name_key": "Forja del Ultimo Cometa",
+      "rarity": "legendary",
+      "role": "combo",
+      "strategy": {
+        "best_use": "Encadenar cartas cortas para convertir una ventana en letal.",
+        "synergy_cards": [],
+        "weakness": "Depende del orden de mano y castiga manos pasivas."
+      },
+      "tags": [
+        "attack",
+        "combo",
+        "energy",
+        "hiperboria",
+        "place",
+        "rupture"
+      ],
+      "target": "enemy",
+      "taxonomy": "payoff",
+      "text_es": "Energía +1, Daño 6 +2 por Ruptura, Roba 1 si hay Ruptura",
+      "text_key": "Energía +1, Daño 6 +2 por Ruptura, Roba 1 si hay Ruptura",
+      "legacy_id": "hip_cosmic_warrior_20",
+      "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
+      "legacy_artwork": "hip_cosmic_warrior_20",
+      "motif": "solar_beasts",
+      "palette": "crimson-magenta",
+      "energy": "burst_arcs",
+      "symbol": "blade_sigil",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "SUR",
+      "effect_text": "Bloqueo 6, Armonía +1",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 6
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        }
+      ],
+      "family": "creature",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
+      "kpi": {
+        "block": 6,
+        "harmony": 1
+      },
+      "lore_text": "Venado del Manto Boreal: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
+      "name": "Venado del Manto Boreal",
+      "name_es": "Venado del Manto Boreal",
+      "name_key": "Venado del Manto Boreal",
+      "rarity": "common",
+      "role": "defense",
+      "strategy": {
+        "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+        "synergy_cards": [],
+        "weakness": "Sufre si solo bloquea y nunca convierte."
+      },
       "tags": [
         "block",
+        "creature",
+        "defense",
         "harmony"
       ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Bloqueo 6, Armonía +1",
+      "text_key": "Bloqueo 6, Armonía +1",
+      "legacy_id": "hip_harmony_guardian_01",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
+      "legacy_artwork": "hip_harmony_guardian_01",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "SUR",
+      "effect_text": "Bloqueo 7, Consume Armonía 2, Cura 3",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 7
+        },
+        {
+          "type": "consume_harmony",
+          "amount": 2
+        },
+        {
+          "type": "heal",
+          "amount": 3
+        }
+      ],
+      "family": "creature",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
+      "kpi": {
+        "block": 7,
+        "seal": 2,
+        "support": 3
+      },
+      "lore_text": "Oso del Alba Blanca: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
+      "name": "Oso del Alba Blanca",
+      "name_es": "Oso del Alba Blanca",
+      "name_key": "Oso del Alba Blanca",
+      "rarity": "uncommon",
+      "role": "ritual",
+      "strategy": {
+        "best_use": "Consumir armonia cuando el sello ya cambia la carrera.",
+        "synergy_cards": [],
+        "weakness": "Castiga gastar armonia demasiado pronto."
+      },
+      "tags": [
+        "block",
+        "creature",
+        "heal",
+        "ritual",
+        "seal"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 7, Consume Armonía 2, Cura 3",
+      "text_key": "Bloqueo 7, Consume Armonía 2, Cura 3",
+      "legacy_id": "hip_harmony_guardian_02",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
+      "legacy_artwork": "hip_harmony_guardian_02",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "SUR",
+      "effect_text": "Bloqueo 4, Debilita 1",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 4
+        },
+        {
+          "type": "weaken_enemy",
+          "amount": 1
+        }
+      ],
+      "family": "creature",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
+      "kpi": {
+        "block": 4,
+        "support": 1
+      },
+      "lore_text": "Serpiente del Hielo Manso: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
+      "name": "Serpiente del Hielo Manso",
+      "name_es": "Serpiente del Hielo Manso",
+      "name_key": "Serpiente del Hielo Manso",
+      "rarity": "common",
+      "role": "defense",
+      "strategy": {
+        "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+        "synergy_cards": [],
+        "weakness": "Sufre si solo bloquea y nunca convierte."
+      },
+      "tags": [
+        "block",
+        "creature",
+        "debuff",
+        "defense"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Bloqueo 4, Debilita 1",
+      "text_key": "Bloqueo 4, Debilita 1",
+      "legacy_id": "hip_harmony_guardian_03",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
+      "legacy_artwork": "hip_harmony_guardian_03",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "SUR",
+      "effect_text": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 3
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        }
+      ],
+      "family": "creature",
+      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
+      "kpi": {
+        "block": 3,
+        "rupture": 1,
+        "harmony": 1
+      },
+      "lore_text": "Zorzal del Faro Niveo: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
+      "name": "Zorzal del Faro Niveo",
+      "name_es": "Zorzal del Faro Niveo",
+      "name_key": "Zorzal del Faro Niveo",
+      "rarity": "uncommon",
+      "role": "control",
+      "strategy": {
+        "best_use": "Preparar armonia, lectura y bloqueos con timing.",
+        "synergy_cards": [],
+        "weakness": "Pierde ritmo ante manos sin payoff."
+      },
+      "tags": [
+        "block",
+        "control",
+        "creature",
+        "harmony",
+        "rupture"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "text_key": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "legacy_id": "hip_harmony_guardian_04",
+      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
+      "legacy_artwork": "hip_harmony_guardian_04",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "SUR",
+      "effect_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "effects": [
+        {
+          "type": "gain_block_if_no_direction",
+          "amount": 6
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        }
+      ],
+      "family": "creature",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
+      "kpi": {
+        "harmony": 1
+      },
+      "lore_text": "Alpaca del Circulo Polar: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
+      "name": "Alpaca del Circulo Polar",
+      "name_es": "Alpaca del Circulo Polar",
+      "name_key": "Alpaca del Circulo Polar",
+      "rarity": "uncommon",
+      "role": "defense",
+      "strategy": {
+        "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+        "synergy_cards": [],
+        "weakness": "Sufre si solo bloquea y nunca convierte."
+      },
+      "tags": [
+        "block",
+        "creature",
+        "defense",
+        "harmony",
+        "tempo"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "text_key": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "legacy_id": "hip_harmony_guardian_05",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
+      "legacy_artwork": "hip_harmony_guardian_05",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "OESTE",
+      "effect_text": "Bloqueo 6, Armonía +1",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 6
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        }
+      ],
+      "family": "subject",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
+      "kpi": {
+        "block": 6,
+        "harmony": 1
+      },
+      "lore_text": "Priora del Santuario Blanco: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
+      "name": "Priora del Santuario Blanco",
+      "name_es": "Priora del Santuario Blanco",
+      "name_key": "Priora del Santuario Blanco",
+      "rarity": "uncommon",
+      "role": "defense",
+      "strategy": {
+        "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+        "synergy_cards": [],
+        "weakness": "Sufre si solo bloquea y nunca convierte."
+      },
+      "tags": [
+        "block",
+        "defense",
+        "harmony",
+        "subject"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 6, Armonía +1",
+      "text_key": "Bloqueo 6, Armonía +1",
+      "legacy_id": "hip_harmony_guardian_06",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
+      "legacy_artwork": "hip_harmony_guardian_06",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "OESTE",
+      "effect_text": "Bloqueo 5, Consume Armonía 2, Debilita 2",
       "effects": [
         {
           "type": "gain_block",
           "amount": 5
         },
         {
-          "type": "damage",
-          "amount": 6
+          "type": "consume_harmony",
+          "amount": 2
+        },
+        {
+          "type": "weaken_enemy",
+          "amount": 2
         }
       ],
-      "role": "defense",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
+      "family": "subject",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
+      "kpi": {
+        "block": 5,
+        "seal": 2,
+        "support": 2
       },
-      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "payoff",
-      "legacy_id": "hip_harmony_guardian_16",
-      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
-      "legacy_artwork": "hip_harmony_guardian_16"
+      "lore_text": "Centinela de la Aurora Quieta: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
+      "name": "Centinela de la Aurora Quieta",
+      "name_es": "Centinela de la Aurora Quieta",
+      "name_key": "Centinela de la Aurora Quieta",
+      "rarity": "uncommon",
+      "role": "ritual",
+      "strategy": {
+        "best_use": "Consumir armonia cuando el sello ya cambia la carrera.",
+        "synergy_cards": [],
+        "weakness": "Castiga gastar armonia demasiado pronto."
+      },
+      "tags": [
+        "block",
+        "debuff",
+        "ritual",
+        "seal",
+        "subject"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 5, Consume Armonía 2, Debilita 2",
+      "text_key": "Bloqueo 5, Consume Armonía 2, Debilita 2",
+      "legacy_id": "hip_harmony_guardian_07",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
+      "legacy_artwork": "hip_harmony_guardian_07",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
-      "name": "Guardián del Velo Polar XVII",
-      "name_key": "Guardián del Velo Polar XVII",
-      "text_key": "Armonía +1, Liberar Sello, Daño 9",
-      "effect_text": "Armonía +1, Liberar Sello, Daño 9",
-      "rarity": "rare",
-      "cost": 1,
-      "target": "enemy",
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "OESTE",
+      "effect_text": "Bloqueo 4, Debilita 1",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 4
+        },
+        {
+          "type": "weaken_enemy",
+          "amount": 1
+        }
+      ],
+      "family": "subject",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
+      "kpi": {
+        "block": 4,
+        "support": 1
+      },
+      "lore_text": "Tejedora del Nudo Frio: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
+      "name": "Tejedora del Nudo Frio",
+      "name_es": "Tejedora del Nudo Frio",
+      "name_key": "Tejedora del Nudo Frio",
+      "rarity": "uncommon",
+      "role": "defense",
+      "strategy": {
+        "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+        "synergy_cards": [],
+        "weakness": "Sufre si solo bloquea y nunca convierte."
+      },
       "tags": [
+        "block",
+        "debuff",
+        "defense",
+        "subject"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 4, Debilita 1",
+      "text_key": "Bloqueo 4, Debilita 1",
+      "legacy_id": "hip_harmony_guardian_08",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
+      "legacy_artwork": "hip_harmony_guardian_08",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "OESTE",
+      "effect_text": "Bloqueo 5, Roba 1",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 5
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "family": "subject",
+      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
+      "kpi": {
+        "block": 5,
+        "draw": 1
+      },
+      "lore_text": "Guarda del Velo Niveo: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
+      "name": "Guarda del Velo Niveo",
+      "name_es": "Guarda del Velo Niveo",
+      "name_key": "Guarda del Velo Niveo",
+      "rarity": "common",
+      "role": "control",
+      "strategy": {
+        "best_use": "Preparar armonia, lectura y bloqueos con timing.",
+        "synergy_cards": [],
+        "weakness": "Pierde ritmo ante manos sin payoff."
+      },
+      "tags": [
+        "block",
+        "control",
+        "draw",
+        "subject"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Bloqueo 5, Roba 1",
+      "text_key": "Bloqueo 5, Roba 1",
+      "legacy_id": "hip_harmony_guardian_09",
+      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
+      "legacy_artwork": "hip_harmony_guardian_09",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "OESTE",
+      "effect_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "effects": [
+        {
+          "type": "gain_block_if_no_direction",
+          "amount": 6
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        }
+      ],
+      "family": "subject",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
+      "kpi": {
+        "harmony": 1
+      },
+      "lore_text": "Oficiante de la Runa Serena: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
+      "name": "Oficiante de la Runa Serena",
+      "name_es": "Oficiante de la Runa Serena",
+      "name_key": "Oficiante de la Runa Serena",
+      "rarity": "uncommon",
+      "role": "defense",
+      "strategy": {
+        "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+        "synergy_cards": [],
+        "weakness": "Sufre si solo bloquea y nunca convierte."
+      },
+      "tags": [
+        "block",
+        "defense",
+        "harmony",
+        "subject",
+        "tempo"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "text_key": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "legacy_id": "hip_harmony_guardian_10",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
+      "legacy_artwork": "hip_harmony_guardian_10",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "ESTE",
+      "effect_text": "Bloqueo 6, Armonía +1",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 6
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        }
+      ],
+      "family": "object",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
+      "kpi": {
+        "block": 6,
+        "harmony": 1
+      },
+      "lore_text": "Campana de la Escarcha Pura: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
+      "name": "Campana de la Escarcha Pura",
+      "name_es": "Campana de la Escarcha Pura",
+      "name_key": "Campana de la Escarcha Pura",
+      "rarity": "common",
+      "role": "defense",
+      "strategy": {
+        "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+        "synergy_cards": [],
+        "weakness": "Sufre si solo bloquea y nunca convierte."
+      },
+      "tags": [
+        "block",
+        "defense",
+        "harmony",
+        "object"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Bloqueo 6, Armonía +1",
+      "text_key": "Bloqueo 6, Armonía +1",
+      "legacy_id": "hip_harmony_guardian_11",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
+      "legacy_artwork": "hip_harmony_guardian_11",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "ESTE",
+      "effect_text": "Bloqueo 6, Consume Armonía 1, Daño 4",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 6
+        },
+        {
+          "type": "consume_harmony",
+          "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 4
+        }
+      ],
+      "family": "object",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
+      "kpi": {
+        "block": 6,
+        "seal": 1,
+        "damage": 4
+      },
+      "lore_text": "Escudo del Ancla Boreal: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
+      "name": "Escudo del Ancla Boreal",
+      "name_es": "Escudo del Ancla Boreal",
+      "name_key": "Escudo del Ancla Boreal",
+      "rarity": "uncommon",
+      "role": "ritual",
+      "strategy": {
+        "best_use": "Consumir armonia cuando el sello ya cambia la carrera.",
+        "synergy_cards": [],
+        "weakness": "Castiga gastar armonia demasiado pronto."
+      },
+      "tags": [
+        "attack",
+        "block",
+        "object",
         "ritual",
         "seal"
       ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 6, Consume Armonía 1, Daño 4",
+      "text_key": "Bloqueo 6, Consume Armonía 1, Daño 4",
+      "legacy_id": "hip_harmony_guardian_12",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
+      "legacy_artwork": "hip_harmony_guardian_12",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "ESTE",
+      "effect_text": "Bloqueo 4, Debilita 1",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 4
+        },
+        {
+          "type": "weaken_enemy",
+          "amount": 1
+        }
+      ],
+      "family": "object",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
+      "kpi": {
+        "block": 4,
+        "support": 1
+      },
+      "lore_text": "Maza del Hielo Paciente: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
+      "name": "Maza del Hielo Paciente",
+      "name_es": "Maza del Hielo Paciente",
+      "name_key": "Maza del Hielo Paciente",
+      "rarity": "uncommon",
+      "role": "defense",
+      "strategy": {
+        "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+        "synergy_cards": [],
+        "weakness": "Sufre si solo bloquea y nunca convierte."
+      },
+      "tags": [
+        "block",
+        "debuff",
+        "defense",
+        "object"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 4, Debilita 1",
+      "text_key": "Bloqueo 4, Debilita 1",
+      "legacy_id": "hip_harmony_guardian_13",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
+      "legacy_artwork": "hip_harmony_guardian_13",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "ESTE",
+      "effect_text": "Bloqueo 4, Prever 2",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 4
+        },
+        {
+          "type": "scry",
+          "amount": 2
+        }
+      ],
+      "family": "object",
+      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
+      "kpi": {
+        "block": 4,
+        "scry": 2
+      },
+      "lore_text": "Anillo de Nieve Ritual: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
+      "name": "Anillo de Nieve Ritual",
+      "name_es": "Anillo de Nieve Ritual",
+      "name_key": "Anillo de Nieve Ritual",
+      "rarity": "uncommon",
+      "role": "control",
+      "strategy": {
+        "best_use": "Preparar armonia, lectura y bloqueos con timing.",
+        "synergy_cards": [],
+        "weakness": "Pierde ritmo ante manos sin payoff."
+      },
+      "tags": [
+        "block",
+        "control",
+        "object",
+        "scry"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 4, Prever 2",
+      "text_key": "Bloqueo 4, Prever 2",
+      "legacy_id": "hip_harmony_guardian_14",
+      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
+      "legacy_artwork": "hip_harmony_guardian_14",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "ESTE",
+      "effect_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "effects": [
+        {
+          "type": "gain_block_if_no_direction",
+          "amount": 6
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        }
+      ],
+      "family": "object",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
+      "kpi": {
+        "harmony": 1
+      },
+      "lore_text": "Lazo del Santuario Polar: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
+      "name": "Lazo del Santuario Polar",
+      "name_es": "Lazo del Santuario Polar",
+      "name_key": "Lazo del Santuario Polar",
+      "rarity": "uncommon",
+      "role": "defense",
+      "strategy": {
+        "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+        "synergy_cards": [],
+        "weakness": "Sufre si solo bloquea y nunca convierte."
+      },
+      "tags": [
+        "block",
+        "defense",
+        "harmony",
+        "object",
+        "tempo"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "text_key": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "legacy_id": "hip_harmony_guardian_15",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
+      "legacy_artwork": "hip_harmony_guardian_15",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "NORTE",
+      "effect_text": "Bloqueo 6, Armonía +1",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 6
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        }
+      ],
+      "family": "place",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
+      "kpi": {
+        "block": 6,
+        "harmony": 1
+      },
+      "lore_text": "Claustro de la Estrella Blanca: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
+      "name": "Claustro de la Estrella Blanca",
+      "name_es": "Claustro de la Estrella Blanca",
+      "name_key": "Claustro de la Estrella Blanca",
+      "rarity": "uncommon",
+      "role": "defense",
+      "strategy": {
+        "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+        "synergy_cards": [],
+        "weakness": "Sufre si solo bloquea y nunca convierte."
+      },
+      "tags": [
+        "block",
+        "defense",
+        "harmony",
+        "place"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 6, Armonía +1",
+      "text_key": "Bloqueo 6, Armonía +1",
+      "legacy_id": "hip_harmony_guardian_16",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
+      "legacy_artwork": "hip_harmony_guardian_16",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "NORTE",
+      "effect_text": "Bloqueo 7, Consume Armonía 2, Cura 3",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 7
+        },
+        {
+          "type": "consume_harmony",
+          "amount": 2
+        },
+        {
+          "type": "heal",
+          "amount": 3
+        }
+      ],
+      "family": "place",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
+      "kpi": {
+        "block": 7,
+        "seal": 2,
+        "support": 3
+      },
+      "lore_text": "Puerta del Humo Frio: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
+      "name": "Puerta del Humo Frio",
+      "name_es": "Puerta del Humo Frio",
+      "name_key": "Puerta del Humo Frio",
+      "rarity": "uncommon",
+      "role": "ritual",
+      "strategy": {
+        "best_use": "Consumir armonia cuando el sello ya cambia la carrera.",
+        "synergy_cards": [],
+        "weakness": "Castiga gastar armonia demasiado pronto."
+      },
+      "tags": [
+        "block",
+        "heal",
+        "place",
+        "ritual",
+        "seal"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 7, Consume Armonía 2, Cura 3",
+      "text_key": "Bloqueo 7, Consume Armonía 2, Cura 3",
+      "legacy_id": "hip_harmony_guardian_17",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
+      "legacy_artwork": "hip_harmony_guardian_17",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "NORTE",
+      "effect_text": "Bloqueo 4, Debilita 1",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 4
+        },
+        {
+          "type": "weaken_enemy",
+          "amount": 1
+        }
+      ],
+      "family": "place",
+      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
+      "kpi": {
+        "block": 4,
+        "support": 1
+      },
+      "lore_text": "Refugio de la Aurora Tersa: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
+      "name": "Refugio de la Aurora Tersa",
+      "name_es": "Refugio de la Aurora Tersa",
+      "name_key": "Refugio de la Aurora Tersa",
+      "rarity": "uncommon",
+      "role": "defense",
+      "strategy": {
+        "best_use": "Absorber el turno enemigo y devolver valor inmediato.",
+        "synergy_cards": [],
+        "weakness": "Sufre si solo bloquea y nunca convierte."
+      },
+      "tags": [
+        "block",
+        "debuff",
+        "defense",
+        "place"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 4, Debilita 1",
+      "text_key": "Bloqueo 4, Debilita 1",
+      "legacy_id": "hip_harmony_guardian_18",
+      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
+      "legacy_artwork": "hip_harmony_guardian_18",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "NORTE",
+      "effect_text": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 3
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
+        },
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        }
+      ],
+      "family": "place",
+      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
+      "kpi": {
+        "block": 3,
+        "rupture": 1,
+        "harmony": 1
+      },
+      "lore_text": "Jardin de las Nieves Lentas: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
+      "name": "Jardin de las Nieves Lentas",
+      "name_es": "Jardin de las Nieves Lentas",
+      "name_key": "Jardin de las Nieves Lentas",
+      "rarity": "uncommon",
+      "role": "control",
+      "strategy": {
+        "best_use": "Preparar armonia, lectura y bloqueos con timing.",
+        "synergy_cards": [],
+        "weakness": "Pierde ritmo ante manos sin payoff."
+      },
+      "tags": [
+        "block",
+        "control",
+        "harmony",
+        "place",
+        "rupture"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "text_key": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "legacy_id": "hip_harmony_guardian_19",
+      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
+      "legacy_artwork": "hip_harmony_guardian_19",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "harmony_guardian",
+      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
+      "author": "Chakana Studio",
+      "cost": 4,
+      "direction": "NORTE",
+      "effect_text": "Bloqueo 11, Consume Armonía 2, Cura 5, Debilita 2",
+      "effects": [
+        {
+          "type": "gain_block",
+          "amount": 11
+        },
+        {
+          "type": "consume_harmony",
+          "amount": 2
+        },
+        {
+          "type": "heal",
+          "amount": 5
+        },
+        {
+          "type": "weaken_enemy",
+          "amount": 2
+        }
+      ],
+      "family": "place",
+      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
+      "kpi": {
+        "block": 11,
+        "seal": 2,
+        "support": 7
+      },
+      "lore_text": "Muralla del Silencio Boreal: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
+      "name": "Muralla del Silencio Boreal",
+      "name_es": "Muralla del Silencio Boreal",
+      "name_key": "Muralla del Silencio Boreal",
+      "rarity": "legendary",
+      "role": "ritual",
+      "strategy": {
+        "best_use": "Consumir armonia cuando el sello ya cambia la carrera.",
+        "synergy_cards": [],
+        "weakness": "Castiga gastar armonia demasiado pronto."
+      },
+      "tags": [
+        "block",
+        "debuff",
+        "heal",
+        "hiperboria",
+        "place",
+        "ritual",
+        "seal"
+      ],
+      "target": "enemy",
+      "taxonomy": "payoff",
+      "text_es": "Bloqueo 11, Consume Armonía 2, Cura 5, Debilita 2",
+      "text_key": "Bloqueo 11, Consume Armonía 2, Cura 5, Debilita 2",
+      "legacy_id": "hip_harmony_guardian_20",
+      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
+      "legacy_artwork": "hip_harmony_guardian_20",
+      "motif": "sacred_forms",
+      "palette": "teal-gold",
+      "energy": "stable_rings",
+      "symbol": "shield_mandala",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "NORTE",
+      "effect_text": "Prever 2, Roba 1",
+      "effects": [
+        {
+          "type": "scry",
+          "amount": 2
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "family": "creature",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
+      "kpi": {
+        "scry": 2,
+        "draw": 1
+      },
+      "lore_text": "Cuervo del Hielo Interior: El norte interior vuelve la lectura mas afilada y menos ornamental.",
+      "name": "Cuervo del Hielo Interior",
+      "name_es": "Cuervo del Hielo Interior",
+      "name_key": "Cuervo del Hielo Interior",
+      "rarity": "common",
+      "role": "control",
+      "strategy": {
+        "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+        "synergy_cards": [],
+        "weakness": "Pierde impacto si no encuentra payoff."
+      },
+      "tags": [
+        "control",
+        "creature",
+        "draw",
+        "scry"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Prever 2, Roba 1",
+      "text_key": "Prever 2, Roba 1",
+      "legacy_id": "hip_oracle_of_fate_01",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
+      "legacy_artwork": "hip_oracle_of_fate_01",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "NORTE",
+      "effect_text": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
       "effects": [
         {
           "type": "harmony_delta",
@@ -1732,392 +2282,168 @@
           "amount": 1
         },
         {
-          "type": "damage",
-          "amount": 9
-        }
-      ],
-      "role": "ritual",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
-      },
-      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_harmony_guardian_17",
-      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
-      "legacy_artwork": "hip_harmony_guardian_17"
-    },
-    {
-      "id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
-      "name": "Guardián del Velo Polar XVIII",
-      "name_key": "Guardián del Velo Polar XVIII",
-      "text_key": "Bloqueo 5, Daño 6",
-      "effect_text": "Bloqueo 5, Daño 6",
-      "rarity": "rare",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "block"
-      ],
-      "effects": [
-        {
-          "type": "gain_block",
-          "amount": 5
-        },
-        {
-          "type": "damage",
-          "amount": 6
-        }
-      ],
-      "role": "defense",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
-      },
-      "artwork": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "payoff",
-      "legacy_id": "hip_harmony_guardian_18",
-      "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
-      "legacy_artwork": "hip_harmony_guardian_18"
-    },
-    {
-      "id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
-      "name": "Guardián del Velo Polar XIX",
-      "name_key": "Guardián del Velo Polar XIX",
-      "text_key": "Bloqueo 3, Prever 1, Daño 6",
-      "effect_text": "Bloqueo 3, Prever 1, Daño 6",
-      "rarity": "uncommon",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "block",
-        "scry"
-      ],
-      "effects": [
-        {
-          "type": "gain_block",
-          "amount": 3
-        },
-        {
-          "type": "scry",
+          "type": "ritual_trama",
           "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 6
         }
       ],
-      "role": "control",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
+      "family": "creature",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
+      "kpi": {
+        "harmony": 1,
+        "seal": 1,
+        "ritual": 1
       },
-      "artwork": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_harmony_guardian_19",
-      "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
-      "legacy_artwork": "hip_harmony_guardian_19"
-    },
-    {
-      "id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
-      "name": "Guardián del Velo Polar XX",
-      "name_key": "Guardián del Velo Polar XX",
-      "text_key": "Bloqueo 10, Armonía +2, Daño 14",
-      "effect_text": "Bloqueo 10, Armonía +2, Daño 14",
-      "rarity": "legendary",
-      "cost": 4,
-      "target": "enemy",
+      "lore_text": "Liebre del Horizonte Niveo: El norte interior vuelve la lectura mas afilada y menos ornamental.",
+      "name": "Liebre del Horizonte Niveo",
+      "name_es": "Liebre del Horizonte Niveo",
+      "name_key": "Liebre del Horizonte Niveo",
+      "rarity": "common",
+      "role": "ritual",
+      "strategy": {
+        "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+        "synergy_cards": [],
+        "weakness": "La run castiga rituales vacios."
+      },
       "tags": [
-        "block",
+        "creature",
         "harmony",
+        "ritual",
         "seal"
       ],
-      "effects": [
-        {
-          "type": "gain_block",
-          "amount": 10
-        },
-        {
-          "type": "harmony_delta",
-          "amount": 2
-        },
-        {
-          "type": "damage",
-          "amount": 12
-        }
-      ],
-      "role": "ritual",
-      "family": "harmony_guardian",
-      "direction": "SUR",
-      "archetype": "harmony_guardian",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Guardian Hiperboreo"
-      },
-      "artwork": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "guardian_resonance",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "payoff",
-      "text_es": "Gana 10 Bloqueo, +2 Armon?a y causa 12 de Da?o.",
-      "legacy_id": "hip_harmony_guardian_20",
-      "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
-      "legacy_artwork": "hip_harmony_guardian_20"
-    },
-    {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
-      "name": "Oráculo del Horizonte Boreal I",
-      "name_key": "Oráculo del Horizonte Boreal I",
-      "text_key": "Prever 2, Roba 1, Daño 4",
-      "effect_text": "Prever 2, Roba 1, Daño 4",
-      "rarity": "common",
-      "cost": 1,
       "target": "enemy",
-      "tags": [
-        "scry",
-        "draw"
-      ],
-      "effects": [
-        {
-          "type": "scry",
-          "amount": 2
-        },
-        {
-          "type": "draw",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 4
-        }
-      ],
-      "role": "control",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
-      },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_oracle_of_fate_01",
-      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I",
-      "legacy_artwork": "hip_oracle_of_fate_01"
-    },
-    {
-      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
-      "name": "Oráculo del Horizonte Boreal II",
-      "name_key": "Oráculo del Horizonte Boreal II",
-      "text_key": "Ritual +1, Armonía +1, Roba 1",
-      "effect_text": "Ritual +1, Armonía +1, Roba 1",
-      "rarity": "common",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "ritual",
-        "harmony"
-      ],
-      "effects": [
-        {
-          "type": "ritual_trama",
-          "amount": 1
-        },
-        {
-          "type": "harmony_delta",
-          "amount": 1
-        },
-        {
-          "type": "draw",
-          "amount": 1
-        }
-      ],
-      "role": "ritual",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
-      },
-      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
+      "taxonomy": "bridge",
+      "text_es": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
+      "text_key": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
       "legacy_id": "hip_oracle_of_fate_02",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
-      "legacy_artwork": "hip_oracle_of_fate_02"
+      "legacy_artwork": "hip_oracle_of_fate_02",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
-      "name": "Oráculo del Horizonte Boreal III",
-      "name_key": "Oráculo del Horizonte Boreal III",
-      "text_key": "Prever 3, Daño 3",
-      "effect_text": "Prever 3, Daño 3",
-      "rarity": "common",
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
+      "author": "Chakana Studio",
       "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "scry"
-      ],
+      "direction": "NORTE",
+      "effect_text": "Prever 2, Energía sig. turno +1",
       "effects": [
         {
           "type": "scry",
-          "amount": 3
+          "amount": 2
         },
         {
-          "type": "damage",
-          "amount": 3
+          "type": "gain_mana_next_turn",
+          "amount": 1
         }
       ],
-      "role": "control",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "creature",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
+      "kpi": {
+        "scry": 2,
+        "energy": 1
       },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
+      "lore_text": "Lechuza de la Aurora Sumergida: El norte interior vuelve la lectura mas afilada y menos ornamental.",
+      "name": "Lechuza de la Aurora Sumergida",
+      "name_es": "Lechuza de la Aurora Sumergida",
+      "name_key": "Lechuza de la Aurora Sumergida",
+      "rarity": "common",
+      "role": "control",
+      "strategy": {
+        "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+        "synergy_cards": [],
+        "weakness": "Pierde impacto si no encuentra payoff."
+      },
+      "tags": [
+        "control",
+        "creature",
+        "energy",
+        "scry"
+      ],
+      "target": "enemy",
       "taxonomy": "engine",
+      "text_es": "Prever 2, Energía sig. turno +1",
+      "text_key": "Prever 2, Energía sig. turno +1",
       "legacy_id": "hip_oracle_of_fate_03",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
-      "legacy_artwork": "hip_oracle_of_fate_03"
+      "legacy_artwork": "hip_oracle_of_fate_03",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV",
-      "name": "Oráculo del Horizonte Boreal IV",
-      "name_key": "Oráculo del Horizonte Boreal IV",
-      "text_key": "Roba 2, Daño 5",
-      "effect_text": "Roba 2, Daño 5",
-      "rarity": "uncommon",
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV",
+      "author": "Chakana Studio",
       "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "draw",
-        "combo"
-      ],
+      "direction": "NORTE",
+      "effect_text": "Retener, Roba 1, Daño 2",
       "effects": [
         {
+          "type": "retain",
+          "amount": 1
+        },
+        {
           "type": "draw",
-          "amount": 2
+          "amount": 1
         },
         {
           "type": "damage",
-          "amount": 5
+          "amount": 2
         }
       ],
-      "role": "combo",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "creature",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV",
+      "kpi": {
+        "draw": 1,
+        "damage": 2
       },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
+      "lore_text": "Pez del Lago Astral: El norte interior vuelve la lectura mas afilada y menos ornamental.",
+      "name": "Pez del Lago Astral",
+      "name_es": "Pez del Lago Astral",
+      "name_key": "Pez del Lago Astral",
+      "rarity": "uncommon",
+      "role": "combo",
+      "strategy": {
+        "best_use": "Encadenar previsiones para habilitar turnos imposibles.",
+        "synergy_cards": [],
+        "weakness": "Necesita secuencias limpias y buena lectura."
+      },
+      "tags": [
+        "attack",
+        "combo",
+        "creature",
+        "draw",
+        "retain"
+      ],
+      "target": "enemy",
       "taxonomy": "bridge",
+      "text_es": "Retener, Roba 1, Daño 2",
+      "text_key": "Retener, Roba 1, Daño 2",
       "legacy_id": "hip_oracle_of_fate_04",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV",
-      "legacy_artwork": "hip_oracle_of_fate_04"
+      "legacy_artwork": "hip_oracle_of_fate_04",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
-      "name": "Oráculo del Horizonte Boreal V",
-      "name_key": "Oráculo del Horizonte Boreal V",
-      "text_key": "Energía +1, Prever 1, Daño 4",
-      "effect_text": "Energía +1, Prever 1, Daño 4",
-      "rarity": "common",
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
+      "author": "Chakana Studio",
       "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "energy",
-        "control"
-      ],
+      "direction": "NORTE",
+      "effect_text": "Energía sig. turno +1, Prever 2",
       "effects": [
         {
           "type": "gain_mana_next_turn",
@@ -2125,544 +2451,452 @@
         },
         {
           "type": "scry",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 4
+          "amount": 2
         }
       ],
-      "role": "energy",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "creature",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
+      "kpi": {
+        "energy": 1,
+        "scry": 2
       },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
+      "lore_text": "Lobo del Velo Boreal: El norte interior vuelve la lectura mas afilada y menos ornamental.",
+      "name": "Lobo del Velo Boreal",
+      "name_es": "Lobo del Velo Boreal",
+      "name_key": "Lobo del Velo Boreal",
+      "rarity": "common",
+      "role": "energy",
+      "strategy": {
+        "best_use": "Aplazar energia y tempo al turno correcto.",
+        "synergy_cards": [],
+        "weakness": "Es flojo si se juega solo por curva."
+      },
+      "tags": [
+        "creature",
+        "energy",
+        "scry"
+      ],
+      "target": "enemy",
       "taxonomy": "engine",
+      "text_es": "Energía sig. turno +1, Prever 2",
+      "text_key": "Energía sig. turno +1, Prever 2",
       "legacy_id": "hip_oracle_of_fate_05",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
-      "legacy_artwork": "hip_oracle_of_fate_05"
+      "legacy_artwork": "hip_oracle_of_fate_05",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI",
-      "name": "Oráculo del Horizonte Boreal VI",
-      "name_key": "Oráculo del Horizonte Boreal VI",
-      "text_key": "Prever 2, Roba 1, Daño 4",
-      "effect_text": "Prever 2, Roba 1, Daño 4",
-      "rarity": "uncommon",
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI",
+      "author": "Chakana Studio",
       "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "scry",
-        "draw"
-      ],
+      "direction": "OESTE",
+      "effect_text": "Prever 3, Daño 2",
       "effects": [
         {
           "type": "scry",
-          "amount": 2
-        },
-        {
-          "type": "draw",
-          "amount": 1
+          "amount": 3
         },
         {
           "type": "damage",
-          "amount": 4
+          "amount": 2
         }
       ],
-      "role": "control",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "subject",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI",
+      "kpi": {
+        "scry": 3,
+        "damage": 2
       },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
+      "lore_text": "Oraculo de la Cupula Helada: Los videntes boreales empujan rituales que ya cierran partidas.",
+      "name": "Oraculo de la Cupula Helada",
+      "name_es": "Oraculo de la Cupula Helada",
+      "name_key": "Oraculo de la Cupula Helada",
+      "rarity": "uncommon",
+      "role": "control",
+      "strategy": {
+        "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+        "synergy_cards": [],
+        "weakness": "Pierde impacto si no encuentra payoff."
+      },
+      "tags": [
+        "attack",
+        "control",
+        "scry",
+        "subject"
+      ],
+      "target": "enemy",
       "taxonomy": "bridge",
+      "text_es": "Prever 3, Daño 2",
+      "text_key": "Prever 3, Daño 2",
       "legacy_id": "hip_oracle_of_fate_06",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI",
-      "legacy_artwork": "hip_oracle_of_fate_06"
+      "legacy_artwork": "hip_oracle_of_fate_06",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
-      "name": "Oráculo del Horizonte Boreal VII",
-      "name_key": "Oráculo del Horizonte Boreal VII",
-      "text_key": "Ritual +1, Armonía +1, Roba 1",
-      "effect_text": "Ritual +1, Armonía +1, Roba 1",
-      "rarity": "common",
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
+      "author": "Chakana Studio",
       "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "ritual",
-        "harmony"
-      ],
+      "direction": "OESTE",
+      "effect_text": "Armonía +1, Ritual de la Trama, Prever 2",
       "effects": [
-        {
-          "type": "ritual_trama",
-          "amount": 1
-        },
         {
           "type": "harmony_delta",
           "amount": 1
         },
         {
-          "type": "draw",
+          "type": "ritual_trama",
           "amount": 1
+        },
+        {
+          "type": "scry",
+          "amount": 2
         }
       ],
-      "role": "ritual",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "subject",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
+      "kpi": {
+        "harmony": 1,
+        "ritual": 1,
+        "scry": 2
       },
-      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
+      "lore_text": "Cronista de Nimrod: Los videntes boreales empujan rituales que ya cierran partidas.",
+      "name": "Cronista de Nimrod",
+      "name_es": "Cronista de Nimrod",
+      "name_key": "Cronista de Nimrod",
+      "rarity": "common",
+      "role": "ritual",
+      "strategy": {
+        "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+        "synergy_cards": [],
+        "weakness": "La run castiga rituales vacios."
+      },
+      "tags": [
+        "harmony",
+        "ritual",
+        "scry",
+        "subject"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Armonía +1, Ritual de la Trama, Prever 2",
+      "text_key": "Armonía +1, Ritual de la Trama, Prever 2",
       "legacy_id": "hip_oracle_of_fate_07",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
-      "legacy_artwork": "hip_oracle_of_fate_07"
+      "legacy_artwork": "hip_oracle_of_fate_07",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
-      "name": "Oráculo del Horizonte Boreal VIII",
-      "name_key": "Oráculo del Horizonte Boreal VIII",
-      "text_key": "Prever 3, Daño 4",
-      "effect_text": "Prever 3, Daño 4",
-      "rarity": "common",
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
+      "author": "Chakana Studio",
       "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "scry"
-      ],
+      "direction": "OESTE",
+      "effect_text": "Prever 1, Roba 1, Ruptura +1",
       "effects": [
         {
           "type": "scry",
-          "amount": 3
+          "amount": 1
         },
         {
-          "type": "damage",
-          "amount": 4
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "apply_break",
+          "amount": 1
         }
       ],
-      "role": "control",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "subject",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
+      "kpi": {
+        "scry": 1,
+        "draw": 1,
+        "rupture": 1
       },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
+      "lore_text": "Interprete del Norte Interior: Los videntes boreales empujan rituales que ya cierran partidas.",
+      "name": "Interprete del Norte Interior",
+      "name_es": "Interprete del Norte Interior",
+      "name_key": "Interprete del Norte Interior",
+      "rarity": "common",
+      "role": "control",
+      "strategy": {
+        "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+        "synergy_cards": [],
+        "weakness": "Pierde impacto si no encuentra payoff."
+      },
+      "tags": [
+        "control",
+        "draw",
+        "rupture",
+        "scry",
+        "subject"
+      ],
+      "target": "enemy",
       "taxonomy": "engine",
+      "text_es": "Prever 1, Roba 1, Ruptura +1",
+      "text_key": "Prever 1, Roba 1, Ruptura +1",
       "legacy_id": "hip_oracle_of_fate_08",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
-      "legacy_artwork": "hip_oracle_of_fate_08"
+      "legacy_artwork": "hip_oracle_of_fate_08",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX",
-      "name": "Oráculo del Horizonte Boreal IX",
-      "name_key": "Oráculo del Horizonte Boreal IX",
-      "text_key": "Roba 2, Daño 5",
-      "effect_text": "Roba 2, Daño 5",
-      "rarity": "common",
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX",
+      "author": "Chakana Studio",
       "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "draw",
-        "combo"
-      ],
+      "direction": "OESTE",
+      "effect_text": "Prever 2",
       "effects": [
         {
-          "type": "draw",
+          "type": "scry",
           "amount": 2
         },
         {
-          "type": "damage",
-          "amount": 5
+          "type": "draw_if_direction_played",
+          "amount": 1,
+          "direction": "NORTE"
         }
       ],
-      "role": "combo",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "subject",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX",
+      "kpi": {
+        "scry": 2
       },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
+      "lore_text": "Tejedor del Segundo Horizonte: Los videntes boreales empujan rituales que ya cierran partidas.",
+      "name": "Tejedor del Segundo Horizonte",
+      "name_es": "Tejedor del Segundo Horizonte",
+      "name_key": "Tejedor del Segundo Horizonte",
+      "rarity": "common",
+      "role": "combo",
+      "strategy": {
+        "best_use": "Encadenar previsiones para habilitar turnos imposibles.",
+        "synergy_cards": [],
+        "weakness": "Necesita secuencias limpias y buena lectura."
+      },
+      "tags": [
+        "combo",
+        "draw",
+        "scry",
+        "subject"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Prever 2",
+      "text_key": "Prever 2",
       "legacy_id": "hip_oracle_of_fate_09",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX",
-      "legacy_artwork": "hip_oracle_of_fate_09"
+      "legacy_artwork": "hip_oracle_of_fate_09",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
-      "name": "Oráculo del Horizonte Boreal X",
-      "name_key": "Oráculo del Horizonte Boreal X",
-      "text_key": "Energía +1, Prever 1, Daño 4",
-      "effect_text": "Energía +1, Prever 1, Daño 4",
-      "rarity": "common",
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
+      "author": "Chakana Studio",
       "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "energy",
-        "control"
-      ],
+      "direction": "OESTE",
+      "effect_text": "Energía sig. turno +1, Daño 2, Prever 1",
       "effects": [
         {
           "type": "gain_mana_next_turn",
           "amount": 1
         },
         {
-          "type": "scry",
-          "amount": 1
+          "type": "damage",
+          "amount": 2
         },
         {
-          "type": "damage",
-          "amount": 4
+          "type": "scry",
+          "amount": 1
         }
       ],
-      "role": "energy",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "subject",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
+      "kpi": {
+        "energy": 1,
+        "damage": 2,
+        "scry": 1
       },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
+      "lore_text": "Portadora del Mapa Blanco: Los videntes boreales empujan rituales que ya cierran partidas.",
+      "name": "Portadora del Mapa Blanco",
+      "name_es": "Portadora del Mapa Blanco",
+      "name_key": "Portadora del Mapa Blanco",
+      "rarity": "common",
+      "role": "energy",
+      "strategy": {
+        "best_use": "Aplazar energia y tempo al turno correcto.",
+        "synergy_cards": [],
+        "weakness": "Es flojo si se juega solo por curva."
+      },
+      "tags": [
+        "attack",
+        "energy",
+        "scry",
+        "subject"
+      ],
+      "target": "enemy",
       "taxonomy": "engine",
+      "text_es": "Energía sig. turno +1, Daño 2, Prever 1",
+      "text_key": "Energía sig. turno +1, Daño 2, Prever 1",
       "legacy_id": "hip_oracle_of_fate_10",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
-      "legacy_artwork": "hip_oracle_of_fate_10"
+      "legacy_artwork": "hip_oracle_of_fate_10",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
-      "name": "Oráculo del Horizonte Boreal XI",
-      "name_key": "Oráculo del Horizonte Boreal XI",
-      "text_key": "Prever 2, Roba 1, Daño 4",
-      "effect_text": "Prever 2, Roba 1, Daño 4",
-      "rarity": "common",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "scry",
-        "draw",
-        "starfrost_vision"
-      ],
-      "effects": [
-        {
-          "type": "scry",
-          "amount": 2
-        },
-        {
-          "type": "draw",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 4
-        }
-      ],
-      "role": "control",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
       "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
-      },
       "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_oracle_of_fate_11",
-      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
-      "legacy_artwork": "hip_oracle_of_fate_11"
-    },
-    {
-      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
-      "name": "Oráculo del Horizonte Boreal XII",
-      "name_key": "Oráculo del Horizonte Boreal XII",
-      "text_key": "Ritual +1, Armonía +1, Roba 1",
-      "effect_text": "Ritual +1, Armonía +1, Roba 1",
-      "rarity": "common",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "ritual",
-        "harmony",
-        "chronicle_polar"
-      ],
-      "effects": [
-        {
-          "type": "ritual_trama",
-          "amount": 1
-        },
-        {
-          "type": "harmony_delta",
-          "amount": 1
-        },
-        {
-          "type": "draw",
-          "amount": 1
-        }
-      ],
-      "role": "ritual",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
-      },
-      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "engine",
-      "legacy_id": "hip_oracle_of_fate_12",
-      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
-      "legacy_artwork": "hip_oracle_of_fate_12"
-    },
-    {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
-      "name": "Oráculo del Horizonte Boreal XIII",
-      "name_key": "Oráculo del Horizonte Boreal XIII",
-      "text_key": "Prever 3, Daño 4",
-      "effect_text": "Prever 3, Daño 4",
-      "rarity": "uncommon",
+      "author": "Chakana Studio",
       "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "scry"
-      ],
+      "direction": "SUR",
+      "effect_text": "Prever 2, Energía sig. turno +1",
       "effects": [
         {
           "type": "scry",
-          "amount": 3
-        },
-        {
-          "type": "damage",
-          "amount": 4
-        }
-      ],
-      "role": "control",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
-      },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_oracle_of_fate_13",
-      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
-      "legacy_artwork": "hip_oracle_of_fate_13"
-    },
-    {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
-      "name": "Oráculo del Horizonte Boreal XIV",
-      "name_key": "Oráculo del Horizonte Boreal XIV",
-      "text_key": "Roba 2, Daño 6",
-      "effect_text": "Roba 2, Daño 6",
-      "rarity": "rare",
-      "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "draw",
-        "combo"
-      ],
-      "effects": [
-        {
-          "type": "draw",
           "amount": 2
         },
-        {
-          "type": "damage",
-          "amount": 6
-        }
-      ],
-      "role": "combo",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
-      },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "payoff",
-      "legacy_id": "hip_oracle_of_fate_14",
-      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
-      "legacy_artwork": "hip_oracle_of_fate_14"
-    },
-    {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
-      "name": "Oráculo del Horizonte Boreal XV",
-      "name_key": "Oráculo del Horizonte Boreal XV",
-      "text_key": "Energía +1, Prever 1, Daño 5",
-      "effect_text": "Energía +1, Prever 1, Daño 5",
-      "rarity": "uncommon",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "energy",
-        "control"
-      ],
-      "effects": [
         {
           "type": "gain_mana_next_turn",
           "amount": 1
-        },
-        {
-          "type": "scry",
-          "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 5
         }
       ],
-      "role": "energy",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "object",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
+      "kpi": {
+        "scry": 2,
+        "energy": 1
       },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "bridge",
-      "legacy_id": "hip_oracle_of_fate_15",
-      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
-      "legacy_artwork": "hip_oracle_of_fate_15"
+      "lore_text": "Astrolabio de la Estrella Polar: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
+      "name": "Astrolabio de la Estrella Polar",
+      "name_es": "Astrolabio de la Estrella Polar",
+      "name_key": "Astrolabio de la Estrella Polar",
+      "rarity": "common",
+      "role": "control",
+      "strategy": {
+        "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+        "synergy_cards": [],
+        "weakness": "Pierde impacto si no encuentra payoff."
+      },
+      "tags": [
+        "control",
+        "energy",
+        "object",
+        "scry"
+      ],
+      "target": "enemy",
+      "taxonomy": "engine",
+      "text_es": "Prever 2, Energía sig. turno +1",
+      "text_key": "Prever 2, Energía sig. turno +1",
+      "legacy_id": "hip_oracle_of_fate_11",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
+      "legacy_artwork": "hip_oracle_of_fate_11",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
-      "name": "Oráculo del Horizonte Boreal XVI",
-      "name_key": "Oráculo del Horizonte Boreal XVI",
-      "text_key": "Prever 2, Roba 1, Daño 5",
-      "effect_text": "Prever 2, Roba 1, Daño 5",
-      "rarity": "rare",
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
+      "author": "Chakana Studio",
       "cost": 2,
-      "target": "enemy",
-      "tags": [
-        "scry",
-        "draw"
+      "direction": "SUR",
+      "effect_text": "Armonía +2, Consume Armonía 2, Roba 1",
+      "effects": [
+        {
+          "type": "harmony_delta",
+          "amount": 2
+        },
+        {
+          "type": "consume_harmony",
+          "amount": 2
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
       ],
+      "family": "object",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
+      "kpi": {
+        "harmony": 2,
+        "seal": 2,
+        "draw": 1
+      },
+      "lore_text": "Baston del Eco Frio: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
+      "name": "Baston del Eco Frio",
+      "name_es": "Baston del Eco Frio",
+      "name_key": "Baston del Eco Frio",
+      "rarity": "common",
+      "role": "ritual",
+      "strategy": {
+        "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+        "synergy_cards": [],
+        "weakness": "La run castiga rituales vacios."
+      },
+      "tags": [
+        "draw",
+        "harmony",
+        "object",
+        "ritual",
+        "seal"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Armonía +2, Consume Armonía 2, Roba 1",
+      "text_key": "Armonía +2, Consume Armonía 2, Roba 1",
+      "legacy_id": "hip_oracle_of_fate_12",
+      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
+      "legacy_artwork": "hip_oracle_of_fate_12",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "SUR",
+      "effect_text": "Prever 2, Roba 1",
       "effects": [
         {
           "type": "scry",
@@ -2671,56 +2905,161 @@
         {
           "type": "draw",
           "amount": 1
-        },
-        {
-          "type": "damage",
-          "amount": 5
         }
       ],
-      "role": "control",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "object",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
+      "kpi": {
+        "scry": 2,
+        "draw": 1
       },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "payoff",
-      "legacy_id": "hip_oracle_of_fate_16",
-      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
-      "legacy_artwork": "hip_oracle_of_fate_16"
+      "lore_text": "Reloj de Escarcha Ritual: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
+      "name": "Reloj de Escarcha Ritual",
+      "name_es": "Reloj de Escarcha Ritual",
+      "name_key": "Reloj de Escarcha Ritual",
+      "rarity": "uncommon",
+      "role": "control",
+      "strategy": {
+        "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+        "synergy_cards": [],
+        "weakness": "Pierde impacto si no encuentra payoff."
+      },
+      "tags": [
+        "control",
+        "draw",
+        "object",
+        "scry"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Prever 2, Roba 1",
+      "text_key": "Prever 2, Roba 1",
+      "legacy_id": "hip_oracle_of_fate_13",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
+      "legacy_artwork": "hip_oracle_of_fate_13",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
-      "name": "Oráculo del Horizonte Boreal XVII",
-      "name_key": "Oráculo del Horizonte Boreal XVII",
-      "text_key": "Ritual +1, Armonía +1, Roba 1",
-      "effect_text": "Ritual +1, Armonía +1, Roba 1",
-      "rarity": "rare",
-      "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "ritual",
-        "harmony"
-      ],
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "SUR",
+      "effect_text": "Duplica la siguiente carta, Prever 1",
       "effects": [
         {
-          "type": "ritual_trama",
+          "type": "copy_next_played",
           "amount": 1
         },
         {
-          "type": "harmony_delta",
+          "type": "scry",
+          "amount": 1
+        }
+      ],
+      "family": "object",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
+      "kpi": {
+        "scry": 1
+      },
+      "lore_text": "Carta del Trono Boreal: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
+      "name": "Carta del Trono Boreal",
+      "name_es": "Carta del Trono Boreal",
+      "name_key": "Carta del Trono Boreal",
+      "rarity": "uncommon",
+      "role": "combo",
+      "strategy": {
+        "best_use": "Encadenar previsiones para habilitar turnos imposibles.",
+        "synergy_cards": [],
+        "weakness": "Necesita secuencias limpias y buena lectura."
+      },
+      "tags": [
+        "combo",
+        "copy",
+        "object",
+        "scry"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Duplica la siguiente carta, Prever 1",
+      "text_key": "Duplica la siguiente carta, Prever 1",
+      "legacy_id": "hip_oracle_of_fate_14",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
+      "legacy_artwork": "hip_oracle_of_fate_14",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "SUR",
+      "effect_text": "Energía +1, Roba 1",
+      "effects": [
+        {
+          "type": "gain_mana",
+          "amount": 1
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ],
+      "family": "object",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
+      "kpi": {
+        "energy": 1,
+        "draw": 1
+      },
+      "lore_text": "Ojo de la Cupula Blanca: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
+      "name": "Ojo de la Cupula Blanca",
+      "name_es": "Ojo de la Cupula Blanca",
+      "name_key": "Ojo de la Cupula Blanca",
+      "rarity": "uncommon",
+      "role": "energy",
+      "strategy": {
+        "best_use": "Aplazar energia y tempo al turno correcto.",
+        "synergy_cards": [],
+        "weakness": "Es flojo si se juega solo por curva."
+      },
+      "tags": [
+        "draw",
+        "energy",
+        "object"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Energía +1, Roba 1",
+      "text_key": "Energía +1, Roba 1",
+      "legacy_id": "hip_oracle_of_fate_15",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV",
+      "legacy_artwork": "hip_oracle_of_fate_15",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "ESTE",
+      "effect_text": "Prever 1, Roba 1, Ruptura +1",
+      "effects": [
+        {
+          "type": "scry",
           "amount": 1
         },
         {
@@ -2728,46 +3067,115 @@
           "amount": 1
         },
         {
-          "type": "damage",
-          "amount": 4
+          "type": "apply_break",
+          "amount": 1
         }
       ],
-      "role": "ritual",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "place",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
+      "kpi": {
+        "scry": 1,
+        "draw": 1,
+        "rupture": 1
       },
-      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
-      "motif": "crystals",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
-      "taxonomy": "payoff",
-      "legacy_id": "hip_oracle_of_fate_17",
-      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
-      "legacy_artwork": "hip_oracle_of_fate_17"
-    },
-    {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII",
-      "name": "Oráculo del Horizonte Boreal XVIII",
-      "name_key": "Oráculo del Horizonte Boreal XVIII",
-      "text_key": "Prever 3, Daño 5",
-      "effect_text": "Prever 3, Daño 5",
+      "lore_text": "Galeria del Horizonte Boreal: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
+      "name": "Galeria del Horizonte Boreal",
+      "name_es": "Galeria del Horizonte Boreal",
+      "name_key": "Galeria del Horizonte Boreal",
       "rarity": "uncommon",
-      "cost": 2,
-      "target": "enemy",
+      "role": "control",
+      "strategy": {
+        "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+        "synergy_cards": [],
+        "weakness": "Pierde impacto si no encuentra payoff."
+      },
       "tags": [
+        "control",
+        "draw",
+        "place",
+        "rupture",
         "scry"
       ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Prever 1, Roba 1, Ruptura +1",
+      "text_key": "Prever 1, Roba 1, Ruptura +1",
+      "legacy_id": "hip_oracle_of_fate_16",
+      "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI",
+      "legacy_artwork": "hip_oracle_of_fate_16",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
+      "author": "Chakana Studio",
+      "cost": 1,
+      "direction": "ESTE",
+      "effect_text": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
+      "effects": [
+        {
+          "type": "harmony_delta",
+          "amount": 1
+        },
+        {
+          "type": "consume_harmony",
+          "amount": 1
+        },
+        {
+          "type": "ritual_trama",
+          "amount": 1
+        }
+      ],
+      "family": "place",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
+      "kpi": {
+        "harmony": 1,
+        "seal": 1,
+        "ritual": 1
+      },
+      "lore_text": "Sala de la Nieve Pensante: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
+      "name": "Sala de la Nieve Pensante",
+      "name_es": "Sala de la Nieve Pensante",
+      "name_key": "Sala de la Nieve Pensante",
+      "rarity": "uncommon",
+      "role": "ritual",
+      "strategy": {
+        "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+        "synergy_cards": [],
+        "weakness": "La run castiga rituales vacios."
+      },
+      "tags": [
+        "harmony",
+        "place",
+        "ritual",
+        "seal"
+      ],
+      "target": "enemy",
+      "taxonomy": "bridge",
+      "text_es": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
+      "text_key": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
+      "legacy_id": "hip_oracle_of_fate_17",
+      "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
+      "legacy_artwork": "hip_oracle_of_fate_17",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
+    },
+    {
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII",
+      "author": "Chakana Studio",
+      "cost": 2,
+      "direction": "ESTE",
+      "effect_text": "Prever 3, Daño 2",
       "effects": [
         {
           "type": "scry",
@@ -2775,101 +3183,119 @@
         },
         {
           "type": "damage",
-          "amount": 5
+          "amount": 2
         }
       ],
-      "role": "control",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "place",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII",
+      "kpi": {
+        "scry": 3,
+        "damage": 2
       },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII",
-      "motif": "auroras",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
+      "lore_text": "Terraza del Astro Invertido: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
+      "name": "Terraza del Astro Invertido",
+      "name_es": "Terraza del Astro Invertido",
+      "name_key": "Terraza del Astro Invertido",
+      "rarity": "uncommon",
+      "role": "control",
+      "strategy": {
+        "best_use": "Manipular robo y ventanas antes de gastar recursos.",
+        "synergy_cards": [],
+        "weakness": "Pierde impacto si no encuentra payoff."
+      },
+      "tags": [
+        "attack",
+        "control",
+        "place",
+        "scry"
+      ],
+      "target": "enemy",
       "taxonomy": "bridge",
+      "text_es": "Prever 3, Daño 2",
+      "text_key": "Prever 3, Daño 2",
       "legacy_id": "hip_oracle_of_fate_18",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII",
-      "legacy_artwork": "hip_oracle_of_fate_18"
+      "legacy_artwork": "hip_oracle_of_fate_18",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX",
-      "name": "Oráculo del Horizonte Boreal XIX",
-      "name_key": "Oráculo del Horizonte Boreal XIX",
-      "text_key": "Roba 2, Daño 6",
-      "effect_text": "Roba 2, Daño 6",
-      "rarity": "uncommon",
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX",
+      "author": "Chakana Studio",
       "cost": 1,
-      "target": "enemy",
-      "tags": [
-        "draw",
-        "combo"
-      ],
+      "direction": "ESTE",
+      "effect_text": "Retener, Roba 1, Daño 2",
       "effects": [
         {
+          "type": "retain",
+          "amount": 1
+        },
+        {
           "type": "draw",
-          "amount": 2
+          "amount": 1
         },
         {
           "type": "damage",
-          "amount": 6
+          "amount": 2
         }
       ],
-      "role": "combo",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "place",
+      "id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX",
+      "kpi": {
+        "draw": 1,
+        "damage": 2
       },
-      "artwork": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX",
-      "motif": "polar_temples",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
+      "lore_text": "Pozo de la Memoria Blanca: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
+      "name": "Pozo de la Memoria Blanca",
+      "name_es": "Pozo de la Memoria Blanca",
+      "name_key": "Pozo de la Memoria Blanca",
+      "rarity": "uncommon",
+      "role": "combo",
+      "strategy": {
+        "best_use": "Encadenar previsiones para habilitar turnos imposibles.",
+        "synergy_cards": [],
+        "weakness": "Necesita secuencias limpias y buena lectura."
+      },
+      "tags": [
+        "attack",
+        "combo",
+        "draw",
+        "place",
+        "retain"
+      ],
+      "target": "enemy",
       "taxonomy": "bridge",
+      "text_es": "Retener, Roba 1, Daño 2",
+      "text_key": "Retener, Roba 1, Daño 2",
       "legacy_id": "hip_oracle_of_fate_19",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX",
-      "legacy_artwork": "hip_oracle_of_fate_19"
+      "legacy_artwork": "hip_oracle_of_fate_19",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     },
     {
-      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
-      "name": "Oráculo del Horizonte Boreal XX",
-      "name_key": "Oráculo del Horizonte Boreal XX",
-      "text_key": "Prever 4, Roba 2, Ritual +1",
-      "effect_text": "Prever 4, Roba 2, Ritual +1",
-      "rarity": "legendary",
+      "archetype": "oracle_of_fate",
+      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
+      "author": "Chakana Studio",
       "cost": 3,
-      "target": "enemy",
-      "tags": [
-        "scry",
-        "draw",
-        "ritual"
-      ],
+      "direction": "ESTE",
+      "effect_text": "Armonía +2, Consume Armonía 2, Ritual de la Trama, Roba 2",
       "effects": [
         {
-          "type": "scry",
-          "amount": 4
+          "type": "harmony_delta",
+          "amount": 2
         },
         {
-          "type": "draw",
+          "type": "consume_harmony",
           "amount": 2
         },
         {
@@ -2877,33 +3303,50 @@
           "amount": 1
         },
         {
-          "type": "damage",
-          "amount": 8
+          "type": "draw",
+          "amount": 2
         }
       ],
-      "role": "ritual",
-      "family": "oracle_of_fate",
-      "direction": "NORTE",
-      "archetype": "oracle_of_fate",
-      "lore_text": "La Chakana sostiene el balance cosmico ante los Arcontes y el eco de Hiperborea.",
-      "author": "Mauricio",
-      "order": "Chakana",
-      "strategy": {
-        "set": "HIPERBOREA",
-        "archetype": "Oraculo Hiperboreo"
+      "family": "place",
+      "id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
+      "kpi": {
+        "harmony": 2,
+        "seal": 2,
+        "ritual": 1,
+        "draw": 2
       },
-      "artwork": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
-      "motif": "ancient_guardians",
-      "palette": "marble-ice-gold",
-      "energy": "aurora_combo_flow",
-      "symbol": "chakana_polar",
-      "kpi": {},
-      "set": "HIPERBOREA",
-      "set_emblem": "chakana_polar",
+      "lore_text": "Mirador del Tiempo Frio: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
+      "name": "Mirador del Tiempo Frio",
+      "name_es": "Mirador del Tiempo Frio",
+      "name_key": "Mirador del Tiempo Frio",
+      "rarity": "legendary",
+      "role": "ritual",
+      "strategy": {
+        "best_use": "Convertir armonia en daño/control una vez leida la mesa.",
+        "synergy_cards": [],
+        "weakness": "La run castiga rituales vacios."
+      },
+      "tags": [
+        "draw",
+        "harmony",
+        "hiperboria",
+        "place",
+        "ritual",
+        "seal"
+      ],
+      "target": "enemy",
       "taxonomy": "payoff",
+      "text_es": "Armonía +2, Consume Armonía 2, Ritual de la Trama, Roba 2",
+      "text_key": "Armonía +2, Consume Armonía 2, Ritual de la Trama, Roba 2",
       "legacy_id": "hip_oracle_of_fate_20",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
-      "legacy_artwork": "hip_oracle_of_fate_20"
+      "legacy_artwork": "hip_oracle_of_fate_20",
+      "motif": "cosmic_geometry",
+      "palette": "indigo-cyan",
+      "energy": "spiral_streams",
+      "symbol": "astral_eye",
+      "order": "Chakana",
+      "set": "hiperboria"
     }
   ]
 }
