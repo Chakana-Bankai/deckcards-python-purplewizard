@@ -2,7 +2,7 @@
   "items": {
     "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05.png",
@@ -42,7 +42,7 @@
     },
     "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08.png",
@@ -82,7 +82,7 @@
     },
     "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07.png",
@@ -122,7 +122,7 @@
     },
     "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06.png",
@@ -170,7 +170,7 @@
     },
     "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ": {
       "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESCUDO_DE_LUZ.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA": {
       "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA.png",
@@ -178,7 +178,7 @@
     },
     "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN": {
       "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA": {
       "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA.png",
@@ -210,7 +210,7 @@
     },
     "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA": {
       "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA": {
       "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA.png",
@@ -234,7 +234,7 @@
     },
     "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN": {
       "path": "game/assets/sprites/cards/BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA": {
       "path": "game/assets/sprites/cards/BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA.png",
@@ -242,7 +242,7 @@
     },
     "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL": {
       "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-INVOCACION_ASTRAL.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA": {
       "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA.png",
@@ -250,7 +250,7 @@
     },
     "BASE-ORACLE-RITUAL-PIEDRA_RITUAL": {
       "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PIEDRA_RITUAL.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA": {
       "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA.png",
@@ -274,7 +274,7 @@
     },
     "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE": {
       "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-FRAGMENTO_CELESTE.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA": {
       "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA.png",
@@ -282,7 +282,7 @@
     },
     "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO": {
       "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA": {
       "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA.png",
@@ -362,7 +362,7 @@
     },
     "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ": {
       "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-CHAKANA_DE_LUZ.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA": {
       "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA.png",
@@ -446,7 +446,7 @@
     },
     "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II": {
       "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII": {
       "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII.png",
@@ -462,11 +462,11 @@
     },
     "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX": {
       "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV": {
       "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX": {
       "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX.png",
@@ -482,7 +482,7 @@
     },
     "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II": {
       "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII": {
       "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII.png",
@@ -502,7 +502,7 @@
     },
     "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I": {
       "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     },
     "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III": {
       "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III.png",
@@ -638,7 +638,7 @@
     },
     "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX": {
       "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX.png",
-      "mode": "existing"
+      "mode": "direct_single_pass"
     }
   }
 }

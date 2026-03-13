@@ -1,17 +1,19 @@
 {
-  "gold": 230,
+  "gold": 129,
   "relics": [
     "violet_seal"
   ],
   "relic_slots_max": 8,
   "player": {
-    "hp": 60,
-    "max_hp": 60,
-    "block": 4,
+    "hp": 62,
+    "max_hp": 62,
+    "block": 8,
     "energy": 0,
     "rupture": 0,
-    "statuses": {},
-    "harmony_current": 2,
+    "statuses": {
+      "discount_next_attack": 1
+    },
+    "harmony_current": 0,
     "harmony_max": 10,
     "harmony_ready_threshold": 6,
     "harmony_ready": false,
@@ -20,7 +22,6 @@
     "seal_active": false
   },
   "deck": [
-    "BASE-SOLAR-ATTACK-FILO_ASTRAL",
     "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
     "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
     "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
@@ -45,11 +46,7 @@
     "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA",
     "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
     "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA",
-    "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
-    "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
-    "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
-    "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA",
-    "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO"
+    "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA"
   ],
   "map": [
     [
@@ -79,7 +76,7 @@
           "2_0",
           "2_1"
         ],
-        "state": "available"
+        "state": "cleared"
       },
       {
         "id": "1_1",
@@ -105,7 +102,7 @@
           "2_2",
           "2_3"
         ],
-        "state": "cleared"
+        "state": "available"
       },
       {
         "id": "1_3",
@@ -127,7 +124,7 @@
         "col": 2,
         "x": 804,
         "y": 396,
-        "type": "challenge",
+        "type": "combat",
         "biome": "kaypacha",
         "next": [
           "3_0",
@@ -159,7 +156,7 @@
           "3_2",
           "3_3"
         ],
-        "state": "available"
+        "state": "locked"
       },
       {
         "id": "2_3",
@@ -172,7 +169,7 @@
           "3_3",
           "3_2"
         ],
-        "state": "available"
+        "state": "locked"
       }
     ],
     [
@@ -275,10 +272,10 @@
   ],
   "biome_index": 0,
   "biome": "ukhu",
-  "xp": 12,
-  "level": 3,
-  "combats_won": 2,
-  "tutorial_combats_won": 2,
+  "xp": 7,
+  "level": 2,
+  "combats_won": 1,
+  "tutorial_combats_won": 1,
   "allow_defeat_continue": true,
   "settings": {
     "turn_timer_enabled": true,
@@ -298,14 +295,14 @@
   },
   "meta_director": {
     "recent_enemy_ids": [
-      "sabueso_sombrio",
-      "larva_del_vacio"
+      "sabueso_sombrio"
     ],
-    "recent_event_ids": [],
+    "recent_event_ids": [
+      "chakana_crossroads"
+    ],
     "recent_shop_card_ids": [],
     "recent_pack_ids": [
-      "hiperborea_pack",
-      "base_pack"
+      "hiperborea_pack"
     ],
     "visual_direction_tags": [
       "biome:ukhu",
@@ -319,9 +316,9 @@
   },
   "hiperboria_unlock_target": 3,
   "civilization": "base_world",
-  "last_node_type": "challenge",
-  "levelup_pending": 2,
-  "current_node_id": "1_2",
+  "last_node_type": "combat",
+  "levelup_pending": 1,
+  "current_node_id": "1_0",
   "last_biome_seen": "ukhu",
-  "saved_at": 1773365429
+  "saved_at": 1773367455
 }

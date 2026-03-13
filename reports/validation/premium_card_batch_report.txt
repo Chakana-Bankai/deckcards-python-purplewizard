@@ -1,9 +1,18 @@
 status=ok
 engine=direct_single_pass
 batch=starter_showcase
-cards=3
+cards=12
 layer_standard=background_base,environment,subject_character,focus_object,magic_effects,integration_depth_pass
 composition_rule=background+environment+subject+object+effects+integration
-BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO|engine=direct_single_pass|generator=assembly_pipeline_v1|family=attack|refs=guardian 01,guardian 02,guardian 03
-HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX|engine=direct_single_pass|generator=assembly_pipeline_v1|family=ritual|refs=guardian 01,guardian 02,guardian 03
-ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39|engine=direct_single_pass|generator=assembly_pipeline_v1|family=ritual|refs=guardian 01,guardian 02,guardian 03
+BASE-GUIDE-GUARD-ESCUDO_DE_LUZ|engine=direct_single_pass|generator=assembly_pipeline_v1|family=defense|refs=guardian 01,guardian 02,guardian 03
+BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN|engine=direct_single_pass|generator=assembly_pipeline_v1|family=control|refs=guardian 01,guardian 02,guardian 03
+BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN|engine=direct_single_pass|generator=assembly_pipeline_v1|family=defense|refs=guardian 01,guardian 02,guardian 03
+BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA|engine=direct_single_pass|generator=assembly_pipeline_v1|family=defense|refs=guardian 01,guardian 02,guardian 03
+HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II|engine=direct_single_pass|generator=assembly_pipeline_v1|family=ritual|refs=guardian 01,guardian 02,guardian 03
+HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV|engine=direct_single_pass|generator=assembly_pipeline_v1|family=control|refs=guardian 01,guardian 02,guardian 03
+BASE-ORACLE-SKILL-FRAGMENTO_CELESTE|engine=direct_single_pass|generator=assembly_pipeline_v1|family=control|refs=guardian 01,guardian 02,guardian 03
+BASE-ORACLE-RITUAL-INVOCACION_ASTRAL|engine=direct_single_pass|generator=assembly_pipeline_v1|family=ritual|refs=guardian 01,guardian 02,guardian 03
+BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO|engine=direct_single_pass|generator=assembly_pipeline_v1|family=control|refs=guardian 01,guardian 02,guardian 03
+BASE-ORACLE-RITUAL-PIEDRA_RITUAL|engine=direct_single_pass|generator=assembly_pipeline_v1|family=ritual|refs=guardian 01,guardian 02,guardian 03
+HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I|engine=direct_single_pass|generator=assembly_pipeline_v1|family=control|refs=guardian 01,guardian 02,guardian 03
+HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II|engine=direct_single_pass|generator=assembly_pipeline_v1|family=ritual|refs=guardian 01,guardian 02,guardian 03
