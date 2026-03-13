@@ -4,11 +4,11 @@
   "items": {
     "menu": {
       "path": "game/assets/music/menu.wav",
-      "mode": "missing_only"
+      "mode": "force"
     },
     "map_kaypacha": {
       "path": "game/assets/music/map_kaypacha.wav",
-      "mode": "missing_only"
+      "mode": "force"
     },
     "map_hanan": {
       "path": "game/audio/generated/bgm/map_hanan_a.wav",
@@ -24,7 +24,7 @@
     },
     "combat_kaypacha": {
       "path": "game/assets/music/combat_kaypacha.wav",
-      "mode": "missing_only"
+      "mode": "force"
     },
     "combat_ukhu": {
       "path": "game/audio/generated/bgm/combat_a.wav",
@@ -40,7 +40,7 @@
     },
     "boss": {
       "path": "game/assets/music/boss.wav",
-      "mode": "missing_only"
+      "mode": "force"
     },
     "shop": {
       "path": "game/audio/generated/bgm/shop_a.wav",
@@ -50,7 +50,7 @@
     },
     "event": {
       "path": "game/assets/music/event.wav",
-      "mode": "missing_only"
+      "mode": "force"
     },
     "reward": {
       "path": "game/audio/generated/bgm/victory_a.wav",

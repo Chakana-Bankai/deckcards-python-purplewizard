@@ -141,11 +141,14 @@ class AssetManager:
                     src = "visual_generated"
                 except Exception:
                     img = None
-            if img is None:
-                img = self._load_image(path, size, fallback, fallback_label=lbl)
-                src = "fallback"
+        if img is None:
+            img = self._load_image(path, size, fallback, fallback_label=lbl)
+            src = "fallback"
         if img.get_size() != size:
-            img = pygame.transform.scale(img, size)
+            if str(category).lower() in {"cards", "relics", "avatar", "player", "enemies", "guides", "emblems", "overlays"}:
+                img = pygame.transform.smoothscale(img, size)
+            else:
+                img = pygame.transform.scale(img, size)
         if str(category).lower() in {"avatar", "player", "enemies", "biomes"}:
             lk = f"{str(category).lower()}:{str(name).lower()}:{src}"
             if lk not in self._load_logged:

@@ -26,7 +26,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "ESTE",
-      "effect_text": "Daño 5, Bloqueo 2",
+      "effect_text": "Daño 5, Bloq. 2",
       "effects": [
         {
           "type": "damage",
@@ -43,7 +43,7 @@
         "damage": 5,
         "block": 2
       },
-      "lore_text": "Halcon del Septimo Sol: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
+      "lore_text": "Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
       "name": "Halcon del Septimo Sol",
       "name_es": "Halcon del Septimo Sol",
       "name_key": "Halcon del Septimo Sol",
@@ -61,8 +61,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Daño 5, Bloqueo 2",
-      "text_key": "Daño 5, Bloqueo 2",
+      "text_es": "Daño 5, Bloq. 2",
+      "text_key": "Daño 5, Bloq. 2",
       "legacy_id": "hip_cosmic_warrior_01",
       "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
       "legacy_artwork": "hip_cosmic_warrior_01",
@@ -79,7 +79,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "ESTE",
-      "effect_text": "Daño 3, Daño 4 si hay Ruptura",
+      "effect_text": "Daño 3, Daño 4 si Ruptura",
       "effects": [
         {
           "type": "damage",
@@ -95,7 +95,7 @@
       "kpi": {
         "damage": 3
       },
-      "lore_text": "Llama de Guerra Celeste: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
+      "lore_text": "Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
       "name": "Llama de Guerra Celeste",
       "name_es": "Llama de Guerra Celeste",
       "name_key": "Llama de Guerra Celeste",
@@ -114,8 +114,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Daño 3, Daño 4 si hay Ruptura",
-      "text_key": "Daño 3, Daño 4 si hay Ruptura",
+      "text_es": "Daño 3, Daño 4 si Ruptura",
+      "text_key": "Daño 3, Daño 4 si Ruptura",
       "legacy_id": "hip_cosmic_warrior_02",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
       "legacy_artwork": "hip_cosmic_warrior_02",
@@ -132,7 +132,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "ESTE",
-      "effect_text": "Daño 4, Próx. ataque cuesta -1",
+      "effect_text": "Daño 4, Próx. ataque -1",
       "effects": [
         {
           "type": "damage",
@@ -148,7 +148,7 @@
       "kpi": {
         "damage": 4
       },
-      "lore_text": "Toro de Meteorito Vivo: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
+      "lore_text": "Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
       "name": "Toro de Meteorito Vivo",
       "name_es": "Toro de Meteorito Vivo",
       "name_key": "Toro de Meteorito Vivo",
@@ -166,8 +166,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Daño 4, Próx. ataque cuesta -1",
-      "text_key": "Daño 4, Próx. ataque cuesta -1",
+      "text_es": "Daño 4, Próx. ataque -1",
+      "text_key": "Daño 4, Próx. ataque -1",
       "legacy_id": "hip_cosmic_warrior_03",
       "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
       "legacy_artwork": "hip_cosmic_warrior_03",
@@ -184,7 +184,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "ESTE",
-      "effect_text": "Energía +1 si el enemigo ataca, Daño 5",
+      "effect_text": "Energía +1 si ataca, Daño 5",
       "effects": [
         {
           "type": "gain_mana_if_enemy_attack_intent",
@@ -201,7 +201,7 @@
         "energy": 1,
         "damage": 5
       },
-      "lore_text": "Zorro del Alba Cortante: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
+      "lore_text": "Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
       "name": "Zorro del Alba Cortante",
       "name_es": "Zorro del Alba Cortante",
       "name_key": "Zorro del Alba Cortante",
@@ -220,8 +220,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Energía +1 si el enemigo ataca, Daño 5",
-      "text_key": "Energía +1 si el enemigo ataca, Daño 5",
+      "text_es": "Energía +1 si ataca, Daño 5",
+      "text_key": "Energía +1 si ataca, Daño 5",
       "legacy_id": "hip_cosmic_warrior_04",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
       "legacy_artwork": "hip_cosmic_warrior_04",
@@ -254,7 +254,7 @@
       "kpi": {
         "damage": 5
       },
-      "lore_text": "Leon del Cielo Roto: Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
+      "lore_text": "Hiperborea graba al guerrero en hielo vivo: cada criatura exige un remate.",
       "name": "Leon del Cielo Roto",
       "name_es": "Leon del Cielo Roto",
       "name_key": "Leon del Cielo Roto",
@@ -308,7 +308,7 @@
         "damage": 4,
         "rupture": 1
       },
-      "lore_text": "Guarda del Horizonte Rojo: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
+      "lore_text": "Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
       "name": "Guarda del Horizonte Rojo",
       "name_es": "Guarda del Horizonte Rojo",
       "name_key": "Guarda del Horizonte Rojo",
@@ -344,7 +344,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "SUR",
-      "effect_text": "Daño 3, Daño 4 si hay Ruptura",
+      "effect_text": "Daño 3, Daño 4 si Ruptura",
       "effects": [
         {
           "type": "damage",
@@ -360,7 +360,7 @@
       "kpi": {
         "damage": 3
       },
-      "lore_text": "Navegante de Cometas: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
+      "lore_text": "Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
       "name": "Navegante de Cometas",
       "name_es": "Navegante de Cometas",
       "name_key": "Navegante de Cometas",
@@ -379,8 +379,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Daño 3, Daño 4 si hay Ruptura",
-      "text_key": "Daño 3, Daño 4 si hay Ruptura",
+      "text_es": "Daño 3, Daño 4 si Ruptura",
+      "text_key": "Daño 3, Daño 4 si Ruptura",
       "legacy_id": "hip_cosmic_warrior_07",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII",
       "legacy_artwork": "hip_cosmic_warrior_07",
@@ -413,7 +413,7 @@
       "kpi": {
         "damage": 4
       },
-      "lore_text": "Capitan del Pulso Boreal: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
+      "lore_text": "Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
       "name": "Capitan del Pulso Boreal",
       "name_es": "Capitan del Pulso Boreal",
       "name_key": "Capitan del Pulso Boreal",
@@ -471,7 +471,7 @@
         "damage": 3,
         "rupture": 1
       },
-      "lore_text": "Portadora de la Corona de Fuego: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
+      "lore_text": "Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
       "name": "Portadora de la Corona de Fuego",
       "name_es": "Portadora de la Corona de Fuego",
       "name_key": "Portadora de la Corona de Fuego",
@@ -524,7 +524,7 @@
       "kpi": {
         "damage": 5
       },
-      "lore_text": "Maestro de la Fractura Serena: Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
+      "lore_text": "Los campeones boreales giran la ventaja hacia secuencias de burst mas limpias.",
       "name": "Maestro de la Fractura Serena",
       "name_es": "Maestro de la Fractura Serena",
       "name_key": "Maestro de la Fractura Serena",
@@ -573,7 +573,7 @@
       "kpi": {
         "damage": 6
       },
-      "lore_text": "Cinturon de Runa Roja: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
+      "lore_text": "Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
       "name": "Cinturon de Runa Roja",
       "name_es": "Cinturon de Runa Roja",
       "name_key": "Cinturon de Runa Roja",
@@ -608,7 +608,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "OESTE",
-      "effect_text": "Daño 3, Daño 4 si hay Ruptura",
+      "effect_text": "Daño 3, Daño 4 si Ruptura",
       "effects": [
         {
           "type": "damage",
@@ -624,7 +624,7 @@
       "kpi": {
         "damage": 3
       },
-      "lore_text": "Tambor del Impacto Astral: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
+      "lore_text": "Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
       "name": "Tambor del Impacto Astral",
       "name_es": "Tambor del Impacto Astral",
       "name_key": "Tambor del Impacto Astral",
@@ -643,8 +643,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Daño 3, Daño 4 si hay Ruptura",
-      "text_key": "Daño 3, Daño 4 si hay Ruptura",
+      "text_es": "Daño 3, Daño 4 si Ruptura",
+      "text_key": "Daño 3, Daño 4 si Ruptura",
       "legacy_id": "hip_cosmic_warrior_12",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII",
       "legacy_artwork": "hip_cosmic_warrior_12",
@@ -661,7 +661,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "OESTE",
-      "effect_text": "Daño 5, Bloqueo 2",
+      "effect_text": "Daño 5, Bloq. 2",
       "effects": [
         {
           "type": "damage",
@@ -678,7 +678,7 @@
         "damage": 5,
         "block": 2
       },
-      "lore_text": "Arnes del Jaguar Solar: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
+      "lore_text": "Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
       "name": "Arnes del Jaguar Solar",
       "name_es": "Arnes del Jaguar Solar",
       "name_key": "Arnes del Jaguar Solar",
@@ -696,8 +696,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Daño 5, Bloqueo 2",
-      "text_key": "Daño 5, Bloqueo 2",
+      "text_es": "Daño 5, Bloq. 2",
+      "text_key": "Daño 5, Bloq. 2",
       "legacy_id": "hip_cosmic_warrior_13",
       "canonical_id": "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
       "legacy_artwork": "hip_cosmic_warrior_13",
@@ -714,7 +714,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "OESTE",
-      "effect_text": "Energía sig. turno +1, Daño 4",
+      "effect_text": "Energía sig. +1, Daño 4",
       "effects": [
         {
           "type": "gain_mana_next_turn",
@@ -731,7 +731,7 @@
         "energy": 1,
         "damage": 4
       },
-      "lore_text": "Casco de Obsidiana Viva: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
+      "lore_text": "Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
       "name": "Casco de Obsidiana Viva",
       "name_es": "Casco de Obsidiana Viva",
       "name_key": "Casco de Obsidiana Viva",
@@ -749,8 +749,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Energía sig. turno +1, Daño 4",
-      "text_key": "Energía sig. turno +1, Daño 4",
+      "text_es": "Energía sig. +1, Daño 4",
+      "text_key": "Energía sig. +1, Daño 4",
       "legacy_id": "hip_cosmic_warrior_14",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV",
       "legacy_artwork": "hip_cosmic_warrior_14",
@@ -783,7 +783,7 @@
       "kpi": {
         "damage": 5
       },
-      "lore_text": "Brasa del Condor Antiguo: Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
+      "lore_text": "Los objetos polares aceleran energia, ruptura y castigo sobre enemigos abiertos.",
       "name": "Brasa del Condor Antiguo",
       "name_es": "Brasa del Condor Antiguo",
       "name_key": "Brasa del Condor Antiguo",
@@ -832,7 +832,7 @@
       "kpi": {
         "damage": 7
       },
-      "lore_text": "Camino del Primer Relampago: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
+      "lore_text": "Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
       "name": "Camino del Primer Relampago",
       "name_es": "Camino del Primer Relampago",
       "name_key": "Camino del Primer Relampago",
@@ -867,7 +867,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "NORTE",
-      "effect_text": "Daño 3, Daño 4 si hay Ruptura",
+      "effect_text": "Daño 3, Daño 4 si Ruptura",
       "effects": [
         {
           "type": "damage",
@@ -883,7 +883,7 @@
       "kpi": {
         "damage": 3
       },
-      "lore_text": "Mirador del Jaguar Espejo: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
+      "lore_text": "Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
       "name": "Mirador del Jaguar Espejo",
       "name_es": "Mirador del Jaguar Espejo",
       "name_key": "Mirador del Jaguar Espejo",
@@ -902,8 +902,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Daño 3, Daño 4 si hay Ruptura",
-      "text_key": "Daño 3, Daño 4 si hay Ruptura",
+      "text_es": "Daño 3, Daño 4 si Ruptura",
+      "text_key": "Daño 3, Daño 4 si Ruptura",
       "legacy_id": "hip_cosmic_warrior_17",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
       "legacy_artwork": "hip_cosmic_warrior_17",
@@ -937,7 +937,7 @@
         "damage": 4,
         "rupture": 1
       },
-      "lore_text": "Plaza de la Aurora Belica: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
+      "lore_text": "Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
       "name": "Plaza de la Aurora Belica",
       "name_es": "Plaza de la Aurora Belica",
       "name_key": "Plaza de la Aurora Belica",
@@ -973,7 +973,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "NORTE",
-      "effect_text": "Energía +1 si el enemigo ataca, Daño 5",
+      "effect_text": "Energía +1 si ataca, Daño 5",
       "effects": [
         {
           "type": "gain_mana_if_enemy_attack_intent",
@@ -990,7 +990,7 @@
         "energy": 1,
         "damage": 5
       },
-      "lore_text": "Santuario del Filo Resonante: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
+      "lore_text": "Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
       "name": "Santuario del Filo Resonante",
       "name_es": "Santuario del Filo Resonante",
       "name_key": "Santuario del Filo Resonante",
@@ -1009,8 +1009,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Energía +1 si el enemigo ataca, Daño 5",
-      "text_key": "Energía +1 si el enemigo ataca, Daño 5",
+      "text_es": "Energía +1 si ataca, Daño 5",
+      "text_key": "Energía +1 si ataca, Daño 5",
       "legacy_id": "hip_cosmic_warrior_19",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX",
       "legacy_artwork": "hip_cosmic_warrior_19",
@@ -1027,7 +1027,7 @@
       "author": "Chakana Studio",
       "cost": 3,
       "direction": "NORTE",
-      "effect_text": "Energía +1, Daño 6 +2 por Ruptura, Roba 1 si hay Ruptura",
+      "effect_text": "Energía +1, Daño 6 +2/Ruptura, Roba 1 si Ruptura",
       "effects": [
         {
           "type": "gain_mana",
@@ -1050,7 +1050,7 @@
         "energy": 1,
         "damage": 8
       },
-      "lore_text": "Forja del Ultimo Cometa: Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
+      "lore_text": "Los escenarios boreales fuerzan lineas ofensivas distintas en cada run.",
       "name": "Forja del Ultimo Cometa",
       "name_es": "Forja del Ultimo Cometa",
       "name_key": "Forja del Ultimo Cometa",
@@ -1071,8 +1071,8 @@
       ],
       "target": "enemy",
       "taxonomy": "payoff",
-      "text_es": "Energía +1, Daño 6 +2 por Ruptura, Roba 1 si hay Ruptura",
-      "text_key": "Energía +1, Daño 6 +2 por Ruptura, Roba 1 si hay Ruptura",
+      "text_es": "Energía +1, Daño 6 +2/Ruptura, Roba 1 si Ruptura",
+      "text_key": "Energía +1, Daño 6 +2/Ruptura, Roba 1 si Ruptura",
       "legacy_id": "hip_cosmic_warrior_20",
       "canonical_id": "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX",
       "legacy_artwork": "hip_cosmic_warrior_20",
@@ -1089,7 +1089,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "SUR",
-      "effect_text": "Bloqueo 6, Armonía +1",
+      "effect_text": "Bloq. 6, Arm. +1",
       "effects": [
         {
           "type": "gain_block",
@@ -1106,7 +1106,7 @@
         "block": 6,
         "harmony": 1
       },
-      "lore_text": "Venado del Manto Boreal: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
+      "lore_text": "El Santuario Blanco enseña a bloquear sin caer en pasividad.",
       "name": "Venado del Manto Boreal",
       "name_es": "Venado del Manto Boreal",
       "name_key": "Venado del Manto Boreal",
@@ -1125,8 +1125,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Bloqueo 6, Armonía +1",
-      "text_key": "Bloqueo 6, Armonía +1",
+      "text_es": "Bloq. 6, Arm. +1",
+      "text_key": "Bloq. 6, Arm. +1",
       "legacy_id": "hip_harmony_guardian_01",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I",
       "legacy_artwork": "hip_harmony_guardian_01",
@@ -1143,7 +1143,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "SUR",
-      "effect_text": "Bloqueo 7, Consume Armonía 2, Cura 3",
+      "effect_text": "Bloq. 7, Consume Arm. 2, Cura 3, Daño 5",
       "effects": [
         {
           "type": "gain_block",
@@ -1156,6 +1156,10 @@
         {
           "type": "heal",
           "amount": 3
+        },
+        {
+          "type": "damage",
+          "amount": 5
         }
       ],
       "family": "creature",
@@ -1163,9 +1167,10 @@
       "kpi": {
         "block": 7,
         "seal": 2,
-        "support": 3
+        "support": 3,
+        "damage": 5
       },
-      "lore_text": "Oso del Alba Blanca: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
+      "lore_text": "El Santuario Blanco enseña a bloquear sin caer en pasividad.",
       "name": "Oso del Alba Blanca",
       "name_es": "Oso del Alba Blanca",
       "name_key": "Oso del Alba Blanca",
@@ -1177,16 +1182,18 @@
         "weakness": "Castiga gastar armonia demasiado pronto."
       },
       "tags": [
+        "attack",
         "block",
         "creature",
         "heal",
+        "hiperboria",
         "ritual",
         "seal"
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 7, Consume Armonía 2, Cura 3",
-      "text_key": "Bloqueo 7, Consume Armonía 2, Cura 3",
+      "text_es": "Bloq. 7, Consume Arm. 2, Cura 3, Daño 5",
+      "text_key": "Bloq. 7, Consume Arm. 2, Cura 3, Daño 5",
       "legacy_id": "hip_harmony_guardian_02",
       "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II",
       "legacy_artwork": "hip_harmony_guardian_02",
@@ -1203,7 +1210,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "SUR",
-      "effect_text": "Bloqueo 4, Debilita 1",
+      "effect_text": "Bloq. 4, Debilita 1",
       "effects": [
         {
           "type": "gain_block",
@@ -1220,7 +1227,7 @@
         "block": 4,
         "support": 1
       },
-      "lore_text": "Serpiente del Hielo Manso: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
+      "lore_text": "El Santuario Blanco enseña a bloquear sin caer en pasividad.",
       "name": "Serpiente del Hielo Manso",
       "name_es": "Serpiente del Hielo Manso",
       "name_key": "Serpiente del Hielo Manso",
@@ -1239,8 +1246,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Bloqueo 4, Debilita 1",
-      "text_key": "Bloqueo 4, Debilita 1",
+      "text_es": "Bloq. 4, Debilita 1",
+      "text_key": "Bloq. 4, Debilita 1",
       "legacy_id": "hip_harmony_guardian_03",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III",
       "legacy_artwork": "hip_harmony_guardian_03",
@@ -1257,7 +1264,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "SUR",
-      "effect_text": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "effect_text": "Bloq. 3, Ruptura +1, Arm. +1, Daño 3",
       "effects": [
         {
           "type": "gain_block",
@@ -1270,6 +1277,10 @@
         {
           "type": "harmony_delta",
           "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 3
         }
       ],
       "family": "creature",
@@ -1277,9 +1288,10 @@
       "kpi": {
         "block": 3,
         "rupture": 1,
-        "harmony": 1
+        "harmony": 1,
+        "damage": 3
       },
-      "lore_text": "Zorzal del Faro Niveo: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
+      "lore_text": "El Santuario Blanco enseña a bloquear sin caer en pasividad.",
       "name": "Zorzal del Faro Niveo",
       "name_es": "Zorzal del Faro Niveo",
       "name_key": "Zorzal del Faro Niveo",
@@ -1291,16 +1303,18 @@
         "weakness": "Pierde ritmo ante manos sin payoff."
       },
       "tags": [
+        "attack",
         "block",
         "control",
         "creature",
         "harmony",
+        "hiperboria",
         "rupture"
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 3, Ruptura +1, Armonía +1",
-      "text_key": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "text_es": "Bloq. 3, Ruptura +1, Arm. +1, Daño 3",
+      "text_key": "Bloq. 3, Ruptura +1, Arm. +1, Daño 3",
       "legacy_id": "hip_harmony_guardian_04",
       "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV",
       "legacy_artwork": "hip_harmony_guardian_04",
@@ -1317,7 +1331,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "SUR",
-      "effect_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "effect_text": "Bloq. 6 si no repites dir., Arm. +1",
       "effects": [
         {
           "type": "gain_block_if_no_direction",
@@ -1333,7 +1347,7 @@
       "kpi": {
         "harmony": 1
       },
-      "lore_text": "Alpaca del Circulo Polar: El Santuario Blanco enseña a bloquear sin caer en pasividad.",
+      "lore_text": "El Santuario Blanco enseña a bloquear sin caer en pasividad.",
       "name": "Alpaca del Circulo Polar",
       "name_es": "Alpaca del Circulo Polar",
       "name_key": "Alpaca del Circulo Polar",
@@ -1353,8 +1367,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 6 si no repetiste dirección, Armonía +1",
-      "text_key": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "text_es": "Bloq. 6 si no repites dir., Arm. +1",
+      "text_key": "Bloq. 6 si no repites dir., Arm. +1",
       "legacy_id": "hip_harmony_guardian_05",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V",
       "legacy_artwork": "hip_harmony_guardian_05",
@@ -1371,7 +1385,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "OESTE",
-      "effect_text": "Bloqueo 6, Armonía +1",
+      "effect_text": "Bloq. 6, Arm. +1",
       "effects": [
         {
           "type": "gain_block",
@@ -1388,7 +1402,7 @@
         "block": 6,
         "harmony": 1
       },
-      "lore_text": "Priora del Santuario Blanco: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
+      "lore_text": "Las voces boreales premian armonia lista, defensa activa y castigo medido.",
       "name": "Priora del Santuario Blanco",
       "name_es": "Priora del Santuario Blanco",
       "name_key": "Priora del Santuario Blanco",
@@ -1407,8 +1421,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 6, Armonía +1",
-      "text_key": "Bloqueo 6, Armonía +1",
+      "text_es": "Bloq. 6, Arm. +1",
+      "text_key": "Bloq. 6, Arm. +1",
       "legacy_id": "hip_harmony_guardian_06",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI",
       "legacy_artwork": "hip_harmony_guardian_06",
@@ -1425,7 +1439,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "OESTE",
-      "effect_text": "Bloqueo 5, Consume Armonía 2, Debilita 2",
+      "effect_text": "Bloq. 5, Consume Arm. 2, Debilita 2, Daño 5",
       "effects": [
         {
           "type": "gain_block",
@@ -1438,6 +1452,10 @@
         {
           "type": "weaken_enemy",
           "amount": 2
+        },
+        {
+          "type": "damage",
+          "amount": 5
         }
       ],
       "family": "subject",
@@ -1445,9 +1463,10 @@
       "kpi": {
         "block": 5,
         "seal": 2,
-        "support": 2
+        "support": 2,
+        "damage": 5
       },
-      "lore_text": "Centinela de la Aurora Quieta: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
+      "lore_text": "Las voces boreales premian armonia lista, defensa activa y castigo medido.",
       "name": "Centinela de la Aurora Quieta",
       "name_es": "Centinela de la Aurora Quieta",
       "name_key": "Centinela de la Aurora Quieta",
@@ -1459,16 +1478,18 @@
         "weakness": "Castiga gastar armonia demasiado pronto."
       },
       "tags": [
+        "attack",
         "block",
         "debuff",
+        "hiperboria",
         "ritual",
         "seal",
         "subject"
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 5, Consume Armonía 2, Debilita 2",
-      "text_key": "Bloqueo 5, Consume Armonía 2, Debilita 2",
+      "text_es": "Bloq. 5, Consume Arm. 2, Debilita 2, Daño 5",
+      "text_key": "Bloq. 5, Consume Arm. 2, Debilita 2, Daño 5",
       "legacy_id": "hip_harmony_guardian_07",
       "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII",
       "legacy_artwork": "hip_harmony_guardian_07",
@@ -1485,7 +1506,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "OESTE",
-      "effect_text": "Bloqueo 4, Debilita 1",
+      "effect_text": "Bloq. 4, Debilita 1",
       "effects": [
         {
           "type": "gain_block",
@@ -1502,7 +1523,7 @@
         "block": 4,
         "support": 1
       },
-      "lore_text": "Tejedora del Nudo Frio: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
+      "lore_text": "Las voces boreales premian armonia lista, defensa activa y castigo medido.",
       "name": "Tejedora del Nudo Frio",
       "name_es": "Tejedora del Nudo Frio",
       "name_key": "Tejedora del Nudo Frio",
@@ -1521,8 +1542,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 4, Debilita 1",
-      "text_key": "Bloqueo 4, Debilita 1",
+      "text_es": "Bloq. 4, Debilita 1",
+      "text_key": "Bloq. 4, Debilita 1",
       "legacy_id": "hip_harmony_guardian_08",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII",
       "legacy_artwork": "hip_harmony_guardian_08",
@@ -1539,7 +1560,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "OESTE",
-      "effect_text": "Bloqueo 5, Roba 1",
+      "effect_text": "Bloq. 5, Roba 1",
       "effects": [
         {
           "type": "gain_block",
@@ -1556,7 +1577,7 @@
         "block": 5,
         "draw": 1
       },
-      "lore_text": "Guarda del Velo Niveo: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
+      "lore_text": "Las voces boreales premian armonia lista, defensa activa y castigo medido.",
       "name": "Guarda del Velo Niveo",
       "name_es": "Guarda del Velo Niveo",
       "name_key": "Guarda del Velo Niveo",
@@ -1575,8 +1596,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Bloqueo 5, Roba 1",
-      "text_key": "Bloqueo 5, Roba 1",
+      "text_es": "Bloq. 5, Roba 1",
+      "text_key": "Bloq. 5, Roba 1",
       "legacy_id": "hip_harmony_guardian_09",
       "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
       "legacy_artwork": "hip_harmony_guardian_09",
@@ -1593,7 +1614,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "OESTE",
-      "effect_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "effect_text": "Bloq. 6 si no repites dir., Arm. +1",
       "effects": [
         {
           "type": "gain_block_if_no_direction",
@@ -1609,7 +1630,7 @@
       "kpi": {
         "harmony": 1
       },
-      "lore_text": "Oficiante de la Runa Serena: Las voces boreales premian armonia lista, defensa activa y castigo medido.",
+      "lore_text": "Las voces boreales premian armonia lista, defensa activa y castigo medido.",
       "name": "Oficiante de la Runa Serena",
       "name_es": "Oficiante de la Runa Serena",
       "name_key": "Oficiante de la Runa Serena",
@@ -1629,8 +1650,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 6 si no repetiste dirección, Armonía +1",
-      "text_key": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "text_es": "Bloq. 6 si no repites dir., Arm. +1",
+      "text_key": "Bloq. 6 si no repites dir., Arm. +1",
       "legacy_id": "hip_harmony_guardian_10",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X",
       "legacy_artwork": "hip_harmony_guardian_10",
@@ -1647,7 +1668,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "ESTE",
-      "effect_text": "Bloqueo 6, Armonía +1",
+      "effect_text": "Bloq. 6, Arm. +1",
       "effects": [
         {
           "type": "gain_block",
@@ -1664,7 +1685,7 @@
         "block": 6,
         "harmony": 1
       },
-      "lore_text": "Campana de la Escarcha Pura: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
+      "lore_text": "Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
       "name": "Campana de la Escarcha Pura",
       "name_es": "Campana de la Escarcha Pura",
       "name_key": "Campana de la Escarcha Pura",
@@ -1683,8 +1704,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Bloqueo 6, Armonía +1",
-      "text_key": "Bloqueo 6, Armonía +1",
+      "text_es": "Bloq. 6, Arm. +1",
+      "text_key": "Bloq. 6, Arm. +1",
       "legacy_id": "hip_harmony_guardian_11",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
       "legacy_artwork": "hip_harmony_guardian_11",
@@ -1701,7 +1722,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "ESTE",
-      "effect_text": "Bloqueo 6, Consume Armonía 1, Daño 4",
+      "effect_text": "Bloq. 6, Consume Arm. 1, Daño 4",
       "effects": [
         {
           "type": "gain_block",
@@ -1723,7 +1744,7 @@
         "seal": 1,
         "damage": 4
       },
-      "lore_text": "Escudo del Ancla Boreal: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
+      "lore_text": "Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
       "name": "Escudo del Ancla Boreal",
       "name_es": "Escudo del Ancla Boreal",
       "name_key": "Escudo del Ancla Boreal",
@@ -1743,8 +1764,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 6, Consume Armonía 1, Daño 4",
-      "text_key": "Bloqueo 6, Consume Armonía 1, Daño 4",
+      "text_es": "Bloq. 6, Consume Arm. 1, Daño 4",
+      "text_key": "Bloq. 6, Consume Arm. 1, Daño 4",
       "legacy_id": "hip_harmony_guardian_12",
       "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII",
       "legacy_artwork": "hip_harmony_guardian_12",
@@ -1761,7 +1782,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "ESTE",
-      "effect_text": "Bloqueo 4, Debilita 1",
+      "effect_text": "Bloq. 4, Debilita 1",
       "effects": [
         {
           "type": "gain_block",
@@ -1778,7 +1799,7 @@
         "block": 4,
         "support": 1
       },
-      "lore_text": "Maza del Hielo Paciente: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
+      "lore_text": "Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
       "name": "Maza del Hielo Paciente",
       "name_es": "Maza del Hielo Paciente",
       "name_key": "Maza del Hielo Paciente",
@@ -1797,8 +1818,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 4, Debilita 1",
-      "text_key": "Bloqueo 4, Debilita 1",
+      "text_es": "Bloq. 4, Debilita 1",
+      "text_key": "Bloq. 4, Debilita 1",
       "legacy_id": "hip_harmony_guardian_13",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII",
       "legacy_artwork": "hip_harmony_guardian_13",
@@ -1815,7 +1836,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "ESTE",
-      "effect_text": "Bloqueo 4, Prever 2",
+      "effect_text": "Bloq. 4, Prever 2",
       "effects": [
         {
           "type": "gain_block",
@@ -1832,7 +1853,7 @@
         "block": 4,
         "scry": 2
       },
-      "lore_text": "Anillo de Nieve Ritual: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
+      "lore_text": "Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
       "name": "Anillo de Nieve Ritual",
       "name_es": "Anillo de Nieve Ritual",
       "name_key": "Anillo de Nieve Ritual",
@@ -1851,8 +1872,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 4, Prever 2",
-      "text_key": "Bloqueo 4, Prever 2",
+      "text_es": "Bloq. 4, Prever 2",
+      "text_key": "Bloq. 4, Prever 2",
       "legacy_id": "hip_harmony_guardian_14",
       "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV",
       "legacy_artwork": "hip_harmony_guardian_14",
@@ -1869,7 +1890,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "ESTE",
-      "effect_text": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "effect_text": "Bloq. 6 si no repites dir., Arm. +1",
       "effects": [
         {
           "type": "gain_block_if_no_direction",
@@ -1885,7 +1906,7 @@
       "kpi": {
         "harmony": 1
       },
-      "lore_text": "Lazo del Santuario Polar: Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
+      "lore_text": "Las reliquias blancas habilitan sellos con pago real y payoff defensivo.",
       "name": "Lazo del Santuario Polar",
       "name_es": "Lazo del Santuario Polar",
       "name_key": "Lazo del Santuario Polar",
@@ -1905,8 +1926,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 6 si no repetiste dirección, Armonía +1",
-      "text_key": "Bloqueo 6 si no repetiste dirección, Armonía +1",
+      "text_es": "Bloq. 6 si no repites dir., Arm. +1",
+      "text_key": "Bloq. 6 si no repites dir., Arm. +1",
       "legacy_id": "hip_harmony_guardian_15",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV",
       "legacy_artwork": "hip_harmony_guardian_15",
@@ -1923,7 +1944,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "NORTE",
-      "effect_text": "Bloqueo 6, Armonía +1",
+      "effect_text": "Bloq. 6, Arm. +1",
       "effects": [
         {
           "type": "gain_block",
@@ -1940,7 +1961,7 @@
         "block": 6,
         "harmony": 1
       },
-      "lore_text": "Claustro de la Estrella Blanca: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
+      "lore_text": "Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
       "name": "Claustro de la Estrella Blanca",
       "name_es": "Claustro de la Estrella Blanca",
       "name_key": "Claustro de la Estrella Blanca",
@@ -1959,8 +1980,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 6, Armonía +1",
-      "text_key": "Bloqueo 6, Armonía +1",
+      "text_es": "Bloq. 6, Arm. +1",
+      "text_key": "Bloq. 6, Arm. +1",
       "legacy_id": "hip_harmony_guardian_16",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI",
       "legacy_artwork": "hip_harmony_guardian_16",
@@ -1977,7 +1998,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "NORTE",
-      "effect_text": "Bloqueo 7, Consume Armonía 2, Cura 3",
+      "effect_text": "Bloq. 7, Consume Arm. 2, Cura 3, Daño 5",
       "effects": [
         {
           "type": "gain_block",
@@ -1990,6 +2011,10 @@
         {
           "type": "heal",
           "amount": 3
+        },
+        {
+          "type": "damage",
+          "amount": 5
         }
       ],
       "family": "place",
@@ -1997,9 +2022,10 @@
       "kpi": {
         "block": 7,
         "seal": 2,
-        "support": 3
+        "support": 3,
+        "damage": 5
       },
-      "lore_text": "Puerta del Humo Frio: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
+      "lore_text": "Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
       "name": "Puerta del Humo Frio",
       "name_es": "Puerta del Humo Frio",
       "name_key": "Puerta del Humo Frio",
@@ -2011,16 +2037,18 @@
         "weakness": "Castiga gastar armonia demasiado pronto."
       },
       "tags": [
+        "attack",
         "block",
         "heal",
+        "hiperboria",
         "place",
         "ritual",
         "seal"
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 7, Consume Armonía 2, Cura 3",
-      "text_key": "Bloqueo 7, Consume Armonía 2, Cura 3",
+      "text_es": "Bloq. 7, Consume Arm. 2, Cura 3, Daño 5",
+      "text_key": "Bloq. 7, Consume Arm. 2, Cura 3, Daño 5",
       "legacy_id": "hip_harmony_guardian_17",
       "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII",
       "legacy_artwork": "hip_harmony_guardian_17",
@@ -2037,7 +2065,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "NORTE",
-      "effect_text": "Bloqueo 4, Debilita 1",
+      "effect_text": "Bloq. 4, Debilita 1",
       "effects": [
         {
           "type": "gain_block",
@@ -2054,7 +2082,7 @@
         "block": 4,
         "support": 1
       },
-      "lore_text": "Refugio de la Aurora Tersa: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
+      "lore_text": "Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
       "name": "Refugio de la Aurora Tersa",
       "name_es": "Refugio de la Aurora Tersa",
       "name_key": "Refugio de la Aurora Tersa",
@@ -2073,8 +2101,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 4, Debilita 1",
-      "text_key": "Bloqueo 4, Debilita 1",
+      "text_es": "Bloq. 4, Debilita 1",
+      "text_key": "Bloq. 4, Debilita 1",
       "legacy_id": "hip_harmony_guardian_18",
       "canonical_id": "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII",
       "legacy_artwork": "hip_harmony_guardian_18",
@@ -2091,7 +2119,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "NORTE",
-      "effect_text": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "effect_text": "Bloq. 3, Ruptura +1, Arm. +1, Daño 3",
       "effects": [
         {
           "type": "gain_block",
@@ -2104,6 +2132,10 @@
         {
           "type": "harmony_delta",
           "amount": 1
+        },
+        {
+          "type": "damage",
+          "amount": 3
         }
       ],
       "family": "place",
@@ -2111,9 +2143,10 @@
       "kpi": {
         "block": 3,
         "rupture": 1,
-        "harmony": 1
+        "harmony": 1,
+        "damage": 3
       },
-      "lore_text": "Jardin de las Nieves Lentas: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
+      "lore_text": "Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
       "name": "Jardin de las Nieves Lentas",
       "name_es": "Jardin de las Nieves Lentas",
       "name_key": "Jardin de las Nieves Lentas",
@@ -2125,16 +2158,18 @@
         "weakness": "Pierde ritmo ante manos sin payoff."
       },
       "tags": [
+        "attack",
         "block",
         "control",
         "harmony",
+        "hiperboria",
         "place",
         "rupture"
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Bloqueo 3, Ruptura +1, Armonía +1",
-      "text_key": "Bloqueo 3, Ruptura +1, Armonía +1",
+      "text_es": "Bloq. 3, Ruptura +1, Arm. +1, Daño 3",
+      "text_key": "Bloq. 3, Ruptura +1, Arm. +1, Daño 3",
       "legacy_id": "hip_harmony_guardian_19",
       "canonical_id": "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX",
       "legacy_artwork": "hip_harmony_guardian_19",
@@ -2151,7 +2186,7 @@
       "author": "Chakana Studio",
       "cost": 4,
       "direction": "NORTE",
-      "effect_text": "Bloqueo 11, Consume Armonía 2, Cura 5, Debilita 2",
+      "effect_text": "Bloq. 11, Consume Arm. 2, Cura 5, Debilita 2",
       "effects": [
         {
           "type": "gain_block",
@@ -2168,6 +2203,10 @@
         {
           "type": "weaken_enemy",
           "amount": 2
+        },
+        {
+          "type": "damage",
+          "amount": 8
         }
       ],
       "family": "place",
@@ -2175,9 +2214,10 @@
       "kpi": {
         "block": 11,
         "seal": 2,
-        "support": 7
+        "support": 7,
+        "damage": 8
       },
-      "lore_text": "Muralla del Silencio Boreal: Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
+      "lore_text": "Los espacios polares fuerzan rutas de run mas seguras pero no lentas.",
       "name": "Muralla del Silencio Boreal",
       "name_es": "Muralla del Silencio Boreal",
       "name_key": "Muralla del Silencio Boreal",
@@ -2189,6 +2229,7 @@
         "weakness": "Castiga gastar armonia demasiado pronto."
       },
       "tags": [
+        "attack",
         "block",
         "debuff",
         "heal",
@@ -2199,8 +2240,8 @@
       ],
       "target": "enemy",
       "taxonomy": "payoff",
-      "text_es": "Bloqueo 11, Consume Armonía 2, Cura 5, Debilita 2",
-      "text_key": "Bloqueo 11, Consume Armonía 2, Cura 5, Debilita 2",
+      "text_es": "Bloq. 11, Consume Arm. 2, Cura 5, Debilita 2",
+      "text_key": "Bloq. 11, Consume Arm. 2, Cura 5, Debilita 2",
       "legacy_id": "hip_harmony_guardian_20",
       "canonical_id": "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX",
       "legacy_artwork": "hip_harmony_guardian_20",
@@ -2234,7 +2275,7 @@
         "scry": 2,
         "draw": 1
       },
-      "lore_text": "Cuervo del Hielo Interior: El norte interior vuelve la lectura mas afilada y menos ornamental.",
+      "lore_text": "El norte interior vuelve la lectura mas afilada y menos ornamental.",
       "name": "Cuervo del Hielo Interior",
       "name_es": "Cuervo del Hielo Interior",
       "name_key": "Cuervo del Hielo Interior",
@@ -2271,7 +2312,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "NORTE",
-      "effect_text": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
+      "effect_text": "Arm. +1, Consume Arm. 1, Ritual",
       "effects": [
         {
           "type": "harmony_delta",
@@ -2293,7 +2334,7 @@
         "seal": 1,
         "ritual": 1
       },
-      "lore_text": "Liebre del Horizonte Niveo: El norte interior vuelve la lectura mas afilada y menos ornamental.",
+      "lore_text": "El norte interior vuelve la lectura mas afilada y menos ornamental.",
       "name": "Liebre del Horizonte Niveo",
       "name_es": "Liebre del Horizonte Niveo",
       "name_key": "Liebre del Horizonte Niveo",
@@ -2312,8 +2353,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
-      "text_key": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
+      "text_es": "Arm. +1, Consume Arm. 1, Ritual",
+      "text_key": "Arm. +1, Consume Arm. 1, Ritual",
       "legacy_id": "hip_oracle_of_fate_02",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
       "legacy_artwork": "hip_oracle_of_fate_02",
@@ -2330,7 +2371,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "NORTE",
-      "effect_text": "Prever 2, Energía sig. turno +1",
+      "effect_text": "Prever 2, Energía sig. +1",
       "effects": [
         {
           "type": "scry",
@@ -2347,7 +2388,7 @@
         "scry": 2,
         "energy": 1
       },
-      "lore_text": "Lechuza de la Aurora Sumergida: El norte interior vuelve la lectura mas afilada y menos ornamental.",
+      "lore_text": "El norte interior vuelve la lectura mas afilada y menos ornamental.",
       "name": "Lechuza de la Aurora Sumergida",
       "name_es": "Lechuza de la Aurora Sumergida",
       "name_key": "Lechuza de la Aurora Sumergida",
@@ -2366,8 +2407,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Prever 2, Energía sig. turno +1",
-      "text_key": "Prever 2, Energía sig. turno +1",
+      "text_es": "Prever 2, Energía sig. +1",
+      "text_key": "Prever 2, Energía sig. +1",
       "legacy_id": "hip_oracle_of_fate_03",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
       "legacy_artwork": "hip_oracle_of_fate_03",
@@ -2405,7 +2446,7 @@
         "draw": 1,
         "damage": 2
       },
-      "lore_text": "Pez del Lago Astral: El norte interior vuelve la lectura mas afilada y menos ornamental.",
+      "lore_text": "El norte interior vuelve la lectura mas afilada y menos ornamental.",
       "name": "Pez del Lago Astral",
       "name_es": "Pez del Lago Astral",
       "name_key": "Pez del Lago Astral",
@@ -2443,7 +2484,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "NORTE",
-      "effect_text": "Energía sig. turno +1, Prever 2",
+      "effect_text": "Energía sig. +1, Prever 2",
       "effects": [
         {
           "type": "gain_mana_next_turn",
@@ -2460,7 +2501,7 @@
         "energy": 1,
         "scry": 2
       },
-      "lore_text": "Lobo del Velo Boreal: El norte interior vuelve la lectura mas afilada y menos ornamental.",
+      "lore_text": "El norte interior vuelve la lectura mas afilada y menos ornamental.",
       "name": "Lobo del Velo Boreal",
       "name_es": "Lobo del Velo Boreal",
       "name_key": "Lobo del Velo Boreal",
@@ -2478,8 +2519,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Energía sig. turno +1, Prever 2",
-      "text_key": "Energía sig. turno +1, Prever 2",
+      "text_es": "Energía sig. +1, Prever 2",
+      "text_key": "Energía sig. +1, Prever 2",
       "legacy_id": "hip_oracle_of_fate_05",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
       "legacy_artwork": "hip_oracle_of_fate_05",
@@ -2513,7 +2554,7 @@
         "scry": 3,
         "damage": 2
       },
-      "lore_text": "Oraculo de la Cupula Helada: Los videntes boreales empujan rituales que ya cierran partidas.",
+      "lore_text": "Los videntes boreales empujan rituales que ya cierran partidas.",
       "name": "Oraculo de la Cupula Helada",
       "name_es": "Oraculo de la Cupula Helada",
       "name_key": "Oraculo de la Cupula Helada",
@@ -2550,7 +2591,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "OESTE",
-      "effect_text": "Armonía +1, Ritual de la Trama, Prever 2",
+      "effect_text": "Arm. +1, Ritual, Prever 2",
       "effects": [
         {
           "type": "harmony_delta",
@@ -2572,7 +2613,7 @@
         "ritual": 1,
         "scry": 2
       },
-      "lore_text": "Cronista de Nimrod: Los videntes boreales empujan rituales que ya cierran partidas.",
+      "lore_text": "Los videntes boreales empujan rituales que ya cierran partidas.",
       "name": "Cronista de Nimrod",
       "name_es": "Cronista de Nimrod",
       "name_key": "Cronista de Nimrod",
@@ -2591,8 +2632,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Armonía +1, Ritual de la Trama, Prever 2",
-      "text_key": "Armonía +1, Ritual de la Trama, Prever 2",
+      "text_es": "Arm. +1, Ritual, Prever 2",
+      "text_key": "Arm. +1, Ritual, Prever 2",
       "legacy_id": "hip_oracle_of_fate_07",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
       "legacy_artwork": "hip_oracle_of_fate_07",
@@ -2631,7 +2672,7 @@
         "draw": 1,
         "rupture": 1
       },
-      "lore_text": "Interprete del Norte Interior: Los videntes boreales empujan rituales que ya cierran partidas.",
+      "lore_text": "Los videntes boreales empujan rituales que ya cierran partidas.",
       "name": "Interprete del Norte Interior",
       "name_es": "Interprete del Norte Interior",
       "name_key": "Interprete del Norte Interior",
@@ -2686,7 +2727,7 @@
       "kpi": {
         "scry": 2
       },
-      "lore_text": "Tejedor del Segundo Horizonte: Los videntes boreales empujan rituales que ya cierran partidas.",
+      "lore_text": "Los videntes boreales empujan rituales que ya cierran partidas.",
       "name": "Tejedor del Segundo Horizonte",
       "name_es": "Tejedor del Segundo Horizonte",
       "name_key": "Tejedor del Segundo Horizonte",
@@ -2723,7 +2764,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "OESTE",
-      "effect_text": "Energía sig. turno +1, Daño 2, Prever 1",
+      "effect_text": "Energía sig. +1, Daño 2, Prever 1",
       "effects": [
         {
           "type": "gain_mana_next_turn",
@@ -2745,7 +2786,7 @@
         "damage": 2,
         "scry": 1
       },
-      "lore_text": "Portadora del Mapa Blanco: Los videntes boreales empujan rituales que ya cierran partidas.",
+      "lore_text": "Los videntes boreales empujan rituales que ya cierran partidas.",
       "name": "Portadora del Mapa Blanco",
       "name_es": "Portadora del Mapa Blanco",
       "name_key": "Portadora del Mapa Blanco",
@@ -2764,8 +2805,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Energía sig. turno +1, Daño 2, Prever 1",
-      "text_key": "Energía sig. turno +1, Daño 2, Prever 1",
+      "text_es": "Energía sig. +1, Daño 2, Prever 1",
+      "text_key": "Energía sig. +1, Daño 2, Prever 1",
       "legacy_id": "hip_oracle_of_fate_10",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X",
       "legacy_artwork": "hip_oracle_of_fate_10",
@@ -2782,7 +2823,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "SUR",
-      "effect_text": "Prever 2, Energía sig. turno +1",
+      "effect_text": "Prever 2, Energía sig. +1",
       "effects": [
         {
           "type": "scry",
@@ -2799,7 +2840,7 @@
         "scry": 2,
         "energy": 1
       },
-      "lore_text": "Astrolabio de la Estrella Polar: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
+      "lore_text": "Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
       "name": "Astrolabio de la Estrella Polar",
       "name_es": "Astrolabio de la Estrella Polar",
       "name_key": "Astrolabio de la Estrella Polar",
@@ -2818,8 +2859,8 @@
       ],
       "target": "enemy",
       "taxonomy": "engine",
-      "text_es": "Prever 2, Energía sig. turno +1",
-      "text_key": "Prever 2, Energía sig. turno +1",
+      "text_es": "Prever 2, Energía sig. +1",
+      "text_key": "Prever 2, Energía sig. +1",
       "legacy_id": "hip_oracle_of_fate_11",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI",
       "legacy_artwork": "hip_oracle_of_fate_11",
@@ -2836,7 +2877,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "SUR",
-      "effect_text": "Armonía +2, Consume Armonía 2, Roba 1",
+      "effect_text": "Arm. +2, Consume Arm. 2, Roba 1",
       "effects": [
         {
           "type": "harmony_delta",
@@ -2858,7 +2899,7 @@
         "seal": 2,
         "draw": 1
       },
-      "lore_text": "Baston del Eco Frio: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
+      "lore_text": "Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
       "name": "Baston del Eco Frio",
       "name_es": "Baston del Eco Frio",
       "name_key": "Baston del Eco Frio",
@@ -2878,8 +2919,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Armonía +2, Consume Armonía 2, Roba 1",
-      "text_key": "Armonía +2, Consume Armonía 2, Roba 1",
+      "text_es": "Arm. +2, Consume Arm. 2, Roba 1",
+      "text_key": "Arm. +2, Consume Arm. 2, Roba 1",
       "legacy_id": "hip_oracle_of_fate_12",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
       "legacy_artwork": "hip_oracle_of_fate_12",
@@ -2913,7 +2954,7 @@
         "scry": 2,
         "draw": 1
       },
-      "lore_text": "Reloj de Escarcha Ritual: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
+      "lore_text": "Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
       "name": "Reloj de Escarcha Ritual",
       "name_es": "Reloj de Escarcha Ritual",
       "name_key": "Reloj de Escarcha Ritual",
@@ -2950,7 +2991,7 @@
       "author": "Chakana Studio",
       "cost": 2,
       "direction": "SUR",
-      "effect_text": "Duplica la siguiente carta, Prever 1",
+      "effect_text": "Duplica siguiente, Prever 1",
       "effects": [
         {
           "type": "copy_next_played",
@@ -2966,7 +3007,7 @@
       "kpi": {
         "scry": 1
       },
-      "lore_text": "Carta del Trono Boreal: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
+      "lore_text": "Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
       "name": "Carta del Trono Boreal",
       "name_es": "Carta del Trono Boreal",
       "name_key": "Carta del Trono Boreal",
@@ -2985,8 +3026,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Duplica la siguiente carta, Prever 1",
-      "text_key": "Duplica la siguiente carta, Prever 1",
+      "text_es": "Duplica siguiente, Prever 1",
+      "text_key": "Duplica siguiente, Prever 1",
       "legacy_id": "hip_oracle_of_fate_14",
       "canonical_id": "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV",
       "legacy_artwork": "hip_oracle_of_fate_14",
@@ -3020,7 +3061,7 @@
         "energy": 1,
         "draw": 1
       },
-      "lore_text": "Ojo de la Cupula Blanca: Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
+      "lore_text": "Los instrumentos polares mezclan prever, energia y sellos con payoff real.",
       "name": "Ojo de la Cupula Blanca",
       "name_es": "Ojo de la Cupula Blanca",
       "name_key": "Ojo de la Cupula Blanca",
@@ -3078,7 +3119,7 @@
         "draw": 1,
         "rupture": 1
       },
-      "lore_text": "Galeria del Horizonte Boreal: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
+      "lore_text": "Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
       "name": "Galeria del Horizonte Boreal",
       "name_es": "Galeria del Horizonte Boreal",
       "name_key": "Galeria del Horizonte Boreal",
@@ -3116,7 +3157,7 @@
       "author": "Chakana Studio",
       "cost": 1,
       "direction": "ESTE",
-      "effect_text": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
+      "effect_text": "Arm. +1, Consume Arm. 1, Ritual",
       "effects": [
         {
           "type": "harmony_delta",
@@ -3138,7 +3179,7 @@
         "seal": 1,
         "ritual": 1
       },
-      "lore_text": "Sala de la Nieve Pensante: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
+      "lore_text": "Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
       "name": "Sala de la Nieve Pensante",
       "name_es": "Sala de la Nieve Pensante",
       "name_key": "Sala de la Nieve Pensante",
@@ -3157,8 +3198,8 @@
       ],
       "target": "enemy",
       "taxonomy": "bridge",
-      "text_es": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
-      "text_key": "Armonía +1, Consume Armonía 1, Ritual de la Trama",
+      "text_es": "Arm. +1, Consume Arm. 1, Ritual",
+      "text_key": "Arm. +1, Consume Arm. 1, Ritual",
       "legacy_id": "hip_oracle_of_fate_17",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII",
       "legacy_artwork": "hip_oracle_of_fate_17",
@@ -3192,7 +3233,7 @@
         "scry": 3,
         "damage": 2
       },
-      "lore_text": "Terraza del Astro Invertido: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
+      "lore_text": "Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
       "name": "Terraza del Astro Invertido",
       "name_es": "Terraza del Astro Invertido",
       "name_key": "Terraza del Astro Invertido",
@@ -3250,7 +3291,7 @@
         "draw": 1,
         "damage": 2
       },
-      "lore_text": "Pozo de la Memoria Blanca: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
+      "lore_text": "Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
       "name": "Pozo de la Memoria Blanca",
       "name_es": "Pozo de la Memoria Blanca",
       "name_key": "Pozo de la Memoria Blanca",
@@ -3288,7 +3329,7 @@
       "author": "Chakana Studio",
       "cost": 3,
       "direction": "ESTE",
-      "effect_text": "Armonía +2, Consume Armonía 2, Ritual de la Trama, Roba 2",
+      "effect_text": "Arm. +2, Consume Arm. 2, Ritual, Roba 2",
       "effects": [
         {
           "type": "harmony_delta",
@@ -3315,7 +3356,7 @@
         "ritual": 1,
         "draw": 2
       },
-      "lore_text": "Mirador del Tiempo Frio: Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
+      "lore_text": "Los escenarios de Hiperborea hacen que cada ruta de control juegue diferente.",
       "name": "Mirador del Tiempo Frio",
       "name_es": "Mirador del Tiempo Frio",
       "name_key": "Mirador del Tiempo Frio",
@@ -3336,8 +3377,8 @@
       ],
       "target": "enemy",
       "taxonomy": "payoff",
-      "text_es": "Armonía +2, Consume Armonía 2, Ritual de la Trama, Roba 2",
-      "text_key": "Armonía +2, Consume Armonía 2, Ritual de la Trama, Roba 2",
+      "text_es": "Arm. +2, Consume Arm. 2, Ritual, Roba 2",
+      "text_key": "Arm. +2, Consume Arm. 2, Ritual, Roba 2",
       "legacy_id": "hip_oracle_of_fate_20",
       "canonical_id": "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX",
       "legacy_artwork": "hip_oracle_of_fate_20",

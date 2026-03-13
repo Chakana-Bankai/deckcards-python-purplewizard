@@ -9,8 +9,8 @@
 
 ## Decisión de estructura
 - `cards.json` conserva 20 cartas base por arquetipo.
-- `cards_hiperboria.json` pasa a ser la segunda mitad de cada set de 40.
-- Resultado efectivo: `Cosmic Warrior`, `Harmony Guardian` y `Oracle of Fate` quedan en 40/40/40 cartas.
+- `cards_hiperboria.json` se mantiene como set separado, con sobres propios, unlock narrativo y presencia en códice.
+- Base + Hiperboria dejan una identidad efectiva de 40/40/40 cartas por arquetipo.
 - `cards_arconte.json` queda en 40 cartas curadas para el set enemigo.
 
 ## Composición por set
@@ -42,6 +42,7 @@
 ## Ajuste de tabla de juego
 - `player_combat_deck_size` recomendado: 24.
 - Motivo: reducir padding sobre mazos iniciales de 20 cartas y permitir que la identidad del mazo aparezca antes.
+- Hiperboria conserva su rol de expansión desbloqueable: no sustituye base, la amplía.
 
 ## Definition of Done
 - Cartas regeneradas en fuentes canónicas y códex.

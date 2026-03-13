@@ -179,7 +179,7 @@ class CodexScreen:
         cid = str(card.get("id", "")).lower()
         set_id = str(card.get("set", "")).lower()
         raw_lower = raw.lower()
-        if set_id == "arconte" or cid.startswith("arc_"):
+        if set_id == "arconte" or cid.startswith(("arc_", "arc-")):
             generic_arc = raw_lower.startswith("arcano del vacio") or raw_lower in {"", cid}
             if generic_arc:
                 titles = [
@@ -193,7 +193,7 @@ class CodexScreen:
                 digits = "".join(ch for ch in cid if ch.isdigit())
                 idx = int(digits or "1")
                 raw = f"{titles[(idx - 1) % len(titles)]} {self._to_roman(idx)}"
-        elif set_id in {"hiperboria", "hiperborea"} or cid.startswith("hip_"):
+        elif set_id in {"hiperboria", "hiperborea"} or cid.startswith(("hip_", "hip-", "hyp-")):
             generic_hip = (
                 raw_lower.startswith("guerrero astral de hiperb")
                 or raw_lower.startswith("guardian de hiperb")
@@ -215,21 +215,21 @@ class CodexScreen:
         return self._display_text(raw)
 
     def _codex_cards(self) -> list[dict]:
-        if self.canon_cards:
-            items = list(self.canon_cards)
+        base_payload = self.lore_set_cards if isinstance(self.lore_set_cards, dict) else {}
+        base_items = base_payload.get("cards", []) if isinstance(base_payload.get("cards", []), list) else []
+
+        hip_payload = self.hiperboria_set_cards if isinstance(self.hiperboria_set_cards, dict) else {}
+        hip_items = hip_payload.get("cards", []) if isinstance(hip_payload.get("cards", []), list) else []
+        arc_payload = self.arconte_set_cards if isinstance(self.arconte_set_cards, dict) else {}
+        arc_items = arc_payload.get("cards", []) if isinstance(arc_payload.get("cards", []), list) else []
+
+        # Prefer the runtime-local codex payloads so current sets and unlockable expansions
+        # are shown instead of the legacy 300-card canon catalog.
+        local_items = list(base_items) + list(hip_items) + list(arc_items)
+        if local_items:
+            items = local_items
         else:
-            base_payload = self.lore_set_cards if isinstance(self.lore_set_cards, dict) else {}
-            base_items = base_payload.get("cards", []) if isinstance(base_payload.get("cards", []), list) else []
-
-            hip_payload = self.hiperboria_set_cards if isinstance(self.hiperboria_set_cards, dict) else {}
-            hip_items = hip_payload.get("cards", []) if isinstance(hip_payload.get("cards", []), list) else []
-            arc_payload = self.arconte_set_cards if isinstance(self.arconte_set_cards, dict) else {}
-            arc_items = arc_payload.get("cards", []) if isinstance(arc_payload.get("cards", []), list) else []
-
-            # Codex must expose expansion encyclopedia regardless of acquisition gating.
-            items = list(base_items)
-            items.extend(list(hip_items))
-            items.extend(list(arc_items))
+            items = list(self.canon_cards)
         if not items:
             return []
 
@@ -250,6 +250,7 @@ class CodexScreen:
                     "effects": [],
                     "archetype": str(c.get("archetype", "")),
                     "lore_text": str(c.get("lore_text", "")),
+                    "set": str(c.get("set", "")),
                 }
             full.setdefault("id", cid)
             full.setdefault("name_key", str(c.get("name", cid)))
@@ -258,7 +259,7 @@ class CodexScreen:
             full.setdefault("archetype", str(c.get("archetype", "")))
             full.setdefault("lore_text", str(c.get("lore_text", c.get("codex_entry", {}).get("lore", ""))))
             lore = str(full.get("lore_text", "") or "").strip()
-            if (str(full.get("set", "")).lower() in {"arconte", "hiperboria", "hiperborea"} or str(full.get("id", "")).lower().startswith(("arc_", "hip_"))) and lore.lower() in {
+            if (str(full.get("set", "")).lower() in {"arconte", "hiperboria", "hiperborea"} or str(full.get("id", "")).lower().startswith(("arc_", "arc-", "hip_", "hip-", "hyp-"))) and lore.lower() in {
                 "la chakana sostiene el balance cosmico ante los arcontes y el eco de hiperborea.",
                 "los arcontes tuercen la chakana para romper el balance cosmico y profanar hiperborea.",
                 "",
@@ -269,21 +270,29 @@ class CodexScreen:
                 else:
                     full["lore_text"] = f"{name_hint} conserva una memoria helada de Hiperb?rea."
             full.setdefault("artwork", str(full.get("id", cid)))
-            if str(full.get("id", "")).lower().startswith("hip_"):
+            if str(full.get("id", "")).lower().startswith(("hip_", "hip-", "hyp-")):
                 full.setdefault("set", "hiperboria")
                 full["artwork"] = str(full.get("id", cid))
-            if str(full.get("id", "")).lower().startswith("arc_"):
+            if str(full.get("id", "")).lower().startswith(("arc_", "arc-")):
                 full.setdefault("set", "arconte")
                 full["artwork"] = str(full.get("id", cid))
             out.append(full)
 
         tab = str(getattr(self, "card_set_tab", "all") or "all").lower()
         if tab == "base":
-            out = [c for c in out if not (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower() or "hiperborea" in str(c.get("set", "")).lower())]
+            out = [
+                c for c in out
+                if not (
+                    str(c.get("id", "")).lower().startswith(("hip_", "hip-", "hyp-", "arc_", "arc-"))
+                    or "hiperboria" in str(c.get("set", "")).lower()
+                    or "hiperborea" in str(c.get("set", "")).lower()
+                    or "arconte" in str(c.get("set", "")).lower()
+                )
+            ]
         elif tab == "hiperborea":
-            out = [c for c in out if (str(c.get("id", "")).lower().startswith("hip_") or "hiperboria" in str(c.get("set", "")).lower() or "hiperborea" in str(c.get("set", "")).lower())]
+            out = [c for c in out if (str(c.get("id", "")).lower().startswith(("hip_", "hip-", "hyp-")) or "hiperboria" in str(c.get("set", "")).lower() or "hiperborea" in str(c.get("set", "")).lower())]
         elif tab == "arconte":
-            out = [c for c in out if (str(c.get("id", "")).lower().startswith("arc_") or "arconte" in str(c.get("set", "")).lower())]
+            out = [c for c in out if (str(c.get("id", "")).lower().startswith(("arc_", "arc-")) or "arconte" in str(c.get("set", "")).lower())]
 
         rarity_tab = str(getattr(self, "card_rarity_tab", "all") or "all").lower()
         if rarity_tab != "all":

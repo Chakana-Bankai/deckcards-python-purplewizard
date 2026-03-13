@@ -11,7 +11,7 @@
       "rarity": "common",
       "role": "attack",
       "gameplay_text": "Daño 5, Ruptura +1",
-      "lore_text": "Sabueso de la Grieta Roja: Las criaturas arcontes son hambre con forma ritual.",
+      "lore_text": "Las criaturas arcontes son hambre con forma ritual.",
       "tags": [
         "attack",
         "creature",
@@ -28,8 +28,8 @@
       "archetype": "archon_war",
       "rarity": "common",
       "role": "control",
-      "gameplay_text": "Ruptura +1, Bloqueo 4",
-      "lore_text": "Larva del Credo Marchito: Las criaturas arcontes son hambre con forma ritual.",
+      "gameplay_text": "Ruptura +1, Bloq. 4",
+      "lore_text": "Las criaturas arcontes son hambre con forma ritual.",
       "tags": [
         "block",
         "control",
@@ -47,7 +47,7 @@
       "rarity": "common",
       "role": "ritual",
       "gameplay_text": "Daño 3, Energía +1, Ruptura +1",
-      "lore_text": "Cuervo del Ojo Impuro: Las criaturas arcontes son hambre con forma ritual.",
+      "lore_text": "Las criaturas arcontes son hambre con forma ritual.",
       "tags": [
         "creature",
         "energy",
@@ -64,8 +64,8 @@
       "archetype": "archon_war",
       "rarity": "common",
       "role": "defense",
-      "gameplay_text": "Bloqueo 5, Debilita 1",
-      "lore_text": "Mantis del Vacio Liturgico: Las criaturas arcontes son hambre con forma ritual.",
+      "gameplay_text": "Bloq. 5, Debilita 1",
+      "lore_text": "Las criaturas arcontes son hambre con forma ritual.",
       "tags": [
         "block",
         "control",
@@ -84,7 +84,7 @@
       "rarity": "common",
       "role": "attack",
       "gameplay_text": "Daño 4, Vulnerable 1",
-      "lore_text": "Rata del Eco Profano: Las criaturas arcontes son hambre con forma ritual.",
+      "lore_text": "Las criaturas arcontes son hambre con forma ritual.",
       "tags": [
         "attack",
         "creature",
@@ -102,7 +102,7 @@
       "rarity": "common",
       "role": "control",
       "gameplay_text": "Vulnerable 1, Roba 1",
-      "lore_text": "Acaro de la Ceniza Ciega: Las criaturas arcontes son hambre con forma ritual.",
+      "lore_text": "Las criaturas arcontes son hambre con forma ritual.",
       "tags": [
         "control",
         "creature",
@@ -120,7 +120,7 @@
       "rarity": "common",
       "role": "ritual",
       "gameplay_text": "Daño 4, Ruptura +2, Roba 1",
-      "lore_text": "Anguila del Umbral Podrido: Las criaturas arcontes son hambre con forma ritual.",
+      "lore_text": "Las criaturas arcontes son hambre con forma ritual.",
       "tags": [
         "attack",
         "creature",
@@ -137,8 +137,8 @@
       "archetype": "archon_war",
       "rarity": "common",
       "role": "defense",
-      "gameplay_text": "Bloqueo 4, Daño 2",
-      "lore_text": "Buitre del Sello Torcido: Las criaturas arcontes son hambre con forma ritual.",
+      "gameplay_text": "Bloq. 4, Daño 2",
+      "lore_text": "Las criaturas arcontes son hambre con forma ritual.",
       "tags": [
         "attack",
         "block",
@@ -157,7 +157,7 @@
       "rarity": "common",
       "role": "attack",
       "gameplay_text": "Daño 4, Roba 1 al matar",
-      "lore_text": "Lobo de la Corona Hueca: Las criaturas arcontes son hambre con forma ritual.",
+      "lore_text": "Las criaturas arcontes son hambre con forma ritual.",
       "tags": [
         "attack",
         "creature",
@@ -175,7 +175,7 @@
       "rarity": "common",
       "role": "control",
       "gameplay_text": "Daño 3, Roba 1",
-      "lore_text": "Avispa del Trono Negro: Las criaturas arcontes son hambre con forma ritual.",
+      "lore_text": "Las criaturas arcontes son hambre con forma ritual.",
       "tags": [
         "control",
         "creature",
@@ -193,7 +193,7 @@
       "rarity": "common",
       "role": "ritual",
       "gameplay_text": "Daño 5, Ruptura propia +1",
-      "lore_text": "Prelado del Pulso Roto: Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
+      "lore_text": "Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
       "tags": [
         "attack",
         "ritual",
@@ -210,8 +210,8 @@
       "archetype": "archon_war",
       "rarity": "common",
       "role": "defense",
-      "gameplay_text": "Bloqueo 4, Ruptura +1",
-      "lore_text": "Vigia de la Cupula Negra: Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
+      "gameplay_text": "Bloq. 4, Ruptura +1",
+      "lore_text": "Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
       "tags": [
         "block",
         "defense",
@@ -230,7 +230,7 @@
       "rarity": "common",
       "role": "attack",
       "gameplay_text": "Daño 5, Ruptura +1",
-      "lore_text": "Portador del Mandato Gris: Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
+      "lore_text": "Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
       "tags": [
         "attack",
         "rupture",
@@ -247,8 +247,8 @@
       "archetype": "archon_war",
       "rarity": "common",
       "role": "control",
-      "gameplay_text": "Ruptura +1, Bloqueo 4",
-      "lore_text": "Acusadora de la Grieta: Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
+      "gameplay_text": "Ruptura +1, Bloq. 4",
+      "lore_text": "Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
       "tags": [
         "block",
         "control",
@@ -266,7 +266,7 @@
       "rarity": "common",
       "role": "ritual",
       "gameplay_text": "Daño 3, Energía +1, Ruptura +1",
-      "lore_text": "Notario del Vacio Alto: Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
+      "lore_text": "Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
       "tags": [
         "energy",
         "ritual",
@@ -283,8 +283,8 @@
       "archetype": "archon_war",
       "rarity": "common",
       "role": "defense",
-      "gameplay_text": "Bloqueo 5, Debilita 1",
-      "lore_text": "Custodio del Diente Rojo: Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
+      "gameplay_text": "Bloq. 5, Debilita 1",
+      "lore_text": "Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
       "tags": [
         "block",
         "control",
@@ -303,7 +303,7 @@
       "rarity": "common",
       "role": "attack",
       "gameplay_text": "Daño 4, Vulnerable 1",
-      "lore_text": "Verdugo del Eco Marchito: Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
+      "lore_text": "Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
       "tags": [
         "attack",
         "debuff",
@@ -321,7 +321,7 @@
       "rarity": "common",
       "role": "control",
       "gameplay_text": "Vulnerable 1, Roba 1",
-      "lore_text": "Acolito del Trono Vacio: Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
+      "lore_text": "Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
       "tags": [
         "control",
         "debuff",
@@ -339,7 +339,7 @@
       "rarity": "common",
       "role": "ritual",
       "gameplay_text": "Daño 4, Ruptura +2, Roba 1",
-      "lore_text": "Cantor del Mandato Frio: Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
+      "lore_text": "Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
       "tags": [
         "attack",
         "ritual",
@@ -356,8 +356,8 @@
       "archetype": "archon_war",
       "rarity": "common",
       "role": "defense",
-      "gameplay_text": "Bloqueo 4, Daño 2",
-      "lore_text": "Heraldo de la Liturgia Inversa: Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
+      "gameplay_text": "Bloq. 4, Daño 2",
+      "lore_text": "Los sujetos arcontes rompen ritmo, mano y confianza del rival.",
       "tags": [
         "attack",
         "block",
@@ -376,7 +376,7 @@
       "rarity": "common",
       "role": "attack",
       "gameplay_text": "Daño 4, Roba 1 al matar",
-      "lore_text": "Grillete del Credo Quebrado: Los objetos arcontes convierten corrupcion en presion inmediata.",
+      "lore_text": "Los objetos arcontes convierten corrupcion en presion inmediata.",
       "tags": [
         "attack",
         "draw",
@@ -394,7 +394,7 @@
       "rarity": "common",
       "role": "control",
       "gameplay_text": "Daño 3, Roba 1",
-      "lore_text": "Monolito del Humo Rojo: Los objetos arcontes convierten corrupcion en presion inmediata.",
+      "lore_text": "Los objetos arcontes convierten corrupcion en presion inmediata.",
       "tags": [
         "control",
         "draw",
@@ -412,7 +412,7 @@
       "rarity": "common",
       "role": "ritual",
       "gameplay_text": "Daño 5, Ruptura propia +1",
-      "lore_text": "Anillo del Ojo Roto: Los objetos arcontes convierten corrupcion en presion inmediata.",
+      "lore_text": "Los objetos arcontes convierten corrupcion en presion inmediata.",
       "tags": [
         "attack",
         "object",
@@ -429,8 +429,8 @@
       "archetype": "archon_war",
       "rarity": "common",
       "role": "defense",
-      "gameplay_text": "Bloqueo 4, Ruptura +1",
-      "lore_text": "Aguja del Umbral Negro: Los objetos arcontes convierten corrupcion en presion inmediata.",
+      "gameplay_text": "Bloq. 4, Ruptura +1",
+      "lore_text": "Los objetos arcontes convierten corrupcion en presion inmediata.",
       "tags": [
         "block",
         "defense",
@@ -449,7 +449,7 @@
       "rarity": "uncommon",
       "role": "attack",
       "gameplay_text": "Daño 5, Ruptura +1",
-      "lore_text": "Caliz de la Sombra Hueca: Los objetos arcontes convierten corrupcion en presion inmediata.",
+      "lore_text": "Los objetos arcontes convierten corrupcion en presion inmediata.",
       "tags": [
         "attack",
         "object",
@@ -466,8 +466,8 @@
       "archetype": "archon_war",
       "rarity": "uncommon",
       "role": "control",
-      "gameplay_text": "Ruptura +1, Bloqueo 4",
-      "lore_text": "Mascara de la Noche Ritual: Los objetos arcontes convierten corrupcion en presion inmediata.",
+      "gameplay_text": "Ruptura +1, Bloq. 4",
+      "lore_text": "Los objetos arcontes convierten corrupcion en presion inmediata.",
       "tags": [
         "block",
         "control",
@@ -485,7 +485,7 @@
       "rarity": "uncommon",
       "role": "ritual",
       "gameplay_text": "Daño 3, Energía +1, Ruptura +1",
-      "lore_text": "Incensario del Vacio Ciego: Los objetos arcontes convierten corrupcion en presion inmediata.",
+      "lore_text": "Los objetos arcontes convierten corrupcion en presion inmediata.",
       "tags": [
         "energy",
         "object",
@@ -502,8 +502,8 @@
       "archetype": "archon_war",
       "rarity": "uncommon",
       "role": "defense",
-      "gameplay_text": "Bloqueo 5, Debilita 1",
-      "lore_text": "Corona del Silencio Impuro: Los objetos arcontes convierten corrupcion en presion inmediata.",
+      "gameplay_text": "Bloq. 5, Debilita 1",
+      "lore_text": "Los objetos arcontes convierten corrupcion en presion inmediata.",
       "tags": [
         "block",
         "control",
@@ -522,7 +522,7 @@
       "rarity": "uncommon",
       "role": "attack",
       "gameplay_text": "Daño 4, Vulnerable 1",
-      "lore_text": "Lanza del Trono Marchito: Los objetos arcontes convierten corrupcion en presion inmediata.",
+      "lore_text": "Los objetos arcontes convierten corrupcion en presion inmediata.",
       "tags": [
         "attack",
         "debuff",
@@ -540,7 +540,7 @@
       "rarity": "uncommon",
       "role": "control",
       "gameplay_text": "Vulnerable 1, Roba 1",
-      "lore_text": "Tableta del Mandato Caido: Los objetos arcontes convierten corrupcion en presion inmediata.",
+      "lore_text": "Los objetos arcontes convierten corrupcion en presion inmediata.",
       "tags": [
         "control",
         "debuff",
@@ -558,7 +558,7 @@
       "rarity": "uncommon",
       "role": "ritual",
       "gameplay_text": "Daño 4, Ruptura +2, Roba 1",
-      "lore_text": "Foso de la Trama Rota: Los lugares arcontes deforman la mesa y fuerzan errores.",
+      "lore_text": "Los lugares arcontes deforman la mesa y fuerzan errores.",
       "tags": [
         "attack",
         "place",
@@ -575,8 +575,8 @@
       "archetype": "archon_war",
       "rarity": "uncommon",
       "role": "defense",
-      "gameplay_text": "Bloqueo 4, Daño 2",
-      "lore_text": "Trono del Velo Marchito: Los lugares arcontes deforman la mesa y fuerzan errores.",
+      "gameplay_text": "Bloq. 4, Daño 2",
+      "lore_text": "Los lugares arcontes deforman la mesa y fuerzan errores.",
       "tags": [
         "attack",
         "block",
@@ -595,7 +595,7 @@
       "rarity": "uncommon",
       "role": "attack",
       "gameplay_text": "Daño 4, Roba 1 al matar",
-      "lore_text": "Galeria de los Sellos Muertos: Los lugares arcontes deforman la mesa y fuerzan errores.",
+      "lore_text": "Los lugares arcontes deforman la mesa y fuerzan errores.",
       "tags": [
         "attack",
         "draw",
@@ -613,7 +613,7 @@
       "rarity": "uncommon",
       "role": "control",
       "gameplay_text": "Daño 3, Roba 1",
-      "lore_text": "Pozo del Juramento Rojo: Los lugares arcontes deforman la mesa y fuerzan errores.",
+      "lore_text": "Los lugares arcontes deforman la mesa y fuerzan errores.",
       "tags": [
         "control",
         "draw",
@@ -631,7 +631,7 @@
       "rarity": "uncommon",
       "role": "ritual",
       "gameplay_text": "Daño 5, Ruptura propia +1",
-      "lore_text": "Pasarela del Ojo Negro: Los lugares arcontes deforman la mesa y fuerzan errores.",
+      "lore_text": "Los lugares arcontes deforman la mesa y fuerzan errores.",
       "tags": [
         "attack",
         "place",
@@ -648,8 +648,8 @@
       "archetype": "archon_war",
       "rarity": "uncommon",
       "role": "defense",
-      "gameplay_text": "Bloqueo 4, Ruptura +1",
-      "lore_text": "Basilica de la Voluntad Quebrada: Los lugares arcontes deforman la mesa y fuerzan errores.",
+      "gameplay_text": "Bloq. 4, Ruptura +1",
+      "lore_text": "Los lugares arcontes deforman la mesa y fuerzan errores.",
       "tags": [
         "block",
         "defense",
@@ -668,7 +668,7 @@
       "rarity": "uncommon",
       "role": "attack",
       "gameplay_text": "Daño 5, Ruptura +1",
-      "lore_text": "Camara del Eco Inverso: Los lugares arcontes deforman la mesa y fuerzan errores.",
+      "lore_text": "Los lugares arcontes deforman la mesa y fuerzan errores.",
       "tags": [
         "attack",
         "place",
@@ -685,8 +685,8 @@
       "archetype": "archon_war",
       "rarity": "uncommon",
       "role": "control",
-      "gameplay_text": "Ruptura +1, Bloqueo 4",
-      "lore_text": "Patio del Humo Torcido: Los lugares arcontes deforman la mesa y fuerzan errores.",
+      "gameplay_text": "Ruptura +1, Bloq. 4",
+      "lore_text": "Los lugares arcontes deforman la mesa y fuerzan errores.",
       "tags": [
         "block",
         "control",
@@ -704,7 +704,7 @@
       "rarity": "uncommon",
       "role": "ritual",
       "gameplay_text": "Daño 3, Energía +1, Ruptura +1",
-      "lore_text": "Puerta de la Noche Fisurada: Los lugares arcontes deforman la mesa y fuerzan errores.",
+      "lore_text": "Los lugares arcontes deforman la mesa y fuerzan errores.",
       "tags": [
         "energy",
         "place",
@@ -721,8 +721,8 @@
       "archetype": "archon_war",
       "rarity": "legendary",
       "role": "defense",
-      "gameplay_text": "Bloqueo 8, Daño 6, Ruptura +2",
-      "lore_text": "Santuario del Credo Podrido: Los lugares arcontes deforman la mesa y fuerzan errores.",
+      "gameplay_text": "Bloq. 8, Daño 6, Ruptura +2",
+      "lore_text": "Los lugares arcontes deforman la mesa y fuerzan errores.",
       "tags": [
         "attack",
         "block",

@@ -472,15 +472,15 @@ def build_effect_text(effects: list[dict]) -> str:
         if kind == "damage":
             parts.append(f"Daño {amount}")
         elif kind in {"gain_block", "block"}:
-            parts.append(f"Bloqueo {amount}")
+            parts.append(f"Bloq. {amount}")
         elif kind == "draw":
             parts.append(f"Roba {amount}")
         elif kind == "gain_mana":
             parts.append(f"Energía +{amount}")
         elif kind == "gain_mana_next_turn":
-            parts.append(f"Energía sig. turno +{amount}")
+            parts.append(f"Energía sig. +{amount}")
         elif kind == "gain_mana_if_enemy_attack_intent":
-            parts.append(f"Energía +{amount} si el enemigo ataca")
+            parts.append(f"Energía +{amount} si ataca")
         elif kind == "apply_break":
             parts.append(f"Ruptura +{amount}")
         elif kind == "scry":
@@ -492,31 +492,31 @@ def build_effect_text(effects: list[dict]) -> str:
         elif kind == "vulnerable_enemy":
             parts.append(f"Vulnerable {amount}")
         elif kind == "copy_last_played":
-            parts.append("Copia la última carta")
+            parts.append("Copia última")
         elif kind == "copy_next_played":
-            parts.append("Duplica la siguiente carta")
+            parts.append("Duplica siguiente")
         elif kind == "exhaust_self":
             parts.append("Se agota")
         elif kind == "damage_plus_rupture":
-            parts.append(f"Daño {int(effect.get('base', 0))} +{int(effect.get('per_rupture', 0))} por Ruptura")
+            parts.append(f"Daño {int(effect.get('base', 0))} +{int(effect.get('per_rupture', 0))}/Ruptura")
         elif kind == "draw_if_enemy_break":
-            parts.append(f"Roba {amount} si hay Ruptura")
+            parts.append(f"Roba {amount} si Ruptura")
         elif kind == "damage_if_enemy_break":
-            parts.append(f"Daño {amount} si hay Ruptura")
+            parts.append(f"Daño {amount} si Ruptura")
         elif kind == "draw_on_kill":
             parts.append(f"Roba {amount} al matar")
         elif kind == "gain_block_if_no_direction":
-            parts.append(f"Bloqueo {amount} si no repetiste dirección")
+            parts.append(f"Bloq. {amount} si no repites dir.")
         elif kind == "discount_next_attack":
-            parts.append(f"Próx. ataque cuesta -{amount}")
+            parts.append(f"Próx. ataque -{amount}")
         elif kind == "retain":
             parts.append("Retener")
         elif kind == "harmony_delta":
-            parts.append(f"Armonía +{amount}")
+            parts.append(f"Arm. +{amount}")
         elif kind == "consume_harmony":
-            parts.append(f"Consume Armonía {amount}")
+            parts.append(f"Consume Arm. {amount}")
         elif kind == "ritual_trama":
-            parts.append("Ritual de la Trama")
+            parts.append("Ritual")
         elif kind == "self_break":
             parts.append(f"Ruptura propia +{amount}")
     return ", ".join(parts[:4])
@@ -593,6 +593,22 @@ def legendary_override(archetype: str, card_id: str) -> tuple[list[dict], list[s
             ],
             ["block", "heal", "seal", "harmony", "attack", "ritual"],
         ),
+        "BASE-GUIDE-GUARD-CAMPO_PROTECTOR": (
+            [
+                {"type": "gain_block", "amount": 6},
+                {"type": "harmony_delta", "amount": 1},
+                {"type": "damage", "amount": 4},
+            ],
+            ["block", "harmony", "attack"],
+        ),
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA": (
+            [
+                {"type": "gain_block", "amount": 4},
+                {"type": "weaken_enemy", "amount": 1},
+                {"type": "damage", "amount": 3},
+            ],
+            ["block", "debuff", "attack"],
+        ),
         "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA": (
             [
                 {"type": "harmony_delta", "amount": 2},
@@ -625,8 +641,36 @@ def legendary_override(archetype: str, card_id: str) -> tuple[list[dict], list[s
                 {"type": "consume_harmony", "amount": 2},
                 {"type": "heal", "amount": 5},
                 {"type": "weaken_enemy", "amount": 2},
+                {"type": "damage", "amount": 8},
             ],
-            ["block", "seal", "heal", "debuff", "ritual", "hiperboria"],
+            ["block", "seal", "heal", "debuff", "ritual", "hiperboria", "attack"],
+        ),
+        "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II": (
+            [
+                {"type": "gain_block", "amount": 7},
+                {"type": "consume_harmony", "amount": 2},
+                {"type": "heal", "amount": 3},
+                {"type": "damage", "amount": 5},
+            ],
+            ["block", "seal", "heal", "ritual", "hiperboria", "attack"],
+        ),
+        "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV": (
+            [
+                {"type": "gain_block", "amount": 3},
+                {"type": "apply_break", "amount": 1},
+                {"type": "harmony_delta", "amount": 1},
+                {"type": "damage", "amount": 3},
+            ],
+            ["block", "rupture", "harmony", "attack", "hiperboria"],
+        ),
+        "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII": (
+            [
+                {"type": "gain_block", "amount": 5},
+                {"type": "consume_harmony", "amount": 2},
+                {"type": "weaken_enemy", "amount": 2},
+                {"type": "damage", "amount": 5},
+            ],
+            ["block", "seal", "debuff", "ritual", "hiperboria", "attack"],
         ),
         "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX": (
             [
@@ -644,6 +688,76 @@ def legendary_override(archetype: str, card_id: str) -> tuple[list[dict], list[s
                 {"type": "draw", "amount": 1},
             ],
             ["ritual", "harmony", "draw"],
+        ),
+        "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO": (
+            [
+                {"type": "damage", "amount": 5},
+                {"type": "draw_on_kill", "amount": 1},
+            ],
+            ["attack", "draw"],
+        ),
+        "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA": (
+            [
+                {"type": "damage", "amount": 5},
+                {"type": "apply_break", "amount": 1},
+            ],
+            ["attack", "rupture"],
+        ),
+        "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL": (
+            [
+                {"type": "gain_block", "amount": 4},
+                {"type": "damage", "amount": 3},
+            ],
+            ["block", "attack"],
+        ),
+        "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA": (
+            [
+                {"type": "gain_block", "amount": 4},
+                {"type": "damage", "amount": 3},
+            ],
+            ["block", "attack"],
+        ),
+        "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA": (
+            [
+                {"type": "gain_block", "amount": 6},
+                {"type": "harmony_delta", "amount": 1},
+                {"type": "damage", "amount": 4},
+            ],
+            ["block", "harmony", "attack"],
+        ),
+        "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA": (
+            [
+                {"type": "gain_block", "amount": 6},
+                {"type": "harmony_delta", "amount": 1},
+                {"type": "damage", "amount": 4},
+            ],
+            ["block", "harmony", "attack"],
+        ),
+        "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA": (
+            [
+                {"type": "gain_block", "amount": 4},
+                {"type": "weaken_enemy", "amount": 1},
+                {"type": "damage", "amount": 3},
+            ],
+            ["block", "debuff", "attack"],
+        ),
+        "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII": (
+            [
+                {"type": "gain_block", "amount": 7},
+                {"type": "consume_harmony", "amount": 2},
+                {"type": "heal", "amount": 3},
+                {"type": "damage", "amount": 5},
+            ],
+            ["block", "seal", "heal", "ritual", "hiperboria", "attack"],
+        ),
+        "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX": (
+            [
+                {"type": "gain_block", "amount": 3},
+                {"type": "apply_break", "amount": 1},
+                {"type": "harmony_delta", "amount": 1},
+                {"type": "damage", "amount": 3},
+            ],
+            ["block", "rupture", "harmony", "attack", "hiperboria"],
         ),
         "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40": (
             [
@@ -690,7 +804,7 @@ def build_card(row: dict, archetype: str, name: str, category: str, segment: str
     taxonomy = taxonomy_for(role, rarity)
     set_key = "base" if segment == "base" else "hiperboria"
     lore_bucket = "base" if segment == "base" else "expansion"
-    lore_text = f"{name}: {meta['lore'][lore_bucket][category]}"
+    lore_text = meta["lore"][lore_bucket][category]
     best_use, weakness = meta.get("strategy", {}).get(role, ("Generar una ventana util.", "Cae si no aparece soporte."))
     effect_text = build_effect_text(effects)
     tags = sorted({category, role, *extra_tags})
@@ -785,8 +899,8 @@ def write_design_doc(base_cards: list[dict], expansion_cards: list[dict], archon
 
 ## Decisión de estructura
 - `cards.json` conserva 20 cartas base por arquetipo.
-- `cards_hiperboria.json` pasa a ser la segunda mitad de cada set de 40.
-- Resultado efectivo: `Cosmic Warrior`, `Harmony Guardian` y `Oracle of Fate` quedan en {counts['cosmic_warrior']}/{counts['harmony_guardian']}/{counts['oracle_of_fate']} cartas.
+- `cards_hiperboria.json` se mantiene como set separado, con sobres propios, unlock narrativo y presencia en códice.
+- Base + Hiperboria dejan una identidad efectiva de {counts['cosmic_warrior']}/{counts['harmony_guardian']}/{counts['oracle_of_fate']} cartas por arquetipo.
 - `cards_arconte.json` queda en 40 cartas curadas para el set enemigo.
 
 ## Composición por set
@@ -818,6 +932,7 @@ def write_design_doc(base_cards: list[dict], expansion_cards: list[dict], archon
 ## Ajuste de tabla de juego
 - `player_combat_deck_size` recomendado: 24.
 - Motivo: reducir padding sobre mazos iniciales de 20 cartas y permitir que la identidad del mazo aparezca antes.
+- Hiperboria conserva su rol de expansión desbloqueable: no sustituye base, la amplía.
 
 ## Definition of Done
 - Cartas regeneradas en fuentes canónicas y códex.

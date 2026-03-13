@@ -1,1804 +1,644 @@
 {
   "items": {
-    "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-ATTACK-FILO_ASTRAL": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-FILO_ASTRAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-ATTACK-PULSO_COSMICO": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-PULSO_COSMICO.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-CHAKANA_DE_LUZ.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-ECO_DE_SABIDURIA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-SKILL-FILO_EN_CADENA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-FILO_EN_CADENA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_01-GARRA_ESPIRITUAL": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_01-GARRA_ESPIRITUAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_02-GARRA_ESPIRITUAL_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_02-GARRA_ESPIRITUAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_03-FILO_ASTRAL": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_03-FILO_ASTRAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_04-FILO_ASTRAL_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_04-FILO_ASTRAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_05-PULSO_COSMICO": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_05-PULSO_COSMICO.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_06-PULSO_COSMICO_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_06-PULSO_COSMICO_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_13-GUERRERO_ASTRAL_DE_HIPERBOREA_I": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_13-GUERRERO_ASTRAL_DE_HIPERBOREA_I.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_14-GUERRERO_ASTRAL_DE_HIPERBOREA_III": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_14-GUERRERO_ASTRAL_DE_HIPERBOREA_III.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_15-GUERRERO_ASTRAL_DE_HIPERBOREA_XI": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_15-GUERRERO_ASTRAL_DE_HIPERBOREA_XI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_16-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_16-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_22-ESTALLIDO_ARCANO": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_22-ESTALLIDO_ARCANO.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_23-ESTALLIDO_ARCANO_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_23-ESTALLIDO_ARCANO_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_26-GUERRERO_ASTRAL_DE_HIPERBOREA_VI": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_26-GUERRERO_ASTRAL_DE_HIPERBOREA_VI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_27-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_27-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_28-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_28-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_33-EMBATE_DEL_JAGUAR": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_33-EMBATE_DEL_JAGUAR.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_34-EMBATE_DEL_JAGUAR_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-ATTACK-RESONANCE_34-EMBATE_DEL_JAGUAR_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_07-ECO_DE_SABIDURIA": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_07-ECO_DE_SABIDURIA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_08-ECO_DE_SABIDURIA_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_08-ECO_DE_SABIDURIA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_09-FILO_EN_CADENA_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_09-FILO_EN_CADENA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_10-MANTRA_DEL_UMBRAL": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_10-MANTRA_DEL_UMBRAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_11-MANTRA_DEL_UMBRAL_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_11-MANTRA_DEL_UMBRAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_12-VINCULO_DE_ENERGIA": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_12-VINCULO_DE_ENERGIA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_17-GUERRERO_ASTRAL_DE_HIPERBOREA_IX": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_17-GUERRERO_ASTRAL_DE_HIPERBOREA_IX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_18-GUERRERO_ASTRAL_DE_HIPERBOREA_V": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_18-GUERRERO_ASTRAL_DE_HIPERBOREA_V.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_19-GUERRERO_ASTRAL_DE_HIPERBOREA_VII": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_19-GUERRERO_ASTRAL_DE_HIPERBOREA_VII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_20-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_20-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_21-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_21-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_24-FILO_EN_CADENA": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_24-FILO_EN_CADENA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_25-GUERRERO_ASTRAL_DE_HIPERBOREA_XV": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_25-GUERRERO_ASTRAL_DE_HIPERBOREA_XV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_29-GUERRERO_ASTRAL_DE_HIPERBOREA_II": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_29-GUERRERO_ASTRAL_DE_HIPERBOREA_II.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_30-GUERRERO_ASTRAL_DE_HIPERBOREA_IV": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_30-GUERRERO_ASTRAL_DE_HIPERBOREA_IV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_31-GUERRERO_ASTRAL_DE_HIPERBOREA_XII": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_31-GUERRERO_ASTRAL_DE_HIPERBOREA_XII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_32-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_32-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-COSMIC_WARRIOR-SKILL-RESONANCE_35-VINCULO_DE_ENERGIA_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-COSMIC_WARRIOR-SKILL-RESONANCE_35-VINCULO_DE_ENERGIA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX": {
-      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-CAMPO_PROTECTOR": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-CAMPO_PROTECTOR.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESCUDO_DE_LUZ.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FUSION_ESPIRITUAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-GUARDIA_TERRENAL": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-GUARDIA_TERRENAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-SELLO_PROTECTOR": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-SELLO_PROTECTOR.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_01-GUARDIA_TERRENAL": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_01-GUARDIA_TERRENAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_02-GUARDIA_TERRENAL_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_02-GUARDIA_TERRENAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_03-ESCUDO_DE_LUZ": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_03-ESCUDO_DE_LUZ.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_04-ESCUDO_DE_LUZ_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_04-ESCUDO_DE_LUZ_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_05-ESPIRITU_GUARDIAN": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_05-ESPIRITU_GUARDIAN.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_06-ESPIRITU_GUARDIAN_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_06-ESPIRITU_GUARDIAN_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_07-FIRMEZA_DEL_CUERPO": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_07-FIRMEZA_DEL_CUERPO.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_08-FIRMEZA_DEL_CUERPO_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_08-FIRMEZA_DEL_CUERPO_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_09-SELLO_PROTECTOR": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_09-SELLO_PROTECTOR.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_10-SELLO_PROTECTOR_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_10-SELLO_PROTECTOR_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_13-GUARDIAN_DEL_VELO_POLAR_I": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_13-GUARDIAN_DEL_VELO_POLAR_I.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_14-GUARDIAN_DEL_VELO_POLAR_III": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_14-GUARDIAN_DEL_VELO_POLAR_III.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_15-GUARDIAN_DEL_VELO_POLAR_XI": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_15-GUARDIAN_DEL_VELO_POLAR_XI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_17-GUARDIAN_DEL_VELO_POLAR_V": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_17-GUARDIAN_DEL_VELO_POLAR_V.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_18-GUARDIAN_DEL_VELO_POLAR_XIII": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_18-GUARDIAN_DEL_VELO_POLAR_XIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_19-GUARDIAN_DEL_VELO_POLAR_XV": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_19-GUARDIAN_DEL_VELO_POLAR_XV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_23-FUSION_ESPIRITUAL": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_23-FUSION_ESPIRITUAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_24-CAMPO_PROTECTOR": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_24-CAMPO_PROTECTOR.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_25-CAMPO_PROTECTOR_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_25-CAMPO_PROTECTOR_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_26-FUSION_ESPIRITUAL_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_26-FUSION_ESPIRITUAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_27-MURALLA_DE_PIEDRA": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_27-MURALLA_DE_PIEDRA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_28-MURALLA_DE_PIEDRA_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_28-MURALLA_DE_PIEDRA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_29-RESISTENCIA_ANCESTRAL": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_29-RESISTENCIA_ANCESTRAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_30-RESISTENCIA_ANCESTRAL_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_30-RESISTENCIA_ANCESTRAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_31-GUARDIAN_DEL_VELO_POLAR_VI": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_31-GUARDIAN_DEL_VELO_POLAR_VI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_32-GUARDIAN_DEL_VELO_POLAR_VIII": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_32-GUARDIAN_DEL_VELO_POLAR_VIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_33-GUARDIAN_DEL_VELO_POLAR_X": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_33-GUARDIAN_DEL_VELO_POLAR_X.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_34-GUARDIAN_DEL_VELO_POLAR_XVI": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_34-GUARDIAN_DEL_VELO_POLAR_XVI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_35-GUARDIAN_DEL_VELO_POLAR_XVIII": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-GUARD-RESONANCE_35-GUARDIAN_DEL_VELO_POLAR_XVIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-RITUAL-RESONANCE_20-GUARDIAN_DEL_VELO_POLAR_VII": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-RITUAL-RESONANCE_20-GUARDIAN_DEL_VELO_POLAR_VII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-RITUAL-RESONANCE_21-GUARDIAN_DEL_VELO_POLAR_XVII": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-RITUAL-RESONANCE_21-GUARDIAN_DEL_VELO_POLAR_XVII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-SKILL-RESONANCE_11-ESCUDO_DEL_CHAMAN": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-SKILL-RESONANCE_11-ESCUDO_DEL_CHAMAN.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-SKILL-RESONANCE_12-ESCUDO_DEL_CHAMAN_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-SKILL-RESONANCE_12-ESCUDO_DEL_CHAMAN_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-SKILL-RESONANCE_16-GUARDIAN_DEL_VELO_POLAR_IX": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-SKILL-RESONANCE_16-GUARDIAN_DEL_VELO_POLAR_IX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-HARMONY_GUARDIAN-SKILL-RESONANCE_22-GUARDIAN_DEL_VELO_POLAR_XIX": {
-      "path": "game/assets/sprites/cards/CANON-HARMONY_GUARDIAN-SKILL-RESONANCE_22-GUARDIAN_DEL_VELO_POLAR_XIX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX": {
-      "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-INVOCACION_ASTRAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-RITUAL-PIEDRA_RITUAL": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PIEDRA_RITUAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-FRAGMENTO_CELESTE.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-OBSERVACION_SAGRADA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-SKILL-REVELACION_ASTRAL": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-REVELACION_ASTRAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-SKILL-SILENCIO_INTERIOR": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-SILENCIO_INTERIOR.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-SKILL-VISION_DEL_CONDOR": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-VISION_DEL_CONDOR.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA": {
-      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_09-ORACULO_DEL_HORIZONTE_BOREAL_VII": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_09-ORACULO_DEL_HORIZONTE_BOREAL_VII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_15-ORACULO_DEL_HORIZONTE_BOREAL_XVII": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_15-ORACULO_DEL_HORIZONTE_BOREAL_XVII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_19-INVOCACION_ASTRAL": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_19-INVOCACION_ASTRAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_20-INVOCACION_ASTRAL_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_20-INVOCACION_ASTRAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_23-ORACULO_DEL_HORIZONTE_BOREAL_II": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_23-ORACULO_DEL_HORIZONTE_BOREAL_II.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_24-ORACULO_DEL_HORIZONTE_BOREAL_XII": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_24-ORACULO_DEL_HORIZONTE_BOREAL_XII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_27-PIEDRA_RITUAL": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_27-PIEDRA_RITUAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_28-PIEDRA_RITUAL_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_28-PIEDRA_RITUAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_29-PORTAL_DE_LA_CHAKANA": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_29-PORTAL_DE_LA_CHAKANA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_30-PORTAL_DE_LA_CHAKANA_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-RITUAL-RESONANCE_30-PORTAL_DE_LA_CHAKANA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_01-LECTURA_DEL_DESTINO": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_01-LECTURA_DEL_DESTINO.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_02-LECTURA_DEL_DESTINO_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_02-LECTURA_DEL_DESTINO_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_03-FRAGMENTO_CELESTE": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_03-FRAGMENTO_CELESTE.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_04-FRAGMENTO_CELESTE_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_04-FRAGMENTO_CELESTE_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_05-OBSERVACION_SAGRADA": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_05-OBSERVACION_SAGRADA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_06-OBSERVACION_SAGRADA_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_06-OBSERVACION_SAGRADA_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_07-VISION_DEL_CONDOR": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_07-VISION_DEL_CONDOR.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_08-VISION_DEL_CONDOR_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_08-VISION_DEL_CONDOR_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_10-ORACULO_DEL_HORIZONTE_BOREAL_I": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_10-ORACULO_DEL_HORIZONTE_BOREAL_I.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_11-ORACULO_DEL_HORIZONTE_BOREAL_III": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_11-ORACULO_DEL_HORIZONTE_BOREAL_III.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_12-ORACULO_DEL_HORIZONTE_BOREAL_IX": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_12-ORACULO_DEL_HORIZONTE_BOREAL_IX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_13-ORACULO_DEL_HORIZONTE_BOREAL_V": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_13-ORACULO_DEL_HORIZONTE_BOREAL_V.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_14-ORACULO_DEL_HORIZONTE_BOREAL_XI": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_14-ORACULO_DEL_HORIZONTE_BOREAL_XI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_16-ORACULO_DEL_HORIZONTE_BOREAL_XIII": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_16-ORACULO_DEL_HORIZONTE_BOREAL_XIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_17-ORACULO_DEL_HORIZONTE_BOREAL_XIX": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_17-ORACULO_DEL_HORIZONTE_BOREAL_XIX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_18-ORACULO_DEL_HORIZONTE_BOREAL_XV": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_18-ORACULO_DEL_HORIZONTE_BOREAL_XV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_21-SILENCIO_INTERIOR": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_21-SILENCIO_INTERIOR.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_22-SILENCIO_INTERIOR_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_22-SILENCIO_INTERIOR_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_25-ORACULO_DEL_HORIZONTE_BOREAL_VIII": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_25-ORACULO_DEL_HORIZONTE_BOREAL_VIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_26-ORACULO_DEL_HORIZONTE_BOREAL_X": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_26-ORACULO_DEL_HORIZONTE_BOREAL_X.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_31-REVELACION_ASTRAL": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_31-REVELACION_ASTRAL.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_32-REVELACION_ASTRAL_NOVA": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_32-REVELACION_ASTRAL_NOVA.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_33-ORACULO_DEL_HORIZONTE_BOREAL_IV": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_33-ORACULO_DEL_HORIZONTE_BOREAL_IV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_34-ORACULO_DEL_HORIZONTE_BOREAL_VI": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_34-ORACULO_DEL_HORIZONTE_BOREAL_VI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "CANON-ORACLE_OF_FATE-SKILL-RESONANCE_35-ORACULO_DEL_HORIZONTE_BOREAL_XIV": {
-      "path": "game/assets/sprites/cards/CANON-ORACLE_OF_FATE-SKILL-RESONANCE_35-ORACULO_DEL_HORIZONTE_BOREAL_XIV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII": {
-      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
     "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_01.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_05.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_09": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_09.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_13": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_13.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_17": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_17.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_21": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_21.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_25": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_25.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_29": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_29.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_33": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_33.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_37": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_37.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_41": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_41.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_45": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_45.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_49": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_49.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_53": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_53.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_57": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-ATTACK-ARCANO_DEL_VACIO_57.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_04.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_08.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_12": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_12.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_16.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_20": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_20.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_24": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_24.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_28": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_28.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_32": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_32.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_36": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_36.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_40.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_44": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_44.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_48": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_48.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_52": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_52.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_56": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_56.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_60": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-GUARD-ARCANO_DEL_VACIO_60.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_03.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_07.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_11": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_11.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_15": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_15.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_19": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_19.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_23": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_23.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_27": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_27.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_31": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_31.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_35": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_35.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_43": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_43.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_47": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_47.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_51": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_51.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_55.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
-    },
-    "ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_59.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_02.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_06.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_10": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_10.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_14.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_18": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_18.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_22": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_22.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_26": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_26.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_30": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_30.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_34": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_34.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
     "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_38": {
       "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_38.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+      "mode": "force"
     },
-    "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_42": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_42.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-CAMPO_PROTECTOR": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-CAMPO_PROTECTOR.png",
+      "mode": "force"
     },
-    "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_46": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_46.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-CAMPO_PROTECTOR_NOVA.png",
+      "mode": "force"
     },
-    "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_50.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESCUDO_DE_LUZ.png",
+      "mode": "force"
     },
-    "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_54.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESCUDO_DE_LUZ_NOVA.png",
+      "mode": "force"
     },
-    "ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_58": {
-      "path": "game/assets/sprites/cards/ARC-ARCHON-SKILL-ARCANO_DEL_VACIO_58.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-ATTACK-RESONANCE_01-ARCANO_DEL_VACIO_01": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-ATTACK-RESONANCE_01-ARCANO_DEL_VACIO_01.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-ATTACK-RESONANCE_02-ARCANO_DEL_VACIO_05": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-ATTACK-RESONANCE_02-ARCANO_DEL_VACIO_05.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-ATTACK-RESONANCE_03-ARCANO_DEL_VACIO_09": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-ATTACK-RESONANCE_03-ARCANO_DEL_VACIO_09.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FIRMEZA_DEL_CUERPO_NOVA.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-ATTACK-RESONANCE_04-ARCANO_DEL_VACIO_13": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-ATTACK-RESONANCE_04-ARCANO_DEL_VACIO_13.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FUSION_ESPIRITUAL.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-ATTACK-RESONANCE_05-ARCANO_DEL_VACIO_17": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-ATTACK-RESONANCE_05-ARCANO_DEL_VACIO_17.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-ATTACK-RESONANCE_06-ARCANO_DEL_VACIO_21": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-ATTACK-RESONANCE_06-ARCANO_DEL_VACIO_21.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-GUARDIA_TERRENAL": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-GUARDIA_TERRENAL.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-GUARD-RESONANCE_07-ARCANO_DEL_VACIO_04": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-GUARD-RESONANCE_07-ARCANO_DEL_VACIO_04.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-GUARDIA_TERRENAL_NOVA.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-GUARD-RESONANCE_08-ARCANO_DEL_VACIO_08": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-GUARD-RESONANCE_08-ARCANO_DEL_VACIO_08.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-GUARD-RESONANCE_09-ARCANO_DEL_VACIO_12": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-GUARD-RESONANCE_09-ARCANO_DEL_VACIO_12.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-GUARD-RESONANCE_10-ARCANO_DEL_VACIO_16": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-GUARD-RESONANCE_10-ARCANO_DEL_VACIO_16.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-GUARD-RESONANCE_11-ARCANO_DEL_VACIO_20": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-GUARD-RESONANCE_11-ARCANO_DEL_VACIO_20.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-RESISTENCIA_ANCESTRAL_NOVA.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-GUARD-RESONANCE_12-ARCANO_DEL_VACIO_24": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-GUARD-RESONANCE_12-ARCANO_DEL_VACIO_24.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-SELLO_PROTECTOR": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-SELLO_PROTECTOR.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-RITUAL-RESONANCE_13-ARCANO_DEL_VACIO_03": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-RITUAL-RESONANCE_13-ARCANO_DEL_VACIO_03.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-GUARD-SELLO_PROTECTOR_NOVA.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-RITUAL-RESONANCE_14-ARCANO_DEL_VACIO_07": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-RITUAL-RESONANCE_14-ARCANO_DEL_VACIO_07.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN.png",
+      "mode": "force"
     },
-    "CANON-ARCHON-RITUAL-RESONANCE_15-ARCANO_DEL_VACIO_11": {
-      "path": "game/assets/sprites/cards/CANON-ARCHON-RITUAL-RESONANCE_15-ARCANO_DEL_VACIO_11.png",
-      "mode": "immersion_rebuild_phase6",
-      "generator": "geometric_ritual_engine_frameless",
-      "framed": false
+    "BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-GUIDE-SKILL-ESCUDO_DEL_CHAMAN_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-INVOCACION_ASTRAL.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-INVOCACION_ASTRAL_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-RITUAL-PIEDRA_RITUAL": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PIEDRA_RITUAL.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-RITUAL-RITUAL_DE_LA_TRAMA_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-FRAGMENTO_CELESTE.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-FRAGMENTO_CELESTE_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-LECTURA_DEL_DESTINO_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-OBSERVACION_SAGRADA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-OBSERVACION_SAGRADA_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-SKILL-REVELACION_ASTRAL": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-REVELACION_ASTRAL.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-REVELACION_ASTRAL_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-SKILL-SILENCIO_INTERIOR": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-SILENCIO_INTERIOR.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-SKILL-VISION_DEL_CONDOR": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-VISION_DEL_CONDOR.png",
+      "mode": "force"
+    },
+    "BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-ORACLE-SKILL-VISION_DEL_CONDOR_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-ATTACK-FILO_ASTRAL": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-FILO_ASTRAL.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-ATTACK-PULSO_COSMICO": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-PULSO_COSMICO.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-CHAKANA_DE_LUZ.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-ECO_DE_SABIDURIA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-SKILL-FILO_EN_CADENA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-FILO_EN_CADENA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA.png",
+      "mode": "force"
+    },
+    "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA": {
+      "path": "game/assets/sprites/cards/BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_I.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_III.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_V.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VI.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_VIII.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_X.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XIII.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XV.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVI.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XVIII.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_II.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_VII.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XII.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XVII.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-RITUAL-GUARDIAN_DEL_VELO_POLAR_XX.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IV.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV.png",
+      "mode": "force"
+    },
+    "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX": {
+      "path": "game/assets/sprites/cards/HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIX.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XVII.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_I.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IV.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_IX.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VI.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_X.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XI.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIV.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIX.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XV.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVI.png",
+      "mode": "force"
+    },
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII": {
+      "path": "game/assets/sprites/cards/HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XVIII.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVIII.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IX.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_VII.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_X.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XII.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIV.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XIX.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XV.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII.png",
+      "mode": "force"
+    },
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX": {
+      "path": "game/assets/sprites/cards/HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XX.png",
+      "mode": "force"
     }
   }
 }
