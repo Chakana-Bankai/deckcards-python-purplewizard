@@ -56,14 +56,16 @@ class PromptBuilder:
     def family_for(self, card: dict) -> str:
         tags = {str(t).lower() for t in (card.get("tags", []) or [])}
         role = str(card.get("role", "")).lower()
-        if "attack" in tags or role == "attack":
-            return "attack"
-        if "block" in tags or "defense" in tags or role == "defense":
+        if role in {"attack", "defense", "ritual", "control"}:
+            return "defense" if role == "defense" else role
+        if "block" in tags or "defense" in tags:
             return "defense"
-        if "ritual" in tags or role == "ritual":
+        if "ritual" in tags:
             return "ritual"
-        if "draw" in tags or "scry" in tags or "control" in tags or role == "control":
+        if "draw" in tags or "scry" in tags or "control" in tags:
             return "control"
+        if "attack" in tags:
+            return "attack"
         return "spirit"
 
     def effect_signature(self, card: dict) -> str:

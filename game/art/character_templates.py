@@ -9,11 +9,11 @@ CHARACTER_TEMPLATES = {
         "width_ratio": 0.34,
         "height_ratio": 0.44,
         "dominant_shape": "circle",
-        "style_family": "symbolic_origami",
+        "style_family": "illustrated_mythic_archon",
         "render_binding": {
             "prop_lane_mode": "side_lane_short_grip",
             "costume_plane_mode": "cathedral_split_planes",
-            "surface_mode": "matte_cloth_low_detail",
+            "surface_mode": "matte_cloth_high_detail",
         },
         "head_scale": (0.08, 0.13),
         "head_size": {"ratio_range": (0.16, 0.17), "shape": "narrow_masked_oval"},
@@ -35,11 +35,11 @@ CHARACTER_TEMPLATES = {
         "width_ratio": 0.35,
         "height_ratio": 0.45,
         "dominant_shape": "triangle",
-        "style_family": "symbolic_origami",
+        "style_family": "illustrated_mythic_solar",
         "render_binding": {
             "prop_lane_mode": "forward_diagonal_short_grip",
             "costume_plane_mode": "heroic_plate_planes",
-            "surface_mode": "metal_cloth_low_detail",
+            "surface_mode": "metal_cloth_high_detail",
         },
         "head_scale": (0.10, 0.14),
         "head_size": {"ratio_range": (0.16, 0.18), "shape": "helmeted_oval"},
@@ -55,17 +55,43 @@ CHARACTER_TEMPLATES = {
         "default_weapon": "spear",
         "default_symbol": "solar",
     },
+    "guardian_sentinel_base": {
+        "template_id": "guardian_sentinel_base",
+        "archetype": "solar_warrior",
+        "width_ratio": 0.36,
+        "height_ratio": 0.46,
+        "dominant_shape": "shield",
+        "style_family": "illustrated_mythic_guardian",
+        "render_binding": {
+            "prop_lane_mode": "guard_front_anchor",
+            "costume_plane_mode": "bastion_plate_planes",
+            "surface_mode": "temple_plate_mid_high_detail",
+        },
+        "head_scale": (0.10, 0.14),
+        "head_size": {"ratio_range": (0.16, 0.18), "shape": "guard_helm_oval"},
+        "torso_mass": {"shape": "shield_bastion_core", "width_ratio": 0.76, "height_ratio": 0.78},
+        "arm_length": {"ratio_range": (0.30, 0.34), "gesture": "defensive_anchor_hold"},
+        "weapon_anchor": {"primary": "left_hand_anchor", "secondary": "right_hand_anchor"},
+        "cape_or_ornament_areas": ["mantle_left", "mantle_right", "chest_guard", "waist_talisman"],
+        "silhouette_outline": {"profile": "fortified_shielded_stance", "dominant_angles": "bastion_stepped", "negative_space": "open_guard_lane"},
+        "shoulder_width": 0.38,
+        "hip_width": 0.22,
+        "robe_width": 0.24,
+        "stance": "anchored",
+        "default_weapon": "sword",
+        "default_symbol": "shield",
+    },
     "guide_mage_base": {
         "template_id": "guide_mage_base",
         "archetype": "guide_mage",
         "width_ratio": 0.33,
         "height_ratio": 0.43,
         "dominant_shape": "rectangle",
-        "style_family": "symbolic_origami",
+        "style_family": "illustrated_mythic_guide",
         "render_binding": {
             "prop_lane_mode": "support_side_short_grip",
             "costume_plane_mode": "soft_robe_planes",
-            "surface_mode": "soft_cloth_low_detail",
+            "surface_mode": "soft_cloth_mid_high_detail",
         },
         "head_scale": (0.10, 0.14),
         "head_size": {"ratio_range": (0.16, 0.18), "shape": "soft_hooded_oval"},
@@ -81,6 +107,32 @@ CHARACTER_TEMPLATES = {
         "default_weapon": "staff",
         "default_symbol": "chakana",
     },
+    "oracle_seer_base": {
+        "template_id": "oracle_seer_base",
+        "archetype": "guide_mage",
+        "width_ratio": 0.32,
+        "height_ratio": 0.44,
+        "dominant_shape": "lens",
+        "style_family": "illustrated_mythic_oracle",
+        "render_binding": {
+            "prop_lane_mode": "focus_forward_float",
+            "costume_plane_mode": "seer_layered_robe_planes",
+            "surface_mode": "arcane_cloth_mid_high_detail",
+        },
+        "head_scale": (0.10, 0.14),
+        "head_size": {"ratio_range": (0.16, 0.18), "shape": "seer_hooded_oval"},
+        "torso_mass": {"shape": "divination_column_split_robe", "width_ratio": 0.70, "height_ratio": 0.82},
+        "arm_length": {"ratio_range": (0.30, 0.35), "gesture": "oracle_focus_hold"},
+        "weapon_anchor": {"primary": "right_hand_anchor", "secondary": "left_hand_anchor"},
+        "cape_or_ornament_areas": ["hood_back", "oracle_sash", "seer_panel_left", "seer_panel_right"],
+        "silhouette_outline": {"profile": "seer_vertical_open_focus", "dominant_angles": "curved_ritual", "negative_space": "floating_focus_gap"},
+        "shoulder_width": 0.22,
+        "hip_width": 0.17,
+        "robe_width": 0.36,
+        "stance": "oracular",
+        "default_weapon": "orb",
+        "default_symbol": "eye",
+    },
 }
 
 
@@ -89,7 +141,11 @@ def resolve_character_template(semantic: dict) -> dict[str, object]:
     subject = str(semantic.get("subject", "") or "").lower()
     if "archon" in subject_kind or "archon" in subject or "arconte" in subject:
         template = dict(CHARACTER_TEMPLATES["archon_base"])
-    elif any(tok in subject_kind for tok in ("oracle", "mage", "guide")) or any(tok in subject for tok in ("oracle", "mage", "guide")):
+    elif any(tok in subject_kind for tok in ("oracle", "seer", "totem")) or any(tok in subject for tok in ("oracle", "seer", "divination")):
+        template = dict(CHARACTER_TEMPLATES["oracle_seer_base"])
+    elif any(tok in subject_kind for tok in ("guardian", "bearer", "sentinel")) or any(tok in subject for tok in ("guardian", "sentinel", "shield")):
+        template = dict(CHARACTER_TEMPLATES["guardian_sentinel_base"])
+    elif any(tok in subject_kind for tok in ("mage", "guide")) or any(tok in subject for tok in ("mage", "guide")):
         template = dict(CHARACTER_TEMPLATES["guide_mage_base"])
     else:
         template = dict(CHARACTER_TEMPLATES["solar_warrior_base"])

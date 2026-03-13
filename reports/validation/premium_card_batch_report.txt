@@ -1,8 +1,9 @@
 status=ok
-batch=legendary_core
+engine=direct_single_pass
+batch=starter_showcase
 cards=3
-layer_standard=background_base,subject_character,focus_object,magic_effects,integration_depth_pass
-composition_rule=background+subject+object+effects+integration
-cw_lore_10=cw_lore_10.png|refs=
-hip_cosmic_warrior_20=hip_cosmic_warrior_20.png|refs=
-arc_060=arc_060.png|refs=
+layer_standard=background_base,environment,subject_character,focus_object,magic_effects,integration_depth_pass
+composition_rule=background+environment+subject+object+effects+integration
+BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO|engine=direct_single_pass|generator=assembly_pipeline_v1|family=attack|refs=guardian 01,guardian 02,guardian 03
+HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XX|engine=direct_single_pass|generator=assembly_pipeline_v1|family=ritual|refs=guardian 01,guardian 02,guardian 03
+ARC-ARCHON-RITUAL-ARCANO_DEL_VACIO_39|engine=direct_single_pass|generator=assembly_pipeline_v1|family=ritual|refs=guardian 01,guardian 02,guardian 03

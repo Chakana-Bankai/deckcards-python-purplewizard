@@ -1,23 +1,29 @@
 {
-  "version": "chakana_art_style_lock_v1",
-  "style_mode": "symbolic_origami",
+  "version": "chakana_art_style_lock_v2",
+  "style_mode": "illustrated_readable",
   "status": "active",
-  "description": "Locks the near-term art target to playable placeholder with identity: readable subject, understandable card role, correct faction color, correct frame compatibility, and clean composition without aiming at premium final illustration.",
+  "description": "Locks card art to an illustrated readable target: strong subject, clear object, faction identity, layered scene support, and higher surface richness while preserving runtime legibility and frame compatibility.",
   "principles": {
     "silhouette_first": true,
     "template_driven_subjects": true,
-    "freeform_geometry_disabled": true,
+    "freeform_geometry_disabled": false,
     "hard_edge_props_required": true,
-    "material_rendering_level": "low_to_mid",
+    "material_rendering_level": "mid_to_high",
     "scene_detail_subordinate_to_subject": true,
-    "premium_illustration_not_required": true,
+    "premium_illustration_not_required": false,
     "card_role_readability_required": true,
     "faction_color_readability_required": true,
     "frame_compatibility_required": true,
-    "clean_composition_required": true
+    "clean_composition_required": true,
+    "subject_costume_detail_required": true,
+    "distinct_family_templates_required": true,
+    "object_material_finish_required": true
   },
   "component_priorities": [
     "subject_legibility",
+    "subject_template_specificity",
+    "material_readability",
+    "prop_identity",
     "card_role_readability",
     "faction_palette_clarity",
     "frame_compatibility",
@@ -27,10 +33,8 @@
     "background_support_only"
   ],
   "deferred_capabilities": [
-    "premium_final_illustration",
     "gpu_acceleration",
-    "high_detail_painterly_rendering",
     "freeform_humanoid_generation"
   ],
-  "target_quality": "playable_placeholder_with_identity"
+  "target_quality": "illustrated_readable_production"
 }
