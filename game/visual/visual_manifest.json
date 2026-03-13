@@ -1,6 +1,6 @@
 {
   "version": "visual_v2",
-  "generated_at": 1773407741,
+  "generated_at": 1773427410,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -6785,6 +6785,50 @@
       "context": "rare",
       "version": "visual_v2",
       "generated_at": 1773407741,
+      "size": [
+        84,
+        84
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:seal_of_seven_paths:84x84:rare": {
+      "asset_id": "seal_of_seven_paths",
+      "category": "relics",
+      "seed": 40364704,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\seal_of_seven_paths_84x84_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773427410,
       "size": [
         84,
         84
