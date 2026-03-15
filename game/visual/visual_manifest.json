@@ -1,6 +1,6 @@
 {
   "version": "visual_v2",
-  "generated_at": 1773427410,
+  "generated_at": 1773597173,
   "items": {
     "avatar:menu:228x228:menu": {
       "asset_id": "menu",
@@ -3213,7 +3213,7 @@
     "relics:crown_of_hanan:18x18:rare": {
       "asset_id": "crown_of_hanan",
       "category": "relics",
-      "seed": 1171568293,
+      "seed": 1091779531,
       "palette": {
         "deep_purple": [
           28,
@@ -3245,17 +3245,19 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\crown_of_hanan_18x18_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772987077,
+      "version": "visual_v2",
+      "generated_at": 1773596901,
       "size": [
         18,
         18
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:crown_of_hanan:16x16:rare": {
       "asset_id": "crown_of_hanan",
       "category": "relics",
-      "seed": 1171568293,
+      "seed": 1091779531,
       "palette": {
         "deep_purple": [
           28,
@@ -3287,12 +3289,14 @@
         "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\crown_of_hanan_16x16_rare.png"
       ],
       "context": "rare",
-      "version": "visual_v1",
-      "generated_at": 1772987100,
+      "version": "visual_v2",
+      "generated_at": 1773597173,
       "size": [
         16,
         16
-      ]
+      ],
+      "state": "valid",
+      "lore_tags": []
     },
     "relics:andean_knot:176x176:rare": {
       "asset_id": "andean_knot",
@@ -6832,6 +6836,50 @@
       "size": [
         84,
         84
+      ],
+      "state": "valid",
+      "lore_tags": []
+    },
+    "relics:andean_knot:18x18:rare": {
+      "asset_id": "andean_knot",
+      "category": "relics",
+      "seed": 2076784191,
+      "palette": {
+        "deep_purple": [
+          28,
+          18,
+          44
+        ],
+        "violet": [
+          126,
+          82,
+          196
+        ],
+        "gold": [
+          226,
+          194,
+          126
+        ],
+        "cyan": [
+          112,
+          214,
+          235
+        ],
+        "void": [
+          10,
+          8,
+          20
+        ]
+      },
+      "output_paths": [
+        "C:\\Users\\mxpri\\PurpleWizard\\deckcards-python-purplewizard\\game\\visual\\generated\\relics\\andean_knot_18x18_rare.png"
+      ],
+      "context": "rare",
+      "version": "visual_v2",
+      "generated_at": 1773596852,
+      "size": [
+        18,
+        18
       ],
       "state": "valid",
       "lore_tags": []

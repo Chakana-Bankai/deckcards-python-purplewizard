@@ -1,0 +1,372 @@
+{
+  "gold": 109,
+  "relics": [
+    "violet_seal",
+    "solar_tumi",
+    "oracle_lens",
+    "andean_knot",
+    "void_mirror",
+    "crown_of_hanan",
+    "archon_fragment"
+  ],
+  "relic_slots_max": 8,
+  "player": {
+    "hp": -14,
+    "max_hp": 62,
+    "block": 0,
+    "energy": 4,
+    "rupture": 0,
+    "statuses": {
+      "weaken": 44,
+      "cost_plus": 7,
+      "vulnerable": 3,
+      "enemy_damage_down": 0
+    },
+    "harmony_current": 3,
+    "harmony_max": 10,
+    "harmony_ready_threshold": 6,
+    "harmony_ready": false,
+    "harmony_seal_used": true,
+    "seal_ready": false,
+    "seal_active": false
+  },
+  "deck": [
+    "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA_NOVA",
+    "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ",
+    "BASE-ORACLE-RITUAL-PORTAL_DE_LA_CHAKANA_NOVA",
+    "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO_NOVA",
+    "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR",
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_VIII",
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XVI",
+    "BASE-GUIDE-GUARD-FUSION_ESPIRITUAL_NOVA",
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_XIII",
+    "BASE-SOLAR-SKILL-FILO_EN_CADENA",
+    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_II",
+    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_VII",
+    "BASE-ORACLE-RITUAL-PIEDRA_RITUAL",
+    "BASE-SOLAR-SKILL-CHAKANA_DE_LUZ_NOVA",
+    "BASE-GUIDE-GUARD-MURALLA_DE_PIEDRA_NOVA",
+    "BASE-SOLAR-ATTACK-ESTALLIDO_ARCANO",
+    "BASE-SOLAR-ATTACK-EMBATE_DEL_JAGUAR_NOVA",
+    "BASE-ORACLE-RITUAL-PIEDRA_RITUAL_NOVA",
+    "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII",
+    "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_XIV"
+  ],
+  "sideboard": [
+    "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA_NOVA",
+    "BASE-SOLAR-ATTACK-FILO_ASTRAL_NOVA",
+    "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL",
+    "BASE-SOLAR-ATTACK-GARRA_ESPIRITUAL_NOVA",
+    "BASE-SOLAR-ATTACK-PULSO_COSMICO",
+    "BASE-SOLAR-SKILL-ECO_DE_SABIDURIA",
+    "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL_NOVA",
+    "BASE-SOLAR-ATTACK-FILO_ASTRAL",
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VI",
+    "BASE-SOLAR-ATTACK-PULSO_COSMICO_NOVA",
+    "BASE-GUIDE-GUARD-ESPIRITU_GUARDIAN_NOVA",
+    "BASE-ORACLE-SKILL-OBSERVACION_SAGRADA",
+    "BASE-SOLAR-SKILL-VINCULO_DE_ENERGIA",
+    "BASE-ORACLE-SKILL-SILENCIO_INTERIOR_NOVA",
+    "HYP-GUIDE-GUARD-GUARDIAN_DEL_VELO_POLAR_XI",
+    "BASE-GUIDE-GUARD-GUARDIA_TERRENAL",
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_IV",
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_XVII",
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_III",
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XIII",
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_VIII",
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_III",
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_V",
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_XI",
+    "HYP-GUIDE-SKILL-GUARDIAN_DEL_VELO_POLAR_IX",
+    "HYP-SOLAR-ATTACK-GUERRERO_ASTRAL_DE_HIPERBOREA_I",
+    "HYP-SOLAR-SKILL-GUERRERO_ASTRAL_DE_HIPERBOREA_II",
+    "HYP-ORACLE-SKILL-ORACULO_DEL_HORIZONTE_BOREAL_V",
+    "BASE-SOLAR-SKILL-MANTRA_DEL_UMBRAL",
+    "BASE-SOLAR-SKILL-FILO_EN_CADENA_NOVA"
+  ],
+  "map": [
+    [
+      {
+        "id": "0_0",
+        "col": 0,
+        "x": 180,
+        "y": 540,
+        "type": "combat",
+        "biome": "ukhu",
+        "next": [
+          "1_0",
+          "1_1"
+        ],
+        "state": "cleared"
+      }
+    ],
+    [
+      {
+        "id": "1_0",
+        "col": 1,
+        "x": 492,
+        "y": 396,
+        "type": "event",
+        "biome": "ukhu",
+        "next": [
+          "2_0",
+          "2_1"
+        ],
+        "state": "cleared"
+      },
+      {
+        "id": "1_1",
+        "col": 1,
+        "x": 492,
+        "y": 492,
+        "type": "combat",
+        "biome": "ukhu",
+        "next": [
+          "2_1",
+          "2_0"
+        ],
+        "state": "cleared"
+      },
+      {
+        "id": "1_2",
+        "col": 1,
+        "x": 492,
+        "y": 588,
+        "type": "challenge",
+        "biome": "ukhu",
+        "next": [
+          "2_2",
+          "2_3"
+        ],
+        "state": "cleared"
+      },
+      {
+        "id": "1_3",
+        "col": 1,
+        "x": 492,
+        "y": 684,
+        "type": "sanctuary",
+        "biome": "ukhu",
+        "next": [
+          "2_3",
+          "2_2"
+        ],
+        "state": "cleared"
+      }
+    ],
+    [
+      {
+        "id": "2_0",
+        "col": 2,
+        "x": 804,
+        "y": 396,
+        "type": "combat",
+        "biome": "kaypacha",
+        "next": [
+          "3_0",
+          "3_1"
+        ],
+        "state": "cleared"
+      },
+      {
+        "id": "2_1",
+        "col": 2,
+        "x": 804,
+        "y": 492,
+        "type": "shop",
+        "biome": "kaypacha",
+        "next": [
+          "3_1",
+          "3_0"
+        ],
+        "state": "cleared"
+      },
+      {
+        "id": "2_2",
+        "col": 2,
+        "x": 804,
+        "y": 588,
+        "type": "combat",
+        "biome": "kaypacha",
+        "next": [
+          "3_2",
+          "3_3"
+        ],
+        "state": "cleared"
+      },
+      {
+        "id": "2_3",
+        "col": 2,
+        "x": 804,
+        "y": 684,
+        "type": "event",
+        "biome": "kaypacha",
+        "next": [
+          "3_3",
+          "3_2"
+        ],
+        "state": "cleared"
+      }
+    ],
+    [
+      {
+        "id": "3_0",
+        "col": 3,
+        "x": 1116,
+        "y": 396,
+        "type": "challenge",
+        "biome": "hanan",
+        "next": [
+          "4_0",
+          "4_1"
+        ],
+        "state": "cleared"
+      },
+      {
+        "id": "3_1",
+        "col": 3,
+        "x": 1116,
+        "y": 492,
+        "type": "combat",
+        "biome": "hanan",
+        "next": [
+          "4_0"
+        ],
+        "state": "cleared"
+      },
+      {
+        "id": "3_2",
+        "col": 3,
+        "x": 1116,
+        "y": 588,
+        "type": "relic",
+        "biome": "hanan",
+        "next": [
+          "4_1"
+        ],
+        "state": "cleared"
+      },
+      {
+        "id": "3_3",
+        "col": 3,
+        "x": 1116,
+        "y": 684,
+        "type": "challenge",
+        "biome": "hanan",
+        "next": [
+          "4_1",
+          "4_0"
+        ],
+        "state": "cleared"
+      }
+    ],
+    [
+      {
+        "id": "4_0",
+        "col": 4,
+        "x": 1428,
+        "y": 480,
+        "type": "combat",
+        "biome": "hanan",
+        "next": [
+          "5_0"
+        ],
+        "state": "cleared"
+      },
+      {
+        "id": "4_1",
+        "col": 4,
+        "x": 1428,
+        "y": 600,
+        "type": "elite",
+        "biome": "hanan",
+        "next": [
+          "5_0"
+        ],
+        "state": "cleared"
+      }
+    ],
+    [
+      {
+        "id": "5_0",
+        "col": 5,
+        "x": 1740,
+        "y": 540,
+        "type": "boss",
+        "biome": "fractura_chakana",
+        "next": [],
+        "state": "available"
+      }
+    ]
+  ],
+  "map_columns": 6,
+  "biome_progression": [
+    "ukhu",
+    "kaypacha",
+    "hanan",
+    "fractura_chakana"
+  ],
+  "biome_index": 3,
+  "biome": "fractura_chakana",
+  "xp": 30,
+  "level": 7,
+  "combats_won": 10,
+  "tutorial_combats_won": 10,
+  "allow_defeat_continue": true,
+  "settings": {
+    "turn_timer_enabled": true,
+    "turn_timer_seconds": 20,
+    "music_muted": false
+  },
+  "discovered_sets": [
+    "base",
+    "hiperboria"
+  ],
+  "hiperboria_unlocked": true,
+  "tutorial": {
+    "active": false,
+    "completed": false,
+    "step_id": "",
+    "step_index": 0,
+    "step_total": 7
+  },
+  "meta_director": {
+    "recent_enemy_ids": [
+      "vidente_caido",
+      "runa_errante",
+      "larva_del_vacio",
+      "eco_perdido",
+      "guardia_de_raiz"
+    ],
+    "recent_event_ids": [
+      "chakana_crossroads",
+      "serpent_shed",
+      "ayni_pact"
+    ],
+    "recent_shop_card_ids": [
+      "HYP-ORACLE-RITUAL-ORACULO_DEL_HORIZONTE_BOREAL_XII"
+    ],
+    "recent_pack_ids": [
+      "hiperborea_pack",
+      "mystery_pack",
+      "hiperborea_pack",
+      "hiperborea_pack"
+    ],
+    "visual_direction_tags": [
+      "biome:fractura_chakana"
+    ],
+    "audio_direction_tags": [
+      "ctx:map",
+      "biome:fractura_chakana"
+    ]
+  },
+  "hiperboria_unlock_target": 3,
+  "civilization": "base_world",
+  "last_node_type": "boss",
+  "levelup_pending": 6,
+  "combat_invalid_reason": "",
+  "combat_invalid_until_ms": 0,
+  "current_node_id": "5_0",
+  "last_biome_seen": "fractura_chakana",
+  "saved_at": 1773600055
+}
